@@ -74,11 +74,23 @@
     <Compile Include="CP_ChangePassword.designer.cs">
       <DependentUpon>CP_ChangePassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_SubGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SubGroup.designer.cs">
+      <DependentUpon>CP_SubGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Group.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CP_Group.designer.cs">
       <DependentUpon>CP_Group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_SubGroupList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SubGroupList.designer.cs">
+      <DependentUpon>CP_SubGroupList.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_GroupList.cs">
       <SubType>Form</SubType>
@@ -148,8 +160,14 @@
     <EmbeddedResource Include="CP_ChangePassword.resx">
       <DependentUpon>CP_ChangePassword.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_SubGroup.resx">
+      <DependentUpon>CP_SubGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_Group.resx">
       <DependentUpon>CP_Group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_SubGroupList.resx">
+      <DependentUpon>CP_SubGroupList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_GroupList.resx">
       <DependentUpon>CP_GroupList.cs</DependentUpon>

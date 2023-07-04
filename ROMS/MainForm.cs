@@ -42,6 +42,8 @@ namespace ROMS
         public static CP_User objCP_User;
         public static CP_Group objCP_Group;
         public static CP_GroupList objCP_GroupList;
+        public static CP_SubGroup objCP_SubGroup;
+        public static CP_SubGroupList objCP_SubGroupList;
 
 
         public static DataTable objDtMenuDetails;
@@ -423,6 +425,23 @@ namespace ROMS
                 MainForm.objCP_GroupList = new CP_GroupList();
                 MainForm.objCP_GroupList.MdiParent = this;
                 MainForm.objCP_GroupList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmSubGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_SubGroupList = new CP_SubGroupList();
+                MainForm.objCP_SubGroupList.MdiParent = this;
+                MainForm.objCP_SubGroupList.Show();
             }
             catch (Exception ex)
             {

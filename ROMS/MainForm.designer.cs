@@ -247,6 +247,7 @@ namespace ROMS
             this.tsmSubGroup.Name = "tsmSubGroup";
             this.tsmSubGroup.Size = new System.Drawing.Size(180, 22);
             this.tsmSubGroup.Text = "Sub Group";
+            this.tsmSubGroup.Click += new System.EventHandler(this.TsmSubGroup_Click);
             // 
             // MainForm
             // 
