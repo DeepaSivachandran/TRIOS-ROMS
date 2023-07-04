@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://cloud.shivasoftwares.com/activation/ActivationService.svc?wsdl" filename="ActivationService.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://cloud.shivasoftwares.com/activation/ActivationService.svc?xsd=xsd3" filename="ActivationService.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://cloud.shivasoftwares.com/activation/ActivationService.svc?xsd=xsd2" filename="ActivationService0.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://cloud.shivasoftwares.com/activation/ActivationService.svc?xsd=xsd1" filename="ActivationService1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://cloud.shivasoftwares.com/activation/ActivationService.svc?xsd=xsd0" filename="ActivationService2.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://cloud.shivasoftwares.com/activation/ActivationService.svc?disco" filename="ActivationService.disco" />
+  </Results>
+</DiscoveryClientResultsFile>

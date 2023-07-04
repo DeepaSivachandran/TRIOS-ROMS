@@ -326,10 +326,36 @@ namespace ROMS
             }
             return varreturnvalue;
         }
-        //public string identifier(string wmiClass, string wmiProperty)
-        //{ 
-        //}
-        
+
+        public string identifier(string wmiClass, string wmiProperty)
+        {
+            string result = "";
+            System.Management.ManagementClass mc =
+        new System.Management.ManagementClass(wmiClass);
+            System.Management.ManagementObjectCollection moc = mc.GetInstances();
+            foreach (System.Management.ManagementObject mo in moc)
+            {
+                if (result == "")
+                {
+                    try
+                    {
+                        result = mo[wmiProperty].ToString();
+                        break;
+                    }
+                    catch
+                    {
+                    }
+                }
+            }
+            return result;
+        }
+        public string baseId()
+        {
+            return identifier("Win32_BaseBoard", "Model") + ","
+            + identifier("Win32_BaseBoard", "Manufacturer") + ","
+            + identifier("Win32_BaseBoard", "Name") + ","
+            + identifier("Win32_BaseBoard", "SerialNumber");
+        }
         public bool FormatEMail(string inputText)
         {
             try
@@ -589,25 +615,25 @@ namespace ROMS
             }
             return blnFlag;
         }
-        //public bool checkCloudAccess()
-        //{
-        //    try
-        //    {
-        //        //bool varStatus = false;
-        //        //string varCloudUrl = ConfigurationManager.AppSettings["cloudurl"];
-        //        //string varCloudActivationUrl = ConfigurationManager.AppSettings["cloudactivationurl"];
-        //        //varStatus = checkUrl(varCloudActivationUrl);
-        //        //if (varStatus == true)
-        //        //{
-        //        //    varStatus = checkUrl(varCloudActivationUrl);
-        //        //}
-        //        //return varStatus;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return false;
-        //    }
-        //}
+        public bool checkCloudAccess()
+        {
+            try
+            {
+                bool varStatus = false;
+                string varCloudUrl = ConfigurationManager.AppSettings["cloudurl"];
+                string varCloudActivationUrl = ConfigurationManager.AppSettings["cloudactivationurl"];
+                varStatus = checkUrl(varCloudActivationUrl);
+                if (varStatus == true)
+                {
+                    varStatus = checkUrl(varCloudActivationUrl);
+                }
+                return varStatus;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         public bool checkUrl(string url)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -712,56 +738,6 @@ namespace ROMS
                 file.Close();
             }
             return PrinterName;
-        }
-        public int ProductStatus(string CheckingType,int FGCode)
-        {
-            int Code=FGCode;
-            //FGCode = 0;
-            String Temp = "";
-            if (CheckingType == "MRPRATE")
-            {
-                DataService dsPaperSz = new DataService();
-                Temp = Convert.ToString(dsPaperSz.displaydata("SELECT CASE WHEN ISNULL(MRPRate,0) < = 0 THEN 0 ELSE 1 END AS MRPRate FROM CP_FINISHEDGOODS WHERE FGCode = " + FGCode +""));
-                if (Temp != "")
-                {
-                    FGCode = Convert.ToInt32(Temp);
-                }
-                else
-                {
-                    FGCode = 0;
-                }
-                dsPaperSz.CloseConnection();
-            }
-            else if (CheckingType == "MRPOFFSET")
-            {
-                DataService dsPaperSz = new DataService();
-                Temp = Convert.ToString(dsPaperSz.displaydata("SELECT CASE WHEN ((ISNULL(MRPOffsetPer,0) <=0 AND ISNULL(MRPOffsetValue,0) <=0) AND MRPRate < =0) THEN 0 ELSE 1 END AS MRPOffSet FROM CP_FINISHEDGOODS WHERE FGCode = " + FGCode + ""));
-                if (Temp != "")
-                {
-                    FGCode = Convert.ToInt32(Temp);
-                }
-                else
-                {
-                    FGCode = 0;
-                }
-                dsPaperSz.CloseConnection();
-            }
-            else if (CheckingType == "STATUS")
-            {
-                DataService dsPaperSz = new DataService();
-                Temp = Convert.ToString(dsPaperSz.displaydata("SELECT ISNULL(StatusCode,0) AS Status FROM CP_FINISHEDGOODS WHERE FGCode = " + FGCode + ""));
-                if (Temp != "")
-                {
-                    FGCode = Convert.ToInt32(Temp);
-                }
-                else { FGCode = 0; }
-                dsPaperSz.CloseConnection();
-            }
-            else
-            {
-                FGCode = 0;
-            }
-            return FGCode;
         }
     }
 }
