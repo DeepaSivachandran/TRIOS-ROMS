@@ -57,7 +57,7 @@ namespace ROMS
         public void CloseConnection()
         {
             if ((objConn == null) == true)
-                return;
+                return; 
             if (objConn.State == ConnectionState.Open)
                 objConn.Close();
 
