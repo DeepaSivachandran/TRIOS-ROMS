@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace NCOLabeling
+namespace ROMS
 {
     public partial class ServerSettings : Form
     {

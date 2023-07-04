@@ -34,7 +34,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,14 +50,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Authentication.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Authentication.designer.cs">
+      <DependentUpon>Authentication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Brand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Brand.designer.cs">
+      <DependentUpon>CP_Brand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_BrandList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BrandList.designer.cs">
+      <DependentUpon>CP_BrandList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ChangePassword.designer.cs">
+      <DependentUpon>CP_ChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DEF_Start.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DEF_Start.designer.cs">
+      <DependentUpon>DEF_Start.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerSettings.designer.cs">
+      <DependentUpon>ServerSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service Class\DataBind.cs" />
     <Compile Include="Service Class\DataError.cs" />
     <Compile Include="Service Class\DataService.cs" />
@@ -61,6 +101,35 @@
     <Compile Include="Service Class\SecurityController.cs" />
     <Compile Include="Service Class\SPCall.cs" />
     <Compile Include="Service Class\SPDataService.cs" />
+    <Compile Include="SSS Acccounts activation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SSS Acccounts activation.designer.cs">
+      <DependentUpon>SSS Acccounts activation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ActivationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Authentication.resx">
+      <DependentUpon>Authentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Brand.resx">
+      <DependentUpon>CP_Brand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_BrandList.resx">
+      <DependentUpon>CP_BrandList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ChangePassword.resx">
+      <DependentUpon>CP_ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DEF_Start.resx">
+      <DependentUpon>DEF_Start.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -69,7 +138,14 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ServerSettings.resx">
+      <DependentUpon>ServerSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SSS Acccounts activation.resx">
+      <DependentUpon>SSS Acccounts activation.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -79,9 +155,138 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Web References\ActivationService\ActivationService.wsdl" />
+    <None Include="Web References\ActivationService\ActivationService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\ActivationService\ActivationService0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\ActivationService\ActivationService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\ActivationService\ActivationService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\ActivationService\Customerrecords.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ActivationService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\approve.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bread-crumb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mismatch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newcancelBill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-label.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rupeeicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://cloud.shivasoftwares.com/activation/ActivationService.svc">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ActivationService\</RelPath>
+      <UpdateFromURL>http://cloud.shivasoftwares.com/activation/ActivationService.svc</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>ROMS_ActivationService_ActivationService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\ActivationService\ActivationService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login %282%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login_1.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login %282%291.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

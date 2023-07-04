@@ -1,4 +1,4 @@
-﻿namespace NCOLabeling
+﻿namespace ROMS
 {
     partial class ServerSettings
     {
@@ -52,7 +52,7 @@
             // 
             this.btnSave.Enabled = false;
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = global::NCOLabeling.Properties.Resources.save;
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Location = new System.Drawing.Point(228, 178);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -197,7 +197,7 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Image = global::NCOLabeling.Properties.Resources.close;
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClose.Location = new System.Drawing.Point(325, 178);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
