@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CP_Company.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Company.designer.cs">
+      <DependentUpon>CP_Company.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +67,9 @@
     <Compile Include="Service Class\SecurityController.cs" />
     <Compile Include="Service Class\SPCall.cs" />
     <Compile Include="Service Class\SPDataService.cs" />
+    <EmbeddedResource Include="CP_Company.resx">
+      <DependentUpon>CP_Company.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
