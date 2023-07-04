@@ -149,6 +149,7 @@ namespace ROMS
             this.tsmLocation.Name = "tsmLocation";
             this.tsmLocation.Size = new System.Drawing.Size(180, 22);
             this.tsmLocation.Text = "Stock Location";
+            this.tsmLocation.Click += new System.EventHandler(this.TsmLocation_Click);
             // 
             // tsmGroup
             // 
