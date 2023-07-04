@@ -155,12 +155,14 @@ namespace ROMS
             this.tsmGroup.Name = "tsmGroup";
             this.tsmGroup.Size = new System.Drawing.Size(180, 22);
             this.tsmGroup.Text = "Group";
+            this.tsmGroup.Click += new System.EventHandler(this.TsmGroup_Click);
             // 
             // tsmUser
             // 
             this.tsmUser.Name = "tsmUser";
             this.tsmUser.Size = new System.Drawing.Size(180, 22);
             this.tsmUser.Text = "User";
+            this.tsmUser.Click += new System.EventHandler(this.TsmUser_Click);
             // 
             // lblDb
             // 

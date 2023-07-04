@@ -38,6 +38,11 @@ namespace ROMS
         public static CP_ChangePassword objCP_ChangePassword;
         public static CP_BrandList objCP_BrandList;
         public static CP_Brand objCP_Brand;
+        public static CP_UserList objCP_UserList;
+        public static CP_User objCP_User;
+        public static CP_Group objCP_Group;
+        public static CP_GroupList objCP_GroupList;
+
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -384,6 +389,40 @@ namespace ROMS
                 MainForm.objCP_BrandList = new CP_BrandList();
                 MainForm.objCP_BrandList.MdiParent = this;
                 MainForm.objCP_BrandList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmUser_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_UserList = new CP_UserList();
+                MainForm.objCP_UserList.MdiParent = this;
+                MainForm.objCP_UserList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_GroupList = new CP_GroupList();
+                MainForm.objCP_GroupList.MdiParent = this;
+                MainForm.objCP_GroupList.Show();
             }
             catch (Exception ex)
             {
