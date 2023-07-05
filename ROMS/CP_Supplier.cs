@@ -39,11 +39,11 @@ namespace ROMS
             InitializeComponent();
         }
 
-        private void txtCompanyName_Enter(object sender, EventArgs e)
+        private void txtCompanyName_Enter(object sender, EventArgs e) 
         {
             try
             {
-                txtName.BackColor = Color.LemonChiffon;
+                txtName.BackColor = Color.LemonChiffon; 
             }
             catch (Exception ex)
             {
