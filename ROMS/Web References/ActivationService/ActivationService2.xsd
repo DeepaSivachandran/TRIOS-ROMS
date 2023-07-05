@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://cloud.shivasoftwares.com/activation/ActivationService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SSSAccountsActivationService" />
+  <xs:element name="getuserlist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usertype" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getuserlistResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SSSAccountsActivationService" minOccurs="0" name="getuserlistResult" nillable="true" type="q1:Customerrecords" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="udfngetOTP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="mobileno" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="emailid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="registrationkey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="versionno" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="udfngetOTPResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="udfngetOTPResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="udfngetOTPForProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="mobileno" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="emailid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="registrationkey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="versionno" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="udfngetOTPForProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="udfngetOTPForProductResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="udfnproductAuthenticate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="mobileno" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="emailid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="registrationkey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="versionno" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="activationcode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productcode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="udfnproductAuthenticateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="udfnproductAuthenticateResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="udfnAuthenticate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="mobileno" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="emailid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="registrationkey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="versionno" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="activationcode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productcode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="udfnAuthenticateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="udfnAuthenticateResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

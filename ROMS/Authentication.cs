@@ -1,0 +1,354 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.IO;
+using System.Security.AccessControl;
+using System.Security.Principal;
+using System.Diagnostics;
+using System.Net;
+
+//[assembly: XmlConfigurator(Watch = true)]
+//[assembly: Repository()]
+// Author : Deepa
+namespace ROMS
+{
+    public partial class Authentication : Form
+    {
+        private SecurityController _security;
+
+        // ***** Object for data service classes declaration *****
+        DataValidation objValidation = new DataValidation();
+        DataError objError;
+
+        // ***** Declaration Part *****
+        public static string varUserID;
+        ToolTip tpUserName = new ToolTip();
+        ToolTip tpPassword = new ToolTip();
+        public Authentication()
+        {
+            InitializeComponent();
+            _security = new SecurityController();
+        }
+        // Author : Deepa
+        // Created Date: 12-02-2020
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtPassword.Focus();
+                }
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        // Author : Deepa
+        // Created Date: 12-02-2020
+        private void txtUsername_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtUserName.BackColor = Color.LemonChiffon;
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        // Author : Deepa
+        // Created Date: 12-02-2020
+        private void txtUsername_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtUserName.BackColor = Color.White;
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        // Author : Deepa
+        // Created Date: 12-02-2020
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSignin.Focus();
+                }
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        // Author : Deepa
+        // Created Date: 12-02-2020
+        private void txtPassword_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPassword.BackColor = Color.LemonChiffon;
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        // Author : Deepa
+        // Created Date: 12-02-2020
+        private void txtPassword_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPassword.BackColor = Color.White;
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        // Author : Deepa
+        // Created Date: 12-02-2020
+        private void btnSignin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataSet objDs=new DataSet();
+                if (txtUserName.TextLength != 0 & txtPassword.TextLength != 0)
+                {
+                    DataService objDser = new DataService();
+                    //int count = 0;
+                    //count = Convert.ToInt16(objDser.displaydata("select count(*) as count from CP_USERPROFILE where Userid='" + txtUserName.Text + "' and UserPassword='" + GenerateMD5(txtPassword.Text) + "' And StatusCode = 1"));
+                    //objDs = objDser.GetDataset("select *,B.RoleName from CP_USERPROFILE AS A INNER JOIN CP_USERROLE AS B ON A.UserRoleCode=B.RoleCode where A.StatusCode = 1 And A.Userid='" + txtUserName.Text + "' and A.UserPassword='" + GenerateMD5(txtPassword.Text) + "'; SELECT TableName FROM DEF_TABLEDETAILS;SELECT top 1 ReleaseDate from (select  convert(varchar(10),ReleaseDate, 103) AS ReleaseDate,row_number() over( ORDER BY ReleaseDate DESC) as sno FROM TRANS_RELEASEDETAILS) derv where sno=1");
+                    //objDser.CloseConnection();
+                    //if (count == 1)
+                    //{
+                        //MainForm.pbUserID = objDs.Tables[0].Rows[0]["Userid"].ToString();
+                        //MainForm.pbUserRoleId = objDs.Tables[0].Rows[0]["UserRoleCode"].ToString();
+                        //MainForm.pbUserName = objDs.Tables[0].Rows[0]["UserName"].ToString();
+                        //MainForm.pbUserRoleName = objDs.Tables[0].Rows[0]["RoleName"].ToString();
+                        //MainForm.pbVersion = lblDVersion.Text;
+                        //MainForm.pbHostName = Dns.GetHostName();
+                        //MainForm.pbLablingSoftwareName = objDs.Tables[1].Rows[0]["TableName"].ToString();
+                        //MainForm.pbRomsSoftwareName = objDs.Tables[1].Rows[1]["TableName"].ToString();
+                        //MainForm.pbReleaseDt = objDs.Tables[2].Rows[0]["ReleaseDate"].ToString();
+                        this.Hide();
+                        MainForm obj = new MainForm();
+                        obj.Show();
+                    //}
+                    //else if (count == 0)
+                    //{
+                    //    DialogResult response = MessageBox.Show("User Name or Password is incorrect", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                    //    txtUserName.Text = "";
+                    //    txtPassword.Text = "";
+                    //    txtUserName.Focus();
+                    //}
+                }
+                else
+                {
+                    if (txtUserName.Text == "")
+                    {
+                        txtUserName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpUserName.Show("User Name is required", txtUserName, 5000);
+                    }
+                    else
+                    {
+                        tpUserName.Hide(txtUserName);
+                    }
+                    if (txtPassword.Text == "")
+                    {
+                        txtPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpPassword.Show("Password is required", txtPassword, 5000);
+                    }
+                    else
+                    {
+                        tpPassword.Hide(txtPassword);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public string GenerateMD5(string HashString)
+        {
+            return string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(HashString)).Select(s => s.ToString("x2")));
+        }
+        // Author : Deepa
+        // Created Date: 12-02-2020
+        // ***** Check newer version with server *****
+        public void checknewversion()
+        {
+            this.Enabled = false;
+            try
+            {
+                DataService objDserv = new DataService();
+                string varNewVersion = objDserv.displaydata("SELECT COALESCE( (select top (1) VersionNumber from TRANS_Release order by VersionNumber desc),'')");
+                objDserv.CloseConnection();
+                if (varNewVersion != lblDVersion.Text && varNewVersion != null && varNewVersion != "")
+                {
+                    DialogResult objDialogueResult = MessageBox.Show("A newer version of this software is available on the server. You need to upgrade. Click OK to continue, CANCEL to exit.", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (objDialogueResult == DialogResult.Cancel)
+                    { this.Close(); }
+                    else
+                    {
+                        string varPath = ""; string varSetupName = "";
+                        DataSet objDs = new DataSet();
+                        objDs = objDserv.GetDataset("select top 1 path,name from DEF_SharedFolderPath where pathcode=1 ");
+                        objDserv.CloseConnection();
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables.Count > 0)
+                            {
+                                if (objDs.Tables[0].Rows.Count > 0)
+                                {
+                                    varPath = Convert.ToString(objDs.Tables[0].Rows[0]["path"]);
+                                    varSetupName = Convert.ToString(objDs.Tables[0].Rows[0]["name"]) + " " + varNewVersion;
+                                    System.IO.DirectoryInfo objDir = new System.IO.DirectoryInfo(varPath);
+                                    foreach (System.IO.FileInfo varFile in objDir.GetFiles("*.*"))
+                                    {
+                                        if (varFile.Exists)
+                                        {
+                                            try
+                                            {
+                                                // Run .exe from server
+                                                Process varProcess = new Process();
+                                                varProcess.StartInfo.FileName = "msiexec";
+                                                varProcess.StartInfo.Arguments = "/i " + varFile.FullName + "";
+                                                varProcess.Start();
+                                                System.Environment.Exit(1);
+                                                varProcess.WaitForExit();
+                                            }
+                                            catch (Exception ex) { objError = new DataError();objError.WriteFile(ex); }
+                                            finally { this.Close(); }
+                                        }
+                                        else
+                                        {
+                                            DialogResult result = MessageBox.Show("File not uploaded in shared folder!", "Warning", MessageBoxButtons.OK);
+                                            if (result == DialogResult.OK)
+                                            {
+                                                this.Close();
+                                            }
+                                            else { this.Close(); }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); this.Close(); }
+            finally { this.Enabled = true; }
+        }
+        // Author : Deepa
+        // Created Date: 12-02-2020
+        public void Authentication_Load(object sender, EventArgs e)
+        {
+            // Check server settings file exists or not
+            string paths = Application.StartupPath + "\\Server Settings\\serversettings.txt";
+            if (File.Exists(paths))
+            {
+                lblDVersion.Text = "v1.0.0";
+                lblDVersion.BringToFront();
+                Authentication objAuthetication = new Authentication();
+                objAuthetication.Name = " - " + lblDVersion.Text;
+            }
+            else { Application.Run(new ServerSettings()); }
+        }
+        // Author : Deepa
+        // Created Date: 12-02-2020
+        public void udfnclose()
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        // Author : Deepa
+        // Created Date: 12-02-2020
+        private void Authentication_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
+               
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        // Author : Deepa
+        // Created Date: 12-02-2020
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        // Author : Deepa
+        // Created Date: 12-02-2020
+        private void linkLabel1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        // Author : Deepa
+        // Created Date: 12-02-2020
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try {
+               this.Hide();
+                ServerSettings obj = new ServerSettings();
+                obj.lblformname.Text = "login";
+                obj.Show();
+            } catch (Exception ex) { objError = new DataError();objError.WriteFile(ex); }
+        }
+    }
+}
