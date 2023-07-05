@@ -74,6 +74,18 @@
     <Compile Include="CP_ChangePassword.designer.cs">
       <DependentUpon>CP_ChangePassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Supplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Supplier.designer.cs">
+      <DependentUpon>CP_Supplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Company.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Company.designer.cs">
+      <DependentUpon>CP_Company.cs</DependentUpon>
+    </Compile>
     <Compile Include="DEF_Start.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +135,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_ChangePassword.resx">
       <DependentUpon>CP_ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Supplier.resx">
+      <DependentUpon>CP_Supplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Company.resx">
+      <DependentUpon>CP_Company.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DEF_Start.resx">
       <DependentUpon>DEF_Start.cs</DependentUpon>

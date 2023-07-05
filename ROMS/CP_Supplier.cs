@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class CP_Company : Form
+    public partial class CP_Supplier : Form
     {
         DataValidation objvalidation = new DataValidation();
         DataError objError;
@@ -34,7 +34,7 @@ namespace ROMS
         private ToolTip tpcity = new ToolTip();
         private ToolTip tparea = new ToolTip();
         private ToolTip tpstate = new ToolTip();
-        public CP_Company()
+        public CP_Supplier()
         {
             InitializeComponent();
         }
@@ -43,7 +43,7 @@ namespace ROMS
         {
             try
             {
-                txtCompanyName.BackColor = Color.LemonChiffon;
+                txtName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -58,7 +58,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtShortName.Focus();
+                    txtcontactName.Focus();
                 }
             }
             catch (Exception ex)
@@ -72,7 +72,7 @@ namespace ROMS
         {
             try
             {
-                txtCompanyName.BackColor = Color.White;
+                txtName.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -85,7 +85,7 @@ namespace ROMS
         {
             try
             {
-                txtShortName.BackColor = Color.LemonChiffon;
+                txtcontactName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -114,7 +114,7 @@ namespace ROMS
         {
             try
             {
-                txtShortName.BackColor = Color.White;
+                txtcontactName.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -390,17 +390,16 @@ namespace ROMS
         {
             try
             {
-                txtCompanyName.Text = "";
-                txtShortName.Text = "";
+                txtName.Text = "";
+                txtcontactName.Text = "";
                 txtArea.Text = "";
                 txtCity.Text = "";
                 txtContactNumber.Text = "";
                 txtAContactNumber.Text = "";
-                txtEmail.Text = ""; 
-                txtFSSAI.Text = ""; 
+                txtEmail.Text = "";  
                 txtPincode.Text = "";
                 btnSave.Text = "Save";
-                txtCompanyName.Focus();
+                txtName.Focus();
             }
             catch (Exception ex)
             {
@@ -494,7 +493,7 @@ namespace ROMS
         {
             try
             {
-                this.ActiveControl = txtCompanyName;
+                this.ActiveControl = txtName;
                 udfnLoadState();
                 udfnEdit();
             }
@@ -895,29 +894,7 @@ namespace ROMS
         {
 
         }
-
-        private void TxtPan_Leave(object sender, EventArgs e)
-        {
-
-            string panNumber = txtPan.Text.Trim();
-            string pattern = @"^[A-Z]{5}\d{4}[A-Z]$";
-            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
-            bool isValid = regex.IsMatch(panNumber);
-            if (isValid==false)
-            {
-                errCompany.SetError(txtPan, "Please enter valid pan number.");
-                txtPan.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tppincode.ShowAlways = true;
-                tppincode.Show("Please enter valid pan number.", txtPan, 5000);
-                txtPan.Focus();
-            }
-            else
-            {
-                errCompany.Clear();
-                txtPan.BackColor = Color.White;
-                tppincode.Hide(txtArea);
-            }
-        }
+         
 
         private void TxtAlterPhno_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -992,46 +969,7 @@ namespace ROMS
             {
 
             }
-        }
-
-        private void TxtGSTTIN_Leave(object sender, EventArgs e)
-        {
-            string gstin = txtGSTTIN.Text.Trim();
-            string pattern = @"^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}$"; 
-            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);  
-            bool isValid = regex.IsMatch(gstin);
-            if (isValid == false)
-            {
-                errCompany.SetError(txtGSTTIN, "Please enter valid GSTIN number.");
-                txtGSTTIN.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tppincode.ShowAlways = true;
-                tppincode.Show("Please enter valid GSTIN number.", txtGSTTIN, 5000);
-                txtGSTTIN.Focus();
-            }
-            else
-            {
-                errCompany.Clear();
-                txtGSTTIN.BackColor = Color.White;
-                tppincode.Hide(txtArea);
-            }
-        }
-
-        private void TxtFSSAI_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (txtFSSAI.Text.Trim() == ""||(objvalidation.FormatAlphbeticAndNumeric(txtFSSAI.Text) == false || txtFSSAI.Text.Length != 14))
-            {
-                errCompany.SetError(txtFSSAI, "Please enter valid FSSAI"); txtFSSAI.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tpfssai.ShowAlways = true; tpfssai.Show("Please enter valid FSSAI", txtFSSAI, 5000);
-                txtFSSAI.Focus();
-            }
-            else
-            {
-                errCompany.Clear();
-                txtFSSAI.BackColor = Color.White;
-                tpfssai.Hide(txtArea);
-            }
-        }
-
+        } 
     }
 }
 

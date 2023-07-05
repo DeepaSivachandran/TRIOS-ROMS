@@ -39,10 +39,11 @@ namespace ROMS
             this.tsmControlPanel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCompany = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmUnit = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmBrand = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmLocation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSubGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmBrand = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmUnit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmLocation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUser = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDb = new System.Windows.Forms.ToolStripMenuItem();
             this.tsDLogo = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,7 +52,7 @@ namespace ROMS
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSubGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSuppliyer = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,7 +121,8 @@ namespace ROMS
             this.tsmBrand,
             this.tsmUnit,
             this.tsmLocation,
-            this.tsmUser});
+            this.tsmUser,
+            this.tsmSuppliyer});
             this.tsmMasters.Name = "tsmMasters";
             this.tsmMasters.Size = new System.Drawing.Size(180, 22);
             this.tsmMasters.Text = "Masters";
@@ -130,12 +132,19 @@ namespace ROMS
             this.tsmCompany.Name = "tsmCompany";
             this.tsmCompany.Size = new System.Drawing.Size(180, 22);
             this.tsmCompany.Text = "Company";
+            this.tsmCompany.Click += new System.EventHandler(this.TsmCompany_Click);
             // 
-            // tsmUnit
+            // tsmGroup
             // 
-            this.tsmUnit.Name = "tsmUnit";
-            this.tsmUnit.Size = new System.Drawing.Size(180, 22);
-            this.tsmUnit.Text = "Unit ";
+            this.tsmGroup.Name = "tsmGroup";
+            this.tsmGroup.Size = new System.Drawing.Size(180, 22);
+            this.tsmGroup.Text = "Group";
+            // 
+            // tsmSubGroup
+            // 
+            this.tsmSubGroup.Name = "tsmSubGroup";
+            this.tsmSubGroup.Size = new System.Drawing.Size(180, 22);
+            this.tsmSubGroup.Text = "Sub Group";
             // 
             // tsmBrand
             // 
@@ -144,17 +153,17 @@ namespace ROMS
             this.tsmBrand.Text = "Brand";
             this.tsmBrand.Click += new System.EventHandler(this.TsmBrand_Click);
             // 
+            // tsmUnit
+            // 
+            this.tsmUnit.Name = "tsmUnit";
+            this.tsmUnit.Size = new System.Drawing.Size(180, 22);
+            this.tsmUnit.Text = "Unit ";
+            // 
             // tsmLocation
             // 
             this.tsmLocation.Name = "tsmLocation";
             this.tsmLocation.Size = new System.Drawing.Size(180, 22);
             this.tsmLocation.Text = "Stock Location";
-            // 
-            // tsmGroup
-            // 
-            this.tsmGroup.Name = "tsmGroup";
-            this.tsmGroup.Size = new System.Drawing.Size(180, 22);
-            this.tsmGroup.Text = "Group";
             // 
             // tsmUser
             // 
@@ -229,22 +238,23 @@ namespace ROMS
             // tsmChangePassword
             // 
             this.tsmChangePassword.Name = "tsmChangePassword";
-            this.tsmChangePassword.Size = new System.Drawing.Size(180, 22);
+            this.tsmChangePassword.Size = new System.Drawing.Size(161, 22);
             this.tsmChangePassword.Text = "Change Password";
             this.tsmChangePassword.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(161, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
-            // tsmSubGroup
+            // tsmSuppliyer
             // 
-            this.tsmSubGroup.Name = "tsmSubGroup";
-            this.tsmSubGroup.Size = new System.Drawing.Size(180, 22);
-            this.tsmSubGroup.Text = "Sub Group";
+            this.tsmSuppliyer.Name = "tsmSuppliyer";
+            this.tsmSuppliyer.Size = new System.Drawing.Size(180, 22);
+            this.tsmSuppliyer.Text = "Supplier";
+            this.tsmSuppliyer.Click += new System.EventHandler(this.TsmSuppliyer_Click);
             // 
             // MainForm
             // 
@@ -294,5 +304,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem lblTimeValue;
         private System.Windows.Forms.ToolStripMenuItem lblDb;
         private System.Windows.Forms.ToolStripMenuItem tsmSubGroup;
+        private System.Windows.Forms.ToolStripMenuItem tsmSuppliyer;
     }
 }

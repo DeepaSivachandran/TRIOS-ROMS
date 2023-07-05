@@ -38,6 +38,9 @@ namespace ROMS
         public static CP_ChangePassword objCP_ChangePassword;
         public static CP_BrandList objCP_BrandList;
         public static CP_Brand objCP_Brand;
+        public static CP_Company objCP_Company;
+        public static CP_Supplier objCP_Supplier;
+        
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -390,6 +393,25 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void TsmCompany_Click(object sender, EventArgs e)
+        {
+
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objCP_Company = new CP_Company();
+            MainForm.objCP_Company.MdiParent = this;
+            MainForm.objCP_Company.Show();
+        }
+
+        private void TsmSuppliyer_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objCP_Supplier = new CP_Supplier();
+            MainForm.objCP_Supplier.MdiParent = this;
+            MainForm.objCP_Supplier.Show();
         }
     }
    
