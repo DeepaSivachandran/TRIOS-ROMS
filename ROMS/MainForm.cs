@@ -46,6 +46,8 @@ namespace ROMS
         public static CP_SubGroupList objCP_SubGroupList;
         public static CP_Location objCP_Location;
         public static CP_LocationList objCP_LocationList;
+        public static CP_Rack objCP_Rack;
+        public static CP_RackList objCP_RackList;
 
 
         public static DataTable objDtMenuDetails;
@@ -461,6 +463,23 @@ namespace ROMS
                 MainForm.objCP_LocationList = new CP_LocationList();
                 MainForm.objCP_LocationList.MdiParent = this;
                 MainForm.objCP_LocationList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmRack_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_RackList = new CP_RackList();
+                MainForm.objCP_RackList.MdiParent = this;
+                MainForm.objCP_RackList.Show();
             }
             catch (Exception ex)
             {

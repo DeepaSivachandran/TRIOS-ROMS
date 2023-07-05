@@ -74,6 +74,18 @@
     <Compile Include="CP_ChangePassword.designer.cs">
       <DependentUpon>CP_ChangePassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Rack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Rack.designer.cs">
+      <DependentUpon>CP_Rack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_RackList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RackList.designer.cs">
+      <DependentUpon>CP_RackList.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Location.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +183,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_ChangePassword.resx">
       <DependentUpon>CP_ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Rack.resx">
+      <DependentUpon>CP_Rack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_RackList.resx">
+      <DependentUpon>CP_RackList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Location.resx">
       <DependentUpon>CP_Location.cs</DependentUpon>

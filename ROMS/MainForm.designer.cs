@@ -52,6 +52,7 @@ namespace ROMS
             this.tsmChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSubGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRack = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,6 +121,7 @@ namespace ROMS
             this.tsmBrand,
             this.tsmUnit,
             this.tsmLocation,
+            this.tsmRack,
             this.tsmUser});
             this.tsmMasters.Name = "tsmMasters";
             this.tsmMasters.Size = new System.Drawing.Size(180, 22);
@@ -250,6 +252,13 @@ namespace ROMS
             this.tsmSubGroup.Text = "Sub Group";
             this.tsmSubGroup.Click += new System.EventHandler(this.TsmSubGroup_Click);
             // 
+            // tsmRack
+            // 
+            this.tsmRack.Name = "tsmRack";
+            this.tsmRack.Size = new System.Drawing.Size(180, 22);
+            this.tsmRack.Text = "Rack";
+            this.tsmRack.Click += new System.EventHandler(this.TsmRack_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -298,5 +307,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem lblTimeValue;
         private System.Windows.Forms.ToolStripMenuItem lblDb;
         private System.Windows.Forms.ToolStripMenuItem tsmSubGroup;
+        private System.Windows.Forms.ToolStripMenuItem tsmRack;
     }
 }
