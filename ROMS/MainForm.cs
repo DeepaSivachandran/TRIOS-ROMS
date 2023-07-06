@@ -40,8 +40,15 @@ namespace ROMS
         public static CP_Brand objCP_Brand;
         public static CP_Company objCP_Company;
         public static CP_Supplier objCP_Supplier;
-        
+        public static CP_Supplierlist objCP_Supplierlist;
+        public static CP_Companylist objCP_Companylist;
+        public static CP_ProductHSN objCP_ProductHSN;
+        public static CP_ProductHSNList objCP_ProductHSNList;
 
+
+        public static CP_Location objCP_Location;
+        public static CP_LocationList objCP_LocationList;
+        public static CP_Rack objCP_Rack;
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
@@ -400,18 +407,45 @@ namespace ROMS
 
             udfnCloseChildForms();
             if (isClose == false) { return; }
-            MainForm.objCP_Company = new CP_Company();
-            MainForm.objCP_Company.MdiParent = this;
-            MainForm.objCP_Company.Show();
+            MainForm.objCP_Companylist = new CP_Companylist();
+            MainForm.objCP_Companylist.MdiParent = this;
+            MainForm.objCP_Companylist.Show();
         }
 
         private void TsmSuppliyer_Click(object sender, EventArgs e)
         {
             udfnCloseChildForms();
             if (isClose == false) { return; }
-            MainForm.objCP_Supplier = new CP_Supplier();
-            MainForm.objCP_Supplier.MdiParent = this;
-            MainForm.objCP_Supplier.Show();
+            MainForm.objCP_Supplierlist = new CP_Supplierlist();
+            MainForm.objCP_Supplierlist.MdiParent = this;
+            MainForm.objCP_Supplierlist.Show();
+        }
+
+        private void TsmHSN_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objCP_ProductHSNList = new CP_ProductHSNList();
+            MainForm.objCP_ProductHSNList.MdiParent = this;
+            MainForm.objCP_ProductHSNList.Show();
+            
+        }
+
+        private void TsmLocation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_LocationList = new CP_LocationList();
+                MainForm.objCP_LocationList.MdiParent = this;
+                MainForm.objCP_LocationList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
    

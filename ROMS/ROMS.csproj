@@ -62,6 +62,54 @@
     <Compile Include="CP_Brand.designer.cs">
       <DependentUpon>CP_Brand.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Location.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Location.designer.cs">
+      <DependentUpon>CP_Location.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_LocationList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_LocationList.designer.cs">
+      <DependentUpon>CP_LocationList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_ProductHSNList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ProductHSNList.designer.cs">
+      <DependentUpon>CP_ProductHSNList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_ProductHSN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ProductHSN.designer.cs">
+      <DependentUpon>CP_ProductHSN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Companylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Companylist.designer.cs">
+      <DependentUpon>CP_Companylist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Rack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Rack.designer.cs">
+      <DependentUpon>CP_Rack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_RackList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RackList.designer.cs">
+      <DependentUpon>CP_RackList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Supplierlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Supplierlist.designer.cs">
+      <DependentUpon>CP_Supplierlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_BrandList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +177,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Brand.resx">
       <DependentUpon>CP_Brand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Location.resx">
+      <DependentUpon>CP_Location.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_LocationList.resx">
+      <DependentUpon>CP_LocationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ProductHSNList.resx">
+      <DependentUpon>CP_ProductHSNList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ProductHSN.resx">
+      <DependentUpon>CP_ProductHSN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Companylist.resx">
+      <DependentUpon>CP_Companylist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Rack.resx">
+      <DependentUpon>CP_Rack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_RackList.resx">
+      <DependentUpon>CP_RackList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Supplierlist.resx">
+      <DependentUpon>CP_Supplierlist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_BrandList.resx">
       <DependentUpon>CP_BrandList.cs</DependentUpon>
