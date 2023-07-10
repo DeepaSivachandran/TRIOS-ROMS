@@ -481,6 +481,21 @@ namespace ROMS
             MainForm.objCP_Userlist.Show();
 
         }
+
+        private void TsmLocation_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objCP_LocationList = new CP_LocationList();
+            MainForm.objCP_LocationList.MdiParent = this;
+            MainForm.objCP_LocationList.Show();
+
+        }
+
+        private void Tsmpurchase_Click(object sender, EventArgs e)
+        {
+
+        }
     }
    
 }

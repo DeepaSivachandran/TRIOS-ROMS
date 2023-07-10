@@ -54,6 +54,8 @@ namespace ROMS
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmpurchase = new System.Windows.Forms.ToolStripMenuItem();
+            this.urchaseOrder = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,7 +84,8 @@ namespace ROMS
             this.tsDLogo,
             this.lblTimeValue,
             this.lblTime,
-            this.tsmMyProfile});
+            this.tsmMyProfile,
+            this.tsmpurchase});
             this.ms.Location = new System.Drawing.Point(0, 0);
             this.ms.Name = "ms";
             this.ms.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -169,6 +172,7 @@ namespace ROMS
             this.tsmLocation.Name = "tsmLocation";
             this.tsmLocation.Size = new System.Drawing.Size(180, 22);
             this.tsmLocation.Text = "Stock Location";
+            this.tsmLocation.Click += new System.EventHandler(this.TsmLocation_Click);
             // 
             // tsmUser
             // 
@@ -258,16 +262,32 @@ namespace ROMS
             // tsmChangePassword
             // 
             this.tsmChangePassword.Name = "tsmChangePassword";
-            this.tsmChangePassword.Size = new System.Drawing.Size(161, 22);
+            this.tsmChangePassword.Size = new System.Drawing.Size(180, 22);
             this.tsmChangePassword.Text = "Change Password";
             this.tsmChangePassword.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(161, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
+            // 
+            // tsmpurchase
+            // 
+            this.tsmpurchase.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.urchaseOrder});
+            this.tsmpurchase.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.tsmpurchase.Name = "tsmpurchase";
+            this.tsmpurchase.Size = new System.Drawing.Size(63, 21);
+            this.tsmpurchase.Text = "Purchase";
+            this.tsmpurchase.Click += new System.EventHandler(this.Tsmpurchase_Click);
+            // 
+            // urchaseOrder
+            // 
+            this.urchaseOrder.Name = "urchaseOrder";
+            this.urchaseOrder.Size = new System.Drawing.Size(180, 22);
+            this.urchaseOrder.Text = "Purchase Order";
             // 
             // MainForm
             // 
@@ -319,5 +339,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmSubGroup;
         private System.Windows.Forms.ToolStripMenuItem tsmSuppliyer;
         private System.Windows.Forms.ToolStripMenuItem stateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmpurchase;
+        private System.Windows.Forms.ToolStripMenuItem urchaseOrder;
     }
 }
