@@ -46,6 +46,7 @@ namespace ROMS
             this.tsmLocation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUser = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSuppliyer = new System.Windows.Forms.ToolStripMenuItem();
+            this.stateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDb = new System.Windows.Forms.ToolStripMenuItem();
             this.tsDLogo = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTimeValue = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +54,6 @@ namespace ROMS
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmHSN = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,7 +124,7 @@ namespace ROMS
             this.tsmLocation,
             this.tsmUser,
             this.tsmSuppliyer,
-            this.tsmHSN});
+            this.stateToolStripMenuItem});
             this.tsmMasters.Name = "tsmMasters";
             this.tsmMasters.Size = new System.Drawing.Size(180, 22);
             this.tsmMasters.Text = "Masters";
@@ -141,12 +141,14 @@ namespace ROMS
             this.tsmGroup.Name = "tsmGroup";
             this.tsmGroup.Size = new System.Drawing.Size(180, 22);
             this.tsmGroup.Text = "Group";
+            this.tsmGroup.Click += new System.EventHandler(this.TsmGroup_Click);
             // 
             // tsmSubGroup
             // 
             this.tsmSubGroup.Name = "tsmSubGroup";
             this.tsmSubGroup.Size = new System.Drawing.Size(180, 22);
             this.tsmSubGroup.Text = "Sub Group";
+            this.tsmSubGroup.Click += new System.EventHandler(this.TsmSubGroup_Click);
             // 
             // tsmBrand
             // 
@@ -160,19 +162,20 @@ namespace ROMS
             this.tsmUnit.Name = "tsmUnit";
             this.tsmUnit.Size = new System.Drawing.Size(180, 22);
             this.tsmUnit.Text = "Unit ";
+            this.tsmUnit.Click += new System.EventHandler(this.TsmUnit_Click);
             // 
             // tsmLocation
             // 
             this.tsmLocation.Name = "tsmLocation";
             this.tsmLocation.Size = new System.Drawing.Size(180, 22);
             this.tsmLocation.Text = "Stock Location";
-            this.tsmLocation.Click += new System.EventHandler(this.TsmLocation_Click);
             // 
             // tsmUser
             // 
             this.tsmUser.Name = "tsmUser";
             this.tsmUser.Size = new System.Drawing.Size(180, 22);
             this.tsmUser.Text = "User";
+            this.tsmUser.Click += new System.EventHandler(this.TsmUser_Click);
             // 
             // tsmSuppliyer
             // 
@@ -180,6 +183,13 @@ namespace ROMS
             this.tsmSuppliyer.Size = new System.Drawing.Size(180, 22);
             this.tsmSuppliyer.Text = "Supplier";
             this.tsmSuppliyer.Click += new System.EventHandler(this.TsmSuppliyer_Click);
+            // 
+            // stateToolStripMenuItem
+            // 
+            this.stateToolStripMenuItem.Name = "stateToolStripMenuItem";
+            this.stateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stateToolStripMenuItem.Text = "City";
+            this.stateToolStripMenuItem.Click += new System.EventHandler(this.StateToolStripMenuItem_Click);
             // 
             // lblDb
             // 
@@ -259,13 +269,6 @@ namespace ROMS
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
-            // tsmHSN
-            // 
-            this.tsmHSN.Name = "tsmHSN";
-            this.tsmHSN.Size = new System.Drawing.Size(180, 22);
-            this.tsmHSN.Text = "HSN";
-            this.tsmHSN.Click += new System.EventHandler(this.TsmHSN_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -315,6 +318,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem lblDb;
         private System.Windows.Forms.ToolStripMenuItem tsmSubGroup;
         private System.Windows.Forms.ToolStripMenuItem tsmSuppliyer;
-        private System.Windows.Forms.ToolStripMenuItem tsmHSN;
+        private System.Windows.Forms.ToolStripMenuItem stateToolStripMenuItem;
     }
 }

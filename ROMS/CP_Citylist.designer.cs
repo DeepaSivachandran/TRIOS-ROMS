@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_BrandList
+    partial class CP_Citylist
     {
         /// <summary>
         /// Required designer variable.
@@ -34,58 +34,64 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsBrandList = new System.Windows.Forms.ToolStrip();
+            this.tsCityList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
-            this.grdBrandList = new System.Windows.Forms.DataGridView();
+            this.grdCityList = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBrand = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmshtname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.tsBrandList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdBrandList)).BeginInit();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdshtname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tsCityList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCityList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsBrandList
+            // tsCityList
             // 
-            this.tsBrandList.BackColor = System.Drawing.Color.White;
-            this.tsBrandList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsBrandList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsBrandList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsCityList.BackColor = System.Drawing.Color.White;
+            this.tsCityList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsCityList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsCityList.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsCityList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
             this.tsbNew});
-            this.tsBrandList.Location = new System.Drawing.Point(0, 0);
-            this.tsBrandList.Name = "tsBrandList";
-            this.tsBrandList.Size = new System.Drawing.Size(1354, 27);
-            this.tsBrandList.TabIndex = 35;
-            this.tsBrandList.Text = "Brand";
+            this.tsCityList.Location = new System.Drawing.Point(0, 0);
+            this.tsCityList.Name = "tsCityList";
+            this.tsCityList.Size = new System.Drawing.Size(1352, 27);
+            this.tsCityList.TabIndex = 35;
+            this.tsCityList.Text = "City";
             // 
             // tspHeader
             // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(58, 24);
-            this.tspHeader.Text = "Brand";
+            this.tspHeader.Size = new System.Drawing.Size(47, 24);
+            this.tspHeader.Text = "City";
             // 
             // tsbDelete
             // 
             this.tsbDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbDelete.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
             this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -106,6 +112,7 @@
             // tsbEdit
             // 
             this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbEdit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
             this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -126,6 +133,7 @@
             // tsbNew
             // 
             this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbNew.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsbNew.Image = global::ROMS.Properties.Resources.New;
             this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -136,28 +144,28 @@
             this.tsbNew.Text = "&New";
             this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
-            // grdBrandList
+            // grdCityList
             // 
-            this.grdBrandList.AllowUserToAddRows = false;
-            this.grdBrandList.AllowUserToDeleteRows = false;
-            this.grdBrandList.AllowUserToResizeColumns = false;
-            this.grdBrandList.AllowUserToResizeRows = false;
-            this.grdBrandList.BackgroundColor = System.Drawing.Color.White;
-            this.grdBrandList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdCityList.AllowUserToAddRows = false;
+            this.grdCityList.AllowUserToDeleteRows = false;
+            this.grdCityList.AllowUserToResizeColumns = false;
+            this.grdCityList.AllowUserToResizeRows = false;
+            this.grdCityList.BackgroundColor = System.Drawing.Color.White;
+            this.grdCityList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdBrandList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdBrandList.ColumnHeadersHeight = 30;
-            this.grdBrandList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdBrandList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdCityList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdCityList.ColumnHeadersHeight = 30;
+            this.grdCityList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdCityList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmsno,
-            this.clmGroup,
-            this.clmBrand,
+            this.clmcompanyname,
+            this.clmshtname,
             this.clmStatus});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -166,56 +174,64 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdBrandList.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grdBrandList.EnableHeadersVisualStyles = false;
-            this.grdBrandList.GridColor = System.Drawing.Color.White;
-            this.grdBrandList.Location = new System.Drawing.Point(18, 98);
-            this.grdBrandList.Name = "grdBrandList";
-            this.grdBrandList.ReadOnly = true;
-            this.grdBrandList.RowHeadersVisible = false;
+            this.grdCityList.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdCityList.EnableHeadersVisualStyles = false;
+            this.grdCityList.GridColor = System.Drawing.Color.White;
+            this.grdCityList.Location = new System.Drawing.Point(18, 98);
+            this.grdCityList.Name = "grdCityList";
+            this.grdCityList.ReadOnly = true;
+            this.grdCityList.RowHeadersVisible = false;
+            this.grdCityList.RowHeadersWidth = 100;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdBrandList.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.grdBrandList.RowTemplate.Height = 25;
-            this.grdBrandList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdBrandList.Size = new System.Drawing.Size(1329, 561);
-            this.grdBrandList.TabIndex = 1;
-            this.grdBrandList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.grdBrandList_Scroll);
-            this.grdBrandList.DoubleClick += new System.EventHandler(this.grdBrandList_DoubleClick);
-            this.grdBrandList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdBrandList_KeyDown);
+            this.grdCityList.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdCityList.RowTemplate.Height = 25;
+            this.grdCityList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdCityList.Size = new System.Drawing.Size(1329, 561);
+            this.grdCityList.TabIndex = 1;
+            this.grdCityList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierList_CellContentClick);
+            this.grdCityList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.grdBrandList_Scroll);
+            this.grdCityList.DoubleClick += new System.EventHandler(this.grdBrandList_DoubleClick);
+            this.grdCityList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdBrandList_KeyDown);
             // 
             // clmsno
             // 
             this.clmsno.HeaderText = "S.No.";
+            this.clmsno.MinimumWidth = 6;
             this.clmsno.Name = "clmsno";
             this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 125;
             // 
-            // clmGroup
+            // clmcompanyname
             // 
-            this.clmGroup.HeaderText = "Group";
-            this.clmGroup.Name = "clmGroup";
-            this.clmGroup.ReadOnly = true;
-            this.clmGroup.Width = 200;
+            this.clmcompanyname.HeaderText = "State Name";
+            this.clmcompanyname.MinimumWidth = 6;
+            this.clmcompanyname.Name = "clmcompanyname";
+            this.clmcompanyname.ReadOnly = true;
+            this.clmcompanyname.Width = 200;
             // 
-            // clmBrand
+            // clmshtname
             // 
-            this.clmBrand.HeaderText = "Brand";
-            this.clmBrand.Name = "clmBrand";
-            this.clmBrand.ReadOnly = true;
-            this.clmBrand.Width = 300;
+            this.clmshtname.HeaderText = "City Name";
+            this.clmshtname.MinimumWidth = 6;
+            this.clmshtname.Name = "clmshtname";
+            this.clmshtname.ReadOnly = true;
+            this.clmshtname.Width = 200;
             // 
             // clmStatus
             // 
             this.clmStatus.HeaderText = "Status";
+            this.clmStatus.MinimumWidth = 6;
             this.clmStatus.Name = "clmStatus";
             this.clmStatus.ReadOnly = true;
+            this.clmStatus.Width = 125;
             // 
             // lblNoRecordsFound
             // 
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
-            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(627, 327);
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(628, 365);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958763;
@@ -245,7 +261,7 @@
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
@@ -253,6 +269,11 @@
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmdsno,
+            this.clmdcompanyname,
+            this.clmdshtname,
+            this.clmdstatus});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -266,6 +287,7 @@
             this.DGV_SearchGrid.Location = new System.Drawing.Point(18, 42);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
+            this.DGV_SearchGrid.RowHeadersWidth = 70;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
@@ -275,35 +297,64 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1329, 56);
             this.DGV_SearchGrid.TabIndex = 958796;
+            this.DGV_SearchGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellContentClick);
             this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             this.DGV_SearchGrid.Sorted += new System.EventHandler(this.DGV_SearchGrid_Sorted);
             // 
-            // CP_BrandList
+            // clmdsno
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.MinimumWidth = 6;
+            this.clmdsno.Name = "clmdsno";
+            this.clmdsno.Width = 125;
+            // 
+            // clmdcompanyname
+            // 
+            this.clmdcompanyname.HeaderText = "State Name";
+            this.clmdcompanyname.MinimumWidth = 6;
+            this.clmdcompanyname.Name = "clmdcompanyname";
+            this.clmdcompanyname.Width = 200;
+            // 
+            // clmdshtname
+            // 
+            this.clmdshtname.HeaderText = "City Name";
+            this.clmdshtname.MinimumWidth = 6;
+            this.clmdshtname.Name = "clmdshtname";
+            this.clmdshtname.Width = 200;
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Status";
+            this.clmdstatus.MinimumWidth = 6;
+            this.clmdstatus.Name = "clmdstatus";
+            this.clmdstatus.Width = 125;
+            // 
+            // CP_Citylist
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1354, 675);
+            this.BackColor = System.Drawing.Color.LightGray;
+            this.ClientSize = new System.Drawing.Size(1352, 675);
             this.Controls.Add(this.DGV_SearchGrid);
             this.Controls.Add(this.lblNoRecordsFound);
-            this.Controls.Add(this.grdBrandList);
-            this.Controls.Add(this.tsBrandList);
+            this.Controls.Add(this.grdCityList);
+            this.Controls.Add(this.tsCityList);
             this.Controls.Add(this.picLoader);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "CP_BrandList";
+            this.Name = "CP_Citylist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Brand";
             this.Load += new System.EventHandler(this.CP_BrandList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrandList_KeyDown);
-            this.tsBrandList.ResumeLayout(false);
-            this.tsBrandList.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdBrandList)).EndInit();
+            this.tsCityList.ResumeLayout(false);
+            this.tsCityList.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCityList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             this.ResumeLayout(false);
@@ -313,9 +364,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsBrandList;
+        private System.Windows.Forms.ToolStrip tsCityList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
-        public System.Windows.Forms.DataGridView grdBrandList;
+        public System.Windows.Forms.DataGridView grdCityList;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.PictureBox picLoader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
@@ -325,8 +376,12 @@
         public System.Windows.Forms.ToolStripButton tsbNew;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmGroup;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmBrand;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmcompanyname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmshtname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdcompanyname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdshtname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
     }
 }

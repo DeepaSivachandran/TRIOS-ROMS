@@ -62,6 +62,30 @@
     <Compile Include="CP_Brand.designer.cs">
       <DependentUpon>CP_Brand.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_City.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_City.designer.cs">
+      <DependentUpon>CP_City.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Citylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Citylist.designer.cs">
+      <DependentUpon>CP_Citylist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Group.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Group.designer.cs">
+      <DependentUpon>CP_Group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_GroupList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_GroupList.designer.cs">
+      <DependentUpon>CP_GroupList.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Location.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +128,18 @@
     <Compile Include="CP_RackList.designer.cs">
       <DependentUpon>CP_RackList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_SubGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SubGroup.designer.cs">
+      <DependentUpon>CP_SubGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_SubGroupList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SubGroupList.designer.cs">
+      <DependentUpon>CP_SubGroupList.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Supplierlist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +169,30 @@
     </Compile>
     <Compile Include="CP_Company.designer.cs">
       <DependentUpon>CP_Company.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Unit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Unit.designer.cs">
+      <DependentUpon>CP_Unit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Unitlist .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Unitlist .designer.cs">
+      <DependentUpon>CP_Unitlist .cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_User.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_User.designer.cs">
+      <DependentUpon>CP_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_UserList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_UserList.designer.cs">
+      <DependentUpon>CP_UserList.cs</DependentUpon>
     </Compile>
     <Compile Include="DEF_Start.cs">
       <SubType>Form</SubType>
@@ -178,6 +238,18 @@
     <EmbeddedResource Include="CP_Brand.resx">
       <DependentUpon>CP_Brand.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_City.resx">
+      <DependentUpon>CP_City.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Citylist.resx">
+      <DependentUpon>CP_Citylist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Group.resx">
+      <DependentUpon>CP_Group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_GroupList.resx">
+      <DependentUpon>CP_GroupList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_Location.resx">
       <DependentUpon>CP_Location.cs</DependentUpon>
     </EmbeddedResource>
@@ -199,6 +271,12 @@
     <EmbeddedResource Include="CP_RackList.resx">
       <DependentUpon>CP_RackList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_SubGroup.resx">
+      <DependentUpon>CP_SubGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_SubGroupList.resx">
+      <DependentUpon>CP_SubGroupList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_Supplierlist.resx">
       <DependentUpon>CP_Supplierlist.cs</DependentUpon>
     </EmbeddedResource>
@@ -213,6 +291,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Company.resx">
       <DependentUpon>CP_Company.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Unit.resx">
+      <DependentUpon>CP_Unit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Unitlist .resx">
+      <DependentUpon>CP_Unitlist .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_User.resx">
+      <DependentUpon>CP_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_UserList.resx">
+      <DependentUpon>CP_UserList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DEF_Start.resx">
       <DependentUpon>DEF_Start.cs</DependentUpon>

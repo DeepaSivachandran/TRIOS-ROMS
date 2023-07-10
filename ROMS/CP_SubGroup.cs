@@ -10,28 +10,29 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class CP_Brand : Form
+    public partial class CP_SubGroup : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
-        private ToolTip tpbrandname = new ToolTip();
-        private ToolTip tpbrandtamilname = new ToolTip();
-        private ToolTip tpbltname = new ToolTip();
-        private ToolTip tpblename = new ToolTip();
-        public string varbrandcode;
-        public string pbFormStatus;
-        public CP_Brand()
+        private ToolTip tpgrouptype = new ToolTip();
+        private ToolTip tptgroupname = new ToolTip();
+        private ToolTip tpegroupname = new ToolTip();
+        private ToolTip tptlabelname = new ToolTip();
+        private ToolTip tpelabelname = new ToolTip();
+        private ToolTip tpsno = new ToolTip();
+        public string vargroupcode;
+        public String pbFormStatus;
+        public CP_SubGroup()
         {
             InitializeComponent();
         }
-
-        private void CP_Brand_Load(object sender, EventArgs e)
+        private void CP_SubGroup_Load(object sender, EventArgs e)
         {
             try
-            {
-                this.ActiveControl = txtEBrandNameEnglish;
+            {      
                 udfnEdit();
+
             }
             catch (Exception ex)
             {
@@ -39,30 +40,38 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void udfnEdit()
         {
             try
             {
-                if (varbrandcode != "")
+                if (vargroupcode != "")
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS = new DataSet();
-                 //   objDS = objspservice.udfnSPBrandList("EditLoad", varbrandcode, MainForm.pbUserID, MainForm.pbIpAddress);
+                   // objDS = objspservice.udfnSPGroupList("EditLoad", vargroupcode, "0", MainForm.pbUserID, MainForm.pbIpAddress);
                     objspservice.CloseConnection();
 
                     if (objDS != null)
                     {
                         if (objDS.Tables[0].Rows.Count > 0)
-                        { 
-                            txtEBrandNameEnglish.Text = objDS.Tables[0].Rows[0]["BEName"].ToString().Replace("''", "'");                          
+                        {
+                            //cmbGroupType.SelectedValue = objDS.Tables[0].Rows[0]["GroupTypeCode"].ToString();
+                            //txtTGroupName.Text = objDS.Tables[0].Rows[0]["GTName"].ToString().Replace("''", "'");
+                            //txtEGroupName.Text = objDS.Tables[0].Rows[0]["GEName"].ToString().Replace("''", "'");
+                            //txtTLabelName.Text = objDS.Tables[0].Rows[0]["GTLabelName"].ToString().Replace("''", "'");
+                            //txtELabelName.Text = objDS.Tables[0].Rows[0]["GELabelName"].ToString().Replace("''", "'");
+                            //udfnLoadSlNo();
+                            //cmbSINO.SelectedValue = objDS.Tables[0].Rows[0]["SINO"].ToString();
+                            //if (Convert.ToString(objDS.Tables[0].Rows[0]["RawCount"]) != "0" || Convert.ToString(objDS.Tables[0].Rows[0]["FinishedCount"]) != "0") {
+                            //    cmbGroupType.Enabled = false;
+                            //}
                             btnSave.Text = "Update";
                         }
                     }
 
                 }
-
+                else {// udfnLoadSlNo(); 
+                }
             }
             catch (Exception ex)
             {
@@ -74,12 +83,11 @@ namespace ROMS
 
             }
         }
-
-        private void txtEBrandName_Enter(object sender, EventArgs e)
+        private void txtEGroupName_Enter(object sender, EventArgs e)
         {
             try
             {
-                txtEBrandNameEnglish.BackColor = Color.LemonChiffon;
+                txtESubGroupNameTamil.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -88,11 +96,11 @@ namespace ROMS
             }
         }
 
-        private void txtEBrandName_Leave(object sender, EventArgs e)
+        private void txtEGroupName_Leave(object sender, EventArgs e)
         {
             try
             {
-                txtEBrandNameEnglish.BackColor = Color.White;
+                txtESubGroupNameTamil.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -100,7 +108,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void txtTLabelName_KeyDown(object sender, KeyEventArgs e)
+        private void cmbSINO_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -121,64 +129,75 @@ namespace ROMS
             try
             {
 
-                errBrand.Clear();
-                if (txtEBrandNameEnglish.Text.Trim() == "")
+                errGroup.Clear();
+                if (txtESubGroupNameTamil.Text.Trim() == "")
                 {
-                    errBrand.SetError(txtEBrandNameEnglish, "Please enter brand name in english.");
-                    txtEBrandNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpbrandname.ShowAlways = true;
-                    tpbrandname.Show("Please enter brand name in english.", txtEBrandNameEnglish, 5000);
-                    txtEBrandNameEnglish.Text = "";                    
+                    errGroup.SetError(txtESubGroupNameTamil, "Please enter group english name");
+                    txtESubGroupNameTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+
+                    tpegroupname.ShowAlways = true;
+                    tpegroupname.Show("Please enter group english name", txtESubGroupNameTamil, 5000);
+                    txtESubGroupNameTamil.Text = "";
+
                 }
-                if (txtEBrandNameEnglish.Text.Trim() == "")
+                if (txtESubGroupNameTamil.Text.Trim() == "")
                 {
-                    txtEBrandNameEnglish.Focus();
+                    txtESubGroupNameTamil.Focus();
                     return;
+
                 }
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
                 if (btnSave.Text == "Save")
                 {
-                 //   result = objspdservice.udfnSPBrandMaster("Create", "0",txtTBrandName.Text,txtEBrandName.Text,txtTLabelName.Text,txtELabelName.Text, MainForm.pbUserID, MainForm.pbIpAddress, "Brand Create");
+                 //   result = objspdservice.udfnSPGroupMaster("Create", "0",cmbGroupType.SelectedValue.ToString(),txtTGroupName.Text,txtEGroupName.Text,txtTLabelName.Text,txtELabelName.Text,cmbSINO.SelectedValue.ToString(),  MainForm.pbUserID, MainForm.pbIpAddress, "Group Create");
                 }
                 else
                 {
-                 //   result = objspdservice.udfnSPBrandMaster("Update", varbrandcode, txtTBrandName.Text, txtEBrandName.Text, txtTLabelName.Text, txtELabelName.Text, MainForm.pbUserID, MainForm.pbIpAddress, "Brand Update");
+                  //  result = objspdservice.udfnSPGroupMaster("Update",vargroupcode, cmbGroupType.SelectedValue.ToString(), txtTGroupName.Text, txtEGroupName.Text, txtTLabelName.Text, txtELabelName.Text, cmbSINO.SelectedValue.ToString(), MainForm.pbUserID, MainForm.pbIpAddress, "Group Update");
                 }
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (pbFormStatus == "Finished")
+                    {
+                        pbFormStatus = "";
+                        //MainForm.objCP_Product.varGroupCode = varvalue[2];
+                        //MainForm.objCP_Product.varGroupName = txtEGroupName.Text;
+                        //MainForm.objCP_Product.udfnLoadGroup();
+                        this.Close();
+                    }
+                    if (pbFormStatus == "Raw")
+                    {
+                        pbFormStatus = "";
+                        //MainForm.objCP_RawMaterial.varGroupCode = varvalue[2];
+                        //MainForm.objCP_RawMaterial.varGroupName = txtEGroupName.Text;
+                        //MainForm.objCP_RawMaterial.udfnLoadGroup();
+                        this.Close();
+                    }
                     if (btnSave.Text == "Update")
                     {
                         this.Close();
                     }
                     else
                     {
-                        if (pbFormStatus == "Finished")
-                        {
-                            pbFormStatus = "";
-                            //MainForm.objCP_Product.varBrandCode = varvalue[2];
-                            //MainForm.objCP_Product.varBrandName = txtEBrandName.Text;
-                            //MainForm.objCP_Product.udfnLoadBrand();
-                            this.Close();
-                        }
                         udfnclear();
                     }
-
-                    MainForm.objCP_BrandList.udfnList();
-
-
-
+                  //  udfnLoadSlNo();
+                   // MainForm.objCP_SubGroupList.udfnList();
                 }
                 else
                 {
                     MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (varvalue[1].Contains("Order number")) {
+                        //udfnLoadSlNo(); 
+                    }
                 }
 
                 objspdservice.CloseConnection();
 
-                
+
 
 
             }
@@ -193,9 +212,19 @@ namespace ROMS
         {
             try
             {
-                txtEBrandNameEnglish.Text = "";
-                txtEBrandNameEnglish.Focus();
                 btnSave.Text = "Save";
+               // cmbGroupType.SelectedValue = "-1";
+                DataSet objDS = new DataSet();
+                SPDataService objspservice = new SPDataService();
+               // objDS = objspservice.udfnGetSlNo("CP_SubGroup", "Create", "", "");
+                objspservice.CloseConnection();
+                if (objDS != null)
+                {
+                    //cmbSINO.DataSource = objDS.Tables[0];
+                    //cmbSINO.DisplayMember = "num";
+                    //cmbSINO.ValueMember = "num";
+                }
+              //  txtTGroupName.Focus();
             }
             catch (Exception ex)
             {
@@ -263,7 +292,7 @@ namespace ROMS
             try
             {
                 udfnclose();
-              //  MainForm.objCP_BrandList.udfnList();
+               // MainForm.objCP_SubGroupList.udfnList();
             }
             catch (Exception ex)
             {
@@ -311,23 +340,8 @@ namespace ROMS
             }
         }
 
-        private void CP_Brand_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                tpbrandname.Active = false;
-                tpbrandtamilname.Active = false;
-                tpbltname.Active = false;
-                tpblename.Active = false;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
 
-        private void CP_Brand_KeyDown(object sender, KeyEventArgs e)
+        private void CP_SubGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -347,32 +361,21 @@ namespace ROMS
             }
         }
 
-        private void Grbform_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GrdGroupList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                //MainForm.objCP_Group = new CP_Group();
+                //MainForm.objCP_Group.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
-        private void CmbUserRole_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxtDSlNo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label1_Click(object sender, EventArgs e)
+        private void RbActive_CheckedChanged(object sender, EventArgs e)
         {
 
         }

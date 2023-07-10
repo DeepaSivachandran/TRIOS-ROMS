@@ -42,13 +42,28 @@ namespace ROMS
         public static CP_Supplier objCP_Supplier;
         public static CP_Supplierlist objCP_Supplierlist;
         public static CP_Companylist objCP_Companylist;
-        public static CP_ProductHSN objCP_ProductHSN;
-        public static CP_ProductHSNList objCP_ProductHSNList;
-
-
-        public static CP_Location objCP_Location;
+        public static  CP_ProductHSN objCP_ProductHSN;
+        public static  CP_ProductHSNList objCP_ProductHSNlist;
+        public static CP_Unitlist objCP_Unitlist;
+        public static CP_Unit objCP_Unit;
+        public static CP_City objCP_City;
+        public static CP_Citylist objCP_Citylist;
+        public static CP_GroupList objCP_GroupList;
+        public static CP_Group objCP_Group;
+        public static CP_SubGroupList objCP_SubGroupList;
+        public static CP_SubGroup objCP_SubGroup; 
         public static CP_LocationList objCP_LocationList;
+        public static CP_Location objCP_Location; 
         public static CP_Rack objCP_Rack;
+        public static CP_UserList objCP_Userlist;
+        public static CP_User objCP_User; 
+
+
+
+
+
+
+
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
@@ -421,31 +436,50 @@ namespace ROMS
             MainForm.objCP_Supplierlist.Show();
         }
 
-        private void TsmHSN_Click(object sender, EventArgs e)
+        private void TsmUnit_Click(object sender, EventArgs e)
         {
             udfnCloseChildForms();
             if (isClose == false) { return; }
-            MainForm.objCP_ProductHSNList = new CP_ProductHSNList();
-            MainForm.objCP_ProductHSNList.MdiParent = this;
-            MainForm.objCP_ProductHSNList.Show();
-            
+            MainForm.objCP_Unitlist = new CP_Unitlist();
+            MainForm.objCP_Unitlist.MdiParent = this;
+            MainForm.objCP_Unitlist.Show();
         }
 
-        private void TsmLocation_Click(object sender, EventArgs e)
+        private void StateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_LocationList = new CP_LocationList();
-                MainForm.objCP_LocationList.MdiParent = this;
-                MainForm.objCP_LocationList.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objCP_Citylist = new CP_Citylist();
+            MainForm.objCP_Citylist.MdiParent = this;
+            MainForm.objCP_Citylist.Show();
+        }
+
+        private void TsmGroup_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objCP_GroupList = new CP_GroupList();
+            MainForm.objCP_GroupList.MdiParent = this;
+            MainForm.objCP_GroupList.Show();
+        }
+
+        private void TsmSubGroup_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objCP_SubGroupList = new CP_SubGroupList();
+            MainForm.objCP_SubGroupList.MdiParent = this;
+            MainForm.objCP_SubGroupList.Show();
+        }
+
+        private void TsmUser_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objCP_Userlist = new CP_UserList();
+            MainForm.objCP_Userlist.MdiParent = this;
+            MainForm.objCP_Userlist.Show();
+
         }
     }
    

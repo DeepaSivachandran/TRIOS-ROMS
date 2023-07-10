@@ -59,6 +59,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.txtEGroupName = new System.Windows.Forms.TextBox();
+            this.cmbmasterselect = new System.Windows.Forms.ComboBox();
+            this.txtdmasterselect = new System.Windows.Forms.TextBox();
             this.grbLocation.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelStatus.SuspendLayout();
@@ -79,7 +81,7 @@
             this.txtDLocationName.ReadOnly = true;
             this.txtDLocationName.Size = new System.Drawing.Size(181, 27);
             this.txtDLocationName.TabIndex = 6;
-            this.txtDLocationName.Text = "Location Name";
+            this.txtDLocationName.Text = "Godown Name";
             // 
             // txtLocationName
             // 
@@ -137,7 +139,7 @@
             this.grbLocation.Controls.Add(this.txtDStatus);
             this.grbLocation.Controls.Add(this.btnSave);
             this.grbLocation.Controls.Add(this.panelStatus);
-            this.grbLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbLocation.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbLocation.Location = new System.Drawing.Point(24, 38);
             this.grbLocation.Name = "grbLocation";
             this.grbLocation.Size = new System.Drawing.Size(552, 159);
@@ -154,7 +156,7 @@
             this.txtDlocationtype.ReadOnly = true;
             this.txtDlocationtype.Size = new System.Drawing.Size(181, 27);
             this.txtDlocationtype.TabIndex = 21;
-            this.txtDlocationtype.Text = "Location Type";
+            this.txtDlocationtype.Text = "Godown Type";
             // 
             // panel1
             // 
@@ -252,10 +254,11 @@
             this.panel2.Controls.Add(this.rbrack);
             this.panel2.Controls.Add(this.rbLocation);
             this.panel2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel2.Location = new System.Drawing.Point(24, 9);
+            this.panel2.Location = new System.Drawing.Point(473, 9);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 27);
+            this.panel2.Size = new System.Drawing.Size(83, 27);
             this.panel2.TabIndex = 21;
+            this.panel2.Visible = false;
             // 
             // rbrack
             // 
@@ -414,16 +417,40 @@
             this.txtEGroupName.Size = new System.Drawing.Size(288, 27);
             this.txtEGroupName.TabIndex = 1;
             // 
+            // cmbmasterselect
+            // 
+            this.cmbmasterselect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbmasterselect.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbmasterselect.FormattingEnabled = true;
+            this.cmbmasterselect.Location = new System.Drawing.Point(99, 9);
+            this.cmbmasterselect.Name = "cmbmasterselect";
+            this.cmbmasterselect.Size = new System.Drawing.Size(120, 27);
+            this.cmbmasterselect.TabIndex = 63;
+            // 
+            // txtdmasterselect
+            // 
+            this.txtdmasterselect.BackColor = System.Drawing.SystemColors.Control;
+            this.txtdmasterselect.Enabled = false;
+            this.txtdmasterselect.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtdmasterselect.Location = new System.Drawing.Point(24, 9);
+            this.txtdmasterselect.Name = "txtdmasterselect";
+            this.txtdmasterselect.ReadOnly = true;
+            this.txtdmasterselect.Size = new System.Drawing.Size(75, 27);
+            this.txtdmasterselect.TabIndex = 64;
+            this.txtdmasterselect.Text = "Location Type";
+            // 
             // CP_Location
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(601, 214);
+            this.Controls.Add(this.txtdmasterselect);
+            this.Controls.Add(this.cmbmasterselect);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.grbLocation);
             this.Controls.Add(this.grbrack);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -449,6 +476,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -483,5 +511,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox txtEGroupName;
+        private System.Windows.Forms.ComboBox cmbmasterselect;
+        private System.Windows.Forms.TextBox txtdmasterselect;
     }
 }

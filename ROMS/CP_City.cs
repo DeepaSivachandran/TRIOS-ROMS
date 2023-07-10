@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class CP_Brand : Form
+    public partial class CP_City : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -21,23 +21,23 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
-        public CP_Brand()
+        public CP_City()
         {
             InitializeComponent();
         }
 
         private void CP_Brand_Load(object sender, EventArgs e)
         {
-            try
-            {
-                this.ActiveControl = txtEBrandNameEnglish;
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    this.ActiveControl = txtEStatetName;
+            //    udfnEdit();
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
 
@@ -54,11 +54,15 @@ namespace ROMS
 
                     if (objDS != null)
                     {
-                        if (objDS.Tables[0].Rows.Count > 0)
-                        { 
-                            txtEBrandNameEnglish.Text = objDS.Tables[0].Rows[0]["BEName"].ToString().Replace("''", "'");                          
-                            btnSave.Text = "Update";
-                        }
+                        //if (objDS.Tables[0].Rows.Count > 0)
+                        //{
+                        //    txtTEInvoiceUnitName.Text = objDS.Tables[0].Rows[0]["UName"].ToString().Replace("''","'");
+                        //    txtDUnitName.Text = objDS.Tables[0].Rows[0]["EIName"].ToString().Replace("''", "'");
+                        //    /*  txtDEIUnitName.Text = objDS.Tables[0].Rows[0]["BTLabelName"].ToString().Replace("''", "'");
+                        //      txtELabelName.Text = objDS.Tables[0].Rows[0]["BELabelName"].ToString().Replace("''", "'"); */
+
+                        //    btnSave.Text = "Update";
+                        //}
                     }
 
                 }
@@ -75,11 +79,69 @@ namespace ROMS
             }
         }
 
-        private void txtEBrandName_Enter(object sender, EventArgs e)
+        private void txtTBrandName_Enter(object sender, EventArgs e)
         {
             try
             {
-                txtEBrandNameEnglish.BackColor = Color.LemonChiffon;
+                //txtTEInvoiceUnitName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtTBrandName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    //txtELabelName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtTBrandName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                //txtTEInvoiceUnitName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtEBrandName_Enter(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    txtEStatetName.BackColor = Color.LemonChiffon;
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+        }
+
+        private void txtEBrandName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    //txtTEInvoiceUnitName.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -90,9 +152,22 @@ namespace ROMS
 
         private void txtEBrandName_Leave(object sender, EventArgs e)
         {
+            //try
+            //{
+            //    txtEStatetName.BackColor = Color.White;
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+        }
+
+        private void txtTLabelName_Enter(object sender, EventArgs e)
+        {
             try
             {
-                txtEBrandNameEnglish.BackColor = Color.White;
+                //txtTLabelName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -100,6 +175,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         private void txtTLabelName_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -116,25 +192,121 @@ namespace ROMS
             }
         }
 
+        private void txtTLabelName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                //txtTLabelName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtELabelName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                //txtELabelName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtELabelName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    //txtTLabelName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtELabelName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                //txtELabelName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }                              
+        
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
 
-                errBrand.Clear();
-                if (txtEBrandNameEnglish.Text.Trim() == "")
-                {
-                    errBrand.SetError(txtEBrandNameEnglish, "Please enter brand name in english.");
-                    txtEBrandNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpbrandname.ShowAlways = true;
-                    tpbrandname.Show("Please enter brand name in english.", txtEBrandNameEnglish, 5000);
-                    txtEBrandNameEnglish.Text = "";                    
-                }
-                if (txtEBrandNameEnglish.Text.Trim() == "")
-                {
-                    txtEBrandNameEnglish.Focus();
-                    return;
-                }
+                errCity.Clear();
+                //if (txtTEInvoiceUnitName.Text.Trim() == "")
+                //{
+                //    errBrand.SetError(txtTEInvoiceUnitName, "Please enter brand name in tamil.");
+                //    txtTEInvoiceUnitName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+
+                //    tpbrandtamilname.ShowAlways = true;
+                //    tpbrandtamilname.Show("Please enter brand name in tamil.", txtTEInvoiceUnitName, 5000);
+                //    txtTEInvoiceUnitName.Text = "";                    
+                //}
+                //if (txtEStatetName.Text.Trim() == "")
+                //{
+                //    errCity.SetError(txtEStatetName, "Please enter unit name.");
+                //    txtEStatetName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpbrandname.ShowAlways = true;
+                //    tpbrandname.Show("Please enter unit name.", txtEStatetName, 5000);
+                //    txtEStatetName.Text = "";                    
+                //}
+                //if (txtTLabelName.Text.Trim() == "")
+                //{
+                //    errBrand.SetError(txtTLabelName, "Please enter label name in tamil.");
+                //    txtTLabelName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpbltname.ShowAlways = true;
+                //    tpbltname.Show("Please enter label name in tamil.", txtTLabelName, 5000);
+                //    txtTLabelName.Text = "";
+                //}
+                //if (txtELabelName.Text.Trim() == "")
+                //{
+                //    errBrand.SetError(txtELabelName, "Please enter label name in english.");
+                //    txtELabelName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpblename.ShowAlways = true;
+                //    tpblename.Show("Please enter label name in english", txtELabelName, 5000);
+                //    txtELabelName.Text = "";
+                //}
+                //if (txtEStatetName.Text.Trim() == "")
+                //{
+                //    txtEStatetName.Focus();
+                //    return;
+                //}
+                //if (txtTEInvoiceUnitName.Text.Trim() == "")
+                //{
+                //    txtTEInvoiceUnitName.Focus();
+                //    return;
+                //}
+                //if (txtELabelName.Text.Trim() == "")
+                //{
+                //    txtELabelName.Focus();
+                //    return;
+                //}
+                //if (txtTLabelName.Text.Trim() == "")
+                //{
+                //    txtTLabelName.Focus();
+                //    return;
+                //}
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
                 if (btnSave.Text == "Save")
@@ -191,17 +363,20 @@ namespace ROMS
 
         private void udfnclear()
         {
-            try
-            {
-                txtEBrandNameEnglish.Text = "";
-                txtEBrandNameEnglish.Focus();
-                btnSave.Text = "Save";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    //txtTEInvoiceUnitName.Text = "";
+            //    txtEStatetName.Text = "";
+            //    //txtTLabelName.Text = "";
+            //    //txtELabelName.Text = "";
+            //    txtEStatetName.Focus();
+            //    btnSave.Text = "Save";
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void btnSave_Enter(object sender, EventArgs e)
@@ -347,32 +522,37 @@ namespace ROMS
             }
         }
 
+        private void TxtDEBrandName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Rbactive_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GroupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtTEInvoiceUnitName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RbInActive_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void Grbform_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GrdGroupList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void BtnAdd_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CmbUserRole_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxtDSlNo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label1_Click(object sender, EventArgs e)
         {
 
         }

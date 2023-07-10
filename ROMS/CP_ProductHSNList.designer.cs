@@ -45,20 +45,18 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdhsnname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdhsncode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdgst = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdCgst = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdSGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmhsnname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmhsncode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmgst = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmcgst = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsgst = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmeffectivedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdhsnname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdhsncode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdgst = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdeffective = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdHSNList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
@@ -90,8 +88,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(48, 24);
-            this.tspHeader.Text = "HSN";
+            this.tspHeader.Size = new System.Drawing.Size(105, 24);
+            this.tspHeader.Text = "HSN Tax Group";
             // 
             // tsbDelete
             // 
@@ -169,8 +167,7 @@
             this.clmhsnname,
             this.clmhsncode,
             this.clmgst,
-            this.clmcgst,
-            this.clmsgst,
+            this.clmeffectivedate,
             this.clmStatus});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -245,8 +242,7 @@
             this.clmdhsnname,
             this.clmdhsncode,
             this.clmdgst,
-            this.clmdCgst,
-            this.clmdSGST,
+            this.clmdeffective,
             this.clmdstatus});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -276,45 +272,6 @@
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             this.DGV_SearchGrid.Sorted += new System.EventHandler(this.DGV_SearchGrid_Sorted);
             // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmdhsnname
-            // 
-            this.clmdhsnname.HeaderText = "HSN Name";
-            this.clmdhsnname.Name = "clmdhsnname";
-            this.clmdhsnname.Width = 200;
-            // 
-            // clmdhsncode
-            // 
-            this.clmdhsncode.HeaderText = "HSN Code";
-            this.clmdhsncode.Name = "clmdhsncode";
-            // 
-            // clmdgst
-            // 
-            this.clmdgst.HeaderText = "GST";
-            this.clmdgst.Name = "clmdgst";
-            this.clmdgst.Width = 75;
-            // 
-            // clmdCgst
-            // 
-            this.clmdCgst.HeaderText = "CGST";
-            this.clmdCgst.Name = "clmdCgst";
-            this.clmdCgst.Width = 75;
-            // 
-            // clmdSGST
-            // 
-            this.clmdSGST.HeaderText = "SGST";
-            this.clmdSGST.Name = "clmdSGST";
-            this.clmdSGST.Width = 75;
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Status";
-            this.clmdstatus.Name = "clmdstatus";
-            // 
             // clmsno
             // 
             this.clmsno.HeaderText = "S.No.";
@@ -323,7 +280,7 @@
             // 
             // clmhsnname
             // 
-            this.clmhsnname.HeaderText = "HSN Name";
+            this.clmhsnname.HeaderText = "HSN Group Name";
             this.clmhsnname.Name = "clmhsnname";
             this.clmhsnname.ReadOnly = true;
             this.clmhsnname.Width = 200;
@@ -341,25 +298,49 @@
             this.clmgst.ReadOnly = true;
             this.clmgst.Width = 75;
             // 
-            // clmcgst
+            // clmeffectivedate
             // 
-            this.clmcgst.HeaderText = "CGST";
-            this.clmcgst.Name = "clmcgst";
-            this.clmcgst.ReadOnly = true;
-            this.clmcgst.Width = 75;
-            // 
-            // clmsgst
-            // 
-            this.clmsgst.HeaderText = "SGST";
-            this.clmsgst.Name = "clmsgst";
-            this.clmsgst.ReadOnly = true;
-            this.clmsgst.Width = 75;
+            this.clmeffectivedate.HeaderText = "Effective Date";
+            this.clmeffectivedate.Name = "clmeffectivedate";
+            this.clmeffectivedate.ReadOnly = true;
             // 
             // clmStatus
             // 
             this.clmStatus.HeaderText = "Status";
             this.clmStatus.Name = "clmStatus";
             this.clmStatus.ReadOnly = true;
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmdhsnname
+            // 
+            this.clmdhsnname.HeaderText = "HSN Group Name";
+            this.clmdhsnname.Name = "clmdhsnname";
+            this.clmdhsnname.Width = 200;
+            // 
+            // clmdhsncode
+            // 
+            this.clmdhsncode.HeaderText = "HSN Code";
+            this.clmdhsncode.Name = "clmdhsncode";
+            // 
+            // clmdgst
+            // 
+            this.clmdgst.HeaderText = "GST";
+            this.clmdgst.Name = "clmdgst";
+            this.clmdgst.Width = 75;
+            // 
+            // clmdeffective
+            // 
+            this.clmdeffective.HeaderText = "Effective Date";
+            this.clmdeffective.Name = "clmdeffective";
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Status";
+            this.clmdstatus.Name = "clmdstatus";
             // 
             // CP_ProductHSNList
             // 
@@ -408,15 +389,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmhsnname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmhsncode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmgst;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmcgst;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsgst;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmeffectivedate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdhsnname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdhsncode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdgst;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdCgst;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdSGST;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdeffective;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
     }
 }
