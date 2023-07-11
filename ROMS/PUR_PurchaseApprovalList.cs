@@ -18,7 +18,21 @@ namespace ROMS
         {
             InitializeComponent();
         }
-             
-        
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                MainForm.objPUR_PurchaseApproval = new PUR_PurchaseApproval();
+                MainForm.objPUR_PurchaseApproval.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
     }
 }

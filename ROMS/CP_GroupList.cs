@@ -111,8 +111,7 @@ namespace ROMS
         public void udfnList()
         {
             try
-            {
-                picLoader.Visible = true;
+            { 
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdGroupList.DataSource = null; 
@@ -177,8 +176,7 @@ namespace ROMS
             }
             finally
             {
-                grdGroupList.ClearSelection();
-                picLoader.Visible = false;
+                grdGroupList.ClearSelection(); 
             }
         }
 

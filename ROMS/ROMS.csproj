@@ -86,6 +86,18 @@
     <Compile Include="CP_GroupList.designer.cs">
       <DependentUpon>CP_GroupList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_ProductList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ProductList.designer.cs">
+      <DependentUpon>CP_ProductList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Product.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Product.designer.cs">
+      <DependentUpon>CP_Product.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Location.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +134,12 @@
     <Compile Include="CP_Purchase.designer.cs">
       <DependentUpon>CP_Purchase.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_PurchaseList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_PurchaseList.designer.cs">
+      <DependentUpon>CP_PurchaseList.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Rack.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +151,18 @@
     </Compile>
     <Compile Include="CP_RackList.designer.cs">
       <DependentUpon>CP_RackList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_RackSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RackSetting.designer.cs">
+      <DependentUpon>CP_RackSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_RackSettinglist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RackSettinglist.designer.cs">
+      <DependentUpon>CP_RackSettinglist.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_SubGroup.cs">
       <SubType>Form</SubType>
@@ -176,6 +206,18 @@
     <Compile Include="CP_Company.designer.cs">
       <DependentUpon>CP_Company.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_SupplierMapping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SupplierMapping.designer.cs">
+      <DependentUpon>CP_SupplierMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_SupplierMappinglist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SupplierMappinglist.designer.cs">
+      <DependentUpon>CP_SupplierMappinglist.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Unit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +248,18 @@
     <Compile Include="DEF_Start.designer.cs">
       <DependentUpon>DEF_Start.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_Inward.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_Inward.designer.cs">
+      <DependentUpon>INV_Inward.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_Inwardlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_Inwardlist.designer.cs">
+      <DependentUpon>INV_Inwardlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +268,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PUR_PurchaseApproval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseApproval.designer.cs">
+      <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseApprovalList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseApprovalList.designer.cs">
+      <DependentUpon>PUR_PurchaseApprovalList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseOrder.designer.cs">
+      <DependentUpon>PUR_PurchaseOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="ServerSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +328,12 @@
     <EmbeddedResource Include="CP_GroupList.resx">
       <DependentUpon>CP_GroupList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_ProductList.resx">
+      <DependentUpon>CP_ProductList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Product.resx">
+      <DependentUpon>CP_Product.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_Location.resx">
       <DependentUpon>CP_Location.cs</DependentUpon>
     </EmbeddedResource>
@@ -274,11 +352,20 @@
     <EmbeddedResource Include="CP_Purchase.resx">
       <DependentUpon>CP_Purchase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_PurchaseList.resx">
+      <DependentUpon>CP_PurchaseList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_Rack.resx">
       <DependentUpon>CP_Rack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_RackList.resx">
       <DependentUpon>CP_RackList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_RackSetting.resx">
+      <DependentUpon>CP_RackSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_RackSettinglist.resx">
+      <DependentUpon>CP_RackSettinglist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_SubGroup.resx">
       <DependentUpon>CP_SubGroup.cs</DependentUpon>
@@ -301,6 +388,12 @@
     <EmbeddedResource Include="CP_Company.resx">
       <DependentUpon>CP_Company.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_SupplierMapping.resx">
+      <DependentUpon>CP_SupplierMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_SupplierMappinglist.resx">
+      <DependentUpon>CP_SupplierMappinglist.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_Unit.resx">
       <DependentUpon>CP_Unit.cs</DependentUpon>
     </EmbeddedResource>
@@ -316,6 +409,12 @@
     <EmbeddedResource Include="DEF_Start.resx">
       <DependentUpon>DEF_Start.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="INV_Inward.resx">
+      <DependentUpon>INV_Inward.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_Inwardlist.resx">
+      <DependentUpon>INV_Inwardlist.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -329,6 +428,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PUR_PurchaseApproval.resx">
+      <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseApprovalList.resx">
+      <DependentUpon>PUR_PurchaseApprovalList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseOrder.resx">
+      <DependentUpon>PUR_PurchaseOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ServerSettings.resx">
       <DependentUpon>ServerSettings.cs</DependentUpon>
     </EmbeddedResource>

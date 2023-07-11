@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 namespace ROMS
-{  
+{
     public partial class MainForm : Form
     {
         //------- Servic Class object declaration
@@ -17,13 +17,13 @@ namespace ROMS
         //------- Variable Declaration
         public static int pbCloseForm = 0;
         public static int varCloseFlag = 0;
-        public static string pbVersion="1.0.0";
-        public static string pbUserID ="";
-        public static string pbUserName="";
+        public static string pbVersion = "1.0.0";
+        public static string pbUserID = "";
+        public static string pbUserName = "";
         public static string pbUserRoleId;
         public static string pbView;
         public static string pbSelectedMenu;
-        public static string pbIpAddress= "";
+        public static string pbIpAddress = "";
         public static string pbHostName = "";
         public static string pbUserRoleName = "";
         public static string pbReleaseDt = "";
@@ -42,8 +42,8 @@ namespace ROMS
         public static CP_Supplier objCP_Supplier;
         public static CP_Supplierlist objCP_Supplierlist;
         public static CP_Companylist objCP_Companylist;
-        public static  CP_ProductHSN objCP_ProductHSN;
-        public static  CP_ProductHSNList objCP_ProductHSNlist;
+        public static CP_ProductHSN objCP_ProductHSN;
+        public static CP_ProductHSNList objCP_ProductHSNlist;
         public static CP_Unitlist objCP_Unitlist;
         public static CP_Unit objCP_Unit;
         public static CP_City objCP_City;
@@ -51,17 +51,26 @@ namespace ROMS
         public static CP_GroupList objCP_GroupList;
         public static CP_Group objCP_Group;
         public static CP_SubGroupList objCP_SubGroupList;
-        public static CP_SubGroup objCP_SubGroup; 
+        public static CP_SubGroup objCP_SubGroup;
         public static CP_LocationList objCP_LocationList;
-        public static CP_Location objCP_Location; 
+        public static CP_Location objCP_Location;
         public static CP_Rack objCP_Rack;
         public static CP_UserList objCP_Userlist;
         public static CP_User objCP_User; 
+        public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList; 
+        public static PUR_PurchaseApproval objPUR_PurchaseApproval;
+        public static PUR_PurchaseOrder objPUR_PurchaseOrder; 
+        public static CP_PurchaseList objCP_PurchaseList;
+        public static CP_SupplierMappinglist objCP_SupplierMappinglist;
+        public static CP_Product objCP_Items;
+        public static INV_Inwardlist objINV_Inwardlist;
+        public static INV_Inward objINV_Inward;
+        public static CP_RackSettinglist objCP_RackSettinglist;
+        public static CP_RackSetting objCP_RackSetting;
+        public static CP_ProductList objCP_Itemlist;
 
-
-
-
-        
+        public static CP_SupplierMapping objCP_SupplierMapping;
+        public static CP_Purchase objCP_Purchase;
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
@@ -80,10 +89,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-    
-    
+
+
         //Close Form
-        public void  udfnCloseChildForms()
+        public void udfnCloseChildForms()
         {
             try
             {
@@ -102,8 +111,8 @@ namespace ROMS
                     }
                     bool exists = false;
                     exists = objDtMenuCloseDet.AsEnumerable().Where(c => c.Field<string>("MenuName").Equals(child.Text) && c.Field<int>("CloseFlag").Equals(0)).Count() > 0;
-                    
-                    if (isFound == true && exists == false )
+
+                    if (isFound == true && exists == false)
                     {
                         DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.Yes)
@@ -125,7 +134,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-      
+
         public bool IsFrmOpen(Form nameForm)
         {
             bool isFound = false;
@@ -141,18 +150,18 @@ namespace ROMS
         private void MainForm_Load(object sender, EventArgs e)
         {
             try
-            {               
+            {
                 GetLocalIPAddress();
-                this.Text = "ROMS" + " - " +MainForm.pbVersion+" Release Dt : "+MainForm.pbReleaseDt+" [ "+MainForm.pbLablingSoftwareName+" ]";
+                this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbLablingSoftwareName + " ]";
                 udfnCloseChildForms();
-                lblTime.Text = "Welcome " + MainForm.pbUserName+" / "+MainForm.pbUserRoleName + " @ "+MainForm.pbHostName;
+                lblTime.Text = "Welcome " + MainForm.pbUserName + " / " + MainForm.pbUserRoleName + " @ " + MainForm.pbHostName;
                 //lblDb.Text = "ROMS DB : "+MainForm.pbRomsSoftwareName;
                 objStart = new DEF_Start();
                 objStart.MdiParent = this;
                 objStart.Show();
             }
             catch (Exception ex)
-            { objError = new DataError();objError.WriteFile(ex); }
+            { objError = new DataError(); objError.WriteFile(ex); }
         }
         //Close Application when click logout
         private void tsbLogout_Click(object sender, EventArgs e)
@@ -180,7 +189,7 @@ namespace ROMS
             //    objError.WriteFile(ex);
             //}
         }
-            
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -213,9 +222,9 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }         
+            }
         }
-     
+
         private void tsbBackup_Click(object sender, EventArgs e)
         {
             try
@@ -236,12 +245,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-       
+
         private void MainForm_Resize(object sender, EventArgs e)
         {
             try
             {
-                
+
             }
             catch (Exception ex)
             {
@@ -249,7 +258,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-       
+
         private void ntfy_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -264,7 +273,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        
+
         private void ntfy_Click(object sender, EventArgs e)
         {
             try
@@ -279,7 +288,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-           
+
         //Get IP address
         public void GetLocalIPAddress()
         {
@@ -294,7 +303,7 @@ namespace ROMS
             try
             {
                 udfnCloseChildForms();
-                
+
             }
             catch (Exception ex)
             {
@@ -371,7 +380,7 @@ namespace ROMS
         {
             try
             {
-                MainForm.objMainForm = new MainForm ();
+                MainForm.objMainForm = new MainForm();
                 MainForm.objMainForm.tsmControlPanel.Enabled = Bln;
             }
             catch (Exception ex)
@@ -490,7 +499,18 @@ namespace ROMS
 
         }
 
-        private void TsmpurchaseOrder_Click(object sender, EventArgs e)
+     
+
+        private void Tsmpurchaseentry_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objCP_PurchaseList = new CP_PurchaseList();
+            MainForm.objCP_PurchaseList.MdiParent = this;
+            MainForm.objCP_PurchaseList.Show();
+        }
+
+        private void TsmPurchaseOrder_Click_1(object sender, EventArgs e)
         {
             udfnCloseChildForms();
             if (isClose == false) { return; }
@@ -499,7 +519,49 @@ namespace ROMS
             MainForm.objPUR_PurchaseOrder.Show();
         }
 
+        private void TsmsupplierMapping_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objCP_SupplierMappinglist = new CP_SupplierMappinglist();
+            MainForm.objCP_SupplierMappinglist.MdiParent = this;
+            MainForm.objCP_SupplierMappinglist.Show();
+        }
+
+        private void TsmrackSettings_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objCP_RackSettinglist = new CP_RackSettinglist();
+            MainForm.objCP_RackSettinglist.MdiParent = this;
+            MainForm.objCP_RackSettinglist.Show();
+        }
+
+        private void Tsmitem_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objCP_Itemlist = new CP_ProductList();
+            MainForm.objCP_Itemlist.MdiParent = this;
+            MainForm.objCP_Itemlist.Show();
+        }
+
+        private void Tsminward_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objINV_Inwardlist = new INV_Inwardlist();
+            MainForm.objINV_Inwardlist.MdiParent = this;
+            MainForm.objINV_Inwardlist.Show();
+        }
+
+        private void TsmpurchaseApprove_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+            MainForm.objPUR_PurchaseApprovalList.MdiParent = this;
+            MainForm.objPUR_PurchaseApprovalList.Show();
         }
     }
-   
-}
+} 
