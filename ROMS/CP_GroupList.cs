@@ -112,7 +112,7 @@ namespace ROMS
         {
             try
             {
-                picLoader.Visible = true;
+              //  picLoader.Visible = true;
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdGroupList.DataSource = null; 
@@ -178,7 +178,7 @@ namespace ROMS
             finally
             {
                 grdGroupList.ClearSelection();
-                picLoader.Visible = false;
+             //   picLoader.Visible = false;
             }
         }
 

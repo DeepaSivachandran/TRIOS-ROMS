@@ -59,7 +59,10 @@ namespace ROMS
         public static CP_User objCP_User;
         public static CP_PurchaseList objCP_PurchaseList;
         public static CP_Purchase objCP_Purchase;
-        public static CP_Purchase_PO objCP_Purchase_PO; 
+        public static CP_Purchase_PO objCP_Purchase_PO;
+        public static PUR_PurchaseOrder objPUR_PurchaseOrder;
+        public static PUR_PurchaseApproval objPUR_PurchaseApproval;
+        public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -498,7 +501,32 @@ namespace ROMS
             MainForm.objPUR_PurchaseOrder.Show();
         }
 
+        private void TsmPurchaseEntry_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objCP_PurchaseList = new CP_PurchaseList();
+            MainForm.objCP_PurchaseList.MdiParent = this;
+            MainForm.objCP_PurchaseList.Show();
+        }
+
+        private void TsmPurchaseApproval_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+            MainForm.objPUR_PurchaseApprovalList.MdiParent = this;
+            MainForm.objPUR_PurchaseApprovalList.Show();
+        }
+
+        private void UrchaseOrder_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objPUR_PurchaseOrder = new PUR_PurchaseOrder();
+            MainForm.objPUR_PurchaseOrder.MdiParent = this;
+            MainForm.objPUR_PurchaseOrder.Show();
         }
     }
-   
-}
+    }
+    
