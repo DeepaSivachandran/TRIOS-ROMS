@@ -91,5 +91,21 @@ namespace ROMS
         {
 
         }
+
+        private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbType.SelectedValue.ToString() == "1") {
+                    MainForm.objCP_Purchase_PO = new CP_Purchase_PO();
+                    MainForm.objCP_Purchase_PO.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

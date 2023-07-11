@@ -59,9 +59,9 @@ namespace ROMS
         public static CP_User objCP_User;
         public static CP_PurchaseList objCP_PurchaseList;
         public static CP_Purchase objCP_Purchase;
+        public static CP_Purchase_PO objCP_Purchase_PO;
 
 
-        
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
