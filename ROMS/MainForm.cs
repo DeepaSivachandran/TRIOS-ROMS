@@ -56,17 +56,12 @@ namespace ROMS
         public static CP_Location objCP_Location; 
         public static CP_Rack objCP_Rack;
         public static CP_UserList objCP_Userlist;
-        public static CP_User objCP_User;
-        public static PUR_PurchaseOrder objPUR_PurchaseOrder;
-        public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;
-        public static PUR_PurchaseApproval objPUR_PurchaseApproval;
+        public static CP_User objCP_User; 
 
 
 
 
-
-
-
+        
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
@@ -504,13 +499,6 @@ namespace ROMS
             MainForm.objPUR_PurchaseOrder.Show();
         }
 
-        private void TsmpurchaseApproval_Click(object sender, EventArgs e)
-        {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
-            MainForm.objPUR_PurchaseApprovalList.MdiParent = this;
-            MainForm.objPUR_PurchaseApprovalList.Show();
         }
     }
    
