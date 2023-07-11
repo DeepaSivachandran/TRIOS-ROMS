@@ -35,6 +35,8 @@ namespace ROMS
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.ntfy = new System.Windows.Forms.NotifyIcon(this.components);
             this.ms = new System.Windows.Forms.MenuStrip();
+            this.tsmpurchase = new System.Windows.Forms.ToolStripMenuItem();
+            this.urchaseOrder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbLogo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmControlPanel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMasters = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +56,8 @@ namespace ROMS
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseEntry = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmpurchase = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseOrder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmpurchaseentry = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,6 +105,24 @@ namespace ROMS
             this.ms.Size = new System.Drawing.Size(1275, 25);
             this.ms.TabIndex = 112;
             this.ms.Text = "ms";
+            // 
+            // tsmpurchase
+            // 
+            this.tsmpurchase.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.urchaseOrder,
+            this.tsmPurchaseEntry,
+            this.tsmPurchaseApproval});
+            this.tsmpurchase.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.tsmpurchase.Name = "tsmpurchase";
+            this.tsmpurchase.Size = new System.Drawing.Size(63, 21);
+            this.tsmpurchase.Text = "Purchase";
+            // 
+            // urchaseOrder
+            // 
+            this.urchaseOrder.Name = "urchaseOrder";
+            this.urchaseOrder.Size = new System.Drawing.Size(180, 22);
+            this.urchaseOrder.Text = "Purchase Order";
+            this.urchaseOrder.Click += new System.EventHandler(this.UrchaseOrder_Click);
             // 
             // tsbLogo
             // 
@@ -284,7 +306,7 @@ namespace ROMS
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
-            // tsmpurchase
+            // tsmPurchaseEntry
             // 
             this.tsmpurchase.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmPurchaseOrder,
@@ -362,6 +384,10 @@ namespace ROMS
             this.tsminward.Size = new System.Drawing.Size(180, 22);
             this.tsminward.Text = "Inward";
             this.tsminward.Click += new System.EventHandler(this.Tsminward_Click);
+            this.tsmPurchaseApproval.Name = "tsmPurchaseApproval";
+            this.tsmPurchaseApproval.Size = new System.Drawing.Size(180, 22);
+            this.tsmPurchaseApproval.Text = "Purchase Approval";
+            this.tsmPurchaseApproval.Click += new System.EventHandler(this.TsmPurchaseApproval_Click);
             // 
             // MainForm
             // 
@@ -414,6 +440,9 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmSuppliyer;
         private System.Windows.Forms.ToolStripMenuItem stateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmpurchase;
+        private System.Windows.Forms.ToolStripMenuItem urchaseOrder;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseEntry;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseApproval;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseOrder;
         private System.Windows.Forms.ToolStripMenuItem tsmpurchaseentry;
         private System.Windows.Forms.ToolStripMenuItem tsmpurchaseApprove;
