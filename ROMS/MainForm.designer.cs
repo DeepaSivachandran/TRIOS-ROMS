@@ -51,12 +51,13 @@ namespace ROMS
             this.tsDLogo = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTimeValue = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTime = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmpurchase = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmpurchaseOrder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmpurchase = new System.Windows.Forms.ToolStripMenuItem();
             this.urchaseOrder = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsnPurchaseEntry = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,7 +87,8 @@ namespace ROMS
             this.tsDLogo,
             this.lblTimeValue,
             this.lblTime,
-            this.tsmMyProfile});
+            this.tsmMyProfile,
+            this.tsmpurchase});
             this.ms.Location = new System.Drawing.Point(0, 0);
             this.ms.Name = "ms";
             this.ms.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -245,6 +247,23 @@ namespace ROMS
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblTime.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
+            // tsmpurchase
+            // 
+            this.tsmpurchase.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmpurchaseOrder,
+            this.tsmpurchaseApproval});
+            this.tsmpurchase.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.tsmpurchase.Name = "tsmpurchase";
+            this.tsmpurchase.Size = new System.Drawing.Size(63, 21);
+            this.tsmpurchase.Text = "Purchase";
+            // 
+            // tsmpurchaseOrder
+            // 
+            this.tsmpurchaseOrder.Name = "tsmpurchaseOrder";
+            this.tsmpurchaseOrder.Size = new System.Drawing.Size(180, 22);
+            this.tsmpurchaseOrder.Text = "Purchase Order";
+            this.tsmpurchaseOrder.Click += new System.EventHandler(this.TsmpurchaseOrder_Click);
+            // 
             // tsmMyProfile
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -274,11 +293,10 @@ namespace ROMS
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
-            // tsmpurchase
+            // tsmpurchaseApproval
             // 
             this.tsmpurchase.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.urchaseOrder,
-            this.tsnPurchaseEntry});
+            this.urchaseOrder});
             this.tsmpurchase.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmpurchase.Name = "tsmpurchase";
             this.tsmpurchase.Size = new System.Drawing.Size(63, 21);
@@ -350,6 +368,5 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem stateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmpurchase;
         private System.Windows.Forms.ToolStripMenuItem urchaseOrder;
-        private System.Windows.Forms.ToolStripMenuItem tsnPurchaseEntry;
     }
 }

@@ -50,15 +50,15 @@
             this.rbLocation = new System.Windows.Forms.RadioButton();
             this.grbrack = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtRankShortName = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.rbrackinactive = new System.Windows.Forms.RadioButton();
             this.rbrackactive = new System.Windows.Forms.RadioButton();
             this.txtDEGroupName = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.txtEGroupName = new System.Windows.Forms.TextBox();
+            this.btnRackClose = new System.Windows.Forms.Button();
+            this.btnRacksave = new System.Windows.Forms.Button();
+            this.txtRankName = new System.Windows.Forms.TextBox();
             this.cmbmasterselect = new System.Windows.Forms.ComboBox();
             this.txtdmasterselect = new System.Windows.Forms.TextBox();
             this.grbLocation.SuspendLayout();
@@ -90,7 +90,7 @@
             this.txtLocationName.MaxLength = 50;
             this.txtLocationName.Name = "txtLocationName";
             this.txtLocationName.Size = new System.Drawing.Size(288, 27);
-            this.txtLocationName.TabIndex = 0;
+            this.txtLocationName.TabIndex = 1;
             this.txtLocationName.Enter += new System.EventHandler(this.txtLocationName_Enter);
             this.txtLocationName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLocationName_KeyDown);
             this.txtLocationName.Leave += new System.EventHandler(this.txtLocationName_Leave);
@@ -103,7 +103,7 @@
             this.btnSave.Location = new System.Drawing.Point(320, 117);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 4;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -120,7 +120,7 @@
             this.btnClose.Location = new System.Drawing.Point(408, 117);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 5;
+            this.btnClose.TabIndex = 7;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -143,7 +143,7 @@
             this.grbLocation.Location = new System.Drawing.Point(24, 38);
             this.grbLocation.Name = "grbLocation";
             this.grbLocation.Size = new System.Drawing.Size(552, 159);
-            this.grbLocation.TabIndex = 8;
+            this.grbLocation.TabIndex = 1;
             this.grbLocation.TabStop = false;
             // 
             // txtDlocationtype
@@ -167,7 +167,7 @@
             this.panel1.Location = new System.Drawing.Point(195, 48);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(288, 27);
-            this.panel1.TabIndex = 20;
+            this.panel1.TabIndex = 1;
             // 
             // rboutside
             // 
@@ -176,9 +176,10 @@
             this.rboutside.Location = new System.Drawing.Point(146, 1);
             this.rboutside.Name = "rboutside";
             this.rboutside.Size = new System.Drawing.Size(62, 21);
-            this.rboutside.TabIndex = 7;
+            this.rboutside.TabIndex = 3;
             this.rboutside.Text = "Outside";
             this.rboutside.UseVisualStyleBackColor = true;
+            this.rboutside.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Rboutside_KeyDown);
             // 
             // rbInside
             // 
@@ -188,7 +189,7 @@
             this.rbInside.Location = new System.Drawing.Point(29, 1);
             this.rbInside.Name = "rbInside";
             this.rbInside.Size = new System.Drawing.Size(54, 21);
-            this.rbInside.TabIndex = 6;
+            this.rbInside.TabIndex = 2;
             this.rbInside.TabStop = true;
             this.rbInside.Text = "Inside";
             this.rbInside.UseVisualStyleBackColor = true;
@@ -210,11 +211,12 @@
             this.panelStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelStatus.Controls.Add(this.rbInactive);
             this.panelStatus.Controls.Add(this.rbActive);
+            this.panelStatus.Enabled = false;
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelStatus.Location = new System.Drawing.Point(195, 75);
             this.panelStatus.Name = "panelStatus";
             this.panelStatus.Size = new System.Drawing.Size(288, 27);
-            this.panelStatus.TabIndex = 18;
+            this.panelStatus.TabIndex = 3;
             // 
             // rbInactive
             // 
@@ -223,9 +225,10 @@
             this.rbInactive.Location = new System.Drawing.Point(146, 1);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
-            this.rbInactive.TabIndex = 7;
+            this.rbInactive.TabIndex = 5;
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
+            this.rbInactive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInactive_KeyDown);
             // 
             // rbActive
             // 
@@ -235,10 +238,11 @@
             this.rbActive.Location = new System.Drawing.Point(29, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(54, 21);
-            this.rbActive.TabIndex = 6;
+            this.rbActive.TabIndex = 4;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
+            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             // 
             // errLocation
             // 
@@ -289,13 +293,13 @@
             // grbrack
             // 
             this.grbrack.Controls.Add(this.textBox1);
-            this.grbrack.Controls.Add(this.textBox2);
+            this.grbrack.Controls.Add(this.txtRankShortName);
             this.grbrack.Controls.Add(this.textBox3);
             this.grbrack.Controls.Add(this.panel3);
             this.grbrack.Controls.Add(this.txtDEGroupName);
-            this.grbrack.Controls.Add(this.button1);
-            this.grbrack.Controls.Add(this.button2);
-            this.grbrack.Controls.Add(this.txtEGroupName);
+            this.grbrack.Controls.Add(this.btnRackClose);
+            this.grbrack.Controls.Add(this.btnRacksave);
+            this.grbrack.Controls.Add(this.txtRankName);
             this.grbrack.Location = new System.Drawing.Point(24, 38);
             this.grbrack.Name = "grbrack";
             this.grbrack.Size = new System.Drawing.Size(552, 161);
@@ -314,14 +318,17 @@
             this.textBox1.TabIndex = 19;
             this.textBox1.Text = "Short Name";
             // 
-            // textBox2
+            // txtRankShortName
             // 
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(195, 48);
-            this.textBox2.MaxLength = 50;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(288, 27);
-            this.textBox2.TabIndex = 18;
+            this.txtRankShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRankShortName.Location = new System.Drawing.Point(195, 48);
+            this.txtRankShortName.MaxLength = 50;
+            this.txtRankShortName.Name = "txtRankShortName";
+            this.txtRankShortName.Size = new System.Drawing.Size(288, 27);
+            this.txtRankShortName.TabIndex = 2;
+            this.txtRankShortName.Enter += new System.EventHandler(this.TxtRankShortName_Enter);
+            this.txtRankShortName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRankShortName_KeyDown);
+            this.txtRankShortName.Leave += new System.EventHandler(this.TxtRankShortName_Leave);
             // 
             // textBox3
             // 
@@ -340,11 +347,12 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.rbrackinactive);
             this.panel3.Controls.Add(this.rbrackactive);
+            this.panel3.Enabled = false;
             this.panel3.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel3.Location = new System.Drawing.Point(195, 75);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(288, 27);
-            this.panel3.TabIndex = 16;
+            this.panel3.TabIndex = 3;
             // 
             // rbrackinactive
             // 
@@ -353,9 +361,10 @@
             this.rbrackinactive.Location = new System.Drawing.Point(146, 1);
             this.rbrackinactive.Name = "rbrackinactive";
             this.rbrackinactive.Size = new System.Drawing.Size(63, 21);
-            this.rbrackinactive.TabIndex = 7;
+            this.rbrackinactive.TabIndex = 4;
             this.rbrackinactive.Text = "Inactive";
             this.rbrackinactive.UseVisualStyleBackColor = true;
+            this.rbrackinactive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Rbrackinactive_KeyDown);
             // 
             // rbrackactive
             // 
@@ -365,7 +374,7 @@
             this.rbrackactive.Location = new System.Drawing.Point(29, 1);
             this.rbrackactive.Name = "rbrackactive";
             this.rbrackactive.Size = new System.Drawing.Size(54, 21);
-            this.rbrackactive.TabIndex = 6;
+            this.rbrackactive.TabIndex = 3;
             this.rbrackactive.TabStop = true;
             this.rbrackactive.Text = "Active";
             this.rbrackactive.UseVisualStyleBackColor = true;
@@ -382,40 +391,43 @@
             this.txtDEGroupName.TabIndex = 11;
             this.txtDEGroupName.Text = "Rack Name";
             // 
-            // button1
+            // btnRackClose
             // 
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button1.Image = global::ROMS.Properties.Resources.close;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(408, 117);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 29);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Close";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnRackClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnRackClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnRackClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRackClose.Location = new System.Drawing.Point(408, 117);
+            this.btnRackClose.Name = "btnRackClose";
+            this.btnRackClose.Size = new System.Drawing.Size(75, 29);
+            this.btnRackClose.TabIndex = 6;
+            this.btnRackClose.Text = "Close";
+            this.btnRackClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRackClose.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnRacksave
             // 
-            this.button2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button2.Image = global::ROMS.Properties.Resources.save;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(320, 117);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 29);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Save";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnRacksave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnRacksave.Image = global::ROMS.Properties.Resources.save;
+            this.btnRacksave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRacksave.Location = new System.Drawing.Point(320, 117);
+            this.btnRacksave.Name = "btnRacksave";
+            this.btnRacksave.Size = new System.Drawing.Size(84, 29);
+            this.btnRacksave.TabIndex = 5;
+            this.btnRacksave.Text = "Save";
+            this.btnRacksave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRacksave.UseVisualStyleBackColor = true;
             // 
-            // txtEGroupName
+            // txtRankName
             // 
-            this.txtEGroupName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEGroupName.Location = new System.Drawing.Point(195, 21);
-            this.txtEGroupName.MaxLength = 50;
-            this.txtEGroupName.Name = "txtEGroupName";
-            this.txtEGroupName.Size = new System.Drawing.Size(288, 27);
-            this.txtEGroupName.TabIndex = 1;
+            this.txtRankName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRankName.Location = new System.Drawing.Point(195, 21);
+            this.txtRankName.MaxLength = 50;
+            this.txtRankName.Name = "txtRankName";
+            this.txtRankName.Size = new System.Drawing.Size(288, 27);
+            this.txtRankName.TabIndex = 1;
+            this.txtRankName.Enter += new System.EventHandler(this.TxtRankName_Enter);
+            this.txtRankName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRankName_KeyDown);
+            this.txtRankName.Leave += new System.EventHandler(this.TxtRankName_Leave);
             // 
             // cmbmasterselect
             // 
@@ -425,7 +437,7 @@
             this.cmbmasterselect.Location = new System.Drawing.Point(99, 9);
             this.cmbmasterselect.Name = "cmbmasterselect";
             this.cmbmasterselect.Size = new System.Drawing.Size(120, 27);
-            this.cmbmasterselect.TabIndex = 63;
+            this.cmbmasterselect.TabIndex = 0;
             // 
             // txtdmasterselect
             // 
@@ -441,7 +453,7 @@
             // 
             // CP_Location
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(601, 214);
@@ -502,15 +514,15 @@
         private System.Windows.Forms.RadioButton rbLocation;
         private System.Windows.Forms.GroupBox grbrack;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtRankShortName;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.RadioButton rbrackinactive;
         private System.Windows.Forms.RadioButton rbrackactive;
         private System.Windows.Forms.TextBox txtDEGroupName;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox txtEGroupName;
+        private System.Windows.Forms.Button btnRackClose;
+        private System.Windows.Forms.Button btnRacksave;
+        private System.Windows.Forms.TextBox txtRankName;
         private System.Windows.Forms.ComboBox cmbmasterselect;
         private System.Windows.Forms.TextBox txtdmasterselect;
     }

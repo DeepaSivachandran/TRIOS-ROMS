@@ -85,28 +85,12 @@ namespace ROMS
         }
         private void txtEGroupName_Enter(object sender, EventArgs e)
         {
-            try
-            {
-                txtESubGroupNameTamil.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
 
         private void txtEGroupName_Leave(object sender, EventArgs e)
         {
-            try
-            {
-                txtESubGroupNameTamil.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
         private void cmbSINO_KeyDown(object sender, KeyEventArgs e)
         {
@@ -130,19 +114,19 @@ namespace ROMS
             {
 
                 errGroup.Clear();
-                if (txtESubGroupNameTamil.Text.Trim() == "")
+                if (txtESubGroupNameEnglish.Text.Trim() == "")
                 {
-                    errGroup.SetError(txtESubGroupNameTamil, "Please enter group english name");
-                    txtESubGroupNameTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    errGroup.SetError(txtESubGroupNameEnglish, "Please enter group english name");
+                    txtESubGroupNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
 
                     tpegroupname.ShowAlways = true;
-                    tpegroupname.Show("Please enter group english name", txtESubGroupNameTamil, 5000);
-                    txtESubGroupNameTamil.Text = "";
+                    tpegroupname.Show("Please enter group english name", txtESubGroupNameEnglish, 5000);
+                    txtESubGroupNameEnglish.Text = "";
 
                 }
-                if (txtESubGroupNameTamil.Text.Trim() == "")
+                if (txtESubGroupNameEnglish.Text.Trim() == "")
                 {
-                    txtESubGroupNameTamil.Focus();
+                    txtESubGroupNameEnglish.Focus();
                     return;
 
                 }
@@ -378,6 +362,156 @@ namespace ROMS
         private void RbActive_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void CmbGroupName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtESubGroupNameEnglish.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtESubGroupNameEnglish_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtESubGroupNameEnglish.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtESubGroupNameEnglish_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtESubGroupNameTamil.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtESubGroupNameEnglish_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtESubGroupNameEnglish.Text == "")
+                {
+                    txtESubGroupNameEnglish.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errGroup.SetError(txtESubGroupNameEnglish, "Please Enter Sub Group Name in English");
+                }
+                else
+                {
+                    txtESubGroupNameEnglish.BackColor = Color.White;
+                    errGroup.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtESubGroupNameTamil_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtESubGroupNameTamil.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtESubGroupNameTamil_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    rbActive.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtESubGroupNameTamil_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtESubGroupNameTamil.Text == "")
+                {
+                    txtESubGroupNameTamil.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errGroup.SetError(txtESubGroupNameTamil, "Please Enter Sub Group Name in Tamil");
+                }
+                else
+                {
+                    txtESubGroupNameTamil.BackColor = Color.White;
+                    errGroup.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    rbInactive.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

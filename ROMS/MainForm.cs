@@ -55,12 +55,11 @@ namespace ROMS
         public static CP_LocationList objCP_LocationList;
         public static CP_Location objCP_Location; 
         public static CP_Rack objCP_Rack;
-        public static CP_UserList objCP_Userlist;
+        public static CP_UserList objCP_Userlist; 
         public static CP_User objCP_User;
         public static CP_PurchaseList objCP_PurchaseList;
         public static CP_Purchase objCP_Purchase;
-        public static CP_Purchase_PO objCP_Purchase_PO;
-
+        public static CP_Purchase_PO objCP_Purchase_PO; 
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -490,18 +489,15 @@ namespace ROMS
 
         }
 
-        private void Tsmpurchase_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TsnPurchaseEntry_Click(object sender, EventArgs e)
+        private void TsmpurchaseOrder_Click(object sender, EventArgs e)
         {
             udfnCloseChildForms();
             if (isClose == false) { return; }
-            MainForm.objCP_PurchaseList = new CP_PurchaseList();
-            MainForm.objCP_PurchaseList.MdiParent = this;
-            MainForm.objCP_PurchaseList.Show();
+            MainForm.objPUR_PurchaseOrder = new PUR_PurchaseOrder();
+            MainForm.objPUR_PurchaseOrder.MdiParent = this;
+            MainForm.objPUR_PurchaseOrder.Show();
+        }
+
         }
     }
    

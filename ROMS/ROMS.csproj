@@ -152,12 +152,6 @@
     <Compile Include="CP_SubGroupList.designer.cs">
       <DependentUpon>CP_SubGroupList.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_PurchaseList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CP_PurchaseList.designer.cs">
-      <DependentUpon>CP_PurchaseList.cs</DependentUpon>
-    </Compile>
     <Compile Include="CP_Supplierlist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -300,9 +294,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_SubGroupList.resx">
       <DependentUpon>CP_SubGroupList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CP_PurchaseList.resx">
-      <DependentUpon>CP_PurchaseList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Supplierlist.resx">
       <DependentUpon>CP_Supplierlist.cs</DependentUpon>
