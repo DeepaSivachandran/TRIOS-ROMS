@@ -38,9 +38,9 @@ namespace ROMS
         {
             try
             {
-                cmbType.Items.Add("Direct");
-                cmbType.Items.Add("Against PO");
-                cmbType.Items.Add("Against Godown Entry");
+                cmbType.Items.Insert(0,"Direct");
+                cmbType.Items.Insert(1,"Against PO");
+                cmbType.Items.Insert(2,"Against Godown Entry");
                 cmbType.SelectedIndex = 0;
             }
             catch (Exception ex)
@@ -96,9 +96,14 @@ namespace ROMS
         {
             try
             {
-                if (cmbType.SelectedValue.ToString() == "1") {
+                if (cmbType.SelectedIndex.ToString() == "1") {
                     MainForm.objCP_Purchase_PO = new CP_Purchase_PO();
                     MainForm.objCP_Purchase_PO.ShowDialog();
+                }
+                if (cmbType.SelectedIndex.ToString() == "2")
+                {
+                    MainForm.objCP_Purchase_Inward = new CP_Purchase_Inward();
+                    MainForm.objCP_Purchase_Inward.ShowDialog();
                 }
             }
             catch (Exception ex)

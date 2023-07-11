@@ -60,6 +60,7 @@ namespace ROMS
         public static CP_PurchaseList objCP_PurchaseList;
         public static CP_Purchase objCP_Purchase;
         public static CP_Purchase_PO objCP_Purchase_PO;
+        public static CP_Purchase_Inward objCP_Purchase_Inward;
         public static PUR_PurchaseOrder objPUR_PurchaseOrder;
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;
