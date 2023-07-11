@@ -140,6 +140,24 @@
     <Compile Include="CP_SubGroupList.designer.cs">
       <DependentUpon>CP_SubGroupList.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_PurchaseApproval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseApproval.designer.cs">
+      <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseApprovalList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseApprovalList.designer.cs">
+      <DependentUpon>PUR_PurchaseApprovalList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseOrder.designer.cs">
+      <DependentUpon>PUR_PurchaseOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Supplierlist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +294,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_SubGroupList.resx">
       <DependentUpon>CP_SubGroupList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseApproval.resx">
+      <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseApprovalList.resx">
+      <DependentUpon>PUR_PurchaseApprovalList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseOrder.resx">
+      <DependentUpon>PUR_PurchaseOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Supplierlist.resx">
       <DependentUpon>CP_Supplierlist.cs</DependentUpon>

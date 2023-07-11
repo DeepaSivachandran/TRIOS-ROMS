@@ -30,7 +30,7 @@ namespace ROMS
         {
             try
             {
-                this.ActiveControl = txtEBrandNameEnglish;
+                this.ActiveControl = txtEBrandNameInEnglish;
                 udfnEdit();
             }
             catch (Exception ex)
@@ -49,14 +49,14 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS = new DataSet();
-                 //   objDS = objspservice.udfnSPBrandList("EditLoad", varbrandcode, MainForm.pbUserID, MainForm.pbIpAddress);
+                    //   objDS = objspservice.udfnSPBrandList("EditLoad", varbrandcode, MainForm.pbUserID, MainForm.pbIpAddress);
                     objspservice.CloseConnection();
 
                     if (objDS != null)
                     {
                         if (objDS.Tables[0].Rows.Count > 0)
-                        { 
-                            txtEBrandNameEnglish.Text = objDS.Tables[0].Rows[0]["BEName"].ToString().Replace("''", "'");                          
+                        {
+                            txtEBrandNameInEnglish.Text = objDS.Tables[0].Rows[0]["BEName"].ToString().Replace("''", "'");
                             btnSave.Text = "Update";
                         }
                     }
@@ -77,43 +77,20 @@ namespace ROMS
 
         private void txtEBrandName_Enter(object sender, EventArgs e)
         {
-            try
-            {
-                txtEBrandNameEnglish.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
 
         private void txtEBrandName_Leave(object sender, EventArgs e)
         {
-            try
-            {
-                txtEBrandNameEnglish.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void txtTLabelName_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnSave.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    txtEBrandNameInEnglish.BackColor = Color.White;
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -122,28 +99,28 @@ namespace ROMS
             {
 
                 errBrand.Clear();
-                if (txtEBrandNameEnglish.Text.Trim() == "")
+                if (txtEBrandNameInEnglish.Text.Trim() == "")
                 {
-                    errBrand.SetError(txtEBrandNameEnglish, "Please enter brand name in english.");
-                    txtEBrandNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    errBrand.SetError(txtEBrandNameInEnglish, "Please enter brand name in english.");
+                    txtEBrandNameInEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpbrandname.ShowAlways = true;
-                    tpbrandname.Show("Please enter brand name in english.", txtEBrandNameEnglish, 5000);
-                    txtEBrandNameEnglish.Text = "";                    
+                    tpbrandname.Show("Please enter brand name in english.", txtEBrandNameInEnglish, 5000);
+                    txtEBrandNameInEnglish.Text = "";
                 }
-                if (txtEBrandNameEnglish.Text.Trim() == "")
+                if (txtEBrandNameInEnglish.Text.Trim() == "")
                 {
-                    txtEBrandNameEnglish.Focus();
+                    txtEBrandNameInEnglish.Focus();
                     return;
                 }
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
                 if (btnSave.Text == "Save")
                 {
-                 //   result = objspdservice.udfnSPBrandMaster("Create", "0",txtTBrandName.Text,txtEBrandName.Text,txtTLabelName.Text,txtELabelName.Text, MainForm.pbUserID, MainForm.pbIpAddress, "Brand Create");
+                    //   result = objspdservice.udfnSPBrandMaster("Create", "0",txtTBrandName.Text,txtEBrandName.Text,txtTLabelName.Text,txtELabelName.Text, MainForm.pbUserID, MainForm.pbIpAddress, "Brand Create");
                 }
                 else
                 {
-                 //   result = objspdservice.udfnSPBrandMaster("Update", varbrandcode, txtTBrandName.Text, txtEBrandName.Text, txtTLabelName.Text, txtELabelName.Text, MainForm.pbUserID, MainForm.pbIpAddress, "Brand Update");
+                    //   result = objspdservice.udfnSPBrandMaster("Update", varbrandcode, txtTBrandName.Text, txtEBrandName.Text, txtTLabelName.Text, txtELabelName.Text, MainForm.pbUserID, MainForm.pbIpAddress, "Brand Update");
                 }
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -178,7 +155,7 @@ namespace ROMS
 
                 objspdservice.CloseConnection();
 
-                
+
 
 
             }
@@ -193,8 +170,8 @@ namespace ROMS
         {
             try
             {
-                txtEBrandNameEnglish.Text = "";
-                txtEBrandNameEnglish.Focus();
+                txtEBrandNameInEnglish.Text = "";
+                txtEBrandNameInEnglish.Focus();
                 btnSave.Text = "Save";
             }
             catch (Exception ex)
@@ -221,7 +198,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnClose.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -263,7 +243,7 @@ namespace ROMS
             try
             {
                 udfnclose();
-              //  MainForm.objCP_BrandList.udfnList();
+                //  MainForm.objCP_BrandList.udfnList();
             }
             catch (Exception ex)
             {
@@ -289,7 +269,7 @@ namespace ROMS
         {
             try
             {
-                
+
             }
             catch (Exception ex)
             {
@@ -376,5 +356,215 @@ namespace ROMS
         {
 
         }
+
+        private void TxtEBrandEnglish_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBrandNameEnglish(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void TxtEBrandNameEnglish_Enter(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    txtDEBrandNameInTamil.BackColor = Color.LemonChiffon;
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+        }
+
+        private void txtEBrandNameTamil_Enter(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    txtDEBrandNameInEnglish.BackColor = Color.LemonChiffon;
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+        }
+
+        private void TxtEBrandNameTamil_KeyDown(object sender, KeyEventArgs e)
+        {
+            //try
+            //{
+            //    if (e.KeyCode == Keys.Enter)
+            //    {
+            //        cmbUserRole.Focus();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+        }
+
+
+        private void TxtEBrandNameEnglish_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            //try
+            //{
+            //    if (e.KeyCode == Keys.Enter)
+            //    {
+            //        txtEBrandNameInEnglish.Focus();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+        }
+
+        private void CmbUserRole_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbUserRole_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbUserRole_Enter_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtEBrandNameEnglish_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEBrandNameTamil_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtEBrandNameInEnglish_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtEBrandNameInEnglish.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtEBrandNameInEnglish_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtEBrandNameInTamil.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtEBrandNameInEnglish_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtEBrandNameInEnglish.Text == "")
+                {
+                    txtEBrandNameInEnglish.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errBrand.SetError(txtEBrandNameInEnglish, "Please Enter Brand Name In English");
+                }
+                else
+                {
+                    txtEBrandNameInEnglish.BackColor = Color.White;
+                    errBrand.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtEBrandNameInTamil_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtEBrandNameInTamil.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtEBrandNameInTamil_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbUserRole.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtEBrandNameInTamil_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtEBrandNameInTamil.Text == "")
+                {
+                    txtEBrandNameInTamil.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errBrand.SetError(txtEBrandNameInTamil, "Please Enter Brand Name In Tamil");
+                }
+                else
+                {
+                    txtEBrandNameInTamil.BackColor = Color.White;
+                    errBrand.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
+    
+    
+

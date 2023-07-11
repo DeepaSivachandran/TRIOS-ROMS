@@ -33,11 +33,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Brand));
-            this.txtDEBrandNameTamil = new System.Windows.Forms.TextBox();
-            this.txtEBrandNameEnglish = new System.Windows.Forms.TextBox();
+            this.txtDEBrandNameInEnglish = new System.Windows.Forms.TextBox();
+            this.txtEBrandNameInEnglish = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
-            this.txtDEBrandNameEnglish = new System.Windows.Forms.TextBox();
-            this.txtEBrandNameTamil = new System.Windows.Forms.TextBox();
+            this.txtDEBrandNameInTamil = new System.Windows.Forms.TextBox();
+            this.txtEBrandNameInTamil = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Label();
             this.cmbUserRole = new System.Windows.Forms.ComboBox();
@@ -53,42 +53,43 @@
             ((System.ComponentModel.ISupportInitialize)(this.errBrand)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtDEBrandNameTamil
+            // txtDEBrandNameInEnglish
             // 
-            this.txtDEBrandNameTamil.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDEBrandNameTamil.Enabled = false;
-            this.txtDEBrandNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDEBrandNameTamil.Location = new System.Drawing.Point(44, 54);
-            this.txtDEBrandNameTamil.Name = "txtDEBrandNameTamil";
-            this.txtDEBrandNameTamil.ReadOnly = true;
-            this.txtDEBrandNameTamil.Size = new System.Drawing.Size(181, 27);
-            this.txtDEBrandNameTamil.TabIndex = 7;
-            this.txtDEBrandNameTamil.Text = "Brand Name In Tamil";
+            this.txtDEBrandNameInEnglish.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDEBrandNameInEnglish.Enabled = false;
+            this.txtDEBrandNameInEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDEBrandNameInEnglish.Location = new System.Drawing.Point(44, 29);
+            this.txtDEBrandNameInEnglish.Name = "txtDEBrandNameInEnglish";
+            this.txtDEBrandNameInEnglish.ReadOnly = true;
+            this.txtDEBrandNameInEnglish.Size = new System.Drawing.Size(181, 27);
+            this.txtDEBrandNameInEnglish.TabIndex = 7;
+            this.txtDEBrandNameInEnglish.Text = "Brand Name In English";
             // 
-            // txtEBrandNameEnglish
+            // txtEBrandNameInEnglish
             // 
-            this.txtEBrandNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEBrandNameEnglish.Location = new System.Drawing.Point(225, 27);
-            this.txtEBrandNameEnglish.MaxLength = 50;
-            this.txtEBrandNameEnglish.Name = "txtEBrandNameEnglish";
-            this.txtEBrandNameEnglish.Size = new System.Drawing.Size(287, 27);
-            this.txtEBrandNameEnglish.TabIndex = 0;
-            this.txtEBrandNameEnglish.Enter += new System.EventHandler(this.txtEBrandName_Enter);
-            this.txtEBrandNameEnglish.Leave += new System.EventHandler(this.txtEBrandName_Leave);
+            this.txtEBrandNameInEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEBrandNameInEnglish.Location = new System.Drawing.Point(225, 29);
+            this.txtEBrandNameInEnglish.MaxLength = 50;
+            this.txtEBrandNameInEnglish.Name = "txtEBrandNameInEnglish";
+            this.txtEBrandNameInEnglish.Size = new System.Drawing.Size(287, 27);
+            this.txtEBrandNameInEnglish.TabIndex = 0;
+            this.txtEBrandNameInEnglish.Enter += new System.EventHandler(this.TxtEBrandNameInEnglish_Enter);
+            this.txtEBrandNameInEnglish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEBrandNameInEnglish_KeyDown);
+            this.txtEBrandNameInEnglish.Leave += new System.EventHandler(this.TxtEBrandNameInEnglish_Leave);
             // 
             // grbform
             // 
-            this.grbform.Controls.Add(this.txtDEBrandNameEnglish);
-            this.grbform.Controls.Add(this.txtEBrandNameTamil);
+            this.grbform.Controls.Add(this.txtDEBrandNameInTamil);
+            this.grbform.Controls.Add(this.txtEBrandNameInTamil);
             this.grbform.Controls.Add(this.label1);
             this.grbform.Controls.Add(this.btnAdd);
             this.grbform.Controls.Add(this.cmbUserRole);
             this.grbform.Controls.Add(this.txtDSlNo);
             this.grbform.Controls.Add(this.grdGroupList);
-            this.grbform.Controls.Add(this.txtDEBrandNameTamil);
+            this.grbform.Controls.Add(this.txtDEBrandNameInEnglish);
             this.grbform.Controls.Add(this.btnClose);
             this.grbform.Controls.Add(this.btnSave);
-            this.grbform.Controls.Add(this.txtEBrandNameEnglish);
+            this.grbform.Controls.Add(this.txtEBrandNameInEnglish);
             this.grbform.Location = new System.Drawing.Point(18, 12);
             this.grbform.Name = "grbform";
             this.grbform.Size = new System.Drawing.Size(599, 348);
@@ -96,26 +97,29 @@
             this.grbform.TabStop = false;
             this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
             // 
-            // txtDEBrandNameEnglish
+            // txtDEBrandNameInTamil
             // 
-            this.txtDEBrandNameEnglish.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDEBrandNameEnglish.Enabled = false;
-            this.txtDEBrandNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDEBrandNameEnglish.Location = new System.Drawing.Point(44, 27);
-            this.txtDEBrandNameEnglish.Name = "txtDEBrandNameEnglish";
-            this.txtDEBrandNameEnglish.ReadOnly = true;
-            this.txtDEBrandNameEnglish.Size = new System.Drawing.Size(181, 27);
-            this.txtDEBrandNameEnglish.TabIndex = 1111137;
-            this.txtDEBrandNameEnglish.Text = "Brand Name In English";
+            this.txtDEBrandNameInTamil.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDEBrandNameInTamil.Enabled = false;
+            this.txtDEBrandNameInTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDEBrandNameInTamil.Location = new System.Drawing.Point(44, 56);
+            this.txtDEBrandNameInTamil.Name = "txtDEBrandNameInTamil";
+            this.txtDEBrandNameInTamil.ReadOnly = true;
+            this.txtDEBrandNameInTamil.Size = new System.Drawing.Size(181, 27);
+            this.txtDEBrandNameInTamil.TabIndex = 1111137;
+            this.txtDEBrandNameInTamil.Text = "Brand Name In Tamil";
             // 
-            // txtEBrandNameTamil
+            // txtEBrandNameInTamil
             // 
-            this.txtEBrandNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEBrandNameTamil.Location = new System.Drawing.Point(225, 54);
-            this.txtEBrandNameTamil.MaxLength = 50;
-            this.txtEBrandNameTamil.Name = "txtEBrandNameTamil";
-            this.txtEBrandNameTamil.Size = new System.Drawing.Size(287, 27);
-            this.txtEBrandNameTamil.TabIndex = 1111136;
+            this.txtEBrandNameInTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEBrandNameInTamil.Location = new System.Drawing.Point(225, 56);
+            this.txtEBrandNameInTamil.MaxLength = 50;
+            this.txtEBrandNameInTamil.Name = "txtEBrandNameInTamil";
+            this.txtEBrandNameInTamil.Size = new System.Drawing.Size(287, 27);
+            this.txtEBrandNameInTamil.TabIndex = 1;
+            this.txtEBrandNameInTamil.Enter += new System.EventHandler(this.TxtEBrandNameInTamil_Enter);
+            this.txtEBrandNameInTamil.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEBrandNameInTamil_KeyDown);
+            this.txtEBrandNameInTamil.Leave += new System.EventHandler(this.TxtEBrandNameInTamil_Leave);
             // 
             // label1
             // 
@@ -149,8 +153,10 @@
             this.cmbUserRole.Location = new System.Drawing.Point(225, 81);
             this.cmbUserRole.Name = "cmbUserRole";
             this.cmbUserRole.Size = new System.Drawing.Size(287, 27);
-            this.cmbUserRole.TabIndex = 1111132;
+            this.cmbUserRole.TabIndex = 2;
             this.cmbUserRole.SelectedIndexChanged += new System.EventHandler(this.CmbUserRole_SelectedIndexChanged);
+            this.cmbUserRole.Enter += new System.EventHandler(this.CmbUserRole_Enter_1);
+            this.cmbUserRole.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUserRole_KeyDown);
             // 
             // txtDSlNo
             // 
@@ -206,7 +212,7 @@
             this.grdGroupList.RowTemplate.Height = 25;
             this.grdGroupList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGroupList.Size = new System.Drawing.Size(468, 148);
-            this.grdGroupList.TabIndex = 8;
+            this.grdGroupList.TabIndex = 3;
             this.grdGroupList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGroupList_CellContentClick);
             // 
             // Column1
@@ -230,7 +236,7 @@
             this.btnClose.Location = new System.Drawing.Point(437, 297);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 5;
+            this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -247,7 +253,7 @@
             this.btnSave.Location = new System.Drawing.Point(347, 297);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 4;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -289,8 +295,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txtDEBrandNameTamil;
-        private System.Windows.Forms.TextBox txtEBrandNameEnglish;
+        private System.Windows.Forms.TextBox txtDEBrandNameInEnglish;
+        private System.Windows.Forms.TextBox txtEBrandNameInEnglish;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbform;
@@ -302,7 +308,7 @@
         internal System.Windows.Forms.Label btnAdd;
         private System.Windows.Forms.ComboBox cmbUserRole;
         private System.Windows.Forms.TextBox txtDSlNo;
-        private System.Windows.Forms.TextBox txtDEBrandNameEnglish;
-        private System.Windows.Forms.TextBox txtEBrandNameTamil;
+        private System.Windows.Forms.TextBox txtDEBrandNameInTamil;
+        private System.Windows.Forms.TextBox txtEBrandNameInTamil;
     }
 }

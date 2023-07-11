@@ -32,18 +32,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_SubGroup));
             this.grbform = new System.Windows.Forms.GroupBox();
             this.txtDESubGroupNameTamil = new System.Windows.Forms.TextBox();
-            this.txtESubGroupNameEnglish = new System.Windows.Forms.TextBox();
+            this.txtESubGroupNameTamil = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Label();
-            this.cmbUserRole = new System.Windows.Forms.ComboBox();
+            this.cmbGroupName = new System.Windows.Forms.ComboBox();
             this.txtDSlNo = new System.Windows.Forms.TextBox();
             this.txtDStatus = new System.Windows.Forms.TextBox();
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInactive = new System.Windows.Forms.RadioButton();
-            this.txtDEGroupNameEnglish = new System.Windows.Forms.TextBox();
+            this.txtDESubGroupNameEnglish = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.txtESubGroupNameTamil = new System.Windows.Forms.TextBox();
+            this.txtESubGroupNameEnglish = new System.Windows.Forms.TextBox();
             this.errGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
@@ -53,16 +53,16 @@
             // grbform
             // 
             this.grbform.Controls.Add(this.txtDESubGroupNameTamil);
-            this.grbform.Controls.Add(this.txtESubGroupNameEnglish);
+            this.grbform.Controls.Add(this.txtESubGroupNameTamil);
             this.grbform.Controls.Add(this.btnAdd);
-            this.grbform.Controls.Add(this.cmbUserRole);
+            this.grbform.Controls.Add(this.cmbGroupName);
             this.grbform.Controls.Add(this.txtDSlNo);
             this.grbform.Controls.Add(this.txtDStatus);
             this.grbform.Controls.Add(this.pnlStatus);
-            this.grbform.Controls.Add(this.txtDEGroupNameEnglish);
+            this.grbform.Controls.Add(this.txtDESubGroupNameEnglish);
             this.grbform.Controls.Add(this.btnClose);
             this.grbform.Controls.Add(this.btnSave);
-            this.grbform.Controls.Add(this.txtESubGroupNameTamil);
+            this.grbform.Controls.Add(this.txtESubGroupNameEnglish);
             this.grbform.Location = new System.Drawing.Point(16, 10);
             this.grbform.Name = "grbform";
             this.grbform.Size = new System.Drawing.Size(552, 204);
@@ -81,14 +81,17 @@
             this.txtDESubGroupNameTamil.TabIndex = 1111133;
             this.txtDESubGroupNameTamil.Text = "Sub Group Name In Tamil";
             // 
-            // txtESubGroupNameEnglish
+            // txtESubGroupNameTamil
             // 
-            this.txtESubGroupNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtESubGroupNameEnglish.Location = new System.Drawing.Point(221, 57);
-            this.txtESubGroupNameEnglish.MaxLength = 50;
-            this.txtESubGroupNameEnglish.Name = "txtESubGroupNameEnglish";
-            this.txtESubGroupNameEnglish.Size = new System.Drawing.Size(288, 27);
-            this.txtESubGroupNameEnglish.TabIndex = 1;
+            this.txtESubGroupNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtESubGroupNameTamil.Location = new System.Drawing.Point(221, 83);
+            this.txtESubGroupNameTamil.MaxLength = 50;
+            this.txtESubGroupNameTamil.Name = "txtESubGroupNameTamil";
+            this.txtESubGroupNameTamil.Size = new System.Drawing.Size(288, 27);
+            this.txtESubGroupNameTamil.TabIndex = 2;
+            this.txtESubGroupNameTamil.Enter += new System.EventHandler(this.TxtESubGroupNameTamil_Enter);
+            this.txtESubGroupNameTamil.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtESubGroupNameTamil_KeyDown);
+            this.txtESubGroupNameTamil.Leave += new System.EventHandler(this.TxtESubGroupNameTamil_Leave);
             // 
             // btnAdd
             // 
@@ -98,26 +101,27 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(21, 22);
-            this.btnAdd.TabIndex = 1111131;
+            this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "        ";
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
-            // cmbUserRole
+            // cmbGroupName
             // 
-            this.cmbUserRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbUserRole.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbUserRole.FormattingEnabled = true;
-            this.cmbUserRole.Location = new System.Drawing.Point(221, 31);
-            this.cmbUserRole.Name = "cmbUserRole";
-            this.cmbUserRole.Size = new System.Drawing.Size(288, 27);
-            this.cmbUserRole.TabIndex = 1111129;
+            this.cmbGroupName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGroupName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbGroupName.FormattingEnabled = true;
+            this.cmbGroupName.Location = new System.Drawing.Point(221, 29);
+            this.cmbGroupName.Name = "cmbGroupName";
+            this.cmbGroupName.Size = new System.Drawing.Size(288, 27);
+            this.cmbGroupName.TabIndex = 0;
+            this.cmbGroupName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGroupName_KeyDown);
             // 
             // txtDSlNo
             // 
             this.txtDSlNo.BackColor = System.Drawing.SystemColors.Control;
             this.txtDSlNo.Enabled = false;
             this.txtDSlNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDSlNo.Location = new System.Drawing.Point(40, 31);
+            this.txtDSlNo.Location = new System.Drawing.Point(40, 29);
             this.txtDSlNo.Name = "txtDSlNo";
             this.txtDSlNo.ReadOnly = true;
             this.txtDSlNo.Size = new System.Drawing.Size(181, 27);
@@ -145,7 +149,7 @@
             this.pnlStatus.Location = new System.Drawing.Point(221, 110);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(288, 27);
-            this.pnlStatus.TabIndex = 16;
+            this.pnlStatus.TabIndex = 3;
             // 
             // rbActive
             // 
@@ -155,11 +159,12 @@
             this.rbActive.Location = new System.Drawing.Point(58, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(54, 21);
-            this.rbActive.TabIndex = 6;
+            this.rbActive.TabIndex = 3;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
             this.rbActive.CheckedChanged += new System.EventHandler(this.RbActive_CheckedChanged);
+            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             // 
             // rbInactive
             // 
@@ -168,21 +173,22 @@
             this.rbInactive.Location = new System.Drawing.Point(145, 1);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
-            this.rbInactive.TabIndex = 7;
+            this.rbInactive.TabIndex = 4;
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
+            this.rbInactive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInactive_KeyDown);
             // 
-            // txtDEGroupNameEnglish
+            // txtDESubGroupNameEnglish
             // 
-            this.txtDEGroupNameEnglish.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDEGroupNameEnglish.Enabled = false;
-            this.txtDEGroupNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDEGroupNameEnglish.Location = new System.Drawing.Point(40, 57);
-            this.txtDEGroupNameEnglish.Name = "txtDEGroupNameEnglish";
-            this.txtDEGroupNameEnglish.ReadOnly = true;
-            this.txtDEGroupNameEnglish.Size = new System.Drawing.Size(181, 27);
-            this.txtDEGroupNameEnglish.TabIndex = 11;
-            this.txtDEGroupNameEnglish.Text = "Sub Group Name In English";
+            this.txtDESubGroupNameEnglish.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDESubGroupNameEnglish.Enabled = false;
+            this.txtDESubGroupNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDESubGroupNameEnglish.Location = new System.Drawing.Point(40, 56);
+            this.txtDESubGroupNameEnglish.Name = "txtDESubGroupNameEnglish";
+            this.txtDESubGroupNameEnglish.ReadOnly = true;
+            this.txtDESubGroupNameEnglish.Size = new System.Drawing.Size(181, 27);
+            this.txtDESubGroupNameEnglish.TabIndex = 11;
+            this.txtDESubGroupNameEnglish.Text = "Sub Group Name In English";
             // 
             // btnClose
             // 
@@ -192,7 +198,7 @@
             this.btnClose.Location = new System.Drawing.Point(434, 154);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 8;
+            this.btnClose.TabIndex = 6;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -209,7 +215,7 @@
             this.btnSave.Location = new System.Drawing.Point(346, 154);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 7;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -218,16 +224,17 @@
             this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
-            // txtESubGroupNameTamil
+            // txtESubGroupNameEnglish
             // 
-            this.txtESubGroupNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtESubGroupNameTamil.Location = new System.Drawing.Point(221, 83);
-            this.txtESubGroupNameTamil.MaxLength = 50;
-            this.txtESubGroupNameTamil.Name = "txtESubGroupNameTamil";
-            this.txtESubGroupNameTamil.Size = new System.Drawing.Size(288, 27);
-            this.txtESubGroupNameTamil.TabIndex = 1;
-            this.txtESubGroupNameTamil.Enter += new System.EventHandler(this.txtEGroupName_Enter);
-            this.txtESubGroupNameTamil.Leave += new System.EventHandler(this.txtEGroupName_Leave);
+            this.txtESubGroupNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtESubGroupNameEnglish.Location = new System.Drawing.Point(221, 56);
+            this.txtESubGroupNameEnglish.MaxLength = 50;
+            this.txtESubGroupNameEnglish.Name = "txtESubGroupNameEnglish";
+            this.txtESubGroupNameEnglish.Size = new System.Drawing.Size(288, 27);
+            this.txtESubGroupNameEnglish.TabIndex = 1;
+            this.txtESubGroupNameEnglish.Enter += new System.EventHandler(this.txtESubGroupNameEnglish_Enter);
+            this.txtESubGroupNameEnglish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtESubGroupNameEnglish_KeyDown);
+            this.txtESubGroupNameEnglish.Leave += new System.EventHandler(this.txtESubGroupNameEnglish_Leave);
             // 
             // errGroup
             // 
@@ -240,7 +247,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(585, 232);
             this.Controls.Add(this.grbform);
-            this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -265,17 +272,17 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbform;
-        private System.Windows.Forms.TextBox txtDEGroupNameEnglish;
-        private System.Windows.Forms.TextBox txtESubGroupNameTamil;
+        private System.Windows.Forms.TextBox txtDESubGroupNameEnglish;
+        private System.Windows.Forms.TextBox txtESubGroupNameEnglish;
         private System.Windows.Forms.ErrorProvider errGroup;
         private System.Windows.Forms.TextBox txtDStatus;
         private System.Windows.Forms.Panel pnlStatus;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
         internal System.Windows.Forms.Label btnAdd;
-        private System.Windows.Forms.ComboBox cmbUserRole;
+        private System.Windows.Forms.ComboBox cmbGroupName;
         private System.Windows.Forms.TextBox txtDSlNo;
         private System.Windows.Forms.TextBox txtDESubGroupNameTamil;
-        private System.Windows.Forms.TextBox txtESubGroupNameEnglish;
+        private System.Windows.Forms.TextBox txtESubGroupNameTamil;
     }
 }

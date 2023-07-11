@@ -49,10 +49,12 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
+            this.pnlbrand = new System.Windows.Forms.Panel();
             this.tsBrandList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdBrandList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
+            this.pnlbrand.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsBrandList
@@ -169,7 +171,7 @@
             this.grdBrandList.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdBrandList.EnableHeadersVisualStyles = false;
             this.grdBrandList.GridColor = System.Drawing.Color.White;
-            this.grdBrandList.Location = new System.Drawing.Point(18, 98);
+            this.grdBrandList.Location = new System.Drawing.Point(13, 65);
             this.grdBrandList.Name = "grdBrandList";
             this.grdBrandList.ReadOnly = true;
             this.grdBrandList.RowHeadersVisible = false;
@@ -215,7 +217,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(627, 327);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 329);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958763;
@@ -228,9 +230,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.loader;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(17, 41);
+            this.picLoader.Location = new System.Drawing.Point(13, 9);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1329, 619);
+            this.picLoader.Size = new System.Drawing.Size(1328, 618);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958787;
             this.picLoader.TabStop = false;
@@ -263,7 +265,7 @@
             this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(18, 42);
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(13, 9);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
@@ -281,17 +283,26 @@
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             this.DGV_SearchGrid.Sorted += new System.EventHandler(this.DGV_SearchGrid_Sorted);
             // 
+            // pnlbrand
+            // 
+            this.pnlbrand.BackColor = System.Drawing.Color.White;
+            this.pnlbrand.Controls.Add(this.DGV_SearchGrid);
+            this.pnlbrand.Controls.Add(this.lblNoRecordsFound);
+            this.pnlbrand.Controls.Add(this.grdBrandList);
+            this.pnlbrand.Controls.Add(this.picLoader);
+            this.pnlbrand.Location = new System.Drawing.Point(0, 40);
+            this.pnlbrand.Name = "pnlbrand";
+            this.pnlbrand.Size = new System.Drawing.Size(1354, 640);
+            this.pnlbrand.TabIndex = 958797;
+            // 
             // CP_BrandList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
-            this.Controls.Add(this.DGV_SearchGrid);
-            this.Controls.Add(this.lblNoRecordsFound);
-            this.Controls.Add(this.grdBrandList);
+            this.Controls.Add(this.pnlbrand);
             this.Controls.Add(this.tsBrandList);
-            this.Controls.Add(this.picLoader);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -306,6 +317,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdBrandList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
+            this.pnlbrand.ResumeLayout(false);
+            this.pnlbrand.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,5 +341,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGroup;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBrand;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.Panel pnlbrand;
     }
 }

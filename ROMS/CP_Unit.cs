@@ -123,44 +123,17 @@ namespace ROMS
 
         private void txtEBrandName_Enter(object sender, EventArgs e)
         {
-            try
-            {
-                txtEUnitName.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
 
         private void txtEBrandName_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    //txtTEInvoiceUnitName.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
 
         private void txtEBrandName_Leave(object sender, EventArgs e)
         {
-            try
-            {
-                txtEUnitName.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
 
         private void txtTLabelName_Enter(object sender, EventArgs e)
@@ -396,7 +369,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnClose.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -553,6 +529,145 @@ namespace ROMS
         }
 
         private void Grbform_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEUnitName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtEInvoiceUnitName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtEInvoiceUnitName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    rbActive.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    rbInActive.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtEUnitName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtEUnitName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtEInvoiceUnitName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtEInvoiceUnitName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtEUnitName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtEUnitName.Text == "")
+                {
+                    txtEUnitName.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errUnit.SetError(txtEUnitName, "Please Enter Unit Name");
+                }
+                else
+                {
+                    txtEUnitName.BackColor = Color.White;
+                    errUnit.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtEInvoiceUnitName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtEInvoiceUnitName.Text == "")
+                {
+                    txtEInvoiceUnitName.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errUnit.SetError(txtEInvoiceUnitName, "Please Enter EInvoice Unit Name");
+                }
+                else
+                {
+                    txtEInvoiceUnitName.BackColor = Color.White;
+                    errUnit.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Enter(object sender, EventArgs e)
         {
 
         }

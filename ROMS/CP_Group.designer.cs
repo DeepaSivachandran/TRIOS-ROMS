@@ -83,7 +83,10 @@
             this.txtEGroupNameTamil.MaxLength = 50;
             this.txtEGroupNameTamil.Name = "txtEGroupNameTamil";
             this.txtEGroupNameTamil.Size = new System.Drawing.Size(288, 27);
-            this.txtEGroupNameTamil.TabIndex = 18;
+            this.txtEGroupNameTamil.TabIndex = 1;
+            this.txtEGroupNameTamil.Enter += new System.EventHandler(this.TxtEGroupNameTamil_Enter);
+            this.txtEGroupNameTamil.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEGroupNameTamil_KeyDown);
+            this.txtEGroupNameTamil.Leave += new System.EventHandler(this.TxtEGroupNameTamil_Leave);
             // 
             // txtDStatus
             // 
@@ -106,7 +109,7 @@
             this.pnlStatus.Location = new System.Drawing.Point(221, 73);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(288, 27);
-            this.pnlStatus.TabIndex = 16;
+            this.pnlStatus.TabIndex = 2;
             // 
             // rbActive
             // 
@@ -116,10 +119,11 @@
             this.rbActive.Location = new System.Drawing.Point(66, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(54, 21);
-            this.rbActive.TabIndex = 6;
+            this.rbActive.TabIndex = 2;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
+            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             // 
             // rbInactive
             // 
@@ -128,10 +132,11 @@
             this.rbInactive.Location = new System.Drawing.Point(145, 1);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
-            this.rbInactive.TabIndex = 7;
+            this.rbInactive.TabIndex = 3;
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
             this.rbInactive.CheckedChanged += new System.EventHandler(this.RbInactive_CheckedChanged);
+            this.rbInactive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInactive_KeyDown);
             // 
             // txtDEGroupNameEnglish
             // 
@@ -153,7 +158,7 @@
             this.btnClose.Location = new System.Drawing.Point(434, 116);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 8;
+            this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -170,7 +175,7 @@
             this.btnSave.Location = new System.Drawing.Point(344, 116);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 7;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -186,9 +191,10 @@
             this.txtEGroupNameEnglish.MaxLength = 50;
             this.txtEGroupNameEnglish.Name = "txtEGroupNameEnglish";
             this.txtEGroupNameEnglish.Size = new System.Drawing.Size(288, 27);
-            this.txtEGroupNameEnglish.TabIndex = 1;
-            this.txtEGroupNameEnglish.Enter += new System.EventHandler(this.txtEGroupName_Enter);
-            this.txtEGroupNameEnglish.Leave += new System.EventHandler(this.txtEGroupName_Leave);
+            this.txtEGroupNameEnglish.TabIndex = 0;
+            this.txtEGroupNameEnglish.Enter += new System.EventHandler(this.txtEGroupNameEnglish_Enter);
+            this.txtEGroupNameEnglish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEGroupNameEnglish_KeyDown);
+            this.txtEGroupNameEnglish.Leave += new System.EventHandler(this.txtEGroupNameEnglish_Leave);
             // 
             // errGroup
             // 
@@ -201,7 +207,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(585, 187);
             this.Controls.Add(this.grbform);
-            this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
