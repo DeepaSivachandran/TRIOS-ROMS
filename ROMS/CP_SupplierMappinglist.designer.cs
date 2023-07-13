@@ -41,6 +41,7 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.pnlSupplierMappingList = new System.Windows.Forms.Panel();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.grdSupplierMappingList = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,7 +49,6 @@
             this.clmproname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpFilterby = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.btnView = new System.Windows.Forms.Button();
             this.lblDESupplier = new System.Windows.Forms.Label();
@@ -175,8 +175,18 @@
             this.pnlSupplierMappingList.Controls.Add(this.grpFilterby);
             this.pnlSupplierMappingList.Location = new System.Drawing.Point(0, 40);
             this.pnlSupplierMappingList.Name = "pnlSupplierMappingList";
-            this.pnlSupplierMappingList.Size = new System.Drawing.Size(1354, 617);
+            this.pnlSupplierMappingList.Size = new System.Drawing.Size(1354, 636);
             this.pnlSupplierMappingList.TabIndex = 958788;
+            // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(76, 53);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(423, 113);
+            this.listView1.TabIndex = 36;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.Visible = false;
             // 
             // grdSupplierMappingList
             // 
@@ -221,7 +231,7 @@
             this.grdSupplierMappingList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdSupplierMappingList.RowTemplate.Height = 25;
             this.grdSupplierMappingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSupplierMappingList.Size = new System.Drawing.Size(1324, 526);
+            this.grdSupplierMappingList.Size = new System.Drawing.Size(1324, 545);
             this.grdSupplierMappingList.TabIndex = 958789;
             // 
             // clmsno
@@ -270,16 +280,6 @@
             this.grpFilterby.TabStop = false;
             this.grpFilterby.Text = "Filter By";
             // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(76, 53);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(423, 113);
-            this.listView1.TabIndex = 36;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.Visible = false;
-            // 
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -317,7 +317,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1354, 657);
+            this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlSupplierMappingList);
             this.Controls.Add(this.lblNoRecordsFound);
             this.Controls.Add(this.tshSupplierMappingList);

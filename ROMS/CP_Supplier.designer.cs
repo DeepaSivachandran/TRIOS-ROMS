@@ -1080,9 +1080,9 @@
             this.Name = "CP_Supplier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Supplier Details";
-            this.Load += new System.EventHandler(this.CP_Company_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Company_KeyDown);
-            this.Leave += new System.EventHandler(this.CP_Company_Leave);
+            this.Load += new System.EventHandler(this.CP_Supplier_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Supplier_KeyDown);
+            this.Leave += new System.EventHandler(this.CP_Supplier_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             this.groupBox1.ResumeLayout(false);

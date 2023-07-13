@@ -58,7 +58,8 @@ namespace ROMS
             }
         }
 
-        private void CP_BrandList_Load(object sender, EventArgs e)
+        
+        private void CP_Supplierlist_Load(object sender, EventArgs e)
         {
             try
             {
@@ -71,6 +72,7 @@ namespace ROMS
             }
         }
 
+        
         public void udfndelete()
         {
             try
@@ -84,7 +86,7 @@ namespace ROMS
 
                         SPDataService objspdservice = new SPDataService();
                         result = "";
-                    //    result = objspdservice.udfnSPBrandMaster("Delete", grdBrandList.SelectedRows[0].Cells["BrandCode"].Value.ToString(), "", "","", "", MainForm.pbUserID, MainForm.pbIpAddress, "Brand Delete");
+                    //    result = objspdservice.udfnSPBrandMaster("Delete", grdSupplierList.SelectedRows[0].Cells["BrandCode"].Value.ToString(), "", "","", "", MainForm.pbUserID, MainForm.pbIpAddress, "Brand Delete");
 
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
@@ -192,7 +194,8 @@ namespace ROMS
             }
         }
 
-        private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)
+      
+        private void CP_Supplierlist_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -218,8 +221,9 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void grdBrandList_DoubleClick(object sender, EventArgs e)
+        
+        
+        public void grdSupplierList_DoubleClick(object sender, EventArgs e)
         {
             try
             {
@@ -232,7 +236,7 @@ namespace ROMS
             }
         }
 
-        public void grdBrandList_KeyDown(object sender, KeyEventArgs e)
+        public void grdSupplierList_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -279,7 +283,7 @@ namespace ROMS
                 {
                     grdSupplierList.Columns[e.Column.Index].Width = e.Column.Width;
                     DGV_SearchGrid.HorizontalScrollingOffset = grdSupplierList.HorizontalScrollingOffset;
-                    //grdBrandList.HorizontalScrollingOffset = 0;
+                    //grdSupplierList.HorizontalScrollingOffset = 0;
                 }
             }
             catch (Exception ex)
@@ -378,7 +382,7 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-        private void grdBrandList_Scroll(object sender, ScrollEventArgs e)
+        private void grdSupplierList_Scroll(object sender, ScrollEventArgs e)
         {
             try
             {

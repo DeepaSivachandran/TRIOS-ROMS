@@ -31,8 +31,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-
+            } 
         }
         public string spdbbackup(string path)
         {
@@ -60,8 +59,7 @@ namespace ROMS
             if ((objConn == null) == true)
                 return; 
             if (objConn.State == ConnectionState.Open)
-                objConn.Close();
-
+                objConn.Close(); 
         }     
         public int udfnExecuteQuery(string paraConnectedQuery)
         {
@@ -88,8 +86,7 @@ namespace ROMS
         }
         public int udfnExecuteQuery2Parameter(string paraConnectedQuery1, string paraConnectedQuery2)
         {
-            int udfn = 0;
-
+            int udfn = 0; 
             try
             {
                 tmpspcall = new SPCall();

@@ -152,12 +152,6 @@
     <Compile Include="CP_Purchase.designer.cs">
       <DependentUpon>CP_Purchase.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_PurchaseList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CP_PurchaseList.designer.cs">
-      <DependentUpon>CP_PurchaseList.cs</DependentUpon>
-    </Compile>
     <Compile Include="CP_Rack.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -384,9 +378,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Purchase.resx">
       <DependentUpon>CP_Purchase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CP_PurchaseList.resx">
-      <DependentUpon>CP_PurchaseList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Rack.resx">
       <DependentUpon>CP_Rack.cs</DependentUpon>

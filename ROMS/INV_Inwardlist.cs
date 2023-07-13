@@ -23,16 +23,7 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
-            {
-                MainForm.objINV_Inward = new INV_Inward();
-                MainForm.objINV_Inward.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+           
         }
         private void tsbEdit_Click(object sender, EventArgs e)
         {
@@ -531,14 +522,13 @@ namespace ROMS
         {
             try
             {
-                
                 MainForm.objINV_Inward = new INV_Inward();
-                MainForm.objINV_Inward.btnSave.Text = "Save";
-                MainForm.objINV_Inward.Show();
-                //GroupBox objgrbgodown = new GroupBox();
-                // objgrbgodown.Visible = false;
-              
-               
+
+                MainForm.objINV_Inward.StartPosition = FormStartPosition.Manual;
+                int dialogX = this.Location.X + (this.Width - MainForm.objINV_Inward.Width) / 2;
+                int dialogY = this.Location.Y + (this.Height - MainForm.objINV_Inward.Height + 100) / 2;
+                MainForm.objINV_Inward.Location = new Point(dialogX, dialogY);
+                MainForm.objINV_Inward.ShowDialog();
             }
             catch (Exception ex)
             {

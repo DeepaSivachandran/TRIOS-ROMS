@@ -395,8 +395,8 @@
             this.Name = "CP_Supplierlist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Brand";
-            this.Load += new System.EventHandler(this.CP_BrandList_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrandList_KeyDown);
+            this.Load += new System.EventHandler(this.CP_Supplierlist_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Supplierlist_KeyDown);
             this.tsBrandList.ResumeLayout(false);
             this.tsBrandList.PerformLayout();
             this.pnlsupplier.ResumeLayout(false);

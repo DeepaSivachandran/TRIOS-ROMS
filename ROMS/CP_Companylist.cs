@@ -57,8 +57,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void CP_BrandList_Load(object sender, EventArgs e)
+        
+        private void CP_Supplierlist_Load(object sender, EventArgs e)
         {
             try
             {
@@ -115,10 +115,10 @@ namespace ROMS
 
                 if (grdSupplierList.SelectedRows.Count > 0)
                 {
-                    MainForm.objCP_Brand = new CP_Brand();
-                    //MainForm.objCP_Brand.MdiParent = this.ParentForm;
-                    MainForm.objCP_Brand.varbrandcode = grdSupplierList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
-                    MainForm.objCP_Brand.ShowDialog();
+                    //MainForm.objCP_Brand = new CP_Brand();
+                    ////MainForm.objCP_Brand.MdiParent = this.ParentForm;
+                    //MainForm.objCP_Brand.varbrandcode = grdSupplierList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
+                    //MainForm.objCP_Brand.ShowDialog();
                 }
 
             }
@@ -153,13 +153,13 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdSupplierList.DataSource = objDs.Tables[0];
-                            grdSupplierList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdSupplierList.Columns["Total No. of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdSupplierList.Columns["Brand Name in Tamil"].Width = 275;
-                            grdSupplierList.Columns["Brand Name in English"].Width = 275;
-                            grdSupplierList.Columns["Label Name in Tamil"].Width = 275;
-                            grdSupplierList.Columns["Label Name in English"].Width = 275;
-                            grdSupplierList.Columns["BrandCode"].Visible = false;
+                            //grdSupplierList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            //grdSupplierList.Columns["Total No. of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            //grdSupplierList.Columns["Brand Name in Tamil"].Width = 275;
+                            //grdSupplierList.Columns["Brand Name in English"].Width = 275;
+                            //grdSupplierList.Columns["Label Name in Tamil"].Width = 275;
+                            //grdSupplierList.Columns["Label Name in English"].Width = 275;
+                            //grdSupplierList.Columns["BrandCode"].Visible = false;
                         }
                         else
                         {
@@ -191,8 +191,8 @@ namespace ROMS
                 picLoader.Visible = false;
             }
         }
-
-        private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)
+        
+             private void CP_Supplierlist_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -218,33 +218,9 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void grdBrandList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdBrandList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) { udfnEdit(); }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         
+
+     
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -378,7 +354,7 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-        private void grdBrandList_Scroll(object sender, ScrollEventArgs e)
+        private void grdSupplierList_Scroll(object sender, ScrollEventArgs e)
         {
             try
             {

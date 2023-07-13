@@ -23,7 +23,11 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_SupplierMapping = new CP_SupplierMapping();
+                MainForm.objCP_SupplierMapping = new CP_SupplierMapping(); 
+                MainForm.objCP_SupplierMapping.StartPosition = FormStartPosition.Manual;  
+                int dialogX = this.Location.X + (this.Width - MainForm.objCP_SupplierMapping.Width ) / 2;
+                int dialogY = this.Location.Y + (this.Height - MainForm.objCP_SupplierMapping.Height + 100) / 2; 
+                MainForm.objCP_SupplierMapping.Location = new Point(dialogX, dialogY); 
                 MainForm.objCP_SupplierMapping.ShowDialog();
             }
             catch (Exception ex)

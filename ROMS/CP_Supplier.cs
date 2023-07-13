@@ -498,7 +498,9 @@ namespace ROMS
             }
         }
 
-        private void CP_Company_Load(object sender, EventArgs e)
+        
+        
+              private void CP_Supplier_Load(object sender, EventArgs e)
         {
             try
             {
@@ -516,7 +518,6 @@ namespace ROMS
 
             }
         }
-
 
         private void udfnEdit()
         {
@@ -582,7 +583,10 @@ namespace ROMS
             }
         }
 
-        private void CP_Company_Leave(object sender, EventArgs e)
+        
+
+        
+             private void CP_Supplier_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -596,17 +600,19 @@ namespace ROMS
                 tpshortname.Active = false;
 
 
-               
-                  
-             }
+
+
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
+        
+        
 
-        private void CP_Company_KeyDown(object sender, KeyEventArgs e)
+        private void CP_Supplier_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
