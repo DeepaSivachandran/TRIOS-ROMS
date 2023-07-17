@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Group));
             this.grbform = new System.Windows.Forms.GroupBox();
-            this.txtDEGroupNameTamil = new System.Windows.Forms.TextBox();
+            this.txtDProductGroupNameTamil = new System.Windows.Forms.TextBox();
             this.txtEGroupNameTamil = new System.Windows.Forms.TextBox();
             this.txtDStatus = new System.Windows.Forms.TextBox();
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInactive = new System.Windows.Forms.RadioButton();
-            this.txtDEGroupNameEnglish = new System.Windows.Forms.TextBox();
+            this.txtDProductGroupNameEnglish = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtEGroupNameEnglish = new System.Windows.Forms.TextBox();
@@ -49,11 +49,11 @@
             // 
             // grbform
             // 
-            this.grbform.Controls.Add(this.txtDEGroupNameTamil);
+            this.grbform.Controls.Add(this.txtDProductGroupNameTamil);
             this.grbform.Controls.Add(this.txtEGroupNameTamil);
             this.grbform.Controls.Add(this.txtDStatus);
             this.grbform.Controls.Add(this.pnlStatus);
-            this.grbform.Controls.Add(this.txtDEGroupNameEnglish);
+            this.grbform.Controls.Add(this.txtDProductGroupNameEnglish);
             this.grbform.Controls.Add(this.btnClose);
             this.grbform.Controls.Add(this.btnSave);
             this.grbform.Controls.Add(this.txtEGroupNameEnglish);
@@ -64,22 +64,22 @@
             this.grbform.TabStop = false;
             this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
             // 
-            // txtDEGroupNameTamil
+            // txtDProductGroupNameTamil
             // 
-            this.txtDEGroupNameTamil.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDEGroupNameTamil.Enabled = false;
-            this.txtDEGroupNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDEGroupNameTamil.Location = new System.Drawing.Point(40, 47);
-            this.txtDEGroupNameTamil.Name = "txtDEGroupNameTamil";
-            this.txtDEGroupNameTamil.ReadOnly = true;
-            this.txtDEGroupNameTamil.Size = new System.Drawing.Size(181, 27);
-            this.txtDEGroupNameTamil.TabIndex = 19;
-            this.txtDEGroupNameTamil.Text = "Group Name In Tamil";
+            this.txtDProductGroupNameTamil.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDProductGroupNameTamil.Enabled = false;
+            this.txtDProductGroupNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDProductGroupNameTamil.Location = new System.Drawing.Point(40, 52);
+            this.txtDProductGroupNameTamil.Name = "txtDProductGroupNameTamil";
+            this.txtDProductGroupNameTamil.ReadOnly = true;
+            this.txtDProductGroupNameTamil.Size = new System.Drawing.Size(181, 27);
+            this.txtDProductGroupNameTamil.TabIndex = 19;
+            this.txtDProductGroupNameTamil.Text = "Product Group Name In Tamil";
             // 
             // txtEGroupNameTamil
             // 
             this.txtEGroupNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEGroupNameTamil.Location = new System.Drawing.Point(221, 47);
+            this.txtEGroupNameTamil.Location = new System.Drawing.Point(221, 52);
             this.txtEGroupNameTamil.MaxLength = 50;
             this.txtEGroupNameTamil.Name = "txtEGroupNameTamil";
             this.txtEGroupNameTamil.Size = new System.Drawing.Size(288, 27);
@@ -93,7 +93,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(40, 73);
+            this.txtDStatus.Location = new System.Drawing.Point(40, 78);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(181, 27);
@@ -106,7 +106,7 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInactive);
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlStatus.Location = new System.Drawing.Point(221, 73);
+            this.pnlStatus.Location = new System.Drawing.Point(221, 78);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(288, 27);
             this.pnlStatus.TabIndex = 2;
@@ -138,17 +138,17 @@
             this.rbInactive.CheckedChanged += new System.EventHandler(this.RbInactive_CheckedChanged);
             this.rbInactive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInactive_KeyDown);
             // 
-            // txtDEGroupNameEnglish
+            // txtDProductGroupNameEnglish
             // 
-            this.txtDEGroupNameEnglish.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDEGroupNameEnglish.Enabled = false;
-            this.txtDEGroupNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDEGroupNameEnglish.Location = new System.Drawing.Point(40, 21);
-            this.txtDEGroupNameEnglish.Name = "txtDEGroupNameEnglish";
-            this.txtDEGroupNameEnglish.ReadOnly = true;
-            this.txtDEGroupNameEnglish.Size = new System.Drawing.Size(181, 27);
-            this.txtDEGroupNameEnglish.TabIndex = 11;
-            this.txtDEGroupNameEnglish.Text = "Group Name In English";
+            this.txtDProductGroupNameEnglish.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDProductGroupNameEnglish.Enabled = false;
+            this.txtDProductGroupNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDProductGroupNameEnglish.Location = new System.Drawing.Point(40, 26);
+            this.txtDProductGroupNameEnglish.Name = "txtDProductGroupNameEnglish";
+            this.txtDProductGroupNameEnglish.ReadOnly = true;
+            this.txtDProductGroupNameEnglish.Size = new System.Drawing.Size(181, 27);
+            this.txtDProductGroupNameEnglish.TabIndex = 11;
+            this.txtDProductGroupNameEnglish.Text = "Product Group Name In English";
             // 
             // btnClose
             // 
@@ -187,7 +187,7 @@
             // txtEGroupNameEnglish
             // 
             this.txtEGroupNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEGroupNameEnglish.Location = new System.Drawing.Point(221, 21);
+            this.txtEGroupNameEnglish.Location = new System.Drawing.Point(221, 26);
             this.txtEGroupNameEnglish.MaxLength = 50;
             this.txtEGroupNameEnglish.Name = "txtEGroupNameEnglish";
             this.txtEGroupNameEnglish.Size = new System.Drawing.Size(288, 27);
@@ -200,7 +200,7 @@
             // 
             this.errGroup.ContainerControl = this;
             // 
-            // CP_Group
+            // CP_ProductGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -214,9 +214,9 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CP_Group";
+            this.Name = "CP_ProductGroup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Group";
+            this.Text = "Product Group";
             this.Load += new System.EventHandler(this.CP_Group_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Group_KeyDown);
             this.grbform.ResumeLayout(false);
@@ -232,14 +232,14 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbform;
-        private System.Windows.Forms.TextBox txtDEGroupNameEnglish;
+        private System.Windows.Forms.TextBox txtDProductGroupNameEnglish;
         private System.Windows.Forms.TextBox txtEGroupNameEnglish;
         private System.Windows.Forms.ErrorProvider errGroup;
         private System.Windows.Forms.TextBox txtDStatus;
         private System.Windows.Forms.Panel pnlStatus;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
-        private System.Windows.Forms.TextBox txtDEGroupNameTamil;
+        private System.Windows.Forms.TextBox txtDProductGroupNameTamil;
         private System.Windows.Forms.TextBox txtEGroupNameTamil;
     }
 }

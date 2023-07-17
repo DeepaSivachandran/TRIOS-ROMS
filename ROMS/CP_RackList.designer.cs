@@ -48,6 +48,9 @@
             this.lblGC = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmshopgodown = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmrackgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -144,13 +147,13 @@
             this.grdGroupList.AllowUserToDeleteRows = false;
             this.grdGroupList.AllowUserToResizeColumns = false;
             this.grdGroupList.AllowUserToResizeRows = false;
-            this.grdGroupList.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            this.grdGroupList.BackgroundColor = System.Drawing.Color.White;
             this.grdGroupList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(202)))), ((int)(((byte)(148)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdGroupList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
@@ -158,6 +161,9 @@
             this.grdGroupList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdGroupList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
+            this.clmConcern,
+            this.clmshopgodown,
+            this.clmrackgroup,
             this.Column2,
             this.Column3,
             this.Column5});
@@ -189,7 +195,7 @@
             // lblNoRecordsFound
             // 
             this.lblNoRecordsFound.AutoSize = true;
-            this.lblNoRecordsFound.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoRecordsFound.Location = new System.Drawing.Point(627, 326);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
@@ -210,7 +216,7 @@
             this.grbFilterBy.Size = new System.Drawing.Size(672, 67);
             this.grbFilterBy.TabIndex = 958788;
             this.grbFilterBy.TabStop = false;
-            this.grbFilterBy.Text = "Filter By Rack";
+            this.grbFilterBy.Text = "Filter By Rack Group";
             // 
             // btnExport
             // 
@@ -269,7 +275,7 @@
             this.lblGC.ForeColor = System.Drawing.Color.Crimson;
             this.lblGC.Location = new System.Drawing.Point(789, 58);
             this.lblGC.Name = "lblGC";
-            this.lblGC.Size = new System.Drawing.Size(17, 20);
+            this.lblGC.Size = new System.Drawing.Size(21, 26);
             this.lblGC.TabIndex = 958791;
             this.lblGC.Text = "0";
             // 
@@ -289,6 +295,26 @@
             this.Column1.HeaderText = "S.No.";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
+            // 
+            // clmConcern
+            // 
+            this.clmConcern.HeaderText = "Concern";
+            this.clmConcern.Name = "clmConcern";
+            this.clmConcern.ReadOnly = true;
+            this.clmConcern.Width = 200;
+            // 
+            // clmshopgodown
+            // 
+            this.clmshopgodown.HeaderText = "Shop Godown";
+            this.clmshopgodown.Name = "clmshopgodown";
+            this.clmshopgodown.ReadOnly = true;
+            this.clmshopgodown.Width = 200;
+            // 
+            // clmrackgroup
+            // 
+            this.clmrackgroup.HeaderText = "Rack Group";
+            this.clmrackgroup.Name = "clmrackgroup";
+            this.clmrackgroup.ReadOnly = true;
             // 
             // Column2
             // 
@@ -361,6 +387,9 @@
         private System.Windows.Forms.Label lblGC;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmConcern;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmshopgodown;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmrackgroup;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;

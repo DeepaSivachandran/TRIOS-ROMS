@@ -56,6 +56,42 @@
     <Compile Include="Authentication.designer.cs">
       <DependentUpon>Authentication.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_BatchNoConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BatchNoConfiguration.designer.cs">
+      <DependentUpon>CP_BatchNoConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_BatchNoConfigurationList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BatchNoConfigurationList.designer.cs">
+      <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_RackGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RackGroup.designer.cs">
+      <DependentUpon>CP_RackGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_RackGroupList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RackGroupList.designer.cs">
+      <DependentUpon>CP_RackGroupList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockTransfer.designer.cs">
+      <DependentUpon>INV_StockTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockTransferList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockTransferList.designer.cs">
+      <DependentUpon>INV_StockTransferList.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_PurchaseOrderDamage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -378,6 +414,24 @@
     </Compile>
     <EmbeddedResource Include="Authentication.resx">
       <DependentUpon>Authentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_BatchNoConfiguration.resx">
+      <DependentUpon>CP_BatchNoConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_BatchNoConfigurationList.resx">
+      <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_RackGroup.resx">
+      <DependentUpon>CP_RackGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_RackGroupList.resx">
+      <DependentUpon>CP_RackGroupList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockTransfer.resx">
+      <DependentUpon>INV_StockTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockTransferList.resx">
+      <DependentUpon>INV_StockTransferList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseOrderDamage.resx">
       <DependentUpon>PUR_PurchaseOrderDamage.cs</DependentUpon>

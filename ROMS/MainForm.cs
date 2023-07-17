@@ -55,13 +55,27 @@ namespace ROMS
         public static CP_LocationList objCP_LocationList;
         public static CP_Location objCP_Location;
         public static CP_Rack objCP_Rack;
+        public static CP_RackList objCP_RackList;
         public static CP_UserList objCP_Userlist;
-        public static CP_User objCP_User; 
+        public static CP_User objCP_User;
+        public static CP_PurchaseList objCP_PurchaseList;
+        public static CP_SupplierMappinglist objCP_SupplierMappinglist;
+        public static CP_Product objCP_Items;
+        public static CP_RackSettinglist objCP_RackSettinglist;
+        public static CP_RackSetting objCP_RackSetting;
+        public static CP_ProductList objCP_Itemlist;
+        public static CP_Purchase_Inward objCP_Purchase_Inward;
+        public static CP_Purchase_PO objCP_Purchase_PO;
+        public static CP_SupplierMapping objCP_SupplierMapping;
+        public static CP_Purchase objCP_Purchase;
+        public static CP_BatchNoConfiguration objCP_BatchNoConfiguration;
+        public static CP_BatchNoConfigurationList objCP_BatchNoConfigurationList;
+        public static CP_RackGroup objCP_RackGroup;
+        public static CP_RackGroupList objCP_RackGroupList; 
+
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList; 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
         public static PUR_PurchaseOrder objPUR_PurchaseOrder; 
-        public static CP_PurchaseList objCP_PurchaseList;
-        public static CP_SupplierMappinglist objCP_SupplierMappinglist;
         public static PUR_SupplierScheduleList objPUR_SupplierScheduleList;
         public static PUR_GRNDetailsList objPUR_GRNDetailsList;
         public static PUR_GRNDetails objPUR_GRNDetails;
@@ -74,16 +88,12 @@ namespace ROMS
         public static PUR_SupplierSchedule objPUR_SupplierSchedule;
          
 
-        public static CP_Product objCP_Items;
         public static INV_Inwardlist objINV_Inwardlist;
         public static INV_Inward objINV_Inward;
-        public static CP_RackSettinglist objCP_RackSettinglist;
-        public static CP_RackSetting objCP_RackSetting;
-        public static CP_ProductList objCP_Itemlist;
-        public static CP_Purchase_Inward objCP_Purchase_Inward; 
-        public static CP_Purchase_PO objCP_Purchase_PO; 
-        public static CP_SupplierMapping objCP_SupplierMapping;
-        public static CP_Purchase objCP_Purchase;
+        public static INV_StockTransfer objINV_StockTransfer;
+        public static INV_StockTransferList objINV_StockTransferList;
+
+
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
@@ -441,76 +451,138 @@ namespace ROMS
 
         private void TsmCompany_Click(object sender, EventArgs e)
         {
-
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objCP_Companylist = new CP_Companylist();
-            MainForm.objCP_Companylist.MdiParent = this;
-            MainForm.objCP_Companylist.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_Companylist = new CP_Companylist();
+                MainForm.objCP_Companylist.MdiParent = this;
+                MainForm.objCP_Companylist.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmSuppliyer_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objCP_Supplierlist = new CP_Supplierlist();
-            MainForm.objCP_Supplierlist.MdiParent = this;
-            MainForm.objCP_Supplierlist.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_Supplierlist = new CP_Supplierlist();
+                MainForm.objCP_Supplierlist.MdiParent = this;
+                MainForm.objCP_Supplierlist.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmUnit_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objCP_Unitlist = new CP_Unitlist();
-            MainForm.objCP_Unitlist.MdiParent = this;
-            MainForm.objCP_Unitlist.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_Unitlist = new CP_Unitlist();
+                MainForm.objCP_Unitlist.MdiParent = this;
+                MainForm.objCP_Unitlist.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void StateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objCP_Citylist = new CP_Citylist();
-            MainForm.objCP_Citylist.MdiParent = this;
-            MainForm.objCP_Citylist.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_Citylist = new CP_Citylist();
+                MainForm.objCP_Citylist.MdiParent = this;
+                MainForm.objCP_Citylist.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmGroup_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objCP_GroupList = new CP_GroupList();
-            MainForm.objCP_GroupList.MdiParent = this;
-            MainForm.objCP_GroupList.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_GroupList = new CP_GroupList();
+                MainForm.objCP_GroupList.MdiParent = this;
+                MainForm.objCP_GroupList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmSubGroup_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objCP_SubGroupList = new CP_SubGroupList();
-            MainForm.objCP_SubGroupList.MdiParent = this;
-            MainForm.objCP_SubGroupList.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_SubGroupList = new CP_SubGroupList();
+                MainForm.objCP_SubGroupList.MdiParent = this;
+                MainForm.objCP_SubGroupList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmUser_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objCP_Userlist = new CP_UserList();
-            MainForm.objCP_Userlist.MdiParent = this;
-            MainForm.objCP_Userlist.Show();
-
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_Userlist = new CP_UserList();
+                MainForm.objCP_Userlist.MdiParent = this;
+                MainForm.objCP_Userlist.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmLocation_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objCP_LocationList = new CP_LocationList();
-            MainForm.objCP_LocationList.MdiParent = this;
-            MainForm.objCP_LocationList.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_LocationList = new CP_LocationList();
+                MainForm.objCP_LocationList.MdiParent = this;
+                MainForm.objCP_LocationList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
 
         }
 
@@ -518,85 +590,241 @@ namespace ROMS
 
         private void Tsmpurchaseentry_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objCP_PurchaseList = new CP_PurchaseList();
-            MainForm.objCP_PurchaseList.MdiParent = this;
-            MainForm.objCP_PurchaseList.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_PurchaseList = new CP_PurchaseList();
+                MainForm.objCP_PurchaseList.MdiParent = this;
+                MainForm.objCP_PurchaseList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmPurchaseOrder_Click_1(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-             
-            MainForm.objPUR_PurchaseOrderList = new PUR_PurchaseOrderList();
-            MainForm.objPUR_PurchaseOrderList.MdiParent = this;
-            MainForm.objPUR_PurchaseOrderList.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPUR_PurchaseOrderList = new PUR_PurchaseOrderList();
+                MainForm.objPUR_PurchaseOrderList.MdiParent = this;
+                MainForm.objPUR_PurchaseOrderList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
             
         }
 
         private void TsmsupplierMapping_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objCP_SupplierMappinglist = new CP_SupplierMappinglist();
-            MainForm.objCP_SupplierMappinglist.MdiParent = this;
-            MainForm.objCP_SupplierMappinglist.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_SupplierMappinglist = new CP_SupplierMappinglist();
+                MainForm.objCP_SupplierMappinglist.MdiParent = this;
+                MainForm.objCP_SupplierMappinglist.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmrackSettings_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objCP_RackSettinglist = new CP_RackSettinglist();
-            MainForm.objCP_RackSettinglist.MdiParent = this;
-            MainForm.objCP_RackSettinglist.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_RackSettinglist = new CP_RackSettinglist();
+                MainForm.objCP_RackSettinglist.MdiParent = this;
+                MainForm.objCP_RackSettinglist.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void Tsmitem_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objCP_Itemlist = new CP_ProductList();
-            MainForm.objCP_Itemlist.MdiParent = this;
-            MainForm.objCP_Itemlist.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_Itemlist = new CP_ProductList();
+                MainForm.objCP_Itemlist.MdiParent = this;
+                MainForm.objCP_Itemlist.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void Tsminward_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objINV_Inwardlist = new INV_Inwardlist();
-            MainForm.objINV_Inwardlist.MdiParent = this;
-            MainForm.objINV_Inwardlist.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objINV_Inwardlist = new INV_Inwardlist();
+                MainForm.objINV_Inwardlist.MdiParent = this;
+                MainForm.objINV_Inwardlist.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmpurchaseApprove_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
-            MainForm.objPUR_PurchaseApprovalList.MdiParent = this;
-            MainForm.objPUR_PurchaseApprovalList.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+                MainForm.objPUR_PurchaseApprovalList.MdiParent = this;
+                MainForm.objPUR_PurchaseApprovalList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmpurchaseSupplier_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objPUR_SupplierScheduleList = new PUR_SupplierScheduleList();
-            MainForm.objPUR_SupplierScheduleList.MdiParent = this;
-            MainForm.objPUR_SupplierScheduleList.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPUR_SupplierScheduleList = new PUR_SupplierScheduleList();
+                MainForm.objPUR_SupplierScheduleList.MdiParent = this;
+                MainForm.objPUR_SupplierScheduleList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmGRN_Click(object sender, EventArgs e)
         {
-            udfnCloseChildForms();
-            if (isClose == false) { return; }
-            MainForm.objPUR_GRNDetailsList = new PUR_GRNDetailsList();
-            MainForm.objPUR_GRNDetailsList.MdiParent = this;
-            MainForm.objPUR_GRNDetailsList.Show();
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPUR_GRNDetailsList = new PUR_GRNDetailsList();
+                MainForm.objPUR_GRNDetailsList.MdiParent = this;
+                MainForm.objPUR_GRNDetailsList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmRack_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_RackList = new CP_RackList();
+                MainForm.objCP_RackList.MdiParent = this;
+                MainForm.objCP_RackList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmRackGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_RackGroupList = new CP_RackGroupList();
+                MainForm.objCP_RackGroupList.MdiParent = this;
+                MainForm.objCP_RackGroupList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Tsmbatchno_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BatchNoConfigurationList = new CP_BatchNoConfigurationList();
+                MainForm.objCP_BatchNoConfigurationList.MdiParent = this;
+                MainForm.objCP_BatchNoConfigurationList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmStockTransfer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objINV_StockTransferList = new INV_StockTransferList();
+                MainForm.objINV_StockTransferList.MdiParent = this;
+                MainForm.objINV_StockTransferList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmOutward_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objINV_StockTransferList = new cp_out();
+                //MainForm.objINV_StockTransferList.MdiParent = this;
+                //MainForm.objINV_StockTransferList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 } 

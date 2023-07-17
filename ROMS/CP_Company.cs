@@ -1268,7 +1268,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtCst.Focus();
+                    //txtCst.Focus();
                 }
             }
             catch (Exception ex)
@@ -1307,38 +1307,7 @@ namespace ROMS
             }
         }
 
-        private void TxtCst_Leave(object sender, EventArgs e)
-        {
-            if (txtCst.Text.Trim() == "")
-            {
-
-                errCompany.SetError(txtCst, "Please enter CST");
-                txtCst.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tparea.ShowAlways = true;
-                tparea.Show("Please enter CST.", txtCst, 5000);
-
-            }
-            else
-            {
-                errCompany.Clear();
-                txtCst.BackColor = Color.White;
-                tparea.Hide(txtCst);
-            }
-        }
-
-        private void TxtCst_Enter(object sender, EventArgs e)
-        {
-
-            try
-            {
-                txtCst.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+   
 
         private void TxtPan_KeyDown(object sender, KeyEventArgs e)
         {

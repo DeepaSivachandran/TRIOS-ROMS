@@ -29,22 +29,22 @@ namespace ROMS
         }
         public void udfnLoadUserRole()
         {
-            try
-            {
-                // Bind combobox
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("View_UserRole", "rolecode<>0 and 1=1 Order by rolecode", "rolename,rolecode", cmbUserRole, "", "rolename", "rolecode");
-                objDataBind = null;
-                if (varUserRoleCode != "")
-                {
-                    cmbUserRole.SelectedValue = varUserRoleCode;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    // Bind combobox
+            //    DataBind objDataBind = new DataBind();
+            //    objDataBind.BindComboBoxListSelected("View_UserRole", "rolecode<>0 and 1=1 Order by rolecode", "rolename,rolecode", cmbUserRole, "", "rolename", "rolecode");
+            //    objDataBind = null;
+            //    if (varUserRoleCode != "")
+            //    {
+            //        cmbUserRole.SelectedValue = varUserRoleCode;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
         private void txtUserName_Enter(object sender, EventArgs e)
         {
@@ -188,18 +188,18 @@ namespace ROMS
 
         private void txtCPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cmbUserRole.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    if (e.KeyCode == Keys.Enter)
+            //    {
+            //        cmbUserRole.Focus();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void txtCPassword_Leave(object sender, EventArgs e)
@@ -360,16 +360,16 @@ namespace ROMS
                     txtCPassword.Text = "";
                 }
 
-                if (cmbUserRole.Text.Trim() == "" || cmbUserRole.SelectedValue.ToString() == "-1")
-                {
-                    errUser.SetError(cmbUserRole, "Please select User Role");
-                    cmbUserRole.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //if (cmbUserRole.Text.Trim() == "" || cmbUserRole.SelectedValue.ToString() == "-1")
+                //{
+                //    errUser.SetError(cmbUserRole, "Please select User Role");
+                //    cmbUserRole.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
 
-                    tpUserRole.ShowAlways = true;
-                    tpUserRole.Show("Please select User Role", cmbUserRole, 5000);
-                    cmbUserRole.Text = "";
+                //    tpUserRole.ShowAlways = true;
+                //    tpUserRole.Show("Please select User Role", cmbUserRole, 5000);
+                //    cmbUserRole.Text = "";
 
-                }
+                //}
 
 
                 if (txtUserName.Text.Trim() == "")
@@ -399,12 +399,12 @@ namespace ROMS
 
                 }
 
-                if (cmbUserRole.Text.Trim() == "" || cmbUserRole.SelectedValue.ToString() == "-1")
-                {
-                    cmbUserRole.Focus();
-                    return;
+                //if (cmbUserRole.Text.Trim() == "" || cmbUserRole.SelectedValue.ToString() == "-1")
+                //{
+                //    cmbUserRole.Focus();
+                //    return;
 
-                }
+                //}
 
                 if (txtPassword.Text.Trim() != txtCPassword.Text.Trim())
                 {
@@ -502,7 +502,7 @@ namespace ROMS
             txtPassword.Text = "";
             txtCPassword.Text = "";
             rbActive.Checked = true;
-            cmbUserRole.SelectedValue = "-1";
+            //cmbUserRole.SelectedValue = "-1";
             btnSave.Text = "Save";
         }
 
@@ -716,7 +716,7 @@ namespace ROMS
                             txtPassword.Text = objDS.Tables[0].Rows[0]["UserPassword"].ToString();
                             oldpassword = objDS.Tables[0].Rows[0]["UserPassword"].ToString();
                             txtCPassword.Text = objDS.Tables[0].Rows[0]["UserPassword"].ToString();
-                            cmbUserRole.SelectedValue= objDS.Tables[0].Rows[0]["UserRoleCode"].ToString();
+                          //  cmbUserRole.SelectedValue= objDS.Tables[0].Rows[0]["UserRoleCode"].ToString();
 
                             if (objDS.Tables[0].Rows[0]["Statuscode"].ToString() == "1")
                             {
