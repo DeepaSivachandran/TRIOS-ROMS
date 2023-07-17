@@ -37,31 +37,31 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_SupplierSchedule));
             this.grbform = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.grporderby = new System.Windows.Forms.GroupBox();
+            this.rbmobile = new System.Windows.Forms.RadioButton();
+            this.rbVisit = new System.Windows.Forms.RadioButton();
             this.lvSupplier = new System.Windows.Forms.ListView();
+            this.btnAdd = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.grddays = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.grdGroupList = new System.Windows.Forms.DataGridView();
-            this.errBrand = new System.Windows.Forms.ErrorProvider(this.components);
-            this.rbmobile = new System.Windows.Forms.RadioButton();
-            this.rbVisit = new System.Windows.Forms.RadioButton();
-            this.chkdays = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clmname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grporderby = new System.Windows.Forms.GroupBox();
-            this.btnAdd = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmordertype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmremove = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.errBrand = new System.Windows.Forms.ErrorProvider(this.components);
+            this.chkdays = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbform.SuspendLayout();
+            this.grporderby.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grddays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGroupList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBrand)).BeginInit();
-            this.grporderby.SuspendLayout();
             this.SuspendLayout();
             // 
             // grbform
@@ -83,15 +83,38 @@
             this.grbform.TabStop = false;
             this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
             // 
-            // label3
+            // grporderby
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(419, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 20);
-            this.label3.TabIndex = 1111146;
-            this.label3.Text = "Days";
+            this.grporderby.Controls.Add(this.rbmobile);
+            this.grporderby.Controls.Add(this.rbVisit);
+            this.grporderby.Location = new System.Drawing.Point(246, 18);
+            this.grporderby.Name = "grporderby";
+            this.grporderby.Size = new System.Drawing.Size(157, 60);
+            this.grporderby.TabIndex = 1111154;
+            this.grporderby.TabStop = false;
+            this.grporderby.Text = "Order Type";
+            // 
+            // rbmobile
+            // 
+            this.rbmobile.AutoSize = true;
+            this.rbmobile.Checked = true;
+            this.rbmobile.Location = new System.Drawing.Point(13, 27);
+            this.rbmobile.Name = "rbmobile";
+            this.rbmobile.Size = new System.Drawing.Size(60, 24);
+            this.rbmobile.TabIndex = 1111149;
+            this.rbmobile.TabStop = true;
+            this.rbmobile.Text = "Phone";
+            this.rbmobile.UseVisualStyleBackColor = true;
+            // 
+            // rbVisit
+            // 
+            this.rbVisit.AutoSize = true;
+            this.rbVisit.Location = new System.Drawing.Point(98, 27);
+            this.rbVisit.Name = "rbVisit";
+            this.rbVisit.Size = new System.Drawing.Size(52, 24);
+            this.rbVisit.TabIndex = 1111150;
+            this.rbVisit.Text = "Visit";
+            this.rbVisit.UseVisualStyleBackColor = true;
             // 
             // lvSupplier
             // 
@@ -102,6 +125,27 @@
             this.lvSupplier.TabIndex = 1111144;
             this.lvSupplier.UseCompatibleStateImageBehavior = false;
             this.lvSupplier.Visible = false;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnAdd.Location = new System.Drawing.Point(567, 44);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(21, 22);
+            this.btnAdd.TabIndex = 1111152;
+            this.btnAdd.Text = "        ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(419, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 20);
+            this.label3.TabIndex = 1111146;
+            this.label3.Text = "Days";
             // 
             // txtSupplier
             // 
@@ -155,6 +199,7 @@
             this.grddays.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grddays.Size = new System.Drawing.Size(142, 156);
             this.grddays.TabIndex = 1111143;
+            this.grddays.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grddays_CellContentClick);
             // 
             // label2
             // 
@@ -213,68 +258,38 @@
             this.grdGroupList.TabIndex = 3;
             this.grdGroupList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGroupList_CellContentClick);
             // 
-            // errBrand
+            // Column1
             // 
-            this.errBrand.ContainerControl = this;
+            this.Column1.HeaderText = "S.No.";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 50;
             // 
-            // rbmobile
+            // clmsupplier
             // 
-            this.rbmobile.AutoSize = true;
-            this.rbmobile.Checked = true;
-            this.rbmobile.Location = new System.Drawing.Point(13, 27);
-            this.rbmobile.Name = "rbmobile";
-            this.rbmobile.Size = new System.Drawing.Size(60, 24);
-            this.rbmobile.TabIndex = 1111149;
-            this.rbmobile.TabStop = true;
-            this.rbmobile.Text = "Phone";
-            this.rbmobile.UseVisualStyleBackColor = true;
+            this.clmsupplier.HeaderText = "Supplier";
+            this.clmsupplier.Name = "clmsupplier";
+            this.clmsupplier.ReadOnly = true;
+            this.clmsupplier.Width = 200;
             // 
-            // rbVisit
+            // clmordertype
             // 
-            this.rbVisit.AutoSize = true;
-            this.rbVisit.Location = new System.Drawing.Point(98, 27);
-            this.rbVisit.Name = "rbVisit";
-            this.rbVisit.Size = new System.Drawing.Size(52, 24);
-            this.rbVisit.TabIndex = 1111150;
-            this.rbVisit.Text = "Visit";
-            this.rbVisit.UseVisualStyleBackColor = true;
+            this.clmordertype.HeaderText = "Order Type";
+            this.clmordertype.Name = "clmordertype";
+            this.clmordertype.ReadOnly = true;
             // 
-            // chkdays
+            // clmday
             // 
-            this.chkdays.HeaderText = "";
-            this.chkdays.Name = "chkdays";
-            this.chkdays.ReadOnly = true;
-            this.chkdays.Width = 40;
+            this.clmday.HeaderText = "Day";
+            this.clmday.Name = "clmday";
+            this.clmday.ReadOnly = true;
             // 
-            // clmname
+            // clmremove
             // 
-            this.clmname.HeaderText = "";
-            this.clmname.Name = "clmname";
-            this.clmname.ReadOnly = true;
-            this.clmname.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmname.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // grporderby
-            // 
-            this.grporderby.Controls.Add(this.rbmobile);
-            this.grporderby.Controls.Add(this.rbVisit);
-            this.grporderby.Location = new System.Drawing.Point(246, 18);
-            this.grporderby.Name = "grporderby";
-            this.grporderby.Size = new System.Drawing.Size(157, 60);
-            this.grporderby.TabIndex = 1111154;
-            this.grporderby.TabStop = false;
-            this.grporderby.Text = "Order Type";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(567, 44);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(21, 22);
-            this.btnAdd.TabIndex = 1111152;
-            this.btnAdd.Text = "        ";
+            this.clmremove.HeaderText = "Remove";
+            this.clmremove.Name = "clmremove";
+            this.clmremove.ReadOnly = true;
+            this.clmremove.Width = 50;
             // 
             // btnClose
             // 
@@ -310,38 +325,24 @@
             this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
-            // Column1
+            // errBrand
             // 
-            this.Column1.HeaderText = "S.No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 50;
+            this.errBrand.ContainerControl = this;
             // 
-            // clmsupplier
+            // chkdays
             // 
-            this.clmsupplier.HeaderText = "Supplier";
-            this.clmsupplier.Name = "clmsupplier";
-            this.clmsupplier.ReadOnly = true;
-            this.clmsupplier.Width = 200;
+            this.chkdays.HeaderText = "";
+            this.chkdays.Name = "chkdays";
+            this.chkdays.ReadOnly = true;
+            this.chkdays.Width = 40;
             // 
-            // clmordertype
+            // clmname
             // 
-            this.clmordertype.HeaderText = "Order Type";
-            this.clmordertype.Name = "clmordertype";
-            this.clmordertype.ReadOnly = true;
-            // 
-            // clmday
-            // 
-            this.clmday.HeaderText = "Day";
-            this.clmday.Name = "clmday";
-            this.clmday.ReadOnly = true;
-            // 
-            // clmremove
-            // 
-            this.clmremove.HeaderText = "Remove";
-            this.clmremove.Name = "clmremove";
-            this.clmremove.ReadOnly = true;
-            this.clmremove.Width = 50;
+            this.clmname.HeaderText = "";
+            this.clmname.Name = "clmname";
+            this.clmname.ReadOnly = true;
+            this.clmname.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmname.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // PUR_SupplierSchedule
             // 
@@ -365,11 +366,11 @@
             this.Leave += new System.EventHandler(this.CP_Brand_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
+            this.grporderby.ResumeLayout(false);
+            this.grporderby.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grddays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGroupList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBrand)).EndInit();
-            this.grporderby.ResumeLayout(false);
-            this.grporderby.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -388,13 +389,13 @@
         private System.Windows.Forms.RadioButton rbmobile;
         private System.Windows.Forms.RadioButton rbVisit;
         internal System.Windows.Forms.Label btnAdd;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chkdays;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmname;
         private System.Windows.Forms.GroupBox grporderby;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsupplier;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmordertype;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmday;
         private System.Windows.Forms.DataGridViewButtonColumn clmremove;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkdays;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmname;
     }
 }

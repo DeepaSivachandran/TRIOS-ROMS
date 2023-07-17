@@ -11,14 +11,14 @@ using System.Windows.Forms;
 //using ClosedXML.Excel;
 namespace ROMS
 {
-    public partial class CP_SubGroupList : Form
+    public partial class CP_GroupList : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
         DataSet objDs = new DataSet();
         DataTable objDtExcel = new DataTable();
-        public CP_SubGroupList()
+        public CP_GroupList()
         {
             InitializeComponent();
         }
@@ -27,8 +27,8 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_SubGroup = new CP_SubGroup();
-                MainForm.objCP_SubGroup.ShowDialog();
+                MainForm.objCP_Group = new CP_Group();
+                MainForm.objCP_Group.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -61,7 +61,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CP_SubGroupList_Load(object sender, EventArgs e)
+        private void CP_GroupList_Load(object sender, EventArgs e)
         {
             try
             {
@@ -221,24 +221,24 @@ namespace ROMS
 
         private void udfnEdit()
         {
-            //try
-            //{
+            
 
-            //    if (grdGroupList.SelectedRows.Count > 0)
-            //    {
-            //        MainForm.objCP_Group = new CP_Group();
-            //        //MainForm.objCP_Group.MdiParent = this.ParentForm;
-            //        MainForm.objCP_Group.vargroupcode = grdGroupList.SelectedRows[0].Cells["GroupCode"].Value.ToString();
-            //        MainForm.objCP_Group.ShowDialog();
+                //    if (grdGroupList.SelectedRows.Count > 0)
+                //    {
+                //        MainForm.objCP_Group = new CP_Group();
+                //        //MainForm.objCP_Group.MdiParent = this.ParentForm;
+                //        MainForm.objCP_Group.vargroupcode = grdGroupList.SelectedRows[0].Cells["GroupCode"].Value.ToString();
+                //        MainForm.objCP_Group.ShowDialog();
 
-            //    }
+                //    }
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+                //}
+                //catch (Exception ex)
+                //{
+                //    objError = new DataError();
+                //    objError.WriteFile(ex);
+                //}
+            
 
         }
 
@@ -260,7 +260,7 @@ namespace ROMS
             }
         }
 
-        private void CP_SubGroupList_KeyDown(object sender, KeyEventArgs e)
+        private void CP_GroupList_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -424,77 +424,6 @@ namespace ROMS
             //    //}
             //}
         }
-
-        private void CmbGroupType_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnView_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                btnView.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnView_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-
-                btnView.BackColor = Color.White;
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnExport_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                btnExport.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnExport_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-
-                btnExport.BackColor = Color.White;
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        
     }
 }
