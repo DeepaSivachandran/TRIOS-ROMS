@@ -253,5 +253,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdGodownList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

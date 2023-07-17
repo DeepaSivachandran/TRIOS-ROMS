@@ -416,7 +416,47 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void BindDataGrid()
+        {
+            try
+            {
+                string[] item = new string[30];
+                ListViewItem listitem = new ListViewItem(); DataTable dataTable = new DataTable();
+                dataTable.Columns.Add("Day", typeof(string));
 
+                dataTable.Rows.Add("Monday");
+                dataTable.Rows.Add("Tuesday");
+                dataTable.Rows.Add("Wednesday");
+                dataTable.Rows.Add("Thursday");
+                dataTable.Rows.Add("Friday");
+                dataTable.Rows.Add("Saturday");
+                dataTable.Rows.Add("Sunday");
+
+
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    string day = dataTable.Rows[i]["Day"].ToString();
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(grddays);
+                    row.Cells[1].Value = day;
+                    grddays.Rows.Add(row);
+
+                    //item[0] = "";
+                    //item[1] = dataTable.Rows[i]["Day"].ToString();
+                    //listitem = new ListViewItem(item);
+                    //grddays.Rows.Add(item[0],item[1]);
+                }
+                // Assign the DataTable as the data source for the DataGridView 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+
+            // grddays.DataSource = dataTable;
+        }
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
@@ -506,6 +546,7 @@ namespace ROMS
             {
                 this.ActiveControl = txtName;
                 udfnLoadState();
+                BindDataGrid();
                 udfnEdit();
             }
             catch (Exception ex)

@@ -27,7 +27,7 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_SubGroup = new CP_SubGroup();
+                MainForm.objCP_SubGroup = new CP_ProductSubGroup();
                 MainForm.objCP_SubGroup.ShowDialog();
             }
             catch (Exception ex)

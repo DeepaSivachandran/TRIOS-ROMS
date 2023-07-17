@@ -130,7 +130,9 @@
             this.DGV_Racklist.ShowRowErrors = false;
             this.DGV_Racklist.Size = new System.Drawing.Size(221, 108);
             this.DGV_Racklist.TabIndex = 958801;
-            // 
+            // this.DGV_Racklist.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_Racklist_CellContentClick);
+            this.DGV_Racklist.Rows.Add(false,"RACK 01");
+            this.DGV_Racklist.Rows.Add(false, "RACK 02");
             // clmcheckbox
             // 
             this.clmcheckbox.HeaderText = "";
@@ -329,7 +331,7 @@
             this.grpUserList.Size = new System.Drawing.Size(377, 220);
             this.grpUserList.TabIndex = 1111137;
             this.grpUserList.TabStop = false;
-            this.grpUserList.Text = "User List";
+            this.grpUserList.Text = "Rack Incharge";
             // 
             // dataGridView1
             // 
@@ -377,7 +379,7 @@
             // 
             // dataGridViewTextBoxColumn1
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "User Name";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Incharge Name";
             this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.Width = 150;
@@ -407,7 +409,7 @@
             this.txtDUserName.ReadOnly = true;
             this.txtDUserName.Size = new System.Drawing.Size(108, 27);
             this.txtDUserName.TabIndex = 1111136;
-            this.txtDUserName.Text = "User Name";
+            this.txtDUserName.Text = "Incharge Name";
             // 
             // txtStatus
             // 

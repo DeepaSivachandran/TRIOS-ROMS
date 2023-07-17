@@ -43,15 +43,15 @@
             this.pnlSupplierMappingList = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.grdSupplierMappingList = new System.Windows.Forms.DataGridView();
+            this.grpFilterby = new System.Windows.Forms.GroupBox();
+            this.txtSupplier = new System.Windows.Forms.TextBox();
+            this.btnView = new System.Windows.Forms.Button();
+            this.lblDESupplier = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grpFilterby = new System.Windows.Forms.GroupBox();
-            this.txtSupplier = new System.Windows.Forms.TextBox();
-            this.btnView = new System.Windows.Forms.Button();
-            this.lblDESupplier = new System.Windows.Forms.Label();
             this.tshSupplierMappingList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.pnlSupplierMappingList.SuspendLayout();
@@ -234,39 +234,6 @@
             this.grdSupplierMappingList.Size = new System.Drawing.Size(1324, 545);
             this.grdSupplierMappingList.TabIndex = 958789;
             // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            // 
-            // clmsupname
-            // 
-            this.clmsupname.HeaderText = "Supplier Name";
-            this.clmsupname.Name = "clmsupname";
-            this.clmsupname.ReadOnly = true;
-            this.clmsupname.Width = 200;
-            // 
-            // clmICode
-            // 
-            this.clmICode.HeaderText = "I Code";
-            this.clmICode.Name = "clmICode";
-            this.clmICode.ReadOnly = true;
-            // 
-            // clmproname
-            // 
-            this.clmproname.HeaderText = "Product Name";
-            this.clmproname.Name = "clmproname";
-            this.clmproname.ReadOnly = true;
-            this.clmproname.Width = 400;
-            // 
-            // clmUnit
-            // 
-            this.clmUnit.HeaderText = "Unit";
-            this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
-            this.clmUnit.Width = 150;
-            // 
             // grpFilterby
             // 
             this.grpFilterby.BackColor = System.Drawing.Color.White;
@@ -312,6 +279,39 @@
             this.lblDESupplier.TabIndex = 35;
             this.lblDESupplier.Text = "Supplier";
             // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            // 
+            // clmsupname
+            // 
+            this.clmsupname.HeaderText = "Supplier Name";
+            this.clmsupname.Name = "clmsupname";
+            this.clmsupname.ReadOnly = true;
+            this.clmsupname.Width = 200;
+            // 
+            // clmICode
+            // 
+            this.clmICode.HeaderText = "P.I Code";
+            this.clmICode.Name = "clmICode";
+            this.clmICode.ReadOnly = true;
+            // 
+            // clmproname
+            // 
+            this.clmproname.HeaderText = "Product Name";
+            this.clmproname.Name = "clmproname";
+            this.clmproname.ReadOnly = true;
+            this.clmproname.Width = 400;
+            // 
+            // clmUnit
+            // 
+            this.clmUnit.HeaderText = "Unit";
+            this.clmUnit.Name = "clmUnit";
+            this.clmUnit.ReadOnly = true;
+            this.clmUnit.Width = 150;
+            // 
             // CP_SupplierMappinglist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -356,15 +356,15 @@
         public System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.Panel pnlSupplierMappingList;
         public System.Windows.Forms.DataGridView grdSupplierMappingList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmICode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmproname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
         private System.Windows.Forms.GroupBox grpFilterby;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Label lblDESupplier;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmICode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmproname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
     }
 }

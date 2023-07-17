@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_SubGroup
+    partial class CP_ProductSubGroup
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_SubGroup));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_ProductSubGroup));
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtPurchaseShopGodown = new System.Windows.Forms.TextBox();
+            this.cmbPurchaseStockLocation = new System.Windows.Forms.ComboBox();
+            this.txtDpurchaseStockLocation = new System.Windows.Forms.TextBox();
             this.txtDEProductSubGroupNameTamil = new System.Windows.Forms.TextBox();
             this.txtESubGroupNameTamil = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Label();
@@ -45,10 +49,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtESubGroupNameEnglish = new System.Windows.Forms.TextBox();
             this.errGroup = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtDpurchaseStockLocation = new System.Windows.Forms.TextBox();
-            this.cmbPurchaseStockLocation = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.txtPurchaseShopGodown = new System.Windows.Forms.TextBox();
+            this.txtPurchaseshopRack = new System.Windows.Forms.TextBox();
+            this.cmbpurchaseshoprack = new System.Windows.Forms.ComboBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errGroup)).BeginInit();
@@ -56,6 +58,8 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.cmbpurchaseshoprack);
+            this.grbform.Controls.Add(this.txtPurchaseshopRack);
             this.grbform.Controls.Add(this.comboBox1);
             this.grbform.Controls.Add(this.txtPurchaseShopGodown);
             this.grbform.Controls.Add(this.cmbPurchaseStockLocation);
@@ -73,9 +77,51 @@
             this.grbform.Controls.Add(this.txtESubGroupNameEnglish);
             this.grbform.Location = new System.Drawing.Point(16, 10);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(552, 246);
+            this.grbform.Size = new System.Drawing.Size(552, 275);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(235, 134);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(274, 27);
+            this.comboBox1.TabIndex = 1111137;
+            // 
+            // txtPurchaseShopGodown
+            // 
+            this.txtPurchaseShopGodown.BackColor = System.Drawing.SystemColors.Control;
+            this.txtPurchaseShopGodown.Enabled = false;
+            this.txtPurchaseShopGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPurchaseShopGodown.Location = new System.Drawing.Point(40, 134);
+            this.txtPurchaseShopGodown.Name = "txtPurchaseShopGodown";
+            this.txtPurchaseShopGodown.ReadOnly = true;
+            this.txtPurchaseShopGodown.Size = new System.Drawing.Size(195, 27);
+            this.txtPurchaseShopGodown.TabIndex = 1111136;
+            this.txtPurchaseShopGodown.Text = "Purchase Shop Godown";
+            // 
+            // cmbPurchaseStockLocation
+            // 
+            this.cmbPurchaseStockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.cmbPurchaseStockLocation.FormattingEnabled = true;
+            this.cmbPurchaseStockLocation.Location = new System.Drawing.Point(235, 109);
+            this.cmbPurchaseStockLocation.Name = "cmbPurchaseStockLocation";
+            this.cmbPurchaseStockLocation.Size = new System.Drawing.Size(274, 27);
+            this.cmbPurchaseStockLocation.TabIndex = 1111135;
+            // 
+            // txtDpurchaseStockLocation
+            // 
+            this.txtDpurchaseStockLocation.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDpurchaseStockLocation.Enabled = false;
+            this.txtDpurchaseStockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDpurchaseStockLocation.Location = new System.Drawing.Point(40, 109);
+            this.txtDpurchaseStockLocation.Name = "txtDpurchaseStockLocation";
+            this.txtDpurchaseStockLocation.ReadOnly = true;
+            this.txtDpurchaseStockLocation.Size = new System.Drawing.Size(195, 27);
+            this.txtDpurchaseStockLocation.TabIndex = 1111134;
+            this.txtDpurchaseStockLocation.Text = "Purchase Stock Location";
             // 
             // txtDEProductSubGroupNameTamil
             // 
@@ -141,7 +187,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(40, 161);
+            this.txtDStatus.Location = new System.Drawing.Point(40, 187);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(195, 27);
@@ -154,7 +200,7 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInactive);
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlStatus.Location = new System.Drawing.Point(235, 160);
+            this.pnlStatus.Location = new System.Drawing.Point(235, 187);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(274, 27);
             this.pnlStatus.TabIndex = 3;
@@ -203,7 +249,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(434, 200);
+            this.btnClose.Location = new System.Drawing.Point(434, 224);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 6;
@@ -220,7 +266,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(346, 200);
+            this.btnSave.Location = new System.Drawing.Point(346, 224);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 5;
@@ -248,52 +294,33 @@
             // 
             this.errGroup.ContainerControl = this;
             // 
-            // txtDpurchaseStockLocation
+            // txtPurchaseshopRack
             // 
-            this.txtDpurchaseStockLocation.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDpurchaseStockLocation.Enabled = false;
-            this.txtDpurchaseStockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDpurchaseStockLocation.Location = new System.Drawing.Point(40, 109);
-            this.txtDpurchaseStockLocation.Name = "txtDpurchaseStockLocation";
-            this.txtDpurchaseStockLocation.ReadOnly = true;
-            this.txtDpurchaseStockLocation.Size = new System.Drawing.Size(195, 27);
-            this.txtDpurchaseStockLocation.TabIndex = 1111134;
-            this.txtDpurchaseStockLocation.Text = "Purchase Stock Location";
+            this.txtPurchaseshopRack.BackColor = System.Drawing.SystemColors.Control;
+            this.txtPurchaseshopRack.Enabled = false;
+            this.txtPurchaseshopRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPurchaseshopRack.Location = new System.Drawing.Point(40, 161);
+            this.txtPurchaseshopRack.Name = "txtPurchaseshopRack";
+            this.txtPurchaseshopRack.ReadOnly = true;
+            this.txtPurchaseshopRack.Size = new System.Drawing.Size(195, 27);
+            this.txtPurchaseshopRack.TabIndex = 1111138;
+            this.txtPurchaseshopRack.Text = "Purchase Shop Rack ";
             // 
-            // cmbPurchaseStockLocation
+            // cmbpurchaseshoprack
             // 
-            this.cmbPurchaseStockLocation.FormattingEnabled = true;
-            this.cmbPurchaseStockLocation.Location = new System.Drawing.Point(235, 110);
-            this.cmbPurchaseStockLocation.Name = "cmbPurchaseStockLocation";
-            this.cmbPurchaseStockLocation.Size = new System.Drawing.Size(274, 25);
-            this.cmbPurchaseStockLocation.TabIndex = 1111135;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(235, 135);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(274, 25);
-            this.comboBox1.TabIndex = 1111137;
-            // 
-            // txtPurchaseShopGodown
-            // 
-            this.txtPurchaseShopGodown.BackColor = System.Drawing.SystemColors.Control;
-            this.txtPurchaseShopGodown.Enabled = false;
-            this.txtPurchaseShopGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPurchaseShopGodown.Location = new System.Drawing.Point(40, 134);
-            this.txtPurchaseShopGodown.Name = "txtPurchaseShopGodown";
-            this.txtPurchaseShopGodown.ReadOnly = true;
-            this.txtPurchaseShopGodown.Size = new System.Drawing.Size(195, 27);
-            this.txtPurchaseShopGodown.TabIndex = 1111136;
-            this.txtPurchaseShopGodown.Text = "Purchase Shop Godown";
+            this.cmbpurchaseshoprack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.cmbpurchaseshoprack.FormattingEnabled = true;
+            this.cmbpurchaseshoprack.Location = new System.Drawing.Point(235, 161);
+            this.cmbpurchaseshoprack.Name = "cmbpurchaseshoprack";
+            this.cmbpurchaseshoprack.Size = new System.Drawing.Size(274, 27);
+            this.cmbpurchaseshoprack.TabIndex = 1111139;
             // 
             // CP_ProductSubGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(585, 283);
+            this.ClientSize = new System.Drawing.Size(585, 307);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -336,5 +363,7 @@
         private System.Windows.Forms.TextBox txtPurchaseShopGodown;
         private System.Windows.Forms.ComboBox cmbPurchaseStockLocation;
         private System.Windows.Forms.TextBox txtDpurchaseStockLocation;
+        private System.Windows.Forms.ComboBox cmbpurchaseshoprack;
+        private System.Windows.Forms.TextBox txtPurchaseshopRack;
     }
 }

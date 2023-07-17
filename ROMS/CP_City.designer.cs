@@ -101,21 +101,17 @@
             this.cmbState.Location = new System.Drawing.Point(159, 46);
             this.cmbState.Name = "cmbState";
             this.cmbState.Size = new System.Drawing.Size(240, 27);
-            this.cmbState.TabIndex = 0;
-            this.cmbState.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbState_KeyDown);
+            this.cmbState.TabIndex = 63;
             // 
             // txtCityName
             // 
-            this.txtCityName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCityName.Font = new System.Drawing.Font("Oswald", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCityName.Location = new System.Drawing.Point(159, 73);
             this.txtCityName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtCityName.MaxLength = 100;
             this.txtCityName.Name = "txtCityName";
             this.txtCityName.Size = new System.Drawing.Size(240, 28);
-            this.txtCityName.TabIndex = 1;
-            this.txtCityName.Enter += new System.EventHandler(this.TxtCityName_Enter);
-            this.txtCityName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCityName_KeyDown);
-            this.txtCityName.Leave += new System.EventHandler(this.TxtCityName_Leave);
+            this.txtCityName.TabIndex = 61;
             // 
             // btnClose
             // 
@@ -172,14 +168,10 @@
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
-            this.pnlStatus.Enabled = false;
             this.pnlStatus.Location = new System.Drawing.Point(159, 101);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(240, 28);
-            this.pnlStatus.TabIndex = 2;
-            this.pnlStatus.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlStatus_Paint);
-            this.pnlStatus.Enter += new System.EventHandler(this.PnlStatus_Enter);
-            this.pnlStatus.Leave += new System.EventHandler(this.PnlStatus_Leave);
+            this.pnlStatus.TabIndex = 64;
             // 
             // rbActive
             // 
@@ -189,11 +181,10 @@
             this.rbActive.Location = new System.Drawing.Point(44, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
-            this.rbActive.TabIndex = 2;
+            this.rbActive.TabIndex = 15;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
-            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             // 
             // rbInActive
             // 
@@ -202,11 +193,10 @@
             this.rbInActive.Location = new System.Drawing.Point(122, 1);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(70, 24);
-            this.rbInActive.TabIndex = 3;
+            this.rbInActive.TabIndex = 15;
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
             this.rbInActive.CheckedChanged += new System.EventHandler(this.RbInActive_CheckedChanged);
-            this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInActive_KeyDown_1);
             // 
             // errCity
             // 

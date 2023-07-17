@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Supplier));
             this.txtDCompanyName = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
@@ -84,7 +87,9 @@
             this.txtgstin = new System.Windows.Forms.TextBox();
             this.textBox32 = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.grddays = new System.Windows.Forms.DataGridView();
+            this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbsuppliertype = new System.Windows.Forms.ComboBox();
             this.txtDOrderDay = new System.Windows.Forms.TextBox();
             this.textBox34 = new System.Windows.Forms.TextBox();
@@ -98,6 +103,8 @@
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.txtDPaymentMode = new System.Windows.Forms.TextBox();
+            this.cmbPaymentMode = new System.Windows.Forms.ComboBox();
             this.grbform.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
@@ -105,7 +112,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grddays)).BeginInit();
             this.panelStatus.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -283,7 +290,7 @@
             this.grbform.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbform.Location = new System.Drawing.Point(12, 12);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(551, 301);
+            this.grbform.Size = new System.Drawing.Size(551, 309);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             this.grbform.Text = "Contact Details";
@@ -426,7 +433,7 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(970, 425);
+            this.textBox4.Location = new System.Drawing.Point(592, 422);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(131, 27);
@@ -446,7 +453,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(583, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(358, 185);
+            this.groupBox1.Size = new System.Drawing.Size(358, 203);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Representative Details";
@@ -566,9 +573,9 @@
             this.groupBox2.Controls.Add(this.textBox19);
             this.groupBox2.Controls.Add(this.textBox20);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(583, 212);
+            this.groupBox2.Location = new System.Drawing.Point(583, 216);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(358, 185);
+            this.groupBox2.Size = new System.Drawing.Size(358, 200);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Salesman Details";
@@ -681,9 +688,9 @@
             this.groupBox4.Controls.Add(this.txtcreditlimit);
             this.groupBox4.Controls.Add(this.textBox28);
             this.groupBox4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(12, 316);
+            this.groupBox4.Location = new System.Drawing.Point(12, 330);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(551, 81);
+            this.groupBox4.Size = new System.Drawing.Size(551, 86);
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Finance  Details";
@@ -751,12 +758,14 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.cmbPaymentMode);
+            this.groupBox5.Controls.Add(this.txtDPaymentMode);
             this.groupBox5.Controls.Add(this.txtgstin);
             this.groupBox5.Controls.Add(this.textBox32);
             this.groupBox5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(961, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(358, 77);
+            this.groupBox5.Size = new System.Drawing.Size(358, 113);
             this.groupBox5.TabIndex = 23;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Regitration Details";
@@ -787,7 +796,7 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.dataGridView1);
+            this.groupBox6.Controls.Add(this.grddays);
             this.groupBox6.Controls.Add(this.cmbsuppliertype);
             this.groupBox6.Controls.Add(this.txtDOrderDay);
             this.groupBox6.Controls.Add(this.textBox34);
@@ -797,22 +806,69 @@
             this.groupBox6.Controls.Add(this.txtsupplybrand);
             this.groupBox6.Controls.Add(this.textBox30);
             this.groupBox6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(961, 95);
+            this.groupBox6.Location = new System.Drawing.Point(961, 129);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(358, 321);
+            this.groupBox6.Size = new System.Drawing.Size(358, 287);
             this.groupBox6.TabIndex = 25;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Order Details";
             // 
-            // dataGridView1
+            // grddays
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ColumnHeadersVisible = false;
-            this.dataGridView1.Location = new System.Drawing.Point(139, 117);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(205, 191);
-            this.dataGridView1.TabIndex = 67;
+            this.grddays.AllowUserToAddRows = false;
+            this.grddays.AllowUserToDeleteRows = false;
+            this.grddays.AllowUserToResizeColumns = false;
+            this.grddays.AllowUserToResizeRows = false;
+            this.grddays.BackgroundColor = System.Drawing.Color.White;
+            this.grddays.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grddays.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grddays.ColumnHeadersHeight = 30;
+            this.grddays.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grddays.ColumnHeadersVisible = false;
+            this.grddays.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmcheck,
+            this.clmday});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grddays.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grddays.EnableHeadersVisualStyles = false;
+            this.grddays.GridColor = System.Drawing.Color.White;
+            this.grddays.Location = new System.Drawing.Point(139, 117);
+            this.grddays.Name = "grddays";
+            this.grddays.ReadOnly = true;
+            this.grddays.RowHeadersVisible = false;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grddays.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grddays.RowTemplate.Height = 25;
+            this.grddays.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grddays.Size = new System.Drawing.Size(132, 156);
+            this.grddays.TabIndex = 61;
+            // 
+            // clmcheck
+            // 
+            this.clmcheck.HeaderText = "";
+            this.clmcheck.Name = "clmcheck";
+            this.clmcheck.ReadOnly = true;
+            this.clmcheck.Width = 30;
+            // 
+            // clmday
+            // 
+            this.clmday.HeaderText = "";
+            this.clmday.Name = "clmday";
+            this.clmday.ReadOnly = true;
             // 
             // cmbsuppliertype
             // 
@@ -918,16 +974,16 @@
             this.panelStatus.Controls.Add(this.rbActive);
             this.panelStatus.Enabled = false;
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(1100, 425);
+            this.panelStatus.Location = new System.Drawing.Point(722, 422);
             this.panelStatus.Name = "panelStatus";
-            this.panelStatus.Size = new System.Drawing.Size(219, 27);
+            this.panelStatus.Size = new System.Drawing.Size(205, 27);
             this.panelStatus.TabIndex = 60;
             // 
             // rbInactive
             // 
             this.rbInactive.AutoSize = true;
             this.rbInactive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbInactive.Location = new System.Drawing.Point(124, 1);
+            this.rbInactive.Location = new System.Drawing.Point(85, 1);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
             this.rbInactive.TabIndex = 33;
@@ -953,7 +1009,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1154, 461);
+            this.btnSave.Location = new System.Drawing.Point(1154, 421);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 34;
@@ -970,7 +1026,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1244, 461);
+            this.btnClose.Location = new System.Drawing.Point(1244, 421);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 35;
@@ -982,12 +1038,34 @@
             this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
+            // txtDPaymentMode
+            // 
+            this.txtDPaymentMode.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDPaymentMode.Enabled = false;
+            this.txtDPaymentMode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDPaymentMode.Location = new System.Drawing.Point(9, 63);
+            this.txtDPaymentMode.Name = "txtDPaymentMode";
+            this.txtDPaymentMode.ReadOnly = true;
+            this.txtDPaymentMode.Size = new System.Drawing.Size(131, 27);
+            this.txtDPaymentMode.TabIndex = 24;
+            this.txtDPaymentMode.Text = "Payment Mode";
+            // 
+            // cmbPaymentMode
+            // 
+            this.cmbPaymentMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPaymentMode.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPaymentMode.FormattingEnabled = true;
+            this.cmbPaymentMode.Location = new System.Drawing.Point(140, 63);
+            this.cmbPaymentMode.Name = "cmbPaymentMode";
+            this.cmbPaymentMode.Size = new System.Drawing.Size(204, 27);
+            this.cmbPaymentMode.TabIndex = 25;
+            // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1332, 502);
+            this.ClientSize = new System.Drawing.Size(1332, 466);
             this.Controls.Add(this.panelStatus);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
@@ -1024,7 +1102,7 @@
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grddays)).EndInit();
             this.panelStatus.ResumeLayout(false);
             this.panelStatus.PerformLayout();
             this.ResumeLayout(false);
@@ -1100,7 +1178,11 @@
         private System.Windows.Forms.Panel panelStatus;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txtDOrderDay;
+        public System.Windows.Forms.DataGridView grddays;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmcheck;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmday;
+        private System.Windows.Forms.ComboBox cmbPaymentMode;
+        private System.Windows.Forms.TextBox txtDPaymentMode;
     }
 }

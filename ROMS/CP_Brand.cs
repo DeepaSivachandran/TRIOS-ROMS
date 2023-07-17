@@ -532,7 +532,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbUserRole.Focus();
+                    //cmbUserRole.Focus();
                 }
             }
             catch (Exception ex)
