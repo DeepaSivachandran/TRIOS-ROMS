@@ -78,7 +78,12 @@ namespace ROMS
         public static PUR_PurchaseOrder objPUR_PurchaseOrder; 
         public static PUR_SupplierScheduleList objPUR_SupplierScheduleList;
         public static PUR_GRNDetailsList objPUR_GRNDetailsList;
-        public static PUR_GRNDetails objPUR_GRNDetails;         
+        public static PUR_GRNDetails objPUR_GRNDetails;
+        public static PUR_GRNVerify objPUR_GRNVerify;
+        public static PUR_GRNOrderType objPUR_GRNOrderType;
+        public static PUR_PurchaseOrderDamage objPUR_PurchaseOrderDamage;
+        
+
         public static PUR_PurchaseOrderList objPUR_PurchaseOrderList;
         public static PUR_SupplierSchedule objPUR_SupplierSchedule;
          

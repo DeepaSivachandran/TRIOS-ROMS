@@ -95,31 +95,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void grdBrandList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            { 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdBrandList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            { 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        
+ 
          
         private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
         {
@@ -168,22 +144,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void LblDESalesManAddress_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GrpSupplierMapping_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LblDESubGroup_Click(object sender, EventArgs e)
-        {
-
-        }
-
+         
         private void BtnClose_Click(object sender, EventArgs e)
         {
             try
@@ -210,6 +171,111 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnVerify1_Click(object sender, EventArgs e)
+        {
+             
+            try
+            {
+                udfnverify();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnVerify2_Click(object sender, EventArgs e)
+        {
+            
+             try
+            {
+                udfnverify();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        public void udfnverify()
+        {
+            try
+            {
+                MainForm.objPUR_GRNVerify =new PUR_GRNVerify();
+                MainForm.objPUR_GRNVerify.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            } 
+    }
+
+        private void TxtInvoiceamt_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtInvoiceamt.Text == "25000")
+                {
+                    grpVerify.Enabled = true;
+                }
+                else
+                {
+                    grpVerify.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void CmbOrderType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbOrderType.SelectedItem == "Purchase Order")
+                {
+
+                    MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
+                    MainForm.objPUR_GRNOrderType.ShowDialog();
+                }
+                else
+                { 
+                    MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
+                    MainForm.objPUR_GRNOrderType.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+            
+        }
+
+        private void BtnDamage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
+                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
             }
         }
     }

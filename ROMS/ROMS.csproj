@@ -92,6 +92,24 @@
     <Compile Include="INV_StockTransferList.designer.cs">
       <DependentUpon>INV_StockTransferList.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_PurchaseOrderDamage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseOrderDamage.designer.cs">
+      <DependentUpon>PUR_PurchaseOrderDamage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNOrderType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNOrderType.designer.cs">
+      <DependentUpon>PUR_GRNOrderType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNVerify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNVerify.designer.cs">
+      <DependentUpon>PUR_GRNVerify.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_GRNDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -415,6 +433,15 @@
     <EmbeddedResource Include="INV_StockTransferList.resx">
       <DependentUpon>INV_StockTransferList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseOrderDamage.resx">
+      <DependentUpon>PUR_PurchaseOrderDamage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNOrderType.resx">
+      <DependentUpon>PUR_GRNOrderType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNVerify.resx">
+      <DependentUpon>PUR_GRNVerify.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNDetails.resx">
       <DependentUpon>PUR_GRNDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -707,6 +734,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\login %282%291.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\include.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\internet-on.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

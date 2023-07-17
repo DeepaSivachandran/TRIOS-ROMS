@@ -42,31 +42,21 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlItemList = new System.Windows.Forms.Panel();
+            this.lblPC = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdItemList = new System.Windows.Forms.DataGridView();
             this.grpFilterby = new System.Windows.Forms.GroupBox();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.lblProductSubGroup = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.lblProductgroup = new System.Windows.Forms.Label();
             this.cmbGroupType = new System.Windows.Forms.ComboBox();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.btnView = new System.Windows.Forms.Button();
-            this.lblPC = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmprodcategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpurunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmprogroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmprosubgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,6 +67,16 @@
             this.clmDPurchaseUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmprodcategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpurunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsItemList.SuspendLayout();
             this.pnlItemList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdItemList)).BeginInit();
@@ -176,11 +176,32 @@
             this.pnlItemList.Controls.Add(this.grpFilterby);
             this.pnlItemList.Controls.Add(this.DGV_SearchGrid);
             this.pnlItemList.Controls.Add(this.picLoader);
-            this.pnlItemList.Enabled = true;
             this.pnlItemList.Location = new System.Drawing.Point(0, 40);
             this.pnlItemList.Name = "pnlItemList";
             this.pnlItemList.Size = new System.Drawing.Size(1354, 637);
             this.pnlItemList.TabIndex = 36;
+            // 
+            // lblPC
+            // 
+            this.lblPC.AutoSize = true;
+            this.lblPC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblPC.ForeColor = System.Drawing.Color.Crimson;
+            this.lblPC.Location = new System.Drawing.Point(1258, 50);
+            this.lblPC.Name = "lblPC";
+            this.lblPC.Size = new System.Drawing.Size(17, 20);
+            this.lblPC.TabIndex = 958804;
+            this.lblPC.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(1168, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 20);
+            this.label2.TabIndex = 958803;
+            this.label2.Text = "No.of Products :";
             // 
             // lblNoRecordsFound
             // 
@@ -261,6 +282,48 @@
             this.grpFilterby.TabIndex = 958801;
             this.grpFilterby.TabStop = false;
             this.grpFilterby.Text = "Filter By";
+            // 
+            // btnExport
+            // 
+            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
+            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport.Location = new System.Drawing.Point(1036, 30);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(79, 29);
+            this.btnExport.TabIndex = 958798;
+            this.btnExport.Text = "Export";
+            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExport.UseVisualStyleBackColor = true;
+            // 
+            // btnView
+            // 
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(953, 30);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 29);
+            this.btnView.TabIndex = 958797;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Concern";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(62, 31);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(160, 27);
+            this.comboBox2.TabIndex = 5;
             // 
             // lblProductSubGroup
             // 
@@ -363,128 +426,6 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 20);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Concern";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(62, 31);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(160, 27);
-            this.comboBox2.TabIndex = 5;
-            // 
-            // btnExport
-            // 
-            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
-            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1036, 30);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(79, 29);
-            this.btnExport.TabIndex = 958798;
-            this.btnExport.Text = "Export";
-            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExport.UseVisualStyleBackColor = true;
-            // 
-            // btnView
-            // 
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(953, 30);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 958797;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
-            // 
-            // lblPC
-            // 
-            this.lblPC.AutoSize = true;
-            this.lblPC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblPC.ForeColor = System.Drawing.Color.Crimson;
-            this.lblPC.Location = new System.Drawing.Point(1258, 50);
-            this.lblPC.Name = "lblPC";
-            this.lblPC.Size = new System.Drawing.Size(17, 20);
-            this.lblPC.TabIndex = 958804;
-            this.lblPC.Text = "0";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(1168, 50);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 20);
-            this.label2.TabIndex = 958803;
-            this.label2.Text = "No.of Products :";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Product Group";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Product Subgroup";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "I Code";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Product Name In English";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Product Name In Tamil";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 200;
-            // 
-            // clmprodcategory
-            // 
-            this.clmprodcategory.HeaderText = "Product Category";
-            this.clmprodcategory.Name = "clmprodcategory";
-            this.clmprodcategory.ReadOnly = true;
-            this.clmprodcategory.Width = 150;
-            // 
-            // clmpurunit
-            // 
-            this.clmpurunit.HeaderText = "Purchase Unit";
-            this.clmpurunit.Name = "clmpurunit";
-            this.clmpurunit.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Sales Unit";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "Status";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            // 
             // clmdsno
             // 
             this.clmdsno.HeaderText = "S.No.";
@@ -505,7 +446,7 @@
             // 
             // icode
             // 
-            this.icode.HeaderText = "I Code";
+            this.icode.HeaderText = "P.I Code";
             this.icode.Name = "icode";
             // 
             // clmpronameenglish
@@ -542,6 +483,64 @@
             // 
             this.clmdstatus.HeaderText = "Status";
             this.clmdstatus.Name = "clmdstatus";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Product Group";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Product Subgroup";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "P.I Code";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Product Name In English";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Product Name In Tamil";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 200;
+            // 
+            // clmprodcategory
+            // 
+            this.clmprodcategory.HeaderText = "Product Category";
+            this.clmprodcategory.Name = "clmprodcategory";
+            this.clmprodcategory.ReadOnly = true;
+            this.clmprodcategory.Width = 150;
+            // 
+            // clmpurunit
+            // 
+            this.clmpurunit.HeaderText = "Purchase Unit";
+            this.clmpurunit.Name = "clmpurunit";
+            this.clmpurunit.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Sales Unit";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "Status";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             // 
             // CP_ProductList
             // 
