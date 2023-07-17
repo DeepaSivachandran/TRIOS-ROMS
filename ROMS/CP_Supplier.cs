@@ -1667,29 +1667,29 @@ namespace ROMS
 
         private void Txtcst_Leave(object sender, EventArgs e)
         {
-            try
-            {
-                if (txtcst.Text  == "")
-                {
+            //try
+            //{
+            //    if (txtcst.Text  == "")
+            //    {
 
-                    errCompany.SetError(txtcst, "Please enter CST");
-                    txtcst.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tparea.ShowAlways = true;
-                    tparea.Show("Please enter CST.", txtcst, 5000);
+            //        errCompany.SetError(txtcst, "Please enter CST");
+            //        txtcst.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+            //        tparea.ShowAlways = true;
+            //        tparea.Show("Please enter CST.", txtcst, 5000);
 
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtcst.BackColor = Color.White;
-                    tparea.Hide(txtcst);
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //    }
+            //    else
+            //    {
+            //        errCompany.Clear();
+            //        txtcst.BackColor = Color.White;
+            //        tparea.Hide(txtcst);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void Txtcst_KeyDown(object sender, KeyEventArgs e)
@@ -1712,7 +1712,7 @@ namespace ROMS
         {
             try
             {
-                txtcst.BackColor = Color.LemonChiffon;
+                //txtcst.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1754,7 +1754,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbphorder.Focus();
+                    //rbphorder.Focus();
                 }
             }
             catch (Exception ex)
@@ -1783,7 +1783,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbvisitdate.Focus();
+                   // rbvisitdate.Focus();
                 }
             }
             catch (Exception ex)
@@ -1799,7 +1799,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbvisitday.Focus();
+                    //cmbvisitday.Focus();
                 }
             }
             catch (Exception ex)
@@ -1905,7 +1905,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtcst.Focus();
+                   // txtcst.Focus();
                 }
             }
             catch (Exception ex)

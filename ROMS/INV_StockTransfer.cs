@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class CP_Location : Form
+    public partial class INV_StockTransfer : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -22,7 +22,7 @@ namespace ROMS
 
         public string varlocationcode;
        
-        public CP_Location()
+        public INV_StockTransfer()
         {
             InitializeComponent();
         }
@@ -514,6 +514,26 @@ namespace ROMS
         }
 
         private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GrbGodown_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtConcern_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LblSourceRack_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbSourceRack_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

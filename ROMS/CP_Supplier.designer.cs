@@ -81,28 +81,23 @@
             this.txtcreditlimit = new System.Windows.Forms.TextBox();
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.txtcst = new System.Windows.Forms.TextBox();
             this.txtgstin = new System.Windows.Forms.TextBox();
-            this.textBox31 = new System.Windows.Forms.TextBox();
             this.textBox32 = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cmbsuppliertype = new System.Windows.Forms.ComboBox();
+            this.txtDOrderDay = new System.Windows.Forms.TextBox();
             this.textBox34 = new System.Windows.Forms.TextBox();
             this.rbmanager = new System.Windows.Forms.RadioButton();
             this.textBox33 = new System.Windows.Forms.TextBox();
             this.rbpropritor = new System.Windows.Forms.RadioButton();
-            this.cmbvisitday = new System.Windows.Forms.ComboBox();
-            this.textBox29 = new System.Windows.Forms.TextBox();
-            this.rbvisitdate = new System.Windows.Forms.RadioButton();
-            this.textBox23 = new System.Windows.Forms.TextBox();
-            this.rbphorder = new System.Windows.Forms.RadioButton();
             this.txtsupplybrand = new System.Windows.Forms.TextBox();
             this.textBox30 = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.panelStatus = new System.Windows.Forms.Panel();
             this.rbInactive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
@@ -110,6 +105,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelStatus.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -430,7 +426,7 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(970, 317);
+            this.textBox4.Location = new System.Drawing.Point(970, 425);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(131, 27);
@@ -755,29 +751,15 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.txtcst);
             this.groupBox5.Controls.Add(this.txtgstin);
-            this.groupBox5.Controls.Add(this.textBox31);
             this.groupBox5.Controls.Add(this.textBox32);
             this.groupBox5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(961, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(358, 104);
+            this.groupBox5.Size = new System.Drawing.Size(358, 77);
             this.groupBox5.TabIndex = 23;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Regitration Details";
-            // 
-            // txtcst
-            // 
-            this.txtcst.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtcst.Location = new System.Drawing.Point(140, 63);
-            this.txtcst.MaxLength = 100;
-            this.txtcst.Name = "txtcst";
-            this.txtcst.Size = new System.Drawing.Size(204, 27);
-            this.txtcst.TabIndex = 24;
-            this.txtcst.Enter += new System.EventHandler(this.Txtcst_Enter);
-            this.txtcst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtcst_KeyDown);
-            this.txtcst.Leave += new System.EventHandler(this.Txtcst_Leave);
             // 
             // txtgstin
             // 
@@ -790,18 +772,6 @@
             this.txtgstin.Enter += new System.EventHandler(this.Txtgstin_Enter);
             this.txtgstin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtgstin_KeyDown);
             this.txtgstin.Leave += new System.EventHandler(this.Txtgstin_Leave);
-            // 
-            // textBox31
-            // 
-            this.textBox31.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox31.Enabled = false;
-            this.textBox31.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox31.Location = new System.Drawing.Point(9, 63);
-            this.textBox31.Name = "textBox31";
-            this.textBox31.ReadOnly = true;
-            this.textBox31.Size = new System.Drawing.Size(131, 27);
-            this.textBox31.TabIndex = 18;
-            this.textBox31.Text = "CST";
             // 
             // textBox32
             // 
@@ -817,43 +787,62 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.dataGridView1);
             this.groupBox6.Controls.Add(this.cmbsuppliertype);
+            this.groupBox6.Controls.Add(this.txtDOrderDay);
             this.groupBox6.Controls.Add(this.textBox34);
             this.groupBox6.Controls.Add(this.rbmanager);
             this.groupBox6.Controls.Add(this.textBox33);
             this.groupBox6.Controls.Add(this.rbpropritor);
-            this.groupBox6.Controls.Add(this.cmbvisitday);
-            this.groupBox6.Controls.Add(this.textBox29);
-            this.groupBox6.Controls.Add(this.rbvisitdate);
-            this.groupBox6.Controls.Add(this.textBox23);
-            this.groupBox6.Controls.Add(this.rbphorder);
             this.groupBox6.Controls.Add(this.txtsupplybrand);
             this.groupBox6.Controls.Add(this.textBox30);
             this.groupBox6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(961, 117);
+            this.groupBox6.Location = new System.Drawing.Point(961, 95);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(358, 185);
+            this.groupBox6.Size = new System.Drawing.Size(358, 321);
             this.groupBox6.TabIndex = 25;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Order Details";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersVisible = false;
+            this.dataGridView1.Location = new System.Drawing.Point(139, 117);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(205, 191);
+            this.dataGridView1.TabIndex = 67;
             // 
             // cmbsuppliertype
             // 
             this.cmbsuppliertype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbsuppliertype.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbsuppliertype.FormattingEnabled = true;
-            this.cmbsuppliertype.Location = new System.Drawing.Point(140, 144);
+            this.cmbsuppliertype.Location = new System.Drawing.Point(140, 90);
             this.cmbsuppliertype.Name = "cmbsuppliertype";
             this.cmbsuppliertype.Size = new System.Drawing.Size(204, 27);
             this.cmbsuppliertype.TabIndex = 30;
             this.cmbsuppliertype.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmbsuppliertype_KeyDown);
+            // 
+            // txtDOrderDay
+            // 
+            this.txtDOrderDay.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDOrderDay.Enabled = false;
+            this.txtDOrderDay.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDOrderDay.Location = new System.Drawing.Point(9, 117);
+            this.txtDOrderDay.Name = "txtDOrderDay";
+            this.txtDOrderDay.ReadOnly = true;
+            this.txtDOrderDay.Size = new System.Drawing.Size(131, 27);
+            this.txtDOrderDay.TabIndex = 63;
+            this.txtDOrderDay.Text = "Order Day";
             // 
             // textBox34
             // 
             this.textBox34.BackColor = System.Drawing.SystemColors.Control;
             this.textBox34.Enabled = false;
             this.textBox34.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox34.Location = new System.Drawing.Point(9, 144);
+            this.textBox34.Location = new System.Drawing.Point(9, 90);
             this.textBox34.Name = "textBox34";
             this.textBox34.ReadOnly = true;
             this.textBox34.Size = new System.Drawing.Size(131, 27);
@@ -864,7 +853,7 @@
             // 
             this.rbmanager.AutoSize = true;
             this.rbmanager.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbmanager.Location = new System.Drawing.Point(265, 118);
+            this.rbmanager.Location = new System.Drawing.Point(265, 64);
             this.rbmanager.Name = "rbmanager";
             this.rbmanager.Size = new System.Drawing.Size(74, 24);
             this.rbmanager.TabIndex = 29;
@@ -877,19 +866,19 @@
             this.textBox33.BackColor = System.Drawing.SystemColors.Control;
             this.textBox33.Enabled = false;
             this.textBox33.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox33.Location = new System.Drawing.Point(9, 117);
+            this.textBox33.Location = new System.Drawing.Point(9, 63);
             this.textBox33.Name = "textBox33";
             this.textBox33.ReadOnly = true;
             this.textBox33.Size = new System.Drawing.Size(131, 27);
             this.textBox33.TabIndex = 65;
-            this.textBox33.Text = "label";
+            this.textBox33.Text = "Label";
             // 
             // rbpropritor
             // 
             this.rbpropritor.AutoSize = true;
             this.rbpropritor.Checked = true;
             this.rbpropritor.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbpropritor.Location = new System.Drawing.Point(148, 118);
+            this.rbpropritor.Location = new System.Drawing.Point(148, 64);
             this.rbpropritor.Name = "rbpropritor";
             this.rbpropritor.Size = new System.Drawing.Size(82, 24);
             this.rbpropritor.TabIndex = 28;
@@ -897,67 +886,6 @@
             this.rbpropritor.Text = "Proprietor";
             this.rbpropritor.UseVisualStyleBackColor = true;
             this.rbpropritor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Rbpropritor_KeyDown);
-            // 
-            // cmbvisitday
-            // 
-            this.cmbvisitday.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbvisitday.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbvisitday.FormattingEnabled = true;
-            this.cmbvisitday.Location = new System.Drawing.Point(140, 90);
-            this.cmbvisitday.Name = "cmbvisitday";
-            this.cmbvisitday.Size = new System.Drawing.Size(204, 27);
-            this.cmbvisitday.TabIndex = 27;
-            this.cmbvisitday.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmbvisitday_KeyDown);
-            // 
-            // textBox29
-            // 
-            this.textBox29.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox29.Enabled = false;
-            this.textBox29.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox29.Location = new System.Drawing.Point(9, 90);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.ReadOnly = true;
-            this.textBox29.Size = new System.Drawing.Size(131, 27);
-            this.textBox29.TabIndex = 61;
-            this.textBox29.Text = "Visit";
-            // 
-            // rbvisitdate
-            // 
-            this.rbvisitdate.AutoSize = true;
-            this.rbvisitdate.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbvisitdate.Location = new System.Drawing.Point(261, 64);
-            this.rbvisitdate.Name = "rbvisitdate";
-            this.rbvisitdate.Size = new System.Drawing.Size(80, 24);
-            this.rbvisitdate.TabIndex = 26;
-            this.rbvisitdate.Text = "Visit Date";
-            this.rbvisitdate.UseVisualStyleBackColor = true;
-            this.rbvisitdate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Rbvisitdate_KeyDown);
-            // 
-            // textBox23
-            // 
-            this.textBox23.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox23.Enabled = false;
-            this.textBox23.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox23.Location = new System.Drawing.Point(9, 63);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.ReadOnly = true;
-            this.textBox23.Size = new System.Drawing.Size(131, 27);
-            this.textBox23.TabIndex = 60;
-            this.textBox23.Text = "Order Type";
-            // 
-            // rbphorder
-            // 
-            this.rbphorder.AutoSize = true;
-            this.rbphorder.Checked = true;
-            this.rbphorder.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbphorder.Location = new System.Drawing.Point(144, 64);
-            this.rbphorder.Name = "rbphorder";
-            this.rbphorder.Size = new System.Drawing.Size(94, 24);
-            this.rbphorder.TabIndex = 26;
-            this.rbphorder.TabStop = true;
-            this.rbphorder.Text = "Phone Order";
-            this.rbphorder.UseVisualStyleBackColor = true;
-            this.rbphorder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Rbphorder_KeyDown);
             // 
             // txtsupplybrand
             // 
@@ -983,40 +911,6 @@
             this.textBox30.TabIndex = 16;
             this.textBox30.Text = "Supply Brand";
             // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1154, 368);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 34;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
-            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
-            this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1244, 368);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 35;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
-            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
-            this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
-            // 
             // panelStatus
             // 
             this.panelStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1024,7 +918,7 @@
             this.panelStatus.Controls.Add(this.rbActive);
             this.panelStatus.Enabled = false;
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(1100, 317);
+            this.panelStatus.Location = new System.Drawing.Point(1100, 425);
             this.panelStatus.Name = "panelStatus";
             this.panelStatus.Size = new System.Drawing.Size(219, 27);
             this.panelStatus.TabIndex = 60;
@@ -1054,12 +948,46 @@
             this.rbActive.UseVisualStyleBackColor = true;
             this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1154, 461);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(84, 29);
+            this.btnSave.TabIndex = 34;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
+            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
+            this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1244, 461);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 35;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
+            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
+            this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
+            // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1332, 417);
+            this.ClientSize = new System.Drawing.Size(1332, 502);
             this.Controls.Add(this.panelStatus);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
@@ -1096,6 +1024,7 @@
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panelStatus.ResumeLayout(false);
             this.panelStatus.PerformLayout();
             this.ResumeLayout(false);
@@ -1158,25 +1087,20 @@
         private System.Windows.Forms.TextBox txtopening;
         private System.Windows.Forms.TextBox textBox22;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox txtcst;
         private System.Windows.Forms.TextBox txtgstin;
-        private System.Windows.Forms.TextBox textBox31;
         private System.Windows.Forms.TextBox textBox32;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox txtsupplybrand;
         private System.Windows.Forms.TextBox textBox30;
-        private System.Windows.Forms.TextBox textBox23;
-        private System.Windows.Forms.RadioButton rbvisitdate;
-        private System.Windows.Forms.RadioButton rbphorder;
         private System.Windows.Forms.TextBox textBox34;
         private System.Windows.Forms.RadioButton rbmanager;
         private System.Windows.Forms.TextBox textBox33;
         private System.Windows.Forms.RadioButton rbpropritor;
-        private System.Windows.Forms.ComboBox cmbvisitday;
-        private System.Windows.Forms.TextBox textBox29;
         private System.Windows.Forms.ComboBox cmbsuppliertype;
         private System.Windows.Forms.Panel panelStatus;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox txtDOrderDay;
     }
 }

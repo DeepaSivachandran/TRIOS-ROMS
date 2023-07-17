@@ -79,7 +79,7 @@ namespace ROMS
                 picLoader.Visible = true;
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdLocationList.DataSource = null;
+                grdGodownList.DataSource = null;
                 DataSet objDs =new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
@@ -94,12 +94,12 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdLocationList.DataSource = objDs.Tables[0];
-                            grdLocationList.Columns["Location Name"].Width = 220;
-                            grdLocationList.Columns["Location Order"].Width = 100;
-                            grdLocationList.Columns["Location Order"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdLocationList.Columns["SI.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdLocationList.Columns["LocationCode"].Visible = false;
+                            grdGodownList.DataSource = objDs.Tables[0];
+                            grdGodownList.Columns["Location Name"].Width = 220;
+                            grdGodownList.Columns["Location Order"].Width = 100;
+                            grdGodownList.Columns["Location Order"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGodownList.Columns["SI.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGodownList.Columns["LocationCode"].Visible = false;
                         }
                         else
                         {
@@ -126,7 +126,7 @@ namespace ROMS
             }
             finally
             {
-                grdLocationList.ClearSelection();
+                grdGodownList.ClearSelection();
                 picLoader.Visible = false;
             }
         }
@@ -135,7 +135,7 @@ namespace ROMS
         {
             try
             {
-                if (grdLocationList.SelectedRows.Count > 0)
+                if (grdGodownList.SelectedRows.Count > 0)
                 {
                     string result = "";
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -172,11 +172,11 @@ namespace ROMS
             try
             {
 
-                if (grdLocationList.SelectedRows.Count > 0)
+                if (grdGodownList.SelectedRows.Count > 0)
                 {
                     MainForm.objCP_Location = new CP_Location();
                     //MainForm.objCP_Location.MdiParent = this.ParentForm;
-                    MainForm.objCP_Location.varlocationcode = grdLocationList.SelectedRows[0].Cells["LocationCode"].Value.ToString();
+                    MainForm.objCP_Location.varlocationcode = grdGodownList.SelectedRows[0].Cells["LocationCode"].Value.ToString();
                     MainForm.objCP_Location.ShowDialog();
 
                 }
@@ -245,7 +245,7 @@ namespace ROMS
         private void grdLocationList_SelectionChanged(object sender, EventArgs e)
         {
             try {
-                if (Convert.ToString(grdLocationList.Rows[grdLocationList.CurrentCell.RowIndex].Cells["LocationCode"].Value) == "1") { tsbDelete.Visible = false; tsbEdit.Visible = false;tssNew.Visible = false; }
+                if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["LocationCode"].Value) == "1") { tsbDelete.Visible = false; tsbEdit.Visible = false;tssNew.Visible = false; }
                 else { tsbDelete.Visible = true; tsbEdit.Visible = true; tssNew.Visible = true; }
             }
             catch (Exception ex) {

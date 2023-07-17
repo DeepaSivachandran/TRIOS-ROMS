@@ -63,7 +63,7 @@
             // 
             // gpChangePassword
             // 
-            this.gpChangePassword.BackColor = System.Drawing.Color.PapayaWhip;
+            this.gpChangePassword.BackColor = System.Drawing.Color.Transparent;
             this.gpChangePassword.Controls.Add(this.grbForm);
             this.gpChangePassword.Controls.Add(this.btnSave);
             this.gpChangePassword.Location = new System.Drawing.Point(435, 211);

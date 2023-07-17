@@ -31,17 +31,23 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Rack));
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.txtShopGodown = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtConcern = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.txtDStatus = new System.Windows.Forms.TextBox();
             this.panelStatus = new System.Windows.Forms.Panel();
             this.rbInactive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.txtDEGroupName = new System.Windows.Forms.TextBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.txtEGroupName = new System.Windows.Forms.TextBox();
             this.errGroup = new System.Windows.Forms.ErrorProvider(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.txtMOQ = new System.Windows.Forms.TextBox();
+            this.txtMimimumorderquatity = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             this.panelStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errGroup)).BeginInit();
@@ -49,6 +55,12 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.txtMimimumorderquatity);
+            this.grbform.Controls.Add(this.txtMOQ);
+            this.grbform.Controls.Add(this.comboBox2);
+            this.grbform.Controls.Add(this.txtShopGodown);
+            this.grbform.Controls.Add(this.comboBox1);
+            this.grbform.Controls.Add(this.txtConcern);
             this.grbform.Controls.Add(this.textBox1);
             this.grbform.Controls.Add(this.textBox2);
             this.grbform.Controls.Add(this.txtDStatus);
@@ -59,16 +71,77 @@
             this.grbform.Controls.Add(this.txtEGroupName);
             this.grbform.Location = new System.Drawing.Point(16, 10);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(552, 159);
+            this.grbform.Size = new System.Drawing.Size(552, 248);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(221, 58);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(288, 27);
+            this.comboBox2.TabIndex = 23;
+            // 
+            // txtShopGodown
+            // 
+            this.txtShopGodown.BackColor = System.Drawing.SystemColors.Control;
+            this.txtShopGodown.Enabled = false;
+            this.txtShopGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtShopGodown.Location = new System.Drawing.Point(40, 58);
+            this.txtShopGodown.Name = "txtShopGodown";
+            this.txtShopGodown.ReadOnly = true;
+            this.txtShopGodown.Size = new System.Drawing.Size(181, 27);
+            this.txtShopGodown.TabIndex = 22;
+            this.txtShopGodown.Text = "Shop Godown";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(221, 31);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(288, 27);
+            this.comboBox1.TabIndex = 21;
+            // 
+            // txtConcern
+            // 
+            this.txtConcern.BackColor = System.Drawing.SystemColors.Control;
+            this.txtConcern.Enabled = false;
+            this.txtConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConcern.Location = new System.Drawing.Point(40, 31);
+            this.txtConcern.Name = "txtConcern";
+            this.txtConcern.ReadOnly = true;
+            this.txtConcern.Size = new System.Drawing.Size(181, 27);
+            this.txtConcern.TabIndex = 20;
+            this.txtConcern.Text = "Concern";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(40, 112);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(181, 27);
+            this.textBox1.TabIndex = 19;
+            this.textBox1.Text = "Short Name";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(221, 112);
+            this.textBox2.MaxLength = 50;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(288, 27);
+            this.textBox2.TabIndex = 3;
             // 
             // txtDStatus
             // 
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(40, 75);
+            this.txtDStatus.Location = new System.Drawing.Point(40, 166);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(181, 27);
@@ -81,10 +154,10 @@
             this.panelStatus.Controls.Add(this.rbInactive);
             this.panelStatus.Controls.Add(this.rbActive);
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(221, 75);
+            this.panelStatus.Location = new System.Drawing.Point(221, 166);
             this.panelStatus.Name = "panelStatus";
             this.panelStatus.Size = new System.Drawing.Size(288, 27);
-            this.panelStatus.TabIndex = 16;
+            this.panelStatus.TabIndex = 4;
             // 
             // rbInactive
             // 
@@ -93,7 +166,7 @@
             this.rbInactive.Location = new System.Drawing.Point(150, 1);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
-            this.rbInactive.TabIndex = 7;
+            this.rbInactive.TabIndex = 5;
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
             // 
@@ -105,7 +178,7 @@
             this.rbActive.Location = new System.Drawing.Point(62, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(54, 21);
-            this.rbActive.TabIndex = 6;
+            this.rbActive.TabIndex = 4;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -115,19 +188,34 @@
             this.txtDEGroupName.BackColor = System.Drawing.SystemColors.Control;
             this.txtDEGroupName.Enabled = false;
             this.txtDEGroupName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDEGroupName.Location = new System.Drawing.Point(40, 21);
+            this.txtDEGroupName.Location = new System.Drawing.Point(40, 85);
             this.txtDEGroupName.Name = "txtDEGroupName";
             this.txtDEGroupName.ReadOnly = true;
             this.txtDEGroupName.Size = new System.Drawing.Size(181, 27);
             this.txtDEGroupName.TabIndex = 11;
             this.txtDEGroupName.Text = "Rack Name";
             // 
+            // txtEGroupName
+            // 
+            this.txtEGroupName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEGroupName.Location = new System.Drawing.Point(221, 85);
+            this.txtEGroupName.MaxLength = 50;
+            this.txtEGroupName.Name = "txtEGroupName";
+            this.txtEGroupName.Size = new System.Drawing.Size(288, 27);
+            this.txtEGroupName.TabIndex = 2;
+            this.txtEGroupName.Enter += new System.EventHandler(this.txtEGroupName_Enter);
+            this.txtEGroupName.Leave += new System.EventHandler(this.txtEGroupName_Leave);
+            // 
+            // errGroup
+            // 
+            this.errGroup.ContainerControl = this;
+            // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(436, 117);
+            this.btnClose.Location = new System.Drawing.Point(436, 206);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 8;
@@ -144,7 +232,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(346, 117);
+            this.btnSave.Location = new System.Drawing.Point(346, 206);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 7;
@@ -156,48 +244,33 @@
             this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
-            // txtEGroupName
+            // txtMOQ
             // 
-            this.txtEGroupName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEGroupName.Location = new System.Drawing.Point(221, 21);
-            this.txtEGroupName.MaxLength = 50;
-            this.txtEGroupName.Name = "txtEGroupName";
-            this.txtEGroupName.Size = new System.Drawing.Size(288, 27);
-            this.txtEGroupName.TabIndex = 1;
-            this.txtEGroupName.Enter += new System.EventHandler(this.txtEGroupName_Enter);
-            this.txtEGroupName.Leave += new System.EventHandler(this.txtEGroupName_Leave);
+            this.txtMOQ.BackColor = System.Drawing.SystemColors.Control;
+            this.txtMOQ.Enabled = false;
+            this.txtMOQ.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMOQ.Location = new System.Drawing.Point(40, 139);
+            this.txtMOQ.Name = "txtMOQ";
+            this.txtMOQ.ReadOnly = true;
+            this.txtMOQ.Size = new System.Drawing.Size(181, 27);
+            this.txtMOQ.TabIndex = 24;
+            this.txtMOQ.Text = "Minimum Order Quantity";
             // 
-            // errGroup
+            // txtMimimumorderquatity
             // 
-            this.errGroup.ContainerControl = this;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(40, 48);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(181, 27);
-            this.textBox1.TabIndex = 19;
-            this.textBox1.Text = "Short Name";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(221, 48);
-            this.textBox2.MaxLength = 50;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(288, 27);
-            this.textBox2.TabIndex = 18;
+            this.txtMimimumorderquatity.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMimimumorderquatity.Location = new System.Drawing.Point(221, 139);
+            this.txtMimimumorderquatity.MaxLength = 50;
+            this.txtMimimumorderquatity.Name = "txtMimimumorderquatity";
+            this.txtMimimumorderquatity.Size = new System.Drawing.Size(288, 27);
+            this.txtMimimumorderquatity.TabIndex = 25;
             // 
             // CP_Rack
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(585, 181);
+            this.ClientSize = new System.Drawing.Size(585, 270);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -233,5 +306,11 @@
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox txtShopGodown;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtConcern;
+        private System.Windows.Forms.TextBox txtMimimumorderquatity;
+        private System.Windows.Forms.TextBox txtMOQ;
     }
 }

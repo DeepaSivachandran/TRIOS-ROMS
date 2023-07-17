@@ -59,11 +59,6 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.txtbranchname = new System.Windows.Forms.TextBox();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Label();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtIFScode = new System.Windows.Forms.TextBox();
@@ -80,8 +75,6 @@
             this.txtEPF = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.txtESI = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.txtCst = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.txtGSTTIN = new System.Windows.Forms.TextBox();
             this.txtwebsite = new System.Windows.Forms.TextBox();
@@ -97,6 +90,12 @@
             this.txtDContactNumber = new System.Windows.Forms.TextBox();
             this.txtContactNumber = new System.Windows.Forms.TextBox();
             this.errCompany = new System.Windows.Forms.ErrorProvider(this.components);
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbform.SuspendLayout();
             this.panelStatus.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -288,7 +287,7 @@
             this.grbform.Controls.Add(this.txtCity);
             this.grbform.Location = new System.Drawing.Point(12, 12);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(870, 595);
+            this.grbform.Size = new System.Drawing.Size(955, 595);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
@@ -424,7 +423,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(23, 324);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(824, 203);
+            this.groupBox2.Size = new System.Drawing.Size(923, 203);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bank Details";
@@ -476,7 +475,8 @@
             this.clmbankname,
             this.clmbranch,
             this.clmaccno,
-            this.clmifscode});
+            this.clmifscode,
+            this.clmStatus});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -496,43 +496,8 @@
             this.grdSupplierList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdSupplierList.RowTemplate.Height = 25;
             this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSupplierList.Size = new System.Drawing.Size(810, 98);
+            this.grdSupplierList.Size = new System.Drawing.Size(911, 98);
             this.grdSupplierList.TabIndex = 1111136;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 50;
-            // 
-            // clmbankname
-            // 
-            this.clmbankname.HeaderText = "Bank Name";
-            this.clmbankname.Name = "clmbankname";
-            this.clmbankname.ReadOnly = true;
-            this.clmbankname.Width = 200;
-            // 
-            // clmbranch
-            // 
-            this.clmbranch.HeaderText = "Branch Name";
-            this.clmbranch.Name = "clmbranch";
-            this.clmbranch.ReadOnly = true;
-            this.clmbranch.Width = 175;
-            // 
-            // clmaccno
-            // 
-            this.clmaccno.HeaderText = "Account No.";
-            this.clmaccno.Name = "clmaccno";
-            this.clmaccno.ReadOnly = true;
-            this.clmaccno.Width = 200;
-            // 
-            // clmifscode
-            // 
-            this.clmifscode.HeaderText = "IFS Code";
-            this.clmifscode.Name = "clmifscode";
-            this.clmifscode.ReadOnly = true;
-            this.clmifscode.Width = 175;
             // 
             // btnAdd
             // 
@@ -628,14 +593,12 @@
             this.groupBox1.Controls.Add(this.txtEPF);
             this.groupBox1.Controls.Add(this.textBox7);
             this.groupBox1.Controls.Add(this.txtESI);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.txtCst);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.txtGSTTIN);
             this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(569, 15);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 208);
+            this.groupBox1.Size = new System.Drawing.Size(278, 183);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registration Details";
@@ -645,7 +608,7 @@
             this.textBox13.BackColor = System.Drawing.SystemColors.Control;
             this.textBox13.Enabled = false;
             this.textBox13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox13.Location = new System.Drawing.Point(9, 170);
+            this.textBox13.Location = new System.Drawing.Point(9, 144);
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
             this.textBox13.Size = new System.Drawing.Size(53, 27);
@@ -655,7 +618,7 @@
             // txtFSSAI
             // 
             this.txtFSSAI.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtFSSAI.Location = new System.Drawing.Point(60, 170);
+            this.txtFSSAI.Location = new System.Drawing.Point(60, 144);
             this.txtFSSAI.MaxLength = 100;
             this.txtFSSAI.Name = "txtFSSAI";
             this.txtFSSAI.Size = new System.Drawing.Size(204, 27);
@@ -669,7 +632,7 @@
             this.textBox11.BackColor = System.Drawing.SystemColors.Control;
             this.textBox11.Enabled = false;
             this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox11.Location = new System.Drawing.Point(9, 89);
+            this.textBox11.Location = new System.Drawing.Point(9, 63);
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
             this.textBox11.Size = new System.Drawing.Size(53, 27);
@@ -679,7 +642,7 @@
             // txtPan
             // 
             this.txtPan.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPan.Location = new System.Drawing.Point(60, 89);
+            this.txtPan.Location = new System.Drawing.Point(60, 63);
             this.txtPan.MaxLength = 100;
             this.txtPan.Name = "txtPan";
             this.txtPan.Size = new System.Drawing.Size(204, 27);
@@ -693,7 +656,7 @@
             this.textBox9.BackColor = System.Drawing.SystemColors.Control;
             this.textBox9.Enabled = false;
             this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox9.Location = new System.Drawing.Point(9, 143);
+            this.textBox9.Location = new System.Drawing.Point(9, 117);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(53, 27);
@@ -703,7 +666,7 @@
             // txtEPF
             // 
             this.txtEPF.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtEPF.Location = new System.Drawing.Point(60, 143);
+            this.txtEPF.Location = new System.Drawing.Point(60, 117);
             this.txtEPF.MaxLength = 100;
             this.txtEPF.Name = "txtEPF";
             this.txtEPF.Size = new System.Drawing.Size(204, 27);
@@ -717,7 +680,7 @@
             this.textBox7.BackColor = System.Drawing.SystemColors.Control;
             this.textBox7.Enabled = false;
             this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox7.Location = new System.Drawing.Point(9, 116);
+            this.textBox7.Location = new System.Drawing.Point(9, 90);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(53, 27);
@@ -727,7 +690,7 @@
             // txtESI
             // 
             this.txtESI.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtESI.Location = new System.Drawing.Point(60, 116);
+            this.txtESI.Location = new System.Drawing.Point(60, 90);
             this.txtESI.MaxLength = 100;
             this.txtESI.Name = "txtESI";
             this.txtESI.Size = new System.Drawing.Size(204, 27);
@@ -735,30 +698,6 @@
             this.txtESI.Enter += new System.EventHandler(this.TxtESI_Enter);
             this.txtESI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtESI_KeyDown);
             this.txtESI.Leave += new System.EventHandler(this.TxtESI_Leave);
-            // 
-            // textBox5
-            // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox5.Enabled = false;
-            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox5.Location = new System.Drawing.Point(9, 63);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(53, 27);
-            this.textBox5.TabIndex = 18;
-            this.textBox5.Text = "CST";
-            // 
-            // txtCst
-            // 
-            this.txtCst.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtCst.Location = new System.Drawing.Point(60, 63);
-            this.txtCst.MaxLength = 100;
-            this.txtCst.Name = "txtCst";
-            this.txtCst.Size = new System.Drawing.Size(204, 27);
-            this.txtCst.TabIndex = 17;
-            this.txtCst.Enter += new System.EventHandler(this.TxtCst_Enter);
-            this.txtCst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCst_KeyDown);
-            this.txtCst.Leave += new System.EventHandler(this.TxtCst_Leave);
             // 
             // textBox2
             // 
@@ -851,10 +790,10 @@
             this.txtDPincode.BackColor = System.Drawing.SystemColors.Control;
             this.txtDPincode.Enabled = false;
             this.txtDPincode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPincode.Location = new System.Drawing.Point(321, 158);
+            this.txtDPincode.Location = new System.Drawing.Point(320, 158);
             this.txtDPincode.Name = "txtDPincode";
             this.txtDPincode.ReadOnly = true;
-            this.txtDPincode.Size = new System.Drawing.Size(52, 27);
+            this.txtDPincode.Size = new System.Drawing.Size(54, 27);
             this.txtDPincode.TabIndex = 46;
             this.txtDPincode.Text = "Pincode";
             this.txtDPincode.TextChanged += new System.EventHandler(this.TxtDPincode_TextChanged);
@@ -936,12 +875,53 @@
             // 
             this.errCompany.ContainerControl = this;
             // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
+            // 
+            // clmbankname
+            // 
+            this.clmbankname.HeaderText = "Bank Name";
+            this.clmbankname.Name = "clmbankname";
+            this.clmbankname.ReadOnly = true;
+            this.clmbankname.Width = 200;
+            // 
+            // clmbranch
+            // 
+            this.clmbranch.HeaderText = "Branch Name";
+            this.clmbranch.Name = "clmbranch";
+            this.clmbranch.ReadOnly = true;
+            this.clmbranch.Width = 175;
+            // 
+            // clmaccno
+            // 
+            this.clmaccno.HeaderText = "Account No.";
+            this.clmaccno.Name = "clmaccno";
+            this.clmaccno.ReadOnly = true;
+            this.clmaccno.Width = 200;
+            // 
+            // clmifscode
+            // 
+            this.clmifscode.HeaderText = "IFS Code";
+            this.clmifscode.Name = "clmifscode";
+            this.clmifscode.ReadOnly = true;
+            this.clmifscode.Width = 175;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            // 
             // CP_Company
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(895, 623);
+            this.ClientSize = new System.Drawing.Size(986, 623);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -1019,22 +999,21 @@
         private System.Windows.Forms.TextBox txtEPF;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox txtESI;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox txtCst;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox txtGSTTIN;
         internal System.Windows.Forms.Label btnAdd;
         public System.Windows.Forms.DataGridView grdSupplierList;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox txtbranchname;
+        private System.Windows.Forms.Panel panelStatus;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.ListView lvCity;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmbankname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmbranch;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmaccno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmifscode;
-        private System.Windows.Forms.Panel panelStatus;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.ListView lvCity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
     }
 }

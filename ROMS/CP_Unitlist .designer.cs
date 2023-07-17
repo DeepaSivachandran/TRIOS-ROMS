@@ -43,17 +43,19 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlunitlist = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdshtname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUnitList = new System.Windows.Forms.DataGridView();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmshtname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDSymbols = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDNoOfDecimals = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSymbols = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNoOfDecimals = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsUnitList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUnitList)).BeginInit();
@@ -173,7 +175,8 @@
             this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmdsno,
             this.clmdcompanyname,
-            this.clmdshtname,
+            this.clmSymbols,
+            this.clmNoOfDecimals,
             this.clmdstatus});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -198,34 +201,6 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1329, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
-            // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.MinimumWidth = 6;
-            this.clmdsno.Name = "clmdsno";
-            this.clmdsno.Width = 125;
-            // 
-            // clmdcompanyname
-            // 
-            this.clmdcompanyname.HeaderText = "Unit Name";
-            this.clmdcompanyname.MinimumWidth = 6;
-            this.clmdcompanyname.Name = "clmdcompanyname";
-            this.clmdcompanyname.Width = 200;
-            // 
-            // clmdshtname
-            // 
-            this.clmdshtname.HeaderText = "E-Invoice Unit Name";
-            this.clmdshtname.MinimumWidth = 6;
-            this.clmdshtname.Name = "clmdshtname";
-            this.clmdshtname.Width = 200;
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Status";
-            this.clmdstatus.MinimumWidth = 6;
-            this.clmdstatus.Name = "clmdstatus";
-            this.clmdstatus.Width = 125;
             // 
             // lblNoRecordsFound
             // 
@@ -260,7 +235,8 @@
             this.grdUnitList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmsno,
             this.clmcompanyname,
-            this.clmshtname,
+            this.clmDSymbols,
+            this.clmDNoOfDecimals,
             this.clmStatus});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -285,38 +261,6 @@
             this.grdUnitList.Size = new System.Drawing.Size(1329, 560);
             this.grdUnitList.TabIndex = 958797;
             // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.MinimumWidth = 6;
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 125;
-            // 
-            // clmcompanyname
-            // 
-            this.clmcompanyname.HeaderText = "Unit Name";
-            this.clmcompanyname.MinimumWidth = 6;
-            this.clmcompanyname.Name = "clmcompanyname";
-            this.clmcompanyname.ReadOnly = true;
-            this.clmcompanyname.Width = 200;
-            // 
-            // clmshtname
-            // 
-            this.clmshtname.HeaderText = "E-Invoice Unit Name";
-            this.clmshtname.MinimumWidth = 6;
-            this.clmshtname.Name = "clmshtname";
-            this.clmshtname.ReadOnly = true;
-            this.clmshtname.Width = 200;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.MinimumWidth = 6;
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
-            this.clmStatus.Width = 125;
-            // 
             // picLoader
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -330,6 +274,71 @@
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
+            // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.MinimumWidth = 6;
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            // 
+            // clmcompanyname
+            // 
+            this.clmcompanyname.HeaderText = "Unit Name";
+            this.clmcompanyname.MinimumWidth = 6;
+            this.clmcompanyname.Name = "clmcompanyname";
+            this.clmcompanyname.ReadOnly = true;
+            this.clmcompanyname.Width = 200;
+            // 
+            // clmDSymbols
+            // 
+            this.clmDSymbols.HeaderText = "Symbols";
+            this.clmDSymbols.Name = "clmDSymbols";
+            this.clmDSymbols.ReadOnly = true;
+            // 
+            // clmDNoOfDecimals
+            // 
+            this.clmDNoOfDecimals.HeaderText = "No.Of Decimals";
+            this.clmDNoOfDecimals.Name = "clmDNoOfDecimals";
+            this.clmDNoOfDecimals.ReadOnly = true;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.MinimumWidth = 6;
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            this.clmStatus.Width = 125;
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.MinimumWidth = 6;
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmdcompanyname
+            // 
+            this.clmdcompanyname.HeaderText = "Unit Name";
+            this.clmdcompanyname.MinimumWidth = 6;
+            this.clmdcompanyname.Name = "clmdcompanyname";
+            this.clmdcompanyname.Width = 200;
+            // 
+            // clmSymbols
+            // 
+            this.clmSymbols.HeaderText = "Symbols";
+            this.clmSymbols.Name = "clmSymbols";
+            // 
+            // clmNoOfDecimals
+            // 
+            this.clmNoOfDecimals.HeaderText = "No.Of Decimals";
+            this.clmNoOfDecimals.Name = "clmNoOfDecimals";
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Status";
+            this.clmdstatus.MinimumWidth = 6;
+            this.clmdstatus.Name = "clmdstatus";
+            this.clmdstatus.Width = 125;
             // 
             // CP_Unitlist
             // 
@@ -373,16 +382,18 @@
         public System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.Panel pnlunitlist;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdcompanyname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdshtname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdUnitList;
+        private System.Windows.Forms.PictureBox picLoader;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdcompanyname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSymbols;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmNoOfDecimals;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmcompanyname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmshtname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDSymbols;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDNoOfDecimals;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
-        private System.Windows.Forms.PictureBox picLoader;
     }
 }

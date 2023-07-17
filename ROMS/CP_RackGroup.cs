@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class CP_Rack : Form
+    public partial class CP_RackGroup : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -23,11 +23,11 @@ namespace ROMS
         private ToolTip tpsno = new ToolTip();
         public string vargroupcode;
         public String pbFormStatus;
-        public CP_Rack()
+        public CP_RackGroup()
         {
             InitializeComponent();
         }
-        private void CP_Rack_Load(object sender, EventArgs e)
+        private void CP_SubGroup_Load(object sender, EventArgs e)
         {
             try
             {      
@@ -83,46 +83,7 @@ namespace ROMS
 
             }
         }
-        private void txtEGroupName_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtEGroupName.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtEGroupName_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtEGroupName.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void cmbSINO_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnSave.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+      
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -130,22 +91,7 @@ namespace ROMS
             {
 
                 errGroup.Clear();
-                if (txtEGroupName.Text.Trim() == "")
-                {
-                    errGroup.SetError(txtEGroupName, "Please enter group english name");
-                    txtEGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
-                    tpegroupname.ShowAlways = true;
-                    tpegroupname.Show("Please enter group english name", txtEGroupName, 5000);
-                    txtEGroupName.Text = "";
-
-                }
-                if (txtEGroupName.Text.Trim() == "")
-                {
-                    txtEGroupName.Focus();
-                    return;
-
-                }
+               
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
                 if (btnSave.Text == "Save")
@@ -185,7 +131,7 @@ namespace ROMS
                         udfnclear();
                     }
                   //  udfnLoadSlNo();
-                   // MainForm.objCP_RackList.udfnList();
+                   // MainForm.objCP_SubGroupList.udfnList();
                 }
                 else
                 {
@@ -216,7 +162,7 @@ namespace ROMS
                // cmbGroupType.SelectedValue = "-1";
                 DataSet objDS = new DataSet();
                 SPDataService objspservice = new SPDataService();
-               // objDS = objspservice.udfnGetSlNo("CP_Rack", "Create", "", "");
+               // objDS = objspservice.udfnGetSlNo("CP_SubGroup", "Create", "", "");
                 objspservice.CloseConnection();
                 if (objDS != null)
                 {
@@ -292,7 +238,7 @@ namespace ROMS
             try
             {
                 udfnclose();
-               // MainForm.objCP_RackList.udfnList();
+               // MainForm.objCP_SubGroupList.udfnList();
             }
             catch (Exception ex)
             {
@@ -341,7 +287,7 @@ namespace ROMS
         }
 
 
-        private void CP_Rack_KeyDown(object sender, KeyEventArgs e)
+        private void CP_SubGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -360,7 +306,41 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        
-      
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //MainForm.objCP_Group = new CP_Group();
+                //MainForm.objCP_Group.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbGroupName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    //txtESubGroupNameEnglish.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        } 
     }
+     
 }

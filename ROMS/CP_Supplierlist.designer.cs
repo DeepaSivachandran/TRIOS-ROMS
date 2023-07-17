@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsBrandList = new System.Windows.Forms.ToolStrip();
+            this.tsSupplierList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
@@ -42,6 +42,11 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlsupplier = new System.Windows.Forms.Panel();
+            this.lvSupplierList = new System.Windows.Forms.ListView();
+            this.grbFilterBySupplier = new System.Windows.Forms.GroupBox();
+            this.txtDSupplierList = new System.Windows.Forms.TextBox();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,30 +67,31 @@
             this.clmsalesname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.tsBrandList.SuspendLayout();
+            this.tsSupplierList.SuspendLayout();
             this.pnlsupplier.SuspendLayout();
+            this.grbFilterBySupplier.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsBrandList
+            // tsSupplierList
             // 
-            this.tsBrandList.BackColor = System.Drawing.Color.White;
-            this.tsBrandList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsBrandList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsBrandList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsSupplierList.BackColor = System.Drawing.Color.White;
+            this.tsSupplierList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsSupplierList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsSupplierList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
             this.tsbNew});
-            this.tsBrandList.Location = new System.Drawing.Point(0, 0);
-            this.tsBrandList.Name = "tsBrandList";
-            this.tsBrandList.Size = new System.Drawing.Size(1354, 27);
-            this.tsBrandList.TabIndex = 35;
-            this.tsBrandList.Text = "Brand";
+            this.tsSupplierList.Location = new System.Drawing.Point(0, 0);
+            this.tsSupplierList.Name = "tsSupplierList";
+            this.tsSupplierList.Size = new System.Drawing.Size(1354, 27);
+            this.tsSupplierList.TabIndex = 35;
+            this.tsSupplierList.Text = "Supplier List";
             // 
             // tspHeader
             // 
@@ -153,14 +159,72 @@
             // pnlsupplier
             // 
             this.pnlsupplier.BackColor = System.Drawing.Color.White;
+            this.pnlsupplier.Controls.Add(this.lvSupplierList);
+            this.pnlsupplier.Controls.Add(this.grbFilterBySupplier);
             this.pnlsupplier.Controls.Add(this.DGV_SearchGrid);
             this.pnlsupplier.Controls.Add(this.lblNoRecordsFound);
             this.pnlsupplier.Controls.Add(this.grdSupplierList);
             this.pnlsupplier.Controls.Add(this.picLoader);
-            this.pnlsupplier.Location = new System.Drawing.Point(0, 40);
+            this.pnlsupplier.Location = new System.Drawing.Point(0, 28);
             this.pnlsupplier.Name = "pnlsupplier";
-            this.pnlsupplier.Size = new System.Drawing.Size(1354, 637);
+            this.pnlsupplier.Size = new System.Drawing.Size(1354, 644);
             this.pnlsupplier.TabIndex = 36;
+            // 
+            // lvSupplierList
+            // 
+            this.lvSupplierList.Location = new System.Drawing.Point(43, 67);
+            this.lvSupplierList.Name = "lvSupplierList";
+            this.lvSupplierList.Size = new System.Drawing.Size(474, 266);
+            this.lvSupplierList.TabIndex = 958802;
+            this.lvSupplierList.UseCompatibleStateImageBehavior = false;
+            this.lvSupplierList.Visible = false;
+            // 
+            // grbFilterBySupplier
+            // 
+            this.grbFilterBySupplier.Controls.Add(this.txtDSupplierList);
+            this.grbFilterBySupplier.Controls.Add(this.btnExport);
+            this.grbFilterBySupplier.Controls.Add(this.btnView);
+            this.grbFilterBySupplier.Location = new System.Drawing.Point(25, 14);
+            this.grbFilterBySupplier.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grbFilterBySupplier.Name = "grbFilterBySupplier";
+            this.grbFilterBySupplier.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grbFilterBySupplier.Size = new System.Drawing.Size(672, 67);
+            this.grbFilterBySupplier.TabIndex = 958801;
+            this.grbFilterBySupplier.TabStop = false;
+            this.grbFilterBySupplier.Text = "Filter By Supplier";
+            // 
+            // txtDSupplierList
+            // 
+            this.txtDSupplierList.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDSupplierList.Location = new System.Drawing.Point(18, 26);
+            this.txtDSupplierList.MaxLength = 6;
+            this.txtDSupplierList.Name = "txtDSupplierList";
+            this.txtDSupplierList.Size = new System.Drawing.Size(474, 27);
+            this.txtDSupplierList.TabIndex = 7;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
+            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport.Location = new System.Drawing.Point(581, 26);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(79, 29);
+            this.btnExport.TabIndex = 5;
+            this.btnExport.Text = "Export";
+            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExport.UseVisualStyleBackColor = true;
+            // 
+            // btnView
+            // 
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(498, 26);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 29);
+            this.btnView.TabIndex = 4;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
             // 
             // DGV_SearchGrid
             // 
@@ -198,7 +262,7 @@
             this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(13, 10);
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(13, 96);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
@@ -259,7 +323,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(622, 295);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 380);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958798;
@@ -303,7 +367,7 @@
             this.grdSupplierList.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdSupplierList.EnableHeadersVisualStyles = false;
             this.grdSupplierList.GridColor = System.Drawing.Color.White;
-            this.grdSupplierList.Location = new System.Drawing.Point(13, 66);
+            this.grdSupplierList.Location = new System.Drawing.Point(13, 152);
             this.grdSupplierList.Name = "grdSupplierList";
             this.grdSupplierList.ReadOnly = true;
             this.grdSupplierList.RowHeadersVisible = false;
@@ -312,7 +376,7 @@
             this.grdSupplierList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdSupplierList.RowTemplate.Height = 25;
             this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSupplierList.Size = new System.Drawing.Size(1329, 561);
+            this.grdSupplierList.Size = new System.Drawing.Size(1329, 476);
             this.grdSupplierList.TabIndex = 958797;
             // 
             // clmsno
@@ -387,20 +451,22 @@
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlsupplier);
-            this.Controls.Add(this.tsBrandList);
+            this.Controls.Add(this.tsSupplierList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_Supplierlist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
+            this.Text = "Supplier List";
             this.Load += new System.EventHandler(this.CP_Supplierlist_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Supplierlist_KeyDown);
-            this.tsBrandList.ResumeLayout(false);
-            this.tsBrandList.PerformLayout();
+            this.tsSupplierList.ResumeLayout(false);
+            this.tsSupplierList.PerformLayout();
             this.pnlsupplier.ResumeLayout(false);
             this.pnlsupplier.PerformLayout();
+            this.grbFilterBySupplier.ResumeLayout(false);
+            this.grbFilterBySupplier.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
@@ -411,7 +477,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsBrandList;
+        private System.Windows.Forms.ToolStrip tsSupplierList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ToolStripSeparator tssEdit;
@@ -439,5 +505,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsalesname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.PictureBox picLoader;
+        private System.Windows.Forms.GroupBox grbFilterBySupplier;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.TextBox txtDSupplierList;
+        private System.Windows.Forms.ListView lvSupplierList;
     }
 }
