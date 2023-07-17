@@ -62,6 +62,14 @@ namespace ROMS
         public static PUR_PurchaseOrder objPUR_PurchaseOrder; 
         public static CP_PurchaseList objCP_PurchaseList;
         public static CP_SupplierMappinglist objCP_SupplierMappinglist;
+        public static PUR_SupplierScheduleList objPUR_SupplierScheduleList;
+        public static PUR_GRNDetailsList objPUR_GRNDetailsList;
+        public static PUR_GRNDetails objPUR_GRNDetails;
+         
+        public static PUR_PurchaseOrderList objPUR_PurchaseOrderList;
+        public static PUR_SupplierSchedule objPUR_SupplierSchedule;
+         
+
         public static CP_Product objCP_Items;
         public static INV_Inwardlist objINV_Inwardlist;
         public static INV_Inward objINV_Inward;
@@ -74,6 +82,8 @@ namespace ROMS
         public static CP_Purchase objCP_Purchase;
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
+
+
 
         public MainForm()
         {
@@ -515,9 +525,11 @@ namespace ROMS
         {
             udfnCloseChildForms();
             if (isClose == false) { return; }
-            MainForm.objPUR_PurchaseOrder = new PUR_PurchaseOrder();
-            MainForm.objPUR_PurchaseOrder.MdiParent = this;
-            MainForm.objPUR_PurchaseOrder.Show();
+             
+            MainForm.objPUR_PurchaseOrderList = new PUR_PurchaseOrderList();
+            MainForm.objPUR_PurchaseOrderList.MdiParent = this;
+            MainForm.objPUR_PurchaseOrderList.Show();
+            
         }
 
         private void TsmsupplierMapping_Click(object sender, EventArgs e)
@@ -563,6 +575,24 @@ namespace ROMS
             MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
             MainForm.objPUR_PurchaseApprovalList.MdiParent = this;
             MainForm.objPUR_PurchaseApprovalList.Show();
+        }
+
+        private void TsmpurchaseSupplier_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objPUR_SupplierScheduleList = new PUR_SupplierScheduleList();
+            MainForm.objPUR_SupplierScheduleList.MdiParent = this;
+            MainForm.objPUR_SupplierScheduleList.Show();
+        }
+
+        private void TsmGRN_Click(object sender, EventArgs e)
+        {
+            udfnCloseChildForms();
+            if (isClose == false) { return; }
+            MainForm.objPUR_GRNDetailsList = new PUR_GRNDetailsList();
+            MainForm.objPUR_GRNDetailsList.MdiParent = this;
+            MainForm.objPUR_GRNDetailsList.Show();
         }
     }
 } 

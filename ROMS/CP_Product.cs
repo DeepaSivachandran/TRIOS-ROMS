@@ -506,6 +506,13 @@ namespace ROMS
             //{
 
             //}
+
+            txtDDay.Visible = false;
+            txtDay.Visible = false;
+            txtDMonth.Visible = false;
+            txtMonth.Visible = false;
+            txtDYear.Visible = false;
+            txtYear.Visible = false;
         }
 
 
@@ -1083,8 +1090,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    rbYes.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1100,8 +1106,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    rbNo.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1153,8 +1158,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    txtCommodityCode.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1249,8 +1253,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    cmbSalesCounter.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1260,69 +1263,7 @@ namespace ROMS
             }
         }
 
-        private void CmbSalesCounter_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtSalesType.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtSalesType_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cmbTCSApplicable.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbTCSApplicable_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cmbNatureOfGoods.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbNatureOfGoods_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtRetailRate.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        
 
         private void TxtRetailRate_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1360,10 +1301,7 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cbStockable.Focus();
-                }
+                
             }
             catch (Exception ex)
             {
@@ -1372,21 +1310,7 @@ namespace ROMS
             }
         }
 
-        private void CbStockable_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtPurchaseRate.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+       
 
         private void TxtPurchaseRate_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1569,8 +1493,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    cbPriorityProduct.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1579,94 +1502,14 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void CbPriorityProduct_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cbBlockWRate.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CbBlockWRate_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cbSpecialProduct.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CbSpecialProduct_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cbFocusProduct.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CbFocusProduct_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cbEstimateOnly.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CbEstimateOnly_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtGST.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void TxtGST_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    txtCGST.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1681,8 +1524,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    txtSGST.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1697,8 +1539,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    txtIGST.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1729,8 +1570,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    cbGStockable.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1745,8 +1585,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    cbBatch.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1852,8 +1691,7 @@ namespace ROMS
         private void TxtCommodityCode_Enter(object sender, EventArgs e)
         {
             try
-            {
-               txtCommodityCode.BackColor = Color.LemonChiffon;
+            { 
             }
             catch (Exception ex)
             {
@@ -1861,19 +1699,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtSalesType_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtSalesType.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void TxtRetailRate_Enter(object sender, EventArgs e)
         {
@@ -2069,45 +1895,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtCGST_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtCGST.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtSGST_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtSGST.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtIGST_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtIGST.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+           
 
         private void TxtReOrderQty_Enter(object sender, EventArgs e)
         {
@@ -2191,51 +1979,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void TxtCommodityCode_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtCommodityCode.Text == "")
-                {
-                    txtCommodityCode.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtCommodityCode, "Please Enter Commodity Code");
-                }
-                else
-                {
-                    txtCommodityCode.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtSalesType_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtSalesType.Text == "")
-                {
-                    txtSalesType.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtSalesType, "Please Enter Sales Type");
-                }
-                else
-                {
-                    txtSalesType.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        }  
 
         private void TxtRetailRate_Leave(object sender, EventArgs e)
         {
@@ -2565,73 +2309,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void TxtCGST_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtCGST.Text == "")
-                {
-                    txtCGST.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtCGST, "Please Enter CGST");
-                }
-                else
-                {
-                    txtCGST.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtSGST_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtSGST.Text == "")
-                {
-                    txtSGST.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtSGST, "Please Enter SGST");
-                }
-                else
-                {
-                    txtSGST.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtIGST_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtIGST.Text == "")
-                {
-                    txtIGST.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtIGST, "Please Enter IGST");
-                }
-                else
-                {
-                    txtIGST.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
 
         private void TxtReOrderQty_Leave(object sender, EventArgs e)
         {
@@ -3183,6 +2861,41 @@ namespace ROMS
                 {
                     e.Handled = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+         
+        private void CbExpiry_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbExpiry.Checked == true)
+                {
+                    txtDDay.Visible = true;
+                    txtDay.Visible = true;
+                    txtDMonth.Visible = true;
+                    txtMonth.Visible = true;
+                    txtDYear.Visible = true;
+                    txtYear.Visible = true;
+                }
+                else {
+
+                    txtDDay.Visible = false;
+                    txtDay.Visible = false;
+                    txtDMonth.Visible = false;
+                    txtMonth.Visible = false;
+                    txtDYear.Visible = false;
+                    txtYear.Visible = false;
+                }
+                
             }
             catch (Exception ex)
             {

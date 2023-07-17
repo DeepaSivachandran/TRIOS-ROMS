@@ -76,7 +76,7 @@
             // 
             // txtEUnitName
             // 
-            this.txtEUnitName.Font = new System.Drawing.Font("Oswald", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEUnitName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEUnitName.Location = new System.Drawing.Point(159, 46);
             this.txtEUnitName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtEUnitName.MaxLength = 50;
@@ -108,7 +108,7 @@
             // 
             // txtEInvoiceUnitName
             // 
-            this.txtEInvoiceUnitName.Font = new System.Drawing.Font("Oswald", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEInvoiceUnitName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEInvoiceUnitName.Location = new System.Drawing.Point(159, 73);
             this.txtEInvoiceUnitName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtEInvoiceUnitName.MaxLength = 100;

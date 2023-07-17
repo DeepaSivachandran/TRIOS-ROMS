@@ -32,6 +32,7 @@ namespace ROMS
 
                 MainForm.objINV_Inward = new INV_Inward();
                 MainForm.objINV_Inward.btnSave.Text = "Update";
+
                 MainForm.objINV_Inward.Show();
                 //GroupBox objgrbgodown = new GroupBox();
                 // objgrbgodown.Visible = false;
@@ -524,11 +525,12 @@ namespace ROMS
             {
                 MainForm.objINV_Inward = new INV_Inward();
 
-                MainForm.objINV_Inward.StartPosition = FormStartPosition.Manual;
-                int dialogX = this.Location.X + (this.Width - MainForm.objINV_Inward.Width) / 2;
-                int dialogY = this.Location.Y + (this.Height - MainForm.objINV_Inward.Height + 100) / 2;
-                MainForm.objINV_Inward.Location = new Point(dialogX, dialogY);
-                MainForm.objINV_Inward.ShowDialog();
+                MainForm.objINV_Inward.MdiParent = this.ParentForm;
+                //MainForm.objINV_Inward.StartPosition = FormStartPosition.Manual;
+                //int dialogX = this.Location.X + (this.Width - MainForm.objINV_Inward.Width) / 2;
+                //int dialogY = this.Location.Y + (this.Height - MainForm.objINV_Inward.Height + 100) / 2;
+                //MainForm.objINV_Inward.Location = new Point(dialogX, dialogY);
+                MainForm.objINV_Inward.Show();
             }
             catch (Exception ex)
             {

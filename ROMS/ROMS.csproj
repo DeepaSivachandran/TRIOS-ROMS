@@ -56,6 +56,24 @@
     <Compile Include="Authentication.designer.cs">
       <DependentUpon>Authentication.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_GRNDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNDetails.designer.cs">
+      <DependentUpon>PUR_GRNDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNDetailsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNDetailsList.designer.cs">
+      <DependentUpon>PUR_GRNDetailsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_SupplierSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_SupplierSchedule.designer.cs">
+      <DependentUpon>PUR_SupplierSchedule.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Brand.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +310,12 @@
     <Compile Include="PUR_PurchaseApproval.designer.cs">
       <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_PurchaseOrderList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseOrderList.designer.cs">
+      <DependentUpon>PUR_PurchaseOrderList.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_PurchaseApprovalList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,6 +327,12 @@
     </Compile>
     <Compile Include="PUR_PurchaseOrder.designer.cs">
       <DependentUpon>PUR_PurchaseOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_SupplierScheduleList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_SupplierScheduleList.designer.cs">
+      <DependentUpon>PUR_SupplierScheduleList.cs</DependentUpon>
     </Compile>
     <Compile Include="ServerSettings.cs">
       <SubType>Form</SubType>
@@ -330,6 +360,15 @@
     </Compile>
     <EmbeddedResource Include="Authentication.resx">
       <DependentUpon>Authentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNDetails.resx">
+      <DependentUpon>PUR_GRNDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNDetailsList.resx">
+      <DependentUpon>PUR_GRNDetailsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_SupplierSchedule.resx">
+      <DependentUpon>PUR_SupplierSchedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Brand.resx">
       <DependentUpon>CP_Brand.cs</DependentUpon>
@@ -455,11 +494,17 @@
     <EmbeddedResource Include="PUR_PurchaseApproval.resx">
       <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseOrderList.resx">
+      <DependentUpon>PUR_PurchaseOrderList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseApprovalList.resx">
       <DependentUpon>PUR_PurchaseApprovalList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseOrder.resx">
       <DependentUpon>PUR_PurchaseOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_SupplierScheduleList.resx">
+      <DependentUpon>PUR_SupplierScheduleList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ServerSettings.resx">
       <DependentUpon>ServerSettings.cs</DependentUpon>

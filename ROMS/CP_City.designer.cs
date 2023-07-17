@@ -106,7 +106,7 @@
             // 
             // txtCityName
             // 
-            this.txtCityName.Font = new System.Drawing.Font("Oswald", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCityName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCityName.Location = new System.Drawing.Point(159, 73);
             this.txtCityName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtCityName.MaxLength = 100;

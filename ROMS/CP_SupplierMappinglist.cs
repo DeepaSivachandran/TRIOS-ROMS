@@ -23,12 +23,14 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_SupplierMapping = new CP_SupplierMapping(); 
-                MainForm.objCP_SupplierMapping.StartPosition = FormStartPosition.Manual;  
-                int dialogX = this.Location.X + (this.Width - MainForm.objCP_SupplierMapping.Width ) / 2;
-                int dialogY = this.Location.Y + (this.Height - MainForm.objCP_SupplierMapping.Height + 100) / 2; 
-                MainForm.objCP_SupplierMapping.Location = new Point(dialogX, dialogY); 
-                MainForm.objCP_SupplierMapping.ShowDialog();
+                MainForm.objCP_SupplierMapping = new CP_SupplierMapping();
+                //MainForm.objCP_SupplierMapping.StartPosition = FormStartPosition.Manual;  
+                //int dialogX = this.Location.X + (this.Width - MainForm.objCP_SupplierMapping.Width ) / 2;
+                //int dialogY = this.Location.Y + (this.Height - MainForm.objCP_SupplierMapping.Height + 100) / 2; 
+                //MainForm.objCP_SupplierMapping.Location = new Point(dialogX, dialogY); 
+
+                MainForm.objCP_SupplierMapping.MdiParent = this.ParentForm;
+                MainForm.objCP_SupplierMapping.Show();
             }
             catch (Exception ex)
             {
@@ -119,10 +121,11 @@ namespace ROMS
 
                 if (grdSupplierMappingList.SelectedRows.Count > 0)
                 {
-                    MainForm.objCP_Brand = new CP_Brand();
-                    //MainForm.objCP_Brand.MdiParent = this.ParentForm;
-                    MainForm.objCP_Brand.varbrandcode = grdSupplierMappingList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
-                    MainForm.objCP_Brand.ShowDialog();
+                    //MainForm.objCP_Brand = new CP_Brand();
+                    ////MainForm.objCP_Brand.MdiParent = this.ParentForm;
+                    //MainForm.objCP_Brand.varbrandcode = grdSupplierMappingList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
+                    //MainForm.objCP_Brand.ShowDialog();
+
                 }
 
             }

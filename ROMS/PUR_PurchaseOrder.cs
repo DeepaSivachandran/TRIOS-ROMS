@@ -50,6 +50,9 @@ namespace ROMS
         {
             try
             {
+                dpPlanDate.MinDate = DateTime.Today;
+                dpPlanDate.MaxDate = DateTime.MaxValue;
+                dpPlanDate.Value = DateTime.Today;
                 udfnList();
             }
             catch (Exception ex)
@@ -192,10 +195,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    udfnclose();
                 }
             }
             catch (Exception ex)
@@ -243,6 +243,41 @@ namespace ROMS
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
+        {
+            udfnclose();
+        }
+        public void udfnclose()
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtOpeningStock_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbDPurchaseShop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Dpissuedateandtime_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
         {
 
         }
