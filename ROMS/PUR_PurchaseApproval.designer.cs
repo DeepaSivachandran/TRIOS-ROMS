@@ -39,20 +39,20 @@
             this.txtSupplierName = new System.Windows.Forms.TextBox();
             this.btnApprove = new System.Windows.Forms.Button();
             this.grbForm = new System.Windows.Forms.GroupBox();
+            this.btnreject = new System.Windows.Forms.Button();
+            this.grdSupplierList = new System.Windows.Forms.DataGridView();
             this.txtDtotqty = new System.Windows.Forms.TextBox();
             this.txttotqty = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.errUser = new System.Windows.Forms.ErrorProvider(this.components);
-            this.grdSupplierList = new System.Windows.Forms.DataGridView();
-            this.btnreject = new System.Windows.Forms.Button();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errUser)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDTotalItem
@@ -76,9 +76,6 @@
             this.txttotitem.ReadOnly = true;
             this.txttotitem.Size = new System.Drawing.Size(62, 27);
             this.txttotitem.TabIndex = 1;
-            //this.txttotitem.Enter += new System.EventHandler(this.txtLoginID_Enter);
-            //this.txttotitem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLoginID_KeyDown);
-            //this.txttotitem.Leave += new System.EventHandler(this.txtLoginID_Leave);
             // 
             // txtDSupplierName
             // 
@@ -101,9 +98,6 @@
             this.txtSupplierName.ReadOnly = true;
             this.txtSupplierName.Size = new System.Drawing.Size(217, 27);
             this.txtSupplierName.TabIndex = 0;
-            //this.txtSupplierName.Enter += new System.EventHandler(this.txtUserName_Enter);
-            //this.txtSupplierName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserName_KeyDown);
-            //this.txtSupplierName.Leave += new System.EventHandler(this.txtUserName_Leave);
             // 
             // btnApprove
             // 
@@ -117,11 +111,7 @@
             this.btnApprove.Text = "Approve";
             this.btnApprove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnApprove.UseVisualStyleBackColor = true;
-            //this.btnApprove.Click += new System.EventHandler(this.btnSave_Click);
-            //this.btnApprove.Enter += new System.EventHandler(this.btnSave_Enter);
-            //this.btnApprove.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
-            //this.btnApprove.Leave += new System.EventHandler(this.btnSave_Leave);
-            //// 
+            // 
             // grbForm
             // 
             this.grbForm.Controls.Add(this.btnreject);
@@ -140,52 +130,18 @@
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
             // 
-            // txtDtotqty
+            // btnreject
             // 
-            this.txtDtotqty.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDtotqty.Enabled = false;
-            this.txtDtotqty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDtotqty.Location = new System.Drawing.Point(454, 24);
-            this.txtDtotqty.Name = "txtDtotqty";
-            this.txtDtotqty.ReadOnly = true;
-            this.txtDtotqty.Size = new System.Drawing.Size(61, 27);
-            this.txtDtotqty.TabIndex = 12;
-            this.txtDtotqty.Text = "Total Qty";
-            // 
-            // txttotqty
-            // 
-            this.txttotqty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttotqty.Location = new System.Drawing.Point(515, 24);
-            this.txttotqty.MaxLength = 20;
-            this.txttotqty.Name = "txttotqty";
-            this.txttotqty.PasswordChar = '*';
-            this.txttotqty.ReadOnly = true;
-            this.txttotqty.Size = new System.Drawing.Size(62, 27);
-            this.txttotqty.TabIndex = 2;
-            //this.txttotqty.Enter += new System.EventHandler(this.txtPassword_Enter);
-            //this.txttotqty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
-            //this.txttotqty.Leave += new System.EventHandler(this.txtPassword_Leave);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(493, 295);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(84, 29);
-            this.btnClose.TabIndex = 7;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            //this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            //this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
-            //this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
-            //this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
-            // 
-            // errUser
-            // 
-            this.errUser.ContainerControl = this;
+            this.btnreject.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnreject.Image = global::ROMS.Properties.Resources.reset;
+            this.btnreject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnreject.Location = new System.Drawing.Point(406, 295);
+            this.btnreject.Name = "btnreject";
+            this.btnreject.Size = new System.Drawing.Size(84, 29);
+            this.btnreject.TabIndex = 1111138;
+            this.btnreject.Text = "Reject";
+            this.btnreject.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnreject.UseVisualStyleBackColor = true;
             // 
             // grdSupplierList
             // 
@@ -233,18 +189,45 @@
             this.grdSupplierList.Size = new System.Drawing.Size(567, 232);
             this.grdSupplierList.TabIndex = 1111137;
             // 
-            // btnreject
+            // txtDtotqty
             // 
-            this.btnreject.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnreject.Image = global::ROMS.Properties.Resources.reset;
-            this.btnreject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnreject.Location = new System.Drawing.Point(406, 295);
-            this.btnreject.Name = "btnreject";
-            this.btnreject.Size = new System.Drawing.Size(84, 29);
-            this.btnreject.TabIndex = 1111138;
-            this.btnreject.Text = "Reject";
-            this.btnreject.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnreject.UseVisualStyleBackColor = true;
+            this.txtDtotqty.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDtotqty.Enabled = false;
+            this.txtDtotqty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDtotqty.Location = new System.Drawing.Point(454, 24);
+            this.txtDtotqty.Name = "txtDtotqty";
+            this.txtDtotqty.ReadOnly = true;
+            this.txtDtotqty.Size = new System.Drawing.Size(61, 27);
+            this.txtDtotqty.TabIndex = 12;
+            this.txtDtotqty.Text = "Total Qty";
+            // 
+            // txttotqty
+            // 
+            this.txttotqty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttotqty.Location = new System.Drawing.Point(515, 24);
+            this.txttotqty.MaxLength = 20;
+            this.txttotqty.Name = "txttotqty";
+            this.txttotqty.PasswordChar = '*';
+            this.txttotqty.ReadOnly = true;
+            this.txttotqty.Size = new System.Drawing.Size(62, 27);
+            this.txttotqty.TabIndex = 2;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(493, 295);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(84, 29);
+            this.btnClose.TabIndex = 7;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            // 
+            // errUser
+            // 
+            this.errUser.ContainerControl = this;
             // 
             // clmsno
             // 
@@ -255,7 +238,7 @@
             // 
             // clmicode
             // 
-            this.clmicode.HeaderText = "Icode";
+            this.clmicode.HeaderText = "P.I Code";
             this.clmicode.Name = "clmicode";
             this.clmicode.ReadOnly = true;
             this.clmicode.Width = 75;
@@ -298,13 +281,10 @@
             this.Name = "PUR_PurchaseApproval";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product Approval";
-            //this.Load += new System.EventHandler(this.CP_User_Load);
-            //this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_User_KeyDown);
-            //this.Leave += new System.EventHandler(this.CP_User_Leave);
             this.grbForm.ResumeLayout(false);
             this.grbForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errUser)).EndInit();
             this.ResumeLayout(false);
 
         }

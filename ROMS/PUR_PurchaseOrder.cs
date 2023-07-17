@@ -262,24 +262,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TxtOpeningStock_TextChanged(object sender, EventArgs e)
+      
+
+        private void BtnDamage_Click(object sender, EventArgs e)
         {
+            try
+            {
+                MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
+                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
 
-        }
-
-        private void CmbDPurchaseShop_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Dpissuedateandtime_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnSave_Click(object sender, EventArgs e)
-        {
-
+            }
         }
     }
 }
