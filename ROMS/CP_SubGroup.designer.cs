@@ -50,19 +50,21 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtESubGroupNameEnglish = new System.Windows.Forms.TextBox();
-            this.errGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpPurchaseStockLocation = new System.Windows.Forms.GroupBox();
+            this.errGroup = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cbBatchNoRequired = new System.Windows.Forms.CheckBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
+            this.grpPurchaseStockLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errGroup)).BeginInit();
             this.SuspendLayout();
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.cbBatchNoRequired);
             this.grbform.Controls.Add(this.cmbshop);
             this.grbform.Controls.Add(this.txtPurchaseshopRack);
             this.grbform.Controls.Add(this.comboBox1);
-            this.grbform.Controls.Add(this.txtPurchaseShopGodown);
             this.grbform.Controls.Add(this.cmbPurchaseStockLocation);
             this.grbform.Controls.Add(this.txtDpurchaseStockLocation);
             this.grbform.Controls.Add(this.txtDEProductSubGroupNameTamil);
@@ -121,7 +123,7 @@
             this.txtPurchaseShopGodown.BackColor = System.Drawing.SystemColors.Control;
             this.txtPurchaseShopGodown.Enabled = false;
             this.txtPurchaseShopGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPurchaseShopGodown.Location = new System.Drawing.Point(33, 174);
+            this.txtPurchaseShopGodown.Location = new System.Drawing.Point(17, 61);
             this.txtPurchaseShopGodown.Name = "txtPurchaseShopGodown";
             this.txtPurchaseShopGodown.ReadOnly = true;
             this.txtPurchaseShopGodown.Size = new System.Drawing.Size(195, 27);
@@ -317,12 +319,9 @@
             this.txtESubGroupNameEnglish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtESubGroupNameEnglish_KeyDown);
             this.txtESubGroupNameEnglish.Leave += new System.EventHandler(this.txtESubGroupNameEnglish_Leave);
             // 
-            // errGroup
-            // 
-            this.errGroup.ContainerControl = this;
-            // 
             // grpPurchaseStockLocation
             // 
+            this.grpPurchaseStockLocation.Controls.Add(this.txtPurchaseShopGodown);
             this.grpPurchaseStockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.grpPurchaseStockLocation.Location = new System.Drawing.Point(16, 144);
             this.grpPurchaseStockLocation.Name = "grpPurchaseStockLocation";
@@ -331,9 +330,23 @@
             this.grpPurchaseStockLocation.TabStop = false;
             this.grpPurchaseStockLocation.Text = "Purchase Stock Location";
             // 
+            // errGroup
+            // 
+            this.errGroup.ContainerControl = this;
+            // 
+            // cbBatchNoRequired
+            // 
+            this.cbBatchNoRequired.AutoSize = true;
+            this.cbBatchNoRequired.Location = new System.Drawing.Point(33, 281);
+            this.cbBatchNoRequired.Name = "cbBatchNoRequired";
+            this.cbBatchNoRequired.Size = new System.Drawing.Size(129, 24);
+            this.cbBatchNoRequired.TabIndex = 1111141;
+            this.cbBatchNoRequired.Text = "Batch No.Required";
+            this.cbBatchNoRequired.UseVisualStyleBackColor = true;
+            // 
             // CP_SubGroup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(585, 346);
@@ -354,6 +367,8 @@
             this.grbform.PerformLayout();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
+            this.grpPurchaseStockLocation.ResumeLayout(false);
+            this.grpPurchaseStockLocation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errGroup)).EndInit();
             this.ResumeLayout(false);
 
@@ -382,5 +397,6 @@
         private System.Windows.Forms.ComboBox cmbshop;
         private System.Windows.Forms.TextBox txtPurchaseshopRack;
         private System.Windows.Forms.GroupBox grpPurchaseStockLocation;
+        private System.Windows.Forms.CheckBox cbBatchNoRequired;
     }
 }
