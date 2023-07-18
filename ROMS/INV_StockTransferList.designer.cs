@@ -57,14 +57,6 @@
             this.btnView = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdtransferdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTransferNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdestination = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdsalename = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTotalQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,6 +65,14 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdtransferdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTransferNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdestination = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdsalename = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTotalQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsStockTransferList.SuspendLayout();
             this.pnlStockTransferList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStockTransferList)).BeginInit();
@@ -413,47 +413,6 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmdtransferdate
-            // 
-            this.clmdtransferdate.HeaderText = "Transfer Date";
-            this.clmdtransferdate.Name = "clmdtransferdate";
-            // 
-            // clmTransferNo
-            // 
-            this.clmTransferNo.HeaderText = "Transfer No.";
-            this.clmTransferNo.Name = "clmTransferNo";
-            // 
-            // clmconcern
-            // 
-            this.clmconcern.HeaderText = "Concern";
-            this.clmconcern.Name = "clmconcern";
-            // 
-            // clmsource
-            // 
-            this.clmsource.HeaderText = "Source";
-            this.clmsource.Name = "clmsource";
-            // 
-            // clmdestination
-            // 
-            this.clmdestination.HeaderText = "Destination";
-            this.clmdestination.Name = "clmdestination";
-            // 
-            // clmdsalename
-            // 
-            this.clmdsalename.HeaderText = "No Of Items";
-            this.clmdsalename.Name = "clmdsalename";
-            this.clmdsalename.Width = 200;
-            // 
-            // clmTotalQty
-            // 
-            this.clmTotalQty.HeaderText = "Total Qty";
-            this.clmTotalQty.Name = "clmTotalQty";
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
@@ -486,7 +445,7 @@
             // 
             // dataGridViewTextBoxColumn7
             // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "No Of Items";
+            this.dataGridViewTextBoxColumn7.HeaderText = "No. Of Items";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.Width = 200;
             // 
@@ -494,6 +453,47 @@
             // 
             this.dataGridViewTextBoxColumn8.HeaderText = "Total Qty";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmdtransferdate
+            // 
+            this.clmdtransferdate.HeaderText = "Transfer Date";
+            this.clmdtransferdate.Name = "clmdtransferdate";
+            // 
+            // clmTransferNo
+            // 
+            this.clmTransferNo.HeaderText = "Transfer No.";
+            this.clmTransferNo.Name = "clmTransferNo";
+            // 
+            // clmconcern
+            // 
+            this.clmconcern.HeaderText = "Concern";
+            this.clmconcern.Name = "clmconcern";
+            // 
+            // clmsource
+            // 
+            this.clmsource.HeaderText = "Source";
+            this.clmsource.Name = "clmsource";
+            // 
+            // clmdestination
+            // 
+            this.clmdestination.HeaderText = "Destination";
+            this.clmdestination.Name = "clmdestination";
+            // 
+            // clmdsalename
+            // 
+            this.clmdsalename.HeaderText = "No. Of Items";
+            this.clmdsalename.Name = "clmdsalename";
+            this.clmdsalename.Width = 200;
+            // 
+            // clmTotalQty
+            // 
+            this.clmTotalQty.HeaderText = "Total Qty";
+            this.clmTotalQty.Name = "clmTotalQty";
             // 
             // INV_StockTransferList
             // 

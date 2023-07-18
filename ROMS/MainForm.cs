@@ -49,7 +49,7 @@ namespace ROMS
         public static CP_City objCP_City;
         public static CP_Citylist objCP_Citylist;
         public static CP_GroupList objCP_GroupList;
-        public static CP_Group objCP_Group;
+        public static CP_ProductGroup objCP_Group;
         public static CP_SubGroupList objCP_SubGroupList;
         public static CP_ProductSubGroup objCP_SubGroup;
         public static CP_LocationList objCP_LocationList;

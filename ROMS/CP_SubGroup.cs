@@ -349,7 +349,7 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_Group = new CP_Group();
+                MainForm.objCP_Group = new CP_ProductGroup();
                 MainForm.objCP_Group.ShowDialog();
             }
             catch (Exception ex)
