@@ -12,7 +12,6 @@ namespace ROMS
 {
     public partial class CP_Location : Form
     {
-
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
