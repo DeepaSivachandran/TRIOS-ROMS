@@ -350,5 +350,10 @@ namespace ROMS
                 obj.Show();
             } catch (Exception ex) { objError = new DataError();objError.WriteFile(ex); }
         }
+
+        private void TxtPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

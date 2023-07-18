@@ -45,6 +45,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.grddays = new System.Windows.Forms.DataGridView();
+            this.chkdays = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.grdGroupList = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,8 +57,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errBrand = new System.Windows.Forms.ErrorProvider(this.components);
-            this.chkdays = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clmname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbform.SuspendLayout();
             this.grporderby.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grddays)).BeginInit();
@@ -201,6 +201,21 @@
             this.grddays.TabIndex = 1111143;
             this.grddays.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grddays_CellContentClick);
             // 
+            // chkdays
+            // 
+            this.chkdays.HeaderText = "";
+            this.chkdays.Name = "chkdays";
+            this.chkdays.ReadOnly = true;
+            this.chkdays.Width = 40;
+            // 
+            // clmname
+            // 
+            this.clmname.HeaderText = "";
+            this.clmname.Name = "clmname";
+            this.clmname.ReadOnly = true;
+            this.clmname.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmname.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -329,21 +344,6 @@
             // 
             this.errBrand.ContainerControl = this;
             // 
-            // chkdays
-            // 
-            this.chkdays.HeaderText = "";
-            this.chkdays.Name = "chkdays";
-            this.chkdays.ReadOnly = true;
-            this.chkdays.Width = 40;
-            // 
-            // clmname
-            // 
-            this.clmname.HeaderText = "";
-            this.clmname.Name = "clmname";
-            this.clmname.ReadOnly = true;
-            this.clmname.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmname.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // PUR_SupplierSchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -360,7 +360,7 @@
             this.MinimizeBox = false;
             this.Name = "PUR_SupplierSchedule";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Supplier PO Schedule";
+            this.Text = "PO Schedule";
             this.Load += new System.EventHandler(this.PUR_SupplierSchedule_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Brand_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Brand_Leave);
