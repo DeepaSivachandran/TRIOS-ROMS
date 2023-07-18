@@ -50,6 +50,7 @@ namespace ROMS
             this.tsmMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.stateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCompany = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmHSN = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSubGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBrand = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,6 +61,7 @@ namespace ROMS
             this.tsmitem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUser = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSuppliyer = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmbroker = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmsupplierMapping = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmrackSettings = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,8 +74,6 @@ namespace ROMS
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmbroker = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmHSN = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -175,8 +175,7 @@ namespace ROMS
             this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsminward,
             this.tsmOutward,
-            this.tsmStockTransfer,
-            this.tsmStockRequest});
+            this.tsmStockTransfer});
             this.inventoryToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
             this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
@@ -186,14 +185,14 @@ namespace ROMS
             // 
             this.tsminward.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsminward.Name = "tsminward";
-            this.tsminward.Size = new System.Drawing.Size(180, 22);
+            this.tsminward.Size = new System.Drawing.Size(159, 22);
             this.tsminward.Text = "Godown Inward";
             this.tsminward.Click += new System.EventHandler(this.Tsminward_Click);
             // 
             // tsmOutward
             // 
             this.tsmOutward.Name = "tsmOutward";
-            this.tsmOutward.Size = new System.Drawing.Size(180, 22);
+            this.tsmOutward.Size = new System.Drawing.Size(159, 22);
             this.tsmOutward.Text = "Godown Outward";
             this.tsmOutward.Visible = false;
             this.tsmOutward.Click += new System.EventHandler(this.TsmOutward_Click);
@@ -201,16 +200,9 @@ namespace ROMS
             // tsmStockTransfer
             // 
             this.tsmStockTransfer.Name = "tsmStockTransfer";
-            this.tsmStockTransfer.Size = new System.Drawing.Size(180, 22);
+            this.tsmStockTransfer.Size = new System.Drawing.Size(159, 22);
             this.tsmStockTransfer.Text = "Stock Transfer";
             this.tsmStockTransfer.Click += new System.EventHandler(this.TsmStockTransfer_Click);
-            // 
-            // tsmStockRequest
-            // 
-            this.tsmStockRequest.Name = "tsmStockRequest";
-            this.tsmStockRequest.Size = new System.Drawing.Size(180, 22);
-            this.tsmStockRequest.Text = "Stock Request";
-            this.tsmStockRequest.Click += new System.EventHandler(this.TsmStockRequest_Click);
             // 
             // tsmControlPanel
             // 
@@ -260,6 +252,13 @@ namespace ROMS
             this.tsmCompany.Size = new System.Drawing.Size(180, 22);
             this.tsmCompany.Text = "Company";
             this.tsmCompany.Click += new System.EventHandler(this.TsmCompany_Click);
+            // 
+            // tsmHSN
+            // 
+            this.tsmHSN.Name = "tsmHSN";
+            this.tsmHSN.Size = new System.Drawing.Size(180, 22);
+            this.tsmHSN.Text = "Product HSN";
+            this.tsmHSN.Click += new System.EventHandler(this.TsmHSN_Click);
             // 
             // tsmGroup
             // 
@@ -330,6 +329,13 @@ namespace ROMS
             this.tsmSuppliyer.Size = new System.Drawing.Size(180, 22);
             this.tsmSuppliyer.Text = "Supplier";
             this.tsmSuppliyer.Click += new System.EventHandler(this.TsmSuppliyer_Click);
+            // 
+            // tsmbroker
+            // 
+            this.tsmbroker.Name = "tsmbroker";
+            this.tsmbroker.Size = new System.Drawing.Size(180, 22);
+            this.tsmbroker.Text = "Broker";
+            this.tsmbroker.Click += new System.EventHandler(this.Tsmbroker_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -448,14 +454,6 @@ namespace ROMS
             this.tsmLogout.Size = new System.Drawing.Size(161, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
-            // 
-            // tsmHSN
-            // tsmbroker
-            // 
-            this.tsmbroker.Name = "tsmbroker";
-            this.tsmbroker.Size = new System.Drawing.Size(180, 22);
-            this.tsmbroker.Text = "Broker";
-            this.tsmbroker.Click += new System.EventHandler(this.Tsmbroker_Click);
             // 
             // MainForm
             // 

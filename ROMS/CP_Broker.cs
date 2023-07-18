@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class CP_Group : Form
+    public partial class CP_Broker : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -23,11 +23,11 @@ namespace ROMS
         private ToolTip tpsno = new ToolTip();
         public string vargroupcode;
         public String pbFormStatus;
-        public CP_Group()
+        public CP_Broker()
         {
             InitializeComponent();
         }
-        private void CP_Group_Load(object sender, EventArgs e)
+        private void CP_SubGroup_Load(object sender, EventArgs e)
         {
             try
             {      
@@ -114,19 +114,19 @@ namespace ROMS
             {
 
                 errGroup.Clear();
-                if (txtEGroupNameEnglish.Text.Trim() == "")
+                if (txtESubGroupNameEnglish.Text.Trim() == "")
                 {
-                    errGroup.SetError(txtEGroupNameEnglish, "Please enter group english name");
-                    txtEGroupNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    errGroup.SetError(txtESubGroupNameEnglish, "Please enter group english name");
+                    txtESubGroupNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
 
                     tpegroupname.ShowAlways = true;
-                    tpegroupname.Show("Please enter group english name", txtEGroupNameEnglish, 5000);
-                    txtEGroupNameEnglish.Text = "";
+                    tpegroupname.Show("Please enter group english name", txtESubGroupNameEnglish, 5000);
+                    txtESubGroupNameEnglish.Text = "";
 
                 }
-                if (txtEGroupNameEnglish.Text.Trim() == "")
+                if (txtESubGroupNameEnglish.Text.Trim() == "")
                 {
-                    txtEGroupNameEnglish.Focus();
+                    txtESubGroupNameEnglish.Focus();
                     return;
 
                 }
@@ -169,7 +169,7 @@ namespace ROMS
                         udfnclear();
                     }
                   //  udfnLoadSlNo();
-                   // MainForm.objCP_GroupList.udfnList();
+                   // MainForm.objCP_SubGroupList.udfnList();
                 }
                 else
                 {
@@ -200,7 +200,7 @@ namespace ROMS
                // cmbGroupType.SelectedValue = "-1";
                 DataSet objDS = new DataSet();
                 SPDataService objspservice = new SPDataService();
-               // objDS = objspservice.udfnGetSlNo("CP_GROUP", "Create", "", "");
+               // objDS = objspservice.udfnGetSlNo("CP_SubGroup", "Create", "", "");
                 objspservice.CloseConnection();
                 if (objDS != null)
                 {
@@ -276,7 +276,7 @@ namespace ROMS
             try
             {
                 udfnclose();
-               // MainForm.objCP_GroupList.udfnList();
+               // MainForm.objCP_SubGroupList.udfnList();
             }
             catch (Exception ex)
             {
@@ -325,7 +325,7 @@ namespace ROMS
         }
 
 
-        private void CP_Group_KeyDown(object sender, KeyEventArgs e)
+        private void CP_SubGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -344,32 +344,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        
-        private void cmbSINO_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void txtTLabelName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RbInactive_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Grbform_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtEGroupNameEnglish_Enter(object sender, EventArgs e)
+        private void BtnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                txtEGroupNameEnglish.BackColor = Color.LemonChiffon;
+                MainForm.objCP_Group = new CP_Group();
+                MainForm.objCP_Group.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -378,13 +359,18 @@ namespace ROMS
             }
         }
 
-        private void TxtEGroupNameEnglish_KeyDown(object sender, KeyEventArgs e)
+        private void RbActive_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbGroupName_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtEGroupNameTamil.Focus();
+                    txtESubGroupNameEnglish.Focus();
                 }
             }
             catch (Exception ex)
@@ -394,18 +380,47 @@ namespace ROMS
             }
         }
 
-        private void txtEGroupNameEnglish_Leave(object sender, EventArgs e)
+        private void txtESubGroupNameEnglish_Enter(object sender, EventArgs e)
         {
             try
             {
-                if (txtEGroupNameEnglish.Text == "")
+                txtESubGroupNameEnglish.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtESubGroupNameEnglish_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
                 {
-                    txtEGroupNameEnglish.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errGroup.SetError(txtEGroupNameEnglish, "Please Enter Group Name In English");
+                    txtESubGroupNameTamil.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtESubGroupNameEnglish_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtESubGroupNameEnglish.Text == "")
+                {
+                    txtESubGroupNameEnglish.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errGroup.SetError(txtESubGroupNameEnglish, "Please Enter Sub Group Name in English");
                 }
                 else
                 {
-                    txtEGroupNameEnglish.BackColor = Color.White;
+                    txtESubGroupNameEnglish.BackColor = Color.White;
                     errGroup.Clear();
                 }
             }
@@ -416,11 +431,11 @@ namespace ROMS
             }
         }
 
-        private void TxtEGroupNameTamil_Enter(object sender, EventArgs e)
+        private void TxtESubGroupNameTamil_Enter(object sender, EventArgs e)
         {
             try
             {
-                txtEGroupNameTamil.BackColor = Color.LemonChiffon;
+                txtESubGroupNameTamil.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -429,7 +444,7 @@ namespace ROMS
             }
         }
 
-        private void TxtEGroupNameTamil_KeyDown(object sender, KeyEventArgs e)
+        private void TxtESubGroupNameTamil_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -445,18 +460,18 @@ namespace ROMS
             }
         }
 
-        private void TxtEGroupNameTamil_Leave(object sender, EventArgs e)
+        private void TxtESubGroupNameTamil_Leave(object sender, EventArgs e)
         {
             try
             {
-                if (txtEGroupNameTamil.Text == "")
+                if (txtESubGroupNameTamil.Text == "")
                 {
-                    txtEGroupNameTamil.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errGroup.SetError(txtEGroupNameTamil, "Please Enter Group Name in Tamil");
+                    txtESubGroupNameTamil.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errGroup.SetError(txtESubGroupNameTamil, "Please Enter Sub Group Name in Tamil");
                 }
                 else
                 {
-                    txtEGroupNameTamil.BackColor = Color.White;
+                    txtESubGroupNameTamil.BackColor = Color.White;
                     errGroup.Clear();
                 }
             }
@@ -497,6 +512,21 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void TxtDBrokerName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtDMobileNo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtDWhatsAppNo_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

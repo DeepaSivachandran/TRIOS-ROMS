@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_ProductGroup
+    partial class CP_Group
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_ProductGroup));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Group));
             this.grbform = new System.Windows.Forms.GroupBox();
             this.txtDProductGroupNameTamil = new System.Windows.Forms.TextBox();
             this.txtEGroupNameTamil = new System.Windows.Forms.TextBox();
@@ -200,9 +200,9 @@
             // 
             this.errGroup.ContainerControl = this;
             // 
-            // CP_ProductGroup
+            // CP_Group
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(585, 187);
@@ -214,7 +214,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CP_ProductGroup";
+            this.Name = "CP_Group";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product Group";
             this.Load += new System.EventHandler(this.CP_Group_Load);

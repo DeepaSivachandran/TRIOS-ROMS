@@ -43,19 +43,19 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlunitlist = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSymbols = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNoOfDecimals = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUnitList = new System.Windows.Forms.DataGridView();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDSymbols = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDNoOfDecimals = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSymbols = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNoOfDecimals = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsUnitList.SuspendLayout();
             this.pnlunitlist.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -205,48 +205,6 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
             // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.MinimumWidth = 6;
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmdcompanyname
-            // 
-            this.clmdcompanyname.HeaderText = "Unit Name";
-            this.clmdcompanyname.MinimumWidth = 6;
-            this.clmdcompanyname.Name = "clmdcompanyname";
-            this.clmdcompanyname.Width = 200;
-            // 
-            // clmSymbols
-            // 
-            this.clmSymbols.HeaderText = "Symbols";
-            this.clmSymbols.Name = "clmSymbols";
-            // 
-            // clmNoOfDecimals
-            // 
-            this.clmNoOfDecimals.HeaderText = "No.Of Decimals";
-            this.clmNoOfDecimals.Name = "clmNoOfDecimals";
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Status";
-            this.clmdstatus.MinimumWidth = 6;
-            this.clmdstatus.Name = "clmdstatus";
-            this.clmdstatus.Width = 125;
-            // 
-            // lblNoRecordsFound
-            // 
-            this.lblNoRecordsFound.AutoSize = true;
-            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
-            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(622, 375);
-            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
-            this.lblNoRecordsFound.TabIndex = 958798;
-            this.lblNoRecordsFound.Text = "No Records Found";
-            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // grdUnitList
             // 
             this.grdUnitList.AllowUserToAddRows = false;
@@ -294,6 +252,32 @@
             this.grdUnitList.Size = new System.Drawing.Size(1348, 581);
             this.grdUnitList.TabIndex = 958797;
             // 
+            // lblNoRecordsFound
+            // 
+            this.lblNoRecordsFound.AutoSize = true;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(622, 375);
+            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.TabIndex = 958798;
+            this.lblNoRecordsFound.Text = "No Records Found";
+            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(139, 215);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1201, 455);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
+            // 
             // clmsno
             // 
             this.clmsno.HeaderText = "S.No.";
@@ -311,7 +295,7 @@
             // 
             // clmDSymbols
             // 
-            this.clmDSymbols.HeaderText = "Symbols";
+            this.clmDSymbols.HeaderText = "Symbol";
             this.clmDSymbols.Name = "clmDSymbols";
             this.clmDSymbols.ReadOnly = true;
             // 
@@ -329,19 +313,35 @@
             this.clmStatus.ReadOnly = true;
             this.clmStatus.Width = 125;
             // 
-            // picLoader
+            // clmdsno
             // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(139, 215);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1201, 455);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.MinimumWidth = 6;
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmdcompanyname
+            // 
+            this.clmdcompanyname.HeaderText = "Unit Name";
+            this.clmdcompanyname.MinimumWidth = 6;
+            this.clmdcompanyname.Name = "clmdcompanyname";
+            this.clmdcompanyname.Width = 200;
+            // 
+            // clmSymbols
+            // 
+            this.clmSymbols.HeaderText = "Symbol";
+            this.clmSymbols.Name = "clmSymbols";
+            // 
+            // clmNoOfDecimals
+            // 
+            this.clmNoOfDecimals.HeaderText = "No.Of Decimals";
+            this.clmNoOfDecimals.Name = "clmNoOfDecimals";
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Status";
+            this.clmdstatus.MinimumWidth = 6;
+            this.clmdstatus.Name = "clmdstatus";
+            this.clmdstatus.Width = 125;
             // 
             // CP_Unitlist
             // 

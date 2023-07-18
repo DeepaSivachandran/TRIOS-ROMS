@@ -78,16 +78,22 @@
             this.textBox19 = new System.Windows.Forms.TextBox();
             this.textBox20 = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtrupee = new System.Windows.Forms.TextBox();
             this.cmbfinance = new System.Windows.Forms.ComboBox();
             this.txtopening = new System.Windows.Forms.TextBox();
             this.textBox22 = new System.Windows.Forms.TextBox();
             this.txtcreditlimit = new System.Windows.Forms.TextBox();
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.cmbPaymentMode = new System.Windows.Forms.ComboBox();
-            this.txtDPaymentMode = new System.Windows.Forms.TextBox();
+            this.cmbPaymentTerm = new System.Windows.Forms.ComboBox();
+            this.txtDPaymentTerm = new System.Windows.Forms.TextBox();
             this.txtgstin = new System.Windows.Forms.TextBox();
             this.textBox32 = new System.Windows.Forms.TextBox();
+            this.rbpropritor = new System.Windows.Forms.RadioButton();
+            this.textBox30 = new System.Windows.Forms.TextBox();
+            this.rbmanager = new System.Windows.Forms.RadioButton();
+            this.txtsupplybrand = new System.Windows.Forms.TextBox();
+            this.textBox33 = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.grddays = new System.Windows.Forms.DataGridView();
             this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -95,17 +101,13 @@
             this.cmbsuppliertype = new System.Windows.Forms.ComboBox();
             this.txtDOrderDay = new System.Windows.Forms.TextBox();
             this.textBox34 = new System.Windows.Forms.TextBox();
-            this.rbmanager = new System.Windows.Forms.RadioButton();
-            this.textBox33 = new System.Windows.Forms.TextBox();
-            this.rbpropritor = new System.Windows.Forms.RadioButton();
-            this.txtsupplybrand = new System.Windows.Forms.TextBox();
-            this.textBox30 = new System.Windows.Forms.TextBox();
             this.panelStatus = new System.Windows.Forms.Panel();
             this.rbInactive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.txtrupee = new System.Windows.Forms.TextBox();
+            this.cmbDesignation = new System.Windows.Forms.ComboBox();
+            this.txtDDesignation = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
@@ -434,7 +436,7 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(969, 345);
+            this.textBox4.Location = new System.Drawing.Point(970, 380);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(131, 27);
@@ -697,6 +699,18 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Finance  Details";
             // 
+            // txtrupee
+            // 
+            this.txtrupee.BackColor = System.Drawing.SystemColors.Control;
+            this.txtrupee.Enabled = false;
+            this.txtrupee.Font = new System.Drawing.Font("Rupee Foradian", 12.75F, System.Drawing.FontStyle.Bold);
+            this.txtrupee.Location = new System.Drawing.Point(113, 36);
+            this.txtrupee.Name = "txtrupee";
+            this.txtrupee.ReadOnly = true;
+            this.txtrupee.Size = new System.Drawing.Size(21, 27);
+            this.txtrupee.TabIndex = 62;
+            this.txtrupee.Text = "₹";
+            // 
             // cmbfinance
             // 
             this.cmbfinance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -763,8 +777,8 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.cmbPaymentMode);
-            this.groupBox5.Controls.Add(this.txtDPaymentMode);
+            this.groupBox5.Controls.Add(this.cmbPaymentTerm);
+            this.groupBox5.Controls.Add(this.txtDPaymentTerm);
             this.groupBox5.Controls.Add(this.txtgstin);
             this.groupBox5.Controls.Add(this.textBox32);
             this.groupBox5.Controls.Add(this.rbpropritor);
@@ -780,30 +794,30 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Regitration Details";
             // 
-            // cmbPaymentMode
+            // cmbPaymentTerm
             // 
-            this.cmbPaymentMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPaymentMode.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPaymentMode.FormattingEnabled = true;
-            this.cmbPaymentMode.Items.AddRange(new object[] {
+            this.cmbPaymentTerm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPaymentTerm.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPaymentTerm.FormattingEnabled = true;
+            this.cmbPaymentTerm.Items.AddRange(new object[] {
             "Nett Amount",
             "Taxable Amount"});
-            this.cmbPaymentMode.Location = new System.Drawing.Point(140, 63);
-            this.cmbPaymentMode.Name = "cmbPaymentMode";
-            this.cmbPaymentMode.Size = new System.Drawing.Size(204, 27);
-            this.cmbPaymentMode.TabIndex = 25;
+            this.cmbPaymentTerm.Location = new System.Drawing.Point(140, 63);
+            this.cmbPaymentTerm.Name = "cmbPaymentTerm";
+            this.cmbPaymentTerm.Size = new System.Drawing.Size(204, 27);
+            this.cmbPaymentTerm.TabIndex = 25;
             // 
-            // txtDPaymentMode
+            // txtDPaymentTerm
             // 
-            this.txtDPaymentMode.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDPaymentMode.Enabled = false;
-            this.txtDPaymentMode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPaymentMode.Location = new System.Drawing.Point(9, 63);
-            this.txtDPaymentMode.Name = "txtDPaymentMode";
-            this.txtDPaymentMode.ReadOnly = true;
-            this.txtDPaymentMode.Size = new System.Drawing.Size(131, 27);
-            this.txtDPaymentMode.TabIndex = 24;
-            this.txtDPaymentMode.Text = "Payment Mode";
+            this.txtDPaymentTerm.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDPaymentTerm.Enabled = false;
+            this.txtDPaymentTerm.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDPaymentTerm.Location = new System.Drawing.Point(9, 63);
+            this.txtDPaymentTerm.Name = "txtDPaymentTerm";
+            this.txtDPaymentTerm.ReadOnly = true;
+            this.txtDPaymentTerm.Size = new System.Drawing.Size(131, 27);
+            this.txtDPaymentTerm.TabIndex = 24;
+            this.txtDPaymentTerm.Text = "Payment Term";
             // 
             // txtgstin
             // 
@@ -829,16 +843,84 @@
             this.textBox32.TabIndex = 16;
             this.textBox32.Text = "GSTIN";
             // 
+            // rbpropritor
+            // 
+            this.rbpropritor.AutoSize = true;
+            this.rbpropritor.Checked = true;
+            this.rbpropritor.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbpropritor.Location = new System.Drawing.Point(148, 158);
+            this.rbpropritor.Name = "rbpropritor";
+            this.rbpropritor.Size = new System.Drawing.Size(82, 24);
+            this.rbpropritor.TabIndex = 28;
+            this.rbpropritor.TabStop = true;
+            this.rbpropritor.Text = "Proprietor";
+            this.rbpropritor.UseVisualStyleBackColor = true;
+            this.rbpropritor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Rbpropritor_KeyDown);
+            // 
+            // textBox30
+            // 
+            this.textBox30.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox30.Enabled = false;
+            this.textBox30.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox30.Location = new System.Drawing.Point(9, 130);
+            this.textBox30.Name = "textBox30";
+            this.textBox30.ReadOnly = true;
+            this.textBox30.Size = new System.Drawing.Size(131, 27);
+            this.textBox30.TabIndex = 16;
+            this.textBox30.Text = "Supply Brand";
+            this.textBox30.Visible = false;
+            // 
+            // rbmanager
+            // 
+            this.rbmanager.AutoSize = true;
+            this.rbmanager.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbmanager.Location = new System.Drawing.Point(265, 158);
+            this.rbmanager.Name = "rbmanager";
+            this.rbmanager.Size = new System.Drawing.Size(74, 24);
+            this.rbmanager.TabIndex = 29;
+            this.rbmanager.Text = "Manager";
+            this.rbmanager.UseVisualStyleBackColor = true;
+            this.rbmanager.Visible = false;
+            this.rbmanager.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Rbmanager_KeyDown);
+            // 
+            // txtsupplybrand
+            // 
+            this.txtsupplybrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtsupplybrand.Location = new System.Drawing.Point(140, 130);
+            this.txtsupplybrand.MaxLength = 100;
+            this.txtsupplybrand.Name = "txtsupplybrand";
+            this.txtsupplybrand.Size = new System.Drawing.Size(204, 27);
+            this.txtsupplybrand.TabIndex = 25;
+            this.txtsupplybrand.Visible = false;
+            this.txtsupplybrand.Enter += new System.EventHandler(this.Txtsupplybrand_Enter);
+            this.txtsupplybrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsupplybrand_KeyDown);
+            this.txtsupplybrand.Leave += new System.EventHandler(this.Txtsupplybrand_Leave);
+            // 
+            // textBox33
+            // 
+            this.textBox33.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox33.Enabled = false;
+            this.textBox33.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox33.Location = new System.Drawing.Point(9, 157);
+            this.textBox33.Name = "textBox33";
+            this.textBox33.ReadOnly = true;
+            this.textBox33.Size = new System.Drawing.Size(131, 27);
+            this.textBox33.TabIndex = 65;
+            this.textBox33.Text = "Label";
+            this.textBox33.Visible = false;
+            // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.cmbDesignation);
+            this.groupBox6.Controls.Add(this.txtDDesignation);
             this.groupBox6.Controls.Add(this.grddays);
             this.groupBox6.Controls.Add(this.cmbsuppliertype);
             this.groupBox6.Controls.Add(this.txtDOrderDay);
             this.groupBox6.Controls.Add(this.textBox34);
             this.groupBox6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(961, 112);
+            this.groupBox6.Location = new System.Drawing.Point(961, 120);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(358, 223);
+            this.groupBox6.Size = new System.Drawing.Size(358, 250);
             this.groupBox6.TabIndex = 25;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Order Details";
@@ -875,7 +957,7 @@
             this.grddays.DefaultCellStyle = dataGridViewCellStyle2;
             this.grddays.EnableHeadersVisualStyles = false;
             this.grddays.GridColor = System.Drawing.Color.White;
-            this.grddays.Location = new System.Drawing.Point(140, 54);
+            this.grddays.Location = new System.Drawing.Point(142, 81);
             this.grddays.Name = "grddays";
             this.grddays.ReadOnly = true;
             this.grddays.RowHeadersVisible = false;
@@ -908,7 +990,7 @@
             this.cmbsuppliertype.Items.AddRange(new object[] {
             "Mobile",
             "Visit"});
-            this.cmbsuppliertype.Location = new System.Drawing.Point(140, 27);
+            this.cmbsuppliertype.Location = new System.Drawing.Point(142, 54);
             this.cmbsuppliertype.Name = "cmbsuppliertype";
             this.cmbsuppliertype.Size = new System.Drawing.Size(204, 27);
             this.cmbsuppliertype.TabIndex = 30;
@@ -919,7 +1001,7 @@
             this.txtDOrderDay.BackColor = System.Drawing.SystemColors.Control;
             this.txtDOrderDay.Enabled = false;
             this.txtDOrderDay.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDOrderDay.Location = new System.Drawing.Point(9, 54);
+            this.txtDOrderDay.Location = new System.Drawing.Point(11, 81);
             this.txtDOrderDay.Name = "txtDOrderDay";
             this.txtDOrderDay.ReadOnly = true;
             this.txtDOrderDay.Size = new System.Drawing.Size(131, 27);
@@ -932,79 +1014,13 @@
             this.textBox34.BackColor = System.Drawing.SystemColors.Control;
             this.textBox34.Enabled = false;
             this.textBox34.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox34.Location = new System.Drawing.Point(9, 27);
+            this.textBox34.Location = new System.Drawing.Point(11, 54);
             this.textBox34.Name = "textBox34";
             this.textBox34.ReadOnly = true;
             this.textBox34.Size = new System.Drawing.Size(131, 27);
             this.textBox34.TabIndex = 66;
             this.textBox34.Text = "Order Type";
             this.textBox34.TextChanged += new System.EventHandler(this.TextBox34_TextChanged);
-            // 
-            // rbmanager
-            // 
-            this.rbmanager.AutoSize = true;
-            this.rbmanager.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbmanager.Location = new System.Drawing.Point(265, 158);
-            this.rbmanager.Name = "rbmanager";
-            this.rbmanager.Size = new System.Drawing.Size(74, 24);
-            this.rbmanager.TabIndex = 29;
-            this.rbmanager.Text = "Manager";
-            this.rbmanager.UseVisualStyleBackColor = true;
-            this.rbmanager.Visible = false;
-            this.rbmanager.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Rbmanager_KeyDown);
-            // 
-            // textBox33
-            // 
-            this.textBox33.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox33.Enabled = false;
-            this.textBox33.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox33.Location = new System.Drawing.Point(9, 157);
-            this.textBox33.Name = "textBox33";
-            this.textBox33.ReadOnly = true;
-            this.textBox33.Size = new System.Drawing.Size(131, 27);
-            this.textBox33.TabIndex = 65;
-            this.textBox33.Text = "Label";
-            this.textBox33.Visible = false;
-            // 
-            // rbpropritor
-            // 
-            this.rbpropritor.AutoSize = true;
-            this.rbpropritor.Checked = true;
-            this.rbpropritor.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbpropritor.Location = new System.Drawing.Point(148, 158);
-            this.rbpropritor.Name = "rbpropritor";
-            this.rbpropritor.Size = new System.Drawing.Size(82, 24);
-            this.rbpropritor.TabIndex = 28;
-            this.rbpropritor.TabStop = true;
-            this.rbpropritor.Text = "Proprietor";
-            this.rbpropritor.UseVisualStyleBackColor = true;
-            this.rbpropritor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Rbpropritor_KeyDown);
-            // 
-            // txtsupplybrand
-            // 
-            this.txtsupplybrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtsupplybrand.Location = new System.Drawing.Point(140, 130);
-            this.txtsupplybrand.MaxLength = 100;
-            this.txtsupplybrand.Name = "txtsupplybrand";
-            this.txtsupplybrand.Size = new System.Drawing.Size(204, 27);
-            this.txtsupplybrand.TabIndex = 25;
-            this.txtsupplybrand.Visible = false;
-            this.txtsupplybrand.Enter += new System.EventHandler(this.Txtsupplybrand_Enter);
-            this.txtsupplybrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsupplybrand_KeyDown);
-            this.txtsupplybrand.Leave += new System.EventHandler(this.Txtsupplybrand_Leave);
-            // 
-            // textBox30
-            // 
-            this.textBox30.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox30.Enabled = false;
-            this.textBox30.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox30.Location = new System.Drawing.Point(9, 130);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.ReadOnly = true;
-            this.textBox30.Size = new System.Drawing.Size(131, 27);
-            this.textBox30.TabIndex = 16;
-            this.textBox30.Text = "Supply Brand";
-            this.textBox30.Visible = false;
             // 
             // panelStatus
             // 
@@ -1013,7 +1029,7 @@
             this.panelStatus.Controls.Add(this.rbActive);
             this.panelStatus.Enabled = false;
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(1099, 345);
+            this.panelStatus.Location = new System.Drawing.Point(1100, 380);
             this.panelStatus.Name = "panelStatus";
             this.panelStatus.Size = new System.Drawing.Size(220, 27);
             this.panelStatus.TabIndex = 60;
@@ -1048,7 +1064,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1157, 378);
+            this.btnSave.Location = new System.Drawing.Point(1157, 413);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 34;
@@ -1065,7 +1081,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1244, 378);
+            this.btnClose.Location = new System.Drawing.Point(1244, 413);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 35;
@@ -1077,24 +1093,37 @@
             this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
-            // txtrupee
+            // cmbDesignation
             // 
-            this.txtrupee.BackColor = System.Drawing.SystemColors.Control;
-            this.txtrupee.Enabled = false;
-            this.txtrupee.Font = new System.Drawing.Font("Rupee Foradian", 12.75F, System.Drawing.FontStyle.Bold);
-            this.txtrupee.Location = new System.Drawing.Point(113, 36);
-            this.txtrupee.Name = "txtrupee";
-            this.txtrupee.ReadOnly = true;
-            this.txtrupee.Size = new System.Drawing.Size(21, 27);
-            this.txtrupee.TabIndex = 62;
-            this.txtrupee.Text = "₹";
+            this.cmbDesignation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDesignation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDesignation.FormattingEnabled = true;
+            this.cmbDesignation.Items.AddRange(new object[] {
+            "Proprictor",
+            "Manager"});
+            this.cmbDesignation.Location = new System.Drawing.Point(142, 27);
+            this.cmbDesignation.Name = "cmbDesignation";
+            this.cmbDesignation.Size = new System.Drawing.Size(204, 27);
+            this.cmbDesignation.TabIndex = 67;
+            // 
+            // txtDDesignation
+            // 
+            this.txtDDesignation.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDDesignation.Enabled = false;
+            this.txtDDesignation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDDesignation.Location = new System.Drawing.Point(11, 27);
+            this.txtDDesignation.Name = "txtDDesignation";
+            this.txtDDesignation.ReadOnly = true;
+            this.txtDDesignation.Size = new System.Drawing.Size(131, 27);
+            this.txtDDesignation.TabIndex = 68;
+            this.txtDDesignation.Text = "Designation";
             // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1332, 424);
+            this.ClientSize = new System.Drawing.Size(1332, 455);
             this.Controls.Add(this.panelStatus);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -1211,8 +1240,10 @@
         public System.Windows.Forms.DataGridView grddays;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmcheck;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmday;
-        private System.Windows.Forms.ComboBox cmbPaymentMode;
-        private System.Windows.Forms.TextBox txtDPaymentMode;
+        private System.Windows.Forms.ComboBox cmbPaymentTerm;
+        private System.Windows.Forms.TextBox txtDPaymentTerm;
         private System.Windows.Forms.TextBox txtrupee;
+        private System.Windows.Forms.ComboBox cmbDesignation;
+        private System.Windows.Forms.TextBox txtDDesignation;
     }
 }
