@@ -49,7 +49,7 @@ namespace ROMS
         public static CP_City objCP_City;
         public static CP_Citylist objCP_Citylist;
         public static CP_GroupList objCP_GroupList;
-        public static CP_Group objCP_Group;
+        public static CP_ProductGroup objCP_Group;
         public static CP_SubGroupList objCP_SubGroupList;
         public static CP_SubGroup objCP_SubGroup;
         public static CP_LocationList objCP_LocationList;
@@ -71,7 +71,7 @@ namespace ROMS
         public static CP_BatchNoConfiguration objCP_BatchNoConfiguration;
         public static CP_BatchNoConfigurationList objCP_BatchNoConfigurationList;
         public static CP_RackGroup objCP_RackGroup;
-        public static CP_RackGroupList objCP_RackGroupList; 
+        public static CP_RackGroupList objCP_RackGroupList;
 
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList; 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
@@ -872,6 +872,23 @@ namespace ROMS
                 MainForm.objCP_CP_BrokerList = new CP_BrokerList();
                 MainForm.objCP_CP_BrokerList.MdiParent = this;
                 MainForm.objCP_CP_BrokerList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmHSN_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_ProductHSNlist = new CP_ProductHSNList();
+                MainForm.objCP_ProductHSNlist.MdiParent = this;
+                MainForm.objCP_ProductHSNlist.Show();
             }
             catch (Exception ex)
             {

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class CP_Group : Form
+    public partial class CP_ProductGroup : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -23,7 +23,7 @@ namespace ROMS
         private ToolTip tpsno = new ToolTip();
         public string vargroupcode;
         public String pbFormStatus;
-        public CP_Group()
+        public CP_ProductGroup()
         {
             InitializeComponent();
         }

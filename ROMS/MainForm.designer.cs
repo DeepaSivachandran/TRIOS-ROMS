@@ -46,7 +46,6 @@ namespace ROMS
             this.tsminward = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmOutward = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockTransfer = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmStockRequest = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmControlPanel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.stateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,6 +73,7 @@ namespace ROMS
             this.tsmChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmbroker = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmHSN = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -231,6 +231,7 @@ namespace ROMS
             this.tsmMasters.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stateToolStripMenuItem,
             this.tsmCompany,
+            this.tsmHSN,
             this.tsmGroup,
             this.tsmSubGroup,
             this.tsmBrand,
@@ -448,6 +449,7 @@ namespace ROMS
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
+            // tsmHSN
             // tsmbroker
             // 
             this.tsmbroker.Name = "tsmbroker";
@@ -526,5 +528,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStockRequest;
         private System.Windows.Forms.ToolStripMenuItem tsmgenralSettings;
         private System.Windows.Forms.ToolStripMenuItem tsmbroker;
+        private System.Windows.Forms.ToolStripMenuItem tsmHSN;
     }
 }
