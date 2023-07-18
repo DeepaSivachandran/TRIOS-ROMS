@@ -71,7 +71,7 @@ namespace ROMS
         public static CP_BatchNoConfiguration objCP_BatchNoConfiguration;
         public static CP_BatchNoConfigurationList objCP_BatchNoConfigurationList;
         public static CP_RackGroup objCP_RackGroup;
-        public static CP_RackGroupList objCP_RackGroupList; 
+        public static CP_RackGroupList objCP_RackGroupList;
 
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList; 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
@@ -819,6 +819,23 @@ namespace ROMS
                 //MainForm.objINV_StockTransferList = new cp_out();
                 //MainForm.objINV_StockTransferList.MdiParent = this;
                 //MainForm.objINV_StockTransferList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmHSN_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_ProductHSNlist = new CP_ProductHSNList();
+                MainForm.objCP_ProductHSNlist.MdiParent = this;
+                MainForm.objCP_ProductHSNlist.Show();
             }
             catch (Exception ex)
             {

@@ -292,7 +292,7 @@
             // 
             // clmDSymbols
             // 
-            this.clmDSymbols.HeaderText = "Symbols";
+            this.clmDSymbols.HeaderText = "Symbol";
             this.clmDSymbols.Name = "clmDSymbols";
             this.clmDSymbols.ReadOnly = true;
             // 
@@ -325,7 +325,7 @@
             // 
             // clmSymbols
             // 
-            this.clmSymbols.HeaderText = "Symbols";
+            this.clmSymbols.HeaderText = "Symbol";
             this.clmSymbols.Name = "clmSymbols";
             // 
             // clmNoOfDecimals
