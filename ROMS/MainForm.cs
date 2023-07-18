@@ -896,5 +896,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void TsmControlPanel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 } 
