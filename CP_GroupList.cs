@@ -27,7 +27,7 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_Group = new CP_ProductGroup();
+                MainForm.objCP_Group = new CP_Group();
                 MainForm.objCP_Group.ShowDialog();
             }
             catch (Exception ex)
@@ -111,7 +111,8 @@ namespace ROMS
         public void udfnList()
         {
             try
-            { 
+            {
+                picLoader.Visible = true;
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdGroupList.DataSource = null; 
@@ -176,7 +177,8 @@ namespace ROMS
             }
             finally
             {
-                grdGroupList.ClearSelection(); 
+                grdGroupList.ClearSelection();
+                picLoader.Visible = false;
             }
         }
 
@@ -422,93 +424,6 @@ namespace ROMS
             //    //}
             //}
         }
-
-        private void CmbGroupType_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnView_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                btnView.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnExport_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                btnExport.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnView_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-               
-                    btnView.BackColor = Color.White;
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnExport_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-               
-                    btnExport.BackColor = Color.White;
-             
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnView_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnExport.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        
     }
 }

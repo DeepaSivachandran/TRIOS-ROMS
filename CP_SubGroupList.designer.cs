@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_GroupList
+    partial class CP_SubGroupList
     {
         /// <summary>
         /// Required designer variable.
@@ -38,25 +38,24 @@
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
-            this.pnlgroup = new System.Windows.Forms.Panel();
-            this.lblGC = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.grdGroupList = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.cmbGroupType = new System.Windows.Forms.ComboBox();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdGroupList = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProductGroupNameInTamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnoofproductgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.lblGC = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.tsGroupList.SuspendLayout();
-            this.pnlgroup.SuspendLayout();
-            this.grbFilterBy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGroupList)).BeginInit();
+            this.grbFilterBy.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
             // tsGroupList
@@ -84,8 +83,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(104, 24);
-            this.tspHeader.Text = "Product Group";
+            this.tspHeader.Size = new System.Drawing.Size(82, 24);
+            this.tspHeader.Text = "Sub Group";
             // 
             // tsbDelete
             // 
@@ -140,100 +139,6 @@
             this.tsbNew.Text = "&New";
             this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
-            // pnlgroup
-            // 
-            this.pnlgroup.BackColor = System.Drawing.Color.White;
-            this.pnlgroup.Controls.Add(this.lblGC);
-            this.pnlgroup.Controls.Add(this.label1);
-            this.pnlgroup.Controls.Add(this.grbFilterBy);
-            this.pnlgroup.Controls.Add(this.lblNoRecordsFound);
-            this.pnlgroup.Controls.Add(this.grdGroupList);
-            this.pnlgroup.Location = new System.Drawing.Point(0, 40);
-            this.pnlgroup.Name = "pnlgroup";
-            this.pnlgroup.Size = new System.Drawing.Size(1354, 675);
-            this.pnlgroup.TabIndex = 958792;
-            // 
-            // lblGC
-            // 
-            this.lblGC.AutoSize = true;
-            this.lblGC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblGC.ForeColor = System.Drawing.Color.Crimson;
-            this.lblGC.Location = new System.Drawing.Point(829, 32);
-            this.lblGC.Name = "lblGC";
-            this.lblGC.Size = new System.Drawing.Size(21, 26);
-            this.lblGC.TabIndex = 958796;
-            this.lblGC.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(700, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 20);
-            this.label1.TabIndex = 958795;
-            this.label1.Text = "No.of Product Groups :";
-            // 
-            // grbFilterBy
-            // 
-            this.grbFilterBy.Controls.Add(this.btnExport);
-            this.grbFilterBy.Controls.Add(this.btnView);
-            this.grbFilterBy.Controls.Add(this.cmbGroupType);
-            this.grbFilterBy.Location = new System.Drawing.Point(18, 5);
-            this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterBy.Name = "grbFilterBy";
-            this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterBy.Size = new System.Drawing.Size(672, 67);
-            this.grbFilterBy.TabIndex = 958794;
-            this.grbFilterBy.TabStop = false;
-            this.grbFilterBy.Text = "Filter By Product Group";
-            // 
-            // btnExport
-            // 
-            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
-            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(581, 26);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(79, 29);
-            this.btnExport.TabIndex = 2;
-            this.btnExport.Text = "Export";
-            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExport.UseVisualStyleBackColor = true;
-            // 
-            // btnView
-            // 
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(498, 26);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 1;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
-            // 
-            // cmbGroupType
-            // 
-            this.cmbGroupType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGroupType.FormattingEnabled = true;
-            this.cmbGroupType.Location = new System.Drawing.Point(27, 26);
-            this.cmbGroupType.Name = "cmbGroupType";
-            this.cmbGroupType.Size = new System.Drawing.Size(454, 27);
-            this.cmbGroupType.TabIndex = 0;
-            // 
-            // lblNoRecordsFound
-            // 
-            this.lblNoRecordsFound.AutoSize = true;
-            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
-            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(621, 299);
-            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
-            this.lblNoRecordsFound.TabIndex = 958793;
-            this.lblNoRecordsFound.Text = "No Records Found";
-            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // grdGroupList
             // 
             this.grdGroupList.AllowUserToAddRows = false;
@@ -255,9 +160,8 @@
             this.grdGroupList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
-            this.clmProductGroupNameInTamil,
             this.Column3,
-            this.clmnoofproductgroup,
+            this.Column4,
             this.Column5});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -269,7 +173,7 @@
             this.grdGroupList.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdGroupList.EnableHeadersVisualStyles = false;
             this.grdGroupList.GridColor = System.Drawing.Color.White;
-            this.grdGroupList.Location = new System.Drawing.Point(18, 80);
+            this.grdGroupList.Location = new System.Drawing.Point(18, 107);
             this.grdGroupList.Name = "grdGroupList";
             this.grdGroupList.ReadOnly = true;
             this.grdGroupList.RowHeadersVisible = false;
@@ -279,7 +183,10 @@
             this.grdGroupList.RowTemplate.Height = 25;
             this.grdGroupList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGroupList.Size = new System.Drawing.Size(1325, 548);
-            this.grdGroupList.TabIndex = 958792;
+            this.grdGroupList.TabIndex = 1;
+            this.grdGroupList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdGroupList_DataBindingComplete);
+            this.grdGroupList.DoubleClick += new System.EventHandler(this.grdGroupList_DoubleClick);
+            this.grdGroupList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdGroupList_KeyDown);
             // 
             // Column1
             // 
@@ -289,31 +196,24 @@
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "Product Group Name In English";
+            this.Column2.HeaderText = "Sub Group Name";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Width = 200;
             // 
-            // clmProductGroupNameInTamil
-            // 
-            this.clmProductGroupNameInTamil.HeaderText = "Producy Group Name In Tamil";
-            this.clmProductGroupNameInTamil.Name = "clmProductGroupNameInTamil";
-            this.clmProductGroupNameInTamil.ReadOnly = true;
-            this.clmProductGroupNameInTamil.Width = 200;
-            // 
             // Column3
             // 
-            this.Column3.HeaderText = "No.of Product Sub Groups";
+            this.Column3.HeaderText = "Group Name";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             this.Column3.Width = 200;
             // 
-            // clmnoofproductgroup
+            // Column4
             // 
-            this.clmnoofproductgroup.HeaderText = "No. of Product Groups";
-            this.clmnoofproductgroup.Name = "clmnoofproductgroup";
-            this.clmnoofproductgroup.ReadOnly = true;
-            this.clmnoofproductgroup.Width = 200;
+            this.Column4.HeaderText = "No. of Products";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 200;
             // 
             // Column5
             // 
@@ -321,29 +221,131 @@
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
-            // CP_GroupList
+            // lblNoRecordsFound
+            // 
+            this.lblNoRecordsFound.AutoSize = true;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(627, 326);
+            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.TabIndex = 958763;
+            this.lblNoRecordsFound.Text = "No Records Found";
+            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // grbFilterBy
+            // 
+            this.grbFilterBy.Controls.Add(this.btnExport);
+            this.grbFilterBy.Controls.Add(this.btnView);
+            this.grbFilterBy.Controls.Add(this.cmbGroupType);
+            this.grbFilterBy.Location = new System.Drawing.Point(17, 32);
+            this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grbFilterBy.Name = "grbFilterBy";
+            this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grbFilterBy.Size = new System.Drawing.Size(672, 67);
+            this.grbFilterBy.TabIndex = 958788;
+            this.grbFilterBy.TabStop = false;
+            this.grbFilterBy.Text = "Filter By Sub Group";
+            // 
+            // btnExport
+            // 
+            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
+            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport.Location = new System.Drawing.Point(581, 26);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(79, 29);
+            this.btnExport.TabIndex = 5;
+            this.btnExport.Text = "Export";
+            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnView
+            // 
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(498, 26);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 29);
+            this.btnView.TabIndex = 4;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // cmbGroupType
+            // 
+            this.cmbGroupType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGroupType.FormattingEnabled = true;
+            this.cmbGroupType.Location = new System.Drawing.Point(27, 26);
+            this.cmbGroupType.Name = "cmbGroupType";
+            this.cmbGroupType.Size = new System.Drawing.Size(454, 27);
+            this.cmbGroupType.TabIndex = 2;
+            this.cmbGroupType.SelectedIndexChanged += new System.EventHandler(this.cmbGroupType_SelectedIndexChanged);
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(17, 106);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1325, 550);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958787;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
+            // 
+            // lblGC
+            // 
+            this.lblGC.AutoSize = true;
+            this.lblGC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblGC.ForeColor = System.Drawing.Color.Crimson;
+            this.lblGC.Location = new System.Drawing.Point(813, 58);
+            this.lblGC.Name = "lblGC";
+            this.lblGC.Size = new System.Drawing.Size(17, 20);
+            this.lblGC.TabIndex = 958791;
+            this.lblGC.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(705, 58);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(108, 20);
+            this.label1.TabIndex = 958790;
+            this.label1.Text = "No.of Sub Groups :";
+            // 
+            // CP_SubGroupList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1354, 675);
-            this.Controls.Add(this.pnlgroup);
+            this.Controls.Add(this.lblGC);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.grbFilterBy);
+            this.Controls.Add(this.lblNoRecordsFound);
             this.Controls.Add(this.tsGroupList);
+            this.Controls.Add(this.grdGroupList);
+            this.Controls.Add(this.picLoader);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "CP_GroupList";
+            this.Name = "CP_SubGroupList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Group";
-            this.Load += new System.EventHandler(this.CP_GroupList_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_GroupList_KeyDown);
+            this.Load += new System.EventHandler(this.CP_SubGroupList_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_SubGroupList_KeyDown);
             this.tsGroupList.ResumeLayout(false);
             this.tsGroupList.PerformLayout();
-            this.pnlgroup.ResumeLayout(false);
-            this.pnlgroup.PerformLayout();
-            this.grbFilterBy.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdGroupList)).EndInit();
+            this.grbFilterBy.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,25 +355,24 @@
 
         private System.Windows.Forms.ToolStrip tsGroupList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
+        public System.Windows.Forms.DataGridView grdGroupList;
+        private System.Windows.Forms.Label lblNoRecordsFound;
+        private System.Windows.Forms.PictureBox picLoader;
+        private System.Windows.Forms.GroupBox grbFilterBy;
+        private System.Windows.Forms.ComboBox cmbGroupType;
+        private System.Windows.Forms.Button btnView;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ToolStripSeparator tssEdit;
         public System.Windows.Forms.ToolStripButton tsbEdit;
         public System.Windows.Forms.ToolStripSeparator tssNew;
         public System.Windows.Forms.ToolStripButton tsbNew;
-        private System.Windows.Forms.Panel pnlgroup;
+        private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label lblGC;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox grbFilterBy;
-        private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.ComboBox cmbGroupType;
-        private System.Windows.Forms.Label lblNoRecordsFound;
-        public System.Windows.Forms.DataGridView grdGroupList;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmProductGroupNameInTamil;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnoofproductgroup;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }

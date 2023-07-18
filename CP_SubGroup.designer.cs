@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_SubGroup
+    partial class CP_ProductSubGroup
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_SubGroup));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_ProductSubGroup));
             this.grbform = new System.Windows.Forms.GroupBox();
-            this.cmbpurchaseshoprack = new System.Windows.Forms.ComboBox();
-            this.txtPurchaseshopRack = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.txtPurchaseShopGodown = new System.Windows.Forms.TextBox();
             this.cmbPurchaseStockLocation = new System.Windows.Forms.ComboBox();
@@ -51,6 +49,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtESubGroupNameEnglish = new System.Windows.Forms.TextBox();
             this.errGroup = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtPurchaseshopRack = new System.Windows.Forms.TextBox();
+            this.cmbpurchaseshoprack = new System.Windows.Forms.ComboBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errGroup)).BeginInit();
@@ -80,27 +80,6 @@
             this.grbform.Size = new System.Drawing.Size(552, 275);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
-            // 
-            // cmbpurchaseshoprack
-            // 
-            this.cmbpurchaseshoprack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.cmbpurchaseshoprack.FormattingEnabled = true;
-            this.cmbpurchaseshoprack.Location = new System.Drawing.Point(235, 161);
-            this.cmbpurchaseshoprack.Name = "cmbpurchaseshoprack";
-            this.cmbpurchaseshoprack.Size = new System.Drawing.Size(274, 27);
-            this.cmbpurchaseshoprack.TabIndex = 1111139;
-            // 
-            // txtPurchaseshopRack
-            // 
-            this.txtPurchaseshopRack.BackColor = System.Drawing.SystemColors.Control;
-            this.txtPurchaseshopRack.Enabled = false;
-            this.txtPurchaseshopRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPurchaseshopRack.Location = new System.Drawing.Point(40, 161);
-            this.txtPurchaseshopRack.Name = "txtPurchaseshopRack";
-            this.txtPurchaseshopRack.ReadOnly = true;
-            this.txtPurchaseshopRack.Size = new System.Drawing.Size(195, 27);
-            this.txtPurchaseshopRack.TabIndex = 1111138;
-            this.txtPurchaseshopRack.Text = "Purchase Shop Rack ";
             // 
             // comboBox1
             // 
@@ -315,7 +294,28 @@
             // 
             this.errGroup.ContainerControl = this;
             // 
-            // CP_SubGroup
+            // txtPurchaseshopRack
+            // 
+            this.txtPurchaseshopRack.BackColor = System.Drawing.SystemColors.Control;
+            this.txtPurchaseshopRack.Enabled = false;
+            this.txtPurchaseshopRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPurchaseshopRack.Location = new System.Drawing.Point(40, 161);
+            this.txtPurchaseshopRack.Name = "txtPurchaseshopRack";
+            this.txtPurchaseshopRack.ReadOnly = true;
+            this.txtPurchaseshopRack.Size = new System.Drawing.Size(195, 27);
+            this.txtPurchaseshopRack.TabIndex = 1111138;
+            this.txtPurchaseshopRack.Text = "Purchase Shop Rack ";
+            // 
+            // cmbpurchaseshoprack
+            // 
+            this.cmbpurchaseshoprack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.cmbpurchaseshoprack.FormattingEnabled = true;
+            this.cmbpurchaseshoprack.Location = new System.Drawing.Point(235, 161);
+            this.cmbpurchaseshoprack.Name = "cmbpurchaseshoprack";
+            this.cmbpurchaseshoprack.Size = new System.Drawing.Size(274, 27);
+            this.cmbpurchaseshoprack.TabIndex = 1111139;
+            // 
+            // CP_ProductSubGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -329,7 +329,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CP_SubGroup";
+            this.Name = "CP_ProductSubGroup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product Sub Group";
             this.Load += new System.EventHandler(this.CP_SubGroup_Load);

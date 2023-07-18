@@ -339,7 +339,6 @@ namespace ROMS
             }
 
              
-           // grddays.DataSource = dataTable;
         }
 
         private void PUR_SupplierSchedule_Load(object sender, EventArgs e)
@@ -348,6 +347,28 @@ namespace ROMS
             { 
                 udfnEdit();
                 BindDataGrid();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Grddays_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+         
+            try
+            {
+                if (grddays.Columns[e.ColumnIndex].Name == "chkdays" && e.RowIndex >= 0)
+                {
+                    DataGridViewCheckBoxCell checkBoxCell = grddays.Rows[e.RowIndex].Cells["chkdays"] as DataGridViewCheckBoxCell;
+                    if (checkBoxCell != null)
+                    {
+                        checkBoxCell.Value = !(bool)(checkBoxCell.Value ?? false);
+                        grddays.EndEdit(); // Commit the change
+                    }
+                } 
             }
             catch (Exception ex)
             {
