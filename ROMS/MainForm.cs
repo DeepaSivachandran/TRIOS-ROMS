@@ -62,7 +62,7 @@ namespace ROMS
         public static CP_SupplierMappinglist objCP_SupplierMappinglist;
         public static CP_Product objCP_Items;
         public static CP_RackSettinglist objCP_RackSettinglist;
-        public static CP_RackSetting objCP_RackSetting;
+        public static CP_RackSettings objCP_RackSettings;
         public static CP_ProductList objCP_Itemlist;
         public static CP_Purchase_Inward objCP_Purchase_Inward;
         public static CP_Purchase_PO objCP_Purchase_PO;
@@ -82,11 +82,13 @@ namespace ROMS
         public static PUR_GRNVerify objPUR_GRNVerify;
         public static PUR_GRNOrderType objPUR_GRNOrderType;
         public static PUR_PurchaseOrderDamage objPUR_PurchaseOrderDamage;
-        
-
+        public static INV_StockRequestList objINV_StockRequestList;
+        public static INV_StockRequest objINV_StockRequest;
+        public static CP_Settings objCP_Settings;
         public static PUR_PurchaseOrderList objPUR_PurchaseOrderList;
         public static PUR_SupplierSchedule objPUR_SupplierSchedule;
-         
+        public static CP_BrokerList objCP_CP_BrokerList;
+        public static CP_Broker objCP_CP_Broker;
 
         public static INV_Inwardlist objINV_Inwardlist;
         public static INV_Inward objINV_Inward;
@@ -819,6 +821,57 @@ namespace ROMS
                 //MainForm.objINV_StockTransferList = new cp_out();
                 //MainForm.objINV_StockTransferList.MdiParent = this;
                 //MainForm.objINV_StockTransferList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmStockRequest_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objINV_StockRequestList = new INV_StockRequestList();
+                MainForm.objINV_StockRequestList.MdiParent = this;
+                MainForm.objINV_StockRequestList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmgenralSettings_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_Settings = new CP_Settings();
+                MainForm.objCP_Settings.MdiParent = this;
+                MainForm.objCP_Settings.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Tsmbroker_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_CP_BrokerList = new CP_BrokerList();
+                MainForm.objCP_CP_BrokerList.MdiParent = this;
+                MainForm.objCP_CP_BrokerList.Show();
             }
             catch (Exception ex)
             {

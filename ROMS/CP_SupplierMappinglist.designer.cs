@@ -49,9 +49,7 @@
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmproname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmproduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tshSupplierMappingList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.pnlSupplierMappingList.SuspendLayout();
@@ -84,8 +82,8 @@
             this.tsSupplierMappinglist.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsSupplierMappinglist.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tsSupplierMappinglist.Name = "tsSupplierMappinglist";
-            this.tsSupplierMappinglist.Size = new System.Drawing.Size(143, 24);
-            this.tsSupplierMappinglist.Text = "Supplier Mapping List";
+            this.tsSupplierMappinglist.Size = new System.Drawing.Size(120, 24);
+            this.tsSupplierMappinglist.Text = "Supplier Mapping";
             // 
             // tsbDelete
             // 
@@ -181,7 +179,7 @@
             // listView1
             // 
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(76, 53);
+            this.listView1.Location = new System.Drawing.Point(76, 58);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(423, 113);
             this.listView1.TabIndex = 36;
@@ -209,9 +207,7 @@
             this.grdSupplierMappingList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmsno,
             this.clmsupname,
-            this.clmICode,
-            this.clmproname,
-            this.clmUnit});
+            this.clmproduct});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -290,33 +286,20 @@
             this.clmsupname.HeaderText = "Supplier Name";
             this.clmsupname.Name = "clmsupname";
             this.clmsupname.ReadOnly = true;
-            this.clmsupname.Width = 200;
+            this.clmsupname.Width = 250;
             // 
-            // clmICode
+            // clmproduct
             // 
-            this.clmICode.HeaderText = "P.I Code";
-            this.clmICode.Name = "clmICode";
-            this.clmICode.ReadOnly = true;
-            // 
-            // clmproname
-            // 
-            this.clmproname.HeaderText = "Product Name";
-            this.clmproname.Name = "clmproname";
-            this.clmproname.ReadOnly = true;
-            this.clmproname.Width = 400;
-            // 
-            // clmUnit
-            // 
-            this.clmUnit.HeaderText = "Unit";
-            this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
-            this.clmUnit.Width = 150;
+            this.clmproduct.HeaderText = "No.of Products";
+            this.clmproduct.Name = "clmproduct";
+            this.clmproduct.ReadOnly = true;
+            this.clmproduct.Width = 150;
             // 
             // CP_SupplierMappinglist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlSupplierMappingList);
             this.Controls.Add(this.lblNoRecordsFound);
@@ -363,8 +346,6 @@
         private System.Windows.Forms.Label lblDESupplier;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmICode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmproname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmproduct;
     }
 }

@@ -42,12 +42,10 @@
             this.rbInactive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.txtDEGroupName = new System.Windows.Forms.TextBox();
-            this.txtEGroupName = new System.Windows.Forms.TextBox();
-            this.errGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.txtMOQ = new System.Windows.Forms.TextBox();
-            this.txtMimimumorderquatity = new System.Windows.Forms.TextBox();
+            this.txtEGroupName = new System.Windows.Forms.TextBox();
+            this.errGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbform.SuspendLayout();
             this.panelStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errGroup)).BeginInit();
@@ -55,8 +53,6 @@
             // 
             // grbform
             // 
-            this.grbform.Controls.Add(this.txtMimimumorderquatity);
-            this.grbform.Controls.Add(this.txtMOQ);
             this.grbform.Controls.Add(this.comboBox2);
             this.grbform.Controls.Add(this.txtShopGodown);
             this.grbform.Controls.Add(this.comboBox1);
@@ -71,7 +67,7 @@
             this.grbform.Controls.Add(this.txtEGroupName);
             this.grbform.Location = new System.Drawing.Point(16, 10);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(552, 248);
+            this.grbform.Size = new System.Drawing.Size(552, 217);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
@@ -141,7 +137,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(40, 166);
+            this.txtDStatus.Location = new System.Drawing.Point(40, 139);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(181, 27);
@@ -154,7 +150,7 @@
             this.panelStatus.Controls.Add(this.rbInactive);
             this.panelStatus.Controls.Add(this.rbActive);
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(221, 166);
+            this.panelStatus.Location = new System.Drawing.Point(221, 139);
             this.panelStatus.Name = "panelStatus";
             this.panelStatus.Size = new System.Drawing.Size(288, 27);
             this.panelStatus.TabIndex = 4;
@@ -195,27 +191,12 @@
             this.txtDEGroupName.TabIndex = 11;
             this.txtDEGroupName.Text = "Rack Name";
             // 
-            // txtEGroupName
-            // 
-            this.txtEGroupName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEGroupName.Location = new System.Drawing.Point(221, 85);
-            this.txtEGroupName.MaxLength = 50;
-            this.txtEGroupName.Name = "txtEGroupName";
-            this.txtEGroupName.Size = new System.Drawing.Size(288, 27);
-            this.txtEGroupName.TabIndex = 2;
-            this.txtEGroupName.Enter += new System.EventHandler(this.txtEGroupName_Enter);
-            this.txtEGroupName.Leave += new System.EventHandler(this.txtEGroupName_Leave);
-            // 
-            // errGroup
-            // 
-            this.errGroup.ContainerControl = this;
-            // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(436, 206);
+            this.btnClose.Location = new System.Drawing.Point(436, 173);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 8;
@@ -232,7 +213,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(346, 206);
+            this.btnSave.Location = new System.Drawing.Point(346, 173);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 7;
@@ -244,33 +225,27 @@
             this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
-            // txtMOQ
+            // txtEGroupName
             // 
-            this.txtMOQ.BackColor = System.Drawing.SystemColors.Control;
-            this.txtMOQ.Enabled = false;
-            this.txtMOQ.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMOQ.Location = new System.Drawing.Point(40, 139);
-            this.txtMOQ.Name = "txtMOQ";
-            this.txtMOQ.ReadOnly = true;
-            this.txtMOQ.Size = new System.Drawing.Size(181, 27);
-            this.txtMOQ.TabIndex = 24;
-            this.txtMOQ.Text = "Minimum Order Quantity";
+            this.txtEGroupName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEGroupName.Location = new System.Drawing.Point(221, 85);
+            this.txtEGroupName.MaxLength = 50;
+            this.txtEGroupName.Name = "txtEGroupName";
+            this.txtEGroupName.Size = new System.Drawing.Size(288, 27);
+            this.txtEGroupName.TabIndex = 2;
+            this.txtEGroupName.Enter += new System.EventHandler(this.txtEGroupName_Enter);
+            this.txtEGroupName.Leave += new System.EventHandler(this.txtEGroupName_Leave);
             // 
-            // txtMimimumorderquatity
+            // errGroup
             // 
-            this.txtMimimumorderquatity.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMimimumorderquatity.Location = new System.Drawing.Point(221, 139);
-            this.txtMimimumorderquatity.MaxLength = 50;
-            this.txtMimimumorderquatity.Name = "txtMimimumorderquatity";
-            this.txtMimimumorderquatity.Size = new System.Drawing.Size(288, 27);
-            this.txtMimimumorderquatity.TabIndex = 25;
+            this.errGroup.ContainerControl = this;
             // 
             // CP_Rack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(585, 270);
+            this.ClientSize = new System.Drawing.Size(585, 238);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -310,7 +285,5 @@
         private System.Windows.Forms.TextBox txtShopGodown;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox txtConcern;
-        private System.Windows.Forms.TextBox txtMimimumorderquatity;
-        private System.Windows.Forms.TextBox txtMOQ;
     }
 }

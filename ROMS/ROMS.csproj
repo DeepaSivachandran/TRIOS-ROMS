@@ -68,6 +68,18 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Broker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Broker.designer.cs">
+      <DependentUpon>CP_Broker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_BrokerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BrokerList.designer.cs">
+      <DependentUpon>CP_BrokerList.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_RackGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +91,36 @@
     </Compile>
     <Compile Include="CP_RackGroupList.designer.cs">
       <DependentUpon>CP_RackGroupList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_RackSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RackSettings.designer.cs">
+      <DependentUpon>CP_RackSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Settings.designer.cs">
+      <DependentUpon>CP_Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_SupplierMapping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SupplierMapping.designer.cs">
+      <DependentUpon>CP_SupplierMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockRequest.designer.cs">
+      <DependentUpon>INV_StockRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockRequestList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockRequestList.designer.cs">
+      <DependentUpon>INV_StockRequestList.cs</DependentUpon>
     </Compile>
     <Compile Include="INV_StockTransfer.cs">
       <SubType>Form</SubType>
@@ -236,12 +278,6 @@
     <Compile Include="CP_RackList.designer.cs">
       <DependentUpon>CP_RackList.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_RackSetting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CP_RackSetting.designer.cs">
-      <DependentUpon>CP_RackSetting.cs</DependentUpon>
-    </Compile>
     <Compile Include="CP_RackSettinglist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -289,12 +325,6 @@
     </Compile>
     <Compile Include="CP_Company.designer.cs">
       <DependentUpon>CP_Company.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CP_SupplierMapping.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CP_SupplierMapping.designer.cs">
-      <DependentUpon>CP_SupplierMapping.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_SupplierMappinglist.cs">
       <SubType>Form</SubType>
@@ -421,11 +451,32 @@
     <EmbeddedResource Include="CP_BatchNoConfigurationList.resx">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_Broker.resx">
+      <DependentUpon>CP_Broker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_BrokerList.resx">
+      <DependentUpon>CP_BrokerList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_RackGroup.resx">
       <DependentUpon>CP_RackGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_RackGroupList.resx">
       <DependentUpon>CP_RackGroupList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_RackSettings.resx">
+      <DependentUpon>CP_RackSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Settings.resx">
+      <DependentUpon>CP_Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_SupplierMapping.resx">
+      <DependentUpon>CP_SupplierMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockRequest.resx">
+      <DependentUpon>INV_StockRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockRequestList.resx">
+      <DependentUpon>INV_StockRequestList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_StockTransfer.resx">
       <DependentUpon>INV_StockTransfer.cs</DependentUpon>
@@ -505,9 +556,6 @@
     <EmbeddedResource Include="CP_RackList.resx">
       <DependentUpon>CP_RackList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_RackSetting.resx">
-      <DependentUpon>CP_RackSetting.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CP_RackSettinglist.resx">
       <DependentUpon>CP_RackSettinglist.cs</DependentUpon>
     </EmbeddedResource>
@@ -531,9 +579,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Company.resx">
       <DependentUpon>CP_Company.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CP_SupplierMapping.resx">
-      <DependentUpon>CP_SupplierMapping.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_SupplierMappinglist.resx">
       <DependentUpon>CP_SupplierMappinglist.cs</DependentUpon>

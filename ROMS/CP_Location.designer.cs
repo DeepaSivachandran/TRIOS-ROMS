@@ -47,7 +47,6 @@
             this.grbGodown = new System.Windows.Forms.GroupBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtConcern = new System.Windows.Forms.TextBox();
-            this.cbStockApplicable = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errGodown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panelStatus.SuspendLayout();
@@ -106,7 +105,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(321, 159);
+            this.btnSave.Location = new System.Drawing.Point(322, 138);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 6;
@@ -135,7 +134,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(409, 159);
+            this.btnClose.Location = new System.Drawing.Point(410, 138);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 7;
@@ -221,7 +220,6 @@
             // 
             // grbGodown
             // 
-            this.grbGodown.Controls.Add(this.cbStockApplicable);
             this.grbGodown.Controls.Add(this.cmbConcern);
             this.grbGodown.Controls.Add(this.txtConcern);
             this.grbGodown.Controls.Add(this.txtDGodownName);
@@ -235,9 +233,10 @@
             this.grbGodown.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbGodown.Location = new System.Drawing.Point(12, 3);
             this.grbGodown.Name = "grbGodown";
-            this.grbGodown.Size = new System.Drawing.Size(498, 207);
+            this.grbGodown.Size = new System.Drawing.Size(498, 182);
             this.grbGodown.TabIndex = 1;
             this.grbGodown.TabStop = false;
+            this.grbGodown.Enter += new System.EventHandler(this.GrbGodown_Enter);
             // 
             // cmbConcern
             // 
@@ -261,22 +260,12 @@
             this.txtConcern.TabIndex = 49;
             this.txtConcern.Text = "Concern";
             // 
-            // cbStockApplicable
-            // 
-            this.cbStockApplicable.AutoSize = true;
-            this.cbStockApplicable.Location = new System.Drawing.Point(196, 139);
-            this.cbStockApplicable.Name = "cbStockApplicable";
-            this.cbStockApplicable.Size = new System.Drawing.Size(116, 24);
-            this.cbStockApplicable.TabIndex = 50;
-            this.cbStockApplicable.Text = "Stock Applicable";
-            this.cbStockApplicable.UseVisualStyleBackColor = true;
-            // 
-            // CP_Godown
+            // CP_Location
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(526, 224);
+            this.ClientSize = new System.Drawing.Size(526, 200);
             this.Controls.Add(this.grbGodown);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -285,7 +274,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CP_Godown";
+            this.Name = "CP_Location";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Godown";
             this.Load += new System.EventHandler(this.CP_Location_Load);
@@ -320,6 +309,5 @@
         private System.Windows.Forms.Panel panelStatus;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
-        private System.Windows.Forms.CheckBox cbStockApplicable;
     }
 }

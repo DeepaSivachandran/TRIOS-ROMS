@@ -62,9 +62,19 @@ namespace ROMS
                 grpproductname.Visible = false;
                 txtsuppliername.Enabled = false;
                 cmbvoucherno.Enabled = false;
-                cmbPoNo.Enabled = false;
+                //cmbPoNo.Enabled = false;
                 cmbinwardtype.Enabled = false;
             }
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Txtsuppliername_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

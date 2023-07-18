@@ -37,8 +37,8 @@
             this.txtCompanyName = new System.Windows.Forms.TextBox();
             this.txtDShortName = new System.Windows.Forms.TextBox();
             this.txtShortName = new System.Windows.Forms.TextBox();
-            this.txtDArea = new System.Windows.Forms.TextBox();
-            this.txtArea = new System.Windows.Forms.TextBox();
+            this.txtDAddressLine1 = new System.Windows.Forms.TextBox();
+            this.txtAddressLine1 = new System.Windows.Forms.TextBox();
             this.txtDCity = new System.Windows.Forms.TextBox();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtDAContactNumber = new System.Windows.Forms.TextBox();
@@ -59,6 +59,12 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.txtbranchname = new System.Windows.Forms.TextBox();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Label();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtIFScode = new System.Windows.Forms.TextBox();
@@ -66,7 +72,7 @@
             this.txtAccno = new System.Windows.Forms.TextBox();
             this.textBox19 = new System.Windows.Forms.TextBox();
             this.txtBankname = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grbGovtRegisterationIds = new System.Windows.Forms.GroupBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.txtFSSAI = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
@@ -80,8 +86,8 @@
             this.txtwebsite = new System.Windows.Forms.TextBox();
             this.txtAlterMobileno = new System.Windows.Forms.TextBox();
             this.txtAlterPhno = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.txtaddress2 = new System.Windows.Forms.TextBox();
+            this.txtDAddressLine2 = new System.Windows.Forms.TextBox();
+            this.txtAddressLine2 = new System.Windows.Forms.TextBox();
             this.txtDPincode = new System.Windows.Forms.TextBox();
             this.cmbState = new System.Windows.Forms.ComboBox();
             this.txtPincode = new System.Windows.Forms.TextBox();
@@ -90,17 +96,11 @@
             this.txtDContactNumber = new System.Windows.Forms.TextBox();
             this.txtContactNumber = new System.Windows.Forms.TextBox();
             this.errCompany = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbform.SuspendLayout();
             this.panelStatus.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.grbGovtRegisterationIds.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.SuspendLayout();
             // 
@@ -152,29 +152,29 @@
             this.txtShortName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShortName_KeyDown);
             this.txtShortName.Leave += new System.EventHandler(this.txtShortName_Leave);
             // 
-            // txtDArea
+            // txtDAddressLine1
             // 
-            this.txtDArea.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDArea.Enabled = false;
-            this.txtDArea.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDArea.Location = new System.Drawing.Point(23, 77);
-            this.txtDArea.Name = "txtDArea";
-            this.txtDArea.ReadOnly = true;
-            this.txtDArea.Size = new System.Drawing.Size(111, 27);
-            this.txtDArea.TabIndex = 16;
-            this.txtDArea.Text = "Address 1";
+            this.txtDAddressLine1.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDAddressLine1.Enabled = false;
+            this.txtDAddressLine1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDAddressLine1.Location = new System.Drawing.Point(23, 77);
+            this.txtDAddressLine1.Name = "txtDAddressLine1";
+            this.txtDAddressLine1.ReadOnly = true;
+            this.txtDAddressLine1.Size = new System.Drawing.Size(111, 27);
+            this.txtDAddressLine1.TabIndex = 16;
+            this.txtDAddressLine1.Text = "Address Line 1";
             // 
-            // txtArea
+            // txtAddressLine1
             // 
-            this.txtArea.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtArea.Location = new System.Drawing.Point(134, 77);
-            this.txtArea.MaxLength = 250;
-            this.txtArea.Name = "txtArea";
-            this.txtArea.Size = new System.Drawing.Size(397, 27);
-            this.txtArea.TabIndex = 2;
-            this.txtArea.Enter += new System.EventHandler(this.txtArea_Enter_1);
-            this.txtArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtArea_KeyDown);
-            this.txtArea.Leave += new System.EventHandler(this.txtArea_Leave);
+            this.txtAddressLine1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtAddressLine1.Location = new System.Drawing.Point(134, 77);
+            this.txtAddressLine1.MaxLength = 250;
+            this.txtAddressLine1.Name = "txtAddressLine1";
+            this.txtAddressLine1.Size = new System.Drawing.Size(397, 27);
+            this.txtAddressLine1.TabIndex = 2;
+            this.txtAddressLine1.Enter += new System.EventHandler(this.txtArea_Enter_1);
+            this.txtAddressLine1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtArea_KeyDown);
+            this.txtAddressLine1.Leave += new System.EventHandler(this.txtArea_Leave);
             // 
             // txtDCity
             // 
@@ -260,12 +260,12 @@
             this.grbform.Controls.Add(this.btnSave);
             this.grbform.Controls.Add(this.btnClose);
             this.grbform.Controls.Add(this.groupBox2);
-            this.grbform.Controls.Add(this.groupBox1);
+            this.grbform.Controls.Add(this.grbGovtRegisterationIds);
             this.grbform.Controls.Add(this.txtwebsite);
             this.grbform.Controls.Add(this.txtAlterMobileno);
             this.grbform.Controls.Add(this.txtAlterPhno);
-            this.grbform.Controls.Add(this.textBox3);
-            this.grbform.Controls.Add(this.txtaddress2);
+            this.grbform.Controls.Add(this.txtDAddressLine2);
+            this.grbform.Controls.Add(this.txtAddressLine2);
             this.grbform.Controls.Add(this.txtDPincode);
             this.grbform.Controls.Add(this.cmbState);
             this.grbform.Controls.Add(this.txtPincode);
@@ -280,9 +280,9 @@
             this.grbform.Controls.Add(this.txtmobileNumber);
             this.grbform.Controls.Add(this.txtDShortName);
             this.grbform.Controls.Add(this.txtDContactNumber);
-            this.grbform.Controls.Add(this.txtArea);
+            this.grbform.Controls.Add(this.txtAddressLine1);
             this.grbform.Controls.Add(this.txtContactNumber);
-            this.grbform.Controls.Add(this.txtDArea);
+            this.grbform.Controls.Add(this.txtDAddressLine1);
             this.grbform.Controls.Add(this.txtDCity);
             this.grbform.Controls.Add(this.txtCity);
             this.grbform.Location = new System.Drawing.Point(12, 12);
@@ -499,6 +499,47 @@
             this.grdSupplierList.Size = new System.Drawing.Size(911, 98);
             this.grdSupplierList.TabIndex = 1111136;
             // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
+            // 
+            // clmbankname
+            // 
+            this.clmbankname.HeaderText = "Bank Name";
+            this.clmbankname.Name = "clmbankname";
+            this.clmbankname.ReadOnly = true;
+            this.clmbankname.Width = 200;
+            // 
+            // clmbranch
+            // 
+            this.clmbranch.HeaderText = "Branch Name";
+            this.clmbranch.Name = "clmbranch";
+            this.clmbranch.ReadOnly = true;
+            this.clmbranch.Width = 175;
+            // 
+            // clmaccno
+            // 
+            this.clmaccno.HeaderText = "Account No.";
+            this.clmaccno.Name = "clmaccno";
+            this.clmaccno.ReadOnly = true;
+            this.clmaccno.Width = 200;
+            // 
+            // clmifscode
+            // 
+            this.clmifscode.HeaderText = "IFS Code";
+            this.clmifscode.Name = "clmifscode";
+            this.clmifscode.ReadOnly = true;
+            this.clmifscode.Width = 175;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
@@ -583,25 +624,25 @@
             this.txtBankname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBankname_KeyDown);
             this.txtBankname.Leave += new System.EventHandler(this.TxtBankname_Leave);
             // 
-            // groupBox1
+            // grbGovtRegisterationIds
             // 
-            this.groupBox1.Controls.Add(this.textBox13);
-            this.groupBox1.Controls.Add(this.txtFSSAI);
-            this.groupBox1.Controls.Add(this.textBox11);
-            this.groupBox1.Controls.Add(this.txtPan);
-            this.groupBox1.Controls.Add(this.textBox9);
-            this.groupBox1.Controls.Add(this.txtEPF);
-            this.groupBox1.Controls.Add(this.textBox7);
-            this.groupBox1.Controls.Add(this.txtESI);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.txtGSTTIN);
-            this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(569, 15);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 183);
-            this.groupBox1.TabIndex = 16;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Registration Details";
+            this.grbGovtRegisterationIds.Controls.Add(this.textBox13);
+            this.grbGovtRegisterationIds.Controls.Add(this.txtFSSAI);
+            this.grbGovtRegisterationIds.Controls.Add(this.textBox11);
+            this.grbGovtRegisterationIds.Controls.Add(this.txtPan);
+            this.grbGovtRegisterationIds.Controls.Add(this.textBox9);
+            this.grbGovtRegisterationIds.Controls.Add(this.txtEPF);
+            this.grbGovtRegisterationIds.Controls.Add(this.textBox7);
+            this.grbGovtRegisterationIds.Controls.Add(this.txtESI);
+            this.grbGovtRegisterationIds.Controls.Add(this.textBox2);
+            this.grbGovtRegisterationIds.Controls.Add(this.txtGSTTIN);
+            this.grbGovtRegisterationIds.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbGovtRegisterationIds.Location = new System.Drawing.Point(569, 15);
+            this.grbGovtRegisterationIds.Name = "grbGovtRegisterationIds";
+            this.grbGovtRegisterationIds.Size = new System.Drawing.Size(278, 183);
+            this.grbGovtRegisterationIds.TabIndex = 16;
+            this.grbGovtRegisterationIds.TabStop = false;
+            this.grbGovtRegisterationIds.Text = "Government Registeration Ids";
             // 
             // textBox13
             // 
@@ -761,29 +802,29 @@
             this.txtAlterPhno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAlterPhno_KeyPress);
             this.txtAlterPhno.Leave += new System.EventHandler(this.TxtAlterPhno_Leave);
             // 
-            // textBox3
+            // txtDAddressLine2
             // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox3.Enabled = false;
-            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox3.Location = new System.Drawing.Point(23, 104);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(111, 27);
-            this.textBox3.TabIndex = 48;
-            this.textBox3.Text = "Address 2";
+            this.txtDAddressLine2.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDAddressLine2.Enabled = false;
+            this.txtDAddressLine2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDAddressLine2.Location = new System.Drawing.Point(23, 104);
+            this.txtDAddressLine2.Name = "txtDAddressLine2";
+            this.txtDAddressLine2.ReadOnly = true;
+            this.txtDAddressLine2.Size = new System.Drawing.Size(111, 27);
+            this.txtDAddressLine2.TabIndex = 48;
+            this.txtDAddressLine2.Text = "Address Line 2";
             // 
-            // txtaddress2
+            // txtAddressLine2
             // 
-            this.txtaddress2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtaddress2.Location = new System.Drawing.Point(134, 104);
-            this.txtaddress2.MaxLength = 250;
-            this.txtaddress2.Name = "txtaddress2";
-            this.txtaddress2.Size = new System.Drawing.Size(397, 27);
-            this.txtaddress2.TabIndex = 3;
-            this.txtaddress2.Enter += new System.EventHandler(this.Txtaddress2_Enter);
-            this.txtaddress2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtaddress2_KeyDown);
-            this.txtaddress2.Leave += new System.EventHandler(this.Txtaddress2_Leave);
+            this.txtAddressLine2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtAddressLine2.Location = new System.Drawing.Point(134, 104);
+            this.txtAddressLine2.MaxLength = 250;
+            this.txtAddressLine2.Name = "txtAddressLine2";
+            this.txtAddressLine2.Size = new System.Drawing.Size(397, 27);
+            this.txtAddressLine2.TabIndex = 3;
+            this.txtAddressLine2.Enter += new System.EventHandler(this.Txtaddress2_Enter);
+            this.txtAddressLine2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtaddress2_KeyDown);
+            this.txtAddressLine2.Leave += new System.EventHandler(this.Txtaddress2_Leave);
             // 
             // txtDPincode
             // 
@@ -875,47 +916,6 @@
             // 
             this.errCompany.ContainerControl = this;
             // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 50;
-            // 
-            // clmbankname
-            // 
-            this.clmbankname.HeaderText = "Bank Name";
-            this.clmbankname.Name = "clmbankname";
-            this.clmbankname.ReadOnly = true;
-            this.clmbankname.Width = 200;
-            // 
-            // clmbranch
-            // 
-            this.clmbranch.HeaderText = "Branch Name";
-            this.clmbranch.Name = "clmbranch";
-            this.clmbranch.ReadOnly = true;
-            this.clmbranch.Width = 175;
-            // 
-            // clmaccno
-            // 
-            this.clmaccno.HeaderText = "Account No.";
-            this.clmaccno.Name = "clmaccno";
-            this.clmaccno.ReadOnly = true;
-            this.clmaccno.Width = 200;
-            // 
-            // clmifscode
-            // 
-            this.clmifscode.HeaderText = "IFS Code";
-            this.clmifscode.Name = "clmifscode";
-            this.clmifscode.ReadOnly = true;
-            this.clmifscode.Width = 175;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
-            // 
             // CP_Company
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -943,8 +943,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grbGovtRegisterationIds.ResumeLayout(false);
+            this.grbGovtRegisterationIds.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).EndInit();
             this.ResumeLayout(false);
 
@@ -956,8 +956,8 @@
         private System.Windows.Forms.TextBox txtCompanyName;
         private System.Windows.Forms.TextBox txtDShortName;
         private System.Windows.Forms.TextBox txtShortName;
-        private System.Windows.Forms.TextBox txtDArea;
-        private System.Windows.Forms.TextBox txtArea;
+        private System.Windows.Forms.TextBox txtDAddressLine1;
+        private System.Windows.Forms.TextBox txtAddressLine1;
         private System.Windows.Forms.TextBox txtDCity;
         private System.Windows.Forms.TextBox txtCity;
         private System.Windows.Forms.TextBox txtDAContactNumber;
@@ -974,8 +974,8 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox txtDContactNumber;
         private System.Windows.Forms.TextBox txtContactNumber;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox txtaddress2;
+        private System.Windows.Forms.TextBox txtDAddressLine2;
+        private System.Windows.Forms.TextBox txtAddressLine2;
         private System.Windows.Forms.TextBox txtAlterMobileno;
         private System.Windows.Forms.TextBox txtAlterPhno;
         private System.Windows.Forms.TextBox txtwebsite;
@@ -990,7 +990,7 @@
         private System.Windows.Forms.TextBox txtAccno;
         private System.Windows.Forms.TextBox textBox19;
         private System.Windows.Forms.TextBox txtBankname;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grbGovtRegisterationIds;
         private System.Windows.Forms.TextBox textBox13;
         private System.Windows.Forms.TextBox txtFSSAI;
         private System.Windows.Forms.TextBox textBox11;

@@ -43,20 +43,21 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlunitlist = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdUnitList = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDSymbols = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDNoOfDecimals = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSymbols = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNoOfDecimals = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.grdUnitList = new System.Windows.Forms.DataGridView();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDSymbols = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDNoOfDecimals = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsUnitList.SuspendLayout();
+            this.pnlunitlist.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUnitList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
@@ -77,7 +78,7 @@
             this.tsbNew});
             this.tsUnitList.Location = new System.Drawing.Point(0, 0);
             this.tsUnitList.Name = "tsUnitList";
-            this.tsUnitList.Size = new System.Drawing.Size(1352, 27);
+            this.tsUnitList.Size = new System.Drawing.Size(1354, 27);
             this.tsUnitList.TabIndex = 35;
             this.tsUnitList.Text = "Unit";
             // 
@@ -150,9 +151,11 @@
             // pnlunitlist
             // 
             this.pnlunitlist.BackColor = System.Drawing.Color.White;
-            this.pnlunitlist.Location = new System.Drawing.Point(0, 40);
+            this.pnlunitlist.Controls.Add(this.DGV_SearchGrid);
+            this.pnlunitlist.Controls.Add(this.grdUnitList);
+            this.pnlunitlist.Location = new System.Drawing.Point(0, 31);
             this.pnlunitlist.Name = "pnlunitlist";
-            this.pnlunitlist.Size = new System.Drawing.Size(1354, 636);
+            this.pnlunitlist.Size = new System.Drawing.Size(1354, 641);
             this.pnlunitlist.TabIndex = 36;
             // 
             // DGV_SearchGrid
@@ -188,7 +191,7 @@
             this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(12, 49);
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 2);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
@@ -199,8 +202,38 @@
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
-            this.DGV_SearchGrid.Size = new System.Drawing.Size(1329, 56);
+            this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.MinimumWidth = 6;
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmdcompanyname
+            // 
+            this.clmdcompanyname.HeaderText = "Unit Name";
+            this.clmdcompanyname.MinimumWidth = 6;
+            this.clmdcompanyname.Name = "clmdcompanyname";
+            this.clmdcompanyname.Width = 200;
+            // 
+            // clmSymbols
+            // 
+            this.clmSymbols.HeaderText = "Symbols";
+            this.clmSymbols.Name = "clmSymbols";
+            // 
+            // clmNoOfDecimals
+            // 
+            this.clmNoOfDecimals.HeaderText = "No.Of Decimals";
+            this.clmNoOfDecimals.Name = "clmNoOfDecimals";
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Status";
+            this.clmdstatus.MinimumWidth = 6;
+            this.clmdstatus.Name = "clmdstatus";
+            this.clmdstatus.Width = 125;
             // 
             // lblNoRecordsFound
             // 
@@ -248,7 +281,7 @@
             this.grdUnitList.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdUnitList.EnableHeadersVisualStyles = false;
             this.grdUnitList.GridColor = System.Drawing.Color.White;
-            this.grdUnitList.Location = new System.Drawing.Point(12, 105);
+            this.grdUnitList.Location = new System.Drawing.Point(3, 58);
             this.grdUnitList.Name = "grdUnitList";
             this.grdUnitList.ReadOnly = true;
             this.grdUnitList.RowHeadersVisible = false;
@@ -258,22 +291,8 @@
             this.grdUnitList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdUnitList.RowTemplate.Height = 25;
             this.grdUnitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdUnitList.Size = new System.Drawing.Size(1329, 560);
+            this.grdUnitList.Size = new System.Drawing.Size(1348, 581);
             this.grdUnitList.TabIndex = 958797;
-            // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(11, 51);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1329, 619);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
             // 
             // clmsno
             // 
@@ -310,48 +329,30 @@
             this.clmStatus.ReadOnly = true;
             this.clmStatus.Width = 125;
             // 
-            // clmdsno
+            // picLoader
             // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.MinimumWidth = 6;
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmdcompanyname
-            // 
-            this.clmdcompanyname.HeaderText = "Unit Name";
-            this.clmdcompanyname.MinimumWidth = 6;
-            this.clmdcompanyname.Name = "clmdcompanyname";
-            this.clmdcompanyname.Width = 200;
-            // 
-            // clmSymbols
-            // 
-            this.clmSymbols.HeaderText = "Symbols";
-            this.clmSymbols.Name = "clmSymbols";
-            // 
-            // clmNoOfDecimals
-            // 
-            this.clmNoOfDecimals.HeaderText = "No.Of Decimals";
-            this.clmNoOfDecimals.Name = "clmNoOfDecimals";
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Status";
-            this.clmdstatus.MinimumWidth = 6;
-            this.clmdstatus.Name = "clmdstatus";
-            this.clmdstatus.Width = 125;
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(139, 215);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1201, 455);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // CP_Unitlist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1352, 675);
-            this.Controls.Add(this.DGV_SearchGrid);
+            this.BackColor = System.Drawing.Color.DarkGray;
+            this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.lblNoRecordsFound);
-            this.Controls.Add(this.grdUnitList);
-            this.Controls.Add(this.picLoader);
             this.Controls.Add(this.pnlunitlist);
             this.Controls.Add(this.tsUnitList);
+            this.Controls.Add(this.picLoader);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -363,6 +364,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrandList_KeyDown);
             this.tsUnitList.ResumeLayout(false);
             this.tsUnitList.PerformLayout();
+            this.pnlunitlist.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUnitList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();

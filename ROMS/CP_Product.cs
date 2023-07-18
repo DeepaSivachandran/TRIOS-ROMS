@@ -1362,18 +1362,6 @@ namespace ROMS
 
         private void TxtMinStock_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtOpeningStock.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
         }
 
         private void TxtOpeningStock_KeyDown(object sender, KeyEventArgs e)
@@ -1796,7 +1784,7 @@ namespace ROMS
         {
             try
             {
-                txtOpeningStock.BackColor = Color.LemonChiffon;
+               
             }
             catch (Exception ex)
             {
@@ -2139,16 +2127,7 @@ namespace ROMS
         {
             try
             {
-                if (txtOpeningStock.Text == "")
-                {
-                    txtOpeningStock.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtOpeningStock, "Please Enter Openning Stock");
-                }
-                else
-                {
-                    txtOpeningStock.BackColor = Color.White;
-                    errItems.Clear();
-                }
+               
             }
             catch (Exception ex)
             {

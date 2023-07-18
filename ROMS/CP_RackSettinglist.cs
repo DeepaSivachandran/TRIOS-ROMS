@@ -23,8 +23,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_RackSetting = new CP_RackSetting();
-                MainForm.objCP_RackSetting.ShowDialog();
+                MainForm.objCP_RackSettings = new CP_RackSettings();
+                MainForm.objCP_RackSettings.MdiParent = ParentForm;
+                MainForm.objCP_RackSettings.Show();
             }
             catch (Exception ex)
             {
@@ -514,5 +515,27 @@ namespace ROMS
         {
 
         }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            udfnclose();
+        }
+        public void udfnclose()
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+    
     }
 }

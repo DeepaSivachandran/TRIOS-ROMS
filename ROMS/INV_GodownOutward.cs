@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class CP_Group : Form
+    public partial class INV_GodownOutward : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -23,11 +23,11 @@ namespace ROMS
         private ToolTip tpsno = new ToolTip();
         public string vargroupcode;
         public String pbFormStatus;
-        public CP_Group()
+        public INV_GodownOutward()
         {
             InitializeComponent();
         }
-        private void CP_Group_Load(object sender, EventArgs e)
+        private void CP_Rack_Load(object sender, EventArgs e)
         {
             try
             {      
@@ -83,69 +83,14 @@ namespace ROMS
 
             }
         }
-        private void txtEGroupName_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtEGroupNameEnglish.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtEGroupName_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtEGroupNameEnglish.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void cmbSINO_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnSave.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+     
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
 
                 errGroup.Clear();
-                if (txtEGroupNameEnglish.Text.Trim() == "")
-                {
-                    errGroup.SetError(txtEGroupNameEnglish, "Please enter group english name");
-                    txtEGroupNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
-                    tpegroupname.ShowAlways = true;
-                    tpegroupname.Show("Please enter group english name", txtEGroupNameEnglish, 5000);
-                    txtEGroupNameEnglish.Text = "";
-
-                }
-                if (txtEGroupNameEnglish.Text.Trim() == "")
-                {
-                    txtEGroupNameEnglish.Focus();
-                    return;
-
-                }
+              
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
                 if (btnSave.Text == "Save")
@@ -185,7 +130,7 @@ namespace ROMS
                         udfnclear();
                     }
                   //  udfnLoadSlNo();
-                   // MainForm.objCP_GroupList.udfnList();
+                   // MainForm.objCP_RackList.udfnList();
                 }
                 else
                 {
@@ -216,7 +161,7 @@ namespace ROMS
                // cmbGroupType.SelectedValue = "-1";
                 DataSet objDS = new DataSet();
                 SPDataService objspservice = new SPDataService();
-               // objDS = objspservice.udfnGetSlNo("CP_GROUP", "Create", "", "");
+               // objDS = objspservice.udfnGetSlNo("CP_Rack", "Create", "", "");
                 objspservice.CloseConnection();
                 if (objDS != null)
                 {
@@ -292,7 +237,7 @@ namespace ROMS
             try
             {
                 udfnclose();
-               // MainForm.objCP_GroupList.udfnList();
+               // MainForm.objCP_RackList.udfnList();
             }
             catch (Exception ex)
             {
@@ -341,7 +286,7 @@ namespace ROMS
         }
 
 
-        private void CP_Group_KeyDown(object sender, KeyEventArgs e)
+        private void CP_Rack_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -360,25 +305,18 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        
-        private void cmbSINO_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void BtnClose_Click_1(object sender, EventArgs e)
         {
-
-        }
-
-        private void txtTLabelName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RbInactive_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Grbform_Enter(object sender, EventArgs e)
-        {
-
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

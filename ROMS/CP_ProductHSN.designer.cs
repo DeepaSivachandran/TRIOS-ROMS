@@ -39,6 +39,9 @@
             this.txtHSNCode = new System.Windows.Forms.TextBox();
             this.txtDSGT = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.panelStatus = new System.Windows.Forms.Panel();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmhsncode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,13 +55,10 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.errCompany = new System.Windows.Forms.ErrorProvider(this.components);
-            this.panelStatus = new System.Windows.Forms.Panel();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.grbform.SuspendLayout();
+            this.panelStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
-            this.panelStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDHsnName
@@ -79,7 +79,7 @@
             this.txtHSNName.Location = new System.Drawing.Point(124, 23);
             this.txtHSNName.MaxLength = 100;
             this.txtHSNName.Name = "txtHSNName";
-            this.txtHSNName.Size = new System.Drawing.Size(363, 27);
+            this.txtHSNName.Size = new System.Drawing.Size(311, 27);
             this.txtHSNName.TabIndex = 0;
             this.txtHSNName.Enter += new System.EventHandler(this.txtCompanyName_Enter);
             this.txtHSNName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCompanyName_KeyDown);
@@ -143,6 +143,42 @@
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
+            // panelStatus
+            // 
+            this.panelStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelStatus.Controls.Add(this.radioButton1);
+            this.panelStatus.Controls.Add(this.radioButton2);
+            this.panelStatus.Enabled = false;
+            this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelStatus.Location = new System.Drawing.Point(124, 245);
+            this.panelStatus.Name = "panelStatus";
+            this.panelStatus.Size = new System.Drawing.Size(162, 27);
+            this.panelStatus.TabIndex = 1111138;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.radioButton1.Location = new System.Drawing.Point(94, 1);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(63, 21);
+            this.radioButton1.TabIndex = 7;
+            this.radioButton1.Text = "Inactive";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
+            this.radioButton2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.radioButton2.Location = new System.Drawing.Point(3, 1);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(54, 21);
+            this.radioButton2.TabIndex = 6;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Active";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
             // grdSupplierList
             // 
             this.grdSupplierList.AllowUserToAddRows = false;
@@ -176,7 +212,7 @@
             this.grdSupplierList.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdSupplierList.EnableHeadersVisualStyles = false;
             this.grdSupplierList.GridColor = System.Drawing.Color.White;
-            this.grdSupplierList.Location = new System.Drawing.Point(23, 118);
+            this.grdSupplierList.Location = new System.Drawing.Point(23, 85);
             this.grdSupplierList.Name = "grdSupplierList";
             this.grdSupplierList.ReadOnly = true;
             this.grdSupplierList.RowHeadersVisible = false;
@@ -185,7 +221,7 @@
             this.grdSupplierList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdSupplierList.RowTemplate.Height = 25;
             this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSupplierList.Size = new System.Drawing.Size(647, 118);
+            this.grdSupplierList.Size = new System.Drawing.Size(647, 152);
             this.grdSupplierList.TabIndex = 1111137;
             // 
             // clmsno
@@ -266,7 +302,7 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(23, 77);
+            this.textBox4.Location = new System.Drawing.Point(23, 245);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(101, 27);
@@ -278,7 +314,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(507, 246);
+            this.btnSave.Location = new System.Drawing.Point(507, 245);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 25;
@@ -295,7 +331,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(595, 246);
+            this.btnClose.Location = new System.Drawing.Point(595, 245);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 26;
@@ -310,42 +346,6 @@
             // errCompany
             // 
             this.errCompany.ContainerControl = this;
-            // 
-            // panelStatus
-            // 
-            this.panelStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelStatus.Controls.Add(this.radioButton1);
-            this.panelStatus.Controls.Add(this.radioButton2);
-            this.panelStatus.Enabled = false;
-            this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(124, 77);
-            this.panelStatus.Name = "panelStatus";
-            this.panelStatus.Size = new System.Drawing.Size(363, 27);
-            this.panelStatus.TabIndex = 1111138;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.radioButton1.Location = new System.Drawing.Point(162, 1);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(63, 21);
-            this.radioButton1.TabIndex = 7;
-            this.radioButton1.Text = "Inactive";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Checked = true;
-            this.radioButton2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.radioButton2.Location = new System.Drawing.Point(53, 1);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(54, 21);
-            this.radioButton2.TabIndex = 6;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Active";
-            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // CP_ProductHSN
             // 
@@ -369,10 +369,10 @@
             this.Leave += new System.EventHandler(this.CP_Company_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errCompany)).EndInit();
             this.panelStatus.ResumeLayout(false);
             this.panelStatus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errCompany)).EndInit();
             this.ResumeLayout(false);
 
         }

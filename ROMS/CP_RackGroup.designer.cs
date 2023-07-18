@@ -37,6 +37,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_RackGroup));
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.cbracklist = new System.Windows.Forms.CheckBox();
+            this.lblGC = new System.Windows.Forms.Label();
+            this.lblNoofproducts = new System.Windows.Forms.Label();
             this.DGV_Racklist = new System.Windows.Forms.DataGridView();
             this.clmcheckbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmracklist = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,11 +59,11 @@
             this.errGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpUserList = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtDUserName = new System.Windows.Forms.TextBox();
             this.txtStatus = new System.Windows.Forms.TextBox();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Racklist)).BeginInit();
             this.pnlStatus.SuspendLayout();
@@ -71,6 +74,9 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.cbracklist);
+            this.grbform.Controls.Add(this.lblGC);
+            this.grbform.Controls.Add(this.lblNoofproducts);
             this.grbform.Controls.Add(this.DGV_Racklist);
             this.grbform.Controls.Add(this.txtRackGroup);
             this.grbform.Controls.Add(this.cmbShopGodown);
@@ -83,9 +89,41 @@
             this.grbform.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbform.Name = "grbform";
             this.grbform.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbform.Size = new System.Drawing.Size(437, 254);
+            this.grbform.Size = new System.Drawing.Size(437, 274);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
+            // 
+            // cbracklist
+            // 
+            this.cbracklist.AutoSize = true;
+            this.cbracklist.Location = new System.Drawing.Point(201, 121);
+            this.cbracklist.Name = "cbracklist";
+            this.cbracklist.Size = new System.Drawing.Size(15, 14);
+            this.cbracklist.TabIndex = 1111138;
+            this.cbracklist.UseVisualStyleBackColor = true;
+            // 
+            // lblGC
+            // 
+            this.lblGC.AutoSize = true;
+            this.lblGC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblGC.ForeColor = System.Drawing.Color.Crimson;
+            this.lblGC.Location = new System.Drawing.Point(278, 227);
+            this.lblGC.Name = "lblGC";
+            this.lblGC.Size = new System.Drawing.Size(17, 20);
+            this.lblGC.TabIndex = 1111137;
+            this.lblGC.Text = "0";
+            // 
+            // lblNoofproducts
+            // 
+            this.lblNoofproducts.AutoSize = true;
+            this.lblNoofproducts.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lblNoofproducts.ForeColor = System.Drawing.Color.Black;
+            this.lblNoofproducts.Location = new System.Drawing.Point(182, 227);
+            this.lblNoofproducts.Name = "lblNoofproducts";
+            this.lblNoofproducts.Size = new System.Drawing.Size(94, 20);
+            this.lblNoofproducts.TabIndex = 1111136;
+            this.lblNoofproducts.Text = "No.of Products :";
             // 
             // DGV_Racklist
             // 
@@ -130,9 +168,7 @@
             this.DGV_Racklist.ShowRowErrors = false;
             this.DGV_Racklist.Size = new System.Drawing.Size(221, 108);
             this.DGV_Racklist.TabIndex = 958801;
-            // this.DGV_Racklist.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_Racklist_CellContentClick);
-            this.DGV_Racklist.Rows.Add(false,"RACK 01");
-            this.DGV_Racklist.Rows.Add(false, "RACK 02");
+            // 
             // clmcheckbox
             // 
             this.clmcheckbox.HeaderText = "";
@@ -247,7 +283,7 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInactive);
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlStatus.Location = new System.Drawing.Point(591, 238);
+            this.pnlStatus.Location = new System.Drawing.Point(591, 258);
             this.pnlStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(251, 27);
@@ -285,10 +321,10 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(758, 296);
+            this.btnClose.Location = new System.Drawing.Point(767, 296);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(84, 29);
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 6;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -303,10 +339,10 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(661, 296);
+            this.btnSave.Location = new System.Drawing.Point(688, 296);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(84, 29);
+            this.btnSave.Size = new System.Drawing.Size(75, 29);
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -328,7 +364,7 @@
             this.grpUserList.Controls.Add(this.btnAdd);
             this.grpUserList.Location = new System.Drawing.Point(465, 11);
             this.grpUserList.Name = "grpUserList";
-            this.grpUserList.Size = new System.Drawing.Size(377, 220);
+            this.grpUserList.Size = new System.Drawing.Size(377, 233);
             this.grpUserList.TabIndex = 1111137;
             this.grpUserList.TabStop = false;
             this.grpUserList.Text = "Rack Incharge";
@@ -363,7 +399,7 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.White;
-            this.dataGridView1.Location = new System.Drawing.Point(127, 70);
+            this.dataGridView1.Location = new System.Drawing.Point(19, 70);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 70;
@@ -374,21 +410,8 @@
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(209, 108);
+            this.dataGridView1.Size = new System.Drawing.Size(317, 150);
             this.dataGridView1.TabIndex = 1111136;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Incharge Name";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 150;
-            // 
-            // clmremove
-            // 
-            this.clmremove.HeaderText = "Remove";
-            this.clmremove.Name = "clmremove";
-            this.clmremove.Width = 50;
             // 
             // txtUserName
             // 
@@ -416,13 +439,26 @@
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtStatus.Enabled = false;
             this.txtStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(483, 238);
+            this.txtStatus.Location = new System.Drawing.Point(483, 258);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
             this.txtStatus.Size = new System.Drawing.Size(108, 27);
             this.txtStatus.TabIndex = 1111136;
             this.txtStatus.Text = "Status";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Incharge Name";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 220;
+            // 
+            // clmremove
+            // 
+            this.clmremove.HeaderText = "Remove";
+            this.clmremove.Name = "clmremove";
+            this.clmremove.Width = 50;
             // 
             // CP_RackGroup
             // 
@@ -486,6 +522,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmracklist;
         public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txtStatus;
+        private System.Windows.Forms.Label lblGC;
+        private System.Windows.Forms.Label lblNoofproducts;
+        private System.Windows.Forms.CheckBox cbracklist;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewImageColumn clmremove;
     }

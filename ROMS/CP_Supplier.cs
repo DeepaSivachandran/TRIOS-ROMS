@@ -2046,6 +2046,16 @@ namespace ROMS
 
             }
         }
+
+        private void TextBox34_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtDOrderDay_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

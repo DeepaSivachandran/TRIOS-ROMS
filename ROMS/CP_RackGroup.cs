@@ -32,7 +32,8 @@ namespace ROMS
             try
             {      
                 udfnEdit();
-
+                DGV_Racklist.Rows.Add(false, "RACK 01");
+                DGV_Racklist.Rows.Add(false, "RACK 02");
             }
             catch (Exception ex)
             {
@@ -342,7 +343,10 @@ namespace ROMS
             }
         }
 
-       
+        private void Grbform_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
      
 }

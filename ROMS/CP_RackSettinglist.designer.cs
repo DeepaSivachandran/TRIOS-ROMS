@@ -44,7 +44,7 @@
             this.grdRackSettingList = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpFilterby = new System.Windows.Forms.GroupBox();
@@ -171,9 +171,9 @@
             this.pnlRackSettingList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlRackSettingList.Controls.Add(this.grdRackSettingList);
             this.pnlRackSettingList.Controls.Add(this.grpFilterby);
-            this.pnlRackSettingList.Location = new System.Drawing.Point(0, 40);
+            this.pnlRackSettingList.Location = new System.Drawing.Point(4, 40);
             this.pnlRackSettingList.Name = "pnlRackSettingList";
-            this.pnlRackSettingList.Size = new System.Drawing.Size(1346, 615);
+            this.pnlRackSettingList.Size = new System.Drawing.Size(1349, 633);
             this.pnlRackSettingList.TabIndex = 958788;
             // 
             // grdRackSettingList
@@ -197,7 +197,7 @@
             this.grdRackSettingList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmsno,
             this.clmsupname,
-            this.clmICode,
+            this.clmPICode,
             this.clmproname,
             this.clmUnit});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -219,7 +219,7 @@
             this.grdRackSettingList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdRackSettingList.RowTemplate.Height = 25;
             this.grdRackSettingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdRackSettingList.Size = new System.Drawing.Size(1317, 537);
+            this.grdRackSettingList.Size = new System.Drawing.Size(1317, 549);
             this.grdRackSettingList.TabIndex = 958789;
             // 
             // clmsno
@@ -236,11 +236,11 @@
             this.clmsupname.ReadOnly = true;
             this.clmsupname.Width = 200;
             // 
-            // clmICode
+            // clmPICode
             // 
-            this.clmICode.HeaderText = "I Code";
-            this.clmICode.Name = "clmICode";
-            this.clmICode.ReadOnly = true;
+            this.clmPICode.HeaderText = "P.I Code";
+            this.clmPICode.Name = "clmPICode";
+            this.clmPICode.ReadOnly = true;
             // 
             // clmproname
             // 
@@ -306,7 +306,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1354, 675);
+            this.ClientSize = new System.Drawing.Size(1354, 669);
             this.Controls.Add(this.pnlRackSettingList);
             this.Controls.Add(this.lblNoRecordsFound);
             this.Controls.Add(this.tshSupplierMappingList);
@@ -351,7 +351,7 @@
         private System.Windows.Forms.ComboBox cmbGroupType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmICode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
     }

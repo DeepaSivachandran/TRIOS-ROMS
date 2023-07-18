@@ -169,24 +169,33 @@ namespace ROMS
             }
         }
 
-        private void LblDESalesManAddress_Click(object sender, EventArgs e)
+        public void udfnclose()
         {
-
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
-
-        private void GrpSupplierMapping_Enter(object sender, EventArgs e)
+        private void BtnClose_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void LblDESubGroup_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label1_Click(object sender, EventArgs e)
-        {
-
+            try
+            {
+                udfnclose(); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

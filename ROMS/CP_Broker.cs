@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class CP_ProductSubGroup : Form
+    public partial class CP_Broker : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -23,7 +23,7 @@ namespace ROMS
         private ToolTip tpsno = new ToolTip();
         public string vargroupcode;
         public String pbFormStatus;
-        public CP_ProductSubGroup()
+        public CP_Broker()
         {
             InitializeComponent();
         }
@@ -512,6 +512,21 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void TxtDBrokerName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtDMobileNo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtDWhatsAppNo_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

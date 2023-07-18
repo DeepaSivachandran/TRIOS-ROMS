@@ -115,7 +115,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtArea.Focus();
+                    txtAddressLine1.Focus();
                 }
             }
             catch (Exception ex)
@@ -399,7 +399,7 @@ namespace ROMS
             {
                 txtCompanyName.Text = "";
                 txtShortName.Text = "";
-                txtArea.Text = "";
+                txtAddressLine1.Text = "";
                 txtCity.Text = "";
                 txtContactNumber.Text = "";
                 txtmobileNumber.Text = "";
@@ -654,23 +654,23 @@ namespace ROMS
         {
             try
             {
-                txtArea.BackColor = Color.White;
+                txtAddressLine1.BackColor = Color.White;
                 try
                 {
-                    if (txtArea.Text.Trim() == "")
+                    if (txtAddressLine1.Text.Trim() == "")
                     {
                        
-                            errCompany.SetError(txtArea, "Please enter address");
-                            txtArea.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            errCompany.SetError(txtAddressLine1, "Please enter address");
+                            txtAddressLine1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             tparea.ShowAlways = true;
-                            tparea.Show("Please enter address.", txtArea, 5000); 
+                            tparea.Show("Please enter address.", txtAddressLine1, 5000); 
                        
                     }
                     else
                     {
                         errCompany.Clear();
-                        txtArea.BackColor = Color.White;
-                        tparea.Hide(txtArea);
+                        txtAddressLine1.BackColor = Color.White;
+                        tparea.Hide(txtAddressLine1);
                     }
                 }
                 catch (Exception ex)
@@ -693,7 +693,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtaddress2.Focus();
+                    txtAddressLine2.Focus();
                 }
             }
             catch (Exception ex)
@@ -798,7 +798,7 @@ namespace ROMS
         {
             try
             {
-                txtArea.BackColor = Color.LemonChiffon;
+                txtAddressLine1.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -886,7 +886,7 @@ namespace ROMS
             {
                 errCompany.Clear();
                 txtPan.BackColor = Color.White;
-                tppincode.Hide(txtArea);
+                tppincode.Hide(txtAddressLine1);
             }
         }
 
@@ -982,7 +982,7 @@ namespace ROMS
             {
                 errCompany.Clear();
                 txtGSTTIN.BackColor = Color.White;
-                tppincode.Hide(txtArea);
+                tppincode.Hide(txtAddressLine1);
             }
         }
 
@@ -1007,7 +1007,7 @@ namespace ROMS
         {
             try
             {
-                txtaddress2.BackColor = Color.LemonChiffon;
+                txtAddressLine2.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1038,20 +1038,20 @@ namespace ROMS
             {
                 try
                 {
-                    if (txtaddress2.Text.Trim() == "")
+                    if (txtAddressLine2.Text.Trim() == "")
                     {
 
-                        errCompany.SetError(txtaddress2, "Please enter address");
-                        txtaddress2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        errCompany.SetError(txtAddressLine2, "Please enter address");
+                        txtAddressLine2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tparea.ShowAlways = true;
-                        tparea.Show("Please enter address.", txtaddress2, 5000);
+                        tparea.Show("Please enter address.", txtAddressLine2, 5000);
 
                     }
                     else
                     {
                         errCompany.Clear();
-                        txtaddress2.BackColor = Color.White;
-                        tparea.Hide(txtaddress2);
+                        txtAddressLine2.BackColor = Color.White;
+                        tparea.Hide(txtAddressLine2);
                     }
                 }
                 catch (Exception ex)
