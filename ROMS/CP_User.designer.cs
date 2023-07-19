@@ -45,6 +45,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grbForm = new System.Windows.Forms.GroupBox();
+            this.cmbUserCatagory = new System.Windows.Forms.ComboBox();
+            this.txtDUserCatagory = new System.Windows.Forms.TextBox();
             this.cmbUserRole = new System.Windows.Forms.ComboBox();
             this.txtDUserRole = new System.Windows.Forms.TextBox();
             this.txtDConfirmPassKey = new System.Windows.Forms.TextBox();
@@ -52,8 +54,6 @@
             this.txtDPassKey = new System.Windows.Forms.TextBox();
             this.txtPassKey = new System.Windows.Forms.TextBox();
             this.errUser = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cmbUserCatagory = new System.Windows.Forms.ComboBox();
-            this.txtDUserCatagory = new System.Windows.Forms.TextBox();
             this.panelStatus.SuspendLayout();
             this.grbForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errUser)).BeginInit();
@@ -272,6 +272,28 @@
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
             // 
+            // cmbUserCatagory
+            // 
+            this.cmbUserCatagory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUserCatagory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbUserCatagory.FormattingEnabled = true;
+            this.cmbUserCatagory.Location = new System.Drawing.Point(199, 77);
+            this.cmbUserCatagory.Name = "cmbUserCatagory";
+            this.cmbUserCatagory.Size = new System.Drawing.Size(288, 27);
+            this.cmbUserCatagory.TabIndex = 23;
+            // 
+            // txtDUserCatagory
+            // 
+            this.txtDUserCatagory.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDUserCatagory.Enabled = false;
+            this.txtDUserCatagory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDUserCatagory.Location = new System.Drawing.Point(19, 77);
+            this.txtDUserCatagory.Name = "txtDUserCatagory";
+            this.txtDUserCatagory.ReadOnly = true;
+            this.txtDUserCatagory.Size = new System.Drawing.Size(181, 27);
+            this.txtDUserCatagory.TabIndex = 22;
+            this.txtDUserCatagory.Text = "User Catagory";
+            // 
             // cmbUserRole
             // 
             this.cmbUserRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -341,28 +363,6 @@
             // errUser
             // 
             this.errUser.ContainerControl = this;
-            // 
-            // cmbUserCatagory
-            // 
-            this.cmbUserCatagory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbUserCatagory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbUserCatagory.FormattingEnabled = true;
-            this.cmbUserCatagory.Location = new System.Drawing.Point(199, 77);
-            this.cmbUserCatagory.Name = "cmbUserCatagory";
-            this.cmbUserCatagory.Size = new System.Drawing.Size(288, 27);
-            this.cmbUserCatagory.TabIndex = 23;
-            // 
-            // txtDUserCatagory
-            // 
-            this.txtDUserCatagory.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDUserCatagory.Enabled = false;
-            this.txtDUserCatagory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDUserCatagory.Location = new System.Drawing.Point(19, 77);
-            this.txtDUserCatagory.Name = "txtDUserCatagory";
-            this.txtDUserCatagory.ReadOnly = true;
-            this.txtDUserCatagory.Size = new System.Drawing.Size(181, 27);
-            this.txtDUserCatagory.TabIndex = 22;
-            this.txtDUserCatagory.Text = "User Catagory";
             // 
             // CP_User
             // 

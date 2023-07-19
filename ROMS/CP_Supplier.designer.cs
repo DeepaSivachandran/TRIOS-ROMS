@@ -95,6 +95,8 @@
             this.txtsupplybrand = new System.Windows.Forms.TextBox();
             this.textBox33 = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.cmbDesignation = new System.Windows.Forms.ComboBox();
+            this.txtDDesignation = new System.Windows.Forms.TextBox();
             this.grddays = new System.Windows.Forms.DataGridView();
             this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmday = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,8 +108,6 @@
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.cmbDesignation = new System.Windows.Forms.ComboBox();
-            this.txtDDesignation = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
@@ -703,7 +703,7 @@
             // 
             this.txtrupee.BackColor = System.Drawing.SystemColors.Control;
             this.txtrupee.Enabled = false;
-            this.txtrupee.Font = new System.Drawing.Font("Rupee Foradian", 12.75F, System.Drawing.FontStyle.Bold);
+            this.txtrupee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold);
             this.txtrupee.Location = new System.Drawing.Point(113, 36);
             this.txtrupee.Name = "txtrupee";
             this.txtrupee.ReadOnly = true;
@@ -925,6 +925,31 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Order Details";
             // 
+            // cmbDesignation
+            // 
+            this.cmbDesignation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDesignation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDesignation.FormattingEnabled = true;
+            this.cmbDesignation.Items.AddRange(new object[] {
+            "Proprictor",
+            "Manager"});
+            this.cmbDesignation.Location = new System.Drawing.Point(142, 27);
+            this.cmbDesignation.Name = "cmbDesignation";
+            this.cmbDesignation.Size = new System.Drawing.Size(204, 27);
+            this.cmbDesignation.TabIndex = 67;
+            // 
+            // txtDDesignation
+            // 
+            this.txtDDesignation.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDDesignation.Enabled = false;
+            this.txtDDesignation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDDesignation.Location = new System.Drawing.Point(11, 27);
+            this.txtDDesignation.Name = "txtDDesignation";
+            this.txtDDesignation.ReadOnly = true;
+            this.txtDDesignation.Size = new System.Drawing.Size(131, 27);
+            this.txtDDesignation.TabIndex = 68;
+            this.txtDDesignation.Text = "Designation";
+            // 
             // grddays
             // 
             this.grddays.AllowUserToAddRows = false;
@@ -1092,31 +1117,6 @@
             this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
             this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
-            // 
-            // cmbDesignation
-            // 
-            this.cmbDesignation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDesignation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDesignation.FormattingEnabled = true;
-            this.cmbDesignation.Items.AddRange(new object[] {
-            "Proprictor",
-            "Manager"});
-            this.cmbDesignation.Location = new System.Drawing.Point(142, 27);
-            this.cmbDesignation.Name = "cmbDesignation";
-            this.cmbDesignation.Size = new System.Drawing.Size(204, 27);
-            this.cmbDesignation.TabIndex = 67;
-            // 
-            // txtDDesignation
-            // 
-            this.txtDDesignation.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDDesignation.Enabled = false;
-            this.txtDDesignation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDDesignation.Location = new System.Drawing.Point(11, 27);
-            this.txtDDesignation.Name = "txtDDesignation";
-            this.txtDDesignation.ReadOnly = true;
-            this.txtDDesignation.Size = new System.Drawing.Size(131, 27);
-            this.txtDDesignation.TabIndex = 68;
-            this.txtDDesignation.Text = "Designation";
             // 
             // CP_Supplier
             // 

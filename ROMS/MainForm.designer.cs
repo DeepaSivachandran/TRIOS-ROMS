@@ -38,10 +38,11 @@ namespace ROMS
             this.tsbLogo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmpurchase = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmpurchaseSupplier = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmGRN = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseOrder = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmGRN = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseEntry = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmpurchaseApprove = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmpurchaseReturn = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsminward = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmOutward = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,11 +130,13 @@ namespace ROMS
             this.tsmPurchaseOrder,
             this.tsmGRN,
             this.tsmPurchaseEntry,
-            this.tsmpurchaseApprove});
+            this.tsmpurchaseApprove,
+            this.tsmpurchaseReturn});
             this.tsmpurchase.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmpurchase.Name = "tsmpurchase";
             this.tsmpurchase.Size = new System.Drawing.Size(63, 21);
             this.tsmpurchase.Text = "Purchase";
+            this.tsmpurchase.Visible = false;
             // 
             // tsmpurchaseSupplier
             // 
@@ -142,19 +145,19 @@ namespace ROMS
             this.tsmpurchaseSupplier.Text = "PO Schedule";
             this.tsmpurchaseSupplier.Click += new System.EventHandler(this.TsmpurchaseSupplier_Click);
             // 
-            // tsmGRN
-            // 
-            this.tsmGRN.Name = "tsmGRN";
-            this.tsmGRN.Size = new System.Drawing.Size(180, 22);
-            this.tsmGRN.Text = "Goods Receipt";
-            this.tsmGRN.Click += new System.EventHandler(this.TsmGRN_Click);
-            // 
             // tsmPurchaseOrder
             // 
             this.tsmPurchaseOrder.Name = "tsmPurchaseOrder";
             this.tsmPurchaseOrder.Size = new System.Drawing.Size(180, 22);
             this.tsmPurchaseOrder.Text = "Purchase Order";
             this.tsmPurchaseOrder.Click += new System.EventHandler(this.TsmPurchaseOrder_Click_1);
+            // 
+            // tsmGRN
+            // 
+            this.tsmGRN.Name = "tsmGRN";
+            this.tsmGRN.Size = new System.Drawing.Size(180, 22);
+            this.tsmGRN.Text = "Goods Receipt";
+            this.tsmGRN.Click += new System.EventHandler(this.TsmGRN_Click);
             // 
             // tsmPurchaseEntry
             // 
@@ -170,6 +173,13 @@ namespace ROMS
             this.tsmpurchaseApprove.Text = "Purchase Approval";
             this.tsmpurchaseApprove.Click += new System.EventHandler(this.TsmpurchaseApprove_Click);
             // 
+            // tsmpurchaseReturn
+            // 
+            this.tsmpurchaseReturn.Name = "tsmpurchaseReturn";
+            this.tsmpurchaseReturn.Size = new System.Drawing.Size(180, 22);
+            this.tsmpurchaseReturn.Text = "Purchase Return";
+            this.tsmpurchaseReturn.Click += new System.EventHandler(this.TsmpurchaseReturn_Click);
+            // 
             // inventoryToolStripMenuItem
             // 
             this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -180,27 +190,27 @@ namespace ROMS
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
             this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
             this.inventoryToolStripMenuItem.Text = "Inventory";
+            this.inventoryToolStripMenuItem.Visible = false;
             // 
             // tsminward
             // 
             this.tsminward.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsminward.Name = "tsminward";
-            this.tsminward.Size = new System.Drawing.Size(159, 22);
+            this.tsminward.Size = new System.Drawing.Size(180, 22);
             this.tsminward.Text = "Godown Inward";
             this.tsminward.Click += new System.EventHandler(this.Tsminward_Click);
             // 
             // tsmOutward
             // 
             this.tsmOutward.Name = "tsmOutward";
-            this.tsmOutward.Size = new System.Drawing.Size(159, 22);
+            this.tsmOutward.Size = new System.Drawing.Size(180, 22);
             this.tsmOutward.Text = "Godown Outward";
-            this.tsmOutward.Visible = false;
             this.tsmOutward.Click += new System.EventHandler(this.TsmOutward_Click);
             // 
             // tsmStockTransfer
             // 
             this.tsmStockTransfer.Name = "tsmStockTransfer";
-            this.tsmStockTransfer.Size = new System.Drawing.Size(159, 22);
+            this.tsmStockTransfer.Size = new System.Drawing.Size(180, 22);
             this.tsmStockTransfer.Text = "Stock Transfer";
             this.tsmStockTransfer.Click += new System.EventHandler(this.TsmStockTransfer_Click);
             // 
@@ -292,7 +302,7 @@ namespace ROMS
             // 
             this.tsmLocation.Name = "tsmLocation";
             this.tsmLocation.Size = new System.Drawing.Size(166, 22);
-            this.tsmLocation.Text = "Godown";
+            this.tsmLocation.Text = "Stock Location";
             this.tsmLocation.Click += new System.EventHandler(this.TsmLocation_Click);
             // 
             // tsmRack
@@ -374,7 +384,7 @@ namespace ROMS
             // 
             this.tsmgenralSettings.Name = "tsmgenralSettings";
             this.tsmgenralSettings.Size = new System.Drawing.Size(192, 22);
-            this.tsmgenralSettings.Text = "General Settings";
+            this.tsmgenralSettings.Text = "Voucher Settings";
             this.tsmgenralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
             // 
             // lblDb
@@ -470,7 +480,7 @@ namespace ROMS
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ROMS";
+            this.Text = "GNM ROMS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -527,5 +537,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmgenralSettings;
         private System.Windows.Forms.ToolStripMenuItem tsmbroker;
         private System.Windows.Forms.ToolStripMenuItem tsmHSN;
+        private System.Windows.Forms.ToolStripMenuItem tsmpurchaseReturn;
     }
 }

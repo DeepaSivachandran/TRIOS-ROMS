@@ -43,19 +43,10 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdSettings = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmModule = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPrefix = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSuffix = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNoOfDigits = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStartingNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSampleTransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.grpVoucherSettings = new System.Windows.Forms.GroupBox();
+            this.btnAdd = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblStartingNo = new System.Windows.Forms.Label();
-            this.txtNoOfDigits = new System.Windows.Forms.TextBox();
-            this.lblNoOfDigits = new System.Windows.Forms.Label();
             this.txtSuffix = new System.Windows.Forms.TextBox();
             this.lblSuffix = new System.Windows.Forms.Label();
             this.txtPrefix = new System.Windows.Forms.TextBox();
@@ -65,7 +56,13 @@
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblDEConcern = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.btnAdd = new System.Windows.Forms.Label();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmModule = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPrefix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSuffix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStartingNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSampleTransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tshSettings.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSettings)).BeginInit();
@@ -98,8 +95,8 @@
             this.tsSettings.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsSettings.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tsSettings.Name = "tsSettings";
-            this.tsSettings.Size = new System.Drawing.Size(71, 22);
-            this.tsSettings.Text = "Settings";
+            this.tsSettings.Size = new System.Drawing.Size(119, 22);
+            this.tsSettings.Text = "Voucher Settings";
             // 
             // tsbDelete
             // 
@@ -235,7 +232,6 @@
             this.clmModule,
             this.clmPrefix,
             this.clmSuffix,
-            this.clmNoOfDigits,
             this.clmStartingNo,
             this.clmSampleTransactionNo,
             this.clmRemove});
@@ -261,64 +257,12 @@
             this.grdSettings.Size = new System.Drawing.Size(1318, 480);
             this.grdSettings.TabIndex = 958789;
             // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            // 
-            // clmModule
-            // 
-            this.clmModule.HeaderText = "Module";
-            this.clmModule.Name = "clmModule";
-            this.clmModule.ReadOnly = true;
-            this.clmModule.Width = 200;
-            // 
-            // clmPrefix
-            // 
-            this.clmPrefix.HeaderText = "Prefix";
-            this.clmPrefix.Name = "clmPrefix";
-            this.clmPrefix.ReadOnly = true;
-            // 
-            // clmSuffix
-            // 
-            this.clmSuffix.HeaderText = "Suffix";
-            this.clmSuffix.Name = "clmSuffix";
-            this.clmSuffix.ReadOnly = true;
-            // 
-            // clmNoOfDigits
-            // 
-            this.clmNoOfDigits.HeaderText = "No Of Digits";
-            this.clmNoOfDigits.Name = "clmNoOfDigits";
-            this.clmNoOfDigits.ReadOnly = true;
-            // 
-            // clmStartingNo
-            // 
-            this.clmStartingNo.HeaderText = "Starting No";
-            this.clmStartingNo.Name = "clmStartingNo";
-            this.clmStartingNo.ReadOnly = true;
-            // 
-            // clmSampleTransactionNo
-            // 
-            this.clmSampleTransactionNo.HeaderText = "Sample Transaction No";
-            this.clmSampleTransactionNo.Name = "clmSampleTransactionNo";
-            this.clmSampleTransactionNo.ReadOnly = true;
-            this.clmSampleTransactionNo.Width = 150;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            // 
             // grpVoucherSettings
             // 
             this.grpVoucherSettings.BackColor = System.Drawing.Color.White;
             this.grpVoucherSettings.Controls.Add(this.btnAdd);
             this.grpVoucherSettings.Controls.Add(this.textBox1);
             this.grpVoucherSettings.Controls.Add(this.lblStartingNo);
-            this.grpVoucherSettings.Controls.Add(this.txtNoOfDigits);
-            this.grpVoucherSettings.Controls.Add(this.lblNoOfDigits);
             this.grpVoucherSettings.Controls.Add(this.txtSuffix);
             this.grpVoucherSettings.Controls.Add(this.lblSuffix);
             this.grpVoucherSettings.Controls.Add(this.txtPrefix);
@@ -332,12 +276,24 @@
             this.grpVoucherSettings.Size = new System.Drawing.Size(1318, 104);
             this.grpVoucherSettings.TabIndex = 958790;
             this.grpVoucherSettings.TabStop = false;
-            this.grpVoucherSettings.Text = "Vouchar Settings";
+            this.grpVoucherSettings.Text = "Voucher Settings";
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnAdd.Location = new System.Drawing.Point(806, 52);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(21, 22);
+            this.btnAdd.TabIndex = 1111167;
+            this.btnAdd.Text = "        ";
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(808, 50);
+            this.textBox1.Location = new System.Drawing.Point(712, 50);
             this.textBox1.MaxLength = 50;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(89, 27);
@@ -347,30 +303,11 @@
             // 
             this.lblStartingNo.AutoSize = true;
             this.lblStartingNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartingNo.Location = new System.Drawing.Point(808, 27);
+            this.lblStartingNo.Location = new System.Drawing.Point(712, 27);
             this.lblStartingNo.Name = "lblStartingNo";
             this.lblStartingNo.Size = new System.Drawing.Size(71, 20);
             this.lblStartingNo.TabIndex = 48;
             this.lblStartingNo.Text = "Starting No";
-            // 
-            // txtNoOfDigits
-            // 
-            this.txtNoOfDigits.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoOfDigits.Location = new System.Drawing.Point(713, 50);
-            this.txtNoOfDigits.MaxLength = 50;
-            this.txtNoOfDigits.Name = "txtNoOfDigits";
-            this.txtNoOfDigits.Size = new System.Drawing.Size(89, 27);
-            this.txtNoOfDigits.TabIndex = 47;
-            // 
-            // lblNoOfDigits
-            // 
-            this.lblNoOfDigits.AutoSize = true;
-            this.lblNoOfDigits.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoOfDigits.Location = new System.Drawing.Point(713, 27);
-            this.lblNoOfDigits.Name = "lblNoOfDigits";
-            this.lblNoOfDigits.Size = new System.Drawing.Size(73, 20);
-            this.lblNoOfDigits.TabIndex = 46;
-            this.lblNoOfDigits.Text = "No Of Digits";
             // 
             // txtSuffix
             // 
@@ -462,17 +399,49 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // btnAdd
+            // clmsno
             // 
-            this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(902, 52);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(21, 22);
-            this.btnAdd.TabIndex = 1111167;
-            this.btnAdd.Text = "        ";
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            // 
+            // clmModule
+            // 
+            this.clmModule.HeaderText = "Module";
+            this.clmModule.Name = "clmModule";
+            this.clmModule.ReadOnly = true;
+            this.clmModule.Width = 200;
+            // 
+            // clmPrefix
+            // 
+            this.clmPrefix.HeaderText = "Prefix";
+            this.clmPrefix.Name = "clmPrefix";
+            this.clmPrefix.ReadOnly = true;
+            // 
+            // clmSuffix
+            // 
+            this.clmSuffix.HeaderText = "Suffix";
+            this.clmSuffix.Name = "clmSuffix";
+            this.clmSuffix.ReadOnly = true;
+            // 
+            // clmStartingNo
+            // 
+            this.clmStartingNo.HeaderText = "Starting No";
+            this.clmStartingNo.Name = "clmStartingNo";
+            this.clmStartingNo.ReadOnly = true;
+            // 
+            // clmSampleTransactionNo
+            // 
+            this.clmSampleTransactionNo.HeaderText = "Sample Transaction No";
+            this.clmSampleTransactionNo.Name = "clmSampleTransactionNo";
+            this.clmSampleTransactionNo.ReadOnly = true;
+            this.clmSampleTransactionNo.Width = 150;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
             // 
             // CP_Settings
             // 
@@ -525,22 +494,19 @@
         private System.Windows.Forms.TextBox txtPrefix;
         private System.Windows.Forms.TextBox txtSuffix;
         private System.Windows.Forms.Label lblSuffix;
-        private System.Windows.Forms.TextBox txtNoOfDigits;
-        private System.Windows.Forms.Label lblNoOfDigits;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lblStartingNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmModule;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPrefix;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSuffix;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmNoOfDigits;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStartingNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSampleTransactionNo;
-        private System.Windows.Forms.DataGridViewButtonColumn clmRemove;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.PictureBox picLoader;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
         internal System.Windows.Forms.Label btnAdd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmModule;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPrefix;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSuffix;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStartingNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSampleTransactionNo;
+        private System.Windows.Forms.DataGridViewButtonColumn clmRemove;
     }
 }
