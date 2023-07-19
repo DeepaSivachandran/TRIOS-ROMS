@@ -34,7 +34,11 @@
             this.txtDUnitName = new System.Windows.Forms.TextBox();
             this.txtEUnitName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.cmbNoOfDecimals = new System.Windows.Forms.ComboBox();
+            this.txtDNoOfDecimals = new System.Windows.Forms.TextBox();
             this.txtEInvoiceUnitName = new System.Windows.Forms.TextBox();
+            this.txtDSymbol = new System.Windows.Forms.TextBox();
+            this.txtSymbol = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtStatus = new System.Windows.Forms.TextBox();
@@ -42,10 +46,6 @@
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtDSymbol = new System.Windows.Forms.TextBox();
-            this.txtSymbol = new System.Windows.Forms.TextBox();
-            this.txtDNoOfDecimals = new System.Windows.Forms.TextBox();
-            this.cmbNoOfDecimals = new System.Windows.Forms.ComboBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
@@ -115,6 +115,27 @@
             this.grbform.TabStop = false;
             this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
             // 
+            // cmbNoOfDecimals
+            // 
+            this.cmbNoOfDecimals.FormattingEnabled = true;
+            this.cmbNoOfDecimals.Location = new System.Drawing.Point(159, 102);
+            this.cmbNoOfDecimals.Name = "cmbNoOfDecimals";
+            this.cmbNoOfDecimals.Size = new System.Drawing.Size(361, 28);
+            this.cmbNoOfDecimals.TabIndex = 13;
+            // 
+            // txtDNoOfDecimals
+            // 
+            this.txtDNoOfDecimals.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDNoOfDecimals.Enabled = false;
+            this.txtDNoOfDecimals.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDNoOfDecimals.Location = new System.Drawing.Point(37, 102);
+            this.txtDNoOfDecimals.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtDNoOfDecimals.Name = "txtDNoOfDecimals";
+            this.txtDNoOfDecimals.ReadOnly = true;
+            this.txtDNoOfDecimals.Size = new System.Drawing.Size(122, 28);
+            this.txtDNoOfDecimals.TabIndex = 12;
+            this.txtDNoOfDecimals.Text = "No.Of Decimals";
+            // 
             // txtEInvoiceUnitName
             // 
             this.txtEInvoiceUnitName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -128,6 +149,29 @@
             this.txtEInvoiceUnitName.Enter += new System.EventHandler(this.TxtEInvoiceUnitName_Enter);
             this.txtEInvoiceUnitName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEInvoiceUnitName_KeyDown);
             this.txtEInvoiceUnitName.Leave += new System.EventHandler(this.TxtEInvoiceUnitName_Leave);
+            // 
+            // txtDSymbol
+            // 
+            this.txtDSymbol.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDSymbol.Enabled = false;
+            this.txtDSymbol.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDSymbol.Location = new System.Drawing.Point(37, 74);
+            this.txtDSymbol.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtDSymbol.Name = "txtDSymbol";
+            this.txtDSymbol.ReadOnly = true;
+            this.txtDSymbol.Size = new System.Drawing.Size(122, 28);
+            this.txtDSymbol.TabIndex = 10;
+            this.txtDSymbol.Text = "Symbol";
+            // 
+            // txtSymbol
+            // 
+            this.txtSymbol.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSymbol.Location = new System.Drawing.Point(159, 74);
+            this.txtSymbol.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtSymbol.MaxLength = 50;
+            this.txtSymbol.Name = "txtSymbol";
+            this.txtSymbol.Size = new System.Drawing.Size(361, 28);
+            this.txtSymbol.TabIndex = 9;
             // 
             // btnClose
             // 
@@ -220,50 +264,6 @@
             // errUnit
             // 
             this.errUnit.ContainerControl = this;
-            // 
-            // txtDSymbol
-            // 
-            this.txtDSymbol.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDSymbol.Enabled = false;
-            this.txtDSymbol.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDSymbol.Location = new System.Drawing.Point(37, 74);
-            this.txtDSymbol.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtDSymbol.Name = "txtDSymbol";
-            this.txtDSymbol.ReadOnly = true;
-            this.txtDSymbol.Size = new System.Drawing.Size(122, 28);
-            this.txtDSymbol.TabIndex = 10;
-            this.txtDSymbol.Text = "Symbol";
-            // 
-            // txtSymbol
-            // 
-            this.txtSymbol.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSymbol.Location = new System.Drawing.Point(159, 74);
-            this.txtSymbol.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtSymbol.MaxLength = 50;
-            this.txtSymbol.Name = "txtSymbol";
-            this.txtSymbol.Size = new System.Drawing.Size(361, 28);
-            this.txtSymbol.TabIndex = 9;
-            // 
-            // txtDNoOfDecimals
-            // 
-            this.txtDNoOfDecimals.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDNoOfDecimals.Enabled = false;
-            this.txtDNoOfDecimals.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDNoOfDecimals.Location = new System.Drawing.Point(37, 102);
-            this.txtDNoOfDecimals.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtDNoOfDecimals.Name = "txtDNoOfDecimals";
-            this.txtDNoOfDecimals.ReadOnly = true;
-            this.txtDNoOfDecimals.Size = new System.Drawing.Size(122, 28);
-            this.txtDNoOfDecimals.TabIndex = 12;
-            this.txtDNoOfDecimals.Text = "No.Of Decimals";
-            // 
-            // cmbNoOfDecimals
-            // 
-            this.cmbNoOfDecimals.FormattingEnabled = true;
-            this.cmbNoOfDecimals.Location = new System.Drawing.Point(159, 102);
-            this.cmbNoOfDecimals.Name = "cmbNoOfDecimals";
-            this.cmbNoOfDecimals.Size = new System.Drawing.Size(361, 28);
-            this.cmbNoOfDecimals.TabIndex = 13;
             // 
             // CP_Unit
             // 

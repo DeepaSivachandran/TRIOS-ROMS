@@ -23,9 +23,9 @@ namespace ROMS
                 SecurityController _security = new SecurityController();
                 //  DataService objDser = new DataService();
                 string version = "v1.0.0";
-                string path = Application.StartupPath + "\\Server Settings\\serversettings.txt";
-                if (File.Exists(path))
-                {
+              //  string path = Application.StartupPath + "\\Server Settings\\serversettings.txt";
+                //if (File.Exists(path))
+                //{
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     //Application.Run(new Expandablegrd());
@@ -123,8 +123,8 @@ namespace ROMS
                     //    Application.Run(new Activation());
                     //}
 
-                }
-                else { Application.Run(new ServerSettings()); }
+                //}
+                //else { Application.Run(new ServerSettings()); }
             }
             catch (Exception ex)
             {

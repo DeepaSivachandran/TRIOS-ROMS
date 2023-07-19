@@ -126,12 +126,13 @@
             this.lnklblServerSettings.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lnklblServerSettings.ForeColor = System.Drawing.Color.White;
             this.lnklblServerSettings.LinkColor = System.Drawing.Color.White;
-            this.lnklblServerSettings.Location = new System.Drawing.Point(198, 151);
+            this.lnklblServerSettings.Location = new System.Drawing.Point(198, 163);
             this.lnklblServerSettings.Name = "lnklblServerSettings";
             this.lnklblServerSettings.Size = new System.Drawing.Size(93, 20);
             this.lnklblServerSettings.TabIndex = 6;
             this.lnklblServerSettings.TabStop = true;
             this.lnklblServerSettings.Text = "Server Settings";
+            this.lnklblServerSettings.Visible = false;
             this.lnklblServerSettings.VisitedLinkColor = System.Drawing.Color.Blue;
             this.lnklblServerSettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
@@ -188,7 +189,7 @@
             this.MaximizeBox = false;
             this.Name = "Authentication";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ROMS";
+            this.Text = "GNM ROMS";
             this.Load += new System.EventHandler(this.Authentication_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Authentication_KeyDown);
             this.pblLogin.ResumeLayout(false);
