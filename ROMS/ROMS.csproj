@@ -123,6 +123,12 @@
     <Compile Include="INV_GodownOutwardList.designer.cs">
       <DependentUpon>INV_GodownOutwardList.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_GRNPODamaged.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_GRNPODamaged.designer.cs">
+      <DependentUpon>INV_GRNPODamaged.cs</DependentUpon>
+    </Compile>
     <Compile Include="INV_SalesInvoice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +170,24 @@
     </Compile>
     <Compile Include="MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNEntryVerify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNEntryVerify.designer.cs">
+      <DependentUpon>PUR_GRNEntryVerify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PODamaged.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PODamaged.designer.cs">
+      <DependentUpon>PUR_PODamaged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_Product.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_Product.designer.cs">
+      <DependentUpon>PUR_Product.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_PurchaseOrderDamage.cs">
       <SubType>Form</SubType>
@@ -503,6 +527,9 @@
     <EmbeddedResource Include="INV_GodownOutwardList.resx">
       <DependentUpon>INV_GodownOutwardList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="INV_GRNPODamaged.resx">
+      <DependentUpon>INV_GRNPODamaged.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="INV_SalesInvoice.resx">
       <DependentUpon>INV_SalesInvoice.cs</DependentUpon>
     </EmbeddedResource>
@@ -523,6 +550,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNEntryVerify.resx">
+      <DependentUpon>PUR_GRNEntryVerify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PODamaged.resx">
+      <DependentUpon>PUR_PODamaged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_Product.resx">
+      <DependentUpon>PUR_Product.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseOrderDamage.resx">
       <DependentUpon>PUR_PurchaseOrderDamage.cs</DependentUpon>

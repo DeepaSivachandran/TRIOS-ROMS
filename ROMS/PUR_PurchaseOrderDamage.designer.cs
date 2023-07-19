@@ -208,7 +208,7 @@
             this.MinimizeBox = false;
             this.Name = "PUR_PurchaseOrderDamage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Purchase Order Damage";
+            this.Text = "Product Details";
             this.Load += new System.EventHandler(this.PUR_PurchaseOrderDamage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).EndInit();
