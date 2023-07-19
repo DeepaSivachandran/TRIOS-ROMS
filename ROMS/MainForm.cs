@@ -819,7 +819,7 @@ namespace ROMS
             {
                 //udfnCloseChildForms();
                 //if (isClose == false) { return; }
-                //MainForm.objINV_StockTransferList = new cp_out();
+                //MainForm.objINV_StockTransferList = new inv_();
                 //MainForm.objINV_StockTransferList.MdiParent = this;
                 //MainForm.objINV_StockTransferList.Show();
             }
