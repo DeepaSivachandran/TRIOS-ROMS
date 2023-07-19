@@ -111,6 +111,18 @@
     <Compile Include="CP_SupplierMapping.designer.cs">
       <DependentUpon>CP_SupplierMapping.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_GodownOutward.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_GodownOutward.designer.cs">
+      <DependentUpon>INV_GodownOutward.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_GodownOutwardList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_GodownOutwardList.designer.cs">
+      <DependentUpon>INV_GodownOutwardList.cs</DependentUpon>
+    </Compile>
     <Compile Include="INV_SalesInvoice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -484,6 +496,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_SupplierMapping.resx">
       <DependentUpon>CP_SupplierMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_GodownOutward.resx">
+      <DependentUpon>INV_GodownOutward.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_GodownOutwardList.resx">
+      <DependentUpon>INV_GodownOutwardList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_SalesInvoice.resx">
       <DependentUpon>INV_SalesInvoice.cs</DependentUpon>

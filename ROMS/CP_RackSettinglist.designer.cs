@@ -42,16 +42,16 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.pnlRackSettingList = new System.Windows.Forms.Panel();
             this.grdRackSettingList = new System.Windows.Forms.DataGridView();
-            this.grpFilterby = new System.Windows.Forms.GroupBox();
-            this.cmbGroupType = new System.Windows.Forms.ComboBox();
-            this.btnView = new System.Windows.Forms.Button();
-            this.lblDERack = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grpFilterby = new System.Windows.Forms.GroupBox();
+            this.cmbGroupType = new System.Windows.Forms.ComboBox();
+            this.btnView = new System.Windows.Forms.Button();
+            this.lblDERack = new System.Windows.Forms.Label();
             this.tshSupplierMappingList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.pnlRackSettingList.SuspendLayout();
@@ -158,9 +158,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.loader;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(17, 41);
+            this.picLoader.Location = new System.Drawing.Point(811, 376);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1322, 604);
+            this.picLoader.Size = new System.Drawing.Size(528, 269);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958787;
             this.picLoader.TabStop = false;
@@ -172,9 +172,9 @@
             this.pnlRackSettingList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlRackSettingList.Controls.Add(this.grdRackSettingList);
             this.pnlRackSettingList.Controls.Add(this.grpFilterby);
-            this.pnlRackSettingList.Location = new System.Drawing.Point(4, 40);
+            this.pnlRackSettingList.Location = new System.Drawing.Point(0, 31);
             this.pnlRackSettingList.Name = "pnlRackSettingList";
-            this.pnlRackSettingList.Size = new System.Drawing.Size(1349, 633);
+            this.pnlRackSettingList.Size = new System.Drawing.Size(1354, 641);
             this.pnlRackSettingList.TabIndex = 958788;
             // 
             // grdRackSettingList
@@ -212,7 +212,7 @@
             this.grdRackSettingList.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdRackSettingList.EnableHeadersVisualStyles = false;
             this.grdRackSettingList.GridColor = System.Drawing.Color.White;
-            this.grdRackSettingList.Location = new System.Drawing.Point(16, 67);
+            this.grdRackSettingList.Location = new System.Drawing.Point(3, 71);
             this.grdRackSettingList.Name = "grdRackSettingList";
             this.grdRackSettingList.ReadOnly = true;
             this.grdRackSettingList.RowHeadersVisible = false;
@@ -221,53 +221,8 @@
             this.grdRackSettingList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdRackSettingList.RowTemplate.Height = 25;
             this.grdRackSettingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdRackSettingList.Size = new System.Drawing.Size(1317, 549);
+            this.grdRackSettingList.Size = new System.Drawing.Size(1348, 570);
             this.grdRackSettingList.TabIndex = 958789;
-            // 
-            // grpFilterby
-            // 
-            this.grpFilterby.BackColor = System.Drawing.Color.White;
-            this.grpFilterby.Controls.Add(this.cmbGroupType);
-            this.grpFilterby.Controls.Add(this.btnView);
-            this.grpFilterby.Controls.Add(this.lblDERack);
-            this.grpFilterby.Location = new System.Drawing.Point(16, 4);
-            this.grpFilterby.Name = "grpFilterby";
-            this.grpFilterby.Size = new System.Drawing.Size(1317, 58);
-            this.grpFilterby.TabIndex = 958790;
-            this.grpFilterby.TabStop = false;
-            this.grpFilterby.Text = "Filter By";
-            // 
-            // cmbGroupType
-            // 
-            this.cmbGroupType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGroupType.FormattingEnabled = true;
-            this.cmbGroupType.Location = new System.Drawing.Point(48, 21);
-            this.cmbGroupType.Name = "cmbGroupType";
-            this.cmbGroupType.Size = new System.Drawing.Size(351, 27);
-            this.cmbGroupType.TabIndex = 38;
-            // 
-            // btnView
-            // 
-            this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(411, 20);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(74, 29);
-            this.btnView.TabIndex = 37;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
-            // 
-            // lblDERack
-            // 
-            this.lblDERack.AutoSize = true;
-            this.lblDERack.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDERack.Location = new System.Drawing.Point(7, 24);
-            this.lblDERack.Name = "lblDERack";
-            this.lblDERack.Size = new System.Drawing.Size(35, 20);
-            this.lblDERack.TabIndex = 35;
-            this.lblDERack.Text = "Rack";
             // 
             // clmsno
             // 
@@ -310,12 +265,57 @@
             this.clmUnit.ReadOnly = true;
             this.clmUnit.Width = 150;
             // 
+            // grpFilterby
+            // 
+            this.grpFilterby.BackColor = System.Drawing.Color.White;
+            this.grpFilterby.Controls.Add(this.cmbGroupType);
+            this.grpFilterby.Controls.Add(this.btnView);
+            this.grpFilterby.Controls.Add(this.lblDERack);
+            this.grpFilterby.Location = new System.Drawing.Point(3, 2);
+            this.grpFilterby.Name = "grpFilterby";
+            this.grpFilterby.Size = new System.Drawing.Size(1317, 67);
+            this.grpFilterby.TabIndex = 958790;
+            this.grpFilterby.TabStop = false;
+            this.grpFilterby.Text = "Filter By";
+            // 
+            // cmbGroupType
+            // 
+            this.cmbGroupType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGroupType.FormattingEnabled = true;
+            this.cmbGroupType.Location = new System.Drawing.Point(48, 26);
+            this.cmbGroupType.Name = "cmbGroupType";
+            this.cmbGroupType.Size = new System.Drawing.Size(351, 27);
+            this.cmbGroupType.TabIndex = 38;
+            // 
+            // btnView
+            // 
+            this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(411, 25);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(74, 29);
+            this.btnView.TabIndex = 37;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            // 
+            // lblDERack
+            // 
+            this.lblDERack.AutoSize = true;
+            this.lblDERack.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDERack.Location = new System.Drawing.Point(7, 29);
+            this.lblDERack.Name = "lblDERack";
+            this.lblDERack.Size = new System.Drawing.Size(35, 20);
+            this.lblDERack.TabIndex = 35;
+            this.lblDERack.Text = "Rack";
+            // 
             // CP_RackSettinglist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1354, 669);
+            this.BackColor = System.Drawing.Color.DarkGray;
+            this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlRackSettingList);
             this.Controls.Add(this.lblNoRecordsFound);
             this.Controls.Add(this.tshSupplierMappingList);

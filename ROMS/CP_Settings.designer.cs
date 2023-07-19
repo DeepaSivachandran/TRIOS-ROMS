@@ -43,6 +43,13 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdSettings = new System.Windows.Forms.DataGridView();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmModule = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPrefix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSuffix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStartingNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSampleTransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.grpVoucherSettings = new System.Windows.Forms.GroupBox();
             this.btnAdd = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -56,13 +63,6 @@
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblDEConcern = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmModule = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPrefix = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSuffix = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStartingNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSampleTransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tshSettings.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSettings)).BeginInit();
@@ -165,9 +165,9 @@
             this.pnlSettings.Controls.Add(this.lblNoRecordsFound);
             this.pnlSettings.Controls.Add(this.grdSettings);
             this.pnlSettings.Controls.Add(this.grpVoucherSettings);
-            this.pnlSettings.Location = new System.Drawing.Point(0, 40);
+            this.pnlSettings.Location = new System.Drawing.Point(0, 28);
             this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(1354, 636);
+            this.pnlSettings.Size = new System.Drawing.Size(1354, 646);
             this.pnlSettings.TabIndex = 958788;
             // 
             // btnClose
@@ -175,7 +175,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1255, 593);
+            this.btnClose.Location = new System.Drawing.Point(1272, 611);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 958793;
@@ -189,7 +189,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1162, 593);
+            this.btnSave.Location = new System.Drawing.Point(1185, 611);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 958792;
@@ -245,7 +245,7 @@
             this.grdSettings.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdSettings.EnableHeadersVisualStyles = false;
             this.grdSettings.GridColor = System.Drawing.Color.White;
-            this.grdSettings.Location = new System.Drawing.Point(12, 106);
+            this.grdSettings.Location = new System.Drawing.Point(3, 71);
             this.grdSettings.Name = "grdSettings";
             this.grdSettings.ReadOnly = true;
             this.grdSettings.RowHeadersVisible = false;
@@ -254,150 +254,8 @@
             this.grdSettings.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdSettings.RowTemplate.Height = 25;
             this.grdSettings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSettings.Size = new System.Drawing.Size(1318, 480);
+            this.grdSettings.Size = new System.Drawing.Size(1348, 534);
             this.grdSettings.TabIndex = 958789;
-            // 
-            // grpVoucherSettings
-            // 
-            this.grpVoucherSettings.BackColor = System.Drawing.Color.White;
-            this.grpVoucherSettings.Controls.Add(this.btnAdd);
-            this.grpVoucherSettings.Controls.Add(this.textBox1);
-            this.grpVoucherSettings.Controls.Add(this.lblStartingNo);
-            this.grpVoucherSettings.Controls.Add(this.txtSuffix);
-            this.grpVoucherSettings.Controls.Add(this.lblSuffix);
-            this.grpVoucherSettings.Controls.Add(this.txtPrefix);
-            this.grpVoucherSettings.Controls.Add(this.lblPrefix);
-            this.grpVoucherSettings.Controls.Add(this.cmbModule);
-            this.grpVoucherSettings.Controls.Add(this.lblModule);
-            this.grpVoucherSettings.Controls.Add(this.cmbConcern);
-            this.grpVoucherSettings.Controls.Add(this.lblDEConcern);
-            this.grpVoucherSettings.Location = new System.Drawing.Point(12, 3);
-            this.grpVoucherSettings.Name = "grpVoucherSettings";
-            this.grpVoucherSettings.Size = new System.Drawing.Size(1318, 104);
-            this.grpVoucherSettings.TabIndex = 958790;
-            this.grpVoucherSettings.TabStop = false;
-            this.grpVoucherSettings.Text = "Voucher Settings";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(806, 52);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(21, 22);
-            this.btnAdd.TabIndex = 1111167;
-            this.btnAdd.Text = "        ";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(712, 50);
-            this.textBox1.MaxLength = 50;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(89, 27);
-            this.textBox1.TabIndex = 49;
-            // 
-            // lblStartingNo
-            // 
-            this.lblStartingNo.AutoSize = true;
-            this.lblStartingNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartingNo.Location = new System.Drawing.Point(712, 27);
-            this.lblStartingNo.Name = "lblStartingNo";
-            this.lblStartingNo.Size = new System.Drawing.Size(71, 20);
-            this.lblStartingNo.TabIndex = 48;
-            this.lblStartingNo.Text = "Starting No";
-            // 
-            // txtSuffix
-            // 
-            this.txtSuffix.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSuffix.Location = new System.Drawing.Point(618, 50);
-            this.txtSuffix.MaxLength = 50;
-            this.txtSuffix.Name = "txtSuffix";
-            this.txtSuffix.Size = new System.Drawing.Size(89, 27);
-            this.txtSuffix.TabIndex = 45;
-            // 
-            // lblSuffix
-            // 
-            this.lblSuffix.AutoSize = true;
-            this.lblSuffix.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSuffix.Location = new System.Drawing.Point(618, 27);
-            this.lblSuffix.Name = "lblSuffix";
-            this.lblSuffix.Size = new System.Drawing.Size(40, 20);
-            this.lblSuffix.TabIndex = 44;
-            this.lblSuffix.Text = "Suffix";
-            // 
-            // txtPrefix
-            // 
-            this.txtPrefix.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrefix.Location = new System.Drawing.Point(523, 50);
-            this.txtPrefix.MaxLength = 50;
-            this.txtPrefix.Name = "txtPrefix";
-            this.txtPrefix.Size = new System.Drawing.Size(89, 27);
-            this.txtPrefix.TabIndex = 43;
-            // 
-            // lblPrefix
-            // 
-            this.lblPrefix.AutoSize = true;
-            this.lblPrefix.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrefix.Location = new System.Drawing.Point(523, 27);
-            this.lblPrefix.Name = "lblPrefix";
-            this.lblPrefix.Size = new System.Drawing.Size(40, 20);
-            this.lblPrefix.TabIndex = 42;
-            this.lblPrefix.Text = "Prefix";
-            // 
-            // cmbModule
-            // 
-            this.cmbModule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbModule.FormattingEnabled = true;
-            this.cmbModule.Location = new System.Drawing.Point(208, 50);
-            this.cmbModule.Name = "cmbModule";
-            this.cmbModule.Size = new System.Drawing.Size(307, 27);
-            this.cmbModule.TabIndex = 41;
-            // 
-            // lblModule
-            // 
-            this.lblModule.AutoSize = true;
-            this.lblModule.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModule.Location = new System.Drawing.Point(204, 27);
-            this.lblModule.Name = "lblModule";
-            this.lblModule.Size = new System.Drawing.Size(48, 20);
-            this.lblModule.TabIndex = 40;
-            this.lblModule.Text = "Module";
-            // 
-            // cmbConcern
-            // 
-            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(10, 50);
-            this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(192, 27);
-            this.cmbConcern.TabIndex = 39;
-            // 
-            // lblDEConcern
-            // 
-            this.lblDEConcern.AutoSize = true;
-            this.lblDEConcern.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDEConcern.Location = new System.Drawing.Point(6, 27);
-            this.lblDEConcern.Name = "lblDEConcern";
-            this.lblDEConcern.Size = new System.Drawing.Size(54, 20);
-            this.lblDEConcern.TabIndex = 35;
-            this.lblDEConcern.Text = "Concern";
-            // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(17, 41);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1322, 604);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958787;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
             // 
             // clmsno
             // 
@@ -442,6 +300,148 @@
             this.clmRemove.HeaderText = "Remove";
             this.clmRemove.Name = "clmRemove";
             this.clmRemove.ReadOnly = true;
+            // 
+            // grpVoucherSettings
+            // 
+            this.grpVoucherSettings.BackColor = System.Drawing.Color.White;
+            this.grpVoucherSettings.Controls.Add(this.btnAdd);
+            this.grpVoucherSettings.Controls.Add(this.textBox1);
+            this.grpVoucherSettings.Controls.Add(this.lblStartingNo);
+            this.grpVoucherSettings.Controls.Add(this.txtSuffix);
+            this.grpVoucherSettings.Controls.Add(this.lblSuffix);
+            this.grpVoucherSettings.Controls.Add(this.txtPrefix);
+            this.grpVoucherSettings.Controls.Add(this.lblPrefix);
+            this.grpVoucherSettings.Controls.Add(this.cmbModule);
+            this.grpVoucherSettings.Controls.Add(this.lblModule);
+            this.grpVoucherSettings.Controls.Add(this.cmbConcern);
+            this.grpVoucherSettings.Controls.Add(this.lblDEConcern);
+            this.grpVoucherSettings.Location = new System.Drawing.Point(3, 2);
+            this.grpVoucherSettings.Name = "grpVoucherSettings";
+            this.grpVoucherSettings.Size = new System.Drawing.Size(1318, 67);
+            this.grpVoucherSettings.TabIndex = 958790;
+            this.grpVoucherSettings.TabStop = false;
+            this.grpVoucherSettings.Text = "Voucher Settings";
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnAdd.Location = new System.Drawing.Point(1118, 29);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(21, 22);
+            this.btnAdd.TabIndex = 1111167;
+            this.btnAdd.Text = "        ";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(1020, 27);
+            this.textBox1.MaxLength = 50;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(89, 27);
+            this.textBox1.TabIndex = 49;
+            // 
+            // lblStartingNo
+            // 
+            this.lblStartingNo.AutoSize = true;
+            this.lblStartingNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStartingNo.Location = new System.Drawing.Point(940, 30);
+            this.lblStartingNo.Name = "lblStartingNo";
+            this.lblStartingNo.Size = new System.Drawing.Size(71, 20);
+            this.lblStartingNo.TabIndex = 48;
+            this.lblStartingNo.Text = "Starting No";
+            // 
+            // txtSuffix
+            // 
+            this.txtSuffix.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSuffix.Location = new System.Drawing.Point(842, 27);
+            this.txtSuffix.MaxLength = 50;
+            this.txtSuffix.Name = "txtSuffix";
+            this.txtSuffix.Size = new System.Drawing.Size(89, 27);
+            this.txtSuffix.TabIndex = 45;
+            // 
+            // lblSuffix
+            // 
+            this.lblSuffix.AutoSize = true;
+            this.lblSuffix.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSuffix.Location = new System.Drawing.Point(793, 30);
+            this.lblSuffix.Name = "lblSuffix";
+            this.lblSuffix.Size = new System.Drawing.Size(40, 20);
+            this.lblSuffix.TabIndex = 44;
+            this.lblSuffix.Text = "Suffix";
+            // 
+            // txtPrefix
+            // 
+            this.txtPrefix.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrefix.Location = new System.Drawing.Point(695, 27);
+            this.txtPrefix.MaxLength = 50;
+            this.txtPrefix.Name = "txtPrefix";
+            this.txtPrefix.Size = new System.Drawing.Size(89, 27);
+            this.txtPrefix.TabIndex = 43;
+            // 
+            // lblPrefix
+            // 
+            this.lblPrefix.AutoSize = true;
+            this.lblPrefix.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrefix.Location = new System.Drawing.Point(646, 30);
+            this.lblPrefix.Name = "lblPrefix";
+            this.lblPrefix.Size = new System.Drawing.Size(40, 20);
+            this.lblPrefix.TabIndex = 42;
+            this.lblPrefix.Text = "Prefix";
+            // 
+            // cmbModule
+            // 
+            this.cmbModule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbModule.FormattingEnabled = true;
+            this.cmbModule.Location = new System.Drawing.Point(330, 27);
+            this.cmbModule.Name = "cmbModule";
+            this.cmbModule.Size = new System.Drawing.Size(307, 27);
+            this.cmbModule.TabIndex = 41;
+            // 
+            // lblModule
+            // 
+            this.lblModule.AutoSize = true;
+            this.lblModule.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModule.Location = new System.Drawing.Point(273, 30);
+            this.lblModule.Name = "lblModule";
+            this.lblModule.Size = new System.Drawing.Size(48, 20);
+            this.lblModule.TabIndex = 40;
+            this.lblModule.Text = "Module";
+            // 
+            // cmbConcern
+            // 
+            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(72, 27);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(192, 27);
+            this.cmbConcern.TabIndex = 39;
+            // 
+            // lblDEConcern
+            // 
+            this.lblDEConcern.AutoSize = true;
+            this.lblDEConcern.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDEConcern.Location = new System.Drawing.Point(9, 30);
+            this.lblDEConcern.Name = "lblDEConcern";
+            this.lblDEConcern.Size = new System.Drawing.Size(54, 20);
+            this.lblDEConcern.TabIndex = 35;
+            this.lblDEConcern.Text = "Concern";
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(17, 41);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1322, 604);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958787;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // CP_Settings
             // 

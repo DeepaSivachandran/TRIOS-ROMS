@@ -94,7 +94,8 @@ namespace ROMS
         public static PUR_SupplierSchedule objPUR_SupplierSchedule;
         public static CP_BrokerList objCP_CP_BrokerList;
         public static CP_Broker objCP_CP_Broker;
-
+        public static INV_GodownOutward objINV_GodownOutward;
+        public static INV_GodownOutwardList objINV_GodownOutwardList;
         public static INV_Inwardlist objINV_Inwardlist;
         public static INV_Inward objINV_Inward;
         public static INV_StockTransfer objINV_StockTransfer;
@@ -821,11 +822,11 @@ namespace ROMS
         {
             try
             {
-                //udfnCloseChildForms();
-                //if (isClose == false) { return; }
-                //MainForm.objINV_StockTransferList = new inv_();
-                //MainForm.objINV_StockTransferList.MdiParent = this;
-                //MainForm.objINV_StockTransferList.Show();
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objINV_GodownOutwardList = new INV_GodownOutwardList();
+                MainForm.objINV_GodownOutwardList.MdiParent = this;
+                MainForm.objINV_GodownOutwardList.Show();
             }
             catch (Exception ex)
             {

@@ -58,6 +58,8 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.txtRemark = new System.Windows.Forms.TextBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUnitList)).BeginInit();
@@ -149,7 +151,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1044, 487);
+            this.btnClose.Location = new System.Drawing.Point(1044, 519);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 8;
@@ -166,7 +168,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(956, 487);
+            this.btnSave.Location = new System.Drawing.Point(956, 519);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 7;
@@ -331,12 +333,31 @@
             this.txtRemark.Size = new System.Drawing.Size(418, 60);
             this.txtRemark.TabIndex = 958803;
             // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(820, 520);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(119, 27);
+            this.comboBox2.TabIndex = 958805;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(772, 523);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 20);
+            this.label1.TabIndex = 958804;
+            this.label1.Text = "Reason";
+            // 
             // INV_SalesInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1131, 561);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtRemark);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblStatus);
@@ -355,7 +376,7 @@
             this.MinimizeBox = false;
             this.Name = "INV_SalesInvoice";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sales Invoice for Damaged Products";
+            this.Text = "Sales Invoice for Purchase Return Products";
             this.Load += new System.EventHandler(this.CP_Rack_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Rack_KeyDown);
             this.grbform.ResumeLayout(false);
@@ -393,5 +414,7 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label lblRemarks;
         public System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label1;
     }
 }

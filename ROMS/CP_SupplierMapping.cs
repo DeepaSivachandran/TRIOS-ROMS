@@ -21,17 +21,7 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
-            {
-                MainForm.objCP_Supplier = new CP_Supplier();
-                MainForm.objCP_Supplier.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
 
-            }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
         {
