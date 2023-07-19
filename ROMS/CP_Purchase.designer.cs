@@ -113,7 +113,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.btnClose = new System.Windows.Forms.Button();
+          //  this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.label7 = new System.Windows.Forms.Label();

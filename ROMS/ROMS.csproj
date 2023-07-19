@@ -110,6 +110,18 @@
     <Compile Include="CP_SupplierMapping.designer.cs">
       <DependentUpon>CP_SupplierMapping.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_SalesInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_SalesInvoice.designer.cs">
+      <DependentUpon>INV_SalesInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_SalesInvoiceList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_SalesInvoiceList.designer.cs">
+      <DependentUpon>INV_SalesInvoiceList.cs</DependentUpon>
+    </Compile>
     <Compile Include="INV_StockRequest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +145,12 @@
     </Compile>
     <Compile Include="INV_StockTransferList.designer.cs">
       <DependentUpon>INV_StockTransferList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_PurchaseOrderDamage.cs">
       <SubType>Form</SubType>
@@ -380,12 +398,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PUR_PurchaseApproval.cs">
@@ -472,6 +484,12 @@
     <EmbeddedResource Include="CP_SupplierMapping.resx">
       <DependentUpon>CP_SupplierMapping.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="INV_SalesInvoice.resx">
+      <DependentUpon>INV_SalesInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_SalesInvoiceList.resx">
+      <DependentUpon>INV_SalesInvoiceList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="INV_StockRequest.resx">
       <DependentUpon>INV_StockRequest.cs</DependentUpon>
     </EmbeddedResource>
@@ -483,6 +501,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV_StockTransferList.resx">
       <DependentUpon>INV_StockTransferList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseOrderDamage.resx">
       <DependentUpon>PUR_PurchaseOrderDamage.cs</DependentUpon>
@@ -603,9 +624,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV_Inwardlist.resx">
       <DependentUpon>INV_Inwardlist.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -785,6 +803,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\internet-on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Launcher.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

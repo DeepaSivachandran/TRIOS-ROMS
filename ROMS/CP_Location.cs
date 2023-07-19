@@ -522,5 +522,15 @@ namespace ROMS
         {
 
         }
+
+        private void CmbLocationType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try {
+                if (cmbLocationType.SelectedText == "Shop") {
+                    pnlGodownType.Enabled = false;
+                }
+            }
+            catch (Exception ex) { }
+        }
     }
 }

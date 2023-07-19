@@ -48,6 +48,7 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGodownName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGodownType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,8 +84,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(68, 24);
-            this.tspHeader.Text = "Godown";
+            this.tspHeader.Size = new System.Drawing.Size(103, 24);
+            this.tspHeader.Text = "Stock Location";
             // 
             // tsbDelete
             // 
@@ -231,6 +232,7 @@
             this.grdGodownList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.clmConcern,
+            this.Column3,
             this.clmGodownName,
             this.clmGodownType,
             this.Column2});
@@ -284,9 +286,16 @@
             this.clmConcern.Name = "clmConcern";
             this.clmConcern.ReadOnly = true;
             // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Location Type";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 150;
+            // 
             // clmGodownName
             // 
-            this.clmGodownName.HeaderText = "Godown Name";
+            this.clmGodownName.HeaderText = "Location Name";
             this.clmGodownName.Name = "clmGodownName";
             this.clmGodownName.ReadOnly = true;
             this.clmGodownName.Width = 250;
@@ -352,6 +361,7 @@
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmConcern;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGodownName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGodownType;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
