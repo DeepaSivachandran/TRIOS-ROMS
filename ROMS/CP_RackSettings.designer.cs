@@ -49,11 +49,19 @@
             this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.btnAdd = new System.Windows.Forms.Label();
             this.grdRackSettings = new System.Windows.Forms.DataGridView();
+            this.grbProductAddMove = new System.Windows.Forms.GroupBox();
+            this.rbMove = new System.Windows.Forms.RadioButton();
+            this.rbAdd = new System.Windows.Forms.RadioButton();
+            this.txtProductNamePICode = new System.Windows.Forms.TextBox();
+            this.lblDEProductName = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.chksupplier = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductnameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductNameInTamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbProductAddMove = new System.Windows.Forms.GroupBox();
             this.rbMove = new System.Windows.Forms.RadioButton();
@@ -286,6 +294,7 @@
             this.clmPICode,
             this.clmProductnameInEnglish,
             this.clmProductNameInTamil,
+            this.Column2,
             this.clmUnit});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -308,46 +317,6 @@
             this.grdRackSettings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdRackSettings.Size = new System.Drawing.Size(1286, 377);
             this.grdRackSettings.TabIndex = 1111147;
-            // 
-            // chksupplier
-            // 
-            this.chksupplier.HeaderText = "";
-            this.chksupplier.Name = "chksupplier";
-            this.chksupplier.ReadOnly = true;
-            this.chksupplier.Width = 50;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "S.No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 50;
-            // 
-            // clmPICode
-            // 
-            this.clmPICode.HeaderText = "P.I Code";
-            this.clmPICode.Name = "clmPICode";
-            this.clmPICode.ReadOnly = true;
-            // 
-            // clmProductnameInEnglish
-            // 
-            this.clmProductnameInEnglish.HeaderText = "Product Name In English";
-            this.clmProductnameInEnglish.Name = "clmProductnameInEnglish";
-            this.clmProductnameInEnglish.ReadOnly = true;
-            this.clmProductnameInEnglish.Width = 400;
-            // 
-            // clmProductNameInTamil
-            // 
-            this.clmProductNameInTamil.HeaderText = "Product Name In Tamil";
-            this.clmProductNameInTamil.Name = "clmProductNameInTamil";
-            this.clmProductNameInTamil.ReadOnly = true;
-            this.clmProductNameInTamil.Width = 400;
-            // 
-            // clmUnit
-            // 
-            this.clmUnit.HeaderText = "Unit";
-            this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
             // 
             // grbProductAddMove
             // 
@@ -429,6 +398,53 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             // 
+            // chksupplier
+            // 
+            this.chksupplier.HeaderText = "";
+            this.chksupplier.Name = "chksupplier";
+            this.chksupplier.ReadOnly = true;
+            this.chksupplier.Width = 50;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "S.No.";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 50;
+            // 
+            // clmPICode
+            // 
+            this.clmPICode.HeaderText = "P.I Code";
+            this.clmPICode.Name = "clmPICode";
+            this.clmPICode.ReadOnly = true;
+            // 
+            // clmProductnameInEnglish
+            // 
+            this.clmProductnameInEnglish.HeaderText = "Product Name In English";
+            this.clmProductnameInEnglish.Name = "clmProductnameInEnglish";
+            this.clmProductnameInEnglish.ReadOnly = true;
+            this.clmProductnameInEnglish.Width = 400;
+            // 
+            // clmProductNameInTamil
+            // 
+            this.clmProductNameInTamil.HeaderText = "Product Name In Tamil";
+            this.clmProductNameInTamil.Name = "clmProductNameInTamil";
+            this.clmProductNameInTamil.ReadOnly = true;
+            this.clmProductNameInTamil.Width = 400;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Maximum Order Qty";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 150;
+            // 
+            // clmUnit
+            // 
+            this.clmUnit.HeaderText = "Unit";
+            this.clmUnit.Name = "clmUnit";
+            this.clmUnit.ReadOnly = true;
+            // 
             // CP_RackSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -483,12 +499,6 @@
         private System.Windows.Forms.Label lblDEProductName;
         private System.Windows.Forms.Label lblDERack;
         private System.Windows.Forms.ComboBox cmbRack;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chksupplier;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmProductnameInEnglish;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmProductNameInTamil;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
         private System.Windows.Forms.GroupBox grpSource;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
@@ -497,5 +507,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chksupplier;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmProductnameInEnglish;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmProductNameInTamil;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
     }
 }
