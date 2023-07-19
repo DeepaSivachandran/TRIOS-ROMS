@@ -35,9 +35,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
+            this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
             this.lvSupplier = new System.Windows.Forms.ListView();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.btnView = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,16 +56,6 @@
             this.dpFromDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.grdPurchaseApproval = new System.Windows.Forms.DataGridView();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
-            this.btnView = new System.Windows.Forms.Button();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
-            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
-            this.tsbNew = new System.Windows.Forms.ToolStripButton();
-            this.cmbConcern = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdGrnno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,6 +67,7 @@
             this.clmdinvoiceamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdordertype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdPurchaseApproval = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmgrnno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -104,6 +104,67 @@
             this.tsBrandList.TabIndex = 35;
             this.tsBrandList.Text = "Brand";
             // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(102, 24);
+            this.tspHeader.Text = "Goods Receipt";
+            // 
+            // tsbDelete
+            // 
+            this.tsbDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
+            this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbDelete.Name = "tsbDelete";
+            this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbDelete.Size = new System.Drawing.Size(63, 24);
+            this.tsbDelete.Text = "Delete";
+            // 
+            // tssEdit
+            // 
+            this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssEdit.Name = "tssEdit";
+            this.tssEdit.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tsbEdit
+            // 
+            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbEdit.Name = "tsbEdit";
+            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
+            this.tsbEdit.Text = "&Edit";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tsbNew
+            // 
+            this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbNew.Image = global::ROMS.Properties.Resources.New;
+            this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbNew.Name = "tsbNew";
+            this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbNew.Size = new System.Drawing.Size(52, 24);
+            this.tsbNew.Text = "&New";
+            this.tsbNew.Click += new System.EventHandler(this.TsbNew_Click);
+            // 
             // pnlpurchaseapproval
             // 
             this.pnlpurchaseapproval.BackColor = System.Drawing.Color.White;
@@ -111,15 +172,15 @@
             this.pnlpurchaseapproval.Controls.Add(this.grpfilter);
             this.pnlpurchaseapproval.Controls.Add(this.DGV_SearchGrid);
             this.pnlpurchaseapproval.Controls.Add(this.grdPurchaseApproval);
-            this.pnlpurchaseapproval.Location = new System.Drawing.Point(0, 40);
+            this.pnlpurchaseapproval.Location = new System.Drawing.Point(0, 31);
             this.pnlpurchaseapproval.Name = "pnlpurchaseapproval";
-            this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 637);
+            this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 641);
             this.pnlpurchaseapproval.TabIndex = 958789;
             // 
             // lvSupplier
             // 
             this.lvSupplier.HideSelection = false;
-            this.lvSupplier.Location = new System.Drawing.Point(744, 59);
+            this.lvSupplier.Location = new System.Drawing.Point(733, 54);
             this.lvSupplier.Name = "lvSupplier";
             this.lvSupplier.Size = new System.Drawing.Size(261, 84);
             this.lvSupplier.TabIndex = 1111146;
@@ -139,12 +200,49 @@
             this.grpfilter.Controls.Add(this.label3);
             this.grpfilter.Controls.Add(this.dpFromDate);
             this.grpfilter.Controls.Add(this.label1);
-            this.grpfilter.Location = new System.Drawing.Point(13, 6);
+            this.grpfilter.Location = new System.Drawing.Point(3, 2);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1329, 60);
+            this.grpfilter.Size = new System.Drawing.Size(1329, 67);
             this.grpfilter.TabIndex = 958799;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // cmbConcern
+            // 
+            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Items.AddRange(new object[] {
+            "Direct",
+            "Purchase Order"});
+            this.cmbConcern.Location = new System.Drawing.Point(446, 24);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(163, 27);
+            this.cmbConcern.TabIndex = 1111165;
+            // 
+            // btnView
+            // 
+            this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(1197, 21);
+            this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(74, 33);
+            this.btnView.TabIndex = 1111141;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(386, 27);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 20);
+            this.label10.TabIndex = 1111166;
+            this.label10.Text = "Concern";
             // 
             // txtSupplier
             // 
@@ -261,7 +359,7 @@
             this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(13, 69);
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
@@ -272,159 +370,8 @@
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
-            this.DGV_SearchGrid.Size = new System.Drawing.Size(1329, 56);
+            this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958798;
-            // 
-            // grdPurchaseApproval
-            // 
-            this.grdPurchaseApproval.AllowUserToAddRows = false;
-            this.grdPurchaseApproval.AllowUserToDeleteRows = false;
-            this.grdPurchaseApproval.AllowUserToResizeColumns = false;
-            this.grdPurchaseApproval.AllowUserToResizeRows = false;
-            this.grdPurchaseApproval.BackgroundColor = System.Drawing.Color.White;
-            this.grdPurchaseApproval.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPurchaseApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grdPurchaseApproval.ColumnHeadersHeight = 30;
-            this.grdPurchaseApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdPurchaseApproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmsno,
-            this.clmconcern,
-            this.clmgrnno,
-            this.clmentrydate,
-            this.clmqrno,
-            this.clmsupplier,
-            this.clminvoiceno,
-            this.clminvoicedate,
-            this.clminvoice,
-            this.clmordertype,
-            this.clmsts});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdPurchaseApproval.DefaultCellStyle = dataGridViewCellStyle5;
-            this.grdPurchaseApproval.EnableHeadersVisualStyles = false;
-            this.grdPurchaseApproval.GridColor = System.Drawing.Color.White;
-            this.grdPurchaseApproval.Location = new System.Drawing.Point(13, 125);
-            this.grdPurchaseApproval.Name = "grdPurchaseApproval";
-            this.grdPurchaseApproval.ReadOnly = true;
-            this.grdPurchaseApproval.RowHeadersVisible = false;
-            this.grdPurchaseApproval.RowHeadersWidth = 100;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdPurchaseApproval.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.grdPurchaseApproval.RowTemplate.Height = 25;
-            this.grdPurchaseApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseApproval.Size = new System.Drawing.Size(1329, 498);
-            this.grdPurchaseApproval.TabIndex = 958797;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
-            // 
-            // tssEdit
-            // 
-            this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.tssEdit.Name = "tssEdit";
-            this.tssEdit.Size = new System.Drawing.Size(6, 27);
-            // 
-            // btnView
-            // 
-            this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1197, 21);
-            this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(74, 33);
-            this.btnView.TabIndex = 1111141;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(102, 24);
-            this.tspHeader.Text = "Goods Receipt";
-            // 
-            // tsbDelete
-            // 
-            this.tsbDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
-            this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbDelete.Name = "tsbDelete";
-            this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbDelete.Size = new System.Drawing.Size(63, 24);
-            this.tsbDelete.Text = "Delete";
-            // 
-            // tsbEdit
-            // 
-            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbEdit.Name = "tsbEdit";
-            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
-            this.tsbEdit.Text = "&Edit";
-            // 
-            // tsbNew
-            // 
-            this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbNew.Image = global::ROMS.Properties.Resources.New;
-            this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
-            this.tsbNew.Name = "tsbNew";
-            this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbNew.Size = new System.Drawing.Size(52, 24);
-            this.tsbNew.Text = "&New";
-            this.tsbNew.Click += new System.EventHandler(this.TsbNew_Click);
-            // 
-            // cmbConcern
-            // 
-            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Items.AddRange(new object[] {
-            "Direct",
-            "Purchase Order"});
-            this.cmbConcern.Location = new System.Drawing.Point(446, 24);
-            this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(163, 27);
-            this.cmbConcern.TabIndex = 1111165;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(386, 27);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(54, 20);
-            this.label10.TabIndex = 1111166;
-            this.label10.Text = "Concern";
             // 
             // clmdsno
             // 
@@ -494,6 +441,59 @@
             this.clmdstatus.HeaderText = "Status";
             this.clmdstatus.Name = "clmdstatus";
             this.clmdstatus.ReadOnly = true;
+            // 
+            // grdPurchaseApproval
+            // 
+            this.grdPurchaseApproval.AllowUserToAddRows = false;
+            this.grdPurchaseApproval.AllowUserToDeleteRows = false;
+            this.grdPurchaseApproval.AllowUserToResizeColumns = false;
+            this.grdPurchaseApproval.AllowUserToResizeRows = false;
+            this.grdPurchaseApproval.BackgroundColor = System.Drawing.Color.White;
+            this.grdPurchaseApproval.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdPurchaseApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdPurchaseApproval.ColumnHeadersHeight = 30;
+            this.grdPurchaseApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdPurchaseApproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmsno,
+            this.clmconcern,
+            this.clmgrnno,
+            this.clmentrydate,
+            this.clmqrno,
+            this.clmsupplier,
+            this.clminvoiceno,
+            this.clminvoicedate,
+            this.clminvoice,
+            this.clmordertype,
+            this.clmsts});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdPurchaseApproval.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdPurchaseApproval.EnableHeadersVisualStyles = false;
+            this.grdPurchaseApproval.GridColor = System.Drawing.Color.White;
+            this.grdPurchaseApproval.Location = new System.Drawing.Point(3, 130);
+            this.grdPurchaseApproval.Name = "grdPurchaseApproval";
+            this.grdPurchaseApproval.ReadOnly = true;
+            this.grdPurchaseApproval.RowHeadersVisible = false;
+            this.grdPurchaseApproval.RowHeadersWidth = 100;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdPurchaseApproval.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdPurchaseApproval.RowTemplate.Height = 25;
+            this.grdPurchaseApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdPurchaseApproval.Size = new System.Drawing.Size(1348, 510);
+            this.grdPurchaseApproval.TabIndex = 958797;
             // 
             // clmsno
             // 

@@ -44,6 +44,14 @@
             this.pnlStockTransferList = new System.Windows.Forms.Panel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.dgvStockTransferList = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lvProductNamePICode = new System.Windows.Forms.ListView();
@@ -56,15 +64,6 @@
             this.cmbConcer = new System.Windows.Forms.ComboBox();
             this.btnView = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdtransferdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTransferNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,6 +72,7 @@
             this.clmdestination = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsalename = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsStockTransferList.SuspendLayout();
             this.pnlStockTransferList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStockTransferList)).BeginInit();
@@ -165,14 +165,15 @@
             // pnlStockTransferList
             // 
             this.pnlStockTransferList.BackColor = System.Drawing.Color.White;
+            this.pnlStockTransferList.Controls.Add(this.lvProductNamePICode);
             this.pnlStockTransferList.Controls.Add(this.lblNoRecordsFound);
             this.pnlStockTransferList.Controls.Add(this.dgvStockTransferList);
             this.pnlStockTransferList.Controls.Add(this.grbFilterBy);
             this.pnlStockTransferList.Controls.Add(this.DGV_SearchGrid);
             this.pnlStockTransferList.Controls.Add(this.picLoader);
-            this.pnlStockTransferList.Location = new System.Drawing.Point(0, 28);
+            this.pnlStockTransferList.Location = new System.Drawing.Point(0, 31);
             this.pnlStockTransferList.Name = "pnlStockTransferList";
-            this.pnlStockTransferList.Size = new System.Drawing.Size(1354, 644);
+            this.pnlStockTransferList.Size = new System.Drawing.Size(1354, 643);
             this.pnlStockTransferList.TabIndex = 36;
             // 
             // lblNoRecordsFound
@@ -180,7 +181,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 403);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(614, 382);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958798;
@@ -223,7 +224,7 @@
             this.dgvStockTransferList.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvStockTransferList.EnableHeadersVisualStyles = false;
             this.dgvStockTransferList.GridColor = System.Drawing.Color.White;
-            this.dgvStockTransferList.Location = new System.Drawing.Point(13, 163);
+            this.dgvStockTransferList.Location = new System.Drawing.Point(3, 152);
             this.dgvStockTransferList.Name = "dgvStockTransferList";
             this.dgvStockTransferList.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
@@ -233,13 +234,53 @@
             this.dgvStockTransferList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvStockTransferList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvStockTransferList.ShowRowErrors = false;
-            this.dgvStockTransferList.Size = new System.Drawing.Size(1329, 481);
+            this.dgvStockTransferList.Size = new System.Drawing.Size(1339, 481);
             this.dgvStockTransferList.TabIndex = 958802;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Transfer Date";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Transfer No.";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Concern";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Source";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Destination";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "No. Of Items";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Total Qty";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             // 
             // grbFilterBy
             // 
             this.grbFilterBy.Controls.Add(this.txtProductNamePICode);
-            this.grbFilterBy.Controls.Add(this.lvProductNamePICode);
             this.grbFilterBy.Controls.Add(this.dpTransferToDate);
             this.grbFilterBy.Controls.Add(this.dpTrannsferFromDate);
             this.grbFilterBy.Controls.Add(this.lblProductNamePICode);
@@ -248,7 +289,7 @@
             this.grbFilterBy.Controls.Add(this.lblConcern);
             this.grbFilterBy.Controls.Add(this.cmbConcer);
             this.grbFilterBy.Controls.Add(this.btnView);
-            this.grbFilterBy.Location = new System.Drawing.Point(25, 15);
+            this.grbFilterBy.Location = new System.Drawing.Point(3, 2);
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
             this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -259,7 +300,7 @@
             // 
             // txtProductNamePICode
             // 
-            this.txtProductNamePICode.Location = new System.Drawing.Point(484, 51);
+            this.txtProductNamePICode.Location = new System.Drawing.Point(484, 46);
             this.txtProductNamePICode.Name = "txtProductNamePICode";
             this.txtProductNamePICode.Size = new System.Drawing.Size(340, 27);
             this.txtProductNamePICode.TabIndex = 958822;
@@ -267,9 +308,9 @@
             // lvProductNamePICode
             // 
             this.lvProductNamePICode.HideSelection = false;
-            this.lvProductNamePICode.Location = new System.Drawing.Point(484, 77);
+            this.lvProductNamePICode.Location = new System.Drawing.Point(487, 76);
             this.lvProductNamePICode.Name = "lvProductNamePICode";
-            this.lvProductNamePICode.Size = new System.Drawing.Size(340, 56);
+            this.lvProductNamePICode.Size = new System.Drawing.Size(340, 95);
             this.lvProductNamePICode.TabIndex = 958823;
             this.lvProductNamePICode.UseCompatibleStateImageBehavior = false;
             this.lvProductNamePICode.Visible = false;
@@ -277,8 +318,8 @@
             // dpTransferToDate
             // 
             this.dpTransferToDate.CustomFormat = "dd/MM/yyyy";
-            this.dpTransferToDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpTransferToDate.Location = new System.Drawing.Point(371, 51);
+            this.dpTransferToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpTransferToDate.Location = new System.Drawing.Point(371, 46);
             this.dpTransferToDate.Name = "dpTransferToDate";
             this.dpTransferToDate.Size = new System.Drawing.Size(92, 27);
             this.dpTransferToDate.TabIndex = 958821;
@@ -286,8 +327,8 @@
             // dpTrannsferFromDate
             // 
             this.dpTrannsferFromDate.CustomFormat = "dd/MM/yyyy";
-            this.dpTrannsferFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpTrannsferFromDate.Location = new System.Drawing.Point(244, 51);
+            this.dpTrannsferFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpTrannsferFromDate.Location = new System.Drawing.Point(244, 46);
             this.dpTrannsferFromDate.Name = "dpTrannsferFromDate";
             this.dpTrannsferFromDate.Size = new System.Drawing.Size(92, 27);
             this.dpTrannsferFromDate.TabIndex = 958820;
@@ -295,7 +336,7 @@
             // lblProductNamePICode
             // 
             this.lblProductNamePICode.AutoSize = true;
-            this.lblProductNamePICode.Location = new System.Drawing.Point(484, 25);
+            this.lblProductNamePICode.Location = new System.Drawing.Point(484, 20);
             this.lblProductNamePICode.Name = "lblProductNamePICode";
             this.lblProductNamePICode.Size = new System.Drawing.Size(134, 20);
             this.lblProductNamePICode.TabIndex = 958818;
@@ -304,7 +345,7 @@
             // lblTransferToDate
             // 
             this.lblTransferToDate.AutoSize = true;
-            this.lblTransferToDate.Location = new System.Drawing.Point(371, 25);
+            this.lblTransferToDate.Location = new System.Drawing.Point(371, 20);
             this.lblTransferToDate.Name = "lblTransferToDate";
             this.lblTransferToDate.Size = new System.Drawing.Size(97, 20);
             this.lblTransferToDate.TabIndex = 958817;
@@ -313,7 +354,7 @@
             // lblTransferFromDate
             // 
             this.lblTransferFromDate.AutoSize = true;
-            this.lblTransferFromDate.Location = new System.Drawing.Point(244, 25);
+            this.lblTransferFromDate.Location = new System.Drawing.Point(244, 20);
             this.lblTransferFromDate.Name = "lblTransferFromDate";
             this.lblTransferFromDate.Size = new System.Drawing.Size(112, 20);
             this.lblTransferFromDate.TabIndex = 958816;
@@ -322,7 +363,7 @@
             // lblConcern
             // 
             this.lblConcern.AutoSize = true;
-            this.lblConcern.Location = new System.Drawing.Point(13, 25);
+            this.lblConcern.Location = new System.Drawing.Point(13, 20);
             this.lblConcern.Name = "lblConcern";
             this.lblConcern.Size = new System.Drawing.Size(54, 20);
             this.lblConcern.TabIndex = 958815;
@@ -333,7 +374,7 @@
             this.cmbConcer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbConcer.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcer.FormattingEnabled = true;
-            this.cmbConcer.Location = new System.Drawing.Point(13, 51);
+            this.cmbConcer.Location = new System.Drawing.Point(13, 46);
             this.cmbConcer.Name = "cmbConcer";
             this.cmbConcer.Size = new System.Drawing.Size(216, 27);
             this.cmbConcer.TabIndex = 958814;
@@ -342,7 +383,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(830, 49);
+            this.btnView.Location = new System.Drawing.Point(830, 45);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 4;
@@ -386,7 +427,7 @@
             this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(13, 107);
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 96);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
@@ -396,63 +437,8 @@
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
-            this.DGV_SearchGrid.Size = new System.Drawing.Size(1329, 56);
+            this.DGV_SearchGrid.Size = new System.Drawing.Size(1339, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
-            // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(12, 9);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1329, 619);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Transfer Date";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Transfer No.";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Concern";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Source";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Destination";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "No. Of Items";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Total Qty";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             // 
             // clmdsno
             // 
@@ -494,6 +480,20 @@
             // 
             this.clmTotalQty.HeaderText = "Total Qty";
             this.clmTotalQty.Name = "clmTotalQty";
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(1058, 431);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(236, 187);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // INV_StockTransferList
             // 
