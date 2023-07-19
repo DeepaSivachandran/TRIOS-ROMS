@@ -140,42 +140,42 @@ namespace ROMS
             // tsmpurchaseSupplier
             // 
             this.tsmpurchaseSupplier.Name = "tsmpurchaseSupplier";
-            this.tsmpurchaseSupplier.Size = new System.Drawing.Size(164, 22);
+            this.tsmpurchaseSupplier.Size = new System.Drawing.Size(180, 22);
             this.tsmpurchaseSupplier.Text = "PO Schedule";
             this.tsmpurchaseSupplier.Click += new System.EventHandler(this.TsmpurchaseSupplier_Click);
             // 
             // tsmPurchaseOrder
             // 
             this.tsmPurchaseOrder.Name = "tsmPurchaseOrder";
-            this.tsmPurchaseOrder.Size = new System.Drawing.Size(164, 22);
+            this.tsmPurchaseOrder.Size = new System.Drawing.Size(180, 22);
             this.tsmPurchaseOrder.Text = "Purchase Order";
             this.tsmPurchaseOrder.Click += new System.EventHandler(this.TsmPurchaseOrder_Click_1);
             // 
             // tsmGRN
             // 
             this.tsmGRN.Name = "tsmGRN";
-            this.tsmGRN.Size = new System.Drawing.Size(164, 22);
+            this.tsmGRN.Size = new System.Drawing.Size(180, 22);
             this.tsmGRN.Text = "Goods Receipt";
             this.tsmGRN.Click += new System.EventHandler(this.TsmGRN_Click);
             // 
             // tsmPurchaseEntry
             // 
             this.tsmPurchaseEntry.Name = "tsmPurchaseEntry";
-            this.tsmPurchaseEntry.Size = new System.Drawing.Size(164, 22);
+            this.tsmPurchaseEntry.Size = new System.Drawing.Size(180, 22);
             this.tsmPurchaseEntry.Text = "Purchase ";
             this.tsmPurchaseEntry.Click += new System.EventHandler(this.Tsmpurchaseentry_Click);
             // 
             // tsmpurchaseApprove
             // 
             this.tsmpurchaseApprove.Name = "tsmpurchaseApprove";
-            this.tsmpurchaseApprove.Size = new System.Drawing.Size(164, 22);
+            this.tsmpurchaseApprove.Size = new System.Drawing.Size(180, 22);
             this.tsmpurchaseApprove.Text = "Purchase Approval";
             this.tsmpurchaseApprove.Click += new System.EventHandler(this.TsmpurchaseApprove_Click);
             // 
             // tsmpurchaseReturn
             // 
             this.tsmpurchaseReturn.Name = "tsmpurchaseReturn";
-            this.tsmpurchaseReturn.Size = new System.Drawing.Size(164, 22);
+            this.tsmpurchaseReturn.Size = new System.Drawing.Size(180, 22);
             this.tsmpurchaseReturn.Text = "Purchase Return";
             this.tsmpurchaseReturn.Click += new System.EventHandler(this.TsmpurchaseReturn_Click);
             // 
@@ -478,7 +478,7 @@ namespace ROMS
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ROMS";
+            this.Text = "GNM ROMS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);

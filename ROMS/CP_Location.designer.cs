@@ -45,10 +45,10 @@
             this.txtGodownName = new System.Windows.Forms.TextBox();
             this.txtDGodownName = new System.Windows.Forms.TextBox();
             this.grbGodown = new System.Windows.Forms.GroupBox();
-            this.cmbConcern = new System.Windows.Forms.ComboBox();
-            this.txtConcern = new System.Windows.Forms.TextBox();
             this.cmbLocationType = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.txtConcern = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errGodown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panelStatus.SuspendLayout();
@@ -242,28 +242,6 @@
             this.grbGodown.TabStop = false;
             this.grbGodown.Enter += new System.EventHandler(this.GrbGodown_Enter);
             // 
-            // cmbConcern
-            // 
-            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(196, 24);
-            this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(288, 27);
-            this.cmbConcern.TabIndex = 48;
-            // 
-            // txtConcern
-            // 
-            this.txtConcern.BackColor = System.Drawing.SystemColors.Control;
-            this.txtConcern.Enabled = false;
-            this.txtConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtConcern.Location = new System.Drawing.Point(15, 24);
-            this.txtConcern.Name = "txtConcern";
-            this.txtConcern.ReadOnly = true;
-            this.txtConcern.Size = new System.Drawing.Size(181, 27);
-            this.txtConcern.TabIndex = 49;
-            this.txtConcern.Text = "Concern";
-            // 
             // cmbLocationType
             // 
             this.cmbLocationType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -289,6 +267,28 @@
             this.textBox1.Size = new System.Drawing.Size(181, 27);
             this.textBox1.TabIndex = 51;
             this.textBox1.Text = "Location Type";
+            // 
+            // cmbConcern
+            // 
+            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(196, 24);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(288, 27);
+            this.cmbConcern.TabIndex = 48;
+            // 
+            // txtConcern
+            // 
+            this.txtConcern.BackColor = System.Drawing.SystemColors.Control;
+            this.txtConcern.Enabled = false;
+            this.txtConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtConcern.Location = new System.Drawing.Point(15, 24);
+            this.txtConcern.Name = "txtConcern";
+            this.txtConcern.ReadOnly = true;
+            this.txtConcern.Size = new System.Drawing.Size(181, 27);
+            this.txtConcern.TabIndex = 49;
+            this.txtConcern.Text = "Concern";
             // 
             // CP_Location
             // 

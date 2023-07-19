@@ -266,15 +266,15 @@ namespace ROMS
         public void Authentication_Load(object sender, EventArgs e)
         {
             // Check server settings file exists or not
-            string paths = Application.StartupPath + "\\Server Settings\\serversettings.txt";
-            if (File.Exists(paths))
-            {
+            //string paths = Application.StartupPath + "\\Server Settings\\serversettings.txt";
+            //if (File.Exists(paths))
+            //{
                 lblDVersion.Text = "v1.0.0";
                 lblDVersion.BringToFront();
                 Authentication objAuthetication = new Authentication();
                 objAuthetication.Name = " - " + lblDVersion.Text;
-            }
-            else { Application.Run(new ServerSettings()); }
+            //}
+            //else { Application.Run(new ServerSettings()); }
         }
         // Author : Deepa
         // Created Date: 12-02-2020

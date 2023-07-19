@@ -35,9 +35,9 @@
             this.grbform = new System.Windows.Forms.GroupBox();
             this.txtDEBrandNameInTamil = new System.Windows.Forms.TextBox();
             this.txtEBrandNameInTamil = new System.Windows.Forms.TextBox();
-            this.errBrand = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.errBrand = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errBrand)).BeginInit();
             this.SuspendLayout();
@@ -105,10 +105,6 @@
             this.txtEBrandNameInTamil.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEBrandNameInTamil_KeyDown);
             this.txtEBrandNameInTamil.Leave += new System.EventHandler(this.TxtEBrandNameInTamil_Leave);
             // 
-            // errBrand
-            // 
-            this.errBrand.ContainerControl = this;
-            // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -142,6 +138,10 @@
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
             this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
+            // 
+            // errBrand
+            // 
+            this.errBrand.ContainerControl = this;
             // 
             // CP_Brand
             // 

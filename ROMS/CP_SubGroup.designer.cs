@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_SubGroup));
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtPurchaseShopGodown = new System.Windows.Forms.TextBox();
             this.txtDEProductSubGroupNameTamil = new System.Windows.Forms.TextBox();
             this.txtESubGroupNameTamil = new System.Windows.Forms.TextBox();
@@ -54,8 +56,6 @@
             this.txtDpurchaseStockLocation = new System.Windows.Forms.TextBox();
             this.txtRack = new System.Windows.Forms.TextBox();
             this.errGroup = new System.Windows.Forms.ErrorProvider(this.components);
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             this.grpPurchaseStockLocation.SuspendLayout();
@@ -84,6 +84,28 @@
             this.grbform.Size = new System.Drawing.Size(453, 319);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(224, 101);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(200, 27);
+            this.comboBox2.TabIndex = 1111141;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(24, 101);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(200, 27);
+            this.textBox1.TabIndex = 1111142;
+            this.textBox1.Text = "Batch No.";
             // 
             // txtPurchaseShopGodown
             // 
@@ -361,28 +383,6 @@
             // errGroup
             // 
             this.errGroup.ContainerControl = this;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(224, 101);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(200, 27);
-            this.comboBox2.TabIndex = 1111141;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(24, 101);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(200, 27);
-            this.textBox1.TabIndex = 1111142;
-            this.textBox1.Text = "Batch No.";
             // 
             // CP_SubGroup
             // 
