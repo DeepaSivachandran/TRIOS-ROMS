@@ -528,5 +528,10 @@ namespace ROMS
         {
 
         }
+
+        private void Grbform_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

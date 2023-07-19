@@ -544,6 +544,7 @@ namespace ROMS
         {
             try
             {
+
                 this.ActiveControl = txtName;
                 udfnLoadState();
                 BindDataGrid();
@@ -2055,6 +2056,37 @@ namespace ROMS
         private void TxtDOrderDay_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void CmbESupplierType_Leave(object sender, EventArgs e)
+        {
+        }
+
+        private void CmbESupplierType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (cmbESupplierType.SelectedItem != "URD")
+                {
+                    txtgstin.Enabled = true;
+                }
+                else
+                {
+                    txtgstin.Enabled = false;
+                    errCompany.Clear();
+                    txtgstin.BackColor = Color.White;
+                    tparea.Hide(txtgstin);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            
         }
     }
 }
