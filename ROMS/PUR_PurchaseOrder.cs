@@ -268,8 +268,8 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
-                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+                MainForm.objPUR_PODamaged = new PUR_PODamaged();
+                MainForm.objPUR_PODamaged.ShowDialog();
             }
             catch (Exception ex)
             {
