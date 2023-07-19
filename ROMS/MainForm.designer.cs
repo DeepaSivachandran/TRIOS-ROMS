@@ -225,7 +225,7 @@ namespace ROMS
             this.tsmControlPanel.Size = new System.Drawing.Size(105, 28);
             this.tsmControlPanel.Text = "Control Panel";
             this.tsmControlPanel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsmControlPanel.Click += new System.EventHandler(this.TsmControlPanel_Click);
+          //  this.tsmControlPanel.Click += new System.EventHandler(this.TsmControlPanel_Click);
             // 
             // tsmMasters
             // 
