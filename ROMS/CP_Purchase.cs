@@ -39,9 +39,9 @@ namespace ROMS
             try
             {
                 cmbType.Items.Insert(0,"Direct");
-                cmbType.Items.Insert(1,"Against PO");
-                cmbType.Items.Insert(2,"Against Godown Entry");
+                cmbType.Items.Insert(1,"Against PO"); 
                 cmbType.SelectedIndex = 0;
+                cmbPurchaseType.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -105,6 +105,40 @@ namespace ROMS
                     MainForm.objCP_Purchase_Inward = new CP_Purchase_Inward();
                     MainForm.objCP_Purchase_Inward.ShowDialog();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GroupBox9_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        public void udfnclose()
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnclose();
             }
             catch (Exception ex)
             {

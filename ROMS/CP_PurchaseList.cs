@@ -207,6 +207,8 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
+                    MainForm objMainForm = new MainForm();
+                    objMainForm.udfnCloseChildForms();
                     MainForm.objStart = new DEF_Start();
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();
@@ -458,8 +460,7 @@ namespace ROMS
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try
-            {
-
+            { 
                 int totalWidth = 0;
                 int offSetValue = grdSupplierList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)

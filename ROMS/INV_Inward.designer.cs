@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -116,6 +116,7 @@
             // pnlinward
             // 
             this.pnlinward.BackColor = System.Drawing.Color.White;
+            this.pnlinward.Controls.Add(this.lvProductName);
             this.pnlinward.Controls.Add(this.btnsaveasdraft);
             this.pnlinward.Controls.Add(this.textBox4);
             this.pnlinward.Controls.Add(this.lbltotalqty);
@@ -130,26 +131,27 @@
             this.pnlinward.Controls.Add(this.DGV_inward);
             this.pnlinward.Controls.Add(this.grpproductname);
             this.pnlinward.Controls.Add(this.grbgodown);
-            this.pnlinward.Location = new System.Drawing.Point(2, 37);
+            this.pnlinward.Location = new System.Drawing.Point(0, 29);
             this.pnlinward.Name = "pnlinward";
-            this.pnlinward.Size = new System.Drawing.Size(1354, 637);
+            this.pnlinward.Size = new System.Drawing.Size(1354, 645);
             this.pnlinward.TabIndex = 36;
             // 
             // btnsaveasdraft
             // 
             this.btnsaveasdraft.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnsaveasdraft.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsaveasdraft.Location = new System.Drawing.Point(1069, 584);
+            this.btnsaveasdraft.Location = new System.Drawing.Point(1069, 592);
             this.btnsaveasdraft.Name = "btnsaveasdraft";
             this.btnsaveasdraft.Size = new System.Drawing.Size(97, 29);
             this.btnsaveasdraft.TabIndex = 958825;
             this.btnsaveasdraft.Text = "Save as Draft";
             this.btnsaveasdraft.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnsaveasdraft.UseVisualStyleBackColor = true;
+            this.btnsaveasdraft.Click += new System.EventHandler(this.Btnsaveasdraft_Click);
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(994, 585);
+            this.textBox4.Location = new System.Drawing.Point(994, 593);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(62, 27);
             this.textBox4.TabIndex = 958823;
@@ -157,7 +159,7 @@
             // lbltotalqty
             // 
             this.lbltotalqty.AutoSize = true;
-            this.lbltotalqty.Location = new System.Drawing.Point(935, 587);
+            this.lbltotalqty.Location = new System.Drawing.Point(935, 596);
             this.lbltotalqty.Name = "lbltotalqty";
             this.lbltotalqty.Size = new System.Drawing.Size(57, 20);
             this.lbltotalqty.TabIndex = 958824;
@@ -165,7 +167,7 @@
             // 
             // txttotalitem
             // 
-            this.txttotalitem.Location = new System.Drawing.Point(864, 585);
+            this.txttotalitem.Location = new System.Drawing.Point(864, 594);
             this.txttotalitem.Name = "txttotalitem";
             this.txttotalitem.Size = new System.Drawing.Size(62, 27);
             this.txttotalitem.TabIndex = 958822;
@@ -173,7 +175,7 @@
             // lbltotalitem
             // 
             this.lbltotalitem.AutoSize = true;
-            this.lbltotalitem.Location = new System.Drawing.Point(798, 588);
+            this.lbltotalitem.Location = new System.Drawing.Point(798, 597);
             this.lbltotalitem.Name = "lbltotalitem";
             this.lbltotalitem.Size = new System.Drawing.Size(63, 20);
             this.lbltotalitem.TabIndex = 958821;
@@ -183,7 +185,7 @@
             // 
             this.grpsalesmandetails.Location = new System.Drawing.Point(1116, 2);
             this.grpsalesmandetails.Name = "grpsalesmandetails";
-            this.grpsalesmandetails.Size = new System.Drawing.Size(227, 147);
+            this.grpsalesmandetails.Size = new System.Drawing.Size(227, 140);
             this.grpsalesmandetails.TabIndex = 958814;
             this.grpsalesmandetails.TabStop = false;
             this.grpsalesmandetails.Text = "Sales Man Details";
@@ -192,14 +194,14 @@
             // 
             this.grbSupplierDetails.Location = new System.Drawing.Point(879, 2);
             this.grbSupplierDetails.Name = "grbSupplierDetails";
-            this.grbSupplierDetails.Size = new System.Drawing.Size(227, 147);
+            this.grbSupplierDetails.Size = new System.Drawing.Size(227, 140);
             this.grbSupplierDetails.TabIndex = 958813;
             this.grbSupplierDetails.TabStop = false;
             this.grbSupplierDetails.Text = "Supplier Details";
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(100, 584);
+            this.txtRemark.Location = new System.Drawing.Point(83, 593);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(320, 50);
@@ -208,7 +210,7 @@
             // lblnarration
             // 
             this.lblnarration.AutoSize = true;
-            this.lblnarration.Location = new System.Drawing.Point(18, 584);
+            this.lblnarration.Location = new System.Drawing.Point(18, 593);
             this.lblnarration.Name = "lblnarration";
             this.lblnarration.Size = new System.Drawing.Size(56, 20);
             this.lblnarration.TabIndex = 958812;
@@ -219,7 +221,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1176, 584);
+            this.btnSave.Location = new System.Drawing.Point(1176, 592);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 958810;
@@ -233,7 +235,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1270, 584);
+            this.btnClose.Location = new System.Drawing.Point(1268, 592);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 958811;
@@ -249,14 +251,14 @@
             this.DGV_inward.AllowUserToResizeRows = false;
             this.DGV_inward.BackgroundColor = System.Drawing.Color.White;
             this.DGV_inward.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_inward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_inward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.DGV_inward.ColumnHeadersHeight = 30;
             this.DGV_inward.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGV_inward.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -270,27 +272,27 @@
             this.clmactualqty,
             this.clmunit,
             this.clmremove});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_inward.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_inward.DefaultCellStyle = dataGridViewCellStyle8;
             this.DGV_inward.EnableHeadersVisualStyles = false;
             this.DGV_inward.GridColor = System.Drawing.Color.White;
-            this.DGV_inward.Location = new System.Drawing.Point(3, 168);
+            this.DGV_inward.Location = new System.Drawing.Point(3, 150);
             this.DGV_inward.Name = "DGV_inward";
             this.DGV_inward.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_inward.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_inward.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.DGV_inward.RowTemplate.Height = 25;
             this.DGV_inward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_inward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_inward.ShowRowErrors = false;
-            this.DGV_inward.Size = new System.Drawing.Size(1340, 410);
+            this.DGV_inward.Size = new System.Drawing.Size(1340, 427);
             this.DGV_inward.TabIndex = 958809;
             // 
             // clmdsno
@@ -356,15 +358,14 @@
             this.grpproductname.Controls.Add(this.txtDay);
             this.grpproductname.Controls.Add(this.txtProductName);
             this.grpproductname.Controls.Add(this.txtActualQty);
-            this.grpproductname.Controls.Add(this.lvProductName);
             this.grpproductname.Controls.Add(this.lblActualQty);
             this.grpproductname.Controls.Add(this.btnAdd);
             this.grpproductname.Controls.Add(this.txtMrp);
             this.grpproductname.Controls.Add(this.lblMrp);
             this.grpproductname.Controls.Add(this.lblProductName);
-            this.grpproductname.Location = new System.Drawing.Point(6, 72);
+            this.grpproductname.Location = new System.Drawing.Point(3, 72);
             this.grpproductname.Name = "grpproductname";
-            this.grpproductname.Size = new System.Drawing.Size(865, 77);
+            this.grpproductname.Size = new System.Drawing.Size(865, 70);
             this.grpproductname.TabIndex = 958806;
             this.grpproductname.TabStop = false;
             // 
@@ -449,9 +450,10 @@
             // 
             // lvProductName
             // 
-            this.lvProductName.Location = new System.Drawing.Point(13, 66);
+            this.lvProductName.HideSelection = false;
+            this.lvProductName.Location = new System.Drawing.Point(16, 139);
             this.lvProductName.Name = "lvProductName";
-            this.lvProductName.Size = new System.Drawing.Size(378, 56);
+            this.lvProductName.Size = new System.Drawing.Size(378, 69);
             this.lvProductName.TabIndex = 958808;
             this.lvProductName.UseCompatibleStateImageBehavior = false;
             this.lvProductName.Visible = false;
@@ -513,7 +515,7 @@
             this.grbgodown.Controls.Add(this.lblGodown);
             this.grbgodown.Controls.Add(this.cmbvoucherno);
             this.grbgodown.Controls.Add(this.lblVoucherNo);
-            this.grbgodown.Location = new System.Drawing.Point(5, 2);
+            this.grbgodown.Location = new System.Drawing.Point(3, 2);
             this.grbgodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbgodown.Name = "grbgodown";
             this.grbgodown.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -611,7 +613,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.lblEdit);
             this.Controls.Add(this.tsInwardList);
