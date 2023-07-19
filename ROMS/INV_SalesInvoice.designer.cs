@@ -376,7 +376,7 @@
             this.MinimizeBox = false;
             this.Name = "INV_SalesInvoice";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sales Invoice for Damaged Products";
+            this.Text = "Sales Invoice for Purchase Return Products";
             this.Load += new System.EventHandler(this.CP_Rack_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Rack_KeyDown);
             this.grbform.ResumeLayout(false);
