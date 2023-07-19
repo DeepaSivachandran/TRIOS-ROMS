@@ -24,8 +24,8 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_City = new CP_City();
-                MainForm.objCP_City.ShowDialog();
+                MainForm.objINV_SalesInvoice = new INV_SalesInvoice();
+                MainForm.objINV_SalesInvoice.ShowDialog();
             }
             catch (Exception ex)
             {

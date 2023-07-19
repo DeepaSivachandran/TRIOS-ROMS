@@ -136,7 +136,6 @@ namespace ROMS
             this.tsmpurchase.Name = "tsmpurchase";
             this.tsmpurchase.Size = new System.Drawing.Size(63, 21);
             this.tsmpurchase.Text = "Purchase";
-            this.tsmpurchase.Visible = false;
             // 
             // tsmpurchaseSupplier
             // 
@@ -190,7 +189,6 @@ namespace ROMS
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
             this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
             this.inventoryToolStripMenuItem.Text = "Inventory";
-            this.inventoryToolStripMenuItem.Visible = false;
             // 
             // tsminward
             // 
