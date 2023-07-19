@@ -96,6 +96,8 @@ namespace ROMS
         public static INV_StockTransfer objINV_StockTransfer;
         public static INV_StockTransferList objINV_StockTransferList;
 
+        public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
+        public static PAY_SupplierPayment objPAY_SupplierPayment;
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -915,5 +917,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             } 
     }
-} 
+
+        private void SupplierPaymentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPAY_SupplierPaymentList = new PAY_SupplierPaymentList();
+                MainForm.objPAY_SupplierPaymentList.MdiParent = this;
+                MainForm.objPAY_SupplierPaymentList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+    } 
 }

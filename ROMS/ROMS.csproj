@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ROMS</RootNamespace>
     <AssemblyName>ROMS</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -67,6 +68,18 @@
     </Compile>
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_SupplierPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_SupplierPayment.designer.cs">
+      <DependentUpon>PAY_SupplierPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_SupplierPaymentList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_SupplierPaymentList.designer.cs">
+      <DependentUpon>PAY_SupplierPaymentList.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_Broker.cs">
       <SubType>Form</SubType>
@@ -462,6 +475,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_BatchNoConfigurationList.resx">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_SupplierPayment.resx">
+      <DependentUpon>PAY_SupplierPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_SupplierPaymentList.resx">
+      <DependentUpon>PAY_SupplierPaymentList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Broker.resx">
       <DependentUpon>CP_Broker.cs</DependentUpon>
