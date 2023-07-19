@@ -898,8 +898,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-       
+ 
 
         private void TsmpurchaseReturn_Click(object sender, EventArgs e)
         {
@@ -915,7 +914,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-        }
+            } 
     }
 } 
+}
