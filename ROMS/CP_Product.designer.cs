@@ -106,14 +106,14 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grpExpire = new System.Windows.Forms.GroupBox();
+            this.cbRMFromProduction = new System.Windows.Forms.CheckBox();
             this.cmbPuruchaseRack = new System.Windows.Forms.ComboBox();
             this.txtDPuruchaseRack = new System.Windows.Forms.TextBox();
             this.grplocation = new System.Windows.Forms.GroupBox();
-            this.cmbPosition = new System.Windows.Forms.ComboBox();
-            this.txtDPurchaseLocation = new System.Windows.Forms.TextBox();
-            this.cbRMFromProduction = new System.Windows.Forms.CheckBox();
             this.cmbShopRack = new System.Windows.Forms.ComboBox();
             this.txtDShopRack = new System.Windows.Forms.TextBox();
+            this.cmbPosition = new System.Windows.Forms.ComboBox();
+            this.txtDPurchaseLocation = new System.Windows.Forms.TextBox();
             this.grbSalesStockLocation = new System.Windows.Forms.GroupBox();
             this.cmbSalesShopRack = new System.Windows.Forms.ComboBox();
             this.txtDSalesShopRack = new System.Windows.Forms.TextBox();
@@ -1136,6 +1136,16 @@
             this.grpExpire.TabIndex = 101;
             this.grpExpire.TabStop = false;
             // 
+            // cbRMFromProduction
+            // 
+            this.cbRMFromProduction.AutoSize = true;
+            this.cbRMFromProduction.Location = new System.Drawing.Point(15, 50);
+            this.cbRMFromProduction.Name = "cbRMFromProduction";
+            this.cbRMFromProduction.Size = new System.Drawing.Size(126, 24);
+            this.cbRMFromProduction.TabIndex = 112;
+            this.cbRMFromProduction.Text = "RM for Production";
+            this.cbRMFromProduction.UseVisualStyleBackColor = true;
+            // 
             // cmbPuruchaseRack
             // 
             this.cmbPuruchaseRack.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1176,39 +1186,6 @@
             this.grplocation.TabStop = false;
             this.grplocation.Text = "Purchase Stock Location";
             // 
-            // cmbPosition
-            // 
-            this.cmbPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPosition.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPosition.FormattingEnabled = true;
-            this.cmbPosition.Location = new System.Drawing.Point(146, 32);
-            this.cmbPosition.Name = "cmbPosition";
-            this.cmbPosition.Size = new System.Drawing.Size(127, 27);
-            this.cmbPosition.TabIndex = 13;
-            // 
-            // txtDPurchaseLocation
-            // 
-            this.txtDPurchaseLocation.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDPurchaseLocation.Enabled = false;
-            this.txtDPurchaseLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPurchaseLocation.Location = new System.Drawing.Point(15, 32);
-            this.txtDPurchaseLocation.Name = "txtDPurchaseLocation";
-            this.txtDPurchaseLocation.ReadOnly = true;
-            this.txtDPurchaseLocation.Size = new System.Drawing.Size(131, 27);
-            this.txtDPurchaseLocation.TabIndex = 12;
-            this.txtDPurchaseLocation.TabStop = false;
-            this.txtDPurchaseLocation.Text = "Godown";
-            // 
-            // cbRMFromProduction
-            // 
-            this.cbRMFromProduction.AutoSize = true;
-            this.cbRMFromProduction.Location = new System.Drawing.Point(15, 50);
-            this.cbRMFromProduction.Name = "cbRMFromProduction";
-            this.cbRMFromProduction.Size = new System.Drawing.Size(138, 24);
-            this.cbRMFromProduction.TabIndex = 112;
-            this.cbRMFromProduction.Text = "RM From Production";
-            this.cbRMFromProduction.UseVisualStyleBackColor = true;
-            // 
             // cmbShopRack
             // 
             this.cmbShopRack.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1231,6 +1208,29 @@
             this.txtDShopRack.TabIndex = 32;
             this.txtDShopRack.TabStop = false;
             this.txtDShopRack.Text = "Rack";
+            // 
+            // cmbPosition
+            // 
+            this.cmbPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPosition.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPosition.FormattingEnabled = true;
+            this.cmbPosition.Location = new System.Drawing.Point(146, 32);
+            this.cmbPosition.Name = "cmbPosition";
+            this.cmbPosition.Size = new System.Drawing.Size(127, 27);
+            this.cmbPosition.TabIndex = 13;
+            // 
+            // txtDPurchaseLocation
+            // 
+            this.txtDPurchaseLocation.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDPurchaseLocation.Enabled = false;
+            this.txtDPurchaseLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDPurchaseLocation.Location = new System.Drawing.Point(15, 32);
+            this.txtDPurchaseLocation.Name = "txtDPurchaseLocation";
+            this.txtDPurchaseLocation.ReadOnly = true;
+            this.txtDPurchaseLocation.Size = new System.Drawing.Size(131, 27);
+            this.txtDPurchaseLocation.TabIndex = 12;
+            this.txtDPurchaseLocation.TabStop = false;
+            this.txtDPurchaseLocation.Text = "Godown";
             // 
             // grbSalesStockLocation
             // 

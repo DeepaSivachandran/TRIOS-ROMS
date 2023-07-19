@@ -89,7 +89,7 @@
             this.txtShopGodown.ReadOnly = true;
             this.txtShopGodown.Size = new System.Drawing.Size(181, 27);
             this.txtShopGodown.TabIndex = 22;
-            this.txtShopGodown.Text = "Shop Godown";
+            this.txtShopGodown.Text = "Stock Location";
             // 
             // comboBox1
             // 

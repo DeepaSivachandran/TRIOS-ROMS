@@ -47,6 +47,8 @@
             this.grbGodown = new System.Windows.Forms.GroupBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtConcern = new System.Windows.Forms.TextBox();
+            this.cmbLocationType = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errGodown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panelStatus.SuspendLayout();
@@ -69,7 +71,7 @@
             this.panelStatus.Controls.Add(this.rbActive);
             this.panelStatus.Enabled = false;
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(196, 105);
+            this.panelStatus.Location = new System.Drawing.Point(196, 132);
             this.panelStatus.Name = "panelStatus";
             this.panelStatus.Size = new System.Drawing.Size(288, 27);
             this.panelStatus.TabIndex = 3;
@@ -105,7 +107,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(322, 138);
+            this.btnSave.Location = new System.Drawing.Point(322, 172);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 6;
@@ -122,7 +124,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(15, 105);
+            this.txtDStatus.Location = new System.Drawing.Point(15, 132);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(181, 27);
@@ -134,7 +136,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(410, 138);
+            this.btnClose.Location = new System.Drawing.Point(410, 172);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 7;
@@ -152,7 +154,7 @@
             this.pnlGodownType.Controls.Add(this.rboutside);
             this.pnlGodownType.Controls.Add(this.rbInside);
             this.pnlGodownType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlGodownType.Location = new System.Drawing.Point(196, 78);
+            this.pnlGodownType.Location = new System.Drawing.Point(196, 105);
             this.pnlGodownType.Name = "pnlGodownType";
             this.pnlGodownType.Size = new System.Drawing.Size(288, 27);
             this.pnlGodownType.TabIndex = 1;
@@ -187,7 +189,7 @@
             this.txtDGodowntype.BackColor = System.Drawing.SystemColors.Control;
             this.txtDGodowntype.Enabled = false;
             this.txtDGodowntype.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDGodowntype.Location = new System.Drawing.Point(15, 78);
+            this.txtDGodowntype.Location = new System.Drawing.Point(15, 105);
             this.txtDGodowntype.Name = "txtDGodowntype";
             this.txtDGodowntype.ReadOnly = true;
             this.txtDGodowntype.Size = new System.Drawing.Size(181, 27);
@@ -197,7 +199,7 @@
             // txtGodownName
             // 
             this.txtGodownName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGodownName.Location = new System.Drawing.Point(196, 51);
+            this.txtGodownName.Location = new System.Drawing.Point(196, 78);
             this.txtGodownName.MaxLength = 50;
             this.txtGodownName.Name = "txtGodownName";
             this.txtGodownName.Size = new System.Drawing.Size(288, 27);
@@ -211,15 +213,17 @@
             this.txtDGodownName.BackColor = System.Drawing.SystemColors.Control;
             this.txtDGodownName.Enabled = false;
             this.txtDGodownName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDGodownName.Location = new System.Drawing.Point(15, 51);
+            this.txtDGodownName.Location = new System.Drawing.Point(15, 78);
             this.txtDGodownName.Name = "txtDGodownName";
             this.txtDGodownName.ReadOnly = true;
             this.txtDGodownName.Size = new System.Drawing.Size(181, 27);
             this.txtDGodownName.TabIndex = 6;
-            this.txtDGodownName.Text = "Godown Name";
+            this.txtDGodownName.Text = "Location Name";
             // 
             // grbGodown
             // 
+            this.grbGodown.Controls.Add(this.cmbLocationType);
+            this.grbGodown.Controls.Add(this.textBox1);
             this.grbGodown.Controls.Add(this.cmbConcern);
             this.grbGodown.Controls.Add(this.txtConcern);
             this.grbGodown.Controls.Add(this.txtDGodownName);
@@ -233,7 +237,7 @@
             this.grbGodown.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbGodown.Location = new System.Drawing.Point(12, 3);
             this.grbGodown.Name = "grbGodown";
-            this.grbGodown.Size = new System.Drawing.Size(498, 182);
+            this.grbGodown.Size = new System.Drawing.Size(498, 216);
             this.grbGodown.TabIndex = 1;
             this.grbGodown.TabStop = false;
             this.grbGodown.Enter += new System.EventHandler(this.GrbGodown_Enter);
@@ -260,12 +264,38 @@
             this.txtConcern.TabIndex = 49;
             this.txtConcern.Text = "Concern";
             // 
+            // cmbLocationType
+            // 
+            this.cmbLocationType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLocationType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLocationType.FormattingEnabled = true;
+            this.cmbLocationType.Items.AddRange(new object[] {
+            "Godown",
+            "Shop"});
+            this.cmbLocationType.Location = new System.Drawing.Point(196, 51);
+            this.cmbLocationType.Name = "cmbLocationType";
+            this.cmbLocationType.Size = new System.Drawing.Size(288, 27);
+            this.cmbLocationType.TabIndex = 50;
+            this.cmbLocationType.SelectedIndexChanged += new System.EventHandler(this.CmbLocationType_SelectedIndexChanged);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox1.Location = new System.Drawing.Point(15, 51);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(181, 27);
+            this.textBox1.TabIndex = 51;
+            this.textBox1.Text = "Location Type";
+            // 
             // CP_Location
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(526, 200);
+            this.ClientSize = new System.Drawing.Size(526, 225);
             this.Controls.Add(this.grbGodown);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -276,7 +306,7 @@
             this.MinimizeBox = false;
             this.Name = "CP_Location";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Godown";
+            this.Text = "Stock Location";
             this.Load += new System.EventHandler(this.CP_Location_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Location_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errGodown)).EndInit();
@@ -309,5 +339,7 @@
         private System.Windows.Forms.Panel panelStatus;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
+        private System.Windows.Forms.ComboBox cmbLocationType;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
