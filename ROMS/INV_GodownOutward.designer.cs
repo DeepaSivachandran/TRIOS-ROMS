@@ -54,16 +54,16 @@
             this.txtPoQty = new System.Windows.Forms.TextBox();
             this.lblProductName = new System.Windows.Forms.Label();
             this.DGV_inward = new System.Windows.Forms.DataGridView();
-            this.txtRemark = new System.Windows.Forms.TextBox();
-            this.lblRemark = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmbatch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtRemark = new System.Windows.Forms.TextBox();
+            this.lblRemark = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errGroup)).BeginInit();
             this.grbgodownoutward.SuspendLayout();
             this.grpproductname.SuspendLayout();
@@ -84,7 +84,7 @@
             this.grbgodownoutward.Controls.Add(this.cmbConcern);
             this.grbgodownoutward.Controls.Add(this.lblConcern);
             this.grbgodownoutward.Controls.Add(this.lbloutwardno);
-            this.grbgodownoutward.Location = new System.Drawing.Point(22, 13);
+            this.grbgodownoutward.Location = new System.Drawing.Point(22, 0);
             this.grbgodownoutward.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbgodownoutward.Name = "grbgodownoutward";
             this.grbgodownoutward.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -178,9 +178,9 @@
             this.grpproductname.Controls.Add(this.btnAdd);
             this.grpproductname.Controls.Add(this.txtPoQty);
             this.grpproductname.Controls.Add(this.lblProductName);
-            this.grpproductname.Location = new System.Drawing.Point(20, 90);
+            this.grpproductname.Location = new System.Drawing.Point(22, 66);
             this.grpproductname.Name = "grpproductname";
-            this.grpproductname.Size = new System.Drawing.Size(753, 77);
+            this.grpproductname.Size = new System.Drawing.Size(751, 77);
             this.grpproductname.TabIndex = 958807;
             this.grpproductname.TabStop = false;
             // 
@@ -297,7 +297,7 @@
             this.DGV_inward.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_inward.EnableHeadersVisualStyles = false;
             this.DGV_inward.GridColor = System.Drawing.Color.White;
-            this.DGV_inward.Location = new System.Drawing.Point(22, 184);
+            this.DGV_inward.Location = new System.Drawing.Point(22, 152);
             this.DGV_inward.Name = "DGV_inward";
             this.DGV_inward.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
@@ -307,52 +307,8 @@
             this.DGV_inward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_inward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_inward.ShowRowErrors = false;
-            this.DGV_inward.Size = new System.Drawing.Size(753, 372);
+            this.DGV_inward.Size = new System.Drawing.Size(751, 404);
             this.DGV_inward.TabIndex = 958810;
-            // 
-            // txtRemark
-            // 
-            this.txtRemark.Location = new System.Drawing.Point(92, 572);
-            this.txtRemark.Multiline = true;
-            this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(479, 50);
-            this.txtRemark.TabIndex = 958813;
-            // 
-            // lblRemark
-            // 
-            this.lblRemark.AutoSize = true;
-            this.lblRemark.Location = new System.Drawing.Point(33, 574);
-            this.lblRemark.Name = "lblRemark";
-            this.lblRemark.Size = new System.Drawing.Size(56, 20);
-            this.lblRemark.TabIndex = 958816;
-            this.lblRemark.Text = "Remarks";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(638, 572);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(66, 29);
-            this.btnSave.TabIndex = 958814;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(709, 572);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(66, 29);
-            this.btnClose.TabIndex = 958815;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click_1);
             // 
             // clmdsno
             // 
@@ -387,19 +343,63 @@
             this.clmunit.Name = "clmunit";
             this.clmunit.Width = 70;
             // 
+            // txtRemark
+            // 
+            this.txtRemark.Location = new System.Drawing.Point(76, 567);
+            this.txtRemark.Multiline = true;
+            this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Size = new System.Drawing.Size(479, 50);
+            this.txtRemark.TabIndex = 958813;
+            // 
+            // lblRemark
+            // 
+            this.lblRemark.AutoSize = true;
+            this.lblRemark.Location = new System.Drawing.Point(22, 569);
+            this.lblRemark.Name = "lblRemark";
+            this.lblRemark.Size = new System.Drawing.Size(56, 20);
+            this.lblRemark.TabIndex = 958816;
+            this.lblRemark.Text = "Remarks";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(635, 567);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(66, 29);
+            this.btnSave.TabIndex = 958814;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(707, 567);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(66, 29);
+            this.btnClose.TabIndex = 958815;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click_1);
+            // 
             // INV_GodownOutward
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(797, 636);
+            this.ClientSize = new System.Drawing.Size(794, 636);
             this.Controls.Add(this.txtRemark);
             this.Controls.Add(this.lblRemark);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.DGV_inward);
-            this.Controls.Add(this.grpproductname);
             this.Controls.Add(this.grbgodownoutward);
+            this.Controls.Add(this.grpproductname);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

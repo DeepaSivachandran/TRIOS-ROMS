@@ -458,8 +458,7 @@ namespace ROMS
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try
-            {
-
+            { 
                 int totalWidth = 0;
                 int offSetValue = grdSupplierList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
