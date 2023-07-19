@@ -195,7 +195,7 @@
             this.grdCityList.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdCityList.EnableHeadersVisualStyles = false;
             this.grdCityList.GridColor = System.Drawing.Color.White;
-            this.grdCityList.Location = new System.Drawing.Point(12, 141);
+            this.grdCityList.Location = new System.Drawing.Point(3, 130);
             this.grdCityList.Name = "grdCityList";
             this.grdCityList.ReadOnly = true;
             this.grdCityList.RowHeadersVisible = false;
@@ -205,7 +205,7 @@
             this.grdCityList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdCityList.RowTemplate.Height = 25;
             this.grdCityList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdCityList.Size = new System.Drawing.Size(1329, 488);
+            this.grdCityList.Size = new System.Drawing.Size(1348, 510);
             this.grdCityList.TabIndex = 1;
             // 
             // clmsno
@@ -295,7 +295,7 @@
             this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(12, 85);
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
@@ -306,7 +306,7 @@
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
-            this.DGV_SearchGrid.Size = new System.Drawing.Size(1329, 56);
+            this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958796;
             // 
             // clmdsno
@@ -350,9 +350,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.loader;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(12, 11);
+            this.picLoader.Location = new System.Drawing.Point(1144, 404);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1329, 619);
+            this.picLoader.Size = new System.Drawing.Size(197, 226);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958787;
             this.picLoader.TabStop = false;
@@ -366,9 +366,9 @@
             this.pnlcity.Controls.Add(this.DGV_SearchGrid);
             this.pnlcity.Controls.Add(this.grdCityList);
             this.pnlcity.Controls.Add(this.picLoader);
-            this.pnlcity.Location = new System.Drawing.Point(0, 40);
+            this.pnlcity.Location = new System.Drawing.Point(0, 31);
             this.pnlcity.Name = "pnlcity";
-            this.pnlcity.Size = new System.Drawing.Size(1354, 637);
+            this.pnlcity.Size = new System.Drawing.Size(1354, 641);
             this.pnlcity.TabIndex = 958797;
             // 
             // grbFilterBy
@@ -382,7 +382,7 @@
             this.grbFilterBy.Controls.Add(this.dtpoutwarddate);
             this.grbFilterBy.Controls.Add(this.lblInvoicedate);
             this.grbFilterBy.Controls.Add(this.btnView);
-            this.grbFilterBy.Location = new System.Drawing.Point(12, 11);
+            this.grbFilterBy.Location = new System.Drawing.Point(3, 3);
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
             this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);

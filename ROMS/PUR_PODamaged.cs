@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class PUR_PurchaseOrderDamage : Form
+    public partial class PUR_PODamaged : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -21,7 +21,7 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
-        public PUR_PurchaseOrderDamage()
+        public PUR_PODamaged()
         {
             InitializeComponent();
         }
@@ -45,11 +45,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void PUR_PurchaseOrderDamage_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
