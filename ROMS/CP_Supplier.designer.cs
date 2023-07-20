@@ -83,6 +83,8 @@
             this.txtcreditlimit = new System.Windows.Forms.TextBox();
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.cmbSupplierType = new System.Windows.Forms.ComboBox();
+            this.txtDSupplierType = new System.Windows.Forms.TextBox();
             this.cmbPaymentTerm = new System.Windows.Forms.ComboBox();
             this.txtDPaymentTerm = new System.Windows.Forms.TextBox();
             this.txtgstin = new System.Windows.Forms.TextBox();
@@ -96,7 +98,7 @@
             this.grddays = new System.Windows.Forms.DataGridView();
             this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbsuppliertype = new System.Windows.Forms.ComboBox();
+            this.cmbOrderType = new System.Windows.Forms.ComboBox();
             this.txtDOrderDay = new System.Windows.Forms.TextBox();
             this.textBox34 = new System.Windows.Forms.TextBox();
             this.panelStatus = new System.Windows.Forms.Panel();
@@ -109,8 +111,6 @@
             this.cmbDesignation = new System.Windows.Forms.ComboBox();
             this.txtDDesignation = new System.Windows.Forms.TextBox();
             this.grbEnvelopeDetails = new System.Windows.Forms.GroupBox();
-            this.cmbESupplierType = new System.Windows.Forms.ComboBox();
-            this.txtDSupplierType = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
@@ -755,7 +755,7 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.cmbESupplierType);
+            this.groupBox5.Controls.Add(this.cmbSupplierType);
             this.groupBox5.Controls.Add(this.txtDSupplierType);
             this.groupBox5.Controls.Add(this.cmbPaymentTerm);
             this.groupBox5.Controls.Add(this.txtDPaymentTerm);
@@ -773,6 +773,34 @@
             this.groupBox5.TabIndex = 23;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Regitration Details";
+            // 
+            // cmbSupplierType
+            // 
+            this.cmbSupplierType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSupplierType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSupplierType.FormattingEnabled = true;
+            this.cmbSupplierType.Items.AddRange(new object[] {
+            "Registered",
+            "Composite",
+            "URD"});
+            this.cmbSupplierType.Location = new System.Drawing.Point(140, 36);
+            this.cmbSupplierType.Name = "cmbSupplierType";
+            this.cmbSupplierType.Size = new System.Drawing.Size(204, 27);
+            this.cmbSupplierType.TabIndex = 67;
+            this.cmbSupplierType.SelectedIndexChanged += new System.EventHandler(this.CmbESupplierType_SelectedIndexChanged);
+            this.cmbSupplierType.Leave += new System.EventHandler(this.CmbESupplierType_Leave);
+            // 
+            // txtDSupplierType
+            // 
+            this.txtDSupplierType.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDSupplierType.Enabled = false;
+            this.txtDSupplierType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDSupplierType.Location = new System.Drawing.Point(9, 36);
+            this.txtDSupplierType.Name = "txtDSupplierType";
+            this.txtDSupplierType.ReadOnly = true;
+            this.txtDSupplierType.Size = new System.Drawing.Size(131, 27);
+            this.txtDSupplierType.TabIndex = 66;
+            this.txtDSupplierType.Text = "Supplier Type";
             // 
             // cmbPaymentTerm
             // 
@@ -892,7 +920,7 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.grddays);
-            this.groupBox6.Controls.Add(this.cmbsuppliertype);
+            this.groupBox6.Controls.Add(this.cmbOrderType);
             this.groupBox6.Controls.Add(this.txtDOrderDay);
             this.groupBox6.Controls.Add(this.textBox34);
             this.groupBox6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -960,19 +988,19 @@
             this.clmday.Name = "clmday";
             this.clmday.ReadOnly = true;
             // 
-            // cmbsuppliertype
+            // cmbOrderType
             // 
-            this.cmbsuppliertype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbsuppliertype.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbsuppliertype.FormattingEnabled = true;
-            this.cmbsuppliertype.Items.AddRange(new object[] {
+            this.cmbOrderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOrderType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbOrderType.FormattingEnabled = true;
+            this.cmbOrderType.Items.AddRange(new object[] {
             "Mobile",
             "Visit"});
-            this.cmbsuppliertype.Location = new System.Drawing.Point(142, 27);
-            this.cmbsuppliertype.Name = "cmbsuppliertype";
-            this.cmbsuppliertype.Size = new System.Drawing.Size(204, 27);
-            this.cmbsuppliertype.TabIndex = 30;
-            this.cmbsuppliertype.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmbsuppliertype_KeyDown);
+            this.cmbOrderType.Location = new System.Drawing.Point(142, 27);
+            this.cmbOrderType.Name = "cmbOrderType";
+            this.cmbOrderType.Size = new System.Drawing.Size(204, 27);
+            this.cmbOrderType.TabIndex = 30;
+            this.cmbOrderType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmbsuppliertype_KeyDown);
             // 
             // txtDOrderDay
             // 
@@ -1131,34 +1159,6 @@
             this.grbEnvelopeDetails.TabStop = false;
             this.grbEnvelopeDetails.Text = "Envelope  Details";
             // 
-            // cmbESupplierType
-            // 
-            this.cmbESupplierType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbESupplierType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbESupplierType.FormattingEnabled = true;
-            this.cmbESupplierType.Items.AddRange(new object[] {
-            "Registered",
-            "Composite",
-            "URD"});
-            this.cmbESupplierType.Location = new System.Drawing.Point(140, 36);
-            this.cmbESupplierType.Name = "cmbESupplierType";
-            this.cmbESupplierType.Size = new System.Drawing.Size(204, 27);
-            this.cmbESupplierType.TabIndex = 67;
-            this.cmbESupplierType.SelectedIndexChanged += new System.EventHandler(this.CmbESupplierType_SelectedIndexChanged);
-            this.cmbESupplierType.Leave += new System.EventHandler(this.CmbESupplierType_Leave);
-            // 
-            // txtDSupplierType
-            // 
-            this.txtDSupplierType.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDSupplierType.Enabled = false;
-            this.txtDSupplierType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDSupplierType.Location = new System.Drawing.Point(9, 36);
-            this.txtDSupplierType.Name = "txtDSupplierType";
-            this.txtDSupplierType.ReadOnly = true;
-            this.txtDSupplierType.Size = new System.Drawing.Size(131, 27);
-            this.txtDSupplierType.TabIndex = 66;
-            this.txtDSupplierType.Text = "Supplier Type";
-            // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1274,7 +1274,7 @@
         private System.Windows.Forms.RadioButton rbmanager;
         private System.Windows.Forms.TextBox textBox33;
         private System.Windows.Forms.RadioButton rbpropritor;
-        private System.Windows.Forms.ComboBox cmbsuppliertype;
+        private System.Windows.Forms.ComboBox cmbOrderType;
         private System.Windows.Forms.Panel panelStatus;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
@@ -1290,7 +1290,7 @@
         private System.Windows.Forms.TextBox txtcontactName;
         private System.Windows.Forms.TextBox txtDShortName;
         private System.Windows.Forms.GroupBox grbEnvelopeDetails;
-        private System.Windows.Forms.ComboBox cmbESupplierType;
+        private System.Windows.Forms.ComboBox cmbSupplierType;
         private System.Windows.Forms.TextBox txtDSupplierType;
     }
 }

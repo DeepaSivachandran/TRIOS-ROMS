@@ -1889,7 +1889,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbsuppliertype.Focus();
+                    cmbOrderType.Focus();
                 }
             }
             catch (Exception ex)
@@ -2067,7 +2067,7 @@ namespace ROMS
 
             try
             {
-                if (cmbESupplierType.SelectedItem != "URD")
+                if (cmbSupplierType.SelectedItem != "URD")
                 {
                     txtgstin.Enabled = true;
                 }
