@@ -35,8 +35,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Supplier));
             this.txtDCompanyName = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.txtDShortName = new System.Windows.Forms.TextBox();
-            this.txtcontactName = new System.Windows.Forms.TextBox();
             this.txtDArea = new System.Windows.Forms.TextBox();
             this.txtArea = new System.Windows.Forms.TextBox();
             this.txtDCity = new System.Windows.Forms.TextBox();
@@ -85,6 +83,8 @@
             this.txtcreditlimit = new System.Windows.Forms.TextBox();
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.cmbSupplierType = new System.Windows.Forms.ComboBox();
+            this.txtDSupplierType = new System.Windows.Forms.TextBox();
             this.cmbPaymentTerm = new System.Windows.Forms.ComboBox();
             this.txtDPaymentTerm = new System.Windows.Forms.TextBox();
             this.txtgstin = new System.Windows.Forms.TextBox();
@@ -95,12 +95,10 @@
             this.txtsupplybrand = new System.Windows.Forms.TextBox();
             this.textBox33 = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.cmbDesignation = new System.Windows.Forms.ComboBox();
-            this.txtDDesignation = new System.Windows.Forms.TextBox();
             this.grddays = new System.Windows.Forms.DataGridView();
             this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbsuppliertype = new System.Windows.Forms.ComboBox();
+            this.cmbOrderType = new System.Windows.Forms.ComboBox();
             this.txtDOrderDay = new System.Windows.Forms.TextBox();
             this.textBox34 = new System.Windows.Forms.TextBox();
             this.panelStatus = new System.Windows.Forms.Panel();
@@ -108,6 +106,11 @@
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.txtcontactName = new System.Windows.Forms.TextBox();
+            this.txtDShortName = new System.Windows.Forms.TextBox();
+            this.cmbDesignation = new System.Windows.Forms.ComboBox();
+            this.txtDDesignation = new System.Windows.Forms.TextBox();
+            this.grbEnvelopeDetails = new System.Windows.Forms.GroupBox();
             this.grbform.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
@@ -117,6 +120,7 @@
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grddays)).BeginInit();
             this.panelStatus.SuspendLayout();
+            this.grbEnvelopeDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDCompanyName
@@ -143,36 +147,12 @@
             this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCompanyName_KeyDown);
             this.txtName.Leave += new System.EventHandler(this.txtCompanyName_Leave);
             // 
-            // txtDShortName
-            // 
-            this.txtDShortName.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDShortName.Enabled = false;
-            this.txtDShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDShortName.Location = new System.Drawing.Point(23, 50);
-            this.txtDShortName.Name = "txtDShortName";
-            this.txtDShortName.ReadOnly = true;
-            this.txtDShortName.Size = new System.Drawing.Size(111, 27);
-            this.txtDShortName.TabIndex = 15;
-            this.txtDShortName.Text = "Contact Person";
-            // 
-            // txtcontactName
-            // 
-            this.txtcontactName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtcontactName.Location = new System.Drawing.Point(134, 50);
-            this.txtcontactName.MaxLength = 10;
-            this.txtcontactName.Name = "txtcontactName";
-            this.txtcontactName.Size = new System.Drawing.Size(397, 27);
-            this.txtcontactName.TabIndex = 1;
-            this.txtcontactName.Enter += new System.EventHandler(this.txtcontactName_Enter);
-            this.txtcontactName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtcontactName_KeyDown);
-            this.txtcontactName.Leave += new System.EventHandler(this.txtcontactName_Leave);
-            // 
             // txtDArea
             // 
             this.txtDArea.BackColor = System.Drawing.SystemColors.Control;
             this.txtDArea.Enabled = false;
             this.txtDArea.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDArea.Location = new System.Drawing.Point(23, 77);
+            this.txtDArea.Location = new System.Drawing.Point(23, 50);
             this.txtDArea.Name = "txtDArea";
             this.txtDArea.ReadOnly = true;
             this.txtDArea.Size = new System.Drawing.Size(111, 27);
@@ -182,7 +162,7 @@
             // txtArea
             // 
             this.txtArea.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtArea.Location = new System.Drawing.Point(134, 77);
+            this.txtArea.Location = new System.Drawing.Point(134, 50);
             this.txtArea.MaxLength = 250;
             this.txtArea.Name = "txtArea";
             this.txtArea.Size = new System.Drawing.Size(397, 27);
@@ -196,7 +176,7 @@
             this.txtDCity.BackColor = System.Drawing.SystemColors.Control;
             this.txtDCity.Enabled = false;
             this.txtDCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDCity.Location = new System.Drawing.Point(23, 158);
+            this.txtDCity.Location = new System.Drawing.Point(23, 131);
             this.txtDCity.Name = "txtDCity";
             this.txtDCity.ReadOnly = true;
             this.txtDCity.Size = new System.Drawing.Size(111, 27);
@@ -206,7 +186,7 @@
             // txtCity
             // 
             this.txtCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtCity.Location = new System.Drawing.Point(134, 158);
+            this.txtCity.Location = new System.Drawing.Point(134, 131);
             this.txtCity.MaxLength = 100;
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(186, 27);
@@ -221,7 +201,7 @@
             this.txtDAContactNumber.BackColor = System.Drawing.SystemColors.Control;
             this.txtDAContactNumber.Enabled = false;
             this.txtDAContactNumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDAContactNumber.Location = new System.Drawing.Point(23, 212);
+            this.txtDAContactNumber.Location = new System.Drawing.Point(23, 185);
             this.txtDAContactNumber.Name = "txtDAContactNumber";
             this.txtDAContactNumber.ReadOnly = true;
             this.txtDAContactNumber.Size = new System.Drawing.Size(111, 27);
@@ -231,7 +211,7 @@
             // txtAContactNumber
             // 
             this.txtAContactNumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtAContactNumber.Location = new System.Drawing.Point(134, 212);
+            this.txtAContactNumber.Location = new System.Drawing.Point(134, 185);
             this.txtAContactNumber.MaxLength = 10;
             this.txtAContactNumber.Name = "txtAContactNumber";
             this.txtAContactNumber.Size = new System.Drawing.Size(186, 27);
@@ -246,7 +226,7 @@
             this.txtDEmail.BackColor = System.Drawing.SystemColors.Control;
             this.txtDEmail.Enabled = false;
             this.txtDEmail.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDEmail.Location = new System.Drawing.Point(23, 263);
+            this.txtDEmail.Location = new System.Drawing.Point(23, 236);
             this.txtDEmail.Name = "txtDEmail";
             this.txtDEmail.ReadOnly = true;
             this.txtDEmail.Size = new System.Drawing.Size(111, 27);
@@ -256,7 +236,7 @@
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtEmail.Location = new System.Drawing.Point(134, 263);
+            this.txtEmail.Location = new System.Drawing.Point(134, 236);
             this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(397, 27);
@@ -281,9 +261,7 @@
             this.grbform.Controls.Add(this.txtEmail);
             this.grbform.Controls.Add(this.txtName);
             this.grbform.Controls.Add(this.txtDAContactNumber);
-            this.grbform.Controls.Add(this.txtcontactName);
             this.grbform.Controls.Add(this.txtAContactNumber);
-            this.grbform.Controls.Add(this.txtDShortName);
             this.grbform.Controls.Add(this.txtDContactNumber);
             this.grbform.Controls.Add(this.txtArea);
             this.grbform.Controls.Add(this.txtContactNumber);
@@ -293,15 +271,15 @@
             this.grbform.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbform.Location = new System.Drawing.Point(12, 12);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(551, 309);
+            this.grbform.Size = new System.Drawing.Size(551, 331);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
-            this.grbform.Text = "Contact Details";
+            this.grbform.Text = "Concern Contact Details";
             // 
             // lvCity
             // 
             this.lvCity.HideSelection = false;
-            this.lvCity.Location = new System.Drawing.Point(134, 184);
+            this.lvCity.Location = new System.Drawing.Point(134, 157);
             this.lvCity.Name = "lvCity";
             this.lvCity.Size = new System.Drawing.Size(186, 65);
             this.lvCity.TabIndex = 62;
@@ -313,7 +291,7 @@
             this.textBox6.BackColor = System.Drawing.SystemColors.Control;
             this.textBox6.Enabled = false;
             this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox6.Location = new System.Drawing.Point(23, 236);
+            this.textBox6.Location = new System.Drawing.Point(23, 209);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(111, 27);
@@ -323,7 +301,7 @@
             // txtwhatsapp
             // 
             this.txtwhatsapp.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtwhatsapp.Location = new System.Drawing.Point(134, 236);
+            this.txtwhatsapp.Location = new System.Drawing.Point(134, 209);
             this.txtwhatsapp.MaxLength = 10;
             this.txtwhatsapp.Name = "txtwhatsapp";
             this.txtwhatsapp.Size = new System.Drawing.Size(186, 27);
@@ -338,7 +316,7 @@
             this.textBox3.BackColor = System.Drawing.SystemColors.Control;
             this.textBox3.Enabled = false;
             this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox3.Location = new System.Drawing.Point(23, 104);
+            this.textBox3.Location = new System.Drawing.Point(23, 77);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(111, 27);
@@ -348,7 +326,7 @@
             // txtaddress2
             // 
             this.txtaddress2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtaddress2.Location = new System.Drawing.Point(134, 104);
+            this.txtaddress2.Location = new System.Drawing.Point(134, 77);
             this.txtaddress2.MaxLength = 250;
             this.txtaddress2.Name = "txtaddress2";
             this.txtaddress2.Size = new System.Drawing.Size(397, 27);
@@ -362,10 +340,10 @@
             this.txtDPincode.BackColor = System.Drawing.SystemColors.Control;
             this.txtDPincode.Enabled = false;
             this.txtDPincode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPincode.Location = new System.Drawing.Point(321, 158);
+            this.txtDPincode.Location = new System.Drawing.Point(320, 131);
             this.txtDPincode.Name = "txtDPincode";
             this.txtDPincode.ReadOnly = true;
-            this.txtDPincode.Size = new System.Drawing.Size(52, 27);
+            this.txtDPincode.Size = new System.Drawing.Size(53, 27);
             this.txtDPincode.TabIndex = 46;
             this.txtDPincode.Text = "Pincode";
             this.txtDPincode.TextChanged += new System.EventHandler(this.TxtDPincode_TextChanged);
@@ -375,7 +353,7 @@
             this.cmbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbState.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbState.FormattingEnabled = true;
-            this.cmbState.Location = new System.Drawing.Point(134, 131);
+            this.cmbState.Location = new System.Drawing.Point(134, 104);
             this.cmbState.Name = "cmbState";
             this.cmbState.Size = new System.Drawing.Size(186, 27);
             this.cmbState.TabIndex = 4;
@@ -384,10 +362,10 @@
             // txtPincode
             // 
             this.txtPincode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPincode.Location = new System.Drawing.Point(374, 158);
+            this.txtPincode.Location = new System.Drawing.Point(373, 131);
             this.txtPincode.MaxLength = 6;
             this.txtPincode.Name = "txtPincode";
-            this.txtPincode.Size = new System.Drawing.Size(157, 27);
+            this.txtPincode.Size = new System.Drawing.Size(158, 27);
             this.txtPincode.TabIndex = 6;
             this.txtPincode.Enter += new System.EventHandler(this.txtPincode_Enter);
             this.txtPincode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPincode_KeyDown_1);
@@ -399,7 +377,7 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox1.Location = new System.Drawing.Point(23, 131);
+            this.textBox1.Location = new System.Drawing.Point(23, 104);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(111, 27);
@@ -411,7 +389,7 @@
             this.txtDContactNumber.BackColor = System.Drawing.SystemColors.Control;
             this.txtDContactNumber.Enabled = false;
             this.txtDContactNumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDContactNumber.Location = new System.Drawing.Point(23, 185);
+            this.txtDContactNumber.Location = new System.Drawing.Point(23, 158);
             this.txtDContactNumber.Name = "txtDContactNumber";
             this.txtDContactNumber.ReadOnly = true;
             this.txtDContactNumber.Size = new System.Drawing.Size(111, 27);
@@ -421,7 +399,7 @@
             // txtContactNumber
             // 
             this.txtContactNumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtContactNumber.Location = new System.Drawing.Point(134, 185);
+            this.txtContactNumber.Location = new System.Drawing.Point(134, 158);
             this.txtContactNumber.MaxLength = 10;
             this.txtContactNumber.Name = "txtContactNumber";
             this.txtContactNumber.Size = new System.Drawing.Size(186, 27);
@@ -436,7 +414,7 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(970, 380);
+            this.textBox4.Location = new System.Drawing.Point(968, 431);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(131, 27);
@@ -692,7 +670,7 @@
             this.groupBox4.Controls.Add(this.txtcreditlimit);
             this.groupBox4.Controls.Add(this.textBox28);
             this.groupBox4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(12, 330);
+            this.groupBox4.Location = new System.Drawing.Point(12, 431);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(551, 77);
             this.groupBox4.TabIndex = 13;
@@ -728,10 +706,10 @@
             // txtopening
             // 
             this.txtopening.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtopening.Location = new System.Drawing.Point(374, 36);
+            this.txtopening.Location = new System.Drawing.Point(383, 36);
             this.txtopening.MaxLength = 50;
             this.txtopening.Name = "txtopening";
-            this.txtopening.Size = new System.Drawing.Size(114, 27);
+            this.txtopening.Size = new System.Drawing.Size(106, 27);
             this.txtopening.TabIndex = 14;
             this.txtopening.Enter += new System.EventHandler(this.Txtopening_Enter);
             this.txtopening.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtopening_KeyDown);
@@ -743,7 +721,7 @@
             this.textBox22.BackColor = System.Drawing.SystemColors.Control;
             this.textBox22.Enabled = false;
             this.textBox22.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox22.Location = new System.Drawing.Point(273, 36);
+            this.textBox22.Location = new System.Drawing.Point(283, 36);
             this.textBox22.Name = "textBox22";
             this.textBox22.ReadOnly = true;
             this.textBox22.Size = new System.Drawing.Size(100, 27);
@@ -756,7 +734,7 @@
             this.txtcreditlimit.Location = new System.Drawing.Point(134, 36);
             this.txtcreditlimit.MaxLength = 50;
             this.txtcreditlimit.Name = "txtcreditlimit";
-            this.txtcreditlimit.Size = new System.Drawing.Size(138, 27);
+            this.txtcreditlimit.Size = new System.Drawing.Size(149, 27);
             this.txtcreditlimit.TabIndex = 13;
             this.txtcreditlimit.Enter += new System.EventHandler(this.Txtcreditlimit_Enter);
             this.txtcreditlimit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtcreditlimit_KeyDown);
@@ -777,6 +755,8 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.cmbSupplierType);
+            this.groupBox5.Controls.Add(this.txtDSupplierType);
             this.groupBox5.Controls.Add(this.cmbPaymentTerm);
             this.groupBox5.Controls.Add(this.txtDPaymentTerm);
             this.groupBox5.Controls.Add(this.txtgstin);
@@ -789,10 +769,38 @@
             this.groupBox5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(961, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(358, 102);
+            this.groupBox5.Size = new System.Drawing.Size(358, 139);
             this.groupBox5.TabIndex = 23;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Regitration Details";
+            // 
+            // cmbSupplierType
+            // 
+            this.cmbSupplierType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSupplierType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSupplierType.FormattingEnabled = true;
+            this.cmbSupplierType.Items.AddRange(new object[] {
+            "Registered",
+            "Composite",
+            "URD"});
+            this.cmbSupplierType.Location = new System.Drawing.Point(140, 36);
+            this.cmbSupplierType.Name = "cmbSupplierType";
+            this.cmbSupplierType.Size = new System.Drawing.Size(204, 27);
+            this.cmbSupplierType.TabIndex = 67;
+            this.cmbSupplierType.SelectedIndexChanged += new System.EventHandler(this.CmbESupplierType_SelectedIndexChanged);
+            this.cmbSupplierType.Leave += new System.EventHandler(this.CmbESupplierType_Leave);
+            // 
+            // txtDSupplierType
+            // 
+            this.txtDSupplierType.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDSupplierType.Enabled = false;
+            this.txtDSupplierType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDSupplierType.Location = new System.Drawing.Point(9, 36);
+            this.txtDSupplierType.Name = "txtDSupplierType";
+            this.txtDSupplierType.ReadOnly = true;
+            this.txtDSupplierType.Size = new System.Drawing.Size(131, 27);
+            this.txtDSupplierType.TabIndex = 66;
+            this.txtDSupplierType.Text = "Supplier Type";
             // 
             // cmbPaymentTerm
             // 
@@ -802,7 +810,7 @@
             this.cmbPaymentTerm.Items.AddRange(new object[] {
             "Nett Amount",
             "Taxable Amount"});
-            this.cmbPaymentTerm.Location = new System.Drawing.Point(140, 63);
+            this.cmbPaymentTerm.Location = new System.Drawing.Point(140, 90);
             this.cmbPaymentTerm.Name = "cmbPaymentTerm";
             this.cmbPaymentTerm.Size = new System.Drawing.Size(204, 27);
             this.cmbPaymentTerm.TabIndex = 25;
@@ -812,7 +820,7 @@
             this.txtDPaymentTerm.BackColor = System.Drawing.SystemColors.Control;
             this.txtDPaymentTerm.Enabled = false;
             this.txtDPaymentTerm.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPaymentTerm.Location = new System.Drawing.Point(9, 63);
+            this.txtDPaymentTerm.Location = new System.Drawing.Point(9, 90);
             this.txtDPaymentTerm.Name = "txtDPaymentTerm";
             this.txtDPaymentTerm.ReadOnly = true;
             this.txtDPaymentTerm.Size = new System.Drawing.Size(131, 27);
@@ -822,7 +830,7 @@
             // txtgstin
             // 
             this.txtgstin.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtgstin.Location = new System.Drawing.Point(140, 36);
+            this.txtgstin.Location = new System.Drawing.Point(140, 63);
             this.txtgstin.MaxLength = 100;
             this.txtgstin.Name = "txtgstin";
             this.txtgstin.Size = new System.Drawing.Size(204, 27);
@@ -836,7 +844,7 @@
             this.textBox32.BackColor = System.Drawing.SystemColors.Control;
             this.textBox32.Enabled = false;
             this.textBox32.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox32.Location = new System.Drawing.Point(9, 36);
+            this.textBox32.Location = new System.Drawing.Point(9, 63);
             this.textBox32.Name = "textBox32";
             this.textBox32.ReadOnly = true;
             this.textBox32.Size = new System.Drawing.Size(131, 27);
@@ -848,7 +856,7 @@
             this.rbpropritor.AutoSize = true;
             this.rbpropritor.Checked = true;
             this.rbpropritor.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbpropritor.Location = new System.Drawing.Point(148, 158);
+            this.rbpropritor.Location = new System.Drawing.Point(148, 204);
             this.rbpropritor.Name = "rbpropritor";
             this.rbpropritor.Size = new System.Drawing.Size(82, 24);
             this.rbpropritor.TabIndex = 28;
@@ -862,7 +870,7 @@
             this.textBox30.BackColor = System.Drawing.SystemColors.Control;
             this.textBox30.Enabled = false;
             this.textBox30.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox30.Location = new System.Drawing.Point(9, 130);
+            this.textBox30.Location = new System.Drawing.Point(9, 176);
             this.textBox30.Name = "textBox30";
             this.textBox30.ReadOnly = true;
             this.textBox30.Size = new System.Drawing.Size(131, 27);
@@ -874,7 +882,7 @@
             // 
             this.rbmanager.AutoSize = true;
             this.rbmanager.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbmanager.Location = new System.Drawing.Point(265, 158);
+            this.rbmanager.Location = new System.Drawing.Point(265, 204);
             this.rbmanager.Name = "rbmanager";
             this.rbmanager.Size = new System.Drawing.Size(74, 24);
             this.rbmanager.TabIndex = 29;
@@ -886,7 +894,7 @@
             // txtsupplybrand
             // 
             this.txtsupplybrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtsupplybrand.Location = new System.Drawing.Point(140, 130);
+            this.txtsupplybrand.Location = new System.Drawing.Point(140, 176);
             this.txtsupplybrand.MaxLength = 100;
             this.txtsupplybrand.Name = "txtsupplybrand";
             this.txtsupplybrand.Size = new System.Drawing.Size(204, 27);
@@ -901,7 +909,7 @@
             this.textBox33.BackColor = System.Drawing.SystemColors.Control;
             this.textBox33.Enabled = false;
             this.textBox33.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox33.Location = new System.Drawing.Point(9, 157);
+            this.textBox33.Location = new System.Drawing.Point(9, 203);
             this.textBox33.Name = "textBox33";
             this.textBox33.ReadOnly = true;
             this.textBox33.Size = new System.Drawing.Size(131, 27);
@@ -911,44 +919,17 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.cmbDesignation);
-            this.groupBox6.Controls.Add(this.txtDDesignation);
             this.groupBox6.Controls.Add(this.grddays);
-            this.groupBox6.Controls.Add(this.cmbsuppliertype);
+            this.groupBox6.Controls.Add(this.cmbOrderType);
             this.groupBox6.Controls.Add(this.txtDOrderDay);
             this.groupBox6.Controls.Add(this.textBox34);
             this.groupBox6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(961, 120);
+            this.groupBox6.Location = new System.Drawing.Point(961, 164);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(358, 250);
+            this.groupBox6.Size = new System.Drawing.Size(358, 243);
             this.groupBox6.TabIndex = 25;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Order Details";
-            // 
-            // cmbDesignation
-            // 
-            this.cmbDesignation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDesignation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDesignation.FormattingEnabled = true;
-            this.cmbDesignation.Items.AddRange(new object[] {
-            "Proprictor",
-            "Manager"});
-            this.cmbDesignation.Location = new System.Drawing.Point(142, 27);
-            this.cmbDesignation.Name = "cmbDesignation";
-            this.cmbDesignation.Size = new System.Drawing.Size(204, 27);
-            this.cmbDesignation.TabIndex = 67;
-            // 
-            // txtDDesignation
-            // 
-            this.txtDDesignation.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDDesignation.Enabled = false;
-            this.txtDDesignation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDDesignation.Location = new System.Drawing.Point(11, 27);
-            this.txtDDesignation.Name = "txtDDesignation";
-            this.txtDDesignation.ReadOnly = true;
-            this.txtDDesignation.Size = new System.Drawing.Size(131, 27);
-            this.txtDDesignation.TabIndex = 68;
-            this.txtDDesignation.Text = "Designation";
             // 
             // grddays
             // 
@@ -982,7 +963,7 @@
             this.grddays.DefaultCellStyle = dataGridViewCellStyle2;
             this.grddays.EnableHeadersVisualStyles = false;
             this.grddays.GridColor = System.Drawing.Color.White;
-            this.grddays.Location = new System.Drawing.Point(142, 81);
+            this.grddays.Location = new System.Drawing.Point(142, 54);
             this.grddays.Name = "grddays";
             this.grddays.ReadOnly = true;
             this.grddays.RowHeadersVisible = false;
@@ -1007,26 +988,26 @@
             this.clmday.Name = "clmday";
             this.clmday.ReadOnly = true;
             // 
-            // cmbsuppliertype
+            // cmbOrderType
             // 
-            this.cmbsuppliertype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbsuppliertype.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbsuppliertype.FormattingEnabled = true;
-            this.cmbsuppliertype.Items.AddRange(new object[] {
+            this.cmbOrderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOrderType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbOrderType.FormattingEnabled = true;
+            this.cmbOrderType.Items.AddRange(new object[] {
             "Mobile",
             "Visit"});
-            this.cmbsuppliertype.Location = new System.Drawing.Point(142, 54);
-            this.cmbsuppliertype.Name = "cmbsuppliertype";
-            this.cmbsuppliertype.Size = new System.Drawing.Size(204, 27);
-            this.cmbsuppliertype.TabIndex = 30;
-            this.cmbsuppliertype.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmbsuppliertype_KeyDown);
+            this.cmbOrderType.Location = new System.Drawing.Point(142, 27);
+            this.cmbOrderType.Name = "cmbOrderType";
+            this.cmbOrderType.Size = new System.Drawing.Size(204, 27);
+            this.cmbOrderType.TabIndex = 30;
+            this.cmbOrderType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmbsuppliertype_KeyDown);
             // 
             // txtDOrderDay
             // 
             this.txtDOrderDay.BackColor = System.Drawing.SystemColors.Control;
             this.txtDOrderDay.Enabled = false;
             this.txtDOrderDay.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDOrderDay.Location = new System.Drawing.Point(11, 81);
+            this.txtDOrderDay.Location = new System.Drawing.Point(11, 54);
             this.txtDOrderDay.Name = "txtDOrderDay";
             this.txtDOrderDay.ReadOnly = true;
             this.txtDOrderDay.Size = new System.Drawing.Size(131, 27);
@@ -1039,7 +1020,7 @@
             this.textBox34.BackColor = System.Drawing.SystemColors.Control;
             this.textBox34.Enabled = false;
             this.textBox34.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox34.Location = new System.Drawing.Point(11, 54);
+            this.textBox34.Location = new System.Drawing.Point(11, 27);
             this.textBox34.Name = "textBox34";
             this.textBox34.ReadOnly = true;
             this.textBox34.Size = new System.Drawing.Size(131, 27);
@@ -1054,7 +1035,7 @@
             this.panelStatus.Controls.Add(this.rbActive);
             this.panelStatus.Enabled = false;
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(1100, 380);
+            this.panelStatus.Location = new System.Drawing.Point(1099, 431);
             this.panelStatus.Name = "panelStatus";
             this.panelStatus.Size = new System.Drawing.Size(220, 27);
             this.panelStatus.TabIndex = 60;
@@ -1089,7 +1070,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1157, 413);
+            this.btnSave.Location = new System.Drawing.Point(1157, 479);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 34;
@@ -1106,7 +1087,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1244, 413);
+            this.btnClose.Location = new System.Drawing.Point(1244, 479);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 35;
@@ -1118,12 +1099,73 @@
             this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
+            // txtcontactName
+            // 
+            this.txtcontactName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtcontactName.Location = new System.Drawing.Point(132, 35);
+            this.txtcontactName.MaxLength = 10;
+            this.txtcontactName.Name = "txtcontactName";
+            this.txtcontactName.Size = new System.Drawing.Size(151, 27);
+            this.txtcontactName.TabIndex = 63;
+            // 
+            // txtDShortName
+            // 
+            this.txtDShortName.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDShortName.Enabled = false;
+            this.txtDShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDShortName.Location = new System.Drawing.Point(23, 35);
+            this.txtDShortName.Name = "txtDShortName";
+            this.txtDShortName.ReadOnly = true;
+            this.txtDShortName.Size = new System.Drawing.Size(111, 27);
+            this.txtDShortName.TabIndex = 64;
+            this.txtDShortName.Text = "Contact Person";
+            // 
+            // cmbDesignation
+            // 
+            this.cmbDesignation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDesignation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDesignation.FormattingEnabled = true;
+            this.cmbDesignation.Items.AddRange(new object[] {
+            "The Proprietor",
+            "The Manager"});
+            this.cmbDesignation.Location = new System.Drawing.Point(383, 35);
+            this.cmbDesignation.Name = "cmbDesignation";
+            this.cmbDesignation.Size = new System.Drawing.Size(148, 27);
+            this.cmbDesignation.TabIndex = 69;
+            // 
+            // txtDDesignation
+            // 
+            this.txtDDesignation.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDDesignation.Enabled = false;
+            this.txtDDesignation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDDesignation.Location = new System.Drawing.Point(283, 35);
+            this.txtDDesignation.Name = "txtDDesignation";
+            this.txtDDesignation.ReadOnly = true;
+            this.txtDDesignation.Size = new System.Drawing.Size(100, 27);
+            this.txtDDesignation.TabIndex = 70;
+            this.txtDDesignation.Text = "Designation";
+            // 
+            // grbEnvelopeDetails
+            // 
+            this.grbEnvelopeDetails.Controls.Add(this.cmbDesignation);
+            this.grbEnvelopeDetails.Controls.Add(this.txtDShortName);
+            this.grbEnvelopeDetails.Controls.Add(this.txtDDesignation);
+            this.grbEnvelopeDetails.Controls.Add(this.txtcontactName);
+            this.grbEnvelopeDetails.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbEnvelopeDetails.Location = new System.Drawing.Point(12, 345);
+            this.grbEnvelopeDetails.Name = "grbEnvelopeDetails";
+            this.grbEnvelopeDetails.Size = new System.Drawing.Size(551, 77);
+            this.grbEnvelopeDetails.TabIndex = 63;
+            this.grbEnvelopeDetails.TabStop = false;
+            this.grbEnvelopeDetails.Text = "Envelope  Details";
+            // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1332, 455);
+            this.ClientSize = new System.Drawing.Size(1332, 530);
+            this.Controls.Add(this.grbEnvelopeDetails);
             this.Controls.Add(this.panelStatus);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -1163,6 +1205,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grddays)).EndInit();
             this.panelStatus.ResumeLayout(false);
             this.panelStatus.PerformLayout();
+            this.grbEnvelopeDetails.ResumeLayout(false);
+            this.grbEnvelopeDetails.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1172,8 +1216,6 @@
 
         private System.Windows.Forms.TextBox txtDCompanyName;
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.TextBox txtDShortName;
-        private System.Windows.Forms.TextBox txtcontactName;
         private System.Windows.Forms.TextBox txtDArea;
         private System.Windows.Forms.TextBox txtArea;
         private System.Windows.Forms.TextBox txtDCity;
@@ -1232,7 +1274,7 @@
         private System.Windows.Forms.RadioButton rbmanager;
         private System.Windows.Forms.TextBox textBox33;
         private System.Windows.Forms.RadioButton rbpropritor;
-        private System.Windows.Forms.ComboBox cmbsuppliertype;
+        private System.Windows.Forms.ComboBox cmbOrderType;
         private System.Windows.Forms.Panel panelStatus;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
@@ -1245,5 +1287,10 @@
         private System.Windows.Forms.TextBox txtrupee;
         private System.Windows.Forms.ComboBox cmbDesignation;
         private System.Windows.Forms.TextBox txtDDesignation;
+        private System.Windows.Forms.TextBox txtcontactName;
+        private System.Windows.Forms.TextBox txtDShortName;
+        private System.Windows.Forms.GroupBox grbEnvelopeDetails;
+        private System.Windows.Forms.ComboBox cmbSupplierType;
+        private System.Windows.Forms.TextBox txtDSupplierType;
     }
 }
