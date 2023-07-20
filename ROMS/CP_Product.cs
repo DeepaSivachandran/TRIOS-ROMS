@@ -507,12 +507,14 @@ namespace ROMS
 
             //}
 
-            txtDDay.Visible = false;
-            txtDay.Visible = false;
-            txtDMonth.Visible = false;
-            txtMonth.Visible = false;
-            txtDYear.Visible = false;
-            txtYear.Visible = false;
+            //txtDDay.Visible = false;
+            //txtDay.Visible = false;
+            //txtDMonth.Visible = false;
+            //txtMonth.Visible = false;
+            //txtDYear.Visible = false;
+            //txtYear.Visible = false;
+
+            cmbPeriod.SelectedIndex = 0;
         }
 
 
@@ -1123,7 +1125,7 @@ namespace ROMS
             {
                 if (e.KeyData == Keys.Enter)
                 {
-                    cmbHSNGroup.Focus();
+                    cmbHSNName.Focus();
                 }
             }
             catch (Exception ex)
@@ -1318,7 +1320,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtMRPRate.Focus();
+                   // txtMRPRate.Focus();
                 }
             }
             catch (Exception ex)
@@ -1434,7 +1436,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDay.Focus();
+                 //   txtDay.Focus();
                 }
             }
             catch (Exception ex)
@@ -1450,7 +1452,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtMonth.Focus();
+                  //  txtMonth.Focus();
                 }
             }
             catch (Exception ex)
@@ -1466,7 +1468,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtYear.Focus();
+                 //   txtYear.Focus();
                 }
             }
             catch (Exception ex)
@@ -1732,7 +1734,7 @@ namespace ROMS
         {
             try
             {
-                txtPurchaseRate.BackColor = Color.LemonChiffon;
+              //  txtPurchaseRate.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1745,7 +1747,7 @@ namespace ROMS
         {
             try
             {
-                txtMRPRate.BackColor = Color.LemonChiffon;
+              //  txtMRPRate.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1832,44 +1834,6 @@ namespace ROMS
             }
         }
 
-        private void TxtDay_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtDay.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtMonth_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtMonth.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtYear_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtYear.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
 
         private void TxtGST_Enter(object sender, EventArgs e)
         {
@@ -2035,50 +1999,7 @@ namespace ROMS
             }
         }
 
-        private void TxtPurchaseRate_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtPurchaseRate.Text == "")
-                {
-                    txtPurchaseRate.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtPurchaseRate, "Please Enter Purchase Rate");
-                }
-                else
-                {
-                    txtPurchaseRate.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtMRPRate_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtMRPRate.Text == "")
-                {
-                    txtMRPRate.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtMRPRate, "Please Enter MRP Rate");
-                }
-                else
-                {
-                    txtMRPRate.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+      
         private void TxtMaxStock_Leave(object sender, EventArgs e)
         {
             try
@@ -2201,72 +2122,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtDay_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtDay.Text == "")
-                {
-                    txtDay.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtDay, "Please Enter Day");
-                }
-                else
-                {
-                    txtDay.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtMonth_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtMonth.Text == "")
-                {
-                    txtMonth.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtMonth, "Please Enter Month");
-                }
-                else
-                {
-                    txtMonth.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtYear_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtYear.Text == "")
-                {
-                    txtYear.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtYear, "Please Enter Year");
-                }
-                else
-                {
-                    txtYear.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void TxtGST_Leave(object sender, EventArgs e)
         {
@@ -2746,85 +2602,7 @@ namespace ROMS
             {
 
             }
-        }
-
-        private void TxtCGST_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
-                {
-                    e.Handled = true;
-                }
-
-                // Allow only one decimal point
-                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
-                {
-                    e.Handled = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
-
-        private void TxtSGST_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
-                {
-                    e.Handled = true;
-                }
-
-                // Allow only one decimal point
-                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
-                {
-                    e.Handled = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
-
-        private void TxtIGST_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
-                {
-                    e.Handled = true;
-                }
-
-                // Allow only one decimal point
-                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
-                {
-                    e.Handled = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
+        } 
 
         private void TxtReOrderQty_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -2858,21 +2636,14 @@ namespace ROMS
             {
                 if (cbExpiry.Checked == true)
                 {
-                    txtDDay.Visible = true;
-                    txtDay.Visible = true;
-                    txtDMonth.Visible = true;
-                    txtMonth.Visible = true;
-                    txtDYear.Visible = true;
-                    txtYear.Visible = true;
+                    cmbPeriod.Visible = true;
+                    txtSelfLife.Visible = true;
                 }
-                else {
+                else
+                {
+                    cmbPeriod.Visible = false;
+                    txtSelfLife.Visible = false;
 
-                    txtDDay.Visible = false;
-                    txtDay.Visible = false;
-                    txtDMonth.Visible = false;
-                    txtMonth.Visible = false;
-                    txtDYear.Visible = false;
-                    txtYear.Visible = false;
                 }
                 
             }

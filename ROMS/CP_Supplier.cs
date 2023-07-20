@@ -416,47 +416,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BindDataGrid()
-        {
-            try
-            {
-                string[] item = new string[30];
-                ListViewItem listitem = new ListViewItem(); DataTable dataTable = new DataTable();
-                dataTable.Columns.Add("Day", typeof(string));
-
-                dataTable.Rows.Add("Monday");
-                dataTable.Rows.Add("Tuesday");
-                dataTable.Rows.Add("Wednesday");
-                dataTable.Rows.Add("Thursday");
-                dataTable.Rows.Add("Friday");
-                dataTable.Rows.Add("Saturday");
-                dataTable.Rows.Add("Sunday");
-
-
-                for (int i = 0; i < dataTable.Rows.Count; i++)
-                {
-                    string day = dataTable.Rows[i]["Day"].ToString();
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(grddays);
-                    row.Cells[1].Value = day;
-                    grddays.Rows.Add(row);
-
-                    //item[0] = "";
-                    //item[1] = dataTable.Rows[i]["Day"].ToString();
-                    //listitem = new ListViewItem(item);
-                    //grddays.Rows.Add(item[0],item[1]);
-                }
-                // Assign the DataTable as the data source for the DataGridView 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-
-            // grddays.DataSource = dataTable;
-        }
+       
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
@@ -546,8 +506,7 @@ namespace ROMS
             {
 
                 this.ActiveControl = txtName;
-                udfnLoadState();
-                BindDataGrid();
+                udfnLoadState(); 
                 udfnEdit();
             }
             catch (Exception ex)
@@ -1244,8 +1203,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    txtrepname.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1262,8 +1220,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    txtrepaddress.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1276,8 +1233,7 @@ namespace ROMS
         private void Txtrepname_Enter(object sender, EventArgs e)
         {
             try
-            {
-                txtrepname.BackColor = Color.LemonChiffon;
+            { 
             }
             catch (Exception ex)
             {
@@ -1290,21 +1246,7 @@ namespace ROMS
         {
             try
             {
-                if (txtrepname.Text  == "")
-                {
-
-                    errCompany.SetError(txtrepname, "Please enter representative name");
-                    txtrepname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tparea.ShowAlways = true;
-                    tparea.Show("Please enter representative name.", txtrepname, 5000);
-
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtrepname.BackColor = Color.White;
-                    tparea.Hide(txtrepname);
-                }
+                
             }
             catch (Exception ex)
             {
@@ -1316,8 +1258,7 @@ namespace ROMS
         private void Txtrepaddress_Enter(object sender, EventArgs e)
         { 
             try
-            {
-                txtrepaddress.BackColor = Color.LemonChiffon;
+            { 
             }
             catch (Exception ex)
             {
@@ -1329,11 +1270,7 @@ namespace ROMS
         private void Txtrepaddress_KeyDown(object sender, KeyEventArgs e)
         {
             try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtrepaddress.Focus();
-                }
+            { 
             }
             catch (Exception ex)
             {
@@ -1345,22 +1282,7 @@ namespace ROMS
         private void Txtrepaddress_Leave(object sender, EventArgs e)
         {
             try
-            {
-                if (txtrepaddress.Text  == "")
-                {
-
-                    errCompany.SetError(txtrepaddress, "Please enter representative address");
-                    txtrepaddress.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tparea.ShowAlways = true;
-                    tparea.Show("Please enter representative address.", txtrepaddress, 5000);
-
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtrepaddress.BackColor = Color.White;
-                    tparea.Hide(txtrepaddress);
-                }
+            { 
             }
             catch (Exception ex)
             {
@@ -1372,8 +1294,7 @@ namespace ROMS
         private void Txtrepmobileno_Enter(object sender, EventArgs e)
         {
             try
-            {
-                txtrepmobileno.BackColor = Color.LemonChiffon;
+            { 
             }
             catch (Exception ex)
             {
@@ -1387,8 +1308,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    txtrepwhatsappno.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1402,21 +1322,7 @@ namespace ROMS
         {
             try
             {
-                if (txtrepmobileno.Text  == "")
-                {
-
-                    errCompany.SetError(txtrepmobileno, "Please enter representative mobile No.");
-                    txtrepmobileno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tparea.ShowAlways = true;
-                    tparea.Show("Please enter representative mobile No.", txtrepmobileno, 5000);
-
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtrepmobileno.BackColor = Color.White;
-                    tparea.Hide(txtrepmobileno);
-                }
+                
             }
             catch (Exception ex)
             {
@@ -1429,21 +1335,7 @@ namespace ROMS
         {
             try
             {
-                if (txtrepwhatsappno.Text  == "")
-                {
-
-                    errCompany.SetError(txtrepwhatsappno, "Please enter representative whatsapp No.");
-                    txtrepwhatsappno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tparea.ShowAlways = true;
-                    tparea.Show("Please enter representative whatsapp No.", txtrepwhatsappno, 5000);
-
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtrepwhatsappno.BackColor = Color.White;
-                    tparea.Hide(txtrepwhatsappno);
-                }
+              
             }
             catch (Exception ex)
             {
@@ -1457,10 +1349,7 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtsalesmanname.Focus();
-                }
+                 
             }
             catch (Exception ex)
             {
@@ -1471,36 +1360,14 @@ namespace ROMS
 
         private void Txtrepwhatsappno_Enter(object sender, EventArgs e)
         {
-            try
-            {
-                txtrepwhatsappno.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
 
         private void Txtsalesmanname_Leave(object sender, EventArgs e)
         {
             try
             {
-                if (txtsalesmanname.Text  == "")
-                {
-
-                    errCompany.SetError(txtsalesmanname, "Please enter salesman name");
-                    txtsalesmanname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tparea.ShowAlways = true;
-                    tparea.Show("Please enter salesman name.", txtsalesmanname, 5000);
-
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtsalesmanname.BackColor = Color.White;
-                    tparea.Hide(txtsalesmanname);
-                }
+                
             }
             catch (Exception ex)
             {
@@ -1513,11 +1380,7 @@ namespace ROMS
         private void Txtsalesmanname_KeyDown(object sender, KeyEventArgs e)
         {
             try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtsalesmanaddress.Focus();
-                }
+            { 
             }
             catch (Exception ex)
             {
@@ -1529,8 +1392,7 @@ namespace ROMS
         private void Txtsalesmanname_Enter(object sender, EventArgs e)
         {
             try
-            {
-                txtsalesmanname.BackColor = Color.LemonChiffon;
+            { 
             }
             catch (Exception ex)
             {
@@ -1543,21 +1405,7 @@ namespace ROMS
         {
             try
             {
-                if (txtsalesmanaddress.Text  == "")
-                {
-
-                    errCompany.SetError(txtsalesmanaddress, "Please enter salesman address");
-                    txtsalesmanaddress.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tparea.ShowAlways = true;
-                    tparea.Show("Please enter salesman address.", txtsalesmanaddress, 5000);
-
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtsalesmanaddress.BackColor = Color.White;
-                    tparea.Hide(txtsalesmanaddress);
-                }
+                
             }
             catch (Exception ex)
             {
@@ -1571,8 +1419,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    txtsalesmanmobile.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1585,8 +1432,7 @@ namespace ROMS
         private void Txtsalesmanaddress_Enter(object sender, EventArgs e)
         {
             try
-            {
-                txtsalesmanaddress.BackColor = Color.LemonChiffon;
+            { 
             }
             catch (Exception ex)
             {
@@ -1600,8 +1446,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    txtsalesmanwhatsapp.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -1615,21 +1460,7 @@ namespace ROMS
         {
             try
             {
-                if (txtsalesmanmobile.Text  == "")
-                {
-
-                    errCompany.SetError(txtsalesmanmobile, "Please enter salesman mobile No.");
-                    txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tparea.ShowAlways = true;
-                    tparea.Show("Please enter salesman mobile No.", txtsalesmanmobile, 5000);
-
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtsalesmanmobile.BackColor = Color.White;
-                    tparea.Hide(txtsalesmanmobile);
-                }
+                
             }
             catch (Exception ex)
             {
@@ -1641,9 +1472,7 @@ namespace ROMS
         private void Txtsalesmanmobile_Enter(object sender, EventArgs e)
         {
             try
-            {
-                txtsalesmanmobile.BackColor = Color.LemonChiffon;
-            }
+            {             }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1655,21 +1484,7 @@ namespace ROMS
         {
             try
             {
-                if (txtsalesmanwhatsapp.Text  == "")
-                {
-
-                    errCompany.SetError(txtsalesmanwhatsapp, "Please enter salesman whatsapp No.");
-                    txtsalesmanwhatsapp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tparea.ShowAlways = true;
-                    tparea.Show("Please enter salesman whatsapp No.", txtsalesmanwhatsapp, 5000);
-
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtsalesmanwhatsapp.BackColor = Color.White;
-                    tparea.Hide(txtsalesmanwhatsapp);
-                }
+                
             }
             catch (Exception ex)
             {
@@ -1697,8 +1512,7 @@ namespace ROMS
         private void Txtsalesmanwhatsapp_Enter(object sender, EventArgs e)
         {
             try
-            {
-                txtsalesmanwhatsapp.BackColor = Color.LemonChiffon;
+            { 
             }
             catch (Exception ex)
             {
@@ -1740,7 +1554,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtsupplybrand.Focus();
+                    //txtsupplybrand.Focus();
                 }
             }
             catch (Exception ex)
@@ -1767,21 +1581,21 @@ namespace ROMS
         {
             try
             {
-                if (txtsupplybrand.Text  == "")
-                {
+                //if (txtsupplybrand.Text  == "")
+                //{
 
-                    errCompany.SetError(txtsupplybrand, "Please enter supply brand");
-                    txtsupplybrand.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tparea.ShowAlways = true;
-                    tparea.Show("Please enter supply brand.", txtsupplybrand, 5000);
+                //    errCompany.SetError(txtsupplybrand, "Please enter supply brand");
+                //    txtsupplybrand.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tparea.ShowAlways = true;
+                //    tparea.Show("Please enter supply brand.", txtsupplybrand, 5000);
 
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtsupplybrand.BackColor = Color.White;
-                    tparea.Hide(txtsupplybrand);
-                }
+                //}
+                //else
+                //{
+                //    errCompany.Clear();
+                //    txtsupplybrand.BackColor = Color.White;
+                //    tparea.Hide(txtsupplybrand);
+                //}
             }
             catch (Exception ex)
             {
@@ -1810,7 +1624,7 @@ namespace ROMS
         {
             try
             {
-                txtsupplybrand.BackColor = Color.LemonChiffon;
+               // txtsupplybrand.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1857,7 +1671,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbpropritor.Focus();
+                  //  rbpropritor.Focus();
                 }
             }
             catch (Exception ex)
@@ -1873,7 +1687,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbmanager.Focus();
+                  //  rbmanager.Focus();
                 }
             }
             catch (Exception ex)
@@ -1888,8 +1702,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    cmbOrderType.Focus();
+                { 
                 }
             }
             catch (Exception ex)
@@ -2087,6 +1900,16 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             
+        }
+
+        private void TxtDPaymentTerm_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbPaymentTerm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

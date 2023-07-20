@@ -78,6 +78,7 @@ namespace ROMS
             this.tsmChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmuserCategory = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSupplierOrder = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,11 +105,11 @@ namespace ROMS
             this.tsmpurchase,
             this.inventoryToolStripMenuItem,
             this.paymentToolStripMenuItem,
-            this.tsmControlPanel,
             this.lblDb,
             this.tsDLogo,
             this.lblTimeValue,
             this.lblTime,
+            this.tsmControlPanel,
             this.tsmMyProfile});
             this.ms.Location = new System.Drawing.Point(0, 0);
             this.ms.Name = "ms";
@@ -263,6 +264,7 @@ namespace ROMS
             this.tsmUser,
             this.tsmuserCategory,
             this.tsmSuppliyer,
+            this.tsmSupplierOrder,
             this.tsmbroker});
             this.tsmMasters.Name = "tsmMasters";
             this.tsmMasters.Size = new System.Drawing.Size(180, 22);
@@ -473,14 +475,14 @@ namespace ROMS
             // tsmChangePassword
             // 
             this.tsmChangePassword.Name = "tsmChangePassword";
-            this.tsmChangePassword.Size = new System.Drawing.Size(161, 22);
+            this.tsmChangePassword.Size = new System.Drawing.Size(180, 22);
             this.tsmChangePassword.Text = "Change Password";
             this.tsmChangePassword.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(161, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
@@ -490,6 +492,13 @@ namespace ROMS
             this.tsmuserCategory.Size = new System.Drawing.Size(180, 22);
             this.tsmuserCategory.Text = "User Category ";
             this.tsmuserCategory.Click += new System.EventHandler(this.TsmuserCategory_Click);
+            // 
+            // tsmSupplierOrder
+            // 
+            this.tsmSupplierOrder.Name = "tsmSupplierOrder";
+            this.tsmSupplierOrder.Size = new System.Drawing.Size(180, 22);
+            this.tsmSupplierOrder.Text = "Supplier Order";
+            this.tsmSupplierOrder.Click += new System.EventHandler(this.TsmSupplierOrder_Click);
             // 
             // MainForm
             // 
@@ -567,5 +576,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem paymentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem supplierPaymentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmuserCategory;
+        private System.Windows.Forms.ToolStripMenuItem tsmSupplierOrder;
     }
 }

@@ -101,9 +101,12 @@ namespace ROMS
         public static INV_StockTransfer objINV_StockTransfer;
         public static INV_StockTransferList objINV_StockTransferList;
         public static CP_UserCatagoryList objCP_UserCatagoryList;
-        public static CP_UserCatagory objCP_UserCatagory;
+        public static CP_UserCatagory objCP_UserCatagory; 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
+        public static CP_SupplierOrderDetailsList objCP_SupplierOrderDetailslist;
+        public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
+
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -950,6 +953,24 @@ namespace ROMS
                 MainForm.objCP_UserCatagoryList = new CP_UserCatagoryList();
                 MainForm.objCP_UserCatagoryList.MdiParent = this;
                 MainForm.objCP_UserCatagoryList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmSupplierOrder_Click(object sender, EventArgs e)
+        {
+            
+                try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_SupplierOrderDetailslist = new CP_SupplierOrderDetailsList();
+                MainForm.objCP_SupplierOrderDetailslist.MdiParent = this;
+                MainForm.objCP_SupplierOrderDetailslist.Show();
             }
             catch (Exception ex)
             {
