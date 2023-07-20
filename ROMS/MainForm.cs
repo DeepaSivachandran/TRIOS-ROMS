@@ -1,4 +1,4 @@
-﻿using System;
+﻿                  using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -36,6 +36,7 @@ namespace ROMS
         public static MainForm objMainForm;
         public static DEF_Start objStart;
         public static CP_ChangePassword objCP_ChangePassword;
+        public static CP_ChangePasswordConfirmation objCP_ChangePasswordConfirmation;
         public static CP_BrandList objCP_BrandList;
         public static CP_Brand objCP_Brand;
         public static CP_Company objCP_Company;
