@@ -100,7 +100,8 @@ namespace ROMS
         public static INV_Inward objINV_Inward;
         public static INV_StockTransfer objINV_StockTransfer;
         public static INV_StockTransferList objINV_StockTransferList;
-
+        public static CP_UserCatagoryList objCP_UserCatagoryList;
+        public static CP_UserCatagory objCP_UserCatagory;
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
 
@@ -932,6 +933,23 @@ namespace ROMS
                 MainForm.objPAY_SupplierPaymentList = new PAY_SupplierPaymentList();
                 MainForm.objPAY_SupplierPaymentList.MdiParent = this;
                 MainForm.objPAY_SupplierPaymentList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmuserCategory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_UserCatagoryList = new CP_UserCatagoryList();
+                MainForm.objCP_UserCatagoryList.MdiParent = this;
+                MainForm.objCP_UserCatagoryList.Show();
             }
             catch (Exception ex)
             {
