@@ -42,16 +42,15 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.grdBrandList = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBrandNameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBrandNameInTamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNoofproducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.pnlbrand = new System.Windows.Forms.Panel();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBrandNameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBrandNameInTamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNoofproducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdBrandList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
@@ -162,7 +161,6 @@
             this.clmsno,
             this.clmBrandNameInEnglish,
             this.clmBrandNameInTamil,
-            this.clmGroup,
             this.clmNoofproducts,
             this.clmStatus});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -189,46 +187,6 @@
             this.grdBrandList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.grdBrandList_Scroll);
             this.grdBrandList.DoubleClick += new System.EventHandler(this.grdBrandList_DoubleClick);
             this.grdBrandList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdBrandList_KeyDown);
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 50;
-            // 
-            // clmBrandNameInEnglish
-            // 
-            this.clmBrandNameInEnglish.HeaderText = "Brand Name In English";
-            this.clmBrandNameInEnglish.Name = "clmBrandNameInEnglish";
-            this.clmBrandNameInEnglish.ReadOnly = true;
-            this.clmBrandNameInEnglish.Width = 200;
-            // 
-            // clmBrandNameInTamil
-            // 
-            this.clmBrandNameInTamil.HeaderText = "Brand Name In Tamil";
-            this.clmBrandNameInTamil.Name = "clmBrandNameInTamil";
-            this.clmBrandNameInTamil.ReadOnly = true;
-            this.clmBrandNameInTamil.Width = 200;
-            // 
-            // clmGroup
-            // 
-            this.clmGroup.HeaderText = "Group";
-            this.clmGroup.Name = "clmGroup";
-            this.clmGroup.ReadOnly = true;
-            this.clmGroup.Width = 200;
-            // 
-            // clmNoofproducts
-            // 
-            this.clmNoofproducts.HeaderText = "No.of Products";
-            this.clmNoofproducts.Name = "clmNoofproducts";
-            this.clmNoofproducts.ReadOnly = true;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
             // 
             // lblNoRecordsFound
             // 
@@ -313,6 +271,39 @@
             this.pnlbrand.Size = new System.Drawing.Size(1354, 641);
             this.pnlbrand.TabIndex = 958797;
             // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
+            // 
+            // clmBrandNameInEnglish
+            // 
+            this.clmBrandNameInEnglish.HeaderText = "Brand Name In English";
+            this.clmBrandNameInEnglish.Name = "clmBrandNameInEnglish";
+            this.clmBrandNameInEnglish.ReadOnly = true;
+            this.clmBrandNameInEnglish.Width = 200;
+            // 
+            // clmBrandNameInTamil
+            // 
+            this.clmBrandNameInTamil.HeaderText = "Brand Name In Tamil";
+            this.clmBrandNameInTamil.Name = "clmBrandNameInTamil";
+            this.clmBrandNameInTamil.ReadOnly = true;
+            this.clmBrandNameInTamil.Width = 200;
+            // 
+            // clmNoofproducts
+            // 
+            this.clmNoofproducts.HeaderText = "Total Products";
+            this.clmNoofproducts.Name = "clmNoofproducts";
+            this.clmNoofproducts.ReadOnly = true;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            // 
             // CP_BrandList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -359,7 +350,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBrandNameInEnglish;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBrandNameInTamil;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmGroup;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNoofproducts;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
     }

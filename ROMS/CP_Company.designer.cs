@@ -96,6 +96,8 @@
             this.txtDContactNumber = new System.Windows.Forms.TextBox();
             this.txtContactNumber = new System.Windows.Forms.TextBox();
             this.errCompany = new System.Windows.Forms.ErrorProvider(this.components);
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtPLNo = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             this.panelStatus.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -626,6 +628,8 @@
             // 
             // grbGovtRegisterationIds
             // 
+            this.grbGovtRegisterationIds.Controls.Add(this.textBox3);
+            this.grbGovtRegisterationIds.Controls.Add(this.txtPLNo);
             this.grbGovtRegisterationIds.Controls.Add(this.textBox13);
             this.grbGovtRegisterationIds.Controls.Add(this.txtFSSAI);
             this.grbGovtRegisterationIds.Controls.Add(this.textBox11);
@@ -639,7 +643,7 @@
             this.grbGovtRegisterationIds.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbGovtRegisterationIds.Location = new System.Drawing.Point(569, 15);
             this.grbGovtRegisterationIds.Name = "grbGovtRegisterationIds";
-            this.grbGovtRegisterationIds.Size = new System.Drawing.Size(278, 183);
+            this.grbGovtRegisterationIds.Size = new System.Drawing.Size(278, 215);
             this.grbGovtRegisterationIds.TabIndex = 16;
             this.grbGovtRegisterationIds.TabStop = false;
             this.grbGovtRegisterationIds.Text = "Government Registeration Ids";
@@ -659,7 +663,7 @@
             // txtFSSAI
             // 
             this.txtFSSAI.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtFSSAI.Location = new System.Drawing.Point(60, 144);
+            this.txtFSSAI.Location = new System.Drawing.Point(62, 144);
             this.txtFSSAI.MaxLength = 100;
             this.txtFSSAI.Name = "txtFSSAI";
             this.txtFSSAI.Size = new System.Drawing.Size(204, 27);
@@ -683,7 +687,7 @@
             // txtPan
             // 
             this.txtPan.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPan.Location = new System.Drawing.Point(60, 63);
+            this.txtPan.Location = new System.Drawing.Point(62, 63);
             this.txtPan.MaxLength = 100;
             this.txtPan.Name = "txtPan";
             this.txtPan.Size = new System.Drawing.Size(204, 27);
@@ -707,7 +711,7 @@
             // txtEPF
             // 
             this.txtEPF.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtEPF.Location = new System.Drawing.Point(60, 117);
+            this.txtEPF.Location = new System.Drawing.Point(62, 117);
             this.txtEPF.MaxLength = 100;
             this.txtEPF.Name = "txtEPF";
             this.txtEPF.Size = new System.Drawing.Size(204, 27);
@@ -731,7 +735,7 @@
             // txtESI
             // 
             this.txtESI.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtESI.Location = new System.Drawing.Point(60, 90);
+            this.txtESI.Location = new System.Drawing.Point(62, 90);
             this.txtESI.MaxLength = 100;
             this.txtESI.Name = "txtESI";
             this.txtESI.Size = new System.Drawing.Size(204, 27);
@@ -755,7 +759,7 @@
             // txtGSTTIN
             // 
             this.txtGSTTIN.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtGSTTIN.Location = new System.Drawing.Point(60, 36);
+            this.txtGSTTIN.Location = new System.Drawing.Point(62, 36);
             this.txtGSTTIN.MaxLength = 100;
             this.txtGSTTIN.Name = "txtGSTTIN";
             this.txtGSTTIN.Size = new System.Drawing.Size(204, 27);
@@ -916,6 +920,27 @@
             // 
             this.errCompany.ContainerControl = this;
             // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox3.Enabled = false;
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox3.Location = new System.Drawing.Point(9, 171);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(53, 27);
+            this.textBox3.TabIndex = 28;
+            this.textBox3.Text = "PL No.";
+            // 
+            // txtPLNo
+            // 
+            this.txtPLNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtPLNo.Location = new System.Drawing.Point(62, 171);
+            this.txtPLNo.MaxLength = 100;
+            this.txtPLNo.Name = "txtPLNo";
+            this.txtPLNo.Size = new System.Drawing.Size(204, 27);
+            this.txtPLNo.TabIndex = 27;
+            // 
             // CP_Company
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1015,5 +1040,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmaccno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmifscode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtPLNo;
     }
 }
