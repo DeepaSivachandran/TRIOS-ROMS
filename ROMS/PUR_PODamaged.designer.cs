@@ -35,11 +35,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PODamaged));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdPurchaseOrderDamaged = new System.Windows.Forms.DataGridView();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnOk = new System.Windows.Forms.Button();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmViewProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
@@ -70,8 +68,8 @@
             this.grdPurchaseOrderDamaged.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPurchaseOrderDamaged.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmsno,
-            this.clmInvoiceNo,
-            this.clmInvoiceDate,
+            this.clmpicode,
+            this.clmproductname,
             this.clmTotalProduct,
             this.clmViewProducts});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -96,35 +94,6 @@
             this.grdPurchaseOrderDamaged.Size = new System.Drawing.Size(540, 348);
             this.grdPurchaseOrderDamaged.TabIndex = 1111144;
             // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(483, 363);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(69, 33);
-            this.btnClose.TabIndex = 10;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            // 
-            // btnOk
-            // 
-            this.btnOk.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOk.Image = global::ROMS.Properties.Resources.approve;
-            this.btnOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOk.Location = new System.Drawing.Point(410, 363);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(69, 33);
-            this.btnOk.TabIndex = 9;
-            this.btnOk.Text = "Ok";
-            this.btnOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOk.UseVisualStyleBackColor = true;
-            // 
             // clmsno
             // 
             this.clmsno.HeaderText = "S.No.";
@@ -132,41 +101,42 @@
             this.clmsno.ReadOnly = true;
             this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmsno.Width = 70;
+            this.clmsno.Width = 50;
             // 
-            // clmInvoiceNo
+            // clmpicode
             // 
-            this.clmInvoiceNo.HeaderText = "Invoice No.";
-            this.clmInvoiceNo.Name = "clmInvoiceNo";
-            this.clmInvoiceNo.ReadOnly = true;
+            this.clmpicode.HeaderText = "P.I Code";
+            this.clmpicode.Name = "clmpicode";
+            this.clmpicode.ReadOnly = true;
             // 
-            // clmInvoiceDate
+            // clmproductname
             // 
-            this.clmInvoiceDate.HeaderText = "Invoice Date";
-            this.clmInvoiceDate.Name = "clmInvoiceDate";
-            this.clmInvoiceDate.ReadOnly = true;
+            this.clmproductname.HeaderText = "Product Name";
+            this.clmproductname.Name = "clmproductname";
+            this.clmproductname.ReadOnly = true;
+            this.clmproductname.Width = 220;
             // 
             // clmTotalProduct
             // 
-            this.clmTotalProduct.HeaderText = "Total Products";
+            this.clmTotalProduct.HeaderText = "Qty";
             this.clmTotalProduct.Name = "clmTotalProduct";
             this.clmTotalProduct.ReadOnly = true;
+            this.clmTotalProduct.Width = 80;
             // 
             // clmViewProducts
             // 
-            this.clmViewProducts.HeaderText = "View Products";
+            this.clmViewProducts.HeaderText = "Unit";
             this.clmViewProducts.Name = "clmViewProducts";
             this.clmViewProducts.ReadOnly = true;
+            this.clmViewProducts.Width = 80;
             // 
             // PUR_PODamaged
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(564, 403);
+            this.ClientSize = new System.Drawing.Size(564, 367);
             this.Controls.Add(this.grdPurchaseOrderDamaged);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.btnOk);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -176,7 +146,7 @@
             this.MinimizeBox = false;
             this.Name = "PUR_PODamaged";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Purchase Order Damaged";
+            this.Text = "Pending Purchase Return(Damage)";
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrderDamaged)).EndInit();
             this.ResumeLayout(false);
@@ -185,12 +155,10 @@
 
         #endregion
         private System.Windows.Forms.ErrorProvider errUnit;
-        private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.DataGridView grdPurchaseOrderDamaged;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmViewProducts;
     }

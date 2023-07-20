@@ -261,8 +261,8 @@ namespace ROMS
             this.tsmRack,
             this.tsmRackGroup,
             this.tsmitem,
-            this.tsmUser,
             this.tsmuserCategory,
+            this.tsmUser,
             this.tsmSuppliyer,
             this.tsmSupplierOrder,
             this.tsmbroker});
@@ -288,7 +288,7 @@ namespace ROMS
             // 
             this.tsmHSN.Name = "tsmHSN";
             this.tsmHSN.Size = new System.Drawing.Size(180, 22);
-            this.tsmHSN.Text = "Product HSN";
+            this.tsmHSN.Text = "HSN Name";
             this.tsmHSN.Click += new System.EventHandler(this.TsmHSN_Click);
             // 
             // tsmGroup

@@ -446,7 +446,7 @@
             // listView1
             // 
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(484, 43);
+            this.listView1.Location = new System.Drawing.Point(466, 51);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(228, 52);
             this.listView1.TabIndex = 1111181;
@@ -456,7 +456,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(484, 15);
+            this.textBox1.Location = new System.Drawing.Point(465, 19);
             this.textBox1.MaxLength = 50;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(165, 27);
@@ -466,16 +466,16 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(436, 18);
+            this.label1.Location = new System.Drawing.Point(371, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 20);
+            this.label1.Size = new System.Drawing.Size(91, 20);
             this.label1.TabIndex = 1111180;
-            this.label1.Text = "Brand";
+            this.label1.Text = "Schedule Name";
             // 
             // lvSupplier
             // 
             this.lvSupplier.HideSelection = false;
-            this.lvSupplier.Location = new System.Drawing.Point(112, 43);
+            this.lvSupplier.Location = new System.Drawing.Point(102, 51);
             this.lvSupplier.Name = "lvSupplier";
             this.lvSupplier.Size = new System.Drawing.Size(375, 52);
             this.lvSupplier.TabIndex = 1111178;
@@ -485,17 +485,17 @@
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplier.Location = new System.Drawing.Point(112, 15);
+            this.txtSupplier.Location = new System.Drawing.Point(102, 19);
             this.txtSupplier.MaxLength = 50;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(287, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(264, 27);
             this.txtSupplier.TabIndex = 1111179;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(18, 18);
+            this.label2.Location = new System.Drawing.Point(8, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 20);
             this.label2.TabIndex = 1111177;
@@ -517,7 +517,7 @@
             this.MinimizeBox = false;
             this.Name = "CP_SupplierOrderDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Supplier Order ";
+            this.Text = "Supplier Order Schedule";
             this.Load += new System.EventHandler(this.CP_SupplierOrderDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             this.gpSupplier.ResumeLayout(false);

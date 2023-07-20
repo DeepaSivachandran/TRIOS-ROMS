@@ -278,5 +278,29 @@ namespace ROMS
 
             }
         }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult result = MessageBox.Show("These are pending purchase returns for this supplier. Do you want to continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                 
+                if (result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+                else
+                {
+
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
     }
 }
