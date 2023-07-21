@@ -105,6 +105,18 @@
     <Compile Include="CP_UserCatagoryList.designer.cs">
       <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_DamageEntryList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_DamageEntryList.designer.cs">
+      <DependentUpon>INV_DamageEntryList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_DamageEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_DamageEntry.designer.cs">
+      <DependentUpon>INV_DamageEntry.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAY_SupplierPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -559,6 +571,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_UserCatagoryList.resx">
       <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_DamageEntryList.resx">
+      <DependentUpon>INV_DamageEntryList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_DamageEntry.resx">
+      <DependentUpon>INV_DamageEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_SupplierPayment.resx">
       <DependentUpon>PAY_SupplierPayment.cs</DependentUpon>
