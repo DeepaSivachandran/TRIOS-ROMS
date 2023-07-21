@@ -87,18 +87,6 @@
     <Compile Include="CP_SupplierOrderDetails.designer.cs">
       <DependentUpon>CP_SupplierOrderDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_UserCatagory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CP_UserCatagory.designer.cs">
-      <DependentUpon>CP_UserCatagory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CP_UserCatagoryList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CP_UserCatagoryList.designer.cs">
-      <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
-    </Compile>
     <Compile Include="PAY_SupplierPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,18 +140,6 @@
     </Compile>
     <Compile Include="CP_SupplierMapping.designer.cs">
       <DependentUpon>CP_SupplierMapping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CP_UserCatagory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CP_UserCatagory.designer.cs">
-      <DependentUpon>CP_UserCatagory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CP_UserCatagoryList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CP_UserCatagoryList.designer.cs">
-      <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
     </Compile>
     <Compile Include="INV_GodownOutward.cs">
       <SubType>Form</SubType>
@@ -557,12 +533,6 @@
     <EmbeddedResource Include="CP_SupplierOrderDetails.resx">
       <DependentUpon>CP_SupplierOrderDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_UserCatagory.resx">
-      <DependentUpon>CP_UserCatagory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CP_UserCatagoryList.resx">
-      <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PAY_SupplierPayment.resx">
       <DependentUpon>PAY_SupplierPayment.cs</DependentUpon>
     </EmbeddedResource>
@@ -589,12 +559,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_SupplierMapping.resx">
       <DependentUpon>CP_SupplierMapping.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CP_UserCatagory.resx">
-      <DependentUpon>CP_UserCatagory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CP_UserCatagoryList.resx">
-      <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_GodownOutward.resx">
       <DependentUpon>INV_GodownOutward.cs</DependentUpon>
