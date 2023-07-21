@@ -22,16 +22,6 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
-            {
-                MainForm.objINV_SalesInvoice = new INV_SalesInvoice();
-                MainForm.objINV_SalesInvoice.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
         {
@@ -374,17 +364,17 @@ namespace ROMS
 
         private void TsbNew_Click_1(object sender, EventArgs e)
         {
-             
+
             try
             {
-                MainForm.objINV_SalesInvoice = new INV_SalesInvoice();
-                MainForm.objINV_SalesInvoice.ShowDialog();
+
+                MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
+                MainForm.objPUR_PurchaseReturns.ShowDialog();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
         }
 

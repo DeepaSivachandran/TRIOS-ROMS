@@ -231,6 +231,12 @@
     <Compile Include="PUR_GRNEntryVerify.designer.cs">
       <DependentUpon>PUR_GRNEntryVerify.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_PurchaseReturns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseReturns.designer.cs">
+      <DependentUpon>PUR_PurchaseReturns.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_PODamaged.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -622,6 +628,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNEntryVerify.resx">
       <DependentUpon>PUR_GRNEntryVerify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseReturns.resx">
+      <DependentUpon>PUR_PurchaseReturns.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PODamaged.resx">
       <DependentUpon>PUR_PODamaged.cs</DependentUpon>

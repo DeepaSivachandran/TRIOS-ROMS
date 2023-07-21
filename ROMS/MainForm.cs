@@ -106,9 +106,9 @@ namespace ROMS
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
         public static CP_SupplierOrderDetailsList objCP_SupplierOrderDetailslist;
-        public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
-
-
+        public static CP_SupplierOrderDetails objCP_SupplierOrderDetails; 
+        public static PUR_PurchaseReturns objPUR_PurchaseReturns;
+        
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 

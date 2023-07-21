@@ -32,12 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_ChangePassword));
             this.errChangePwd = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsDesignationList = new System.Windows.Forms.ToolStrip();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlprofile = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblWelcome = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtDUserRole = new System.Windows.Forms.TextBox();
@@ -56,6 +53,9 @@
             this.btnView = new System.Windows.Forms.Button();
             this.btnUpdatePasskey = new System.Windows.Forms.Button();
             this.txtGenratePasskey = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblWelcome = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errChangePwd)).BeginInit();
             this.tsDesignationList.SuspendLayout();
             this.pnlprofile.SuspendLayout();
@@ -83,57 +83,6 @@
             this.tsDesignationList.TabIndex = 46;
             this.tsDesignationList.Text = "Designation";
             // 
-            // pnlprofile
-            // 
-            this.pnlprofile.BackColor = System.Drawing.Color.White;
-            this.pnlprofile.Controls.Add(this.groupBox2);
-            this.pnlprofile.Location = new System.Drawing.Point(0, 29);
-            this.pnlprofile.Name = "pnlprofile";
-            this.pnlprofile.Size = new System.Drawing.Size(1354, 644);
-            this.pnlprofile.TabIndex = 47;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.lblWelcome);
-            this.groupBox2.Location = new System.Drawing.Point(7, 1);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1339, 633);
-            this.groupBox2.TabIndex = 53;
-            this.groupBox2.TabStop = false;
-            // 
-            // lblWelcome
-            // 
-            this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Font = new System.Drawing.Font("Monotype Corsiva", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(882, 46);
-            this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(73, 22);
-            this.lblWelcome.TabIndex = 58;
-            this.lblWelcome.Text = "Welcome";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Monotype Corsiva", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(956, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 22);
-            this.label1.TabIndex = 59;
-            this.label1.Text = "Deepa";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Monotype Corsiva", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(956, 74);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(152, 22);
-            this.label2.TabIndex = 60;
-            this.label2.Text = "Purchase Incharge";
-            // 
             // tspHeader
             // 
             this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -144,12 +93,33 @@
             this.tspHeader.Size = new System.Drawing.Size(78, 22);
             this.tspHeader.Text = "My Profile";
             // 
+            // pnlprofile
+            // 
+            this.pnlprofile.BackColor = System.Drawing.Color.White;
+            this.pnlprofile.Controls.Add(this.groupBox2);
+            this.pnlprofile.Location = new System.Drawing.Point(0, 29);
+            this.pnlprofile.Name = "pnlprofile";
+            this.pnlprofile.Size = new System.Drawing.Size(1359, 644);
+            this.pnlprofile.TabIndex = 47;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.groupBox3);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.lblWelcome);
+            this.groupBox2.Location = new System.Drawing.Point(10, 1);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1339, 633);
+            this.groupBox2.TabIndex = 53;
+            this.groupBox2.TabStop = false;
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.groupBox1);
             this.groupBox3.Controls.Add(this.gpChangePassword);
             this.groupBox3.Controls.Add(this.gpChangePassKey);
-            this.groupBox3.Location = new System.Drawing.Point(73, 102);
+            this.groupBox3.Location = new System.Drawing.Point(159, 218);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1035, 198);
             this.groupBox3.TabIndex = 61;
@@ -350,9 +320,40 @@
             this.txtGenratePasskey.MaxLength = 6;
             this.txtGenratePasskey.Name = "txtGenratePasskey";
             this.txtGenratePasskey.PasswordChar = '*';
+            this.txtGenratePasskey.ReadOnly = true;
             this.txtGenratePasskey.Size = new System.Drawing.Size(103, 27);
             this.txtGenratePasskey.TabIndex = 0;
             this.txtGenratePasskey.Text = "200203";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Monotype Corsiva", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1042, 193);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(152, 22);
+            this.label2.TabIndex = 60;
+            this.label2.Text = "Purchase Incharge";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Monotype Corsiva", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1042, 165);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 22);
+            this.label1.TabIndex = 59;
+            this.label1.Text = "Deepa";
+            // 
+            // lblWelcome
+            // 
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Font = new System.Drawing.Font("Monotype Corsiva", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.Location = new System.Drawing.Point(968, 165);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(73, 22);
+            this.lblWelcome.TabIndex = 58;
+            this.lblWelcome.Text = "Welcome";
             // 
             // CP_ChangePassword
             // 
