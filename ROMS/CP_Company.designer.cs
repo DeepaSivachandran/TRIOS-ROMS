@@ -117,6 +117,8 @@
             this.txtDAddressLine1 = new System.Windows.Forms.TextBox();
             this.txtDCity = new System.Windows.Forms.TextBox();
             this.txtCity = new System.Windows.Forms.TextBox();
+            this.txtDPlno = new System.Windows.Forms.TextBox();
+            this.txtPlno = new System.Windows.Forms.TextBox();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.grbform.SuspendLayout();
@@ -549,9 +551,9 @@
             this.groupBox2.Controls.Add(this.textBox19);
             this.groupBox2.Controls.Add(this.txtBankname);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(8, 366);
+            this.groupBox2.Location = new System.Drawing.Point(8, 328);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1294, 203);
+            this.groupBox2.Size = new System.Drawing.Size(1294, 238);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bank Details";
@@ -621,7 +623,7 @@
             this.grdSupplierList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdSupplierList.RowTemplate.Height = 25;
             this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSupplierList.Size = new System.Drawing.Size(1277, 128);
+            this.grdSupplierList.Size = new System.Drawing.Size(1277, 162);
             this.grdSupplierList.TabIndex = 1111136;
             // 
             // clmsno
@@ -742,6 +744,8 @@
             // 
             // grbGovtRegisterationIds
             // 
+            this.grbGovtRegisterationIds.Controls.Add(this.txtDPlno);
+            this.grbGovtRegisterationIds.Controls.Add(this.txtPlno);
             this.grbGovtRegisterationIds.Controls.Add(this.textBox13);
             this.grbGovtRegisterationIds.Controls.Add(this.txtFSSAI);
             this.grbGovtRegisterationIds.Controls.Add(this.textBox11);
@@ -753,9 +757,9 @@
             this.grbGovtRegisterationIds.Controls.Add(this.textBox2);
             this.grbGovtRegisterationIds.Controls.Add(this.txtGSTTIN);
             this.grbGovtRegisterationIds.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbGovtRegisterationIds.Location = new System.Drawing.Point(534, 194);
+            this.grbGovtRegisterationIds.Location = new System.Drawing.Point(534, 195);
             this.grbGovtRegisterationIds.Name = "grbGovtRegisterationIds";
-            this.grbGovtRegisterationIds.Size = new System.Drawing.Size(278, 170);
+            this.grbGovtRegisterationIds.Size = new System.Drawing.Size(768, 123);
             this.grbGovtRegisterationIds.TabIndex = 16;
             this.grbGovtRegisterationIds.TabStop = false;
             this.grbGovtRegisterationIds.Text = "Government Registeration Ids";
@@ -765,7 +769,7 @@
             this.textBox13.BackColor = System.Drawing.SystemColors.Control;
             this.textBox13.Enabled = false;
             this.textBox13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox13.Location = new System.Drawing.Point(11, 133);
+            this.textBox13.Location = new System.Drawing.Point(511, 42);
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
             this.textBox13.Size = new System.Drawing.Size(53, 27);
@@ -775,10 +779,10 @@
             // txtFSSAI
             // 
             this.txtFSSAI.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtFSSAI.Location = new System.Drawing.Point(62, 133);
+            this.txtFSSAI.Location = new System.Drawing.Point(564, 42);
             this.txtFSSAI.MaxLength = 100;
             this.txtFSSAI.Name = "txtFSSAI";
-            this.txtFSSAI.Size = new System.Drawing.Size(204, 27);
+            this.txtFSSAI.Size = new System.Drawing.Size(197, 27);
             this.txtFSSAI.TabIndex = 21;
             // 
             // textBox11
@@ -786,7 +790,7 @@
             this.textBox11.BackColor = System.Drawing.SystemColors.Control;
             this.textBox11.Enabled = false;
             this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox11.Location = new System.Drawing.Point(11, 52);
+            this.textBox11.Location = new System.Drawing.Point(11, 69);
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
             this.textBox11.Size = new System.Drawing.Size(53, 27);
@@ -796,10 +800,10 @@
             // txtPan
             // 
             this.txtPan.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPan.Location = new System.Drawing.Point(62, 52);
+            this.txtPan.Location = new System.Drawing.Point(64, 69);
             this.txtPan.MaxLength = 100;
             this.txtPan.Name = "txtPan";
-            this.txtPan.Size = new System.Drawing.Size(204, 27);
+            this.txtPan.Size = new System.Drawing.Size(197, 27);
             this.txtPan.TabIndex = 18;
             // 
             // textBox9
@@ -807,7 +811,7 @@
             this.textBox9.BackColor = System.Drawing.SystemColors.Control;
             this.textBox9.Enabled = false;
             this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox9.Location = new System.Drawing.Point(11, 106);
+            this.textBox9.Location = new System.Drawing.Point(261, 69);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(53, 27);
@@ -817,10 +821,10 @@
             // txtEPF
             // 
             this.txtEPF.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtEPF.Location = new System.Drawing.Point(62, 106);
+            this.txtEPF.Location = new System.Drawing.Point(314, 69);
             this.txtEPF.MaxLength = 100;
             this.txtEPF.Name = "txtEPF";
-            this.txtEPF.Size = new System.Drawing.Size(204, 27);
+            this.txtEPF.Size = new System.Drawing.Size(197, 27);
             this.txtEPF.TabIndex = 20;
             // 
             // textBox7
@@ -828,7 +832,7 @@
             this.textBox7.BackColor = System.Drawing.SystemColors.Control;
             this.textBox7.Enabled = false;
             this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox7.Location = new System.Drawing.Point(11, 79);
+            this.textBox7.Location = new System.Drawing.Point(261, 42);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(53, 27);
@@ -838,10 +842,10 @@
             // txtESI
             // 
             this.txtESI.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtESI.Location = new System.Drawing.Point(62, 79);
+            this.txtESI.Location = new System.Drawing.Point(314, 42);
             this.txtESI.MaxLength = 100;
             this.txtESI.Name = "txtESI";
-            this.txtESI.Size = new System.Drawing.Size(204, 27);
+            this.txtESI.Size = new System.Drawing.Size(197, 27);
             this.txtESI.TabIndex = 19;
             // 
             // textBox2
@@ -849,7 +853,7 @@
             this.textBox2.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox2.Location = new System.Drawing.Point(11, 25);
+            this.textBox2.Location = new System.Drawing.Point(11, 42);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(53, 27);
@@ -859,10 +863,10 @@
             // txtGSTTIN
             // 
             this.txtGSTTIN.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtGSTTIN.Location = new System.Drawing.Point(62, 25);
+            this.txtGSTTIN.Location = new System.Drawing.Point(64, 42);
             this.txtGSTTIN.MaxLength = 100;
             this.txtGSTTIN.Name = "txtGSTTIN";
-            this.txtGSTTIN.Size = new System.Drawing.Size(204, 27);
+            this.txtGSTTIN.Size = new System.Drawing.Size(197, 27);
             this.txtGSTTIN.TabIndex = 16;
             // 
             // txtwebsite
@@ -1115,6 +1119,27 @@
             this.txtCity.Size = new System.Drawing.Size(186, 27);
             this.txtCity.TabIndex = 5;
             // 
+            // txtDPlno
+            // 
+            this.txtDPlno.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDPlno.Enabled = false;
+            this.txtDPlno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDPlno.Location = new System.Drawing.Point(511, 69);
+            this.txtDPlno.Name = "txtDPlno";
+            this.txtDPlno.ReadOnly = true;
+            this.txtDPlno.Size = new System.Drawing.Size(53, 27);
+            this.txtDPlno.TabIndex = 28;
+            this.txtDPlno.Text = "PL No.";
+            // 
+            // txtPlno
+            // 
+            this.txtPlno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtPlno.Location = new System.Drawing.Point(564, 69);
+            this.txtPlno.MaxLength = 100;
+            this.txtPlno.Name = "txtPlno";
+            this.txtPlno.Size = new System.Drawing.Size(197, 27);
+            this.txtPlno.TabIndex = 27;
+            // 
             // CP_Company
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1237,5 +1262,7 @@
         private System.Windows.Forms.TextBox txtDAddressLine1;
         private System.Windows.Forms.TextBox txtDCity;
         private System.Windows.Forms.TextBox txtCity;
+        private System.Windows.Forms.TextBox txtDPlno;
+        private System.Windows.Forms.TextBox txtPlno;
     }
 }
