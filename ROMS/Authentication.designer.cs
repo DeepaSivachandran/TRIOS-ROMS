@@ -199,6 +199,7 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "www.trio-s.com";
             this.linkLabel1.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // Authentication
             // 
