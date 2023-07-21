@@ -141,6 +141,7 @@ namespace ROMS
             this.tsmpurchase.Name = "tsmpurchase";
             this.tsmpurchase.Size = new System.Drawing.Size(63, 21);
             this.tsmpurchase.Text = "Purchase";
+            this.tsmpurchase.Visible = false;
             // 
             // tsmpurchaseSupplier
             // 
@@ -194,6 +195,7 @@ namespace ROMS
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
             this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
             this.inventoryToolStripMenuItem.Text = "Inventory";
+            this.inventoryToolStripMenuItem.Visible = false;
             // 
             // tsminward
             // 
@@ -225,6 +227,7 @@ namespace ROMS
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
             this.paymentToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
             this.paymentToolStripMenuItem.Text = "Payment";
+            this.paymentToolStripMenuItem.Visible = false;
             // 
             // supplierPaymentToolStripMenuItem
             // 
@@ -420,8 +423,8 @@ namespace ROMS
             // tsmSupplierOrder
             // 
             this.tsmSupplierOrder.Name = "tsmSupplierOrder";
-            this.tsmSupplierOrder.Size = new System.Drawing.Size(166, 22);
-            this.tsmSupplierOrder.Text = "Supplier Order";
+            this.tsmSupplierOrder.Size = new System.Drawing.Size(189, 22);
+            this.tsmSupplierOrder.Text = "Supplier Order Schedule";
             this.tsmSupplierOrder.Click += new System.EventHandler(this.TsmSupplierOrder_Click);
             // 
             // tsmbroker
@@ -489,14 +492,14 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
@@ -515,7 +518,7 @@ namespace ROMS
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "GNM ROMS";
+            this.Text = "ROMS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
