@@ -168,7 +168,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    btnUpdate.Focus();
                 }
 
             }
@@ -333,6 +333,40 @@ namespace ROMS
                 tpoldpwd.Active = false;
                 tpnewpwd.Active = false;
                 tpconfirmpwd.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GroupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
+                MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUpdatePasskey_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passward";
+                MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
             }
             catch (Exception ex)
             {
