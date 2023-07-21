@@ -26,5 +26,10 @@ namespace ROMS
             MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
             MainForm.objPUR_GRNDetails.Show();
         }
+
+        private void TsBrandList_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

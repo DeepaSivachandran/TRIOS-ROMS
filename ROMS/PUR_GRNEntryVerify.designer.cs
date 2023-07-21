@@ -70,12 +70,12 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.approve;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(162, 47);
+            this.btnSave.Location = new System.Drawing.Point(155, 47);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(86, 33);
+            this.btnSave.Size = new System.Drawing.Size(93, 33);
             this.btnSave.TabIndex = 9;
-            this.btnSave.Text = "Confirm";
+            this.btnSave.Text = "Authorise";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             // 
@@ -97,7 +97,7 @@
             this.MinimizeBox = false;
             this.Name = "PUR_GRNEntryVerify";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "GRN Entry Verify";
+            this.Text = "Please Enter Passkey To Proceed";
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

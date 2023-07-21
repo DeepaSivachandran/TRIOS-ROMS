@@ -21,17 +21,17 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
-            {
-                MainForm.objCP_UserCatagory = new CP_UserCatagory();
-                MainForm.objCP_UserCatagory.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+            //try
+            //{
+            //    MainForm.objCP_UserCatagory = new CP_UserCatagory();
+            //    MainForm.objCP_UserCatagory.ShowDialog();
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
 
-            }
+            //}
         }
         private void tsbEdit_Click(object sender, EventArgs e)
         {

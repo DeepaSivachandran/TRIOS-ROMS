@@ -37,7 +37,6 @@
             this.grporderby = new System.Windows.Forms.GroupBox();
             this.rbmobile = new System.Windows.Forms.RadioButton();
             this.rbVisit = new System.Windows.Forms.RadioButton();
-            this.lvSupplier = new System.Windows.Forms.ListView();
             this.label3 = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.grddays = new System.Windows.Forms.DataGridView();
@@ -46,6 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.lvSupplier = new System.Windows.Forms.ListView();
             this.errBrand = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbform.SuspendLayout();
             this.grporderby.SuspendLayout();
@@ -65,7 +65,7 @@
             this.grbform.Controls.Add(this.lvSupplier);
             this.grbform.Location = new System.Drawing.Point(13, 2);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(449, 254);
+            this.grbform.Size = new System.Drawing.Size(397, 254);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
             this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
@@ -103,21 +103,11 @@
             this.rbVisit.Text = "Visit";
             this.rbVisit.UseVisualStyleBackColor = true;
             // 
-            // lvSupplier
-            // 
-            this.lvSupplier.HideSelection = false;
-            this.lvSupplier.Location = new System.Drawing.Point(15, 72);
-            this.lvSupplier.Name = "lvSupplier";
-            this.lvSupplier.Size = new System.Drawing.Size(261, 84);
-            this.lvSupplier.TabIndex = 1111144;
-            this.lvSupplier.UseCompatibleStateImageBehavior = false;
-            this.lvSupplier.Visible = false;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(287, 18);
+            this.label3.Location = new System.Drawing.Point(235, 18);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 20);
             this.label3.TabIndex = 1111146;
@@ -164,7 +154,7 @@
             this.grddays.DefaultCellStyle = dataGridViewCellStyle2;
             this.grddays.EnableHeadersVisualStyles = false;
             this.grddays.GridColor = System.Drawing.Color.White;
-            this.grddays.Location = new System.Drawing.Point(287, 42);
+            this.grddays.Location = new System.Drawing.Point(235, 42);
             this.grddays.Name = "grddays";
             this.grddays.ReadOnly = true;
             this.grddays.RowHeadersVisible = false;
@@ -207,7 +197,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(354, 210);
+            this.btnClose.Location = new System.Drawing.Point(302, 210);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 4;
@@ -224,7 +214,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(264, 210);
+            this.btnSave.Location = new System.Drawing.Point(212, 210);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 3;
@@ -236,6 +226,16 @@
             this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
+            // lvSupplier
+            // 
+            this.lvSupplier.HideSelection = false;
+            this.lvSupplier.Location = new System.Drawing.Point(15, 72);
+            this.lvSupplier.Name = "lvSupplier";
+            this.lvSupplier.Size = new System.Drawing.Size(214, 84);
+            this.lvSupplier.TabIndex = 1111144;
+            this.lvSupplier.UseCompatibleStateImageBehavior = false;
+            this.lvSupplier.Visible = false;
+            // 
             // errBrand
             // 
             this.errBrand.ContainerControl = this;
@@ -245,7 +245,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(476, 269);
+            this.ClientSize = new System.Drawing.Size(426, 269);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
