@@ -45,12 +45,12 @@
             this.txtGodownName = new System.Windows.Forms.TextBox();
             this.txtDGodownName = new System.Windows.Forms.TextBox();
             this.grbGodown = new System.Windows.Forms.GroupBox();
+            this.cmbStockApplicable = new System.Windows.Forms.ComboBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.cmbLocationType = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtConcern = new System.Windows.Forms.TextBox();
-            this.cmbStockApplicable = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errGodown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panelStatus.SuspendLayout();
@@ -246,6 +246,31 @@
             this.grbGodown.TabStop = false;
             this.grbGodown.Enter += new System.EventHandler(this.GrbGodown_Enter);
             // 
+            // cmbStockApplicable
+            // 
+            this.cmbStockApplicable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStockApplicable.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStockApplicable.FormattingEnabled = true;
+            this.cmbStockApplicable.Items.AddRange(new object[] {
+            "Yes",
+            "No"});
+            this.cmbStockApplicable.Location = new System.Drawing.Point(196, 132);
+            this.cmbStockApplicable.Name = "cmbStockApplicable";
+            this.cmbStockApplicable.Size = new System.Drawing.Size(288, 27);
+            this.cmbStockApplicable.TabIndex = 52;
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox2.Location = new System.Drawing.Point(15, 132);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(181, 27);
+            this.textBox2.TabIndex = 53;
+            this.textBox2.Text = "Stock Applicable";
+            // 
             // cmbLocationType
             // 
             this.cmbLocationType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -293,31 +318,6 @@
             this.txtConcern.Size = new System.Drawing.Size(181, 27);
             this.txtConcern.TabIndex = 49;
             this.txtConcern.Text = "Concern";
-            // 
-            // cmbStockApplicable
-            // 
-            this.cmbStockApplicable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStockApplicable.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbStockApplicable.FormattingEnabled = true;
-            this.cmbStockApplicable.Items.AddRange(new object[] {
-            "Godown",
-            "Shop"});
-            this.cmbStockApplicable.Location = new System.Drawing.Point(196, 132);
-            this.cmbStockApplicable.Name = "cmbStockApplicable";
-            this.cmbStockApplicable.Size = new System.Drawing.Size(288, 27);
-            this.cmbStockApplicable.TabIndex = 52;
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox2.Location = new System.Drawing.Point(15, 132);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(181, 27);
-            this.textBox2.TabIndex = 53;
-            this.textBox2.Text = "Stock Applicable";
             // 
             // CP_Location
             // 

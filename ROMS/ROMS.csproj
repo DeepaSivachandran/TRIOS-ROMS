@@ -105,6 +105,12 @@
     <Compile Include="CP_UserCatagoryList.designer.cs">
       <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAY_SupplierPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,12 +218,6 @@
     </Compile>
     <Compile Include="INV_StockTransferList.designer.cs">
       <DependentUpon>INV_StockTransferList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_GRNEntryVerify.cs">
       <SubType>Form</SubType>
@@ -560,6 +560,9 @@
     <EmbeddedResource Include="CP_UserCatagoryList.resx">
       <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PAY_SupplierPayment.resx">
       <DependentUpon>PAY_SupplierPayment.cs</DependentUpon>
     </EmbeddedResource>
@@ -613,9 +616,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV_StockTransferList.resx">
       <DependentUpon>INV_StockTransferList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNEntryVerify.resx">
       <DependentUpon>PUR_GRNEntryVerify.cs</DependentUpon>
@@ -927,6 +927,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Launcher.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-eye.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

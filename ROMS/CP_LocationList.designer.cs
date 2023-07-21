@@ -51,6 +51,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGodownName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGodownType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsGodownList.SuspendLayout();
             this.pnlGodownList.SuspendLayout();
@@ -235,6 +236,7 @@
             this.Column3,
             this.clmGodownName,
             this.clmGodownType,
+            this.Column4,
             this.Column2});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -307,6 +309,13 @@
             this.clmGodownType.ReadOnly = true;
             this.clmGodownType.Width = 200;
             // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Stock Applicable";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 120;
+            // 
             // Column2
             // 
             this.Column2.HeaderText = "Status";
@@ -364,6 +373,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGodownName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGodownType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
