@@ -38,6 +38,8 @@
             this.lnklblServerSettings = new System.Windows.Forms.LinkLabel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSignin = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.pblLogin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -113,7 +115,7 @@
             this.pblLogin.Controls.Add(this.lblDUserName);
             this.pblLogin.Controls.Add(this.btnSignin);
             this.pblLogin.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.pblLogin.Location = new System.Drawing.Point(-93, 69);
+            this.pblLogin.Location = new System.Drawing.Point(-93, 104);
             this.pblLogin.Name = "pblLogin";
             this.pblLogin.Size = new System.Drawing.Size(447, 218);
             this.pblLogin.TabIndex = 7;
@@ -170,14 +172,44 @@
             this.btnSignin.UseVisualStyleBackColor = false;
             this.btnSignin.Click += new System.EventHandler(this.btnSignin_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(104, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 21);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "ROMS LOGIN";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.ActiveLinkColor = System.Drawing.Color.Black;
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.linkLabel1.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.ForeColor = System.Drawing.Color.White;
+            this.linkLabel1.LinkColor = System.Drawing.Color.White;
+            this.linkLabel1.Location = new System.Drawing.Point(102, 325);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(82, 17);
+            this.linkLabel1.TabIndex = 9;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "www.trio-s.com";
+            this.linkLabel1.VisitedLinkColor = System.Drawing.Color.Blue;
+            // 
             // Authentication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BackgroundImage = global::ROMS.Properties.Resources.login1;
+            this.BackgroundImage = global::ROMS.Properties.Resources.login__3_;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(700, 350);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pblLogin);
             this.Controls.Add(this.lblDVersion);
             this.DoubleBuffered = true;
@@ -189,7 +221,7 @@
             this.MaximizeBox = false;
             this.Name = "Authentication";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "GNM ROMS";
+            this.Text = "ROMS";
             this.Load += new System.EventHandler(this.Authentication_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Authentication_KeyDown);
             this.pblLogin.ResumeLayout(false);
@@ -210,6 +242,8 @@
         private System.Windows.Forms.Panel pblLogin;
         private System.Windows.Forms.LinkLabel lnklblServerSettings;
         public System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
         // private System.Windows.Forms.Panel panel1;
     }
 }
