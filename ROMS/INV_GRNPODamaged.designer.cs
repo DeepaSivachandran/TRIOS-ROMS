@@ -35,15 +35,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(INV_GRNPODamaged));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdGRNPODamaged = new System.Windows.Forms.DataGridView();
-            this.chkdays = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTotalProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmViewProducts = new System.Windows.Forms.DataGridViewImageColumn();
             this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
+            this.chkdays = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTotalProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmViewProducts = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRNPODamaged)).BeginInit();
             this.SuspendLayout();
@@ -73,8 +73,8 @@
             this.grdGRNPODamaged.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.chkdays,
             this.clmsno,
-            this.clmInvoiceNo,
             this.clmInvoiceDate,
+            this.clmInvoiceNo,
             this.clmTotalProduct,
             this.clmViewProducts});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -99,49 +99,6 @@
             this.grdGRNPODamaged.Size = new System.Drawing.Size(694, 348);
             this.grdGRNPODamaged.TabIndex = 1111144;
             this.grdGRNPODamaged.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNPODamaged_CellContentClick);
-            // 
-            // chkdays
-            // 
-            this.chkdays.HeaderText = "";
-            this.chkdays.Name = "chkdays";
-            this.chkdays.ReadOnly = true;
-            this.chkdays.Width = 40;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmsno.Width = 70;
-            // 
-            // clmInvoiceNo
-            // 
-            this.clmInvoiceNo.HeaderText = "Invoice No.";
-            this.clmInvoiceNo.Name = "clmInvoiceNo";
-            this.clmInvoiceNo.ReadOnly = true;
-            // 
-            // clmInvoiceDate
-            // 
-            this.clmInvoiceDate.HeaderText = "Invoice Date";
-            this.clmInvoiceDate.Name = "clmInvoiceDate";
-            this.clmInvoiceDate.ReadOnly = true;
-            // 
-            // clmTotalProduct
-            // 
-            this.clmTotalProduct.HeaderText = "Total Products";
-            this.clmTotalProduct.Name = "clmTotalProduct";
-            this.clmTotalProduct.ReadOnly = true;
-            // 
-            // clmViewProducts
-            // 
-            this.clmViewProducts.HeaderText = "View Products";
-            this.clmViewProducts.Image = global::ROMS.Properties.Resources.view;
-            this.clmViewProducts.Name = "clmViewProducts";
-            this.clmViewProducts.ReadOnly = true;
-            this.clmViewProducts.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmViewProducts.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // chkSelectAll
             // 
@@ -181,6 +138,49 @@
             this.btnOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOk.UseVisualStyleBackColor = true;
             // 
+            // chkdays
+            // 
+            this.chkdays.HeaderText = "";
+            this.chkdays.Name = "chkdays";
+            this.chkdays.ReadOnly = true;
+            this.chkdays.Width = 40;
+            // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmsno.Width = 70;
+            // 
+            // clmInvoiceDate
+            // 
+            this.clmInvoiceDate.HeaderText = "Invoice Date";
+            this.clmInvoiceDate.Name = "clmInvoiceDate";
+            this.clmInvoiceDate.ReadOnly = true;
+            // 
+            // clmInvoiceNo
+            // 
+            this.clmInvoiceNo.HeaderText = "Invoice No.";
+            this.clmInvoiceNo.Name = "clmInvoiceNo";
+            this.clmInvoiceNo.ReadOnly = true;
+            // 
+            // clmTotalProduct
+            // 
+            this.clmTotalProduct.HeaderText = "Total Products";
+            this.clmTotalProduct.Name = "clmTotalProduct";
+            this.clmTotalProduct.ReadOnly = true;
+            // 
+            // clmViewProducts
+            // 
+            this.clmViewProducts.HeaderText = "View Products";
+            this.clmViewProducts.Image = global::ROMS.Properties.Resources.view;
+            this.clmViewProducts.Name = "clmViewProducts";
+            this.clmViewProducts.ReadOnly = true;
+            this.clmViewProducts.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmViewProducts.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // INV_GRNPODamaged
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -200,7 +200,7 @@
             this.MinimizeBox = false;
             this.Name = "INV_GRNPODamaged";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "GRN PO Damaged";
+            this.Text = "Pending Purchase Returns (Damage)";
             this.Load += new System.EventHandler(this.INV_GRNPODamaged_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRNPODamaged)).EndInit();
@@ -217,8 +217,8 @@
         private System.Windows.Forms.CheckBox chkSelectAll;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkdays;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalProduct;
         private System.Windows.Forms.DataGridViewImageColumn clmViewProducts;
     }
