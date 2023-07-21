@@ -46,5 +46,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void PUR_PurchaseOrderDamage_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

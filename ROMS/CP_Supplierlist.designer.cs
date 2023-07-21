@@ -42,24 +42,8 @@
             this.grbFilterBySupplier = new System.Windows.Forms.GroupBox();
             this.txtDSupplierList = new System.Windows.Forms.TextBox();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdcity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdstate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdgstin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdrepname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdsalename = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmstate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmgstin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmrepname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsalesname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.picLoader = new System.Windows.Forms.PictureBox();
@@ -67,6 +51,18 @@
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmstate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmgstin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdcity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdstate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdgstin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsSupplierList.SuspendLayout();
             this.pnlsupplier.SuspendLayout();
             this.grbFilterBySupplier.SuspendLayout();
@@ -177,8 +173,6 @@
             this.clmdcity,
             this.clmdstate,
             this.clmdgstin,
-            this.clmdrepname,
-            this.clmdsalename,
             this.clmdstatus});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -202,49 +196,6 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
-            // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmdsupname
-            // 
-            this.clmdsupname.HeaderText = "Supplier Name";
-            this.clmdsupname.Name = "clmdsupname";
-            this.clmdsupname.Width = 200;
-            // 
-            // clmdcity
-            // 
-            this.clmdcity.HeaderText = "City";
-            this.clmdcity.Name = "clmdcity";
-            // 
-            // clmdstate
-            // 
-            this.clmdstate.HeaderText = "State";
-            this.clmdstate.Name = "clmdstate";
-            // 
-            // clmdgstin
-            // 
-            this.clmdgstin.HeaderText = "GSTIN";
-            this.clmdgstin.Name = "clmdgstin";
-            // 
-            // clmdrepname
-            // 
-            this.clmdrepname.HeaderText = "Representative Name";
-            this.clmdrepname.Name = "clmdrepname";
-            this.clmdrepname.Width = 200;
-            // 
-            // clmdsalename
-            // 
-            this.clmdsalename.HeaderText = "Salesman Name";
-            this.clmdsalename.Name = "clmdsalename";
-            this.clmdsalename.Width = 200;
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Status";
-            this.clmdstatus.Name = "clmdstatus";
             // 
             // lblNoRecordsFound
             // 
@@ -282,8 +233,6 @@
             this.clmCity,
             this.clmstate,
             this.clmgstin,
-            this.clmrepname,
-            this.clmsalesname,
             this.clmStatus});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -306,57 +255,6 @@
             this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupplierList.Size = new System.Drawing.Size(1348, 510);
             this.grdSupplierList.TabIndex = 958797;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            // 
-            // clmsupname
-            // 
-            this.clmsupname.HeaderText = "Supplier Name";
-            this.clmsupname.Name = "clmsupname";
-            this.clmsupname.ReadOnly = true;
-            this.clmsupname.Width = 200;
-            // 
-            // clmCity
-            // 
-            this.clmCity.HeaderText = "City";
-            this.clmCity.Name = "clmCity";
-            this.clmCity.ReadOnly = true;
-            // 
-            // clmstate
-            // 
-            this.clmstate.HeaderText = "State";
-            this.clmstate.Name = "clmstate";
-            this.clmstate.ReadOnly = true;
-            // 
-            // clmgstin
-            // 
-            this.clmgstin.HeaderText = "GSTIN";
-            this.clmgstin.Name = "clmgstin";
-            this.clmgstin.ReadOnly = true;
-            // 
-            // clmrepname
-            // 
-            this.clmrepname.HeaderText = "Representative Name";
-            this.clmrepname.Name = "clmrepname";
-            this.clmrepname.ReadOnly = true;
-            this.clmrepname.Width = 200;
-            // 
-            // clmsalesname
-            // 
-            this.clmsalesname.HeaderText = "Salesman Name";
-            this.clmsalesname.Name = "clmsalesname";
-            this.clmsalesname.ReadOnly = true;
-            this.clmsalesname.Width = 200;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
             // 
             // btnExport
             // 
@@ -445,6 +343,74 @@
             this.tsbNew.Text = "&New";
             this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            // 
+            // clmsupname
+            // 
+            this.clmsupname.HeaderText = "Supplier Name";
+            this.clmsupname.Name = "clmsupname";
+            this.clmsupname.ReadOnly = true;
+            this.clmsupname.Width = 200;
+            // 
+            // clmCity
+            // 
+            this.clmCity.HeaderText = "City";
+            this.clmCity.Name = "clmCity";
+            this.clmCity.ReadOnly = true;
+            // 
+            // clmstate
+            // 
+            this.clmstate.HeaderText = "State";
+            this.clmstate.Name = "clmstate";
+            this.clmstate.ReadOnly = true;
+            // 
+            // clmgstin
+            // 
+            this.clmgstin.HeaderText = "GSTIN";
+            this.clmgstin.Name = "clmgstin";
+            this.clmgstin.ReadOnly = true;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmdsupname
+            // 
+            this.clmdsupname.HeaderText = "Supplier Name";
+            this.clmdsupname.Name = "clmdsupname";
+            this.clmdsupname.Width = 200;
+            // 
+            // clmdcity
+            // 
+            this.clmdcity.HeaderText = "City";
+            this.clmdcity.Name = "clmdcity";
+            // 
+            // clmdstate
+            // 
+            this.clmdstate.HeaderText = "State";
+            this.clmdstate.Name = "clmdstate";
+            // 
+            // clmdgstin
+            // 
+            this.clmdgstin.HeaderText = "GSTIN";
+            this.clmdgstin.Name = "clmdgstin";
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Status";
+            this.clmdstatus.Name = "clmdstatus";
+            // 
             // CP_Supplierlist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -487,29 +453,25 @@
         public System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.Panel pnlsupplier;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsupname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdcity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdstate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdgstin;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdrepname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsalename;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdSupplierList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmCity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmstate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmgstin;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmrepname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsalesname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.PictureBox picLoader;
         private System.Windows.Forms.GroupBox grbFilterBySupplier;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.TextBox txtDSupplierList;
         private System.Windows.Forms.ListView lvSupplierList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsupname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdcity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdstate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdgstin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmCity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmstate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmgstin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
     }
 }

@@ -17,6 +17,17 @@ namespace ROMS
         public PUR_GRNDetails()
         {
             InitializeComponent();
+            try
+            {
+                MainForm.objPUR_GRNEntryVerify = new PUR_GRNEntryVerify();
+                MainForm.objPUR_GRNEntryVerify.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
         }
 
         private void tsbNew_Click(object sender, EventArgs e)
@@ -268,8 +279,8 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
-                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+                MainForm.objINV_GRNPODamaged = new INV_GRNPODamaged();
+                MainForm.objINV_GRNPODamaged.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -277,6 +288,36 @@ namespace ROMS
                 objError.WriteFile(ex);
 
             }
+        }
+
+        private void TsSupplierMapping_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void BtnNew_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_Product = new PUR_Product();
+                MainForm.objPUR_Product.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void TxtInvoiceamt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GrpSupplierMapping_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -75,14 +75,18 @@ namespace ROMS
         public static CP_RackGroupList objCP_RackGroupList;
         public static INV_SalesInvoiceList objINV_SalesInvoiceList;
         public static INV_SalesInvoice objINV_SalesInvoice;
+        public static INV_GRNPODamaged objINV_GRNPODamaged;
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList; 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
-        public static PUR_PurchaseOrder objPUR_PurchaseOrder; 
+        public static PUR_PurchaseOrder objPUR_PurchaseOrder;
+        public static PUR_PODamaged objPUR_PODamaged;
         public static PUR_SupplierScheduleList objPUR_SupplierScheduleList;
         public static PUR_GRNDetailsList objPUR_GRNDetailsList;
         public static PUR_GRNDetails objPUR_GRNDetails;
         public static PUR_GRNVerify objPUR_GRNVerify;
+        public static PUR_GRNEntryVerify objPUR_GRNEntryVerify;
         public static PUR_GRNOrderType objPUR_GRNOrderType;
+        public static PUR_Product objPUR_Product;
         public static PUR_PurchaseOrderDamage objPUR_PurchaseOrderDamage;
         public static INV_StockRequestList objINV_StockRequestList;
         public static INV_StockRequest objINV_StockRequest;
@@ -97,9 +101,13 @@ namespace ROMS
         public static INV_Inward objINV_Inward;
         public static INV_StockTransfer objINV_StockTransfer;
         public static INV_StockTransferList objINV_StockTransferList;
-
+        public static CP_UserCatagoryList objCP_UserCatagoryList;
+        public static CP_UserCatagory objCP_UserCatagory; 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
+        public static CP_SupplierOrderDetailsList objCP_SupplierOrderDetailslist;
+        public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
+
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -929,6 +937,41 @@ namespace ROMS
                 MainForm.objPAY_SupplierPaymentList = new PAY_SupplierPaymentList();
                 MainForm.objPAY_SupplierPaymentList.MdiParent = this;
                 MainForm.objPAY_SupplierPaymentList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmuserCategory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_UserCatagoryList = new CP_UserCatagoryList();
+                MainForm.objCP_UserCatagoryList.MdiParent = this;
+                MainForm.objCP_UserCatagoryList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmSupplierOrder_Click(object sender, EventArgs e)
+        {
+            
+                try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_SupplierOrderDetailslist = new CP_SupplierOrderDetailsList();
+                MainForm.objCP_SupplierOrderDetailslist.MdiParent = this;
+                MainForm.objCP_SupplierOrderDetailslist.Show();
             }
             catch (Exception ex)
             {
