@@ -24,7 +24,8 @@ namespace ROMS
             try
             {
                 MainForm.objCP_Company = new CP_Company();
-                MainForm.objCP_Company.ShowDialog();
+                MainForm.objCP_Company.MdiParent = ParentForm;
+                MainForm.objCP_Company.Show();
             }
             catch (Exception ex)
             {
