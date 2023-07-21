@@ -102,9 +102,10 @@ namespace ROMS
                     DataGridViewRow row = new DataGridViewRow();
                     row.CreateCells(grdGRNPODamaged);
                     row.Cells[1].Value = sno;
-                    row.Cells[2].Value = invoiceno;
-                    row.Cells[3].Value = invoicedate;
-                    row.Cells[4].Value = totalproduct; 
+                    row.Cells[3].Value = invoiceno;
+                    row.Cells[2].Value = invoicedate;
+                    row.Cells[4].Value = "Damage";
+                    row.Cells[5].Value = totalproduct; 
                     grdGRNPODamaged.Rows.Add(row);
                 }
             }

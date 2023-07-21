@@ -42,6 +42,7 @@
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmViewProducts = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
@@ -75,6 +76,7 @@
             this.clmsno,
             this.clmInvoiceDate,
             this.clmInvoiceNo,
+            this.Column1,
             this.clmTotalProduct,
             this.clmViewProducts});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -96,7 +98,7 @@
             this.grdGRNPODamaged.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdGRNPODamaged.RowTemplate.Height = 25;
             this.grdGRNPODamaged.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdGRNPODamaged.Size = new System.Drawing.Size(694, 348);
+            this.grdGRNPODamaged.Size = new System.Drawing.Size(736, 348);
             this.grdGRNPODamaged.TabIndex = 1111144;
             this.grdGRNPODamaged.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNPODamaged_CellContentClick);
             // 
@@ -156,15 +158,22 @@
             // 
             // clmInvoiceDate
             // 
-            this.clmInvoiceDate.HeaderText = "Invoice Date";
+            this.clmInvoiceDate.HeaderText = "DL Date";
             this.clmInvoiceDate.Name = "clmInvoiceDate";
             this.clmInvoiceDate.ReadOnly = true;
             // 
             // clmInvoiceNo
             // 
-            this.clmInvoiceNo.HeaderText = "Invoice No.";
+            this.clmInvoiceNo.HeaderText = "DL No.";
             this.clmInvoiceNo.Name = "clmInvoiceNo";
             this.clmInvoiceNo.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Type ( Damage / Excess)";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 200;
             // 
             // clmTotalProduct
             // 
@@ -174,7 +183,7 @@
             // 
             // clmViewProducts
             // 
-            this.clmViewProducts.HeaderText = "View Products";
+            this.clmViewProducts.HeaderText = "View";
             this.clmViewProducts.Image = global::ROMS.Properties.Resources.view;
             this.clmViewProducts.Name = "clmViewProducts";
             this.clmViewProducts.ReadOnly = true;
@@ -186,7 +195,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(718, 403);
+            this.ClientSize = new System.Drawing.Size(757, 403);
             this.Controls.Add(this.chkSelectAll);
             this.Controls.Add(this.grdGRNPODamaged);
             this.Controls.Add(this.btnClose);
@@ -200,7 +209,7 @@
             this.MinimizeBox = false;
             this.Name = "INV_GRNPODamaged";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Pending Purchase Returns (Damage)";
+            this.Text = "Pending Purchase Returns";
             this.Load += new System.EventHandler(this.INV_GRNPODamaged_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRNPODamaged)).EndInit();
@@ -219,6 +228,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalProduct;
         private System.Windows.Forms.DataGridViewImageColumn clmViewProducts;
     }

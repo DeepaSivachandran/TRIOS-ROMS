@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
@@ -46,8 +46,8 @@
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.btnView = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmOrdertype = new System.Windows.Forms.ComboBox();
@@ -56,6 +56,18 @@
             this.dpFromDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdgrndate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdGrnno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdsupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdinvoicedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdinvoice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdinvoiceamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdordertype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AnyPurchaseReturns = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Createby = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdPurchaseApproval = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,18 +81,6 @@
             this.clmAnyPurchaseReturns = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCreatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCreatedOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdgrndate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdGrnno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdsupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdinvoicedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdinvoice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdinvoiceamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdordertype = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AnyPurchaseReturns = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Createby = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreatedOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -175,9 +175,9 @@
             this.pnlpurchaseapproval.Controls.Add(this.grpfilter);
             this.pnlpurchaseapproval.Controls.Add(this.DGV_SearchGrid);
             this.pnlpurchaseapproval.Controls.Add(this.grdPurchaseApproval);
-            this.pnlpurchaseapproval.Location = new System.Drawing.Point(0, 40);
+            this.pnlpurchaseapproval.Location = new System.Drawing.Point(0, 31);
             this.pnlpurchaseapproval.Name = "pnlpurchaseapproval";
-            this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 637);
+            this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 641);
             this.pnlpurchaseapproval.TabIndex = 958789;
             // 
             // lvSupplier
@@ -237,6 +237,15 @@
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             // 
+            // txtSupplier
+            // 
+            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplier.Location = new System.Drawing.Point(704, 24);
+            this.txtSupplier.MaxLength = 50;
+            this.txtSupplier.Name = "txtSupplier";
+            this.txtSupplier.Size = new System.Drawing.Size(309, 27);
+            this.txtSupplier.TabIndex = 1111147;
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -246,15 +255,6 @@
             this.label10.Size = new System.Drawing.Size(54, 20);
             this.label10.TabIndex = 1111166;
             this.label10.Text = "Concern";
-            // 
-            // txtSupplier
-            // 
-            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplier.Location = new System.Drawing.Point(704, 24);
-            this.txtSupplier.MaxLength = 50;
-            this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(309, 27);
-            this.txtSupplier.TabIndex = 1111147;
             // 
             // label4
             // 
@@ -330,14 +330,14 @@
             this.DGV_SearchGrid.AllowUserToResizeRows = false;
             this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -353,29 +353,101 @@
             this.AnyPurchaseReturns,
             this.Createby,
             this.CreatedOn});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.Location = new System.Drawing.Point(13, 69);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1329, 56);
             this.DGV_SearchGrid.TabIndex = 958798;
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.MinimumWidth = 6;
+            this.clmdsno.Name = "clmdsno";
+            this.clmdsno.Width = 75;
+            // 
+            // clmdconcern
+            // 
+            this.clmdconcern.HeaderText = "Concern";
+            this.clmdconcern.Name = "clmdconcern";
+            this.clmdconcern.ReadOnly = true;
+            // 
+            // clmdgrndate
+            // 
+            this.clmdgrndate.HeaderText = "GRN Date";
+            this.clmdgrndate.MinimumWidth = 6;
+            this.clmdgrndate.Name = "clmdgrndate";
+            // 
+            // clmdGrnno
+            // 
+            this.clmdGrnno.HeaderText = "GRN No.";
+            this.clmdGrnno.MinimumWidth = 6;
+            this.clmdGrnno.Name = "clmdGrnno";
+            // 
+            // clmdsupplier
+            // 
+            this.clmdsupplier.HeaderText = "Supplier Name";
+            this.clmdsupplier.Name = "clmdsupplier";
+            this.clmdsupplier.ReadOnly = true;
+            this.clmdsupplier.Width = 200;
+            // 
+            // clmdinvoicedate
+            // 
+            this.clmdinvoicedate.HeaderText = "Invoice Date";
+            this.clmdinvoicedate.Name = "clmdinvoicedate";
+            this.clmdinvoicedate.ReadOnly = true;
+            // 
+            // clmdinvoice
+            // 
+            this.clmdinvoice.HeaderText = "Invoice No.";
+            this.clmdinvoice.Name = "clmdinvoice";
+            this.clmdinvoice.ReadOnly = true;
+            // 
+            // clmdinvoiceamt
+            // 
+            this.clmdinvoiceamt.HeaderText = "Invoice Amount";
+            this.clmdinvoiceamt.Name = "clmdinvoiceamt";
+            this.clmdinvoiceamt.ReadOnly = true;
+            // 
+            // clmdordertype
+            // 
+            this.clmdordertype.HeaderText = "Order Type";
+            this.clmdordertype.Name = "clmdordertype";
+            this.clmdordertype.ReadOnly = true;
+            // 
+            // AnyPurchaseReturns
+            // 
+            this.AnyPurchaseReturns.HeaderText = "Any Purchase Returns";
+            this.AnyPurchaseReturns.Name = "AnyPurchaseReturns";
+            this.AnyPurchaseReturns.Width = 150;
+            // 
+            // Createby
+            // 
+            this.Createby.HeaderText = "Created By";
+            this.Createby.Name = "Createby";
+            // 
+            // CreatedOn
+            // 
+            this.CreatedOn.HeaderText = "Created On";
+            this.CreatedOn.Name = "CreatedOn";
             // 
             // grdPurchaseApproval
             // 
@@ -385,14 +457,14 @@
             this.grdPurchaseApproval.AllowUserToResizeRows = false;
             this.grdPurchaseApproval.BackgroundColor = System.Drawing.Color.White;
             this.grdPurchaseApproval.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPurchaseApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdPurchaseApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdPurchaseApproval.ColumnHeadersHeight = 30;
             this.grdPurchaseApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPurchaseApproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -408,14 +480,14 @@
             this.clmAnyPurchaseReturns,
             this.clmCreatedBy,
             this.clmCreatedOn});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdPurchaseApproval.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdPurchaseApproval.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdPurchaseApproval.EnableHeadersVisualStyles = false;
             this.grdPurchaseApproval.GridColor = System.Drawing.Color.White;
             this.grdPurchaseApproval.Location = new System.Drawing.Point(13, 125);
@@ -423,12 +495,12 @@
             this.grdPurchaseApproval.ReadOnly = true;
             this.grdPurchaseApproval.RowHeadersVisible = false;
             this.grdPurchaseApproval.RowHeadersWidth = 100;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
-            this.grdPurchaseApproval.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdPurchaseApproval.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdPurchaseApproval.RowTemplate.Height = 25;
             this.grdPurchaseApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseApproval.Size = new System.Drawing.Size(1329, 498);
+            this.grdPurchaseApproval.Size = new System.Drawing.Size(1330, 506);
             this.grdPurchaseApproval.TabIndex = 958797;
             // 
             // clmsno
@@ -508,78 +580,6 @@
             this.clmCreatedOn.HeaderText = "Created On";
             this.clmCreatedOn.Name = "clmCreatedOn";
             this.clmCreatedOn.ReadOnly = true;
-            // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.MinimumWidth = 6;
-            this.clmdsno.Name = "clmdsno";
-            this.clmdsno.Width = 75;
-            // 
-            // clmdconcern
-            // 
-            this.clmdconcern.HeaderText = "Concern";
-            this.clmdconcern.Name = "clmdconcern";
-            this.clmdconcern.ReadOnly = true;
-            // 
-            // clmdgrndate
-            // 
-            this.clmdgrndate.HeaderText = "GRN Date";
-            this.clmdgrndate.MinimumWidth = 6;
-            this.clmdgrndate.Name = "clmdgrndate";
-            // 
-            // clmdGrnno
-            // 
-            this.clmdGrnno.HeaderText = "GRN No.";
-            this.clmdGrnno.MinimumWidth = 6;
-            this.clmdGrnno.Name = "clmdGrnno";
-            // 
-            // clmdsupplier
-            // 
-            this.clmdsupplier.HeaderText = "Supplier Name";
-            this.clmdsupplier.Name = "clmdsupplier";
-            this.clmdsupplier.ReadOnly = true;
-            this.clmdsupplier.Width = 200;
-            // 
-            // clmdinvoicedate
-            // 
-            this.clmdinvoicedate.HeaderText = "Invoice Date";
-            this.clmdinvoicedate.Name = "clmdinvoicedate";
-            this.clmdinvoicedate.ReadOnly = true;
-            // 
-            // clmdinvoice
-            // 
-            this.clmdinvoice.HeaderText = "Invoice No.";
-            this.clmdinvoice.Name = "clmdinvoice";
-            this.clmdinvoice.ReadOnly = true;
-            // 
-            // clmdinvoiceamt
-            // 
-            this.clmdinvoiceamt.HeaderText = "Invoice Amount";
-            this.clmdinvoiceamt.Name = "clmdinvoiceamt";
-            this.clmdinvoiceamt.ReadOnly = true;
-            // 
-            // clmdordertype
-            // 
-            this.clmdordertype.HeaderText = "Order Type";
-            this.clmdordertype.Name = "clmdordertype";
-            this.clmdordertype.ReadOnly = true;
-            // 
-            // AnyPurchaseReturns
-            // 
-            this.AnyPurchaseReturns.HeaderText = "Any Purchase Returns";
-            this.AnyPurchaseReturns.Name = "AnyPurchaseReturns";
-            this.AnyPurchaseReturns.Width = 150;
-            // 
-            // Createby
-            // 
-            this.Createby.HeaderText = "Created By";
-            this.Createby.Name = "Createby";
-            // 
-            // CreatedOn
-            // 
-            this.CreatedOn.HeaderText = "Created On";
-            this.CreatedOn.Name = "CreatedOn";
             // 
             // PUR_GRNDetailsList
             // 
