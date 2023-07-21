@@ -23,8 +23,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_Brand = new CP_Brand();
-                MainForm.objCP_Brand.ShowDialog();
+                MainForm.objCP_Brand = new CP_Brand(); 
+                MainForm.objCP_Brand.MdiParent = ParentForm;
+                MainForm.objCP_Brand.Show();
             }
             catch (Exception ex)
             {
@@ -115,10 +116,10 @@ namespace ROMS
 
                 if (grdBrandList.SelectedRows.Count > 0)
                 {
-                    MainForm.objCP_Brand = new CP_Brand();
-                    //MainForm.objCP_Brand.MdiParent = this.ParentForm;
-                    MainForm.objCP_Brand.varbrandcode = grdBrandList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
-                    MainForm.objCP_Brand.ShowDialog();
+                    //MainForm.objCP_Brand = new CP_Brand();
+                    ////MainForm.objCP_Brand.MdiParent = this.ParentForm;
+                    //MainForm.objCP_Brand.varbrandcode = grdBrandList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
+                    //MainForm.objCP_Brand.ShowDialog();
                 }
 
             }
