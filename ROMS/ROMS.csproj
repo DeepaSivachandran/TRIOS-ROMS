@@ -75,6 +75,12 @@
     <Compile Include="CP_ChangePasswordConfirmation.designer.cs">
       <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Company.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Company.designer.cs">
+      <DependentUpon>CP_Company.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAY_SupplierPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -369,11 +375,11 @@
     <Compile Include="CP_Supplier.designer.cs">
       <DependentUpon>CP_Supplier.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_Company.cs">
+    <Compile Include="CP_Company1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_Company.designer.cs">
-      <DependentUpon>CP_Company.cs</DependentUpon>
+    <Compile Include="CP_Company1.designer.cs">
+      <DependentUpon>CP_Company1.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_SupplierMappinglist.cs">
       <SubType>Form</SubType>
@@ -496,6 +502,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_ChangePasswordConfirmation.resx">
       <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Company.resx">
+      <DependentUpon>CP_Company.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_SupplierPayment.resx">
       <DependentUpon>PAY_SupplierPayment.cs</DependentUpon>
@@ -644,8 +653,8 @@
     <EmbeddedResource Include="CP_Supplier.resx">
       <DependentUpon>CP_Supplier.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_Company.resx">
-      <DependentUpon>CP_Company.cs</DependentUpon>
+    <EmbeddedResource Include="CP_Company1.resx">
+      <DependentUpon>CP_Company1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_SupplierMappinglist.resx">
       <DependentUpon>CP_SupplierMappinglist.cs</DependentUpon>
