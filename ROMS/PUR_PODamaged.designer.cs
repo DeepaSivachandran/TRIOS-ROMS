@@ -39,6 +39,7 @@
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmViewProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrderDamaged)).BeginInit();
@@ -71,6 +72,7 @@
             this.clmpicode,
             this.clmproductname,
             this.clmTotalProduct,
+            this.Column1,
             this.clmViewProducts});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -91,7 +93,7 @@
             this.grdPurchaseOrderDamaged.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdPurchaseOrderDamaged.RowTemplate.Height = 25;
             this.grdPurchaseOrderDamaged.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseOrderDamaged.Size = new System.Drawing.Size(540, 348);
+            this.grdPurchaseOrderDamaged.Size = new System.Drawing.Size(727, 348);
             this.grdPurchaseOrderDamaged.TabIndex = 1111144;
             // 
             // clmsno
@@ -123,6 +125,13 @@
             this.clmTotalProduct.ReadOnly = true;
             this.clmTotalProduct.Width = 80;
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Type ( Excess / Damage )";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 150;
+            // 
             // clmViewProducts
             // 
             this.clmViewProducts.HeaderText = "Unit";
@@ -135,7 +144,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(564, 367);
+            this.ClientSize = new System.Drawing.Size(749, 367);
             this.Controls.Add(this.grdPurchaseOrderDamaged);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -146,7 +155,7 @@
             this.MinimizeBox = false;
             this.Name = "PUR_PODamaged";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Pending Purchase Returns (Damage)";
+            this.Text = "Pending Purchase Returns";
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrderDamaged)).EndInit();
             this.ResumeLayout(false);
@@ -160,6 +169,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalProduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmViewProducts;
     }
 }

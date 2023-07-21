@@ -107,9 +107,10 @@
             // 
             // clmoutward
             // 
-            this.clmoutward.HeaderText = "Outward No.";
+            this.clmoutward.HeaderText = "Entry No.";
             this.clmoutward.Name = "clmoutward";
             this.clmoutward.ReadOnly = true;
+            this.clmoutward.Width = 120;
             // 
             // clmpicode
             // 

@@ -32,12 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_ChangePassword));
             this.errChangePwd = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsDesignationList = new System.Windows.Forms.ToolStrip();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlprofile = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblWelcome = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtDUserRole = new System.Windows.Forms.TextBox();
@@ -56,6 +53,9 @@
             this.btnView = new System.Windows.Forms.Button();
             this.btnUpdatePasskey = new System.Windows.Forms.Button();
             this.txtGenratePasskey = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblWelcome = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errChangePwd)).BeginInit();
             this.tsDesignationList.SuspendLayout();
             this.pnlprofile.SuspendLayout();
@@ -83,6 +83,16 @@
             this.tsDesignationList.TabIndex = 46;
             this.tsDesignationList.Text = "Designation";
             // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(78, 22);
+            this.tspHeader.Text = "My Profile";
+            // 
             // pnlprofile
             // 
             this.pnlprofile.BackColor = System.Drawing.Color.White;
@@ -103,46 +113,6 @@
             this.groupBox2.Size = new System.Drawing.Size(1339, 633);
             this.groupBox2.TabIndex = 53;
             this.groupBox2.TabStop = false;
-            // 
-            // lblWelcome
-            // 
-            this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Font = new System.Drawing.Font("Monotype Corsiva", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(882, 46);
-            this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(73, 22);
-            this.lblWelcome.TabIndex = 58;
-            this.lblWelcome.Text = "Welcome";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Monotype Corsiva", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(956, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 22);
-            this.label1.TabIndex = 59;
-            this.label1.Text = "Deepa";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Monotype Corsiva", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(956, 74);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(152, 22);
-            this.label2.TabIndex = 60;
-            this.label2.Text = "Purchase Incharge";
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(78, 22);
-            this.tspHeader.Text = "My Profile";
             // 
             // groupBox3
             // 
@@ -350,9 +320,40 @@
             this.txtGenratePasskey.MaxLength = 6;
             this.txtGenratePasskey.Name = "txtGenratePasskey";
             this.txtGenratePasskey.PasswordChar = '*';
+            this.txtGenratePasskey.ReadOnly = true;
             this.txtGenratePasskey.Size = new System.Drawing.Size(103, 27);
             this.txtGenratePasskey.TabIndex = 0;
             this.txtGenratePasskey.Text = "200203";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Monotype Corsiva", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(956, 74);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(152, 22);
+            this.label2.TabIndex = 60;
+            this.label2.Text = "Purchase Incharge";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Monotype Corsiva", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(956, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 22);
+            this.label1.TabIndex = 59;
+            this.label1.Text = "Deepa";
+            // 
+            // lblWelcome
+            // 
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Font = new System.Drawing.Font("Monotype Corsiva", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.Location = new System.Drawing.Point(882, 46);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(73, 22);
+            this.lblWelcome.TabIndex = 58;
+            this.lblWelcome.Text = "Welcome";
             // 
             // CP_ChangePassword
             // 
