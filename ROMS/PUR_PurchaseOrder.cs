@@ -283,7 +283,7 @@ namespace ROMS
         {
             try
             {
-                DialogResult result = MessageBox.Show("These are pending purchase returns for this supplier. Do you want to continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("These are pending purchase returns for this supplier. Do you want to save & continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                  
                 if (result == DialogResult.Yes)
                 {

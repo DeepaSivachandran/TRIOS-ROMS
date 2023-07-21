@@ -146,7 +146,7 @@
             this.MinimizeBox = false;
             this.Name = "PUR_PODamaged";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Pending Purchase Return(Damage)";
+            this.Text = "Pending Purchase Returns (Damage)";
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrderDamaged)).EndInit();
             this.ResumeLayout(false);

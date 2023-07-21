@@ -49,6 +49,10 @@ namespace ROMS
             this.tsmStockTransfer = new System.Windows.Forms.ToolStripMenuItem();
             this.paymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierPaymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblDb = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsDLogo = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblTimeValue = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblTime = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmControlPanel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.stateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,23 +66,19 @@ namespace ROMS
             this.tsmRack = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRackGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmitem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmuserCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUser = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSuppliyer = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSupplierOrder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmbroker = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmsupplierMapping = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmrackSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmbatchno = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmgenralSettings = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblDb = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsDLogo = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblTimeValue = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblTime = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmChangePassword = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmuserCategory = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSupplierOrder = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -233,6 +233,55 @@ namespace ROMS
             this.supplierPaymentToolStripMenuItem.Text = "Supplier Payment";
             this.supplierPaymentToolStripMenuItem.Click += new System.EventHandler(this.SupplierPaymentToolStripMenuItem_Click);
             // 
+            // lblDb
+            // 
+            this.lblDb.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.lblDb.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDb.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.lblDb.Name = "lblDb";
+            this.lblDb.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblDb.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
+            this.lblDb.ShowShortcutKeys = false;
+            this.lblDb.Size = new System.Drawing.Size(12, 21);
+            this.lblDb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblDb.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // tsDLogo
+            // 
+            this.tsDLogo.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsDLogo.BackColor = System.Drawing.Color.Transparent;
+            this.tsDLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.tsDLogo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsDLogo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsDLogo.Name = "tsDLogo";
+            this.tsDLogo.Size = new System.Drawing.Size(12, 21);
+            this.tsDLogo.Text = "Logo";
+            // 
+            // lblTimeValue
+            // 
+            this.lblTimeValue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.lblTimeValue.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimeValue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.lblTimeValue.Name = "lblTimeValue";
+            this.lblTimeValue.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
+            this.lblTimeValue.ShowShortcutKeys = false;
+            this.lblTimeValue.Size = new System.Drawing.Size(12, 21);
+            this.lblTimeValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTimeValue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // lblTime
+            // 
+            this.lblTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.lblTime.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.lblTime.Name = "lblTime";
+            this.lblTime.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblTime.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
+            this.lblTime.ShowShortcutKeys = false;
+            this.lblTime.Size = new System.Drawing.Size(12, 21);
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTime.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
             // tsmControlPanel
             // 
             this.tsmControlPanel.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -347,6 +396,13 @@ namespace ROMS
             this.tsmitem.Text = "Product";
             this.tsmitem.Click += new System.EventHandler(this.Tsmitem_Click);
             // 
+            // tsmuserCategory
+            // 
+            this.tsmuserCategory.Name = "tsmuserCategory";
+            this.tsmuserCategory.Size = new System.Drawing.Size(180, 22);
+            this.tsmuserCategory.Text = "User Category ";
+            this.tsmuserCategory.Click += new System.EventHandler(this.TsmuserCategory_Click);
+            // 
             // tsmUser
             // 
             this.tsmUser.Name = "tsmUser";
@@ -360,6 +416,13 @@ namespace ROMS
             this.tsmSuppliyer.Size = new System.Drawing.Size(180, 22);
             this.tsmSuppliyer.Text = "Supplier";
             this.tsmSuppliyer.Click += new System.EventHandler(this.TsmSuppliyer_Click);
+            // 
+            // tsmSupplierOrder
+            // 
+            this.tsmSupplierOrder.Name = "tsmSupplierOrder";
+            this.tsmSupplierOrder.Size = new System.Drawing.Size(180, 22);
+            this.tsmSupplierOrder.Text = "Supplier Order";
+            this.tsmSupplierOrder.Click += new System.EventHandler(this.TsmSupplierOrder_Click);
             // 
             // tsmbroker
             // 
@@ -408,59 +471,10 @@ namespace ROMS
             this.tsmgenralSettings.Text = "Voucher Settings";
             this.tsmgenralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
             // 
-            // lblDb
-            // 
-            this.lblDb.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.lblDb.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDb.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.lblDb.Name = "lblDb";
-            this.lblDb.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblDb.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
-            this.lblDb.ShowShortcutKeys = false;
-            this.lblDb.Size = new System.Drawing.Size(12, 21);
-            this.lblDb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblDb.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // tsDLogo
-            // 
-            this.tsDLogo.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsDLogo.BackColor = System.Drawing.Color.Transparent;
-            this.tsDLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.tsDLogo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsDLogo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsDLogo.Name = "tsDLogo";
-            this.tsDLogo.Size = new System.Drawing.Size(12, 21);
-            this.tsDLogo.Text = "Logo";
-            // 
-            // lblTimeValue
-            // 
-            this.lblTimeValue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.lblTimeValue.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimeValue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.lblTimeValue.Name = "lblTimeValue";
-            this.lblTimeValue.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
-            this.lblTimeValue.ShowShortcutKeys = false;
-            this.lblTimeValue.Size = new System.Drawing.Size(12, 21);
-            this.lblTimeValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblTimeValue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // lblTime
-            // 
-            this.lblTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.lblTime.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.lblTime.Name = "lblTime";
-            this.lblTime.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblTime.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
-            this.lblTime.ShowShortcutKeys = false;
-            this.lblTime.Size = new System.Drawing.Size(12, 21);
-            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblTime.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
             // tsmMyProfile
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmChangePassword,
+            this.tsmProfile,
             this.tsmLogout});
             this.tsmMyProfile.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmMyProfile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -472,12 +486,12 @@ namespace ROMS
             this.tsmMyProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsmMyProfile.Click += new System.EventHandler(this.tsbLogout_Click);
             // 
-            // tsmChangePassword
+            // tsmProfile
             // 
-            this.tsmChangePassword.Name = "tsmChangePassword";
-            this.tsmChangePassword.Size = new System.Drawing.Size(180, 22);
-            this.tsmChangePassword.Text = "Change Password";
-            this.tsmChangePassword.Click += new System.EventHandler(this.tsmChangePassword_Click);
+            this.tsmProfile.Name = "tsmProfile";
+            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
+            this.tsmProfile.Text = "Profile";
+            this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
@@ -485,20 +499,6 @@ namespace ROMS
             this.tsmLogout.Size = new System.Drawing.Size(180, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
-            // 
-            // tsmuserCategory
-            // 
-            this.tsmuserCategory.Name = "tsmuserCategory";
-            this.tsmuserCategory.Size = new System.Drawing.Size(180, 22);
-            this.tsmuserCategory.Text = "User Category ";
-            this.tsmuserCategory.Click += new System.EventHandler(this.TsmuserCategory_Click);
-            // 
-            // tsmSupplierOrder
-            // 
-            this.tsmSupplierOrder.Name = "tsmSupplierOrder";
-            this.tsmSupplierOrder.Size = new System.Drawing.Size(180, 22);
-            this.tsmSupplierOrder.Text = "Supplier Order";
-            this.tsmSupplierOrder.Click += new System.EventHandler(this.TsmSupplierOrder_Click);
             // 
             // MainForm
             // 
@@ -542,7 +542,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmBrand;
         private System.Windows.Forms.ToolStripMenuItem tsmLocation;
         private System.Windows.Forms.ToolStripMenuItem tsmGroup;
-        private System.Windows.Forms.ToolStripMenuItem tsmChangePassword;
+        private System.Windows.Forms.ToolStripMenuItem tsmProfile;
         private System.Windows.Forms.ToolStripMenuItem tsmLogout;
         private System.Windows.Forms.ToolStripMenuItem lblTime;
         private System.Windows.Forms.ToolStripMenuItem lblTimeValue;

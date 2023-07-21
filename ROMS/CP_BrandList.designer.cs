@@ -49,6 +49,7 @@
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBrandNameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBrandNameInTamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmtotsubgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNoofproducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
@@ -161,6 +162,7 @@
             this.clmsno,
             this.clmBrandNameInEnglish,
             this.clmBrandNameInTamil,
+            this.clmtotsubgroup,
             this.clmNoofproducts,
             this.clmStatus});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -292,6 +294,13 @@
             this.clmBrandNameInTamil.ReadOnly = true;
             this.clmBrandNameInTamil.Width = 200;
             // 
+            // clmtotsubgroup
+            // 
+            this.clmtotsubgroup.HeaderText = "Total Sub Groups";
+            this.clmtotsubgroup.Name = "clmtotsubgroup";
+            this.clmtotsubgroup.ReadOnly = true;
+            this.clmtotsubgroup.Width = 120;
+            // 
             // clmNoofproducts
             // 
             this.clmNoofproducts.HeaderText = "Total Products";
@@ -350,6 +359,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBrandNameInEnglish;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBrandNameInTamil;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotsubgroup;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNoofproducts;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
     }
