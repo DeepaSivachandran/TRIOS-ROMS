@@ -75,21 +75,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void btnClose_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnClose_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void btnClose_Leave(object sender, EventArgs e)
-        {
-
-        }
         private void BindDataGrid()
         {
             try
@@ -111,7 +96,7 @@ namespace ROMS
                 {
                     string day = dataTable.Rows[i]["Day"].ToString();
                     DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(grddays); 
+                    row.CreateCells(grddays);
                     row.Cells[1].Value = day;
                     grddays.Rows.Add(row);
 
@@ -131,6 +116,21 @@ namespace ROMS
 
             // grddays.DataSource = dataTable;
         }
+        private void btnClose_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClose_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void btnClose_Leave(object sender, EventArgs e)
+        {
+
+        }
+       
 
         private void CP_SupplierOrderDetails_Load(object sender, EventArgs e)
         {

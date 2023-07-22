@@ -447,16 +447,7 @@ namespace ROMS
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
-            try
-            {
-                udfnclose();
-               // MainForm.objCP_CompanyList.udfnList();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
 
         private void btnClose_Enter(object sender, EventArgs e)
@@ -508,6 +499,7 @@ namespace ROMS
                 this.ActiveControl = txtName;
                 udfnLoadState(); 
                 udfnEdit();
+                BindDataGrid();
             }
             catch (Exception ex)
             {
@@ -518,6 +510,49 @@ namespace ROMS
             {
 
             }
+        }
+     
+  
+        private void BindDataGrid()
+        {
+            try
+            {
+                string[] item = new string[30];
+                ListViewItem listitem = new ListViewItem(); DataTable dataTable = new DataTable();
+                dataTable.Columns.Add("Day", typeof(string));
+
+                dataTable.Rows.Add("Monday");
+                dataTable.Rows.Add("Tuesday");
+                dataTable.Rows.Add("Wednesday");
+                dataTable.Rows.Add("Thursday");
+                dataTable.Rows.Add("Friday");
+                dataTable.Rows.Add("Saturday");
+                dataTable.Rows.Add("Sunday");
+
+
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    string day = dataTable.Rows[i]["Day"].ToString();
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(grddays);
+                    row.Cells[1].Value = day;
+                    grddays.Rows.Add(row);
+
+                    //item[0] = "";
+                    //item[1] = dataTable.Rows[i]["Day"].ToString();
+                    //listitem = new ListViewItem(item);
+                    //grddays.Rows.Add(item[0],item[1]);
+                }
+                // Assign the DataTable as the data source for the DataGridView 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+
+            // grddays.DataSource = dataTable;
         }
 
         private void udfnEdit()
@@ -1910,6 +1945,47 @@ namespace ROMS
         private void CmbPaymentTerm_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Grddays_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (grddays.Columns[e.ColumnIndex].Name == "chkdays" && e.RowIndex >= 0)
+                {
+                    DataGridViewCheckBoxCell checkBoxCell = grddays.Rows[e.RowIndex].Cells["chkdays"] as DataGridViewCheckBoxCell;
+                    if (checkBoxCell != null)
+                    {
+                        checkBoxCell.Value = !(bool)(checkBoxCell.Value ?? false);
+                        grddays.EndEdit(); // Commit the change
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbDesignation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbDesignation.SelectedItem == "The Proprietor")
+                {
+                    txtDShortName.Text = "Proprietor Name";
+                }
+                if (cmbDesignation.SelectedItem == "The Manager")
+                {
+                    txtDShortName.Text = "Manager Name";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }
