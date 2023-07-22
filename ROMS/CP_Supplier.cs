@@ -447,7 +447,15 @@ namespace ROMS
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void btnClose_Enter(object sender, EventArgs e)
