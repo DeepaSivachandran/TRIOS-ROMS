@@ -108,7 +108,6 @@ namespace ROMS
         public static CP_SupplierOrderDetailsList objCP_SupplierOrderDetailslist;
         public static CP_SupplierOrderDetails objCP_SupplierOrderDetails; 
         public static PUR_PurchaseReturns objPUR_PurchaseReturns;
-       // public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
         public static INV_DamageEntryList objINV_DamageEntryList;
         public static INV_DamageEntry objINV_DamageEntry;
         public static DataTable objDtMenuDetails;
