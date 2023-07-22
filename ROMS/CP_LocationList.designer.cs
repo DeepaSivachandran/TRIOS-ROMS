@@ -50,6 +50,7 @@
             this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGodownName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGodownType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -235,6 +236,7 @@
             this.clmConcern,
             this.Column3,
             this.clmGodownName,
+            this.Column5,
             this.clmGodownType,
             this.Column4,
             this.Column2});
@@ -297,10 +299,17 @@
             // 
             // clmGodownName
             // 
-            this.clmGodownName.HeaderText = "Location Name";
+            this.clmGodownName.HeaderText = "Location Name in English";
             this.clmGodownName.Name = "clmGodownName";
             this.clmGodownName.ReadOnly = true;
             this.clmGodownName.Width = 250;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Location Name in English";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 250;
             // 
             // clmGodownType
             // 
@@ -372,6 +381,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmConcern;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGodownName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGodownType;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;

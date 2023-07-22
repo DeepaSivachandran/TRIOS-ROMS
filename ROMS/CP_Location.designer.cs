@@ -51,6 +51,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtConcern = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtLocationNameTamil = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errGodown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panelStatus.SuspendLayout();
@@ -73,7 +75,7 @@
             this.panelStatus.Controls.Add(this.rbActive);
             this.panelStatus.Enabled = false;
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(196, 159);
+            this.panelStatus.Location = new System.Drawing.Point(196, 186);
             this.panelStatus.Name = "panelStatus";
             this.panelStatus.Size = new System.Drawing.Size(288, 27);
             this.panelStatus.TabIndex = 3;
@@ -109,7 +111,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(322, 195);
+            this.btnSave.Location = new System.Drawing.Point(322, 228);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 6;
@@ -126,7 +128,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(15, 159);
+            this.txtDStatus.Location = new System.Drawing.Point(15, 186);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(181, 27);
@@ -138,7 +140,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(410, 195);
+            this.btnClose.Location = new System.Drawing.Point(410, 228);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 7;
@@ -156,7 +158,7 @@
             this.pnlGodownType.Controls.Add(this.rboutside);
             this.pnlGodownType.Controls.Add(this.rbInside);
             this.pnlGodownType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlGodownType.Location = new System.Drawing.Point(196, 105);
+            this.pnlGodownType.Location = new System.Drawing.Point(196, 132);
             this.pnlGodownType.Name = "pnlGodownType";
             this.pnlGodownType.Size = new System.Drawing.Size(288, 27);
             this.pnlGodownType.TabIndex = 1;
@@ -191,7 +193,7 @@
             this.txtDGodowntype.BackColor = System.Drawing.SystemColors.Control;
             this.txtDGodowntype.Enabled = false;
             this.txtDGodowntype.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDGodowntype.Location = new System.Drawing.Point(15, 105);
+            this.txtDGodowntype.Location = new System.Drawing.Point(15, 132);
             this.txtDGodowntype.Name = "txtDGodowntype";
             this.txtDGodowntype.ReadOnly = true;
             this.txtDGodowntype.Size = new System.Drawing.Size(181, 27);
@@ -220,10 +222,12 @@
             this.txtDGodownName.ReadOnly = true;
             this.txtDGodownName.Size = new System.Drawing.Size(181, 27);
             this.txtDGodownName.TabIndex = 6;
-            this.txtDGodownName.Text = "Location Name";
+            this.txtDGodownName.Text = "Location Name in English";
             // 
             // grbGodown
             // 
+            this.grbGodown.Controls.Add(this.textBox3);
+            this.grbGodown.Controls.Add(this.txtLocationNameTamil);
             this.grbGodown.Controls.Add(this.cmbStockApplicable);
             this.grbGodown.Controls.Add(this.textBox2);
             this.grbGodown.Controls.Add(this.cmbLocationType);
@@ -241,7 +245,7 @@
             this.grbGodown.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbGodown.Location = new System.Drawing.Point(12, 3);
             this.grbGodown.Name = "grbGodown";
-            this.grbGodown.Size = new System.Drawing.Size(498, 238);
+            this.grbGodown.Size = new System.Drawing.Size(498, 274);
             this.grbGodown.TabIndex = 1;
             this.grbGodown.TabStop = false;
             this.grbGodown.Enter += new System.EventHandler(this.GrbGodown_Enter);
@@ -254,7 +258,7 @@
             this.cmbStockApplicable.Items.AddRange(new object[] {
             "Yes",
             "No"});
-            this.cmbStockApplicable.Location = new System.Drawing.Point(196, 132);
+            this.cmbStockApplicable.Location = new System.Drawing.Point(196, 159);
             this.cmbStockApplicable.Name = "cmbStockApplicable";
             this.cmbStockApplicable.Size = new System.Drawing.Size(288, 27);
             this.cmbStockApplicable.TabIndex = 52;
@@ -264,7 +268,7 @@
             this.textBox2.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox2.Location = new System.Drawing.Point(15, 132);
+            this.textBox2.Location = new System.Drawing.Point(15, 159);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(181, 27);
@@ -319,12 +323,33 @@
             this.txtConcern.TabIndex = 49;
             this.txtConcern.Text = "Concern";
             // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox3.Enabled = false;
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(15, 105);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(181, 27);
+            this.textBox3.TabIndex = 55;
+            this.textBox3.Text = "Location Name in Tamil";
+            // 
+            // txtLocationNameTamil
+            // 
+            this.txtLocationNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLocationNameTamil.Location = new System.Drawing.Point(196, 105);
+            this.txtLocationNameTamil.MaxLength = 50;
+            this.txtLocationNameTamil.Name = "txtLocationNameTamil";
+            this.txtLocationNameTamil.Size = new System.Drawing.Size(288, 27);
+            this.txtLocationNameTamil.TabIndex = 54;
+            // 
             // CP_Location
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(526, 252);
+            this.ClientSize = new System.Drawing.Size(526, 287);
             this.Controls.Add(this.grbGodown);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -372,5 +397,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox cmbStockApplicable;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtLocationNameTamil;
     }
 }

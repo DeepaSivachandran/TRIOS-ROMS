@@ -306,7 +306,7 @@
             // 
             // clmTotalProduct
             // 
-            this.clmTotalProduct.HeaderText = "Total Products";
+            this.clmTotalProduct.HeaderText = "Total Suppliers";
             this.clmTotalProduct.Name = "clmTotalProduct";
             this.clmTotalProduct.ReadOnly = true;
             // 
@@ -341,7 +341,7 @@
             // 
             // TotalProduct
             // 
-            this.TotalProduct.HeaderText = "Total Products";
+            this.TotalProduct.HeaderText = "Total Suppliers";
             this.TotalProduct.Name = "TotalProduct";
             // 
             // clmdstatus

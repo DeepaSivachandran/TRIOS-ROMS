@@ -82,8 +82,8 @@
             this.tsSupplierMappinglist.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsSupplierMappinglist.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tsSupplierMappinglist.Name = "tsSupplierMappinglist";
-            this.tsSupplierMappinglist.Size = new System.Drawing.Size(120, 24);
-            this.tsSupplierMappinglist.Text = "Supplier Mapping";
+            this.tsSupplierMappinglist.Size = new System.Drawing.Size(174, 24);
+            this.tsSupplierMappinglist.Text = "Supplier - Product Mapping";
             // 
             // tsbDelete
             // 

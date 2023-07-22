@@ -377,7 +377,7 @@
             // 
             // clmshopgodown
             // 
-            this.clmshopgodown.HeaderText = "Shop Godown";
+            this.clmshopgodown.HeaderText = "Stock Location";
             this.clmshopgodown.Name = "clmshopgodown";
             this.clmshopgodown.ReadOnly = true;
             this.clmshopgodown.Width = 200;
@@ -423,7 +423,7 @@
             // 
             // clmdshtname
             // 
-            this.clmdshtname.HeaderText = "Shop Godown ";
+            this.clmdshtname.HeaderText = "Stock Location";
             this.clmdshtname.MinimumWidth = 6;
             this.clmdshtname.Name = "clmdshtname";
             this.clmdshtname.Width = 200;

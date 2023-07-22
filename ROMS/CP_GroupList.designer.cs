@@ -289,14 +289,14 @@
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "Product Group Name In English";
+            this.Column2.HeaderText = "Product Group Name in English";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Width = 200;
             // 
             // clmProductGroupNameInTamil
             // 
-            this.clmProductGroupNameInTamil.HeaderText = "Producy Group Name In Tamil";
+            this.clmProductGroupNameInTamil.HeaderText = "Product Group Name in Tamil";
             this.clmProductGroupNameInTamil.Name = "clmProductGroupNameInTamil";
             this.clmProductGroupNameInTamil.ReadOnly = true;
             this.clmProductGroupNameInTamil.Width = 200;
@@ -310,7 +310,7 @@
             // 
             // clmnoofproductgroup
             // 
-            this.clmnoofproductgroup.HeaderText = "Total Product Groups";
+            this.clmnoofproductgroup.HeaderText = "Total Products";
             this.clmnoofproductgroup.Name = "clmnoofproductgroup";
             this.clmnoofproductgroup.ReadOnly = true;
             this.clmnoofproductgroup.Width = 200;

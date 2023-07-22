@@ -239,7 +239,7 @@
             this.MinimizeBox = false;
             this.Name = "CP_ProductHSN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HSN Tax Details";
+            this.Text = "HSN Name";
             this.Load += new System.EventHandler(this.CP_Company_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Company_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Company_Leave);

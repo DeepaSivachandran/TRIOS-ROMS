@@ -645,7 +645,7 @@
             this.txtDMaxOrderQty.Size = new System.Drawing.Size(111, 27);
             this.txtDMaxOrderQty.TabIndex = 90;
             this.txtDMaxOrderQty.TabStop = false;
-            this.txtDMaxOrderQty.Text = "Maximum Order Qty";
+            this.txtDMaxOrderQty.Text = "Rack MOQ";
             // 
             // textBox1
             // 

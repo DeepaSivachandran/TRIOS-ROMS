@@ -69,17 +69,17 @@
             this.txtDProductGroupNameTamil.BackColor = System.Drawing.SystemColors.Control;
             this.txtDProductGroupNameTamil.Enabled = false;
             this.txtDProductGroupNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDProductGroupNameTamil.Location = new System.Drawing.Point(40, 52);
+            this.txtDProductGroupNameTamil.Location = new System.Drawing.Point(40, 53);
             this.txtDProductGroupNameTamil.Name = "txtDProductGroupNameTamil";
             this.txtDProductGroupNameTamil.ReadOnly = true;
             this.txtDProductGroupNameTamil.Size = new System.Drawing.Size(181, 27);
             this.txtDProductGroupNameTamil.TabIndex = 19;
-            this.txtDProductGroupNameTamil.Text = "Product Group Name In Tamil";
+            this.txtDProductGroupNameTamil.Text = "Product Group Name in Tamil";
             // 
             // txtEGroupNameTamil
             // 
             this.txtEGroupNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEGroupNameTamil.Location = new System.Drawing.Point(221, 52);
+            this.txtEGroupNameTamil.Location = new System.Drawing.Point(221, 53);
             this.txtEGroupNameTamil.MaxLength = 50;
             this.txtEGroupNameTamil.Name = "txtEGroupNameTamil";
             this.txtEGroupNameTamil.Size = new System.Drawing.Size(288, 27);
@@ -93,7 +93,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(40, 78);
+            this.txtDStatus.Location = new System.Drawing.Point(40, 80);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(181, 27);
@@ -106,7 +106,7 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInactive);
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlStatus.Location = new System.Drawing.Point(221, 78);
+            this.pnlStatus.Location = new System.Drawing.Point(221, 80);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(288, 27);
             this.pnlStatus.TabIndex = 2;
@@ -148,7 +148,7 @@
             this.txtDProductGroupNameEnglish.ReadOnly = true;
             this.txtDProductGroupNameEnglish.Size = new System.Drawing.Size(181, 27);
             this.txtDProductGroupNameEnglish.TabIndex = 11;
-            this.txtDProductGroupNameEnglish.Text = "Product Group Name In English";
+            this.txtDProductGroupNameEnglish.Text = "Product Group Name in English";
             // 
             // btnClose
             // 

@@ -69,12 +69,6 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.txtbranchname = new System.Windows.Forms.TextBox();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Label();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtIFScode = new System.Windows.Forms.TextBox();
@@ -83,6 +77,8 @@
             this.textBox19 = new System.Windows.Forms.TextBox();
             this.txtBankname = new System.Windows.Forms.TextBox();
             this.grbGovtRegisterationIds = new System.Windows.Forms.GroupBox();
+            this.txtDPlno = new System.Windows.Forms.TextBox();
+            this.txtPlno = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.txtFSSAI = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
@@ -117,8 +113,15 @@
             this.txtDAddressLine1 = new System.Windows.Forms.TextBox();
             this.txtDCity = new System.Windows.Forms.TextBox();
             this.txtCity = new System.Windows.Forms.TextBox();
-            this.txtDPlno = new System.Windows.Forms.TextBox();
-            this.txtPlno = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtBankShortName = new System.Windows.Forms.TextBox();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.grbform.SuspendLayout();
@@ -540,6 +543,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.txtBankShortName);
             this.groupBox2.Controls.Add(this.textBox8);
             this.groupBox2.Controls.Add(this.txtbranchname);
             this.groupBox2.Controls.Add(this.grdSupplierList);
@@ -563,20 +568,20 @@
             this.textBox8.BackColor = System.Drawing.SystemColors.Control;
             this.textBox8.Enabled = false;
             this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox8.Location = new System.Drawing.Point(307, 27);
+            this.textBox8.Location = new System.Drawing.Point(518, 27);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(77, 27);
+            this.textBox8.Size = new System.Drawing.Size(100, 27);
             this.textBox8.TabIndex = 1111138;
             this.textBox8.Text = "Branch Name";
             // 
             // txtbranchname
             // 
             this.txtbranchname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtbranchname.Location = new System.Drawing.Point(384, 27);
+            this.txtbranchname.Location = new System.Drawing.Point(618, 27);
             this.txtbranchname.MaxLength = 100;
             this.txtbranchname.Name = "txtbranchname";
-            this.txtbranchname.Size = new System.Drawing.Size(224, 27);
+            this.txtbranchname.Size = new System.Drawing.Size(147, 27);
             this.txtbranchname.TabIndex = 23;
             // 
             // grdSupplierList
@@ -600,6 +605,7 @@
             this.grdSupplierList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmsno,
             this.clmbankname,
+            this.Column1,
             this.clmbranch,
             this.clmaccno,
             this.clmifscode,
@@ -626,53 +632,12 @@
             this.grdSupplierList.Size = new System.Drawing.Size(1277, 162);
             this.grdSupplierList.TabIndex = 1111136;
             // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 50;
-            // 
-            // clmbankname
-            // 
-            this.clmbankname.HeaderText = "Bank Name";
-            this.clmbankname.Name = "clmbankname";
-            this.clmbankname.ReadOnly = true;
-            this.clmbankname.Width = 200;
-            // 
-            // clmbranch
-            // 
-            this.clmbranch.HeaderText = "Branch Name";
-            this.clmbranch.Name = "clmbranch";
-            this.clmbranch.ReadOnly = true;
-            this.clmbranch.Width = 175;
-            // 
-            // clmaccno
-            // 
-            this.clmaccno.HeaderText = "Account No.";
-            this.clmaccno.Name = "clmaccno";
-            this.clmaccno.ReadOnly = true;
-            this.clmaccno.Width = 200;
-            // 
-            // clmifscode
-            // 
-            this.clmifscode.HeaderText = "IFS Code";
-            this.clmifscode.Name = "clmifscode";
-            this.clmifscode.ReadOnly = true;
-            this.clmifscode.Width = 175;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
-            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
             this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(1224, 26);
+            this.btnAdd.Location = new System.Drawing.Point(1262, 26);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(21, 22);
@@ -684,20 +649,20 @@
             this.textBox15.BackColor = System.Drawing.SystemColors.Control;
             this.textBox15.Enabled = false;
             this.textBox15.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox15.Location = new System.Drawing.Point(909, 27);
+            this.textBox15.Location = new System.Drawing.Point(1012, 27);
             this.textBox15.Name = "textBox15";
             this.textBox15.ReadOnly = true;
-            this.textBox15.Size = new System.Drawing.Size(77, 27);
+            this.textBox15.Size = new System.Drawing.Size(100, 27);
             this.textBox15.TabIndex = 200000;
             this.textBox15.Text = "IFS Code";
             // 
             // txtIFScode
             // 
             this.txtIFScode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtIFScode.Location = new System.Drawing.Point(986, 27);
+            this.txtIFScode.Location = new System.Drawing.Point(1112, 27);
             this.txtIFScode.MaxLength = 100;
             this.txtIFScode.Name = "txtIFScode";
-            this.txtIFScode.Size = new System.Drawing.Size(224, 27);
+            this.txtIFScode.Size = new System.Drawing.Size(147, 27);
             this.txtIFScode.TabIndex = 25;
             // 
             // textBox17
@@ -705,20 +670,20 @@
             this.textBox17.BackColor = System.Drawing.SystemColors.Control;
             this.textBox17.Enabled = false;
             this.textBox17.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox17.Location = new System.Drawing.Point(608, 27);
+            this.textBox17.Location = new System.Drawing.Point(765, 27);
             this.textBox17.Name = "textBox17";
             this.textBox17.ReadOnly = true;
-            this.textBox17.Size = new System.Drawing.Size(77, 27);
+            this.textBox17.Size = new System.Drawing.Size(100, 27);
             this.textBox17.TabIndex = 20000;
             this.textBox17.Text = "Acc. No.";
             // 
             // txtAccno
             // 
             this.txtAccno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtAccno.Location = new System.Drawing.Point(685, 27);
+            this.txtAccno.Location = new System.Drawing.Point(865, 27);
             this.txtAccno.MaxLength = 100;
             this.txtAccno.Name = "txtAccno";
-            this.txtAccno.Size = new System.Drawing.Size(224, 27);
+            this.txtAccno.Size = new System.Drawing.Size(147, 27);
             this.txtAccno.TabIndex = 24;
             // 
             // textBox19
@@ -729,17 +694,17 @@
             this.textBox19.Location = new System.Drawing.Point(6, 27);
             this.textBox19.Name = "textBox19";
             this.textBox19.ReadOnly = true;
-            this.textBox19.Size = new System.Drawing.Size(77, 27);
+            this.textBox19.Size = new System.Drawing.Size(100, 27);
             this.textBox19.TabIndex = 200000;
             this.textBox19.Text = "Bank Name";
             // 
             // txtBankname
             // 
             this.txtBankname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtBankname.Location = new System.Drawing.Point(83, 27);
+            this.txtBankname.Location = new System.Drawing.Point(106, 27);
             this.txtBankname.MaxLength = 100;
             this.txtBankname.Name = "txtBankname";
-            this.txtBankname.Size = new System.Drawing.Size(224, 27);
+            this.txtBankname.Size = new System.Drawing.Size(165, 27);
             this.txtBankname.TabIndex = 22;
             // 
             // grbGovtRegisterationIds
@@ -762,7 +727,28 @@
             this.grbGovtRegisterationIds.Size = new System.Drawing.Size(768, 123);
             this.grbGovtRegisterationIds.TabIndex = 16;
             this.grbGovtRegisterationIds.TabStop = false;
-            this.grbGovtRegisterationIds.Text = "Government Registeration Ids";
+            this.grbGovtRegisterationIds.Text = "Government Registration Ids";
+            // 
+            // txtDPlno
+            // 
+            this.txtDPlno.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDPlno.Enabled = false;
+            this.txtDPlno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDPlno.Location = new System.Drawing.Point(511, 69);
+            this.txtDPlno.Name = "txtDPlno";
+            this.txtDPlno.ReadOnly = true;
+            this.txtDPlno.Size = new System.Drawing.Size(53, 27);
+            this.txtDPlno.TabIndex = 28;
+            this.txtDPlno.Text = "PL No.";
+            // 
+            // txtPlno
+            // 
+            this.txtPlno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtPlno.Location = new System.Drawing.Point(564, 69);
+            this.txtPlno.MaxLength = 100;
+            this.txtPlno.Name = "txtPlno";
+            this.txtPlno.Size = new System.Drawing.Size(197, 27);
+            this.txtPlno.TabIndex = 27;
             // 
             // textBox13
             // 
@@ -1119,26 +1105,74 @@
             this.txtCity.Size = new System.Drawing.Size(186, 27);
             this.txtCity.TabIndex = 5;
             // 
-            // txtDPlno
+            // textBox5
             // 
-            this.txtDPlno.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDPlno.Enabled = false;
-            this.txtDPlno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPlno.Location = new System.Drawing.Point(511, 69);
-            this.txtDPlno.Name = "txtDPlno";
-            this.txtDPlno.ReadOnly = true;
-            this.txtDPlno.Size = new System.Drawing.Size(53, 27);
-            this.txtDPlno.TabIndex = 28;
-            this.txtDPlno.Text = "PL No.";
+            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox5.Enabled = false;
+            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox5.Location = new System.Drawing.Point(271, 27);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(100, 27);
+            this.textBox5.TabIndex = 1111140;
+            this.textBox5.Text = "Bank Short Name";
             // 
-            // txtPlno
+            // txtBankShortName
             // 
-            this.txtPlno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPlno.Location = new System.Drawing.Point(564, 69);
-            this.txtPlno.MaxLength = 100;
-            this.txtPlno.Name = "txtPlno";
-            this.txtPlno.Size = new System.Drawing.Size(197, 27);
-            this.txtPlno.TabIndex = 27;
+            this.txtBankShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtBankShortName.Location = new System.Drawing.Point(371, 27);
+            this.txtBankShortName.MaxLength = 100;
+            this.txtBankShortName.Name = "txtBankShortName";
+            this.txtBankShortName.Size = new System.Drawing.Size(147, 27);
+            this.txtBankShortName.TabIndex = 1111139;
+            // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
+            // 
+            // clmbankname
+            // 
+            this.clmbankname.HeaderText = "Bank Name";
+            this.clmbankname.Name = "clmbankname";
+            this.clmbankname.ReadOnly = true;
+            this.clmbankname.Width = 200;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Bank Short Name";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 150;
+            // 
+            // clmbranch
+            // 
+            this.clmbranch.HeaderText = "Branch Name";
+            this.clmbranch.Name = "clmbranch";
+            this.clmbranch.ReadOnly = true;
+            this.clmbranch.Width = 175;
+            // 
+            // clmaccno
+            // 
+            this.clmaccno.HeaderText = "Account No.";
+            this.clmaccno.Name = "clmaccno";
+            this.clmaccno.ReadOnly = true;
+            this.clmaccno.Width = 200;
+            // 
+            // clmifscode
+            // 
+            this.clmifscode.HeaderText = "IFS Code";
+            this.clmifscode.Name = "clmifscode";
+            this.clmifscode.ReadOnly = true;
+            this.clmifscode.Width = 175;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
             // 
             // CP_Company
             // 
@@ -1214,12 +1248,6 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox txtbranchname;
         public System.Windows.Forms.DataGridView grdSupplierList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmbankname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmbranch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmaccno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmifscode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         internal System.Windows.Forms.Label btnAdd;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.TextBox txtIFScode;
@@ -1264,5 +1292,14 @@
         private System.Windows.Forms.TextBox txtCity;
         private System.Windows.Forms.TextBox txtDPlno;
         private System.Windows.Forms.TextBox txtPlno;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtBankShortName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmbankname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmbranch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmaccno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmifscode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
     }
 }
