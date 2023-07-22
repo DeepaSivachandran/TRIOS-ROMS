@@ -157,7 +157,6 @@
             // grpSupplierMapping
             // 
             this.grpSupplierMapping.BackColor = System.Drawing.Color.White;
-            this.grpSupplierMapping.Controls.Add(this.listView1);
             this.grpSupplierMapping.Controls.Add(this.lblGC);
             this.grpSupplierMapping.Controls.Add(this.label1);
             this.grpSupplierMapping.Controls.Add(this.grpRepresentativeDetails);
@@ -174,6 +173,7 @@
             this.grpSupplierMapping.Controls.Add(this.grbSupplierMapping);
             this.grpSupplierMapping.Controls.Add(this.btnClose);
             this.grpSupplierMapping.Controls.Add(this.btnSave);
+            this.grpSupplierMapping.Controls.Add(this.listView1);
             this.grpSupplierMapping.Location = new System.Drawing.Point(7, 1);
             this.grpSupplierMapping.Name = "grpSupplierMapping";
             this.grpSupplierMapping.Size = new System.Drawing.Size(1339, 633);

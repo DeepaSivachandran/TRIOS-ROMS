@@ -28,20 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsRackSettings = new System.Windows.Forms.ToolStrip();
             this.tspRackSettings = new System.Windows.Forms.ToolStripLabel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.pnlRackSettings = new System.Windows.Forms.Panel();
             this.grpRackSettings = new System.Windows.Forms.GroupBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,43 +51,41 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmbRack = new System.Windows.Forms.ComboBox();
             this.lblDERack = new System.Windows.Forms.Label();
-            this.chkSelectAll = new System.Windows.Forms.CheckBox();
-            this.grdRackSettings = new System.Windows.Forms.DataGridView();
             this.grbProductAddMove = new System.Windows.Forms.GroupBox();
             this.rbMove = new System.Windows.Forms.RadioButton();
             this.rbAdd = new System.Windows.Forms.RadioButton();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.grdSubGroup = new System.Windows.Forms.DataGridView();
-            this.grdGroup = new System.Windows.Forms.DataGridView();
+            this.btnView = new System.Windows.Forms.Button();
+            this.cmbSubGroup = new System.Windows.Forms.ComboBox();
+            this.lblDESubGroup = new System.Windows.Forms.Label();
+            this.cmbGroup = new System.Windows.Forms.ComboBox();
+            this.lblDEGroup = new System.Windows.Forms.Label();
+            this.txtSearchByProduct1 = new System.Windows.Forms.TextBox();
+            this.lblSearchbyProduct1 = new System.Windows.Forms.Label();
+            this.grdSupplierMapping = new System.Windows.Forms.DataGridView();
+            this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
+            this.lblSearchByProduct2 = new System.Windows.Forms.Label();
+            this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.clmengtamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmtamilname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chksupplier = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProductnameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProductNameInTamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tsRackSettings.SuspendLayout();
             this.pnlRackSettings.SuspendLayout();
             this.grpRackSettings.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpSource.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdRackSettings)).BeginInit();
             this.grbProductAddMove.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdSubGroup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdGroup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSupplierMapping)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdViewSupplierMapping)).BeginInit();
             this.SuspendLayout();
             // 
             // tsRackSettings
@@ -139,19 +136,21 @@
             // grpRackSettings
             // 
             this.grpRackSettings.BackColor = System.Drawing.Color.White;
+            this.grpRackSettings.Controls.Add(this.txtSearchByProduct2);
+            this.grpRackSettings.Controls.Add(this.lblSearchByProduct2);
+            this.grpRackSettings.Controls.Add(this.grdViewSupplierMapping);
             this.grpRackSettings.Controls.Add(this.checkBox2);
-            this.grpRackSettings.Controls.Add(this.checkBox1);
-            this.grpRackSettings.Controls.Add(this.label4);
-            this.grpRackSettings.Controls.Add(this.textBox3);
-            this.grpRackSettings.Controls.Add(this.label5);
-            this.grpRackSettings.Controls.Add(this.textBox2);
+            this.grpRackSettings.Controls.Add(this.txtSearchByProduct1);
+            this.grpRackSettings.Controls.Add(this.lblSearchbyProduct1);
+            this.grpRackSettings.Controls.Add(this.grdSupplierMapping);
+            this.grpRackSettings.Controls.Add(this.btnView);
+            this.grpRackSettings.Controls.Add(this.cmbSubGroup);
+            this.grpRackSettings.Controls.Add(this.lblDESubGroup);
+            this.grpRackSettings.Controls.Add(this.cmbGroup);
+            this.grpRackSettings.Controls.Add(this.lblDEGroup);
             this.grpRackSettings.Controls.Add(this.button1);
-            this.grpRackSettings.Controls.Add(this.grdSubGroup);
-            this.grpRackSettings.Controls.Add(this.grdGroup);
             this.grpRackSettings.Controls.Add(this.groupBox1);
             this.grpRackSettings.Controls.Add(this.grpSource);
-            this.grpRackSettings.Controls.Add(this.chkSelectAll);
-            this.grpRackSettings.Controls.Add(this.grdRackSettings);
             this.grpRackSettings.Controls.Add(this.grbProductAddMove);
             this.grpRackSettings.Controls.Add(this.btnClose);
             this.grpRackSettings.Controls.Add(this.btnSave);
@@ -160,6 +159,27 @@
             this.grpRackSettings.Size = new System.Drawing.Size(1339, 633);
             this.grpRackSettings.TabIndex = 958765;
             this.grpRackSettings.TabStop = false;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(27, 267);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(15, 14);
+            this.checkBox2.TabIndex = 1111167;
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.button1.Image = global::ROMS.Properties.Resources.add;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(632, 427);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(29, 29);
+            this.button1.TabIndex = 1111161;
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -267,63 +287,6 @@
             this.lblDERack.TabIndex = 1111149;
             this.lblDERack.Text = "Rack";
             // 
-            // chkSelectAll
-            // 
-            this.chkSelectAll.AutoSize = true;
-            this.chkSelectAll.Location = new System.Drawing.Point(802, 223);
-            this.chkSelectAll.Name = "chkSelectAll";
-            this.chkSelectAll.Size = new System.Drawing.Size(15, 14);
-            this.chkSelectAll.TabIndex = 1111148;
-            this.chkSelectAll.UseVisualStyleBackColor = true;
-            // 
-            // grdRackSettings
-            // 
-            this.grdRackSettings.AllowUserToAddRows = false;
-            this.grdRackSettings.AllowUserToDeleteRows = false;
-            this.grdRackSettings.AllowUserToResizeColumns = false;
-            this.grdRackSettings.AllowUserToResizeRows = false;
-            this.grdRackSettings.BackgroundColor = System.Drawing.Color.White;
-            this.grdRackSettings.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdRackSettings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.grdRackSettings.ColumnHeadersHeight = 30;
-            this.grdRackSettings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdRackSettings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.chksupplier,
-            this.Column1,
-            this.clmPICode,
-            this.clmProductnameInEnglish,
-            this.clmProductNameInTamil,
-            this.Column2,
-            this.clmUnit});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdRackSettings.DefaultCellStyle = dataGridViewCellStyle8;
-            this.grdRackSettings.EnableHeadersVisualStyles = false;
-            this.grdRackSettings.GridColor = System.Drawing.Color.White;
-            this.grdRackSettings.Location = new System.Drawing.Point(791, 214);
-            this.grdRackSettings.Name = "grdRackSettings";
-            this.grdRackSettings.ReadOnly = true;
-            this.grdRackSettings.RowHeadersVisible = false;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            this.grdRackSettings.RowsDefaultCellStyle = dataGridViewCellStyle9;
-            this.grdRackSettings.RowTemplate.Height = 25;
-            this.grdRackSettings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdRackSettings.Size = new System.Drawing.Size(529, 364);
-            this.grdRackSettings.TabIndex = 1111147;
-            // 
             // grbProductAddMove
             // 
             this.grbProductAddMove.Controls.Add(this.rbMove);
@@ -385,106 +348,86 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // btnView
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(328, 181);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 20);
-            this.label4.TabIndex = 1111165;
-            this.label4.Text = "Search";
+            this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(345, 184);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 29);
+            this.btnView.TabIndex = 1111172;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // cmbSubGroup
             // 
-            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(374, 178);
-            this.textBox3.MaxLength = 50;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(244, 27);
-            this.textBox3.TabIndex = 1111164;
+            this.cmbSubGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSubGroup.FormattingEnabled = true;
+            this.cmbSubGroup.Location = new System.Drawing.Point(194, 186);
+            this.cmbSubGroup.Name = "cmbSubGroup";
+            this.cmbSubGroup.Size = new System.Drawing.Size(140, 27);
+            this.cmbSubGroup.TabIndex = 1111171;
             // 
-            // label5
+            // lblDESubGroup
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 181);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 20);
-            this.label5.TabIndex = 1111163;
-            this.label5.Text = "Search";
+            this.lblDESubGroup.AutoSize = true;
+            this.lblDESubGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDESubGroup.Location = new System.Drawing.Point(194, 163);
+            this.lblDESubGroup.Name = "lblDESubGroup";
+            this.lblDESubGroup.Size = new System.Drawing.Size(112, 20);
+            this.lblDESubGroup.TabIndex = 1111170;
+            this.lblDESubGroup.Text = "Product Sub Group";
             // 
-            // textBox2
+            // cmbGroup
             // 
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(68, 178);
-            this.textBox2.MaxLength = 50;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(244, 27);
-            this.textBox2.TabIndex = 1111162;
+            this.cmbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbGroup.FormattingEnabled = true;
+            this.cmbGroup.Location = new System.Drawing.Point(17, 186);
+            this.cmbGroup.Name = "cmbGroup";
+            this.cmbGroup.Size = new System.Drawing.Size(163, 27);
+            this.cmbGroup.TabIndex = 1111169;
             // 
-            // button1
+            // lblDEGroup
             // 
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button1.Image = global::ROMS.Properties.Resources.add;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(753, 367);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(29, 29);
-            this.button1.TabIndex = 1111161;
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.lblDEGroup.AutoSize = true;
+            this.lblDEGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDEGroup.Location = new System.Drawing.Point(17, 163);
+            this.lblDEGroup.Name = "lblDEGroup";
+            this.lblDEGroup.Size = new System.Drawing.Size(88, 20);
+            this.lblDEGroup.TabIndex = 1111168;
+            this.lblDEGroup.Text = "Product Group";
             // 
-            // grdSubGroup
+            // txtSearchByProduct1
             // 
-            this.grdSubGroup.AllowUserToAddRows = false;
-            this.grdSubGroup.AllowUserToDeleteRows = false;
-            this.grdSubGroup.AllowUserToResizeColumns = false;
-            this.grdSubGroup.AllowUserToResizeRows = false;
-            this.grdSubGroup.BackgroundColor = System.Drawing.Color.White;
-            this.grdSubGroup.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSubGroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdSubGroup.ColumnHeadersHeight = 30;
-            this.grdSubGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdSubGroup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.Column3});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdSubGroup.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grdSubGroup.EnableHeadersVisualStyles = false;
-            this.grdSubGroup.GridColor = System.Drawing.Color.White;
-            this.grdSubGroup.Location = new System.Drawing.Point(328, 214);
-            this.grdSubGroup.Name = "grdSubGroup";
-            this.grdSubGroup.ReadOnly = true;
-            this.grdSubGroup.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdSubGroup.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.grdSubGroup.RowTemplate.Height = 25;
-            this.grdSubGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSubGroup.Size = new System.Drawing.Size(417, 364);
-            this.grdSubGroup.TabIndex = 1111160;
+            this.txtSearchByProduct1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchByProduct1.Location = new System.Drawing.Point(217, 226);
+            this.txtSearchByProduct1.MaxLength = 50;
+            this.txtSearchByProduct1.Name = "txtSearchByProduct1";
+            this.txtSearchByProduct1.Size = new System.Drawing.Size(403, 27);
+            this.txtSearchByProduct1.TabIndex = 1111175;
             // 
-            // grdGroup
+            // lblSearchbyProduct1
             // 
-            this.grdGroup.AllowUserToAddRows = false;
-            this.grdGroup.AllowUserToDeleteRows = false;
-            this.grdGroup.AllowUserToResizeColumns = false;
-            this.grdGroup.AllowUserToResizeRows = false;
-            this.grdGroup.BackgroundColor = System.Drawing.Color.White;
-            this.grdGroup.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.lblSearchbyProduct1.AutoSize = true;
+            this.lblSearchbyProduct1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchbyProduct1.Location = new System.Drawing.Point(22, 229);
+            this.lblSearchbyProduct1.Name = "lblSearchbyProduct1";
+            this.lblSearchbyProduct1.Size = new System.Drawing.Size(190, 20);
+            this.lblSearchbyProduct1.TabIndex = 1111174;
+            this.lblSearchbyProduct1.Text = "Search by Product Name/P.I Code";
+            // 
+            // grdSupplierMapping
+            // 
+            this.grdSupplierMapping.AllowUserToAddRows = false;
+            this.grdSupplierMapping.AllowUserToDeleteRows = false;
+            this.grdSupplierMapping.AllowUserToResizeColumns = false;
+            this.grdSupplierMapping.AllowUserToResizeRows = false;
+            this.grdSupplierMapping.BackgroundColor = System.Drawing.Color.White;
+            this.grdSupplierMapping.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -492,12 +435,16 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grdGroup.ColumnHeadersHeight = 30;
-            this.grdGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdGroup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdSupplierMapping.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdSupplierMapping.ColumnHeadersHeight = 30;
+            this.grdSupplierMapping.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdSupplierMapping.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.clmengtamil,
+            this.clmtamilname,
+            this.dataGridViewTextBoxColumn3});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -505,121 +452,160 @@
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGroup.DefaultCellStyle = dataGridViewCellStyle5;
-            this.grdGroup.EnableHeadersVisualStyles = false;
-            this.grdGroup.GridColor = System.Drawing.Color.White;
-            this.grdGroup.Location = new System.Drawing.Point(21, 214);
-            this.grdGroup.Name = "grdGroup";
-            this.grdGroup.ReadOnly = true;
-            this.grdGroup.RowHeadersVisible = false;
+            this.grdSupplierMapping.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdSupplierMapping.EnableHeadersVisualStyles = false;
+            this.grdSupplierMapping.GridColor = System.Drawing.Color.White;
+            this.grdSupplierMapping.Location = new System.Drawing.Point(17, 258);
+            this.grdSupplierMapping.Name = "grdSupplierMapping";
+            this.grdSupplierMapping.ReadOnly = true;
+            this.grdSupplierMapping.RowHeadersVisible = false;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGroup.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.grdGroup.RowTemplate.Height = 25;
-            this.grdGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdGroup.Size = new System.Drawing.Size(290, 364);
-            this.grdGroup.TabIndex = 1111159;
+            this.grdSupplierMapping.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdSupplierMapping.RowTemplate.Height = 25;
+            this.grdSupplierMapping.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdSupplierMapping.Size = new System.Drawing.Size(603, 315);
+            this.grdSupplierMapping.TabIndex = 1111173;
+            // 
+            // txtSearchByProduct2
+            // 
+            this.txtSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchByProduct2.Location = new System.Drawing.Point(887, 226);
+            this.txtSearchByProduct2.MaxLength = 50;
+            this.txtSearchByProduct2.Name = "txtSearchByProduct2";
+            this.txtSearchByProduct2.Size = new System.Drawing.Size(403, 27);
+            this.txtSearchByProduct2.TabIndex = 1111178;
+            // 
+            // lblSearchByProduct2
+            // 
+            this.lblSearchByProduct2.AutoSize = true;
+            this.lblSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchByProduct2.Location = new System.Drawing.Point(692, 229);
+            this.lblSearchByProduct2.Name = "lblSearchByProduct2";
+            this.lblSearchByProduct2.Size = new System.Drawing.Size(190, 20);
+            this.lblSearchByProduct2.TabIndex = 1111177;
+            this.lblSearchByProduct2.Text = "Search by Product Name/P.I Code";
+            // 
+            // grdViewSupplierMapping
+            // 
+            this.grdViewSupplierMapping.AllowUserToAddRows = false;
+            this.grdViewSupplierMapping.AllowUserToDeleteRows = false;
+            this.grdViewSupplierMapping.AllowUserToResizeColumns = false;
+            this.grdViewSupplierMapping.AllowUserToResizeRows = false;
+            this.grdViewSupplierMapping.BackgroundColor = System.Drawing.Color.White;
+            this.grdViewSupplierMapping.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdViewSupplierMapping.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdViewSupplierMapping.ColumnHeadersHeight = 30;
+            this.grdViewSupplierMapping.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdViewSupplierMapping.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmdpicode,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.DataGridViewButton});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdViewSupplierMapping.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdViewSupplierMapping.EnableHeadersVisualStyles = false;
+            this.grdViewSupplierMapping.GridColor = System.Drawing.Color.White;
+            this.grdViewSupplierMapping.Location = new System.Drawing.Point(673, 258);
+            this.grdViewSupplierMapping.Name = "grdViewSupplierMapping";
+            this.grdViewSupplierMapping.ReadOnly = true;
+            this.grdViewSupplierMapping.RowHeadersVisible = false;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdViewSupplierMapping.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdViewSupplierMapping.RowTemplate.Height = 25;
+            this.grdViewSupplierMapping.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdViewSupplierMapping.Size = new System.Drawing.Size(619, 315);
+            this.grdViewSupplierMapping.TabIndex = 1111176;
             // 
             // dataGridViewCheckBoxColumn1
             // 
             this.dataGridViewCheckBoxColumn1.HeaderText = "";
             this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
             this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewCheckBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewCheckBoxColumn1.Width = 40;
+            this.dataGridViewCheckBoxColumn1.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 50;
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Product Sub Group";
+            this.dataGridViewTextBoxColumn2.HeaderText = "P.I Code";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 200;
             // 
-            // checkBox1
+            // clmengtamil
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(343, 223);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 1111166;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.clmengtamil.HeaderText = "Product Name in English";
+            this.clmengtamil.Name = "clmengtamil";
+            this.clmengtamil.ReadOnly = true;
+            this.clmengtamil.Width = 220;
             // 
-            // checkBox2
+            // clmtamilname
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(35, 223);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(15, 14);
-            this.checkBox2.TabIndex = 1111167;
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.clmtamilname.HeaderText = "Product Name in  Tamil";
+            this.clmtamilname.Name = "clmtamilname";
+            this.clmtamilname.ReadOnly = true;
+            this.clmtamilname.Width = 220;
             // 
             // dataGridViewTextBoxColumn3
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Unit";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 40;
+            // 
+            // clmdpicode
+            // 
+            this.clmdpicode.HeaderText = "P.I Code";
+            this.clmdpicode.Name = "clmdpicode";
+            this.clmdpicode.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn4
             // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "P.I Code";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Product Name in English";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 220;
             // 
-            // Column3
+            // dataGridViewTextBoxColumn5
             // 
-            this.Column3.HeaderText = "Product Name";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 250;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Product Name in Tamil";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 220;
             // 
-            // chksupplier
+            // dataGridViewTextBoxColumn6
             // 
-            this.chksupplier.HeaderText = "";
-            this.chksupplier.Name = "chksupplier";
-            this.chksupplier.ReadOnly = true;
-            this.chksupplier.Width = 30;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Unit";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
-            // Column1
+            // DataGridViewButton
             // 
-            this.Column1.HeaderText = "S.No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 50;
-            // 
-            // clmPICode
-            // 
-            this.clmPICode.HeaderText = "P.I Code";
-            this.clmPICode.Name = "clmPICode";
-            this.clmPICode.ReadOnly = true;
-            // 
-            // clmProductnameInEnglish
-            // 
-            this.clmProductnameInEnglish.HeaderText = "Product Name in English";
-            this.clmProductnameInEnglish.Name = "clmProductnameInEnglish";
-            this.clmProductnameInEnglish.ReadOnly = true;
-            this.clmProductnameInEnglish.Width = 250;
-            // 
-            // clmProductNameInTamil
-            // 
-            this.clmProductNameInTamil.HeaderText = "Product Name in Tamil";
-            this.clmProductNameInTamil.Name = "clmProductNameInTamil";
-            this.clmProductNameInTamil.ReadOnly = true;
-            this.clmProductNameInTamil.Width = 250;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Rack MOQ";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // clmUnit
-            // 
-            this.clmUnit.HeaderText = "Unit";
-            this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
-            this.clmUnit.Width = 50;
+            this.DataGridViewButton.HeaderText = "Remove";
+            this.DataGridViewButton.Name = "DataGridViewButton";
+            this.DataGridViewButton.ReadOnly = true;
+            this.DataGridViewButton.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewButton.Text = "";
+            this.DataGridViewButton.Width = 70;
             // 
             // CP_RackSettings
             // 
@@ -648,11 +634,10 @@
             this.groupBox1.PerformLayout();
             this.grpSource.ResumeLayout(false);
             this.grpSource.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdRackSettings)).EndInit();
             this.grbProductAddMove.ResumeLayout(false);
             this.grbProductAddMove.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdSubGroup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdGroup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSupplierMapping)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdViewSupplierMapping)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -667,8 +652,6 @@
         private System.Windows.Forms.GroupBox grpRackSettings;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.CheckBox chkSelectAll;
-        public System.Windows.Forms.DataGridView grdRackSettings;
         private System.Windows.Forms.GroupBox grbProductAddMove;
         private System.Windows.Forms.RadioButton rbMove;
         private System.Windows.Forms.RadioButton rbAdd;
@@ -683,25 +666,28 @@
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button1;
-        public System.Windows.Forms.DataGridView grdSubGroup;
-        public System.Windows.Forms.DataGridView grdGroup;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.ComboBox cmbSubGroup;
+        private System.Windows.Forms.Label lblDESubGroup;
+        private System.Windows.Forms.ComboBox cmbGroup;
+        private System.Windows.Forms.Label lblDEGroup;
+        private System.Windows.Forms.TextBox txtSearchByProduct1;
+        private System.Windows.Forms.Label lblSearchbyProduct1;
+        public System.Windows.Forms.DataGridView grdSupplierMapping;
+        private System.Windows.Forms.TextBox txtSearchByProduct2;
+        private System.Windows.Forms.Label lblSearchByProduct2;
+        public System.Windows.Forms.DataGridView grdViewSupplierMapping;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdpicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chksupplier;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmProductnameInEnglish;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmProductNameInTamil;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewButtonColumn DataGridViewButton;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmengtamil;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmtamilname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
     }
 }

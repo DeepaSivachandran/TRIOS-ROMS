@@ -1221,7 +1221,6 @@
             this.cmbBatchNoEntry.Name = "cmbBatchNoEntry";
             this.cmbBatchNoEntry.Size = new System.Drawing.Size(127, 27);
             this.cmbBatchNoEntry.TabIndex = 27;
-            //this.cmbBatchNoEntry.SelectedIndexChanged += new System.EventHandler(this.CmbBatchNoEntry_SelectedIndexChanged);
             // 
             // txtDBatchNoEntry
             // 
@@ -1234,7 +1233,7 @@
             this.txtDBatchNoEntry.Size = new System.Drawing.Size(131, 27);
             this.txtDBatchNoEntry.TabIndex = 26;
             this.txtDBatchNoEntry.TabStop = false;
-            this.txtDBatchNoEntry.Text = "Batch No. Entry";
+            this.txtDBatchNoEntry.Text = "Batch No.";
             // 
             // btnSave
             // 
