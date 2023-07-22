@@ -347,6 +347,25 @@ namespace ROMS
         {
 
         }
+
+        private void DGV_Racklist_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void DGV_Racklist_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_ProductDetails = new CP_ProductDetails();
+                MainForm.objCP_ProductDetails.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
     }
      
 }
