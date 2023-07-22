@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class INV_Inward
+    partial class INV_DamageEntry
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,6 @@
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.pnlinward = new System.Windows.Forms.Panel();
             this.lvProductName = new System.Windows.Forms.ListView();
-            this.btnsaveasdraft = new System.Windows.Forms.Button();
             this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
             this.grpsalesmandetails = new System.Windows.Forms.GroupBox();
@@ -45,20 +44,10 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.DGV_inward = new System.Windows.Forms.DataGridView();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdop = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clminvoiceqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmactualqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmremove = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpproductname = new System.Windows.Forms.GroupBox();
             this.lblYyyy = new System.Windows.Forms.Label();
             this.lblMM = new System.Windows.Forms.Label();
-            this.lblDd = new System.Windows.Forms.Label();
+            this.lblDD = new System.Windows.Forms.Label();
             this.lblExpiryDate = new System.Windows.Forms.Label();
             this.txtunitrate = new System.Windows.Forms.TextBox();
             this.lblbatchno = new System.Windows.Forms.Label();
@@ -67,27 +56,30 @@
             this.txtDay = new System.Windows.Forms.TextBox();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.txtActualQty = new System.Windows.Forms.TextBox();
-            this.lblActualQty = new System.Windows.Forms.Label();
+            this.lblQty = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Label();
             this.txtMrp = new System.Windows.Forms.TextBox();
             this.lblMrp = new System.Windows.Forms.Label();
             this.lblProductName = new System.Windows.Forms.Label();
             this.grbgodown = new System.Windows.Forms.GroupBox();
-            this.txtInwardNo = new System.Windows.Forms.TextBox();
-            this.lblInwardNo = new System.Windows.Forms.Label();
-            this.lblInwardDate = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.txtEntryNo = new System.Windows.Forms.TextBox();
+            this.lbEntryNo = new System.Windows.Forms.Label();
+            this.lblEntryDate = new System.Windows.Forms.Label();
+            this.dpEntryDate = new System.Windows.Forms.DateTimePicker();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.cmbinwardtype = new System.Windows.Forms.ComboBox();
-            this.lblinwardtype = new System.Windows.Forms.Label();
             this.lblConcern = new System.Windows.Forms.Label();
             this.txtsuppliername = new System.Windows.Forms.TextBox();
-            this.cmbGodown = new System.Windows.Forms.ComboBox();
-            this.lblGodown = new System.Windows.Forms.Label();
-            this.cmbvoucherno = new System.Windows.Forms.ComboBox();
             this.lblSupplierName = new System.Windows.Forms.Label();
-            this.lblVoucherNo = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdop = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremove = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_inward)).BeginInit();
@@ -102,8 +94,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(112, 22);
-            this.tspHeader.Text = "Godown Inward ";
+            this.tspHeader.Size = new System.Drawing.Size(100, 22);
+            this.tspHeader.Text = "Damage Entry";
             // 
             // tsInwardList
             // 
@@ -122,7 +114,6 @@
             // 
             this.pnlinward.BackColor = System.Drawing.Color.White;
             this.pnlinward.Controls.Add(this.lvProductName);
-            this.pnlinward.Controls.Add(this.btnsaveasdraft);
             this.pnlinward.Controls.Add(this.txttotalitem);
             this.pnlinward.Controls.Add(this.lbltotalproducts);
             this.pnlinward.Controls.Add(this.grpsalesmandetails);
@@ -132,8 +123,8 @@
             this.pnlinward.Controls.Add(this.btnSave);
             this.pnlinward.Controls.Add(this.btnClose);
             this.pnlinward.Controls.Add(this.DGV_inward);
-            this.pnlinward.Controls.Add(this.grpproductname);
             this.pnlinward.Controls.Add(this.grbgodown);
+            this.pnlinward.Controls.Add(this.grpproductname);
             this.pnlinward.Location = new System.Drawing.Point(0, 29);
             this.pnlinward.Name = "pnlinward";
             this.pnlinward.Size = new System.Drawing.Size(1354, 645);
@@ -142,29 +133,16 @@
             // lvProductName
             // 
             this.lvProductName.HideSelection = false;
-            this.lvProductName.Location = new System.Drawing.Point(15, 193);
+            this.lvProductName.Location = new System.Drawing.Point(16, 143);
             this.lvProductName.Name = "lvProductName";
             this.lvProductName.Size = new System.Drawing.Size(378, 69);
             this.lvProductName.TabIndex = 958808;
             this.lvProductName.UseCompatibleStateImageBehavior = false;
             this.lvProductName.Visible = false;
             // 
-            // btnsaveasdraft
-            // 
-            this.btnsaveasdraft.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnsaveasdraft.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsaveasdraft.Location = new System.Drawing.Point(1069, 592);
-            this.btnsaveasdraft.Name = "btnsaveasdraft";
-            this.btnsaveasdraft.Size = new System.Drawing.Size(97, 29);
-            this.btnsaveasdraft.TabIndex = 958825;
-            this.btnsaveasdraft.Text = "Save as Draft";
-            this.btnsaveasdraft.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsaveasdraft.UseVisualStyleBackColor = true;
-            this.btnsaveasdraft.Click += new System.EventHandler(this.Btnsaveasdraft_Click);
-            // 
             // txttotalitem
             // 
-            this.txttotalitem.Location = new System.Drawing.Point(995, 594);
+            this.txttotalitem.Location = new System.Drawing.Point(1103, 594);
             this.txttotalitem.Name = "txttotalitem";
             this.txttotalitem.ReadOnly = true;
             this.txttotalitem.Size = new System.Drawing.Size(62, 27);
@@ -173,7 +151,7 @@
             // lbltotalproducts
             // 
             this.lbltotalproducts.AutoSize = true;
-            this.lbltotalproducts.Location = new System.Drawing.Point(905, 597);
+            this.lbltotalproducts.Location = new System.Drawing.Point(1013, 597);
             this.lbltotalproducts.Name = "lbltotalproducts";
             this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
             this.lbltotalproducts.TabIndex = 958821;
@@ -183,16 +161,16 @@
             // 
             this.grpsalesmandetails.Location = new System.Drawing.Point(1116, 2);
             this.grpsalesmandetails.Name = "grpsalesmandetails";
-            this.grpsalesmandetails.Size = new System.Drawing.Size(227, 198);
+            this.grpsalesmandetails.Size = new System.Drawing.Size(227, 147);
             this.grpsalesmandetails.TabIndex = 958814;
             this.grpsalesmandetails.TabStop = false;
             this.grpsalesmandetails.Text = "Sales Man Details";
             // 
             // grbSupplierDetails
             // 
-            this.grbSupplierDetails.Location = new System.Drawing.Point(879, 1);
+            this.grbSupplierDetails.Location = new System.Drawing.Point(879, 2);
             this.grbSupplierDetails.Name = "grbSupplierDetails";
-            this.grbSupplierDetails.Size = new System.Drawing.Size(227, 198);
+            this.grbSupplierDetails.Size = new System.Drawing.Size(227, 147);
             this.grbSupplierDetails.TabIndex = 958813;
             this.grbSupplierDetails.TabStop = false;
             this.grbSupplierDetails.Text = "Supplier Details";
@@ -266,8 +244,7 @@
             this.clmexpirydate,
             this.clmdop,
             this.clmmrp,
-            this.clminvoiceqty,
-            this.clmactualqty,
+            this.clmQuantity,
             this.clmunit,
             this.clmremove});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -280,7 +257,7 @@
             this.DGV_inward.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_inward.EnableHeadersVisualStyles = false;
             this.DGV_inward.GridColor = System.Drawing.Color.White;
-            this.DGV_inward.Location = new System.Drawing.Point(3, 205);
+            this.DGV_inward.Location = new System.Drawing.Point(3, 157);
             this.DGV_inward.Name = "DGV_inward";
             this.DGV_inward.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
@@ -290,8 +267,266 @@
             this.DGV_inward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_inward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_inward.ShowRowErrors = false;
-            this.DGV_inward.Size = new System.Drawing.Size(1340, 382);
+            this.DGV_inward.Size = new System.Drawing.Size(1340, 423);
             this.DGV_inward.TabIndex = 958809;
+            // 
+            // grpproductname
+            // 
+            this.grpproductname.Controls.Add(this.lblYyyy);
+            this.grpproductname.Controls.Add(this.lblMM);
+            this.grpproductname.Controls.Add(this.lblDD);
+            this.grpproductname.Controls.Add(this.txtunitrate);
+            this.grpproductname.Controls.Add(this.lblbatchno);
+            this.grpproductname.Controls.Add(this.textBox2);
+            this.grpproductname.Controls.Add(this.textBox1);
+            this.grpproductname.Controls.Add(this.txtDay);
+            this.grpproductname.Controls.Add(this.txtProductName);
+            this.grpproductname.Controls.Add(this.txtActualQty);
+            this.grpproductname.Controls.Add(this.lblQty);
+            this.grpproductname.Controls.Add(this.btnAdd);
+            this.grpproductname.Controls.Add(this.txtMrp);
+            this.grpproductname.Controls.Add(this.lblMrp);
+            this.grpproductname.Controls.Add(this.lblProductName);
+            this.grpproductname.Controls.Add(this.lblExpiryDate);
+            this.grpproductname.Location = new System.Drawing.Point(3, 72);
+            this.grpproductname.Name = "grpproductname";
+            this.grpproductname.Size = new System.Drawing.Size(865, 77);
+            this.grpproductname.TabIndex = 958806;
+            this.grpproductname.TabStop = false;
+            // 
+            // lblYyyy
+            // 
+            this.lblYyyy.AutoSize = true;
+            this.lblYyyy.Location = new System.Drawing.Point(481, 14);
+            this.lblYyyy.Name = "lblYyyy";
+            this.lblYyyy.Size = new System.Drawing.Size(37, 20);
+            this.lblYyyy.TabIndex = 958824;
+            this.lblYyyy.Text = "YYYY";
+            // 
+            // lblMM
+            // 
+            this.lblMM.AutoSize = true;
+            this.lblMM.Location = new System.Drawing.Point(447, 14);
+            this.lblMM.Name = "lblMM";
+            this.lblMM.Size = new System.Drawing.Size(29, 20);
+            this.lblMM.TabIndex = 958823;
+            this.lblMM.Text = "MM";
+            // 
+            // lblDD
+            // 
+            this.lblDD.AutoSize = true;
+            this.lblDD.Location = new System.Drawing.Point(413, 14);
+            this.lblDD.Name = "lblDD";
+            this.lblDD.Size = new System.Drawing.Size(25, 20);
+            this.lblDD.TabIndex = 958822;
+            this.lblDD.Text = "DD";
+            // 
+            // lblExpiryDate
+            // 
+            this.lblExpiryDate.AutoSize = true;
+            this.lblExpiryDate.Location = new System.Drawing.Point(344, 40);
+            this.lblExpiryDate.Name = "lblExpiryDate";
+            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
+            this.lblExpiryDate.TabIndex = 958821;
+            this.lblExpiryDate.Text = "Expiry Date";
+            // 
+            // txtunitrate
+            // 
+            this.txtunitrate.Location = new System.Drawing.Point(594, 37);
+            this.txtunitrate.Name = "txtunitrate";
+            this.txtunitrate.Size = new System.Drawing.Size(124, 27);
+            this.txtunitrate.TabIndex = 958815;
+            // 
+            // lblbatchno
+            // 
+            this.lblbatchno.AutoSize = true;
+            this.lblbatchno.Location = new System.Drawing.Point(594, 14);
+            this.lblbatchno.Name = "lblbatchno";
+            this.lblbatchno.Size = new System.Drawing.Size(61, 20);
+            this.lblbatchno.TabIndex = 958816;
+            this.lblbatchno.Text = "Batch No.";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(481, 37);
+            this.textBox2.MaxLength = 4;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(34, 27);
+            this.textBox2.TabIndex = 958814;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(447, 37);
+            this.textBox1.MaxLength = 2;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(34, 27);
+            this.textBox1.TabIndex = 958812;
+            // 
+            // txtDay
+            // 
+            this.txtDay.Location = new System.Drawing.Point(413, 37);
+            this.txtDay.MaxLength = 2;
+            this.txtDay.Name = "txtDay";
+            this.txtDay.Size = new System.Drawing.Size(34, 27);
+            this.txtDay.TabIndex = 958810;
+            // 
+            // txtProductName
+            // 
+            this.txtProductName.Location = new System.Drawing.Point(13, 37);
+            this.txtProductName.Name = "txtProductName";
+            this.txtProductName.Size = new System.Drawing.Size(316, 27);
+            this.txtProductName.TabIndex = 82;
+            // 
+            // txtActualQty
+            // 
+            this.txtActualQty.Location = new System.Drawing.Point(726, 37);
+            this.txtActualQty.Name = "txtActualQty";
+            this.txtActualQty.Size = new System.Drawing.Size(69, 27);
+            this.txtActualQty.TabIndex = 81;
+            // 
+            // lblQty
+            // 
+            this.lblQty.AutoSize = true;
+            this.lblQty.Location = new System.Drawing.Point(726, 14);
+            this.lblQty.Name = "lblQty";
+            this.lblQty.Size = new System.Drawing.Size(56, 20);
+            this.lblQty.TabIndex = 80;
+            this.lblQty.Text = "Quantity";
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnAdd.Location = new System.Drawing.Point(809, 39);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(21, 22);
+            this.btnAdd.TabIndex = 958800;
+            this.btnAdd.Text = "        ";
+            // 
+            // txtMrp
+            // 
+            this.txtMrp.Location = new System.Drawing.Point(530, 37);
+            this.txtMrp.Name = "txtMrp";
+            this.txtMrp.Size = new System.Drawing.Size(52, 27);
+            this.txtMrp.TabIndex = 74;
+            // 
+            // lblMrp
+            // 
+            this.lblMrp.AutoSize = true;
+            this.lblMrp.Location = new System.Drawing.Point(530, 14);
+            this.lblMrp.Name = "lblMrp";
+            this.lblMrp.Size = new System.Drawing.Size(34, 20);
+            this.lblMrp.TabIndex = 77;
+            this.lblMrp.Text = "MRP";
+            // 
+            // lblProductName
+            // 
+            this.lblProductName.AutoSize = true;
+            this.lblProductName.Location = new System.Drawing.Point(13, 14);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(134, 20);
+            this.lblProductName.TabIndex = 28;
+            this.lblProductName.Text = "Product Name/P.I Code";
+            // 
+            // grbgodown
+            // 
+            this.grbgodown.Controls.Add(this.txtEntryNo);
+            this.grbgodown.Controls.Add(this.lbEntryNo);
+            this.grbgodown.Controls.Add(this.lblEntryDate);
+            this.grbgodown.Controls.Add(this.dpEntryDate);
+            this.grbgodown.Controls.Add(this.comboBox1);
+            this.grbgodown.Controls.Add(this.lblConcern);
+            this.grbgodown.Controls.Add(this.txtsuppliername);
+            this.grbgodown.Controls.Add(this.lblSupplierName);
+            this.grbgodown.Location = new System.Drawing.Point(3, 2);
+            this.grbgodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grbgodown.Name = "grbgodown";
+            this.grbgodown.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grbgodown.Size = new System.Drawing.Size(866, 77);
+            this.grbgodown.TabIndex = 958805;
+            this.grbgodown.TabStop = false;
+            // 
+            // txtEntryNo
+            // 
+            this.txtEntryNo.Location = new System.Drawing.Point(344, 36);
+            this.txtEntryNo.Name = "txtEntryNo";
+            this.txtEntryNo.ReadOnly = true;
+            this.txtEntryNo.Size = new System.Drawing.Size(171, 27);
+            this.txtEntryNo.TabIndex = 958819;
+            // 
+            // lbEntryNo
+            // 
+            this.lbEntryNo.AutoSize = true;
+            this.lbEntryNo.Location = new System.Drawing.Point(347, 14);
+            this.lbEntryNo.Name = "lbEntryNo";
+            this.lbEntryNo.Size = new System.Drawing.Size(58, 20);
+            this.lbEntryNo.TabIndex = 958818;
+            this.lbEntryNo.Text = "Entry No.";
+            // 
+            // lblEntryDate
+            // 
+            this.lblEntryDate.AutoSize = true;
+            this.lblEntryDate.Location = new System.Drawing.Point(225, 14);
+            this.lblEntryDate.Name = "lblEntryDate";
+            this.lblEntryDate.Size = new System.Drawing.Size(66, 20);
+            this.lblEntryDate.TabIndex = 958817;
+            this.lblEntryDate.Text = "Entry Date";
+            // 
+            // dpEntryDate
+            // 
+            this.dpEntryDate.CustomFormat = "dd/MM/yyyy";
+            this.dpEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpEntryDate.Location = new System.Drawing.Point(225, 36);
+            this.dpEntryDate.Name = "dpEntryDate";
+            this.dpEntryDate.Size = new System.Drawing.Size(104, 27);
+            this.dpEntryDate.TabIndex = 958816;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(13, 36);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(201, 27);
+            this.comboBox1.TabIndex = 87;
+            // 
+            // lblConcern
+            // 
+            this.lblConcern.AutoSize = true;
+            this.lblConcern.Location = new System.Drawing.Point(13, 14);
+            this.lblConcern.Name = "lblConcern";
+            this.lblConcern.Size = new System.Drawing.Size(54, 20);
+            this.lblConcern.TabIndex = 86;
+            this.lblConcern.Text = "Concern";
+            // 
+            // txtsuppliername
+            // 
+            this.txtsuppliername.Location = new System.Drawing.Point(530, 36);
+            this.txtsuppliername.Name = "txtsuppliername";
+            this.txtsuppliername.Size = new System.Drawing.Size(317, 27);
+            this.txtsuppliername.TabIndex = 83;
+            this.txtsuppliername.TextChanged += new System.EventHandler(this.Txtsuppliername_TextChanged);
+            // 
+            // lblSupplierName
+            // 
+            this.lblSupplierName.AutoSize = true;
+            this.lblSupplierName.Location = new System.Drawing.Point(530, 14);
+            this.lblSupplierName.Name = "lblSupplierName";
+            this.lblSupplierName.Size = new System.Drawing.Size(87, 20);
+            this.lblSupplierName.TabIndex = 27;
+            this.lblSupplierName.Text = "Supplier Name";
+            // 
+            // lblEdit
+            // 
+            this.lblEdit.AutoSize = true;
+            this.lblEdit.Location = new System.Drawing.Point(711, 19);
+            this.lblEdit.Name = "lblEdit";
+            this.lblEdit.Size = new System.Drawing.Size(0, 20);
+            this.lblEdit.TabIndex = 37;
+            this.lblEdit.Visible = false;
             // 
             // clmdsno
             // 
@@ -324,15 +559,10 @@
             this.clmmrp.HeaderText = "MRP";
             this.clmmrp.Name = "clmmrp";
             // 
-            // clminvoiceqty
+            // clmQuantity
             // 
-            this.clminvoiceqty.HeaderText = "Invoice Qty";
-            this.clminvoiceqty.Name = "clminvoiceqty";
-            // 
-            // clmactualqty
-            // 
-            this.clmactualqty.HeaderText = "Actual Qty";
-            this.clmactualqty.Name = "clmactualqty";
+            this.clmQuantity.HeaderText = "Quantity";
+            this.clmQuantity.Name = "clmQuantity";
             // 
             // clmunit
             // 
@@ -344,332 +574,7 @@
             this.clmremove.HeaderText = "Remove";
             this.clmremove.Name = "clmremove";
             // 
-            // grpproductname
-            // 
-            this.grpproductname.Controls.Add(this.lblYyyy);
-            this.grpproductname.Controls.Add(this.lblMM);
-            this.grpproductname.Controls.Add(this.lblDd);
-            this.grpproductname.Controls.Add(this.lblExpiryDate);
-            this.grpproductname.Controls.Add(this.txtunitrate);
-            this.grpproductname.Controls.Add(this.lblbatchno);
-            this.grpproductname.Controls.Add(this.textBox2);
-            this.grpproductname.Controls.Add(this.textBox1);
-            this.grpproductname.Controls.Add(this.txtDay);
-            this.grpproductname.Controls.Add(this.txtProductName);
-            this.grpproductname.Controls.Add(this.txtActualQty);
-            this.grpproductname.Controls.Add(this.lblActualQty);
-            this.grpproductname.Controls.Add(this.btnAdd);
-            this.grpproductname.Controls.Add(this.txtMrp);
-            this.grpproductname.Controls.Add(this.lblMrp);
-            this.grpproductname.Controls.Add(this.lblProductName);
-            this.grpproductname.Location = new System.Drawing.Point(3, 129);
-            this.grpproductname.Name = "grpproductname";
-            this.grpproductname.Size = new System.Drawing.Size(865, 70);
-            this.grpproductname.TabIndex = 958806;
-            this.grpproductname.TabStop = false;
-            // 
-            // lblYyyy
-            // 
-            this.lblYyyy.AutoSize = true;
-            this.lblYyyy.Location = new System.Drawing.Point(510, 14);
-            this.lblYyyy.Name = "lblYyyy";
-            this.lblYyyy.Size = new System.Drawing.Size(37, 20);
-            this.lblYyyy.TabIndex = 958824;
-            this.lblYyyy.Text = "YYYY";
-            // 
-            // lblMM
-            // 
-            this.lblMM.AutoSize = true;
-            this.lblMM.Location = new System.Drawing.Point(476, 14);
-            this.lblMM.Name = "lblMM";
-            this.lblMM.Size = new System.Drawing.Size(29, 20);
-            this.lblMM.TabIndex = 958823;
-            this.lblMM.Text = "MM";
-            // 
-            // lblDd
-            // 
-            this.lblDd.AutoSize = true;
-            this.lblDd.Location = new System.Drawing.Point(443, 14);
-            this.lblDd.Name = "lblDd";
-            this.lblDd.Size = new System.Drawing.Size(25, 20);
-            this.lblDd.TabIndex = 958822;
-            this.lblDd.Text = "DD";
-            // 
-            // lblExpiryDate
-            // 
-            this.lblExpiryDate.AutoSize = true;
-            this.lblExpiryDate.Location = new System.Drawing.Point(370, 40);
-            this.lblExpiryDate.Name = "lblExpiryDate";
-            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
-            this.lblExpiryDate.TabIndex = 958821;
-            this.lblExpiryDate.Text = "Expiry Date";
-            // 
-            // txtunitrate
-            // 
-            this.txtunitrate.Location = new System.Drawing.Point(617, 37);
-            this.txtunitrate.Name = "txtunitrate";
-            this.txtunitrate.Size = new System.Drawing.Size(115, 27);
-            this.txtunitrate.TabIndex = 958815;
-            // 
-            // lblbatchno
-            // 
-            this.lblbatchno.AutoSize = true;
-            this.lblbatchno.Location = new System.Drawing.Point(617, 14);
-            this.lblbatchno.Name = "lblbatchno";
-            this.lblbatchno.Size = new System.Drawing.Size(61, 20);
-            this.lblbatchno.TabIndex = 958816;
-            this.lblbatchno.Text = "Batch No.";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(510, 37);
-            this.textBox2.MaxLength = 4;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(34, 27);
-            this.textBox2.TabIndex = 958814;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(476, 37);
-            this.textBox1.MaxLength = 2;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(34, 27);
-            this.textBox1.TabIndex = 958812;
-            // 
-            // txtDay
-            // 
-            this.txtDay.Location = new System.Drawing.Point(443, 37);
-            this.txtDay.MaxLength = 2;
-            this.txtDay.Name = "txtDay";
-            this.txtDay.Size = new System.Drawing.Size(34, 27);
-            this.txtDay.TabIndex = 958810;
-            // 
-            // txtProductName
-            // 
-            this.txtProductName.Location = new System.Drawing.Point(13, 37);
-            this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(349, 27);
-            this.txtProductName.TabIndex = 82;
-            // 
-            // txtActualQty
-            // 
-            this.txtActualQty.Location = new System.Drawing.Point(744, 37);
-            this.txtActualQty.Name = "txtActualQty";
-            this.txtActualQty.Size = new System.Drawing.Size(69, 27);
-            this.txtActualQty.TabIndex = 81;
-            // 
-            // lblActualQty
-            // 
-            this.lblActualQty.AutoSize = true;
-            this.lblActualQty.Location = new System.Drawing.Point(744, 14);
-            this.lblActualQty.Name = "lblActualQty";
-            this.lblActualQty.Size = new System.Drawing.Size(68, 20);
-            this.lblActualQty.TabIndex = 80;
-            this.lblActualQty.Text = "Actual Qty.";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(830, 42);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(21, 22);
-            this.btnAdd.TabIndex = 958800;
-            this.btnAdd.Text = "        ";
-            // 
-            // txtMrp
-            // 
-            this.txtMrp.Enabled = false;
-            this.txtMrp.Location = new System.Drawing.Point(557, 37);
-            this.txtMrp.Name = "txtMrp";
-            this.txtMrp.ReadOnly = true;
-            this.txtMrp.Size = new System.Drawing.Size(52, 27);
-            this.txtMrp.TabIndex = 74;
-            // 
-            // lblMrp
-            // 
-            this.lblMrp.AutoSize = true;
-            this.lblMrp.Location = new System.Drawing.Point(557, 14);
-            this.lblMrp.Name = "lblMrp";
-            this.lblMrp.Size = new System.Drawing.Size(34, 20);
-            this.lblMrp.TabIndex = 77;
-            this.lblMrp.Text = "MRP";
-            // 
-            // lblProductName
-            // 
-            this.lblProductName.AutoSize = true;
-            this.lblProductName.Location = new System.Drawing.Point(13, 14);
-            this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(134, 20);
-            this.lblProductName.TabIndex = 28;
-            this.lblProductName.Text = "Product Name/P.I Code";
-            // 
-            // grbgodown
-            // 
-            this.grbgodown.Controls.Add(this.txtInwardNo);
-            this.grbgodown.Controls.Add(this.lblInwardNo);
-            this.grbgodown.Controls.Add(this.lblInwardDate);
-            this.grbgodown.Controls.Add(this.dateTimePicker1);
-            this.grbgodown.Controls.Add(this.comboBox1);
-            this.grbgodown.Controls.Add(this.cmbinwardtype);
-            this.grbgodown.Controls.Add(this.lblinwardtype);
-            this.grbgodown.Controls.Add(this.lblConcern);
-            this.grbgodown.Controls.Add(this.txtsuppliername);
-            this.grbgodown.Controls.Add(this.cmbGodown);
-            this.grbgodown.Controls.Add(this.lblGodown);
-            this.grbgodown.Controls.Add(this.cmbvoucherno);
-            this.grbgodown.Controls.Add(this.lblSupplierName);
-            this.grbgodown.Controls.Add(this.lblVoucherNo);
-            this.grbgodown.Location = new System.Drawing.Point(3, 2);
-            this.grbgodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbgodown.Name = "grbgodown";
-            this.grbgodown.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbgodown.Size = new System.Drawing.Size(866, 125);
-            this.grbgodown.TabIndex = 958805;
-            this.grbgodown.TabStop = false;
-            // 
-            // txtInwardNo
-            // 
-            this.txtInwardNo.Location = new System.Drawing.Point(344, 36);
-            this.txtInwardNo.Name = "txtInwardNo";
-            this.txtInwardNo.Size = new System.Drawing.Size(153, 27);
-            this.txtInwardNo.TabIndex = 958819;
-            // 
-            // lblInwardNo
-            // 
-            this.lblInwardNo.AutoSize = true;
-            this.lblInwardNo.Location = new System.Drawing.Point(347, 14);
-            this.lblInwardNo.Name = "lblInwardNo";
-            this.lblInwardNo.Size = new System.Drawing.Size(67, 20);
-            this.lblInwardNo.TabIndex = 958818;
-            this.lblInwardNo.Text = "Inward No.";
-            // 
-            // lblInwardDate
-            // 
-            this.lblInwardDate.AutoSize = true;
-            this.lblInwardDate.Location = new System.Drawing.Point(225, 14);
-            this.lblInwardDate.Name = "lblInwardDate";
-            this.lblInwardDate.Size = new System.Drawing.Size(75, 20);
-            this.lblInwardDate.TabIndex = 958817;
-            this.lblInwardDate.Text = "Inward Date";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(225, 36);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(104, 27);
-            this.dateTimePicker1.TabIndex = 958816;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(13, 36);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(201, 27);
-            this.comboBox1.TabIndex = 87;
-            // 
-            // cmbinwardtype
-            // 
-            this.cmbinwardtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbinwardtype.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbinwardtype.FormattingEnabled = true;
-            this.cmbinwardtype.Location = new System.Drawing.Point(223, 87);
-            this.cmbinwardtype.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbinwardtype.Name = "cmbinwardtype";
-            this.cmbinwardtype.Size = new System.Drawing.Size(104, 27);
-            this.cmbinwardtype.TabIndex = 85;
-            // 
-            // lblinwardtype
-            // 
-            this.lblinwardtype.AutoSize = true;
-            this.lblinwardtype.Location = new System.Drawing.Point(225, 66);
-            this.lblinwardtype.Name = "lblinwardtype";
-            this.lblinwardtype.Size = new System.Drawing.Size(75, 20);
-            this.lblinwardtype.TabIndex = 84;
-            this.lblinwardtype.Text = "Inward Type";
-            // 
-            // lblConcern
-            // 
-            this.lblConcern.AutoSize = true;
-            this.lblConcern.Location = new System.Drawing.Point(13, 14);
-            this.lblConcern.Name = "lblConcern";
-            this.lblConcern.Size = new System.Drawing.Size(54, 20);
-            this.lblConcern.TabIndex = 86;
-            this.lblConcern.Text = "Concern";
-            // 
-            // txtsuppliername
-            // 
-            this.txtsuppliername.Location = new System.Drawing.Point(510, 36);
-            this.txtsuppliername.Name = "txtsuppliername";
-            this.txtsuppliername.Size = new System.Drawing.Size(333, 27);
-            this.txtsuppliername.TabIndex = 83;
-            this.txtsuppliername.TextChanged += new System.EventHandler(this.Txtsuppliername_TextChanged);
-            // 
-            // cmbGodown
-            // 
-            this.cmbGodown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbGodown.FormattingEnabled = true;
-            this.cmbGodown.Location = new System.Drawing.Point(15, 87);
-            this.cmbGodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbGodown.Name = "cmbGodown";
-            this.cmbGodown.Size = new System.Drawing.Size(201, 27);
-            this.cmbGodown.TabIndex = 73;
-            // 
-            // lblGodown
-            // 
-            this.lblGodown.AutoSize = true;
-            this.lblGodown.Location = new System.Drawing.Point(15, 65);
-            this.lblGodown.Name = "lblGodown";
-            this.lblGodown.Size = new System.Drawing.Size(52, 20);
-            this.lblGodown.TabIndex = 70;
-            this.lblGodown.Text = "Godown";
-            // 
-            // cmbvoucherno
-            // 
-            this.cmbvoucherno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbvoucherno.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbvoucherno.FormattingEnabled = true;
-            this.cmbvoucherno.Location = new System.Drawing.Point(344, 87);
-            this.cmbvoucherno.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbvoucherno.Name = "cmbvoucherno";
-            this.cmbvoucherno.Size = new System.Drawing.Size(153, 27);
-            this.cmbvoucherno.TabIndex = 67;
-            // 
-            // lblSupplierName
-            // 
-            this.lblSupplierName.AutoSize = true;
-            this.lblSupplierName.Location = new System.Drawing.Point(510, 14);
-            this.lblSupplierName.Name = "lblSupplierName";
-            this.lblSupplierName.Size = new System.Drawing.Size(87, 20);
-            this.lblSupplierName.TabIndex = 27;
-            this.lblSupplierName.Text = "Supplier Name";
-            // 
-            // lblVoucherNo
-            // 
-            this.lblVoucherNo.AutoSize = true;
-            this.lblVoucherNo.Location = new System.Drawing.Point(344, 66);
-            this.lblVoucherNo.Name = "lblVoucherNo";
-            this.lblVoucherNo.Size = new System.Drawing.Size(74, 20);
-            this.lblVoucherNo.TabIndex = 66;
-            this.lblVoucherNo.Text = "Voucher No.";
-            // 
-            // lblEdit
-            // 
-            this.lblEdit.AutoSize = true;
-            this.lblEdit.Location = new System.Drawing.Point(711, 19);
-            this.lblEdit.Name = "lblEdit";
-            this.lblEdit.Size = new System.Drawing.Size(0, 20);
-            this.lblEdit.TabIndex = 37;
-            this.lblEdit.Visible = false;
-            // 
-            // INV_Inward
+            // INV_DamageEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -682,7 +587,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "INV_Inward";
+            this.Name = "INV_DamageEntry";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Brand";
             this.Load += new System.EventHandler(this.INV_Inward_Load);
@@ -713,50 +618,42 @@
         private System.Windows.Forms.GroupBox grpproductname;
         private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.TextBox txtActualQty;
-        private System.Windows.Forms.Label lblActualQty;
+        private System.Windows.Forms.Label lblQty;
         internal System.Windows.Forms.Label btnAdd;
         private System.Windows.Forms.Label lblMrp;
         private System.Windows.Forms.Label lblProductName;
         private System.Windows.Forms.GroupBox grbgodown;
-        private System.Windows.Forms.ComboBox cmbGodown;
-        private System.Windows.Forms.Label lblGodown;
-        private System.Windows.Forms.ComboBox cmbvoucherno;
-        private System.Windows.Forms.Label lblVoucherNo;
         private System.Windows.Forms.Label lblSupplierName;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox txtDay;
         private System.Windows.Forms.TextBox txtMrp;
         private System.Windows.Forms.GroupBox grpsalesmandetails;
-        private System.Windows.Forms.ComboBox cmbinwardtype;
-        private System.Windows.Forms.Label lblinwardtype;
         private System.Windows.Forms.TextBox txttotalitem;
         private System.Windows.Forms.Label lbltotalproducts;
         private System.Windows.Forms.Label lblEdit;
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblExpiryDate;
-        public System.Windows.Forms.Button btnsaveasdraft;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TextBox txtunitrate;
         private System.Windows.Forms.Label lblbatchno;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label lblConcern;
+        private System.Windows.Forms.TextBox txtEntryNo;
+        private System.Windows.Forms.Label lbEntryNo;
+        private System.Windows.Forms.Label lblEntryDate;
+        private System.Windows.Forms.DateTimePicker dpEntryDate;
+        private System.Windows.Forms.Label lblYyyy;
+        private System.Windows.Forms.Label lblMM;
+        private System.Windows.Forms.Label lblDD;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdop;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmmrp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clminvoiceqty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmactualqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmremove;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label lblConcern;
-        private System.Windows.Forms.TextBox txtInwardNo;
-        private System.Windows.Forms.Label lblInwardNo;
-        private System.Windows.Forms.Label lblInwardDate;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label lblYyyy;
-        private System.Windows.Forms.Label lblMM;
-        private System.Windows.Forms.Label lblDd;
     }
 }

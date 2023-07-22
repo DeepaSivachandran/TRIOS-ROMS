@@ -75,12 +75,6 @@
     <Compile Include="CP_ChangePasswordConfirmation.designer.cs">
       <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_Brand.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CP_Brand.designer.cs">
-      <DependentUpon>CP_Brand.cs</DependentUpon>
-    </Compile>
     <Compile Include="CP_Supplier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,11 +105,17 @@
     <Compile Include="CP_UserCatagoryList.designer.cs">
       <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="INV_DamageEntryList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="INV_DamageEntryList.designer.cs">
+      <DependentUpon>INV_DamageEntryList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_DamageEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_DamageEntry.designer.cs">
+      <DependentUpon>INV_DamageEntry.cs</DependentUpon>
     </Compile>
     <Compile Include="PAY_SupplierPayment.cs">
       <SubType>Form</SubType>
@@ -225,17 +225,17 @@
     <Compile Include="INV_StockTransferList.designer.cs">
       <DependentUpon>INV_StockTransferList.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_GRNEntryVerify.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PUR_GRNEntryVerify.designer.cs">
       <DependentUpon>PUR_GRNEntryVerify.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PUR_PurchaseReturns.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PUR_PurchaseReturns.designer.cs">
-      <DependentUpon>PUR_PurchaseReturns.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_PODamaged.cs">
       <SubType>Form</SubType>
@@ -284,6 +284,12 @@
     </Compile>
     <Compile Include="PUR_SupplierSchedule.designer.cs">
       <DependentUpon>PUR_SupplierSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Brand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Brand.designer.cs">
+      <DependentUpon>CP_Brand.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_PurchaseList.cs">
       <SubType>Form</SubType>
@@ -551,9 +557,6 @@
     <EmbeddedResource Include="CP_ChangePasswordConfirmation.resx">
       <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_Brand.resx">
-      <DependentUpon>CP_Brand.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CP_Supplier.resx">
       <DependentUpon>CP_Supplier.cs</DependentUpon>
     </EmbeddedResource>
@@ -569,8 +572,11 @@
     <EmbeddedResource Include="CP_UserCatagoryList.resx">
       <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="INV_DamageEntryList.resx">
+      <DependentUpon>INV_DamageEntryList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_DamageEntry.resx">
+      <DependentUpon>INV_DamageEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_SupplierPayment.resx">
       <DependentUpon>PAY_SupplierPayment.cs</DependentUpon>
@@ -626,11 +632,11 @@
     <EmbeddedResource Include="INV_StockTransferList.resx">
       <DependentUpon>INV_StockTransferList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNEntryVerify.resx">
       <DependentUpon>PUR_GRNEntryVerify.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PUR_PurchaseReturns.resx">
-      <DependentUpon>PUR_PurchaseReturns.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PODamaged.resx">
       <DependentUpon>PUR_PODamaged.cs</DependentUpon>
@@ -655,6 +661,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_SupplierSchedule.resx">
       <DependentUpon>PUR_SupplierSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Brand.resx">
+      <DependentUpon>CP_Brand.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_PurchaseList.resx">
       <DependentUpon>CP_PurchaseList.cs</DependentUpon>
@@ -936,12 +945,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Launcher.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\login %283%29.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\view-eye.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

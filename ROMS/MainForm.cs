@@ -108,7 +108,9 @@ namespace ROMS
         public static CP_SupplierOrderDetailsList objCP_SupplierOrderDetailslist;
         public static CP_SupplierOrderDetails objCP_SupplierOrderDetails; 
         public static PUR_PurchaseReturns objPUR_PurchaseReturns;
-        
+        public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
+        public static INV_DamageEntryList objINV_DamageEntryList;
+        public static INV_DamageEntry objINV_DamageEntry;
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
@@ -965,13 +967,30 @@ namespace ROMS
         private void TsmSupplierOrder_Click(object sender, EventArgs e)
         {
             
-                try
+            try
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
                 MainForm.objCP_SupplierOrderDetailslist = new CP_SupplierOrderDetailsList();
                 MainForm.objCP_SupplierOrderDetailslist.MdiParent = this;
                 MainForm.objCP_SupplierOrderDetailslist.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DamageEntryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objINV_DamageEntryList = new INV_DamageEntryList();
+                MainForm.objINV_DamageEntryList.MdiParent = this;
+                MainForm.objINV_DamageEntryList.Show();
             }
             catch (Exception ex)
             {

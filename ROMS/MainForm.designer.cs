@@ -79,6 +79,7 @@ namespace ROMS
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.damageEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -189,7 +190,8 @@ namespace ROMS
             this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsminward,
             this.tsmOutward,
-            this.tsmStockTransfer});
+            this.tsmStockTransfer,
+            this.damageEntryToolStripMenuItem});
             this.inventoryToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
             this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
@@ -500,6 +502,13 @@ namespace ROMS
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
+            // damageEntryToolStripMenuItem
+            // 
+            this.damageEntryToolStripMenuItem.Name = "damageEntryToolStripMenuItem";
+            this.damageEntryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.damageEntryToolStripMenuItem.Text = "Damage Entry";
+            this.damageEntryToolStripMenuItem.Click += new System.EventHandler(this.DamageEntryToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -577,5 +586,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem supplierPaymentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmuserCategory;
         private System.Windows.Forms.ToolStripMenuItem tsmSupplierOrder;
+        private System.Windows.Forms.ToolStripMenuItem damageEntryToolStripMenuItem;
     }
 }
