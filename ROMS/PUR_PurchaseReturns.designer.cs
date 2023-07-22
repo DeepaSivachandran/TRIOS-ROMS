@@ -34,16 +34,26 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PurchaseReturns));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtgrnno = new System.Windows.Forms.TextBox();
-            this.lblDEVisitDay = new System.Windows.Forms.Label();
-            this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
-            this.lblDESupplier = new System.Windows.Forms.Label();
-            this.txtSupplier = new System.Windows.Forms.TextBox();
-            this.lvSupplier = new System.Windows.Forms.ListView();
-            this.cmbType = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Year = new System.Windows.Forms.TextBox();
+            this.txtDate = new System.Windows.Forms.TextBox();
+            this.Month = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnAdd = new System.Windows.Forms.Label();
+            this.txtProductQty = new System.Windows.Forms.TextBox();
+            this.txtProductName = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.grpExcessProduct = new System.Windows.Forms.GroupBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.lvSupplier = new System.Windows.Forms.ListView();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,131 +68,163 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAdd = new System.Windows.Forms.Label();
-            this.txtProductQty = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtProductName = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.lblYYYY = new System.Windows.Forms.Label();
             this.lblMM = new System.Windows.Forms.Label();
             this.lblDD = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.Year = new System.Windows.Forms.TextBox();
-            this.txtDate = new System.Windows.Forms.TextBox();
-            this.Month = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cmbType = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtgrnno = new System.Windows.Forms.TextBox();
+            this.lblDEVisitDay = new System.Windows.Forms.Label();
+            this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
+            this.lblDESupplier = new System.Windows.Forms.Label();
+            this.txtSupplier = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.grpExcessProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // errUnit
             // 
             this.errUnit.ContainerControl = this;
             // 
-            // label1
+            // groupBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(173, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 20);
-            this.label1.TabIndex = 1111149;
-            this.label1.Text = "Delivery Note No.";
+            this.groupBox1.Controls.Add(this.Year);
+            this.groupBox1.Controls.Add(this.txtDate);
+            this.groupBox1.Controls.Add(this.Month);
+            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.btnAdd);
+            this.groupBox1.Controls.Add(this.txtProductQty);
+            this.groupBox1.Controls.Add(this.txtProductName);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.grpExcessProduct);
+            this.groupBox1.Controls.Add(this.lblYYYY);
+            this.groupBox1.Controls.Add(this.lblMM);
+            this.groupBox1.Controls.Add(this.lblDD);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.groupBox3);
+            this.groupBox1.Location = new System.Drawing.Point(9, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1054, 667);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
             // 
-            // txtgrnno
+            // Year
             // 
-            this.txtgrnno.Enabled = false;
-            this.txtgrnno.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtgrnno.Location = new System.Drawing.Point(276, 17);
-            this.txtgrnno.MaxLength = 50;
-            this.txtgrnno.Name = "txtgrnno";
-            this.txtgrnno.ReadOnly = true;
-            this.txtgrnno.Size = new System.Drawing.Size(163, 27);
-            this.txtgrnno.TabIndex = 1111150;
+            this.Year.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Year.Location = new System.Drawing.Point(802, 96);
+            this.Year.MaxLength = 4;
+            this.Year.Name = "Year";
+            this.Year.Size = new System.Drawing.Size(67, 27);
+            this.Year.TabIndex = 1111220;
             // 
-            // lblDEVisitDay
+            // txtDate
             // 
-            this.lblDEVisitDay.AutoSize = true;
-            this.lblDEVisitDay.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDEVisitDay.Location = new System.Drawing.Point(9, 21);
-            this.lblDEVisitDay.Name = "lblDEVisitDay";
-            this.lblDEVisitDay.Size = new System.Drawing.Size(37, 20);
-            this.lblDEVisitDay.TabIndex = 1111146;
-            this.lblDEVisitDay.Text = " Date";
+            this.txtDate.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDate.Location = new System.Drawing.Point(704, 96);
+            this.txtDate.MaxLength = 2;
+            this.txtDate.Name = "txtDate";
+            this.txtDate.Size = new System.Drawing.Size(44, 27);
+            this.txtDate.TabIndex = 1111216;
             // 
-            // dpPlanDate
+            // Month
             // 
-            this.dpPlanDate.CustomFormat = "dd/MM/yyyy";
-            this.dpPlanDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpPlanDate.Location = new System.Drawing.Point(49, 17);
-            this.dpPlanDate.Name = "dpPlanDate";
-            this.dpPlanDate.Size = new System.Drawing.Size(121, 28);
-            this.dpPlanDate.TabIndex = 1111151;
+            this.Month.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Month.Location = new System.Drawing.Point(753, 96);
+            this.Month.MaxLength = 2;
+            this.Month.Name = "Month";
+            this.Month.Size = new System.Drawing.Size(44, 27);
+            this.Month.TabIndex = 1111218;
             // 
-            // lblDESupplier
+            // textBox4
             // 
-            this.lblDESupplier.AutoSize = true;
-            this.lblDESupplier.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDESupplier.Location = new System.Drawing.Point(442, 21);
-            this.lblDESupplier.Name = "lblDESupplier";
-            this.lblDESupplier.Size = new System.Drawing.Size(54, 20);
-            this.lblDESupplier.TabIndex = 1111145;
-            this.lblDESupplier.Text = "Supplier";
+            this.textBox4.Location = new System.Drawing.Point(962, 96);
+            this.textBox4.MaxLength = 50;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(58, 28);
+            this.textBox4.TabIndex = 1111213;
             // 
-            // txtSupplier
+            // label8
             // 
-            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplier.Location = new System.Drawing.Point(499, 17);
-            this.txtSupplier.MaxLength = 50;
-            this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(318, 27);
-            this.txtSupplier.TabIndex = 1111148;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(871, 100);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(87, 20);
+            this.label8.TabIndex = 1111212;
+            this.label8.Text = "Purchase Rate";
             // 
-            // lvSupplier
+            // textBox1
             // 
-            this.lvSupplier.HideSelection = false;
-            this.lvSupplier.Location = new System.Drawing.Point(142, 2);
-            this.lvSupplier.Name = "lvSupplier";
-            this.lvSupplier.Size = new System.Drawing.Size(396, 63);
-            this.lvSupplier.TabIndex = 1111147;
-            this.lvSupplier.UseCompatibleStateImageBehavior = false;
-            this.lvSupplier.Visible = false;
+            this.textBox1.Location = new System.Drawing.Point(553, 96);
+            this.textBox1.MaxLength = 50;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(81, 28);
+            this.textBox1.TabIndex = 1111211;
             // 
-            // cmbType
+            // label7
             // 
-            this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbType.FormattingEnabled = true;
-            this.cmbType.Items.AddRange(new object[] {
-            "--Select--",
-            "Damage",
-            "Excess"});
-            this.cmbType.Location = new System.Drawing.Point(858, 17);
-            this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(162, 27);
-            this.cmbType.TabIndex = 1111159;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(493, 100);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(61, 20);
+            this.label7.TabIndex = 1111210;
+            this.label7.Text = "Batch No.";
             // 
-            // label2
+            // btnAdd
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(822, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 20);
-            this.label2.TabIndex = 1111161;
-            this.label2.Text = "Type";
+            this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnAdd.Location = new System.Drawing.Point(1025, 98);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(21, 22);
+            this.btnAdd.TabIndex = 1111207;
+            this.btnAdd.Text = "        ";
+            // 
+            // txtProductQty
+            // 
+            this.txtProductQty.Location = new System.Drawing.Point(454, 96);
+            this.txtProductQty.MaxLength = 50;
+            this.txtProductQty.Name = "txtProductQty";
+            this.txtProductQty.Size = new System.Drawing.Size(38, 28);
+            this.txtProductQty.TabIndex = 1111209;
+            // 
+            // txtProductName
+            // 
+            this.txtProductName.Location = new System.Drawing.Point(151, 96);
+            this.txtProductName.MaxLength = 50;
+            this.txtProductName.Name = "txtProductName";
+            this.txtProductName.Size = new System.Drawing.Size(275, 28);
+            this.txtProductName.TabIndex = 1111206;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(9, 100);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(140, 20);
+            this.label4.TabIndex = 1111205;
+            this.label4.Text = "Product Name / P.I Code";
             // 
             // grpExcessProduct
             // 
+            this.grpExcessProduct.Controls.Add(this.btnClose);
             this.grpExcessProduct.Controls.Add(this.label11);
+            this.grpExcessProduct.Controls.Add(this.btnSave);
             this.grpExcessProduct.Controls.Add(this.textBox6);
             this.grpExcessProduct.Controls.Add(this.label10);
             this.grpExcessProduct.Controls.Add(this.textBox5);
@@ -192,29 +234,106 @@
             this.grpExcessProduct.Controls.Add(this.label6);
             this.grpExcessProduct.Controls.Add(this.textBox3);
             this.grpExcessProduct.Controls.Add(this.dataGridView1);
-            this.grpExcessProduct.Location = new System.Drawing.Point(9, 97);
+            this.grpExcessProduct.Location = new System.Drawing.Point(9, 126);
             this.grpExcessProduct.Name = "grpExcessProduct";
-            this.grpExcessProduct.Size = new System.Drawing.Size(1037, 503);
-            this.grpExcessProduct.TabIndex = 1111163;
+            this.grpExcessProduct.Size = new System.Drawing.Size(1037, 534);
+            this.grpExcessProduct.TabIndex = 1111204;
             this.grpExcessProduct.TabStop = false;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(936, 500);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 1111202;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Oswald Regular", 13.75F);
+            this.label11.Location = new System.Drawing.Point(747, 460);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(90, 26);
+            this.label11.TabIndex = 1111177;
+            this.label11.Text = "Grand Total";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(847, 500);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(84, 29);
+            this.btnSave.TabIndex = 1111201;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.Location = new System.Drawing.Point(847, 457);
+            this.textBox6.MaxLength = 50;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(164, 33);
+            this.textBox6.TabIndex = 1111178;
+            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(781, 433);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(56, 20);
+            this.label10.TabIndex = 1111175;
+            this.label10.Text = "Total Tax";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Location = new System.Drawing.Point(847, 430);
+            this.textBox5.MaxLength = 50;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(164, 27);
+            this.textBox5.TabIndex = 1111176;
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lvSupplier
+            // 
+            this.lvSupplier.HideSelection = false;
+            this.lvSupplier.Location = new System.Drawing.Point(142, 1);
+            this.lvSupplier.Name = "lvSupplier";
+            this.lvSupplier.Size = new System.Drawing.Size(396, 63);
+            this.lvSupplier.TabIndex = 1111147;
+            this.lvSupplier.UseCompatibleStateImageBehavior = false;
+            this.lvSupplier.Visible = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(777, 466);
+            this.label5.Location = new System.Drawing.Point(9, 406);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 20);
+            this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 1111173;
-            this.label5.Text = "Narration";
+            this.label5.Text = "Remarks";
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(847, 463);
+            this.textBox2.Location = new System.Drawing.Point(76, 403);
             this.textBox2.MaxLength = 50;
+            this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(164, 27);
+            this.textBox2.Size = new System.Drawing.Size(317, 87);
             this.textBox2.TabIndex = 1111174;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -222,7 +341,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(778, 380);
+            this.label6.Location = new System.Drawing.Point(778, 406);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 20);
             this.label6.TabIndex = 1111171;
@@ -231,7 +350,7 @@
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(847, 377);
+            this.textBox3.Location = new System.Drawing.Point(847, 403);
             this.textBox3.MaxLength = 50;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(164, 27);
@@ -276,7 +395,7 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.White;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 23);
+            this.dataGridView1.Location = new System.Drawing.Point(9, 16);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
@@ -285,7 +404,7 @@
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1002, 348);
+            this.dataGridView1.Size = new System.Drawing.Size(1002, 377);
             this.dataGridView1.TabIndex = 1111170;
             // 
             // dataGridViewTextBoxColumn1
@@ -351,228 +470,162 @@
             this.Column4.ReadOnly = true;
             this.Column4.Width = 80;
             // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(1025, 67);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(21, 22);
-            this.btnAdd.TabIndex = 1111186;
-            this.btnAdd.Text = "        ";
-            // 
-            // txtProductQty
-            // 
-            this.txtProductQty.Location = new System.Drawing.Point(454, 65);
-            this.txtProductQty.MaxLength = 50;
-            this.txtProductQty.Name = "txtProductQty";
-            this.txtProductQty.Size = new System.Drawing.Size(38, 28);
-            this.txtProductQty.TabIndex = 1111188;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(425, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 20);
-            this.label3.TabIndex = 1111187;
-            this.label3.Text = "Qty";
-            // 
-            // txtProductName
-            // 
-            this.txtProductName.Location = new System.Drawing.Point(151, 65);
-            this.txtProductName.MaxLength = 50;
-            this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(275, 28);
-            this.txtProductName.TabIndex = 1111185;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(9, 69);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(140, 20);
-            this.label4.TabIndex = 1111184;
-            this.label4.Text = "Product Name / P.I Code";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(553, 65);
-            this.textBox1.MaxLength = 50;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(81, 28);
-            this.textBox1.TabIndex = 1111191;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(493, 69);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(61, 20);
-            this.label7.TabIndex = 1111190;
-            this.label7.Text = "Batch No.";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(962, 65);
-            this.textBox4.MaxLength = 50;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(58, 28);
-            this.textBox4.TabIndex = 1111193;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(871, 69);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(87, 20);
-            this.label8.TabIndex = 1111192;
-            this.label8.Text = "Purchase Rate";
-            // 
             // lblYYYY
             // 
             this.lblYYYY.AutoSize = true;
             this.lblYYYY.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYYYY.Location = new System.Drawing.Point(822, 52);
+            this.lblYYYY.Location = new System.Drawing.Point(822, 83);
             this.lblYYYY.Name = "lblYYYY";
             this.lblYYYY.Size = new System.Drawing.Size(27, 15);
-            this.lblYYYY.TabIndex = 1111195;
+            this.lblYYYY.TabIndex = 1111215;
             this.lblYYYY.Text = "YYYY";
             // 
             // lblMM
             // 
             this.lblMM.AutoSize = true;
             this.lblMM.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMM.Location = new System.Drawing.Point(765, 52);
+            this.lblMM.Location = new System.Drawing.Point(765, 83);
             this.lblMM.Name = "lblMM";
             this.lblMM.Size = new System.Drawing.Size(21, 15);
-            this.lblMM.TabIndex = 1111197;
+            this.lblMM.TabIndex = 1111217;
             this.lblMM.Text = "MM";
             // 
             // lblDD
             // 
             this.lblDD.AutoSize = true;
             this.lblDD.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDD.Location = new System.Drawing.Point(717, 52);
+            this.lblDD.Location = new System.Drawing.Point(717, 83);
             this.lblDD.Name = "lblDD";
             this.lblDD.Size = new System.Drawing.Size(19, 15);
-            this.lblDD.TabIndex = 1111199;
+            this.lblDD.TabIndex = 1111219;
             this.lblDD.Text = "DD";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(425, 100);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(28, 20);
+            this.label3.TabIndex = 1111208;
+            this.label3.Text = "Qty";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(634, 69);
+            this.label9.Location = new System.Drawing.Point(634, 100);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(70, 20);
-            this.label9.TabIndex = 1111194;
+            this.label9.TabIndex = 1111214;
             this.label9.Text = "Expiry Date";
             // 
-            // Year
+            // groupBox3
             // 
-            this.Year.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Year.Location = new System.Drawing.Point(802, 65);
-            this.Year.MaxLength = 4;
-            this.Year.Name = "Year";
-            this.Year.Size = new System.Drawing.Size(67, 27);
-            this.Year.TabIndex = 1111200;
+            this.groupBox3.Controls.Add(this.cmbType);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.txtgrnno);
+            this.groupBox3.Controls.Add(this.lblDEVisitDay);
+            this.groupBox3.Controls.Add(this.dpPlanDate);
+            this.groupBox3.Controls.Add(this.lblDESupplier);
+            this.groupBox3.Controls.Add(this.txtSupplier);
+            this.groupBox3.Location = new System.Drawing.Point(9, 14);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(1037, 59);
+            this.groupBox3.TabIndex = 1111221;
+            this.groupBox3.TabStop = false;
             // 
-            // txtDate
+            // cmbType
             // 
-            this.txtDate.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDate.Location = new System.Drawing.Point(704, 65);
-            this.txtDate.MaxLength = 2;
-            this.txtDate.Name = "txtDate";
-            this.txtDate.Size = new System.Drawing.Size(44, 27);
-            this.txtDate.TabIndex = 1111196;
+            this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbType.FormattingEnabled = true;
+            this.cmbType.Items.AddRange(new object[] {
+            "--Select--",
+            "Damage",
+            "Excess"});
+            this.cmbType.Location = new System.Drawing.Point(856, 17);
+            this.cmbType.Name = "cmbType";
+            this.cmbType.Size = new System.Drawing.Size(162, 27);
+            this.cmbType.TabIndex = 1111168;
             // 
-            // Month
+            // label2
             // 
-            this.Month.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Month.Location = new System.Drawing.Point(753, 65);
-            this.Month.MaxLength = 2;
-            this.Month.Name = "Month";
-            this.Month.Size = new System.Drawing.Size(44, 27);
-            this.Month.TabIndex = 1111198;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(820, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(34, 20);
+            this.label2.TabIndex = 1111169;
+            this.label2.Text = "Type";
             // 
-            // label10
+            // label1
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(781, 407);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(56, 20);
-            this.label10.TabIndex = 1111175;
-            this.label10.Text = "Total Tax";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(171, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 20);
+            this.label1.TabIndex = 1111165;
+            this.label1.Text = "Delivery Note No.";
             // 
-            // textBox5
+            // txtgrnno
             // 
-            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(847, 404);
-            this.textBox5.MaxLength = 50;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(164, 27);
-            this.textBox5.TabIndex = 1111176;
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtgrnno.Enabled = false;
+            this.txtgrnno.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtgrnno.Location = new System.Drawing.Point(274, 17);
+            this.txtgrnno.MaxLength = 50;
+            this.txtgrnno.Name = "txtgrnno";
+            this.txtgrnno.ReadOnly = true;
+            this.txtgrnno.Size = new System.Drawing.Size(163, 27);
+            this.txtgrnno.TabIndex = 1111166;
             // 
-            // label11
+            // lblDEVisitDay
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Oswald Regular", 13.75F);
-            this.label11.Location = new System.Drawing.Point(747, 434);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(90, 26);
-            this.label11.TabIndex = 1111177;
-            this.label11.Text = "Grand Total";
+            this.lblDEVisitDay.AutoSize = true;
+            this.lblDEVisitDay.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDEVisitDay.Location = new System.Drawing.Point(7, 21);
+            this.lblDEVisitDay.Name = "lblDEVisitDay";
+            this.lblDEVisitDay.Size = new System.Drawing.Size(37, 20);
+            this.lblDEVisitDay.TabIndex = 1111163;
+            this.lblDEVisitDay.Text = " Date";
             // 
-            // textBox6
+            // dpPlanDate
             // 
-            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 13.75F);
-            this.textBox6.Location = new System.Drawing.Point(847, 431);
-            this.textBox6.MaxLength = 50;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(164, 32);
-            this.textBox6.TabIndex = 1111178;
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.dpPlanDate.CustomFormat = "dd/MM/yyyy";
+            this.dpPlanDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpPlanDate.Location = new System.Drawing.Point(47, 17);
+            this.dpPlanDate.Name = "dpPlanDate";
+            this.dpPlanDate.Size = new System.Drawing.Size(121, 28);
+            this.dpPlanDate.TabIndex = 1111167;
+            // 
+            // lblDESupplier
+            // 
+            this.lblDESupplier.AutoSize = true;
+            this.lblDESupplier.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDESupplier.Location = new System.Drawing.Point(440, 21);
+            this.lblDESupplier.Name = "lblDESupplier";
+            this.lblDESupplier.Size = new System.Drawing.Size(54, 20);
+            this.lblDESupplier.TabIndex = 1111162;
+            this.lblDESupplier.Text = "Supplier";
+            // 
+            // txtSupplier
+            // 
+            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplier.Location = new System.Drawing.Point(497, 17);
+            this.txtSupplier.MaxLength = 50;
+            this.txtSupplier.Name = "txtSupplier";
+            this.txtSupplier.Size = new System.Drawing.Size(318, 27);
+            this.txtSupplier.TabIndex = 1111164;
             // 
             // PUR_PurchaseReturns
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1057, 612);
-            this.Controls.Add(this.Year);
-            this.Controls.Add(this.txtDate);
-            this.Controls.Add(this.Month);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.txtProductQty);
-            this.Controls.Add(this.txtProductName);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.cmbType);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtgrnno);
-            this.Controls.Add(this.lblDEVisitDay);
-            this.Controls.Add(this.dpPlanDate);
-            this.Controls.Add(this.lblDESupplier);
-            this.Controls.Add(this.txtSupplier);
-            this.Controls.Add(this.grpExcessProduct);
-            this.Controls.Add(this.lblYYYY);
-            this.Controls.Add(this.lblMM);
-            this.Controls.Add(this.lblDD);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label9);
+            this.ClientSize = new System.Drawing.Size(1072, 671);
+            this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -584,26 +637,39 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase Returns";
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.grpExcessProduct.ResumeLayout(false);
             this.grpExcessProduct.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.ErrorProvider errUnit;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtgrnno;
-        private System.Windows.Forms.Label lblDEVisitDay;
-        private System.Windows.Forms.DateTimePicker dpPlanDate;
-        private System.Windows.Forms.Label lblDESupplier;
-        private System.Windows.Forms.TextBox txtSupplier;
-        private System.Windows.Forms.ListView lvSupplier;
-        private System.Windows.Forms.ComboBox cmbType;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox Year;
+        private System.Windows.Forms.TextBox txtDate;
+        private System.Windows.Forms.TextBox Month;
+        public System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label8;
+        public System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label7;
+        internal System.Windows.Forms.Label btnAdd;
+        public System.Windows.Forms.TextBox txtProductQty;
+        public System.Windows.Forms.TextBox txtProductName;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox grpExcessProduct;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label label11;
+        public System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.ListView lvSupplier;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label6;
@@ -618,25 +684,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        public System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label8;
-        public System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label7;
-        internal System.Windows.Forms.Label btnAdd;
-        public System.Windows.Forms.TextBox txtProductQty;
-        private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.TextBox txtProductName;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox Year;
-        private System.Windows.Forms.TextBox txtDate;
-        private System.Windows.Forms.TextBox Month;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label lblYYYY;
         private System.Windows.Forms.Label lblMM;
         private System.Windows.Forms.Label lblDD;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox cmbType;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtgrnno;
+        private System.Windows.Forms.Label lblDEVisitDay;
+        private System.Windows.Forms.DateTimePicker dpPlanDate;
+        private System.Windows.Forms.Label lblDESupplier;
+        private System.Windows.Forms.TextBox txtSupplier;
     }
 }
