@@ -125,7 +125,7 @@
             this.txtDEProductSubGroupNameTamil.ReadOnly = true;
             this.txtDEProductSubGroupNameTamil.Size = new System.Drawing.Size(200, 27);
             this.txtDEProductSubGroupNameTamil.TabIndex = 1111133;
-            this.txtDEProductSubGroupNameTamil.Text = "Product Sub Group Name In Tamil";
+            this.txtDEProductSubGroupNameTamil.Text = "Product Sub Group Name in Tamil";
             // 
             // txtESubGroupNameTamil
             // 
@@ -234,7 +234,7 @@
             this.txtDEProductSubGroupNameEnglish.ReadOnly = true;
             this.txtDEProductSubGroupNameEnglish.Size = new System.Drawing.Size(200, 27);
             this.txtDEProductSubGroupNameEnglish.TabIndex = 11;
-            this.txtDEProductSubGroupNameEnglish.Text = "Product Sub Group Name In English";
+            this.txtDEProductSubGroupNameEnglish.Text = "Product Sub Group Name in English";
             // 
             // btnClose
             // 

@@ -313,7 +313,7 @@
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "Product Sub Group Name In English";
+            this.Column2.HeaderText = "Product Sub Group Name in English";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Width = 250;

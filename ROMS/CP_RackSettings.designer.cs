@@ -28,6 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -47,15 +53,26 @@
             this.cmbRack = new System.Windows.Forms.ComboBox();
             this.lblDERack = new System.Windows.Forms.Label();
             this.chkSelectAll = new System.Windows.Forms.CheckBox();
-            this.btnAdd = new System.Windows.Forms.Label();
             this.grdRackSettings = new System.Windows.Forms.DataGridView();
             this.grbProductAddMove = new System.Windows.Forms.GroupBox();
             this.rbMove = new System.Windows.Forms.RadioButton();
             this.rbAdd = new System.Windows.Forms.RadioButton();
-            this.txtProductNamePICode = new System.Windows.Forms.TextBox();
-            this.lblDEProductName = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.grdSubGroup = new System.Windows.Forms.DataGridView();
+            this.grdGroup = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chksupplier = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,6 +87,8 @@
             this.grpSource.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRackSettings)).BeginInit();
             this.grbProductAddMove.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSubGroup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdGroup)).BeginInit();
             this.SuspendLayout();
             // 
             // tsRackSettings
@@ -120,14 +139,20 @@
             // grpRackSettings
             // 
             this.grpRackSettings.BackColor = System.Drawing.Color.White;
+            this.grpRackSettings.Controls.Add(this.checkBox2);
+            this.grpRackSettings.Controls.Add(this.checkBox1);
+            this.grpRackSettings.Controls.Add(this.label4);
+            this.grpRackSettings.Controls.Add(this.textBox3);
+            this.grpRackSettings.Controls.Add(this.label5);
+            this.grpRackSettings.Controls.Add(this.textBox2);
+            this.grpRackSettings.Controls.Add(this.button1);
+            this.grpRackSettings.Controls.Add(this.grdSubGroup);
+            this.grpRackSettings.Controls.Add(this.grdGroup);
             this.grpRackSettings.Controls.Add(this.groupBox1);
             this.grpRackSettings.Controls.Add(this.grpSource);
             this.grpRackSettings.Controls.Add(this.chkSelectAll);
-            this.grpRackSettings.Controls.Add(this.btnAdd);
             this.grpRackSettings.Controls.Add(this.grdRackSettings);
             this.grpRackSettings.Controls.Add(this.grbProductAddMove);
-            this.grpRackSettings.Controls.Add(this.txtProductNamePICode);
-            this.grpRackSettings.Controls.Add(this.lblDEProductName);
             this.grpRackSettings.Controls.Add(this.btnClose);
             this.grpRackSettings.Controls.Add(this.btnSave);
             this.grpRackSettings.Location = new System.Drawing.Point(7, 1);
@@ -245,23 +270,11 @@
             // chkSelectAll
             // 
             this.chkSelectAll.AutoSize = true;
-            this.chkSelectAll.Location = new System.Drawing.Point(39, 207);
+            this.chkSelectAll.Location = new System.Drawing.Point(802, 223);
             this.chkSelectAll.Name = "chkSelectAll";
             this.chkSelectAll.Size = new System.Drawing.Size(15, 14);
             this.chkSelectAll.TabIndex = 1111148;
             this.chkSelectAll.UseVisualStyleBackColor = true;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(595, 168);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(21, 22);
-            this.btnAdd.TabIndex = 1111156;
-            this.btnAdd.Text = "        ";
             // 
             // grdRackSettings
             // 
@@ -271,14 +284,14 @@
             this.grdRackSettings.AllowUserToResizeRows = false;
             this.grdRackSettings.BackgroundColor = System.Drawing.Color.White;
             this.grdRackSettings.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdRackSettings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdRackSettings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.grdRackSettings.ColumnHeadersHeight = 30;
             this.grdRackSettings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdRackSettings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -289,26 +302,26 @@
             this.clmProductNameInTamil,
             this.Column2,
             this.clmUnit});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdRackSettings.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdRackSettings.DefaultCellStyle = dataGridViewCellStyle8;
             this.grdRackSettings.EnableHeadersVisualStyles = false;
             this.grdRackSettings.GridColor = System.Drawing.Color.White;
-            this.grdRackSettings.Location = new System.Drawing.Point(21, 197);
+            this.grdRackSettings.Location = new System.Drawing.Point(791, 214);
             this.grdRackSettings.Name = "grdRackSettings";
             this.grdRackSettings.ReadOnly = true;
             this.grdRackSettings.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdRackSettings.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            this.grdRackSettings.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.grdRackSettings.RowTemplate.Height = 25;
             this.grdRackSettings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdRackSettings.Size = new System.Drawing.Size(1286, 377);
+            this.grdRackSettings.Size = new System.Drawing.Size(529, 364);
             this.grdRackSettings.TabIndex = 1111147;
             // 
             // grbProductAddMove
@@ -345,31 +358,12 @@
             this.rbAdd.Text = "Add Product";
             this.rbAdd.UseVisualStyleBackColor = true;
             // 
-            // txtProductNamePICode
-            // 
-            this.txtProductNamePICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductNamePICode.Location = new System.Drawing.Point(164, 166);
-            this.txtProductNamePICode.MaxLength = 50;
-            this.txtProductNamePICode.Name = "txtProductNamePICode";
-            this.txtProductNamePICode.Size = new System.Drawing.Size(423, 27);
-            this.txtProductNamePICode.TabIndex = 1111151;
-            // 
-            // lblDEProductName
-            // 
-            this.lblDEProductName.AutoSize = true;
-            this.lblDEProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDEProductName.Location = new System.Drawing.Point(21, 169);
-            this.lblDEProductName.Name = "lblDEProductName";
-            this.lblDEProductName.Size = new System.Drawing.Size(140, 20);
-            this.lblDEProductName.TabIndex = 1111152;
-            this.lblDEProductName.Text = "Product Name / P.I Code";
-            // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1232, 580);
+            this.btnClose.Location = new System.Drawing.Point(1245, 585);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 5;
@@ -383,7 +377,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1139, 580);
+            this.btnSave.Location = new System.Drawing.Point(1155, 585);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 4;
@@ -391,12 +385,201 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(328, 181);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 20);
+            this.label4.TabIndex = 1111165;
+            this.label4.Text = "Search";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(374, 178);
+            this.textBox3.MaxLength = 50;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(244, 27);
+            this.textBox3.TabIndex = 1111164;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(21, 181);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 20);
+            this.label5.TabIndex = 1111163;
+            this.label5.Text = "Search";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(68, 178);
+            this.textBox2.MaxLength = 50;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(244, 27);
+            this.textBox2.TabIndex = 1111162;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.button1.Image = global::ROMS.Properties.Resources.add;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(753, 367);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(29, 29);
+            this.button1.TabIndex = 1111161;
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // grdSubGroup
+            // 
+            this.grdSubGroup.AllowUserToAddRows = false;
+            this.grdSubGroup.AllowUserToDeleteRows = false;
+            this.grdSubGroup.AllowUserToResizeColumns = false;
+            this.grdSubGroup.AllowUserToResizeRows = false;
+            this.grdSubGroup.BackgroundColor = System.Drawing.Color.White;
+            this.grdSubGroup.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdSubGroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdSubGroup.ColumnHeadersHeight = 30;
+            this.grdSubGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdSubGroup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.Column3});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdSubGroup.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdSubGroup.EnableHeadersVisualStyles = false;
+            this.grdSubGroup.GridColor = System.Drawing.Color.White;
+            this.grdSubGroup.Location = new System.Drawing.Point(328, 214);
+            this.grdSubGroup.Name = "grdSubGroup";
+            this.grdSubGroup.ReadOnly = true;
+            this.grdSubGroup.RowHeadersVisible = false;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdSubGroup.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdSubGroup.RowTemplate.Height = 25;
+            this.grdSubGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdSubGroup.Size = new System.Drawing.Size(417, 364);
+            this.grdSubGroup.TabIndex = 1111160;
+            // 
+            // grdGroup
+            // 
+            this.grdGroup.AllowUserToAddRows = false;
+            this.grdGroup.AllowUserToDeleteRows = false;
+            this.grdGroup.AllowUserToResizeColumns = false;
+            this.grdGroup.AllowUserToResizeRows = false;
+            this.grdGroup.BackgroundColor = System.Drawing.Color.White;
+            this.grdGroup.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdGroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdGroup.ColumnHeadersHeight = 30;
+            this.grdGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdGroup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGroup.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdGroup.EnableHeadersVisualStyles = false;
+            this.grdGroup.GridColor = System.Drawing.Color.White;
+            this.grdGroup.Location = new System.Drawing.Point(21, 214);
+            this.grdGroup.Name = "grdGroup";
+            this.grdGroup.ReadOnly = true;
+            this.grdGroup.RowHeadersVisible = false;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGroup.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdGroup.RowTemplate.Height = 25;
+            this.grdGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdGroup.Size = new System.Drawing.Size(290, 364);
+            this.grdGroup.TabIndex = 1111159;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.HeaderText = "";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewCheckBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewCheckBoxColumn1.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Product Sub Group";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 200;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(343, 223);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 1111166;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(35, 223);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(15, 14);
+            this.checkBox2.TabIndex = 1111167;
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "P.I Code";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Product Name";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 250;
+            // 
             // chksupplier
             // 
             this.chksupplier.HeaderText = "";
             this.chksupplier.Name = "chksupplier";
             this.chksupplier.ReadOnly = true;
-            this.chksupplier.Width = 50;
+            this.chksupplier.Width = 30;
             // 
             // Column1
             // 
@@ -416,27 +599,27 @@
             this.clmProductnameInEnglish.HeaderText = "Product Name in English";
             this.clmProductnameInEnglish.Name = "clmProductnameInEnglish";
             this.clmProductnameInEnglish.ReadOnly = true;
-            this.clmProductnameInEnglish.Width = 400;
+            this.clmProductnameInEnglish.Width = 250;
             // 
             // clmProductNameInTamil
             // 
             this.clmProductNameInTamil.HeaderText = "Product Name in Tamil";
             this.clmProductNameInTamil.Name = "clmProductNameInTamil";
             this.clmProductNameInTamil.ReadOnly = true;
-            this.clmProductNameInTamil.Width = 400;
+            this.clmProductNameInTamil.Width = 250;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Rack MOQ";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 150;
             // 
             // clmUnit
             // 
             this.clmUnit.HeaderText = "Unit";
             this.clmUnit.Name = "clmUnit";
             this.clmUnit.ReadOnly = true;
+            this.clmUnit.Width = 50;
             // 
             // CP_RackSettings
             // 
@@ -468,6 +651,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdRackSettings)).EndInit();
             this.grbProductAddMove.ResumeLayout(false);
             this.grbProductAddMove.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSubGroup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdGroup)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -483,13 +668,10 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.CheckBox chkSelectAll;
-        internal System.Windows.Forms.Label btnAdd;
         public System.Windows.Forms.DataGridView grdRackSettings;
         private System.Windows.Forms.GroupBox grbProductAddMove;
         private System.Windows.Forms.RadioButton rbMove;
         private System.Windows.Forms.RadioButton rbAdd;
-        private System.Windows.Forms.TextBox txtProductNamePICode;
-        private System.Windows.Forms.Label lblDEProductName;
         private System.Windows.Forms.Label lblDERack;
         private System.Windows.Forms.ComboBox cmbRack;
         private System.Windows.Forms.GroupBox grpSource;
@@ -500,6 +682,20 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.DataGridView grdSubGroup;
+        public System.Windows.Forms.DataGridView grdGroup;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chksupplier;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;

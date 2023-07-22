@@ -306,7 +306,7 @@
             // 
             // Column5
             // 
-            this.Column5.HeaderText = "Location Name in English";
+            this.Column5.HeaderText = "Location Name in Tamil";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             this.Column5.Width = 250;
