@@ -282,14 +282,14 @@
             // 
             // clmBrandNameInEnglish
             // 
-            this.clmBrandNameInEnglish.HeaderText = "Brand Name In English";
+            this.clmBrandNameInEnglish.HeaderText = "Brand Name in English";
             this.clmBrandNameInEnglish.Name = "clmBrandNameInEnglish";
             this.clmBrandNameInEnglish.ReadOnly = true;
             this.clmBrandNameInEnglish.Width = 200;
             // 
             // clmBrandNameInTamil
             // 
-            this.clmBrandNameInTamil.HeaderText = "Brand Name In Tamil";
+            this.clmBrandNameInTamil.HeaderText = "Brand Name in Tamil";
             this.clmBrandNameInTamil.Name = "clmBrandNameInTamil";
             this.clmBrandNameInTamil.ReadOnly = true;
             this.clmBrandNameInTamil.Width = 200;

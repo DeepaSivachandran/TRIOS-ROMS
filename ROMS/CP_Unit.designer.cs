@@ -134,7 +134,7 @@
             this.txtDNoOfDecimals.ReadOnly = true;
             this.txtDNoOfDecimals.Size = new System.Drawing.Size(122, 28);
             this.txtDNoOfDecimals.TabIndex = 12;
-            this.txtDNoOfDecimals.Text = "No.Of Decimals";
+            this.txtDNoOfDecimals.Text = "No.of Decimals";
             // 
             // txtEInvoiceUnitName
             // 
@@ -228,6 +228,7 @@
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbInActive);
             this.pnlStatus.Controls.Add(this.rbActive);
+            this.pnlStatus.Enabled = false;
             this.pnlStatus.Location = new System.Drawing.Point(159, 130);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(361, 28);

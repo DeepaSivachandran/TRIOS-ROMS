@@ -46,16 +46,16 @@
             this.grdUnitList = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDSymbols = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDNoOfDecimals = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSymbols = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNoOfDecimals = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDSymbols = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDNoOfDecimals = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsUnitList.SuspendLayout();
             this.pnlunitlist.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -278,6 +278,36 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.MinimumWidth = 6;
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmdcompanyname
+            // 
+            this.clmdcompanyname.HeaderText = "Unit Name";
+            this.clmdcompanyname.MinimumWidth = 6;
+            this.clmdcompanyname.Name = "clmdcompanyname";
+            this.clmdcompanyname.Width = 200;
+            // 
+            // clmSymbols
+            // 
+            this.clmSymbols.HeaderText = "Symbol";
+            this.clmSymbols.Name = "clmSymbols";
+            // 
+            // clmNoOfDecimals
+            // 
+            this.clmNoOfDecimals.HeaderText = "No.of Decimals";
+            this.clmNoOfDecimals.Name = "clmNoOfDecimals";
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Status";
+            this.clmdstatus.MinimumWidth = 6;
+            this.clmdstatus.Name = "clmdstatus";
+            this.clmdstatus.Width = 125;
+            // 
             // clmsno
             // 
             this.clmsno.HeaderText = "S.No.";
@@ -301,7 +331,7 @@
             // 
             // clmDNoOfDecimals
             // 
-            this.clmDNoOfDecimals.HeaderText = "No.Of Decimals";
+            this.clmDNoOfDecimals.HeaderText = "No.of Decimals";
             this.clmDNoOfDecimals.Name = "clmDNoOfDecimals";
             this.clmDNoOfDecimals.ReadOnly = true;
             // 
@@ -312,36 +342,6 @@
             this.clmStatus.Name = "clmStatus";
             this.clmStatus.ReadOnly = true;
             this.clmStatus.Width = 125;
-            // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.MinimumWidth = 6;
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmdcompanyname
-            // 
-            this.clmdcompanyname.HeaderText = "Unit Name";
-            this.clmdcompanyname.MinimumWidth = 6;
-            this.clmdcompanyname.Name = "clmdcompanyname";
-            this.clmdcompanyname.Width = 200;
-            // 
-            // clmSymbols
-            // 
-            this.clmSymbols.HeaderText = "Symbol";
-            this.clmSymbols.Name = "clmSymbols";
-            // 
-            // clmNoOfDecimals
-            // 
-            this.clmNoOfDecimals.HeaderText = "No.Of Decimals";
-            this.clmNoOfDecimals.Name = "clmNoOfDecimals";
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Status";
-            this.clmdstatus.MinimumWidth = 6;
-            this.clmdstatus.Name = "clmdstatus";
-            this.clmdstatus.Width = 125;
             // 
             // CP_Unitlist
             // 

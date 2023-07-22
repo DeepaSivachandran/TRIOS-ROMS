@@ -41,34 +41,34 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.chkSubGroupAdd = new System.Windows.Forms.CheckBox();
+            this.chkSubGroup = new System.Windows.Forms.CheckBox();
+            this.chkgroup = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.grdSubGroup = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdGroup = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdSubGroupAdd = new System.Windows.Forms.DataGridView();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsubgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtDEBrandNameInTamil = new System.Windows.Forms.TextBox();
             this.txtEBrandNameInTamil = new System.Windows.Forms.TextBox();
             this.txtDEBrandNameInEnglish = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtEBrandNameInEnglish = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.chkgroup = new System.Windows.Forms.CheckBox();
-            this.chkSubGroup = new System.Windows.Forms.CheckBox();
-            this.chkSubGroupAdd = new System.Windows.Forms.CheckBox();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsubgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.grbform.SuspendLayout();
@@ -136,6 +136,78 @@
             this.grbform.Size = new System.Drawing.Size(1339, 633);
             this.grbform.TabIndex = 29;
             this.grbform.TabStop = false;
+            // 
+            // chkSubGroupAdd
+            // 
+            this.chkSubGroupAdd.AutoSize = true;
+            this.chkSubGroupAdd.Location = new System.Drawing.Point(888, 139);
+            this.chkSubGroupAdd.Name = "chkSubGroupAdd";
+            this.chkSubGroupAdd.Size = new System.Drawing.Size(15, 14);
+            this.chkSubGroupAdd.TabIndex = 1111152;
+            this.chkSubGroupAdd.UseVisualStyleBackColor = true;
+            // 
+            // chkSubGroup
+            // 
+            this.chkSubGroup.AutoSize = true;
+            this.chkSubGroup.Location = new System.Drawing.Point(395, 139);
+            this.chkSubGroup.Name = "chkSubGroup";
+            this.chkSubGroup.Size = new System.Drawing.Size(15, 14);
+            this.chkSubGroup.TabIndex = 1111151;
+            this.chkSubGroup.UseVisualStyleBackColor = true;
+            // 
+            // chkgroup
+            // 
+            this.chkgroup.AutoSize = true;
+            this.chkgroup.Location = new System.Drawing.Point(22, 139);
+            this.chkgroup.Name = "chkgroup";
+            this.chkgroup.Size = new System.Drawing.Size(15, 14);
+            this.chkgroup.TabIndex = 1111150;
+            this.chkgroup.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(381, 96);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 20);
+            this.label3.TabIndex = 1111149;
+            this.label3.Text = "Search";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(432, 93);
+            this.textBox3.MaxLength = 50;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(410, 27);
+            this.textBox3.TabIndex = 1111148;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 96);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 20);
+            this.label2.TabIndex = 1111147;
+            this.label2.Text = "Search";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(60, 93);
+            this.textBox2.MaxLength = 50;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(287, 27);
+            this.textBox2.TabIndex = 1111146;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(876, 96);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 20);
+            this.label1.TabIndex = 1111145;
+            this.label1.Text = "Search";
             // 
             // textBox1
             // 
@@ -215,6 +287,27 @@
             this.grdSubGroup.Size = new System.Drawing.Size(461, 418);
             this.grdSubGroup.TabIndex = 1111141;
             // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 40;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Product Group";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Product Sub Group";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 250;
+            // 
             // grdGroup
             // 
             this.grdGroup.AllowUserToAddRows = false;
@@ -258,6 +351,22 @@
             this.grdGroup.Size = new System.Drawing.Size(339, 418);
             this.grdGroup.TabIndex = 1111140;
             this.grdGroup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGroup_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn1.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Product Group";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 250;
             // 
             // grdSubGroupAdd
             // 
@@ -303,6 +412,27 @@
             this.grdSubGroupAdd.Size = new System.Drawing.Size(458, 418);
             this.grdSubGroupAdd.TabIndex = 1111139;
             // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 40;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Selected Product Group";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 150;
+            // 
+            // clmsubgroup
+            // 
+            this.clmsubgroup.HeaderText = "Selected Product Sub Group";
+            this.clmsubgroup.Name = "clmsubgroup";
+            this.clmsubgroup.ReadOnly = true;
+            this.clmsubgroup.Width = 250;
+            // 
             // txtDEBrandNameInTamil
             // 
             this.txtDEBrandNameInTamil.BackColor = System.Drawing.SystemColors.Control;
@@ -313,7 +443,7 @@
             this.txtDEBrandNameInTamil.ReadOnly = true;
             this.txtDEBrandNameInTamil.Size = new System.Drawing.Size(181, 27);
             this.txtDEBrandNameInTamil.TabIndex = 1111137;
-            this.txtDEBrandNameInTamil.Text = "Brand Name In Tamil";
+            this.txtDEBrandNameInTamil.Text = "Brand Name in Tamil";
             // 
             // txtEBrandNameInTamil
             // 
@@ -334,7 +464,7 @@
             this.txtDEBrandNameInEnglish.ReadOnly = true;
             this.txtDEBrandNameInEnglish.Size = new System.Drawing.Size(181, 27);
             this.txtDEBrandNameInEnglish.TabIndex = 7;
-            this.txtDEBrandNameInEnglish.Text = "Brand Name In English";
+            this.txtDEBrandNameInEnglish.Text = "Brand Name in English";
             // 
             // btnClose
             // 
@@ -371,136 +501,6 @@
             this.txtEBrandNameInEnglish.Name = "txtEBrandNameInEnglish";
             this.txtEBrandNameInEnglish.Size = new System.Drawing.Size(287, 27);
             this.txtEBrandNameInEnglish.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(876, 96);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 20);
-            this.label1.TabIndex = 1111145;
-            this.label1.Text = "Search";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 96);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 20);
-            this.label2.TabIndex = 1111147;
-            this.label2.Text = "Search";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(60, 93);
-            this.textBox2.MaxLength = 50;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(287, 27);
-            this.textBox2.TabIndex = 1111146;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(381, 96);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 20);
-            this.label3.TabIndex = 1111149;
-            this.label3.Text = "Search";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(432, 93);
-            this.textBox3.MaxLength = 50;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(410, 27);
-            this.textBox3.TabIndex = 1111148;
-            // 
-            // chkgroup
-            // 
-            this.chkgroup.AutoSize = true;
-            this.chkgroup.Location = new System.Drawing.Point(22, 139);
-            this.chkgroup.Name = "chkgroup";
-            this.chkgroup.Size = new System.Drawing.Size(15, 14);
-            this.chkgroup.TabIndex = 1111150;
-            this.chkgroup.UseVisualStyleBackColor = true;
-            // 
-            // chkSubGroup
-            // 
-            this.chkSubGroup.AutoSize = true;
-            this.chkSubGroup.Location = new System.Drawing.Point(395, 139);
-            this.chkSubGroup.Name = "chkSubGroup";
-            this.chkSubGroup.Size = new System.Drawing.Size(15, 14);
-            this.chkSubGroup.TabIndex = 1111151;
-            this.chkSubGroup.UseVisualStyleBackColor = true;
-            // 
-            // chkSubGroupAdd
-            // 
-            this.chkSubGroupAdd.AutoSize = true;
-            this.chkSubGroupAdd.Location = new System.Drawing.Point(888, 139);
-            this.chkSubGroupAdd.Name = "chkSubGroupAdd";
-            this.chkSubGroupAdd.Size = new System.Drawing.Size(15, 14);
-            this.chkSubGroupAdd.TabIndex = 1111152;
-            this.chkSubGroupAdd.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 40;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Product Group";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Product Sub Group";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 250;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn1.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Product Group";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 250;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 40;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Selected Product Group";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 150;
-            // 
-            // clmsubgroup
-            // 
-            this.clmsubgroup.HeaderText = "Selected Product Sub Group";
-            this.clmsubgroup.Name = "clmsubgroup";
-            this.clmsubgroup.ReadOnly = true;
-            this.clmsubgroup.Width = 250;
             // 
             // CP_Brand
             // 
