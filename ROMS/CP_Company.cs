@@ -309,28 +309,25 @@ namespace ROMS
 
         private void CmbWhatsApp_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            try
-            {
-                if (cmbWhatsApp.SelectedItem == "Enabled")
-                {
-                    txtWhatsAppNo.Enabled = true;
-                }
-                else
-                {
-                    txtWhatsAppNo.Enabled = false;
-                    txtWhatsAppNo.Text = "";
+            //try
+            //{
+            //    if (cmbWhatsApp.SelectedItem == "Enabled")
+            //    {
+            //        txtWhatsAppNo.Enabled = true;
+            //    }
+            //    else
+            //    {
+            //        txtWhatsAppNo.Enabled = false;
+            //        txtWhatsAppNo.Text = "";
                     
-                }
-                //if(cmbWhatsApp.SelectedItem=="Disabled")
-                //{
-                //    txtDWhatsAppNo.Text = "";
-                //}
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //    }
+                
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void TxtWhatsAppNo_Leave(object sender, EventArgs e)
