@@ -23,8 +23,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_Supplier = new CP_Supplier();
-                MainForm.objCP_Supplier.ShowDialog();
+                MainForm.objCP_Supplier = new CP_Supplier(); 
+                MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                MainForm.objCP_Supplier.Show(); 
             }
             catch (Exception ex)
             {
