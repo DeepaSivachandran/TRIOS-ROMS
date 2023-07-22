@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class CP_Product : Form
+    public partial class CP_ProductDetails : Form
     {
         DataValidation objvalidation = new DataValidation();
         DataError objError;
@@ -34,7 +34,7 @@ namespace ROMS
         private ToolTip tpcity = new ToolTip();
         private ToolTip tparea = new ToolTip();
         private ToolTip tpstate = new ToolTip();
-        public CP_Product()
+        public CP_ProductDetails()
         {
             InitializeComponent();
         }
@@ -364,7 +364,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.LemonChiffon;
+                //btnSave.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -408,86 +408,8 @@ namespace ROMS
             //}
         }
 
-        private void btnSave_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                btnSave.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfnclose()
-        {
-            try
-            {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnclose();
-               // MainForm.objCP_CompanyList.udfnList();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void btnClose_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                btnClose.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void btnClose_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void btnClose_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                btnClose.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+   
+     
 
         private void CP_Company_Load(object sender, EventArgs e)
         {
@@ -514,7 +436,7 @@ namespace ROMS
             //txtDYear.Visible = false;
             //txtYear.Visible = false;
 
-            cmbPeriod.SelectedIndex = 0;
+            //cmbPeriod.SelectedIndex = 0;
         }
 
 
@@ -1061,7 +983,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtItemNameEnglish.Focus();
+                    //txtItemNameEnglish.Focus();
                 }
             }
             catch (Exception ex)
@@ -1077,7 +999,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter )
                 {
-                    txtItemNameTamil.Focus();
+                    //txtItemNameTamil.Focus();
                 }
             }
             catch (Exception ex)
@@ -1125,7 +1047,7 @@ namespace ROMS
             {
                 if (e.KeyData == Keys.Enter)
                 {
-                    cmbHSNName.Focus();
+                    //cmbHSNName.Focus();
                 }
             }
             catch (Exception ex)
@@ -1176,7 +1098,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbGroup.Focus();
+                    //cmbGroup.Focus();
                 }
             }
             catch (Exception ex)
@@ -1192,7 +1114,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbSubGroup.Focus();
+                    //cmbSubGroup.Focus();
                 }
             }
             catch (Exception ex)
@@ -1208,7 +1130,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBrand.Focus();
+                    //cmbBrand.Focus();
                 }
             }
             catch (Exception ex)
@@ -1224,7 +1146,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbUnit.Focus();
+                    //cmbUnit.Focus();
                 }
             }
             catch (Exception ex)
@@ -1240,7 +1162,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbPosition.Focus();
+                    //cmbPosition.Focus();
                 }
             }
             catch (Exception ex)
@@ -1264,32 +1186,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        
-
-        private void TxtRetailRate_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtWSaleRate.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TxtWSaleRate_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtWeight.Focus();
+                    //txtWeight.Focus();
                 }
             }
             catch (Exception ex)
@@ -1330,105 +1233,13 @@ namespace ROMS
             }
         }
 
-        private void TxtMRPRate_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtMaxStock.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtMaxStock_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtMinStock.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+       
 
         private void TxtMinStock_KeyDown(object sender, KeyEventArgs e)
         {
         }
 
-        private void TxtOpeningStock_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtWMinSaleQty.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtWMinSaleQty_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtRMinSaleQty.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtRMinSaleQty_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtBarcode.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtBarcode_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cbExpiry.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        
 
         private void CbExpiry_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1539,21 +1350,7 @@ namespace ROMS
             }
         }
 
-        private void TxtIGST_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtReOrderQty.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+       
 
         private void TxtReOrderQty_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1585,99 +1382,6 @@ namespace ROMS
             }
         }
 
-        private void CbBatch_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    rbActive.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void RbActive_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    rbInActive.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void RbInActive_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnSave.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-            //////////////////////////////////////////////////////
-            
-
-
-
-        }
-
-        private void TxtPICode_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtPICode.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtItemNameEnglish_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtItemNameEnglish.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtItemNameTamil_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtItemNameTamil.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TxtCommodityCode_Enter(object sender, EventArgs e)
         {
             try
@@ -1691,45 +1395,7 @@ namespace ROMS
         }
          
 
-        private void TxtRetailRate_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtRetailRate.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtWSaleRate_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtWSaleRate.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtWeight_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtWeight.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+     
         private void TxtPurchaseRate_Enter(object sender, EventArgs e)
         {
             try
@@ -1756,417 +1422,12 @@ namespace ROMS
             }
         }
 
-        private void TxtMaxStock_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtMaxStock.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtMinStock_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtMinStock.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtOpeningStock_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-               
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtWMinSaleQty_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtWMinSaleQty.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtRMinSaleQty_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtRMinSaleQty.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtBarcode_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtBarcode.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-
-        private void TxtGST_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtGST.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-           
-
-        private void TxtReOrderQty_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtReOrderQty.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
 
 
         ////////////////////////////////////////////////////
 
 
-        private void TxtPICode_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtPICode.Text == "")
-                {
-                    txtPICode.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtPICode, "Please Enter PI Code");
-                }
-                else
-                {
-                    txtPICode.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtItemNameEnglish_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtItemNameEnglish.Text == "")
-                {
-                    txtItemNameEnglish.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtItemNameEnglish, "Please Enter Item Name In English");
-                }
-                else
-                {
-                    txtItemNameEnglish.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtItemNameTamil_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtItemNameTamil.Text == "")
-                {
-                    txtItemNameTamil.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtItemNameTamil, "Please Enter Item Name In Tamil");
-                }
-                else
-                {
-                    txtItemNameTamil.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }  
-
-        private void TxtRetailRate_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtRetailRate.Text == "")
-                {
-                    txtRetailRate.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtRetailRate, "Please Enter Retail Rate");
-                }
-                else
-                {
-                    txtRetailRate.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtWSaleRate_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtWSaleRate.Text == "")
-                {
-                    txtWSaleRate.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtWSaleRate, "Please Enter W Sale Rate");
-                }
-                else
-                {
-                    txtWSaleRate.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtWeight_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtWeight.Text == "")
-                {
-                    txtWeight.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtWeight, "Please Enter Weight");
-                }
-                else
-                {
-                    txtWeight.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-      
-        private void TxtMaxStock_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtMaxStock.Text == "")
-                {
-                    txtMaxStock.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtMaxStock, "Please Enter Max Stock");
-                }
-                else
-                {
-                    txtMaxStock.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtMinStock_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtMinStock.Text == "")
-                {
-                    txtMinStock.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtMinStock, "Please Enter Min Stock");
-                }
-                else
-                {
-                    txtMinStock.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtOpeningStock_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-               
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtWMinSaleQty_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtWMinSaleQty.Text == "")
-                {
-                    txtWMinSaleQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtWMinSaleQty, "Please Enter Min Sale Qty");
-                }
-                else
-                {
-                    txtWMinSaleQty.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtRMinSaleQty_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtRMinSaleQty.Text == "")
-                {
-                    txtRMinSaleQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtRMinSaleQty, "Please Enter R Min Sale Qty");
-                }
-                else
-                {
-                    txtRMinSaleQty.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtBarcode_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtBarcode.Text == "")
-                {
-                    txtBarcode.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtBarcode, "Please Enter BarCode");
-                }
-                else
-                {
-                    txtBarcode.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-         
-
-        private void TxtGST_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtGST.Text == "")
-                {
-                    txtGST.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtGST, "Please Enter GST");
-                }
-                else
-                {
-                    txtGST.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        } 
-
-        private void TxtReOrderQty_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtReOrderQty.Text == "")
-                {
-                    txtReOrderQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtReOrderQty, "Please Enter ReOrder Qty");
-                }
-                else
-                {
-                    txtReOrderQty.BackColor = Color.White;
-                    errItems.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+   
 
         private void TxtPICode_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -2629,46 +1890,7 @@ namespace ROMS
 
             }
         }
-         
-        private void CbExpiry_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cbExpiry.Checked == true)
-                {
-                    cmbPeriod.Visible = true;
-                    txtSelfLife.Visible = true;
-                }
-                else
-                {
-                    cmbPeriod.Visible = false;
-                    txtSelfLife.Visible = false;
-
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-          
-        }
-       
-
-       
-        private void CmbBatchNoGeneration_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //udfbatchnumber();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+     
     }
 }
 

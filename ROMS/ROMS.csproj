@@ -75,6 +75,12 @@
     <Compile Include="CP_ChangePasswordConfirmation.designer.cs">
       <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_ProductDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ProductDetails.designer.cs">
+      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Supplier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -278,6 +284,12 @@
     </Compile>
     <Compile Include="PUR_GRNDetailsList.designer.cs">
       <DependentUpon>PUR_GRNDetailsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseReturns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseReturns.designer.cs">
+      <DependentUpon>PUR_PurchaseReturns.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_SupplierSchedule.cs">
       <SubType>Form</SubType>
@@ -557,6 +569,9 @@
     <EmbeddedResource Include="CP_ChangePasswordConfirmation.resx">
       <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_ProductDetails.resx">
+      <DependentUpon>CP_ProductDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_Supplier.resx">
       <DependentUpon>CP_Supplier.cs</DependentUpon>
     </EmbeddedResource>
@@ -658,6 +673,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNDetailsList.resx">
       <DependentUpon>PUR_GRNDetailsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseReturns.resx">
+      <DependentUpon>PUR_PurchaseReturns.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_SupplierSchedule.resx">
       <DependentUpon>PUR_SupplierSchedule.cs</DependentUpon>
