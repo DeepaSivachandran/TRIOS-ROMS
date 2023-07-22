@@ -55,18 +55,18 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.errCompany = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cmbPaymentTerm = new System.Windows.Forms.ComboBox();
+            this.cmbSupplierType = new System.Windows.Forms.ComboBox();
+            this.txtDPaymentTerm = new System.Windows.Forms.TextBox();
             this.txtrupee = new System.Windows.Forms.TextBox();
+            this.txtgstin = new System.Windows.Forms.TextBox();
+            this.txtDSupplierType = new System.Windows.Forms.TextBox();
+            this.textBox32 = new System.Windows.Forms.TextBox();
             this.cmbfinance = new System.Windows.Forms.ComboBox();
             this.txtopening = new System.Windows.Forms.TextBox();
             this.textBox22 = new System.Windows.Forms.TextBox();
             this.txtcreditlimit = new System.Windows.Forms.TextBox();
             this.textBox28 = new System.Windows.Forms.TextBox();
-            this.cmbSupplierType = new System.Windows.Forms.ComboBox();
-            this.txtDSupplierType = new System.Windows.Forms.TextBox();
-            this.cmbPaymentTerm = new System.Windows.Forms.ComboBox();
-            this.txtDPaymentTerm = new System.Windows.Forms.TextBox();
-            this.txtgstin = new System.Windows.Forms.TextBox();
-            this.textBox32 = new System.Windows.Forms.TextBox();
             this.panelStatus = new System.Windows.Forms.Panel();
             this.rbInactive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
@@ -77,11 +77,17 @@
             this.grbEnvelopeDetails = new System.Windows.Forms.GroupBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.tsSupplierMapping = new System.Windows.Forms.ToolStrip();
+            this.tspSupplierMapping = new System.Windows.Forms.ToolStripLabel();
+            this.tsbNew = new System.Windows.Forms.ToolStripButton();
+            this.tssNew = new System.Windows.Forms.ToolStripSeparator();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.panelStatus.SuspendLayout();
             this.grbEnvelopeDetails.SuspendLayout();
+            this.tsSupplierMapping.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDCompanyName
@@ -230,7 +236,7 @@
             this.grbform.Controls.Add(this.txtDCity);
             this.grbform.Controls.Add(this.txtCity);
             this.grbform.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbform.Location = new System.Drawing.Point(12, 3);
+            this.grbform.Location = new System.Drawing.Point(11, 252);
             this.grbform.Name = "grbform";
             this.grbform.Size = new System.Drawing.Size(530, 276);
             this.grbform.TabIndex = 0;
@@ -375,7 +381,7 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(826, 210);
+            this.textBox4.Location = new System.Drawing.Point(825, 459);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(111, 27);
@@ -401,12 +407,55 @@
             this.groupBox4.Controls.Add(this.txtcreditlimit);
             this.groupBox4.Controls.Add(this.textBox28);
             this.groupBox4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(552, 64);
+            this.groupBox4.Location = new System.Drawing.Point(551, 313);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(534, 134);
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Accounts  Details";
+            // 
+            // cmbPaymentTerm
+            // 
+            this.cmbPaymentTerm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPaymentTerm.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPaymentTerm.FormattingEnabled = true;
+            this.cmbPaymentTerm.Items.AddRange(new object[] {
+            "Nett Amount",
+            "Taxable Amount"});
+            this.cmbPaymentTerm.Location = new System.Drawing.Point(123, 97);
+            this.cmbPaymentTerm.Name = "cmbPaymentTerm";
+            this.cmbPaymentTerm.Size = new System.Drawing.Size(149, 27);
+            this.cmbPaymentTerm.TabIndex = 25;
+            this.cmbPaymentTerm.SelectedIndexChanged += new System.EventHandler(this.CmbPaymentTerm_SelectedIndexChanged);
+            // 
+            // cmbSupplierType
+            // 
+            this.cmbSupplierType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSupplierType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSupplierType.FormattingEnabled = true;
+            this.cmbSupplierType.Items.AddRange(new object[] {
+            "Registered",
+            "Composite",
+            "URD"});
+            this.cmbSupplierType.Location = new System.Drawing.Point(383, 44);
+            this.cmbSupplierType.Name = "cmbSupplierType";
+            this.cmbSupplierType.Size = new System.Drawing.Size(149, 27);
+            this.cmbSupplierType.TabIndex = 67;
+            this.cmbSupplierType.SelectedIndexChanged += new System.EventHandler(this.CmbESupplierType_SelectedIndexChanged);
+            this.cmbSupplierType.Leave += new System.EventHandler(this.CmbESupplierType_Leave);
+            // 
+            // txtDPaymentTerm
+            // 
+            this.txtDPaymentTerm.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDPaymentTerm.Enabled = false;
+            this.txtDPaymentTerm.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDPaymentTerm.Location = new System.Drawing.Point(12, 97);
+            this.txtDPaymentTerm.Name = "txtDPaymentTerm";
+            this.txtDPaymentTerm.ReadOnly = true;
+            this.txtDPaymentTerm.Size = new System.Drawing.Size(111, 27);
+            this.txtDPaymentTerm.TabIndex = 24;
+            this.txtDPaymentTerm.Text = "Payment Term";
+            this.txtDPaymentTerm.TextChanged += new System.EventHandler(this.TxtDPaymentTerm_TextChanged);
             // 
             // txtrupee
             // 
@@ -419,6 +468,42 @@
             this.txtrupee.Size = new System.Drawing.Size(21, 27);
             this.txtrupee.TabIndex = 62;
             this.txtrupee.Text = "₹";
+            // 
+            // txtgstin
+            // 
+            this.txtgstin.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtgstin.Location = new System.Drawing.Point(383, 70);
+            this.txtgstin.MaxLength = 100;
+            this.txtgstin.Name = "txtgstin";
+            this.txtgstin.Size = new System.Drawing.Size(149, 27);
+            this.txtgstin.TabIndex = 23;
+            this.txtgstin.Enter += new System.EventHandler(this.Txtgstin_Enter);
+            this.txtgstin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtgstin_KeyDown);
+            this.txtgstin.Leave += new System.EventHandler(this.Txtgstin_Leave);
+            // 
+            // txtDSupplierType
+            // 
+            this.txtDSupplierType.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDSupplierType.Enabled = false;
+            this.txtDSupplierType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDSupplierType.Location = new System.Drawing.Point(272, 44);
+            this.txtDSupplierType.Name = "txtDSupplierType";
+            this.txtDSupplierType.ReadOnly = true;
+            this.txtDSupplierType.Size = new System.Drawing.Size(111, 27);
+            this.txtDSupplierType.TabIndex = 66;
+            this.txtDSupplierType.Text = "Supplier Type";
+            // 
+            // textBox32
+            // 
+            this.textBox32.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox32.Enabled = false;
+            this.textBox32.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox32.Location = new System.Drawing.Point(272, 70);
+            this.textBox32.Name = "textBox32";
+            this.textBox32.ReadOnly = true;
+            this.textBox32.Size = new System.Drawing.Size(111, 27);
+            this.textBox32.TabIndex = 16;
+            this.textBox32.Text = "GSTIN";
             // 
             // cmbfinance
             // 
@@ -484,85 +569,6 @@
             this.textBox28.TabIndex = 16;
             this.textBox28.Text = "Credit Limit ";
             // 
-            // cmbSupplierType
-            // 
-            this.cmbSupplierType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSupplierType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSupplierType.FormattingEnabled = true;
-            this.cmbSupplierType.Items.AddRange(new object[] {
-            "Registered",
-            "Composite",
-            "URD"});
-            this.cmbSupplierType.Location = new System.Drawing.Point(383, 44);
-            this.cmbSupplierType.Name = "cmbSupplierType";
-            this.cmbSupplierType.Size = new System.Drawing.Size(149, 27);
-            this.cmbSupplierType.TabIndex = 67;
-            this.cmbSupplierType.SelectedIndexChanged += new System.EventHandler(this.CmbESupplierType_SelectedIndexChanged);
-            this.cmbSupplierType.Leave += new System.EventHandler(this.CmbESupplierType_Leave);
-            // 
-            // txtDSupplierType
-            // 
-            this.txtDSupplierType.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDSupplierType.Enabled = false;
-            this.txtDSupplierType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDSupplierType.Location = new System.Drawing.Point(272, 44);
-            this.txtDSupplierType.Name = "txtDSupplierType";
-            this.txtDSupplierType.ReadOnly = true;
-            this.txtDSupplierType.Size = new System.Drawing.Size(111, 27);
-            this.txtDSupplierType.TabIndex = 66;
-            this.txtDSupplierType.Text = "Supplier Type";
-            // 
-            // cmbPaymentTerm
-            // 
-            this.cmbPaymentTerm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPaymentTerm.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPaymentTerm.FormattingEnabled = true;
-            this.cmbPaymentTerm.Items.AddRange(new object[] {
-            "Nett Amount",
-            "Taxable Amount"});
-            this.cmbPaymentTerm.Location = new System.Drawing.Point(123, 97);
-            this.cmbPaymentTerm.Name = "cmbPaymentTerm";
-            this.cmbPaymentTerm.Size = new System.Drawing.Size(149, 27);
-            this.cmbPaymentTerm.TabIndex = 25;
-            this.cmbPaymentTerm.SelectedIndexChanged += new System.EventHandler(this.CmbPaymentTerm_SelectedIndexChanged);
-            // 
-            // txtDPaymentTerm
-            // 
-            this.txtDPaymentTerm.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDPaymentTerm.Enabled = false;
-            this.txtDPaymentTerm.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPaymentTerm.Location = new System.Drawing.Point(12, 97);
-            this.txtDPaymentTerm.Name = "txtDPaymentTerm";
-            this.txtDPaymentTerm.ReadOnly = true;
-            this.txtDPaymentTerm.Size = new System.Drawing.Size(111, 27);
-            this.txtDPaymentTerm.TabIndex = 24;
-            this.txtDPaymentTerm.Text = "Payment Term";
-            this.txtDPaymentTerm.TextChanged += new System.EventHandler(this.TxtDPaymentTerm_TextChanged);
-            // 
-            // txtgstin
-            // 
-            this.txtgstin.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtgstin.Location = new System.Drawing.Point(383, 70);
-            this.txtgstin.MaxLength = 100;
-            this.txtgstin.Name = "txtgstin";
-            this.txtgstin.Size = new System.Drawing.Size(149, 27);
-            this.txtgstin.TabIndex = 23;
-            this.txtgstin.Enter += new System.EventHandler(this.Txtgstin_Enter);
-            this.txtgstin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtgstin_KeyDown);
-            this.txtgstin.Leave += new System.EventHandler(this.Txtgstin_Leave);
-            // 
-            // textBox32
-            // 
-            this.textBox32.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox32.Enabled = false;
-            this.textBox32.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox32.Location = new System.Drawing.Point(272, 70);
-            this.textBox32.Name = "textBox32";
-            this.textBox32.ReadOnly = true;
-            this.textBox32.Size = new System.Drawing.Size(111, 27);
-            this.textBox32.TabIndex = 16;
-            this.textBox32.Text = "GSTIN";
-            // 
             // panelStatus
             // 
             this.panelStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -570,7 +576,7 @@
             this.panelStatus.Controls.Add(this.rbActive);
             this.panelStatus.Enabled = false;
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(937, 210);
+            this.panelStatus.Location = new System.Drawing.Point(936, 459);
             this.panelStatus.Name = "panelStatus";
             this.panelStatus.Size = new System.Drawing.Size(149, 27);
             this.panelStatus.TabIndex = 60;
@@ -653,7 +659,7 @@
             this.grbEnvelopeDetails.Controls.Add(this.txtcontactName);
             this.grbEnvelopeDetails.Controls.Add(this.txtDDesignation);
             this.grbEnvelopeDetails.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbEnvelopeDetails.Location = new System.Drawing.Point(552, 3);
+            this.grbEnvelopeDetails.Location = new System.Drawing.Point(551, 252);
             this.grbEnvelopeDetails.Name = "grbEnvelopeDetails";
             this.grbEnvelopeDetails.Size = new System.Drawing.Size(534, 61);
             this.grbEnvelopeDetails.TabIndex = 63;
@@ -665,7 +671,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(924, 250);
+            this.btnSave.Location = new System.Drawing.Point(923, 499);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 34;
@@ -682,7 +688,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1011, 250);
+            this.btnClose.Location = new System.Drawing.Point(1010, 499);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 35;
@@ -694,12 +700,68 @@
             this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
+            // tsSupplierMapping
+            // 
+            this.tsSupplierMapping.BackColor = System.Drawing.Color.White;
+            this.tsSupplierMapping.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsSupplierMapping.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsSupplierMapping.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tspSupplierMapping,
+            this.tsbNew,
+            this.tssNew});
+            this.tsSupplierMapping.Location = new System.Drawing.Point(0, 0);
+            this.tsSupplierMapping.Name = "tsSupplierMapping";
+            this.tsSupplierMapping.Padding = new System.Windows.Forms.Padding(0);
+            this.tsSupplierMapping.Size = new System.Drawing.Size(1338, 25);
+            this.tsSupplierMapping.TabIndex = 64;
+            this.tsSupplierMapping.Text = "Supplier Mapping";
+            // 
+            // tspSupplierMapping
+            // 
+            this.tspSupplierMapping.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspSupplierMapping.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspSupplierMapping.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspSupplierMapping.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspSupplierMapping.Name = "tspSupplierMapping";
+            this.tspSupplierMapping.Size = new System.Drawing.Size(174, 22);
+            this.tspSupplierMapping.Text = "Supplier - Product Mapping";
+            // 
+            // tsbNew
+            // 
+            this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbNew.Image = global::ROMS.Properties.Resources.New;
+            this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbNew.Name = "tsbNew";
+            this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbNew.Size = new System.Drawing.Size(52, 24);
+            this.tsbNew.Text = "&New";
+            this.tsbNew.Visible = false;
+            // 
+            // tssNew
+            // 
+            this.tssNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tssNew.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssNew.Name = "tssNew";
+            this.tssNew.Size = new System.Drawing.Size(6, 25);
+            this.tssNew.Visible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Location = new System.Drawing.Point(0, 28);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1354, 646);
+            this.panel1.TabIndex = 65;
+            // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1098, 291);
+            this.BackColor = System.Drawing.Color.DarkGray;
+            this.ClientSize = new System.Drawing.Size(1338, 636);
+            this.Controls.Add(this.tsSupplierMapping);
             this.Controls.Add(this.grbEnvelopeDetails);
             this.Controls.Add(this.panelStatus);
             this.Controls.Add(this.groupBox4);
@@ -707,10 +769,12 @@
             this.Controls.Add(this.grbform);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.Location = new System.Drawing.Point(0, 28);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -729,6 +793,8 @@
             this.panelStatus.PerformLayout();
             this.grbEnvelopeDetails.ResumeLayout(false);
             this.grbEnvelopeDetails.PerformLayout();
+            this.tsSupplierMapping.ResumeLayout(false);
+            this.tsSupplierMapping.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -783,5 +849,10 @@
         private System.Windows.Forms.GroupBox grbEnvelopeDetails;
         private System.Windows.Forms.ComboBox cmbSupplierType;
         private System.Windows.Forms.TextBox txtDSupplierType;
+        private System.Windows.Forms.ToolStrip tsSupplierMapping;
+        private System.Windows.Forms.ToolStripLabel tspSupplierMapping;
+        public System.Windows.Forms.ToolStripButton tsbNew;
+        public System.Windows.Forms.ToolStripSeparator tssNew;
+        private System.Windows.Forms.Panel panel1;
     }
 }

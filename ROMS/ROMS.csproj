@@ -279,6 +279,12 @@
     <Compile Include="PUR_GRNDetailsList.designer.cs">
       <DependentUpon>PUR_GRNDetailsList.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_PurchaseReturns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseReturns.designer.cs">
+      <DependentUpon>PUR_PurchaseReturns.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_SupplierSchedule.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -658,6 +664,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNDetailsList.resx">
       <DependentUpon>PUR_GRNDetailsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseReturns.resx">
+      <DependentUpon>PUR_PurchaseReturns.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_SupplierSchedule.resx">
       <DependentUpon>PUR_SupplierSchedule.cs</DependentUpon>
