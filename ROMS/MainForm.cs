@@ -65,6 +65,7 @@ namespace ROMS
         public static CP_RackSettinglist objCP_RackSettinglist;
         public static CP_RackSettings objCP_RackSettings;
         public static CP_ProductList objCP_Itemlist;
+        public static CP_ProductDetails objCP_ProductDetails;
         public static CP_Purchase_Inward objCP_Purchase_Inward;
         public static CP_Purchase_PO objCP_Purchase_PO;
         public static CP_SupplierMapping objCP_SupplierMapping;

@@ -47,8 +47,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Label();
-            this.cmbBatch = new System.Windows.Forms.ComboBox();
-            this.txtDBatch = new System.Windows.Forms.TextBox();
             this.txtUpp = new System.Windows.Forms.TextBox();
             this.txtDUPP = new System.Windows.Forms.TextBox();
             this.cmb = new System.Windows.Forms.ComboBox();
@@ -111,11 +109,16 @@
             this.txtDSalesGodown = new System.Windows.Forms.TextBox();
             this.txtDSalesShop = new System.Windows.Forms.TextBox();
             this.cmbSalesShop = new System.Windows.Forms.ComboBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.grpHsndetail = new System.Windows.Forms.GroupBox();
             this.txtHSNCode = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.grbBatchNoDetails = new System.Windows.Forms.GroupBox();
+            this.cmbBatchNoGeneration = new System.Windows.Forms.ComboBox();
+            this.txtBatchNoGeneration = new System.Windows.Forms.TextBox();
+            this.cmbBatchNoEntry = new System.Windows.Forms.ComboBox();
+            this.txtDBatchNoEntry = new System.Windows.Forms.TextBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -125,6 +128,7 @@
             this.grplocation.SuspendLayout();
             this.grbSalesStockLocation.SuspendLayout();
             this.grpHsndetail.SuspendLayout();
+            this.grbBatchNoDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDPICode
@@ -165,7 +169,7 @@
             this.txtDName.Size = new System.Drawing.Size(139, 27);
             this.txtDName.TabIndex = 1;
             this.txtDName.TabStop = false;
-            this.txtDName.Text = "Product Name In English";
+            this.txtDName.Text = "Product Name in English";
             // 
             // txtItemNameEnglish
             // 
@@ -252,8 +256,6 @@
             this.grbform.Controls.Add(this.label2);
             this.grbform.Controls.Add(this.label1);
             this.grbform.Controls.Add(this.btnAdd);
-            this.grbform.Controls.Add(this.cmbBatch);
-            this.grbform.Controls.Add(this.txtDBatch);
             this.grbform.Controls.Add(this.txtUpp);
             this.grbform.Controls.Add(this.txtDUPP);
             this.grbform.Controls.Add(this.cmb);
@@ -279,7 +281,7 @@
             this.grbform.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbform.Location = new System.Drawing.Point(12, -6);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(543, 335);
+            this.grbform.Size = new System.Drawing.Size(543, 309);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
@@ -361,29 +363,6 @@
             this.btnAdd.Size = new System.Drawing.Size(21, 22);
             this.btnAdd.TabIndex = 26;
             this.btnAdd.Text = "        ";
-            // 
-            // cmbBatch
-            // 
-            this.cmbBatch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbBatch.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbBatch.FormattingEnabled = true;
-            this.cmbBatch.Location = new System.Drawing.Point(160, 293);
-            this.cmbBatch.Name = "cmbBatch";
-            this.cmbBatch.Size = new System.Drawing.Size(363, 27);
-            this.cmbBatch.TabIndex = 25;
-            // 
-            // txtDBatch
-            // 
-            this.txtDBatch.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDBatch.Enabled = false;
-            this.txtDBatch.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDBatch.Location = new System.Drawing.Point(21, 293);
-            this.txtDBatch.Name = "txtDBatch";
-            this.txtDBatch.ReadOnly = true;
-            this.txtDBatch.Size = new System.Drawing.Size(139, 27);
-            this.txtDBatch.TabIndex = 24;
-            this.txtDBatch.TabStop = false;
-            this.txtDBatch.Text = "Batch No.";
             // 
             // txtUpp
             // 
@@ -802,7 +781,7 @@
             // cbExpiry
             // 
             this.cbExpiry.AutoSize = true;
-            this.cbExpiry.Location = new System.Drawing.Point(9, 18);
+            this.cbExpiry.Location = new System.Drawing.Point(5, 24);
             this.cbExpiry.Name = "cbExpiry";
             this.cbExpiry.Size = new System.Drawing.Size(77, 24);
             this.cbExpiry.TabIndex = 28;
@@ -993,7 +972,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDStatus.Location = new System.Drawing.Point(578, 456);
+            this.txtDStatus.Location = new System.Drawing.Point(578, 440);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(111, 27);
@@ -1007,7 +986,7 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
             this.pnlStatus.Enabled = false;
-            this.pnlStatus.Location = new System.Drawing.Point(689, 456);
+            this.pnlStatus.Location = new System.Drawing.Point(689, 440);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(153, 27);
             this.pnlStatus.TabIndex = 44;
@@ -1019,15 +998,15 @@
             this.grpExpire.Controls.Add(this.cmbPeriod);
             this.grpExpire.Controls.Add(this.cbExpiry);
             this.grpExpire.Controls.Add(this.cbRMFromProduction);
-            this.grpExpire.Location = new System.Drawing.Point(12, 441);
+            this.grpExpire.Location = new System.Drawing.Point(294, 416);
             this.grpExpire.Name = "grpExpire";
-            this.grpExpire.Size = new System.Drawing.Size(266, 82);
+            this.grpExpire.Size = new System.Drawing.Size(266, 90);
             this.grpExpire.TabIndex = 101;
             this.grpExpire.TabStop = false;
             // 
             // txtSelfLife
             // 
-            this.txtSelfLife.Location = new System.Drawing.Point(90, 17);
+            this.txtSelfLife.Location = new System.Drawing.Point(85, 24);
             this.txtSelfLife.Name = "txtSelfLife";
             this.txtSelfLife.Size = new System.Drawing.Size(69, 27);
             this.txtSelfLife.TabIndex = 113;
@@ -1043,7 +1022,7 @@
             "DAY(S)",
             "MONTH(S)",
             "YEAR(S)"});
-            this.cmbPeriod.Location = new System.Drawing.Point(159, 17);
+            this.cmbPeriod.Location = new System.Drawing.Point(154, 24);
             this.cmbPeriod.Name = "cmbPeriod";
             this.cmbPeriod.Size = new System.Drawing.Size(103, 27);
             this.cmbPeriod.TabIndex = 114;
@@ -1052,7 +1031,7 @@
             // cbRMFromProduction
             // 
             this.cbRMFromProduction.AutoSize = true;
-            this.cbRMFromProduction.Location = new System.Drawing.Point(9, 50);
+            this.cbRMFromProduction.Location = new System.Drawing.Point(5, 54);
             this.cbRMFromProduction.Name = "cbRMFromProduction";
             this.cbRMFromProduction.Size = new System.Drawing.Size(126, 24);
             this.cbRMFromProduction.TabIndex = 112;
@@ -1065,7 +1044,7 @@
             this.grplocation.Controls.Add(this.txtDPurchaseLocation);
             this.grplocation.Controls.Add(this.txtDShop);
             this.grplocation.Controls.Add(this.cmbDPurchaseShop);
-            this.grplocation.Location = new System.Drawing.Point(12, 334);
+            this.grplocation.Location = new System.Drawing.Point(12, 304);
             this.grplocation.Name = "grplocation";
             this.grplocation.Size = new System.Drawing.Size(266, 112);
             this.grplocation.TabIndex = 104;
@@ -1101,7 +1080,7 @@
             this.grbSalesStockLocation.Controls.Add(this.txtDSalesGodown);
             this.grbSalesStockLocation.Controls.Add(this.txtDSalesShop);
             this.grbSalesStockLocation.Controls.Add(this.cmbSalesShop);
-            this.grbSalesStockLocation.Location = new System.Drawing.Point(289, 334);
+            this.grbSalesStockLocation.Location = new System.Drawing.Point(289, 304);
             this.grbSalesStockLocation.Name = "grbSalesStockLocation";
             this.grbSalesStockLocation.Size = new System.Drawing.Size(266, 112);
             this.grbSalesStockLocation.TabIndex = 113;
@@ -1136,7 +1115,7 @@
             this.txtDSalesShop.BackColor = System.Drawing.SystemColors.Control;
             this.txtDSalesShop.Enabled = false;
             this.txtDSalesShop.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDSalesShop.Location = new System.Drawing.Point(4, 59);
+            this.txtDSalesShop.Location = new System.Drawing.Point(5, 59);
             this.txtDSalesShop.Name = "txtDSalesShop";
             this.txtDSalesShop.ReadOnly = true;
             this.txtDSalesShop.Size = new System.Drawing.Size(131, 27);
@@ -1153,40 +1132,6 @@
             this.cmbSalesShop.Name = "cmbSalesShop";
             this.cmbSalesShop.Size = new System.Drawing.Size(127, 27);
             this.cmbSalesShop.TabIndex = 25;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(692, 494);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(74, 29);
-            this.btnSave.TabIndex = 46;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
-            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
-            this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(768, 494);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(74, 29);
-            this.btnClose.TabIndex = 47;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
-            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
-            this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
             // grpHsndetail
             // 
@@ -1224,12 +1169,114 @@
             this.textBox4.TabIndex = 116;
             this.textBox4.Text = "%";
             // 
+            // grbBatchNoDetails
+            // 
+            this.grbBatchNoDetails.Controls.Add(this.cmbBatchNoGeneration);
+            this.grbBatchNoDetails.Controls.Add(this.txtBatchNoGeneration);
+            this.grbBatchNoDetails.Controls.Add(this.cmbBatchNoEntry);
+            this.grbBatchNoDetails.Controls.Add(this.txtDBatchNoEntry);
+            this.grbBatchNoDetails.Location = new System.Drawing.Point(12, 416);
+            this.grbBatchNoDetails.Name = "grbBatchNoDetails";
+            this.grbBatchNoDetails.Size = new System.Drawing.Size(266, 90);
+            this.grbBatchNoDetails.TabIndex = 115;
+            this.grbBatchNoDetails.TabStop = false;
+            this.grbBatchNoDetails.Text = "Batch No. Details";
+            // 
+            // cmbBatchNoGeneration
+            // 
+            this.cmbBatchNoGeneration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBatchNoGeneration.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbBatchNoGeneration.FormattingEnabled = true;
+            this.cmbBatchNoGeneration.Items.AddRange(new object[] {
+            "Auto",
+            "Manual"});
+            this.cmbBatchNoGeneration.Location = new System.Drawing.Point(135, 51);
+            this.cmbBatchNoGeneration.Name = "cmbBatchNoGeneration";
+            this.cmbBatchNoGeneration.Size = new System.Drawing.Size(127, 27);
+            this.cmbBatchNoGeneration.TabIndex = 29;
+            this.cmbBatchNoGeneration.SelectedIndexChanged += new System.EventHandler(this.CmbBatchNoGeneration_SelectedIndexChanged);
+            // 
+            // txtBatchNoGeneration
+            // 
+            this.txtBatchNoGeneration.BackColor = System.Drawing.SystemColors.Control;
+            this.txtBatchNoGeneration.Enabled = false;
+            this.txtBatchNoGeneration.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtBatchNoGeneration.Location = new System.Drawing.Point(4, 51);
+            this.txtBatchNoGeneration.Name = "txtBatchNoGeneration";
+            this.txtBatchNoGeneration.ReadOnly = true;
+            this.txtBatchNoGeneration.Size = new System.Drawing.Size(131, 27);
+            this.txtBatchNoGeneration.TabIndex = 28;
+            this.txtBatchNoGeneration.TabStop = false;
+            this.txtBatchNoGeneration.Text = "Batch No. Generation";
+            // 
+            // cmbBatchNoEntry
+            // 
+            this.cmbBatchNoEntry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBatchNoEntry.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbBatchNoEntry.FormattingEnabled = true;
+            this.cmbBatchNoEntry.Items.AddRange(new object[] {
+            "Enabled",
+            "Disabled"});
+            this.cmbBatchNoEntry.Location = new System.Drawing.Point(135, 24);
+            this.cmbBatchNoEntry.Name = "cmbBatchNoEntry";
+            this.cmbBatchNoEntry.Size = new System.Drawing.Size(127, 27);
+            this.cmbBatchNoEntry.TabIndex = 27;
+            //this.cmbBatchNoEntry.SelectedIndexChanged += new System.EventHandler(this.CmbBatchNoEntry_SelectedIndexChanged);
+            // 
+            // txtDBatchNoEntry
+            // 
+            this.txtDBatchNoEntry.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDBatchNoEntry.Enabled = false;
+            this.txtDBatchNoEntry.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDBatchNoEntry.Location = new System.Drawing.Point(4, 24);
+            this.txtDBatchNoEntry.Name = "txtDBatchNoEntry";
+            this.txtDBatchNoEntry.ReadOnly = true;
+            this.txtDBatchNoEntry.Size = new System.Drawing.Size(131, 27);
+            this.txtDBatchNoEntry.TabIndex = 26;
+            this.txtDBatchNoEntry.TabStop = false;
+            this.txtDBatchNoEntry.Text = "Batch No. Entry";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(692, 477);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(74, 29);
+            this.btnSave.TabIndex = 46;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
+            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
+            this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(768, 477);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(74, 29);
+            this.btnClose.TabIndex = 47;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
+            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
+            this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
+            // 
             // CP_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(859, 532);
+            this.ClientSize = new System.Drawing.Size(859, 541);
+            this.Controls.Add(this.grbBatchNoDetails);
             this.Controls.Add(this.pnlStatus);
             this.Controls.Add(this.txtDStatus);
             this.Controls.Add(this.groupBox1);
@@ -1271,6 +1318,8 @@
             this.grbSalesStockLocation.PerformLayout();
             this.grpHsndetail.ResumeLayout(false);
             this.grpHsndetail.PerformLayout();
+            this.grbBatchNoDetails.ResumeLayout(false);
+            this.grbBatchNoDetails.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1346,8 +1395,6 @@
         private System.Windows.Forms.TextBox txtDSalesGodown;
         private System.Windows.Forms.TextBox txtDSalesShop;
         private System.Windows.Forms.ComboBox cmbSalesShop;
-        private System.Windows.Forms.ComboBox cmbBatch;
-        private System.Windows.Forms.TextBox txtDBatch;
         private System.Windows.Forms.TextBox txtrupee;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox txtWMinSaleQty;
@@ -1364,5 +1411,10 @@
         private System.Windows.Forms.ComboBox cmbHSNName;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.GroupBox grbBatchNoDetails;
+        private System.Windows.Forms.ComboBox cmbBatchNoGeneration;
+        private System.Windows.Forms.TextBox txtBatchNoGeneration;
+        private System.Windows.Forms.ComboBox cmbBatchNoEntry;
+        private System.Windows.Forms.TextBox txtDBatchNoEntry;
     }
 }
