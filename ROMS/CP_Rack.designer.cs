@@ -46,6 +46,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtEGroupName = new System.Windows.Forms.TextBox();
             this.errGroup = new System.Windows.Forms.ErrorProvider(this.components);
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             this.panelStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errGroup)).BeginInit();
@@ -53,6 +55,8 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.textBox3);
+            this.grbform.Controls.Add(this.txtDescription);
             this.grbform.Controls.Add(this.comboBox2);
             this.grbform.Controls.Add(this.txtShopGodown);
             this.grbform.Controls.Add(this.comboBox1);
@@ -67,7 +71,7 @@
             this.grbform.Controls.Add(this.txtEGroupName);
             this.grbform.Location = new System.Drawing.Point(16, 10);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(552, 217);
+            this.grbform.Size = new System.Drawing.Size(552, 250);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
@@ -137,7 +141,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(40, 139);
+            this.txtDStatus.Location = new System.Drawing.Point(40, 166);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(181, 27);
@@ -150,7 +154,7 @@
             this.panelStatus.Controls.Add(this.rbInactive);
             this.panelStatus.Controls.Add(this.rbActive);
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(221, 139);
+            this.panelStatus.Location = new System.Drawing.Point(221, 166);
             this.panelStatus.Name = "panelStatus";
             this.panelStatus.Size = new System.Drawing.Size(288, 27);
             this.panelStatus.TabIndex = 4;
@@ -196,7 +200,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(436, 173);
+            this.btnClose.Location = new System.Drawing.Point(434, 199);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 8;
@@ -213,7 +217,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(346, 173);
+            this.btnSave.Location = new System.Drawing.Point(344, 199);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 7;
@@ -240,12 +244,33 @@
             // 
             this.errGroup.ContainerControl = this;
             // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox3.Enabled = false;
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(40, 139);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(181, 27);
+            this.textBox3.TabIndex = 25;
+            this.textBox3.Text = "Description";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescription.Location = new System.Drawing.Point(221, 139);
+            this.txtDescription.MaxLength = 50;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(288, 27);
+            this.txtDescription.TabIndex = 24;
+            // 
             // CP_Rack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(585, 238);
+            this.ClientSize = new System.Drawing.Size(585, 271);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -285,5 +310,7 @@
         private System.Windows.Forms.TextBox txtShopGodown;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox txtConcern;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtDescription;
     }
 }
