@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -84,10 +84,10 @@
             this.txtsuppliername = new System.Windows.Forms.TextBox();
             this.cmbGodown = new System.Windows.Forms.ComboBox();
             this.lblGodown = new System.Windows.Forms.Label();
-            this.cmbvoucherno = new System.Windows.Forms.ComboBox();
             this.lblSupplierName = new System.Windows.Forms.Label();
             this.lblVoucherNo = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
+            this.txtVoucherNo = new System.Windows.Forms.TextBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_inward)).BeginInit();
@@ -249,14 +249,14 @@
             this.DGV_inward.AllowUserToResizeRows = false;
             this.DGV_inward.BackgroundColor = System.Drawing.Color.White;
             this.DGV_inward.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_inward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_inward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DGV_inward.ColumnHeadersHeight = 30;
             this.DGV_inward.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGV_inward.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -270,22 +270,22 @@
             this.clmactualqty,
             this.clmunit,
             this.clmremove});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_inward.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_inward.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_inward.EnableHeadersVisualStyles = false;
             this.DGV_inward.GridColor = System.Drawing.Color.White;
             this.DGV_inward.Location = new System.Drawing.Point(3, 205);
             this.DGV_inward.Name = "DGV_inward";
             this.DGV_inward.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_inward.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_inward.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_inward.RowTemplate.Height = 25;
             this.DGV_inward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_inward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -483,7 +483,6 @@
             this.txtMrp.Enabled = false;
             this.txtMrp.Location = new System.Drawing.Point(557, 37);
             this.txtMrp.Name = "txtMrp";
-            this.txtMrp.ReadOnly = true;
             this.txtMrp.Size = new System.Drawing.Size(52, 27);
             this.txtMrp.TabIndex = 74;
             // 
@@ -507,6 +506,7 @@
             // 
             // grbgodown
             // 
+            this.grbgodown.Controls.Add(this.txtVoucherNo);
             this.grbgodown.Controls.Add(this.txtInwardNo);
             this.grbgodown.Controls.Add(this.lblInwardNo);
             this.grbgodown.Controls.Add(this.lblInwardDate);
@@ -518,7 +518,6 @@
             this.grbgodown.Controls.Add(this.txtsuppliername);
             this.grbgodown.Controls.Add(this.cmbGodown);
             this.grbgodown.Controls.Add(this.lblGodown);
-            this.grbgodown.Controls.Add(this.cmbvoucherno);
             this.grbgodown.Controls.Add(this.lblSupplierName);
             this.grbgodown.Controls.Add(this.lblVoucherNo);
             this.grbgodown.Location = new System.Drawing.Point(3, 2);
@@ -539,7 +538,7 @@
             // lblInwardNo
             // 
             this.lblInwardNo.AutoSize = true;
-            this.lblInwardNo.Location = new System.Drawing.Point(347, 14);
+            this.lblInwardNo.Location = new System.Drawing.Point(344, 14);
             this.lblInwardNo.Name = "lblInwardNo";
             this.lblInwardNo.Size = new System.Drawing.Size(67, 20);
             this.lblInwardNo.TabIndex = 958818;
@@ -579,6 +578,9 @@
             this.cmbinwardtype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbinwardtype.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbinwardtype.FormattingEnabled = true;
+            this.cmbinwardtype.Items.AddRange(new object[] {
+            "Purchase",
+            "Direct"});
             this.cmbinwardtype.Location = new System.Drawing.Point(223, 87);
             this.cmbinwardtype.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbinwardtype.Name = "cmbinwardtype";
@@ -631,17 +633,6 @@
             this.lblGodown.TabIndex = 70;
             this.lblGodown.Text = "Godown";
             // 
-            // cmbvoucherno
-            // 
-            this.cmbvoucherno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbvoucherno.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbvoucherno.FormattingEnabled = true;
-            this.cmbvoucherno.Location = new System.Drawing.Point(344, 87);
-            this.cmbvoucherno.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbvoucherno.Name = "cmbvoucherno";
-            this.cmbvoucherno.Size = new System.Drawing.Size(153, 27);
-            this.cmbvoucherno.TabIndex = 67;
-            // 
             // lblSupplierName
             // 
             this.lblSupplierName.AutoSize = true;
@@ -668,6 +659,14 @@
             this.lblEdit.Size = new System.Drawing.Size(0, 20);
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
+            // 
+            // txtVoucherNo
+            // 
+            this.txtVoucherNo.Location = new System.Drawing.Point(344, 87);
+            this.txtVoucherNo.Name = "txtVoucherNo";
+            this.txtVoucherNo.ReadOnly = true;
+            this.txtVoucherNo.Size = new System.Drawing.Size(153, 27);
+            this.txtVoucherNo.TabIndex = 958820;
             // 
             // INV_Inward
             // 
@@ -720,7 +719,6 @@
         private System.Windows.Forms.GroupBox grbgodown;
         private System.Windows.Forms.ComboBox cmbGodown;
         private System.Windows.Forms.Label lblGodown;
-        private System.Windows.Forms.ComboBox cmbvoucherno;
         private System.Windows.Forms.Label lblVoucherNo;
         private System.Windows.Forms.Label lblSupplierName;
         private System.Windows.Forms.TextBox textBox2;
@@ -758,5 +756,6 @@
         private System.Windows.Forms.Label lblYyyy;
         private System.Windows.Forms.Label lblMM;
         private System.Windows.Forms.Label lblDd;
+        private System.Windows.Forms.TextBox txtVoucherNo;
     }
 }
