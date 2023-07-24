@@ -61,7 +61,6 @@ namespace ROMS
             else {
                 grpproductname.Visible = false;
                 txtsuppliername.Enabled = false;
-                cmbvoucherno.Enabled = false;
                 //cmbPoNo.Enabled = false;
                 cmbinwardtype.Enabled = false;
             }

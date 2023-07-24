@@ -74,9 +74,28 @@ namespace ROMS
         public static CP_BatchNoConfigurationList objCP_BatchNoConfigurationList;
         public static CP_RackGroup objCP_RackGroup;
         public static CP_RackGroupList objCP_RackGroupList;
+        public static CP_Settings objCP_Settings;
+        public static CP_BrokerList objCP_CP_BrokerList;
+        public static CP_Broker objCP_CP_Broker;
+        public static CP_UserCatagoryList objCP_UserCatagoryList;
+        public static CP_UserCatagory objCP_UserCatagory;
+        public static CP_SupplierOrderDetailsList objCP_SupplierOrderDetailslist;
+        public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
+
         public static INV_SalesInvoiceList objINV_SalesInvoiceList;
         public static INV_SalesInvoice objINV_SalesInvoice;
         public static INV_GRNPODamaged objINV_GRNPODamaged;
+        public static INV_StockRequestList objINV_StockRequestList;
+        public static INV_StockRequest objINV_StockRequest;
+        public static INV_GodownOutward objINV_GodownOutward;
+        public static INV_GodownOutwardList objINV_GodownOutwardList;
+        public static INV_Inwardlist objINV_Inwardlist;
+        public static INV_Inward objINV_Inward;
+        public static INV_StockTransfer objINV_StockTransfer;
+        public static INV_StockTransferList objINV_StockTransferList;
+        public static INV_DamageEntryList objINV_DamageEntryList;
+        public static INV_DamageEntry objINV_DamageEntry;
+
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList; 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
         public static PUR_PurchaseOrder objPUR_PurchaseOrder;
@@ -89,28 +108,13 @@ namespace ROMS
         public static PUR_GRNOrderType objPUR_GRNOrderType;
         public static PUR_Product objPUR_Product;
         public static PUR_PurchaseOrderDamage objPUR_PurchaseOrderDamage;
-        public static INV_StockRequestList objINV_StockRequestList;
-        public static INV_StockRequest objINV_StockRequest;
-        public static CP_Settings objCP_Settings;
         public static PUR_PurchaseOrderList objPUR_PurchaseOrderList;
         public static PUR_SupplierSchedule objPUR_SupplierSchedule;
-        public static CP_BrokerList objCP_CP_BrokerList;
-        public static CP_Broker objCP_CP_Broker;
-        public static INV_GodownOutward objINV_GodownOutward;
-        public static INV_GodownOutwardList objINV_GodownOutwardList;
-        public static INV_Inwardlist objINV_Inwardlist;
-        public static INV_Inward objINV_Inward;
-        public static INV_StockTransfer objINV_StockTransfer;
-        public static INV_StockTransferList objINV_StockTransferList;
-        public static CP_UserCatagoryList objCP_UserCatagoryList;
-        public static CP_UserCatagory objCP_UserCatagory; 
+        public static PUR_PurchaseReturns objPUR_PurchaseReturns;
+
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
-        public static CP_SupplierOrderDetailsList objCP_SupplierOrderDetailslist;
-        public static CP_SupplierOrderDetails objCP_SupplierOrderDetails; 
-        public static PUR_PurchaseReturns objPUR_PurchaseReturns;
-        public static INV_DamageEntryList objINV_DamageEntryList;
-        public static INV_DamageEntry objINV_DamageEntry;
+
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
