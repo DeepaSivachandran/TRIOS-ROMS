@@ -151,6 +151,7 @@
             this.clmOrderType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1331,6 +1332,7 @@
             this.grdViewSupplierMapping.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.clmdpicode,
+            this.Column5,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.Column2});
@@ -1541,12 +1543,19 @@
             this.clmdpicode.Name = "clmdpicode";
             this.clmdpicode.ReadOnly = true;
             // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Product Name in English";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 250;
+            // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.HeaderText = "Product Name in Tamil";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 300;
+            this.dataGridViewTextBoxColumn3.Width = 250;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -1556,7 +1565,7 @@
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "Product Sub Group";
+            this.Column2.HeaderText = "R.Sales Rate";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Width = 120;
@@ -1734,6 +1743,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderType;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdpicode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;

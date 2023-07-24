@@ -35,22 +35,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsSupplierMapping = new System.Windows.Forms.ToolStrip();
-            this.tspSupplierMapping = new System.Windows.Forms.ToolStripLabel();
-            this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.pnlSupplierMapping = new System.Windows.Forms.Panel();
             this.grpSupplierMapping = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.lblGC = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grpRepresentativeDetails = new System.Windows.Forms.GroupBox();
             this.grpSalesManDetails = new System.Windows.Forms.GroupBox();
             this.txtSupplier = new System.Windows.Forms.TextBox();
-            this.btnClear = new System.Windows.Forms.Button();
             this.grpSupplierDetails = new System.Windows.Forms.GroupBox();
             this.lblDESupplier = new System.Windows.Forms.Label();
-            this.btnView = new System.Windows.Forms.Button();
             this.cmbSubGroup = new System.Windows.Forms.ComboBox();
             this.lblDESubGroup = new System.Windows.Forms.Label();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
@@ -60,23 +55,29 @@
             this.lblSearchByProduct2 = new System.Windows.Forms.Label();
             this.txtSearchByProduct1 = new System.Windows.Forms.TextBox();
             this.lblSearchbyProduct1 = new System.Windows.Forms.Label();
-            this.Add = new System.Windows.Forms.Button();
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
-            this.clmdpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataGridViewButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.grdSupplierMapping = new System.Windows.Forms.DataGridView();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
+            this.Add = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.tspSupplierMapping = new System.Windows.Forms.ToolStripLabel();
+            this.tsbNew = new System.Windows.Forms.ToolStripButton();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.chksupplier = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmengtamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtamilname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsSupplierMapping.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
             this.grpSupplierMapping.SuspendLayout();
@@ -100,29 +101,6 @@
             this.tsSupplierMapping.Size = new System.Drawing.Size(1354, 25);
             this.tsSupplierMapping.TabIndex = 35;
             this.tsSupplierMapping.Text = "Supplier Mapping";
-            // 
-            // tspSupplierMapping
-            // 
-            this.tspSupplierMapping.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspSupplierMapping.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspSupplierMapping.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspSupplierMapping.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspSupplierMapping.Name = "tspSupplierMapping";
-            this.tspSupplierMapping.Size = new System.Drawing.Size(174, 22);
-            this.tspSupplierMapping.Text = "Supplier - Product Mapping";
-            // 
-            // tsbNew
-            // 
-            this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbNew.Image = global::ROMS.Properties.Resources.New;
-            this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
-            this.tsbNew.Name = "tsbNew";
-            this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbNew.Size = new System.Drawing.Size(52, 24);
-            this.tsbNew.Text = "&New";
-            this.tsbNew.Visible = false;
             // 
             // tssNew
             // 
@@ -180,16 +158,6 @@
             this.grpSupplierMapping.TabIndex = 958765;
             this.grpSupplierMapping.TabStop = false;
             // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(17, 76);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(402, 92);
-            this.listView1.TabIndex = 23;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.Visible = false;
-            // 
             // lblGC
             // 
             this.lblGC.AutoSize = true;
@@ -239,19 +207,6 @@
             this.txtSupplier.Size = new System.Drawing.Size(403, 27);
             this.txtSupplier.TabIndex = 34;
             // 
-            // btnClear
-            // 
-            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
-            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(1062, 579);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(84, 29);
-            this.btnClear.TabIndex = 32;
-            this.btnClear.Text = "Clear";
-            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClear.UseVisualStyleBackColor = true;
-            // 
             // grpSupplierDetails
             // 
             this.grpSupplierDetails.Location = new System.Drawing.Point(425, 26);
@@ -270,19 +225,6 @@
             this.lblDESupplier.Size = new System.Drawing.Size(54, 20);
             this.lblDESupplier.TabIndex = 20;
             this.lblDESupplier.Text = "Supplier";
-            // 
-            // btnView
-            // 
-            this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(344, 111);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 31;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
             // 
             // cmbSubGroup
             // 
@@ -378,18 +320,6 @@
             this.lblSearchbyProduct1.TabIndex = 35;
             this.lblSearchbyProduct1.Text = "Search by Product Name/P.I Code";
             // 
-            // Add
-            // 
-            this.Add.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.Add.Image = global::ROMS.Properties.Resources.add;
-            this.Add.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Add.Location = new System.Drawing.Point(633, 223);
-            this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(31, 29);
-            this.Add.TabIndex = 33;
-            this.Add.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Add.UseVisualStyleBackColor = true;
-            // 
             // grdViewSupplierMapping
             // 
             this.grdViewSupplierMapping.AllowUserToAddRows = false;
@@ -409,10 +339,11 @@
             this.grdViewSupplierMapping.ColumnHeadersHeight = 30;
             this.grdViewSupplierMapping.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdViewSupplierMapping.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column2,
             this.clmdpicode,
-            this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
+            this.Column4,
             this.DataGridViewButton});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -435,41 +366,6 @@
             this.grdViewSupplierMapping.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdViewSupplierMapping.Size = new System.Drawing.Size(603, 367);
             this.grdViewSupplierMapping.TabIndex = 6;
-            // 
-            // clmdpicode
-            // 
-            this.clmdpicode.HeaderText = "P.I Code";
-            this.clmdpicode.Name = "clmdpicode";
-            this.clmdpicode.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Product Name In English";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 220;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Product Name In Tamil";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 220;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Unit";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // DataGridViewButton
-            // 
-            this.DataGridViewButton.HeaderText = "Remove";
-            this.DataGridViewButton.Name = "DataGridViewButton";
-            this.DataGridViewButton.ReadOnly = true;
-            this.DataGridViewButton.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewButton.Text = "";
-            this.DataGridViewButton.Width = 70;
             // 
             // chkSelectAll
             // 
@@ -502,9 +398,9 @@
             this.chksupplier,
             this.Column1,
             this.clmpicode,
-            this.clmengtamil,
             this.clmtamilname,
-            this.clmunit});
+            this.clmunit,
+            this.Column3});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -527,45 +423,53 @@
             this.grdSupplierMapping.Size = new System.Drawing.Size(603, 367);
             this.grdSupplierMapping.TabIndex = 4;
             // 
-            // chksupplier
+            // listView1
             // 
-            this.chksupplier.HeaderText = "";
-            this.chksupplier.Name = "chksupplier";
-            this.chksupplier.ReadOnly = true;
-            this.chksupplier.Width = 30;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(17, 76);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(402, 92);
+            this.listView1.TabIndex = 23;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.Visible = false;
             // 
-            // Column1
+            // btnClear
             // 
-            this.Column1.HeaderText = "S.No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 50;
+            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(1062, 579);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(84, 29);
+            this.btnClear.TabIndex = 32;
+            this.btnClear.Text = "Clear";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = true;
             // 
-            // clmpicode
+            // btnView
             // 
-            this.clmpicode.HeaderText = "P.I Code";
-            this.clmpicode.Name = "clmpicode";
-            this.clmpicode.ReadOnly = true;
+            this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(344, 111);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 29);
+            this.btnView.TabIndex = 31;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
             // 
-            // clmengtamil
+            // Add
             // 
-            this.clmengtamil.HeaderText = "Product Name In English";
-            this.clmengtamil.Name = "clmengtamil";
-            this.clmengtamil.ReadOnly = true;
-            this.clmengtamil.Width = 220;
-            // 
-            // clmtamilname
-            // 
-            this.clmtamilname.HeaderText = "Product Name In  Tamil";
-            this.clmtamilname.Name = "clmtamilname";
-            this.clmtamilname.ReadOnly = true;
-            this.clmtamilname.Width = 220;
-            // 
-            // clmunit
-            // 
-            this.clmunit.HeaderText = "Unit";
-            this.clmunit.Name = "clmunit";
-            this.clmunit.ReadOnly = true;
+            this.Add.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.Add.Image = global::ROMS.Properties.Resources.add;
+            this.Add.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Add.Location = new System.Drawing.Point(633, 223);
+            this.Add.Name = "Add";
+            this.Add.Size = new System.Drawing.Size(31, 29);
+            this.Add.TabIndex = 33;
+            this.Add.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Add.UseVisualStyleBackColor = true;
             // 
             // btnClose
             // 
@@ -593,6 +497,111 @@
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // tspSupplierMapping
+            // 
+            this.tspSupplierMapping.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspSupplierMapping.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspSupplierMapping.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspSupplierMapping.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspSupplierMapping.Name = "tspSupplierMapping";
+            this.tspSupplierMapping.Size = new System.Drawing.Size(174, 22);
+            this.tspSupplierMapping.Text = "Supplier - Product Mapping";
+            // 
+            // tsbNew
+            // 
+            this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbNew.Image = global::ROMS.Properties.Resources.New;
+            this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbNew.Name = "tsbNew";
+            this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbNew.Size = new System.Drawing.Size(52, 24);
+            this.tsbNew.Text = "&New";
+            this.tsbNew.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "S.No.";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 60;
+            // 
+            // clmdpicode
+            // 
+            this.clmdpicode.HeaderText = "P.I Code";
+            this.clmdpicode.Name = "clmdpicode";
+            this.clmdpicode.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Product Name In Tamil";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 220;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Unit";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Product Sub Group";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 120;
+            // 
+            // DataGridViewButton
+            // 
+            this.DataGridViewButton.HeaderText = "Remove";
+            this.DataGridViewButton.Name = "DataGridViewButton";
+            this.DataGridViewButton.ReadOnly = true;
+            this.DataGridViewButton.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewButton.Text = "";
+            this.DataGridViewButton.Width = 70;
+            // 
+            // chksupplier
+            // 
+            this.chksupplier.HeaderText = "";
+            this.chksupplier.Name = "chksupplier";
+            this.chksupplier.ReadOnly = true;
+            this.chksupplier.Width = 30;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "S.No.";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 50;
+            // 
+            // clmpicode
+            // 
+            this.clmpicode.HeaderText = "P.I Code";
+            this.clmpicode.Name = "clmpicode";
+            this.clmpicode.ReadOnly = true;
+            // 
+            // clmtamilname
+            // 
+            this.clmtamilname.HeaderText = "Product Name In  Tamil";
+            this.clmtamilname.Name = "clmtamilname";
+            this.clmtamilname.ReadOnly = true;
+            this.clmtamilname.Width = 220;
+            // 
+            // clmunit
+            // 
+            this.clmunit.HeaderText = "Unit";
+            this.clmunit.Name = "clmunit";
+            this.clmunit.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Product SubGroup";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 120;
             // 
             // CP_SupplierMapping
             // 
@@ -656,20 +665,21 @@
         private System.Windows.Forms.Label lblSearchbyProduct1;
         private System.Windows.Forms.TextBox txtSearchByProduct2;
         private System.Windows.Forms.Label lblSearchByProduct2;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chksupplier;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmengtamil;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmtamilname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdpicode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewButtonColumn DataGridViewButton;
         private System.Windows.Forms.Label lblGC;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.ToolStripButton tsbNew;
         public System.Windows.Forms.ToolStripSeparator tssNew;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdpicode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewButtonColumn DataGridViewButton;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chksupplier;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmtamilname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
