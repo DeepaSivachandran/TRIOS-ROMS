@@ -1995,6 +1995,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrpSupplierDetails_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

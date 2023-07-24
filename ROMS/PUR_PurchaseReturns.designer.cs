@@ -82,6 +82,8 @@
             this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grpExcessProduct.SuspendLayout();
@@ -522,14 +524,16 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.cmbConcern);
             this.groupBox3.Controls.Add(this.cmbType);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.txtgrnno);
             this.groupBox3.Controls.Add(this.lblDEVisitDay);
             this.groupBox3.Controls.Add(this.dpPlanDate);
-            this.groupBox3.Controls.Add(this.lblDESupplier);
             this.groupBox3.Controls.Add(this.txtSupplier);
+            this.groupBox3.Controls.Add(this.lblDESupplier);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Location = new System.Drawing.Point(9, 14);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1037, 59);
@@ -545,16 +549,16 @@
             "--Select--",
             "Damage",
             "Excess"});
-            this.cmbType.Location = new System.Drawing.Point(856, 17);
+            this.cmbType.Location = new System.Drawing.Point(920, 17);
             this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(162, 27);
+            this.cmbType.Size = new System.Drawing.Size(98, 27);
             this.cmbType.TabIndex = 1111168;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(820, 21);
+            this.label2.Location = new System.Drawing.Point(883, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(34, 20);
             this.label2.TabIndex = 1111169;
@@ -564,60 +568,85 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(171, 21);
+            this.label1.Location = new System.Drawing.Point(305, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 20);
+            this.label1.Size = new System.Drawing.Size(43, 20);
             this.label1.TabIndex = 1111165;
-            this.label1.Text = "Delivery Note No.";
+            this.label1.Text = "DL No.";
             // 
             // txtgrnno
             // 
             this.txtgrnno.Enabled = false;
             this.txtgrnno.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtgrnno.Location = new System.Drawing.Point(274, 17);
+            this.txtgrnno.Location = new System.Drawing.Point(350, 17);
             this.txtgrnno.MaxLength = 50;
             this.txtgrnno.Name = "txtgrnno";
             this.txtgrnno.ReadOnly = true;
-            this.txtgrnno.Size = new System.Drawing.Size(163, 27);
+            this.txtgrnno.Size = new System.Drawing.Size(133, 27);
             this.txtgrnno.TabIndex = 1111166;
             // 
             // lblDEVisitDay
             // 
             this.lblDEVisitDay.AutoSize = true;
             this.lblDEVisitDay.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDEVisitDay.Location = new System.Drawing.Point(7, 21);
+            this.lblDEVisitDay.Location = new System.Drawing.Point(158, 21);
             this.lblDEVisitDay.Name = "lblDEVisitDay";
-            this.lblDEVisitDay.Size = new System.Drawing.Size(37, 20);
+            this.lblDEVisitDay.Size = new System.Drawing.Size(51, 20);
             this.lblDEVisitDay.TabIndex = 1111163;
-            this.lblDEVisitDay.Text = " Date";
+            this.lblDEVisitDay.Text = "DL Date";
             // 
             // dpPlanDate
             // 
             this.dpPlanDate.CustomFormat = "dd/MM/yyyy";
             this.dpPlanDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpPlanDate.Location = new System.Drawing.Point(47, 17);
+            this.dpPlanDate.Location = new System.Drawing.Point(210, 17);
             this.dpPlanDate.Name = "dpPlanDate";
-            this.dpPlanDate.Size = new System.Drawing.Size(121, 28);
+            this.dpPlanDate.Size = new System.Drawing.Size(93, 28);
             this.dpPlanDate.TabIndex = 1111167;
             // 
             // lblDESupplier
             // 
             this.lblDESupplier.AutoSize = true;
             this.lblDESupplier.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDESupplier.Location = new System.Drawing.Point(440, 21);
+            this.lblDESupplier.Location = new System.Drawing.Point(486, 21);
             this.lblDESupplier.Name = "lblDESupplier";
             this.lblDESupplier.Size = new System.Drawing.Size(54, 20);
             this.lblDESupplier.TabIndex = 1111162;
             this.lblDESupplier.Text = "Supplier";
+            this.lblDESupplier.Click += new System.EventHandler(this.LblDESupplier_Click);
             // 
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplier.Location = new System.Drawing.Point(497, 17);
+            this.txtSupplier.Location = new System.Drawing.Point(545, 17);
             this.txtSupplier.MaxLength = 50;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(318, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(316, 27);
             this.txtSupplier.TabIndex = 1111164;
+            // 
+            // cmbConcern
+            // 
+            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Items.AddRange(new object[] {
+            "--Select--",
+            "Damage",
+            "Excess"});
+            this.cmbConcern.Location = new System.Drawing.Point(58, 17);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(98, 27);
+            this.cmbConcern.TabIndex = 1111170;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(2, 21);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(54, 20);
+            this.label12.TabIndex = 1111171;
+            this.label12.Text = "Concern";
             // 
             // PUR_PurchaseReturns
             // 
@@ -698,5 +727,7 @@
         private System.Windows.Forms.DateTimePicker dpPlanDate;
         private System.Windows.Forms.Label lblDESupplier;
         private System.Windows.Forms.TextBox txtSupplier;
+        private System.Windows.Forms.ComboBox cmbConcern;
+        private System.Windows.Forms.Label label12;
     }
 }

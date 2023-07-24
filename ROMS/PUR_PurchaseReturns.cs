@@ -46,5 +46,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void LblDESupplier_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
