@@ -125,9 +125,9 @@
             this.lblGodown.AutoSize = true;
             this.lblGodown.Location = new System.Drawing.Point(115, 13);
             this.lblGodown.Name = "lblGodown";
-            this.lblGodown.Size = new System.Drawing.Size(52, 20);
+            this.lblGodown.Size = new System.Drawing.Size(87, 20);
             this.lblGodown.TabIndex = 86;
-            this.lblGodown.Text = "Godown";
+            this.lblGodown.Text = "Stock Location";
             // 
             // lbloutwarddate
             // 

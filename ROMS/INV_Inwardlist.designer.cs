@@ -41,7 +41,6 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlinward = new System.Windows.Forms.Panel();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
-            this.lblTo = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txtDay = new System.Windows.Forms.TextBox();
             this.lblDProductNamePicode = new System.Windows.Forms.Label();
@@ -151,7 +150,6 @@
             // 
             // grbFilterBy
             // 
-            this.grbFilterBy.Controls.Add(this.lblTo);
             this.grbFilterBy.Controls.Add(this.dateTimePicker1);
             this.grbFilterBy.Controls.Add(this.txtDay);
             this.grbFilterBy.Controls.Add(this.lblDProductNamePicode);
@@ -172,36 +170,27 @@
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By ";
             // 
-            // lblTo
-            // 
-            this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(440, 28);
-            this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(21, 20);
-            this.lblTo.TabIndex = 958815;
-            this.lblTo.Text = "To";
-            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(464, 25);
+            this.dateTimePicker1.Location = new System.Drawing.Point(403, 25);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(104, 27);
             this.dateTimePicker1.TabIndex = 958814;
             // 
             // txtDay
             // 
-            this.txtDay.Location = new System.Drawing.Point(892, 25);
+            this.txtDay.Location = new System.Drawing.Point(861, 25);
             this.txtDay.MaxLength = 2;
             this.txtDay.Name = "txtDay";
-            this.txtDay.Size = new System.Drawing.Size(235, 27);
+            this.txtDay.Size = new System.Drawing.Size(267, 27);
             this.txtDay.TabIndex = 958812;
             // 
             // lblDProductNamePicode
             // 
             this.lblDProductNamePicode.AutoSize = true;
-            this.lblDProductNamePicode.Location = new System.Drawing.Point(756, 28);
+            this.lblDProductNamePicode.Location = new System.Drawing.Point(725, 28);
             this.lblDProductNamePicode.Name = "lblDProductNamePicode";
             this.lblDProductNamePicode.Size = new System.Drawing.Size(134, 20);
             this.lblDProductNamePicode.TabIndex = 958811;
@@ -211,7 +200,7 @@
             // 
             this.dtpoutwarddate.CustomFormat = "dd/MM/yyyy";
             this.dtpoutwarddate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpoutwarddate.Location = new System.Drawing.Point(325, 25);
+            this.dtpoutwarddate.Location = new System.Drawing.Point(295, 25);
             this.dtpoutwarddate.Name = "dtpoutwarddate";
             this.dtpoutwarddate.Size = new System.Drawing.Size(104, 27);
             this.dtpoutwarddate.TabIndex = 93;
@@ -220,26 +209,26 @@
             // 
             this.lblDGodown.AutoSize = true;
             this.lblDGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lblDGodown.Location = new System.Drawing.Point(574, 28);
+            this.lblDGodown.Location = new System.Drawing.Point(509, 28);
             this.lblDGodown.Name = "lblDGodown";
-            this.lblDGodown.Size = new System.Drawing.Size(52, 20);
+            this.lblDGodown.Size = new System.Drawing.Size(87, 20);
             this.lblDGodown.TabIndex = 38;
-            this.lblDGodown.Text = "Godown";
+            this.lblDGodown.Text = "Stock Location";
             // 
             // lblinwarddate
             // 
             this.lblinwarddate.AutoSize = true;
             this.lblinwarddate.Location = new System.Drawing.Point(217, 28);
             this.lblinwarddate.Name = "lblinwarddate";
-            this.lblinwarddate.Size = new System.Drawing.Size(105, 20);
+            this.lblinwarddate.Size = new System.Drawing.Size(75, 20);
             this.lblinwarddate.TabIndex = 92;
-            this.lblinwarddate.Text = "Inward Date From";
+            this.lblinwarddate.Text = "Inward Date";
             // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(630, 25);
+            this.comboBox1.Location = new System.Drawing.Point(599, 25);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(122, 27);
             this.comboBox1.TabIndex = 37;
@@ -564,7 +553,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitems;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalqty;
         private System.Windows.Forms.GroupBox grbFilterBy;
-        private System.Windows.Forms.Label lblTo;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox txtDay;
         private System.Windows.Forms.Label lblDProductNamePicode;
