@@ -38,8 +38,8 @@ namespace ROMS
         {
             try
             {
-                cmbType.Items.Insert(0,"Direct");
-                cmbType.Items.Insert(1,"Against PO"); 
+                cmbType.Items.Insert(0,"Against GRN");
+                cmbType.Items.Insert(1,"Direct"); 
                 cmbType.SelectedIndex = 0;
                 cmbPurchaseType.SelectedIndex = 0;
             }
@@ -96,14 +96,12 @@ namespace ROMS
         {
             try
             {
-                if (cmbType.SelectedIndex.ToString() == "1") {
-                    MainForm.objCP_Purchase_PO = new CP_Purchase_PO();
-                    MainForm.objCP_Purchase_PO.ShowDialog();
+                if (cmbType.SelectedIndex.ToString() == "1") { // GRN
+                    txtQRCode.ReadOnly = false;
                 }
                 if (cmbType.SelectedIndex.ToString() == "2")
                 {
-                    MainForm.objCP_Purchase_Inward = new CP_Purchase_Inward();
-                    MainForm.objCP_Purchase_Inward.ShowDialog();
+                    txtQRCode.ReadOnly = true;
                 }
             }
             catch (Exception ex)

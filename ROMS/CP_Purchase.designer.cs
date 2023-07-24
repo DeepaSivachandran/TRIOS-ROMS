@@ -28,32 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsPurchase = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.chkInvoice = new System.Windows.Forms.CheckBox();
             this.textBox23 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.textBox25 = new System.Windows.Forms.TextBox();
             this.lblRupee = new System.Windows.Forms.Label();
             this.lblGrandTotal = new System.Windows.Forms.Label();
             this.cmbLocation = new System.Windows.Forms.ComboBox();
             this.cmbrack = new System.Windows.Forms.ComboBox();
             this.textBox24 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.txtQtyUnit = new System.Windows.Forms.TextBox();
             this.txtMrp = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtBroker = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Label();
-            this.textBox21 = new System.Windows.Forms.TextBox();
+            this.txtDiscPer = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.txtDiscAmnt = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -131,8 +132,12 @@
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBox25 = new System.Windows.Forms.TextBox();
-            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.chkInvoice = new System.Windows.Forms.CheckBox();
+            this.textBox29 = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtFreeQty = new System.Windows.Forms.TextBox();
+            this.txtFreeUnit = new System.Windows.Forms.TextBox();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -144,6 +149,7 @@
             this.clmrack = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -152,7 +158,15 @@
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label18 = new System.Windows.Forms.Label();
+            this.lblYYYY = new System.Windows.Forms.Label();
+            this.lblMM = new System.Windows.Forms.Label();
+            this.lblDD = new System.Windows.Forms.Label();
+            this.txtBatchno = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.Year = new System.Windows.Forms.TextBox();
+            this.txtDate = new System.Windows.Forms.TextBox();
+            this.Month = new System.Windows.Forms.TextBox();
             this.tsPurchase.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -193,7 +207,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.chkInvoice);
             this.panel1.Controls.Add(this.textBox23);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.btnClose);
@@ -203,16 +216,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1354, 644);
             this.panel1.TabIndex = 36;
-            // 
-            // chkInvoice
-            // 
-            this.chkInvoice.AutoSize = true;
-            this.chkInvoice.Location = new System.Drawing.Point(694, 613);
-            this.chkInvoice.Name = "chkInvoice";
-            this.chkInvoice.Size = new System.Drawing.Size(88, 21);
-            this.chkInvoice.TabIndex = 10;
-            this.chkInvoice.Text = "E-Invoice Bill";
-            this.chkInvoice.UseVisualStyleBackColor = true;
             // 
             // textBox23
             // 
@@ -260,6 +263,20 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblYYYY);
+            this.groupBox1.Controls.Add(this.lblMM);
+            this.groupBox1.Controls.Add(this.lblDD);
+            this.groupBox1.Controls.Add(this.txtBatchno);
+            this.groupBox1.Controls.Add(this.label20);
+            this.groupBox1.Controls.Add(this.label21);
+            this.groupBox1.Controls.Add(this.Year);
+            this.groupBox1.Controls.Add(this.txtDate);
+            this.groupBox1.Controls.Add(this.Month);
+            this.groupBox1.Controls.Add(this.txtFreeUnit);
+            this.groupBox1.Controls.Add(this.txtFreeQty);
+            this.groupBox1.Controls.Add(this.label19);
+            this.groupBox1.Controls.Add(this.textBox29);
+            this.groupBox1.Controls.Add(this.chkInvoice);
             this.groupBox1.Controls.Add(this.textBox28);
             this.groupBox1.Controls.Add(this.textBox25);
             this.groupBox1.Controls.Add(this.lblRupee);
@@ -268,15 +285,15 @@
             this.groupBox1.Controls.Add(this.cmbrack);
             this.groupBox1.Controls.Add(this.textBox24);
             this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.textBox22);
+            this.groupBox1.Controls.Add(this.txtQtyUnit);
             this.groupBox1.Controls.Add(this.txtMrp);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.txtBroker);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.btnAdd);
-            this.groupBox1.Controls.Add(this.textBox21);
+            this.groupBox1.Controls.Add(this.txtDiscPer);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.textBox20);
+            this.groupBox1.Controls.Add(this.txtDiscAmnt);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.textBox11);
             this.groupBox1.Controls.Add(this.label10);
@@ -317,6 +334,26 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // textBox28
+            // 
+            this.textBox28.Location = new System.Drawing.Point(645, 123);
+            this.textBox28.Name = "textBox28";
+            this.textBox28.ReadOnly = true;
+            this.textBox28.Size = new System.Drawing.Size(13, 25);
+            this.textBox28.TabIndex = 1111167;
+            this.textBox28.Text = "₹";
+            this.textBox28.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox25
+            // 
+            this.textBox25.Location = new System.Drawing.Point(495, 123);
+            this.textBox25.Name = "textBox25";
+            this.textBox25.ReadOnly = true;
+            this.textBox25.Size = new System.Drawing.Size(13, 25);
+            this.textBox25.TabIndex = 1111166;
+            this.textBox25.Text = "₹";
+            this.textBox25.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // lblRupee
             // 
             this.lblRupee.AutoSize = true;
@@ -342,7 +379,7 @@
             // 
             this.cmbLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLocation.FormattingEnabled = true;
-            this.cmbLocation.Location = new System.Drawing.Point(722, 123);
+            this.cmbLocation.Location = new System.Drawing.Point(1004, 123);
             this.cmbLocation.Name = "cmbLocation";
             this.cmbLocation.Size = new System.Drawing.Size(148, 25);
             this.cmbLocation.TabIndex = 1111146;
@@ -351,7 +388,7 @@
             // 
             this.cmbrack.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbrack.FormattingEnabled = true;
-            this.cmbrack.Location = new System.Drawing.Point(893, 123);
+            this.cmbrack.Location = new System.Drawing.Point(1175, 123);
             this.cmbrack.Name = "cmbrack";
             this.cmbrack.Size = new System.Drawing.Size(104, 25);
             this.cmbrack.TabIndex = 1111145;
@@ -359,63 +396,63 @@
             // textBox24
             // 
             this.textBox24.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox24.Location = new System.Drawing.Point(444, 123);
+            this.textBox24.Location = new System.Drawing.Point(508, 123);
             this.textBox24.MaxLength = 50;
             this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(56, 25);
+            this.textBox24.Size = new System.Drawing.Size(60, 25);
             this.textBox24.TabIndex = 1111144;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(423, 105);
+            this.label15.Location = new System.Drawing.Point(495, 105);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(76, 17);
             this.label15.TabIndex = 1111143;
             this.label15.Text = "Purchase Rate";
             // 
-            // textBox22
+            // txtQtyUnit
             // 
-            this.textBox22.Location = new System.Drawing.Point(323, 123);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.ReadOnly = true;
-            this.textBox22.Size = new System.Drawing.Size(21, 25);
-            this.textBox22.TabIndex = 1111142;
-            this.textBox22.Text = "Kg";
+            this.txtQtyUnit.Location = new System.Drawing.Point(344, 123);
+            this.txtQtyUnit.Name = "txtQtyUnit";
+            this.txtQtyUnit.ReadOnly = true;
+            this.txtQtyUnit.Size = new System.Drawing.Size(24, 25);
+            this.txtQtyUnit.TabIndex = 1111142;
+            this.txtQtyUnit.Text = "Pcs";
             // 
             // txtMrp
             // 
             this.txtMrp.Enabled = false;
             this.txtMrp.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMrp.Location = new System.Drawing.Point(345, 123);
+            this.txtMrp.Location = new System.Drawing.Point(449, 123);
             this.txtMrp.MaxLength = 50;
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.ReadOnly = true;
-            this.txtMrp.Size = new System.Drawing.Size(65, 25);
+            this.txtMrp.Size = new System.Drawing.Size(41, 25);
             this.txtMrp.TabIndex = 1111140;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(345, 105);
+            this.label14.Location = new System.Drawing.Point(435, 105);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(47, 17);
+            this.label14.Size = new System.Drawing.Size(30, 17);
             this.label14.TabIndex = 1111139;
-            this.label14.Text = "MRP (₹)";
+            this.label14.Text = "MRP";
             // 
             // txtBroker
             // 
-            this.txtBroker.Location = new System.Drawing.Point(530, 77);
+            this.txtBroker.Location = new System.Drawing.Point(310, 77);
             this.txtBroker.Name = "txtBroker";
-            this.txtBroker.Size = new System.Drawing.Size(160, 25);
+            this.txtBroker.Size = new System.Drawing.Size(139, 25);
             this.txtBroker.TabIndex = 1111138;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(530, 58);
+            this.label13.Location = new System.Drawing.Point(310, 58);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(40, 17);
             this.label13.TabIndex = 1111137;
@@ -426,46 +463,46 @@
             this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
             this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(1037, 123);
+            this.btnAdd.Location = new System.Drawing.Point(1302, 123);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(21, 22);
             this.btnAdd.TabIndex = 1111136;
             this.btnAdd.Text = "        ";
             // 
-            // textBox21
+            // txtDiscPer
             // 
-            this.textBox21.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox21.Location = new System.Drawing.Point(530, 123);
-            this.textBox21.MaxLength = 50;
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(65, 25);
-            this.textBox21.TabIndex = 44;
+            this.txtDiscPer.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDiscPer.Location = new System.Drawing.Point(574, 123);
+            this.txtDiscPer.MaxLength = 50;
+            this.txtDiscPer.Name = "txtDiscPer";
+            this.txtDiscPer.Size = new System.Drawing.Size(65, 25);
+            this.txtDiscPer.TabIndex = 44;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(530, 105);
+            this.label12.Location = new System.Drawing.Point(574, 105);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 17);
             this.label12.TabIndex = 43;
             this.label12.Text = "Discount %";
             // 
-            // textBox20
+            // txtDiscAmnt
             // 
-            this.textBox20.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox20.Location = new System.Drawing.Point(633, 123);
-            this.textBox20.MaxLength = 50;
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(57, 25);
-            this.textBox20.TabIndex = 42;
+            this.txtDiscAmnt.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDiscAmnt.Location = new System.Drawing.Point(658, 123);
+            this.txtDiscAmnt.MaxLength = 50;
+            this.txtDiscAmnt.Name = "txtDiscAmnt";
+            this.txtDiscAmnt.Size = new System.Drawing.Size(59, 25);
+            this.txtDiscAmnt.TabIndex = 42;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(612, 105);
+            this.label11.Location = new System.Drawing.Point(645, 105);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(72, 17);
             this.label11.TabIndex = 41;
@@ -474,17 +511,17 @@
             // textBox11
             // 
             this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.Location = new System.Drawing.Point(268, 123);
+            this.textBox11.Location = new System.Drawing.Point(310, 123);
             this.textBox11.MaxLength = 50;
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(55, 25);
+            this.textBox11.Size = new System.Drawing.Size(34, 25);
             this.textBox11.TabIndex = 40;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(268, 105);
+            this.label10.Location = new System.Drawing.Point(310, 105);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(49, 17);
             this.label10.TabIndex = 39;
@@ -496,7 +533,7 @@
             this.txtProduct.Location = new System.Drawing.Point(7, 123);
             this.txtProduct.MaxLength = 50;
             this.txtProduct.Name = "txtProduct";
-            this.txtProduct.Size = new System.Drawing.Size(245, 25);
+            this.txtProduct.Size = new System.Drawing.Size(299, 25);
             this.txtProduct.TabIndex = 38;
             // 
             // lblSearchbyProduct1
@@ -516,15 +553,15 @@
             this.cmbPurchaseType.Items.AddRange(new object[] {
             "Shop Sales",
             "RM For Production"});
-            this.cmbPurchaseType.Location = new System.Drawing.Point(268, 77);
+            this.cmbPurchaseType.Location = new System.Drawing.Point(200, 77);
             this.cmbPurchaseType.Name = "cmbPurchaseType";
-            this.cmbPurchaseType.Size = new System.Drawing.Size(139, 25);
+            this.cmbPurchaseType.Size = new System.Drawing.Size(104, 25);
             this.cmbPurchaseType.TabIndex = 24;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(268, 58);
+            this.label9.Location = new System.Drawing.Point(200, 58);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(88, 17);
             this.label9.TabIndex = 23;
@@ -532,7 +569,7 @@
             // 
             // txtQRCode
             // 
-            this.txtQRCode.Location = new System.Drawing.Point(7, 30);
+            this.txtQRCode.Location = new System.Drawing.Point(104, 30);
             this.txtQRCode.Name = "txtQRCode";
             this.txtQRCode.Size = new System.Drawing.Size(90, 25);
             this.txtQRCode.TabIndex = 22;
@@ -540,7 +577,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 13);
+            this.label8.Location = new System.Drawing.Point(104, 13);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(82, 17);
             this.label8.TabIndex = 21;
@@ -554,14 +591,14 @@
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ColumnHeadersHeight = 30;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -641,14 +678,14 @@
             this.grdSupplierList.AllowUserToResizeRows = false;
             this.grdSupplierList.BackgroundColor = System.Drawing.Color.White;
             this.grdSupplierList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSupplierList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdSupplierList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdSupplierList.ColumnHeadersHeight = 50;
             this.grdSupplierList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdSupplierList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -663,6 +700,7 @@
             this.clmrack,
             this.Column3,
             this.Column4,
+            this.Column12,
             this.Column5,
             this.Column7,
             this.Column8,
@@ -683,15 +721,15 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(423, 30);
+            this.textBox3.Location = new System.Drawing.Point(455, 30);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(267, 25);
+            this.textBox3.Size = new System.Drawing.Size(258, 25);
             this.textBox3.TabIndex = 16;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(423, 13);
+            this.label6.Location = new System.Drawing.Point(455, 13);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 17);
             this.label6.TabIndex = 15;
@@ -744,7 +782,7 @@
             // 
             this.groupBox2.Location = new System.Drawing.Point(1067, 11);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(260, 137);
+            this.groupBox2.Size = new System.Drawing.Size(260, 96);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Supplier Details";
@@ -753,22 +791,22 @@
             // 
             this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbType.FormattingEnabled = true;
-            this.cmbType.Location = new System.Drawing.Point(423, 77);
+            this.cmbType.Location = new System.Drawing.Point(7, 30);
             this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(104, 25);
+            this.cmbType.Size = new System.Drawing.Size(90, 25);
             this.cmbType.TabIndex = 10;
             this.cmbType.SelectedIndexChanged += new System.EventHandler(this.CmbType_SelectedIndexChanged);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(113, 77);
+            this.textBox2.Location = new System.Drawing.Point(104, 77);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(139, 25);
+            this.textBox2.Size = new System.Drawing.Size(90, 25);
             this.textBox2.TabIndex = 8;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(268, 30);
+            this.textBox1.Location = new System.Drawing.Point(310, 30);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(139, 25);
@@ -777,7 +815,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(423, 58);
+            this.label5.Location = new System.Drawing.Point(7, 13);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 17);
             this.label5.TabIndex = 5;
@@ -795,7 +833,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(113, 58);
+            this.label3.Location = new System.Drawing.Point(104, 58);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 17);
             this.label3.TabIndex = 3;
@@ -804,7 +842,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(268, 13);
+            this.label2.Location = new System.Drawing.Point(310, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 17);
             this.label2.TabIndex = 2;
@@ -814,7 +852,7 @@
             // 
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(113, 30);
+            this.dateTimePicker1.Location = new System.Drawing.Point(200, 30);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(104, 25);
             this.dateTimePicker1.TabIndex = 1;
@@ -822,7 +860,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(113, 13);
+            this.label1.Location = new System.Drawing.Point(200, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 17);
             this.label1.TabIndex = 0;
@@ -1259,7 +1297,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(722, 105);
+            this.label16.Location = new System.Drawing.Point(1004, 105);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(79, 17);
             this.label16.TabIndex = 1111147;
@@ -1269,31 +1307,68 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(890, 105);
+            this.label17.Location = new System.Drawing.Point(1172, 105);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(32, 17);
             this.label17.TabIndex = 1111148;
             this.label17.Text = "Rack";
             // 
-            // textBox25
+            // label18
             // 
-            this.textBox25.Location = new System.Drawing.Point(423, 123);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.ReadOnly = true;
-            this.textBox25.Size = new System.Drawing.Size(21, 25);
-            this.textBox25.TabIndex = 1111166;
-            this.textBox25.Text = "₹";
-            this.textBox25.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(1237, 4);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(107, 17);
+            this.label18.TabIndex = 37;
+            this.label18.Text = "Waiting for Approval";
             // 
-            // textBox28
+            // chkInvoice
             // 
-            this.textBox28.Location = new System.Drawing.Point(612, 123);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.ReadOnly = true;
-            this.textBox28.Size = new System.Drawing.Size(21, 25);
-            this.textBox28.TabIndex = 1111167;
-            this.textBox28.Text = "₹";
-            this.textBox28.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.chkInvoice.AutoSize = true;
+            this.chkInvoice.Location = new System.Drawing.Point(455, 79);
+            this.chkInvoice.Name = "chkInvoice";
+            this.chkInvoice.Size = new System.Drawing.Size(88, 21);
+            this.chkInvoice.TabIndex = 1111168;
+            this.chkInvoice.Text = "E-Invoice Bill";
+            this.chkInvoice.UseVisualStyleBackColor = true;
+            // 
+            // textBox29
+            // 
+            this.textBox29.Location = new System.Drawing.Point(435, 123);
+            this.textBox29.Name = "textBox29";
+            this.textBox29.ReadOnly = true;
+            this.textBox29.Size = new System.Drawing.Size(14, 25);
+            this.textBox29.TabIndex = 1111169;
+            this.textBox29.Text = "₹";
+            this.textBox29.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(373, 105);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(46, 17);
+            this.label19.TabIndex = 1111170;
+            this.label19.Text = "Free Qty";
+            // 
+            // txtFreeQty
+            // 
+            this.txtFreeQty.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFreeQty.Location = new System.Drawing.Point(372, 123);
+            this.txtFreeQty.MaxLength = 50;
+            this.txtFreeQty.Name = "txtFreeQty";
+            this.txtFreeQty.Size = new System.Drawing.Size(34, 25);
+            this.txtFreeQty.TabIndex = 1111171;
+            // 
+            // txtFreeUnit
+            // 
+            this.txtFreeUnit.Location = new System.Drawing.Point(406, 123);
+            this.txtFreeUnit.Name = "txtFreeUnit";
+            this.txtFreeUnit.ReadOnly = true;
+            this.txtFreeUnit.Size = new System.Drawing.Size(24, 25);
+            this.txtFreeUnit.TabIndex = 1111172;
+            this.txtFreeUnit.Text = "Pcs";
             // 
             // clmsno
             // 
@@ -1311,7 +1386,7 @@
             // 
             this.Column2.HeaderText = "Product Name";
             this.Column2.Name = "Column2";
-            this.Column2.Width = 300;
+            this.Column2.Width = 250;
             // 
             // Column6
             // 
@@ -1363,6 +1438,13 @@
             this.Column4.HeaderText = "Invoice Qty";
             this.Column4.Name = "Column4";
             this.Column4.Width = 50;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "Free Qty";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            this.Column12.Width = 50;
             // 
             // Column5
             // 
@@ -1418,14 +1500,94 @@
             this.Column16.ReadOnly = true;
             this.Column16.Width = 60;
             // 
-            // label18
+            // lblYYYY
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(1237, 4);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(107, 17);
-            this.label18.TabIndex = 37;
-            this.label18.Text = "Waiting for Approval";
+            this.lblYYYY.AutoSize = true;
+            this.lblYYYY.Font = new System.Drawing.Font("Oswald Regular", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYYYY.Location = new System.Drawing.Point(849, 105);
+            this.lblYYYY.Name = "lblYYYY";
+            this.lblYYYY.Size = new System.Drawing.Size(21, 12);
+            this.lblYYYY.TabIndex = 1111174;
+            this.lblYYYY.Text = "YYYY";
+            this.lblYYYY.Visible = false;
+            // 
+            // lblMM
+            // 
+            this.lblMM.AutoSize = true;
+            this.lblMM.Font = new System.Drawing.Font("Oswald Regular", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMM.Location = new System.Drawing.Point(797, 105);
+            this.lblMM.Name = "lblMM";
+            this.lblMM.Size = new System.Drawing.Size(17, 12);
+            this.lblMM.TabIndex = 1111176;
+            this.lblMM.Text = "MM";
+            this.lblMM.Visible = false;
+            // 
+            // lblDD
+            // 
+            this.lblDD.AutoSize = true;
+            this.lblDD.Font = new System.Drawing.Font("Oswald Regular", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDD.Location = new System.Drawing.Point(736, 105);
+            this.lblDD.Name = "lblDD";
+            this.lblDD.Size = new System.Drawing.Size(15, 12);
+            this.lblDD.TabIndex = 1111178;
+            this.lblDD.Text = "DD";
+            this.lblDD.Visible = false;
+            // 
+            // txtBatchno
+            // 
+            this.txtBatchno.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBatchno.Location = new System.Drawing.Point(893, 122);
+            this.txtBatchno.MaxLength = 50;
+            this.txtBatchno.Name = "txtBatchno";
+            this.txtBatchno.Size = new System.Drawing.Size(87, 25);
+            this.txtBatchno.TabIndex = 1111181;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(893, 105);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(54, 17);
+            this.label20.TabIndex = 1111180;
+            this.label20.Text = "Batch No.";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(723, 105);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(133, 17);
+            this.label21.TabIndex = 1111173;
+            this.label21.Text = "Expiry Date (DD|MM|YYYY)";
+            // 
+            // Year
+            // 
+            this.Year.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Year.Location = new System.Drawing.Point(811, 123);
+            this.Year.MaxLength = 50;
+            this.Year.Name = "Year";
+            this.Year.Size = new System.Drawing.Size(67, 25);
+            this.Year.TabIndex = 1111179;
+            // 
+            // txtDate
+            // 
+            this.txtDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDate.Location = new System.Drawing.Point(723, 123);
+            this.txtDate.MaxLength = 50;
+            this.txtDate.Name = "txtDate";
+            this.txtDate.Size = new System.Drawing.Size(44, 25);
+            this.txtDate.TabIndex = 1111175;
+            // 
+            // Month
+            // 
+            this.Month.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Month.Location = new System.Drawing.Point(767, 123);
+            this.Month.MaxLength = 50;
+            this.Month.Name = "Month";
+            this.Month.Size = new System.Drawing.Size(44, 25);
+            this.Month.TabIndex = 1111177;
             // 
             // CP_Purchase
             // 
@@ -1551,14 +1713,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.TextBox txtProduct;
         private System.Windows.Forms.Label lblSearchbyProduct1;
-        private System.Windows.Forms.TextBox textBox21;
+        private System.Windows.Forms.TextBox txtDiscPer;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.TextBox txtDiscAmnt;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Label label10;
         internal System.Windows.Forms.Label btnAdd;
-        private System.Windows.Forms.CheckBox chkInvoice;
         private System.Windows.Forms.TextBox txtMrp;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtBroker;
@@ -1568,7 +1729,7 @@
         private System.Windows.Forms.RadioButton radioButton6;
         private System.Windows.Forms.TextBox textBox24;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox22;
+        private System.Windows.Forms.TextBox txtQtyUnit;
         private System.Windows.Forms.ComboBox cmbLocation;
         private System.Windows.Forms.ComboBox cmbrack;
         private System.Windows.Forms.Label label16;
@@ -1577,6 +1738,12 @@
         private System.Windows.Forms.Label lblRupee;
         private System.Windows.Forms.TextBox textBox25;
         private System.Windows.Forms.TextBox textBox28;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.CheckBox chkInvoice;
+        private System.Windows.Forms.TextBox textBox29;
+        private System.Windows.Forms.TextBox txtFreeQty;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtFreeUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -1588,6 +1755,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmrack;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
@@ -1596,6 +1764,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblYYYY;
+        private System.Windows.Forms.Label lblMM;
+        private System.Windows.Forms.Label lblDD;
+        private System.Windows.Forms.TextBox txtBatchno;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox Year;
+        private System.Windows.Forms.TextBox txtDate;
+        private System.Windows.Forms.TextBox Month;
     }
 }
