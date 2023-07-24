@@ -74,15 +74,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtgrnno = new System.Windows.Forms.TextBox();
             this.lblDEVisitDay = new System.Windows.Forms.Label();
             this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
-            this.lblDESupplier = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
-            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.lblDESupplier = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -254,6 +254,7 @@
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // label11
             // 
@@ -540,6 +541,20 @@
             this.groupBox3.TabIndex = 1111221;
             this.groupBox3.TabStop = false;
             // 
+            // cmbConcern
+            // 
+            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Items.AddRange(new object[] {
+            "--Select--",
+            "Damage",
+            "Excess"});
+            this.cmbConcern.Location = new System.Drawing.Point(58, 17);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(98, 27);
+            this.cmbConcern.TabIndex = 1111170;
+            // 
             // cmbType
             // 
             this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -563,16 +578,6 @@
             this.label2.Size = new System.Drawing.Size(34, 20);
             this.label2.TabIndex = 1111169;
             this.label2.Text = "Type";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(305, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 20);
-            this.label1.TabIndex = 1111165;
-            this.label1.Text = "DL No.";
             // 
             // txtgrnno
             // 
@@ -604,6 +609,15 @@
             this.dpPlanDate.Size = new System.Drawing.Size(93, 28);
             this.dpPlanDate.TabIndex = 1111167;
             // 
+            // txtSupplier
+            // 
+            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplier.Location = new System.Drawing.Point(545, 17);
+            this.txtSupplier.MaxLength = 50;
+            this.txtSupplier.Name = "txtSupplier";
+            this.txtSupplier.Size = new System.Drawing.Size(316, 27);
+            this.txtSupplier.TabIndex = 1111164;
+            // 
             // lblDESupplier
             // 
             this.lblDESupplier.AutoSize = true;
@@ -615,28 +629,15 @@
             this.lblDESupplier.Text = "Supplier";
             this.lblDESupplier.Click += new System.EventHandler(this.LblDESupplier_Click);
             // 
-            // txtSupplier
+            // label1
             // 
-            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplier.Location = new System.Drawing.Point(545, 17);
-            this.txtSupplier.MaxLength = 50;
-            this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(316, 27);
-            this.txtSupplier.TabIndex = 1111164;
-            // 
-            // cmbConcern
-            // 
-            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Items.AddRange(new object[] {
-            "--Select--",
-            "Damage",
-            "Excess"});
-            this.cmbConcern.Location = new System.Drawing.Point(58, 17);
-            this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(98, 27);
-            this.cmbConcern.TabIndex = 1111170;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(305, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 20);
+            this.label1.TabIndex = 1111165;
+            this.label1.Text = "DL No.";
             // 
             // label12
             // 

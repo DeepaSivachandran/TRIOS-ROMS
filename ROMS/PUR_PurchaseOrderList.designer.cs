@@ -181,7 +181,7 @@
             this.pnlpurchaseapproval.Controls.Add(this.grdPurchaseorderlist);
             this.pnlpurchaseapproval.Location = new System.Drawing.Point(0, 31);
             this.pnlpurchaseapproval.Name = "pnlpurchaseapproval";
-            this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 644);
+            this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 643);
             this.pnlpurchaseapproval.TabIndex = 958789;
             // 
             // lvSupplier
@@ -513,7 +513,7 @@
             this.grdPurchaseorderlist.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.grdPurchaseorderlist.RowTemplate.Height = 25;
             this.grdPurchaseorderlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseorderlist.Size = new System.Drawing.Size(1348, 510);
+            this.grdPurchaseorderlist.Size = new System.Drawing.Size(1348, 509);
             this.grdPurchaseorderlist.TabIndex = 958797;
             // 
             // clmsno
@@ -628,7 +628,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(1354, 675);
+            this.ClientSize = new System.Drawing.Size(1354, 676);
             this.Controls.Add(this.pnlpurchaseapproval);
             this.Controls.Add(this.tsBrandList);
             this.Controls.Add(this.button1);

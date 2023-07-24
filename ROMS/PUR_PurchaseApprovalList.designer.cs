@@ -38,6 +38,7 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.grdPurchaseApproval = new System.Windows.Forms.DataGridView();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdpurchasenumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +56,7 @@
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdapprovedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdPurchaseApproval = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpurchaseno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,7 +68,6 @@
             this.clmenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmapproved = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmview = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -106,7 +106,7 @@
             this.pnlpurchaseapproval.Controls.Add(this.grdPurchaseApproval);
             this.pnlpurchaseapproval.Location = new System.Drawing.Point(0, 29);
             this.pnlpurchaseapproval.Name = "pnlpurchaseapproval";
-            this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 646);
+            this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 643);
             this.pnlpurchaseapproval.TabIndex = 958789;
             // 
             // grpfilter
@@ -124,6 +124,15 @@
             this.grpfilter.TabIndex = 958799;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(231, 23);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(107, 27);
+            this.dateTimePicker1.TabIndex = 1111143;
             // 
             // button1
             // 
@@ -146,7 +155,7 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(698, 26);
+            this.btnView.Location = new System.Drawing.Point(729, 20);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(74, 33);
@@ -159,7 +168,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(322, 32);
+            this.label2.Location = new System.Drawing.Point(346, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 20);
             this.label2.TabIndex = 1111140;
@@ -169,7 +178,7 @@
             // 
             this.cmbSupplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSupplier.FormattingEnabled = true;
-            this.cmbSupplier.Location = new System.Drawing.Point(412, 29);
+            this.cmbSupplier.Location = new System.Drawing.Point(441, 23);
             this.cmbSupplier.Name = "cmbSupplier";
             this.cmbSupplier.Size = new System.Drawing.Size(280, 27);
             this.cmbSupplier.TabIndex = 1111137;
@@ -178,7 +187,7 @@
             // 
             this.dpPlanDate.CustomFormat = "dd/MM/yyyy";
             this.dpPlanDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpPlanDate.Location = new System.Drawing.Point(93, 29);
+            this.dpPlanDate.Location = new System.Drawing.Point(116, 23);
             this.dpPlanDate.Name = "dpPlanDate";
             this.dpPlanDate.Size = new System.Drawing.Size(107, 27);
             this.dpPlanDate.TabIndex = 1111138;
@@ -187,7 +196,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 32);
+            this.label1.Location = new System.Drawing.Point(26, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 20);
             this.label1.TabIndex = 1111139;
@@ -244,60 +253,6 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958798;
-            // 
-            // grdPurchaseApproval
-            // 
-            this.grdPurchaseApproval.AllowUserToAddRows = false;
-            this.grdPurchaseApproval.AllowUserToDeleteRows = false;
-            this.grdPurchaseApproval.AllowUserToResizeColumns = false;
-            this.grdPurchaseApproval.AllowUserToResizeRows = false;
-            this.grdPurchaseApproval.BackgroundColor = System.Drawing.Color.White;
-            this.grdPurchaseApproval.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPurchaseApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            this.grdPurchaseApproval.ColumnHeadersHeight = 30;
-            this.grdPurchaseApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdPurchaseApproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmsno,
-            this.clmdate,
-            this.clmpurchaseno,
-            this.clmpono,
-            this.clmsupplier,
-            this.clmbill,
-            this.clmtotalitem,
-            this.clmsts,
-            this.clmenterby,
-            this.clmapproved,
-            this.clmview});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdPurchaseApproval.DefaultCellStyle = dataGridViewCellStyle11;
-            this.grdPurchaseApproval.EnableHeadersVisualStyles = false;
-            this.grdPurchaseApproval.GridColor = System.Drawing.Color.White;
-            this.grdPurchaseApproval.Location = new System.Drawing.Point(3, 130);
-            this.grdPurchaseApproval.Name = "grdPurchaseApproval";
-            this.grdPurchaseApproval.ReadOnly = true;
-            this.grdPurchaseApproval.RowHeadersVisible = false;
-            this.grdPurchaseApproval.RowHeadersWidth = 100;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
-            this.grdPurchaseApproval.RowsDefaultCellStyle = dataGridViewCellStyle12;
-            this.grdPurchaseApproval.RowTemplate.Height = 25;
-            this.grdPurchaseApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseApproval.Size = new System.Drawing.Size(1348, 510);
-            this.grdPurchaseApproval.TabIndex = 958797;
-            this.grdPurchaseApproval.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
             // 
             // clmdsno
             // 
@@ -363,6 +318,60 @@
             this.clmdapprovedby.Name = "clmdapprovedby";
             this.clmdapprovedby.ReadOnly = true;
             this.clmdapprovedby.Width = 150;
+            // 
+            // grdPurchaseApproval
+            // 
+            this.grdPurchaseApproval.AllowUserToAddRows = false;
+            this.grdPurchaseApproval.AllowUserToDeleteRows = false;
+            this.grdPurchaseApproval.AllowUserToResizeColumns = false;
+            this.grdPurchaseApproval.AllowUserToResizeRows = false;
+            this.grdPurchaseApproval.BackgroundColor = System.Drawing.Color.White;
+            this.grdPurchaseApproval.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdPurchaseApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.grdPurchaseApproval.ColumnHeadersHeight = 30;
+            this.grdPurchaseApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdPurchaseApproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmsno,
+            this.clmdate,
+            this.clmpurchaseno,
+            this.clmpono,
+            this.clmsupplier,
+            this.clmbill,
+            this.clmtotalitem,
+            this.clmsts,
+            this.clmenterby,
+            this.clmapproved,
+            this.clmview});
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdPurchaseApproval.DefaultCellStyle = dataGridViewCellStyle11;
+            this.grdPurchaseApproval.EnableHeadersVisualStyles = false;
+            this.grdPurchaseApproval.GridColor = System.Drawing.Color.White;
+            this.grdPurchaseApproval.Location = new System.Drawing.Point(3, 130);
+            this.grdPurchaseApproval.Name = "grdPurchaseApproval";
+            this.grdPurchaseApproval.ReadOnly = true;
+            this.grdPurchaseApproval.RowHeadersVisible = false;
+            this.grdPurchaseApproval.RowHeadersWidth = 100;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            this.grdPurchaseApproval.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            this.grdPurchaseApproval.RowTemplate.Height = 25;
+            this.grdPurchaseApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdPurchaseApproval.Size = new System.Drawing.Size(1348, 510);
+            this.grdPurchaseApproval.TabIndex = 958797;
+            this.grdPurchaseApproval.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
             // 
             // clmsno
             // 
@@ -440,15 +449,6 @@
             this.clmview.ReadOnly = true;
             this.clmview.Width = 50;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(205, 29);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(107, 27);
-            this.dateTimePicker1.TabIndex = 1111143;
-            // 
             // PUR_PurchaseApprovalList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -463,7 +463,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PUR_PurchaseApprovalList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
+            this.Text = "Purchase Approval";
             this.Load += new System.EventHandler(this.PUR_PurchaseApprovalList_Load);
             this.tsBrandList.ResumeLayout(false);
             this.tsBrandList.PerformLayout();

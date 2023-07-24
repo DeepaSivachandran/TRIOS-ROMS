@@ -51,5 +51,10 @@ namespace ROMS
         {
 
         }
+
+        private void BtnClose_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

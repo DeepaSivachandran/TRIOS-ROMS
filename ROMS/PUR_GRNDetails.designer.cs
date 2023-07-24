@@ -164,7 +164,7 @@
             this.pnlSupplierMapping.Controls.Add(this.grpSupplierMapping);
             this.pnlSupplierMapping.Location = new System.Drawing.Point(0, 29);
             this.pnlSupplierMapping.Name = "pnlSupplierMapping";
-            this.pnlSupplierMapping.Size = new System.Drawing.Size(1353, 646);
+            this.pnlSupplierMapping.Size = new System.Drawing.Size(1353, 643);
             this.pnlSupplierMapping.TabIndex = 958764;
             // 
             // grpSupplierMapping
