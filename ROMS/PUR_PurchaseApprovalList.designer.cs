@@ -35,27 +35,20 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnView = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdpurchasenumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdsupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdbillamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdtotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdapprovedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdPurchaseApproval = new System.Windows.Forms.DataGridView();
+            this.txtSupplier = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpurchaseno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,7 +60,16 @@
             this.clmenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmapproved = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmview = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.txtSupplier = new System.Windows.Forms.TextBox();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdpurchasenumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdsupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdbillamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdtotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdapprovedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -88,16 +90,6 @@
             this.tsBrandList.TabIndex = 35;
             this.tsBrandList.Text = "Brand";
             // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(125, 22);
-            this.tspHeader.Text = "Purchase Approval";
-            // 
             // pnlpurchaseapproval
             // 
             this.pnlpurchaseapproval.BackColor = System.Drawing.Color.White;
@@ -111,7 +103,9 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.cmbConcern);
             this.grpfilter.Controls.Add(this.txtSupplier);
+            this.grpfilter.Controls.Add(this.label12);
             this.grpfilter.Controls.Add(this.dateTimePicker1);
             this.grpfilter.Controls.Add(this.button1);
             this.grpfilter.Controls.Add(this.btnView);
@@ -129,46 +123,16 @@
             // 
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(231, 23);
+            this.dateTimePicker1.Location = new System.Drawing.Point(385, 23);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(107, 27);
             this.dateTimePicker1.TabIndex = 1111143;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::ROMS.Properties.Resources.view;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(886, 25);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(74, 33);
-            this.button1.TabIndex = 1111142;
-            this.button1.Text = "new";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // btnView
-            // 
-            this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(729, 20);
-            this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(74, 33);
-            this.btnView.TabIndex = 1111141;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(346, 26);
+            this.label2.Location = new System.Drawing.Point(500, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 20);
             this.label2.TabIndex = 1111140;
@@ -178,7 +142,7 @@
             // 
             this.dpPlanDate.CustomFormat = "dd/MM/yyyy";
             this.dpPlanDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpPlanDate.Location = new System.Drawing.Point(116, 23);
+            this.dpPlanDate.Location = new System.Drawing.Point(270, 23);
             this.dpPlanDate.Name = "dpPlanDate";
             this.dpPlanDate.Size = new System.Drawing.Size(107, 27);
             this.dpPlanDate.TabIndex = 1111138;
@@ -187,7 +151,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 26);
+            this.label1.Location = new System.Drawing.Point(180, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 20);
             this.label1.TabIndex = 1111139;
@@ -245,71 +209,6 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958798;
             // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.MinimumWidth = 6;
-            this.clmdsno.Name = "clmdsno";
-            this.clmdsno.Width = 75;
-            // 
-            // clmddate
-            // 
-            this.clmddate.HeaderText = "Date";
-            this.clmddate.MinimumWidth = 6;
-            this.clmddate.Name = "clmddate";
-            // 
-            // clmdpurchasenumber
-            // 
-            this.clmdpurchasenumber.HeaderText = "Purchase Number";
-            this.clmdpurchasenumber.MinimumWidth = 6;
-            this.clmdpurchasenumber.Name = "clmdpurchasenumber";
-            this.clmdpurchasenumber.Width = 120;
-            // 
-            // clmdpono
-            // 
-            this.clmdpono.HeaderText = "PO No.";
-            this.clmdpono.MinimumWidth = 6;
-            this.clmdpono.Name = "clmdpono";
-            // 
-            // clmdsupplier
-            // 
-            this.clmdsupplier.HeaderText = "Supplier Name";
-            this.clmdsupplier.Name = "clmdsupplier";
-            this.clmdsupplier.ReadOnly = true;
-            this.clmdsupplier.Width = 200;
-            // 
-            // clmdbillamt
-            // 
-            this.clmdbillamt.HeaderText = "Bill Amount";
-            this.clmdbillamt.Name = "clmdbillamt";
-            this.clmdbillamt.ReadOnly = true;
-            // 
-            // clmdtotalitem
-            // 
-            this.clmdtotalitem.HeaderText = "Total Products";
-            this.clmdtotalitem.Name = "clmdtotalitem";
-            this.clmdtotalitem.ReadOnly = true;
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Status";
-            this.clmdstatus.Name = "clmdstatus";
-            this.clmdstatus.ReadOnly = true;
-            // 
-            // clmdenterby
-            // 
-            this.clmdenterby.HeaderText = "Enter By";
-            this.clmdenterby.Name = "clmdenterby";
-            this.clmdenterby.ReadOnly = true;
-            this.clmdenterby.Width = 150;
-            // 
-            // clmdapprovedby
-            // 
-            this.clmdapprovedby.HeaderText = "Approved By";
-            this.clmdapprovedby.Name = "clmdapprovedby";
-            this.clmdapprovedby.ReadOnly = true;
-            this.clmdapprovedby.Width = 150;
-            // 
             // grdPurchaseApproval
             // 
             this.grdPurchaseApproval.AllowUserToAddRows = false;
@@ -364,6 +263,76 @@
             this.grdPurchaseApproval.TabIndex = 958797;
             this.grdPurchaseApproval.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
             // 
+            // txtSupplier
+            // 
+            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplier.Location = new System.Drawing.Point(595, 23);
+            this.txtSupplier.MaxLength = 50;
+            this.txtSupplier.Name = "txtSupplier";
+            this.txtSupplier.Size = new System.Drawing.Size(280, 27);
+            this.txtSupplier.TabIndex = 1111165;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::ROMS.Properties.Resources.view;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(1040, 25);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(74, 33);
+            this.button1.TabIndex = 1111142;
+            this.button1.Text = "new";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // btnView
+            // 
+            this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(883, 20);
+            this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(74, 33);
+            this.btnView.TabIndex = 1111141;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(125, 22);
+            this.tspHeader.Text = "Purchase Approval";
+            // 
+            // cmbConcern
+            // 
+            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbConcern.Enabled = false;
+            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(70, 23);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(98, 27);
+            this.cmbConcern.TabIndex = 1111172;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(8, 27);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(54, 20);
+            this.label12.TabIndex = 1111173;
+            this.label12.Text = "Concern";
+            // 
             // clmsno
             // 
             this.clmsno.HeaderText = "S.No.";
@@ -374,14 +343,14 @@
             // 
             // clmdate
             // 
-            this.clmdate.HeaderText = "Date";
+            this.clmdate.HeaderText = "Voucher Date";
             this.clmdate.MinimumWidth = 6;
             this.clmdate.Name = "clmdate";
             this.clmdate.ReadOnly = true;
             // 
             // clmpurchaseno
             // 
-            this.clmpurchaseno.HeaderText = "Purchase Number";
+            this.clmpurchaseno.HeaderText = "Voucher Number";
             this.clmpurchaseno.MinimumWidth = 6;
             this.clmpurchaseno.Name = "clmpurchaseno";
             this.clmpurchaseno.ReadOnly = true;
@@ -440,14 +409,70 @@
             this.clmview.ReadOnly = true;
             this.clmview.Width = 50;
             // 
-            // txtSupplier
+            // clmdsno
             // 
-            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplier.Location = new System.Drawing.Point(441, 23);
-            this.txtSupplier.MaxLength = 50;
-            this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(280, 27);
-            this.txtSupplier.TabIndex = 1111165;
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.MinimumWidth = 6;
+            this.clmdsno.Name = "clmdsno";
+            this.clmdsno.Width = 75;
+            // 
+            // clmddate
+            // 
+            this.clmddate.HeaderText = "Voucher Date";
+            this.clmddate.MinimumWidth = 6;
+            this.clmddate.Name = "clmddate";
+            // 
+            // clmdpurchasenumber
+            // 
+            this.clmdpurchasenumber.HeaderText = "Voucher Number";
+            this.clmdpurchasenumber.MinimumWidth = 6;
+            this.clmdpurchasenumber.Name = "clmdpurchasenumber";
+            this.clmdpurchasenumber.Width = 120;
+            // 
+            // clmdpono
+            // 
+            this.clmdpono.HeaderText = "PO No.";
+            this.clmdpono.MinimumWidth = 6;
+            this.clmdpono.Name = "clmdpono";
+            // 
+            // clmdsupplier
+            // 
+            this.clmdsupplier.HeaderText = "Supplier Name";
+            this.clmdsupplier.Name = "clmdsupplier";
+            this.clmdsupplier.ReadOnly = true;
+            this.clmdsupplier.Width = 200;
+            // 
+            // clmdbillamt
+            // 
+            this.clmdbillamt.HeaderText = "Bill Amount";
+            this.clmdbillamt.Name = "clmdbillamt";
+            this.clmdbillamt.ReadOnly = true;
+            // 
+            // clmdtotalitem
+            // 
+            this.clmdtotalitem.HeaderText = "Total Products";
+            this.clmdtotalitem.Name = "clmdtotalitem";
+            this.clmdtotalitem.ReadOnly = true;
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Status";
+            this.clmdstatus.Name = "clmdstatus";
+            this.clmdstatus.ReadOnly = true;
+            // 
+            // clmdenterby
+            // 
+            this.clmdenterby.HeaderText = "Enter By";
+            this.clmdenterby.Name = "clmdenterby";
+            this.clmdenterby.ReadOnly = true;
+            this.clmdenterby.Width = 150;
+            // 
+            // clmdapprovedby
+            // 
+            this.clmdapprovedby.HeaderText = "Approved By";
+            this.clmdapprovedby.Name = "clmdapprovedby";
+            this.clmdapprovedby.ReadOnly = true;
+            this.clmdapprovedby.Width = 150;
             // 
             // PUR_PurchaseApprovalList
             // 
@@ -490,6 +515,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox txtSupplier;
+        private System.Windows.Forms.ComboBox cmbConcern;
+        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmddate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdpurchasenumber;
@@ -511,7 +540,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmenterby;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmapproved;
         private System.Windows.Forms.DataGridViewButtonColumn clmview;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox txtSupplier;
     }
 }

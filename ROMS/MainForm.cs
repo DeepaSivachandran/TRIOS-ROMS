@@ -111,7 +111,8 @@ namespace ROMS
         public static PUR_PurchaseOrderList objPUR_PurchaseOrderList;
         public static PUR_SupplierSchedule objPUR_SupplierSchedule;
         public static PUR_PurchaseReturns objPUR_PurchaseReturns;
-
+        public static PUR_RemarksHistory objPUR_RemarksHistory;
+        
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
 

@@ -51,21 +51,23 @@
             this.cmbGroupType = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdGroupList = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmshopgodown = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmrackgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdshtname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDrackname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmshortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmshopgodown = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmrackgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsGroupList.SuspendLayout();
             this.pnlRack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -193,6 +195,7 @@
             this.clmdshtname,
             this.clmdstatus,
             this.clmDrackname,
+            this.Column4,
             this.clmshortName,
             this.clmstatus});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -324,6 +327,7 @@
             this.clmshopgodown,
             this.clmrackgroup,
             this.Column2,
+            this.Column6,
             this.Column3,
             this.Column5});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -347,52 +351,6 @@
             this.grdGroupList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGroupList.Size = new System.Drawing.Size(1348, 510);
             this.grdGroupList.TabIndex = 958798;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "S.No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // clmConcern
-            // 
-            this.clmConcern.HeaderText = "Concern";
-            this.clmConcern.Name = "clmConcern";
-            this.clmConcern.ReadOnly = true;
-            this.clmConcern.Width = 200;
-            // 
-            // clmshopgodown
-            // 
-            this.clmshopgodown.HeaderText = "Stock Location";
-            this.clmshopgodown.Name = "clmshopgodown";
-            this.clmshopgodown.ReadOnly = true;
-            this.clmshopgodown.Width = 200;
-            // 
-            // clmrackgroup
-            // 
-            this.clmrackgroup.HeaderText = "Rack Group";
-            this.clmrackgroup.Name = "clmrackgroup";
-            this.clmrackgroup.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Rack Name";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 200;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Short Name";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 200;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Status";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
             // 
             // picLoader
             // 
@@ -440,6 +398,12 @@
             this.clmDrackname.Name = "clmDrackname";
             this.clmDrackname.Width = 200;
             // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Description";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
             // clmshortName
             // 
             this.clmshortName.HeaderText = "Short Name";
@@ -450,6 +414,58 @@
             // 
             this.clmstatus.HeaderText = "Status";
             this.clmstatus.Name = "clmstatus";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "S.No.";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // clmConcern
+            // 
+            this.clmConcern.HeaderText = "Concern";
+            this.clmConcern.Name = "clmConcern";
+            this.clmConcern.ReadOnly = true;
+            this.clmConcern.Width = 200;
+            // 
+            // clmshopgodown
+            // 
+            this.clmshopgodown.HeaderText = "Stock Location";
+            this.clmshopgodown.Name = "clmshopgodown";
+            this.clmshopgodown.ReadOnly = true;
+            this.clmshopgodown.Width = 200;
+            // 
+            // clmrackgroup
+            // 
+            this.clmrackgroup.HeaderText = "Rack Group";
+            this.clmrackgroup.Name = "clmrackgroup";
+            this.clmrackgroup.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Rack Name";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 200;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Description";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Short Name";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 200;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Status";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // CP_RackList
             // 
@@ -501,19 +517,21 @@
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdGroupList;
         private System.Windows.Forms.PictureBox picLoader;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmConcern;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmshopgodown;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmrackgroup;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdconcern;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdshtname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDrackname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmshortName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmstatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmConcern;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmshopgodown;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmrackgroup;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }

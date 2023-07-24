@@ -34,6 +34,10 @@ namespace ROMS
                 udfnEdit();
                 DGV_Racklist.Rows.Add(false, "RACK 01");
                 DGV_Racklist.Rows.Add(false, "RACK 02");
+
+                grdSelectedRackList.Rows.Add(false, "RACK 01");
+                grdSelectedRackList.Rows.Add(false, "RACK 02");
+                
             }
             catch (Exception ex)
             {
@@ -353,6 +357,26 @@ namespace ROMS
         }
 
         private void DGV_Racklist_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_ProductDetails = new CP_ProductDetails();
+                MainForm.objCP_ProductDetails.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void DGV_Racklist_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void GrdSelectedRackList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
             {
