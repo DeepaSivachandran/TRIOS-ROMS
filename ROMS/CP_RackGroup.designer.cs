@@ -48,7 +48,9 @@
             this.lblGC = new System.Windows.Forms.Label();
             this.lblNoofproducts = new System.Windows.Forms.Label();
             this.DGV_Racklist = new System.Windows.Forms.DataGridView();
+            this.txtRackGroup = new System.Windows.Forms.TextBox();
             this.cmbShopGodown = new System.Windows.Forms.ComboBox();
+            this.txtDRackGroup = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtConcern = new System.Windows.Forms.TextBox();
             this.pnlStatus = new System.Windows.Forms.Panel();
@@ -67,18 +69,16 @@
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.txtDRackGroup = new System.Windows.Forms.TextBox();
-            this.txtRackGroup = new System.Windows.Forms.TextBox();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmcheckbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmracklist = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSelectedRackList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Racklist)).BeginInit();
@@ -165,7 +165,6 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.grdSelectedRackList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdSelectedRackList.RowTemplate.Height = 25;
-            this.grdSelectedRackList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdSelectedRackList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdSelectedRackList.ShowRowErrors = false;
             this.grdSelectedRackList.Size = new System.Drawing.Size(347, 314);
@@ -266,7 +265,6 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_Racklist.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_Racklist.RowTemplate.Height = 25;
-            this.DGV_Racklist.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_Racklist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_Racklist.ShowRowErrors = false;
             this.DGV_Racklist.Size = new System.Drawing.Size(347, 314);
@@ -274,6 +272,14 @@
             this.DGV_Racklist.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_Racklist_CellContentClick);
             this.DGV_Racklist.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_Racklist_CellContentDoubleClick);
             this.DGV_Racklist.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_Racklist_CellMouseDoubleClick);
+            // 
+            // txtRackGroup
+            // 
+            this.txtRackGroup.Location = new System.Drawing.Point(134, 58);
+            this.txtRackGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtRackGroup.Name = "txtRackGroup";
+            this.txtRackGroup.Size = new System.Drawing.Size(194, 27);
+            this.txtRackGroup.TabIndex = 1111135;
             // 
             // cmbShopGodown
             // 
@@ -285,6 +291,19 @@
             this.cmbShopGodown.Name = "cmbShopGodown";
             this.cmbShopGodown.Size = new System.Drawing.Size(116, 27);
             this.cmbShopGodown.TabIndex = 1111134;
+            // 
+            // txtDRackGroup
+            // 
+            this.txtDRackGroup.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDRackGroup.Enabled = false;
+            this.txtDRackGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDRackGroup.Location = new System.Drawing.Point(18, 58);
+            this.txtDRackGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtDRackGroup.Name = "txtDRackGroup";
+            this.txtDRackGroup.ReadOnly = true;
+            this.txtDRackGroup.Size = new System.Drawing.Size(116, 27);
+            this.txtDRackGroup.TabIndex = 1111133;
+            this.txtDRackGroup.Text = "Rack Group Name";
             // 
             // cmbConcern
             // 
@@ -316,6 +335,7 @@
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInactive);
+            this.pnlStatus.Enabled = false;
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlStatus.Location = new System.Drawing.Point(1056, 251);
             this.pnlStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -520,59 +540,6 @@
             this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
-            // txtDRackGroup
-            // 
-            this.txtDRackGroup.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDRackGroup.Enabled = false;
-            this.txtDRackGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDRackGroup.Location = new System.Drawing.Point(18, 58);
-            this.txtDRackGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtDRackGroup.Name = "txtDRackGroup";
-            this.txtDRackGroup.ReadOnly = true;
-            this.txtDRackGroup.Size = new System.Drawing.Size(116, 27);
-            this.txtDRackGroup.TabIndex = 1111133;
-            this.txtDRackGroup.Text = "Rack Group Name";
-            // 
-            // txtRackGroup
-            // 
-            this.txtRackGroup.Location = new System.Drawing.Point(134, 58);
-            this.txtRackGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtRackGroup.Name = "txtRackGroup";
-            this.txtRackGroup.Size = new System.Drawing.Size(194, 27);
-            this.txtRackGroup.TabIndex = 1111135;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "S.No.";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Rack";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 120;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Description";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Total Products";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Remove";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 60;
-            // 
             // clmcheckbox
             // 
             this.clmcheckbox.HeaderText = "";
@@ -591,18 +558,52 @@
             this.clmracklist.HeaderText = "Rack";
             this.clmracklist.MinimumWidth = 6;
             this.clmracklist.Name = "clmracklist";
-            this.clmracklist.Width = 120;
+            this.clmracklist.Width = 60;
             // 
             // Column7
             // 
             this.Column7.HeaderText = "Description";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
+            this.Column7.Width = 250;
             // 
             // Column1
             // 
             this.Column1.HeaderText = "Total Products";
             this.Column1.Name = "Column1";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "S.No.";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Rack";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 60;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Description";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Total Products";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Remove";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 60;
             // 
             // CP_RackGroup
             // 
