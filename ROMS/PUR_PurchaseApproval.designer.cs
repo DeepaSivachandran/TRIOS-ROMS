@@ -33,70 +33,47 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PurchaseApproval));
-            this.txtDTotalItem = new System.Windows.Forms.TextBox();
-            this.txttotitem = new System.Windows.Forms.TextBox();
-            this.txtDSupplierName = new System.Windows.Forms.TextBox();
             this.txtSupplierName = new System.Windows.Forms.TextBox();
             this.btnApprove = new System.Windows.Forms.Button();
             this.grbForm = new System.Windows.Forms.GroupBox();
+            this.txtRemarks = new System.Windows.Forms.TextBox();
+            this.lblRemarks = new System.Windows.Forms.Label();
+            this.lblSupplier = new System.Windows.Forms.Label();
+            this.txtSupplier = new System.Windows.Forms.TextBox();
+            this.dpDop = new System.Windows.Forms.DateTimePicker();
+            this.lblVoucharDate = new System.Windows.Forms.Label();
+            this.lblVouchar = new System.Windows.Forms.Label();
             this.btnreject = new System.Windows.Forms.Button();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
-            this.txtDtotqty = new System.Windows.Forms.TextBox();
-            this.txttotqty = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
-            this.errUser = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errProductApproval = new System.Windows.Forms.ErrorProvider(this.components);
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMRPRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmgodown = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPOQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUnitRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmGSTAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNettAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errUser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errProductApproval)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtDTotalItem
-            // 
-            this.txtDTotalItem.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDTotalItem.Enabled = false;
-            this.txtDTotalItem.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDTotalItem.Location = new System.Drawing.Point(326, 24);
-            this.txtDTotalItem.Name = "txtDTotalItem";
-            this.txtDTotalItem.ReadOnly = true;
-            this.txtDTotalItem.Size = new System.Drawing.Size(66, 27);
-            this.txtDTotalItem.TabIndex = 11;
-            this.txtDTotalItem.Text = "Total Items";
-            // 
-            // txttotitem
-            // 
-            this.txttotitem.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttotitem.Location = new System.Drawing.Point(392, 24);
-            this.txttotitem.MaxLength = 20;
-            this.txttotitem.Name = "txttotitem";
-            this.txttotitem.ReadOnly = true;
-            this.txttotitem.Size = new System.Drawing.Size(62, 27);
-            this.txttotitem.TabIndex = 1;
-            // 
-            // txtDSupplierName
-            // 
-            this.txtDSupplierName.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDSupplierName.Enabled = false;
-            this.txtDSupplierName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDSupplierName.Location = new System.Drawing.Point(10, 24);
-            this.txtDSupplierName.Name = "txtDSupplierName";
-            this.txtDSupplierName.ReadOnly = true;
-            this.txtDSupplierName.Size = new System.Drawing.Size(99, 27);
-            this.txtDSupplierName.TabIndex = 10;
-            this.txtDSupplierName.Text = "Supplier Name";
             // 
             // txtSupplierName
             // 
             this.txtSupplierName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplierName.Location = new System.Drawing.Point(109, 24);
+            this.txtSupplierName.Location = new System.Drawing.Point(70, 24);
             this.txtSupplierName.MaxLength = 50;
             this.txtSupplierName.Name = "txtSupplierName";
             this.txtSupplierName.ReadOnly = true;
-            this.txtSupplierName.Size = new System.Drawing.Size(217, 27);
+            this.txtSupplierName.Size = new System.Drawing.Size(135, 27);
             this.txtSupplierName.TabIndex = 0;
             // 
             // btnApprove
@@ -104,9 +81,9 @@
             this.btnApprove.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnApprove.Image = global::ROMS.Properties.Resources.approve;
             this.btnApprove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnApprove.Location = new System.Drawing.Point(319, 295);
+            this.btnApprove.Location = new System.Drawing.Point(1079, 436);
             this.btnApprove.Name = "btnApprove";
-            this.btnApprove.Size = new System.Drawing.Size(84, 29);
+            this.btnApprove.Size = new System.Drawing.Size(84, 30);
             this.btnApprove.TabIndex = 6;
             this.btnApprove.Text = "Approve";
             this.btnApprove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -114,30 +91,96 @@
             // 
             // grbForm
             // 
+            this.grbForm.Controls.Add(this.txtRemarks);
+            this.grbForm.Controls.Add(this.lblRemarks);
+            this.grbForm.Controls.Add(this.lblSupplier);
+            this.grbForm.Controls.Add(this.txtSupplier);
+            this.grbForm.Controls.Add(this.dpDop);
+            this.grbForm.Controls.Add(this.lblVoucharDate);
+            this.grbForm.Controls.Add(this.lblVouchar);
             this.grbForm.Controls.Add(this.btnreject);
             this.grbForm.Controls.Add(this.grdSupplierList);
-            this.grbForm.Controls.Add(this.txtDtotqty);
-            this.grbForm.Controls.Add(this.txttotqty);
             this.grbForm.Controls.Add(this.btnClose);
             this.grbForm.Controls.Add(this.btnApprove);
-            this.grbForm.Controls.Add(this.txtDTotalItem);
-            this.grbForm.Controls.Add(this.txttotitem);
-            this.grbForm.Controls.Add(this.txtDSupplierName);
             this.grbForm.Controls.Add(this.txtSupplierName);
-            this.grbForm.Location = new System.Drawing.Point(16, 4);
+            this.grbForm.Location = new System.Drawing.Point(8, 4);
             this.grbForm.Name = "grbForm";
-            this.grbForm.Size = new System.Drawing.Size(588, 337);
+            this.grbForm.Size = new System.Drawing.Size(1343, 499);
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
+            // 
+            // txtRemarks
+            // 
+            this.txtRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRemarks.Location = new System.Drawing.Point(82, 436);
+            this.txtRemarks.MaxLength = 50;
+            this.txtRemarks.Multiline = true;
+            this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.Size = new System.Drawing.Size(665, 49);
+            this.txtRemarks.TabIndex = 1111145;
+            // 
+            // lblRemarks
+            // 
+            this.lblRemarks.AutoSize = true;
+            this.lblRemarks.Location = new System.Drawing.Point(10, 436);
+            this.lblRemarks.Name = "lblRemarks";
+            this.lblRemarks.Size = new System.Drawing.Size(56, 20);
+            this.lblRemarks.TabIndex = 1111144;
+            this.lblRemarks.Text = "Remarks";
+            // 
+            // lblSupplier
+            // 
+            this.lblSupplier.AutoSize = true;
+            this.lblSupplier.Location = new System.Drawing.Point(397, 30);
+            this.lblSupplier.Name = "lblSupplier";
+            this.lblSupplier.Size = new System.Drawing.Size(54, 20);
+            this.lblSupplier.TabIndex = 1111143;
+            this.lblSupplier.Text = "Supplier";
+            // 
+            // txtSupplier
+            // 
+            this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplier.Location = new System.Drawing.Point(457, 27);
+            this.txtSupplier.MaxLength = 50;
+            this.txtSupplier.Name = "txtSupplier";
+            this.txtSupplier.Size = new System.Drawing.Size(581, 27);
+            this.txtSupplier.TabIndex = 1111142;
+            // 
+            // dpDop
+            // 
+            this.dpDop.CustomFormat = "dd/MM/yyyy";
+            this.dpDop.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpDop.Location = new System.Drawing.Point(299, 24);
+            this.dpDop.Name = "dpDop";
+            this.dpDop.Size = new System.Drawing.Size(92, 27);
+            this.dpDop.TabIndex = 1111141;
+            // 
+            // lblVoucharDate
+            // 
+            this.lblVoucharDate.AutoSize = true;
+            this.lblVoucharDate.Location = new System.Drawing.Point(211, 27);
+            this.lblVoucharDate.Name = "lblVoucharDate";
+            this.lblVoucharDate.Size = new System.Drawing.Size(82, 20);
+            this.lblVoucharDate.TabIndex = 1111140;
+            this.lblVoucharDate.Text = "Voucher Date";
+            // 
+            // lblVouchar
+            // 
+            this.lblVouchar.AutoSize = true;
+            this.lblVouchar.Location = new System.Drawing.Point(10, 27);
+            this.lblVouchar.Name = "lblVouchar";
+            this.lblVouchar.Size = new System.Drawing.Size(74, 20);
+            this.lblVouchar.TabIndex = 1111139;
+            this.lblVouchar.Text = "Voucher No.";
             // 
             // btnreject
             // 
             this.btnreject.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnreject.Image = global::ROMS.Properties.Resources.reset;
             this.btnreject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnreject.Location = new System.Drawing.Point(406, 295);
+            this.btnreject.Location = new System.Drawing.Point(1166, 436);
             this.btnreject.Name = "btnreject";
-            this.btnreject.Size = new System.Drawing.Size(84, 29);
+            this.btnreject.Size = new System.Drawing.Size(84, 30);
             this.btnreject.TabIndex = 1111138;
             this.btnreject.Text = "Reject";
             this.btnreject.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -159,14 +202,23 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdSupplierList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdSupplierList.ColumnHeadersHeight = 30;
+            this.grdSupplierList.ColumnHeadersHeight = 45;
             this.grdSupplierList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdSupplierList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmsno,
-            this.clmicode,
+            this.clmpicode,
             this.clmProductname,
-            this.clmqty,
-            this.clmunit});
+            this.clmMRPRate,
+            this.clmgodown,
+            this.Column1,
+            this.clmPOQty,
+            this.clmInvoiceQty,
+            this.Unit,
+            this.clmUnitRate,
+            this.clmGST,
+            this.clmGSTAmount,
+            this.clmAmount,
+            this.clmNettAmount});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -186,38 +238,15 @@
             this.grdSupplierList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdSupplierList.RowTemplate.Height = 25;
             this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSupplierList.Size = new System.Drawing.Size(567, 232);
+            this.grdSupplierList.Size = new System.Drawing.Size(1327, 366);
             this.grdSupplierList.TabIndex = 1111137;
-            // 
-            // txtDtotqty
-            // 
-            this.txtDtotqty.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDtotqty.Enabled = false;
-            this.txtDtotqty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDtotqty.Location = new System.Drawing.Point(454, 24);
-            this.txtDtotqty.Name = "txtDtotqty";
-            this.txtDtotqty.ReadOnly = true;
-            this.txtDtotqty.Size = new System.Drawing.Size(61, 27);
-            this.txtDtotqty.TabIndex = 12;
-            this.txtDtotqty.Text = "Total Qty";
-            // 
-            // txttotqty
-            // 
-            this.txttotqty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttotqty.Location = new System.Drawing.Point(515, 24);
-            this.txttotqty.MaxLength = 20;
-            this.txttotqty.Name = "txttotqty";
-            this.txttotqty.PasswordChar = '*';
-            this.txttotqty.ReadOnly = true;
-            this.txttotqty.Size = new System.Drawing.Size(62, 27);
-            this.txttotqty.TabIndex = 2;
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(493, 295);
+            this.btnClose.Location = new System.Drawing.Point(1253, 304);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(84, 29);
             this.btnClose.TabIndex = 7;
@@ -225,9 +254,9 @@
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             // 
-            // errUser
+            // errProductApproval
             // 
-            this.errUser.ContainerControl = this;
+            this.errProductApproval.ContainerControl = this;
             // 
             // clmsno
             // 
@@ -236,40 +265,96 @@
             this.clmsno.ReadOnly = true;
             this.clmsno.Width = 50;
             // 
-            // clmicode
+            // clmpicode
             // 
-            this.clmicode.HeaderText = "P.I Code";
-            this.clmicode.Name = "clmicode";
-            this.clmicode.ReadOnly = true;
-            this.clmicode.Width = 75;
+            this.clmpicode.HeaderText = "P.I Code";
+            this.clmpicode.Name = "clmpicode";
+            this.clmpicode.ReadOnly = true;
+            this.clmpicode.Width = 75;
             // 
             // clmProductname
             // 
             this.clmProductname.HeaderText = "Product Name";
             this.clmProductname.Name = "clmProductname";
             this.clmProductname.ReadOnly = true;
-            this.clmProductname.Width = 300;
+            this.clmProductname.Width = 200;
             // 
-            // clmqty
+            // clmMRPRate
             // 
-            this.clmqty.HeaderText = "Qty";
-            this.clmqty.Name = "clmqty";
-            this.clmqty.ReadOnly = true;
-            this.clmqty.Width = 50;
+            this.clmMRPRate.HeaderText = "MRP Rate";
+            this.clmMRPRate.Name = "clmMRPRate";
+            this.clmMRPRate.ReadOnly = true;
             // 
-            // clmunit
+            // clmgodown
             // 
-            this.clmunit.HeaderText = "Unit";
-            this.clmunit.Name = "clmunit";
-            this.clmunit.ReadOnly = true;
-            this.clmunit.Width = 50;
+            this.clmgodown.HeaderText = "Stock Location";
+            this.clmgodown.Name = "clmgodown";
+            this.clmgodown.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Rack";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // clmPOQty
+            // 
+            this.clmPOQty.HeaderText = "PO Qty";
+            this.clmPOQty.Name = "clmPOQty";
+            this.clmPOQty.ReadOnly = true;
+            this.clmPOQty.Width = 50;
+            // 
+            // clmInvoiceQty
+            // 
+            this.clmInvoiceQty.HeaderText = "Invoice Qty";
+            this.clmInvoiceQty.Name = "clmInvoiceQty";
+            this.clmInvoiceQty.ReadOnly = true;
+            this.clmInvoiceQty.Width = 50;
+            // 
+            // Unit
+            // 
+            this.Unit.HeaderText = "Unit";
+            this.Unit.Name = "Unit";
+            this.Unit.ReadOnly = true;
+            this.Unit.Width = 50;
+            // 
+            // clmUnitRate
+            // 
+            this.clmUnitRate.HeaderText = "Unit Rate";
+            this.clmUnitRate.Name = "clmUnitRate";
+            this.clmUnitRate.ReadOnly = true;
+            // 
+            // clmGST
+            // 
+            this.clmGST.HeaderText = "GST %";
+            this.clmGST.Name = "clmGST";
+            this.clmGST.ReadOnly = true;
+            this.clmGST.Width = 50;
+            // 
+            // clmGSTAmount
+            // 
+            this.clmGSTAmount.HeaderText = "GST Amount";
+            this.clmGSTAmount.Name = "clmGSTAmount";
+            this.clmGSTAmount.ReadOnly = true;
+            // 
+            // clmAmount
+            // 
+            this.clmAmount.HeaderText = "Amount";
+            this.clmAmount.Name = "clmAmount";
+            this.clmAmount.ReadOnly = true;
+            // 
+            // clmNettAmount
+            // 
+            this.clmNettAmount.HeaderText = "Nett Amount";
+            this.clmNettAmount.Name = "clmNettAmount";
+            this.clmNettAmount.ReadOnly = true;
             // 
             // PUR_PurchaseApproval
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(618, 353);
+            this.ClientSize = new System.Drawing.Size(1360, 525);
             this.Controls.Add(this.grbForm);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -284,29 +369,39 @@
             this.grbForm.ResumeLayout(false);
             this.grbForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errProductApproval)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtDTotalItem;
-        private System.Windows.Forms.TextBox txttotitem;
-        private System.Windows.Forms.TextBox txtDSupplierName;
         private System.Windows.Forms.TextBox txtSupplierName;
         private System.Windows.Forms.Button btnApprove;
         private System.Windows.Forms.GroupBox grbForm;
-        private System.Windows.Forms.ErrorProvider errUser;
-        private System.Windows.Forms.TextBox txtDtotqty;
-        private System.Windows.Forms.TextBox txttotqty;
+        private System.Windows.Forms.ErrorProvider errProductApproval;
         private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.DataGridView grdSupplierList;
         private System.Windows.Forms.Button btnreject;
+        private System.Windows.Forms.Label lblVouchar;
+        private System.Windows.Forms.Label lblVoucharDate;
+        private System.Windows.Forms.DateTimePicker dpDop;
+        private System.Windows.Forms.Label lblSupplier;
+        private System.Windows.Forms.TextBox txtSupplier;
+        private System.Windows.Forms.Label lblRemarks;
+        private System.Windows.Forms.TextBox txtRemarks;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmicode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmqty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMRPRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmgodown;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPOQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Unit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnitRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmGST;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmGSTAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmNettAmount;
     }
 }

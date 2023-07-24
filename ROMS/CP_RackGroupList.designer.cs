@@ -43,6 +43,13 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlRack = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDRackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDNoofproducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.lblDShopGodown = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -52,7 +59,6 @@
             this.cmbconcern = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUserList = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmrackgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,13 +66,7 @@
             this.clmNoOfUsers = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNoofproducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDRackName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDNoofproducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsRackGroupList.SuspendLayout();
             this.pnlRack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -217,14 +217,59 @@
             this.dataGridView1.Size = new System.Drawing.Size(1348, 56);
             this.dataGridView1.TabIndex = 958801;
             // 
+            // clmSno
+            // 
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Concern";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Rack Group";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 200;
+            // 
+            // clmDRackName
+            // 
+            this.clmDRackName.HeaderText = "Rack Name";
+            this.clmDRackName.Name = "clmDRackName";
+            this.clmDRackName.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Staff Name";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 200;
+            // 
+            // clmDNoofproducts
+            // 
+            this.clmDNoofproducts.HeaderText = "Total Products";
+            this.clmDNoofproducts.Name = "clmDNoofproducts";
+            this.clmDNoofproducts.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Status";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
             // grbFilterBy
             // 
-            this.grbFilterBy.Controls.Add(this.lblDShopGodown);
             this.grbFilterBy.Controls.Add(this.comboBox1);
             this.grbFilterBy.Controls.Add(this.lblDConcern);
             this.grbFilterBy.Controls.Add(this.btnExport);
             this.grbFilterBy.Controls.Add(this.btnView);
             this.grbFilterBy.Controls.Add(this.cmbconcern);
+            this.grbFilterBy.Controls.Add(this.lblDShopGodown);
             this.grbFilterBy.Location = new System.Drawing.Point(3, 2);
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
@@ -356,20 +401,6 @@
             this.grdUserList.Size = new System.Drawing.Size(1348, 510);
             this.grdUserList.TabIndex = 958797;
             // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(14, 80);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1329, 561);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
-            // 
             // clmdsno
             // 
             this.clmdsno.HeaderText = "S.No.";
@@ -415,50 +446,19 @@
             this.clmStatus.Name = "clmStatus";
             this.clmStatus.ReadOnly = true;
             // 
-            // clmSno
+            // picLoader
             // 
-            this.clmSno.HeaderText = "S.No.";
-            this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
-            this.clmSno.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Concern";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Rack Group";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 200;
-            // 
-            // clmDRackName
-            // 
-            this.clmDRackName.HeaderText = "Rack Name";
-            this.clmDRackName.Name = "clmDRackName";
-            this.clmDRackName.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Staff Name";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 200;
-            // 
-            // clmDNoofproducts
-            // 
-            this.clmDNoofproducts.HeaderText = "Total Products";
-            this.clmDNoofproducts.Name = "clmDNoofproducts";
-            this.clmDNoofproducts.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Status";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(14, 80);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1329, 561);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // CP_RackGroupList
             // 
