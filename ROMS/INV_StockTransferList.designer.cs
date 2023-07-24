@@ -42,6 +42,7 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlStockTransferList = new System.Windows.Forms.Panel();
+            this.lvProductNamePICode = new System.Windows.Forms.ListView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.dgvStockTransferList = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,11 +55,9 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
-            this.lvProductNamePICode = new System.Windows.Forms.ListView();
             this.dpTransferToDate = new System.Windows.Forms.DateTimePicker();
             this.dpTrannsferFromDate = new System.Windows.Forms.DateTimePicker();
             this.lblProductNamePICode = new System.Windows.Forms.Label();
-            this.lblTransferToDate = new System.Windows.Forms.Label();
             this.lblTransferFromDate = new System.Windows.Forms.Label();
             this.lblConcern = new System.Windows.Forms.Label();
             this.cmbConcer = new System.Windows.Forms.ComboBox();
@@ -176,6 +175,16 @@
             this.pnlStockTransferList.Size = new System.Drawing.Size(1354, 643);
             this.pnlStockTransferList.TabIndex = 36;
             // 
+            // lvProductNamePICode
+            // 
+            this.lvProductNamePICode.HideSelection = false;
+            this.lvProductNamePICode.Location = new System.Drawing.Point(634, 59);
+            this.lvProductNamePICode.Name = "lvProductNamePICode";
+            this.lvProductNamePICode.Size = new System.Drawing.Size(340, 95);
+            this.lvProductNamePICode.TabIndex = 958823;
+            this.lvProductNamePICode.UseCompatibleStateImageBehavior = false;
+            this.lvProductNamePICode.Visible = false;
+            // 
             // lblNoRecordsFound
             // 
             this.lblNoRecordsFound.AutoSize = true;
@@ -224,7 +233,7 @@
             this.dgvStockTransferList.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvStockTransferList.EnableHeadersVisualStyles = false;
             this.dgvStockTransferList.GridColor = System.Drawing.Color.White;
-            this.dgvStockTransferList.Location = new System.Drawing.Point(3, 152);
+            this.dgvStockTransferList.Location = new System.Drawing.Point(3, 130);
             this.dgvStockTransferList.Name = "dgvStockTransferList";
             this.dgvStockTransferList.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
@@ -234,7 +243,7 @@
             this.dgvStockTransferList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvStockTransferList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvStockTransferList.ShowRowErrors = false;
-            this.dgvStockTransferList.Size = new System.Drawing.Size(1339, 481);
+            this.dgvStockTransferList.Size = new System.Drawing.Size(1329, 493);
             this.dgvStockTransferList.TabIndex = 958802;
             // 
             // dataGridViewTextBoxColumn1
@@ -284,7 +293,6 @@
             this.grbFilterBy.Controls.Add(this.dpTransferToDate);
             this.grbFilterBy.Controls.Add(this.dpTrannsferFromDate);
             this.grbFilterBy.Controls.Add(this.lblProductNamePICode);
-            this.grbFilterBy.Controls.Add(this.lblTransferToDate);
             this.grbFilterBy.Controls.Add(this.lblTransferFromDate);
             this.grbFilterBy.Controls.Add(this.lblConcern);
             this.grbFilterBy.Controls.Add(this.cmbConcer);
@@ -293,33 +301,23 @@
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
             this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterBy.Size = new System.Drawing.Size(918, 92);
+            this.grbFilterBy.Size = new System.Drawing.Size(1339, 67);
             this.grbFilterBy.TabIndex = 958801;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By";
             // 
             // txtProductNamePICode
             // 
-            this.txtProductNamePICode.Location = new System.Drawing.Point(484, 46);
+            this.txtProductNamePICode.Location = new System.Drawing.Point(631, 25);
             this.txtProductNamePICode.Name = "txtProductNamePICode";
             this.txtProductNamePICode.Size = new System.Drawing.Size(340, 27);
             this.txtProductNamePICode.TabIndex = 958822;
-            // 
-            // lvProductNamePICode
-            // 
-            this.lvProductNamePICode.HideSelection = false;
-            this.lvProductNamePICode.Location = new System.Drawing.Point(487, 76);
-            this.lvProductNamePICode.Name = "lvProductNamePICode";
-            this.lvProductNamePICode.Size = new System.Drawing.Size(340, 95);
-            this.lvProductNamePICode.TabIndex = 958823;
-            this.lvProductNamePICode.UseCompatibleStateImageBehavior = false;
-            this.lvProductNamePICode.Visible = false;
             // 
             // dpTransferToDate
             // 
             this.dpTransferToDate.CustomFormat = "dd/MM/yyyy";
             this.dpTransferToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpTransferToDate.Location = new System.Drawing.Point(371, 46);
+            this.dpTransferToDate.Location = new System.Drawing.Point(397, 25);
             this.dpTransferToDate.Name = "dpTransferToDate";
             this.dpTransferToDate.Size = new System.Drawing.Size(92, 27);
             this.dpTransferToDate.TabIndex = 958821;
@@ -328,7 +326,7 @@
             // 
             this.dpTrannsferFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpTrannsferFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpTrannsferFromDate.Location = new System.Drawing.Point(244, 46);
+            this.dpTrannsferFromDate.Location = new System.Drawing.Point(299, 25);
             this.dpTrannsferFromDate.Name = "dpTrannsferFromDate";
             this.dpTrannsferFromDate.Size = new System.Drawing.Size(92, 27);
             this.dpTrannsferFromDate.TabIndex = 958820;
@@ -336,34 +334,25 @@
             // lblProductNamePICode
             // 
             this.lblProductNamePICode.AutoSize = true;
-            this.lblProductNamePICode.Location = new System.Drawing.Point(484, 20);
+            this.lblProductNamePICode.Location = new System.Drawing.Point(491, 28);
             this.lblProductNamePICode.Name = "lblProductNamePICode";
             this.lblProductNamePICode.Size = new System.Drawing.Size(134, 20);
             this.lblProductNamePICode.TabIndex = 958818;
             this.lblProductNamePICode.Text = "Product Name/P.I Code";
             // 
-            // lblTransferToDate
-            // 
-            this.lblTransferToDate.AutoSize = true;
-            this.lblTransferToDate.Location = new System.Drawing.Point(371, 20);
-            this.lblTransferToDate.Name = "lblTransferToDate";
-            this.lblTransferToDate.Size = new System.Drawing.Size(97, 20);
-            this.lblTransferToDate.TabIndex = 958817;
-            this.lblTransferToDate.Text = "Transfer To Date";
-            // 
             // lblTransferFromDate
             // 
             this.lblTransferFromDate.AutoSize = true;
-            this.lblTransferFromDate.Location = new System.Drawing.Point(244, 20);
+            this.lblTransferFromDate.Location = new System.Drawing.Point(211, 28);
             this.lblTransferFromDate.Name = "lblTransferFromDate";
-            this.lblTransferFromDate.Size = new System.Drawing.Size(112, 20);
+            this.lblTransferFromDate.Size = new System.Drawing.Size(82, 20);
             this.lblTransferFromDate.TabIndex = 958816;
-            this.lblTransferFromDate.Text = "Transfer From Date";
+            this.lblTransferFromDate.Text = "Transfer Date";
             // 
             // lblConcern
             // 
             this.lblConcern.AutoSize = true;
-            this.lblConcern.Location = new System.Drawing.Point(13, 20);
+            this.lblConcern.Location = new System.Drawing.Point(26, 28);
             this.lblConcern.Name = "lblConcern";
             this.lblConcern.Size = new System.Drawing.Size(54, 20);
             this.lblConcern.TabIndex = 958815;
@@ -374,16 +363,16 @@
             this.cmbConcer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbConcer.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcer.FormattingEnabled = true;
-            this.cmbConcer.Location = new System.Drawing.Point(13, 46);
+            this.cmbConcer.Location = new System.Drawing.Point(83, 25);
             this.cmbConcer.Name = "cmbConcer";
-            this.cmbConcer.Size = new System.Drawing.Size(216, 27);
+            this.cmbConcer.Size = new System.Drawing.Size(122, 27);
             this.cmbConcer.TabIndex = 958814;
             // 
             // btnView
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(830, 45);
+            this.btnView.Location = new System.Drawing.Point(977, 24);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 4;
@@ -427,7 +416,7 @@
             this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 96);
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
@@ -545,7 +534,6 @@
         private System.Windows.Forms.ComboBox cmbConcer;
         private System.Windows.Forms.Label lblTransferFromDate;
         private System.Windows.Forms.Label lblProductNamePICode;
-        private System.Windows.Forms.Label lblTransferToDate;
         private System.Windows.Forms.DateTimePicker dpTransferToDate;
         private System.Windows.Forms.DateTimePicker dpTrannsferFromDate;
         public System.Windows.Forms.DataGridView dgvStockTransferList;
