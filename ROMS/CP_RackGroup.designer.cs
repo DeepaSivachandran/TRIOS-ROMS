@@ -165,7 +165,6 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.grdSelectedRackList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdSelectedRackList.RowTemplate.Height = 25;
-            this.grdSelectedRackList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdSelectedRackList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdSelectedRackList.ShowRowErrors = false;
             this.grdSelectedRackList.Size = new System.Drawing.Size(347, 314);
@@ -266,7 +265,6 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_Racklist.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_Racklist.RowTemplate.Height = 25;
-            this.DGV_Racklist.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_Racklist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_Racklist.ShowRowErrors = false;
             this.DGV_Racklist.Size = new System.Drawing.Size(347, 314);
@@ -316,6 +314,7 @@
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInactive);
+            this.pnlStatus.Enabled = false;
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlStatus.Location = new System.Drawing.Point(1056, 251);
             this.pnlStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

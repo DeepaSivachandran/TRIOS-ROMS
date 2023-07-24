@@ -38,14 +38,15 @@
             this.grbProductDetails = new System.Windows.Forms.GroupBox();
             this.lblGC = new System.Windows.Forms.Label();
             this.lblNoofproducts = new System.Windows.Forms.Label();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtRackGroup = new System.Windows.Forms.TextBox();
             this.txtDRackGroup = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductDetails)).BeginInit();
             this.grbProductDetails.SuspendLayout();
@@ -76,7 +77,8 @@
             this.Column3,
             this.dataGridViewTextBoxColumn1,
             this.clmremove,
-            this.clmUnit});
+            this.clmUnit,
+            this.Column1});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -138,6 +140,50 @@
             this.lblNoofproducts.TabIndex = 1111139;
             this.lblNoofproducts.Text = "Total Products :";
             // 
+            // txtRackGroup
+            // 
+            this.txtRackGroup.Location = new System.Drawing.Point(87, 27);
+            this.txtRackGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtRackGroup.Name = "txtRackGroup";
+            this.txtRackGroup.ReadOnly = true;
+            this.txtRackGroup.Size = new System.Drawing.Size(78, 27);
+            this.txtRackGroup.TabIndex = 1111144;
+            // 
+            // txtDRackGroup
+            // 
+            this.txtDRackGroup.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDRackGroup.Enabled = false;
+            this.txtDRackGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDRackGroup.Location = new System.Drawing.Point(14, 27);
+            this.txtDRackGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtDRackGroup.Name = "txtDRackGroup";
+            this.txtDRackGroup.ReadOnly = true;
+            this.txtDRackGroup.Size = new System.Drawing.Size(73, 27);
+            this.txtDRackGroup.TabIndex = 1111143;
+            this.txtDRackGroup.Text = "Rack Name";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(239, 27);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.ReadOnly = true;
+            this.txtDescription.Size = new System.Drawing.Size(458, 27);
+            this.txtDescription.TabIndex = 1111146;
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(167, 27);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(72, 27);
+            this.textBox2.TabIndex = 1111145;
+            this.textBox2.Text = "Description";
+            // 
             // Column3
             // 
             this.Column3.HeaderText = "S.No.";
@@ -154,56 +200,18 @@
             // 
             this.clmremove.HeaderText = "Product Name in Tamil";
             this.clmremove.Name = "clmremove";
-            this.clmremove.Width = 200;
+            this.clmremove.Width = 300;
             // 
             // clmUnit
             // 
             this.clmUnit.HeaderText = "Unit";
             this.clmUnit.Name = "clmUnit";
             // 
-            // txtRackGroup
+            // Column1
             // 
-            this.txtRackGroup.Location = new System.Drawing.Point(93, 27);
-            this.txtRackGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtRackGroup.Name = "txtRackGroup";
-            this.txtRackGroup.ReadOnly = true;
-            this.txtRackGroup.Size = new System.Drawing.Size(194, 27);
-            this.txtRackGroup.TabIndex = 1111144;
-            // 
-            // txtDRackGroup
-            // 
-            this.txtDRackGroup.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDRackGroup.Enabled = false;
-            this.txtDRackGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDRackGroup.Location = new System.Drawing.Point(14, 27);
-            this.txtDRackGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtDRackGroup.Name = "txtDRackGroup";
-            this.txtDRackGroup.ReadOnly = true;
-            this.txtDRackGroup.Size = new System.Drawing.Size(79, 27);
-            this.txtDRackGroup.TabIndex = 1111143;
-            this.txtDRackGroup.Text = "Rack Name";
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.Location = new System.Drawing.Point(432, 27);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.ReadOnly = true;
-            this.txtDescription.Size = new System.Drawing.Size(194, 27);
-            this.txtDescription.TabIndex = 1111146;
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(353, 27);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(79, 27);
-            this.textBox2.TabIndex = 1111145;
-            this.textBox2.Text = "Description";
+            this.Column1.HeaderText = "R.Sales Rate";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // CP_ProductDetails
             // 
@@ -239,13 +247,14 @@
         private System.Windows.Forms.GroupBox grbProductDetails;
         private System.Windows.Forms.Label lblGC;
         private System.Windows.Forms.Label lblNoofproducts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewImageColumn clmremove;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
         private System.Windows.Forms.TextBox txtRackGroup;
         private System.Windows.Forms.TextBox txtDRackGroup;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn clmremove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }

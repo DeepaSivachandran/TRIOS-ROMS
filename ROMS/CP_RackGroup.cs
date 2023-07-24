@@ -32,11 +32,11 @@ namespace ROMS
             try
             {      
                 udfnEdit();
-                DGV_Racklist.Rows.Add(false, "RACK 01");
-                DGV_Racklist.Rows.Add(false, "RACK 02");
+                DGV_Racklist.Rows.Add(false,1, "RACK 01");
+                DGV_Racklist.Rows.Add(false,2, "RACK 02");
 
-                grdSelectedRackList.Rows.Add(false, "RACK 01");
-                grdSelectedRackList.Rows.Add(false, "RACK 02");
+                grdSelectedRackList.Rows.Add(1, "RACK 01");
+                grdSelectedRackList.Rows.Add(2, "RACK 02");
                 
             }
             catch (Exception ex)
