@@ -6,7 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows.Forms; 
+using System.Drawing.Drawing2D;
 
 namespace ROMS
 {
@@ -37,6 +38,11 @@ namespace ROMS
         {
 
            
+        }
+
+        private void Panel2_Paint(object sender, PaintEventArgs e)
+        {
+        
         }
     }
 }
