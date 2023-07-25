@@ -95,9 +95,8 @@ namespace ROMS
         public static INV_StockTransferList objINV_StockTransferList;
         public static INV_DamageEntryList objINV_DamageEntryList;
         public static INV_DamageEntry objINV_DamageEntry;
-
-        public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList; 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
+        public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;  
         public static PUR_PurchaseOrder objPUR_PurchaseOrder;
         public static PUR_PODamaged objPUR_PODamaged;
         public static PUR_SupplierScheduleList objPUR_SupplierScheduleList;

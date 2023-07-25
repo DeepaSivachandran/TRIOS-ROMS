@@ -249,6 +249,12 @@
     <Compile Include="PUR_GRNEntryVerify.designer.cs">
       <DependentUpon>PUR_GRNEntryVerify.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_PurchaseApproval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseApproval.designer.cs">
+      <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_RemarksHistory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -515,12 +521,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PUR_PurchaseApproval.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PUR_PurchaseApproval.designer.cs">
-      <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
-    </Compile>
     <Compile Include="PUR_PurchaseOrderList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -668,6 +668,9 @@
     <EmbeddedResource Include="PUR_GRNEntryVerify.resx">
       <DependentUpon>PUR_GRNEntryVerify.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseApproval.resx">
+      <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PUR_RemarksHistory.resx">
       <DependentUpon>PUR_RemarksHistory.cs</DependentUpon>
     </EmbeddedResource>
@@ -807,9 +810,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="PUR_PurchaseApproval.resx">
-      <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseOrderList.resx">
       <DependentUpon>PUR_PurchaseOrderList.cs</DependentUpon>
     </EmbeddedResource>

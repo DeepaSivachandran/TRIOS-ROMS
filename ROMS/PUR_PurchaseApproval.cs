@@ -7,26 +7,93 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Security.Cryptography;
+
 namespace ROMS
 {
     public partial class PUR_PurchaseApproval : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        private ToolTip tpusername = new ToolTip();
-        private ToolTip tpuserid = new ToolTip();
-        private ToolTip tppassword = new ToolTip();
-        private ToolTip tpconfirmpassword = new ToolTip();
-        private ToolTip tpUserRole  = new ToolTip();
-        public string oldpassword,varpassword;
-        public string varusercode="";
-        public string varUserRoleCode = "";
-
         public PUR_PurchaseApproval()
         {
             InitializeComponent();
         }
-       
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+
+            try
+            { 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void PUR_PurchaseApprovalList_Load(object sender, EventArgs e)
+        {
+            try
+            { 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void GrdPurchaseApproval_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            { 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+
+        }
+
+        private void BtnRemarks_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                MainForm.objPUR_RemarksHistory.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Button1_Click_1(object sender, EventArgs e)
+        {
+            udfnclose();
+        }
+        public void udfnclose()
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
