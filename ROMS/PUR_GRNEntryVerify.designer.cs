@@ -75,7 +75,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(93, 33);
             this.btnSave.TabIndex = 9;
-            this.btnSave.Text = "Authorise";
+            this.btnSave.Text = "Authorize";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             // 
@@ -97,7 +97,7 @@
             this.MinimizeBox = false;
             this.Name = "PUR_GRNEntryVerify";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Please Enter Passkey To Proceed";
+            this.Text = "Please Enter Passkey to Proceed";
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

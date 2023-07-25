@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class PUR_PODamaged
+    partial class PUR_POReturns
     {
         /// <summary>
         /// Required designer variable.
@@ -32,31 +32,31 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PODamaged));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_POReturns));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
-            this.grdPurchaseOrderDamaged = new System.Windows.Forms.DataGridView();
+            this.grdGRNPODamaged = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTotalProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmViewProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTotalProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrderDamaged)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdGRNPODamaged)).BeginInit();
             this.SuspendLayout();
             // 
             // errUnit
             // 
             this.errUnit.ContainerControl = this;
             // 
-            // grdPurchaseOrderDamaged
+            // grdGRNPODamaged
             // 
-            this.grdPurchaseOrderDamaged.AllowUserToAddRows = false;
-            this.grdPurchaseOrderDamaged.AllowUserToDeleteRows = false;
-            this.grdPurchaseOrderDamaged.AllowUserToResizeColumns = false;
-            this.grdPurchaseOrderDamaged.AllowUserToResizeRows = false;
-            this.grdPurchaseOrderDamaged.BackgroundColor = System.Drawing.Color.White;
-            this.grdPurchaseOrderDamaged.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdGRNPODamaged.AllowUserToAddRows = false;
+            this.grdGRNPODamaged.AllowUserToDeleteRows = false;
+            this.grdGRNPODamaged.AllowUserToResizeColumns = false;
+            this.grdGRNPODamaged.AllowUserToResizeRows = false;
+            this.grdGRNPODamaged.BackgroundColor = System.Drawing.Color.White;
+            this.grdGRNPODamaged.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -64,16 +64,15 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPurchaseOrderDamaged.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdPurchaseOrderDamaged.ColumnHeadersHeight = 30;
-            this.grdPurchaseOrderDamaged.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdPurchaseOrderDamaged.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdGRNPODamaged.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdGRNPODamaged.ColumnHeadersHeight = 30;
+            this.grdGRNPODamaged.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdGRNPODamaged.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmsno,
-            this.clmpicode,
-            this.clmproductname,
-            this.clmTotalProduct,
+            this.clmInvoiceDate,
+            this.clmInvoiceNo,
             this.Column1,
-            this.clmViewProducts});
+            this.clmTotalProduct});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -81,20 +80,21 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdPurchaseOrderDamaged.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grdPurchaseOrderDamaged.EnableHeadersVisualStyles = false;
-            this.grdPurchaseOrderDamaged.GridColor = System.Drawing.Color.White;
-            this.grdPurchaseOrderDamaged.Location = new System.Drawing.Point(12, 7);
-            this.grdPurchaseOrderDamaged.Name = "grdPurchaseOrderDamaged";
-            this.grdPurchaseOrderDamaged.ReadOnly = true;
-            this.grdPurchaseOrderDamaged.RowHeadersVisible = false;
+            this.grdGRNPODamaged.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdGRNPODamaged.EnableHeadersVisualStyles = false;
+            this.grdGRNPODamaged.GridColor = System.Drawing.Color.White;
+            this.grdGRNPODamaged.Location = new System.Drawing.Point(12, 7);
+            this.grdGRNPODamaged.Name = "grdGRNPODamaged";
+            this.grdGRNPODamaged.ReadOnly = true;
+            this.grdGRNPODamaged.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdPurchaseOrderDamaged.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.grdPurchaseOrderDamaged.RowTemplate.Height = 25;
-            this.grdPurchaseOrderDamaged.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseOrderDamaged.Size = new System.Drawing.Size(727, 348);
-            this.grdPurchaseOrderDamaged.TabIndex = 1111144;
+            this.grdGRNPODamaged.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdGRNPODamaged.RowTemplate.Height = 25;
+            this.grdGRNPODamaged.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdGRNPODamaged.Size = new System.Drawing.Size(618, 348);
+            this.grdGRNPODamaged.TabIndex = 1111144;
+            this.grdGRNPODamaged.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNPODamaged_CellContentClick);
             // 
             // clmsno
             // 
@@ -103,49 +103,48 @@
             this.clmsno.ReadOnly = true;
             this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmsno.Width = 50;
+            this.clmsno.Width = 70;
             // 
-            // clmpicode
+            // clmInvoiceDate
             // 
-            this.clmpicode.HeaderText = "P.I Code";
-            this.clmpicode.Name = "clmpicode";
-            this.clmpicode.ReadOnly = true;
+            this.clmInvoiceDate.HeaderText = "DL Date";
+            this.clmInvoiceDate.Name = "clmInvoiceDate";
+            this.clmInvoiceDate.ReadOnly = true;
             // 
-            // clmproductname
+            // clmInvoiceNo
             // 
-            this.clmproductname.HeaderText = "Product Name";
-            this.clmproductname.Name = "clmproductname";
-            this.clmproductname.ReadOnly = true;
-            this.clmproductname.Width = 220;
-            // 
-            // clmTotalProduct
-            // 
-            this.clmTotalProduct.HeaderText = "Qty";
-            this.clmTotalProduct.Name = "clmTotalProduct";
-            this.clmTotalProduct.ReadOnly = true;
-            this.clmTotalProduct.Width = 80;
+            this.clmInvoiceNo.HeaderText = "DL No.";
+            this.clmInvoiceNo.Name = "clmInvoiceNo";
+            this.clmInvoiceNo.ReadOnly = true;
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "Reason";
+            this.Column1.HeaderText = "Type ( Damage / Excess)";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 150;
+            this.Column1.Width = 200;
             // 
-            // clmViewProducts
+            // clmTotalProduct
             // 
-            this.clmViewProducts.HeaderText = "Unit";
-            this.clmViewProducts.Name = "clmViewProducts";
-            this.clmViewProducts.ReadOnly = true;
-            this.clmViewProducts.Width = 80;
+            this.clmTotalProduct.HeaderText = "Total Products";
+            this.clmTotalProduct.Name = "clmTotalProduct";
+            this.clmTotalProduct.ReadOnly = true;
             // 
-            // PUR_PODamaged
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "View";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.view;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // PUR_POReturns
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(749, 367);
-            this.Controls.Add(this.grdPurchaseOrderDamaged);
+            this.ClientSize = new System.Drawing.Size(641, 364);
+            this.Controls.Add(this.grdGRNPODamaged);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -153,23 +152,24 @@
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "PUR_PODamaged";
+            this.Name = "PUR_POReturns";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Pending Purchase Returns";
+            this.Text = "Purchase Returns";
+            this.Load += new System.EventHandler(this.PUR_POReturns_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrderDamaged)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdGRNPODamaged)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.ErrorProvider errUnit;
-        public System.Windows.Forms.DataGridView grdPurchaseOrderDamaged;
+        public System.Windows.Forms.DataGridView grdGRNPODamaged;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalProduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmViewProducts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalProduct;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
     }
 }

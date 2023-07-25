@@ -135,6 +135,12 @@
     <Compile Include="INV_InwardPurchase.designer.cs">
       <DependentUpon>INV_InwardPurchase.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_POReturns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_POReturns.designer.cs">
+      <DependentUpon>PUR_POReturns.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAY_SupplierPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +260,12 @@
     </Compile>
     <Compile Include="PUR_GRNEntryVerify.designer.cs">
       <DependentUpon>PUR_GRNEntryVerify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_BulkUnit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_BulkUnit.designer.cs">
+      <DependentUpon>PUR_BulkUnit.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_PurchaseApproval.cs">
       <SubType>Form</SubType>
@@ -617,6 +629,9 @@
     <EmbeddedResource Include="INV_InwardPurchase.resx">
       <DependentUpon>INV_InwardPurchase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PUR_POReturns.resx">
+      <DependentUpon>PUR_POReturns.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PAY_SupplierPayment.resx">
       <DependentUpon>PAY_SupplierPayment.cs</DependentUpon>
     </EmbeddedResource>
@@ -676,6 +691,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNEntryVerify.resx">
       <DependentUpon>PUR_GRNEntryVerify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_BulkUnit.resx">
+      <DependentUpon>PUR_BulkUnit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseApproval.resx">
       <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>

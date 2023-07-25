@@ -182,14 +182,29 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_PODamaged = new PUR_PODamaged();
-                MainForm.objPUR_PODamaged.ShowDialog();
+                MainForm.objPUR_POReturns = new PUR_POReturns();
+                MainForm.objPUR_POReturns.ShowDialog();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+        }
+
+        private void BtnRemarks_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                MainForm.objPUR_RemarksHistory.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

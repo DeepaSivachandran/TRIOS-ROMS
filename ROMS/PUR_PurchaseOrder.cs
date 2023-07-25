@@ -301,5 +301,25 @@ namespace ROMS
 
             }
         }
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnNewUnit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_BulkUnit = new PUR_BulkUnit();
+                MainForm.objPUR_BulkUnit.ShowDialog(); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
     }
 }
