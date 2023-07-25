@@ -24,8 +24,9 @@ namespace ROMS
 
             try
             {
-                MainForm.objPUR_PurchaseApproval = new PUR_PurchaseApproval();
-                MainForm.objPUR_PurchaseApproval.ShowDialog();
+                MainForm.objPUR_PurchaseApproval = new PUR_PurchaseApproval(); 
+                MainForm.objPUR_PurchaseApproval.MdiParent = this.ParentForm;
+                MainForm.objPUR_PurchaseApproval.Show();
             }
             catch (Exception ex)
             {
@@ -39,7 +40,7 @@ namespace ROMS
         {
             try
             {
-                grdPurchaseApproval.Rows.Add("1","24/07/2023","PR001","PO001", "Supplier 1","15200","10","Pending","User1","User2");
+                grdPurchaseApproval.Rows.Add("1","","24/07/2023","PR001", "24/07/2023", "PO001", "15200", "","10","Pending","User1 24/06/2023 10:00AM","User2","");
             }
             catch (Exception ex)
             {
@@ -54,7 +55,8 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PurchaseApproval = new PUR_PurchaseApproval();
-                MainForm.objPUR_PurchaseApproval.ShowDialog();
+                MainForm.objPUR_PurchaseApproval.MdiParent = this.ParentForm;
+                MainForm.objPUR_PurchaseApproval.Show();
             }
             catch (Exception ex)
             {
