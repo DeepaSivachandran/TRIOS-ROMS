@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class INV_Inward : Form
+    public partial class INV_InwardPurchase : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
-        public INV_Inward()
+        public INV_InwardPurchase()
         {
             InitializeComponent();
         }
@@ -52,17 +52,7 @@ namespace ROMS
 
         private void INV_Inward_Load(object sender, EventArgs e)
         {
-            if (btnSave.Text == "Save")
-            {
-                grpproductname.Visible = true;
-                txtsuppliername.Enabled = true;
-                
-            }
-            else {
-                grpproductname.Visible = false;
-                txtsuppliername.Enabled = false;
-                //cmbPoNo.Enabled = false; 
-            }
+            
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -78,6 +68,21 @@ namespace ROMS
         private void Btnsaveasdraft_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnRemarks_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                MainForm.objPUR_RemarksHistory.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

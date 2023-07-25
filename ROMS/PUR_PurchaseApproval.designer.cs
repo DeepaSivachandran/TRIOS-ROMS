@@ -28,15 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
-            this.btnRemarks = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lblRupee = new System.Windows.Forms.Label();
+            this.lblGrandTotal = new System.Windows.Forms.Label();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,8 +58,6 @@
             this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.lblRemarks = new System.Windows.Forms.Label();
-            this.btnreject = new System.Windows.Forms.Button();
-            this.btnApprove = new System.Windows.Forms.Button();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -88,8 +85,11 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmViewProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblRupee = new System.Windows.Forms.Label();
-            this.lblGrandTotal = new System.Windows.Forms.Label();
+            this.btnRemarks = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnreject = new System.Windows.Forms.Button();
+            this.btnApprove = new System.Windows.Forms.Button();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
@@ -111,16 +111,6 @@
             this.tsBrandList.TabIndex = 35;
             this.tsBrandList.Text = "Brand";
             // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(125, 22);
-            this.tspHeader.Text = "Purchase Approval";
-            // 
             // pnlpurchaseapproval
             // 
             this.pnlpurchaseapproval.BackColor = System.Drawing.Color.White;
@@ -139,33 +129,26 @@
             this.pnlpurchaseapproval.Size = new System.Drawing.Size(1354, 643);
             this.pnlpurchaseapproval.TabIndex = 958789;
             // 
-            // btnRemarks
+            // lblRupee
             // 
-            this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnRemarks.Image = global::ROMS.Properties.Resources.view_eye;
-            this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemarks.Location = new System.Drawing.Point(680, 549);
-            this.btnRemarks.Name = "btnRemarks";
-            this.btnRemarks.Size = new System.Drawing.Size(105, 29);
-            this.btnRemarks.TabIndex = 1111208;
-            this.btnRemarks.Text = "See Remarks";
-            this.btnRemarks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRemarks.UseVisualStyleBackColor = true;
-            this.btnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
+            this.lblRupee.AutoSize = true;
+            this.lblRupee.Font = new System.Drawing.Font("Rupee Foradian", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRupee.Location = new System.Drawing.Point(1241, 559);
+            this.lblRupee.Name = "lblRupee";
+            this.lblRupee.Size = new System.Drawing.Size(23, 28);
+            this.lblRupee.TabIndex = 1111210;
+            this.lblRupee.Text = "₹";
             // 
-            // button1
+            // lblGrandTotal
             // 
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button1.Image = global::ROMS.Properties.Resources.close;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1267, 605);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 30);
-            this.button1.TabIndex = 1111151;
-            this.button1.Text = "Close";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click_1);
+            this.lblGrandTotal.AutoSize = true;
+            this.lblGrandTotal.Font = new System.Drawing.Font("Oswald Regular", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGrandTotal.ForeColor = System.Drawing.Color.Black;
+            this.lblGrandTotal.Location = new System.Drawing.Point(1259, 549);
+            this.lblGrandTotal.Name = "lblGrandTotal";
+            this.lblGrandTotal.Size = new System.Drawing.Size(92, 40);
+            this.lblGrandTotal.TabIndex = 1111209;
+            this.lblGrandTotal.Text = "12500";
             // 
             // grdSupplierList
             // 
@@ -173,14 +156,14 @@
             this.grdSupplierList.AllowUserToResizeRows = false;
             this.grdSupplierList.BackgroundColor = System.Drawing.Color.White;
             this.grdSupplierList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSupplierList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdSupplierList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdSupplierList.ColumnHeadersHeight = 50;
             this.grdSupplierList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdSupplierList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -365,32 +348,6 @@
             this.lblRemarks.TabIndex = 1111148;
             this.lblRemarks.Text = "Remarks";
             // 
-            // btnreject
-            // 
-            this.btnreject.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnreject.Image = global::ROMS.Properties.Resources.reset;
-            this.btnreject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnreject.Location = new System.Drawing.Point(1181, 605);
-            this.btnreject.Name = "btnreject";
-            this.btnreject.Size = new System.Drawing.Size(84, 30);
-            this.btnreject.TabIndex = 1111147;
-            this.btnreject.Text = "Reject";
-            this.btnreject.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnreject.UseVisualStyleBackColor = true;
-            // 
-            // btnApprove
-            // 
-            this.btnApprove.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnApprove.Image = global::ROMS.Properties.Resources.approve;
-            this.btnApprove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnApprove.Location = new System.Drawing.Point(1095, 605);
-            this.btnApprove.Name = "btnApprove";
-            this.btnApprove.Size = new System.Drawing.Size(84, 30);
-            this.btnApprove.TabIndex = 1111146;
-            this.btnApprove.Text = "Approve";
-            this.btnApprove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnApprove.UseVisualStyleBackColor = true;
-            // 
             // grpfilter
             // 
             this.grpfilter.Controls.Add(this.groupBox2);
@@ -451,6 +408,7 @@
             // 
             // textBox6
             // 
+            this.textBox6.Enabled = false;
             this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.textBox6.Location = new System.Drawing.Point(284, 66);
             this.textBox6.Name = "textBox6";
@@ -472,6 +430,7 @@
             // 
             // textBox4
             // 
+            this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.textBox4.Location = new System.Drawing.Point(84, 16);
             this.textBox4.Name = "textBox4";
@@ -493,6 +452,7 @@
             // 
             // textBox2
             // 
+            this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.textBox2.Location = new System.Drawing.Point(284, 91);
             this.textBox2.Name = "textBox2";
@@ -514,6 +474,7 @@
             // 
             // textBox19
             // 
+            this.textBox19.Enabled = false;
             this.textBox19.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.textBox19.Location = new System.Drawing.Point(84, 41);
             this.textBox19.Name = "textBox19";
@@ -547,6 +508,7 @@
             // 
             // textBox26
             // 
+            this.textBox26.Enabled = false;
             this.textBox26.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.textBox26.Location = new System.Drawing.Point(84, 66);
             this.textBox26.Name = "textBox26";
@@ -556,6 +518,7 @@
             // 
             // textBox27
             // 
+            this.textBox27.Enabled = false;
             this.textBox27.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.textBox27.Location = new System.Drawing.Point(284, 16);
             this.textBox27.Name = "textBox27";
@@ -589,6 +552,7 @@
             // 
             // textBox38
             // 
+            this.textBox38.Enabled = false;
             this.textBox38.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.textBox38.Location = new System.Drawing.Point(84, 91);
             this.textBox38.Name = "textBox38";
@@ -598,6 +562,7 @@
             // 
             // textBox43
             // 
+            this.textBox43.Enabled = false;
             this.textBox43.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.textBox43.Location = new System.Drawing.Point(284, 41);
             this.textBox43.Name = "textBox43";
@@ -613,14 +578,14 @@
             this.grdpurchasedetails.AllowUserToResizeRows = false;
             this.grdpurchasedetails.BackgroundColor = System.Drawing.Color.White;
             this.grdpurchasedetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdpurchasedetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdpurchasedetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.grdpurchasedetails.ColumnHeadersHeight = 30;
             this.grdpurchasedetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdpurchasedetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -631,23 +596,23 @@
             this.Column1,
             this.clmViewProducts,
             this.Column2});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdpurchasedetails.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdpurchasedetails.DefaultCellStyle = dataGridViewCellStyle3;
             this.grdpurchasedetails.EnableHeadersVisualStyles = false;
             this.grdpurchasedetails.GridColor = System.Drawing.Color.White;
             this.grdpurchasedetails.Location = new System.Drawing.Point(425, 14);
             this.grdpurchasedetails.Name = "grdpurchasedetails";
             this.grdpurchasedetails.ReadOnly = true;
             this.grdpurchasedetails.RowHeadersVisible = false;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
-            this.grdpurchasedetails.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.grdpurchasedetails.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.grdpurchasedetails.RowTemplate.Height = 25;
             this.grdpurchasedetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdpurchasedetails.Size = new System.Drawing.Size(660, 123);
@@ -700,26 +665,69 @@
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
-            // lblRupee
+            // btnRemarks
             // 
-            this.lblRupee.AutoSize = true;
-            this.lblRupee.Font = new System.Drawing.Font("Rupee Foradian", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRupee.Location = new System.Drawing.Point(1241, 559);
-            this.lblRupee.Name = "lblRupee";
-            this.lblRupee.Size = new System.Drawing.Size(23, 28);
-            this.lblRupee.TabIndex = 1111210;
-            this.lblRupee.Text = "₹";
+            this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
+            this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemarks.Location = new System.Drawing.Point(680, 549);
+            this.btnRemarks.Name = "btnRemarks";
+            this.btnRemarks.Size = new System.Drawing.Size(116, 29);
+            this.btnRemarks.TabIndex = 1111208;
+            this.btnRemarks.Text = "See Remarks";
+            this.btnRemarks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemarks.UseVisualStyleBackColor = true;
+            this.btnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
             // 
-            // lblGrandTotal
+            // button1
             // 
-            this.lblGrandTotal.AutoSize = true;
-            this.lblGrandTotal.Font = new System.Drawing.Font("Oswald Regular", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGrandTotal.ForeColor = System.Drawing.Color.Black;
-            this.lblGrandTotal.Location = new System.Drawing.Point(1259, 549);
-            this.lblGrandTotal.Name = "lblGrandTotal";
-            this.lblGrandTotal.Size = new System.Drawing.Size(92, 40);
-            this.lblGrandTotal.TabIndex = 1111209;
-            this.lblGrandTotal.Text = "12500";
+            this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.button1.Image = global::ROMS.Properties.Resources.close;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(1267, 605);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(84, 30);
+            this.button1.TabIndex = 1111151;
+            this.button1.Text = "Close";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click_1);
+            // 
+            // btnreject
+            // 
+            this.btnreject.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnreject.Image = global::ROMS.Properties.Resources.reset;
+            this.btnreject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnreject.Location = new System.Drawing.Point(1181, 605);
+            this.btnreject.Name = "btnreject";
+            this.btnreject.Size = new System.Drawing.Size(84, 30);
+            this.btnreject.TabIndex = 1111147;
+            this.btnreject.Text = "Reject";
+            this.btnreject.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnreject.UseVisualStyleBackColor = true;
+            // 
+            // btnApprove
+            // 
+            this.btnApprove.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnApprove.Image = global::ROMS.Properties.Resources.approve;
+            this.btnApprove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnApprove.Location = new System.Drawing.Point(1095, 605);
+            this.btnApprove.Name = "btnApprove";
+            this.btnApprove.Size = new System.Drawing.Size(84, 30);
+            this.btnApprove.TabIndex = 1111146;
+            this.btnApprove.Text = "Approve";
+            this.btnApprove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnApprove.UseVisualStyleBackColor = true;
+            // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(125, 22);
+            this.tspHeader.Text = "Purchase Approval";
             // 
             // PUR_PurchaseApproval
             // 

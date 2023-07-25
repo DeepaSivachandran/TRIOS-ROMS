@@ -123,6 +123,18 @@
     <Compile Include="INV_DamageEntry.designer.cs">
       <DependentUpon>INV_DamageEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_InwardPurchaseList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_InwardPurchaseList.designer.cs">
+      <DependentUpon>INV_InwardPurchaseList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_InwardPurchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_InwardPurchase.designer.cs">
+      <DependentUpon>INV_InwardPurchase.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAY_SupplierPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -599,6 +611,12 @@
     <EmbeddedResource Include="INV_DamageEntry.resx">
       <DependentUpon>INV_DamageEntry.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="INV_InwardPurchaseList.resx">
+      <DependentUpon>INV_InwardPurchaseList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_InwardPurchase.resx">
+      <DependentUpon>INV_InwardPurchase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PAY_SupplierPayment.resx">
       <DependentUpon>PAY_SupplierPayment.cs</DependentUpon>
     </EmbeddedResource>
@@ -972,6 +990,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Launcher.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comment.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

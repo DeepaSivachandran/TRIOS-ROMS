@@ -81,6 +81,8 @@ namespace ROMS
         public static CP_UserCatagory objCP_UserCatagory;
         public static CP_SupplierOrderDetailsList objCP_SupplierOrderDetailslist;
         public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
+        public static INV_InwardPurchaseList objINV_InwardPurchaseList;
+        public static INV_InwardPurchase objINV_InwardPurchase;
 
         public static INV_SalesInvoiceList objINV_SalesInvoiceList;
         public static INV_SalesInvoice objINV_SalesInvoice;
@@ -697,19 +699,7 @@ namespace ROMS
 
         private void Tsminward_Click(object sender, EventArgs e)
         {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objINV_Inwardlist = new INV_Inwardlist();
-                MainForm.objINV_Inwardlist.MdiParent = this;
-                MainForm.objINV_Inwardlist.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+          
         }
 
         private void TsmpurchaseApprove_Click(object sender, EventArgs e)
@@ -995,6 +985,40 @@ namespace ROMS
                 MainForm.objINV_DamageEntryList = new INV_DamageEntryList();
                 MainForm.objINV_DamageEntryList.MdiParent = this;
                 MainForm.objINV_DamageEntryList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmfromOtherStockLocation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objINV_Inwardlist = new INV_Inwardlist();
+                MainForm.objINV_Inwardlist.MdiParent = this;
+                MainForm.objINV_Inwardlist.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmfromPurchase_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
+                MainForm.objINV_InwardPurchaseList.MdiParent = this;
+                MainForm.objINV_InwardPurchaseList.Show();
             }
             catch (Exception ex)
             {
