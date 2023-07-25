@@ -142,7 +142,6 @@ namespace ROMS
             this.tsmpurchase.Name = "tsmpurchase";
             this.tsmpurchase.Size = new System.Drawing.Size(63, 21);
             this.tsmpurchase.Text = "Purchase";
-            this.tsmpurchase.Visible = false;
             // 
             // tsmpurchaseSupplier
             // 
@@ -198,7 +197,6 @@ namespace ROMS
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
             this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
             this.inventoryToolStripMenuItem.Text = "Inventory";
-            this.inventoryToolStripMenuItem.Visible = false;
             // 
             // tsminward
             // 
@@ -244,7 +242,6 @@ namespace ROMS
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
             this.paymentToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
             this.paymentToolStripMenuItem.Text = "Payment";
-            this.paymentToolStripMenuItem.Visible = false;
             // 
             // supplierPaymentToolStripMenuItem
             // 
@@ -335,7 +332,7 @@ namespace ROMS
             this.tsmSuppliyer,
             this.tsmbroker});
             this.tsmMasters.Name = "tsmMasters";
-            this.tsmMasters.Size = new System.Drawing.Size(180, 22);
+            this.tsmMasters.Size = new System.Drawing.Size(115, 22);
             this.tsmMasters.Text = "Masters";
             // 
             // stateToolStripMenuItem
@@ -451,7 +448,7 @@ namespace ROMS
             this.tsmbatchno,
             this.tsmgenralSettings});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // tsmsupplierMapping

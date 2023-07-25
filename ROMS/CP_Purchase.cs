@@ -39,7 +39,8 @@ namespace ROMS
             try
             {
                 cmbType.Items.Insert(0,"Against GRN");
-                cmbType.Items.Insert(1,"Direct"); 
+                cmbType.Items.Insert(1,"Against PO");
+                cmbType.Items.Insert(2, "Direct");
                 cmbType.SelectedIndex = 0;
                 cmbPurchaseType.SelectedIndex = 0;
             }
@@ -108,6 +109,21 @@ namespace ROMS
                     txtInvoiceNo.ReadOnly = true;
                 }
                 if (cmbType.SelectedIndex.ToString() == "1")
+                {
+                    MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
+                    MainForm.objPUR_GRNOrderType.ShowDialog();
+                    txtQRCode.ReadOnly = true;
+                    txtMrp.ReadOnly = false;
+                    txtDate.ReadOnly = false;
+                    txtMonth.ReadOnly = false;
+                    txtYear.ReadOnly = false;
+                    txtBatchno.ReadOnly = false;
+                    txtSupplier.ReadOnly = false;
+                    txtSupplier.ReadOnly = false;
+                    dpInvoiceDate.Enabled = true;
+                    txtInvoiceNo.ReadOnly = false;
+                }
+                if (cmbType.SelectedIndex.ToString() == "2")
                 {
                     txtQRCode.ReadOnly = true;
                     txtMrp.ReadOnly = false;
