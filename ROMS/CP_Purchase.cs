@@ -96,12 +96,29 @@ namespace ROMS
         {
             try
             {
-                if (cmbType.SelectedIndex.ToString() == "1") { // GRN
+                if (cmbType.SelectedIndex.ToString() == "0") { // GRN
                     txtQRCode.ReadOnly = false;
+                    txtMrp.ReadOnly = true;
+                    txtDate.ReadOnly = true;
+                    txtMonth.ReadOnly = true;
+                    txtYear.ReadOnly = true;
+                    txtBatchno.ReadOnly = true;
+                    txtSupplier.ReadOnly = true;
+                    dpInvoiceDate.Enabled = false;
+                    txtInvoiceNo.ReadOnly = true;
                 }
-                if (cmbType.SelectedIndex.ToString() == "2")
+                if (cmbType.SelectedIndex.ToString() == "1")
                 {
                     txtQRCode.ReadOnly = true;
+                    txtMrp.ReadOnly = false;
+                    txtDate.ReadOnly = false;
+                    txtMonth.ReadOnly = false;
+                    txtYear.ReadOnly = false;
+                    txtBatchno.ReadOnly = false;
+                    txtSupplier.ReadOnly = false;
+                    txtSupplier.ReadOnly = false;
+                    dpInvoiceDate.Enabled = true;
+                    txtInvoiceNo.ReadOnly = false;
                 }
             }
             catch (Exception ex)
@@ -142,6 +159,21 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnDamage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_PODamaged = new PUR_PODamaged();
+                MainForm.objPUR_PODamaged.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
             }
         }
     }

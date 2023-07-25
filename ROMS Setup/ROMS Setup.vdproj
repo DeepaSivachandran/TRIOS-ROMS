@@ -124,13 +124,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_158A85622027217D3F85C1EECC1F1C76"
+        "OwnerKey" = "8:_09CCF2BB7E0D4804A1E1C7FF2634EB49"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_09CCF2BB7E0D4804A1E1C7FF2634EB49"
+        "OwnerKey" = "8:_158A85622027217D3F85C1EECC1F1C76"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -141,7 +141,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\ROMS V1.0.0.msi"
+        "OutputFilename" = "8:Debug\\ROMS V1.0.1.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -190,6 +190,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -648,16 +656,16 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:GNM ROMS"
+        "ProductName" = "8:ROMS"
         "ProductCode" = "8:{776564ED-151F-48C9-A463-2486D132A8FD}"
-        "PackageCode" = "8:{683131BE-8D00-42A2-8AFB-8DBC3EDD2C93}"
+        "PackageCode" = "8:{20C41DAB-C926-4138-8D92-6EF6F585AD12}"
         "UpgradeCode" = "8:{66E251FD-23D6-4823-B6A2-4E2FF6F322F4}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:Trio-S"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
