@@ -37,42 +37,44 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grbStockTransfer = new System.Windows.Forms.GroupBox();
+            this.lblDestinationRack = new System.Windows.Forms.Label();
+            this.cmbDestinationRack = new System.Windows.Forms.ComboBox();
+            this.lblDestinationGodown = new System.Windows.Forms.Label();
+            this.cmbDestinationGodown = new System.Windows.Forms.ComboBox();
+            this.lblSourceRack = new System.Windows.Forms.Label();
+            this.cmbSourceRack = new System.Windows.Forms.ComboBox();
+            this.lblSourceGodown = new System.Windows.Forms.Label();
+            this.cmbSourceGodown = new System.Windows.Forms.ComboBox();
             this.txtTransferNo = new System.Windows.Forms.TextBox();
             this.lblTransferNo = new System.Windows.Forms.Label();
             this.lblTransferDate = new System.Windows.Forms.Label();
             this.lblGodown = new System.Windows.Forms.Label();
             this.dpTrannsferDate = new System.Windows.Forms.DateTimePicker();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
-            this.lblSourceGodown = new System.Windows.Forms.Label();
-            this.cmbSourceGodown = new System.Windows.Forms.ComboBox();
-            this.lblSourceRack = new System.Windows.Forms.Label();
-            this.cmbSourceRack = new System.Windows.Forms.ComboBox();
-            this.lblDestinationGodown = new System.Windows.Forms.Label();
-            this.cmbDestinationGodown = new System.Windows.Forms.ComboBox();
-            this.lblDestinationRack = new System.Windows.Forms.Label();
-            this.cmbDestinationRack = new System.Windows.Forms.ComboBox();
             this.grbDStockTransfer = new System.Windows.Forms.GroupBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.txtProductNamePICode = new System.Windows.Forms.TextBox();
-            this.lvProductNamePICode = new System.Windows.Forms.ListView();
-            this.lblProductNamePICode = new System.Windows.Forms.Label();
-            this.lblMRP = new System.Windows.Forms.Label();
-            this.cmbMRP = new System.Windows.Forms.ComboBox();
-            this.lblBatchNo = new System.Windows.Forms.Label();
-            this.cmbBatchNo = new System.Windows.Forms.ComboBox();
+            this.btnAdd = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.lblQuantity = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Label();
+            this.lblBatchNo = new System.Windows.Forms.Label();
+            this.cmbBatchNo = new System.Windows.Forms.ComboBox();
+            this.lblMRP = new System.Windows.Forms.Label();
+            this.cmbMRP = new System.Windows.Forms.ComboBox();
+            this.txtProductNamePICode = new System.Windows.Forms.TextBox();
+            this.lblProductNamePICode = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dgvStockTransfer = new System.Windows.Forms.DataGridView();
+            this.lblRemarks = new System.Windows.Forms.Label();
+            this.txtRemarks = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lblStock = new System.Windows.Forms.Label();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmbatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmquantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.lblRemarks = new System.Windows.Forms.Label();
-            this.txtRemarks = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).BeginInit();
             this.grbStockTransfer.SuspendLayout();
             this.grbDStockTransfer.SuspendLayout();
@@ -88,7 +90,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(949, 599);
+            this.btnSave.Location = new System.Drawing.Point(949, 611);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 6;
@@ -105,7 +107,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1041, 599);
+            this.btnClose.Location = new System.Drawing.Point(1041, 611);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 7;
@@ -136,82 +138,48 @@
             this.grbStockTransfer.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbStockTransfer.Location = new System.Drawing.Point(12, 3);
             this.grbStockTransfer.Name = "grbStockTransfer";
-            this.grbStockTransfer.Size = new System.Drawing.Size(1104, 85);
+            this.grbStockTransfer.Size = new System.Drawing.Size(1104, 74);
             this.grbStockTransfer.TabIndex = 1;
             this.grbStockTransfer.TabStop = false;
             this.grbStockTransfer.Enter += new System.EventHandler(this.GrbGodown_Enter);
             // 
-            // txtTransferNo
+            // lblDestinationRack
             // 
-            this.txtTransferNo.Location = new System.Drawing.Point(278, 43);
-            this.txtTransferNo.Name = "txtTransferNo";
-            this.txtTransferNo.Size = new System.Drawing.Size(154, 28);
-            this.txtTransferNo.TabIndex = 84;
+            this.lblDestinationRack.AutoSize = true;
+            this.lblDestinationRack.Location = new System.Drawing.Point(943, 14);
+            this.lblDestinationRack.Name = "lblDestinationRack";
+            this.lblDestinationRack.Size = new System.Drawing.Size(100, 20);
+            this.lblDestinationRack.TabIndex = 92;
+            this.lblDestinationRack.Text = "Destination Rack";
             // 
-            // lblTransferNo
+            // cmbDestinationRack
             // 
-            this.lblTransferNo.AutoSize = true;
-            this.lblTransferNo.Location = new System.Drawing.Point(278, 14);
-            this.lblTransferNo.Name = "lblTransferNo";
-            this.lblTransferNo.Size = new System.Drawing.Size(71, 20);
-            this.lblTransferNo.TabIndex = 78;
-            this.lblTransferNo.Text = "Transfer No";
+            this.cmbDestinationRack.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDestinationRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDestinationRack.FormattingEnabled = true;
+            this.cmbDestinationRack.Location = new System.Drawing.Point(943, 38);
+            this.cmbDestinationRack.Name = "cmbDestinationRack";
+            this.cmbDestinationRack.Size = new System.Drawing.Size(154, 27);
+            this.cmbDestinationRack.TabIndex = 91;
             // 
-            // lblTransferDate
+            // lblDestinationGodown
             // 
-            this.lblTransferDate.AutoSize = true;
-            this.lblTransferDate.Location = new System.Drawing.Point(172, 14);
-            this.lblTransferDate.Name = "lblTransferDate";
-            this.lblTransferDate.Size = new System.Drawing.Size(82, 20);
-            this.lblTransferDate.TabIndex = 72;
-            this.lblTransferDate.Text = "Transfer Date";
+            this.lblDestinationGodown.AutoSize = true;
+            this.lblDestinationGodown.Location = new System.Drawing.Point(777, 14);
+            this.lblDestinationGodown.Name = "lblDestinationGodown";
+            this.lblDestinationGodown.Size = new System.Drawing.Size(152, 20);
+            this.lblDestinationGodown.TabIndex = 90;
+            this.lblDestinationGodown.Text = "Destination Stock Location";
             // 
-            // lblGodown
+            // cmbDestinationGodown
             // 
-            this.lblGodown.AutoSize = true;
-            this.lblGodown.Location = new System.Drawing.Point(5, 14);
-            this.lblGodown.Name = "lblGodown";
-            this.lblGodown.Size = new System.Drawing.Size(52, 20);
-            this.lblGodown.TabIndex = 71;
-            this.lblGodown.Text = "Godown";
-            // 
-            // dpTrannsferDate
-            // 
-            this.dpTrannsferDate.CustomFormat = "dd/MM/yyyy";
-            this.dpTrannsferDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpTrannsferDate.Location = new System.Drawing.Point(172, 43);
-            this.dpTrannsferDate.Name = "dpTrannsferDate";
-            this.dpTrannsferDate.Size = new System.Drawing.Size(92, 28);
-            this.dpTrannsferDate.TabIndex = 77;
-            // 
-            // cmbConcern
-            // 
-            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(5, 44);
-            this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(154, 27);
-            this.cmbConcern.TabIndex = 48;
-            // 
-            // lblSourceGodown
-            // 
-            this.lblSourceGodown.AutoSize = true;
-            this.lblSourceGodown.Location = new System.Drawing.Point(444, 14);
-            this.lblSourceGodown.Name = "lblSourceGodown";
-            this.lblSourceGodown.Size = new System.Drawing.Size(92, 20);
-            this.lblSourceGodown.TabIndex = 86;
-            this.lblSourceGodown.Text = "Source Godown";
-            // 
-            // cmbSourceGodown
-            // 
-            this.cmbSourceGodown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSourceGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSourceGodown.FormattingEnabled = true;
-            this.cmbSourceGodown.Location = new System.Drawing.Point(444, 44);
-            this.cmbSourceGodown.Name = "cmbSourceGodown";
-            this.cmbSourceGodown.Size = new System.Drawing.Size(154, 27);
-            this.cmbSourceGodown.TabIndex = 85;
+            this.cmbDestinationGodown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDestinationGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDestinationGodown.FormattingEnabled = true;
+            this.cmbDestinationGodown.Location = new System.Drawing.Point(777, 38);
+            this.cmbDestinationGodown.Name = "cmbDestinationGodown";
+            this.cmbDestinationGodown.Size = new System.Drawing.Size(154, 27);
+            this.cmbDestinationGodown.TabIndex = 89;
             // 
             // lblSourceRack
             // 
@@ -228,52 +196,88 @@
             this.cmbSourceRack.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSourceRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSourceRack.FormattingEnabled = true;
-            this.cmbSourceRack.Location = new System.Drawing.Point(611, 44);
+            this.cmbSourceRack.Location = new System.Drawing.Point(611, 38);
             this.cmbSourceRack.Name = "cmbSourceRack";
             this.cmbSourceRack.Size = new System.Drawing.Size(154, 27);
             this.cmbSourceRack.TabIndex = 87;
             this.cmbSourceRack.SelectedIndexChanged += new System.EventHandler(this.CmbSourceRack_SelectedIndexChanged);
             // 
-            // lblDestinationGodown
+            // lblSourceGodown
             // 
-            this.lblDestinationGodown.AutoSize = true;
-            this.lblDestinationGodown.Location = new System.Drawing.Point(777, 14);
-            this.lblDestinationGodown.Name = "lblDestinationGodown";
-            this.lblDestinationGodown.Size = new System.Drawing.Size(117, 20);
-            this.lblDestinationGodown.TabIndex = 90;
-            this.lblDestinationGodown.Text = "Destination Godown";
+            this.lblSourceGodown.AutoSize = true;
+            this.lblSourceGodown.Location = new System.Drawing.Point(444, 14);
+            this.lblSourceGodown.Name = "lblSourceGodown";
+            this.lblSourceGodown.Size = new System.Drawing.Size(127, 20);
+            this.lblSourceGodown.TabIndex = 86;
+            this.lblSourceGodown.Text = "Source Stock Location";
             // 
-            // cmbDestinationGodown
+            // cmbSourceGodown
             // 
-            this.cmbDestinationGodown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDestinationGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDestinationGodown.FormattingEnabled = true;
-            this.cmbDestinationGodown.Location = new System.Drawing.Point(777, 44);
-            this.cmbDestinationGodown.Name = "cmbDestinationGodown";
-            this.cmbDestinationGodown.Size = new System.Drawing.Size(154, 27);
-            this.cmbDestinationGodown.TabIndex = 89;
+            this.cmbSourceGodown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSourceGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSourceGodown.FormattingEnabled = true;
+            this.cmbSourceGodown.Location = new System.Drawing.Point(444, 38);
+            this.cmbSourceGodown.Name = "cmbSourceGodown";
+            this.cmbSourceGodown.Size = new System.Drawing.Size(154, 27);
+            this.cmbSourceGodown.TabIndex = 85;
             // 
-            // lblDestinationRack
+            // txtTransferNo
             // 
-            this.lblDestinationRack.AutoSize = true;
-            this.lblDestinationRack.Location = new System.Drawing.Point(943, 14);
-            this.lblDestinationRack.Name = "lblDestinationRack";
-            this.lblDestinationRack.Size = new System.Drawing.Size(100, 20);
-            this.lblDestinationRack.TabIndex = 92;
-            this.lblDestinationRack.Text = "Destination Rack";
+            this.txtTransferNo.Location = new System.Drawing.Point(278, 37);
+            this.txtTransferNo.Name = "txtTransferNo";
+            this.txtTransferNo.Size = new System.Drawing.Size(154, 28);
+            this.txtTransferNo.TabIndex = 84;
             // 
-            // cmbDestinationRack
+            // lblTransferNo
             // 
-            this.cmbDestinationRack.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDestinationRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDestinationRack.FormattingEnabled = true;
-            this.cmbDestinationRack.Location = new System.Drawing.Point(943, 44);
-            this.cmbDestinationRack.Name = "cmbDestinationRack";
-            this.cmbDestinationRack.Size = new System.Drawing.Size(154, 27);
-            this.cmbDestinationRack.TabIndex = 91;
+            this.lblTransferNo.AutoSize = true;
+            this.lblTransferNo.Location = new System.Drawing.Point(278, 14);
+            this.lblTransferNo.Name = "lblTransferNo";
+            this.lblTransferNo.Size = new System.Drawing.Size(74, 20);
+            this.lblTransferNo.TabIndex = 78;
+            this.lblTransferNo.Text = "Transfer No.";
+            // 
+            // lblTransferDate
+            // 
+            this.lblTransferDate.AutoSize = true;
+            this.lblTransferDate.Location = new System.Drawing.Point(172, 14);
+            this.lblTransferDate.Name = "lblTransferDate";
+            this.lblTransferDate.Size = new System.Drawing.Size(82, 20);
+            this.lblTransferDate.TabIndex = 72;
+            this.lblTransferDate.Text = "Transfer Date";
+            // 
+            // lblGodown
+            // 
+            this.lblGodown.AutoSize = true;
+            this.lblGodown.Location = new System.Drawing.Point(5, 14);
+            this.lblGodown.Name = "lblGodown";
+            this.lblGodown.Size = new System.Drawing.Size(54, 20);
+            this.lblGodown.TabIndex = 71;
+            this.lblGodown.Text = "Concern";
+            // 
+            // dpTrannsferDate
+            // 
+            this.dpTrannsferDate.CustomFormat = "dd/MM/yyyy";
+            this.dpTrannsferDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpTrannsferDate.Location = new System.Drawing.Point(172, 37);
+            this.dpTrannsferDate.Name = "dpTrannsferDate";
+            this.dpTrannsferDate.Size = new System.Drawing.Size(92, 28);
+            this.dpTrannsferDate.TabIndex = 77;
+            // 
+            // cmbConcern
+            // 
+            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(5, 38);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(154, 27);
+            this.cmbConcern.TabIndex = 48;
             // 
             // grbDStockTransfer
             // 
+            this.grbDStockTransfer.Controls.Add(this.comboBox1);
+            this.grbDStockTransfer.Controls.Add(this.lblStock);
             this.grbDStockTransfer.Controls.Add(this.btnAdd);
             this.grbDStockTransfer.Controls.Add(this.txtQuantity);
             this.grbDStockTransfer.Controls.Add(this.lblQuantity);
@@ -282,43 +286,63 @@
             this.grbDStockTransfer.Controls.Add(this.lblMRP);
             this.grbDStockTransfer.Controls.Add(this.cmbMRP);
             this.grbDStockTransfer.Controls.Add(this.txtProductNamePICode);
-            this.grbDStockTransfer.Controls.Add(this.lvProductNamePICode);
             this.grbDStockTransfer.Controls.Add(this.lblProductNamePICode);
-            this.grbDStockTransfer.Location = new System.Drawing.Point(12, 89);
+            this.grbDStockTransfer.Location = new System.Drawing.Point(12, 74);
             this.grbDStockTransfer.Name = "grbDStockTransfer";
-            this.grbDStockTransfer.Size = new System.Drawing.Size(1104, 85);
+            this.grbDStockTransfer.Size = new System.Drawing.Size(1104, 76);
             this.grbDStockTransfer.TabIndex = 22;
             this.grbDStockTransfer.TabStop = false;
             // 
-            // txtProductNamePICode
+            // btnAdd
             // 
-            this.txtProductNamePICode.Location = new System.Drawing.Point(9, 43);
-            this.txtProductNamePICode.Name = "txtProductNamePICode";
-            this.txtProductNamePICode.Size = new System.Drawing.Size(297, 27);
-            this.txtProductNamePICode.TabIndex = 958810;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnAdd.Location = new System.Drawing.Point(1076, 42);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(21, 22);
+            this.btnAdd.TabIndex = 958818;
+            this.btnAdd.Text = "        ";
             // 
-            // lvProductNamePICode
+            // txtQuantity
             // 
-            this.lvProductNamePICode.Location = new System.Drawing.Point(9, 69);
-            this.lvProductNamePICode.Name = "lvProductNamePICode";
-            this.lvProductNamePICode.Size = new System.Drawing.Size(297, 56);
-            this.lvProductNamePICode.TabIndex = 958811;
-            this.lvProductNamePICode.UseCompatibleStateImageBehavior = false;
-            this.lvProductNamePICode.Visible = false;
+            this.txtQuantity.Location = new System.Drawing.Point(777, 40);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(297, 27);
+            this.txtQuantity.TabIndex = 958817;
             // 
-            // lblProductNamePICode
+            // lblQuantity
             // 
-            this.lblProductNamePICode.AutoSize = true;
-            this.lblProductNamePICode.Location = new System.Drawing.Point(9, 18);
-            this.lblProductNamePICode.Name = "lblProductNamePICode";
-            this.lblProductNamePICode.Size = new System.Drawing.Size(136, 20);
-            this.lblProductNamePICode.TabIndex = 958809;
-            this.lblProductNamePICode.Text = "Product Name/P.I-Code";
+            this.lblQuantity.AutoSize = true;
+            this.lblQuantity.Location = new System.Drawing.Point(777, 15);
+            this.lblQuantity.Name = "lblQuantity";
+            this.lblQuantity.Size = new System.Drawing.Size(56, 20);
+            this.lblQuantity.TabIndex = 958816;
+            this.lblQuantity.Text = "Quantity";
+            // 
+            // lblBatchNo
+            // 
+            this.lblBatchNo.AutoSize = true;
+            this.lblBatchNo.Location = new System.Drawing.Point(611, 14);
+            this.lblBatchNo.Name = "lblBatchNo";
+            this.lblBatchNo.Size = new System.Drawing.Size(61, 20);
+            this.lblBatchNo.TabIndex = 958815;
+            this.lblBatchNo.Text = "Batch No.";
+            // 
+            // cmbBatchNo
+            // 
+            this.cmbBatchNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBatchNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbBatchNo.FormattingEnabled = true;
+            this.cmbBatchNo.Location = new System.Drawing.Point(611, 39);
+            this.cmbBatchNo.Name = "cmbBatchNo";
+            this.cmbBatchNo.Size = new System.Drawing.Size(154, 27);
+            this.cmbBatchNo.TabIndex = 958814;
             // 
             // lblMRP
             // 
             this.lblMRP.AutoSize = true;
-            this.lblMRP.Location = new System.Drawing.Point(320, 18);
+            this.lblMRP.Location = new System.Drawing.Point(314, 15);
             this.lblMRP.Name = "lblMRP";
             this.lblMRP.Size = new System.Drawing.Size(34, 20);
             this.lblMRP.TabIndex = 958813;
@@ -329,56 +353,26 @@
             this.cmbMRP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMRP.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMRP.FormattingEnabled = true;
-            this.cmbMRP.Location = new System.Drawing.Point(320, 43);
+            this.cmbMRP.Location = new System.Drawing.Point(314, 40);
             this.cmbMRP.Name = "cmbMRP";
-            this.cmbMRP.Size = new System.Drawing.Size(216, 27);
+            this.cmbMRP.Size = new System.Drawing.Size(118, 27);
             this.cmbMRP.TabIndex = 958812;
             // 
-            // lblBatchNo
+            // txtProductNamePICode
             // 
-            this.lblBatchNo.AutoSize = true;
-            this.lblBatchNo.Location = new System.Drawing.Point(548, 18);
-            this.lblBatchNo.Name = "lblBatchNo";
-            this.lblBatchNo.Size = new System.Drawing.Size(58, 20);
-            this.lblBatchNo.TabIndex = 958815;
-            this.lblBatchNo.Text = "Batch No";
+            this.txtProductNamePICode.Location = new System.Drawing.Point(9, 40);
+            this.txtProductNamePICode.Name = "txtProductNamePICode";
+            this.txtProductNamePICode.Size = new System.Drawing.Size(297, 27);
+            this.txtProductNamePICode.TabIndex = 958810;
             // 
-            // cmbBatchNo
+            // lblProductNamePICode
             // 
-            this.cmbBatchNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbBatchNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbBatchNo.FormattingEnabled = true;
-            this.cmbBatchNo.Location = new System.Drawing.Point(548, 43);
-            this.cmbBatchNo.Name = "cmbBatchNo";
-            this.cmbBatchNo.Size = new System.Drawing.Size(216, 27);
-            this.cmbBatchNo.TabIndex = 958814;
-            // 
-            // txtQuantity
-            // 
-            this.txtQuantity.Location = new System.Drawing.Point(775, 43);
-            this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(297, 27);
-            this.txtQuantity.TabIndex = 958817;
-            // 
-            // lblQuantity
-            // 
-            this.lblQuantity.AutoSize = true;
-            this.lblQuantity.Location = new System.Drawing.Point(775, 18);
-            this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(56, 20);
-            this.lblQuantity.TabIndex = 958816;
-            this.lblQuantity.Text = "Quantity";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(1076, 45);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(21, 22);
-            this.btnAdd.TabIndex = 958818;
-            this.btnAdd.Text = "        ";
+            this.lblProductNamePICode.AutoSize = true;
+            this.lblProductNamePICode.Location = new System.Drawing.Point(9, 15);
+            this.lblProductNamePICode.Name = "lblProductNamePICode";
+            this.lblProductNamePICode.Size = new System.Drawing.Size(134, 20);
+            this.lblProductNamePICode.TabIndex = 958809;
+            this.lblProductNamePICode.Text = "Product Name/P.I Code";
             // 
             // dgvStockTransfer
             // 
@@ -402,6 +396,7 @@
             this.clmPicode,
             this.clmproductname,
             this.clmmrp,
+            this.Column1,
             this.clmbatchno,
             this.clmquantity,
             this.clmRemove});
@@ -415,7 +410,7 @@
             this.dgvStockTransfer.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvStockTransfer.EnableHeadersVisualStyles = false;
             this.dgvStockTransfer.GridColor = System.Drawing.Color.White;
-            this.dgvStockTransfer.Location = new System.Drawing.Point(12, 180);
+            this.dgvStockTransfer.Location = new System.Drawing.Point(12, 167);
             this.dgvStockTransfer.Name = "dgvStockTransfer";
             this.dgvStockTransfer.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
@@ -425,8 +420,45 @@
             this.dgvStockTransfer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvStockTransfer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvStockTransfer.ShowRowErrors = false;
-            this.dgvStockTransfer.Size = new System.Drawing.Size(1104, 410);
+            this.dgvStockTransfer.Size = new System.Drawing.Size(1104, 423);
             this.dgvStockTransfer.TabIndex = 958810;
+            // 
+            // lblRemarks
+            // 
+            this.lblRemarks.AutoSize = true;
+            this.lblRemarks.Location = new System.Drawing.Point(12, 609);
+            this.lblRemarks.Name = "lblRemarks";
+            this.lblRemarks.Size = new System.Drawing.Size(56, 20);
+            this.lblRemarks.TabIndex = 958811;
+            this.lblRemarks.Text = "Remarks";
+            // 
+            // txtRemarks
+            // 
+            this.txtRemarks.Location = new System.Drawing.Point(76, 599);
+            this.txtRemarks.Multiline = true;
+            this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.Size = new System.Drawing.Size(472, 41);
+            this.txtRemarks.TabIndex = 958812;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(444, 39);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(161, 27);
+            this.comboBox1.TabIndex = 958821;
+            // 
+            // lblStock
+            // 
+            this.lblStock.AutoSize = true;
+            this.lblStock.Location = new System.Drawing.Point(444, 16);
+            this.lblStock.Name = "lblStock";
+            this.lblStock.Size = new System.Drawing.Size(97, 20);
+            this.lblStock.TabIndex = 958822;
+            this.lblStock.Text = "Stock T.Stk-DOP";
             // 
             // clmdsno
             // 
@@ -449,9 +481,15 @@
             this.clmmrp.HeaderText = "MRP";
             this.clmmrp.Name = "clmmrp";
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Expiry Date";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
             // clmbatchno
             // 
-            this.clmbatchno.HeaderText = "Batch No";
+            this.clmbatchno.HeaderText = "Batch No.";
             this.clmbatchno.Name = "clmbatchno";
             // 
             // clmquantity
@@ -464,23 +502,6 @@
             this.clmRemove.HeaderText = "Remove";
             this.clmRemove.Name = "clmRemove";
             // 
-            // lblRemarks
-            // 
-            this.lblRemarks.AutoSize = true;
-            this.lblRemarks.Location = new System.Drawing.Point(12, 609);
-            this.lblRemarks.Name = "lblRemarks";
-            this.lblRemarks.Size = new System.Drawing.Size(56, 20);
-            this.lblRemarks.TabIndex = 958811;
-            this.lblRemarks.Text = "Remarks";
-            // 
-            // txtRemarks
-            // 
-            this.txtRemarks.Location = new System.Drawing.Point(76, 599);
-            this.txtRemarks.Multiline = true;
-            this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(472, 41);
-            this.txtRemarks.TabIndex = 958812;
-            // 
             // INV_StockTransfer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -490,10 +511,10 @@
             this.Controls.Add(this.txtRemarks);
             this.Controls.Add(this.lblRemarks);
             this.Controls.Add(this.dgvStockTransfer);
-            this.Controls.Add(this.grbDStockTransfer);
             this.Controls.Add(this.grbStockTransfer);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.grbDStockTransfer);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -539,7 +560,6 @@
         private System.Windows.Forms.GroupBox grbDStockTransfer;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.TextBox txtProductNamePICode;
-        private System.Windows.Forms.ListView lvProductNamePICode;
         private System.Windows.Forms.Label lblProductNamePICode;
         private System.Windows.Forms.Label lblMRP;
         private System.Windows.Forms.ComboBox cmbMRP;
@@ -549,14 +569,17 @@
         private System.Windows.Forms.Label lblQuantity;
         internal System.Windows.Forms.Label btnAdd;
         public System.Windows.Forms.DataGridView dgvStockTransfer;
+        private System.Windows.Forms.TextBox txtRemarks;
+        private System.Windows.Forms.Label lblRemarks;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label lblStock;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmmrp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmbatchno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmquantity;
         private System.Windows.Forms.DataGridViewButtonColumn clmRemove;
-        private System.Windows.Forms.TextBox txtRemarks;
-        private System.Windows.Forms.Label lblRemarks;
     }
 }

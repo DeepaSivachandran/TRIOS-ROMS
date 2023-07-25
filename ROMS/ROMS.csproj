@@ -1012,5 +1012,11 @@
   <ItemGroup>
     <None Include="Resources\comment.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\returns1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\returns.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

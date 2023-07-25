@@ -45,14 +45,6 @@
             this.lvProductNamePICode = new System.Windows.Forms.ListView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.dgvStockTransferList = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.dpTransferToDate = new System.Windows.Forms.DateTimePicker();
@@ -63,15 +55,27 @@
             this.cmbConcer = new System.Windows.Forms.ComboBox();
             this.btnView = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
+            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdtransferdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTransferNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdestination = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsalename = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsStockTransferList.SuspendLayout();
             this.pnlStockTransferList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStockTransferList)).BeginInit();
@@ -178,7 +182,7 @@
             // lvProductNamePICode
             // 
             this.lvProductNamePICode.HideSelection = false;
-            this.lvProductNamePICode.Location = new System.Drawing.Point(634, 59);
+            this.lvProductNamePICode.Location = new System.Drawing.Point(634, 57);
             this.lvProductNamePICode.Name = "lvProductNamePICode";
             this.lvProductNamePICode.Size = new System.Drawing.Size(340, 95);
             this.lvProductNamePICode.TabIndex = 958823;
@@ -216,11 +220,13 @@
             this.dgvStockTransferList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvStockTransferList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
+            this.Column1,
+            this.Column2,
+            this.Column3,
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -243,49 +249,8 @@
             this.dgvStockTransferList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvStockTransferList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvStockTransferList.ShowRowErrors = false;
-            this.dgvStockTransferList.Size = new System.Drawing.Size(1329, 493);
+            this.dgvStockTransferList.Size = new System.Drawing.Size(1339, 493);
             this.dgvStockTransferList.TabIndex = 958802;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Transfer Date";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Transfer No.";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Concern";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Source";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Destination";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "No. Of Items";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Total Qty";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             // 
             // grbFilterBy
             // 
@@ -399,11 +364,13 @@
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmdsno,
+            this.clmconcern,
             this.clmdtransferdate,
             this.clmTransferNo,
-            this.clmconcern,
             this.clmsource,
+            this.Column4,
             this.clmdestination,
+            this.Column5,
             this.clmdsalename,
             this.clmTotalQty});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -429,47 +396,6 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1339, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
             // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmdtransferdate
-            // 
-            this.clmdtransferdate.HeaderText = "Transfer Date";
-            this.clmdtransferdate.Name = "clmdtransferdate";
-            // 
-            // clmTransferNo
-            // 
-            this.clmTransferNo.HeaderText = "Transfer No.";
-            this.clmTransferNo.Name = "clmTransferNo";
-            // 
-            // clmconcern
-            // 
-            this.clmconcern.HeaderText = "Concern";
-            this.clmconcern.Name = "clmconcern";
-            // 
-            // clmsource
-            // 
-            this.clmsource.HeaderText = "Source";
-            this.clmsource.Name = "clmsource";
-            // 
-            // clmdestination
-            // 
-            this.clmdestination.HeaderText = "Destination";
-            this.clmdestination.Name = "clmdestination";
-            // 
-            // clmdsalename
-            // 
-            this.clmdsalename.HeaderText = "No. Of Items";
-            this.clmdsalename.Name = "clmdsalename";
-            this.clmdsalename.Width = 200;
-            // 
-            // clmTotalQty
-            // 
-            this.clmTotalQty.HeaderText = "Total Qty";
-            this.clmTotalQty.Name = "clmTotalQty";
-            // 
             // picLoader
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -483,6 +409,121 @@
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Concern";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Transfer Date";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Transfer No.";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Source Stock Location";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 150;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Source Rack Location";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 150;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Destination Stock Location";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 150;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Destination Rack Location";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Total Products";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Created by";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.Width = 200;
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmconcern
+            // 
+            this.clmconcern.HeaderText = "Concern";
+            this.clmconcern.Name = "clmconcern";
+            // 
+            // clmdtransferdate
+            // 
+            this.clmdtransferdate.HeaderText = "Transfer Date";
+            this.clmdtransferdate.Name = "clmdtransferdate";
+            // 
+            // clmTransferNo
+            // 
+            this.clmTransferNo.HeaderText = "Transfer No.";
+            this.clmTransferNo.Name = "clmTransferNo";
+            // 
+            // clmsource
+            // 
+            this.clmsource.HeaderText = "Source Stock Location";
+            this.clmsource.Name = "clmsource";
+            this.clmsource.Width = 150;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Source Ravk Location";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 150;
+            // 
+            // clmdestination
+            // 
+            this.clmdestination.HeaderText = "Destination Stock Location";
+            this.clmdestination.Name = "clmdestination";
+            this.clmdestination.Width = 150;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Destination Rack Location";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 150;
+            // 
+            // clmdsalename
+            // 
+            this.clmdsalename.HeaderText = "Total Products";
+            this.clmdsalename.Name = "clmdsalename";
+            // 
+            // clmTotalQty
+            // 
+            this.clmTotalQty.HeaderText = "Created By";
+            this.clmTotalQty.Name = "clmTotalQty";
+            this.clmTotalQty.Width = 200;
             // 
             // INV_StockTransferList
             // 
@@ -540,19 +581,23 @@
         private System.Windows.Forms.TextBox txtProductNamePICode;
         private System.Windows.Forms.ListView lvProductNamePICode;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmconcern;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdtransferdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTransferNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmconcern;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdestination;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsalename;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalQty;
     }

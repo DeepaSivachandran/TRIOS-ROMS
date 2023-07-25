@@ -64,6 +64,8 @@
             this.lblRemark = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errGroup)).BeginInit();
             this.grbgodownoutward.SuspendLayout();
             this.grpproductname.SuspendLayout();
@@ -76,6 +78,8 @@
             // 
             // grbgodownoutward
             // 
+            this.grbgodownoutward.Controls.Add(this.comboBox2);
+            this.grbgodownoutward.Controls.Add(this.label1);
             this.grbgodownoutward.Controls.Add(this.txtOutwardNo);
             this.grbgodownoutward.Controls.Add(this.cmbGodown);
             this.grbgodownoutward.Controls.Add(this.dtpoutwarddate);
@@ -94,7 +98,7 @@
             // 
             // txtOutwardNo
             // 
-            this.txtOutwardNo.Location = new System.Drawing.Point(371, 36);
+            this.txtOutwardNo.Location = new System.Drawing.Point(238, 36);
             this.txtOutwardNo.Name = "txtOutwardNo";
             this.txtOutwardNo.ReadOnly = true;
             this.txtOutwardNo.Size = new System.Drawing.Size(161, 27);
@@ -105,7 +109,7 @@
             this.cmbGodown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGodown.FormattingEnabled = true;
-            this.cmbGodown.Location = new System.Drawing.Point(115, 36);
+            this.cmbGodown.Location = new System.Drawing.Point(411, 36);
             this.cmbGodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbGodown.Name = "cmbGodown";
             this.cmbGodown.Size = new System.Drawing.Size(135, 27);
@@ -115,7 +119,7 @@
             // 
             this.dtpoutwarddate.CustomFormat = "dd/MM/yyyy";
             this.dtpoutwarddate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpoutwarddate.Location = new System.Drawing.Point(257, 36);
+            this.dtpoutwarddate.Location = new System.Drawing.Point(119, 36);
             this.dtpoutwarddate.Name = "dtpoutwarddate";
             this.dtpoutwarddate.Size = new System.Drawing.Size(107, 27);
             this.dtpoutwarddate.TabIndex = 87;
@@ -123,7 +127,7 @@
             // lblGodown
             // 
             this.lblGodown.AutoSize = true;
-            this.lblGodown.Location = new System.Drawing.Point(115, 13);
+            this.lblGodown.Location = new System.Drawing.Point(411, 12);
             this.lblGodown.Name = "lblGodown";
             this.lblGodown.Size = new System.Drawing.Size(87, 20);
             this.lblGodown.TabIndex = 86;
@@ -132,7 +136,7 @@
             // lbloutwarddate
             // 
             this.lbloutwarddate.AutoSize = true;
-            this.lbloutwarddate.Location = new System.Drawing.Point(257, 14);
+            this.lbloutwarddate.Location = new System.Drawing.Point(119, 14);
             this.lbloutwarddate.Name = "lbloutwarddate";
             this.lbloutwarddate.Size = new System.Drawing.Size(84, 20);
             this.lbloutwarddate.TabIndex = 84;
@@ -161,7 +165,7 @@
             // lbloutwardno
             // 
             this.lbloutwardno.AutoSize = true;
-            this.lbloutwardno.Location = new System.Drawing.Point(371, 14);
+            this.lbloutwardno.Location = new System.Drawing.Point(238, 14);
             this.lbloutwardno.Name = "lbloutwardno";
             this.lbloutwardno.Size = new System.Drawing.Size(76, 20);
             this.lbloutwardno.TabIndex = 68;
@@ -249,8 +253,10 @@
             // 
             // txtPoQty
             // 
+            this.txtPoQty.Enabled = false;
             this.txtPoQty.Location = new System.Drawing.Point(541, 40);
             this.txtPoQty.Name = "txtPoQty";
+            this.txtPoQty.ReadOnly = true;
             this.txtPoQty.Size = new System.Drawing.Size(69, 27);
             this.txtPoQty.TabIndex = 79;
             // 
@@ -387,6 +393,26 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click_1);
             // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(560, 36);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(135, 27);
+            this.comboBox2.TabIndex = 91;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(560, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 20);
+            this.label1.TabIndex = 90;
+            this.label1.Text = "Rack";
+            // 
             // INV_GodownOutward
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -455,5 +481,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmbatch;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label1;
     }
 }
