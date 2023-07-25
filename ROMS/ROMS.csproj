@@ -123,6 +123,12 @@
     <Compile Include="INV_DamageEntry.designer.cs">
       <DependentUpon>INV_DamageEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_POReturns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_POReturns.designer.cs">
+      <DependentUpon>PUR_POReturns.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAY_SupplierPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -598,6 +604,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV_DamageEntry.resx">
       <DependentUpon>INV_DamageEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_POReturns.resx">
+      <DependentUpon>PUR_POReturns.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_SupplierPayment.resx">
       <DependentUpon>PAY_SupplierPayment.cs</DependentUpon>
