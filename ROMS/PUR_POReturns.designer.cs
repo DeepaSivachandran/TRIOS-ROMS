@@ -35,14 +35,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_POReturns));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdGRNPODamaged = new System.Windows.Forms.DataGridView();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnOk = new System.Windows.Forms.Button();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRNPODamaged)).BeginInit();
             this.SuspendLayout();
@@ -94,46 +92,9 @@
             this.grdGRNPODamaged.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdGRNPODamaged.RowTemplate.Height = 25;
             this.grdGRNPODamaged.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdGRNPODamaged.Size = new System.Drawing.Size(736, 348);
+            this.grdGRNPODamaged.Size = new System.Drawing.Size(618, 348);
             this.grdGRNPODamaged.TabIndex = 1111144;
             this.grdGRNPODamaged.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNPODamaged_CellContentClick);
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "View";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.view;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(638, 361);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(69, 33);
-            this.btnClose.TabIndex = 10;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            // 
-            // btnOk
-            // 
-            this.btnOk.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOk.Image = global::ROMS.Properties.Resources.approve;
-            this.btnOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOk.Location = new System.Drawing.Point(565, 361);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(69, 33);
-            this.btnOk.TabIndex = 9;
-            this.btnOk.Text = "Ok";
-            this.btnOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOk.UseVisualStyleBackColor = true;
             // 
             // clmsno
             // 
@@ -169,15 +130,21 @@
             this.clmTotalProduct.Name = "clmTotalProduct";
             this.clmTotalProduct.ReadOnly = true;
             // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "View";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.view;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // PUR_POReturns
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(757, 403);
+            this.ClientSize = new System.Drawing.Size(641, 364);
             this.Controls.Add(this.grdGRNPODamaged);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.btnOk);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -197,8 +164,6 @@
 
         #endregion
         private System.Windows.Forms.ErrorProvider errUnit;
-        private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.DataGridView grdGRNPODamaged;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceDate;

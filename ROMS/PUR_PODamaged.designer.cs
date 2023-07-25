@@ -127,7 +127,7 @@
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "Type ( Excess / Damage )";
+            this.Column1.HeaderText = "Reason";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Width = 150;

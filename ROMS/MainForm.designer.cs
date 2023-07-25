@@ -161,7 +161,7 @@ namespace ROMS
             // 
             this.tsmGRN.Name = "tsmGRN";
             this.tsmGRN.Size = new System.Drawing.Size(180, 22);
-            this.tsmGRN.Text = "Goods Receipt";
+            this.tsmGRN.Text = "Goods Received Note";
             this.tsmGRN.Click += new System.EventHandler(this.TsmGRN_Click);
             // 
             // tsmPurchaseEntry
@@ -246,7 +246,7 @@ namespace ROMS
             // supplierPaymentToolStripMenuItem
             // 
             this.supplierPaymentToolStripMenuItem.Name = "supplierPaymentToolStripMenuItem";
-            this.supplierPaymentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.supplierPaymentToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.supplierPaymentToolStripMenuItem.Text = "Supplier Payment";
             this.supplierPaymentToolStripMenuItem.Click += new System.EventHandler(this.SupplierPaymentToolStripMenuItem_Click);
             // 
