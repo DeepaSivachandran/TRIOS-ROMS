@@ -48,7 +48,6 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS = new DataSet();
-                   // objDS = objspservice.udfnSPGroupList("EditLoad", vargroupcode, "0", MainForm.pbUserID, MainForm.pbIpAddress);
                     objspservice.CloseConnection();
 
                     if (objDS != null)
@@ -68,7 +67,6 @@ namespace ROMS
                             btnSave.Text = "Update";
                         }
                     }
-
                 }
                 else {// udfnLoadSlNo(); 
                 }
@@ -311,6 +309,29 @@ namespace ROMS
             try
             {
                 udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbTransactionType.SelectedItem == "Regular")
+                {
+                    grpproductname.Enabled = false; 
+                    DGV_inward.Columns["clmBatch"].Width = 0;
+                }
+                else
+                {
+
+                    DGV_inward.Columns["clmBatch"].Width = 100;
+                    grpproductname.Enabled = true;
+                }
             }
             catch (Exception ex)
             {

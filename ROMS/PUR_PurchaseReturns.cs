@@ -71,5 +71,24 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbType.SelectedItem == "Damage")
+            {
+                txtProductName.Enabled = false;
+                txtpurchaseRate.Enabled = false;
+                txtActualQty.Enabled = false; 
+                btnAdd.Enabled = false;
+            }
+            else
+            {
+                txtProductName.Enabled = true;
+                txtpurchaseRate.Enabled = true;
+                txtActualQty.Enabled = true;
+                btnAdd.Enabled = true;
+
+            }
+        }
     }
 }

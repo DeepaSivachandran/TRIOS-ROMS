@@ -81,5 +81,15 @@ namespace ROMS
         {
 
         }
+
+        private void LblMrp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtMrp_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

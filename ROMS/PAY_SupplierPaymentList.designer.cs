@@ -54,6 +54,8 @@
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.pnlbrand = new System.Windows.Forms.Panel();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
+            this.dpTo = new System.Windows.Forms.DateTimePicker();
+            this.lblTo = new System.Windows.Forms.Label();
             this.txtDay = new System.Windows.Forms.TextBox();
             this.lblDSupplier = new System.Windows.Forms.Label();
             this.dtpoutwarddate = new System.Windows.Forms.DateTimePicker();
@@ -61,8 +63,6 @@
             this.lblDConcern = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.cmbconcern = new System.Windows.Forms.ComboBox();
-            this.dpTo = new System.Windows.Forms.DateTimePicker();
-            this.lblTo = new System.Windows.Forms.Label();
             this.tsSupplierPaymentList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupllierPaymentList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
@@ -348,14 +348,32 @@
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
             this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterBy.Size = new System.Drawing.Size(988, 67);
+            this.grbFilterBy.Size = new System.Drawing.Size(1004, 67);
             this.grbFilterBy.TabIndex = 958802;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By ";
             // 
+            // dpTo
+            // 
+            this.dpTo.CustomFormat = "dd/MM/yyyy";
+            this.dpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpTo.Location = new System.Drawing.Point(495, 23);
+            this.dpTo.Name = "dpTo";
+            this.dpTo.Size = new System.Drawing.Size(104, 27);
+            this.dpTo.TabIndex = 958814;
+            // 
+            // lblTo
+            // 
+            this.lblTo.AutoSize = true;
+            this.lblTo.Location = new System.Drawing.Point(471, 26);
+            this.lblTo.Name = "lblTo";
+            this.lblTo.Size = new System.Drawing.Size(21, 20);
+            this.lblTo.TabIndex = 958813;
+            this.lblTo.Text = "To";
+            // 
             // txtDay
             // 
-            this.txtDay.Location = new System.Drawing.Point(650, 25);
+            this.txtDay.Location = new System.Drawing.Point(667, 23);
             this.txtDay.MaxLength = 2;
             this.txtDay.Name = "txtDay";
             this.txtDay.Size = new System.Drawing.Size(235, 27);
@@ -364,7 +382,7 @@
             // lblDSupplier
             // 
             this.lblDSupplier.AutoSize = true;
-            this.lblDSupplier.Location = new System.Drawing.Point(594, 28);
+            this.lblDSupplier.Location = new System.Drawing.Point(611, 26);
             this.lblDSupplier.Name = "lblDSupplier";
             this.lblDSupplier.Size = new System.Drawing.Size(54, 20);
             this.lblDSupplier.TabIndex = 958811;
@@ -374,7 +392,7 @@
             // 
             this.dtpoutwarddate.CustomFormat = "dd/MM/yyyy";
             this.dtpoutwarddate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpoutwarddate.Location = new System.Drawing.Point(339, 25);
+            this.dtpoutwarddate.Location = new System.Drawing.Point(356, 23);
             this.dtpoutwarddate.Name = "dtpoutwarddate";
             this.dtpoutwarddate.Size = new System.Drawing.Size(104, 27);
             this.dtpoutwarddate.TabIndex = 93;
@@ -382,7 +400,7 @@
             // lblTransactiondate
             // 
             this.lblTransactiondate.AutoSize = true;
-            this.lblTransactiondate.Location = new System.Drawing.Point(206, 28);
+            this.lblTransactiondate.Location = new System.Drawing.Point(223, 26);
             this.lblTransactiondate.Name = "lblTransactiondate";
             this.lblTransactiondate.Size = new System.Drawing.Size(130, 20);
             this.lblTransactiondate.TabIndex = 92;
@@ -392,7 +410,7 @@
             // 
             this.lblDConcern.AutoSize = true;
             this.lblDConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lblDConcern.Location = new System.Drawing.Point(17, 28);
+            this.lblDConcern.Location = new System.Drawing.Point(26, 26);
             this.lblDConcern.Name = "lblDConcern";
             this.lblDConcern.Size = new System.Drawing.Size(54, 20);
             this.lblDConcern.TabIndex = 36;
@@ -402,7 +420,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(898, 25);
+            this.btnView.Location = new System.Drawing.Point(915, 22);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 4;
@@ -414,28 +432,10 @@
             // 
             this.cmbconcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbconcern.FormattingEnabled = true;
-            this.cmbconcern.Location = new System.Drawing.Point(74, 25);
+            this.cmbconcern.Location = new System.Drawing.Point(91, 23);
             this.cmbconcern.Name = "cmbconcern";
             this.cmbconcern.Size = new System.Drawing.Size(122, 27);
             this.cmbconcern.TabIndex = 2;
-            // 
-            // dpTo
-            // 
-            this.dpTo.CustomFormat = "dd/MM/yyyy";
-            this.dpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpTo.Location = new System.Drawing.Point(478, 25);
-            this.dpTo.Name = "dpTo";
-            this.dpTo.Size = new System.Drawing.Size(104, 27);
-            this.dpTo.TabIndex = 958814;
-            // 
-            // lblTo
-            // 
-            this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(454, 28);
-            this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(21, 20);
-            this.lblTo.TabIndex = 958813;
-            this.lblTo.Text = "To";
             // 
             // PAY_SupplierPaymentList
             // 

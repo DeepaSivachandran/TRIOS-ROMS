@@ -29,15 +29,14 @@ namespace ROMS
         {
             try
             {
+                MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
 
-                MainForm.objINV_Inward = new INV_Inward();
-                MainForm.objINV_Inward.btnSave.Text = "Update";
-
-                MainForm.objINV_Inward.Show();
-                //GroupBox objgrbgodown = new GroupBox();
-                // objgrbgodown.Visible = false;
-
-
+                MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
+                //MainForm.objINV_Inward.StartPosition = FormStartPosition.Manual;
+                //int dialogX = this.Location.X + (this.Width - MainForm.objINV_Inward.Width) / 2;
+                //int dialogY = this.Location.Y + (this.Height - MainForm.objINV_Inward.Height + 100) / 2;
+                //MainForm.objINV_Inward.Location = new Point(dialogX, dialogY);
+                MainForm.objINV_InwardPurchase.Show();
             }
             catch (Exception ex)
             {
@@ -523,22 +522,7 @@ namespace ROMS
 
         private void TsbNew_Click_1(object sender, EventArgs e)
         {
-            try
-            {
-                MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
-
-                MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
-                //MainForm.objINV_Inward.StartPosition = FormStartPosition.Manual;
-                //int dialogX = this.Location.X + (this.Width - MainForm.objINV_Inward.Width) / 2;
-                //int dialogY = this.Location.Y + (this.Height - MainForm.objINV_Inward.Height + 100) / 2;
-                //MainForm.objINV_Inward.Location = new Point(dialogX, dialogY);
-                MainForm.objINV_InwardPurchase.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+           
         }
 
         private void CmbDateType_SelectedIndexChanged(object sender, EventArgs e)

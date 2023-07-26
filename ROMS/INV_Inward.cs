@@ -54,13 +54,11 @@ namespace ROMS
         {
             if (btnSave.Text == "Save")
             {
-                grpproductname.Visible = true;
-                txtsuppliername.Enabled = true;
+                grpproductname.Visible = true; 
                 
             }
             else {
-                grpproductname.Visible = false;
-                txtsuppliername.Enabled = false;
+                grpproductname.Visible = false; 
                 //cmbPoNo.Enabled = false; 
             }
         }

@@ -374,5 +374,35 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void BtnView_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnUpdatePasskey_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtGenratePasskey.PasswordChar == '\0')  
+                {
+                    txtGenratePasskey.PasswordChar = '*';
+                    this.btnUpdatePasskey.Image = global::ROMS.Properties.Resources.close_eye;
+                    this.btnUpdatePasskey.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                }
+                else
+                {
+                    txtGenratePasskey.PasswordChar = '\0'; 
+                    this.btnUpdatePasskey.Image = global::ROMS.Properties.Resources.view_eye;
+                    this.btnUpdatePasskey.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+           
+        }
     }
 }
