@@ -362,7 +362,7 @@
             this.lvSupplier.HideSelection = false;
             this.lvSupplier.Location = new System.Drawing.Point(142, 1);
             this.lvSupplier.Name = "lvSupplier";
-            this.lvSupplier.Size = new System.Drawing.Size(396, 63);
+            this.lvSupplier.Size = new System.Drawing.Size(396, 81);
             this.lvSupplier.TabIndex = 1111147;
             this.lvSupplier.UseCompatibleStateImageBehavior = false;
             this.lvSupplier.Visible = false;
