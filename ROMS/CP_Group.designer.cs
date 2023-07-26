@@ -41,10 +41,10 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtEGroupNameEnglish = new System.Windows.Forms.TextBox();
-            this.errGroup = new System.Windows.Forms.ErrorProvider(this.components);
+            this.eppGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errGroup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eppGroup)).BeginInit();
             this.SuspendLayout();
             // 
             // grbform
@@ -62,7 +62,6 @@
             this.grbform.Size = new System.Drawing.Size(552, 160);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
-            this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
             // 
             // txtDProductGroupNameTamil
             // 
@@ -123,7 +122,6 @@
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
-            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             // 
             // rbInactive
             // 
@@ -135,8 +133,6 @@
             this.rbInactive.TabIndex = 3;
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
-            this.rbInactive.CheckedChanged += new System.EventHandler(this.RbInactive_CheckedChanged);
-            this.rbInactive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInactive_KeyDown);
             // 
             // txtDProductGroupNameEnglish
             // 
@@ -162,10 +158,9 @@
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
-            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
-            this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
             // 
             // btnSave
             // 
@@ -179,10 +174,9 @@
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
-            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
-            this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // txtEGroupNameEnglish
             // 
@@ -192,13 +186,13 @@
             this.txtEGroupNameEnglish.Name = "txtEGroupNameEnglish";
             this.txtEGroupNameEnglish.Size = new System.Drawing.Size(288, 27);
             this.txtEGroupNameEnglish.TabIndex = 0;
-            this.txtEGroupNameEnglish.Enter += new System.EventHandler(this.txtEGroupNameEnglish_Enter);
-            this.txtEGroupNameEnglish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEGroupNameEnglish_KeyDown);
-            this.txtEGroupNameEnglish.Leave += new System.EventHandler(this.txtEGroupNameEnglish_Leave);
+            this.txtEGroupNameEnglish.Enter += new System.EventHandler(this.TxtEGroupNameEnglish_Enter);
+            this.txtEGroupNameEnglish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEGroupNameEnglish_KeyDown_1);
+            this.txtEGroupNameEnglish.Leave += new System.EventHandler(this.TxtEGroupNameEnglish_Leave);
             // 
-            // errGroup
+            // eppGroup
             // 
-            this.errGroup.ContainerControl = this;
+            this.eppGroup.ContainerControl = this;
             // 
             // CP_Group
             // 
@@ -217,29 +211,30 @@
             this.Name = "CP_Group";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product Group";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Group_FormClosing_1);
             this.Load += new System.EventHandler(this.CP_Group_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Group_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Group_KeyDown_1);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errGroup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eppGroup)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbform;
         private System.Windows.Forms.TextBox txtDProductGroupNameEnglish;
         private System.Windows.Forms.TextBox txtEGroupNameEnglish;
-        private System.Windows.Forms.ErrorProvider errGroup;
+        private System.Windows.Forms.ErrorProvider eppGroup;
         private System.Windows.Forms.TextBox txtDStatus;
         private System.Windows.Forms.Panel pnlStatus;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.TextBox txtDProductGroupNameTamil;
         private System.Windows.Forms.TextBox txtEGroupNameTamil;
+        public System.Windows.Forms.Button btnSave;
     }
 }

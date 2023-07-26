@@ -41,10 +41,10 @@
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInActive = new System.Windows.Forms.RadioButton();
-            this.errCity = new System.Windows.Forms.ErrorProvider(this.components);
+            this.eppCity = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errCity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eppCity)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDCityName
@@ -72,7 +72,6 @@
             this.txtDStateName.Size = new System.Drawing.Size(122, 28);
             this.txtDStateName.TabIndex = 7;
             this.txtDStateName.Text = "State Name";
-            this.txtDStateName.TextChanged += new System.EventHandler(this.TxtDEBrandName_TextChanged);
             // 
             // grbform
             // 
@@ -84,6 +83,7 @@
             this.grbform.Controls.Add(this.txtDCityName);
             this.grbform.Controls.Add(this.txtDStateName);
             this.grbform.Controls.Add(this.pnlStatus);
+            this.grbform.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.grbform.Location = new System.Drawing.Point(13, 14);
             this.grbform.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grbform.Name = "grbform";
@@ -91,45 +91,50 @@
             this.grbform.Size = new System.Drawing.Size(437, 215);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
-            this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
             // 
             // cmbState
             // 
-            this.cmbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbState.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbState.FormattingEnabled = true;
             this.cmbState.Location = new System.Drawing.Point(159, 46);
             this.cmbState.Name = "cmbState";
             this.cmbState.Size = new System.Drawing.Size(240, 27);
-            this.cmbState.TabIndex = 63;
+            this.cmbState.TabIndex = 0;
+            this.cmbState.SelectedIndexChanged += new System.EventHandler(this.CmbState_SelectedIndexChanged);
+            this.cmbState.Enter += new System.EventHandler(this.CmbState_Enter);
+            this.cmbState.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbState_KeyDown);
+            this.cmbState.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbState_KeyPress);
+            this.cmbState.Leave += new System.EventHandler(this.CmbState_Leave);
             // 
             // txtCityName
             // 
-            this.txtCityName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCityName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtCityName.Location = new System.Drawing.Point(159, 73);
             this.txtCityName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtCityName.MaxLength = 100;
             this.txtCityName.Multiline = true;
             this.txtCityName.Name = "txtCityName";
             this.txtCityName.Size = new System.Drawing.Size(240, 28);
-            this.txtCityName.TabIndex = 61;
+            this.txtCityName.TabIndex = 1;
+            this.txtCityName.Enter += new System.EventHandler(this.TxtCityName_Enter);
+            this.txtCityName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCityName_KeyDown);
+            this.txtCityName.Leave += new System.EventHandler(this.TxtCityName_Leave);
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(325, 146);
+            this.btnClose.Location = new System.Drawing.Point(318, 146);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(74, 33);
+            this.btnClose.Size = new System.Drawing.Size(81, 33);
             this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
-            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
             // btnSave
@@ -137,17 +142,17 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(245, 146);
+            this.btnSave.Location = new System.Drawing.Point(234, 146);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(74, 33);
+            this.btnSave.Size = new System.Drawing.Size(81, 33);
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
-            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
+          
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
             // txtStatus
@@ -162,7 +167,6 @@
             this.txtStatus.Size = new System.Drawing.Size(122, 28);
             this.txtStatus.TabIndex = 8;
             this.txtStatus.Text = "Status";
-            this.txtStatus.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // pnlStatus
             // 
@@ -172,7 +176,7 @@
             this.pnlStatus.Location = new System.Drawing.Point(159, 101);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(240, 28);
-            this.pnlStatus.TabIndex = 64;
+            this.pnlStatus.TabIndex = 2;
             // 
             // rbActive
             // 
@@ -182,7 +186,7 @@
             this.rbActive.Location = new System.Drawing.Point(44, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
-            this.rbActive.TabIndex = 15;
+            this.rbActive.TabIndex = 2;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -194,14 +198,13 @@
             this.rbInActive.Location = new System.Drawing.Point(122, 1);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(70, 24);
-            this.rbInActive.TabIndex = 15;
+            this.rbInActive.TabIndex = 3;
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
-            this.rbInActive.CheckedChanged += new System.EventHandler(this.RbInActive_CheckedChanged);
             // 
-            // errCity
+            // eppCity
             // 
-            this.errCity.ContainerControl = this;
+            this.eppCity.ContainerControl = this;
             // 
             // CP_City
             // 
@@ -220,14 +223,14 @@
             this.Name = "CP_City";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "City Details";
-            this.Load += new System.EventHandler(this.CP_Brand_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Brand_KeyDown);
-            this.Leave += new System.EventHandler(this.CP_Brand_Leave);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_City_FormClosing);
+            this.Load += new System.EventHandler(this.CP_City_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_City_KeyDown);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errCity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eppCity)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -236,15 +239,15 @@
 
         private System.Windows.Forms.TextBox txtDCityName;
         private System.Windows.Forms.TextBox txtDStateName;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbform;
-        private System.Windows.Forms.ErrorProvider errCity;
+        private System.Windows.Forms.ErrorProvider eppCity;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.RadioButton rbInActive;
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.TextBox txtCityName;
         private System.Windows.Forms.ComboBox cmbState;
         private System.Windows.Forms.Panel pnlStatus;
+        public System.Windows.Forms.Button btnSave;
     }
 }

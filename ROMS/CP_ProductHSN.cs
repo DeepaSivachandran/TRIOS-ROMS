@@ -39,26 +39,17 @@ namespace ROMS
             InitializeComponent();
         }
 
-        private void txtCompanyName_Enter(object sender, EventArgs e)
+        private void CP_ProductHSN_Load(object sender, EventArgs e)
         {
             try
-            {
-                txtHSNName.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtCompanyName_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
+            { 
+                if (btnSave.Text == "Save")
                 {
-                    txtHSNCode.Focus();
+                    pnlStatus.Enabled = false;
+                }
+                else
+                {
+                    pnlStatus.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -66,55 +57,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void txtCompanyName_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtHSNName.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtShortName_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtHSNCode.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtShortName_KeyDown(object sender, KeyEventArgs e)
-        { 
-        }
-
-        private void txtShortName_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtHSNCode.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-         
- 
-        private void btnSave_Click(object sender, EventArgs e)
-        { 
-        }
+}
 
         private void btnSave_Enter(object sender, EventArgs e)
         {
@@ -129,56 +72,11 @@ namespace ROMS
             }
         }
 
-        private void btnSave_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void udfnclear()
-        {
-            try
-            {
-                txtHSNName.Text = "";
-                txtHSNCode.Text = ""; 
-                btnSave.Text = "Save";
-                txtHSNName.Focus();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void btnSave_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                btnSave.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         public void udfnclose()
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
+              this.Close();   
             }
             catch (Exception ex)
             {
@@ -191,7 +89,7 @@ namespace ROMS
             try
             {
                 udfnclose();
-               // MainForm.objCP_CompanyList.udfnList();
+              
             }
             catch (Exception ex)
             {
@@ -213,18 +111,7 @@ namespace ROMS
             }
         }
 
-        private void btnClose_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+       
 
         private void btnClose_Leave(object sender, EventArgs e)
         {
@@ -239,55 +126,31 @@ namespace ROMS
             }
         }
 
-        private void CP_Company_Load(object sender, EventArgs e)
+        private void TxtHSNName_Enter(object sender, EventArgs e)
         {
             try
             {
-                this.ActiveControl = txtHSNName;
-                udfnLoadState();
-                udfnEdit();
+                txtHSNName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
-            {
-
-            }
         }
 
-
-        private void udfnEdit()
+        private void TxtHSNName_Leave(object sender, EventArgs e)
         {
             try
             {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
-
-        private void txtContactNumber_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objvalidation.CheckNumeric(e);
-                if (varResult == true)
+                if (txtHSNName.Text.Trim() == "")
                 {
-                    e.Handled = true;
+                    eppHsn.SetError(txtHSNName, "Please Enter HSN Name.");
+                    txtHSNName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                 }
                 else
                 {
-                    e.Handled = false;
+                    txtHSNName.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -295,25 +158,48 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
-            {
-
-            }
-
         }
 
-        private void txtAContactNumber_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtHSNName_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                bool varResult = objvalidation.CheckNumeric(e);
-                if (varResult == true)
+                if (e.KeyCode == Keys.Enter)
                 {
-                    e.Handled = true;
+                    txtHSNCode.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtHSNCode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtHSNCode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtHSNCode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtHSNCode.Text.Trim() == "")
+                {
+                    eppHsn.SetError(txtHSNCode, "Please Enter HSN Code.");
+                    txtHSNCode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                 }
                 else
                 {
-                    e.Handled = false;
+                    txtHSNCode.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -323,23 +209,15 @@ namespace ROMS
             }
         }
 
-        private void CP_Company_Leave(object sender, EventArgs e)
+        private void TxtHSNCode_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                tpContactNo.Active = false;
-                tpAltContactNo.Active = false;
-                tpemail.Active = false;
-                tpgstin.Active = false;
-                tpfssai.Active = false;
-                tpplno.Active = false;
-                tpcompanyname.Active = false;
-                tpshortname.Active = false;
-
-
-               
-                  
-             }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbGST.Focus();
+                }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -347,7 +225,128 @@ namespace ROMS
             }
         }
 
-        private void CP_Company_KeyDown(object sender, KeyEventArgs e)
+        private void CmbGST_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbGST_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BeginInvoke(new Action(() => cmbGST.Select(int.MaxValue, 0)));
+        }
+
+        private void CmbGST_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbGST.BackColor = Color.Yellow;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbGST_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbGST.SelectedValue) != "0")
+                {
+                    eppHsn.SetError(cmbGST, "Please Select GST.");
+                }
+                else
+                {
+                    cmbGST.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbGST_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                pnlStatus.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_ProductHSN_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    e.Cancel = false;
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                eppHsn.Clear();
+                if (txtHSNName.Text!="" && txtHSNCode.Text!="" && Convert.ToString(cmbGST.SelectedValue) != "0" )
+                {
+                    MessageBox.Show("", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    if (txtHSNName.Text.Trim() == "")
+                    {
+                        eppHsn.SetError(txtHSNName, "Please Enter HSN Name.");
+                        txtHSNName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    }
+                    if (txtHSNCode.Text.Trim() == "")
+                    {
+                        eppHsn.SetError(txtHSNCode, "Please Enter HSN Code.");
+                        txtHSNCode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    }
+                    if (Convert.ToString(cmbGST.SelectedValue) != "0")
+                    {
+                        eppHsn.SetError(cmbGST, "Please Select GST.");
+                    }
+                   
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CP_ProductHSN_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -357,7 +356,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
-                    btnSave_Click(sender, e);
+                    BtnSave_Click(sender, e);
                 }
             }
             catch (Exception ex)
@@ -366,19 +365,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
-        public void udfnLoadState()
-        {
-            try
-            { 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
     }
 }
 

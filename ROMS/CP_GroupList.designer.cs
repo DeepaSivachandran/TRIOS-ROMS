@@ -76,6 +76,7 @@
             this.tsGroupList.Size = new System.Drawing.Size(1354, 27);
             this.tsGroupList.TabIndex = 35;
             this.tsGroupList.Text = "Group";
+            this.tsGroupList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TsGroupList_KeyDown);
             // 
             // tspHeader
             // 
