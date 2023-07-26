@@ -34,13 +34,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_POReturns));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.grdGRNPODamaged = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRNPODamaged)).BeginInit();
             this.SuspendLayout();
@@ -48,6 +49,14 @@
             // errUnit
             // 
             this.errUnit.ContainerControl = this;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "View";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.view;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // grdGRNPODamaged
             // 
@@ -72,7 +81,8 @@
             this.clmInvoiceDate,
             this.clmInvoiceNo,
             this.Column1,
-            this.clmTotalProduct});
+            this.clmTotalProduct,
+            this.Column2});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -83,7 +93,7 @@
             this.grdGRNPODamaged.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdGRNPODamaged.EnableHeadersVisualStyles = false;
             this.grdGRNPODamaged.GridColor = System.Drawing.Color.White;
-            this.grdGRNPODamaged.Location = new System.Drawing.Point(12, 7);
+            this.grdGRNPODamaged.Location = new System.Drawing.Point(15, 8);
             this.grdGRNPODamaged.Name = "grdGRNPODamaged";
             this.grdGRNPODamaged.ReadOnly = true;
             this.grdGRNPODamaged.RowHeadersVisible = false;
@@ -92,9 +102,8 @@
             this.grdGRNPODamaged.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdGRNPODamaged.RowTemplate.Height = 25;
             this.grdGRNPODamaged.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdGRNPODamaged.Size = new System.Drawing.Size(618, 348);
-            this.grdGRNPODamaged.TabIndex = 1111144;
-            this.grdGRNPODamaged.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNPODamaged_CellContentClick);
+            this.grdGRNPODamaged.Size = new System.Drawing.Size(711, 348);
+            this.grdGRNPODamaged.TabIndex = 1111145;
             // 
             // clmsno
             // 
@@ -119,7 +128,7 @@
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "Type ( Damage / Excess)";
+            this.Column1.HeaderText = "Reason";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Width = 200;
@@ -130,20 +139,18 @@
             this.clmTotalProduct.Name = "clmTotalProduct";
             this.clmTotalProduct.ReadOnly = true;
             // 
-            // dataGridViewImageColumn1
+            // Column2
             // 
-            this.dataGridViewImageColumn1.HeaderText = "View";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.view;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column2.HeaderText = "Total Value";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             // 
             // PUR_POReturns
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(641, 364);
+            this.ClientSize = new System.Drawing.Size(738, 364);
             this.Controls.Add(this.grdGRNPODamaged);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -164,12 +171,13 @@
 
         #endregion
         private System.Windows.Forms.ErrorProvider errUnit;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         public System.Windows.Forms.DataGridView grdGRNPODamaged;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalProduct;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
