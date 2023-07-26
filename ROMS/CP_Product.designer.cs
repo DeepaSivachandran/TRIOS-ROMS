@@ -1072,7 +1072,7 @@
             this.txtDPurchaseLocation.Size = new System.Drawing.Size(131, 27);
             this.txtDPurchaseLocation.TabIndex = 12;
             this.txtDPurchaseLocation.TabStop = false;
-            this.txtDPurchaseLocation.Text = "Godown / Shop";
+            this.txtDPurchaseLocation.Text = "Stock Location";
             // 
             // grbSalesStockLocation
             // 
@@ -1108,7 +1108,7 @@
             this.txtDSalesGodown.Size = new System.Drawing.Size(131, 27);
             this.txtDSalesGodown.TabIndex = 12;
             this.txtDSalesGodown.TabStop = false;
-            this.txtDSalesGodown.Text = "Godown / Shop";
+            this.txtDSalesGodown.Text = "Stock Location";
             // 
             // txtDSalesShop
             // 
