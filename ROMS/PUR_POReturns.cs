@@ -50,46 +50,13 @@ namespace ROMS
         {
             try
             {
-                string[] item = new string[30];
-                ListViewItem listitem = new ListViewItem(); DataTable dataTable = new DataTable();
-                dataTable.Columns.Add("s.no", typeof(string));
-                dataTable.Columns.Add("invoiceno", typeof(string));
-                dataTable.Columns.Add("invoicedate", typeof(string));
-                dataTable.Columns.Add("Totalproduct", typeof(string)); 
-                dataTable.Rows.Add("1","1234","19/07/2023","20");
-                //dataTable.Rows.Add("Tuesday");
-                // dataTable.Rows.Add("Wednesday");
-                //dataTable.Rows.Add("Thursday");
-                //dataTable.Rows.Add("Friday");
-                //dataTable.Rows.Add("Saturday");
-                //dataTable.Rows.Add("Sunday");
-
-
-                for (int i = 0; i < dataTable.Rows.Count; i++)
-                {
-                    string sno = dataTable.Rows[i]["s.no"].ToString();
-                    string invoiceno = dataTable.Rows[i]["invoiceno"].ToString();
-                    string invoicedate = dataTable.Rows[i]["invoicedate"].ToString();
-                    string totalproduct = dataTable.Rows[i]["Totalproduct"].ToString();
-
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(grdGRNPODamaged);
-                    row.Cells[1].Value = sno;
-                    row.Cells[3].Value = invoiceno;
-                    row.Cells[2].Value = invoicedate;
-                    row.Cells[4].Value = "Damage";
-                    row.Cells[5].Value = totalproduct; 
-                    grdGRNPODamaged.Rows.Add(row);
-                }
+                grdGRNPODamaged.Rows.Add("1", "1234", "19/07/2023", "20");
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
-
-            // grddays.DataSource = dataTable;
         }
 
         private void PUR_POReturns_Load(object sender, EventArgs e)

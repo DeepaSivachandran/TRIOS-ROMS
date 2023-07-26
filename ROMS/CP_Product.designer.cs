@@ -322,7 +322,7 @@
             // 
             // label3
             // 
-            this.label3.Image = global::ROMS.Properties.Resources.plus;
+            this.label3.Image = global::ROMS.Properties.Resources.New;
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label3.Location = new System.Drawing.Point(251, 269);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -333,7 +333,7 @@
             // 
             // label2
             // 
-            this.label2.Image = global::ROMS.Properties.Resources.plus;
+            this.label2.Image = global::ROMS.Properties.Resources.New;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label2.Location = new System.Drawing.Point(502, 241);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -344,7 +344,7 @@
             // 
             // label1
             // 
-            this.label1.Image = global::ROMS.Properties.Resources.plus;
+            this.label1.Image = global::ROMS.Properties.Resources.New;
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label1.Location = new System.Drawing.Point(502, 214);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -355,7 +355,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.New;
             this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnAdd.Location = new System.Drawing.Point(502, 187);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);

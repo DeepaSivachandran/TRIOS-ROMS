@@ -141,7 +141,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.New;
             this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnAdd.Location = new System.Drawing.Point(426, 22);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
