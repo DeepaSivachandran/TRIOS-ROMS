@@ -633,9 +633,9 @@
             "--Select--",
             "Damage",
             "Excess"});
-            this.cmbType.Location = new System.Drawing.Point(988, 17);
+            this.cmbType.Location = new System.Drawing.Point(1011, 17);
             this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(148, 27);
+            this.cmbType.Size = new System.Drawing.Size(134, 27);
             this.cmbType.TabIndex = 1111168;
             // 
             // label2
@@ -644,9 +644,9 @@
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(948, 19);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 20);
+            this.label2.Size = new System.Drawing.Size(48, 20);
             this.label2.TabIndex = 1111169;
-            this.label2.Text = "Type";
+            this.label2.Text = "Reason";
             // 
             // txtgrnno
             // 
