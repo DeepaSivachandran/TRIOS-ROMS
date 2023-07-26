@@ -100,7 +100,7 @@
             this.grdGRNPODamaged.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGRNPODamaged.Size = new System.Drawing.Size(736, 348);
             this.grdGRNPODamaged.TabIndex = 1111144;
-            this.grdGRNPODamaged.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGRNPODamaged_CellContentClick);
+            this.grdGRNPODamaged.DoubleClick += new System.EventHandler(this.GrdGRNPODamaged_DoubleClick);
             // 
             // chkdays
             // 

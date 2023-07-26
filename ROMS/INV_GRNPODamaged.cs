@@ -46,33 +46,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void GrdGRNPODamaged_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            try
-            {
-                MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
-                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-
-            }
-            /*
-            this.grdGRNPODamaged.Rows.Add("five", "six", "seven", "eight");
-            this.grdGRNPODamaged.Rows.Insert(1, "1234", "19/08/2023", "20", "View");
-            DataGridViewRow row = (DataGridViewRow)grdGRNPODamaged.Rows[0].Clone();
-            row.Cells[0].Value = 1;
-            row.Cells[1].Value = 1234;
-            row.Cells[2].Value = 19 / 07 / 2023;
-            row.Cells[3].Value = 20;
-            row.Cells[4].Value ="";
-            grdGRNPODamaged.Rows.Add(row);
-            */
-        }
         private void BindDataGrid()
         {
             try
@@ -122,6 +95,21 @@ namespace ROMS
         private void INV_GRNPODamaged_Load(object sender, EventArgs e)
         {
             BindDataGrid();
+        }
+
+        private void GrdGRNPODamaged_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_PurchaseOrderDamage = new PUR_PurchaseOrderDamage();
+                MainForm.objPUR_PurchaseOrderDamage.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
         }
     }
 }

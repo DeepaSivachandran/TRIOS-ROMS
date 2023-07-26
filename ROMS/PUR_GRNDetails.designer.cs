@@ -934,6 +934,7 @@
             // 
             // btnVerify1
             // 
+            this.btnVerify1.Enabled = false;
             this.btnVerify1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnVerify1.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify1.Image")));
             this.btnVerify1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -947,6 +948,7 @@
             // 
             // btnVerify2
             // 
+            this.btnVerify2.Enabled = false;
             this.btnVerify2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnVerify2.Image = ((System.Drawing.Image)(resources.GetObject("btnVerify2.Image")));
             this.btnVerify2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

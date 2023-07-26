@@ -104,6 +104,7 @@
             this.grdGRNPODamaged.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGRNPODamaged.Size = new System.Drawing.Size(711, 348);
             this.grdGRNPODamaged.TabIndex = 1111145;
+            this.grdGRNPODamaged.DoubleClick += new System.EventHandler(this.GrdGRNPODamaged_DoubleClick);
             // 
             // clmsno
             // 
