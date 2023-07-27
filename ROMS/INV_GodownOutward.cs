@@ -325,12 +325,14 @@ namespace ROMS
                 {
                     grpproductname.Enabled = false; 
                     DGV_inward.Columns["clmBatch"].Width = 0;
+                    DGV_inward.Columns["clmBatch"].Visible = false;
                 }
                 else
                 {
 
                     DGV_inward.Columns["clmBatch"].Width = 100;
                     grpproductname.Enabled = true;
+                    DGV_inward.Columns["clmBatch"].Visible = false;
                 }
             }
             catch (Exception ex)
