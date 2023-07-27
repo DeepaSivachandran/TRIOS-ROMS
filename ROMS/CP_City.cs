@@ -45,13 +45,13 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(cmbState.SelectedValue)!="0" && txtCityName.Text!="")
+                if (Convert.ToString(cmbState.SelectedValue)!="" && txtCityName.Text!="")
                 {
                     MessageBox.Show("","Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    if(Convert.ToString(cmbState.SelectedValue) != "0")
+                    if(Convert.ToString(cmbState.SelectedValue) == "")
                     {
                         eppCity.SetError(cmbState, "Please Select State.");
                     }
@@ -151,7 +151,7 @@ namespace ROMS
         {
             try
             {
-                cmbState.BackColor = Color.Yellow;
+                cmbState.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -249,7 +249,7 @@ namespace ROMS
             try
             {
                 //cmbState.BackColor = Color.White;
-                if (Convert.ToString(cmbState.SelectedValue) != "0")
+                if (Convert.ToString(cmbState.SelectedValue) != "")
                 {
 
                     eppCity.SetError(cmbState, "Please Select State.");

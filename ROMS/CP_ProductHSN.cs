@@ -247,7 +247,7 @@ namespace ROMS
         {
             try
             {
-                cmbGST.BackColor = Color.Yellow;
+                cmbGST.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
