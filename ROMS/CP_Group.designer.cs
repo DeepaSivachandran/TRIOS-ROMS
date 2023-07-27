@@ -36,15 +36,15 @@
             this.txtDStatus = new System.Windows.Forms.TextBox();
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.rbActive = new System.Windows.Forms.RadioButton();
-            this.rbInactive = new System.Windows.Forms.RadioButton();
+            this.rbInActive = new System.Windows.Forms.RadioButton();
             this.txtDProductGroupNameEnglish = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtEGroupNameEnglish = new System.Windows.Forms.TextBox();
-            this.eppGroup = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.eppGroup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epGroup)).BeginInit();
             this.SuspendLayout();
             // 
             // grbform
@@ -103,7 +103,7 @@
             // 
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbActive);
-            this.pnlStatus.Controls.Add(this.rbInactive);
+            this.pnlStatus.Controls.Add(this.rbInActive);
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlStatus.Location = new System.Drawing.Point(221, 80);
             this.pnlStatus.Name = "pnlStatus";
@@ -122,17 +122,21 @@
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
+            this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
+            this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
-            // rbInactive
+            // rbInActive
             // 
-            this.rbInactive.AutoSize = true;
-            this.rbInactive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbInactive.Location = new System.Drawing.Point(145, 1);
-            this.rbInactive.Name = "rbInactive";
-            this.rbInactive.Size = new System.Drawing.Size(63, 21);
-            this.rbInactive.TabIndex = 3;
-            this.rbInactive.Text = "Inactive";
-            this.rbInactive.UseVisualStyleBackColor = true;
+            this.rbInActive.AutoSize = true;
+            this.rbInActive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.rbInActive.Location = new System.Drawing.Point(145, 1);
+            this.rbInActive.Name = "rbInActive";
+            this.rbInActive.Size = new System.Drawing.Size(63, 21);
+            this.rbInActive.TabIndex = 3;
+            this.rbInActive.Text = "Inactive";
+            this.rbInActive.UseVisualStyleBackColor = true;
+            this.rbInActive.Enter += new System.EventHandler(this.RbInactive_Enter);
+            this.rbInActive.Leave += new System.EventHandler(this.RbInactive_Leave);
             // 
             // txtDProductGroupNameEnglish
             // 
@@ -190,9 +194,9 @@
             this.txtEGroupNameEnglish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEGroupNameEnglish_KeyDown_1);
             this.txtEGroupNameEnglish.Leave += new System.EventHandler(this.TxtEGroupNameEnglish_Leave);
             // 
-            // eppGroup
+            // epGroup
             // 
-            this.eppGroup.ContainerControl = this;
+            this.epGroup.ContainerControl = this;
             // 
             // CP_Group
             // 
@@ -218,7 +222,7 @@
             this.grbform.PerformLayout();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.eppGroup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epGroup)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -228,10 +232,10 @@
         private System.Windows.Forms.GroupBox grbform;
         private System.Windows.Forms.TextBox txtDProductGroupNameEnglish;
         private System.Windows.Forms.TextBox txtEGroupNameEnglish;
-        private System.Windows.Forms.ErrorProvider eppGroup;
+        private System.Windows.Forms.ErrorProvider epGroup;
         private System.Windows.Forms.TextBox txtDStatus;
         private System.Windows.Forms.Panel pnlStatus;
-        private System.Windows.Forms.RadioButton rbInactive;
+        private System.Windows.Forms.RadioButton rbInActive;
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.TextBox txtDProductGroupNameTamil;
         private System.Windows.Forms.TextBox txtEGroupNameTamil;

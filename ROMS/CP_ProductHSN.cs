@@ -16,24 +16,17 @@ namespace ROMS
         DataValidation objvalidation = new DataValidation();
         DataError objError;
 
+      
 
         public string varcompanycode;
         public string pbFormStatus;
         public string varstatecode = "";
 
         //tool tip
-        private ToolTip tpContactNo = new ToolTip();
-        private ToolTip tpAltContactNo = new ToolTip();
-        private ToolTip tpemail = new ToolTip();
-        private ToolTip tpgstin = new ToolTip();
-        private ToolTip tpfssai = new ToolTip();
-        private ToolTip tpplno = new ToolTip();
-        private ToolTip tpcompanyname = new ToolTip();
-        private ToolTip tpshortname = new ToolTip();
-        private ToolTip tppincode = new ToolTip();
-        private ToolTip tpcity = new ToolTip();
-        private ToolTip tparea = new ToolTip();
-        private ToolTip tpstate = new ToolTip();
+        private ToolTip tpHsnName = new ToolTip();
+        private ToolTip tpHsnCode = new ToolTip();
+        private ToolTip tpGst = new ToolTip();
+      
         public CP_ProductHSN()
         {
             InitializeComponent();
@@ -72,24 +65,12 @@ namespace ROMS
             }
         }
 
-        public void udfnclose()
-        {
-            try
-            {
-              this.Close();   
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+       
         private void btnClose_Click(object sender, EventArgs e)
         {
             try
             {
-                udfnclose();
-              
+                udfnclose();  
             }
             catch (Exception ex)
             {
@@ -145,11 +126,15 @@ namespace ROMS
             {
                 if (txtHSNName.Text.Trim() == "")
                 {
-                    eppHsn.SetError(txtHSNName, "Please Enter HSN Name.");
+                    
+                    epHsn.SetError(txtHSNName, "Please Enter HSN Name.");
                     txtHSNName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpHsnName.ShowAlways = true;
+                    tpHsnName.Show("Please Enter HSN Name.", txtHSNName, 5000);
                 }
                 else
                 {
+                    epHsn.Clear();
                     txtHSNName.BackColor = Color.White;
                 }
             }
@@ -194,11 +179,14 @@ namespace ROMS
             {
                 if (txtHSNCode.Text.Trim() == "")
                 {
-                    eppHsn.SetError(txtHSNCode, "Please Enter HSN Code.");
+                    epHsn.SetError(txtHSNCode, "Please Enter HSN Code.");
                     txtHSNCode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpHsnCode.ShowAlways = true;
+                    tpHsnCode.Show("Please Enter HSN Code.", txtHSNCode, 5000);
                 }
                 else
                 {
+                    epHsn.Clear();
                     txtHSNCode.BackColor = Color.White;
                 }
             }
@@ -240,7 +228,15 @@ namespace ROMS
 
         private void CmbGST_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BeginInvoke(new Action(() => cmbGST.Select(int.MaxValue, 0)));
+            try
+            {
+                BeginInvoke(new Action(() => cmbGST.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void CmbGST_Enter(object sender, EventArgs e)
@@ -258,50 +254,47 @@ namespace ROMS
 
         private void CmbGST_Leave(object sender, EventArgs e)
         {
-            try
+            if (Convert.ToString(cmbGST.SelectedValue) != "0")
             {
-                if (Convert.ToString(cmbGST.SelectedValue) != "0")
-                {
-                    eppHsn.SetError(cmbGST, "Please Select GST.");
-                }
-                else
-                {
-                    cmbGST.BackColor = Color.White;
-                }
+                epHsn.SetError(cmbGST, "Please Select GST.");
+                cmbGST.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tpGst.ShowAlways = true;
+                tpGst.Show("Please Select GST.", cmbGST, 5000);
             }
-            catch (Exception ex)
+            else
             {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                epHsn.Clear();
+                cmbGST.BackColor = Color.White;
             }
+           
         }
-
-        private void CmbGST_KeyDown(object sender, KeyEventArgs e)
+        public void udfnclose()
         {
-            try
-            {
-                pnlStatus.Focus();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CP_ProductHSN_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
             try
             {
                 DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    e.Cancel = false;
+                    this.Close();
                 }
-                else
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbGST_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
                 {
-                    e.Cancel = true;
+                    if (pnlStatus.Enabled)
+                    {
+                        rbActive.Focus();
+                    }
+                    else { btnSave.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -311,33 +304,10 @@ namespace ROMS
             }
         }
 
-        private void BtnSave_Click(object sender, EventArgs e)
+        public void udfnSave(object sender, EventArgs e)
         {
             try
             {
-                eppHsn.Clear();
-                if (txtHSNName.Text!="" && txtHSNCode.Text!="" && Convert.ToString(cmbGST.SelectedValue) != "0" )
-                {
-                    MessageBox.Show("", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    if (txtHSNName.Text.Trim() == "")
-                    {
-                        eppHsn.SetError(txtHSNName, "Please Enter HSN Name.");
-                        txtHSNName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    }
-                    if (txtHSNCode.Text.Trim() == "")
-                    {
-                        eppHsn.SetError(txtHSNCode, "Please Enter HSN Code.");
-                        txtHSNCode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    }
-                    if (Convert.ToString(cmbGST.SelectedValue) != "0")
-                    {
-                        eppHsn.SetError(cmbGST, "Please Select GST.");
-                    }
-                   
-                }
 
             }
             catch (Exception ex)
@@ -345,6 +315,48 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool blnErrorFlag = false;
+                if (Convert.ToString(cmbGST.SelectedValue) != "0")
+                {
+                    epHsn.SetError(cmbGST, "Please Select GST.");
+                    cmbGST.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpGst.ShowAlways = true;
+                    tpGst.Show("Please Select GST.", cmbGST, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtHSNName.Text.Trim() == "")
+                {
+                    epHsn.SetError(txtHSNName, "Please Enter HSN Name.");
+                    txtHSNName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpHsnName.ShowAlways = true;
+                    tpHsnName.Show("Please Enter HSN Name.", txtHSNName, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtHSNCode.Text.Trim() == "")
+                {
+                    epHsn.SetError(txtHSNCode, "Please Enter HSN Code.");
+                    txtHSNCode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpHsnCode.ShowAlways = true;
+                    tpHsnCode.Show("Please Enter HSN Code.", txtHSNCode, 5000);
+                    blnErrorFlag = true;
+                }
+               
+                if (blnErrorFlag == false)
+                {
+                    udfnSave(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+          
         }
         private void CP_ProductHSN_KeyDown(object sender, KeyEventArgs e)
         {
@@ -356,8 +368,75 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
+                    btnSave.Focus();
                     BtnSave_Click(sender, e);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_Leave(object sender, EventArgs e)
+        {
+
+            try
+            {
+                btnSave.BackColor = Color.White;
             }
             catch (Exception ex)
             {

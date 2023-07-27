@@ -45,10 +45,10 @@
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
-            this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epUnit)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDEIUnitName
@@ -77,7 +77,6 @@
             this.txtDUnitName.Size = new System.Drawing.Size(122, 28);
             this.txtDUnitName.TabIndex = 7;
             this.txtDUnitName.Text = "Unit Name";
-            this.txtDUnitName.TextChanged += new System.EventHandler(this.TxtDEBrandName_TextChanged);
             // 
             // txtEUnitName
             // 
@@ -113,7 +112,6 @@
             this.grbform.Size = new System.Drawing.Size(558, 250);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
-            this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
             // 
             // cmbNoOfDecimals
             // 
@@ -121,7 +119,12 @@
             this.cmbNoOfDecimals.Location = new System.Drawing.Point(159, 102);
             this.cmbNoOfDecimals.Name = "cmbNoOfDecimals";
             this.cmbNoOfDecimals.Size = new System.Drawing.Size(361, 28);
-            this.cmbNoOfDecimals.TabIndex = 13;
+            this.cmbNoOfDecimals.TabIndex = 2;
+            this.cmbNoOfDecimals.SelectedIndexChanged += new System.EventHandler(this.CmbNoOfDecimals_SelectedIndexChanged);
+            this.cmbNoOfDecimals.Enter += new System.EventHandler(this.CmbNoOfDecimals_Enter);
+            this.cmbNoOfDecimals.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbNoOfDecimals_KeyDown);
+            this.cmbNoOfDecimals.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbNoOfDecimals_KeyPress);
+            this.cmbNoOfDecimals.Leave += new System.EventHandler(this.CmbNoOfDecimals_Leave);
             // 
             // txtDNoOfDecimals
             // 
@@ -144,7 +147,7 @@
             this.txtEInvoiceUnitName.MaxLength = 100;
             this.txtEInvoiceUnitName.Name = "txtEInvoiceUnitName";
             this.txtEInvoiceUnitName.Size = new System.Drawing.Size(361, 28);
-            this.txtEInvoiceUnitName.TabIndex = 1;
+            this.txtEInvoiceUnitName.TabIndex = 5;
             this.txtEInvoiceUnitName.Visible = false;
             this.txtEInvoiceUnitName.Enter += new System.EventHandler(this.TxtEInvoiceUnitName_Enter);
             this.txtEInvoiceUnitName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEInvoiceUnitName_KeyDown);
@@ -171,24 +174,26 @@
             this.txtSymbol.MaxLength = 50;
             this.txtSymbol.Name = "txtSymbol";
             this.txtSymbol.Size = new System.Drawing.Size(361, 28);
-            this.txtSymbol.TabIndex = 9;
+            this.txtSymbol.TabIndex = 1;
+            this.txtSymbol.Enter += new System.EventHandler(this.TxtSymbol_Enter);
+            this.txtSymbol.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSymbol_KeyDown);
+            this.txtSymbol.Leave += new System.EventHandler(this.TxtSymbol_Leave);
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(447, 200);
+            this.btnClose.Location = new System.Drawing.Point(440, 200);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(74, 33);
-            this.btnClose.TabIndex = 5;
+            this.btnClose.Size = new System.Drawing.Size(80, 33);
+            this.btnClose.TabIndex = 7;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
-            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
             // btnSave
@@ -196,11 +201,11 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(366, 200);
+            this.btnSave.Location = new System.Drawing.Point(356, 200);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(74, 33);
-            this.btnSave.TabIndex = 4;
+            this.btnSave.Size = new System.Drawing.Size(80, 33);
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -221,7 +226,6 @@
             this.txtStatus.Size = new System.Drawing.Size(122, 28);
             this.txtStatus.TabIndex = 8;
             this.txtStatus.Text = "Status";
-            this.txtStatus.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // pnlStatus
             // 
@@ -232,7 +236,7 @@
             this.pnlStatus.Location = new System.Drawing.Point(159, 130);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(361, 28);
-            this.pnlStatus.TabIndex = 2;
+            this.pnlStatus.TabIndex = 3;
             // 
             // rbInActive
             // 
@@ -241,11 +245,12 @@
             this.rbInActive.Location = new System.Drawing.Point(188, 1);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(70, 24);
-            this.rbInActive.TabIndex = 3;
+            this.rbInActive.TabIndex = 4;
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
-            this.rbInActive.CheckedChanged += new System.EventHandler(this.RbInActive_CheckedChanged);
+            this.rbInActive.Enter += new System.EventHandler(this.RbInActive_Enter);
             this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInActive_KeyDown);
+            this.rbInActive.Leave += new System.EventHandler(this.RbInActive_Leave);
             // 
             // rbActive
             // 
@@ -255,16 +260,17 @@
             this.rbActive.Location = new System.Drawing.Point(105, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
-            this.rbActive.TabIndex = 2;
+            this.rbActive.TabIndex = 3;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
             this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
             this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
+            this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
-            // errUnit
+            // epUnit
             // 
-            this.errUnit.ContainerControl = this;
+            this.epUnit.ContainerControl = this;
             // 
             // CP_Unit
             // 
@@ -283,14 +289,13 @@
             this.Name = "CP_Unit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Unit";
-            this.Load += new System.EventHandler(this.CP_Brand_Load);
+            this.Load += new System.EventHandler(this.CP_Unit_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Brand_KeyDown);
-            this.Leave += new System.EventHandler(this.CP_Brand_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epUnit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -300,10 +305,9 @@
         private System.Windows.Forms.TextBox txtDEIUnitName;
         private System.Windows.Forms.TextBox txtDUnitName;
         private System.Windows.Forms.TextBox txtEUnitName;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbform;
-        private System.Windows.Forms.ErrorProvider errUnit;
+        private System.Windows.Forms.ErrorProvider epUnit;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.RadioButton rbInActive;
         private System.Windows.Forms.RadioButton rbActive;
@@ -313,5 +317,6 @@
         private System.Windows.Forms.TextBox txtDSymbol;
         private System.Windows.Forms.TextBox txtSymbol;
         private System.Windows.Forms.ComboBox cmbNoOfDecimals;
+        public System.Windows.Forms.Button btnSave;
     }
 }

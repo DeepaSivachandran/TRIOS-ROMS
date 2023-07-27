@@ -15,12 +15,10 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
-        private ToolTip tpgrouptype = new ToolTip();
-        private ToolTip tptgroupname = new ToolTip();
-        private ToolTip tpegroupname = new ToolTip();
-        private ToolTip tptlabelname = new ToolTip();
-        private ToolTip tpelabelname = new ToolTip();
-        private ToolTip tpsno = new ToolTip();
+        private ToolTip tpGroupNameinTamil = new ToolTip();
+        private ToolTip tpGroupNameinEnglish = new ToolTip();
+       
+      
         public string vargroupcode;
         public String pbFormStatus;
         public CP_Group()
@@ -100,12 +98,12 @@ namespace ROMS
                 if (txtEGroupNameEnglish.Text == "")
                 {
                     txtEGroupNameEnglish.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    eppGroup.SetError(txtEGroupNameEnglish, "Please Enter Group Name In English");
+                    epGroup.SetError(txtEGroupNameEnglish, "Please Enter Group Name In English");
                 }
                 else
                 {
                     txtEGroupNameEnglish.BackColor = Color.White;
-                    eppGroup.Clear();
+                    epGroup.Clear();
                 }
             }
             catch (Exception ex)
@@ -122,7 +120,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbInactive.Focus();
+                    rbInActive.Focus();
                 }
             }
             catch (Exception ex)
@@ -187,14 +185,16 @@ namespace ROMS
         {
             try
             {
-                if (txtEGroupNameEnglish.Text == "")
+                if (txtEGroupNameEnglish.Text.Trim()== "")
                 {
-                    eppGroup.SetError(txtEGroupNameEnglish, "Please Enter City Name");
-                    txtEGroupNameEnglish.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    epGroup.SetError(txtEGroupNameEnglish, "Please Enter Product Name in English");
+                    txtEGroupNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpGroupNameinEnglish.ShowAlways = true;
+                    tpGroupNameinEnglish.Show("Please Enter Product Name in English", txtEGroupNameEnglish, 5000);
                 }
                 else
                 {
-                    eppGroup.Clear();
+                    epGroup.Clear();
                     txtEGroupNameEnglish.BackColor = Color.White;
                 }
             }
@@ -240,7 +240,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbActive.Focus();
+                    if (pnlStatus.Enabled)
+                    {
+                        rbActive.Focus();
+                    }
+                    else { btnSave.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -254,15 +258,17 @@ namespace ROMS
         {
             try
             {
-                if (txtEGroupNameTamil.Text == "")
+                if (txtEGroupNameTamil.Text.Trim() == "")
                 {
-                    txtEGroupNameTamil.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    eppGroup.SetError(txtEGroupNameTamil, "Please Enter Group Name in Tamil");
+                    epGroup.SetError(txtEGroupNameTamil, "Please Enter Product Name in Tamil");
+                    txtEGroupNameTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpGroupNameinTamil.ShowAlways = true;
+                    tpGroupNameinTamil.Show("Please Enter Product Name in Tamil", txtEGroupNameTamil, 5000);
                 }
                 else
                 {
-                    txtEGroupNameTamil.BackColor = Color.White;
-                    eppGroup.Clear();
+                    epGroup.Clear();
+                    tpGroupNameinTamil.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -272,28 +278,42 @@ namespace ROMS
             }
 
         }
+        public void udfnSave(object sender, EventArgs e)
+        {
+            try
+            {
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                eppGroup.Clear();
-                if (txtEGroupNameEnglish.Text.Trim()!="" && txtEGroupNameTamil.Text.Trim()!="")
+                bool blnErrorFlag = false;
+                if (txtEGroupNameEnglish.Text.Trim() == "")
                 {
-                    MessageBox.Show("", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    epGroup.SetError(txtEGroupNameEnglish, "Please Enter Product Name in English");
+                    txtEGroupNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpGroupNameinEnglish.ShowAlways = true;
+                    tpGroupNameinEnglish.Show("Please Enter Product Name in English", txtEGroupNameEnglish, 5000);
+                    blnErrorFlag = true;
                 }
-                else
-                {  
-                    if (txtEGroupNameEnglish.Text.Trim() == "")
-                    {
-                        eppGroup.SetError(txtEGroupNameEnglish, "Please Enter Group Name in English.");
-                        txtEGroupNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    }
-                    if (txtEGroupNameTamil.Text.Trim() == "")
-                    {
-                        eppGroup.SetError(txtEGroupNameTamil, "Please Enter Group Name in Tamil.");
-                        txtEGroupNameTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    }
+                if (txtEGroupNameTamil.Text.Trim() == "")
+                {
+                    epGroup.SetError(txtEGroupNameTamil, "Please Enter Product Name in Tamil");
+                    txtEGroupNameTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpGroupNameinTamil.ShowAlways = true;
+                    tpGroupNameinTamil.Show("Please Enter Product Name in Tamil", txtEGroupNameTamil, 5000);
+                    blnErrorFlag = true;
+                }
+                if (blnErrorFlag == false)
+                {
+                    udfnSave(sender, e);
                 }
 
             }
@@ -425,6 +445,60 @@ namespace ROMS
                 {
                     e.Cancel = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Enter(object sender, EventArgs e)
+        {
+
+            try
+            {
+                rbActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Leave(object sender, EventArgs e)
+        {
+
+            try
+            {
+                rbActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInActive.BackColor = Color.White;
             }
             catch (Exception ex)
             {

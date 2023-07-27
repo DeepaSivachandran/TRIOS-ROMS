@@ -37,16 +37,16 @@
             this.txtDSGT = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
             this.pnlStatus = new System.Windows.Forms.Panel();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rbInActive = new System.Windows.Forms.RadioButton();
+            this.rbActive = new System.Windows.Forms.RadioButton();
             this.cmbGST = new System.Windows.Forms.ComboBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.eppHsn = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epHsn = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.eppHsn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epHsn)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDHsnName
@@ -130,8 +130,8 @@
             // pnlStatus
             // 
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlStatus.Controls.Add(this.radioButton1);
-            this.pnlStatus.Controls.Add(this.radioButton2);
+            this.pnlStatus.Controls.Add(this.rbInActive);
+            this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Enabled = false;
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlStatus.Location = new System.Drawing.Point(124, 104);
@@ -139,29 +139,33 @@
             this.pnlStatus.Size = new System.Drawing.Size(200, 27);
             this.pnlStatus.TabIndex = 3;
             // 
-            // radioButton1
+            // rbInActive
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.radioButton1.Location = new System.Drawing.Point(94, 1);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(63, 21);
-            this.radioButton1.TabIndex = 4;
-            this.radioButton1.Text = "Inactive";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbInActive.AutoSize = true;
+            this.rbInActive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.rbInActive.Location = new System.Drawing.Point(94, 1);
+            this.rbInActive.Name = "rbInActive";
+            this.rbInActive.Size = new System.Drawing.Size(63, 21);
+            this.rbInActive.TabIndex = 4;
+            this.rbInActive.Text = "Inactive";
+            this.rbInActive.UseVisualStyleBackColor = true;
+            this.rbInActive.Enter += new System.EventHandler(this.RbInActive_Enter);
+            this.rbInActive.Leave += new System.EventHandler(this.RbInActive_Leave);
             // 
-            // radioButton2
+            // rbActive
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Checked = true;
-            this.radioButton2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.radioButton2.Location = new System.Drawing.Point(3, 1);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(54, 21);
-            this.radioButton2.TabIndex = 3;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Active";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbActive.AutoSize = true;
+            this.rbActive.Checked = true;
+            this.rbActive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.rbActive.Location = new System.Drawing.Point(3, 1);
+            this.rbActive.Name = "rbActive";
+            this.rbActive.Size = new System.Drawing.Size(54, 21);
+            this.rbActive.TabIndex = 3;
+            this.rbActive.TabStop = true;
+            this.rbActive.Text = "Active";
+            this.rbActive.UseVisualStyleBackColor = true;
+            this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
+            this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
             // cmbGST
             // 
@@ -194,7 +198,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(151, 143);
+            this.btnSave.Location = new System.Drawing.Point(160, 143);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 5;
@@ -203,6 +207,7 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // btnClose
             // 
@@ -220,9 +225,9 @@
             this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
-            // eppHsn
+            // epHsn
             // 
-            this.eppHsn.ContainerControl = this;
+            this.epHsn.ContainerControl = this;
             // 
             // CP_ProductHSN
             // 
@@ -241,14 +246,13 @@
             this.Name = "CP_ProductHSN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HSN Name";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_ProductHSN_FormClosing);
             this.Load += new System.EventHandler(this.CP_ProductHSN_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_ProductHSN_KeyDown);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.eppHsn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epHsn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -262,12 +266,12 @@
         private System.Windows.Forms.TextBox txtDSGT;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbform;
-        private System.Windows.Forms.ErrorProvider eppHsn;
+        private System.Windows.Forms.ErrorProvider epHsn;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.ComboBox cmbGST;
         private System.Windows.Forms.Panel pnlStatus;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbInActive;
+        private System.Windows.Forms.RadioButton rbActive;
         public System.Windows.Forms.Button btnSave;
     }
 }

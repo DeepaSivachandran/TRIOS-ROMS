@@ -14,7 +14,8 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
+        private ToolTip tpCityName = new ToolTip();
+        private ToolTip tpState = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
         public CP_City()
@@ -41,27 +42,43 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnSave(object sender,EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                if (Convert.ToString(cmbState.SelectedValue)!="" && txtCityName.Text!="")
+                bool blnErrorFlag = false;
+                if (Convert.ToString(txtCityName.Text).Trim() == "")
                 {
-                    MessageBox.Show("","Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    epCity.SetError(txtCityName, "Please Enter City Name");
+                    txtCityName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCityName.ShowAlways = true;
+                    tpCityName.Show("Please Enter City Name", txtCityName, 5000);
+                    blnErrorFlag = true;
                 }
-                else
+                if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
                 {
-                    if(Convert.ToString(cmbState.SelectedValue) == "")
-                    {
-                        eppCity.SetError(cmbState, "Please Select State.");
-                    }
-                    if(txtCityName.Text.Trim()=="")
-                    {
-                        eppCity.SetError(txtCityName, "Please Enter City Name.");
-                        txtCityName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    }
+                    epCity.SetError(cmbState, "Please Select State Name.");
+                    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpState.ShowAlways = true;
+                    tpState.Show("Please Select State Name.", cmbState, 5000);
+                    blnErrorFlag = true;
                 }
-               
+                if (blnErrorFlag == false)
+                {
+                   udfnSave(sender, e);
+                }
             }
             catch (Exception ex)
             {
@@ -82,8 +99,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-       
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
@@ -100,7 +115,11 @@ namespace ROMS
         {
             try
             {
-                this.Close();
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -192,14 +211,16 @@ namespace ROMS
         {
             try
             {
-                if (txtCityName.Text == "")
+                if (txtCityName.Text.Trim() == "")
                 {
-                    eppCity.SetError(txtCityName, "Please Enter City Name");
-                    txtCityName.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    epCity.SetError(txtCityName, "Please Enter City Name");
+                    txtCityName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCityName.ShowAlways = true;
+                    tpCityName.Show("Please Enter City Name", txtCityName, 5000);
                 }
                 else
                 {
-                    eppCity.Clear();
+                    epCity.Clear();
                     txtCityName.BackColor = Color.White;
                 }
             }
@@ -215,7 +236,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    pnlStatus.Focus();
+                    if (pnlStatus.Enabled)
+                    {
+                        rbActive.Focus();
+                    }
+                    else { btnSave.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -234,6 +259,7 @@ namespace ROMS
                 }
                 if(e.KeyCode==Keys.F5)
                 {
+                    btnSave.Focus();
                     btnSave_Click(sender, e);
                 }
             }
@@ -248,14 +274,16 @@ namespace ROMS
         {
             try
             {
-                //cmbState.BackColor = Color.White;
-                if (Convert.ToString(cmbState.SelectedValue) != "")
+                if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
                 {
-
-                    eppCity.SetError(cmbState, "Please Select State.");
+                    epCity.SetError(cmbState, "Please Select State Name");
+                    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpState.ShowAlways = true;
+                    tpState.Show("Please Select State Name", cmbState, 5000);
                 }
                 else
                 {
+                    epCity.Clear();
                     cmbState.BackColor = Color.White;
                 }
             }
@@ -266,31 +294,17 @@ namespace ROMS
             }
         }
 
-
-        private void CP_City_FormClosing(object sender, FormClosingEventArgs e)
+        private void CmbState_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
-                }
+                BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void CmbState_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
         }
 
         private void CmbState_KeyPress(object sender, KeyPressEventArgs e)
@@ -301,6 +315,84 @@ namespace ROMS
             }
             catch (Exception ex)
 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+      
+        private void CP_City_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_City_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
