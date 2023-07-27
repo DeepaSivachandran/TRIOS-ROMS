@@ -368,8 +368,9 @@ namespace ROMS
             try
             {
 
-                MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
-                MainForm.objPUR_PurchaseReturns.ShowDialog();
+                MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns(); 
+                MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                MainForm.objPUR_PurchaseReturns.Show();
             }
             catch (Exception ex)
             {

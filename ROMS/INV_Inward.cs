@@ -80,7 +80,7 @@ namespace ROMS
 
         private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbtransfertype.SelectedItem == "Regular")
+            if (cmbtransfertype.SelectedItem != "Regular")
             {
                 grpproductname.Enabled = false; 
             }

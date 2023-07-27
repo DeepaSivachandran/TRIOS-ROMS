@@ -77,6 +77,8 @@
             this.lblMRP = new System.Windows.Forms.Label();
             this.txtProduct = new System.Windows.Forms.TextBox();
             this.lblProductName = new System.Windows.Forms.Label();
+            this.txttotalitem = new System.Windows.Forms.TextBox();
+            this.lbltotalproducts = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errGroup)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
@@ -125,6 +127,8 @@
             // grpGoodsOutward
             // 
             this.grpGoodsOutward.BackColor = System.Drawing.Color.White;
+            this.grpGoodsOutward.Controls.Add(this.txttotalitem);
+            this.grpGoodsOutward.Controls.Add(this.lbltotalproducts);
             this.grpGoodsOutward.Controls.Add(this.txtRemark);
             this.grpGoodsOutward.Controls.Add(this.lblRemark);
             this.grpGoodsOutward.Controls.Add(this.btnSave);
@@ -160,7 +164,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1187, 601);
+            this.btnSave.Location = new System.Drawing.Point(1187, 600);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(66, 29);
             this.btnSave.TabIndex = 958822;
@@ -173,7 +177,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1259, 601);
+            this.btnClose.Location = new System.Drawing.Point(1259, 600);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(66, 29);
             this.btnClose.TabIndex = 958823;
@@ -328,6 +332,7 @@
             // 
             // txtOutwardNo
             // 
+            this.txtOutwardNo.Enabled = false;
             this.txtOutwardNo.Location = new System.Drawing.Point(238, 36);
             this.txtOutwardNo.Name = "txtOutwardNo";
             this.txtOutwardNo.ReadOnly = true;
@@ -349,6 +354,7 @@
             // dtpoutwarddate
             // 
             this.dtpoutwarddate.CustomFormat = "dd/MM/yyyy";
+            this.dtpoutwarddate.Enabled = false;
             this.dtpoutwarddate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpoutwarddate.Location = new System.Drawing.Point(119, 36);
             this.dtpoutwarddate.Name = "dtpoutwarddate";
@@ -539,6 +545,23 @@
             this.lblProductName.TabIndex = 28;
             this.lblProductName.Text = "Product Name/P.I Code";
             // 
+            // txttotalitem
+            // 
+            this.txttotalitem.Location = new System.Drawing.Point(1119, 601);
+            this.txttotalitem.Name = "txttotalitem";
+            this.txttotalitem.ReadOnly = true;
+            this.txttotalitem.Size = new System.Drawing.Size(62, 27);
+            this.txttotalitem.TabIndex = 958826;
+            // 
+            // lbltotalproducts
+            // 
+            this.lbltotalproducts.AutoSize = true;
+            this.lbltotalproducts.Location = new System.Drawing.Point(1029, 604);
+            this.lbltotalproducts.Name = "lbltotalproducts";
+            this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
+            this.lbltotalproducts.TabIndex = 958825;
+            this.lbltotalproducts.Text = "Total Products";
+            // 
             // INV_GodownOutward
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -620,5 +643,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txttotalitem;
+        private System.Windows.Forms.Label lbltotalproducts;
     }
 }

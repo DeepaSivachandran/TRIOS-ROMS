@@ -529,15 +529,15 @@ namespace ROMS
         {
             try
             {
-                if (cmbDateType.SelectedItem == "GRN")
+                if (cmbDateType.SelectedItem == "GRN Date")
                 {
                     lblinwarddate.Text = "GRN Date";
                 }
-                if (cmbDateType.SelectedItem == "Purchase")
+                if (cmbDateType.SelectedItem == "Purchase Date")
                 {
                     lblinwarddate.Text = "Purchase Date";
                 }
-                if (cmbDateType.SelectedItem == "Inward")
+                if (cmbDateType.SelectedItem == "Inward Date")
                 {
                     lblinwarddate.Text = "Inward Date";
                 }

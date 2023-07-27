@@ -24,7 +24,8 @@ namespace ROMS
             try
             {
                 MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                MainForm.objINV_StockTransfer.ShowDialog();
+                MainForm.objINV_StockTransfer.MdiParent = this.ParentForm;
+                MainForm.objINV_StockTransfer.Show();
             }
             catch (Exception ex)
             {
@@ -512,6 +513,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void TsStockTransferList_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

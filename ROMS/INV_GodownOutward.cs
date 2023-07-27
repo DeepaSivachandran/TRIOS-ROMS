@@ -321,18 +321,18 @@ namespace ROMS
         {
             try
             {
-                if (cmbTransactionType.SelectedItem == "Regular")
+                if (cmbTransactionType.SelectedItem != "Regular")
                 {
                     grpproductname.Enabled = false; 
-                    DGV_inward.Columns["clmBatch"].Width = 0;
-                    DGV_inward.Columns["clmBatch"].Visible = false;
+                    DGV_inward.Columns["clmBatch"].Width = 100;
+                    DGV_inward.Columns["clmBatch"].Visible = true;
                 }
                 else
                 {
 
-                    DGV_inward.Columns["clmBatch"].Width = 100;
-                    grpproductname.Enabled = true;
+                    DGV_inward.Columns["clmBatch"].Width = 0;
                     DGV_inward.Columns["clmBatch"].Visible = false;
+                    grpproductname.Enabled = true;
                 }
             }
             catch (Exception ex)

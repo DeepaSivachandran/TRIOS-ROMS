@@ -38,6 +38,18 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnldl = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtpurchaseRate = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtunitrate = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblbatchno = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.lblExpiryDate = new System.Windows.Forms.Label();
+            this.txtActualQty = new System.Windows.Forms.TextBox();
+            this.lblQty = new System.Windows.Forms.Label();
+            this.txtMrp = new System.Windows.Forms.TextBox();
+            this.lblMrp = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -57,29 +69,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.cmbConcern = new System.Windows.Forms.ComboBox();
-            this.cmbType = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtgrnno = new System.Windows.Forms.TextBox();
-            this.lblDEVisitDay = new System.Windows.Forms.Label();
-            this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
-            this.txtSupplier = new System.Windows.Forms.TextBox();
-            this.lblDESupplier = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtunitrate = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lblbatchno = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.lblExpiryDate = new System.Windows.Forms.Label();
-            this.txtActualQty = new System.Windows.Forms.TextBox();
-            this.lblQty = new System.Windows.Forms.Label();
-            this.txtMrp = new System.Windows.Forms.TextBox();
-            this.lblMrp = new System.Windows.Forms.Label();
-            this.txtpurchaseRate = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,6 +82,18 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.cmbType = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtgrnno = new System.Windows.Forms.TextBox();
+            this.lblDEVisitDay = new System.Windows.Forms.Label();
+            this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
+            this.txtSupplier = new System.Windows.Forms.TextBox();
+            this.lblDESupplier = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -159,11 +160,118 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.grpExcessProduct);
             this.groupBox1.Controls.Add(this.groupBox3);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Location = new System.Drawing.Point(12, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1330, 636);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // txtpurchaseRate
+            // 
+            this.txtpurchaseRate.Location = new System.Drawing.Point(774, 96);
+            this.txtpurchaseRate.MaxLength = 50;
+            this.txtpurchaseRate.Name = "txtpurchaseRate";
+            this.txtpurchaseRate.Size = new System.Drawing.Size(83, 28);
+            this.txtpurchaseRate.TabIndex = 1111233;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(770, 74);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(87, 20);
+            this.label8.TabIndex = 1111232;
+            this.label8.Text = "Purchase Rate";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(960, 100);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 20);
+            this.label3.TabIndex = 1111231;
+            this.label3.Text = "Pkts";
+            // 
+            // txtunitrate
+            // 
+            this.txtunitrate.Enabled = false;
+            this.txtunitrate.Location = new System.Drawing.Point(628, 96);
+            this.txtunitrate.Name = "txtunitrate";
+            this.txtunitrate.ReadOnly = true;
+            this.txtunitrate.Size = new System.Drawing.Size(119, 28);
+            this.txtunitrate.TabIndex = 1111226;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(475, 96);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(106, 28);
+            this.textBox1.TabIndex = 1111229;
+            // 
+            // lblbatchno
+            // 
+            this.lblbatchno.AutoSize = true;
+            this.lblbatchno.Location = new System.Drawing.Point(628, 74);
+            this.lblbatchno.Name = "lblbatchno";
+            this.lblbatchno.Size = new System.Drawing.Size(61, 20);
+            this.lblbatchno.TabIndex = 1111227;
+            this.lblbatchno.Text = "Batch No.";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(394, 103);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(17, 20);
+            this.label23.TabIndex = 1111230;
+            this.label23.Text = "₹";
+            // 
+            // lblExpiryDate
+            // 
+            this.lblExpiryDate.AutoSize = true;
+            this.lblExpiryDate.Location = new System.Drawing.Point(475, 73);
+            this.lblExpiryDate.Name = "lblExpiryDate";
+            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
+            this.lblExpiryDate.TabIndex = 1111228;
+            this.lblExpiryDate.Text = "Expiry Date";
+            // 
+            // txtActualQty
+            // 
+            this.txtActualQty.Location = new System.Drawing.Point(878, 96);
+            this.txtActualQty.Name = "txtActualQty";
+            this.txtActualQty.Size = new System.Drawing.Size(76, 28);
+            this.txtActualQty.TabIndex = 1111225;
+            // 
+            // lblQty
+            // 
+            this.lblQty.AutoSize = true;
+            this.lblQty.Location = new System.Drawing.Point(878, 74);
+            this.lblQty.Name = "lblQty";
+            this.lblQty.Size = new System.Drawing.Size(56, 20);
+            this.lblQty.TabIndex = 1111224;
+            this.lblQty.Text = "Quantity";
+            // 
+            // txtMrp
+            // 
+            this.txtMrp.Enabled = false;
+            this.txtMrp.Location = new System.Drawing.Point(417, 96);
+            this.txtMrp.Name = "txtMrp";
+            this.txtMrp.ReadOnly = true;
+            this.txtMrp.Size = new System.Drawing.Size(52, 28);
+            this.txtMrp.TabIndex = 1111222;
+            // 
+            // lblMrp
+            // 
+            this.lblMrp.AutoSize = true;
+            this.lblMrp.Location = new System.Drawing.Point(417, 73);
+            this.lblMrp.Name = "lblMrp";
+            this.lblMrp.Size = new System.Drawing.Size(34, 20);
+            this.lblMrp.TabIndex = 1111223;
+            this.lblMrp.Text = "MRP";
             // 
             // btnAdd
             // 
@@ -269,6 +377,7 @@
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // label11
             // 
@@ -295,10 +404,12 @@
             // 
             // textBox6
             // 
+            this.textBox6.Enabled = false;
             this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.Location = new System.Drawing.Point(1156, 422);
             this.textBox6.MaxLength = 50;
             this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(142, 33);
             this.textBox6.TabIndex = 1111178;
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -315,10 +426,12 @@
             // 
             // textBox5
             // 
+            this.textBox5.Enabled = false;
             this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox5.Location = new System.Drawing.Point(1156, 395);
             this.textBox5.MaxLength = 50;
             this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(142, 27);
             this.textBox5.TabIndex = 1111176;
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -350,7 +463,7 @@
             this.textBox2.MaxLength = 50;
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(317, 87);
+            this.textBox2.Size = new System.Drawing.Size(587, 87);
             this.textBox2.TabIndex = 1111174;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -366,10 +479,12 @@
             // 
             // textBox3
             // 
+            this.textBox3.Enabled = false;
             this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.Location = new System.Drawing.Point(1156, 368);
             this.textBox3.MaxLength = 50;
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(142, 27);
             this.textBox3.TabIndex = 1111172;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -427,6 +542,96 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1289, 342);
             this.dataGridView1.TabIndex = 1111170;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "P.I Code";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 90;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Product Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 220;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "MRP";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Expiry Date";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Batch No.";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Last Purchase Rate";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Qty";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 75;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Unit";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 75;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Taxable Amt";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 80;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "GST %";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 60;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "GST Amt";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 80;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Nett Amt";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Width = 80;
             // 
             // groupBox3
             // 
@@ -552,201 +757,14 @@
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
             // 
-            // label3
+            // label7
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(960, 100);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 20);
-            this.label3.TabIndex = 1111231;
-            this.label3.Text = "Pkts";
-            // 
-            // txtunitrate
-            // 
-            this.txtunitrate.Enabled = false;
-            this.txtunitrate.Location = new System.Drawing.Point(628, 96);
-            this.txtunitrate.Name = "txtunitrate";
-            this.txtunitrate.ReadOnly = true;
-            this.txtunitrate.Size = new System.Drawing.Size(124, 28);
-            this.txtunitrate.TabIndex = 1111226;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(475, 96);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(106, 28);
-            this.textBox1.TabIndex = 1111229;
-            // 
-            // lblbatchno
-            // 
-            this.lblbatchno.AutoSize = true;
-            this.lblbatchno.Location = new System.Drawing.Point(628, 74);
-            this.lblbatchno.Name = "lblbatchno";
-            this.lblbatchno.Size = new System.Drawing.Size(61, 20);
-            this.lblbatchno.TabIndex = 1111227;
-            this.lblbatchno.Text = "Batch No.";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(394, 103);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(17, 20);
-            this.label23.TabIndex = 1111230;
-            this.label23.Text = "₹";
-            // 
-            // lblExpiryDate
-            // 
-            this.lblExpiryDate.AutoSize = true;
-            this.lblExpiryDate.Location = new System.Drawing.Point(475, 73);
-            this.lblExpiryDate.Name = "lblExpiryDate";
-            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
-            this.lblExpiryDate.TabIndex = 1111228;
-            this.lblExpiryDate.Text = "Expiry Date";
-            // 
-            // txtActualQty
-            // 
-            this.txtActualQty.Location = new System.Drawing.Point(878, 96);
-            this.txtActualQty.Name = "txtActualQty";
-            this.txtActualQty.Size = new System.Drawing.Size(76, 28);
-            this.txtActualQty.TabIndex = 1111225;
-            // 
-            // lblQty
-            // 
-            this.lblQty.AutoSize = true;
-            this.lblQty.Location = new System.Drawing.Point(878, 74);
-            this.lblQty.Name = "lblQty";
-            this.lblQty.Size = new System.Drawing.Size(56, 20);
-            this.lblQty.TabIndex = 1111224;
-            this.lblQty.Text = "Quantity";
-            // 
-            // txtMrp
-            // 
-            this.txtMrp.Enabled = false;
-            this.txtMrp.Location = new System.Drawing.Point(417, 96);
-            this.txtMrp.Name = "txtMrp";
-            this.txtMrp.ReadOnly = true;
-            this.txtMrp.Size = new System.Drawing.Size(52, 28);
-            this.txtMrp.TabIndex = 1111222;
-            // 
-            // lblMrp
-            // 
-            this.lblMrp.AutoSize = true;
-            this.lblMrp.Location = new System.Drawing.Point(417, 73);
-            this.lblMrp.Name = "lblMrp";
-            this.lblMrp.Size = new System.Drawing.Size(34, 20);
-            this.lblMrp.TabIndex = 1111223;
-            this.lblMrp.Text = "MRP";
-            // 
-            // txtpurchaseRate
-            // 
-            this.txtpurchaseRate.Location = new System.Drawing.Point(774, 96);
-            this.txtpurchaseRate.MaxLength = 50;
-            this.txtpurchaseRate.Name = "txtpurchaseRate";
-            this.txtpurchaseRate.Size = new System.Drawing.Size(83, 28);
-            this.txtpurchaseRate.TabIndex = 1111233;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(770, 74);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(87, 20);
-            this.label8.TabIndex = 1111232;
-            this.label8.Text = "Purchase Rate";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "P.I Code";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 90;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Product Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 220;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "MRP";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Expiry Date";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Batch No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Last Purchase Rate";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 120;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Qty";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 75;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Unit";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 75;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Taxable Amt";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 80;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "GST %";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 60;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "GST Amt";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 80;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Nett Amt";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Width = 80;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(755, 103);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(17, 20);
+            this.label7.TabIndex = 1111234;
+            this.label7.Text = "₹";
             // 
             // PUR_PurchaseReturns
             // 
@@ -843,5 +861,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.Label label7;
     }
 }

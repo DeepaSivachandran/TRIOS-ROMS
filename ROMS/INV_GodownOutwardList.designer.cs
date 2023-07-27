@@ -43,6 +43,15 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txtDay = new System.Windows.Forms.TextBox();
@@ -57,16 +66,6 @@
             this.cmbconcern = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUserList = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmShopgodown = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,6 +75,7 @@
             this.clmNoOfUsers = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsRackGroupList.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -228,6 +228,64 @@
             this.dataGridView1.Size = new System.Drawing.Size(1348, 56);
             this.dataGridView1.TabIndex = 958801;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Concern";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Outward Date";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Outward No.";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Stock Location";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 150;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Transaction Type";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Total Products";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Status ";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Created By";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 200;
+            // 
             // grbFilterBy
             // 
             this.grbFilterBy.Controls.Add(this.dateTimePicker1);
@@ -351,7 +409,6 @@
             // cmbconcern
             // 
             this.cmbconcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbconcern.Enabled = false;
             this.cmbconcern.FormattingEnabled = true;
             this.cmbconcern.Location = new System.Drawing.Point(83, 23);
             this.cmbconcern.Name = "cmbconcern";
@@ -420,78 +477,6 @@
             this.grdUserList.Size = new System.Drawing.Size(1348, 510);
             this.grdUserList.TabIndex = 958797;
             // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(1055, 242);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(288, 399);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Concern";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Outward Date";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Outward No.";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Stock Location";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 150;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Transaction Type";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 120;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Total Products";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Status ";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Created By";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 200;
-            // 
             // clmSNo
             // 
             this.clmSNo.HeaderText = "S.No.";
@@ -549,6 +534,20 @@
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             this.Column4.Width = 200;
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(1055, 242);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(288, 399);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // INV_GodownOutwardList
             // 

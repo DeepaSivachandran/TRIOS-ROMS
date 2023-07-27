@@ -36,12 +36,29 @@
             this.pnlinward = new System.Windows.Forms.Panel();
             this.btnRemarks = new System.Windows.Forms.Button();
             this.grdGrnlist = new System.Windows.Forms.DataGridView();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.txtInwardNo = new System.Windows.Forms.TextBox();
-            this.cmbGodown = new System.Windows.Forms.ComboBox();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtInwardNo = new System.Windows.Forms.TextBox();
+            this.txtDUnloading = new System.Windows.Forms.TextBox();
+            this.textBox26 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.cmbGodown = new System.Windows.Forms.ComboBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.txtDCourier = new System.Windows.Forms.TextBox();
@@ -59,23 +76,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblEdit = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtDUnloading = new System.Windows.Forms.TextBox();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGrnlist)).BeginInit();
@@ -189,35 +189,71 @@
             this.grdGrnlist.Size = new System.Drawing.Size(1338, 449);
             this.grdGrnlist.TabIndex = 958827;
             // 
-            // dateTimePicker1
+            // Column1
             // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(892, 21);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(141, 25);
-            this.dateTimePicker1.TabIndex = 958822;
+            this.Column1.HeaderText = "S.No.";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 50;
             // 
-            // txtInwardNo
+            // Column2
             // 
-            this.txtInwardNo.Enabled = false;
-            this.txtInwardNo.Location = new System.Drawing.Point(892, 46);
-            this.txtInwardNo.Name = "txtInwardNo";
-            this.txtInwardNo.ReadOnly = true;
-            this.txtInwardNo.Size = new System.Drawing.Size(141, 25);
-            this.txtInwardNo.TabIndex = 958825;
+            this.Column2.HeaderText = "P.I Code";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 120;
             // 
-            // cmbGodown
+            // Column4
             // 
-            this.cmbGodown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGodown.Enabled = false;
-            this.cmbGodown.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.cmbGodown.FormattingEnabled = true;
-            this.cmbGodown.Location = new System.Drawing.Point(80, 46);
-            this.cmbGodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbGodown.Name = "cmbGodown";
-            this.cmbGodown.Size = new System.Drawing.Size(123, 25);
-            this.cmbGodown.TabIndex = 958821;
+            this.Column4.HeaderText = "Product Name In English";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 200;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Product Name In Tamil";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 200;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "MRP";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // clmexpirydate
+            // 
+            this.clmexpirydate.HeaderText = "Expiry Date";
+            this.clmexpirydate.Name = "clmexpirydate";
+            this.clmexpirydate.ReadOnly = true;
+            // 
+            // clmBatchno
+            // 
+            this.clmBatchno.HeaderText = "Batch No.";
+            this.clmBatchno.Name = "clmBatchno";
+            this.clmBatchno.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Invoice Qty";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 80;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Received Qty";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Unit";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 80;
             // 
             // groupBox1
             // 
@@ -248,6 +284,105 @@
             this.groupBox1.TabIndex = 958826;
             this.groupBox1.TabStop = false;
             // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox9.Enabled = false;
+            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox9.Location = new System.Drawing.Point(815, 21);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(77, 25);
+            this.textBox9.TabIndex = 1111216;
+            this.textBox9.Text = "Inward Date";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker1.Enabled = false;
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(892, 21);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(141, 25);
+            this.dateTimePicker1.TabIndex = 958822;
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox2.Location = new System.Drawing.Point(815, 46);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(77, 25);
+            this.textBox2.TabIndex = 1111215;
+            this.textBox2.Text = "Inward No.";
+            // 
+            // textBox5
+            // 
+            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox5.Enabled = false;
+            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox5.Location = new System.Drawing.Point(206, 46);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(77, 25);
+            this.textBox5.TabIndex = 1111214;
+            this.textBox5.Text = "GRN No.";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Enabled = false;
+            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox6.Location = new System.Drawing.Point(283, 46);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(123, 25);
+            this.textBox6.TabIndex = 1111213;
+            // 
+            // txtInwardNo
+            // 
+            this.txtInwardNo.Enabled = false;
+            this.txtInwardNo.Location = new System.Drawing.Point(892, 46);
+            this.txtInwardNo.Name = "txtInwardNo";
+            this.txtInwardNo.ReadOnly = true;
+            this.txtInwardNo.Size = new System.Drawing.Size(141, 25);
+            this.txtInwardNo.TabIndex = 958825;
+            // 
+            // txtDUnloading
+            // 
+            this.txtDUnloading.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDUnloading.Enabled = false;
+            this.txtDUnloading.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtDUnloading.Location = new System.Drawing.Point(206, 21);
+            this.txtDUnloading.Name = "txtDUnloading";
+            this.txtDUnloading.ReadOnly = true;
+            this.txtDUnloading.Size = new System.Drawing.Size(77, 25);
+            this.txtDUnloading.TabIndex = 1111212;
+            this.txtDUnloading.Text = "GRN Date";
+            // 
+            // textBox26
+            // 
+            this.textBox26.Enabled = false;
+            this.textBox26.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox26.Location = new System.Drawing.Point(283, 21);
+            this.textBox26.Name = "textBox26";
+            this.textBox26.ReadOnly = true;
+            this.textBox26.Size = new System.Drawing.Size(123, 25);
+            this.textBox26.TabIndex = 1111211;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox1.Location = new System.Drawing.Point(3, 46);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(77, 25);
+            this.textBox1.TabIndex = 1111210;
+            this.textBox1.Text = "Stock Location";
+            // 
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.SystemColors.Control;
@@ -269,6 +404,18 @@
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(123, 25);
             this.textBox4.TabIndex = 1111152;
+            // 
+            // cmbGodown
+            // 
+            this.cmbGodown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGodown.Enabled = false;
+            this.cmbGodown.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.cmbGodown.FormattingEnabled = true;
+            this.cmbGodown.Location = new System.Drawing.Point(80, 46);
+            this.cmbGodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbGodown.Name = "cmbGodown";
+            this.cmbGodown.Size = new System.Drawing.Size(123, 25);
+            this.cmbGodown.TabIndex = 958821;
             // 
             // textBox7
             // 
@@ -451,152 +598,6 @@
             this.lblEdit.Size = new System.Drawing.Size(0, 20);
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox1.Location = new System.Drawing.Point(3, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(77, 25);
-            this.textBox1.TabIndex = 1111210;
-            this.textBox1.Text = "Stock Location";
-            // 
-            // txtDUnloading
-            // 
-            this.txtDUnloading.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDUnloading.Enabled = false;
-            this.txtDUnloading.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.txtDUnloading.Location = new System.Drawing.Point(206, 21);
-            this.txtDUnloading.Name = "txtDUnloading";
-            this.txtDUnloading.ReadOnly = true;
-            this.txtDUnloading.Size = new System.Drawing.Size(77, 25);
-            this.txtDUnloading.TabIndex = 1111212;
-            this.txtDUnloading.Text = "GRN Date";
-            // 
-            // textBox26
-            // 
-            this.textBox26.Enabled = false;
-            this.textBox26.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox26.Location = new System.Drawing.Point(283, 21);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.ReadOnly = true;
-            this.textBox26.Size = new System.Drawing.Size(123, 25);
-            this.textBox26.TabIndex = 1111211;
-            // 
-            // textBox5
-            // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox5.Enabled = false;
-            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox5.Location = new System.Drawing.Point(206, 46);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(77, 25);
-            this.textBox5.TabIndex = 1111214;
-            this.textBox5.Text = "GRN No.";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Enabled = false;
-            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox6.Location = new System.Drawing.Point(283, 46);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(123, 25);
-            this.textBox6.TabIndex = 1111213;
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox2.Location = new System.Drawing.Point(815, 46);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(77, 25);
-            this.textBox2.TabIndex = 1111215;
-            this.textBox2.Text = "Inward No.";
-            // 
-            // textBox9
-            // 
-            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox9.Enabled = false;
-            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox9.Location = new System.Drawing.Point(815, 21);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(77, 25);
-            this.textBox9.TabIndex = 1111216;
-            this.textBox9.Text = "Inward Date";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "S.No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 50;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "P.I Code";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 120;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Product Name In English";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 200;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Product Name In Tamil";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 200;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "MRP";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // clmexpirydate
-            // 
-            this.clmexpirydate.HeaderText = "Expiry Date";
-            this.clmexpirydate.Name = "clmexpirydate";
-            this.clmexpirydate.ReadOnly = true;
-            // 
-            // clmBatchno
-            // 
-            this.clmBatchno.HeaderText = "Batch No.";
-            this.clmBatchno.Name = "clmBatchno";
-            this.clmBatchno.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Invoice Qty";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 80;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Received Qty";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Unit";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 80;
             // 
             // INV_InwardPurchase
             // 

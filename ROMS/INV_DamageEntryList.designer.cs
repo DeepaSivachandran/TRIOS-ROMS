@@ -245,7 +245,6 @@
             // cmbconcern
             // 
             this.cmbconcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbconcern.Enabled = false;
             this.cmbconcern.FormattingEnabled = true;
             this.cmbconcern.Location = new System.Drawing.Point(83, 23);
             this.cmbconcern.Name = "cmbconcern";
