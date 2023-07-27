@@ -82,12 +82,21 @@ namespace ROMS
         {
             if (cmbtransfertype.SelectedItem != "Regular")
             {
-                grpproductname.Enabled = false; 
+                grpproductname.Enabled = false;
+                 
+
+                DGV_inward.Columns["clmreceive"].Visible = true;
+                DGV_inward.Columns["clmtransfer"].Visible = true;
+                DGV_inward.Columns["clmactualqty"].Visible = false;
+                
             }
             else
             {
                  
-                grpproductname.Enabled = true; 
+                grpproductname.Enabled = true;
+                DGV_inward.Columns["clmreceive"].Visible = false;
+                DGV_inward.Columns["clmtransfer"].Visible = false;
+                DGV_inward.Columns["clmactualqty"].Visible = true;
             }
         }
     }
