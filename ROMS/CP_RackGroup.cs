@@ -15,12 +15,10 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
-        private ToolTip tpgrouptype = new ToolTip();
-        private ToolTip tptgroupname = new ToolTip();
-        private ToolTip tpegroupname = new ToolTip();
-        private ToolTip tptlabelname = new ToolTip();
-        private ToolTip tpelabelname = new ToolTip();
-        private ToolTip tpsno = new ToolTip();
+        private ToolTip tpConcern = new ToolTip();
+        private ToolTip tpRackGroupName = new ToolTip();
+        private ToolTip tpStockLocation = new ToolTip();
+      
         public string vargroupcode;
         public String pbFormStatus;
         public CP_RackGroup()
@@ -37,7 +35,17 @@ namespace ROMS
 
                 grdSelectedRackList.Rows.Add(1, "RACK 01");
                 grdSelectedRackList.Rows.Add(2, "RACK 02");
-                
+
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                if (btnSave.Text == "Save")
+                {
+                    pnlStatus.Enabled = false;
+                }
+                else
+                {
+                    pnlStatus.Enabled = true;
+                }
+
             }
             catch (Exception ex)
             {
@@ -88,69 +96,54 @@ namespace ROMS
 
             }
         }
-      
+        public void udfnSave(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
+                bool blnErrorFlag = false;
+                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    epRackGroup.SetError(cmbConcern, "Please Select Concern");
+                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpConcern.ShowAlways = true;
+                    tpConcern.Show("Please Select Concern", cmbConcern, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtRackGroupName.Text).Trim() == "")
+                {
+                    epRackGroup.SetError(txtRackGroupName, "Please Enter Rack Group Name");
+                    txtRackGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpRackGroupName.ShowAlways = true;
+                    tpRackGroupName.Show("Please Enter Rack Group Name", txtRackGroupName, 5000);
+                    blnErrorFlag = true;
 
-                errGroup.Clear();
-               
-                SPDataService objspdservice = new SPDataService();
-                string result = "";
-                if (btnSave.Text == "Save")
-                {
-                 //   result = objspdservice.udfnSPGroupMaster("Create", "0",cmbGroupType.SelectedValue.ToString(),txtTGroupName.Text,txtEGroupName.Text,txtTLabelName.Text,txtELabelName.Text,cmbSINO.SelectedValue.ToString(),  MainForm.pbUserID, MainForm.pbIpAddress, "Group Create");
-                }
-                else
-                {
-                  //  result = objspdservice.udfnSPGroupMaster("Update",vargroupcode, cmbGroupType.SelectedValue.ToString(), txtTGroupName.Text, txtEGroupName.Text, txtTLabelName.Text, txtELabelName.Text, cmbSINO.SelectedValue.ToString(), MainForm.pbUserID, MainForm.pbIpAddress, "Group Update");
-                }
-                string[] varvalue = result.Split('~');
-                if (varvalue[0] == "3")
-                {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (pbFormStatus == "Finished")
-                    {
-                        pbFormStatus = "";
-                        //MainForm.objCP_Product.varGroupCode = varvalue[2];
-                        //MainForm.objCP_Product.varGroupName = txtEGroupName.Text;
-                        //MainForm.objCP_Product.udfnLoadGroup();
-                        this.Close();
-                    }
-                    if (pbFormStatus == "Raw")
-                    {
-                        pbFormStatus = "";
-                        //MainForm.objCP_RawMaterial.varGroupCode = varvalue[2];
-                        //MainForm.objCP_RawMaterial.varGroupName = txtEGroupName.Text;
-                        //MainForm.objCP_RawMaterial.udfnLoadGroup();
-                        this.Close();
-                    }
-                    if (btnSave.Text == "Update")
-                    {
-                        this.Close();
-                    }
-                    else
-                    {
-                        udfnclear();
-                    }
-                  //  udfnLoadSlNo();
-                   // MainForm.objCP_SubGroupList.udfnList();
-                }
-                else
-                {
-                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    if (varvalue[1].Contains("Order number")) {
-                        //udfnLoadSlNo(); 
-                    }
                 }
 
-                objspdservice.CloseConnection();
-
-
-
-
+                if (blnErrorFlag == false && grdStaffDetails.Rows.Count <= 0 && grdSelectedRackList.Rows.Count <= 0)
+                {
+                    if (grdSelectedRackList.Rows.Count <= 0)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Please select atleast one rack", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    if (grdStaffDetails.Rows.Count <= 0)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Please enter atleast one staff name", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    udfnSave(sender, e);
+                }
             }
             catch (Exception ex)
             {
@@ -226,11 +219,8 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
+                this.Close();
+                
             }
             catch (Exception ex)
             {
@@ -291,69 +281,17 @@ namespace ROMS
             }
         }
 
-
-        private void CP_SubGroup_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Escape)
-                {
-                    udfnclose();
-                }
-                if (e.KeyCode == Keys.F5)
-                {
-                    btnSave_Click(sender, e);
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                //MainForm.objCP_Group = new CP_Group();
-                //MainForm.objCP_Group.ShowDialog();
+                grdStaffDetails.Rows.Add("",txtStaffName.Text);
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void RbActive_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CmbGroupName_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    //txtESubGroupNameEnglish.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Grbform_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DGV_Racklist_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
         }
 
         private void DGV_Racklist_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -371,11 +309,6 @@ namespace ROMS
             }
         }
 
-        private void DGV_Racklist_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void GrdSelectedRackList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
@@ -388,6 +321,432 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+        }
+
+        private void CmbConcern_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    epRackGroup.SetError(cmbConcern, "Please Select Concern");
+                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpConcern.ShowAlways = true;
+                    tpConcern.Show("Please Select Concern", cmbConcern, 5000);
+                }
+                else
+                {
+                    epRackGroup.Clear();
+                    cmbConcern.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtRackGroupName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRackGroupName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRackGroupName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRackGroupName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(txtRackGroupName.Text).Trim() == "")
+                {
+                    epRackGroup.SetError(txtRackGroupName, "Please Enter Rack Group Name");
+                    txtRackGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpRackGroupName.ShowAlways = true;
+                    tpRackGroupName.Show("Please Enter Rack Group Name", txtRackGroupName, 5000);
+
+                }
+                else
+                {
+                    epRackGroup.Clear();
+                    txtRackGroupName.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRackGroupName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbStockLocation.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_Enter(object sender, EventArgs e)
+        {
+
+            try
+            {
+                cmbStockLocation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStockLocation.BackColor = Color.White;
+                //if (Convert.ToString(cmbStockLocation.SelectedValue) == "" || Convert.ToString(cmbStockLocation.SelectedValue) == "-1")
+                //{
+                //    epRackGroup.SetError(cmbStockLocation, "Please Select Stock Location");
+                //    cmbStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpStockLocation.ShowAlways = true;
+                //    tpStockLocation.Show("Please Select Stock Location", cmbStockLocation, 5000);
+                //}
+                //else
+                //{
+                //    epRackGroup.Clear();
+                //    cmbStockLocation.BackColor = Color.White;
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Add_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void BtnView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Add_Leave(object sender, EventArgs e)
+        {
+
+            try
+            {
+                btnView.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtStaffName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtStaffName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void TxtStaffName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtStaffName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSelectedRackList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DgvStaffDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    rbActive.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInactive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInactive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_RackGroup_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    e.Cancel = false;
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtStaffName_KeyDown(object sender, KeyEventArgs e)
+        {
+             try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnAdd_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_RackGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    btnSave.Focus();
+                    btnSave_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

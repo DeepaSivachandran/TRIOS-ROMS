@@ -246,6 +246,7 @@
             this.Name = "CP_ProductHSN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HSN Name";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_ProductHSN_FormClosing);
             this.Load += new System.EventHandler(this.CP_ProductHSN_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_ProductHSN_KeyDown);
             this.grbform.ResumeLayout(false);

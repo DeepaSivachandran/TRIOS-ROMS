@@ -223,7 +223,9 @@ namespace ROMS
         {
             try
             {
-
+                MainForm.objCP_Rack = new CP_Rack();
+                MainForm.objCP_Rack.btnSave.Text = "Update";
+                MainForm.objCP_Rack.ShowDialog();
                 if (grdGroupList.SelectedRows.Count > 0)
                 { 
                 }
@@ -267,8 +269,14 @@ namespace ROMS
                 {
                     tsbEdit_Click(sender, e);
                 }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                {
+                    tsbDelete_Click(sender, e);
+                }
                 if (e.KeyCode == Keys.Escape)
                 {
+                    MainForm objMainForm = new MainForm();
+                    objMainForm.udfnCloseChildForms();
                     MainForm.objStart = new DEF_Start();
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();

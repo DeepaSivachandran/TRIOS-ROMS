@@ -289,6 +289,7 @@
             this.Name = "CP_Unit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Unit";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Unit_FormClosing);
             this.Load += new System.EventHandler(this.CP_Unit_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Brand_KeyDown);
             this.grbform.ResumeLayout(false);

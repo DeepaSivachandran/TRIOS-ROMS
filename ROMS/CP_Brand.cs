@@ -53,6 +53,7 @@ namespace ROMS
 
         private void CP_Brand_KeyDown(object sender, KeyEventArgs e)
         {
+
             try
             {
                 if (e.KeyCode == Keys.Escape)
@@ -61,7 +62,8 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
-                    //btnSave_Click(sender, e);
+                    btnSave.Focus();
+                    BtnSave_Click(sender, e);
                 }
             }
             catch (Exception ex)
@@ -120,7 +122,8 @@ namespace ROMS
                 else
                 {
                     epBrand.Clear();
-                    tpBrandNameInEnglish.BackColor = Color.White;
+                    txtEBrandNameInEnglish.BackColor = Color.White;
+                   
                 }
             }
             catch (Exception ex)
@@ -297,7 +300,6 @@ namespace ROMS
                     tpBrandNameInTamil.Show("Please Enter Brand Name in Tamil", txtEBrandNameInTamil, 5000);
                     blnErrorFlag = true;
                 }
-               
                 if (blnErrorFlag == false && grdSubGroupAdd.Rows.Count <= 0)
                 {
                     if (grdSubGroupAdd.Rows.Count <= 0)
@@ -338,6 +340,117 @@ namespace ROMS
                 {
                     txtProductSubGroup.Focus();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtProductSubGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtSelectedProductSubGroup.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSelectedProductSubGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnRemove.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnRemove_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnRemove.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnRemove_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnRemove.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.White;
             }
             catch (Exception ex)
             {

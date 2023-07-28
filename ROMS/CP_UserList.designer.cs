@@ -50,13 +50,13 @@
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUserList = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmusercategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmuserrole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsUserList.SuspendLayout();
             this.pnluser.SuspendLayout();
             this.grbFilterByUser.SuspendLayout();
@@ -163,7 +163,7 @@
             // lvUserList
             // 
             this.lvUserList.HideSelection = false;
-            this.lvUserList.Location = new System.Drawing.Point(32, 61);
+            this.lvUserList.Location = new System.Drawing.Point(21, 56);
             this.lvUserList.Name = "lvUserList";
             this.lvUserList.Size = new System.Drawing.Size(474, 266);
             this.lvUserList.TabIndex = 958804;
@@ -316,20 +316,6 @@
             this.grdUserList.Size = new System.Drawing.Size(1348, 510);
             this.grdUserList.TabIndex = 958797;
             // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(690, 442);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(653, 184);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "S.No.";
@@ -367,6 +353,20 @@
             this.Column4.HeaderText = "Status";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(690, 442);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(653, 184);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // CP_UserList
             // 

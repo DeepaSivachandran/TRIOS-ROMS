@@ -115,11 +115,8 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
+                this.Close();
+                
             }
             catch (Exception ex)
             {
@@ -211,12 +208,13 @@ namespace ROMS
         {
             try
             {
-                if (txtCityName.Text.Trim() == "")
+                if (Convert.ToString(txtCityName.Text).Trim() == "")
                 {
                     epCity.SetError(txtCityName, "Please Enter City Name");
                     txtCityName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCityName.ShowAlways = true;
                     tpCityName.Show("Please Enter City Name", txtCityName, 5000);
+                 
                 }
                 else
                 {
@@ -390,7 +388,15 @@ namespace ROMS
         {
             try
             {
-                udfnclose();
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    e.Cancel = false;
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
             }
             catch (Exception ex)
             {
