@@ -105,10 +105,10 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.tbOrder = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.lvSupplier = new System.Windows.Forms.ListView();
             this.gpSupplier = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtScheduleName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -146,12 +146,12 @@
             this.clmrepname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmOrderType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_close = new System.Windows.Forms.Button();
             this.tbSchedule = new System.Windows.Forms.TabPage();
             this.grpSchedule = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_Close2 = new System.Windows.Forms.Button();
             this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
             this.lblSearchByProduct2 = new System.Windows.Forms.Label();
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
@@ -305,13 +305,17 @@
             // 
             // cmbSecondLevel
             // 
-            this.cmbSecondLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSecondLevel.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSecondLevel.FormattingEnabled = true;
             this.cmbSecondLevel.Location = new System.Drawing.Point(123, 104);
             this.cmbSecondLevel.Name = "cmbSecondLevel";
             this.cmbSecondLevel.Size = new System.Drawing.Size(149, 27);
             this.cmbSecondLevel.TabIndex = 24;
+            this.cmbSecondLevel.SelectedIndexChanged += new System.EventHandler(this.CmbSecondLevel_SelectedIndexChanged);
+            this.cmbSecondLevel.Enter += new System.EventHandler(this.CmbSecondLevel_Enter);
+            this.cmbSecondLevel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSecondLevel_KeyDown);
+            this.cmbSecondLevel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbSecondLevel_KeyPress);
+            this.cmbSecondLevel.Leave += new System.EventHandler(this.CmbSecondLevel_Leave);
             // 
             // txtNextLevel
             // 
@@ -326,13 +330,17 @@
             // 
             // cmbPolicyContent
             // 
-            this.cmbPolicyContent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPolicyContent.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPolicyContent.FormattingEnabled = true;
             this.cmbPolicyContent.Location = new System.Drawing.Point(123, 77);
             this.cmbPolicyContent.Name = "cmbPolicyContent";
             this.cmbPolicyContent.Size = new System.Drawing.Size(149, 27);
             this.cmbPolicyContent.TabIndex = 23;
+            this.cmbPolicyContent.SelectedIndexChanged += new System.EventHandler(this.CmbPolicyContent_SelectedIndexChanged);
+            this.cmbPolicyContent.Enter += new System.EventHandler(this.CmbPolicyContent_Enter);
+            this.cmbPolicyContent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPolicyContent_KeyDown);
+            this.cmbPolicyContent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPolicyContent_KeyPress);
+            this.cmbPolicyContent.Leave += new System.EventHandler(this.CmbPolicyContent_Leave);
             // 
             // txtReturnText
             // 
@@ -347,7 +355,6 @@
             // 
             // cmbReturnType
             // 
-            this.cmbReturnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReturnType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbReturnType.FormattingEnabled = true;
             this.cmbReturnType.Location = new System.Drawing.Point(123, 50);
@@ -355,6 +362,10 @@
             this.cmbReturnType.Size = new System.Drawing.Size(149, 27);
             this.cmbReturnType.TabIndex = 22;
             this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.CmbReturnType_SelectedIndexChanged);
+            this.cmbReturnType.Enter += new System.EventHandler(this.CmbReturnType_Enter);
+            this.cmbReturnType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReturnType_KeyDown);
+            this.cmbReturnType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReturnType_KeyPress);
+            this.cmbReturnType.Leave += new System.EventHandler(this.CmbReturnType_Leave);
             // 
             // textBox10
             // 
@@ -370,7 +381,6 @@
             // 
             // cmbReturnPolicy
             // 
-            this.cmbReturnPolicy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReturnPolicy.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbReturnPolicy.FormattingEnabled = true;
             this.cmbReturnPolicy.Location = new System.Drawing.Point(123, 23);
@@ -378,6 +388,10 @@
             this.cmbReturnPolicy.Size = new System.Drawing.Size(149, 27);
             this.cmbReturnPolicy.TabIndex = 21;
             this.cmbReturnPolicy.SelectedIndexChanged += new System.EventHandler(this.CmbReturnPolicy_SelectedIndexChanged);
+            this.cmbReturnPolicy.Enter += new System.EventHandler(this.CmbReturnPolicy_Enter);
+            this.cmbReturnPolicy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReturnPolicy_KeyDown);
+            this.cmbReturnPolicy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReturnPolicy_KeyPress);
+            this.cmbReturnPolicy.Leave += new System.EventHandler(this.CmbReturnPolicy_Leave);
             // 
             // textBox9
             // 
@@ -407,7 +421,6 @@
             // 
             // cmbDesignation
             // 
-            this.cmbDesignation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDesignation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDesignation.FormattingEnabled = true;
             this.cmbDesignation.Items.AddRange(new object[] {
@@ -418,6 +431,10 @@
             this.cmbDesignation.Size = new System.Drawing.Size(149, 27);
             this.cmbDesignation.TabIndex = 13;
             this.cmbDesignation.SelectedIndexChanged += new System.EventHandler(this.CmbDesignation_SelectedIndexChanged);
+            this.cmbDesignation.Enter += new System.EventHandler(this.CmbDesignation_Enter);
+            this.cmbDesignation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbDesignation_KeyDown);
+            this.cmbDesignation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbDesignation_KeyPress);
+            this.cmbDesignation.Leave += new System.EventHandler(this.CmbDesignation_Leave);
             // 
             // txtDShortName
             // 
@@ -438,6 +455,9 @@
             this.txtcontactName.Name = "txtcontactName";
             this.txtcontactName.Size = new System.Drawing.Size(136, 27);
             this.txtcontactName.TabIndex = 14;
+            this.txtcontactName.Enter += new System.EventHandler(this.txtcontactName_Enter);
+            this.txtcontactName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtcontactName_KeyDown);
+            this.txtcontactName.Leave += new System.EventHandler(this.txtcontactName_Leave);
             // 
             // txtDDesignation
             // 
@@ -511,20 +531,24 @@
             // 
             // cmbPaymentTerm
             // 
-            this.cmbPaymentTerm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPaymentTerm.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPaymentTerm.FormattingEnabled = true;
+            this.cmbPaymentTerm.ItemHeight = 19;
             this.cmbPaymentTerm.Items.AddRange(new object[] {
             "Nett Amount",
             "Taxable Amount"});
             this.cmbPaymentTerm.Location = new System.Drawing.Point(123, 78);
             this.cmbPaymentTerm.Name = "cmbPaymentTerm";
             this.cmbPaymentTerm.Size = new System.Drawing.Size(149, 27);
-            this.cmbPaymentTerm.TabIndex = 20;
+            this.cmbPaymentTerm.TabIndex = 18;
+            this.cmbPaymentTerm.SelectedIndexChanged += new System.EventHandler(this.CmbPaymentTerm_SelectedIndexChanged);
+            this.cmbPaymentTerm.Enter += new System.EventHandler(this.CmbPaymentTerm_Enter);
+            this.cmbPaymentTerm.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPaymentTerm_KeyDown);
+            this.cmbPaymentTerm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPaymentTerm_KeyPress);
+            this.cmbPaymentTerm.Leave += new System.EventHandler(this.CmbPaymentTerm_Leave);
             // 
             // cmbSupplierType
             // 
-            this.cmbSupplierType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSupplierType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSupplierType.FormattingEnabled = true;
             this.cmbSupplierType.Items.AddRange(new object[] {
@@ -534,7 +558,12 @@
             this.cmbSupplierType.Location = new System.Drawing.Point(383, 25);
             this.cmbSupplierType.Name = "cmbSupplierType";
             this.cmbSupplierType.Size = new System.Drawing.Size(136, 27);
-            this.cmbSupplierType.TabIndex = 16;
+            this.cmbSupplierType.TabIndex = 19;
+            this.cmbSupplierType.SelectedIndexChanged += new System.EventHandler(this.CmbSupplierType_SelectedIndexChanged);
+            this.cmbSupplierType.Enter += new System.EventHandler(this.CmbSupplierType_Enter);
+            this.cmbSupplierType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmbsuppliertype_KeyDown);
+            this.cmbSupplierType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbSupplierType_KeyPress);
+            this.cmbSupplierType.Leave += new System.EventHandler(this.CmbSupplierType_Leave);
             // 
             // txtDPaymentTerm
             // 
@@ -567,7 +596,10 @@
             this.txtgstin.MaxLength = 100;
             this.txtgstin.Name = "txtgstin";
             this.txtgstin.Size = new System.Drawing.Size(136, 27);
-            this.txtgstin.TabIndex = 19;
+            this.txtgstin.TabIndex = 20;
+            this.txtgstin.Enter += new System.EventHandler(this.Txtgstin_Enter);
+            this.txtgstin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtgstin_KeyDown);
+            this.txtgstin.Leave += new System.EventHandler(this.Txtgstin_Leave);
             // 
             // txtDSupplierType
             // 
@@ -595,16 +627,21 @@
             // 
             // cmbfinance
             // 
-            this.cmbfinance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbfinance.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbfinance.FormattingEnabled = true;
+            this.cmbfinance.ItemHeight = 19;
             this.cmbfinance.Items.AddRange(new object[] {
             "CR",
             "DR"});
             this.cmbfinance.Location = new System.Drawing.Point(230, 51);
             this.cmbfinance.Name = "cmbfinance";
             this.cmbfinance.Size = new System.Drawing.Size(42, 27);
-            this.cmbfinance.TabIndex = 18;
+            this.cmbfinance.TabIndex = 17;
+            this.cmbfinance.SelectedIndexChanged += new System.EventHandler(this.Cmbfinance_SelectedIndexChanged);
+            this.cmbfinance.Enter += new System.EventHandler(this.Cmbfinance_Enter);
+            this.cmbfinance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmbfinance_KeyDown);
+            this.cmbfinance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Cmbfinance_KeyPress);
+            this.cmbfinance.Leave += new System.EventHandler(this.Cmbfinance_Leave);
             // 
             // txtopening
             // 
@@ -613,7 +650,10 @@
             this.txtopening.MaxLength = 50;
             this.txtopening.Name = "txtopening";
             this.txtopening.Size = new System.Drawing.Size(107, 27);
-            this.txtopening.TabIndex = 17;
+            this.txtopening.TabIndex = 16;
+            this.txtopening.Enter += new System.EventHandler(this.Txtopening_Enter);
+            this.txtopening.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtopening_KeyDown);
+            this.txtopening.Leave += new System.EventHandler(this.Txtopening_Leave);
             // 
             // textBox22
             // 
@@ -635,6 +675,9 @@
             this.txtcreditlimit.Name = "txtcreditlimit";
             this.txtcreditlimit.Size = new System.Drawing.Size(149, 27);
             this.txtcreditlimit.TabIndex = 15;
+            this.txtcreditlimit.Enter += new System.EventHandler(this.Txtcreditlimit_Enter);
+            this.txtcreditlimit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtcreditlimit_KeyDown);
+            this.txtcreditlimit.Leave += new System.EventHandler(this.Txtcreditlimit_Leave);
             // 
             // textBox28
             // 
@@ -908,7 +951,7 @@
             this.txtContactNumber.Enter += new System.EventHandler(this.txtContactNumber_Enter);
             this.txtContactNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtContactNumber_KeyDown);
             this.txtContactNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAlterMobileno_KeyPress);
-            this.txtContactNumber.Leave += new System.EventHandler(this.txtcontactName_Leave);
+            this.txtContactNumber.Leave += new System.EventHandler(this.txtContactNumber_Leave);
             // 
             // txtDArea
             // 
@@ -975,13 +1018,12 @@
             // 
             // tbOrder
             // 
-            this.tbOrder.Controls.Add(this.listView1);
-            this.tbOrder.Controls.Add(this.button1);
+            this.tbOrder.Controls.Add(this.btnAdd);
             this.tbOrder.Controls.Add(this.lvSupplier);
             this.tbOrder.Controls.Add(this.gpSupplier);
             this.tbOrder.Controls.Add(this.lblNoRecordsFound);
             this.tbOrder.Controls.Add(this.grdSupplierList);
-            this.tbOrder.Controls.Add(this.button2);
+            this.tbOrder.Controls.Add(this.btn_close);
             this.tbOrder.Location = new System.Drawing.Point(4, 28);
             this.tbOrder.Name = "tbOrder";
             this.tbOrder.Padding = new System.Windows.Forms.Padding(3);
@@ -993,25 +1035,28 @@
             // listView1
             // 
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(516, 48);
+            this.listView1.Location = new System.Drawing.Point(141, -6);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(228, 52);
             this.listView1.TabIndex = 1111181;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.Visible = false;
             // 
-            // button1
+            // btnAdd
             // 
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button1.Image = global::ROMS.Properties.Resources.plus;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1052, 243);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 29);
-            this.button1.TabIndex = 36;
-            this.button1.Text = "Add";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAdd.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(1052, 243);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(56, 29);
+            this.btnAdd.TabIndex = 12;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
+            this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
+            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
             // 
             // lvSupplier
             // 
@@ -1025,7 +1070,7 @@
             // 
             // gpSupplier
             // 
-            this.gpSupplier.Controls.Add(this.textBox2);
+            this.gpSupplier.Controls.Add(this.txtScheduleName);
             this.gpSupplier.Controls.Add(this.label1);
             this.gpSupplier.Controls.Add(this.txtSupplier);
             this.gpSupplier.Controls.Add(this.label2);
@@ -1038,15 +1083,18 @@
             this.gpSupplier.TabIndex = 958801;
             this.gpSupplier.TabStop = false;
             // 
-            // textBox2
+            // txtScheduleName
             // 
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(508, 24);
-            this.textBox2.MaxLength = 50;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(204, 27);
-            this.textBox2.TabIndex = 1111182;
-            this.textBox2.Text = "Regular";
+            this.txtScheduleName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScheduleName.Location = new System.Drawing.Point(508, 24);
+            this.txtScheduleName.MaxLength = 50;
+            this.txtScheduleName.Name = "txtScheduleName";
+            this.txtScheduleName.Size = new System.Drawing.Size(204, 27);
+            this.txtScheduleName.TabIndex = 2;
+            this.txtScheduleName.Text = "Regular";
+            this.txtScheduleName.Enter += new System.EventHandler(this.TxtScheduleName_Enter);
+            this.txtScheduleName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtScheduleName_KeyDown);
+            this.txtScheduleName.Leave += new System.EventHandler(this.TxtScheduleName_Leave);
             // 
             // label1
             // 
@@ -1060,13 +1108,14 @@
             // 
             // txtSupplier
             // 
+            this.txtSupplier.Enabled = false;
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSupplier.Location = new System.Drawing.Point(154, 24);
             this.txtSupplier.MaxLength = 50;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.ReadOnly = true;
             this.txtSupplier.Size = new System.Drawing.Size(204, 27);
-            this.txtSupplier.TabIndex = 1111179;
+            this.txtSupplier.TabIndex = 1;
             // 
             // label2
             // 
@@ -1092,7 +1141,7 @@
             this.groupBox2.Location = new System.Drawing.Point(8, 58);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(358, 184);
-            this.groupBox2.TabIndex = 30;
+            this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Salesman Details";
             // 
@@ -1103,7 +1152,10 @@
             this.txtsalesmanwhatsapp.MaxLength = 10;
             this.txtsalesmanwhatsapp.Name = "txtsalesmanwhatsapp";
             this.txtsalesmanwhatsapp.Size = new System.Drawing.Size(204, 27);
-            this.txtsalesmanwhatsapp.TabIndex = 22;
+            this.txtsalesmanwhatsapp.TabIndex = 6;
+            this.txtsalesmanwhatsapp.Enter += new System.EventHandler(this.Txtsalesmanaddress_Enter);
+            this.txtsalesmanwhatsapp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsalesmanwhatsapp_KeyDown);
+            this.txtsalesmanwhatsapp.Leave += new System.EventHandler(this.Txtsalesmanwhatsapp_Leave);
             // 
             // txtsalesmanmobile
             // 
@@ -1112,7 +1164,10 @@
             this.txtsalesmanmobile.MaxLength = 10;
             this.txtsalesmanmobile.Name = "txtsalesmanmobile";
             this.txtsalesmanmobile.Size = new System.Drawing.Size(204, 27);
-            this.txtsalesmanmobile.TabIndex = 21;
+            this.txtsalesmanmobile.TabIndex = 5;
+            this.txtsalesmanmobile.Enter += new System.EventHandler(this.Txtsalesmanmobile_Enter);
+            this.txtsalesmanmobile.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsalesmanmobile_KeyDown);
+            this.txtsalesmanmobile.Leave += new System.EventHandler(this.Txtsalesmanmobile_Leave);
             // 
             // txtsalesmanaddress
             // 
@@ -1123,7 +1178,10 @@
             this.txtsalesmanaddress.Name = "txtsalesmanaddress";
             this.txtsalesmanaddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtsalesmanaddress.Size = new System.Drawing.Size(204, 64);
-            this.txtsalesmanaddress.TabIndex = 20;
+            this.txtsalesmanaddress.TabIndex = 4;
+            this.txtsalesmanaddress.Enter += new System.EventHandler(this.Txtsalesmanaddress_Enter);
+            this.txtsalesmanaddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsalesmanaddress_KeyDown);
+            this.txtsalesmanaddress.Leave += new System.EventHandler(this.Txtsalesmanaddress_Leave);
             // 
             // txtsalesmanname
             // 
@@ -1132,7 +1190,10 @@
             this.txtsalesmanname.MaxLength = 100;
             this.txtsalesmanname.Name = "txtsalesmanname";
             this.txtsalesmanname.Size = new System.Drawing.Size(204, 27);
-            this.txtsalesmanname.TabIndex = 19;
+            this.txtsalesmanname.TabIndex = 3;
+            this.txtsalesmanname.Enter += new System.EventHandler(this.Txtsalesmanname_Enter);
+            this.txtsalesmanname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsalesmanname_KeyDown);
+            this.txtsalesmanname.Leave += new System.EventHandler(this.Txtsalesmanname_Leave);
             // 
             // textBox17
             // 
@@ -1184,6 +1245,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.listView1);
             this.groupBox1.Controls.Add(this.txtrepwhatsappno);
             this.groupBox1.Controls.Add(this.txtrepmobileno);
             this.groupBox1.Controls.Add(this.txtrepaddress);
@@ -1196,7 +1258,7 @@
             this.groupBox1.Location = new System.Drawing.Point(371, 58);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(358, 184);
-            this.groupBox1.TabIndex = 29;
+            this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Representative Details";
             // 
@@ -1207,7 +1269,10 @@
             this.txtrepwhatsappno.MaxLength = 10;
             this.txtrepwhatsappno.Name = "txtrepwhatsappno";
             this.txtrepwhatsappno.Size = new System.Drawing.Size(204, 27);
-            this.txtrepwhatsappno.TabIndex = 18;
+            this.txtrepwhatsappno.TabIndex = 10;
+            this.txtrepwhatsappno.Enter += new System.EventHandler(this.Txtrepwhatsappno_Enter);
+            this.txtrepwhatsappno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtrepwhatsappno_KeyDown);
+            this.txtrepwhatsappno.Leave += new System.EventHandler(this.Txtrepwhatsappno_Leave);
             // 
             // txtrepmobileno
             // 
@@ -1216,7 +1281,10 @@
             this.txtrepmobileno.MaxLength = 10;
             this.txtrepmobileno.Name = "txtrepmobileno";
             this.txtrepmobileno.Size = new System.Drawing.Size(204, 27);
-            this.txtrepmobileno.TabIndex = 17;
+            this.txtrepmobileno.TabIndex = 9;
+            this.txtrepmobileno.Enter += new System.EventHandler(this.Txtrepmobileno_Enter);
+            this.txtrepmobileno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtrepmobileno_KeyDown);
+            this.txtrepmobileno.Leave += new System.EventHandler(this.Txtrepmobileno_Leave);
             // 
             // txtrepaddress
             // 
@@ -1227,7 +1295,10 @@
             this.txtrepaddress.Name = "txtrepaddress";
             this.txtrepaddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtrepaddress.Size = new System.Drawing.Size(204, 64);
-            this.txtrepaddress.TabIndex = 16;
+            this.txtrepaddress.TabIndex = 8;
+            this.txtrepaddress.Enter += new System.EventHandler(this.Txtrepaddress_Enter);
+            this.txtrepaddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtrepaddress_KeyDown);
+            this.txtrepaddress.Leave += new System.EventHandler(this.Txtrepaddress_Leave);
             // 
             // txtrepname
             // 
@@ -1236,7 +1307,10 @@
             this.txtrepname.MaxLength = 100;
             this.txtrepname.Name = "txtrepname";
             this.txtrepname.Size = new System.Drawing.Size(204, 27);
-            this.txtrepname.TabIndex = 15;
+            this.txtrepname.TabIndex = 7;
+            this.txtrepname.Enter += new System.EventHandler(this.Txtrepname_Enter);
+            this.txtrepname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtrepname_KeyDown);
+            this.txtrepname.Leave += new System.EventHandler(this.Txtrepname_Leave);
             // 
             // textBox11
             // 
@@ -1296,7 +1370,7 @@
             this.groupBox6.Location = new System.Drawing.Point(734, 14);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(358, 228);
-            this.groupBox6.TabIndex = 31;
+            this.groupBox6.TabIndex = 11;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Order Details";
             // 
@@ -1360,7 +1434,6 @@
             // 
             // cmbOrderType
             // 
-            this.cmbOrderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOrderType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbOrderType.FormattingEnabled = true;
             this.cmbOrderType.Items.AddRange(new object[] {
@@ -1369,7 +1442,12 @@
             this.cmbOrderType.Location = new System.Drawing.Point(142, 27);
             this.cmbOrderType.Name = "cmbOrderType";
             this.cmbOrderType.Size = new System.Drawing.Size(204, 27);
-            this.cmbOrderType.TabIndex = 30;
+            this.cmbOrderType.TabIndex = 11;
+            this.cmbOrderType.SelectedIndexChanged += new System.EventHandler(this.CmbOrderType_SelectedIndexChanged);
+            this.cmbOrderType.Enter += new System.EventHandler(this.CmbOrderType_Enter);
+            this.cmbOrderType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderType_KeyDown);
+            this.cmbOrderType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderType_KeyPress);
+            this.cmbOrderType.Leave += new System.EventHandler(this.CmbOrderType_Leave);
             // 
             // txtDOrderDay
             // 
@@ -1502,19 +1580,21 @@
             this.clmOrderType.Name = "clmOrderType";
             this.clmOrderType.ReadOnly = true;
             // 
-            // button2
+            // btn_close
             // 
-            this.button2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button2.Image = global::ROMS.Properties.Resources.close;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(1240, 540);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 29);
-            this.button2.TabIndex = 37;
-            this.button2.Text = "Close";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btnClose_Click);
+            this.btn_close.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btn_close.Image = global::ROMS.Properties.Resources.close;
+            this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_close.Location = new System.Drawing.Point(1240, 540);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(75, 29);
+            this.btn_close.TabIndex = 13;
+            this.btn_close.Text = "Close";
+            this.btn_close.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btnClose_Click);
+            this.btn_close.Enter += new System.EventHandler(this.Btn_close_Enter);
+            this.btn_close.Leave += new System.EventHandler(this.Btn_close_Leave);
             // 
             // tbSchedule
             // 
@@ -1534,7 +1614,7 @@
             // 
             this.grpSchedule.Controls.Add(this.label4);
             this.grpSchedule.Controls.Add(this.label5);
-            this.grpSchedule.Controls.Add(this.button4);
+            this.grpSchedule.Controls.Add(this.btn_Close2);
             this.grpSchedule.Controls.Add(this.txtSearchByProduct2);
             this.grpSchedule.Controls.Add(this.lblSearchByProduct2);
             this.grpSchedule.Controls.Add(this.grdViewSupplierMapping);
@@ -1566,19 +1646,21 @@
             this.label5.TabIndex = 958815;
             this.label5.Text = "No.of Products :";
             // 
-            // button4
+            // btn_Close2
             // 
-            this.button4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button4.Image = global::ROMS.Properties.Resources.close;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(927, 523);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 29);
-            this.button4.TabIndex = 958812;
-            this.button4.Text = "Close";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.btnClose_Click);
+            this.btn_Close2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btn_Close2.Image = global::ROMS.Properties.Resources.close;
+            this.btn_Close2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Close2.Location = new System.Drawing.Point(927, 523);
+            this.btn_Close2.Name = "btn_Close2";
+            this.btn_Close2.Size = new System.Drawing.Size(75, 29);
+            this.btn_Close2.TabIndex = 958812;
+            this.btn_Close2.Text = "Close";
+            this.btn_Close2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_Close2.UseVisualStyleBackColor = true;
+            this.btn_Close2.Click += new System.EventHandler(this.btnClose_Click);
+            this.btn_Close2.Enter += new System.EventHandler(this.Btn_Close2_Enter);
+            this.btn_Close2.Leave += new System.EventHandler(this.Btn_Close2_Leave);
             // 
             // txtSearchByProduct2
             // 
@@ -1588,6 +1670,9 @@
             this.txtSearchByProduct2.Name = "txtSearchByProduct2";
             this.txtSearchByProduct2.Size = new System.Drawing.Size(403, 27);
             this.txtSearchByProduct2.TabIndex = 958811;
+            this.txtSearchByProduct2.Enter += new System.EventHandler(this.TxtSearchByProduct2_Enter);
+            this.txtSearchByProduct2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByProduct2_KeyDown);
+            this.txtSearchByProduct2.Leave += new System.EventHandler(this.TxtSearchByProduct2_Leave);
             // 
             // lblSearchByProduct2
             // 
@@ -1794,10 +1879,10 @@
         private System.Windows.Forms.TabPage tbOrder;
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdSupplierList;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.GroupBox gpSupplier;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtScheduleName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView lvSupplier;
         private System.Windows.Forms.TextBox txtSupplier;
@@ -1827,7 +1912,7 @@
         private System.Windows.Forms.ComboBox cmbOrderType;
         private System.Windows.Forms.TextBox txtDOrderDay;
         private System.Windows.Forms.TextBox textBox34;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.TabPage tbSchedule;
         private System.Windows.Forms.Label lblGC;
         private System.Windows.Forms.Label label3;
@@ -1880,7 +1965,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grpSchedule;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_Close2;
         private System.Windows.Forms.TextBox txtSearchByProduct2;
         private System.Windows.Forms.Label lblSearchByProduct2;
         public System.Windows.Forms.DataGridView grdViewSupplierMapping;

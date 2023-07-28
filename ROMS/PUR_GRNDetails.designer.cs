@@ -252,7 +252,7 @@
             this.btnDamage.Name = "btnDamage";
             this.btnDamage.Size = new System.Drawing.Size(134, 29);
             this.btnDamage.TabIndex = 1111181;
-            this.btnDamage.Text = "Purchase Return";
+            this.btnDamage.Text = "Delivery Challan";
             this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDamage.UseVisualStyleBackColor = true;
             this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
