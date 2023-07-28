@@ -80,6 +80,10 @@ namespace ROMS
                 txtpurchaseRate.Enabled = false;
                 txtActualQty.Enabled = false; 
                 btnAdd.Enabled = false;
+                cmbReturnType.Items.Clear();
+                cmbReturnType.Items.Add("Received Credit Note");
+                cmbReturnType.Items.Add("Received Equivalent Products");
+                cmbReturnType.SelectedIndex = 0;
             }
             else
             {
@@ -87,7 +91,9 @@ namespace ROMS
                 txtpurchaseRate.Enabled = true;
                 txtActualQty.Enabled = true;
                 btnAdd.Enabled = true;
-
+                cmbReturnType.Items.Clear();
+                cmbReturnType.Items.Add("Debit Note Created");
+                cmbReturnType.SelectedIndex = 0;
             }
         }
     }
