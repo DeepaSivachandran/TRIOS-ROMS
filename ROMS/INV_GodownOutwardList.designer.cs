@@ -43,15 +43,6 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txtDay = new System.Windows.Forms.TextBox();
@@ -66,6 +57,7 @@
             this.cmbconcern = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUserList = new System.Windows.Forms.DataGridView();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.clmSNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmShopgodown = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,9 +65,17 @@
             this.clmnoofrack = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNoOfUsers = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsRackGroupList.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -204,8 +204,8 @@
             this.dataGridViewTextBoxColumn5,
             this.Column1,
             this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.Column2});
+            this.Column2,
+            this.dataGridViewTextBoxColumn7});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -227,64 +227,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1348, 56);
             this.dataGridView1.TabIndex = 958801;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Concern";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Outward Date";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Outward No.";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Stock Location";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 150;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Transaction Type";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 120;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Total Products";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Status ";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Created By";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 200;
             // 
             // grbFilterBy
             // 
@@ -453,8 +395,8 @@
             this.clmnoofrack,
             this.Column5,
             this.clmNoOfUsers,
-            this.clmtotalqty,
-            this.Column4});
+            this.Column4,
+            this.clmtotalqty});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -476,6 +418,20 @@
             this.grdUserList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdUserList.Size = new System.Drawing.Size(1348, 510);
             this.grdUserList.TabIndex = 958797;
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(1055, 242);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(288, 399);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // clmSNo
             // 
@@ -522,12 +478,6 @@
             this.clmNoOfUsers.Name = "clmNoOfUsers";
             this.clmNoOfUsers.ReadOnly = true;
             // 
-            // clmtotalqty
-            // 
-            this.clmtotalqty.HeaderText = "Status";
-            this.clmtotalqty.Name = "clmtotalqty";
-            this.clmtotalqty.ReadOnly = true;
-            // 
             // Column4
             // 
             this.Column4.HeaderText = "Created By";
@@ -535,19 +485,69 @@
             this.Column4.ReadOnly = true;
             this.Column4.Width = 200;
             // 
-            // picLoader
+            // clmtotalqty
             // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(1055, 242);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(288, 399);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
+            this.clmtotalqty.HeaderText = "Status";
+            this.clmtotalqty.Name = "clmtotalqty";
+            this.clmtotalqty.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Concern";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Outward Date";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Outward No.";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Stock Location";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 150;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Transaction Type";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Total Products";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Created By";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Status ";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
             // INV_GodownOutwardList
             // 
@@ -613,8 +613,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmConcern;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmShopgodown;
@@ -622,7 +622,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnoofrack;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNoOfUsers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalqty;
     }
 }

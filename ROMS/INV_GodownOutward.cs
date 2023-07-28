@@ -323,7 +323,7 @@ namespace ROMS
             {
                 if (cmbTransactionType.SelectedItem != "Regular")
                 {
-                    grpproductname.Enabled = false; 
+                  //  grpproductname.Enabled = false; 
                     DGV_inward.Columns["clmBatch"].Width = 100;
                     DGV_inward.Columns["clmBatch"].Visible = true;
                 }
@@ -332,7 +332,7 @@ namespace ROMS
 
                     DGV_inward.Columns["clmBatch"].Width = 0;
                     DGV_inward.Columns["clmBatch"].Visible = false;
-                    grpproductname.Enabled = true;
+                  //  grpproductname.Enabled = true;
                 }
             }
             catch (Exception ex)

@@ -48,6 +48,15 @@
             this.tcSupplier = new System.Windows.Forms.TabControl();
             this.tbSupplier = new System.Windows.Forms.TabPage();
             this.grpSupplierDetails = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cmbSecondLevel = new System.Windows.Forms.ComboBox();
+            this.txtNextLevel = new System.Windows.Forms.TextBox();
+            this.cmbPolicyContent = new System.Windows.Forms.ComboBox();
+            this.txtReturnText = new System.Windows.Forms.TextBox();
+            this.cmbReturnType = new System.Windows.Forms.ComboBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.cmbReturnPolicy = new System.Windows.Forms.ComboBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
             this.grbEnvelopeDetails = new System.Windows.Forms.GroupBox();
             this.cmbDesignation = new System.Windows.Forms.ComboBox();
             this.txtDShortName = new System.Windows.Forms.TextBox();
@@ -155,21 +164,13 @@
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.cmbReturnPolicy = new System.Windows.Forms.ComboBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.cmbReturnType = new System.Windows.Forms.ComboBox();
-            this.txtReturnText = new System.Windows.Forms.TextBox();
-            this.cmbPolicyContent = new System.Windows.Forms.ComboBox();
-            this.cmbSecondLevel = new System.Windows.Forms.ComboBox();
-            this.txtNextLevel = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tcSupplier.SuspendLayout();
             this.tbSupplier.SuspendLayout();
             this.grpSupplierDetails.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.grbEnvelopeDetails.SuspendLayout();
             this.panelStatus.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -184,7 +185,6 @@
             this.tbSchedule.SuspendLayout();
             this.grpSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewSupplierMapping)).BeginInit();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // errCompany
@@ -286,6 +286,111 @@
             this.grpSupplierDetails.TabStop = false;
             this.grpSupplierDetails.Enter += new System.EventHandler(this.GrpSupplierDetails_Enter);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.cmbSecondLevel);
+            this.groupBox3.Controls.Add(this.txtNextLevel);
+            this.groupBox3.Controls.Add(this.cmbPolicyContent);
+            this.groupBox3.Controls.Add(this.txtReturnText);
+            this.groupBox3.Controls.Add(this.cmbReturnType);
+            this.groupBox3.Controls.Add(this.textBox10);
+            this.groupBox3.Controls.Add(this.cmbReturnPolicy);
+            this.groupBox3.Controls.Add(this.textBox9);
+            this.groupBox3.Location = new System.Drawing.Point(571, 58);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(281, 141);
+            this.groupBox3.TabIndex = 21;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Return Policy";
+            // 
+            // cmbSecondLevel
+            // 
+            this.cmbSecondLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSecondLevel.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSecondLevel.FormattingEnabled = true;
+            this.cmbSecondLevel.Location = new System.Drawing.Point(123, 104);
+            this.cmbSecondLevel.Name = "cmbSecondLevel";
+            this.cmbSecondLevel.Size = new System.Drawing.Size(149, 27);
+            this.cmbSecondLevel.TabIndex = 24;
+            // 
+            // txtNextLevel
+            // 
+            this.txtNextLevel.BackColor = System.Drawing.SystemColors.Control;
+            this.txtNextLevel.Enabled = false;
+            this.txtNextLevel.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtNextLevel.Location = new System.Drawing.Point(12, 104);
+            this.txtNextLevel.Name = "txtNextLevel";
+            this.txtNextLevel.ReadOnly = true;
+            this.txtNextLevel.Size = new System.Drawing.Size(111, 27);
+            this.txtNextLevel.TabIndex = 77;
+            // 
+            // cmbPolicyContent
+            // 
+            this.cmbPolicyContent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPolicyContent.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPolicyContent.FormattingEnabled = true;
+            this.cmbPolicyContent.Location = new System.Drawing.Point(123, 77);
+            this.cmbPolicyContent.Name = "cmbPolicyContent";
+            this.cmbPolicyContent.Size = new System.Drawing.Size(149, 27);
+            this.cmbPolicyContent.TabIndex = 23;
+            // 
+            // txtReturnText
+            // 
+            this.txtReturnText.BackColor = System.Drawing.SystemColors.Control;
+            this.txtReturnText.Enabled = false;
+            this.txtReturnText.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtReturnText.Location = new System.Drawing.Point(12, 77);
+            this.txtReturnText.Name = "txtReturnText";
+            this.txtReturnText.ReadOnly = true;
+            this.txtReturnText.Size = new System.Drawing.Size(111, 27);
+            this.txtReturnText.TabIndex = 75;
+            // 
+            // cmbReturnType
+            // 
+            this.cmbReturnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReturnType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbReturnType.FormattingEnabled = true;
+            this.cmbReturnType.Location = new System.Drawing.Point(123, 50);
+            this.cmbReturnType.Name = "cmbReturnType";
+            this.cmbReturnType.Size = new System.Drawing.Size(149, 27);
+            this.cmbReturnType.TabIndex = 22;
+            this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.CmbReturnType_SelectedIndexChanged);
+            // 
+            // textBox10
+            // 
+            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox10.Enabled = false;
+            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox10.Location = new System.Drawing.Point(12, 50);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(111, 27);
+            this.textBox10.TabIndex = 73;
+            this.textBox10.Text = "Return Cycle";
+            // 
+            // cmbReturnPolicy
+            // 
+            this.cmbReturnPolicy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReturnPolicy.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbReturnPolicy.FormattingEnabled = true;
+            this.cmbReturnPolicy.Location = new System.Drawing.Point(123, 23);
+            this.cmbReturnPolicy.Name = "cmbReturnPolicy";
+            this.cmbReturnPolicy.Size = new System.Drawing.Size(149, 27);
+            this.cmbReturnPolicy.TabIndex = 21;
+            this.cmbReturnPolicy.SelectedIndexChanged += new System.EventHandler(this.CmbReturnPolicy_SelectedIndexChanged);
+            // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox9.Enabled = false;
+            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox9.Location = new System.Drawing.Point(12, 23);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(111, 27);
+            this.textBox9.TabIndex = 72;
+            this.textBox9.Text = "Returns Applicable";
+            // 
             // grbEnvelopeDetails
             // 
             this.grbEnvelopeDetails.Controls.Add(this.cmbDesignation);
@@ -296,7 +401,7 @@
             this.grbEnvelopeDetails.Location = new System.Drawing.Point(21, 334);
             this.grbEnvelopeDetails.Name = "grbEnvelopeDetails";
             this.grbEnvelopeDetails.Size = new System.Drawing.Size(531, 61);
-            this.grbEnvelopeDetails.TabIndex = 77;
+            this.grbEnvelopeDetails.TabIndex = 13;
             this.grbEnvelopeDetails.TabStop = false;
             this.grbEnvelopeDetails.Text = "Details For Envelope";
             // 
@@ -311,7 +416,7 @@
             this.cmbDesignation.Location = new System.Drawing.Point(123, 23);
             this.cmbDesignation.Name = "cmbDesignation";
             this.cmbDesignation.Size = new System.Drawing.Size(149, 27);
-            this.cmbDesignation.TabIndex = 69;
+            this.cmbDesignation.TabIndex = 13;
             this.cmbDesignation.SelectedIndexChanged += new System.EventHandler(this.CmbDesignation_SelectedIndexChanged);
             // 
             // txtDShortName
@@ -332,7 +437,7 @@
             this.txtcontactName.MaxLength = 10;
             this.txtcontactName.Name = "txtcontactName";
             this.txtcontactName.Size = new System.Drawing.Size(136, 27);
-            this.txtcontactName.TabIndex = 63;
+            this.txtcontactName.TabIndex = 14;
             // 
             // txtDDesignation
             // 
@@ -365,7 +470,7 @@
             this.rbInactive.Location = new System.Drawing.Point(79, 1);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
-            this.rbInactive.TabIndex = 33;
+            this.rbInactive.TabIndex = 26;
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
             // 
@@ -377,7 +482,7 @@
             this.rbActive.Location = new System.Drawing.Point(2, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(54, 21);
-            this.rbActive.TabIndex = 31;
+            this.rbActive.TabIndex = 25;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -400,7 +505,7 @@
             this.groupBox4.Location = new System.Drawing.Point(21, 396);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(531, 117);
-            this.groupBox4.TabIndex = 72;
+            this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Accounts";
             // 
@@ -415,7 +520,7 @@
             this.cmbPaymentTerm.Location = new System.Drawing.Point(123, 78);
             this.cmbPaymentTerm.Name = "cmbPaymentTerm";
             this.cmbPaymentTerm.Size = new System.Drawing.Size(149, 27);
-            this.cmbPaymentTerm.TabIndex = 25;
+            this.cmbPaymentTerm.TabIndex = 20;
             // 
             // cmbSupplierType
             // 
@@ -429,7 +534,7 @@
             this.cmbSupplierType.Location = new System.Drawing.Point(383, 25);
             this.cmbSupplierType.Name = "cmbSupplierType";
             this.cmbSupplierType.Size = new System.Drawing.Size(136, 27);
-            this.cmbSupplierType.TabIndex = 67;
+            this.cmbSupplierType.TabIndex = 16;
             // 
             // txtDPaymentTerm
             // 
@@ -462,7 +567,7 @@
             this.txtgstin.MaxLength = 100;
             this.txtgstin.Name = "txtgstin";
             this.txtgstin.Size = new System.Drawing.Size(136, 27);
-            this.txtgstin.TabIndex = 23;
+            this.txtgstin.TabIndex = 19;
             // 
             // txtDSupplierType
             // 
@@ -499,7 +604,7 @@
             this.cmbfinance.Location = new System.Drawing.Point(230, 51);
             this.cmbfinance.Name = "cmbfinance";
             this.cmbfinance.Size = new System.Drawing.Size(42, 27);
-            this.cmbfinance.TabIndex = 28;
+            this.cmbfinance.TabIndex = 18;
             // 
             // txtopening
             // 
@@ -508,7 +613,7 @@
             this.txtopening.MaxLength = 50;
             this.txtopening.Name = "txtopening";
             this.txtopening.Size = new System.Drawing.Size(107, 27);
-            this.txtopening.TabIndex = 14;
+            this.txtopening.TabIndex = 17;
             // 
             // textBox22
             // 
@@ -529,7 +634,7 @@
             this.txtcreditlimit.MaxLength = 50;
             this.txtcreditlimit.Name = "txtcreditlimit";
             this.txtcreditlimit.Size = new System.Drawing.Size(149, 27);
-            this.txtcreditlimit.TabIndex = 13;
+            this.txtcreditlimit.TabIndex = 15;
             // 
             // textBox28
             // 
@@ -616,6 +721,10 @@
             this.txtwhatsapp.Name = "txtwhatsapp";
             this.txtwhatsapp.Size = new System.Drawing.Size(186, 27);
             this.txtwhatsapp.TabIndex = 11;
+            this.txtwhatsapp.Enter += new System.EventHandler(this.Txtwhatsapp_Enter);
+            this.txtwhatsapp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtwhatsapp_KeyDown);
+            this.txtwhatsapp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtwhatsapp_KeyPress);
+            this.txtwhatsapp.Leave += new System.EventHandler(this.Txtwhatsapp_Leave);
             // 
             // textBox3
             // 
@@ -637,6 +746,9 @@
             this.txtaddress2.Name = "txtaddress2";
             this.txtaddress2.Size = new System.Drawing.Size(397, 27);
             this.txtaddress2.TabIndex = 3;
+            this.txtaddress2.Enter += new System.EventHandler(this.Txtaddress2_Enter);
+            this.txtaddress2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtaddress2_KeyDown);
+            this.txtaddress2.Leave += new System.EventHandler(this.Txtaddress2_Leave);
             // 
             // txtDPincode
             // 
@@ -652,13 +764,17 @@
             // 
             // cmbState
             // 
-            this.cmbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbState.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbState.FormattingEnabled = true;
             this.cmbState.Location = new System.Drawing.Point(121, 104);
             this.cmbState.Name = "cmbState";
             this.cmbState.Size = new System.Drawing.Size(186, 27);
             this.cmbState.TabIndex = 4;
+            this.cmbState.SelectedIndexChanged += new System.EventHandler(this.CmbState_SelectedIndexChanged);
+            this.cmbState.Enter += new System.EventHandler(this.CmbState_Enter);
+            this.cmbState.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbState_KeyDown);
+            this.cmbState.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbState_KeyPress);
+            this.cmbState.Leave += new System.EventHandler(this.CmbState_Leave);
             // 
             // txtPincode
             // 
@@ -668,6 +784,9 @@
             this.txtPincode.Name = "txtPincode";
             this.txtPincode.Size = new System.Drawing.Size(158, 27);
             this.txtPincode.TabIndex = 6;
+            this.txtPincode.Enter += new System.EventHandler(this.txtPincode_Enter);
+            this.txtPincode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPincode_KeyDown);
+            this.txtPincode.Leave += new System.EventHandler(this.txtPincode_Leave);
             // 
             // textBox1
             // 
@@ -713,6 +832,9 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(397, 27);
             this.txtEmail.TabIndex = 12;
+            this.txtEmail.Enter += new System.EventHandler(this.txtEmail_Enter);
+            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
+            this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
             // txtName
             // 
@@ -722,6 +844,9 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(397, 27);
             this.txtName.TabIndex = 0;
+            this.txtName.Enter += new System.EventHandler(this.TxtName_Enter);
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtName_KeyDown);
+            this.txtName.Leave += new System.EventHandler(this.TxtName_Leave);
             // 
             // txtDAContactNumber
             // 
@@ -743,6 +868,10 @@
             this.txtAContactNumber.Name = "txtAContactNumber";
             this.txtAContactNumber.Size = new System.Drawing.Size(186, 27);
             this.txtAContactNumber.TabIndex = 9;
+            this.txtAContactNumber.Enter += new System.EventHandler(this.txtAContactNumber_Enter);
+            this.txtAContactNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAContactNumber_KeyDown);
+            this.txtAContactNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAContactNumber_KeyPress);
+            this.txtAContactNumber.Leave += new System.EventHandler(this.txtAContactNumber_Leave);
             // 
             // txtDContactNumber
             // 
@@ -764,6 +893,9 @@
             this.txtArea.Name = "txtArea";
             this.txtArea.Size = new System.Drawing.Size(397, 27);
             this.txtArea.TabIndex = 2;
+            this.txtArea.Enter += new System.EventHandler(this.txtArea_Enter);
+            this.txtArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtArea_KeyDown);
+            this.txtArea.Leave += new System.EventHandler(this.txtArea_Leave);
             // 
             // txtContactNumber
             // 
@@ -773,6 +905,10 @@
             this.txtContactNumber.Name = "txtContactNumber";
             this.txtContactNumber.Size = new System.Drawing.Size(186, 27);
             this.txtContactNumber.TabIndex = 7;
+            this.txtContactNumber.Enter += new System.EventHandler(this.txtContactNumber_Enter);
+            this.txtContactNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtContactNumber_KeyDown);
+            this.txtContactNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAlterMobileno_KeyPress);
+            this.txtContactNumber.Leave += new System.EventHandler(this.txtcontactName_Leave);
             // 
             // txtDArea
             // 
@@ -806,6 +942,9 @@
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(186, 27);
             this.txtCity.TabIndex = 5;
+            this.txtCity.Enter += new System.EventHandler(this.txtCity_Enter);
+            this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCity_KeyDown);
+            this.txtCity.Leave += new System.EventHandler(this.txtCity_Leave);
             // 
             // btnSave
             // 
@@ -815,7 +954,7 @@
             this.btnSave.Location = new System.Drawing.Point(670, 517);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 73;
+            this.btnSave.TabIndex = 27;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -828,7 +967,7 @@
             this.btnClose.Location = new System.Drawing.Point(768, 517);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 74;
+            this.btnClose.TabIndex = 28;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -1581,112 +1720,6 @@
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.cmbSecondLevel);
-            this.groupBox3.Controls.Add(this.txtNextLevel);
-            this.groupBox3.Controls.Add(this.cmbPolicyContent);
-            this.groupBox3.Controls.Add(this.txtReturnText);
-            this.groupBox3.Controls.Add(this.cmbReturnType);
-            this.groupBox3.Controls.Add(this.textBox10);
-            this.groupBox3.Controls.Add(this.cmbReturnPolicy);
-            this.groupBox3.Controls.Add(this.textBox9);
-            this.groupBox3.Location = new System.Drawing.Point(571, 58);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(281, 141);
-            this.groupBox3.TabIndex = 78;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Return Policy";
-            // 
-            // cmbReturnPolicy
-            // 
-            this.cmbReturnPolicy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbReturnPolicy.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbReturnPolicy.FormattingEnabled = true;
-            this.cmbReturnPolicy.Location = new System.Drawing.Point(123, 23);
-            this.cmbReturnPolicy.Name = "cmbReturnPolicy";
-            this.cmbReturnPolicy.Size = new System.Drawing.Size(149, 27);
-            this.cmbReturnPolicy.TabIndex = 71;
-            this.cmbReturnPolicy.SelectedIndexChanged += new System.EventHandler(this.CmbReturnPolicy_SelectedIndexChanged);
-            // 
-            // textBox9
-            // 
-            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox9.Enabled = false;
-            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox9.Location = new System.Drawing.Point(12, 23);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(111, 27);
-            this.textBox9.TabIndex = 72;
-            this.textBox9.Text = "Returns Applicable";
-            // 
-            // textBox10
-            // 
-            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox10.Enabled = false;
-            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox10.Location = new System.Drawing.Point(12, 50);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(111, 27);
-            this.textBox10.TabIndex = 73;
-            this.textBox10.Text = "Return Cycle";
-            // 
-            // cmbReturnType
-            // 
-            this.cmbReturnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbReturnType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbReturnType.FormattingEnabled = true;
-            this.cmbReturnType.Location = new System.Drawing.Point(123, 50);
-            this.cmbReturnType.Name = "cmbReturnType";
-            this.cmbReturnType.Size = new System.Drawing.Size(149, 27);
-            this.cmbReturnType.TabIndex = 74;
-            this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.CmbReturnType_SelectedIndexChanged);
-            // 
-            // txtReturnText
-            // 
-            this.txtReturnText.BackColor = System.Drawing.SystemColors.Control;
-            this.txtReturnText.Enabled = false;
-            this.txtReturnText.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtReturnText.Location = new System.Drawing.Point(12, 77);
-            this.txtReturnText.Name = "txtReturnText";
-            this.txtReturnText.ReadOnly = true;
-            this.txtReturnText.Size = new System.Drawing.Size(111, 27);
-            this.txtReturnText.TabIndex = 75;
-            // 
-            // cmbPolicyContent
-            // 
-            this.cmbPolicyContent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPolicyContent.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPolicyContent.FormattingEnabled = true;
-            this.cmbPolicyContent.Location = new System.Drawing.Point(123, 77);
-            this.cmbPolicyContent.Name = "cmbPolicyContent";
-            this.cmbPolicyContent.Size = new System.Drawing.Size(149, 27);
-            this.cmbPolicyContent.TabIndex = 76;
-            this.cmbPolicyContent.SelectedIndexChanged += new System.EventHandler(this.CmbPolicyContent_SelectedIndexChanged);
-            // 
-            // cmbSecondLevel
-            // 
-            this.cmbSecondLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSecondLevel.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSecondLevel.FormattingEnabled = true;
-            this.cmbSecondLevel.Location = new System.Drawing.Point(123, 104);
-            this.cmbSecondLevel.Name = "cmbSecondLevel";
-            this.cmbSecondLevel.Size = new System.Drawing.Size(149, 27);
-            this.cmbSecondLevel.TabIndex = 78;
-            // 
-            // txtNextLevel
-            // 
-            this.txtNextLevel.BackColor = System.Drawing.SystemColors.Control;
-            this.txtNextLevel.Enabled = false;
-            this.txtNextLevel.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtNextLevel.Location = new System.Drawing.Point(12, 104);
-            this.txtNextLevel.Name = "txtNextLevel";
-            this.txtNextLevel.ReadOnly = true;
-            this.txtNextLevel.Size = new System.Drawing.Size(111, 27);
-            this.txtNextLevel.TabIndex = 77;
-            // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1717,6 +1750,8 @@
             this.tbSupplier.ResumeLayout(false);
             this.grpSupplierDetails.ResumeLayout(false);
             this.grpSupplierDetails.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.grbEnvelopeDetails.ResumeLayout(false);
             this.grbEnvelopeDetails.PerformLayout();
             this.panelStatus.ResumeLayout(false);
@@ -1742,8 +1777,6 @@
             this.grpSchedule.ResumeLayout(false);
             this.grpSchedule.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewSupplierMapping)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

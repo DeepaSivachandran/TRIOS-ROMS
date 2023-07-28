@@ -41,15 +41,7 @@ namespace ROMS
 
         private void txtCompanyName_Enter(object sender, EventArgs e)
         {
-            try
-            {
-                txtName.BackColor = Color.LemonChiffon; 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+         
         }
 
         private void txtCompanyName_KeyDown(object sender, KeyEventArgs e)
@@ -276,7 +268,18 @@ namespace ROMS
 
         private void txtAContactNumber_KeyDown(object sender, KeyEventArgs e)
         {
-
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtwhatsapp.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void txtAContactNumber_Leave(object sender, EventArgs e)
@@ -328,7 +331,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtcreditlimit.Focus();
+                    cmbDesignation.Focus();
                 }
             }
             catch (Exception ex)
@@ -868,7 +871,7 @@ namespace ROMS
             }
         }
 
-        private void txtArea_Enter_1(object sender, EventArgs e)
+        private void txtArea_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -1851,121 +1854,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
-        }
-
-        private void Txtgstin_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtgstin.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Txtcreditlimit_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objvalidation.CheckNumeric(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
-
-        private void Txtrepmobileno_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objvalidation.CheckNumeric(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
-
-        private void TextBox34_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxtDOrderDay_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CmbESupplierType_Leave(object sender, EventArgs e)
-        {
-        }
-
-        private void CmbESupplierType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            try
-            {
-                if (cmbSupplierType.SelectedItem != "URD")
-                {
-                    txtgstin.Enabled = true;
-                }
-                else
-                {
-                    txtgstin.Enabled = false;
-                    errCompany.Clear();
-                    txtgstin.BackColor = Color.White;
-                    tparea.Hide(txtgstin);
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            
-        }
-
-        private void TxtDPaymentTerm_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CmbPaymentTerm_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        } 
 
         private void Grddays_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -2144,9 +2033,131 @@ namespace ROMS
             }
         }
 
-        private void CmbPolicyContent_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        
 
+        private void TxtName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtName.Text == "")
+                {
+
+                    errCompany.SetError(txtName, "Please enter the name");
+                    txtName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tparea.ShowAlways = true;
+                    tparea.Show("Please enter the name.", txtName, 5000);
+
+                }
+                else
+                {
+                    errCompany.Clear();
+                    txtName.BackColor = Color.White;
+                    tparea.Hide(txtName);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void TxtName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtArea.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbState_Leave(object sender, EventArgs e)
+        {
+          try
+            {
+                if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
+                {
+                    errCompany.SetError(cmbState, "Please Select State Name");
+                    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpstate.ShowAlways = true;
+                    tpstate.Show("Please Select State Name", cmbState, 5000);
+                }
+                else
+                {
+                    errCompany.Clear();
+                    cmbState.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void CmbState_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+
+                cmbState.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbState_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }
