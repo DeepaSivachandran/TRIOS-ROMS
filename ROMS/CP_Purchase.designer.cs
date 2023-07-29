@@ -42,9 +42,9 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
+          //  this.textBox2 = new System.Windows.Forms.TextBox();
+          //  this.textBox3 = new System.Windows.Forms.TextBox();
+          //  this.label27 = new System.Windows.Forms.Label();
             this.txtHSN = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.txtGST = new System.Windows.Forms.TextBox();
@@ -108,7 +108,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+           // this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -306,9 +306,9 @@
             // 
             this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.label28);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.label27);
+           // this.groupBox1.Controls.Add(this.textBox2);
+           // this.groupBox1.Controls.Add(this.textBox3);
+           // this.groupBox1.Controls.Add(this.label27);
             this.groupBox1.Controls.Add(this.txtHSN);
             this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.txtGST);
@@ -1002,9 +1002,9 @@
             // 
             // Column14
             // 
-            this.Column14.HeaderText = "Received Qty";
-            this.Column14.Name = "Column14";
-            this.Column14.Width = 50;
+            //this.Column14.HeaderText = "Received Qty";
+            //this.Column14.Name = "Column14";
+            //this.Column14.Width = 50;
             // 
             // Column5
             // 
