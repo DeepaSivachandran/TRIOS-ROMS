@@ -63,7 +63,7 @@ namespace ROMS
         {
             try
             {
-                udfnList();
+                //udfnList();
             }
             catch (Exception ex)
             {
@@ -76,30 +76,31 @@ namespace ROMS
         {
             try
             {
-                if (grdBrandList.SelectedRows.Count > 0)
-                {
-                    string result = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
+                DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (grdBrandList.SelectedRows.Count > 0)
+                //{
+                //    string result = "";
+                //    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    if (dialogResult == DialogResult.Yes)
+                //    {
 
-                        SPDataService objspdservice = new SPDataService();
-                        result = "";
-                    //    result = objspdservice.udfnSPBrandMaster("Delete", grdBrandList.SelectedRows[0].Cells["BrandCode"].Value.ToString(), "", "","", "", MainForm.pbUserID, MainForm.pbIpAddress, "Brand Delete");
+                //        SPDataService objspdservice = new SPDataService();
+                //        result = "";
+                //    //    result = objspdservice.udfnSPBrandMaster("Delete", grdBrandList.SelectedRows[0].Cells["BrandCode"].Value.ToString(), "", "","", "", MainForm.pbUserID, MainForm.pbIpAddress, "Brand Delete");
 
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
+                //        string[] varvalue = result.Split('~');
+                //        if (varvalue[0] == "3")
+                //        {
+                //            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //            udfnList();
 
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
+                //        }
+                //        else
+                //        {
+                //            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -113,7 +114,10 @@ namespace ROMS
         {
             try
             {
-
+                MainForm.objCP_Brand = new CP_Brand();
+                MainForm.objCP_Brand.MdiParent = ParentForm;
+                MainForm.objCP_Brand.btnSave.Text = "Update";
+                MainForm.objCP_Brand.Show();
                 if (grdBrandList.SelectedRows.Count > 0)
                 {
                     //MainForm.objCP_Brand = new CP_Brand();
@@ -204,6 +208,10 @@ namespace ROMS
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
                     tsbEdit_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                {
+                    tsbDelete_Click(sender, e);
                 }
                 if (e.KeyCode == Keys.Escape)
                 {

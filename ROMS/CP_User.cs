@@ -14,11 +14,15 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+
         private ToolTip tpusername = new ToolTip();
-        private ToolTip tpuserid = new ToolTip();
+        private ToolTip tploginid = new ToolTip();
         private ToolTip tppassword = new ToolTip();
         private ToolTip tpconfirmpassword = new ToolTip();
         private ToolTip tpUserRole  = new ToolTip();
+        private ToolTip tpUserCatagory  = new ToolTip();
+        private ToolTip tpPassKey  = new ToolTip();
+
         public string oldpassword,varpassword;
         public string varusercode="";
         public string varUserRoleCode = "";
@@ -46,40 +50,26 @@ namespace ROMS
             //    objError.WriteFile(ex);
             //}
         }
-        private void txtUserName_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtUserName.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtUserName_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtLoginID.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+      
 
         private void txtUserName_Leave(object sender, EventArgs e)
         {
+
             try
             {
-                txtUserName.BackColor = Color.White;
+                if (Convert.ToString(txtUserName.Text).Trim() == "")
+                {
+                    epUser.SetError(txtUserName, "Please Enter User Name");
+                    txtUserName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpusername.ShowAlways = true;
+                    tpusername.Show("Please Enter User Name", txtUserName, 5000);
+
+                }
+                else
+                {
+                    epUser.Clear();
+                    txtUserName.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -107,7 +97,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtPassword.Focus();
+                    cmbUserCatagory.Focus();
                 }
             }
             catch (Exception ex)
@@ -121,7 +111,19 @@ namespace ROMS
         {
             try
             {
-                txtLoginID.BackColor = Color.White;
+                if (Convert.ToString(txtLoginID.Text).Trim() == "")
+                {
+                    epUser.SetError(txtLoginID, "Please Enter Login Id");
+                    txtLoginID.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tploginid.ShowAlways = true;
+                    tploginid.Show("Please Enter Login Id", txtLoginID, 5000);
+
+                }
+                else
+                {
+                    epUser.Clear();
+                    txtLoginID.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -164,7 +166,19 @@ namespace ROMS
         {
             try
             {
-                txtPassword.BackColor = Color.White;
+                if (Convert.ToString(txtPassword.Text).Trim() == "")
+                {
+                    epUser.SetError(txtPassword, "Please Enter Password");
+                    txtPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tploginid.ShowAlways = true;
+                    tploginid.Show("Please Enter Password", txtPassword, 5000);
+
+                }
+                else
+                {
+                    epUser.Clear();
+                    txtPassword.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -188,25 +202,37 @@ namespace ROMS
 
         private void txtCPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            //try
-            //{
-            //    if (e.KeyCode == Keys.Enter)
-            //    {
-            //        cmbUserRole.Focus();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbPasskey.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void txtCPassword_Leave(object sender, EventArgs e)
         {
             try
             {
-                txtCPassword.BackColor = Color.White;
+                if (Convert.ToString(txtCPassword.Text).Trim() == "")
+                {
+                    epUser.SetError(txtCPassword, "Please Enter Confirm Password");
+                    txtCPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpconfirmpassword.ShowAlways = true;
+                    tpconfirmpassword.Show("Please Enter Confirm Password", txtCPassword, 5000);
+
+                }
+                else
+                {
+                    epUser.Clear();
+                    txtCPassword.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -303,190 +329,86 @@ namespace ROMS
         {
             return string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(HashString)).Select(s => s.ToString("x2")));
         }
-
-        private void btnSave_Click(object sender, EventArgs e)
+        public void udfnSave(object sender, EventArgs e)
         {
             try
             {
-                errUser.Clear();
 
-                if (txtUserName.Text.Trim() == "")
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                bool blnErrorFlag = false;
+
+                if (Convert.ToString(txtUserName.Text).Trim() == "")
                 {
-                    errUser.SetError(txtUserName, "Please enter name of the user.");
+                    epUser.SetError(txtUserName, "Please Enter User Name");
                     txtUserName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
                     tpusername.ShowAlways = true;
-                    tpusername.Show("Please enter name of the user.", txtUserName, 5000);
-                    txtUserName.Text = "";
+                    tpusername.Show("Please Enter User Name", txtUserName, 5000);
+                    blnErrorFlag = true;
                 }
-                if (txtLoginID.Text.Trim() == "")
+                if (Convert.ToString(txtLoginID.Text).Trim() == "")
                 {
-                    errUser.SetError(txtLoginID, "Please enter Login Id.");
+                    epUser.SetError(txtLoginID, "Please Enter Login Id");
                     txtLoginID.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
-                    tpuserid.ShowAlways = true;
-                    tpuserid.Show("Please enter Login Id.", txtLoginID, 5000);
-                    txtLoginID.Text = "";
+                    tploginid.ShowAlways = true;
+                    tploginid.Show("Please Enter Login Id", txtLoginID, 5000);
+                    blnErrorFlag = true;
                 }
-
-                if (txtPassword.Text.Trim() == "")
+                if (Convert.ToString(cmbUserCatagory.SelectedValue) == "" || Convert.ToString(cmbUserCatagory.SelectedValue) == "-1")
                 {
-                    errUser.SetError(txtPassword, "Please enter Password.");
+                    epUser.SetError(cmbUserCatagory, "Please Select User Catagory");
+                    cmbUserCatagory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpUserCatagory.ShowAlways = true;
+                    tpUserCatagory.Show("Please Select User Catagory", cmbUserCatagory, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(cmbUserRole.SelectedValue) == "" || Convert.ToString(cmbUserRole.SelectedValue) == "-1")
+                {
+                    epUser.SetError(cmbUserRole, "Please Select User Role");
+                    cmbUserRole.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpUserRole.ShowAlways = true;
+                    tpUserRole.Show("Please Select User Role", cmbUserRole, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtPassword.Text).Trim() == "")
+                {
+                    epUser.SetError(txtPassword, "Please Enter Password");
                     txtPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
                     tppassword.ShowAlways = true;
-                    tppassword.Show("Please enter Password.", txtPassword, 5000);
-                    txtPassword.Text = "";
-                }
+                    tppassword.Show("Please Enter Password", txtPassword, 5000);
+                    blnErrorFlag = true;
 
-                if (txtCPassword.Text.Trim() == "")
+                }
+                if (Convert.ToString(txtCPassword.Text).Trim() == "")
                 {
-                    errUser.SetError(txtCPassword, "Please enter confirm Password.");
+                    epUser.SetError(txtCPassword, "Please Enter Confirm Password");
                     txtCPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
                     tpconfirmpassword.ShowAlways = true;
-                    tpconfirmpassword.Show("Please enter confirm Password.", txtCPassword, 5000);
-                    txtCPassword.Text = "";
+                    tpconfirmpassword.Show("Please Enter Confirm Password", txtCPassword, 5000);
+                    blnErrorFlag = true;
                 }
-
-
-                if (txtPassword.Text.Trim() != txtCPassword.Text.Trim())
+                if (Convert.ToString(cmbPasskey.SelectedValue) == "" || Convert.ToString(cmbPasskey.SelectedValue) == "-1")
                 {
-                    errUser.SetError(txtCPassword, "Password not match.");
-                    txtCPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
-                    tpconfirmpassword.ShowAlways = true;
-                    tpconfirmpassword.Show("Password not match.", txtCPassword, 5000);
-                    txtCPassword.Text = "";
+                    epUser.SetError(cmbPasskey, "Please Select Pass Key");
+                    cmbPasskey.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tppassword.ShowAlways = true;
+                    tpPassKey.Show("Please Select Pass Key", cmbPasskey, 5000);
+                    blnErrorFlag = true;
                 }
-
-                //if (cmbUserRole.Text.Trim() == "" || cmbUserRole.SelectedValue.ToString() == "-1")
-                //{
-                //    errUser.SetError(cmbUserRole, "Please select User Role");
-                //    cmbUserRole.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
-                //    tpUserRole.ShowAlways = true;
-                //    tpUserRole.Show("Please select User Role", cmbUserRole, 5000);
-                //    cmbUserRole.Text = "";
-
-                //}
-
-
-                if (txtUserName.Text.Trim() == "")
+                if (blnErrorFlag == false)
                 {
-                    txtUserName.Focus();
-                    return;
+                    udfnSave(sender, e);
                 }
-
-                if (txtLoginID.Text.Trim() == "")
-                {
-                    txtLoginID.Focus();
-                    return;
-                }
-
-
-                if (txtPassword.Text.Trim() == "")
-                {
-                    txtPassword.Focus();
-                    return;
-                }
-
-
-                if (txtCPassword.Text.Trim() == "")
-                {
-                    txtCPassword.Focus();
-                    return;
-
-                }
-
-                //if (cmbUserRole.Text.Trim() == "" || cmbUserRole.SelectedValue.ToString() == "-1")
-                //{
-                //    cmbUserRole.Focus();
-                //    return;
-
-                //}
-
-                if (txtPassword.Text.Trim() != txtCPassword.Text.Trim())
-                {
-
-                    txtCPassword.Focus();
-                    return;
-                }
-
-
-
-                    if (oldpassword != null && oldpassword != "")
-                { 
-
-                    if (oldpassword.Trim() == txtPassword.Text.Trim())
-                    {
-                            varpassword = txtPassword.Text;
-                    }
-                    else
-                    {
-                        varpassword = GenerateMD5(txtPassword.Text);
-                    }
-                }
-                else
-                {
-                    varpassword = GenerateMD5(txtPassword.Text);
-                }
-
-
-                string varstatus;
-                if (rbActive.Checked == true)
-                {
-                    varstatus = "1";
-                }
-                else
-                {
-                    varstatus = "2";
-                }
-
-
-                SPDataService objspdservice = new SPDataService();
-
-                string result = "";
-
-                if (btnSave.Text == "Save")
-                {
-                   // result = objspdservice.udfnSPUserMaster("Create", "0",txtLoginID.Text,txtUserName.Text,cmbUserRole.SelectedValue.ToString(),varpassword,varstatus ,MainForm.pbUserID, MainForm.pbIpAddress, "User Create");
-
-                }
-
-                else
-                {
-                  //  result = objspdservice.udfnSPUserMaster("Update", varusercode, txtLoginID.Text, txtUserName.Text, cmbUserRole.SelectedValue.ToString(), varpassword, varstatus, MainForm.pbUserID, MainForm.pbIpAddress, "User Update");
-                }
-
-
-                string[] varvalue = result.Split('~');
-                if (varvalue[0] == "3")
-                {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    if (btnSave.Text == "Update")
-                    {
-                        this.Close();
-                    }
-                    else
-                    {
-                        udfnClear();
-                    }
-
-                    MainForm.objCP_Userlist.udfnList();
-
-
-
-                }
-                else
-                {
-                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
-                objspdservice.CloseConnection();
-
-
             }
             catch (Exception ex)
             {
@@ -531,7 +453,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
@@ -548,11 +469,9 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
+              
                     this.Close();
-                }
+                
             }
             catch (Exception ex)
             {
@@ -573,7 +492,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Enter(object sender, EventArgs e)
         {
             try
@@ -612,45 +530,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void CP_User_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                tpusername.Active = false;
-                tpuserid.Active = false;
-                tppassword.Active = false;
-                tpconfirmpassword.Active = false;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+       
         private void CP_User_Load(object sender, EventArgs e)
         {
             try
             {
-                this.ActiveControl = txtUserName;
-                udfnLoadUserRole();
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
 
-        private void cmbUserRole_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
+                //this.ActiveControl = txtUserName;
+                //udfnLoadUserRole();
+                //udfnEdit();
+                if (btnSave.Text == "Save")
                 {
-                    if (panelStatus.Enabled) { rbActive.Focus(); } else { btnSave.Focus(); }
+                    pnlStatus.Enabled = false;
+                }
+                else
+                {
+                    pnlStatus.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -658,6 +553,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            
         }
 
         private void CP_User_KeyDown(object sender, KeyEventArgs e)
@@ -670,6 +566,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
+                    btnSave.Focus();
                     btnSave_Click(sender, e);
                 }
             }
@@ -680,13 +577,312 @@ namespace ROMS
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void TxtUserName_Enter(object sender, EventArgs e)
         {
             try
             {
-                //MainForm.objCP_UserRole = new CP_UserRole();
-                //MainForm.objCP_UserRole.pbFormStatus = "User";
-                //MainForm.objCP_UserRole.ShowDialog();
+                txtUserName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtUserName_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtLoginID.Focus();   
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbUserCatagory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbUserCatagory.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbUserCatagory_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbUserRole.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbUserCatagory_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbUserCatagory_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbUserCatagory.SelectedValue) == "" || Convert.ToString(cmbUserCatagory.SelectedValue) == "-1")
+                {
+                    epUser.SetError(cmbUserCatagory, "Please Select User Catagory");
+                    cmbUserCatagory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpUserCatagory.ShowAlways = true;
+                    tpUserCatagory.Show("Please Select User Catagory", cmbUserCatagory, 5000);
+                }
+                else
+                {
+                    epUser.Clear();
+                    cmbUserCatagory.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbUserCatagory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                BeginInvoke(new Action(() => cmbUserCatagory.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbUserRole_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbUserRole.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void CmbUserRole_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbUserRole.SelectedValue) == "" || Convert.ToString(cmbUserRole.SelectedValue) == "-1")
+                {
+                    epUser.SetError(cmbUserRole, "Please Select User Role");
+                    cmbUserRole.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpUserRole.ShowAlways = true;
+                    tpUserRole.Show("Please Select User Role", cmbUserRole, 5000);
+                }
+                else
+                {
+                    epUser.Clear();
+                    cmbUserRole.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbUserRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbUserRole.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbUserRole_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtPassword.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbUserRole_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPasskey_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (pnlStatus.Enabled)
+                    {
+                        rbActive.Focus();
+                    }
+                    else { btnSave.Focus(); }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPasskey_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPasskey_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbPasskey.SelectedValue) == "" || Convert.ToString(cmbPasskey.SelectedValue) == "-1")
+                {
+                    epUser.SetError(cmbPasskey, "Please Select Pass Key");
+                    cmbPasskey.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tppassword.ShowAlways = true;
+                    tpPassKey.Show("Please Select Pass Key", cmbPasskey, 5000);
+                }
+                else
+                {
+                    epUser.Clear();
+                    cmbPasskey.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPasskey_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPasskey.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPasskey_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbPasskey.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnNew_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_UserCatagory = new CP_UserCatagory();
+                MainForm.objCP_UserCatagory.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void CP_User_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    e.Cancel = false;
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
             }
             catch (Exception ex)
             {
@@ -701,7 +897,7 @@ namespace ROMS
             {
                 if (varusercode != "")
                 {
-                    panelStatus.Enabled = true;
+                    pnlStatus.Enabled = true;
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS = new DataSet();
                   //  objDS = objspservice.udfnSPUserList("EditLoad", varusercode, MainForm.pbUserID, MainForm.pbIpAddress);
@@ -732,7 +928,7 @@ namespace ROMS
                     }
 
                 }
-                else { panelStatus.Enabled = false; }
+                else { pnlStatus.Enabled = false; }
 
             }
             catch (Exception ex)

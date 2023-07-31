@@ -60,15 +60,7 @@ namespace ROMS
 
         private void CP_UserList_Load(object sender, EventArgs e)
         {
-            try
-            {
-                udfnList();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
         public void udfndelete()
         {
@@ -108,24 +100,26 @@ namespace ROMS
 
         private void udfnEdit()
         {
-            //try
-            //{
+            try
+            {
+                MainForm.objCP_RackGroup = new CP_RackGroup();
+                MainForm.objCP_RackGroup.btnSave.Text = "Update";
+                MainForm.objCP_RackGroup.ShowDialog();
+                //if (grdUserList.SelectedRows.Count > 0)
+                //{
+                //    MainForm.objCP_User = new CP_User();
+                //    //MainForm.objCP_User.MdiParent = this.ParentForm;
+                //    MainForm.objCP_User.varusercode = grdUserList.SelectedRows[0].Cells["Autonum"].Value.ToString();
+                //    MainForm.objCP_User.ShowDialog();
 
-            //    if (grdUserList.SelectedRows.Count > 0)
-            //    {
-            //        MainForm.objCP_User = new CP_User();
-            //        //MainForm.objCP_User.MdiParent = this.ParentForm;
-            //        MainForm.objCP_User.varusercode = grdUserList.SelectedRows[0].Cells["Autonum"].Value.ToString();
-            //        MainForm.objCP_User.ShowDialog();
+                //}
 
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
 
         }
 
@@ -188,37 +182,7 @@ namespace ROMS
             }
         }
 
-        private void CP_UserList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    tsbEdit_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
 
-
-
-       
-       
         private void udfnSearchGridHead()
         {
         }
@@ -248,8 +212,38 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-      
-        
 
+        private void CP_RackGroupList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    tsbEdit_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                {
+                    tsbDelete_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm objMainForm = new MainForm();
+                    objMainForm.udfnCloseChildForms();
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

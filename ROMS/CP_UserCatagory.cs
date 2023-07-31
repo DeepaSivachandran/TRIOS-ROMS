@@ -14,11 +14,11 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        private ToolTip tpusername = new ToolTip();
-        private ToolTip tpuserid = new ToolTip();
-        private ToolTip tppassword = new ToolTip();
-        private ToolTip tpconfirmpassword = new ToolTip();
-        private ToolTip tpUserRole  = new ToolTip();
+
+        private ToolTip tpCatogaroryName = new ToolTip();
+    
+
+
         public string oldpassword,varpassword;
         public string varusercode="";
         public string varUserRoleCode = "";
@@ -27,64 +27,7 @@ namespace ROMS
         {
             InitializeComponent();
         }
-        public void udfnLoadUserRole()
-        {
-            //try
-            //{
-            //    // Bind combobox
-            //    DataBind objDataBind = new DataBind();
-            //    objDataBind.BindComboBoxListSelected("View_UserRole", "rolecode<>0 and 1=1 Order by rolecode", "rolename,rolecode", cmbUserRole, "", "rolename", "rolecode");
-            //    objDataBind = null;
-            //    if (varUserRoleCode != "")
-            //    {
-            //        cmbUserRole.SelectedValue = varUserRoleCode;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
-       
-   
-
       
-
-    
-
-      
-
-        private void txtCPassword_KeyDown(object sender, KeyEventArgs e)
-        {
-            //try
-            //{
-            //    if (e.KeyCode == Keys.Enter)
-            //    {
-            //        cmbUserRole.Focus();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
-
-             
-
-        private void rbActive_Enter(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    rbActive.BackColor = Color.LemonChiffon;
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
 
         private void rbActive_KeyDown(object sender, KeyEventArgs e)
         {
@@ -156,213 +99,45 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public string GenerateMD5(string HashString)
+        public void udfnSave(object sender, EventArgs e)
         {
-            return string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(HashString)).Select(s => s.ToString("x2")));
-        }
+            try
+            {
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    errUserCatagory.Clear();
 
-            //    if (txtUserName.Text.Trim() == "")
-            //    {
-            //        errUserCatagory.SetError(txtUserName, "Please enter name of the user.");
-            //        txtUserName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+            try
+            {
+                bool blnErrorFlag = false;
 
-            //        tpusername.ShowAlways = true;
-            //        tpusername.Show("Please enter name of the user.", txtUserName, 5000);
-            //        txtUserName.Text = "";
-            //    }
-            //    if (txtLoginID.Text.Trim() == "")
-            //    {
-            //        errUserCatagory.SetError(txtLoginID, "Please enter Login Id.");
-            //        txtLoginID.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
-            //        tpuserid.ShowAlways = true;
-            //        tpuserid.Show("Please enter Login Id.", txtLoginID, 5000);
-            //        txtLoginID.Text = "";
-            //    }
-
-            //    if (txtPassword.Text.Trim() == "")
-            //    {
-            //        errUserCatagory.SetError(txtPassword, "Please enter Password.");
-            //        txtPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
-            //        tppassword.ShowAlways = true;
-            //        tppassword.Show("Please enter Password.", txtPassword, 5000);
-            //        txtPassword.Text = "";
-            //    }
-
-            //    if (txtCPassword.Text.Trim() == "")
-            //    {
-            //        errUserCatagory.SetError(txtCPassword, "Please enter confirm Password.");
-            //        txtCPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
-            //        tpconfirmpassword.ShowAlways = true;
-            //        tpconfirmpassword.Show("Please enter confirm Password.", txtCPassword, 5000);
-            //        txtCPassword.Text = "";
-            //    }
-
-
-            //    if (txtPassword.Text.Trim() != txtCPassword.Text.Trim())
-            //    {
-            //        errUserCatagory.SetError(txtCPassword, "Password not match.");
-            //        txtCPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
-            //        tpconfirmpassword.ShowAlways = true;
-            //        tpconfirmpassword.Show("Password not match.", txtCPassword, 5000);
-            //        txtCPassword.Text = "";
-            //    }
-
-                //if (cmbUserRole.Text.Trim() == "" || cmbUserRole.SelectedValue.ToString() == "-1")
-                //{
-                //    errUser.SetError(cmbUserRole, "Please select User Role");
-                //    cmbUserRole.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
-                //    tpUserRole.ShowAlways = true;
-                //    tpUserRole.Show("Please select User Role", cmbUserRole, 5000);
-                //    cmbUserRole.Text = "";
-
-                //}
-
-
-                //if (txtUserName.Text.Trim() == "")
-                //{
-                //    txtUserName.Focus();
-                //    return;
-                //}
-
-                //if (txtLoginID.Text.Trim() == "")
-                //{
-                //    txtLoginID.Focus();
-                //    return;
-                //}
-
-
-                //if (txtPassword.Text.Trim() == "")
-                //{
-                //    txtPassword.Focus();
-                //    return;
-                //}
-
-
-                //if (txtCPassword.Text.Trim() == "")
-                //{
-                //    txtCPassword.Focus();
-                //    return;
-
-                //}
-
-                //if (cmbUserRole.Text.Trim() == "" || cmbUserRole.SelectedValue.ToString() == "-1")
-                //{
-                //    cmbUserRole.Focus();
-                //    return;
-
-                //}
-
-                //if (txtPassword.Text.Trim() != txtCPassword.Text.Trim())
-                //{
-
-                //    txtCPassword.Focus();
-                //    return;
-                //}
-
-
-
-                //    if (oldpassword != null && oldpassword != "")
-                //{ 
-
-                //    if (oldpassword.Trim() == txtPassword.Text.Trim())
-                //    {
-                //            varpassword = txtPassword.Text;
-                //    }
-                //    else
-                //    {
-                //        varpassword = GenerateMD5(txtPassword.Text);
-                //    }
-                //}
-                //else
-                //{
-                //    varpassword = GenerateMD5(txtPassword.Text);
-                //}
-
-
-                string varstatus;
-                if (rbActive.Checked == true)
+                if (Convert.ToString(txtCatagoryName.Text).Trim() == "")
                 {
-                    varstatus = "1";
+                    epUserCatagory.SetError(txtCatagoryName, "Please Enter Catogory Name");
+                    txtCatagoryName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCatogaroryName.ShowAlways = true;
+                    tpCatogaroryName.Show("Please Enter Catogory Name", txtCatagoryName, 5000);
+                    blnErrorFlag = true;
                 }
-                else
+                if (blnErrorFlag == false)
                 {
-                    varstatus = "2";
+                    udfnSave(sender, e);
                 }
-
-
-                SPDataService objspdservice = new SPDataService();
-
-                string result = "";
-
-                if (btnSave.Text == "Save")
-                {
-                   // result = objspdservice.udfnSPUserMaster("Create", "0",txtLoginID.Text,txtUserName.Text,cmbUserRole.SelectedValue.ToString(),varpassword,varstatus ,MainForm.pbUserID, MainForm.pbIpAddress, "User Create");
-
-                }
-
-                else
-                {
-                  //  result = objspdservice.udfnSPUserMaster("Update", varusercode, txtLoginID.Text, txtUserName.Text, cmbUserRole.SelectedValue.ToString(), varpassword, varstatus, MainForm.pbUserID, MainForm.pbIpAddress, "User Update");
-                }
-
-
-            //    string[] varvalue = result.Split('~');
-            //    if (varvalue[0] == "3")
-            //    {
-            //        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            //        if (btnSave.Text == "Update")
-            //        {
-            //            this.Close();
-            //        }
-            //        else
-            //        {
-            //            udfnClear();
-            //        }
-
-            //        MainForm.objCP_Userlist.udfnList();
-
-
-
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    }
-
-            //    objspdservice.CloseConnection();
-
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
-        private void udfnClear()
-        {
-        //    txtUserName.Text = "";
-        //    txtLoginID.Text = "";
-        //    txtPassword.Text = "";
-        //    txtCPassword.Text = "";
-        //    rbActive.Checked = true;
-        //    //cmbUserRole.SelectedValue = "-1";
-        //    btnSave.Text = "Save";
-        }
 
         private void btnSave_Enter(object sender, EventArgs e)
         {
@@ -406,11 +181,9 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
+               
                     this.Close();
-                }
+                
             }
             catch (Exception ex)
             {
@@ -423,11 +196,7 @@ namespace ROMS
         
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
+                udfnclose();
             }
             catch (Exception ex)
             {
@@ -475,44 +244,21 @@ namespace ROMS
             }
         }
 
-        private void CP_User_Leave(object sender, EventArgs e)
+
+
+
+        private void CP_UserCatagory_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
-                tpusername.Active = false;
-                tpuserid.Active = false;
-                tppassword.Active = false;
-                tpconfirmpassword.Active = false;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CP_User_Load(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    this.ActiveControl = txtUserName;
-            //    udfnLoadUserRole();
-            //    udfnEdit();
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
-
-        private void cmbUserRole_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    if (pnlStatus.Enabled) { rbActive.Focus(); } else { btnSave.Focus(); }
+                    e.Cancel = false;
+                }
+                else
+                {
+                    e.Cancel = true;
                 }
             }
             catch (Exception ex)
@@ -522,33 +268,113 @@ namespace ROMS
             }
         }
 
-        private void CP_User_KeyDown(object sender, KeyEventArgs e)
+        private void CP_UserCatagory_KeyDown(object sender, KeyEventArgs e)
         {
-            //try
-            //{
-            //    if (e.KeyCode == Keys.Escape)
-            //    {
-            //        udfnclose();
-            //    }
-            //    if (e.KeyCode == Keys.F5)
-            //    {
-            //        btnSave_Click(sender, e);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    btnSave.Focus();
+                    btnSave_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void CP_UserCatagory_Load(object sender, EventArgs e)
         {
             try
             {
-                //MainForm.objCP_UserRole = new CP_UserRole();
-                //MainForm.objCP_UserRole.pbFormStatus = "User";
-                //MainForm.objCP_UserRole.ShowDialog();
+             
+                if (btnSave.Text == "Save")
+                {
+                    pnlStatus.Enabled = false;
+                }
+                else
+                {
+                    pnlStatus.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtCatagoryName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCatagoryName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtCatagoryName_Leave(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (Convert.ToString(txtCatagoryName.Text).Trim() == "")
+                {
+                    epUserCatagory.SetError(txtCatagoryName, "Please Enter Catogory Name");
+                    txtCatagoryName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCatogaroryName.ShowAlways = true;
+                    tpCatogaroryName.Show("Please Enter Catogory Name", txtCatagoryName, 5000);
+
+                }
+                else
+                {
+                    epUserCatagory.Clear();
+                    txtCatagoryName.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtCatagoryName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (pnlStatus.Enabled)
+                    {
+                        rbActive.Focus();
+                    }
+                    else { btnSave.Focus(); }
+                }
             }
             catch (Exception ex)
             {

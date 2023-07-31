@@ -39,10 +39,10 @@
             this.grbUserCatagory = new System.Windows.Forms.GroupBox();
             this.txtDCatagoryName = new System.Windows.Forms.TextBox();
             this.txtCatagoryName = new System.Windows.Forms.TextBox();
-            this.errUserCatagory = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epUserCatagory = new System.Windows.Forms.ErrorProvider(this.components);
             this.pnlStatus.SuspendLayout();
             this.grbUserCatagory.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errUserCatagory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epUserCatagory)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlStatus
@@ -55,7 +55,7 @@
             this.pnlStatus.Location = new System.Drawing.Point(197, 53);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(288, 27);
-            this.pnlStatus.TabIndex = 5;
+            this.pnlStatus.TabIndex = 1;
             // 
             // rbInactive
             // 
@@ -64,7 +64,7 @@
             this.rbInactive.Location = new System.Drawing.Point(150, 1);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
-            this.rbInactive.TabIndex = 7;
+            this.rbInactive.TabIndex = 2;
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
             this.rbInactive.Enter += new System.EventHandler(this.rbInactive_Enter);
@@ -79,11 +79,11 @@
             this.rbActive.Location = new System.Drawing.Point(62, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(54, 21);
-            this.rbActive.TabIndex = 6;
+            this.rbActive.TabIndex = 1;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
-            this.rbActive.Enter += new System.EventHandler(this.rbActive_Enter);
+            this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
             this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbActive_KeyDown);
             this.rbActive.Leave += new System.EventHandler(this.rbActive_Leave);
             // 
@@ -107,7 +107,7 @@
             this.btnSave.Location = new System.Drawing.Point(320, 89);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -124,7 +124,7 @@
             this.btnClose.Location = new System.Drawing.Point(410, 89);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 7;
+            this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -167,11 +167,14 @@
             this.txtCatagoryName.Name = "txtCatagoryName";
             this.txtCatagoryName.PasswordChar = '*';
             this.txtCatagoryName.Size = new System.Drawing.Size(288, 27);
-            this.txtCatagoryName.TabIndex = 18;
+            this.txtCatagoryName.TabIndex = 0;
+            this.txtCatagoryName.Enter += new System.EventHandler(this.TxtCatagoryName_Enter);
+            this.txtCatagoryName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCatagoryName_KeyDown);
+            this.txtCatagoryName.Leave += new System.EventHandler(this.TxtCatagoryName_Leave);
             // 
-            // errUserCatagory
+            // epUserCatagory
             // 
-            this.errUserCatagory.ContainerControl = this;
+            this.epUserCatagory.ContainerControl = this;
             // 
             // CP_UserCatagory
             // 
@@ -190,14 +193,14 @@
             this.Name = "CP_UserCatagory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "User Catagory";
-            this.Load += new System.EventHandler(this.CP_User_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_User_KeyDown);
-            this.Leave += new System.EventHandler(this.CP_User_Leave);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_UserCatagory_FormClosing);
+            this.Load += new System.EventHandler(this.CP_UserCatagory_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_UserCatagory_KeyDown);
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
             this.grbUserCatagory.ResumeLayout(false);
             this.grbUserCatagory.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errUserCatagory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epUserCatagory)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -207,11 +210,11 @@
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.TextBox txtDStatus;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbUserCatagory;
-        private System.Windows.Forms.ErrorProvider errUserCatagory;
+        private System.Windows.Forms.ErrorProvider epUserCatagory;
         private System.Windows.Forms.TextBox txtDCatagoryName;
         private System.Windows.Forms.TextBox txtCatagoryName;
+        public System.Windows.Forms.Button btnSave;
     }
 }

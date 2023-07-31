@@ -49,7 +49,9 @@ namespace ROMS
         private void CP_BrandList_Load(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                cmbDay.SelectedIndex = 0;
+                cmbOrderType.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
