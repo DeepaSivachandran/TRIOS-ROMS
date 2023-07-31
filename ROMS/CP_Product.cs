@@ -1896,7 +1896,7 @@ namespace ROMS
                 if (txtItemNameEnglish.Text == "")
                 {
                     txtItemNameEnglish.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtItemNameEnglish, "Please Enter Item Name In English");
+                    errItems.SetError(txtItemNameEnglish, "Please Enter Item Name in English");
                 }
                 else
                 {
@@ -1918,7 +1918,7 @@ namespace ROMS
                 if (txtItemNameTamil.Text == "")
                 {
                     txtItemNameTamil.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtItemNameTamil, "Please Enter Item Name In Tamil");
+                    errItems.SetError(txtItemNameTamil, "Please Enter Item Name in Tamil");
                 }
                 else
                 {

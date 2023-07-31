@@ -561,7 +561,7 @@
             // 
             // clmtamilname
             // 
-            this.clmtamilname.HeaderText = "Product Name in  Tamil";
+            this.clmtamilname.HeaderText = "Product Name in Tamil";
             this.clmtamilname.Name = "clmtamilname";
             this.clmtamilname.ReadOnly = true;
             this.clmtamilname.Width = 220;

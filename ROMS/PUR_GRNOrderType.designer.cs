@@ -37,12 +37,12 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grdPurchaseOrder = new System.Windows.Forms.DataGridView();
+            this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.chkdays = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmtotqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkSelectAll = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).BeginInit();
             this.SuspendLayout();
@@ -56,12 +56,12 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(244, 275);
+            this.btnSave.Location = new System.Drawing.Point(313, 275);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(72, 33);
+            this.btnSave.Size = new System.Drawing.Size(81, 33);
             this.btnSave.TabIndex = 9;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Submit";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             // 
@@ -70,7 +70,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(319, 275);
+            this.btnClose.Location = new System.Drawing.Point(397, 275);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(72, 33);
@@ -102,8 +102,8 @@
             this.chkdays,
             this.clmsno,
             this.clmdate,
-            this.clmTotalitem,
-            this.clmtotqty});
+            this.Column1,
+            this.clmTotalitem});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -123,8 +123,17 @@
             this.grdPurchaseOrder.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdPurchaseOrder.RowTemplate.Height = 25;
             this.grdPurchaseOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseOrder.Size = new System.Drawing.Size(379, 261);
+            this.grdPurchaseOrder.Size = new System.Drawing.Size(456, 261);
             this.grdPurchaseOrder.TabIndex = 1111144;
+            // 
+            // chkSelectAll
+            // 
+            this.chkSelectAll.AutoSize = true;
+            this.chkSelectAll.Location = new System.Drawing.Point(26, 17);
+            this.chkSelectAll.Name = "chkSelectAll";
+            this.chkSelectAll.Size = new System.Drawing.Size(15, 14);
+            this.chkSelectAll.TabIndex = 1111145;
+            this.chkSelectAll.UseVisualStyleBackColor = true;
             // 
             // chkdays
             // 
@@ -148,35 +157,25 @@
             this.clmdate.Name = "clmdate";
             this.clmdate.ReadOnly = true;
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "PO.No.";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
             // clmTotalitem
             // 
-            this.clmTotalitem.HeaderText = "Total Items";
+            this.clmTotalitem.HeaderText = "Total Products";
             this.clmTotalitem.Name = "clmTotalitem";
             this.clmTotalitem.ReadOnly = true;
-            this.clmTotalitem.Width = 80;
-            // 
-            // clmtotqty
-            // 
-            this.clmtotqty.HeaderText = "Total Qty";
-            this.clmtotqty.Name = "clmtotqty";
-            this.clmtotqty.ReadOnly = true;
-            this.clmtotqty.Width = 70;
-            // 
-            // chkSelectAll
-            // 
-            this.chkSelectAll.AutoSize = true;
-            this.chkSelectAll.Location = new System.Drawing.Point(26, 17);
-            this.chkSelectAll.Name = "chkSelectAll";
-            this.chkSelectAll.Size = new System.Drawing.Size(15, 14);
-            this.chkSelectAll.TabIndex = 1111145;
-            this.chkSelectAll.UseVisualStyleBackColor = true;
+            this.clmTotalitem.Width = 120;
             // 
             // PUR_GRNOrderType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(403, 317);
+            this.ClientSize = new System.Drawing.Size(480, 317);
             this.Controls.Add(this.chkSelectAll);
             this.Controls.Add(this.grdPurchaseOrder);
             this.Controls.Add(this.btnClose);
@@ -203,11 +202,11 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.DataGridView grdPurchaseOrder;
+        private System.Windows.Forms.CheckBox chkSelectAll;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkdays;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalitem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotqty;
-        private System.Windows.Forms.CheckBox chkSelectAll;
     }
 }

@@ -104,7 +104,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.tbOrder = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lvSupplier = new System.Windows.Forms.ListView();
             this.gpSupplier = new System.Windows.Forms.GroupBox();
@@ -122,6 +121,7 @@
             this.textBox19 = new System.Windows.Forms.TextBox();
             this.textBox20 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.txtrepwhatsappno = new System.Windows.Forms.TextBox();
             this.txtrepmobileno = new System.Windows.Forms.TextBox();
             this.txtrepaddress = new System.Windows.Forms.TextBox();
@@ -257,6 +257,7 @@
             this.tcSupplier.SelectedIndex = 0;
             this.tcSupplier.Size = new System.Drawing.Size(1337, 603);
             this.tcSupplier.TabIndex = 0;
+            this.tcSupplier.SelectedIndexChanged += new System.EventHandler(this.TcSupplier_SelectedIndexChanged);
             // 
             // tbSupplier
             // 
@@ -1032,16 +1033,6 @@
             this.tbOrder.Text = "Order Schedule";
             this.tbOrder.UseVisualStyleBackColor = true;
             // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(141, -6);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(228, 52);
-            this.listView1.TabIndex = 1111181;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.Visible = false;
-            // 
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -1261,6 +1252,16 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Representative Details";
+            // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(141, -6);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(228, 52);
+            this.listView1.TabIndex = 1111181;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.Visible = false;
             // 
             // txtrepwhatsappno
             // 

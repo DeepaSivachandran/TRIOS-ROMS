@@ -256,11 +256,11 @@ namespace ROMS
                 errCity.Clear();
                 //if (txtTEInvoiceUnitName.Text.Trim() == "")
                 //{
-                //    errBrand.SetError(txtTEInvoiceUnitName, "Please enter brand name in tamil.");
+                //    errBrand.SetError(txtTEInvoiceUnitName, "Please enter brand name in Tamil.");
                 //    txtTEInvoiceUnitName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
 
                 //    tpbrandtamilname.ShowAlways = true;
-                //    tpbrandtamilname.Show("Please enter brand name in tamil.", txtTEInvoiceUnitName, 5000);
+                //    tpbrandtamilname.Show("Please enter brand name in Tamil.", txtTEInvoiceUnitName, 5000);
                 //    txtTEInvoiceUnitName.Text = "";                    
                 //}
                 //if (txtEStatetName.Text.Trim() == "")
@@ -273,18 +273,18 @@ namespace ROMS
                 //}
                 //if (txtTLabelName.Text.Trim() == "")
                 //{
-                //    errBrand.SetError(txtTLabelName, "Please enter label name in tamil.");
+                //    errBrand.SetError(txtTLabelName, "Please enter label name in Tamil.");
                 //    txtTLabelName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                 //    tpbltname.ShowAlways = true;
-                //    tpbltname.Show("Please enter label name in tamil.", txtTLabelName, 5000);
+                //    tpbltname.Show("Please enter label name in Tamil.", txtTLabelName, 5000);
                 //    txtTLabelName.Text = "";
                 //}
                 //if (txtELabelName.Text.Trim() == "")
                 //{
-                //    errBrand.SetError(txtELabelName, "Please enter label name in english.");
+                //    errBrand.SetError(txtELabelName, "Please enter label name in English.");
                 //    txtELabelName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                 //    tpblename.ShowAlways = true;
-                //    tpblename.Show("Please enter label name in english", txtELabelName, 5000);
+                //    tpblename.Show("Please enter label name in English", txtELabelName, 5000);
                 //    txtELabelName.Text = "";
                 //}
                 //if (txtEStatetName.Text.Trim() == "")

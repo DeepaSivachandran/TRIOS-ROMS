@@ -108,11 +108,12 @@ namespace ROMS
                     dpInvoiceDate.Enabled = false;
                     txtInvoiceNo.ReadOnly = true;
                 }
-                if (cmbType.SelectedIndex.ToString() == "1")
+                if (cmbType.SelectedIndex.ToString() == "1") // PO
                 {
                     MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
                     MainForm.objPUR_GRNOrderType.ShowDialog();
                     txtQRCode.ReadOnly = true;
+                    txtQRCode.Enabled = false;
                     txtMrp.ReadOnly = false;
                     txtDate.ReadOnly = false;
                     txtMonth.ReadOnly = false;
@@ -123,9 +124,10 @@ namespace ROMS
                     dpInvoiceDate.Enabled = true;
                     txtInvoiceNo.ReadOnly = false;
                 }
-                if (cmbType.SelectedIndex.ToString() == "2")
+                if (cmbType.SelectedIndex.ToString() == "2") // Direct
                 {
                     txtQRCode.ReadOnly = true;
+                    txtQRCode.Enabled = false;
                     txtMrp.ReadOnly = false;
                     txtDate.ReadOnly = false;
                     txtMonth.ReadOnly = false;

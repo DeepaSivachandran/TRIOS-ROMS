@@ -807,14 +807,14 @@
             // 
             // Column4
             // 
-            this.Column4.HeaderText = "Product Name In English";
+            this.Column4.HeaderText = "Product Name in English";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             this.Column4.Width = 200;
             // 
             // Column5
             // 
-            this.Column5.HeaderText = "Product Name In Tamil";
+            this.Column5.HeaderText = "Product Name in Tamil";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             this.Column5.Width = 200;

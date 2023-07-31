@@ -3147,6 +3147,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void TcSupplier_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tcSupplier.SelectedIndex == 1) {
+                    txtScheduleName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
 

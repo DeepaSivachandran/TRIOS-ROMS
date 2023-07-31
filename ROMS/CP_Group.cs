@@ -98,7 +98,7 @@ namespace ROMS
                 if (txtEGroupNameEnglish.Text == "")
                 {
                     txtEGroupNameEnglish.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    epGroup.SetError(txtEGroupNameEnglish, "Please Enter Group Name In English");
+                    epGroup.SetError(txtEGroupNameEnglish, "Please Enter Group Name in English");
                 }
                 else
                 {

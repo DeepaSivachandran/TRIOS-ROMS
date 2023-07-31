@@ -194,7 +194,7 @@
             this.txtDTamilName.Size = new System.Drawing.Size(139, 27);
             this.txtDTamilName.TabIndex = 2;
             this.txtDTamilName.TabStop = false;
-            this.txtDTamilName.Text = "Product Name In Tamil";
+            this.txtDTamilName.Text = "Product Name in Tamil";
             // 
             // txtItemNameTamil
             // 
