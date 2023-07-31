@@ -114,14 +114,14 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
-                {
-                    epRackGroup.SetError(cmbConcern, "Please Select Concern");
-                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpConcern.ShowAlways = true;
-                    tpConcern.Show("Please Select Concern", cmbConcern, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                //{
+                //    epRackGroup.SetError(cmbConcern, "Please Select Concern");
+                //    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpConcern.ShowAlways = true;
+                //    tpConcern.Show("Please Select Concern", cmbConcern, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (Convert.ToString(txtRackGroupName.Text).Trim() == "")
                 {
                     epRackGroup.SetError(txtRackGroupName, "Please Enter Rack Group Name");
@@ -131,17 +131,21 @@ namespace ROMS
                     blnErrorFlag = true;
 
                 }
+                int varStaffCount = 0, varRackCount = 0;
+                if (grdStaffDetails.Rows.Count <= 0) { blnErrorFlag = true; varStaffCount = 1; }
+                if (grdSelectedRackList.Rows.Count <= 0) { blnErrorFlag = true; varRackCount = 1; }
 
-                if (blnErrorFlag == false && grdStaffDetails.Rows.Count <= 0 && grdSelectedRackList.Rows.Count <= 0)
+                if (varRackCount ==1)
                 {
-                    if (grdSelectedRackList.Rows.Count <= 0)
-                    {
-                        DialogResult dialogResult = MessageBox.Show("Please select atleast one rack", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    if (grdStaffDetails.Rows.Count <= 0)
-                    {
-                        DialogResult dialogResult = MessageBox.Show("Please enter atleast one staff name", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
+                    DialogResult dialogResult = MessageBox.Show("Please select atleast one rack", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                if (grdStaffDetails.Rows.Count <= 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Please enter atleast one staff name", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                if (blnErrorFlag == false && varRackCount== 0 && varStaffCount == 0)
+                {
                     udfnSave(sender, e);
                 }
             }

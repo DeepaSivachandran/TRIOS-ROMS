@@ -37,7 +37,6 @@ namespace ROMS
             this.ms = new System.Windows.Forms.MenuStrip();
             this.tsbLogo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmpurchase = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmpurchaseSupplier = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseOrder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGRN = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseEntry = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,6 +81,7 @@ namespace ROMS
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmpurchaseSupplier = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -134,7 +134,6 @@ namespace ROMS
             // tsmpurchase
             // 
             this.tsmpurchase.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmpurchaseSupplier,
             this.tsmPurchaseOrder,
             this.tsmGRN,
             this.tsmPurchaseEntry,
@@ -142,15 +141,9 @@ namespace ROMS
             this.tsmpurchaseReturn});
             this.tsmpurchase.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmpurchase.Name = "tsmpurchase";
+            this.tsmpurchase.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
             this.tsmpurchase.Size = new System.Drawing.Size(63, 21);
-            this.tsmpurchase.Text = "Purchase";
-            // 
-            // tsmpurchaseSupplier
-            // 
-            this.tsmpurchaseSupplier.Name = "tsmpurchaseSupplier";
-            this.tsmpurchaseSupplier.Size = new System.Drawing.Size(180, 22);
-            this.tsmpurchaseSupplier.Text = "PO Schedule";
-            this.tsmpurchaseSupplier.Click += new System.EventHandler(this.TsmpurchaseSupplier_Click);
+            this.tsmpurchase.Text = "&Purchase";
             // 
             // tsmPurchaseOrder
             // 
@@ -197,8 +190,9 @@ namespace ROMS
             this.damageEntryToolStripMenuItem});
             this.inventoryToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
+            this.inventoryToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.I)));
             this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
-            this.inventoryToolStripMenuItem.Text = "Inventory";
+            this.inventoryToolStripMenuItem.Text = "&Inventory";
             // 
             // tsminward
             // 
@@ -259,8 +253,9 @@ namespace ROMS
             this.supplierPaymentToolStripMenuItem});
             this.paymentToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
+            this.paymentToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.A)));
             this.paymentToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
-            this.paymentToolStripMenuItem.Text = "Payment";
+            this.paymentToolStripMenuItem.Text = "P&ayment";
             // 
             // supplierPaymentToolStripMenuItem
             // 
@@ -326,10 +321,10 @@ namespace ROMS
             this.tsmControlPanel.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmControlPanel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmControlPanel.Name = "tsmControlPanel";
-            this.tsmControlPanel.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.T)));
+            this.tsmControlPanel.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.C)));
             this.tsmControlPanel.ShowShortcutKeys = false;
             this.tsmControlPanel.Size = new System.Drawing.Size(85, 21);
-            this.tsmControlPanel.Text = "Control Panel";
+            this.tsmControlPanel.Text = "&Control Panel";
             this.tsmControlPanel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // tsmMasters
@@ -351,7 +346,7 @@ namespace ROMS
             this.tsmSuppliyer,
             this.tsmbroker});
             this.tsmMasters.Name = "tsmMasters";
-            this.tsmMasters.Size = new System.Drawing.Size(115, 22);
+            this.tsmMasters.Size = new System.Drawing.Size(180, 22);
             this.tsmMasters.Text = "Masters";
             // 
             // stateToolStripMenuItem
@@ -462,12 +457,13 @@ namespace ROMS
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmpurchaseSupplier,
             this.tsmsupplierMapping,
             this.tsmrackSettings,
             this.tsmbatchno,
             this.tsmgenralSettings});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // tsmsupplierMapping
@@ -507,10 +503,10 @@ namespace ROMS
             this.tsmMyProfile.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmMyProfile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmMyProfile.Name = "tsmMyProfile";
-            this.tsmMyProfile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
+            this.tsmMyProfile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
             this.tsmMyProfile.ShowShortcutKeys = false;
             this.tsmMyProfile.Size = new System.Drawing.Size(68, 21);
-            this.tsmMyProfile.Text = "My Profile";
+            this.tsmMyProfile.Text = "&My Profile";
             this.tsmMyProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsmMyProfile.Click += new System.EventHandler(this.tsbLogout_Click);
             // 
@@ -527,6 +523,13 @@ namespace ROMS
             this.tsmLogout.Size = new System.Drawing.Size(109, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
+            // 
+            // tsmpurchaseSupplier
+            // 
+            this.tsmpurchaseSupplier.Name = "tsmpurchaseSupplier";
+            this.tsmpurchaseSupplier.Size = new System.Drawing.Size(207, 22);
+            this.tsmpurchaseSupplier.Text = "PO Schedule";
+            this.tsmpurchaseSupplier.Click += new System.EventHandler(this.TsmpurchaseSupplier_Click);
             // 
             // MainForm
             // 
@@ -589,7 +592,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmitem;
         private System.Windows.Forms.ToolStripMenuItem inventoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsminward;
-        private System.Windows.Forms.ToolStripMenuItem tsmpurchaseSupplier;
         private System.Windows.Forms.ToolStripMenuItem tsmGRN;
         private System.Windows.Forms.ToolStripMenuItem tsmRack;
         private System.Windows.Forms.ToolStripMenuItem tsmRackGroup;
@@ -608,5 +610,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStockReq;
         private System.Windows.Forms.ToolStripMenuItem tsmfromPurchase;
         private System.Windows.Forms.ToolStripMenuItem tsmfromOtherStockLocation;
+        private System.Windows.Forms.ToolStripMenuItem tsmpurchaseSupplier;
     }
 }

@@ -43,13 +43,15 @@
             this.pnlSupplierMappingList = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.grdSupplierMappingList = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmproduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpFilterby = new System.Windows.Forms.GroupBox();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.btnView = new System.Windows.Forms.Button();
             this.lblDESupplier = new System.Windows.Forms.Label();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmproduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tshSupplierMappingList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.pnlSupplierMappingList.SuspendLayout();
@@ -207,6 +209,8 @@
             this.grdSupplierMappingList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmsno,
             this.clmsupname,
+            this.Column1,
+            this.Column2,
             this.clmproduct});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -229,26 +233,6 @@
             this.grdSupplierMappingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupplierMappingList.Size = new System.Drawing.Size(1348, 570);
             this.grdSupplierMappingList.TabIndex = 958789;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            // 
-            // clmsupname
-            // 
-            this.clmsupname.HeaderText = "Supplier Name";
-            this.clmsupname.Name = "clmsupname";
-            this.clmsupname.ReadOnly = true;
-            this.clmsupname.Width = 250;
-            // 
-            // clmproduct
-            // 
-            this.clmproduct.HeaderText = "No.of Products";
-            this.clmproduct.Name = "clmproduct";
-            this.clmproduct.ReadOnly = true;
-            this.clmproduct.Width = 150;
             // 
             // grpFilterby
             // 
@@ -294,6 +278,38 @@
             this.lblDESupplier.Size = new System.Drawing.Size(54, 20);
             this.lblDESupplier.TabIndex = 35;
             this.lblDESupplier.Text = "Supplier";
+            // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            // 
+            // clmsupname
+            // 
+            this.clmsupname.HeaderText = "Supplier Name";
+            this.clmsupname.Name = "clmsupname";
+            this.clmsupname.ReadOnly = true;
+            this.clmsupname.Width = 250;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Order Type";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Day";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // clmproduct
+            // 
+            this.clmproduct.HeaderText = "No.of Products";
+            this.clmproduct.Name = "clmproduct";
+            this.clmproduct.ReadOnly = true;
+            this.clmproduct.Width = 150;
             // 
             // CP_SupplierMappinglist
             // 
@@ -346,6 +362,8 @@
         private System.Windows.Forms.Label lblDESupplier;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproduct;
     }
 }

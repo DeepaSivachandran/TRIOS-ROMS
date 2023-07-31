@@ -53,11 +53,6 @@
             this.lblGC = new System.Windows.Forms.Label();
             this.lblNoofproducts = new System.Windows.Forms.Label();
             this.DGV_Racklist = new System.Windows.Forms.DataGridView();
-            this.clmcheckbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmracklist = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtRackGroupName = new System.Windows.Forms.TextBox();
             this.cmbStockLocation = new System.Windows.Forms.ComboBox();
             this.txtDRackGroup = new System.Windows.Forms.TextBox();
@@ -79,6 +74,11 @@
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.clmcheckbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmracklist = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSelectedRackList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Racklist)).BeginInit();
@@ -308,38 +308,6 @@
             this.DGV_Racklist.TabIndex = 5;
             this.DGV_Racklist.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_Racklist_CellMouseDoubleClick);
             // 
-            // clmcheckbox
-            // 
-            this.clmcheckbox.HeaderText = "";
-            this.clmcheckbox.Name = "clmcheckbox";
-            this.clmcheckbox.Width = 50;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "S.No.";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 50;
-            // 
-            // clmracklist
-            // 
-            this.clmracklist.HeaderText = "Rack";
-            this.clmracklist.MinimumWidth = 6;
-            this.clmracklist.Name = "clmracklist";
-            this.clmracklist.Width = 60;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Description";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 250;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Total Products";
-            this.Column1.Name = "Column1";
-            // 
             // txtRackGroupName
             // 
             this.txtRackGroupName.Location = new System.Drawing.Point(134, 58);
@@ -382,6 +350,8 @@
             // 
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Items.AddRange(new object[] {
+            "Test Company"});
             this.cmbConcern.Location = new System.Drawing.Point(134, 31);
             this.cmbConcern.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbConcern.Name = "cmbConcern";
@@ -623,6 +593,40 @@
             this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
+            // clmcheckbox
+            // 
+            this.clmcheckbox.HeaderText = "";
+            this.clmcheckbox.Name = "clmcheckbox";
+            this.clmcheckbox.Width = 50;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "S.No.";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 50;
+            // 
+            // clmracklist
+            // 
+            this.clmracklist.HeaderText = "Rack";
+            this.clmracklist.MinimumWidth = 6;
+            this.clmracklist.Name = "clmracklist";
+            this.clmracklist.ReadOnly = true;
+            this.clmracklist.Width = 60;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Description";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 250;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Total Products";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
             // CP_RackGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -698,11 +702,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmcheckbox;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmracklist;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        public System.Windows.Forms.Button btnSave;
     }
 }

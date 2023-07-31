@@ -306,8 +306,8 @@ namespace ROMS
                 {
                     epLocation.SetError(cmbStockApplicable, "Please Select Stock Applicable");
                     cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpLocationType.ShowAlways = true;
-                    tpLocationType.Show("Please Select Stock Applicable", cmbStockApplicable, 5000);
+                    tpStoctApplicable.ShowAlways = true;
+                    tpStoctApplicable.Show("Please Select Stock Applicable", cmbStockApplicable, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)

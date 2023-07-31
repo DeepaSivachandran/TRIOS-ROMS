@@ -384,8 +384,8 @@ namespace ROMS
                 {
                     epUser.SetError(txtPassword, "Please Enter Password");
                     txtPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tploginid.ShowAlways = true;
-                    tploginid.Show("Please Enter Password", txtPassword, 5000);
+                    tppassword.ShowAlways = true;
+                    tppassword.Show("Please Enter Password", txtPassword, 5000);
                     blnErrorFlag = true;
 
                 }
