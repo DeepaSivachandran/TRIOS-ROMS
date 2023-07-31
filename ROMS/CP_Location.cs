@@ -31,7 +31,23 @@ namespace ROMS
             InitializeComponent();
         }
 
-        
+        private void CP_Location_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tpConcern.Active = false;
+                tpLocationType.Active = false;
+                tpLocationTypeInEnglish.Active = false;
+                tpLocationTypeInTamil.Active = false;
+                tpStoctApplicable.Active = false;
+          
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            }
         //private void btnSave_Click(object sender, EventArgs e)
         //{
         //    try
@@ -271,43 +287,43 @@ namespace ROMS
 
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
-                    epLocation.SetError(cmbConcern, "Please Select Concern");
+                    epLocation.SetError(cmbConcern, "Please select concern");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
-                    tpConcern.Show("Please Select Concern", cmbConcern, 5000);
+                    tpConcern.Show("Please select concern", cmbConcern, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(cmbLocationType.SelectedItem) == "" || Convert.ToString(cmbLocationType.SelectedValue) == "-1")
                 {
-                    epLocation.SetError(cmbLocationType, "Please Select Location Type");
+                    epLocation.SetError(cmbLocationType, "Please select location type");
                     cmbLocationType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpLocationType.ShowAlways = true;
-                    tpLocationType.Show("Please Select Location Type", cmbLocationType, 5000);
+                    tpLocationType.Show("Please select location type", cmbLocationType, 5000);
                     blnErrorFlag = true;
                 }
 
                 if (Convert.ToString(txtLocationNameInEnglish.Text).Trim() == "")
                 {
-                    epLocation.SetError(txtLocationNameInEnglish, "Please Enter Location Name in English");
+                    epLocation.SetError(txtLocationNameInEnglish, "Please enter location name in english");
                     txtLocationNameInEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpLocationTypeInEnglish.ShowAlways = true;
-                    tpLocationTypeInEnglish.Show("Please Enter Location Name in English", txtLocationNameInEnglish, 5000);
+                    tpLocationTypeInEnglish.Show("Please enter location name in english", txtLocationNameInEnglish, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtLocationNameInTamil.Text).Trim() == "")
                 {
-                    epLocation.SetError(txtLocationNameInTamil, "Please Enter Location Name in Tamil");
+                    epLocation.SetError(txtLocationNameInTamil, "Please enter location name in tamil");
                     txtLocationNameInTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpLocationTypeInTamil.ShowAlways = true;
-                    tpLocationTypeInTamil.Show("Please Enter Location Name in Tamil", txtLocationNameInTamil, 5000);
+                    tpLocationTypeInTamil.Show("Please enter location name in tamil", txtLocationNameInTamil, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(cmbStockApplicable.SelectedItem) == "" || Convert.ToString(cmbStockApplicable.SelectedValue) == "-1")
                 {
-                    epLocation.SetError(cmbStockApplicable, "Please Select Stock Applicable");
+                    epLocation.SetError(cmbStockApplicable, "Please select stock applicable");
                     cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpLocationType.ShowAlways = true;
-                    tpLocationType.Show("Please Select Stock Applicable", cmbStockApplicable, 5000);
+                    tpStoctApplicable.ShowAlways = true;
+                    tpStoctApplicable.Show("Please select stock applicable", cmbStockApplicable, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
@@ -419,18 +435,7 @@ namespace ROMS
         }
 
 
-        private void CP_Location_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnclose();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+       
 
         private void CP_Location_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -472,10 +477,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
-                    epLocation.SetError(cmbConcern, "Please Select Concern");
+                    epLocation.SetError(cmbConcern, "Please select concern");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
-                    tpConcern.Show("Please Select Concern", cmbConcern, 5000);
+                    tpConcern.Show("Please select concern", cmbConcern, 5000);
                 }
                 else
                 {
@@ -585,10 +590,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbLocationType.SelectedItem) == "" || Convert.ToString(cmbLocationType.SelectedValue) == "-1")
                 {
-                    epLocation.SetError(cmbLocationType, "Please Select Location Type");
+                    epLocation.SetError(cmbLocationType, "Please select location type");
                     cmbLocationType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpLocationType.ShowAlways = true;
-                    tpLocationType.Show("Please Select Location Type", cmbLocationType, 5000);
+                    tpLocationType.Show("Please select location type", cmbLocationType, 5000);
                 }
                 else
                 {
@@ -659,10 +664,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtLocationNameInEnglish.Text).Trim() == "")
                 {
-                    epLocation.SetError(txtLocationNameInEnglish, "Please Enter Location Name in English");
+                    epLocation.SetError(txtLocationNameInEnglish, "Please enter location name in english");
                     txtLocationNameInEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpLocationTypeInEnglish.ShowAlways = true;
-                    tpLocationTypeInEnglish.Show("Please Enter Location Name in English", txtLocationNameInEnglish, 5000);
+                    tpLocationTypeInEnglish.Show("Please enter location name in english", txtLocationNameInEnglish, 5000);
                 }
                 else
                 {
@@ -721,10 +726,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtLocationNameInTamil.Text).Trim() == "")
                 {
-                    epLocation.SetError(txtLocationNameInTamil, "Please Enter Location Name in Tamil");
+                    epLocation.SetError(txtLocationNameInTamil, "Please enter location name in tamil");
                     txtLocationNameInTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpLocationTypeInTamil.ShowAlways = true;
-                    tpLocationTypeInTamil.Show("Please Enter Location Name in Tamil", txtLocationNameInTamil, 5000);
+                    tpLocationTypeInTamil.Show("Please enter location name in tamil", txtLocationNameInTamil, 5000);
                 }
                 else
                 {
@@ -819,10 +824,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbStockApplicable.SelectedItem) == "" || Convert.ToString(cmbStockApplicable.SelectedValue) == "-1")
                 {
-                    epLocation.SetError(cmbStockApplicable, "Please Select Stock Applicable");
+                    epLocation.SetError(cmbStockApplicable, "Please select stock applicable");
                     cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpLocationType.ShowAlways = true;
-                    tpLocationType.Show("Please Select Stock Applicable", cmbStockApplicable, 5000);
+                    tpLocationType.Show("Please select stock applicable", cmbStockApplicable, 5000);
                 }
                 else
                 {

@@ -45,6 +45,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grbForm = new System.Windows.Forms.GroupBox();
+            this.btnNew = new System.Windows.Forms.Label();
             this.cmbPasskey = new System.Windows.Forms.ComboBox();
             this.cmbUserCatagory = new System.Windows.Forms.ComboBox();
             this.txtDUserCatagory = new System.Windows.Forms.TextBox();
@@ -52,7 +53,6 @@
             this.txtDUserRole = new System.Windows.Forms.TextBox();
             this.txtDPassKey = new System.Windows.Forms.TextBox();
             this.epUser = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnNew = new System.Windows.Forms.Label();
             this.pnlStatus.SuspendLayout();
             this.grbForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUser)).BeginInit();
@@ -270,6 +270,18 @@
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
             // 
+            // btnNew
+            // 
+            this.btnNew.Image = global::ROMS.Properties.Resources.New;
+            this.btnNew.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNew.Location = new System.Drawing.Point(497, 79);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(21, 22);
+            this.btnNew.TabIndex = 23;
+            this.btnNew.Text = "        ";
+            this.btnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            // 
             // cmbPasskey
             // 
             this.cmbPasskey.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -355,18 +367,6 @@
             // 
             this.epUser.ContainerControl = this;
             // 
-            // btnNew
-            // 
-            this.btnNew.Image = global::ROMS.Properties.Resources.New;
-            this.btnNew.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNew.Location = new System.Drawing.Point(497, 79);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(21, 22);
-            this.btnNew.TabIndex = 23;
-            this.btnNew.Text = "        ";
-            this.btnNew.Click += new System.EventHandler(this.BtnNew_Click);
-            // 
             // CP_User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -387,6 +387,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_User_FormClosing);
             this.Load += new System.EventHandler(this.CP_User_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_User_KeyDown);
+            this.Leave += new System.EventHandler(this.CP_User_Leave);
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
             this.grbForm.ResumeLayout(false);

@@ -25,6 +25,20 @@ namespace ROMS
         {
             InitializeComponent();
         }
+        private void CP_Group_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tpGroupNameinTamil.Active = false;
+                tpGroupNameinEnglish.Active = false;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnclose()
         {
             try
@@ -43,22 +57,7 @@ namespace ROMS
 
         private void CP_Group_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (e.KeyCode == Keys.Escape)
-                {
-                    udfnclose();
-                }
-                if (e.KeyCode == Keys.F5)
-                {
-                    BtnSave_Click(sender, e);
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
 
 
@@ -91,28 +90,7 @@ namespace ROMS
             }
         }
 
-        private void txtEGroupNameEnglish_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtEGroupNameEnglish.Text == "")
-                {
-                    txtEGroupNameEnglish.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    epGroup.SetError(txtEGroupNameEnglish, "Please Enter Group Name In English");
-                }
-                else
-                {
-                    txtEGroupNameEnglish.BackColor = Color.White;
-                    epGroup.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+      
 
         private void RbActive_KeyDown(object sender, KeyEventArgs e)
         {
@@ -187,10 +165,10 @@ namespace ROMS
             {
                 if (txtEGroupNameEnglish.Text.Trim()== "")
                 {
-                    epGroup.SetError(txtEGroupNameEnglish, "Please Enter Product Name in English");
+                    epGroup.SetError(txtEGroupNameEnglish, "Please enter product group name in english");
                     txtEGroupNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpGroupNameinEnglish.ShowAlways = true;
-                    tpGroupNameinEnglish.Show("Please Enter Product Name in English", txtEGroupNameEnglish, 5000);
+                    tpGroupNameinEnglish.Show("Please enter product group name in english", txtEGroupNameEnglish, 5000);
                 }
                 else
                 {
@@ -260,10 +238,10 @@ namespace ROMS
             {
                 if (txtEGroupNameTamil.Text.Trim() == "")
                 {
-                    epGroup.SetError(txtEGroupNameTamil, "Please Enter Product Name in Tamil");
+                    epGroup.SetError(txtEGroupNameTamil, "Please enter product group name in tamil");
                     txtEGroupNameTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpGroupNameinTamil.ShowAlways = true;
-                    tpGroupNameinTamil.Show("Please Enter Product Name in Tamil", txtEGroupNameTamil, 5000);
+                    tpGroupNameinTamil.Show("Please enter product group name in tamil", txtEGroupNameTamil, 5000);
                 }
                 else
                 {
@@ -297,18 +275,18 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 if (txtEGroupNameEnglish.Text.Trim() == "")
                 {
-                    epGroup.SetError(txtEGroupNameEnglish, "Please Enter Product Name in English");
+                    epGroup.SetError(txtEGroupNameEnglish, "Please enter product group name in english");
                     txtEGroupNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpGroupNameinEnglish.ShowAlways = true;
-                    tpGroupNameinEnglish.Show("Please Enter Product Name in English", txtEGroupNameEnglish, 5000);
+                    tpGroupNameinEnglish.Show("Please enter product group name in english", txtEGroupNameEnglish, 5000);
                     blnErrorFlag = true;
                 }
                 if (txtEGroupNameTamil.Text.Trim() == "")
                 {
-                    epGroup.SetError(txtEGroupNameTamil, "Please Enter Product Name in Tamil");
+                    epGroup.SetError(txtEGroupNameTamil, "Please enter product group name in tamil");
                     txtEGroupNameTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpGroupNameinTamil.ShowAlways = true;
-                    tpGroupNameinTamil.Show("Please Enter Product Name in Tamil", txtEGroupNameTamil, 5000);
+                    tpGroupNameinTamil.Show("Please enter product group name in tamil", txtEGroupNameTamil, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
@@ -411,47 +389,6 @@ namespace ROMS
             }
         }
 
-        private void CP_Group_KeyDown_1(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Escape)
-                {
-                    udfnclose();
-                }
-                if (e.KeyCode == Keys.F5)
-                {
-                    BtnSave_Click(sender, e);
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CP_Group_FormClosing_1(object sender, FormClosingEventArgs e)
-        {
-
-            try
-            {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
 
         private void RbActive_Enter(object sender, EventArgs e)
         {
@@ -506,5 +443,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+      
     }
 }

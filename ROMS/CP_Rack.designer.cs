@@ -207,6 +207,7 @@
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
             this.rbInactive.Enter += new System.EventHandler(this.RbInactive_Enter);
+            this.rbInactive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInactive_KeyDown);
             this.rbInactive.Leave += new System.EventHandler(this.RbInactive_Leave);
             // 
             // rbActive
@@ -222,6 +223,7 @@
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
             this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
+            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
             // txtDRackName
@@ -250,7 +252,6 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
-
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
             // btnSave
@@ -306,6 +307,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Rack_FormClosing);
             this.Load += new System.EventHandler(this.CP_Rack_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Rack_KeyDown);
+            this.Leave += new System.EventHandler(this.CP_Rack_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             this.pnlStatus.ResumeLayout(false);

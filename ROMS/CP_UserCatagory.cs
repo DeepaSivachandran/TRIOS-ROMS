@@ -120,10 +120,10 @@ namespace ROMS
 
                 if (Convert.ToString(txtCatagoryName.Text).Trim() == "")
                 {
-                    epUserCatagory.SetError(txtCatagoryName, "Please Enter Catogory Name");
+                    epUserCatagory.SetError(txtCatagoryName, "Please enter catogory name");
                     txtCatagoryName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCatogaroryName.ShowAlways = true;
-                    tpCatogaroryName.Show("Please Enter Catogory Name", txtCatagoryName, 5000);
+                    tpCatogaroryName.Show("Please enter catogory name", txtCatagoryName, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
@@ -331,10 +331,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtCatagoryName.Text).Trim() == "")
                 {
-                    epUserCatagory.SetError(txtCatagoryName, "Please Enter Catogory Name");
+                    epUserCatagory.SetError(txtCatagoryName, "Please enter catogory name");
                     txtCatagoryName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCatogaroryName.ShowAlways = true;
-                    tpCatogaroryName.Show("Please Enter Catogory Name", txtCatagoryName, 5000);
+                    tpCatogaroryName.Show("Please enter catogory name", txtCatagoryName, 5000);
 
                 }
                 else
@@ -381,6 +381,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void CP_UserCatagory_Leave(object sender, EventArgs e)
+        {
+
         }
 
         private void udfnEdit()

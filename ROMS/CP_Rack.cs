@@ -27,6 +27,23 @@ namespace ROMS
         {
             InitializeComponent();
         }
+        private void CP_Rack_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tpConcern.Active = false;
+                tpStockLocation.Active = false;
+                tpRackName.Active = false;
+                tpShortName.Active = false;
+                tpDescription.Active = false;
+               
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CP_Rack_Load(object sender, EventArgs e)
         {
             try
@@ -111,44 +128,44 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
-                    epRack.SetError(cmbConcern, "Please Select Concern");
+                    epRack.SetError(cmbConcern, "Please select concern");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
-                    tpConcern.Show("Please Select Concern", cmbConcern, 5000);
+                    tpConcern.Show("Please select concern", cmbConcern, 5000);
                     blnErrorFlag = true;
                 }
 
                 if (Convert.ToString(cmbStockLocation.SelectedValue) == "" || Convert.ToString(cmbStockLocation.SelectedValue) == "-1")
                 {
-                    epRack.SetError(cmbStockLocation, "Please Select Stock Location");
+                    epRack.SetError(cmbStockLocation, "Please select stock location");
                     cmbStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please Select Stock Location", cmbStockLocation, 5000);
+                    tpStockLocation.Show("Please select stock location", cmbStockLocation, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtRackName.Text).Trim() == "")
                 {
-                    epRack.SetError(txtRackName, "Please Enter Rack Name");
+                    epRack.SetError(txtRackName, "Please enter rack name");
                     txtRackName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRackName.ShowAlways = true;
-                    tpRackName.Show("Please Enter Rack Name", txtRackName, 5000);
+                    tpRackName.Show("Please enter rack name", txtRackName, 5000);
                     blnErrorFlag = true;
 
                 }
                 if (Convert.ToString(txtShortName.Text).Trim() == "")
                 {
-                    epRack.SetError(txtShortName, "Please Enter Short Name");
+                    epRack.SetError(txtShortName, "Please enter short name");
                     txtShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpShortName.ShowAlways = true;
-                    tpShortName.Show("Please Enter Short Name", txtShortName, 5000);
+                    tpShortName.Show("Please enter short name", txtShortName, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtDescription.Text).Trim() == "")
                 {
-                    epRack.SetError(txtDescription, "Please Enter Description");
+                    epRack.SetError(txtDescription, "Please enter description");
                     txtDescription.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpDescription.ShowAlways = true;
-                    tpDescription.Show("Please Enter Description", txtDescription, 5000);
+                    tpDescription.Show("Please enter description", txtDescription, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
@@ -343,10 +360,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
-                    epRack.SetError(cmbConcern, "Please Select Concern");
+                    epRack.SetError(cmbConcern, "Please select concern");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
-                    tpConcern.Show("Please Select Concern", cmbConcern, 5000);
+                    tpConcern.Show("Please select concern", cmbConcern, 5000);
                 }
                 else
                 {
@@ -454,10 +471,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbStockLocation.SelectedValue) == "" || Convert.ToString(cmbStockLocation.SelectedValue) == "-1")
                 {
-                    epRack.SetError(cmbStockLocation, "Please Select Stock Location");
+                    epRack.SetError(cmbStockLocation, "Please select stock location");
                     cmbStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please Select Stock Location", cmbStockLocation, 5000);
+                    tpStockLocation.Show("Please select stock location", cmbStockLocation, 5000);
                 }
                 else
                 {
@@ -504,10 +521,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtRackName.Text).Trim() == "")
                 {
-                    epRack.SetError(txtRackName, "Please Enter Rack Name");
+                    epRack.SetError(txtRackName, "Please enter rack name");
                     txtRackName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRackName.ShowAlways = true;
-                    tpRackName.Show("Please Enter Rack Name", txtRackName, 5000);
+                    tpRackName.Show("Please enter rack name", txtRackName, 5000);
 
                 }
                 else
@@ -556,10 +573,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtShortName.Text).Trim() == "")
                 {
-                    epRack.SetError(txtShortName, "Please Enter Short Name");
+                    epRack.SetError(txtShortName, "Please enter short name");
                     txtShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpShortName.ShowAlways = true;
-                    tpShortName.Show("Please Enter Short Name", txtShortName, 5000);
+                    tpShortName.Show("Please enter short name", txtShortName, 5000);
                 }
                 else
                 {
@@ -608,10 +625,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtDescription.Text).Trim() == "")
                 {
-                    epRack.SetError(txtDescription, "Please Enter Description");
+                    epRack.SetError(txtDescription, "Please enter description");
                     txtDescription.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpDescription.ShowAlways = true;
-                    tpDescription.Show("Please Enter Description", txtDescription, 5000);
+                    tpDescription.Show("Please enter description", txtDescription, 5000);
                 }
                 else
                 {
@@ -698,6 +715,40 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void RbActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        
     }
    
 

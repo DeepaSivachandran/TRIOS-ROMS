@@ -648,6 +648,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_RackGroup_FormClosing);
             this.Load += new System.EventHandler(this.CP_SubGroup_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_RackGroup_KeyDown);
+            this.Leave += new System.EventHandler(this.CP_RackGroup_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSelectedRackList)).EndInit();

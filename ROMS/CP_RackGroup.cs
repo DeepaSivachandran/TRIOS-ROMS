@@ -25,6 +25,22 @@ namespace ROMS
         {
             InitializeComponent();
         }
+        private void CP_RackGroup_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tpConcern.Active = false;
+                tpStockLocation.Active = false;
+                tpRackGroupName.Active = false;
+              
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CP_SubGroup_Load(object sender, EventArgs e)
         {
             try
@@ -116,18 +132,18 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
-                    epRackGroup.SetError(cmbConcern, "Please Select Concern");
+                    epRackGroup.SetError(cmbConcern, "Please select concern");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
-                    tpConcern.Show("Please Select Concern", cmbConcern, 5000);
+                    tpConcern.Show("Please select concern", cmbConcern, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtRackGroupName.Text).Trim() == "")
                 {
-                    epRackGroup.SetError(txtRackGroupName, "Please Enter Rack Group Name");
+                    epRackGroup.SetError(txtRackGroupName, "Please enter rack group name");
                     txtRackGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRackGroupName.ShowAlways = true;
-                    tpRackGroupName.Show("Please Enter Rack Group Name", txtRackGroupName, 5000);
+                    tpRackGroupName.Show("Please enter rack group name", txtRackGroupName, 5000);
                     blnErrorFlag = true;
 
                 }
@@ -357,10 +373,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
-                    epRackGroup.SetError(cmbConcern, "Please Select Concern");
+                    epRackGroup.SetError(cmbConcern, "Please select concern");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
-                    tpConcern.Show("Please Select Concern", cmbConcern, 5000);
+                    tpConcern.Show("Please select concern", cmbConcern, 5000);
                 }
                 else
                 {
@@ -423,10 +439,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtRackGroupName.Text).Trim() == "")
                 {
-                    epRackGroup.SetError(txtRackGroupName, "Please Enter Rack Group Name");
+                    epRackGroup.SetError(txtRackGroupName, "Please enter rack group name");
                     txtRackGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRackGroupName.ShowAlways = true;
-                    tpRackGroupName.Show("Please Enter Rack Group Name", txtRackGroupName, 5000);
+                    tpRackGroupName.Show("Please enter rack group name", txtRackGroupName, 5000);
 
                 }
                 else
@@ -749,6 +765,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+     
     }
      
 }

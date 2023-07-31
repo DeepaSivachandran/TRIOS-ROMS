@@ -24,6 +24,21 @@ namespace ROMS
             InitializeComponent();
         }
 
+        private void CP_Brand_Leave(object sender, EventArgs e)
+        {
+
+            try
+            {
+                tpBrandNameInEnglish.Active = false;
+                tpBrandNameInTamil.Active = false;
+              
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnclose()
         {
             try
@@ -114,10 +129,10 @@ namespace ROMS
             {
                 if (txtEBrandNameInEnglish.Text.Trim() == "")
                 {
-                    epBrand.SetError(txtEBrandNameInEnglish, "Please Enter Brand Name in English");
+                    epBrand.SetError(txtEBrandNameInEnglish, "Please enter brand name in english");
                     txtEBrandNameInEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpBrandNameInEnglish.ShowAlways = true;
-                    tpBrandNameInEnglish.Show("Please Enter Brand Name in English", txtEBrandNameInEnglish, 5000);
+                    tpBrandNameInEnglish.Show("Please enter brand name in english", txtEBrandNameInEnglish, 5000);
                 }
                 else
                 {
@@ -170,10 +185,10 @@ namespace ROMS
             {
                 if (txtEBrandNameInTamil.Text.Trim() == "")
                 {
-                    epBrand.SetError(txtEBrandNameInTamil, "Please Enter Brand Name in Tamil");
+                    epBrand.SetError(txtEBrandNameInTamil, "Please enter brand name in tamil");
                     txtEBrandNameInTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpBrandNameInTamil.ShowAlways = true;
-                    tpBrandNameInTamil.Show("Please Enter Brand Name in Tamil", txtEBrandNameInTamil, 5000);
+                    tpBrandNameInTamil.Show("Please enter brand name in tamil", txtEBrandNameInTamil, 5000);
                 }
                 else
                 {
@@ -285,19 +300,19 @@ namespace ROMS
 
                 if (txtEBrandNameInEnglish.Text.Trim() == "")
                 {
-                    epBrand.SetError(txtEBrandNameInEnglish, "Please Enter Brand Name in English");
+                    epBrand.SetError(txtEBrandNameInEnglish, "Please enter brand name in english");
                     txtEBrandNameInEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpBrandNameInEnglish.ShowAlways = true;
-                    tpBrandNameInEnglish.Show("Please Enter Brand Name in English", txtEBrandNameInEnglish, 5000);
+                    tpBrandNameInEnglish.Show("Please enter brand name in english", txtEBrandNameInEnglish, 5000);
                     blnErrorFlag = true;
                 }
 
                 if (txtEBrandNameInTamil.Text.Trim() == "")
                 {
-                    epBrand.SetError(txtEBrandNameInTamil, "Please Enter Brand Name in Tamil");
+                    epBrand.SetError(txtEBrandNameInTamil, "Please enter brand name in tamil");
                     txtEBrandNameInTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpBrandNameInTamil.ShowAlways = true;
-                    tpBrandNameInTamil.Show("Please Enter Brand Name in Tamil", txtEBrandNameInTamil, 5000);
+                    tpBrandNameInTamil.Show("Please enter brand name in tamil", txtEBrandNameInTamil, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false && grdSubGroupAdd.Rows.Count <= 0)
@@ -458,5 +473,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void CP_Brand_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

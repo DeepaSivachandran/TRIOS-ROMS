@@ -50,7 +50,24 @@ namespace ROMS
             //    objError.WriteFile(ex);
             //}
         }
-      
+        private void CP_User_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tploginid.Active = false;
+                tpusername.Active = false;
+                tppassword.Active = false;
+                tpconfirmpassword.Active = false;
+                tpUserRole.Active = false;
+                tpUserCatagory.Active = false;
+                tpPassKey.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void txtUserName_Leave(object sender, EventArgs e)
         {
@@ -59,10 +76,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtUserName.Text).Trim() == "")
                 {
-                    epUser.SetError(txtUserName, "Please Enter User Name");
+                    epUser.SetError(txtUserName, "Please enter user name");
                     txtUserName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpusername.ShowAlways = true;
-                    tpusername.Show("Please Enter User Name", txtUserName, 5000);
+                    tpusername.Show("Please enter user name", txtUserName, 5000);
 
                 }
                 else
@@ -113,10 +130,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtLoginID.Text).Trim() == "")
                 {
-                    epUser.SetError(txtLoginID, "Please Enter Login Id");
+                    epUser.SetError(txtLoginID, "Please enter login id");
                     txtLoginID.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tploginid.ShowAlways = true;
-                    tploginid.Show("Please Enter Login Id", txtLoginID, 5000);
+                    tploginid.Show("Please enter login id", txtLoginID, 5000);
 
                 }
                 else
@@ -168,10 +185,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtPassword.Text).Trim() == "")
                 {
-                    epUser.SetError(txtPassword, "Please Enter Password");
+                    epUser.SetError(txtPassword, "Please enter password");
                     txtPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tploginid.ShowAlways = true;
-                    tploginid.Show("Please Enter Password", txtPassword, 5000);
+                    tploginid.Show("Please enter password", txtPassword, 5000);
 
                 }
                 else
@@ -222,10 +239,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtCPassword.Text).Trim() == "")
                 {
-                    epUser.SetError(txtCPassword, "Please Enter Confirm Password");
+                    epUser.SetError(txtCPassword, "Please enter confirm password");
                     txtCPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpconfirmpassword.ShowAlways = true;
-                    tpconfirmpassword.Show("Please Enter Confirm Password", txtCPassword, 5000);
+                    tpconfirmpassword.Show("Please enter confirm password", txtCPassword, 5000);
 
                 }
                 else
@@ -350,59 +367,59 @@ namespace ROMS
 
                 if (Convert.ToString(txtUserName.Text).Trim() == "")
                 {
-                    epUser.SetError(txtUserName, "Please Enter User Name");
+                    epUser.SetError(txtUserName, "Please enter user name");
                     txtUserName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpusername.ShowAlways = true;
-                    tpusername.Show("Please Enter User Name", txtUserName, 5000);
+                    tpusername.Show("Please enter user name", txtUserName, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtLoginID.Text).Trim() == "")
                 {
-                    epUser.SetError(txtLoginID, "Please Enter Login Id");
+                    epUser.SetError(txtLoginID, "Please enter login id");
                     txtLoginID.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tploginid.ShowAlways = true;
-                    tploginid.Show("Please Enter Login Id", txtLoginID, 5000);
+                    tploginid.Show("Please enter login id", txtLoginID, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(cmbUserCatagory.SelectedValue) == "" || Convert.ToString(cmbUserCatagory.SelectedValue) == "-1")
                 {
-                    epUser.SetError(cmbUserCatagory, "Please Select User Catagory");
+                    epUser.SetError(cmbUserCatagory, "Please select user catagory");
                     cmbUserCatagory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpUserCatagory.ShowAlways = true;
-                    tpUserCatagory.Show("Please Select User Catagory", cmbUserCatagory, 5000);
+                    tpUserCatagory.Show("Please select user catagory", cmbUserCatagory, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(cmbUserRole.SelectedValue) == "" || Convert.ToString(cmbUserRole.SelectedValue) == "-1")
                 {
-                    epUser.SetError(cmbUserRole, "Please Select User Role");
+                    epUser.SetError(cmbUserRole, "Please select user role");
                     cmbUserRole.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpUserRole.ShowAlways = true;
-                    tpUserRole.Show("Please Select User Role", cmbUserRole, 5000);
+                    tpUserRole.Show("Please select user role", cmbUserRole, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtPassword.Text).Trim() == "")
                 {
-                    epUser.SetError(txtPassword, "Please Enter Password");
+                    epUser.SetError(txtPassword, "Please enter password");
                     txtPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tploginid.ShowAlways = true;
-                    tploginid.Show("Please Enter Password", txtPassword, 5000);
+                    tploginid.Show("Please enter password", txtPassword, 5000);
                     blnErrorFlag = true;
 
                 }
                 if (Convert.ToString(txtCPassword.Text).Trim() == "")
                 {
-                    epUser.SetError(txtCPassword, "Please Enter Confirm Password");
+                    epUser.SetError(txtCPassword, "Please enter confirm password");
                     txtCPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpconfirmpassword.ShowAlways = true;
-                    tpconfirmpassword.Show("Please Enter Confirm Password", txtCPassword, 5000);
+                    tpconfirmpassword.Show("Please enter confirm password", txtCPassword, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(cmbPasskey.SelectedValue) == "" || Convert.ToString(cmbPasskey.SelectedValue) == "-1")
                 {
-                    epUser.SetError(cmbPasskey, "Please Select Pass Key");
+                    epUser.SetError(cmbPasskey, "Please select pass key");
                     cmbPasskey.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tppassword.ShowAlways = true;
-                    tpPassKey.Show("Please Select Pass Key", cmbPasskey, 5000);
+                    tpPassKey.Show("Please select pass key", cmbPasskey, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
@@ -656,10 +673,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbUserCatagory.SelectedValue) == "" || Convert.ToString(cmbUserCatagory.SelectedValue) == "-1")
                 {
-                    epUser.SetError(cmbUserCatagory, "Please Select User Catagory");
+                    epUser.SetError(cmbUserCatagory, "Please select user catagory");
                     cmbUserCatagory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpUserCatagory.ShowAlways = true;
-                    tpUserCatagory.Show("Please Select User Catagory", cmbUserCatagory, 5000);
+                    tpUserCatagory.Show("Please select user catagory", cmbUserCatagory, 5000);
                 }
                 else
                 {
@@ -708,10 +725,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbUserRole.SelectedValue) == "" || Convert.ToString(cmbUserRole.SelectedValue) == "-1")
                 {
-                    epUser.SetError(cmbUserRole, "Please Select User Role");
+                    epUser.SetError(cmbUserRole, "Please select user role");
                     cmbUserRole.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpUserRole.ShowAlways = true;
-                    tpUserRole.Show("Please Select User Role", cmbUserRole, 5000);
+                    tpUserRole.Show("Please select user role", cmbUserRole, 5000);
                 }
                 else
                 {
@@ -811,10 +828,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbPasskey.SelectedValue) == "" || Convert.ToString(cmbPasskey.SelectedValue) == "-1")
                 {
-                    epUser.SetError(cmbPasskey, "Please Select Pass Key");
+                    epUser.SetError(cmbPasskey, "Please select pass key");
                     cmbPasskey.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tppassword.ShowAlways = true;
-                    tpPassKey.Show("Please Select Pass Key", cmbPasskey, 5000);
+                    tpPassKey.Show("Please select pass key", cmbPasskey, 5000);
                 }
                 else
                 {
@@ -890,6 +907,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+    
 
         private void udfnEdit()
         {

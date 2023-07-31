@@ -74,29 +74,30 @@ namespace ROMS
         {
             try
             {
-                if (grdUserCatagoryList.SelectedRows.Count > 0)
-                {
-                    string result = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
+                DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (grdUserCatagoryList.SelectedRows.Count > 0)
+                //{
+                //    string result = "";
+                //    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    if (dialogResult == DialogResult.Yes)
+                //    {
 
-                        SPDataService objspdservice = new SPDataService();
-                       // result = objspdservice.udfnSPUserMaster("Delete", grdUserList.SelectedRows[0].Cells["Autonum"].Value.ToString(),"","","","","",MainForm.pbUserID, MainForm.pbIpAddress, "User Delete");
+                //        SPDataService objspdservice = new SPDataService();
+                //       // result = objspdservice.udfnSPUserMaster("Delete", grdUserList.SelectedRows[0].Cells["Autonum"].Value.ToString(),"","","","","",MainForm.pbUserID, MainForm.pbIpAddress, "User Delete");
 
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
+                //        string[] varvalue = result.Split('~');
+                //        if (varvalue[0] == "3")
+                //        {
+                //            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //            udfnList();
 
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
+                //        }
+                //        else
+                //        {
+                //            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {
