@@ -340,9 +340,9 @@
             this.groupBox2.Controls.Add(this.textBox11);
             this.groupBox2.Controls.Add(this.textBox10);
             this.groupBox2.Controls.Add(this.cmbReturnType);
-            this.groupBox2.Location = new System.Drawing.Point(9, 362);
+            this.groupBox2.Location = new System.Drawing.Point(10, 362);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(241, 85);
+            this.groupBox2.Size = new System.Drawing.Size(306, 85);
             this.groupBox2.TabIndex = 1111207;
             this.groupBox2.TabStop = false;
             // 
@@ -351,7 +351,7 @@
             this.textBox12.Location = new System.Drawing.Point(116, 48);
             this.textBox12.MaxLength = 50;
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(119, 28);
+            this.textBox12.Size = new System.Drawing.Size(183, 28);
             this.textBox12.TabIndex = 1111234;
             // 
             // textBox11
@@ -379,7 +379,7 @@
             this.cmbReturnType.FormattingEnabled = true;
             this.cmbReturnType.Location = new System.Drawing.Point(116, 20);
             this.cmbReturnType.Name = "cmbReturnType";
-            this.cmbReturnType.Size = new System.Drawing.Size(119, 28);
+            this.cmbReturnType.Size = new System.Drawing.Size(183, 28);
             this.cmbReturnType.TabIndex = 958809;
             // 
             // textBox7
@@ -506,7 +506,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(260, 382);
+            this.label5.Location = new System.Drawing.Point(317, 382);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 1111173;
@@ -515,7 +515,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(327, 382);
+            this.textBox2.Location = new System.Drawing.Point(384, 382);
             this.textBox2.MaxLength = 50;
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";

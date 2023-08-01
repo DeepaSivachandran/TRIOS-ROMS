@@ -62,7 +62,8 @@ namespace ROMS
         {
             try
             {
-                udfnList();
+                //udfnList();
+
             }
             catch (Exception ex)
             {
@@ -108,24 +109,27 @@ namespace ROMS
 
         private void udfnEdit()
         {
-            //try
-            //{
+            try
+            {
+                MainForm.objCP_User = new CP_User();
+                MainForm.objCP_User.btnSave.Text = "Update";
+                MainForm.objCP_User.ShowDialog();
 
-            //    if (grdUserList.SelectedRows.Count > 0)
-            //    {
-            //        MainForm.objCP_User = new CP_User();
-            //        //MainForm.objCP_User.MdiParent = this.ParentForm;
-            //        MainForm.objCP_User.varusercode = grdUserList.SelectedRows[0].Cells["Autonum"].Value.ToString();
-            //        MainForm.objCP_User.ShowDialog();
+                //    if (grdUserList.SelectedRows.Count > 0)
+                //    {
+                //        MainForm.objCP_User = new CP_User();
+                //        //MainForm.objCP_User.MdiParent = this.ParentForm;
+                //        MainForm.objCP_User.varusercode = grdUserList.SelectedRows[0].Cells["Autonum"].Value.ToString();
+                //        MainForm.objCP_User.ShowDialog();
 
-            //    }
+                //    }
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
 
         }
 
@@ -200,8 +204,14 @@ namespace ROMS
                 {
                     tsbEdit_Click(sender, e);
                 }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                {
+                    tsbDelete_Click(sender, e);
+                }
                 if (e.KeyCode == Keys.Escape)
                 {
+                    MainForm objMainForm = new MainForm();
+                    objMainForm.udfnCloseChildForms();
                     MainForm.objStart = new DEF_Start();
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();

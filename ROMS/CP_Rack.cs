@@ -15,12 +15,12 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
-        private ToolTip tpgrouptype = new ToolTip();
-        private ToolTip tptgroupname = new ToolTip();
-        private ToolTip tpegroupname = new ToolTip();
-        private ToolTip tptlabelname = new ToolTip();
-        private ToolTip tpelabelname = new ToolTip();
-        private ToolTip tpsno = new ToolTip();
+        private ToolTip tpConcern = new ToolTip();
+        private ToolTip tpStockLocation = new ToolTip();
+        private ToolTip tpRackName = new ToolTip();
+        private ToolTip tpShortName = new ToolTip();
+        private ToolTip tpDescription = new ToolTip();
+
         public string vargroupcode;
         public String pbFormStatus;
         public CP_Rack()
@@ -30,9 +30,16 @@ namespace ROMS
         private void CP_Rack_Load(object sender, EventArgs e)
         {
             try
-            {      
-                udfnEdit();
-
+            {
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                if (btnSave.Text == "Save")
+                {
+                    pnlStatus.Enabled = false;
+                }
+                else
+                {
+                    pnlStatus.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -48,7 +55,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS = new DataSet();
-                   // objDS = objspservice.udfnSPGroupList("EditLoad", vargroupcode, "0", MainForm.pbUserID, MainForm.pbIpAddress);
+                    // objDS = objspservice.udfnSPGroupList("EditLoad", vargroupcode, "0", MainForm.pbUserID, MainForm.pbIpAddress);
                     objspservice.CloseConnection();
 
                     if (objDS != null)
@@ -70,7 +77,8 @@ namespace ROMS
                     }
 
                 }
-                else {// udfnLoadSlNo(); 
+                else
+                {// udfnLoadSlNo(); 
                 }
             }
             catch (Exception ex)
@@ -83,39 +91,11 @@ namespace ROMS
 
             }
         }
-        private void txtEGroupName_Enter(object sender, EventArgs e)
+        public void udfnSave(object sender, EventArgs e)
         {
             try
             {
-                txtEGroupName.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
 
-        private void txtEGroupName_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtEGroupName.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void cmbSINO_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnSave.Focus();
-                }
             }
             catch (Exception ex)
             {
@@ -128,78 +108,53 @@ namespace ROMS
         {
             try
             {
-
-                errGroup.Clear();
-                if (txtEGroupName.Text.Trim() == "")
+                bool blnErrorFlag = false;
+                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
-                    errGroup.SetError(txtEGroupName, "Please enter group english name");
-                    txtEGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-
-                    tpegroupname.ShowAlways = true;
-                    tpegroupname.Show("Please enter group english name", txtEGroupName, 5000);
-                    txtEGroupName.Text = "";
-
-                }
-                if (txtEGroupName.Text.Trim() == "")
-                {
-                    txtEGroupName.Focus();
-                    return;
-
-                }
-                SPDataService objspdservice = new SPDataService();
-                string result = "";
-                if (btnSave.Text == "Save")
-                {
-                 //   result = objspdservice.udfnSPGroupMaster("Create", "0",cmbGroupType.SelectedValue.ToString(),txtTGroupName.Text,txtEGroupName.Text,txtTLabelName.Text,txtELabelName.Text,cmbSINO.SelectedValue.ToString(),  MainForm.pbUserID, MainForm.pbIpAddress, "Group Create");
-                }
-                else
-                {
-                  //  result = objspdservice.udfnSPGroupMaster("Update",vargroupcode, cmbGroupType.SelectedValue.ToString(), txtTGroupName.Text, txtEGroupName.Text, txtTLabelName.Text, txtELabelName.Text, cmbSINO.SelectedValue.ToString(), MainForm.pbUserID, MainForm.pbIpAddress, "Group Update");
-                }
-                string[] varvalue = result.Split('~');
-                if (varvalue[0] == "3")
-                {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (pbFormStatus == "Finished")
-                    {
-                        pbFormStatus = "";
-                        //MainForm.objCP_Product.varGroupCode = varvalue[2];
-                        //MainForm.objCP_Product.varGroupName = txtEGroupName.Text;
-                        //MainForm.objCP_Product.udfnLoadGroup();
-                        this.Close();
-                    }
-                    if (pbFormStatus == "Raw")
-                    {
-                        pbFormStatus = "";
-                        //MainForm.objCP_RawMaterial.varGroupCode = varvalue[2];
-                        //MainForm.objCP_RawMaterial.varGroupName = txtEGroupName.Text;
-                        //MainForm.objCP_RawMaterial.udfnLoadGroup();
-                        this.Close();
-                    }
-                    if (btnSave.Text == "Update")
-                    {
-                        this.Close();
-                    }
-                    else
-                    {
-                        udfnclear();
-                    }
-                  //  udfnLoadSlNo();
-                   // MainForm.objCP_RackList.udfnList();
-                }
-                else
-                {
-                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    if (varvalue[1].Contains("Order number")) {
-                        //udfnLoadSlNo(); 
-                    }
+                    epRack.SetError(cmbConcern, "Please Select Concern");
+                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpConcern.ShowAlways = true;
+                    tpConcern.Show("Please Select Concern", cmbConcern, 5000);
+                    blnErrorFlag = true;
                 }
 
-                objspdservice.CloseConnection();
+                if (Convert.ToString(cmbStockLocation.SelectedValue) == "" || Convert.ToString(cmbStockLocation.SelectedValue) == "-1")
+                {
+                    epRack.SetError(cmbStockLocation, "Please Select Stock Location");
+                    cmbStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpStockLocation.ShowAlways = true;
+                    tpStockLocation.Show("Please Select Stock Location", cmbStockLocation, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtRackName.Text).Trim() == "")
+                {
+                    epRack.SetError(txtRackName, "Please Enter Rack Name");
+                    txtRackName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpRackName.ShowAlways = true;
+                    tpRackName.Show("Please Enter Rack Name", txtRackName, 5000);
+                    blnErrorFlag = true;
 
-
-
-
+                }
+                if (Convert.ToString(txtShortName.Text).Trim() == "")
+                {
+                    epRack.SetError(txtShortName, "Please Enter Short Name");
+                    txtShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpShortName.ShowAlways = true;
+                    tpShortName.Show("Please Enter Short Name", txtShortName, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtDescription.Text).Trim() == "")
+                {
+                    epRack.SetError(txtDescription, "Please Enter Description");
+                    txtDescription.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpDescription.ShowAlways = true;
+                    tpDescription.Show("Please Enter Description", txtDescription, 5000);
+                    blnErrorFlag = true;
+                }
+                if (blnErrorFlag == false)
+                {
+                    udfnSave(sender, e);
+                }
             }
             catch (Exception ex)
             {
@@ -213,10 +168,10 @@ namespace ROMS
             try
             {
                 btnSave.Text = "Save";
-               // cmbGroupType.SelectedValue = "-1";
+                // cmbGroupType.SelectedValue = "-1";
                 DataSet objDS = new DataSet();
                 SPDataService objspservice = new SPDataService();
-               // objDS = objspservice.udfnGetSlNo("CP_Rack", "Create", "", "");
+                // objDS = objspservice.udfnGetSlNo("CP_Rack", "Create", "", "");
                 objspservice.CloseConnection();
                 if (objDS != null)
                 {
@@ -224,7 +179,7 @@ namespace ROMS
                     //cmbSINO.DisplayMember = "num";
                     //cmbSINO.ValueMember = "num";
                 }
-              //  txtTGroupName.Focus();
+                //  txtTGroupName.Focus();
             }
             catch (Exception ex)
             {
@@ -259,6 +214,7 @@ namespace ROMS
             }
         }
 
+
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
@@ -275,11 +231,9 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
+
+                this.Close();
+
             }
             catch (Exception ex)
             {
@@ -292,7 +246,7 @@ namespace ROMS
             try
             {
                 udfnclose();
-               // MainForm.objCP_RackList.udfnList();
+                // MainForm.objCP_RackList.udfnList();
             }
             catch (Exception ex)
             {
@@ -306,19 +260,6 @@ namespace ROMS
             try
             {
                 btnClose.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void btnClose_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                
             }
             catch (Exception ex)
             {
@@ -351,6 +292,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
+                    btnSave.Focus();
                     btnSave_Click(sender, e);
                 }
             }
@@ -360,7 +302,403 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        
-      
+
+        private void CP_Rack_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    e.Cancel = false;
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    epRack.SetError(cmbConcern, "Please Select Concern");
+                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpConcern.ShowAlways = true;
+                    tpConcern.Show("Please Select Concern", cmbConcern, 5000);
+                }
+                else
+                {
+                    epRack.Clear();
+                    cmbConcern.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbStockLocation.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStockLocation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtRackName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_Leave(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (Convert.ToString(cmbStockLocation.SelectedValue) == "" || Convert.ToString(cmbStockLocation.SelectedValue) == "-1")
+                {
+                    epRack.SetError(cmbStockLocation, "Please Select Stock Location");
+                    cmbStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpStockLocation.ShowAlways = true;
+                    tpStockLocation.Show("Please Select Stock Location", cmbStockLocation, 5000);
+                }
+                else
+                {
+                    epRack.Clear();
+                    cmbStockLocation.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbStockLocation.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRackName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRackName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRackName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(txtRackName.Text).Trim() == "")
+                {
+                    epRack.SetError(txtRackName, "Please Enter Rack Name");
+                    txtRackName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpRackName.ShowAlways = true;
+                    tpRackName.Show("Please Enter Rack Name", txtRackName, 5000);
+
+                }
+                else
+                {
+                    epRack.Clear();
+                    txtRackName.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtRackName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtShortName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtShortName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtShortName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtShortName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(txtShortName.Text).Trim() == "")
+                {
+                    epRack.SetError(txtShortName, "Please Enter Short Name");
+                    txtShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpShortName.ShowAlways = true;
+                    tpShortName.Show("Please Enter Short Name", txtShortName, 5000);
+                }
+                else
+                {
+                    epRack.Clear();
+                    txtShortName.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtShortName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtDescription.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDescription_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDescription.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDescription_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(txtDescription.Text).Trim() == "")
+                {
+                    epRack.SetError(txtDescription, "Please Enter Description");
+                    txtDescription.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpDescription.ShowAlways = true;
+                    tpDescription.Show("Please Enter Description", txtDescription, 5000);
+                }
+                else
+                {
+                    epRack.Clear();
+                    txtDescription.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtDescription_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (pnlStatus.Enabled)
+                    {
+                        rbActive.Focus();
+                    }
+                    else { btnSave.Focus(); }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInactive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInactive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInactive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
+   
+
 }

@@ -206,7 +206,7 @@
             this.MinimizeBox = false;
             this.Name = "INV_GRNPODamaged";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Pending Purchase Returns";
+            this.Text = "Pending Delivery Challans";
             this.Load += new System.EventHandler(this.INV_GRNPODamaged_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRNPODamaged)).EndInit();

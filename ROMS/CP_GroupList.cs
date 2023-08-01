@@ -61,28 +61,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CP_GroupList_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("VIEW_GroupType", "grouptypecode<>-1 and 1=1 Order by grouptypecode", "grouptypename,grouptypecode", cmbGroupType, "", "grouptypename", "grouptypecode");
-                objDataBind = null;
-                udfnList();
-                loadnoofgroup();
-                DataService objDserv = new DataService();
-                lblGC.Text = objDserv.displaydata("SELECT count(*)from CP_GROUP");
-                objDserv.CloseConnection();
-                loadnoofgroup();
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+       
         public void loadnoofgroup()
         {
             try
@@ -184,30 +163,34 @@ namespace ROMS
         {
             try
             {
-                if (grdGroupList.SelectedRows.Count > 0)
-                {
-                    string result = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
+                
+                MessageBox.Show("Do you want to delete  ?", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                //if (grdGroupList.SelectedRows.Count > 0)
+                //{
+                //    string result = "";
+                //    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    if (dialogResult == DialogResult.Yes)
+                //    {
 
-                        SPDataService objspdservice = new SPDataService();
-                     //   result = objspdservice.udfnSPGroupMaster("Delete", grdGroupList.SelectedRows[0].Cells["GroupCode"].Value.ToString(),"","","", "", "","", MainForm.pbUserID, MainForm.pbIpAddress, "Group Delete");
+                //        SPDataService objspdservice = new SPDataService();
+                //     //   result = objspdservice.udfnSPGroupMaster("Delete", grdGroupList.SelectedRows[0].Cells["GroupCode"].Value.ToString(),"","","", "", "","", MainForm.pbUserID, MainForm.pbIpAddress, "Group Delete");
 
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-                            loadnoofgroup();
+                //        string[] varvalue = result.Split('~');
+                //        if (varvalue[0] == "3")
+                //        {
+                //            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //            udfnList();
+                //            loadnoofgroup();
 
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
+                //        }
+                //        else
+                //        {
+                //            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //        }
+                //    }
+                //}
+
             }
             catch (Exception ex)
             {
@@ -219,100 +202,36 @@ namespace ROMS
 
         private void udfnEdit()
         {
-            
 
-                //    if (grdGroupList.SelectedRows.Count > 0)
-                //    {
-                //        MainForm.objCP_Group = new CP_Group();
-                //        //MainForm.objCP_Group.MdiParent = this.ParentForm;
-                //        MainForm.objCP_Group.vargroupcode = grdGroupList.SelectedRows[0].Cells["GroupCode"].Value.ToString();
-                //        MainForm.objCP_Group.ShowDialog();
-
-                //    }
-
-                //}
-                //catch (Exception ex)
-                //{
-                //    objError = new DataError();
-                //    objError.WriteFile(ex);
-                //}
-            
-
-        }
-
-        private void cmbGroupType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-        private void btnView_Click(object sender, EventArgs e)
-        {
             try
             {
-                udfnList();
-                loadnoofgroup();
+                MainForm.objCP_Group = new CP_Group();
+                MainForm.objCP_Group.btnSave.Text = "Update";
+                MainForm.objCP_Group.ShowDialog();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-        }
 
-        private void CP_GroupList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    tsbEdit_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm objMainForm = new MainForm();
-                    objMainForm.udfnCloseChildForms();
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
-                }
             }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+            //    if (grdGroupList.SelectedRows.Count > 0)
+            //    {
+            //        MainForm.objCP_Group = new CP_Group();
+            //        //MainForm.objCP_Group.MdiParent = this.ParentForm;
+            //        MainForm.objCP_Group.vargroupcode = grdGroupList.SelectedRows[0].Cells["GroupCode"].Value.ToString();
+            //        MainForm.objCP_Group.ShowDialog();
 
-        public void grdGroupList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+            //    }
 
-        public void grdGroupList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) {
-                    udfnEdit();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+
+
         }
 
         private void btnExport_Click(object sender, EventArgs e)
@@ -511,6 +430,50 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void CP_GroupList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    tsbEdit_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                {
+                    tsbDelete_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm objMainForm = new MainForm();
+                    objMainForm.udfnCloseChildForms();
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void TsGroupList_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void CP_GroupList_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

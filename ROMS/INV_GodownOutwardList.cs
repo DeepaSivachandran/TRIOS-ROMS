@@ -40,8 +40,9 @@ namespace ROMS
             try
             {
                 MainForm.objINV_GodownOutward = new INV_GodownOutward();
+                MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
                 MainForm.objINV_GodownOutward.btnSave.Text = "Update";
-                MainForm.objINV_GodownOutward.ShowDialog();
+                MainForm.objINV_GodownOutward.Show();
 
             }
             catch (Exception ex)

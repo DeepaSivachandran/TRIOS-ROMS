@@ -172,14 +172,17 @@ namespace ROMS
             try
             {
 
-                if (grdGodownList.SelectedRows.Count > 0)
-                {
-                    MainForm.objCP_Location = new CP_Location();
-                    //MainForm.objCP_Location.MdiParent = this.ParentForm;
-                    MainForm.objCP_Location.varlocationcode = grdGodownList.SelectedRows[0].Cells["LocationCode"].Value.ToString();
-                    MainForm.objCP_Location.ShowDialog();
+                MainForm.objCP_Location = new CP_Location();
+                MainForm.objCP_Location.btnSave.Text = "Update";
+                MainForm.objCP_Location.ShowDialog();
+                //if (grdGodownList.SelectedRows.Count > 0)
+                //{
+                //    MainForm.objCP_Location = new CP_Location();
+                //    //MainForm.objCP_Location.MdiParent = this.ParentForm;
+                //    MainForm.objCP_Location.varlocationcode = grdGodownList.SelectedRows[0].Cells["LocationCode"].Value.ToString();
+                //    MainForm.objCP_Location.ShowDialog();
 
-                }
+                //}
 
             }
             catch (Exception ex)
@@ -201,6 +204,10 @@ namespace ROMS
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
                     tsbEdit_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                {
+                    tsbDelete_Click(sender, e);
                 }
                 if (e.KeyCode == Keys.Escape)
                 {

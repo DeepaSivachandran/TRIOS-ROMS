@@ -41,7 +41,19 @@ namespace ROMS
         {
             try
             {
-                udfnEdit();
+                // udfnEdit();
+                try
+                {
+                    MainForm.objCP_SubGroup = new CP_SubGroup();
+                    MainForm.objCP_SubGroup.btnSave.Text = "Update";
+                    MainForm.objCP_SubGroup.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+
+                }
             }
             catch (Exception ex)
             {
@@ -186,30 +198,31 @@ namespace ROMS
         {
             try
             {
-                if (grdGroupList.SelectedRows.Count > 0)
-                {
-                    string result = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
+                DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (grdGroupList.SelectedRows.Count > 0)
+                //{
+                //    string result = "";
+                //    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    if (dialogResult == DialogResult.Yes)
+                //    {
 
-                        SPDataService objspdservice = new SPDataService();
-                     //   result = objspdservice.udfnSPGroupMaster("Delete", grdGroupList.SelectedRows[0].Cells["GroupCode"].Value.ToString(),"","","", "", "","", MainForm.pbUserID, MainForm.pbIpAddress, "Group Delete");
+                //        SPDataService objspdservice = new SPDataService();
+                //     //   result = objspdservice.udfnSPGroupMaster("Delete", grdGroupList.SelectedRows[0].Cells["GroupCode"].Value.ToString(),"","","", "", "","", MainForm.pbUserID, MainForm.pbIpAddress, "Group Delete");
 
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-                            loadnoofgroup();
+                //        string[] varvalue = result.Split('~');
+                //        if (varvalue[0] == "3")
+                //        {
+                //            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //            udfnList();
+                //            loadnoofgroup();
 
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
+                //        }
+                //        else
+                //        {
+                //            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -272,8 +285,14 @@ namespace ROMS
                 {
                     tsbEdit_Click(sender, e);
                 }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                {
+                    tsbDelete_Click(sender, e);
+                }
                 if (e.KeyCode == Keys.Escape)
                 {
+                    MainForm objMainForm = new MainForm();
+                    objMainForm.udfnCloseChildForms();
                     MainForm.objStart = new DEF_Start();
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();

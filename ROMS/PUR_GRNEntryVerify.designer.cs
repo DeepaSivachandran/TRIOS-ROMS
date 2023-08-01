@@ -32,8 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNEntryVerify));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtDPasskey = new System.Windows.Forms.TextBox();
-            this.txtEUnitName = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.txtPassKey = new System.Windows.Forms.TextBox();
+            this.btnAuthorise = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,30 +54,31 @@
             this.txtDPasskey.TabIndex = 11;
             this.txtDPasskey.Text = "Pass Key";
             // 
-            // txtEUnitName
+            // txtPassKey
             // 
-            this.txtEUnitName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEUnitName.Location = new System.Drawing.Point(74, 14);
-            this.txtEUnitName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtEUnitName.MaxLength = 50;
-            this.txtEUnitName.Name = "txtEUnitName";
-            this.txtEUnitName.Size = new System.Drawing.Size(174, 28);
-            this.txtEUnitName.TabIndex = 8;
-            this.txtEUnitName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtEUnitName_KeyPress);
+            this.txtPassKey.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassKey.Location = new System.Drawing.Point(74, 14);
+            this.txtPassKey.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtPassKey.MaxLength = 50;
+            this.txtPassKey.Name = "txtPassKey";
+            this.txtPassKey.Size = new System.Drawing.Size(174, 28);
+            this.txtPassKey.TabIndex = 8;
+            this.txtPassKey.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassKey_KeyPress);
             // 
-            // btnSave
+            // btnAuthorise
             // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = global::ROMS.Properties.Resources.approve;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(155, 47);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(93, 33);
-            this.btnSave.TabIndex = 9;
-            this.btnSave.Text = "Authorize";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnAuthorise.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAuthorise.Image = global::ROMS.Properties.Resources.approve;
+            this.btnAuthorise.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAuthorise.Location = new System.Drawing.Point(155, 47);
+            this.btnAuthorise.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnAuthorise.Name = "btnAuthorise";
+            this.btnAuthorise.Size = new System.Drawing.Size(93, 33);
+            this.btnAuthorise.TabIndex = 9;
+            this.btnAuthorise.Text = "Authorize";
+            this.btnAuthorise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAuthorise.UseVisualStyleBackColor = true;
+            this.btnAuthorise.Click += new System.EventHandler(this.btnAuthorise_Click);
             // 
             // PUR_GRNEntryVerify
             // 
@@ -85,9 +86,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(259, 91);
-            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnAuthorise);
             this.Controls.Add(this.txtDPasskey);
-            this.Controls.Add(this.txtEUnitName);
+            this.Controls.Add(this.txtPassKey);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -106,8 +107,8 @@
 
         #endregion
         private System.Windows.Forms.ErrorProvider errUnit;
-        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnAuthorise;
         private System.Windows.Forms.TextBox txtDPasskey;
-        private System.Windows.Forms.TextBox txtEUnitName;
+        private System.Windows.Forms.TextBox txtPassKey;
     }
 }
