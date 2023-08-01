@@ -98,12 +98,7 @@ namespace ROMS
             try
             {
                 if (cmbType.SelectedIndex.ToString() == "0") { // GRN
-                    txtQRCode.ReadOnly = false;
-                    txtMrp.ReadOnly = true;
-                    txtDate.ReadOnly = true;
-                    txtMonth.ReadOnly = true;
-                    txtYear.ReadOnly = true;
-                    txtBatchno.ReadOnly = true;
+                    txtQRCode.ReadOnly = false;                   
                     txtSupplier.ReadOnly = true;
                     dpInvoiceDate.Enabled = false;
                     txtInvoiceNo.ReadOnly = true;
@@ -114,11 +109,6 @@ namespace ROMS
                     MainForm.objPUR_GRNOrderType.ShowDialog();
                     txtQRCode.ReadOnly = true;
                     txtQRCode.Enabled = false;
-                    txtMrp.ReadOnly = false;
-                    txtDate.ReadOnly = false;
-                    txtMonth.ReadOnly = false;
-                    txtYear.ReadOnly = false;
-                    txtBatchno.ReadOnly = false;
                     txtSupplier.ReadOnly = false;
                     txtSupplier.ReadOnly = false;
                     dpInvoiceDate.Enabled = true;
@@ -128,11 +118,6 @@ namespace ROMS
                 {
                     txtQRCode.ReadOnly = true;
                     txtQRCode.Enabled = false;
-                    txtMrp.ReadOnly = false;
-                    txtDate.ReadOnly = false;
-                    txtMonth.ReadOnly = false;
-                    txtYear.ReadOnly = false;
-                    txtBatchno.ReadOnly = false;
                     txtSupplier.ReadOnly = false;
                     txtSupplier.ReadOnly = false;
                     dpInvoiceDate.Enabled = true;
@@ -202,6 +187,21 @@ namespace ROMS
 
                 MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
                 MainForm.objPUR_RemarksHistory.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnNew_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                MainForm.objCP_Items = new  CP_Product();
+                MainForm.objCP_Items.ShowDialog();
             }
             catch (Exception ex)
             {
