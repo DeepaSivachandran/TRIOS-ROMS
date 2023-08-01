@@ -105,5 +105,20 @@ namespace ROMS
 
             }
         }
+
+        private void GrdPurchaseorderlist_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_POIssuedDetails = new PUR_POIssuedDetails();
+                MainForm.objPUR_POIssuedDetails.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
     }
 }

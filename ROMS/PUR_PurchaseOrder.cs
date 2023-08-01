@@ -321,5 +321,30 @@ namespace ROMS
 
             }
         }
+
+        private void BtnViewedProduct_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_POMappedProducts = new PUR_POMappedProducts();
+                MainForm.objPUR_POMappedProducts.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void CmbDPurchaseShop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Grdsupplieradd_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -375,9 +375,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_Unitlist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
-            this.Load += new System.EventHandler(this.CP_Unitlist_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Unitlist_KeyDown);
+            this.Text = "Unit"; 
             this.tsUnitList.ResumeLayout(false);
             this.tsUnitList.PerformLayout();
             this.pnlunitlist.ResumeLayout(false);
