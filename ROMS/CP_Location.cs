@@ -697,14 +697,7 @@ namespace ROMS
 
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlGodownType.Enabled)
-                    {
-                        rbInside.Focus();
-                    }
-                    else
-                    {
-                        cmbStockApplicable.Focus();
-                    }
+                    txtShortName.Focus();
                 }
                
             }
@@ -942,6 +935,71 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void TxtShortName_Leave(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                if (Convert.ToString(txtShortName.Text).Trim() == "")
+                {
+                    epLocation.SetError(txtShortName, "Please enter short name");
+                    txtShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpLocationTypeInTamil.ShowAlways = true;
+                    tpLocationTypeInTamil.Show("Please  enter short name", txtShortName, 5000);
+                }
+                else
+                {
+                    epLocation.Clear();
+                    txtShortName.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtShortName_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            try
+            {
+
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (pnlGodownType.Enabled)
+                    {
+                        rbInside.Focus();
+                    }
+                    else
+                    {
+                        cmbStockApplicable.Focus();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtShortName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtShortName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
     }
 }

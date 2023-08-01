@@ -126,6 +126,10 @@ namespace ROMS
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
+        public static PUR_POMappedProducts objPUR_POMappedProducts;
+        public static PUR_POIssuedDetails objPUR_POIssuedDetails;
+
+        
 
 
         public MainForm()

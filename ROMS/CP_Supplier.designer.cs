@@ -105,7 +105,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.tbOrder = new System.Windows.Forms.TabPage();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.lvSupplier = new System.Windows.Forms.ListView();
             this.gpSupplier = new System.Windows.Forms.GroupBox();
             this.txtScheduleName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -114,21 +113,17 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtsalesmanwhatsapp = new System.Windows.Forms.TextBox();
             this.txtsalesmanmobile = new System.Windows.Forms.TextBox();
-            this.txtsalesmanaddress = new System.Windows.Forms.TextBox();
             this.txtsalesmanname = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.textBox18 = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
             this.textBox20 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.txtrepwhatsappno = new System.Windows.Forms.TextBox();
             this.txtrepmobileno = new System.Windows.Forms.TextBox();
-            this.txtrepaddress = new System.Windows.Forms.TextBox();
             this.txtrepname = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.grddays = new System.Windows.Forms.DataGridView();
@@ -149,19 +144,16 @@
             this.btn_close = new System.Windows.Forms.Button();
             this.tbSchedule = new System.Windows.Forms.TabPage();
             this.grpSchedule = new System.Windows.Forms.GroupBox();
+            this.cmborderday = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmborder = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btn_Close2 = new System.Windows.Forms.Button();
             this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
             this.lblSearchByProduct2 = new System.Windows.Forms.Label();
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
-            this.lblGC = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.cmborder = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cmborderday = new System.Windows.Forms.ComboBox();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -170,6 +162,9 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblGC = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -583,7 +578,7 @@
             this.txtDPaymentTerm.ReadOnly = true;
             this.txtDPaymentTerm.Size = new System.Drawing.Size(111, 27);
             this.txtDPaymentTerm.TabIndex = 24;
-            this.txtDPaymentTerm.Text = "Payment Term";
+            this.txtDPaymentTerm.Text = "Payment Terms";
             // 
             // txtrupee
             // 
@@ -1027,7 +1022,6 @@
             // tbOrder
             // 
             this.tbOrder.Controls.Add(this.btnAdd);
-            this.tbOrder.Controls.Add(this.lvSupplier);
             this.tbOrder.Controls.Add(this.gpSupplier);
             this.tbOrder.Controls.Add(this.lblNoRecordsFound);
             this.tbOrder.Controls.Add(this.grdSupplierList);
@@ -1056,16 +1050,6 @@
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
             this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
             this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
-            // 
-            // lvSupplier
-            // 
-            this.lvSupplier.HideSelection = false;
-            this.lvSupplier.Location = new System.Drawing.Point(163, 48);
-            this.lvSupplier.Name = "lvSupplier";
-            this.lvSupplier.Size = new System.Drawing.Size(375, 52);
-            this.lvSupplier.TabIndex = 1111178;
-            this.lvSupplier.UseCompatibleStateImageBehavior = false;
-            this.lvSupplier.Visible = false;
             // 
             // gpSupplier
             // 
@@ -1113,7 +1097,7 @@
             this.txtSupplier.MaxLength = 50;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.ReadOnly = true;
-            this.txtSupplier.Size = new System.Drawing.Size(204, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(194, 27);
             this.txtSupplier.TabIndex = 1;
             // 
             // label2
@@ -1130,16 +1114,14 @@
             // 
             this.groupBox2.Controls.Add(this.txtsalesmanwhatsapp);
             this.groupBox2.Controls.Add(this.txtsalesmanmobile);
-            this.groupBox2.Controls.Add(this.txtsalesmanaddress);
             this.groupBox2.Controls.Add(this.txtsalesmanname);
             this.groupBox2.Controls.Add(this.textBox17);
             this.groupBox2.Controls.Add(this.textBox18);
-            this.groupBox2.Controls.Add(this.textBox19);
             this.groupBox2.Controls.Add(this.textBox20);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(8, 58);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(358, 184);
+            this.groupBox2.Size = new System.Drawing.Size(358, 127);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Salesman Details";
@@ -1147,10 +1129,10 @@
             // txtsalesmanwhatsapp
             // 
             this.txtsalesmanwhatsapp.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtsalesmanwhatsapp.Location = new System.Drawing.Point(146, 145);
+            this.txtsalesmanwhatsapp.Location = new System.Drawing.Point(146, 81);
             this.txtsalesmanwhatsapp.MaxLength = 10;
             this.txtsalesmanwhatsapp.Name = "txtsalesmanwhatsapp";
-            this.txtsalesmanwhatsapp.Size = new System.Drawing.Size(204, 27);
+            this.txtsalesmanwhatsapp.Size = new System.Drawing.Size(194, 27);
             this.txtsalesmanwhatsapp.TabIndex = 6;
             this.txtsalesmanwhatsapp.Enter += new System.EventHandler(this.Txtsalesmanaddress_Enter);
             this.txtsalesmanwhatsapp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsalesmanwhatsapp_KeyDown);
@@ -1159,28 +1141,14 @@
             // txtsalesmanmobile
             // 
             this.txtsalesmanmobile.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtsalesmanmobile.Location = new System.Drawing.Point(146, 118);
+            this.txtsalesmanmobile.Location = new System.Drawing.Point(146, 54);
             this.txtsalesmanmobile.MaxLength = 10;
             this.txtsalesmanmobile.Name = "txtsalesmanmobile";
-            this.txtsalesmanmobile.Size = new System.Drawing.Size(204, 27);
+            this.txtsalesmanmobile.Size = new System.Drawing.Size(194, 27);
             this.txtsalesmanmobile.TabIndex = 5;
             this.txtsalesmanmobile.Enter += new System.EventHandler(this.Txtsalesmanmobile_Enter);
             this.txtsalesmanmobile.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsalesmanmobile_KeyDown);
             this.txtsalesmanmobile.Leave += new System.EventHandler(this.Txtsalesmanmobile_Leave);
-            // 
-            // txtsalesmanaddress
-            // 
-            this.txtsalesmanaddress.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtsalesmanaddress.Location = new System.Drawing.Point(146, 54);
-            this.txtsalesmanaddress.MaxLength = 100;
-            this.txtsalesmanaddress.Multiline = true;
-            this.txtsalesmanaddress.Name = "txtsalesmanaddress";
-            this.txtsalesmanaddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtsalesmanaddress.Size = new System.Drawing.Size(204, 64);
-            this.txtsalesmanaddress.TabIndex = 4;
-            this.txtsalesmanaddress.Enter += new System.EventHandler(this.Txtsalesmanaddress_Enter);
-            this.txtsalesmanaddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsalesmanaddress_KeyDown);
-            this.txtsalesmanaddress.Leave += new System.EventHandler(this.Txtsalesmanaddress_Leave);
             // 
             // txtsalesmanname
             // 
@@ -1188,7 +1156,7 @@
             this.txtsalesmanname.Location = new System.Drawing.Point(146, 27);
             this.txtsalesmanname.MaxLength = 100;
             this.txtsalesmanname.Name = "txtsalesmanname";
-            this.txtsalesmanname.Size = new System.Drawing.Size(204, 27);
+            this.txtsalesmanname.Size = new System.Drawing.Size(194, 27);
             this.txtsalesmanname.TabIndex = 3;
             this.txtsalesmanname.Enter += new System.EventHandler(this.Txtsalesmanname_Enter);
             this.txtsalesmanname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsalesmanname_KeyDown);
@@ -1199,7 +1167,7 @@
             this.textBox17.BackColor = System.Drawing.SystemColors.Control;
             this.textBox17.Enabled = false;
             this.textBox17.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox17.Location = new System.Drawing.Point(15, 118);
+            this.textBox17.Location = new System.Drawing.Point(15, 54);
             this.textBox17.Name = "textBox17";
             this.textBox17.ReadOnly = true;
             this.textBox17.Size = new System.Drawing.Size(131, 27);
@@ -1211,24 +1179,12 @@
             this.textBox18.BackColor = System.Drawing.SystemColors.Control;
             this.textBox18.Enabled = false;
             this.textBox18.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox18.Location = new System.Drawing.Point(15, 145);
+            this.textBox18.Location = new System.Drawing.Point(15, 81);
             this.textBox18.Name = "textBox18";
             this.textBox18.ReadOnly = true;
             this.textBox18.Size = new System.Drawing.Size(131, 27);
             this.textBox18.TabIndex = 20;
             this.textBox18.Text = "Salesman WhatsApp No.";
-            // 
-            // textBox19
-            // 
-            this.textBox19.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox19.Enabled = false;
-            this.textBox19.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox19.Location = new System.Drawing.Point(15, 54);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.ReadOnly = true;
-            this.textBox19.Size = new System.Drawing.Size(131, 27);
-            this.textBox19.TabIndex = 18;
-            this.textBox19.Text = "Salesman Address";
             // 
             // textBox20
             // 
@@ -1247,16 +1203,14 @@
             this.groupBox1.Controls.Add(this.listView1);
             this.groupBox1.Controls.Add(this.txtrepwhatsappno);
             this.groupBox1.Controls.Add(this.txtrepmobileno);
-            this.groupBox1.Controls.Add(this.txtrepaddress);
             this.groupBox1.Controls.Add(this.txtrepname);
             this.groupBox1.Controls.Add(this.textBox11);
             this.groupBox1.Controls.Add(this.textBox7);
-            this.groupBox1.Controls.Add(this.textBox5);
             this.groupBox1.Controls.Add(this.textBox8);
             this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(371, 58);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(358, 184);
+            this.groupBox1.Size = new System.Drawing.Size(358, 127);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Representative Details";
@@ -1274,7 +1228,7 @@
             // txtrepwhatsappno
             // 
             this.txtrepwhatsappno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtrepwhatsappno.Location = new System.Drawing.Point(137, 145);
+            this.txtrepwhatsappno.Location = new System.Drawing.Point(137, 81);
             this.txtrepwhatsappno.MaxLength = 10;
             this.txtrepwhatsappno.Name = "txtrepwhatsappno";
             this.txtrepwhatsappno.Size = new System.Drawing.Size(204, 27);
@@ -1286,7 +1240,7 @@
             // txtrepmobileno
             // 
             this.txtrepmobileno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtrepmobileno.Location = new System.Drawing.Point(137, 118);
+            this.txtrepmobileno.Location = new System.Drawing.Point(137, 54);
             this.txtrepmobileno.MaxLength = 10;
             this.txtrepmobileno.Name = "txtrepmobileno";
             this.txtrepmobileno.Size = new System.Drawing.Size(204, 27);
@@ -1294,20 +1248,6 @@
             this.txtrepmobileno.Enter += new System.EventHandler(this.Txtrepmobileno_Enter);
             this.txtrepmobileno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtrepmobileno_KeyDown);
             this.txtrepmobileno.Leave += new System.EventHandler(this.Txtrepmobileno_Leave);
-            // 
-            // txtrepaddress
-            // 
-            this.txtrepaddress.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtrepaddress.Location = new System.Drawing.Point(137, 54);
-            this.txtrepaddress.MaxLength = 100;
-            this.txtrepaddress.Multiline = true;
-            this.txtrepaddress.Name = "txtrepaddress";
-            this.txtrepaddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtrepaddress.Size = new System.Drawing.Size(204, 64);
-            this.txtrepaddress.TabIndex = 8;
-            this.txtrepaddress.Enter += new System.EventHandler(this.Txtrepaddress_Enter);
-            this.txtrepaddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtrepaddress_KeyDown);
-            this.txtrepaddress.Leave += new System.EventHandler(this.Txtrepaddress_Leave);
             // 
             // txtrepname
             // 
@@ -1326,7 +1266,7 @@
             this.textBox11.BackColor = System.Drawing.SystemColors.Control;
             this.textBox11.Enabled = false;
             this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox11.Location = new System.Drawing.Point(6, 118);
+            this.textBox11.Location = new System.Drawing.Point(6, 54);
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
             this.textBox11.Size = new System.Drawing.Size(131, 27);
@@ -1338,24 +1278,12 @@
             this.textBox7.BackColor = System.Drawing.SystemColors.Control;
             this.textBox7.Enabled = false;
             this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox7.Location = new System.Drawing.Point(6, 145);
+            this.textBox7.Location = new System.Drawing.Point(6, 81);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(131, 27);
             this.textBox7.TabIndex = 20;
             this.textBox7.Text = "Rep WhatsApp No.";
-            // 
-            // textBox5
-            // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox5.Enabled = false;
-            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox5.Location = new System.Drawing.Point(6, 54);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(131, 27);
-            this.textBox5.TabIndex = 18;
-            this.textBox5.Text = "Rep Address";
             // 
             // textBox8
             // 
@@ -1637,6 +1565,67 @@
             this.grpSchedule.TabIndex = 958809;
             this.grpSchedule.TabStop = false;
             // 
+            // cmborderday
+            // 
+            this.cmborderday.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmborderday.FormattingEnabled = true;
+            this.cmborderday.Items.AddRange(new object[] {
+            "--All--",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"});
+            this.cmborderday.Location = new System.Drawing.Point(331, 26);
+            this.cmborderday.Name = "cmborderday";
+            this.cmborderday.Size = new System.Drawing.Size(116, 27);
+            this.cmborderday.TabIndex = 2;
+            this.cmborderday.SelectedIndexChanged += new System.EventHandler(this.Cmborderday_SelectedIndexChanged);
+            this.cmborderday.Enter += new System.EventHandler(this.Cmborderday_Enter);
+            this.cmborderday.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmborderday_KeyDown);
+            this.cmborderday.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Cmborderday_KeyPress);
+            this.cmborderday.Leave += new System.EventHandler(this.Cmborderday_Leave);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(256, 29);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 20);
+            this.label7.TabIndex = 958818;
+            this.label7.Text = "Order Day";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(66, 29);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 20);
+            this.label6.TabIndex = 958817;
+            this.label6.Text = "Order Type";
+            // 
+            // cmborder
+            // 
+            this.cmborder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmborder.FormattingEnabled = true;
+            this.cmborder.Items.AddRange(new object[] {
+            "--All--",
+            "Phone",
+            "Visit"});
+            this.cmborder.Location = new System.Drawing.Point(146, 26);
+            this.cmborder.Name = "cmborder";
+            this.cmborder.Size = new System.Drawing.Size(98, 27);
+            this.cmborder.TabIndex = 1;
+            this.cmborder.SelectedIndexChanged += new System.EventHandler(this.Cmborder_SelectedIndexChanged);
+            this.cmborder.Enter += new System.EventHandler(this.Cmborder_Enter);
+            this.cmborder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmborder_KeyDown);
+            this.cmborder.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Cmborder_KeyPress);
+            this.cmborder.Leave += new System.EventHandler(this.Cmborder_Leave);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -1746,102 +1735,6 @@
             this.grdViewSupplierMapping.Size = new System.Drawing.Size(1151, 462);
             this.grdViewSupplierMapping.TabIndex = 958809;
             // 
-            // lblGC
-            // 
-            this.lblGC.AutoSize = true;
-            this.lblGC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblGC.ForeColor = System.Drawing.Color.Crimson;
-            this.lblGC.Location = new System.Drawing.Point(332, 583);
-            this.lblGC.Name = "lblGC";
-            this.lblGC.Size = new System.Drawing.Size(17, 20);
-            this.lblGC.TabIndex = 958805;
-            this.lblGC.Text = "0";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(232, 583);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 20);
-            this.label3.TabIndex = 958804;
-            this.label3.Text = "No.of Products :";
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button3.Image = global::ROMS.Properties.Resources.close;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(590, 578);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 29);
-            this.button3.TabIndex = 958800;
-            this.button3.Text = "Close";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // cmborder
-            // 
-            this.cmborder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmborder.FormattingEnabled = true;
-            this.cmborder.Items.AddRange(new object[] {
-            "--All--",
-            "Phone",
-            "Visit"});
-            this.cmborder.Location = new System.Drawing.Point(146, 26);
-            this.cmborder.Name = "cmborder";
-            this.cmborder.Size = new System.Drawing.Size(98, 27);
-            this.cmborder.TabIndex = 1;
-            this.cmborder.SelectedIndexChanged += new System.EventHandler(this.Cmborder_SelectedIndexChanged);
-            this.cmborder.Enter += new System.EventHandler(this.Cmborder_Enter);
-            this.cmborder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmborder_KeyDown);
-            this.cmborder.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Cmborder_KeyPress);
-            this.cmborder.Leave += new System.EventHandler(this.Cmborder_Leave);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(66, 29);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 20);
-            this.label6.TabIndex = 958817;
-            this.label6.Text = "Order Type";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(256, 29);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 20);
-            this.label7.TabIndex = 958818;
-            this.label7.Text = "Order Day";
-            // 
-            // cmborderday
-            // 
-            this.cmborderday.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmborderday.FormattingEnabled = true;
-            this.cmborderday.Items.AddRange(new object[] {
-            "--All--",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"});
-            this.cmborderday.Location = new System.Drawing.Point(331, 26);
-            this.cmborderday.Name = "cmborderday";
-            this.cmborderday.Size = new System.Drawing.Size(116, 27);
-            this.cmborderday.TabIndex = 2;
-            this.cmborderday.SelectedIndexChanged += new System.EventHandler(this.Cmborderday_SelectedIndexChanged);
-            this.cmborderday.Enter += new System.EventHandler(this.Cmborderday_Enter);
-            this.cmborderday.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmborderday_KeyDown);
-            this.cmborderday.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Cmborderday_KeyPress);
-            this.cmborderday.Leave += new System.EventHandler(this.Cmborderday_Leave);
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "S.No.";
@@ -1892,6 +1785,41 @@
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Width = 120;
+            // 
+            // lblGC
+            // 
+            this.lblGC.AutoSize = true;
+            this.lblGC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblGC.ForeColor = System.Drawing.Color.Crimson;
+            this.lblGC.Location = new System.Drawing.Point(332, 583);
+            this.lblGC.Name = "lblGC";
+            this.lblGC.Size = new System.Drawing.Size(17, 20);
+            this.lblGC.TabIndex = 958805;
+            this.lblGC.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(232, 583);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 20);
+            this.label3.TabIndex = 958804;
+            this.label3.Text = "No.of Products :";
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.button3.Image = global::ROMS.Properties.Resources.close;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(590, 578);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 29);
+            this.button3.TabIndex = 958800;
+            this.button3.Text = "Close";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // CP_Supplier
             // 
@@ -1972,26 +1900,21 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.TextBox txtScheduleName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView lvSupplier;
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtsalesmanwhatsapp;
         private System.Windows.Forms.TextBox txtsalesmanmobile;
-        private System.Windows.Forms.TextBox txtsalesmanaddress;
         private System.Windows.Forms.TextBox txtsalesmanname;
         private System.Windows.Forms.TextBox textBox17;
         private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.TextBox textBox19;
         private System.Windows.Forms.TextBox textBox20;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtrepwhatsappno;
         private System.Windows.Forms.TextBox txtrepmobileno;
-        private System.Windows.Forms.TextBox txtrepaddress;
         private System.Windows.Forms.TextBox txtrepname;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.GroupBox groupBox6;
         public System.Windows.Forms.DataGridView grddays;

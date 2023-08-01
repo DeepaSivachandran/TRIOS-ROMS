@@ -153,6 +153,18 @@
     <Compile Include="INV_InwardPurchase.designer.cs">
       <DependentUpon>INV_InwardPurchase.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_POIssuedDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_POIssuedDetails.designer.cs">
+      <DependentUpon>PUR_POIssuedDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_POMappedProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_POMappedProducts.designer.cs">
+      <DependentUpon>PUR_POMappedProducts.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_POReturns.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -655,6 +667,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV_InwardPurchase.resx">
       <DependentUpon>INV_InwardPurchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_POIssuedDetails.resx">
+      <DependentUpon>PUR_POIssuedDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_POMappedProducts.resx">
+      <DependentUpon>PUR_POMappedProducts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_POReturns.resx">
       <DependentUpon>PUR_POReturns.cs</DependentUpon>

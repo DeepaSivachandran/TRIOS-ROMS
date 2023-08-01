@@ -1278,7 +1278,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtrepaddress.Focus();
+                  //  txtrepaddress.Focus();
                 }
             }
             catch (Exception ex)
@@ -1324,7 +1324,7 @@ namespace ROMS
         { 
             try
             {
-                txtrepaddress.BackColor = Color.LemonChiffon;
+               // txtrepaddress.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1348,21 +1348,21 @@ namespace ROMS
 
         private void Txtrepaddress_Leave(object sender, EventArgs e)
         {
-            if (txtrepaddress.Text == "")
-            {
+            //if (txtrepaddress.Text == "")
+            //{
 
-                errCompany.SetError(txtrepaddress, "Please enter representative address");
-                txtrepaddress.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tparea.ShowAlways = true;
-                tparea.Show("Please enter representative address", txtrepaddress, 5000);
+            //    errCompany.SetError(txtrepaddress, "Please enter representative address");
+            //    txtrepaddress.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+            //    tparea.ShowAlways = true;
+            //    tparea.Show("Please enter representative address", txtrepaddress, 5000);
 
-            }
-            else
-            {
-                errCompany.Clear();
-                txtrepaddress.BackColor = Color.White;
-                tparea.Hide(txtrepaddress);
-            }
+            //}
+            //else
+            //{
+            //    errCompany.Clear();
+            //    txtrepaddress.BackColor = Color.White;
+            //    tparea.Hide(txtrepaddress);
+            //}
         }
 
         private void Txtrepmobileno_Enter(object sender, EventArgs e)
@@ -1484,7 +1484,7 @@ namespace ROMS
         {
             try
             {
-                txtsalesmanaddress.Focus();
+               // txtsalesmanaddress.Focus();
             }
             catch (Exception ex)
             {
@@ -1507,52 +1507,10 @@ namespace ROMS
             }
         }
 
-        private void Txtsalesmanaddress_Leave(object sender, EventArgs e)
-        {
-            if (txtsalesmanaddress.Text == "")
-            {
-
-                errCompany.SetError(txtsalesmanaddress, "Please enter salesman address");
-                txtsalesmanaddress.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tparea.ShowAlways = true;
-                tparea.Show("Please enter salesman address", txtsalesmanaddress, 5000);
-
-            }
-            else
-            {
-                errCompany.Clear();
-                txtsalesmanaddress.BackColor = Color.White;
-                tparea.Hide(txtsalesmanaddress);
-            }
-        }
-
-        private void Txtsalesmanaddress_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtwhatsapp.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+        
         private void Txtsalesmanaddress_Enter(object sender, EventArgs e)
         {
-            try
-            {
-                txtsalesmanaddress.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
 
         private void Txtsalesmanmobile_KeyDown(object sender, KeyEventArgs e)
@@ -3169,10 +3127,13 @@ namespace ROMS
                 if (tcSupplier.SelectedIndex == 1)
                 {
                     txtScheduleName.Focus();
+
+                    txtScheduleName.SelectionStart = txtScheduleName.Text.Length;
                 }
                 if (tcSupplier.SelectedIndex == 0)
                 {
                     txtName.Focus();
+                    txtName.SelectionStart = txtName.Text.Length;
                 }
                 if (tcSupplier.SelectedIndex == 2)
                 {
@@ -3181,6 +3142,7 @@ namespace ROMS
                     BeginInvoke(new Action(() => cmborderday.Select(int.MaxValue, 0)));
                     cmborderday.SelectedIndex = 0;
                     cmborder.SelectedIndex = 0;
+                    cmborder.SelectionStart = cmborder.Text.Length;
 
                 }
             }

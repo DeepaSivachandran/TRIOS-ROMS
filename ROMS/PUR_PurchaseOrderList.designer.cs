@@ -35,12 +35,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
             this.lvSupplier = new System.Windows.Forms.ListView();
             this.grpfilter = new System.Windows.Forms.GroupBox();
@@ -52,7 +48,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbstatus = new System.Windows.Forms.ComboBox();
-            this.btnView = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,6 +65,12 @@
             this.clmdenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdPurchaseorderlist = new System.Windows.Forms.DataGridView();
+            this.btnView = new System.Windows.Forms.Button();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
+            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
+            this.tsbNew = new System.Windows.Forms.ToolStripButton();
+            this.button1 = new System.Windows.Forms.Button();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,7 +85,7 @@
             this.clminwarddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -110,28 +111,6 @@
             this.tsBrandList.TabIndex = 35;
             this.tsBrandList.Text = "Brand";
             // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(109, 24);
-            this.tspHeader.Text = "Purchase Order";
-            // 
-            // tsbDelete
-            // 
-            this.tsbDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
-            this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbDelete.Name = "tsbDelete";
-            this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbDelete.Size = new System.Drawing.Size(63, 24);
-            this.tsbDelete.Text = "Delete";
-            // 
             // tssEdit
             // 
             this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -139,38 +118,12 @@
             this.tssEdit.Name = "tssEdit";
             this.tssEdit.Size = new System.Drawing.Size(6, 27);
             // 
-            // tsbEdit
-            // 
-            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbEdit.Name = "tsbEdit";
-            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
-            this.tsbEdit.Text = "&Edit";
-            this.tsbEdit.Click += new System.EventHandler(this.TsbEdit_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
-            // 
-            // tsbNew
-            // 
-            this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbNew.Image = global::ROMS.Properties.Resources.New;
-            this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
-            this.tsbNew.Name = "tsbNew";
-            this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbNew.Size = new System.Drawing.Size(52, 24);
-            this.tsbNew.Text = "&New";
-            this.tsbNew.Click += new System.EventHandler(this.TsbNew_Click);
             // 
             // pnlpurchaseapproval
             // 
@@ -227,9 +180,6 @@
             this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Items.AddRange(new object[] {
-            "Direct",
-            "Purchase Order"});
             this.cmbConcern.Location = new System.Drawing.Point(85, 23);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(163, 27);
@@ -291,20 +241,6 @@
             this.cmbstatus.Name = "cmbstatus";
             this.cmbstatus.Size = new System.Drawing.Size(146, 27);
             this.cmbstatus.TabIndex = 1111143;
-            // 
-            // btnView
-            // 
-            this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1119, 20);
-            this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(74, 33);
-            this.btnView.TabIndex = 1111141;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -492,7 +428,8 @@
             this.clmmodeofisse,
             this.clminwarddate,
             this.clmenterby,
-            this.clmsts});
+            this.clmsts,
+            this.Column1});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -515,6 +452,85 @@
             this.grdPurchaseorderlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseorderlist.Size = new System.Drawing.Size(1348, 509);
             this.grdPurchaseorderlist.TabIndex = 958797;
+            this.grdPurchaseorderlist.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseorderlist_CellContentClick);
+            // 
+            // btnView
+            // 
+            this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(1119, 20);
+            this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(74, 33);
+            this.btnView.TabIndex = 1111141;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(109, 24);
+            this.tspHeader.Text = "Purchase Order";
+            // 
+            // tsbDelete
+            // 
+            this.tsbDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
+            this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbDelete.Name = "tsbDelete";
+            this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbDelete.Size = new System.Drawing.Size(63, 24);
+            this.tsbDelete.Text = "Delete";
+            // 
+            // tsbEdit
+            // 
+            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbEdit.Name = "tsbEdit";
+            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
+            this.tsbEdit.Text = "&Edit";
+            this.tsbEdit.Click += new System.EventHandler(this.TsbEdit_Click);
+            // 
+            // tsbNew
+            // 
+            this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbNew.Image = global::ROMS.Properties.Resources.New;
+            this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbNew.Name = "tsbNew";
+            this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbNew.Size = new System.Drawing.Size(52, 24);
+            this.tsbNew.Text = "&New";
+            this.tsbNew.Click += new System.EventHandler(this.TsbNew_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::ROMS.Properties.Resources.view;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(1059, 28);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(11, 12);
+            this.button1.TabIndex = 1111142;
+            this.button1.Text = "new";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // clmsno
             // 
@@ -607,21 +623,11 @@
             this.clmsts.Name = "clmsts";
             this.clmsts.ReadOnly = true;
             // 
-            // button1
+            // Column1
             // 
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::ROMS.Properties.Resources.view;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1059, 28);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(11, 12);
-            this.button1.TabIndex = 1111142;
-            this.button1.Text = "new";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.Column1.HeaderText = "Issued Details";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // PUR_PurchaseOrderList
             // 
@@ -705,5 +711,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clminwarddate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmenterby;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }

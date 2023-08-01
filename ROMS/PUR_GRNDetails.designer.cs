@@ -391,9 +391,6 @@
             this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Items.AddRange(new object[] {
-            "Direct",
-            "Purchase Order"});
             this.cmbConcern.Location = new System.Drawing.Point(69, 19);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(163, 27);
