@@ -1610,7 +1610,7 @@ namespace ROMS
                 errCompany.SetError(txtsalesmanwhatsapp, "Please enter salesman whatsapp No.");
                 txtsalesmanwhatsapp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                 tparea.ShowAlways = true;
-                tparea.Show("Please enter salesman mobile No.", txtsalesmanwhatsapp, 5000);
+                tparea.Show("Please enter salesman whatsapp No.", txtsalesmanwhatsapp, 5000);
 
             }
             else
@@ -3140,6 +3140,201 @@ namespace ROMS
             {
 
                 btn_Close2.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TbOrder_Enter(object sender, EventArgs e)
+        {
+            try
+            { 
+                 
+                txtScheduleName.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TcSupplier_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tcSupplier.SelectedIndex == 1)
+                {
+                    txtScheduleName.Focus();
+                }
+                if (tcSupplier.SelectedIndex == 0)
+                {
+                    txtName.Focus();
+                }
+                if (tcSupplier.SelectedIndex == 2)
+                {
+                    cmborder.Focus();
+                    BeginInvoke(new Action(() => cmborder.Select(int.MaxValue, 0)));
+                    BeginInvoke(new Action(() => cmborderday.Select(int.MaxValue, 0)));
+                    cmborderday.SelectedIndex = 0;
+                    cmborder.SelectedIndex = 0;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TcSupplier_Selected(object sender, TabControlEventArgs e)
+        {
+
+            if (e.TabPageIndex == 1)  
+            {
+                try
+                {
+
+                    this.ActiveControl = txtScheduleName;
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                } 
+            }
+        }
+
+        private void Cmborder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                BeginInvoke(new Action(() => cmborder.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Cmborder_Leave(object sender, EventArgs e)
+        {
+
+            cmborder.BackColor = Color.White;
+        }
+
+        private void Cmborder_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Cmborder_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+
+                    cmborderday.Focus();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Cmborder_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+
+                cmborder.BackColor=Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Cmborderday_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                BeginInvoke(new Action(() => cmborderday.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Cmborderday_Leave(object sender, EventArgs e)
+        {
+
+            cmborderday.BackColor = Color.White;
+            
+        }
+
+        private void Cmborderday_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Cmborderday_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+
+                    txtSearchByProduct2.Focus();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void Cmborderday_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+
+                cmborderday.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {

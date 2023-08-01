@@ -22,6 +22,17 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
+            try
+            { 
+                MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
+                MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                MainForm.objPUR_PurchaseReturns.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
         {
@@ -91,14 +102,20 @@ namespace ROMS
             try
             {
 
-                if (grdCityList.SelectedRows.Count > 0)
+                try
                 {
-                    MainForm.objCP_Brand = new CP_Brand();
-                    //MainForm.objCP_Brand.MdiParent = this.ParentForm;
-                    MainForm.objCP_Brand.varbrandcode = grdCityList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
-                    MainForm.objCP_Brand.ShowDialog();
-                }
 
+                    MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
+                    MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm; 
+                    MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
+                    MainForm.objPUR_PurchaseReturns.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+
+                }
             }
             catch (Exception ex)
             {
@@ -245,19 +262,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void DGV_SearchGrid_Sorted(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DGV_SearchGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-
-        }
-
-
+        } 
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewColumn newColumn = grdCityList.Columns[e.ColumnIndex];
@@ -351,41 +356,32 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+         
 
-        private void GrdSupplierList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void GrdCityList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void DGV_SearchGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void TsbNew_Click_1(object sender, EventArgs e)
-        {
-
-            try
-            {
-
-                MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns(); 
-                MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseReturns.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TsbEdit_Click_1(object sender, EventArgs e)
+        private void INV_SalesInvoiceList_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                MainForm.objINV_SalesInvoice = new INV_SalesInvoice();
-                MainForm.objINV_SalesInvoice.btnSave.Text = "Update";
-                MainForm.objINV_SalesInvoice.ShowDialog();
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    tsbEdit_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {

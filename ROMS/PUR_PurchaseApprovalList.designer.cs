@@ -48,7 +48,6 @@
             this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.grdPurchaseApproval = new System.Windows.Forms.DataGridView();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +61,7 @@
             this.clmdenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdapprovedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdPurchaseApproval = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -286,62 +286,6 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958798;
             // 
-            // grdPurchaseApproval
-            // 
-            this.grdPurchaseApproval.AllowUserToAddRows = false;
-            this.grdPurchaseApproval.AllowUserToDeleteRows = false;
-            this.grdPurchaseApproval.AllowUserToResizeColumns = false;
-            this.grdPurchaseApproval.AllowUserToResizeRows = false;
-            this.grdPurchaseApproval.BackgroundColor = System.Drawing.Color.White;
-            this.grdPurchaseApproval.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPurchaseApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grdPurchaseApproval.ColumnHeadersHeight = 30;
-            this.grdPurchaseApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdPurchaseApproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmsno,
-            this.Column1,
-            this.clmdate,
-            this.clmpurchaseno,
-            this.Column2,
-            this.clmpono,
-            this.clmsupplier,
-            this.clmbill,
-            this.clmtotalitem,
-            this.clmsts,
-            this.clmenterby,
-            this.clmapproved,
-            this.Column3});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdPurchaseApproval.DefaultCellStyle = dataGridViewCellStyle5;
-            this.grdPurchaseApproval.EnableHeadersVisualStyles = false;
-            this.grdPurchaseApproval.GridColor = System.Drawing.Color.White;
-            this.grdPurchaseApproval.Location = new System.Drawing.Point(3, 130);
-            this.grdPurchaseApproval.Name = "grdPurchaseApproval";
-            this.grdPurchaseApproval.ReadOnly = true;
-            this.grdPurchaseApproval.RowHeadersVisible = false;
-            this.grdPurchaseApproval.RowHeadersWidth = 100;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdPurchaseApproval.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.grdPurchaseApproval.RowTemplate.Height = 25;
-            this.grdPurchaseApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseApproval.Size = new System.Drawing.Size(1348, 510);
-            this.grdPurchaseApproval.TabIndex = 958797;
-            this.grdPurchaseApproval.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
-            // 
             // clmdsno
             // 
             this.clmdsno.HeaderText = "S.No.";
@@ -422,6 +366,62 @@
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             this.Column6.Width = 200;
+            // 
+            // grdPurchaseApproval
+            // 
+            this.grdPurchaseApproval.AllowUserToAddRows = false;
+            this.grdPurchaseApproval.AllowUserToDeleteRows = false;
+            this.grdPurchaseApproval.AllowUserToResizeColumns = false;
+            this.grdPurchaseApproval.AllowUserToResizeRows = false;
+            this.grdPurchaseApproval.BackgroundColor = System.Drawing.Color.White;
+            this.grdPurchaseApproval.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdPurchaseApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdPurchaseApproval.ColumnHeadersHeight = 30;
+            this.grdPurchaseApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdPurchaseApproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmsno,
+            this.Column1,
+            this.clmdate,
+            this.clmpurchaseno,
+            this.Column2,
+            this.clmpono,
+            this.clmsupplier,
+            this.clmbill,
+            this.clmtotalitem,
+            this.clmsts,
+            this.clmenterby,
+            this.clmapproved,
+            this.Column3});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdPurchaseApproval.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdPurchaseApproval.EnableHeadersVisualStyles = false;
+            this.grdPurchaseApproval.GridColor = System.Drawing.Color.White;
+            this.grdPurchaseApproval.Location = new System.Drawing.Point(3, 130);
+            this.grdPurchaseApproval.Name = "grdPurchaseApproval";
+            this.grdPurchaseApproval.ReadOnly = true;
+            this.grdPurchaseApproval.RowHeadersVisible = false;
+            this.grdPurchaseApproval.RowHeadersWidth = 100;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdPurchaseApproval.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdPurchaseApproval.RowTemplate.Height = 25;
+            this.grdPurchaseApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdPurchaseApproval.Size = new System.Drawing.Size(1348, 510);
+            this.grdPurchaseApproval.TabIndex = 958797;
+            this.grdPurchaseApproval.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
             // 
             // clmsno
             // 
@@ -524,6 +524,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase Approval";
             this.Load += new System.EventHandler(this.PUR_PurchaseApprovalList_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PurchaseApprovalList_KeyDown);
             this.tsBrandList.ResumeLayout(false);
             this.tsBrandList.PerformLayout();
             this.pnlpurchaseapproval.ResumeLayout(false);

@@ -49,7 +49,7 @@
             this.btnAdd = new System.Windows.Forms.Label();
             this.txtUpp = new System.Windows.Forms.TextBox();
             this.txtDUPP = new System.Windows.Forms.TextBox();
-            this.cmb = new System.Windows.Forms.ComboBox();
+            this.cmbBulkUnit = new System.Windows.Forms.ComboBox();
             this.txtDBulkUnit = new System.Windows.Forms.TextBox();
             this.cmbProductCategory = new System.Windows.Forms.ComboBox();
             this.txtDProductCategory = new System.Windows.Forms.TextBox();
@@ -61,7 +61,7 @@
             this.txtDBrand = new System.Windows.Forms.TextBox();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
             this.txtDGroup = new System.Windows.Forms.TextBox();
-            this.cmbDPurchaseShop = new System.Windows.Forms.ComboBox();
+            this.cmbPurchaseRack = new System.Windows.Forms.ComboBox();
             this.txtDShop = new System.Windows.Forms.TextBox();
             this.errItems = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -69,7 +69,7 @@
             this.txtrupee = new System.Windows.Forms.TextBox();
             this.txtMaxOrderQty = new System.Windows.Forms.TextBox();
             this.txtDMaxOrderQty = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtGrossWeight = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.txtReOrderQty = new System.Windows.Forms.TextBox();
             this.txtDReOrderQty = new System.Windows.Forms.TextBox();
@@ -108,7 +108,7 @@
             this.cmbSalesGodown = new System.Windows.Forms.ComboBox();
             this.txtDSalesGodown = new System.Windows.Forms.TextBox();
             this.txtDSalesShop = new System.Windows.Forms.TextBox();
-            this.cmbSalesShop = new System.Windows.Forms.ComboBox();
+            this.cmbSalesRack = new System.Windows.Forms.ComboBox();
             this.grpHsndetail = new System.Windows.Forms.GroupBox();
             this.txtHSNCode = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -151,7 +151,7 @@
             this.txtPICode.MaxLength = 100;
             this.txtPICode.Name = "txtPICode";
             this.txtPICode.Size = new System.Drawing.Size(363, 27);
-            this.txtPICode.TabIndex = 0;
+            this.txtPICode.TabIndex = 2;
             this.txtPICode.TextChanged += new System.EventHandler(this.TxtPICode_TextChanged);
             this.txtPICode.Enter += new System.EventHandler(this.TxtPICode_Enter);
             this.txtPICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPICode_KeyDown);
@@ -178,7 +178,7 @@
             this.txtItemNameEnglish.MaxLength = 100;
             this.txtItemNameEnglish.Name = "txtItemNameEnglish";
             this.txtItemNameEnglish.Size = new System.Drawing.Size(363, 27);
-            this.txtItemNameEnglish.TabIndex = 1;
+            this.txtItemNameEnglish.TabIndex = 3;
             this.txtItemNameEnglish.Enter += new System.EventHandler(this.TxtItemNameEnglish_Enter);
             this.txtItemNameEnglish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtItemNameEnglish_KeyDown);
             this.txtItemNameEnglish.Leave += new System.EventHandler(this.TxtItemNameEnglish_Leave);
@@ -203,7 +203,7 @@
             this.txtItemNameTamil.MaxLength = 100;
             this.txtItemNameTamil.Name = "txtItemNameTamil";
             this.txtItemNameTamil.Size = new System.Drawing.Size(363, 27);
-            this.txtItemNameTamil.TabIndex = 2;
+            this.txtItemNameTamil.TabIndex = 4;
             this.txtItemNameTamil.Enter += new System.EventHandler(this.TxtItemNameTamil_Enter);
             this.txtItemNameTamil.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtItemNameTamil_KeyDown);
             this.txtItemNameTamil.Leave += new System.EventHandler(this.TxtItemNameTamil_Leave);
@@ -258,7 +258,7 @@
             this.grbform.Controls.Add(this.btnAdd);
             this.grbform.Controls.Add(this.txtUpp);
             this.grbform.Controls.Add(this.txtDUPP);
-            this.grbform.Controls.Add(this.cmb);
+            this.grbform.Controls.Add(this.cmbBulkUnit);
             this.grbform.Controls.Add(this.txtDBulkUnit);
             this.grbform.Controls.Add(this.cmbProductCategory);
             this.grbform.Controls.Add(this.txtDProductCategory);
@@ -290,22 +290,26 @@
             this.textBox6.BackColor = System.Drawing.SystemColors.Control;
             this.textBox6.Enabled = false;
             this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox6.Location = new System.Drawing.Point(499, 266);
+            this.textBox6.Location = new System.Drawing.Point(497, 266);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(24, 27);
+            this.textBox6.Size = new System.Drawing.Size(26, 27);
             this.textBox6.TabIndex = 118;
             this.textBox6.Text = "Pkt";
             // 
             // cmbHSNName
             // 
-            this.cmbHSNName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbHSNName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbHSNName.FormattingEnabled = true;
             this.cmbHSNName.Location = new System.Drawing.Point(160, 131);
             this.cmbHSNName.Name = "cmbHSNName";
             this.cmbHSNName.Size = new System.Drawing.Size(363, 27);
-            this.cmbHSNName.TabIndex = 116;
+            this.cmbHSNName.TabIndex = 5;
+            this.cmbHSNName.SelectedIndexChanged += new System.EventHandler(this.CmbHSNName_SelectedIndexChanged);
+            this.cmbHSNName.Enter += new System.EventHandler(this.CmbHSNName_Enter);
+            this.cmbHSNName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbHSNName_KeyDown);
+            this.cmbHSNName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbHSNName_KeyPress);
+            this.cmbHSNName.Leave += new System.EventHandler(this.CmbHSNName_Leave);
             // 
             // textBox5
             // 
@@ -370,8 +374,11 @@
             this.txtUpp.Location = new System.Drawing.Point(455, 266);
             this.txtUpp.MaxLength = 100;
             this.txtUpp.Name = "txtUpp";
-            this.txtUpp.Size = new System.Drawing.Size(44, 27);
-            this.txtUpp.TabIndex = 23;
+            this.txtUpp.Size = new System.Drawing.Size(42, 27);
+            this.txtUpp.TabIndex = 12;
+            this.txtUpp.Enter += new System.EventHandler(this.TxtUpp_Enter);
+            this.txtUpp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUpp_KeyDown);
+            this.txtUpp.Leave += new System.EventHandler(this.TxtUpp_Leave);
             // 
             // txtDUPP
             // 
@@ -386,15 +393,19 @@
             this.txtDUPP.TabStop = false;
             this.txtDUPP.Text = "UPP";
             // 
-            // cmb
+            // cmbBulkUnit
             // 
-            this.cmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb.FormattingEnabled = true;
-            this.cmb.Location = new System.Drawing.Point(330, 266);
-            this.cmb.Name = "cmb";
-            this.cmb.Size = new System.Drawing.Size(88, 27);
-            this.cmb.TabIndex = 17;
+            this.cmbBulkUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbBulkUnit.FormattingEnabled = true;
+            this.cmbBulkUnit.Location = new System.Drawing.Point(330, 266);
+            this.cmbBulkUnit.Name = "cmbBulkUnit";
+            this.cmbBulkUnit.Size = new System.Drawing.Size(88, 27);
+            this.cmbBulkUnit.TabIndex = 11;
+            this.cmbBulkUnit.SelectedIndexChanged += new System.EventHandler(this.CmbBulkUnit_SelectedIndexChanged);
+            this.cmbBulkUnit.Enter += new System.EventHandler(this.CmbBulkUnit_Enter);
+            this.cmbBulkUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBulkUnit_KeyDown);
+            this.cmbBulkUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBulkUnit_KeyPress);
+            this.cmbBulkUnit.Leave += new System.EventHandler(this.CmbBulkUnit_Leave);
             // 
             // txtDBulkUnit
             // 
@@ -411,7 +422,6 @@
             // 
             // cmbProductCategory
             // 
-            this.cmbProductCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProductCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProductCategory.FormattingEnabled = true;
             this.cmbProductCategory.Items.AddRange(new object[] {
@@ -422,7 +432,12 @@
             this.cmbProductCategory.Location = new System.Drawing.Point(160, 158);
             this.cmbProductCategory.Name = "cmbProductCategory";
             this.cmbProductCategory.Size = new System.Drawing.Size(363, 27);
-            this.cmbProductCategory.TabIndex = 15;
+            this.cmbProductCategory.TabIndex = 6;
+            this.cmbProductCategory.SelectedIndexChanged += new System.EventHandler(this.CmbProductCategory_SelectedIndexChanged);
+            this.cmbProductCategory.Enter += new System.EventHandler(this.CmbProductCategory_Enter);
+            this.cmbProductCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProductCategory_KeyDown);
+            this.cmbProductCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbProductCategory_KeyPress);
+            this.cmbProductCategory.Leave += new System.EventHandler(this.CmbProductCategory_Leave);
             // 
             // txtDProductCategory
             // 
@@ -439,13 +454,17 @@
             // 
             // cmbConcern
             // 
-            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(160, 24);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(363, 27);
-            this.cmbConcern.TabIndex = 13;
+            this.cmbConcern.TabIndex = 1;
+            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
+            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
+            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
             // 
             // txtdcompany
             // 
@@ -462,36 +481,45 @@
             // 
             // cmbUnit
             // 
-            this.cmbUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUnit.FormattingEnabled = true;
             this.cmbUnit.Location = new System.Drawing.Point(160, 266);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(88, 27);
             this.cmbUnit.TabIndex = 10;
+            this.cmbUnit.SelectedIndexChanged += new System.EventHandler(this.CmbUnit_SelectedIndexChanged);
+            this.cmbUnit.Enter += new System.EventHandler(this.CmbUnit_Enter);
             this.cmbUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUnit_KeyDown);
+            this.cmbUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbUnit_KeyPress);
+            this.cmbUnit.Leave += new System.EventHandler(this.CmbUnit_Leave);
             // 
             // cmbBrand
             // 
-            this.cmbBrand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBrand.FormattingEnabled = true;
             this.cmbBrand.Location = new System.Drawing.Point(160, 239);
             this.cmbBrand.Name = "cmbBrand";
-            this.cmbBrand.Size = new System.Drawing.Size(341, 27);
+            this.cmbBrand.Size = new System.Drawing.Size(337, 27);
             this.cmbBrand.TabIndex = 9;
+            this.cmbBrand.SelectedIndexChanged += new System.EventHandler(this.CmbBrand_SelectedIndexChanged);
+            this.cmbBrand.Enter += new System.EventHandler(this.CmbBrand_Enter);
             this.cmbBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBrand_KeyDown);
+            this.cmbBrand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBrand_KeyPress);
+            this.cmbBrand.Leave += new System.EventHandler(this.CmbBrand_Leave);
             // 
             // cmbSubGroup
             // 
-            this.cmbSubGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSubGroup.FormattingEnabled = true;
             this.cmbSubGroup.Location = new System.Drawing.Point(160, 185);
             this.cmbSubGroup.Name = "cmbSubGroup";
-            this.cmbSubGroup.Size = new System.Drawing.Size(341, 27);
-            this.cmbSubGroup.TabIndex = 8;
+            this.cmbSubGroup.Size = new System.Drawing.Size(337, 27);
+            this.cmbSubGroup.TabIndex = 7;
+            this.cmbSubGroup.SelectedIndexChanged += new System.EventHandler(this.CmbSubGroup_SelectedIndexChanged);
+            this.cmbSubGroup.Enter += new System.EventHandler(this.CmbSubGroup_Enter);
             this.cmbSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSubGroup_KeyDown);
+            this.cmbSubGroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbSubGroup_KeyPress);
+            this.cmbSubGroup.Leave += new System.EventHandler(this.CmbSubGroup_Leave);
             // 
             // txtDBrand
             // 
@@ -508,14 +536,17 @@
             // 
             // cmbGroup
             // 
-            this.cmbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGroup.FormattingEnabled = true;
             this.cmbGroup.Location = new System.Drawing.Point(160, 212);
             this.cmbGroup.Name = "cmbGroup";
-            this.cmbGroup.Size = new System.Drawing.Size(341, 27);
-            this.cmbGroup.TabIndex = 7;
+            this.cmbGroup.Size = new System.Drawing.Size(337, 27);
+            this.cmbGroup.TabIndex = 8;
+            this.cmbGroup.SelectedIndexChanged += new System.EventHandler(this.CmbGroup_SelectedIndexChanged);
+            this.cmbGroup.Enter += new System.EventHandler(this.CmbGroup_Enter);
             this.cmbGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGroup_KeyDown);
+            this.cmbGroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbGroup_KeyPress);
+            this.cmbGroup.Leave += new System.EventHandler(this.CmbGroup_Leave);
             // 
             // txtDGroup
             // 
@@ -530,15 +561,19 @@
             this.txtDGroup.TabStop = false;
             this.txtDGroup.Text = "Product Group";
             // 
-            // cmbDPurchaseShop
+            // cmbPurchaseRack
             // 
-            this.cmbDPurchaseShop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDPurchaseShop.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDPurchaseShop.FormattingEnabled = true;
-            this.cmbDPurchaseShop.Location = new System.Drawing.Point(135, 59);
-            this.cmbDPurchaseShop.Name = "cmbDPurchaseShop";
-            this.cmbDPurchaseShop.Size = new System.Drawing.Size(127, 27);
-            this.cmbDPurchaseShop.TabIndex = 25;
+            this.cmbPurchaseRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPurchaseRack.FormattingEnabled = true;
+            this.cmbPurchaseRack.Location = new System.Drawing.Point(135, 59);
+            this.cmbPurchaseRack.Name = "cmbPurchaseRack";
+            this.cmbPurchaseRack.Size = new System.Drawing.Size(127, 27);
+            this.cmbPurchaseRack.TabIndex = 14;
+            this.cmbPurchaseRack.SelectedIndexChanged += new System.EventHandler(this.CmbPurchaseRack_SelectedIndexChanged);
+            this.cmbPurchaseRack.Enter += new System.EventHandler(this.CmbPurchaseRack_Enter);
+            this.cmbPurchaseRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPurchaseRack_KeyDown);
+            this.cmbPurchaseRack.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPurchaseRack_KeyPress);
+            this.cmbPurchaseRack.Leave += new System.EventHandler(this.CmbPurchaseRack_Leave);
             // 
             // txtDShop
             // 
@@ -563,7 +598,7 @@
             this.groupBox1.Controls.Add(this.txtrupee);
             this.groupBox1.Controls.Add(this.txtMaxOrderQty);
             this.groupBox1.Controls.Add(this.txtDMaxOrderQty);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtGrossWeight);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.txtReOrderQty);
             this.groupBox1.Controls.Add(this.txtDReOrderQty);
@@ -577,7 +612,7 @@
             this.groupBox1.Location = new System.Drawing.Point(567, -6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(279, 194);
-            this.groupBox1.TabIndex = 16;
+            this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             // 
             // textBox3
@@ -611,7 +646,10 @@
             this.txtMaxOrderQty.MaxLength = 50;
             this.txtMaxOrderQty.Name = "txtMaxOrderQty";
             this.txtMaxOrderQty.Size = new System.Drawing.Size(145, 27);
-            this.txtMaxOrderQty.TabIndex = 89;
+            this.txtMaxOrderQty.TabIndex = 27;
+            this.txtMaxOrderQty.Enter += new System.EventHandler(this.TxtMaxOrderQty_Enter);
+            this.txtMaxOrderQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxOrderQty_KeyDown);
+            this.txtMaxOrderQty.Leave += new System.EventHandler(this.TxtMaxOrderQty_Leave);
             // 
             // txtDMaxOrderQty
             // 
@@ -626,14 +664,17 @@
             this.txtDMaxOrderQty.TabStop = false;
             this.txtDMaxOrderQty.Text = "Rack MOQ";
             // 
-            // textBox1
+            // txtGrossWeight
             // 
-            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox1.Location = new System.Drawing.Point(122, 50);
-            this.textBox1.MaxLength = 50;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(124, 27);
-            this.textBox1.TabIndex = 87;
+            this.txtGrossWeight.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtGrossWeight.Location = new System.Drawing.Point(122, 50);
+            this.txtGrossWeight.MaxLength = 50;
+            this.txtGrossWeight.Name = "txtGrossWeight";
+            this.txtGrossWeight.Size = new System.Drawing.Size(124, 27);
+            this.txtGrossWeight.TabIndex = 23;
+            this.txtGrossWeight.Enter += new System.EventHandler(this.TxtGrossWeight_Enter);
+            this.txtGrossWeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGrossWeight_KeyDown);
+            this.txtGrossWeight.Leave += new System.EventHandler(this.TxtGrossWeight_Leave);
             // 
             // textBox2
             // 
@@ -655,7 +696,7 @@
             this.txtReOrderQty.MaxLength = 50;
             this.txtReOrderQty.Name = "txtReOrderQty";
             this.txtReOrderQty.Size = new System.Drawing.Size(145, 27);
-            this.txtReOrderQty.TabIndex = 41;
+            this.txtReOrderQty.TabIndex = 26;
             this.txtReOrderQty.Enter += new System.EventHandler(this.TxtReOrderQty_Enter);
             this.txtReOrderQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtReOrderQty_KeyDown);
             this.txtReOrderQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtReOrderQty_KeyPress);
@@ -672,7 +713,7 @@
             this.txtDReOrderQty.Size = new System.Drawing.Size(111, 27);
             this.txtDReOrderQty.TabIndex = 86;
             this.txtDReOrderQty.TabStop = false;
-            this.txtDReOrderQty.Text = "Re Order Qty";
+            this.txtDReOrderQty.Text = "Reorder Qty";
             // 
             // txtMinStock
             // 
@@ -681,7 +722,7 @@
             this.txtMinStock.MaxLength = 50;
             this.txtMinStock.Name = "txtMinStock";
             this.txtMinStock.Size = new System.Drawing.Size(145, 27);
-            this.txtMinStock.TabIndex = 23;
+            this.txtMinStock.TabIndex = 24;
             this.txtMinStock.Enter += new System.EventHandler(this.TxtMinStock_Enter);
             this.txtMinStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMinStock_KeyDown);
             this.txtMinStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMinStock_KeyPress);
@@ -707,7 +748,7 @@
             this.txtMaxStock.MaxLength = 50;
             this.txtMaxStock.Name = "txtMaxStock";
             this.txtMaxStock.Size = new System.Drawing.Size(145, 27);
-            this.txtMaxStock.TabIndex = 22;
+            this.txtMaxStock.TabIndex = 25;
             this.txtMaxStock.Enter += new System.EventHandler(this.TxtMaxStock_Enter);
             this.txtMaxStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxStock_KeyDown);
             this.txtMaxStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMaxStock_KeyPress);
@@ -733,7 +774,7 @@
             this.txtWeight.MaxLength = 50;
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.Size = new System.Drawing.Size(124, 27);
-            this.txtWeight.TabIndex = 18;
+            this.txtWeight.TabIndex = 22;
             this.txtWeight.Enter += new System.EventHandler(this.TxtWeight_Enter);
             this.txtWeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWeight_KeyDown);
             this.txtWeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWeight_KeyPress);
@@ -759,7 +800,7 @@
             this.txtRMinSaleQty.MaxLength = 50;
             this.txtRMinSaleQty.Name = "txtRMinSaleQty";
             this.txtRMinSaleQty.Size = new System.Drawing.Size(145, 27);
-            this.txtRMinSaleQty.TabIndex = 26;
+            this.txtRMinSaleQty.TabIndex = 28;
             this.txtRMinSaleQty.Enter += new System.EventHandler(this.TxtRMinSaleQty_Enter);
             this.txtRMinSaleQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRMinSaleQty_KeyDown);
             this.txtRMinSaleQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtRMinSaleQty_KeyPress);
@@ -784,11 +825,13 @@
             this.cbExpiry.Location = new System.Drawing.Point(5, 24);
             this.cbExpiry.Name = "cbExpiry";
             this.cbExpiry.Size = new System.Drawing.Size(77, 24);
-            this.cbExpiry.TabIndex = 28;
+            this.cbExpiry.TabIndex = 19;
             this.cbExpiry.Text = "Shelf Life";
             this.cbExpiry.UseVisualStyleBackColor = true;
             this.cbExpiry.CheckedChanged += new System.EventHandler(this.CbExpiry_CheckedChanged);
+            this.cbExpiry.Enter += new System.EventHandler(this.CbExpiry_Enter);
             this.cbExpiry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CbExpiry_KeyDown);
+            this.cbExpiry.Leave += new System.EventHandler(this.CbExpiry_Leave);
             // 
             // txtBarcode
             // 
@@ -797,7 +840,7 @@
             this.txtBarcode.MaxLength = 50;
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(145, 27);
-            this.txtBarcode.TabIndex = 27;
+            this.txtBarcode.TabIndex = 32;
             this.txtBarcode.Enter += new System.EventHandler(this.TxtBarcode_Enter);
             this.txtBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBarcode_KeyDown);
             this.txtBarcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBarcode_KeyPress);
@@ -823,7 +866,7 @@
             this.txtWSaleRate.MaxLength = 50;
             this.txtWSaleRate.Name = "txtWSaleRate";
             this.txtWSaleRate.Size = new System.Drawing.Size(145, 27);
-            this.txtWSaleRate.TabIndex = 17;
+            this.txtWSaleRate.TabIndex = 31;
             this.txtWSaleRate.Enter += new System.EventHandler(this.TxtWSaleRate_Enter);
             this.txtWSaleRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWSaleRate_KeyDown);
             this.txtWSaleRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWSaleRate_KeyPress);
@@ -862,7 +905,7 @@
             this.txtRetailRate.MaxLength = 50;
             this.txtRetailRate.Name = "txtRetailRate";
             this.txtRetailRate.Size = new System.Drawing.Size(145, 27);
-            this.txtRetailRate.TabIndex = 16;
+            this.txtRetailRate.TabIndex = 29;
             this.txtRetailRate.Enter += new System.EventHandler(this.TxtRetailRate_Enter);
             this.txtRetailRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRetailRate_KeyDown);
             this.txtRetailRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtRetailRate_KeyPress);
@@ -884,7 +927,7 @@
             this.groupBox2.Location = new System.Drawing.Point(567, 182);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(279, 163);
-            this.groupBox2.TabIndex = 37;
+            this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
             // 
@@ -895,7 +938,10 @@
             this.txtWMinSaleQty.MaxLength = 50;
             this.txtWMinSaleQty.Name = "txtWMinSaleQty";
             this.txtWMinSaleQty.Size = new System.Drawing.Size(145, 27);
-            this.txtWMinSaleQty.TabIndex = 38;
+            this.txtWMinSaleQty.TabIndex = 30;
+            this.txtWMinSaleQty.Enter += new System.EventHandler(this.TxtWMinSaleQty_Enter);
+            this.txtWMinSaleQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWMinSaleQty_KeyDown);
+            this.txtWMinSaleQty.Leave += new System.EventHandler(this.TxtWMinSaleQty_Leave);
             // 
             // txtDMinSaleQty
             // 
@@ -932,7 +978,7 @@
             this.txtGST.Name = "txtGST";
             this.txtGST.ReadOnly = true;
             this.txtGST.Size = new System.Drawing.Size(124, 27);
-            this.txtGST.TabIndex = 37;
+            this.txtGST.TabIndex = 34;
             this.txtGST.Enter += new System.EventHandler(this.TxtGST_Enter);
             this.txtGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGST_KeyDown);
             this.txtGST.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtGST_KeyPress);
@@ -945,7 +991,7 @@
             this.rbInActive.Location = new System.Drawing.Point(75, 1);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(71, 24);
-            this.rbInActive.TabIndex = 45;
+            this.rbInActive.TabIndex = 36;
             this.rbInActive.TabStop = true;
             this.rbInActive.Text = "InActive";
             this.rbInActive.UseVisualStyleBackColor = true;
@@ -960,7 +1006,7 @@
             this.rbActive.Location = new System.Drawing.Point(3, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
-            this.rbActive.TabIndex = 44;
+            this.rbActive.TabIndex = 35;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -989,7 +1035,7 @@
             this.pnlStatus.Location = new System.Drawing.Point(689, 440);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(153, 27);
-            this.pnlStatus.TabIndex = 44;
+            this.pnlStatus.TabIndex = 35;
             this.pnlStatus.TabStop = true;
             // 
             // grpExpire
@@ -1001,7 +1047,7 @@
             this.grpExpire.Location = new System.Drawing.Point(294, 416);
             this.grpExpire.Name = "grpExpire";
             this.grpExpire.Size = new System.Drawing.Size(266, 90);
-            this.grpExpire.TabIndex = 101;
+            this.grpExpire.TabIndex = 19;
             this.grpExpire.TabStop = false;
             // 
             // txtSelfLife
@@ -1015,7 +1061,6 @@
             // 
             // cmbPeriod
             // 
-            this.cmbPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPeriod.FormattingEnabled = true;
             this.cmbPeriod.Items.AddRange(new object[] {
             "--Select--",
@@ -1025,8 +1070,13 @@
             this.cmbPeriod.Location = new System.Drawing.Point(154, 24);
             this.cmbPeriod.Name = "cmbPeriod";
             this.cmbPeriod.Size = new System.Drawing.Size(103, 27);
-            this.cmbPeriod.TabIndex = 114;
+            this.cmbPeriod.TabIndex = 20;
             this.cmbPeriod.Visible = false;
+            this.cmbPeriod.SelectedIndexChanged += new System.EventHandler(this.CmbPeriod_SelectedIndexChanged);
+            this.cmbPeriod.Enter += new System.EventHandler(this.CmbPeriod_Enter);
+            this.cmbPeriod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPeriod_KeyDown);
+            this.cmbPeriod.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPeriod_KeyPress);
+            this.cmbPeriod.Leave += new System.EventHandler(this.CmbPeriod_Leave);
             // 
             // cbRMFromProduction
             // 
@@ -1034,32 +1084,39 @@
             this.cbRMFromProduction.Location = new System.Drawing.Point(5, 54);
             this.cbRMFromProduction.Name = "cbRMFromProduction";
             this.cbRMFromProduction.Size = new System.Drawing.Size(126, 24);
-            this.cbRMFromProduction.TabIndex = 112;
+            this.cbRMFromProduction.TabIndex = 21;
             this.cbRMFromProduction.Text = "RM for Production";
             this.cbRMFromProduction.UseVisualStyleBackColor = true;
+            this.cbRMFromProduction.Enter += new System.EventHandler(this.CbRMFromProduction_Enter);
+            this.cbRMFromProduction.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CbRMFromProduction_KeyDown);
+            this.cbRMFromProduction.Leave += new System.EventHandler(this.CbRMFromProduction_Leave);
             // 
             // grplocation
             // 
             this.grplocation.Controls.Add(this.cmbPosition);
             this.grplocation.Controls.Add(this.txtDPurchaseLocation);
             this.grplocation.Controls.Add(this.txtDShop);
-            this.grplocation.Controls.Add(this.cmbDPurchaseShop);
+            this.grplocation.Controls.Add(this.cmbPurchaseRack);
             this.grplocation.Location = new System.Drawing.Point(12, 304);
             this.grplocation.Name = "grplocation";
             this.grplocation.Size = new System.Drawing.Size(266, 112);
-            this.grplocation.TabIndex = 104;
+            this.grplocation.TabIndex = 13;
             this.grplocation.TabStop = false;
             this.grplocation.Text = "Default Stock Location For Purchase";
             // 
             // cmbPosition
             // 
-            this.cmbPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPosition.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPosition.FormattingEnabled = true;
             this.cmbPosition.Location = new System.Drawing.Point(135, 32);
             this.cmbPosition.Name = "cmbPosition";
             this.cmbPosition.Size = new System.Drawing.Size(127, 27);
             this.cmbPosition.TabIndex = 13;
+            this.cmbPosition.SelectedIndexChanged += new System.EventHandler(this.CmbPosition_SelectedIndexChanged);
+            this.cmbPosition.Enter += new System.EventHandler(this.CmbPosition_Enter);
+            this.cmbPosition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPosition_KeyDown);
+            this.cmbPosition.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPosition_KeyPress);
+            this.cmbPosition.Leave += new System.EventHandler(this.CmbPosition_Leave);
             // 
             // txtDPurchaseLocation
             // 
@@ -1079,23 +1136,27 @@
             this.grbSalesStockLocation.Controls.Add(this.cmbSalesGodown);
             this.grbSalesStockLocation.Controls.Add(this.txtDSalesGodown);
             this.grbSalesStockLocation.Controls.Add(this.txtDSalesShop);
-            this.grbSalesStockLocation.Controls.Add(this.cmbSalesShop);
+            this.grbSalesStockLocation.Controls.Add(this.cmbSalesRack);
             this.grbSalesStockLocation.Location = new System.Drawing.Point(289, 304);
             this.grbSalesStockLocation.Name = "grbSalesStockLocation";
             this.grbSalesStockLocation.Size = new System.Drawing.Size(266, 112);
-            this.grbSalesStockLocation.TabIndex = 113;
+            this.grbSalesStockLocation.TabIndex = 15;
             this.grbSalesStockLocation.TabStop = false;
             this.grbSalesStockLocation.Text = "Default Stock Location For Sales";
             // 
             // cmbSalesGodown
             // 
-            this.cmbSalesGodown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSalesGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSalesGodown.FormattingEnabled = true;
             this.cmbSalesGodown.Location = new System.Drawing.Point(135, 32);
             this.cmbSalesGodown.Name = "cmbSalesGodown";
             this.cmbSalesGodown.Size = new System.Drawing.Size(127, 27);
-            this.cmbSalesGodown.TabIndex = 13;
+            this.cmbSalesGodown.TabIndex = 15;
+            this.cmbSalesGodown.SelectedIndexChanged += new System.EventHandler(this.CmbSalesGodown_SelectedIndexChanged);
+            this.cmbSalesGodown.Enter += new System.EventHandler(this.CmbSalesGodown_Enter);
+            this.cmbSalesGodown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSalesGodown_KeyDown);
+            this.cmbSalesGodown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbSalesGodown_KeyPress);
+            this.cmbSalesGodown.Leave += new System.EventHandler(this.CmbSalesGodown_Leave);
             // 
             // txtDSalesGodown
             // 
@@ -1118,20 +1179,24 @@
             this.txtDSalesShop.Location = new System.Drawing.Point(5, 59);
             this.txtDSalesShop.Name = "txtDSalesShop";
             this.txtDSalesShop.ReadOnly = true;
-            this.txtDSalesShop.Size = new System.Drawing.Size(131, 27);
+            this.txtDSalesShop.Size = new System.Drawing.Size(130, 27);
             this.txtDSalesShop.TabIndex = 24;
             this.txtDSalesShop.TabStop = false;
             this.txtDSalesShop.Text = "Rack";
             // 
-            // cmbSalesShop
+            // cmbSalesRack
             // 
-            this.cmbSalesShop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSalesShop.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSalesShop.FormattingEnabled = true;
-            this.cmbSalesShop.Location = new System.Drawing.Point(135, 59);
-            this.cmbSalesShop.Name = "cmbSalesShop";
-            this.cmbSalesShop.Size = new System.Drawing.Size(127, 27);
-            this.cmbSalesShop.TabIndex = 25;
+            this.cmbSalesRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSalesRack.FormattingEnabled = true;
+            this.cmbSalesRack.Location = new System.Drawing.Point(135, 59);
+            this.cmbSalesRack.Name = "cmbSalesRack";
+            this.cmbSalesRack.Size = new System.Drawing.Size(127, 27);
+            this.cmbSalesRack.TabIndex = 16;
+            this.cmbSalesRack.SelectedIndexChanged += new System.EventHandler(this.CmbSalesRack_SelectedIndexChanged);
+            this.cmbSalesRack.Enter += new System.EventHandler(this.CmbSalesRack_Enter);
+            this.cmbSalesRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSalesRack_KeyDown);
+            this.cmbSalesRack.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbSalesRack_KeyPress);
+            this.cmbSalesRack.Leave += new System.EventHandler(this.CmbSalesRack_Leave);
             // 
             // grpHsndetail
             // 
@@ -1143,7 +1208,7 @@
             this.grpHsndetail.Location = new System.Drawing.Point(568, 340);
             this.grpHsndetail.Name = "grpHsndetail";
             this.grpHsndetail.Size = new System.Drawing.Size(279, 74);
-            this.grpHsndetail.TabIndex = 114;
+            this.grpHsndetail.TabIndex = 33;
             this.grpHsndetail.TabStop = false;
             // 
             // txtHSNCode
@@ -1155,7 +1220,7 @@
             this.txtHSNCode.Name = "txtHSNCode";
             this.txtHSNCode.ReadOnly = true;
             this.txtHSNCode.Size = new System.Drawing.Size(145, 27);
-            this.txtHSNCode.TabIndex = 116;
+            this.txtHSNCode.TabIndex = 33;
             // 
             // textBox4
             // 
@@ -1178,13 +1243,12 @@
             this.grbBatchNoDetails.Location = new System.Drawing.Point(12, 416);
             this.grbBatchNoDetails.Name = "grbBatchNoDetails";
             this.grbBatchNoDetails.Size = new System.Drawing.Size(266, 90);
-            this.grbBatchNoDetails.TabIndex = 115;
+            this.grbBatchNoDetails.TabIndex = 17;
             this.grbBatchNoDetails.TabStop = false;
             this.grbBatchNoDetails.Text = "Batch No. Details";
             // 
             // cmbBatchNoGeneration
             // 
-            this.cmbBatchNoGeneration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBatchNoGeneration.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBatchNoGeneration.FormattingEnabled = true;
             this.cmbBatchNoGeneration.Items.AddRange(new object[] {
@@ -1193,8 +1257,12 @@
             this.cmbBatchNoGeneration.Location = new System.Drawing.Point(135, 51);
             this.cmbBatchNoGeneration.Name = "cmbBatchNoGeneration";
             this.cmbBatchNoGeneration.Size = new System.Drawing.Size(127, 27);
-            this.cmbBatchNoGeneration.TabIndex = 29;
+            this.cmbBatchNoGeneration.TabIndex = 18;
             this.cmbBatchNoGeneration.SelectedIndexChanged += new System.EventHandler(this.CmbBatchNoGeneration_SelectedIndexChanged);
+            this.cmbBatchNoGeneration.Enter += new System.EventHandler(this.CmbBatchNoGeneration_Enter);
+            this.cmbBatchNoGeneration.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBatchNoGeneration_KeyDown);
+            this.cmbBatchNoGeneration.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBatchNoGeneration_KeyPress);
+            this.cmbBatchNoGeneration.Leave += new System.EventHandler(this.CmbBatchNoGeneration_Leave);
             // 
             // txtBatchNoGeneration
             // 
@@ -1211,7 +1279,6 @@
             // 
             // cmbBatchNoEntry
             // 
-            this.cmbBatchNoEntry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBatchNoEntry.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBatchNoEntry.FormattingEnabled = true;
             this.cmbBatchNoEntry.Items.AddRange(new object[] {
@@ -1220,7 +1287,12 @@
             this.cmbBatchNoEntry.Location = new System.Drawing.Point(135, 24);
             this.cmbBatchNoEntry.Name = "cmbBatchNoEntry";
             this.cmbBatchNoEntry.Size = new System.Drawing.Size(127, 27);
-            this.cmbBatchNoEntry.TabIndex = 27;
+            this.cmbBatchNoEntry.TabIndex = 17;
+            this.cmbBatchNoEntry.SelectedIndexChanged += new System.EventHandler(this.CmbBatchNoEntry_SelectedIndexChanged);
+            this.cmbBatchNoEntry.Enter += new System.EventHandler(this.CmbBatchNoEntry_Enter);
+            this.cmbBatchNoEntry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBatchNoEntry_KeyDown);
+            this.cmbBatchNoEntry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBatchNoEntry_KeyPress);
+            this.cmbBatchNoEntry.Leave += new System.EventHandler(this.CmbBatchNoEntry_Leave);
             // 
             // txtDBatchNoEntry
             // 
@@ -1243,7 +1315,7 @@
             this.btnSave.Location = new System.Drawing.Point(692, 477);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(74, 29);
-            this.btnSave.TabIndex = 46;
+            this.btnSave.TabIndex = 37;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -1260,7 +1332,7 @@
             this.btnClose.Location = new System.Drawing.Point(768, 477);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 29);
-            this.btnClose.TabIndex = 47;
+            this.btnClose.TabIndex = 38;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -1374,14 +1446,14 @@
         private System.Windows.Forms.TextBox txtdcompany;
         private System.Windows.Forms.ComboBox cmbProductCategory;
         private System.Windows.Forms.TextBox txtDProductCategory;
-        private System.Windows.Forms.ComboBox cmb;
+        private System.Windows.Forms.ComboBox cmbBulkUnit;
         private System.Windows.Forms.TextBox txtDBulkUnit;
         private System.Windows.Forms.TextBox txtDUPP;
         private System.Windows.Forms.TextBox txtUpp;
-        private System.Windows.Forms.ComboBox cmbDPurchaseShop;
+        private System.Windows.Forms.ComboBox cmbPurchaseRack;
         private System.Windows.Forms.TextBox txtDShop;
         private System.Windows.Forms.GroupBox grpExpire;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtGrossWeight;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.GroupBox grplocation;
         private System.Windows.Forms.ComboBox cmbPosition;
@@ -1393,7 +1465,7 @@
         private System.Windows.Forms.ComboBox cmbSalesGodown;
         private System.Windows.Forms.TextBox txtDSalesGodown;
         private System.Windows.Forms.TextBox txtDSalesShop;
-        private System.Windows.Forms.ComboBox cmbSalesShop;
+        private System.Windows.Forms.ComboBox cmbSalesRack;
         private System.Windows.Forms.TextBox txtrupee;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox txtWMinSaleQty;
