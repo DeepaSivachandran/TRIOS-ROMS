@@ -381,6 +381,7 @@
             this.cmbReturnType.Name = "cmbReturnType";
             this.cmbReturnType.Size = new System.Drawing.Size(183, 28);
             this.cmbReturnType.TabIndex = 958809;
+            this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.CmbReturnType_SelectedIndexChanged);
             // 
             // textBox7
             // 
@@ -852,6 +853,7 @@
             this.Name = "PUR_PurchaseReturns";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase Returns";
+            this.Load += new System.EventHandler(this.PUR_PurchaseReturns_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             this.tsPurchaseInvoiceList.ResumeLayout(false);
             this.tsPurchaseInvoiceList.PerformLayout();

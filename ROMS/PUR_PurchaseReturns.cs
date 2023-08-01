@@ -80,10 +80,6 @@ namespace ROMS
                 txtpurchaseRate.Enabled = false;
                 txtActualQty.Enabled = false; 
                 btnAdd.Enabled = false;
-                cmbReturnType.Items.Clear();
-                cmbReturnType.Items.Add("Received Credit Note");
-                cmbReturnType.Items.Add("Received Equivalent Products");
-                cmbReturnType.SelectedIndex = 0;
             }
             else
             {
@@ -91,9 +87,39 @@ namespace ROMS
                 txtpurchaseRate.Enabled = true;
                 txtActualQty.Enabled = true;
                 btnAdd.Enabled = true;
+            }
+        }
+
+        private void PUR_PurchaseReturns_Load(object sender, EventArgs e)
+        {
+            try
+            {
                 cmbReturnType.Items.Clear();
+                cmbReturnType.Items.Add("Credit Note Received");
+                cmbReturnType.Items.Add("Equivalent Products Received");
                 cmbReturnType.Items.Add("Debit Note Created");
                 cmbReturnType.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReturnType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbReturnType.SelectedIndex == 1) {
+                    MainForm.objPUR_DCGoodsInward = new PUR_DCGoodsInward();
+                    MainForm.objPUR_DCGoodsInward.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

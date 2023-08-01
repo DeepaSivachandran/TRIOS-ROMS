@@ -82,6 +82,7 @@ namespace ROMS
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmGRNApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -137,6 +138,7 @@ namespace ROMS
             this.tsmPurchaseOrder,
             this.tsmGRN,
             this.tsmPurchaseEntry,
+            this.tsmGRNApproval,
             this.tsmpurchaseApprove,
             this.tsmpurchaseReturn});
             this.tsmpurchase.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
@@ -531,6 +533,13 @@ namespace ROMS
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
+            // tsmGRNApproval
+            // 
+            this.tsmGRNApproval.Name = "tsmGRNApproval";
+            this.tsmGRNApproval.Size = new System.Drawing.Size(180, 22);
+            this.tsmGRNApproval.Text = "GRN Approval";
+            this.tsmGRNApproval.Click += new System.EventHandler(this.TsmGRNApproval_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -611,5 +620,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmfromPurchase;
         private System.Windows.Forms.ToolStripMenuItem tsmfromOtherStockLocation;
         private System.Windows.Forms.ToolStripMenuItem tsmpurchaseSupplier;
+        private System.Windows.Forms.ToolStripMenuItem tsmGRNApproval;
     }
 }

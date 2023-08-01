@@ -75,6 +75,12 @@
     <Compile Include="CP_ChangePasswordConfirmation.designer.cs">
       <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_DCGoodsInward.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_DCGoodsInward.designer.cs">
+      <DependentUpon>PUR_DCGoodsInward.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_ProductDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,18 @@
     </Compile>
     <Compile Include="INV_DamageEntry.designer.cs">
       <DependentUpon>INV_DamageEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNApproval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNApproval.designer.cs">
+      <DependentUpon>PUR_GRNApproval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNApprovalList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNApprovalList.designer.cs">
+      <DependentUpon>PUR_GRNApprovalList.cs</DependentUpon>
     </Compile>
     <Compile Include="INV_InwardPurchaseList.cs">
       <SubType>Form</SubType>
@@ -611,6 +629,9 @@
     <EmbeddedResource Include="CP_ChangePasswordConfirmation.resx">
       <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PUR_DCGoodsInward.resx">
+      <DependentUpon>PUR_DCGoodsInward.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_ProductDetails.resx">
       <DependentUpon>CP_ProductDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -634,6 +655,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV_DamageEntry.resx">
       <DependentUpon>INV_DamageEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNApproval.resx">
+      <DependentUpon>PUR_GRNApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNApprovalList.resx">
+      <DependentUpon>PUR_GRNApprovalList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_InwardPurchaseList.resx">
       <DependentUpon>INV_InwardPurchaseList.cs</DependentUpon>

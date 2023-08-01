@@ -97,6 +97,7 @@ namespace ROMS
         public static INV_StockTransferList objINV_StockTransferList;
         public static INV_DamageEntryList objINV_DamageEntryList;
         public static INV_DamageEntry objINV_DamageEntry;
+
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;  
         public static PUR_PurchaseOrder objPUR_PurchaseOrder;
@@ -115,6 +116,9 @@ namespace ROMS
         public static PUR_RemarksHistory objPUR_RemarksHistory;
         public static PUR_POReturns objPUR_POReturns;
         public static PUR_BulkUnit objPUR_BulkUnit;
+        public static PUR_DCGoodsInward objPUR_DCGoodsInward;
+        public static PUR_GRNApprovalList objPUR_GRNApprovalList;
+        public static PUR_GRNApproval objPUR_GRNApproval;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
@@ -1025,6 +1029,23 @@ namespace ROMS
                 MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
                 MainForm.objINV_InwardPurchaseList.MdiParent = this;
                 MainForm.objINV_InwardPurchaseList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmGRNApproval_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
+                MainForm.objPUR_GRNApprovalList.MdiParent = this;
+                MainForm.objPUR_GRNApprovalList.Show();
             }
             catch (Exception ex)
             {
