@@ -775,9 +775,26 @@
             this.grdTaxDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.grdTaxDetails.ColumnHeadersHeight = 30;
             this.grdTaxDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdTaxDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn4});
+            //this.grdTaxDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            //this.dataGridView1.AllowUserToAddRows = false;
+            //this.dataGridView1.AllowUserToDeleteRows = false;
+            //this.dataGridView1.AllowUserToResizeColumns = false;
+            //this.dataGridView1.AllowUserToResizeRows = false;
+            //this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            //this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            //dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            //dataGridViewCellStyle3.BackColor = System.Drawing.Color.SlateGray;
+            //dataGridViewCellStyle3.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            //dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            //dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            //dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            //dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            //this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            //this.dataGridView1.ColumnHeadersHeight = 30;
+            //this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            //this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            //this.dataGridViewTextBoxColumn1,
+            //this.dataGridViewTextBoxColumn4});
             this.grdTaxDetails.EnableHeadersVisualStyles = false;
             this.grdTaxDetails.GridColor = System.Drawing.Color.White;
             this.grdTaxDetails.Location = new System.Drawing.Point(8, 429);
@@ -1467,6 +1484,87 @@
             this.chkInvoice.TabIndex = 1111168;
             this.chkInvoice.Text = "E-Invoice Bill";
             this.chkInvoice.UseVisualStyleBackColor = true;
+            // 
+            this.chkInvoice.AutoSize = true;
+            this.chkInvoice.Location = new System.Drawing.Point(632, 79);
+            this.chkInvoice.Name = "chkInvoice";
+            this.chkInvoice.Size = new System.Drawing.Size(88, 21);
+            this.chkInvoice.TabIndex = 1111168;
+            this.chkInvoice.Text = "E-Invoice Bill";
+            this.chkInvoice.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(194)))), ((int)(((byte)(116)))));
+            this.label18.ForeColor = System.Drawing.Color.Black;
+            this.label18.Location = new System.Drawing.Point(1237, 4);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(107, 17);
+            this.label18.TabIndex = 37;
+            this.label18.Text = "Waiting for Approval";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "GST %";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Tax Value";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // grdPODetails
+            // 
+            this.grdPODetails.AllowUserToAddRows = false;
+            this.grdPODetails.AllowUserToDeleteRows = false;
+            this.grdPODetails.AllowUserToResizeColumns = false;
+            this.grdPODetails.AllowUserToResizeRows = false;
+            this.grdPODetails.BackgroundColor = System.Drawing.Color.White;
+            this.grdPODetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            //dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            //dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            //dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            //dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            //dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            //dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            //dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            //this.grdPODetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdPODetails.ColumnHeadersHeight = 30;
+            this.grdPODetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdPODetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column14,
+            this.Column15,
+            this.Column17});
+            this.grdPODetails.EnableHeadersVisualStyles = false;
+            this.grdPODetails.GridColor = System.Drawing.Color.White;
+            this.grdPODetails.Location = new System.Drawing.Point(225, 429);
+            this.grdPODetails.Name = "grdPODetails";
+            this.grdPODetails.ReadOnly = true;
+            this.grdPODetails.RowHeadersVisible = false;
+            this.grdPODetails.Size = new System.Drawing.Size(442, 161);
+            this.grdPODetails.TabIndex = 1111195;
+            // 
+            // Column14
+            // 
+            this.Column14.HeaderText = "PO No.";
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            // 
+            // Column15
+            // 
+            this.Column15.HeaderText = "PO Date";
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
+            // 
+            // Column17
+            // 
+            this.Column17.HeaderText = "Total Products";
+            this.Column17.Name = "Column17";
+            this.Column17.ReadOnly = true;
             // 
             // groupBox10
             // 

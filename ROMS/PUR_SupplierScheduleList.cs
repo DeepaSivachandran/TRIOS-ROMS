@@ -172,6 +172,7 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
+                 
             }
             catch (Exception ex)
             {

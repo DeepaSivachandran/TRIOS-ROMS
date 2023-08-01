@@ -43,6 +43,7 @@ namespace ROMS
                 cmbType.Items.Insert(2, "Direct");
                 cmbType.SelectedIndex = 0;
                 cmbPurchaseType.SelectedIndex = 0;
+                dpInvoiceDate.Enabled = true;
             }
             catch (Exception ex)
             {
