@@ -119,6 +119,7 @@ namespace ROMS
         public static PUR_DCGoodsInward objPUR_DCGoodsInward;
         public static PUR_GRNApprovalList objPUR_GRNApprovalList;
         public static PUR_GRNApproval objPUR_GRNApproval;
+        public static PUR_GRNEntry objPUR_GRNEntry;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;

@@ -21,10 +21,17 @@ namespace ROMS
 
         private void TsbNew_Click(object sender, EventArgs e)
         {
+            try
+            {
+                MainForm.objPUR_GRNEntry = new PUR_GRNEntry();
+                MainForm.objPUR_GRNEntry.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
 
-            MainForm.objPUR_GRNDetails = new PUR_GRNDetails(); 
-            MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
-            MainForm.objPUR_GRNDetails.Show();
+            }
         }
 
         private void TsBrandList_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -51,6 +58,22 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void TsbEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_GRNDetails = new PUR_GRNDetails();
+                MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
+                MainForm.objPUR_GRNDetails.Show();
             }
             catch (Exception ex)
             {
