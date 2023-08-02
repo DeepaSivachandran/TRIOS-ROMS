@@ -1074,6 +1074,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\close-eye.png" />
+    <None Include="Resources\exclude1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

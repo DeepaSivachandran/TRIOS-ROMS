@@ -63,7 +63,7 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -317,7 +317,7 @@
             this.grpExcessProduct.Controls.Add(this.textBox9);
             this.grpExcessProduct.Controls.Add(this.textBox8);
             this.grpExcessProduct.Controls.Add(this.btnClose);
-            this.grpExcessProduct.Controls.Add(this.label11);
+            this.grpExcessProduct.Controls.Add(this.lblTotal);
             this.grpExcessProduct.Controls.Add(this.btnSave);
             this.grpExcessProduct.Controls.Add(this.textBox6);
             this.grpExcessProduct.Controls.Add(this.label10);
@@ -436,15 +436,16 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
-            // label11
+            // lblTotal
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Oswald Regular", 13.75F);
-            this.label11.Location = new System.Drawing.Point(989, 425);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(135, 26);
-            this.label11.TabIndex = 1111177;
-            this.label11.Text = "Approximate Total";
+            this.lblTotal.Font = new System.Drawing.Font("Oswald Regular", 13.75F);
+            this.lblTotal.Location = new System.Drawing.Point(989, 425);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblTotal.Size = new System.Drawing.Size(135, 26);
+            this.lblTotal.TabIndex = 1111177;
+            this.lblTotal.Text = "Approximate Total";
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnSave
             // 
@@ -886,7 +887,7 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblTotal;
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label10;

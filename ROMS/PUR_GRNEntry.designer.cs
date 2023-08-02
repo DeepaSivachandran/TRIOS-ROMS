@@ -269,11 +269,11 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(350, 207);
+            this.btnSave.Location = new System.Drawing.Point(325, 207);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(84, 29);
+            this.btnSave.Size = new System.Drawing.Size(109, 29);
             this.btnSave.TabIndex = 1111182;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Save && Print";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             // 
@@ -302,7 +302,7 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grdUnitList.DefaultCellStyle = dataGridViewCellStyle3;
@@ -310,13 +310,10 @@
             this.grdUnitList.GridColor = System.Drawing.Color.White;
             this.grdUnitList.Location = new System.Drawing.Point(373, 18);
             this.grdUnitList.Name = "grdUnitList";
-            this.grdUnitList.ReadOnly = true;
             this.grdUnitList.RowHeadersVisible = false;
-            this.grdUnitList.RowHeadersWidth = 100;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.grdUnitList.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.grdUnitList.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Transparent;
             this.grdUnitList.RowTemplate.Height = 25;
             this.grdUnitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdUnitList.Size = new System.Drawing.Size(127, 161);
@@ -335,7 +332,6 @@
             this.clmQty.DefaultCellStyle = dataGridViewCellStyle2;
             this.clmQty.HeaderText = "Qty";
             this.clmQty.Name = "clmQty";
-            this.clmQty.ReadOnly = true;
             this.clmQty.Width = 50;
             // 
             // PUR_GRNEntry

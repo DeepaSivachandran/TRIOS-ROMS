@@ -78,8 +78,9 @@ namespace ROMS
             {
                 txtProductName.Enabled = false;
                 txtpurchaseRate.Enabled = false;
-                txtActualQty.Enabled = false; 
+                txtActualQty.Enabled = false;
                 btnAdd.Enabled = false;
+                lblTotal.Text = "Approximate Total";
             }
             else
             {
@@ -87,6 +88,7 @@ namespace ROMS
                 txtpurchaseRate.Enabled = true;
                 txtActualQty.Enabled = true;
                 btnAdd.Enabled = true;
+                lblTotal.Text = "Actual Total";
             }
         }
 
