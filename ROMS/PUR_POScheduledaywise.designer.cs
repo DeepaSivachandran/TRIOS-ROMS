@@ -244,7 +244,7 @@
             // 
             // clmday
             // 
-            this.clmday.HeaderText = "Day";
+            this.clmday.HeaderText = "Order Day";
             this.clmday.Name = "clmday";
             this.clmday.ReadOnly = true;
             // 

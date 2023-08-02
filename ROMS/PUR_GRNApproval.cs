@@ -48,27 +48,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void INV_Inward_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void BtnSave_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Txtsuppliername_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Btnsaveasdraft_Click(object sender, EventArgs e)
-        {
-
-        }
+        } 
 
         private void BtnRemarks_Click(object sender, EventArgs e)
         {

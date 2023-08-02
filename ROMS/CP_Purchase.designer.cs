@@ -35,6 +35,9 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.btnNew = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -65,15 +68,12 @@
             this.cmbLocation = new System.Windows.Forms.ComboBox();
             this.cmbrack = new System.Windows.Forms.ComboBox();
             this.textBox24 = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.txtQtyUnit = new System.Windows.Forms.TextBox();
             this.txtMrp = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.txtBroker = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Label();
             this.txtDiscPer = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.txtDiscAmnt = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
@@ -85,6 +85,8 @@
             this.txtQRCode = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.grdTaxDetails = new System.Windows.Forms.DataGridView();
+            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -182,8 +184,6 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label18 = new System.Windows.Forms.Label();
-            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsPurchase.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -321,6 +321,36 @@
             this.groupBox1.Size = new System.Drawing.Size(1334, 598);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(828, 105);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 17);
+            this.label12.TabIndex = 43;
+            this.label12.Text = "Discount %";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(775, 105);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(51, 17);
+            this.label15.TabIndex = 1111143;
+            this.label15.Text = "Pur. Rate";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(719, 105);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(30, 17);
+            this.label14.TabIndex = 1111139;
+            this.label14.Text = "MRP";
             // 
             // btnNew
             // 
@@ -620,16 +650,6 @@
             this.textBox24.Size = new System.Drawing.Size(47, 25);
             this.textBox24.TabIndex = 1111144;
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(775, 105);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(51, 17);
-            this.label15.TabIndex = 1111143;
-            this.label15.Text = "Pur. Rate";
-            // 
             // txtQtyUnit
             // 
             this.txtQtyUnit.Location = new System.Drawing.Point(536, 123);
@@ -647,16 +667,6 @@
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.Size = new System.Drawing.Size(46, 25);
             this.txtMrp.TabIndex = 1111140;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(719, 105);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(30, 17);
-            this.label14.TabIndex = 1111139;
-            this.label14.Text = "MRP";
             // 
             // txtBroker
             // 
@@ -694,16 +704,6 @@
             this.txtDiscPer.Name = "txtDiscPer";
             this.txtDiscPer.Size = new System.Drawing.Size(56, 25);
             this.txtDiscPer.TabIndex = 44;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(828, 105);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 17);
-            this.label12.TabIndex = 43;
-            this.label12.Text = "Discount %";
             // 
             // txtDiscAmnt
             // 
@@ -828,6 +828,20 @@
             this.grdTaxDetails.RowHeadersVisible = false;
             this.grdTaxDetails.Size = new System.Drawing.Size(201, 161);
             this.grdTaxDetails.TabIndex = 20;
+            // 
+            // Column23
+            // 
+            this.Column23.HeaderText = "GST %";
+            this.Column23.Name = "Column23";
+            this.Column23.ReadOnly = true;
+            this.Column23.Width = 50;
+            // 
+            // Column24
+            // 
+            this.Column24.HeaderText = "Value";
+            this.Column24.Name = "Column24";
+            this.Column24.ReadOnly = true;
+            this.Column24.Width = 80;
             // 
             // grdSupplierList
             // 
@@ -1174,7 +1188,7 @@
             this.groupBox9.Size = new System.Drawing.Size(212, 97);
             this.groupBox9.TabIndex = 27;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Enter += new System.EventHandler(this.GroupBox9_Enter);
+//            this.groupBox9.Enter += new System.EventHandler(this.GroupBox9_Enter);
             // 
             // txtDDamage
             // 
@@ -1784,20 +1798,6 @@
             this.label18.TabIndex = 37;
             this.label18.Text = "Waiting for Approval";
             // 
-            // Column23
-            // 
-            this.Column23.HeaderText = "GST %";
-            this.Column23.Name = "Column23";
-            this.Column23.ReadOnly = true;
-            this.Column23.Width = 50;
-            // 
-            // Column24
-            // 
-            this.Column24.HeaderText = "Value";
-            this.Column24.Name = "Column24";
-            this.Column24.ReadOnly = true;
-            this.Column24.Width = 80;
-            // 
             // CP_Purchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1814,8 +1814,8 @@
             this.Name = "CP_Purchase";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase";
-            this.Load += new System.EventHandler(this.CP_BrandList_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrandList_KeyDown);
+            this.Load += new System.EventHandler(this.CP_Purchase_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Purchase_KeyDown);
             this.tsPurchase.ResumeLayout(false);
             this.tsPurchase.PerformLayout();
             this.panel1.ResumeLayout(false);

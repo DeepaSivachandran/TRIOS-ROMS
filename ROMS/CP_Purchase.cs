@@ -34,65 +34,6 @@ namespace ROMS
 
             }
         }
-        private void CP_BrandList_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbType.Items.Insert(0,"Against GRN");
-                cmbType.Items.Insert(1,"Against PO");
-                cmbType.Items.Insert(2, "Direct");
-                cmbType.SelectedIndex = 0;
-                cmbPurchaseType.SelectedIndex = 0;
-                dpInvoiceDate.Enabled = true;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        
-        private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                   // tsbEdit_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void grdBrandList_Scroll(object sender, ScrollEventArgs e)
-        {
-
-        }
-
-        private void grdBrandList_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void grdBrandList_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
 
         private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -131,12 +72,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void GroupBox9_Enter(object sender, EventArgs e)
-        {
-
-        }
-
+         
         public void udfnclose()
         {
             try
@@ -203,6 +139,51 @@ namespace ROMS
 
                 MainForm.objCP_Items = new  CP_Product();
                 MainForm.objCP_Items.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_Purchase_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbType.Items.Insert(0, "Against GRN");
+                cmbType.Items.Insert(1, "Against PO");
+                cmbType.Items.Insert(2, "Direct");
+                cmbType.SelectedIndex = 0;
+                cmbPurchaseType.SelectedIndex = 0;
+                dpInvoiceDate.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_Purchase_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    // tsbEdit_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {

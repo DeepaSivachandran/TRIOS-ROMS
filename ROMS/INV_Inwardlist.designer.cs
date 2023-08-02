@@ -53,18 +53,6 @@
             this.btnView = new System.Windows.Forms.Button();
             this.cmbconcern = new System.Windows.Forms.ComboBox();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdInwardList = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpurchaseno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clminvoicedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clminvoiceno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsuppliername = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdpurchaseno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInwardType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,6 +62,18 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.grdInwardList = new System.Windows.Forms.DataGridView();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpurchaseno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clminvoicedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clminvoiceno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsuppliername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.grbFilterBy.SuspendLayout();
@@ -289,8 +289,8 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
@@ -328,6 +328,57 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
             // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmdpurchaseno
+            // 
+            this.clmdpurchaseno.HeaderText = "Concern";
+            this.clmdpurchaseno.Name = "clmdpurchaseno";
+            // 
+            // clmInwardType
+            // 
+            this.clmInwardType.HeaderText = "Inward No.";
+            this.clmInwardType.Name = "clmInwardType";
+            // 
+            // clmdinvoicedate
+            // 
+            this.clmdinvoicedate.HeaderText = "Inward Date";
+            this.clmdinvoicedate.Name = "clmdinvoicedate";
+            // 
+            // clmdsuppliername
+            // 
+            this.clmdsuppliername.HeaderText = "Supplier";
+            this.clmdsuppliername.Name = "clmdsuppliername";
+            this.clmdsuppliername.Width = 200;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Stock Location";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Transaction Type";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 120;
+            // 
+            // clmdtotalitems
+            // 
+            this.clmdtotalitems.HeaderText = "Total Products";
+            this.clmdtotalitems.Name = "clmdtotalitems";
+            this.clmdtotalitems.Width = 200;
+            // 
+            // clmdtotalqty
+            // 
+            this.clmdtotalqty.HeaderText = "Created By";
+            this.clmdtotalqty.Name = "clmdtotalqty";
+            this.clmdtotalqty.Width = 200;
+            // 
             // lblNoRecordsFound
             // 
             this.lblNoRecordsFound.AutoSize = true;
@@ -352,8 +403,8 @@
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdInwardList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdInwardList.ColumnHeadersHeight = 30;
@@ -389,20 +440,6 @@
             this.grdInwardList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdInwardList.Size = new System.Drawing.Size(1348, 570);
             this.grdInwardList.TabIndex = 958797;
-            // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(797, 381);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(544, 247);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
             // 
             // clmsno
             // 
@@ -462,56 +499,19 @@
             this.clmtotalqty.ReadOnly = true;
             this.clmtotalqty.Width = 200;
             // 
-            // clmdsno
+            // picLoader
             // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmdpurchaseno
-            // 
-            this.clmdpurchaseno.HeaderText = "Concern";
-            this.clmdpurchaseno.Name = "clmdpurchaseno";
-            // 
-            // clmInwardType
-            // 
-            this.clmInwardType.HeaderText = "Inward No.";
-            this.clmInwardType.Name = "clmInwardType";
-            // 
-            // clmdinvoicedate
-            // 
-            this.clmdinvoicedate.HeaderText = "Inward Date";
-            this.clmdinvoicedate.Name = "clmdinvoicedate";
-            // 
-            // clmdsuppliername
-            // 
-            this.clmdsuppliername.HeaderText = "Supplier";
-            this.clmdsuppliername.Name = "clmdsuppliername";
-            this.clmdsuppliername.Width = 200;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Stock Location";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Transaction Type";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 120;
-            // 
-            // clmdtotalitems
-            // 
-            this.clmdtotalitems.HeaderText = "Total Products";
-            this.clmdtotalitems.Name = "clmdtotalitems";
-            this.clmdtotalitems.Width = 200;
-            // 
-            // clmdtotalqty
-            // 
-            this.clmdtotalqty.HeaderText = "Created By";
-            this.clmdtotalqty.Name = "clmdtotalqty";
-            this.clmdtotalqty.Width = 200;
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(797, 381);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(544, 247);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // INV_Inwardlist
             // 
@@ -527,9 +527,8 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "INV_Inwardlist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
-            this.Load += new System.EventHandler(this.CP_BrandList_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrandList_KeyDown);
+            this.Text = "Inward";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_Inwardlist_KeyDown);
             this.tsInwardList.ResumeLayout(false);
             this.tsInwardList.PerformLayout();
             this.pnlinward.ResumeLayout(false);
