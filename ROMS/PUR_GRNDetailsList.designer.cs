@@ -493,6 +493,7 @@
             this.grdPurchaseApproval.Size = new System.Drawing.Size(1348, 510);
             this.grdPurchaseApproval.TabIndex = 958797;
             this.grdPurchaseApproval.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseApproval_CellContentClick);
+            this.grdPurchaseApproval.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
             // 
             // clmsno
             // 

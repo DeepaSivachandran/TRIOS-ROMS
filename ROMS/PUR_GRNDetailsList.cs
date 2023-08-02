@@ -110,12 +110,28 @@ namespace ROMS
                     {
                         case "ClmEdit":
                             MainForm.objPUR_GRNEntry = new PUR_GRNEntry();
-                            MainForm.objPUR_GRNEntry.btnSave.Text = "Update";
+                            MainForm.objPUR_GRNEntry.btnSave.Text = "Update && Print";
                             MainForm.objPUR_GRNEntry.ShowDialog();
                             break;
                     }
                 }
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void GrdPurchaseApproval_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_GRNDetails = new PUR_GRNDetails();
+                MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
+                MainForm.objPUR_GRNDetails.Show();
             }
             catch (Exception ex)
             {

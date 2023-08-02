@@ -38,7 +38,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsBrandList = new System.Windows.Forms.ToolStrip();
+            this.tsPOList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlpurchaseorder = new System.Windows.Forms.Panel();
             this.grppurchaseorder = new System.Windows.Forms.GroupBox();
@@ -143,7 +143,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmreorderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.tsBrandList.SuspendLayout();
+            this.tsPOList.SuspendLayout();
             this.pnlpurchaseorder.SuspendLayout();
             this.grppurchaseorder.SuspendLayout();
             this.grpsupplierdetails.SuspendLayout();
@@ -157,18 +157,28 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdsupplieradd)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsBrandList
+            // tsPOList
             // 
-            this.tsBrandList.BackColor = System.Drawing.Color.White;
-            this.tsBrandList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsBrandList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsBrandList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsPOList.BackColor = System.Drawing.Color.White;
+            this.tsPOList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsPOList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsPOList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader});
-            this.tsBrandList.Location = new System.Drawing.Point(0, 0);
-            this.tsBrandList.Name = "tsBrandList";
-            this.tsBrandList.Size = new System.Drawing.Size(1354, 25);
-            this.tsBrandList.TabIndex = 35;
-            this.tsBrandList.Text = "Brand";
+            this.tsPOList.Location = new System.Drawing.Point(0, 0);
+            this.tsPOList.Name = "tsPOList";
+            this.tsPOList.Size = new System.Drawing.Size(1354, 25);
+            this.tsPOList.TabIndex = 35;
+            this.tsPOList.Text = "Purchase Order";
+            // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(109, 22);
+            this.tspHeader.Text = "Purchase Order";
             // 
             // tspHeader
             // 
@@ -257,9 +267,9 @@
             this.grpsupplierdetails.Controls.Add(this.label12);
             this.grpsupplierdetails.Controls.Add(this.label15);
             this.grpsupplierdetails.Controls.Add(this.label16);
-            this.grpsupplierdetails.Location = new System.Drawing.Point(521, 14);
+            this.grpsupplierdetails.Location = new System.Drawing.Point(505, 14);
             this.grpsupplierdetails.Name = "grpsupplierdetails";
-            this.grpsupplierdetails.Size = new System.Drawing.Size(182, 87);
+            this.grpsupplierdetails.Size = new System.Drawing.Size(246, 87);
             this.grpsupplierdetails.TabIndex = 1111156;
             this.grpsupplierdetails.TabStop = false;
             this.grpsupplierdetails.Text = "Supplier Details";
@@ -341,7 +351,7 @@
             this.cmbUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUnit.FormattingEnabled = true;
-            this.cmbUnit.Location = new System.Drawing.Point(680, 107);
+            this.cmbUnit.Location = new System.Drawing.Point(656, 107);
             this.cmbUnit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(59, 27);
@@ -351,7 +361,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(646, 110);
+            this.label11.Location = new System.Drawing.Point(622, 110);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(32, 20);
             this.label11.TabIndex = 1111191;
@@ -434,7 +444,7 @@
             // 
             // txtProductQty
             // 
-            this.txtProductQty.Location = new System.Drawing.Point(587, 107);
+            this.txtProductQty.Location = new System.Drawing.Point(562, 107);
             this.txtProductQty.MaxLength = 50;
             this.txtProductQty.Name = "txtProductQty";
             this.txtProductQty.Size = new System.Drawing.Size(58, 27);
@@ -444,7 +454,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(521, 110);
+            this.label5.Location = new System.Drawing.Point(500, 110);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 20);
             this.label5.TabIndex = 1111181;
@@ -735,9 +745,9 @@
             this.groupBox2.Controls.Add(this.textBox17);
             this.groupBox2.Controls.Add(this.textBox18);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.groupBox2.Location = new System.Drawing.Point(1032, 14);
+            this.groupBox2.Location = new System.Drawing.Point(1048, 14);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(300, 87);
+            this.groupBox2.Size = new System.Drawing.Size(284, 87);
             this.groupBox2.TabIndex = 1111163;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Salesman Details";
@@ -842,7 +852,7 @@
             this.grprep.Controls.Add(this.textBox7);
             this.grprep.Controls.Add(this.textBox8);
             this.grprep.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grprep.Location = new System.Drawing.Point(726, 13);
+            this.grprep.Location = new System.Drawing.Point(758, 14);
             this.grprep.Name = "grprep";
             this.grprep.Size = new System.Drawing.Size(283, 87);
             this.grprep.TabIndex = 1111157;
@@ -1128,6 +1138,7 @@
             this.lblFinishedNoRecord.TabIndex = 1111138;
             this.lblFinishedNoRecord.Text = "No Records Found";
             this.lblFinishedNoRecord.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblFinishedNoRecord.Visible = false;
             // 
             // label8
             // 
@@ -1184,6 +1195,7 @@
             this.grdPendingorder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPendingorder.Size = new System.Drawing.Size(394, 113);
             this.grdPendingorder.TabIndex = 1111159;
+            this.grdPendingorder.DoubleClick += new System.EventHandler(this.GrdPendingorder_DoubleClick);
             // 
             // clmpsno
             // 
@@ -1194,7 +1206,7 @@
             // 
             // clmpono
             // 
-            this.clmpono.HeaderText = "PO.No.";
+            this.clmpono.HeaderText = "PO No.";
             this.clmpono.Name = "clmpono";
             this.clmpono.ReadOnly = true;
             // 
@@ -1415,18 +1427,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlpurchaseorder);
-            this.Controls.Add(this.tsBrandList);
+            this.Controls.Add(this.tsPOList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PUR_PurchaseOrder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
-            this.Load += new System.EventHandler(this.CP_BrandList_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrandList_KeyDown);
-            this.tsBrandList.ResumeLayout(false);
-            this.tsBrandList.PerformLayout();
+            this.Text = "Purchase Order";
+            this.Load += new System.EventHandler(this.PUR_PurchaseOrder_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PurchaseOrder_KeyDown);
+            this.tsPOList.ResumeLayout(false);
+            this.tsPOList.PerformLayout();
             this.pnlpurchaseorder.ResumeLayout(false);
             this.grppurchaseorder.ResumeLayout(false);
             this.grppurchaseorder.PerformLayout();
@@ -1452,7 +1464,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsBrandList;
+        private System.Windows.Forms.ToolStrip tsPOList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnlpurchaseorder;
         private System.Windows.Forms.GroupBox grppurchaseorder;
@@ -1504,10 +1516,6 @@
         private System.Windows.Forms.Button btnDamage;
         public System.Windows.Forms.TextBox txtProductQty;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitem;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblpocreatedon;
@@ -1557,5 +1565,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmreorderqty;
         private System.Windows.Forms.DataGridViewButtonColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitem;
     }
 }

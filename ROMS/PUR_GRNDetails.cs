@@ -65,10 +65,18 @@ namespace ROMS
             }
         }
 
-        private void CP_BrandList_Load(object sender, EventArgs e)
+        private void PUR_GRNEntry_Load(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                grdUnitList.Rows.Add("Bag", "");
+                grdUnitList.Rows.Add("Tin", "");
+                grdUnitList.Rows.Add("Box", "");
+                grdUnitList.Rows.Add("Excess", "3");
+                grdUnitList.Rows.Add("Total", "");
+                grdUnitList.Rows[grdUnitList.RowCount - 1].DefaultCellStyle.BackColor = Color.SlateGray;
+                grdUnitList.Rows[grdUnitList.RowCount - 1].DefaultCellStyle.ForeColor = Color.White;
+                grdPODetails.Rows.Add("PO0001", "30/07/2023", "20");
             }
             catch (Exception ex)
             {
@@ -78,7 +86,7 @@ namespace ROMS
         }
 
         
-        private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)
+        private void PUR_GRNEntry_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -324,6 +332,21 @@ namespace ROMS
             {
                 MainForm.objPUR_GRNEntryVerify = new PUR_GRNEntryVerify();
                 MainForm.objPUR_GRNEntryVerify.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void GrdPODetails_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_POProducts = new PUR_POProducts();
+                MainForm.objPUR_POProducts.ShowDialog();
             }
             catch (Exception ex)
             {
