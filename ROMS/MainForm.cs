@@ -129,8 +129,10 @@ namespace ROMS
 
         public static PUR_POMappedProducts objPUR_POMappedProducts;
         public static PUR_POIssuedDetails objPUR_POIssuedDetails;
+        public static PUR_POScheduledaywise objPUR_POScheduledaywise;
+         
 
-        
+
 
 
         public MainForm()
