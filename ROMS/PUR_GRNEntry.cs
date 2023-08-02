@@ -66,9 +66,9 @@ namespace ROMS
         {
             try
             {
-                grdUnitList.Rows.Add("Bag");
-                grdUnitList.Rows.Add("Tin");
-                grdUnitList.Rows.Add("Box");
+                grdUnitList.Rows.Add("Bag","");
+                grdUnitList.Rows.Add("Tin","");
+                grdUnitList.Rows.Add("Box","");
             }
             catch (Exception ex)
             {
