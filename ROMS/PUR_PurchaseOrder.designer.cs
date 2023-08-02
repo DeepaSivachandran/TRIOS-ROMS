@@ -38,15 +38,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsBrandList = new System.Windows.Forms.ToolStrip();
+            this.tsPOList = new System.Windows.Forms.ToolStrip();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlpurchaseorder = new System.Windows.Forms.Panel();
             this.grppurchaseorder = new System.Windows.Forms.GroupBox();
+            this.btnViewedProduct = new System.Windows.Forms.Button();
             this.grpsupplierdetails = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.btnNewUnit = new System.Windows.Forms.Label();
             this.cmbUnit = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.lblPC = new System.Windows.Forms.Label();
@@ -55,10 +58,12 @@
             this.lblPOCreateby = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnAdd = new System.Windows.Forms.Label();
             this.txtProductQty = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
+            this.btnDamage = new System.Windows.Forms.Button();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblGodown = new System.Windows.Forms.Label();
             this.gpissued = new System.Windows.Forms.GroupBox();
@@ -73,10 +78,12 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtDTamilName = new System.Windows.Forms.TextBox();
             this.dpissuedateandtime = new System.Windows.Forms.DateTimePicker();
+            this.btnSave = new System.Windows.Forms.Button();
             this.txtpono = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.lblRemark = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSalesmanSave = new System.Windows.Forms.Button();
@@ -87,7 +94,9 @@
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.textBox18 = new System.Windows.Forms.TextBox();
             this.grprep = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.textBox11 = new System.Windows.Forms.TextBox();
+            this.btnAppprove = new System.Windows.Forms.Button();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -134,18 +143,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmreorderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnViewedProduct = new System.Windows.Forms.Button();
-            this.btnNewUnit = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Label();
-            this.btnDamage = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.btnAppprove = new System.Windows.Forms.Button();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.tsBrandList.SuspendLayout();
+            this.tsPOList.SuspendLayout();
             this.pnlpurchaseorder.SuspendLayout();
             this.grppurchaseorder.SuspendLayout();
             this.grpsupplierdetails.SuspendLayout();
@@ -159,18 +157,28 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdsupplieradd)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsBrandList
+            // tsPOList
             // 
-            this.tsBrandList.BackColor = System.Drawing.Color.White;
-            this.tsBrandList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsBrandList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsBrandList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsPOList.BackColor = System.Drawing.Color.White;
+            this.tsPOList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsPOList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsPOList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader});
-            this.tsBrandList.Location = new System.Drawing.Point(0, 0);
-            this.tsBrandList.Name = "tsBrandList";
-            this.tsBrandList.Size = new System.Drawing.Size(1354, 25);
-            this.tsBrandList.TabIndex = 35;
-            this.tsBrandList.Text = "Brand";
+            this.tsPOList.Location = new System.Drawing.Point(0, 0);
+            this.tsPOList.Name = "tsPOList";
+            this.tsPOList.Size = new System.Drawing.Size(1354, 25);
+            this.tsPOList.TabIndex = 35;
+            this.tsPOList.Text = "Purchase Order";
+            // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(109, 22);
+            this.tspHeader.Text = "Purchase Order";
             // 
             // pnlpurchaseorder
             // 
@@ -228,6 +236,20 @@
             this.grppurchaseorder.TabIndex = 958788;
             this.grppurchaseorder.TabStop = false;
             // 
+            // btnViewedProduct
+            // 
+            this.btnViewedProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnViewedProduct.Image = global::ROMS.Properties.Resources.view;
+            this.btnViewedProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnViewedProduct.Location = new System.Drawing.Point(875, 106);
+            this.btnViewedProduct.Name = "btnViewedProduct";
+            this.btnViewedProduct.Size = new System.Drawing.Size(166, 29);
+            this.btnViewedProduct.TabIndex = 1111194;
+            this.btnViewedProduct.Text = "View Mapped Products";
+            this.btnViewedProduct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnViewedProduct.UseVisualStyleBackColor = true;
+            this.btnViewedProduct.Click += new System.EventHandler(this.BtnViewedProduct_Click);
+            // 
             // grpsupplierdetails
             // 
             this.grpsupplierdetails.Controls.Add(this.label14);
@@ -235,9 +257,9 @@
             this.grpsupplierdetails.Controls.Add(this.label12);
             this.grpsupplierdetails.Controls.Add(this.label15);
             this.grpsupplierdetails.Controls.Add(this.label16);
-            this.grpsupplierdetails.Location = new System.Drawing.Point(521, 14);
+            this.grpsupplierdetails.Location = new System.Drawing.Point(505, 14);
             this.grpsupplierdetails.Name = "grpsupplierdetails";
-            this.grpsupplierdetails.Size = new System.Drawing.Size(182, 87);
+            this.grpsupplierdetails.Size = new System.Drawing.Size(246, 87);
             this.grpsupplierdetails.TabIndex = 1111156;
             this.grpsupplierdetails.TabStop = false;
             this.grpsupplierdetails.Text = "Supplier Details";
@@ -301,12 +323,25 @@
             this.label16.Text = "Payment Terms - Taxable Amount";
             this.label16.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // btnNewUnit
+            // 
+            this.btnNewUnit.BackColor = System.Drawing.SystemColors.Control;
+            this.btnNewUnit.Image = global::ROMS.Properties.Resources.New;
+            this.btnNewUnit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNewUnit.Location = new System.Drawing.Point(719, 109);
+            this.btnNewUnit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnNewUnit.Name = "btnNewUnit";
+            this.btnNewUnit.Size = new System.Drawing.Size(21, 22);
+            this.btnNewUnit.TabIndex = 1111193;
+            this.btnNewUnit.Text = "        ";
+            this.btnNewUnit.Click += new System.EventHandler(this.BtnNewUnit_Click);
+            // 
             // cmbUnit
             // 
             this.cmbUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUnit.FormattingEnabled = true;
-            this.cmbUnit.Location = new System.Drawing.Point(680, 107);
+            this.cmbUnit.Location = new System.Drawing.Point(656, 107);
             this.cmbUnit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(59, 27);
@@ -316,7 +351,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(646, 110);
+            this.label11.Location = new System.Drawing.Point(622, 110);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(32, 20);
             this.label11.TabIndex = 1111191;
@@ -384,9 +419,22 @@
             this.label9.TabIndex = 1111185;
             this.label9.Text = "PO Created By";
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnAdd.Location = new System.Drawing.Point(744, 109);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(21, 22);
+            this.btnAdd.TabIndex = 1111159;
+            this.btnAdd.Text = "        ";
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            // 
             // txtProductQty
             // 
-            this.txtProductQty.Location = new System.Drawing.Point(587, 107);
+            this.txtProductQty.Location = new System.Drawing.Point(562, 107);
             this.txtProductQty.MaxLength = 50;
             this.txtProductQty.Name = "txtProductQty";
             this.txtProductQty.Size = new System.Drawing.Size(58, 27);
@@ -396,7 +444,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(521, 110);
+            this.label5.Location = new System.Drawing.Point(500, 110);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 20);
             this.label5.TabIndex = 1111181;
@@ -420,6 +468,20 @@
             this.dpPlanDate.Name = "dpPlanDate";
             this.dpPlanDate.Size = new System.Drawing.Size(112, 27);
             this.dpPlanDate.TabIndex = 19;
+            // 
+            // btnDamage
+            // 
+            this.btnDamage.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnDamage.Image = global::ROMS.Properties.Resources.returns2;
+            this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDamage.Location = new System.Drawing.Point(17, 595);
+            this.btnDamage.Name = "btnDamage";
+            this.btnDamage.Size = new System.Drawing.Size(139, 29);
+            this.btnDamage.TabIndex = 1111180;
+            this.btnDamage.Text = "Delivery Challan";
+            this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDamage.UseVisualStyleBackColor = true;
+            this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
             // 
             // cmbConcern
             // 
@@ -596,6 +658,20 @@
             this.dpissuedateandtime.Size = new System.Drawing.Size(177, 27);
             this.dpissuedateandtime.TabIndex = 0;
             // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1156, 594);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(84, 29);
+            this.btnSave.TabIndex = 1111169;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
             // txtpono
             // 
             this.txtpono.Enabled = false;
@@ -634,6 +710,20 @@
             this.lblRemark.TabIndex = 1111166;
             this.lblRemark.Text = "Remarks";
             // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1245, 594);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 1111165;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button1);
@@ -645,9 +735,9 @@
             this.groupBox2.Controls.Add(this.textBox17);
             this.groupBox2.Controls.Add(this.textBox18);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.groupBox2.Location = new System.Drawing.Point(1032, 14);
+            this.groupBox2.Location = new System.Drawing.Point(1048, 14);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(300, 87);
+            this.groupBox2.Size = new System.Drawing.Size(284, 87);
             this.groupBox2.TabIndex = 1111163;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Salesman Details";
@@ -752,7 +842,7 @@
             this.grprep.Controls.Add(this.textBox7);
             this.grprep.Controls.Add(this.textBox8);
             this.grprep.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grprep.Location = new System.Drawing.Point(726, 13);
+            this.grprep.Location = new System.Drawing.Point(758, 14);
             this.grprep.Name = "grprep";
             this.grprep.Size = new System.Drawing.Size(283, 87);
             this.grprep.TabIndex = 1111157;
@@ -1038,6 +1128,7 @@
             this.lblFinishedNoRecord.TabIndex = 1111138;
             this.lblFinishedNoRecord.Text = "No Records Found";
             this.lblFinishedNoRecord.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblFinishedNoRecord.Visible = false;
             // 
             // label8
             // 
@@ -1094,6 +1185,7 @@
             this.grdPendingorder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPendingorder.Size = new System.Drawing.Size(394, 113);
             this.grdPendingorder.TabIndex = 1111159;
+            this.grdPendingorder.DoubleClick += new System.EventHandler(this.GrdPendingorder_DoubleClick);
             // 
             // clmpsno
             // 
@@ -1104,7 +1196,7 @@
             // 
             // clmpono
             // 
-            this.clmpono.HeaderText = "PO.No.";
+            this.clmpono.HeaderText = "PO No.";
             this.clmpono.Name = "clmpono";
             this.clmpono.ReadOnly = true;
             // 
@@ -1318,142 +1410,6 @@
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             // 
-            // btnViewedProduct
-            // 
-            this.btnViewedProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnViewedProduct.Image = global::ROMS.Properties.Resources.view;
-            this.btnViewedProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewedProduct.Location = new System.Drawing.Point(843, 106);
-            this.btnViewedProduct.Name = "btnViewedProduct";
-            this.btnViewedProduct.Size = new System.Drawing.Size(166, 29);
-            this.btnViewedProduct.TabIndex = 1111194;
-            this.btnViewedProduct.Text = "View Mapped Products";
-            this.btnViewedProduct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnViewedProduct.UseVisualStyleBackColor = true;
-            this.btnViewedProduct.Click += new System.EventHandler(this.BtnViewedProduct_Click);
-            // 
-            // btnNewUnit
-            // 
-            this.btnNewUnit.BackColor = System.Drawing.SystemColors.Control;
-            this.btnNewUnit.Image = global::ROMS.Properties.Resources.New;
-            this.btnNewUnit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNewUnit.Location = new System.Drawing.Point(743, 109);
-            this.btnNewUnit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnNewUnit.Name = "btnNewUnit";
-            this.btnNewUnit.Size = new System.Drawing.Size(21, 22);
-            this.btnNewUnit.TabIndex = 1111193;
-            this.btnNewUnit.Text = "        ";
-            this.btnNewUnit.Click += new System.EventHandler(this.BtnNewUnit_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(768, 109);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(21, 22);
-            this.btnAdd.TabIndex = 1111159;
-            this.btnAdd.Text = "        ";
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            // 
-            // btnDamage
-            // 
-            this.btnDamage.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnDamage.Image = global::ROMS.Properties.Resources.returns2;
-            this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDamage.Location = new System.Drawing.Point(17, 595);
-            this.btnDamage.Name = "btnDamage";
-            this.btnDamage.Size = new System.Drawing.Size(139, 29);
-            this.btnDamage.TabIndex = 1111180;
-            this.btnDamage.Text = "Delivery Challan";
-            this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDamage.UseVisualStyleBackColor = true;
-            this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1156, 594);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 1111169;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1245, 594);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 1111165;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.button1.Image = global::ROMS.Properties.Resources.exclude;
-            this.button1.Location = new System.Drawing.Point(256, 59);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(24, 25);
-            this.button1.TabIndex = 1111198;
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.button2.Image = global::ROMS.Properties.Resources.include;
-            this.button2.Location = new System.Drawing.Point(229, 59);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(24, 25);
-            this.button2.TabIndex = 1111197;
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button3.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.button3.Image = global::ROMS.Properties.Resources.exclude;
-            this.button3.Location = new System.Drawing.Point(256, 59);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(24, 25);
-            this.button3.TabIndex = 1111196;
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // btnAppprove
-            // 
-            this.btnAppprove.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAppprove.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.btnAppprove.Image = global::ROMS.Properties.Resources.include;
-            this.btnAppprove.Location = new System.Drawing.Point(229, 59);
-            this.btnAppprove.Name = "btnAppprove";
-            this.btnAppprove.Size = new System.Drawing.Size(24, 25);
-            this.btnAppprove.TabIndex = 1111194;
-            this.btnAppprove.UseVisualStyleBackColor = false;
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(109, 22);
-            this.tspHeader.Text = "Purchase Order";
-            // 
             // PUR_PurchaseOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1461,18 +1417,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlpurchaseorder);
-            this.Controls.Add(this.tsBrandList);
+            this.Controls.Add(this.tsPOList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PUR_PurchaseOrder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
-            this.Load += new System.EventHandler(this.CP_BrandList_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrandList_KeyDown);
-            this.tsBrandList.ResumeLayout(false);
-            this.tsBrandList.PerformLayout();
+            this.Text = "Purchase Order";
+            this.Load += new System.EventHandler(this.PUR_PurchaseOrder_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PurchaseOrder_KeyDown);
+            this.tsPOList.ResumeLayout(false);
+            this.tsPOList.PerformLayout();
             this.pnlpurchaseorder.ResumeLayout(false);
             this.grppurchaseorder.ResumeLayout(false);
             this.grppurchaseorder.PerformLayout();
@@ -1498,7 +1454,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsBrandList;
+        private System.Windows.Forms.ToolStrip tsPOList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnlpurchaseorder;
         private System.Windows.Forms.GroupBox grppurchaseorder;
@@ -1550,10 +1506,6 @@
         private System.Windows.Forms.Button btnDamage;
         public System.Windows.Forms.TextBox txtProductQty;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitem;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblpocreatedon;
@@ -1603,5 +1555,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmreorderqty;
         private System.Windows.Forms.DataGridViewButtonColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitem;
     }
 }

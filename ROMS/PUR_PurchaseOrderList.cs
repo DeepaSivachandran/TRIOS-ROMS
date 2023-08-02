@@ -146,5 +146,45 @@ namespace ROMS
 
             }
         }
+
+        private void GrdPurchaseorderlist_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_PurchaseOrder = new PUR_PurchaseOrder();
+                MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
+                MainForm.objPUR_PurchaseOrder.gpissued.Enabled = true;
+                MainForm.objPUR_PurchaseOrder.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void BtnViewProducts_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (btnViewProducts.Text == "Hide Products") {
+                    grpProFilter.Visible = false;
+                    grdProDetails.Visible = false;
+                    btnViewProducts.Text = "View Products"; }
+                else
+                {
+                    grpProFilter.Visible = true;
+                    grdProDetails.Visible = true;
+                    btnViewProducts.Text = "Hide Products";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
     }
 }

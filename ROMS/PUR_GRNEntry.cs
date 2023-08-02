@@ -21,6 +21,7 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
+        public int varCloseFlag = 0;
         public PUR_GRNEntry()
         {
             InitializeComponent();
@@ -52,6 +53,7 @@ namespace ROMS
                 DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    varCloseFlag = 1;
                     this.Close();
                 }
             }
@@ -69,6 +71,26 @@ namespace ROMS
                 grdUnitList.Rows.Add("Bag","");
                 grdUnitList.Rows.Add("Tin","");
                 grdUnitList.Rows.Add("Box","");
+                grdUnitList.Rows.Add("Excess", "3");
+                grdUnitList.Rows.Add("Total", "");
+                grdUnitList.Rows[grdUnitList.RowCount - 1].DefaultCellStyle.BackColor = Color.SlateGray;
+                grdUnitList.Rows[grdUnitList.RowCount - 1].DefaultCellStyle.ForeColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PUR_GRNEntry_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (varCloseFlag == 0)
+                {
+                    udfnclose();
+                }
             }
             catch (Exception ex)
             {
