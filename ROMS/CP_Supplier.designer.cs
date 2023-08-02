@@ -1375,7 +1375,8 @@
             this.cmbOrderType.FormattingEnabled = true;
             this.cmbOrderType.Items.AddRange(new object[] {
             "Phone",
-            "Visit"});
+            "Visit",
+            "Mobile App"});
             this.cmbOrderType.Location = new System.Drawing.Point(142, 27);
             this.cmbOrderType.Name = "cmbOrderType";
             this.cmbOrderType.Size = new System.Drawing.Size(204, 27);

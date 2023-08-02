@@ -110,8 +110,34 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_POIssuedDetails = new PUR_POIssuedDetails();
-                MainForm.objPUR_POIssuedDetails.ShowDialog();
+                 
+                if (e.RowIndex != -1)
+                {
+                    switch (grdPurchaseorderlist.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmView":
+                            MainForm.objPUR_POIssuedDetails = new PUR_POIssuedDetails();
+                            MainForm.objPUR_POIssuedDetails.ShowDialog();
+                            break;
+                    }
+                }
+             
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void PUR_PurchaseOrderList_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                 
+
+                grdPurchaseorderlist.Rows.Add(1, "GNM","PO001","02/08/2023","",19,"15.000","","Venkat","02/08/2023","","","",""); 
             }
             catch (Exception ex)
             {

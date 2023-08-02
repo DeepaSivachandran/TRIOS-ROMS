@@ -168,7 +168,8 @@
             "Inperson",
             "Mail",
             "WhatsApp",
-            "Phone"});
+            "Phone",
+            "Mobile App"});
             this.cmbDPurchaseShop.Location = new System.Drawing.Point(129, 74);
             this.cmbDPurchaseShop.Name = "cmbDPurchaseShop";
             this.cmbDPurchaseShop.Size = new System.Drawing.Size(177, 27);

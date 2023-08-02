@@ -346,5 +346,35 @@ namespace ROMS
         {
 
         }
+
+        private void BtnAppprove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_GRNEntryVerify = new PUR_GRNEntryVerify();
+                MainForm.objPUR_GRNEntryVerify.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void BtnSalesmanSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_GRNEntryVerify = new PUR_GRNEntryVerify();
+                MainForm.objPUR_GRNEntryVerify.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
     }
 }

@@ -80,6 +80,8 @@
             this.clmAnyPurchaseReturns = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCreatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCreatedOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClmEdit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -465,7 +467,9 @@
             this.clmordertype,
             this.clmAnyPurchaseReturns,
             this.clmCreatedBy,
-            this.clmCreatedOn});
+            this.clmCreatedOn,
+            this.ClmEdit,
+            this.clmPrint});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -488,6 +492,7 @@
             this.grdPurchaseApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseApproval.Size = new System.Drawing.Size(1348, 510);
             this.grdPurchaseApproval.TabIndex = 958797;
+            this.grdPurchaseApproval.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseApproval_CellContentClick);
             // 
             // clmsno
             // 
@@ -567,6 +572,22 @@
             this.clmCreatedOn.Name = "clmCreatedOn";
             this.clmCreatedOn.ReadOnly = true;
             // 
+            // ClmEdit
+            // 
+            this.ClmEdit.HeaderText = "Edit";
+            this.ClmEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.ClmEdit.Name = "ClmEdit";
+            this.ClmEdit.ReadOnly = true;
+            this.ClmEdit.Width = 50;
+            // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Reprint";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            this.clmPrint.Width = 50;
+            // 
             // PUR_GRNDetailsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -582,6 +603,7 @@
             this.Name = "PUR_GRNDetailsList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Goods Receipt";
+            this.Load += new System.EventHandler(this.PUR_GRNDetailsList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_GRNDetailsList_KeyDown);
             this.tsBrandList.ResumeLayout(false);
             this.tsBrandList.PerformLayout();
@@ -619,18 +641,6 @@
         public System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmconcern;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmgrndate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmgrnno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupplier;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clminvoicedate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clminvoiceno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clminvoice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmordertype;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmAnyPurchaseReturns;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmCreatedBy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmCreatedOn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdconcern;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdgrndate;
@@ -643,5 +653,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AnyPurchaseReturns;
         private System.Windows.Forms.DataGridViewTextBoxColumn Createby;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedOn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmconcern;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmgrndate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmgrnno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupplier;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clminvoicedate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clminvoiceno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clminvoice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmordertype;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmAnyPurchaseReturns;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmCreatedBy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmCreatedOn;
+        private System.Windows.Forms.DataGridViewImageColumn ClmEdit;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
     }
 }

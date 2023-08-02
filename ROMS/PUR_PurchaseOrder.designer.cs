@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PurchaseOrder));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -85,7 +86,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSalesmanSave = new System.Windows.Forms.Button();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.textBox15 = new System.Windows.Forms.TextBox();
@@ -136,10 +137,10 @@
             this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmgst = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmstock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpreviouspend = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPartialPendingQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmreorderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tsBrandList.SuspendLayout();
@@ -726,7 +727,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.btnSalesmanSave);
             this.groupBox2.Controls.Add(this.textBox13);
             this.groupBox2.Controls.Add(this.textBox14);
             this.groupBox2.Controls.Add(this.textBox15);
@@ -745,23 +746,24 @@
             // 
             this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button1.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.button1.Image = global::ROMS.Properties.Resources.include;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.Location = new System.Drawing.Point(256, 59);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(24, 25);
             this.button1.TabIndex = 1111198;
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnSalesmanSave
             // 
-            this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.button2.Image = global::ROMS.Properties.Resources.include;
-            this.button2.Location = new System.Drawing.Point(229, 59);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(24, 25);
-            this.button2.TabIndex = 1111197;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnSalesmanSave.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSalesmanSave.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.btnSalesmanSave.Image = global::ROMS.Properties.Resources.include;
+            this.btnSalesmanSave.Location = new System.Drawing.Point(229, 59);
+            this.btnSalesmanSave.Name = "btnSalesmanSave";
+            this.btnSalesmanSave.Size = new System.Drawing.Size(24, 25);
+            this.btnSalesmanSave.TabIndex = 1111197;
+            this.btnSalesmanSave.UseVisualStyleBackColor = false;
+            this.btnSalesmanSave.Click += new System.EventHandler(this.BtnSalesmanSave_Click);
             // 
             // textBox13
             // 
@@ -851,7 +853,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button3.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.button3.Image = global::ROMS.Properties.Resources.include;
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.Location = new System.Drawing.Point(256, 59);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(24, 25);
@@ -878,6 +880,7 @@
             this.btnAppprove.Size = new System.Drawing.Size(24, 25);
             this.btnAppprove.TabIndex = 1111194;
             this.btnAppprove.UseVisualStyleBackColor = false;
+            this.btnAppprove.Click += new System.EventHandler(this.BtnAppprove_Click);
             // 
             // textBox12
             // 
@@ -1291,10 +1294,10 @@
             this.clmunit,
             this.clmgst,
             this.Column2,
-            this.Column3,
             this.clmstock,
             this.clmpreviouspend,
             this.clmPartialPendingQty,
+            this.Column3,
             this.clmreorderqty,
             this.Column1});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1365,12 +1368,6 @@
             this.Column2.ReadOnly = true;
             this.Column2.Width = 50;
             // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Reorder Qty";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
             // clmstock
             // 
             this.clmstock.HeaderText = "Stock";
@@ -1391,6 +1388,12 @@
             this.clmPartialPendingQty.Name = "clmPartialPendingQty";
             this.clmPartialPendingQty.ReadOnly = true;
             this.clmPartialPendingQty.Width = 120;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Reorder Qty";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // clmreorderqty
             // 
@@ -1540,7 +1543,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnViewedProduct;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSalesmanSave;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
@@ -1548,10 +1551,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmgst;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmstock;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpreviouspend;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPartialPendingQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmreorderqty;
         private System.Windows.Forms.DataGridViewButtonColumn Column1;
     }
