@@ -121,6 +121,10 @@ namespace ROMS
         public static PUR_GRNApproval objPUR_GRNApproval;
         public static PUR_GRNEntry objPUR_GRNEntry;
         public static PUR_POProducts objPUR_POProducts;
+        public static PUR_POMappedProducts objPUR_POMappedProducts;
+        public static PUR_POIssuedDetails objPUR_POIssuedDetails;
+        public static PUR_POScheduledaywise objPUR_POScheduledaywise;
+        public static PUR_GSTIN objPUR_GSTIN;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
@@ -128,13 +132,7 @@ namespace ROMS
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
-        public static PUR_POMappedProducts objPUR_POMappedProducts;
-        public static PUR_POIssuedDetails objPUR_POIssuedDetails;
-        public static PUR_POScheduledaywise objPUR_POScheduledaywise;
-         
-
-
-
+        
 
         public MainForm()
         {

@@ -159,6 +159,12 @@
     <Compile Include="PUR_GRNEntry.designer.cs">
       <DependentUpon>PUR_GRNEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_GSTIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GSTIN.designer.cs">
+      <DependentUpon>PUR_GSTIN.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_POIssuedDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -688,6 +694,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNEntry.resx">
       <DependentUpon>PUR_GRNEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GSTIN.resx">
+      <DependentUpon>PUR_GSTIN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_POIssuedDetails.resx">
       <DependentUpon>PUR_POIssuedDetails.cs</DependentUpon>

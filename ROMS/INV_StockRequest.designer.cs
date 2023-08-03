@@ -338,7 +338,7 @@
             this.grdStockRequest.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdStockRequest.EnableHeadersVisualStyles = false;
             this.grdStockRequest.GridColor = System.Drawing.Color.White;
-            this.grdStockRequest.Location = new System.Drawing.Point(10, 74);
+            this.grdStockRequest.Location = new System.Drawing.Point(10, 77);
             this.grdStockRequest.Name = "grdStockRequest";
             this.grdStockRequest.ReadOnly = true;
             this.grdStockRequest.RowHeadersVisible = false;
