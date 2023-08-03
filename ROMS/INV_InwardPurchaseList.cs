@@ -350,7 +350,7 @@ namespace ROMS
             {
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
                 {
-                    tsbNew_Click(sender, e);
+                    //tsbNew_Click(sender, e);
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
