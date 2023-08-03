@@ -98,5 +98,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void CmbOrderType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbOrderType.SelectedItem == "Against PO")
+                {
+
+                    MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
+                    MainForm.objPUR_GRNOrderType.ShowDialog();
+                }
+                else
+                {
+                    MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
+                    MainForm.objPUR_GRNOrderType.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
     }
 }

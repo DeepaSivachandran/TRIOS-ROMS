@@ -67,22 +67,7 @@ namespace ROMS
 
         private void PUR_GRNEntry_Load(object sender, EventArgs e)
         {
-            try
-            {
-                grdUnitList.Rows.Add("Bag", "");
-                grdUnitList.Rows.Add("Tin", "");
-                grdUnitList.Rows.Add("Box", "");
-                grdUnitList.Rows.Add("Excess", "3");
-                grdUnitList.Rows.Add("Total", "");
-                grdUnitList.Rows[grdUnitList.RowCount - 1].DefaultCellStyle.BackColor = Color.SlateGray;
-                grdUnitList.Rows[grdUnitList.RowCount - 1].DefaultCellStyle.ForeColor = Color.White;
-                grdPODetails.Rows.Add("PO0001", "30/07/2023", "20");
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+          
         }
 
         
@@ -260,7 +245,7 @@ namespace ROMS
         {
             try
             {
-                if (cmbOrderType.SelectedItem == "Purchase Order")
+                if (cmbOrderType.SelectedItem == "Against PO")
                 {
 
                     MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();

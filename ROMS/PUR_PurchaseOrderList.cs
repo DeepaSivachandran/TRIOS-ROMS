@@ -166,17 +166,22 @@ namespace ROMS
 
         private void BtnViewProducts_Click(object sender, EventArgs e)
         {
+
+
             try
             {
-                if (btnViewProducts.Text == "Hide Products") {
+                if (cmbShow.SelectedItem != "Show Product List")
+                {
+
                     grpProFilter.Visible = false;
                     grdProDetails.Visible = false;
-                    btnViewProducts.Text = "View Products"; }
+                    btnViewProducts.Text = "View Products";
+                }
                 else
                 {
                     grpProFilter.Visible = true;
                     grdProDetails.Visible = true;
-                    btnViewProducts.Text = "Hide Products";
+                    btnViewProducts.Text = "Hide Products"; ;
                 }
             }
             catch (Exception ex)
@@ -185,6 +190,11 @@ namespace ROMS
                 objError.WriteFile(ex);
 
             }
+
+        }
+
+        private void CmbShow_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }
