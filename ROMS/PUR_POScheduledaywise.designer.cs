@@ -250,7 +250,7 @@
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "Supplier";
+            this.Column1.HeaderText = "T.Supplier";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             // 
@@ -262,7 +262,7 @@
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "Supplier";
+            this.Column2.HeaderText = "T.Supplier";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
@@ -274,7 +274,7 @@
             // 
             // Column4
             // 
-            this.Column4.HeaderText = "Supplier";
+            this.Column4.HeaderText = "T.Supplier";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
@@ -286,7 +286,7 @@
             // 
             // Column7
             // 
-            this.Column7.HeaderText = "Supplier";
+            this.Column7.HeaderText = "T.Supplier";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             // 

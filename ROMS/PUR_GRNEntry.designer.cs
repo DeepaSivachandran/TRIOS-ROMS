@@ -37,8 +37,6 @@
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grdUnitList = new System.Windows.Forms.DataGridView();
-            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbOrderType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblDESupplier = new System.Windows.Forms.Label();
@@ -57,6 +55,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUnitList)).BeginInit();
@@ -68,6 +69,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.grdUnitList);
             this.groupBox1.Controls.Add(this.cmbOrderType);
             this.groupBox1.Controls.Add(this.label6);
@@ -87,7 +89,7 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Location = new System.Drawing.Point(10, -1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(652, 201);
+            this.groupBox1.Size = new System.Drawing.Size(967, 216);
             this.groupBox1.TabIndex = 1111181;
             this.groupBox1.TabStop = false;
             // 
@@ -122,7 +124,7 @@
             this.grdUnitList.DefaultCellStyle = dataGridViewCellStyle3;
             this.grdUnitList.EnableHeadersVisualStyles = false;
             this.grdUnitList.GridColor = System.Drawing.Color.White;
-            this.grdUnitList.Location = new System.Drawing.Point(509, 18);
+            this.grdUnitList.Location = new System.Drawing.Point(804, 17);
             this.grdUnitList.Name = "grdUnitList";
             this.grdUnitList.RowHeadersVisible = false;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SandyBrown;
@@ -130,23 +132,8 @@
             this.grdUnitList.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.grdUnitList.RowTemplate.Height = 25;
             this.grdUnitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdUnitList.Size = new System.Drawing.Size(127, 177);
+            this.grdUnitList.Size = new System.Drawing.Size(157, 188);
             this.grdUnitList.TabIndex = 1111197;
-            // 
-            // clmUnit
-            // 
-            this.clmUnit.HeaderText = "Unit";
-            this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
-            this.clmUnit.Width = 50;
-            // 
-            // clmQty
-            // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.clmQty.DefaultCellStyle = dataGridViewCellStyle2;
-            this.clmQty.HeaderText = "Qty";
-            this.clmQty.Name = "clmQty";
-            this.clmQty.Width = 50;
             // 
             // cmbOrderType
             // 
@@ -312,7 +299,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(573, 207);
+            this.btnClose.Location = new System.Drawing.Point(902, 222);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 1111183;
@@ -326,7 +313,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(444, 207);
+            this.btnSave.Location = new System.Drawing.Point(773, 222);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(125, 29);
             this.btnSave.TabIndex = 1111182;
@@ -334,12 +321,36 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Location = new System.Drawing.Point(508, 17);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(260, 126);
+            this.groupBox2.TabIndex = 1111198;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Supplier Details";
+            // 
+            // clmUnit
+            // 
+            this.clmUnit.HeaderText = "Package";
+            this.clmUnit.Name = "clmUnit";
+            this.clmUnit.ReadOnly = true;
+            this.clmUnit.Width = 80;
+            // 
+            // clmQty
+            // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.clmQty.DefaultCellStyle = dataGridViewCellStyle2;
+            this.clmQty.HeaderText = "Qty";
+            this.clmQty.Name = "clmQty";
+            this.clmQty.Width = 50;
+            // 
             // PUR_GRNEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(671, 245);
+            this.ClientSize = new System.Drawing.Size(986, 258);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupBox1);
@@ -384,8 +395,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.DataGridView grdUnitList;
+        public System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQty;
-        public System.Windows.Forms.Button btnSave;
     }
 }
