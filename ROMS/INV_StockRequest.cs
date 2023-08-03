@@ -56,10 +56,13 @@ namespace ROMS
             }
         }
 
-        private void CP_BrandList_Load(object sender, EventArgs e)
+        private void INV_StockRequest_Load(object sender, EventArgs e)
         {
             try
-            { 
+            {              
+                grdGodownStock.Rows.Add("Godown1","100 Pkts");
+                grdGodownStock.Rows.Add("Godown2","200 Pkts");
+                grdGodownStock.ColumnHeadersVisible = false;
             }
             catch (Exception ex)
             {
@@ -69,7 +72,7 @@ namespace ROMS
         }
 
         
-        private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)
+        private void INV_StockRequest_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
