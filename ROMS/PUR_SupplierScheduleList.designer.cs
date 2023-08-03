@@ -46,6 +46,8 @@
             this.btnSchedulePopup = new System.Windows.Forms.Button();
             this.lvPrintSupplierName = new System.Windows.Forms.ListView();
             this.grpprint = new System.Windows.Forms.GroupBox();
+            this.cmbDay = new System.Windows.Forms.ComboBox();
+            this.cmbOrder = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.pnlLanguage = new System.Windows.Forms.Panel();
@@ -62,20 +64,18 @@
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.dgvSupplierScheduleList = new System.Windows.Forms.DataGridView();
-            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.cmbOrder = new System.Windows.Forms.ComboBox();
-            this.cmbDay = new System.Windows.Forms.ComboBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSupplierName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmordertype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsSupplierScheduleList.SuspendLayout();
             this.pnlSupplierScheduleList.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -112,8 +112,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(92, 24);
-            this.tspHeader.Text = "PO Schedule";
+            this.tspHeader.Size = new System.Drawing.Size(150, 24);
+            this.tspHeader.Text = "PO Schedule && Product";
             // 
             // tsbDelete
             // 
@@ -235,6 +235,37 @@
             this.grpprint.TabIndex = 1111172;
             this.grpprint.TabStop = false;
             this.grpprint.Text = "Print By";
+            // 
+            // cmbDay
+            // 
+            this.cmbDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDay.FormattingEnabled = true;
+            this.cmbDay.Items.AddRange(new object[] {
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"});
+            this.cmbDay.Location = new System.Drawing.Point(23, 49);
+            this.cmbDay.Name = "cmbDay";
+            this.cmbDay.Size = new System.Drawing.Size(105, 27);
+            this.cmbDay.TabIndex = 1111175;
+            // 
+            // cmbOrder
+            // 
+            this.cmbOrder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOrder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbOrder.FormattingEnabled = true;
+            this.cmbOrder.Items.AddRange(new object[] {
+            "Phone",
+            "Visit",
+            "Mobile App"});
+            this.cmbOrder.Location = new System.Drawing.Point(144, 49);
+            this.cmbOrder.Name = "cmbOrder";
+            this.cmbOrder.Size = new System.Drawing.Size(105, 27);
+            this.cmbOrder.TabIndex = 1111178;
             // 
             // label4
             // 
@@ -447,6 +478,34 @@
             this.dgvSupplierScheduleList.Size = new System.Drawing.Size(1348, 492);
             this.dgvSupplierScheduleList.TabIndex = 958802;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Supplier Name";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 250;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Order Type";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Order Day";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Total Products";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 150;
+            // 
             // DGV_SearchGrid
             // 
             this.DGV_SearchGrid.AllowUserToAddRows = false;
@@ -493,80 +552,6 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958801;
             // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(1116, 391);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(226, 233);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958790;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
-            // 
-            // cmbOrder
-            // 
-            this.cmbOrder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbOrder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbOrder.FormattingEnabled = true;
-            this.cmbOrder.Items.AddRange(new object[] {
-            "Phone",
-            "Visit",
-            "Mobile App"});
-            this.cmbOrder.Location = new System.Drawing.Point(144, 49);
-            this.cmbOrder.Name = "cmbOrder";
-            this.cmbOrder.Size = new System.Drawing.Size(105, 27);
-            this.cmbOrder.TabIndex = 1111178;
-            // 
-            // cmbDay
-            // 
-            this.cmbDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDay.FormattingEnabled = true;
-            this.cmbDay.Items.AddRange(new object[] {
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"});
-            this.cmbDay.Location = new System.Drawing.Point(23, 49);
-            this.cmbDay.Name = "cmbDay";
-            this.cmbDay.Size = new System.Drawing.Size(105, 27);
-            this.cmbDay.TabIndex = 1111175;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Supplier Name";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 250;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Order Type";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Order Day";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Total Products";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 150;
-            // 
             // clmdsno
             // 
             this.clmdsno.HeaderText = "S.No.";
@@ -594,6 +579,21 @@
             this.TotalProducts.HeaderText = "Total Products";
             this.TotalProducts.Name = "TotalProducts";
             this.TotalProducts.Width = 150;
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(1116, 391);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(226, 233);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958790;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // PUR_SupplierScheduleList
             // 
