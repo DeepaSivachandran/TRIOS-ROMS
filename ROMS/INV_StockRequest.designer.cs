@@ -185,7 +185,7 @@
             this.grdGodownStock.Location = new System.Drawing.Point(696, 562);
             this.grdGodownStock.Name = "grdGodownStock";
             this.grdGodownStock.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.grdGodownStock.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdGodownStock.RowTemplate.Height = 25;
@@ -342,7 +342,7 @@
             this.grdStockRequest.Name = "grdStockRequest";
             this.grdStockRequest.ReadOnly = true;
             this.grdStockRequest.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdStockRequest.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdStockRequest.RowTemplate.Height = 25;

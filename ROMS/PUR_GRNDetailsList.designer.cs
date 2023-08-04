@@ -355,8 +355,8 @@
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -485,8 +485,8 @@
             this.grdPurchaseApproval.ReadOnly = true;
             this.grdPurchaseApproval.RowHeadersVisible = false;
             this.grdPurchaseApproval.RowHeadersWidth = 100;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.grdPurchaseApproval.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdPurchaseApproval.RowTemplate.Height = 25;
             this.grdPurchaseApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

@@ -67,6 +67,7 @@
             this.lblTransferDate = new System.Windows.Forms.Label();
             this.dpTrannsferDate = new System.Windows.Forms.DateTimePicker();
             this.grbDStockTransfer = new System.Windows.Forms.GroupBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -81,7 +82,6 @@
             this.lblMRP = new System.Windows.Forms.Label();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblProductNamePICode = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -189,8 +189,8 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvStockTransfer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvStockTransfer.ColumnHeadersHeight = 30;
@@ -218,8 +218,8 @@
             this.dgvStockTransfer.Location = new System.Drawing.Point(6, 163);
             this.dgvStockTransfer.Name = "dgvStockTransfer";
             this.dgvStockTransfer.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.dgvStockTransfer.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvStockTransfer.RowTemplate.Height = 25;
             this.dgvStockTransfer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -424,6 +424,7 @@
             // 
             // grbDStockTransfer
             // 
+            this.grbDStockTransfer.Controls.Add(this.textBox5);
             this.grbDStockTransfer.Controls.Add(this.label2);
             this.grbDStockTransfer.Controls.Add(this.textBox4);
             this.grbDStockTransfer.Controls.Add(this.textBox3);
@@ -438,12 +439,21 @@
             this.grbDStockTransfer.Controls.Add(this.lblMRP);
             this.grbDStockTransfer.Controls.Add(this.txtProductNamePICode);
             this.grbDStockTransfer.Controls.Add(this.lblProductNamePICode);
-            this.grbDStockTransfer.Controls.Add(this.label4);
             this.grbDStockTransfer.Location = new System.Drawing.Point(6, 80);
             this.grbDStockTransfer.Name = "grbDStockTransfer";
             this.grbDStockTransfer.Size = new System.Drawing.Size(1331, 76);
             this.grbDStockTransfer.TabIndex = 1111223;
             this.grbDStockTransfer.TabStop = false;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
+            this.textBox5.Location = new System.Drawing.Point(301, 40);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(17, 27);
+            this.textBox5.TabIndex = 1111236;
+            this.textBox5.Text = "₹";
             // 
             // label2
             // 
@@ -569,15 +579,6 @@
             this.lblProductNamePICode.TabIndex = 958809;
             this.lblProductNamePICode.Text = "Product Name/P.I Code";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(301, 47);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(17, 20);
-            this.label4.TabIndex = 1111187;
-            this.label4.Text = "₹";
-            // 
             // INV_StockTransfer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -596,8 +597,7 @@
             this.Name = "INV_StockTransfer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stock Transfer";
-            this.Load += new System.EventHandler(this.CP_Location_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Location_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_StockTransfer_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).EndInit();
             this.tsStockTransferList.ResumeLayout(false);
             this.tsStockTransferList.PerformLayout();
@@ -663,6 +663,6 @@
         private System.Windows.Forms.Label lblMRP;
         private System.Windows.Forms.TextBox txtProductNamePICode;
         private System.Windows.Forms.Label lblProductNamePICode;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }

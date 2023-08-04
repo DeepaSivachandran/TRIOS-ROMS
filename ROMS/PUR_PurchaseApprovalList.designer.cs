@@ -52,6 +52,19 @@
             this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdpurchasenumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdsupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdbillamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdtotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdapprovedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdPurchaseApproval = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,19 +80,6 @@
             this.clmapproved = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdpurchasenumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdsupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdbillamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdtotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdapprovedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -335,8 +335,8 @@
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -344,6 +344,87 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958798;
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.MinimumWidth = 6;
+            this.clmdsno.Name = "clmdsno";
+            this.clmdsno.Width = 75;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Concern";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // clmddate
+            // 
+            this.clmddate.HeaderText = "Voucher Date";
+            this.clmddate.MinimumWidth = 6;
+            this.clmddate.Name = "clmddate";
+            // 
+            // clmdpurchasenumber
+            // 
+            this.clmdpurchasenumber.HeaderText = "Voucher No.";
+            this.clmdpurchasenumber.MinimumWidth = 6;
+            this.clmdpurchasenumber.Name = "clmdpurchasenumber";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Invoice Date";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // clmdpono
+            // 
+            this.clmdpono.HeaderText = "Invoice No.";
+            this.clmdpono.MinimumWidth = 6;
+            this.clmdpono.Name = "clmdpono";
+            // 
+            // clmdsupplier
+            // 
+            this.clmdsupplier.HeaderText = "Invoice Amt";
+            this.clmdsupplier.Name = "clmdsupplier";
+            this.clmdsupplier.ReadOnly = true;
+            // 
+            // clmdbillamt
+            // 
+            this.clmdbillamt.HeaderText = "Purchase Type";
+            this.clmdbillamt.Name = "clmdbillamt";
+            this.clmdbillamt.ReadOnly = true;
+            // 
+            // clmdtotalitem
+            // 
+            this.clmdtotalitem.HeaderText = "Total Products";
+            this.clmdtotalitem.Name = "clmdtotalitem";
+            this.clmdtotalitem.ReadOnly = true;
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Status";
+            this.clmdstatus.Name = "clmdstatus";
+            this.clmdstatus.ReadOnly = true;
+            // 
+            // clmdenterby
+            // 
+            this.clmdenterby.HeaderText = "Created By";
+            this.clmdenterby.Name = "clmdenterby";
+            this.clmdenterby.ReadOnly = true;
+            this.clmdenterby.Width = 150;
+            // 
+            // clmdapprovedby
+            // 
+            this.clmdapprovedby.HeaderText = "Approved By";
+            this.clmdapprovedby.Name = "clmdapprovedby";
+            this.clmdapprovedby.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Remarks";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 200;
             // 
             // grdPurchaseApproval
             // 
@@ -392,13 +473,14 @@
             this.grdPurchaseApproval.ReadOnly = true;
             this.grdPurchaseApproval.RowHeadersVisible = false;
             this.grdPurchaseApproval.RowHeadersWidth = 100;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdPurchaseApproval.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdPurchaseApproval.RowTemplate.Height = 25;
             this.grdPurchaseApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseApproval.Size = new System.Drawing.Size(1348, 510);
             this.grdPurchaseApproval.TabIndex = 958797;
+            this.grdPurchaseApproval.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseApproval_CellContentClick);
             this.grdPurchaseApproval.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
             // 
             // clmsno
@@ -491,87 +573,6 @@
             this.Column7.HeaderText = "Reason";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
-            // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.MinimumWidth = 6;
-            this.clmdsno.Name = "clmdsno";
-            this.clmdsno.Width = 75;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Concern";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // clmddate
-            // 
-            this.clmddate.HeaderText = "Voucher Date";
-            this.clmddate.MinimumWidth = 6;
-            this.clmddate.Name = "clmddate";
-            // 
-            // clmdpurchasenumber
-            // 
-            this.clmdpurchasenumber.HeaderText = "Voucher No.";
-            this.clmdpurchasenumber.MinimumWidth = 6;
-            this.clmdpurchasenumber.Name = "clmdpurchasenumber";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Invoice Date";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // clmdpono
-            // 
-            this.clmdpono.HeaderText = "Invoice No.";
-            this.clmdpono.MinimumWidth = 6;
-            this.clmdpono.Name = "clmdpono";
-            // 
-            // clmdsupplier
-            // 
-            this.clmdsupplier.HeaderText = "Invoice Amt";
-            this.clmdsupplier.Name = "clmdsupplier";
-            this.clmdsupplier.ReadOnly = true;
-            // 
-            // clmdbillamt
-            // 
-            this.clmdbillamt.HeaderText = "Purchase Type";
-            this.clmdbillamt.Name = "clmdbillamt";
-            this.clmdbillamt.ReadOnly = true;
-            // 
-            // clmdtotalitem
-            // 
-            this.clmdtotalitem.HeaderText = "Total Products";
-            this.clmdtotalitem.Name = "clmdtotalitem";
-            this.clmdtotalitem.ReadOnly = true;
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Status";
-            this.clmdstatus.Name = "clmdstatus";
-            this.clmdstatus.ReadOnly = true;
-            // 
-            // clmdenterby
-            // 
-            this.clmdenterby.HeaderText = "Created By";
-            this.clmdenterby.Name = "clmdenterby";
-            this.clmdenterby.ReadOnly = true;
-            this.clmdenterby.Width = 150;
-            // 
-            // clmdapprovedby
-            // 
-            this.clmdapprovedby.HeaderText = "Approved By";
-            this.clmdapprovedby.Name = "clmdapprovedby";
-            this.clmdapprovedby.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Remarks";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 200;
             // 
             // PUR_PurchaseApprovalList
             // 

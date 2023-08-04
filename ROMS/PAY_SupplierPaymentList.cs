@@ -37,8 +37,7 @@ namespace ROMS
         private void tsbEdit_Click(object sender, EventArgs e)
         {
             try
-            {
-                udfnEdit();
+            { 
             }
             catch (Exception ex)
             {
@@ -48,9 +47,7 @@ namespace ROMS
         }
         private void tsbDelete_Click(object sender, EventArgs e)
         {
-            try
-            {
-                udfndelete();
+            try { 
             }
             catch (Exception ex)
             {
@@ -58,194 +55,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void CP_BrandList_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnList();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void udfndelete()
-        {
-            try
-            {
-                if (grdSupllierPaymentList.SelectedRows.Count > 0)
-                {
-                    string result = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-
-                        SPDataService objspdservice = new SPDataService();
-                        result = "";
-                    //    result = objspdservice.udfnSPBrandMaster("Delete", grdBrandList.SelectedRows[0].Cells["BrandCode"].Value.ToString(), "", "","", "", MainForm.pbUserID, MainForm.pbIpAddress, "Brand Delete");
-
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        private void udfnEdit()
-        {
-            try
-            {
-
-                if (grdSupllierPaymentList.SelectedRows.Count > 0)
-                {
-                    MainForm.objCP_Brand = new CP_Brand();
-                    //MainForm.objCP_Brand.MdiParent = this.ParentForm;
-                    
-                    MainForm.objCP_Brand.ShowDialog();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        public void udfnList()
-        {
-            try
-            {
-                picLoader.Visible = true;
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                grdSupllierPaymentList.DataSource = null;
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                //objDs = objdserv.udfnSPBrandList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                objdserv.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-                            grdSupllierPaymentList.DataSource = objDs.Tables[0];
-                            grdSupllierPaymentList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdSupllierPaymentList.Columns["Total No. of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdSupllierPaymentList.Columns["Brand Name in Tamil"].Width = 275;
-                            grdSupllierPaymentList.Columns["Brand Name in English"].Width = 275;
-                            grdSupllierPaymentList.Columns["Label Name in Tamil"].Width = 275;
-                            grdSupllierPaymentList.Columns["Label Name in English"].Width = 275;
-                            grdSupllierPaymentList.Columns["BrandCode"].Visible = false;
-                        }
-                        else
-                        {
-                            lblNoRecordsFound.Visible = true;
-                            lblNoRecordsFound.BringToFront();
-                        }
-                    }
-                    else
-                    {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
-                    }
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
-                }
-                udfnSearchGridHead();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                grdSupllierPaymentList.ClearSelection();
-                picLoader.Visible = false;
-            }
-        }
-
-        private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    tsbEdit_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdBrandList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdBrandList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) { udfnEdit(); }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -378,43 +187,8 @@ namespace ROMS
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        }
-        private void grdBrandList_Scroll(object sender, ScrollEventArgs e)
-        {
-            try
-            {
-
-                int totalWidth = 0;
-                int offSetValue = grdSupllierPaymentList.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-
-                if (totalWidth - grdSupllierPaymentList.Width > grdSupllierPaymentList.HorizontalScrollingOffset && grdSupllierPaymentList.HorizontalScrollingOffset > 0)
-                {
-                    offSetValue = offSetValue ;
-                    offSetValue = offSetValue;
-                }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
-
-                udfnscrollVisible(DGV_SearchGrid, grdSupllierPaymentList);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void DGV_SearchGrid_Sorted(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DGV_SearchGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-
-        }
+        } 
+         
 
      
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -454,31 +228,7 @@ namespace ROMS
             DGV_SearchGrid.HorizontalScrollingOffset = grdSupllierPaymentList.HorizontalScrollingOffset;
             DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
-
-        private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
-        {
-            try
-            {
-
-                int totalWidth = 0;
-                int offSetValue = grdSupllierPaymentList.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-
-                if (totalWidth - grdSupllierPaymentList.Width > grdSupllierPaymentList.HorizontalScrollingOffset && grdSupllierPaymentList.HorizontalScrollingOffset > 0)
-                {
-                    //offSetValue = offSetValue ;
-                    offSetValue = offSetValue;
-                }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
         public void udfnscrollVisible(DataGridView DGV,DataGridView grdGroupList)
         {
             try
@@ -502,6 +252,33 @@ namespace ROMS
                             DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                         }
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PAY_SupplierPaymentList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    tsbEdit_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
                 }
             }
             catch (Exception ex)

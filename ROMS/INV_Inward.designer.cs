@@ -34,6 +34,11 @@
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.lblDPercentage = new System.Windows.Forms.Label();
+            this.lblPercentage = new System.Windows.Forms.Label();
+            this.txtRDPercentageCheck = new System.Windows.Forms.TextBox();
+            this.txtDGPercentageCheck = new System.Windows.Forms.TextBox();
             this.grbgodown = new System.Windows.Forms.GroupBox();
             this.cmbtransfertype = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -65,7 +70,7 @@
             this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmremove = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpproductname = new System.Windows.Forms.GroupBox();
-            this.label23 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtunitrate = new System.Windows.Forms.TextBox();
             this.lblbatchno = new System.Windows.Forms.Label();
@@ -84,17 +89,12 @@
             this.lblMM = new System.Windows.Forms.Label();
             this.lblDd = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.lblDPercentage = new System.Windows.Forms.Label();
-            this.lblPercentage = new System.Windows.Forms.Label();
-            this.txtRDPercentageCheck = new System.Windows.Forms.TextBox();
-            this.txtDGPercentageCheck = new System.Windows.Forms.TextBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.grbgodown.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_inward)).BeginInit();
             this.grpproductname.SuspendLayout();
-            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsInwardList
@@ -138,6 +138,61 @@
             this.pnlinward.Name = "pnlinward";
             this.pnlinward.Size = new System.Drawing.Size(1354, 645);
             this.pnlinward.TabIndex = 36;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.lblDPercentage);
+            this.groupBox10.Controls.Add(this.lblPercentage);
+            this.groupBox10.Controls.Add(this.txtRDPercentageCheck);
+            this.groupBox10.Controls.Add(this.txtDGPercentageCheck);
+            this.groupBox10.Location = new System.Drawing.Point(604, 575);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(187, 42);
+            this.groupBox10.TabIndex = 1111210;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Shelf Life";
+            // 
+            // lblDPercentage
+            // 
+            this.lblDPercentage.AutoSize = true;
+            this.lblDPercentage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDPercentage.Location = new System.Drawing.Point(131, 18);
+            this.lblDPercentage.Name = "lblDPercentage";
+            this.lblDPercentage.Size = new System.Drawing.Size(45, 20);
+            this.lblDPercentage.TabIndex = 1111159;
+            this.lblDPercentage.Text = "< 25%";
+            // 
+            // lblPercentage
+            // 
+            this.lblPercentage.AutoSize = true;
+            this.lblPercentage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPercentage.Location = new System.Drawing.Point(43, 18);
+            this.lblPercentage.Name = "lblPercentage";
+            this.lblPercentage.Size = new System.Drawing.Size(45, 20);
+            this.lblPercentage.TabIndex = 1111158;
+            this.lblPercentage.Text = "< 50%";
+            // 
+            // txtRDPercentageCheck
+            // 
+            this.txtRDPercentageCheck.BackColor = System.Drawing.Color.Red;
+            this.txtRDPercentageCheck.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRDPercentageCheck.Location = new System.Drawing.Point(104, 20);
+            this.txtRDPercentageCheck.MaxLength = 50;
+            this.txtRDPercentageCheck.Multiline = true;
+            this.txtRDPercentageCheck.Name = "txtRDPercentageCheck";
+            this.txtRDPercentageCheck.Size = new System.Drawing.Size(27, 16);
+            this.txtRDPercentageCheck.TabIndex = 1111157;
+            // 
+            // txtDGPercentageCheck
+            // 
+            this.txtDGPercentageCheck.BackColor = System.Drawing.Color.Orange;
+            this.txtDGPercentageCheck.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDGPercentageCheck.Location = new System.Drawing.Point(16, 20);
+            this.txtDGPercentageCheck.MaxLength = 50;
+            this.txtDGPercentageCheck.Multiline = true;
+            this.txtDGPercentageCheck.Name = "txtDGPercentageCheck";
+            this.txtDGPercentageCheck.Size = new System.Drawing.Size(27, 16);
+            this.txtDGPercentageCheck.TabIndex = 1111156;
             // 
             // grbgodown
             // 
@@ -376,8 +431,8 @@
             this.DGV_inward.Location = new System.Drawing.Point(3, 146);
             this.DGV_inward.Name = "DGV_inward";
             this.DGV_inward.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.DGV_inward.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_inward.RowTemplate.Height = 25;
             this.DGV_inward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -447,7 +502,7 @@
             // 
             // grpproductname
             // 
-            this.grpproductname.Controls.Add(this.label23);
+            this.grpproductname.Controls.Add(this.textBox4);
             this.grpproductname.Controls.Add(this.label1);
             this.grpproductname.Controls.Add(this.txtunitrate);
             this.grpproductname.Controls.Add(this.lblbatchno);
@@ -471,14 +526,15 @@
             this.grpproductname.TabIndex = 958806;
             this.grpproductname.TabStop = false;
             // 
-            // label23
+            // textBox4
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(362, 44);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(17, 20);
-            this.label23.TabIndex = 1111184;
-            this.label23.Text = "₹";
+            this.textBox4.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
+            this.textBox4.Location = new System.Drawing.Point(364, 37);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(17, 27);
+            this.textBox4.TabIndex = 1111236;
+            this.textBox4.Text = "₹";
             // 
             // label1
             // 
@@ -637,61 +693,6 @@
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.lblDPercentage);
-            this.groupBox10.Controls.Add(this.lblPercentage);
-            this.groupBox10.Controls.Add(this.txtRDPercentageCheck);
-            this.groupBox10.Controls.Add(this.txtDGPercentageCheck);
-            this.groupBox10.Location = new System.Drawing.Point(604, 575);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(187, 42);
-            this.groupBox10.TabIndex = 1111210;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Shelf Life";
-            // 
-            // lblDPercentage
-            // 
-            this.lblDPercentage.AutoSize = true;
-            this.lblDPercentage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDPercentage.Location = new System.Drawing.Point(131, 18);
-            this.lblDPercentage.Name = "lblDPercentage";
-            this.lblDPercentage.Size = new System.Drawing.Size(45, 20);
-            this.lblDPercentage.TabIndex = 1111159;
-            this.lblDPercentage.Text = "< 25%";
-            // 
-            // lblPercentage
-            // 
-            this.lblPercentage.AutoSize = true;
-            this.lblPercentage.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPercentage.Location = new System.Drawing.Point(43, 18);
-            this.lblPercentage.Name = "lblPercentage";
-            this.lblPercentage.Size = new System.Drawing.Size(45, 20);
-            this.lblPercentage.TabIndex = 1111158;
-            this.lblPercentage.Text = "< 50%";
-            // 
-            // txtRDPercentageCheck
-            // 
-            this.txtRDPercentageCheck.BackColor = System.Drawing.Color.Red;
-            this.txtRDPercentageCheck.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRDPercentageCheck.Location = new System.Drawing.Point(104, 20);
-            this.txtRDPercentageCheck.MaxLength = 50;
-            this.txtRDPercentageCheck.Multiline = true;
-            this.txtRDPercentageCheck.Name = "txtRDPercentageCheck";
-            this.txtRDPercentageCheck.Size = new System.Drawing.Size(27, 16);
-            this.txtRDPercentageCheck.TabIndex = 1111157;
-            // 
-            // txtDGPercentageCheck
-            // 
-            this.txtDGPercentageCheck.BackColor = System.Drawing.Color.Orange;
-            this.txtDGPercentageCheck.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDGPercentageCheck.Location = new System.Drawing.Point(16, 20);
-            this.txtDGPercentageCheck.MaxLength = 50;
-            this.txtDGPercentageCheck.Multiline = true;
-            this.txtDGPercentageCheck.Name = "txtDGPercentageCheck";
-            this.txtDGPercentageCheck.Size = new System.Drawing.Size(27, 16);
-            this.txtDGPercentageCheck.TabIndex = 1111156;
-            // 
             // INV_Inward
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -713,13 +714,13 @@
             this.tsInwardList.PerformLayout();
             this.pnlinward.ResumeLayout(false);
             this.pnlinward.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.grbgodown.ResumeLayout(false);
             this.grbgodown.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_inward)).EndInit();
             this.grpproductname.ResumeLayout(false);
             this.grpproductname.PerformLayout();
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -765,7 +766,6 @@
         private System.Windows.Forms.Label lblMM;
         private System.Windows.Forms.Label lblDd;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ComboBox cmbtransfertype;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
@@ -784,5 +784,6 @@
         private System.Windows.Forms.Label lblPercentage;
         private System.Windows.Forms.TextBox txtRDPercentageCheck;
         private System.Windows.Forms.TextBox txtDGPercentageCheck;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }
