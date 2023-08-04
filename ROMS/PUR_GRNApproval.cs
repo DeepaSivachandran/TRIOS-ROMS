@@ -64,5 +64,30 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdGrnlist_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void TextBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox9_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

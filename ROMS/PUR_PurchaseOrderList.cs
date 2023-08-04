@@ -135,8 +135,7 @@ namespace ROMS
         {
             try
             {
-                 
-
+                cmbShow.SelectedItem = 0;
                 grdPurchaseorderlist.Rows.Add(1, "GNM","PO001","02/08/2023","",19,"15.000","","Venkat","02/08/2023","","","",""); 
             }
             catch (Exception ex)
@@ -170,18 +169,19 @@ namespace ROMS
 
             try
             {
-                if (cmbShow.SelectedItem != "Show Product List")
+                if (cmbShow.SelectedIndex == 0)
                 {
-
                     grpProFilter.Visible = false;
                     grdProDetails.Visible = false;
-                    btnViewProducts.Text = "View Products";
+                    grdPurchaseorderlist.Visible = true;
+                    DGV_SearchGrid.Visible = true;
                 }
                 else
                 {
                     grpProFilter.Visible = true;
-                    grdProDetails.Visible = true;
-                    btnViewProducts.Text = "Hide Products"; ;
+                    grdProDetails.Visible = true; 
+                    grdPurchaseorderlist.Visible = false;
+                    DGV_SearchGrid.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -195,6 +195,11 @@ namespace ROMS
 
         private void CmbShow_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
+
+        private void BtnView_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

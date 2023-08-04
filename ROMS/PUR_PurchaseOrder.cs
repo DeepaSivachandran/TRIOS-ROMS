@@ -55,6 +55,7 @@ namespace ROMS
                 dpPlanDate.Value = DateTime.Today;
                 udfnList();
                 grdPendingorder.Rows.Add("1","PO0001", "30/07/2023", "20");
+                cmbStatus.SelectedIndex = 0;
             }
             catch (Exception ex)
             {

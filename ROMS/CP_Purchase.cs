@@ -40,8 +40,7 @@ namespace ROMS
             try
             {
                 if (cmbType.SelectedIndex.ToString() == "0") { // GRN
-                    txtQRCode.ReadOnly = false;                   
-                    txtSupplier.ReadOnly = true;
+                    txtQRCode.ReadOnly = false;  
                     dpInvoiceDate.Enabled = false;
                     txtInvoiceNo.ReadOnly = true;
                 }
@@ -51,8 +50,6 @@ namespace ROMS
                     MainForm.objPUR_GRNOrderType.ShowDialog();
                     txtQRCode.ReadOnly = true;
                     txtQRCode.Enabled = false;
-                    txtSupplier.ReadOnly = false;
-                    txtSupplier.ReadOnly = false;
                     dpInvoiceDate.Enabled = true;
                     txtInvoiceNo.ReadOnly = false;
                 }
@@ -60,8 +57,6 @@ namespace ROMS
                 {
                     txtQRCode.ReadOnly = true;
                     txtQRCode.Enabled = false;
-                    txtSupplier.ReadOnly = false;
-                    txtSupplier.ReadOnly = false;
                     dpInvoiceDate.Enabled = true;
                     txtInvoiceNo.ReadOnly = false;
                 }
@@ -184,6 +179,20 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSupplier_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_GSTIN = new PUR_GSTIN();
+                MainForm.objPUR_GSTIN.ShowDialog();
             }
             catch (Exception ex)
             {
