@@ -19,6 +19,7 @@ namespace ROMS
         private ToolTip tpSymbol = new ToolTip();
         private ToolTip tpNoOfDecimals = new ToolTip();
         private ToolTip tpEInvoiceUnitName = new ToolTip();
+
         public string varbrandcode;
         public string pbFormStatus;
         public CP_Unit()
@@ -26,6 +27,22 @@ namespace ROMS
             InitializeComponent();
         }
 
+        private void CP_Unit_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tpUnitName.Active = false;
+                tpSymbol.Active = false;
+                tpNoOfDecimals.Active = false;
+                tpEInvoiceUnitName.Active = false;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void CP_Unit_Load(object sender, EventArgs e)
         {
@@ -109,27 +126,27 @@ namespace ROMS
 
                 if (Convert.ToString(txtEUnitName.Text).Trim() == "")
                 {
-                    epUnit.SetError(txtEUnitName, "Please Enter Unit Name");
+                    epUnit.SetError(txtEUnitName, "Please enter unit name");
                     txtEUnitName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpUnitName.ShowAlways = true;
-                    tpUnitName.Show("Please Enter Unit Name", txtEUnitName, 5000);
+                    tpUnitName.Show("Please enter unit name", txtEUnitName, 5000);
                     blnErrorFlag = true;
                 }
 
                 if (Convert.ToString(txtSymbol.Text).Trim() == "")
                 {
-                    epUnit.SetError(txtSymbol, "Please Enter Symbol");
+                    epUnit.SetError(txtSymbol, "Please enter symbol");
                     txtSymbol.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpSymbol.ShowAlways = true;
-                    tpSymbol.Show("Please Enter Symbol", txtSymbol, 5000);
+                    tpSymbol.Show("Please enter symbol", txtSymbol, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(cmbNoOfDecimals.SelectedValue) == "" || Convert.ToString(cmbNoOfDecimals.SelectedValue) == "-1")
                 {
-                    epUnit.SetError(cmbNoOfDecimals, "Please Select No.of Decimals");
+                    epUnit.SetError(cmbNoOfDecimals, "Please select No.of decimals");
                     cmbNoOfDecimals.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpNoOfDecimals.ShowAlways = true;
-                    tpNoOfDecimals.Show("Please Select No.of Decimals", cmbNoOfDecimals, 5000);
+                    tpNoOfDecimals.Show("Please select No.of decimals", cmbNoOfDecimals, 5000);
                        blnErrorFlag = true;
                 }
 
@@ -245,22 +262,7 @@ namespace ROMS
 
         private void CP_Brand_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (e.KeyCode == Keys.Escape)
-                {
-                    udfnclose();
-                }
-                if (e.KeyCode == Keys.F5)
-                {
-                    btnSave_Click(sender, e);
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
 
 
@@ -360,10 +362,10 @@ namespace ROMS
             {
                  if(Convert.ToString(txtEUnitName.Text).Trim() == "")
                  {
-                    epUnit.SetError(txtEUnitName, "Please Enter Unit Name");
+                    epUnit.SetError(txtEUnitName, "Please enter unit name");
                     txtEUnitName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpUnitName.ShowAlways = true;
-                    tpUnitName.Show("Please Enter Unit Name", txtEUnitName, 5000);
+                    tpUnitName.Show("Please enter unit name", txtEUnitName, 5000);
                 }
                 else
                 {
@@ -398,15 +400,15 @@ namespace ROMS
             {
                 if (Convert.ToString(txtSymbol.Text).Trim() == "")
                 {
-                    epUnit.SetError(txtSymbol, "Please Enter Symbol");
+                    epUnit.SetError(txtSymbol, "Please enter symbol");
                     txtSymbol.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpSymbol.ShowAlways = true;
-                    tpSymbol.Show("Please Enter Symbol", txtSymbol, 5000);
+                    tpSymbol.Show("Please enter symbol", txtSymbol, 5000);
                 }
                 else
                 {
                     epUnit.Clear();
-                    tpSymbol.BackColor = Color.White;
+                    txtSymbol.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -492,10 +494,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtEInvoiceUnitName.Text).Trim() == "")
                 {
-                    epUnit.SetError(txtEInvoiceUnitName, "Please Enter E-Invoice Unit Name");
+                    epUnit.SetError(txtEInvoiceUnitName, "Please enter E-Invoice unit name");
                     txtEInvoiceUnitName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpEInvoiceUnitName.ShowAlways = true;
-                    tpEInvoiceUnitName.Show("Please Enter E-Invoice Unit Name", txtEInvoiceUnitName, 5000);
+                    tpEInvoiceUnitName.Show("Please enter E-Invoice unit name", txtEInvoiceUnitName, 5000);
                 }
                 else
                 {
@@ -563,10 +565,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbNoOfDecimals.SelectedValue) == "" || Convert.ToString(cmbNoOfDecimals.SelectedValue) == "-1")
                 {
-                    epUnit.SetError(cmbNoOfDecimals, "Please Select No.of Decimals");
+                    epUnit.SetError(cmbNoOfDecimals, "Please select No.of decimals");
                     cmbNoOfDecimals.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpNoOfDecimals.ShowAlways = true;
-                    tpNoOfDecimals.Show("Please Select No.of Decimals", cmbNoOfDecimals, 5000);
+                    tpNoOfDecimals.Show("Please select No.of decimals", cmbNoOfDecimals, 5000);
                 }
                 else
                 {
@@ -609,6 +611,26 @@ namespace ROMS
                 else
                 {
                     e.Cancel = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_Unit_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    btnSave_Click(sender, e);
                 }
             }
             catch (Exception ex)

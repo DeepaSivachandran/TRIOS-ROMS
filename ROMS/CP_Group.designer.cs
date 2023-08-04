@@ -215,9 +215,10 @@
             this.Name = "CP_Group";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product Group";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Group_FormClosing_1);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Group_FormClosing);
             this.Load += new System.EventHandler(this.CP_Group_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Group_KeyDown_1);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Group_KeyDown);
+            this.Leave += new System.EventHandler(this.CP_Group_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             this.pnlStatus.ResumeLayout(false);

@@ -69,16 +69,16 @@
             this.epRackGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpUserList = new System.Windows.Forms.GroupBox();
             this.grdStaffDetails = new System.Windows.Forms.DataGridView();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtStaffName = new System.Windows.Forms.TextBox();
             this.txtDUserName = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Label();
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremove = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSelectedRackList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Racklist)).BeginInit();
@@ -119,7 +119,7 @@
             this.Add.Location = new System.Drawing.Point(369, 291);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(31, 29);
-            this.Add.TabIndex = 6;
+            this.Add.TabIndex = 52;
             this.Add.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Add.UseVisualStyleBackColor = true;
             this.Add.Enter += new System.EventHandler(this.Add_Enter);
@@ -169,7 +169,7 @@
             this.grdSelectedRackList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdSelectedRackList.ShowRowErrors = false;
             this.grdSelectedRackList.Size = new System.Drawing.Size(347, 314);
-            this.grdSelectedRackList.TabIndex = 7;
+            this.grdSelectedRackList.TabIndex = 53;
             this.grdSelectedRackList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GrdSelectedRackList_CellMouseDoubleClick);
             this.grdSelectedRackList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdSelectedRackList_KeyDown);
             // 
@@ -185,6 +185,7 @@
             this.dataGridViewTextBoxColumn2.HeaderText = "Rack";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Width = 60;
             // 
             // Column6
@@ -214,7 +215,7 @@
             this.btnView.Location = new System.Drawing.Point(140, 114);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(74, 29);
-            this.btnView.TabIndex = 4;
+            this.btnView.TabIndex = 3;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
@@ -305,7 +306,7 @@
             this.DGV_Racklist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_Racklist.ShowRowErrors = false;
             this.DGV_Racklist.Size = new System.Drawing.Size(347, 314);
-            this.DGV_Racklist.TabIndex = 5;
+            this.DGV_Racklist.TabIndex = 51;
             this.DGV_Racklist.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_Racklist_CellMouseDoubleClick);
             // 
             // clmcheckbox
@@ -361,7 +362,7 @@
             this.cmbStockLocation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbStockLocation.Name = "cmbStockLocation";
             this.cmbStockLocation.Size = new System.Drawing.Size(116, 27);
-            this.cmbStockLocation.TabIndex = 3;
+            this.cmbStockLocation.TabIndex = 2;
             this.cmbStockLocation.Enter += new System.EventHandler(this.CmbStockLocation_Enter);
             this.cmbStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStockLocation_KeyDown);
             this.cmbStockLocation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStockLocation_KeyPress);
@@ -377,7 +378,7 @@
             this.txtDRackGroup.Name = "txtDRackGroup";
             this.txtDRackGroup.ReadOnly = true;
             this.txtDRackGroup.Size = new System.Drawing.Size(116, 27);
-            this.txtDRackGroup.TabIndex = 1111133;
+            this.txtDRackGroup.TabIndex = 0;
             this.txtDRackGroup.Text = "Rack Group Name";
             // 
             // cmbConcern
@@ -407,7 +408,7 @@
             this.txtConcern.Name = "txtConcern";
             this.txtConcern.ReadOnly = true;
             this.txtConcern.Size = new System.Drawing.Size(116, 27);
-            this.txtConcern.TabIndex = 1111130;
+            this.txtConcern.TabIndex = 0;
             this.txtConcern.Text = "Concern";
             // 
             // pnlStatus
@@ -421,7 +422,7 @@
             this.pnlStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(208, 27);
-            this.pnlStatus.TabIndex = 34;
+            this.pnlStatus.TabIndex = 7;
             // 
             // rbActive
             // 
@@ -432,7 +433,7 @@
             this.rbActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(54, 21);
-            this.rbActive.TabIndex = 35;
+            this.rbActive.TabIndex = 7;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -447,7 +448,7 @@
             this.rbInactive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
-            this.rbInactive.TabIndex = 36;
+            this.rbInactive.TabIndex = 8;
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
             this.rbInactive.Enter += new System.EventHandler(this.RbInactive_Enter);
@@ -459,14 +460,14 @@
             // 
             // grpUserList
             // 
+            this.grpUserList.Controls.Add(this.btnAdd);
             this.grpUserList.Controls.Add(this.grdStaffDetails);
             this.grpUserList.Controls.Add(this.txtStaffName);
             this.grpUserList.Controls.Add(this.txtDUserName);
-            this.grpUserList.Controls.Add(this.btnAdd);
             this.grpUserList.Location = new System.Drawing.Point(797, 11);
             this.grpUserList.Name = "grpUserList";
             this.grpUserList.Size = new System.Drawing.Size(481, 233);
-            this.grpUserList.TabIndex = 1111137;
+            this.grpUserList.TabIndex = 4;
             this.grpUserList.TabStop = false;
             this.grpUserList.Text = "Staff Details";
             // 
@@ -488,7 +489,7 @@
             this.grdStaffDetails.ColumnHeadersHeight = 30;
             this.grdStaffDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdStaffDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column3,
+            this.clmSno,
             this.dataGridViewTextBoxColumn1,
             this.Column2,
             this.clmremove});
@@ -511,36 +512,12 @@
             this.grdStaffDetails.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.grdStaffDetails.RowTemplate.Height = 25;
             this.grdStaffDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.grdStaffDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.grdStaffDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdStaffDetails.ShowRowErrors = false;
             this.grdStaffDetails.Size = new System.Drawing.Size(455, 166);
             this.grdStaffDetails.TabIndex = 33;
+            this.grdStaffDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStaffDetails_CellContentClick);
             this.grdStaffDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvStaffDetails_KeyDown);
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "S.No.";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Staff Name";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 220;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Designation";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // clmremove
-            // 
-            this.clmremove.HeaderText = "Remove";
-            this.clmremove.Name = "clmremove";
-            this.clmremove.Width = 50;
             // 
             // txtStaffName
             // 
@@ -548,7 +525,7 @@
             this.txtStaffName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtStaffName.Name = "txtStaffName";
             this.txtStaffName.Size = new System.Drawing.Size(313, 27);
-            this.txtStaffName.TabIndex = 31;
+            this.txtStaffName.TabIndex = 4;
             this.txtStaffName.Enter += new System.EventHandler(this.TxtStaffName_Enter);
             this.txtStaffName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtStaffName_KeyDown);
             this.txtStaffName.Leave += new System.EventHandler(this.TxtStaffName_Leave);
@@ -566,18 +543,6 @@
             this.txtDUserName.TabIndex = 1111136;
             this.txtDUserName.Text = "Staff Name";
             // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(439, 31);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(23, 27);
-            this.btnAdd.TabIndex = 32;
-            this.btnAdd.Text = "        ";
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            // 
             // txtStatus
             // 
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
@@ -588,7 +553,7 @@
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
             this.txtStatus.Size = new System.Drawing.Size(108, 27);
-            this.txtStatus.TabIndex = 1111136;
+            this.txtStatus.TabIndex = 6;
             this.txtStatus.Text = "Status";
             // 
             // btnSave
@@ -600,7 +565,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 29);
-            this.btnSave.TabIndex = 8;
+            this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -618,7 +583,7 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 9;
+            this.btnClose.TabIndex = 10;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -626,6 +591,50 @@
             this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
             this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
+            // 
+            // clmSno
+            // 
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Staff Name";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 220;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Designation";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // clmremove
+            // 
+            this.clmremove.HeaderText = "Remove";
+            this.clmremove.Name = "clmremove";
+            this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmremove.Width = 50;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Location = new System.Drawing.Point(439, 31);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(23, 27);
+            this.btnAdd.TabIndex = 5;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
+            this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
+            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
             // 
             // CP_RackGroup
             // 
@@ -652,6 +661,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_RackGroup_FormClosing);
             this.Load += new System.EventHandler(this.CP_SubGroup_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_RackGroup_KeyDown);
+            this.Leave += new System.EventHandler(this.CP_RackGroup_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSelectedRackList)).EndInit();
@@ -673,7 +683,6 @@
         private System.Windows.Forms.Panel pnlStatus;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
-        internal System.Windows.Forms.Label btnAdd;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.TextBox txtConcern;
         private System.Windows.Forms.ComboBox cmbStockLocation;
@@ -691,22 +700,23 @@
         private System.Windows.Forms.Button btnView;
         public System.Windows.Forms.DataGridView grdSelectedRackList;
         private System.Windows.Forms.Button Add;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewImageColumn clmremove;
         private System.Windows.Forms.TextBox txtRackGroupName;
         private System.Windows.Forms.TextBox txtDRackGroup;
+        public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmcheckbox;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmracklist;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewButtonColumn clmremove;
+        private System.Windows.Forms.Button btnAdd;
     }
 }

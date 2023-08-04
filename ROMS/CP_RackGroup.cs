@@ -18,12 +18,29 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpRackGroupName = new ToolTip();
         private ToolTip tpStockLocation = new ToolTip();
+        private ToolTip tpStaffName = new ToolTip();
       
         public string vargroupcode;
         public String pbFormStatus;
         public CP_RackGroup()
         {
             InitializeComponent();
+        }
+        private void CP_RackGroup_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tpConcern.Active = false;
+                tpStockLocation.Active = false;
+                tpRackGroupName.Active = false;
+              
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void CP_SubGroup_Load(object sender, EventArgs e)
         {
@@ -114,38 +131,41 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                //if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
-                //{
-                //    epRackGroup.SetError(cmbConcern, "Please Select Concern");
-                //    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpConcern.ShowAlways = true;
-                //    tpConcern.Show("Please Select Concern", cmbConcern, 5000);
-                //    blnErrorFlag = true;
-                //}
+                if (Convert.ToString(cmbConcern.SelectedItem) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    epRackGroup.SetError(cmbConcern, "Please select concern");
+                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpConcern.ShowAlways = true;
+                    tpConcern.Show("Please select concern", cmbConcern, 5000);
+                    blnErrorFlag = true;
+                }
                 if (Convert.ToString(txtRackGroupName.Text).Trim() == "")
                 {
-                    epRackGroup.SetError(txtRackGroupName, "Please Enter Rack Group Name");
+                    epRackGroup.SetError(txtRackGroupName, "Please enter rack group name");
                     txtRackGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRackGroupName.ShowAlways = true;
-                    tpRackGroupName.Show("Please Enter Rack Group Name", txtRackGroupName, 5000);
+                    tpRackGroupName.Show("Please enter rack group name", txtRackGroupName, 5000);
                     blnErrorFlag = true;
 
                 }
-                int varStaffCount = 0, varRackCount = 0;
-                if (grdStaffDetails.Rows.Count <= 0) { blnErrorFlag = true; varStaffCount = 1; }
-                if (grdSelectedRackList.Rows.Count <= 0) { blnErrorFlag = true; varRackCount = 1; }
-
-                if (varRackCount ==1)
+                //if (grdSelectedRackList.Rows.Count <= 0)
+                //{
+                //    DialogResult dialogResult = MessageBox.Show("Please select atleast one rack", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //}
+                //if (grdStaffDetails.Rows.Count <= 0)
+                //{
+                //    DialogResult dialogResult = MessageBox.Show("Please enter atleast one staff name", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //}
+                if (blnErrorFlag == false && grdStaffDetails.Rows.Count <= 0 && grdSelectedRackList.Rows.Count <= 0)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Please select atleast one rack", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                if (grdStaffDetails.Rows.Count <= 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Please enter atleast one staff name", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                if (blnErrorFlag == false && varRackCount== 0 && varStaffCount == 0)
-                {
+                    if (grdSelectedRackList.Rows.Count <= 0)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Please select atleast one rack", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    if (grdStaffDetails.Rows.Count <= 0)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Please enter atleast one staff name", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                     udfnSave(sender, e);
                 }
             }
@@ -289,7 +309,19 @@ namespace ROMS
         {
             try
             {
-                grdStaffDetails.Rows.Add("",txtStaffName.Text);
+                if (Convert.ToString(txtStaffName.Text).Trim() == "")
+                {
+                    epRackGroup.SetError(txtStaffName, "Please enter staff name");
+                    txtStaffName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpStaffName.ShowAlways = true;
+                    tpStaffName.Show("Please enter staff name", txtStaffName, 5000);
+                }
+                else
+                {
+                    grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count+1, txtStaffName.Text);
+                    txtStaffName.Text = "";
+                    txtStaffName.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -297,7 +329,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        private void GrdStaffDetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                grdStaffDetails.Rows.RemoveAt(this.grdStaffDetails.SelectedRows[0].Index);
+                for (int i = 0; i < grdStaffDetails.RowCount; i++)
+                {
+                    grdStaffDetails.Rows[i].Cells["clmSno"].Value =i+1;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void DGV_Racklist_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
@@ -361,10 +408,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
-                    epRackGroup.SetError(cmbConcern, "Please Select Concern");
+                    epRackGroup.SetError(cmbConcern, "Please select concern");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
-                    tpConcern.Show("Please Select Concern", cmbConcern, 5000);
+                    tpConcern.Show("Please select concern", cmbConcern, 5000);
                 }
                 else
                 {
@@ -427,10 +474,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtRackGroupName.Text).Trim() == "")
                 {
-                    epRackGroup.SetError(txtRackGroupName, "Please Enter Rack Group Name");
+                    epRackGroup.SetError(txtRackGroupName, "Please enter rack group name");
                     txtRackGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRackGroupName.ShowAlways = true;
-                    tpRackGroupName.Show("Please Enter Rack Group Name", txtRackGroupName, 5000);
+                    tpRackGroupName.Show("Please enter rack group name", txtRackGroupName, 5000);
 
                 }
                 else
@@ -723,7 +770,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    BtnAdd_Click(sender, e);
+                    btnAdd.Focus();
                 }
             }
             catch (Exception ex)
@@ -745,6 +792,49 @@ namespace ROMS
                 {
                     btnSave.Focus();
                     btnSave_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnAdd_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAdd.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnAdd_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAdd.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnAdd_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnAdd_Click(sender, e);
+                   
                 }
             }
             catch (Exception ex)

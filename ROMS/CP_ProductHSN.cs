@@ -31,7 +31,21 @@ namespace ROMS
         {
             InitializeComponent();
         }
+        private void CP_ProductHSN_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tpHsnName.Active = false;
+                tpHsnCode.Active = false;
+                tpGst.Active = false;
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CP_ProductHSN_Load(object sender, EventArgs e)
         {
             try
@@ -127,10 +141,10 @@ namespace ROMS
                 if (txtHSNName.Text.Trim() == "")
                 {
                     
-                    epHsn.SetError(txtHSNName, "Please Enter HSN Name.");
+                    epHsn.SetError(txtHSNName, "Please enter HSN name.");
                     txtHSNName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpHsnName.ShowAlways = true;
-                    tpHsnName.Show("Please Enter HSN Name.", txtHSNName, 5000);
+                    tpHsnName.Show("Please enter HSN name.", txtHSNName, 5000);
                 }
                 else
                 {
@@ -179,10 +193,10 @@ namespace ROMS
             {
                 if (txtHSNCode.Text.Trim() == "")
                 {
-                    epHsn.SetError(txtHSNCode, "Please Enter HSN Code.");
+                    epHsn.SetError(txtHSNCode, "Please enter HSN code.");
                     txtHSNCode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpHsnCode.ShowAlways = true;
-                    tpHsnCode.Show("Please Enter HSN Code.", txtHSNCode, 5000);
+                    tpHsnCode.Show("Please enter HSN code.", txtHSNCode, 5000);
                 }
                 else
                 {
@@ -256,10 +270,10 @@ namespace ROMS
         {
             if (Convert.ToString(cmbGST.SelectedValue) != "0")
             {
-                epHsn.SetError(cmbGST, "Please Select GST.");
+                epHsn.SetError(cmbGST, "Please select GST.");
                 cmbGST.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                 tpGst.ShowAlways = true;
-                tpGst.Show("Please Select GST.", cmbGST, 5000);
+                tpGst.Show("Please select GST.", cmbGST, 5000);
             }
             else
             {
@@ -320,26 +334,26 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 if (Convert.ToString(cmbGST.SelectedValue) != "0")
                 {
-                    epHsn.SetError(cmbGST, "Please Select GST.");
+                    epHsn.SetError(cmbGST, "Please select GST.");
                     cmbGST.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpGst.ShowAlways = true;
-                    tpGst.Show("Please Select GST.", cmbGST, 5000);
+                    tpGst.Show("Please select GST.", cmbGST, 5000);
                     blnErrorFlag = true;
                 }
                 if (txtHSNName.Text.Trim() == "")
                 {
-                    epHsn.SetError(txtHSNName, "Please Enter HSN Name.");
+                    epHsn.SetError(txtHSNName, "Please enter HSN name.");
                     txtHSNName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpHsnName.ShowAlways = true;
-                    tpHsnName.Show("Please Enter HSN Name.", txtHSNName, 5000);
+                    tpHsnName.Show("Please enter HSN name.", txtHSNName, 5000);
                     blnErrorFlag = true;
                 }
                 if (txtHSNCode.Text.Trim() == "")
                 {
-                    epHsn.SetError(txtHSNCode, "Please Enter HSN Code.");
+                    epHsn.SetError(txtHSNCode, "Please enter HSN code.");
                     txtHSNCode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpHsnCode.ShowAlways = true;
-                    tpHsnCode.Show("Please Enter HSN Code.", txtHSNCode, 5000);
+                    tpHsnCode.Show("Please enter HSN code.", txtHSNCode, 5000);
                     blnErrorFlag = true;
                 }
                
@@ -463,6 +477,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+     
     }
 }
 

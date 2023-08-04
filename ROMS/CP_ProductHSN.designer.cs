@@ -249,6 +249,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_ProductHSN_FormClosing);
             this.Load += new System.EventHandler(this.CP_ProductHSN_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_ProductHSN_KeyDown);
+            this.Leave += new System.EventHandler(this.CP_ProductHSN_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             this.pnlStatus.ResumeLayout(false);

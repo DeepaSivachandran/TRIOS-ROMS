@@ -196,6 +196,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_UserCatagory_FormClosing);
             this.Load += new System.EventHandler(this.CP_UserCatagory_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_UserCatagory_KeyDown);
+            this.Leave += new System.EventHandler(this.CP_UserCatagory_Leave);
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
             this.grbUserCatagory.ResumeLayout(false);
