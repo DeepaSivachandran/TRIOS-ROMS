@@ -199,9 +199,6 @@
             this.grdSupllierPaymentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupllierPaymentList.Size = new System.Drawing.Size(1348, 515);
             this.grdSupllierPaymentList.TabIndex = 1;
-            this.grdSupllierPaymentList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.grdBrandList_Scroll);
-            this.grdSupllierPaymentList.DoubleClick += new System.EventHandler(this.grdBrandList_DoubleClick);
-            this.grdSupllierPaymentList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdBrandList_KeyDown);
             // 
             // clmStatus
             // 
@@ -318,7 +315,6 @@
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
-            this.DGV_SearchGrid.Sorted += new System.EventHandler(this.DGV_SearchGrid_Sorted);
             // 
             // pnlbrand
             // 
@@ -452,8 +448,7 @@
             this.Name = "PAY_SupplierPaymentList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Brand";
-            this.Load += new System.EventHandler(this.CP_BrandList_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrandList_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_SupplierPaymentList_KeyDown);
             this.tsSupplierPaymentList.ResumeLayout(false);
             this.tsSupplierPaymentList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupllierPaymentList)).EndInit();

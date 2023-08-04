@@ -67,7 +67,7 @@
             this.lblConcern = new System.Windows.Forms.Label();
             this.lbloutwardno = new System.Windows.Forms.Label();
             this.grpproductname = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -245,8 +245,8 @@
             this.DGV_inward.Location = new System.Drawing.Point(11, 163);
             this.DGV_inward.Name = "DGV_inward";
             this.DGV_inward.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.DGV_inward.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_inward.RowTemplate.Height = 25;
             this.DGV_inward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -436,7 +436,7 @@
             // 
             // grpproductname
             // 
-            this.grpproductname.Controls.Add(this.label4);
+            this.grpproductname.Controls.Add(this.textBox5);
             this.grpproductname.Controls.Add(this.label3);
             this.grpproductname.Controls.Add(this.textBox4);
             this.grpproductname.Controls.Add(this.textBox3);
@@ -455,14 +455,15 @@
             this.grpproductname.TabIndex = 958812;
             this.grpproductname.TabStop = false;
             // 
-            // label4
+            // textBox5
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(398, 47);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(17, 20);
-            this.label4.TabIndex = 1111186;
-            this.label4.Text = "₹";
+            this.textBox5.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
+            this.textBox5.Location = new System.Drawing.Point(398, 40);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(17, 27);
+            this.textBox5.TabIndex = 1111236;
+            this.textBox5.Text = "₹";
             // 
             // label3
             // 
@@ -588,8 +589,7 @@
             this.Name = "INV_GodownOutward";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Goods Outward";
-            this.Load += new System.EventHandler(this.CP_Rack_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Rack_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_GodownOutward_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errGroup)).EndInit();
             this.tsStockTransferList.ResumeLayout(false);
             this.tsStockTransferList.PerformLayout();
@@ -641,7 +641,6 @@
         private System.Windows.Forms.Label lblBatchNo;
         private System.Windows.Forms.Label lblMRP;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txttotalitem;
         private System.Windows.Forms.Label lbltotalproducts;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
@@ -654,5 +653,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
         private System.Windows.Forms.DataGridViewButtonColumn Column4;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }

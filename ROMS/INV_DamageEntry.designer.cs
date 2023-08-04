@@ -67,7 +67,6 @@
             this.txtunitrate = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblbatchno = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
             this.lblExpiryDate = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.txtActualQty = new System.Windows.Forms.TextBox();
@@ -77,6 +76,7 @@
             this.txtMrp = new System.Windows.Forms.TextBox();
             this.lblMrp = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_inward)).BeginInit();
@@ -406,11 +406,11 @@
             // 
             // grpproductname
             // 
+            this.grpproductname.Controls.Add(this.textBox5);
             this.grpproductname.Controls.Add(this.label3);
             this.grpproductname.Controls.Add(this.txtunitrate);
             this.grpproductname.Controls.Add(this.textBox1);
             this.grpproductname.Controls.Add(this.lblbatchno);
-            this.grpproductname.Controls.Add(this.label23);
             this.grpproductname.Controls.Add(this.lblExpiryDate);
             this.grpproductname.Controls.Add(this.txtProductName);
             this.grpproductname.Controls.Add(this.txtActualQty);
@@ -460,15 +460,6 @@
             this.lblbatchno.Size = new System.Drawing.Size(61, 20);
             this.lblbatchno.TabIndex = 958816;
             this.lblbatchno.Text = "Batch No.";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(328, 43);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(17, 20);
-            this.label23.TabIndex = 1111185;
-            this.label23.Text = "₹";
             // 
             // lblExpiryDate
             // 
@@ -551,6 +542,16 @@
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
+            this.textBox5.Location = new System.Drawing.Point(334, 36);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(17, 27);
+            this.textBox5.TabIndex = 1111237;
+            this.textBox5.Text = "₹";
+            // 
             // INV_DamageEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -617,7 +618,6 @@
         private System.Windows.Forms.Label lbEntryNo;
         private System.Windows.Forms.Label lblEntryDate;
         private System.Windows.Forms.DateTimePicker dpEntryDate;
-        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
@@ -629,5 +629,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmremove;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }

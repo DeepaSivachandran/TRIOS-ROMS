@@ -38,13 +38,15 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnldl = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtpurchaseRate = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtunitrate = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblbatchno = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
             this.lblExpiryDate = new System.Windows.Forms.Label();
             this.txtActualQty = new System.Windows.Forms.TextBox();
             this.lblQty = new System.Windows.Forms.Label();
@@ -98,7 +100,6 @@
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
@@ -150,13 +151,15 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox14);
+            this.groupBox1.Controls.Add(this.textBox13);
+            this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.txtpurchaseRate);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtunitrate);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.lblbatchno);
-            this.groupBox1.Controls.Add(this.label23);
             this.groupBox1.Controls.Add(this.lblExpiryDate);
             this.groupBox1.Controls.Add(this.txtActualQty);
             this.groupBox1.Controls.Add(this.lblQty);
@@ -167,12 +170,41 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.grpExcessProduct);
             this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Location = new System.Drawing.Point(12, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1330, 636);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // textBox14
+            // 
+            this.textBox14.Font = new System.Drawing.Font("Rupee Foradian", 13F);
+            this.textBox14.Location = new System.Drawing.Point(757, 96);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.ReadOnly = true;
+            this.textBox14.Size = new System.Drawing.Size(17, 28);
+            this.textBox14.TabIndex = 1111237;
+            this.textBox14.Text = "₹";
+            // 
+            // textBox13
+            // 
+            this.textBox13.Font = new System.Drawing.Font("Rupee Foradian", 13F);
+            this.textBox13.Location = new System.Drawing.Point(611, 96);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.ReadOnly = true;
+            this.textBox13.Size = new System.Drawing.Size(17, 28);
+            this.textBox13.TabIndex = 1111236;
+            this.textBox13.Text = "₹";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("Rupee Foradian", 13F);
+            this.textBox4.Location = new System.Drawing.Point(400, 96);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(17, 28);
+            this.textBox4.TabIndex = 1111235;
+            this.textBox4.Text = "₹";
             // 
             // txtpurchaseRate
             // 
@@ -227,15 +259,6 @@
             this.lblbatchno.Size = new System.Drawing.Size(61, 20);
             this.lblbatchno.TabIndex = 1111227;
             this.lblbatchno.Text = "Batch No.";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(394, 103);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(17, 20);
-            this.label23.TabIndex = 1111230;
-            this.label23.Text = "₹";
             // 
             // lblExpiryDate
             // 
@@ -593,7 +616,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 25;
@@ -815,15 +838,6 @@
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(755, 103);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(17, 20);
-            this.label7.TabIndex = 1111234;
-            this.label7.Text = "₹";
-            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -913,7 +927,6 @@
         private System.Windows.Forms.TextBox txtunitrate;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lblbatchno;
-        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label lblExpiryDate;
         private System.Windows.Forms.TextBox txtActualQty;
         private System.Windows.Forms.Label lblQty;
@@ -934,12 +947,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.ComboBox cmbReturnType;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.TextBox textBox13;
     }
 }
