@@ -75,6 +75,12 @@
     <Compile Include="CP_ChangePasswordConfirmation.designer.cs">
       <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_PurchaseDCList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseDCList.designer.cs">
+      <DependentUpon>PUR_PurchaseDCList.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_DCGoodsInward.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,6 +332,12 @@
     </Compile>
     <Compile Include="PUR_PurchaseApproval.designer.cs">
       <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseDC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseDC.designer.cs">
+      <DependentUpon>PUR_PurchaseDC.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_RemarksHistory.cs">
       <SubType>Form</SubType>
@@ -653,6 +665,9 @@
     <EmbeddedResource Include="CP_ChangePasswordConfirmation.resx">
       <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseDCList.resx">
+      <DependentUpon>PUR_PurchaseDCList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PUR_DCGoodsInward.resx">
       <DependentUpon>PUR_DCGoodsInward.cs</DependentUpon>
     </EmbeddedResource>
@@ -778,6 +793,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseApproval.resx">
       <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseDC.resx">
+      <DependentUpon>PUR_PurchaseDC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_RemarksHistory.resx">
       <DependentUpon>PUR_RemarksHistory.cs</DependentUpon>

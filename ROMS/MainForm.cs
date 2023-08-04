@@ -125,6 +125,8 @@ namespace ROMS
         public static PUR_POIssuedDetails objPUR_POIssuedDetails;
         public static PUR_POScheduledaywise objPUR_POScheduledaywise;
         public static PUR_GSTIN objPUR_GSTIN;
+        public static PUR_PurchaseDCList objPUR_PurchaseDCList;
+        public static PUR_PurchaseDC objPUR_PurchaseDC;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
@@ -1048,6 +1050,23 @@ namespace ROMS
                 MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
                 MainForm.objPUR_GRNApprovalList.MdiParent = this;
                 MainForm.objPUR_GRNApprovalList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseDC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPUR_PurchaseDCList = new PUR_PurchaseDCList();
+                MainForm.objPUR_PurchaseDCList.MdiParent = this;
+                MainForm.objPUR_PurchaseDCList.Show();
             }
             catch (Exception ex)
             {

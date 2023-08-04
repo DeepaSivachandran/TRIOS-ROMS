@@ -83,6 +83,7 @@ namespace ROMS
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseDC = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -140,7 +141,8 @@ namespace ROMS
             this.tsmPurchaseEntry,
             this.tsmGRNApproval,
             this.tsmpurchaseApprove,
-            this.tsmpurchaseReturn});
+            this.tsmpurchaseReturn,
+            this.tsmPurchaseDC});
             this.tsmpurchase.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmpurchase.Name = "tsmpurchase";
             this.tsmpurchase.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
@@ -186,7 +188,7 @@ namespace ROMS
             // 
             this.tsmpurchaseReturn.Name = "tsmpurchaseReturn";
             this.tsmpurchaseReturn.Size = new System.Drawing.Size(180, 22);
-            this.tsmpurchaseReturn.Text = "Delivery Challan";
+            this.tsmpurchaseReturn.Text = "Pruchase Return DC";
             this.tsmpurchaseReturn.Click += new System.EventHandler(this.TsmpurchaseReturn_Click);
             // 
             // inventoryToolStripMenuItem
@@ -355,7 +357,7 @@ namespace ROMS
             this.tsmSuppliyer,
             this.tsmbroker});
             this.tsmMasters.Name = "tsmMasters";
-            this.tsmMasters.Size = new System.Drawing.Size(180, 22);
+            this.tsmMasters.Size = new System.Drawing.Size(115, 22);
             this.tsmMasters.Text = "Masters";
             // 
             // stateToolStripMenuItem
@@ -472,7 +474,7 @@ namespace ROMS
             this.tsmbatchno,
             this.tsmgenralSettings});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // tsmpurchaseSupplier
@@ -530,16 +532,23 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
+            // 
+            // tsmPurchaseDC
+            // 
+            this.tsmPurchaseDC.Name = "tsmPurchaseDC";
+            this.tsmPurchaseDC.Size = new System.Drawing.Size(180, 22);
+            this.tsmPurchaseDC.Text = "Purchase DC";
+            this.tsmPurchaseDC.Click += new System.EventHandler(this.TsmPurchaseDC_Click);
             // 
             // MainForm
             // 
@@ -622,5 +631,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmfromOtherStockLocation;
         private System.Windows.Forms.ToolStripMenuItem tsmpurchaseSupplier;
         private System.Windows.Forms.ToolStripMenuItem tsmGRNApproval;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseDC;
     }
 }
