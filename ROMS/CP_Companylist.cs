@@ -85,8 +85,7 @@ namespace ROMS
 
                         SPDataService objspdservice = new SPDataService();
                         result = "";
-                    //    result = objspdservice.udfnSPBrandMaster("Delete", grdBrandList.SelectedRows[0].Cells["BrandCode"].Value.ToString(), "", "","", "", MainForm.pbUserID, MainForm.pbIpAddress, "Brand Delete");
-
+                  
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
@@ -115,11 +114,7 @@ namespace ROMS
             {
 
                 if (grdSupplierList.SelectedRows.Count > 0)
-                {
-                    //MainForm.objCP_Brand = new CP_Brand();
-                    ////MainForm.objCP_Brand.MdiParent = this.ParentForm;
-                    //MainForm.objCP_Brand.varbrandcode = grdSupplierList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
-                    //MainForm.objCP_Brand.ShowDialog();
+                { 
                 }
 
             }

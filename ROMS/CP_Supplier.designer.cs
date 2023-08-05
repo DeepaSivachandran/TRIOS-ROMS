@@ -1347,7 +1347,7 @@
             this.grddays.Name = "grddays";
             this.grddays.ReadOnly = true;
             this.grddays.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.grddays.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grddays.RowTemplate.Height = 25;
@@ -1463,7 +1463,7 @@
             this.grdSupplierList.Name = "grdSupplierList";
             this.grdSupplierList.ReadOnly = true;
             this.grdSupplierList.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdSupplierList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdSupplierList.RowTemplate.Height = 25;
@@ -1728,7 +1728,7 @@
             this.grdViewSupplierMapping.Name = "grdViewSupplierMapping";
             this.grdViewSupplierMapping.ReadOnly = true;
             this.grdViewSupplierMapping.RowHeadersVisible = false;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
             this.grdViewSupplierMapping.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.grdViewSupplierMapping.RowTemplate.Height = 25;

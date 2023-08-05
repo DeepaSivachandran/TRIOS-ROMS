@@ -584,7 +584,7 @@
             // clmPrint
             // 
             this.clmPrint.HeaderText = "Reprint";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print;
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16;
             this.clmPrint.Name = "clmPrint";
             this.clmPrint.ReadOnly = true;
             this.clmPrint.Width = 50;

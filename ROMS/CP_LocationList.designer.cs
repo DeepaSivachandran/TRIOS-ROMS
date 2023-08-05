@@ -247,7 +247,7 @@
             this.grdGodownList.Name = "grdGodownList";
             this.grdGodownList.ReadOnly = true;
             this.grdGodownList.RowHeadersVisible = false;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             this.grdGodownList.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.grdGodownList.RowTemplate.Height = 25;

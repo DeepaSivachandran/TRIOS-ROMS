@@ -1118,6 +1118,9 @@
     <None Include="Resources\returns.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\undo16x16.png" />
+    <None Include="Resources\save16x16.png" />
+    <None Include="Resources\print16x16.png" />
     <None Include="Resources\clear.png" />
     <Content Include="Resources\close-eye.png" />
     <None Include="Resources\exclude1.jpg" />

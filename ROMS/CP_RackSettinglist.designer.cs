@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tshSupplierMappingList = new System.Windows.Forms.ToolStrip();
             this.tsSupplierMappinglist = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
@@ -84,8 +84,8 @@
             this.tsSupplierMappinglist.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsSupplierMappinglist.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tsSupplierMappinglist.Name = "tsSupplierMappinglist";
-            this.tsSupplierMappinglist.Size = new System.Drawing.Size(94, 24);
-            this.tsSupplierMappinglist.Text = "Rack Setting";
+            this.tsSupplierMappinglist.Size = new System.Drawing.Size(100, 24);
+            this.tsSupplierMappinglist.Text = "Rack Settings";
             // 
             // tsbDelete
             // 
@@ -185,14 +185,14 @@
             this.grdRackSettingList.AllowUserToResizeRows = false;
             this.grdRackSettingList.BackgroundColor = System.Drawing.Color.White;
             this.grdRackSettingList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdRackSettingList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdRackSettingList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.grdRackSettingList.ColumnHeadersHeight = 30;
             this.grdRackSettingList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdRackSettingList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -202,23 +202,23 @@
             this.clmPICode,
             this.clmproname,
             this.clmUnit});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdRackSettingList.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdRackSettingList.DefaultCellStyle = dataGridViewCellStyle11;
             this.grdRackSettingList.EnableHeadersVisualStyles = false;
             this.grdRackSettingList.GridColor = System.Drawing.Color.White;
             this.grdRackSettingList.Location = new System.Drawing.Point(3, 71);
             this.grdRackSettingList.Name = "grdRackSettingList";
             this.grdRackSettingList.ReadOnly = true;
             this.grdRackSettingList.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdRackSettingList.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            this.grdRackSettingList.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.grdRackSettingList.RowTemplate.Height = 25;
             this.grdRackSettingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdRackSettingList.Size = new System.Drawing.Size(1348, 570);
@@ -327,8 +327,7 @@
             this.Name = "CP_RackSettinglist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rack Setting List";
-            this.Load += new System.EventHandler(this.CP_BrandList_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrandList_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_RackSettinglist_KeyDown);
             this.tshSupplierMappingList.ResumeLayout(false);
             this.tshSupplierMappingList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();

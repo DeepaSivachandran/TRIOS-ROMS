@@ -393,9 +393,6 @@ namespace ROMS
             }
         }
 
-        private void Label14_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

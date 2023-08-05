@@ -134,8 +134,8 @@
             this.tspSupplierMapping.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspSupplierMapping.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspSupplierMapping.Name = "tspSupplierMapping";
-            this.tspSupplierMapping.Size = new System.Drawing.Size(92, 22);
-            this.tspSupplierMapping.Text = "PO Schedule";
+            this.tspSupplierMapping.Size = new System.Drawing.Size(150, 22);
+            this.tspSupplierMapping.Text = "PO Schedule && Product";
             // 
             // tsbNew
             // 
@@ -200,7 +200,7 @@
             this.tpSchedule.TabIndex = 0;
             this.tpSchedule.Text = "PO Schedule";
             this.tpSchedule.UseVisualStyleBackColor = true;
-            this.tpSchedule.Click += new System.EventHandler(this.TabPage1_Click);
+//            this.tpSchedule.Click += new System.EventHandler(this.TabPage1_Click);
             // 
             // grbform
             // 
@@ -327,7 +327,7 @@
             this.grddays.Name = "grddays";
             this.grddays.ReadOnly = true;
             this.grddays.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.grddays.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grddays.RowTemplate.Height = 25;
@@ -688,7 +688,7 @@
             this.grdViewSupplierMapping.Name = "grdViewSupplierMapping";
             this.grdViewSupplierMapping.ReadOnly = true;
             this.grdViewSupplierMapping.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdViewSupplierMapping.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdViewSupplierMapping.RowTemplate.Height = 25;
@@ -786,7 +786,7 @@
             this.grdSupplierMapping.Name = "grdSupplierMapping";
             this.grdSupplierMapping.ReadOnly = true;
             this.grdSupplierMapping.RowHeadersVisible = false;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
             this.grdSupplierMapping.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.grdSupplierMapping.RowTemplate.Height = 25;

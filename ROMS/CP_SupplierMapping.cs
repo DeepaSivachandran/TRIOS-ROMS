@@ -87,12 +87,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-      
-
-        private void TabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void CP_SupplierMapping_Load(object sender, EventArgs e)
         {

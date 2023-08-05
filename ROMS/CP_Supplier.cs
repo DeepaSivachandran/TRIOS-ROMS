@@ -38,47 +38,7 @@ namespace ROMS
         {
             InitializeComponent();
         }
-
-        private void txtCompanyName_Enter(object sender, EventArgs e)
-        {
          
-        }
-
-        private void txtCompanyName_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtcontactName.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtCompanyName_Leave(object sender, EventArgs e)
-        {
-            if (txtName.Text  == "")
-            {
-
-                errCompany.SetError(txtName, "Please enter name");
-                txtName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tparea.ShowAlways = true;
-                tparea.Show("Please enter name.", txtName, 5000);
-
-            }
-            else
-            {
-                errCompany.Clear();
-                txtName.BackColor = Color.White;
-                tparea.Hide(txtName);
-            }
-        }
-
         private void txtcontactName_Enter(object sender, EventArgs e)
         {
             try
@@ -369,67 +329,18 @@ namespace ROMS
         private void btnSave_Click(object sender, EventArgs e)
         { 
         }
-
-        private void btnSave_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                btnSave.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void btnSave_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+          
         private void udfnclear()
         {
             try
-            {
-                txtName.Text = "";
-                txtcontactName.Text = "";
-                txtArea.Text = "";
-                txtCity.Text = "";
-                txtContactNumber.Text = "";
-                txtAContactNumber.Text = "";
-                txtEmail.Text = "";  
-                txtPincode.Text = "";
-                btnSave.Text = "Save";
-                txtName.Focus();
+            { 
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-       
-        private void btnSave_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                btnSave.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
         public void udfnclose()
         {
             try
@@ -458,47 +369,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void btnClose_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                btnClose.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void btnClose_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void btnClose_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                btnClose.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        
+         
         
         private void CP_Supplier_Load(object sender, EventArgs e)
         {
@@ -592,32 +463,7 @@ namespace ROMS
 
             }
         }
-
-        private void txtContactNumber_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objvalidation.CheckNumeric(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-
-        }
+         
 
         private void txtAContactNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -688,27 +534,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void txtCity_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objvalidation.FormatAlphabeticWithSpaceOnly(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void txtArea_Leave(object sender, EventArgs e)
         {
@@ -762,31 +588,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void txtPincode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objvalidation.CheckNumeric(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
+         
 
         private void txtPincode_Enter(object sender, EventArgs e)
         {
@@ -896,23 +698,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void txtPincode_KeyDown_1(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtContactNumber.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
 
         private void cmbState_KeyDown(object sender, KeyEventArgs e)
         {
@@ -929,62 +715,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void txtFSSAI_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objvalidation.CheckNumeric(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
-
-        private void TxtDPincode_TextChanged(object sender, EventArgs e)
-        {
-
-        }
          
-
-        private void TxtAlterPhno_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objvalidation.CheckNumeric(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
 
         private void TxtAlterMobileno_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -1083,23 +814,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtAContactNumber_KeyDown_1(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtwhatsapp.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+         
         private void Txtwhatsapp_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1319,52 +1034,7 @@ namespace ROMS
                 tparea.Hide(txtrepname);
             }
         }
-
-        private void Txtrepaddress_Enter(object sender, EventArgs e)
-        { 
-            try
-            {
-               // txtrepaddress.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Txtrepaddress_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                //txtrepmobileno.Focus();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Txtrepaddress_Leave(object sender, EventArgs e)
-        {
-            //if (txtrepaddress.Text == "")
-            //{
-
-            //    errCompany.SetError(txtrepaddress, "Please enter representative address");
-            //    txtrepaddress.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-            //    tparea.ShowAlways = true;
-            //    tparea.Show("Please enter representative address", txtrepaddress, 5000);
-
-            //}
-            //else
-            //{
-            //    errCompany.Clear();
-            //    txtrepaddress.BackColor = Color.White;
-            //    tparea.Hide(txtrepaddress);
-            //}
-        }
-
+         
         private void Txtrepmobileno_Enter(object sender, EventArgs e)
         {
             try
@@ -1593,211 +1263,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void Txtsalesmanwhatsapp_Enter(object sender, EventArgs e)
-        {
-            try
-            { 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Txtcst_Leave(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    if (txtcst.Text  == "")
-            //    {
-
-            //        errCompany.SetError(txtcst, "Please enter CST");
-            //        txtcst.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-            //        tparea.ShowAlways = true;
-            //        tparea.Show("Please enter CST.", txtcst, 5000);
-
-            //    }
-            //    else
-            //    {
-            //        errCompany.Clear();
-            //        txtcst.BackColor = Color.White;
-            //        tparea.Hide(txtcst);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
-
-        private void Txtcst_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    //txtsupplybrand.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Txtcst_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                //txtcst.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Txtsupplybrand_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                //if (txtsupplybrand.Text  == "")
-                //{
-
-                //    errCompany.SetError(txtsupplybrand, "Please enter supply brand");
-                //    txtsupplybrand.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tparea.ShowAlways = true;
-                //    tparea.Show("Please enter supply brand.", txtsupplybrand, 5000);
-
-                //}
-                //else
-                //{
-                //    errCompany.Clear();
-                //    txtsupplybrand.BackColor = Color.White;
-                //    tparea.Hide(txtsupplybrand);
-                //}
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Txtsupplybrand_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    //rbphorder.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Txtsupplybrand_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-               // txtsupplybrand.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Rbphorder_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                   // rbvisitdate.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Rbvisitdate_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    //cmbvisitday.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Cmbvisitday_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                  //  rbpropritor.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Rbpropritor_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                  //  rbmanager.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Rbmanager_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                { 
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+        } 
         private void Cmbsuppliertype_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1814,23 +1280,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void RbActive_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    rbInactive.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+         
         private void Txtgstin_KeyDown(object sender, KeyEventArgs e)
         {
             try

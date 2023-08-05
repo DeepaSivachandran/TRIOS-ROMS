@@ -55,28 +55,7 @@ namespace ROMS
             {
                 if (vargroupcode != "")
                 {
-                    SPDataService objspservice = new SPDataService();
-                    DataSet objDS = new DataSet();
-                   // objDS = objspservice.udfnSPGroupList("EditLoad", vargroupcode, "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                    objspservice.CloseConnection();
-
-                    if (objDS != null)
-                    {
-                        if (objDS.Tables[0].Rows.Count > 0)
-                        {
-                            //cmbGroupType.SelectedValue = objDS.Tables[0].Rows[0]["GroupTypeCode"].ToString();
-                            //txtTGroupName.Text = objDS.Tables[0].Rows[0]["GTName"].ToString().Replace("''", "'");
-                            //txtEGroupName.Text = objDS.Tables[0].Rows[0]["GEName"].ToString().Replace("''", "'");
-                            //txtTLabelName.Text = objDS.Tables[0].Rows[0]["GTLabelName"].ToString().Replace("''", "'");
-                            //txtELabelName.Text = objDS.Tables[0].Rows[0]["GELabelName"].ToString().Replace("''", "'");
-                            //udfnLoadSlNo();
-                            //cmbSINO.SelectedValue = objDS.Tables[0].Rows[0]["SINO"].ToString();
-                            //if (Convert.ToString(objDS.Tables[0].Rows[0]["RawCount"]) != "0" || Convert.ToString(objDS.Tables[0].Rows[0]["FinishedCount"]) != "0") {
-                            //    cmbGroupType.Enabled = false;
-                            //}
-                            btnSave.Text = "Update";
-                        }
-                    }
+                   
 
                 }
                 else {// udfnLoadSlNo(); 
@@ -110,20 +89,7 @@ namespace ROMS
         private void udfnclear()
         {
             try
-            {
-                btnSave.Text = "Save";
-               // cmbGroupType.SelectedValue = "-1";
-                DataSet objDS = new DataSet();
-                SPDataService objspservice = new SPDataService();
-               // objDS = objspservice.udfnGetSlNo("CP_SubGroup", "Create", "", "");
-                objspservice.CloseConnection();
-                if (objDS != null)
-                {
-                    //cmbSINO.DataSource = objDS.Tables[0];
-                    //cmbSINO.DisplayMember = "num";
-                    //cmbSINO.ValueMember = "num";
-                }
-              //  txtTGroupName.Focus();
+            { 
             }
             catch (Exception ex)
             {

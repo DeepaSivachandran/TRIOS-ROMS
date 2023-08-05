@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tshSupplierMappingList = new System.Windows.Forms.ToolStrip();
             this.tsSupplierMappinglist = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
@@ -43,15 +43,15 @@
             this.pnlSupplierMappingList = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.grdSupplierMappingList = new System.Windows.Forms.DataGridView();
-            this.grpFilterby = new System.Windows.Forms.GroupBox();
-            this.txtSupplier = new System.Windows.Forms.TextBox();
-            this.btnView = new System.Windows.Forms.Button();
-            this.lblDESupplier = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grpFilterby = new System.Windows.Forms.GroupBox();
+            this.txtSupplier = new System.Windows.Forms.TextBox();
+            this.btnView = new System.Windows.Forms.Button();
+            this.lblDESupplier = new System.Windows.Forms.Label();
             this.tshSupplierMappingList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.pnlSupplierMappingList.SuspendLayout();
@@ -75,7 +75,7 @@
             this.tshSupplierMappingList.Name = "tshSupplierMappingList";
             this.tshSupplierMappingList.Size = new System.Drawing.Size(1354, 27);
             this.tshSupplierMappingList.TabIndex = 35;
-            this.tshSupplierMappingList.Text = "Supplier Mapping List";
+            this.tshSupplierMappingList.Text = "PO Schedule && Product";
             // 
             // tsSupplierMappinglist
             // 
@@ -84,8 +84,8 @@
             this.tsSupplierMappinglist.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsSupplierMappinglist.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tsSupplierMappinglist.Name = "tsSupplierMappinglist";
-            this.tsSupplierMappinglist.Size = new System.Drawing.Size(174, 24);
-            this.tsSupplierMappinglist.Text = "Supplier - Product Mapping";
+            this.tsSupplierMappinglist.Size = new System.Drawing.Size(150, 24);
+            this.tsSupplierMappinglist.Text = "PO Schedule && Product";
             // 
             // tsbDelete
             // 
@@ -196,14 +196,14 @@
             this.grdSupplierMappingList.AllowUserToResizeRows = false;
             this.grdSupplierMappingList.BackgroundColor = System.Drawing.Color.White;
             this.grdSupplierMappingList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSupplierMappingList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdSupplierMappingList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.grdSupplierMappingList.ColumnHeadersHeight = 30;
             this.grdSupplierMappingList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdSupplierMappingList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -212,27 +212,59 @@
             this.Column1,
             this.Column2,
             this.clmproduct});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdSupplierMappingList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdSupplierMappingList.DefaultCellStyle = dataGridViewCellStyle11;
             this.grdSupplierMappingList.EnableHeadersVisualStyles = false;
             this.grdSupplierMappingList.GridColor = System.Drawing.Color.White;
             this.grdSupplierMappingList.Location = new System.Drawing.Point(3, 71);
             this.grdSupplierMappingList.Name = "grdSupplierMappingList";
             this.grdSupplierMappingList.ReadOnly = true;
             this.grdSupplierMappingList.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdSupplierMappingList.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            this.grdSupplierMappingList.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.grdSupplierMappingList.RowTemplate.Height = 25;
             this.grdSupplierMappingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupplierMappingList.Size = new System.Drawing.Size(1348, 570);
             this.grdSupplierMappingList.TabIndex = 958789;
+            // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            // 
+            // clmsupname
+            // 
+            this.clmsupname.HeaderText = "Supplier Name";
+            this.clmsupname.Name = "clmsupname";
+            this.clmsupname.ReadOnly = true;
+            this.clmsupname.Width = 250;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Order Type";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Order Day";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // clmproduct
+            // 
+            this.clmproduct.HeaderText = "No.of Products";
+            this.clmproduct.Name = "clmproduct";
+            this.clmproduct.ReadOnly = true;
+            this.clmproduct.Width = 150;
             // 
             // grpFilterby
             // 
@@ -279,38 +311,6 @@
             this.lblDESupplier.TabIndex = 35;
             this.lblDESupplier.Text = "Supplier";
             // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            // 
-            // clmsupname
-            // 
-            this.clmsupname.HeaderText = "Supplier Name";
-            this.clmsupname.Name = "clmsupname";
-            this.clmsupname.ReadOnly = true;
-            this.clmsupname.Width = 250;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Order Type";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Order Day";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // clmproduct
-            // 
-            this.clmproduct.HeaderText = "No.of Products";
-            this.clmproduct.Name = "clmproduct";
-            this.clmproduct.ReadOnly = true;
-            this.clmproduct.Width = 150;
-            // 
             // CP_SupplierMappinglist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -328,8 +328,7 @@
             this.Name = "CP_SupplierMappinglist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Supplier Mapping List";
-            this.Load += new System.EventHandler(this.CP_BrandList_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrandList_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_SupplierMappinglist_KeyDown);
             this.tshSupplierMappingList.ResumeLayout(false);
             this.tshSupplierMappingList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();

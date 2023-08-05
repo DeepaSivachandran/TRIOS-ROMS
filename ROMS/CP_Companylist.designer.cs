@@ -311,7 +311,7 @@
             this.grdSupplierList.Name = "grdSupplierList";
             this.grdSupplierList.ReadOnly = true;
             this.grdSupplierList.RowHeadersVisible = false;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
             this.grdSupplierList.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.grdSupplierList.RowTemplate.Height = 25;

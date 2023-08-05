@@ -82,25 +82,7 @@ namespace ROMS
                 {
                     string result = "";
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-
-                        SPDataService objspdservice = new SPDataService();
-                        result = "";
-                    //    result = objspdservice.udfnSPBrandMaster("Delete", grdSupplierList.SelectedRows[0].Cells["BrandCode"].Value.ToString(), "", "","", "", MainForm.pbUserID, MainForm.pbIpAddress, "Brand Delete");
-
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
+                     
                 }
             }
             catch (Exception ex)
@@ -117,11 +99,7 @@ namespace ROMS
             {
 
                 if (grdSupplierList.SelectedRows.Count > 0)
-                {
-                    MainForm.objCP_Brand = new CP_Brand();
-                    //MainForm.objCP_Brand.MdiParent = this.ParentForm;
-                    MainForm.objCP_Brand.varbrandcode = grdSupplierList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
-                    MainForm.objCP_Brand.ShowDialog();
+                { 
                 }
 
             }
@@ -137,51 +115,7 @@ namespace ROMS
         {
             try
             {
-                picLoader.Visible = true;
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                grdSupplierList.DataSource = null;
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                //objDs = objdserv.udfnSPBrandList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                objdserv.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-                            grdSupplierList.DataSource = objDs.Tables[0];
-                            grdSupplierList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdSupplierList.Columns["Total No. of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdSupplierList.Columns["Brand Name in Tamil"].Width = 275;
-                            grdSupplierList.Columns["Brand Name in English"].Width = 275;
-                            grdSupplierList.Columns["Label Name in Tamil"].Width = 275;
-                            grdSupplierList.Columns["Label Name in English"].Width = 275;
-                            grdSupplierList.Columns["BrandCode"].Visible = false;
-                        }
-                        else
-                        {
-                            lblNoRecordsFound.Visible = true;
-                            lblNoRecordsFound.BringToFront();
-                        }
-                    }
-                    else
-                    {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
-                    }
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
-                }
-                udfnSearchGridHead();
+               
             }
             catch (Exception ex)
             {
@@ -223,32 +157,7 @@ namespace ROMS
             }
         }
         
-        
-        public void grdSupplierList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdSupplierList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) { udfnEdit(); }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+          
         
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

@@ -57,21 +57,6 @@
             this.btnExport = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdSupplierList = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmstate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmgstin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdcity = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,6 +69,21 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.grdSupplierList = new System.Windows.Forms.DataGridView();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmstate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmgstin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsSupplierList.SuspendLayout();
             this.pnlsupplier.SuspendLayout();
             this.grbSupplierDetails.SuspendLayout();
@@ -388,8 +388,8 @@
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -397,6 +397,67 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmdsupname
+            // 
+            this.clmdsupname.HeaderText = "Supplier Name";
+            this.clmdsupname.Name = "clmdsupname";
+            this.clmdsupname.Width = 200;
+            // 
+            // clmdcity
+            // 
+            this.clmdcity.HeaderText = "City";
+            this.clmdcity.Name = "clmdcity";
+            // 
+            // clmdstate
+            // 
+            this.clmdstate.HeaderText = "State";
+            this.clmdstate.Name = "clmdstate";
+            // 
+            // clmdgstin
+            // 
+            this.clmdgstin.HeaderText = "GSTType";
+            this.clmdgstin.Name = "clmdgstin";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "T.Pro.Count";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Payment Term";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Visit Type";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Day";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Ret.Policy";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Ret.Condition";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Status";
+            this.clmdstatus.Name = "clmdstatus";
             // 
             // lblNoRecordsFound
             // 
@@ -455,27 +516,13 @@
             this.grdSupplierList.Name = "grdSupplierList";
             this.grdSupplierList.ReadOnly = true;
             this.grdSupplierList.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdSupplierList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdSupplierList.RowTemplate.Height = 25;
             this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupplierList.Size = new System.Drawing.Size(1348, 510);
             this.grdSupplierList.TabIndex = 958797;
-            // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(686, 281);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(655, 347);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
             // 
             // clmsno
             // 
@@ -550,66 +597,19 @@
             this.clmStatus.Name = "clmStatus";
             this.clmStatus.ReadOnly = true;
             // 
-            // clmdsno
+            // picLoader
             // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmdsupname
-            // 
-            this.clmdsupname.HeaderText = "Supplier Name";
-            this.clmdsupname.Name = "clmdsupname";
-            this.clmdsupname.Width = 200;
-            // 
-            // clmdcity
-            // 
-            this.clmdcity.HeaderText = "City";
-            this.clmdcity.Name = "clmdcity";
-            // 
-            // clmdstate
-            // 
-            this.clmdstate.HeaderText = "State";
-            this.clmdstate.Name = "clmdstate";
-            // 
-            // clmdgstin
-            // 
-            this.clmdgstin.HeaderText = "GSTType";
-            this.clmdgstin.Name = "clmdgstin";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "T.Pro.Count";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Payment Term";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Visit Type";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Day";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Ret.Policy";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Ret.Condition";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Status";
-            this.clmdstatus.Name = "clmdstatus";
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(686, 281);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(655, 347);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // CP_Supplierlist
             // 

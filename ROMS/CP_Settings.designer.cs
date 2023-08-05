@@ -249,7 +249,7 @@
             this.grdSettings.Name = "grdSettings";
             this.grdSettings.ReadOnly = true;
             this.grdSettings.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdSettings.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdSettings.RowTemplate.Height = 25;
@@ -459,8 +459,7 @@
             this.Name = "CP_Settings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
-            this.Load += new System.EventHandler(this.CP_BrandList_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrandList_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Settings_KeyDown);
             this.tshSettings.ResumeLayout(false);
             this.tshSettings.PerformLayout();
             this.pnlSettings.ResumeLayout(false);
