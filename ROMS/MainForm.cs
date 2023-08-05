@@ -127,6 +127,7 @@ namespace ROMS
         public static PUR_GSTIN objPUR_GSTIN;
         public static PUR_PurchaseDCList objPUR_PurchaseDCList;
         public static PUR_PurchaseDC objPUR_PurchaseDC;
+        public static PUR_DCDeatils objPUR_DCDeatils;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;

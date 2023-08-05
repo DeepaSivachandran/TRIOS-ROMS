@@ -43,6 +43,8 @@ namespace ROMS
                     txtQRCode.ReadOnly = false;  
                     dpInvoiceDate.Enabled = false;
                     txtInvoiceNo.ReadOnly = true;
+                    grdPODetails.Visible = true;
+                    grdDCDetails.Visible = false;
                 }
                 if (cmbType.SelectedIndex.ToString() == "1") // PO
                 {
@@ -52,6 +54,8 @@ namespace ROMS
                     txtQRCode.Enabled = false;
                     dpInvoiceDate.Enabled = true;
                     txtInvoiceNo.ReadOnly = false;
+                    grdPODetails.Visible = true;
+                    grdDCDetails.Visible = false;
                 }
                 if (cmbType.SelectedIndex.ToString() == "2") // Direct
                 {
@@ -59,6 +63,15 @@ namespace ROMS
                     txtQRCode.Enabled = false;
                     dpInvoiceDate.Enabled = true;
                     txtInvoiceNo.ReadOnly = false;
+                    grdPODetails.Visible = true;
+                    grdDCDetails.Visible = false;
+                }
+                if (cmbType.SelectedIndex.ToString() == "3") // Direct DC
+                {
+                    MainForm.objPUR_DCDeatils = new PUR_DCDeatils();
+                    MainForm.objPUR_DCDeatils.ShowDialog();
+                    grdPODetails.Visible = false;
+                    grdDCDetails.Visible = true;
                 }
             }
             catch (Exception ex)
@@ -149,6 +162,7 @@ namespace ROMS
                 cmbType.Items.Insert(0, "Against GRN");
                 cmbType.Items.Insert(1, "Against PO");
                 cmbType.Items.Insert(2, "Direct");
+                cmbType.Items.Insert(3, "Direct DC");
                 cmbType.SelectedIndex = 0;
                 cmbPurchaseType.SelectedIndex = 0;
                 dpInvoiceDate.Enabled = true;
