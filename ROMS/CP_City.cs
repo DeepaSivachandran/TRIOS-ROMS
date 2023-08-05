@@ -14,13 +14,28 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+
         private ToolTip tpCityName = new ToolTip();
         private ToolTip tpState = new ToolTip();
+
         public string varbrandcode;
         public string pbFormStatus;
         public CP_City()
         {
             InitializeComponent();
+        }
+        private void CP_City_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tpCityName.Active = false;
+                tpState.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void CP_City_Load(object sender, EventArgs e)
         {
@@ -61,18 +76,18 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtCityName.Text).Trim() == "")
                 {
-                    epCity.SetError(txtCityName, "Please Enter City Name");
+                    epCity.SetError(txtCityName, "Please enter city name");
                     txtCityName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCityName.ShowAlways = true;
-                    tpCityName.Show("Please Enter City Name", txtCityName, 5000);
+                    tpCityName.Show("Please enter city name", txtCityName, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
                 {
-                    epCity.SetError(cmbState, "Please Select State Name.");
+                    epCity.SetError(cmbState, "Please select state name.");
                     cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpState.ShowAlways = true;
-                    tpState.Show("Please Select State Name.", cmbState, 5000);
+                    tpState.Show("Please select state name.", cmbState, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
@@ -210,10 +225,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtCityName.Text).Trim() == "")
                 {
-                    epCity.SetError(txtCityName, "Please Enter City Name");
+                    epCity.SetError(txtCityName, "Please enter city name");
                     txtCityName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCityName.ShowAlways = true;
-                    tpCityName.Show("Please Enter City Name", txtCityName, 5000);
+                    tpCityName.Show("Please enter city name", txtCityName, 5000);
                  
                 }
                 else
@@ -274,10 +289,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
                 {
-                    epCity.SetError(cmbState, "Please Select State Name");
+                    epCity.SetError(cmbState, "Please select state name");
                     cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpState.ShowAlways = true;
-                    tpState.Show("Please Select State Name", cmbState, 5000);
+                    tpState.Show("Please select state name", cmbState, 5000);
                 }
                 else
                 {
@@ -319,18 +334,7 @@ namespace ROMS
             }
         }
       
-        private void CP_City_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnclose();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+       
 
         private void RbActive_Enter(object sender, EventArgs e)
         {

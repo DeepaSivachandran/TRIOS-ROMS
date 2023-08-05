@@ -29,6 +29,24 @@ namespace ROMS
         {
             InitializeComponent();
         }
+        private void CP_SubGroup_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tpGroupName.Active = false;
+                tpSubGroupNameInEnglish.Active = false;
+                tpSubGroupNameInTamil.Active = false;
+                tpBatchNo.Active = false;
+                tpShopLocation.Active = false;
+                tpRack.Active = false;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CP_SubGroup_Load(object sender, EventArgs e)
         {
             try
@@ -70,50 +88,50 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 if (Convert.ToString(cmbGroupName.SelectedValue) == "" || Convert.ToString(cmbGroupName.SelectedValue) == "-1")
                 {
-                    epSubGroup.SetError(cmbGroupName, "Please Select Group Name");
+                    epSubGroup.SetError(cmbGroupName, "Please select product group name");
                     cmbGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpGroupName.ShowAlways = true;
-                    tpGroupName.Show("Please Select Group Name", cmbGroupName, 5000);
+                    tpGroupName.Show("Please select group name", cmbGroupName, 5000);
                     blnErrorFlag = true;
                 }
                 if (txtESubGroupNameEnglish.Text.Trim() == "")
                 {
-                    epSubGroup.SetError(txtESubGroupNameEnglish, "Please Enter Sub Group Name in English");
+                    epSubGroup.SetError(txtESubGroupNameEnglish, "Please enter product sub group name in english");
                     txtESubGroupNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpSubGroupNameInEnglish.ShowAlways = true;
-                    tpSubGroupNameInEnglish.Show("Please Enter Sub Group Name in English", txtESubGroupNameEnglish, 5000);
+                    tpSubGroupNameInEnglish.Show("Please enter product sub group name in english", txtESubGroupNameEnglish, 5000);
                     blnErrorFlag = true;
                 }
                 if (txtESubGroupNameTamil.Text.Trim() == "")
                 {
-                    epSubGroup.SetError(txtESubGroupNameTamil, "Please Enter Sub Group Name in Tamil");
+                    epSubGroup.SetError(txtESubGroupNameTamil, "Please enter product sub group name in tamil");
                     txtESubGroupNameTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpSubGroupNameInTamil.ShowAlways = true;
-                    tpSubGroupNameInTamil.Show("Please Enter Sub Group Name in Tamil", txtESubGroupNameTamil, 5000);
+                    tpSubGroupNameInTamil.Show("Please enter product sub group name in tamil", txtESubGroupNameTamil, 5000);
                     blnErrorFlag = true;
 
                 }
                 if (Convert.ToString(cmbBatchNo.SelectedValue) == "" || Convert.ToString(cmbBatchNo.SelectedValue) == "-1")
                 {
-                    epSubGroup.SetError(cmbBatchNo, "Please Select Batch Number");
+                    epSubGroup.SetError(cmbBatchNo, "Please select batch No. status");
                     cmbBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpBatchNo.ShowAlways = true;
-                    tpBatchNo.Show("Please Select Batch Number", cmbBatchNo, 5000);
+                    tpBatchNo.Show("Please select batch No. status", cmbBatchNo, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(cmbShopLocation.SelectedValue) == "" || Convert.ToString(cmbShopLocation.SelectedValue) == "-1")
                 {
-                    epSubGroup.SetError(cmbShopLocation, "Please Select Shop Location");
+                    epSubGroup.SetError(cmbShopLocation, "Please select shop location");
                     cmbShopLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpShopLocation.ShowAlways = true;
-                    tpShopLocation.Show("Please Select Shop Location.", cmbShopLocation, 5000);
+                    tpShopLocation.Show("Please select shop location.", cmbShopLocation, 5000);
                 }
                 if (Convert.ToString(cmbRack.SelectedValue) == "" || Convert.ToString(cmbRack.SelectedValue) != "-1")
                 {
-                    epSubGroup.SetError(cmbRack, "Please Select Rack");
+                    epSubGroup.SetError(cmbRack, "Please select rack");
                     cmbRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRack.ShowAlways = true;
-                    tpRack.Show("Please Select Rack", cmbRack, 5000);
+                    tpRack.Show("Please select rack", cmbRack, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
@@ -320,10 +338,10 @@ namespace ROMS
             {
                 if (txtESubGroupNameEnglish.Text.Trim()== "")
                 {
-                    epSubGroup.SetError(txtESubGroupNameEnglish, "Please Enter Sub Group Name in English");
+                    epSubGroup.SetError(txtESubGroupNameEnglish, "Please enter product sub group name in english");
                     txtESubGroupNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpSubGroupNameInEnglish.ShowAlways = true;
-                    tpSubGroupNameInEnglish.Show("Please Enter Sub Group Name in English", txtESubGroupNameEnglish, 5000);
+                    tpSubGroupNameInEnglish.Show("Please enter product sub group name in english", txtESubGroupNameEnglish, 5000);
                 }
                 else
                 {
@@ -373,10 +391,10 @@ namespace ROMS
             {
                 if (txtESubGroupNameTamil.Text.Trim()== "")
                 {
-                    epSubGroup.SetError(txtESubGroupNameTamil, "Please Enter Sub Group Name in Tamil");
+                    epSubGroup.SetError(txtESubGroupNameTamil, "Please enter product sub group name in tamil");
                     txtESubGroupNameTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpSubGroupNameInTamil.ShowAlways = true;
-                    tpSubGroupNameInTamil.Show("Please Enter Sub Group Name in Tamil", txtESubGroupNameTamil, 5000);
+                    tpSubGroupNameInTamil.Show("Please enter product sub group name in tamil", txtESubGroupNameTamil, 5000);
 
                 }
                 else
@@ -456,10 +474,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbGroupName.SelectedValue) == "")
                 {
-                    epSubGroup.SetError(cmbGroupName, "Please Select Group Name");
+                    epSubGroup.SetError(cmbGroupName, "Please select product group name");
                     cmbGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpGroupName.ShowAlways = true;
-                    tpGroupName.Show("Please Select Group Name", cmbGroupName, 5000);
+                    tpGroupName.Show("Please select product group name", cmbGroupName, 5000);
                 }
                 else
                 {
@@ -521,10 +539,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbBatchNo.SelectedValue) == "")
                 {
-                    epSubGroup.SetError(cmbBatchNo, "Please Select Batch Number");
+                    epSubGroup.SetError(cmbBatchNo, "Please select batch No. status");
                     cmbBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpBatchNo.ShowAlways = true;
-                    tpBatchNo.Show("Please Select Batch Number", cmbBatchNo, 5000);
+                    tpBatchNo.Show("Please select batch No. status", cmbBatchNo, 5000);
                 }
                 else
                 {
@@ -576,10 +594,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbShopLocation.SelectedValue) == "" || Convert.ToString(cmbShopLocation.SelectedValue) == "-1")
                 {
-                    epSubGroup.SetError(cmbShopLocation, "Please Select Shop Location");
+                    epSubGroup.SetError(cmbShopLocation, "Please select shop location");
                     cmbShopLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpShopLocation.ShowAlways = true;
-                    tpShopLocation.Show("Please Select Shop Location.", cmbShopLocation, 5000);
+                    tpShopLocation.Show("Please select shop location.", cmbShopLocation, 5000);
                 }
                 else
                 {
@@ -669,10 +687,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbRack.SelectedValue) == "" || Convert.ToString(cmbRack.SelectedValue) == "-1")
                 {
-                    epSubGroup.SetError(cmbRack, "Please Select Rack");
+                    epSubGroup.SetError(cmbRack, "Please select Rack");
                     cmbRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRack.ShowAlways = true;
-                    tpRack.Show("Please Select Rack", cmbRack, 5000);
+                    tpRack.Show("Please select Rack", cmbRack, 5000);
                 }
                 else
                 {
@@ -809,5 +827,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        
     }
 }
