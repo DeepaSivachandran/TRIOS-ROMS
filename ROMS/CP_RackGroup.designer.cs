@@ -68,17 +68,17 @@
             this.rbInactive = new System.Windows.Forms.RadioButton();
             this.epRackGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpUserList = new System.Windows.Forms.GroupBox();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.grdStaffDetails = new System.Windows.Forms.DataGridView();
+            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtStaffName = new System.Windows.Forms.TextBox();
             this.txtDUserName = new System.Windows.Forms.TextBox();
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmremove = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSelectedRackList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Racklist)).BeginInit();
@@ -471,6 +471,22 @@
             this.grpUserList.TabStop = false;
             this.grpUserList.Text = "Staff Details";
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Location = new System.Drawing.Point(439, 31);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(23, 27);
+            this.btnAdd.TabIndex = 5;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
+            this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
+            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
+            // 
             // grdStaffDetails
             // 
             this.grdStaffDetails.AllowUserToAddRows = false;
@@ -518,6 +534,34 @@
             this.grdStaffDetails.TabIndex = 33;
             this.grdStaffDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStaffDetails_CellContentClick);
             this.grdStaffDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvStaffDetails_KeyDown);
+            // 
+            // clmSno
+            // 
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Staff Name";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 220;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Designation";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // clmremove
+            // 
+            this.clmremove.HeaderText = "Remove";
+            this.clmremove.Name = "clmremove";
+            this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmremove.Width = 50;
             // 
             // txtStaffName
             // 
@@ -592,50 +636,6 @@
             this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
-            // clmSno
-            // 
-            this.clmSno.HeaderText = "S.No.";
-            this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
-            this.clmSno.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Staff Name";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 220;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Designation";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // clmremove
-            // 
-            this.clmremove.HeaderText = "Remove";
-            this.clmremove.Name = "clmremove";
-            this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmremove.Width = 50;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(439, 31);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(23, 27);
-            this.btnAdd.TabIndex = 5;
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
-            this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
-            this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
-            // 
             // CP_RackGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -659,7 +659,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rack Group";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_RackGroup_FormClosing);
-            this.Load += new System.EventHandler(this.CP_SubGroup_Load);
+            this.Load += new System.EventHandler(this.CP_RackGroup_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_RackGroup_KeyDown);
             this.Leave += new System.EventHandler(this.CP_RackGroup_Leave);
             this.grbform.ResumeLayout(false);

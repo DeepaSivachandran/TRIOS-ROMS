@@ -48,69 +48,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             }
-        //private void btnSave_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-
-        //        errLocation.Clear();
-
-        //        if (txtLocationName.Text.Trim() == "")
-        //        {
-        //            errLocation.SetError(txtLocationName, "Please enter location name ");
-        //            txtLocationName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-        //            tplocationname.ShowAlways = true;
-        //            tplocationname.Show("Please enter location name", txtLocationName, 5000);
-        //            txtLocationName.Text = "";
-        //        }
-        //        if (txtLocationName.Text.Trim() == "")
-        //        {
-        //            txtLocationName.Focus();
-        //            return;
-        //        }
-        //        SPDataService objspdservice = new SPDataService();
-
-        //        string result = "";
-        //        if (btnSave.Text == "Save")
-        //        {
-        //          //  result = objspdservice.udfnSPLocationMaster("Create", "0",txtLocationName.Text,cmbSlNo.SelectedValue.ToString() , MainForm.pbUserID, MainForm.pbIpAddress, "Location Create");
-
-        //        }
-        //        else
-        //        {
-        //          //  result = objspdservice.udfnSPLocationMaster("Update", varlocationcode, txtLocationName.Text, cmbSlNo.SelectedValue.ToString(), MainForm.pbUserID, MainForm.pbIpAddress, "Location Update");
-        //        }
-        //        string[] varvalue = result.Split('~');
-        //        if (varvalue[0] == "3")
-        //        {
-        //            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        //            if (btnSave.Text == "Update")
-        //            {
-        //                this.Close();
-        //            }
-        //            else
-        //            {
-        //                udfnclear();
-        //            }
-
-        //            MainForm.objCP_LocationList.udfnList();
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            if (varvalue[1].Contains("Order number")) {// udfnSINO();
-        //            }
-        //        }
-        //        objspdservice.CloseConnection();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        objError = new DataError();
-        //        objError.WriteFile(ex);
-        //    }
-        //}
-
+      
 
         private void udfnclear()
         {
@@ -221,36 +159,7 @@ namespace ROMS
 
         private void udfnEdit()
         {
-            //try
-            //{
-            //    if (varlocationcode != "")
-            //    {
-            //        SPDataService objspservice = new SPDataService();
-            //        DataSet objDS = new DataSet();
-            //      //  objDS = objspservice.udfnSPLocationList("EditLoad", varlocationcode, MainForm.pbUserID, MainForm.pbIpAddress);
-            //        objspservice.CloseConnection();
-            //        if (objDS != null)
-            //        {
-            //            if (objDS.Tables[0].Rows.Count > 0)
-            //            {
-            //                txtLocationName.Text = objDS.Tables[0].Rows[0]["LocationName"].ToString().Replace("''", "'");
-            //             //   cmbSlNo.SelectedValue = objDS.Tables[0].Rows[0]["SINO"].ToString();                          
-            //                btnSave.Text = "Update";
-            //            }
-            //        }
-            //        if (varlocationcode == "1") { btnSave.Visible = false; } else { btnSave.Visible = true; }
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-            //finally
-            //{
-
-            //}
+            
         }
         public void udfnclose()
         {

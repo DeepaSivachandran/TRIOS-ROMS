@@ -88,8 +88,7 @@ namespace ROMS
                 if (grdSupllierPaymentList.ColumnCount > 0)
                 {
                     grdSupllierPaymentList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdSupllierPaymentList.HorizontalScrollingOffset;
-                    //grdBrandList.HorizontalScrollingOffset = 0;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdSupllierPaymentList.HorizontalScrollingOffset; 
                 }
             }
             catch (Exception ex)

@@ -36,8 +36,7 @@ namespace ROMS
         private void tsbEdit_Click(object sender, EventArgs e)
         {
             try
-            {
-                udfnEdit();
+            {  
             }
             catch (Exception ex)
             {
@@ -45,147 +44,9 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void tsbDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfndelete();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+     
         
-        private void CP_Supplierlist_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnList();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void udfndelete()
-        {
-            try
-            {
-                if (grdSupplierList.SelectedRows.Count > 0)
-                {
-                    string result = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-
-                        SPDataService objspdservice = new SPDataService();
-                        result = "";
-                    //    result = objspdservice.udfnSPBrandMaster("Delete", grdBrandList.SelectedRows[0].Cells["BrandCode"].Value.ToString(), "", "","", "", MainForm.pbUserID, MainForm.pbIpAddress, "Brand Delete");
-
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        private void udfnEdit()
-        {
-            try
-            {
-
-                if (grdSupplierList.SelectedRows.Count > 0)
-                {
-                    //MainForm.objCP_Brand = new CP_Brand();
-                    ////MainForm.objCP_Brand.MdiParent = this.ParentForm;
-                    //MainForm.objCP_Brand.varbrandcode = grdSupplierList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
-                    //MainForm.objCP_Brand.ShowDialog();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        public void udfnList()
-        {
-            try
-            {
-                //picLoader.Visible = true;
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                grdSupplierList.DataSource = null;
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                //objDs = objdserv.udfnSPBrandList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-             
-                udfnSearchGridHead();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                grdSupplierList.ClearSelection();
-                //picLoader.Visible = false;
-            }
-        }
-        
-             private void CP_Supplierlist_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    tsbEdit_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm objMainForm = new MainForm();
-                    objMainForm.udfnCloseChildForms();
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        
+    
 
      
 
@@ -220,9 +81,7 @@ namespace ROMS
             {
                 if (grdSupplierList.ColumnCount > 0)
                 {
-                    grdSupplierList.Columns[e.Column.Index].Width = e.Column.Width;
-                    //DGV_SearchGrid.HorizontalScrollingOffset = grdSupplierList.HorizontalScrollingOffset;
-                    //grdBrandList.HorizontalScrollingOffset = 0;
+                    grdSupplierList.Columns[e.Column.Index].Width = e.Column.Width; 
                 }
             }
             catch (Exception ex)
@@ -330,14 +189,40 @@ namespace ROMS
             //}
         }
 
-        private void TxtWhatsAppNo_Leave(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void BtnClose_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void CP_Company_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    tsbEdit_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm objMainForm = new MainForm();
+                    objMainForm.udfnCloseChildForms();
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

@@ -44,31 +44,6 @@ namespace ROMS
         }
         private void CP_SubGroup_Load(object sender, EventArgs e)
         {
-            try
-            {      
-                udfnEdit();
-                DGV_Racklist.Rows.Add(false,1, "RACK 01");
-                DGV_Racklist.Rows.Add(false,2, "RACK 02");
-
-                grdSelectedRackList.Rows.Add(1, "RACK 01");
-                grdSelectedRackList.Rows.Add(2, "RACK 02");
-
-                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-                if (btnSave.Text == "Save")
-                {
-                    pnlStatus.Enabled = false;
-                }
-                else
-                {
-                    pnlStatus.Enabled = true;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
         }
         private void udfnEdit()
         {
@@ -557,19 +532,7 @@ namespace ROMS
         {
             try
             {
-                cmbStockLocation.BackColor = Color.White;
-                //if (Convert.ToString(cmbStockLocation.SelectedValue) == "" || Convert.ToString(cmbStockLocation.SelectedValue) == "-1")
-                //{
-                //    epRackGroup.SetError(cmbStockLocation, "Please Select Stock Location");
-                //    cmbStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpStockLocation.ShowAlways = true;
-                //    tpStockLocation.Show("Please Select Stock Location", cmbStockLocation, 5000);
-                //}
-                //else
-                //{
-                //    epRackGroup.Clear();
-                //    cmbStockLocation.BackColor = Color.White;
-                //}
+                cmbStockLocation.BackColor = Color.White; 
             }
             catch (Exception ex)
             {
@@ -836,6 +799,36 @@ namespace ROMS
                     BtnAdd_Click(sender, e);
                    
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_RackGroup_Load(object sender, EventArgs e)
+        {
+
+            try
+            {
+                udfnEdit();
+                DGV_Racklist.Rows.Add(false, 1, "RACK 01");
+                DGV_Racklist.Rows.Add(false, 2, "RACK 02");
+
+                grdSelectedRackList.Rows.Add(1, "RACK 01");
+                grdSelectedRackList.Rows.Add(2, "RACK 02");
+
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                if (btnSave.Text == "Save")
+                {
+                    pnlStatus.Enabled = false;
+                }
+                else
+                {
+                    pnlStatus.Enabled = true;
+                }
+
             }
             catch (Exception ex)
             {
