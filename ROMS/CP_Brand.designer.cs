@@ -546,7 +546,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Company";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Brand_FormClosing);
-            this.Load += new System.EventHandler(this.CP_Brand_Load);
+        
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Brand_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Brand_Leave);
             this.tsBrandList.ResumeLayout(false);
