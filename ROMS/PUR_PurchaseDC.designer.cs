@@ -38,6 +38,14 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnldl = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblExpiryDate = new System.Windows.Forms.Label();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDay = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.lblYyyy = new System.Windows.Forms.Label();
+            this.lblMM = new System.Windows.Forms.Label();
+            this.lblDd = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtunitrate = new System.Windows.Forms.TextBox();
             this.lblbatchno = new System.Windows.Forms.Label();
@@ -55,6 +63,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtgrnno = new System.Windows.Forms.TextBox();
@@ -64,24 +80,6 @@
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtDay = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.lblYyyy = new System.Windows.Forms.Label();
-            this.lblMM = new System.Windows.Forms.Label();
-            this.lblDd = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.lblExpiryDate = new System.Windows.Forms.Label();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -156,6 +154,79 @@
             this.groupBox1.Size = new System.Drawing.Size(1330, 636);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // lblExpiryDate
+            // 
+            this.lblExpiryDate.AutoSize = true;
+            this.lblExpiryDate.Location = new System.Drawing.Point(476, 101);
+            this.lblExpiryDate.Name = "lblExpiryDate";
+            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
+            this.lblExpiryDate.TabIndex = 1111239;
+            this.lblExpiryDate.Text = "Expiry Date";
+            // 
+            // textBox13
+            // 
+            this.textBox13.Enabled = false;
+            this.textBox13.Location = new System.Drawing.Point(381, 96);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.ReadOnly = true;
+            this.textBox13.Size = new System.Drawing.Size(14, 28);
+            this.textBox13.TabIndex = 1111238;
+            this.textBox13.Text = "₹";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(615, 95);
+            this.textBox1.MaxLength = 2;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(34, 28);
+            this.textBox1.TabIndex = 1111234;
+            // 
+            // txtDay
+            // 
+            this.txtDay.Location = new System.Drawing.Point(548, 95);
+            this.txtDay.MaxLength = 2;
+            this.txtDay.Name = "txtDay";
+            this.txtDay.Size = new System.Drawing.Size(33, 28);
+            this.txtDay.TabIndex = 1111232;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(581, 95);
+            this.textBox4.MaxLength = 2;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(34, 28);
+            this.textBox4.TabIndex = 1111233;
+            // 
+            // lblYyyy
+            // 
+            this.lblYyyy.AutoSize = true;
+            this.lblYyyy.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.lblYyyy.Location = new System.Drawing.Point(621, 79);
+            this.lblYyyy.Name = "lblYyyy";
+            this.lblYyyy.Size = new System.Drawing.Size(20, 16);
+            this.lblYyyy.TabIndex = 1111237;
+            this.lblYyyy.Text = "YY";
+            // 
+            // lblMM
+            // 
+            this.lblMM.AutoSize = true;
+            this.lblMM.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.lblMM.Location = new System.Drawing.Point(587, 79);
+            this.lblMM.Name = "lblMM";
+            this.lblMM.Size = new System.Drawing.Size(24, 16);
+            this.lblMM.TabIndex = 1111236;
+            this.lblMM.Text = "MM";
+            // 
+            // lblDd
+            // 
+            this.lblDd.AutoSize = true;
+            this.lblDd.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.lblDd.Location = new System.Drawing.Point(554, 79);
+            this.lblDd.Name = "lblDd";
+            this.lblDd.Size = new System.Drawing.Size(20, 16);
+            this.lblDd.TabIndex = 1111235;
+            this.lblDd.Text = "DD";
             // 
             // label3
             // 
@@ -246,8 +317,6 @@
             // 
             // grpExcessProduct
             // 
-            this.grpExcessProduct.Controls.Add(this.cmbStatus);
-            this.grpExcessProduct.Controls.Add(this.lblStatus);
             this.grpExcessProduct.Controls.Add(this.btnClose);
             this.grpExcessProduct.Controls.Add(this.btnSave);
             this.grpExcessProduct.Controls.Add(this.lvSupplier);
@@ -301,7 +370,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(159, 382);
+            this.label5.Location = new System.Drawing.Point(6, 382);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 1111173;
@@ -310,7 +379,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(226, 382);
+            this.textBox2.Location = new System.Drawing.Point(63, 382);
             this.textBox2.MaxLength = 50;
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
@@ -366,6 +435,61 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1289, 360);
             this.dataGridView1.TabIndex = 1111170;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "P.I Code";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 90;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Product Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 220;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "MRP";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Expiry Date";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Batch No.";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Qty";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 75;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Unit";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 75;
             // 
             // groupBox3
             // 
@@ -463,157 +587,6 @@
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(615, 95);
-            this.textBox1.MaxLength = 2;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(34, 28);
-            this.textBox1.TabIndex = 1111234;
-            // 
-            // txtDay
-            // 
-            this.txtDay.Location = new System.Drawing.Point(548, 95);
-            this.txtDay.MaxLength = 2;
-            this.txtDay.Name = "txtDay";
-            this.txtDay.Size = new System.Drawing.Size(33, 28);
-            this.txtDay.TabIndex = 1111232;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(581, 95);
-            this.textBox4.MaxLength = 2;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(34, 28);
-            this.textBox4.TabIndex = 1111233;
-            // 
-            // lblYyyy
-            // 
-            this.lblYyyy.AutoSize = true;
-            this.lblYyyy.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.lblYyyy.Location = new System.Drawing.Point(621, 79);
-            this.lblYyyy.Name = "lblYyyy";
-            this.lblYyyy.Size = new System.Drawing.Size(20, 16);
-            this.lblYyyy.TabIndex = 1111237;
-            this.lblYyyy.Text = "YY";
-            // 
-            // lblMM
-            // 
-            this.lblMM.AutoSize = true;
-            this.lblMM.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.lblMM.Location = new System.Drawing.Point(587, 79);
-            this.lblMM.Name = "lblMM";
-            this.lblMM.Size = new System.Drawing.Size(24, 16);
-            this.lblMM.TabIndex = 1111236;
-            this.lblMM.Text = "MM";
-            // 
-            // lblDd
-            // 
-            this.lblDd.AutoSize = true;
-            this.lblDd.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.lblDd.Location = new System.Drawing.Point(554, 79);
-            this.lblDd.Name = "lblDd";
-            this.lblDd.Size = new System.Drawing.Size(20, 16);
-            this.lblDd.TabIndex = 1111235;
-            this.lblDd.Text = "DD";
-            // 
-            // textBox13
-            // 
-            this.textBox13.Enabled = false;
-            this.textBox13.Location = new System.Drawing.Point(381, 96);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.ReadOnly = true;
-            this.textBox13.Size = new System.Drawing.Size(14, 28);
-            this.textBox13.TabIndex = 1111238;
-            this.textBox13.Text = "₹";
-            // 
-            // lblExpiryDate
-            // 
-            this.lblExpiryDate.AutoSize = true;
-            this.lblExpiryDate.Location = new System.Drawing.Point(476, 101);
-            this.lblExpiryDate.Name = "lblExpiryDate";
-            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
-            this.lblExpiryDate.TabIndex = 1111239;
-            this.lblExpiryDate.Text = "Expiry Date";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "P.I Code";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 90;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Product Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 220;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "MRP";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Expiry Date";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Batch No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Qty";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 75;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Unit";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 75;
-            // 
-            // cmbStatus
-            // 
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Items.AddRange(new object[] {
-            "--Select--",
-            "Open",
-            "Close"});
-            this.cmbStatus.Location = new System.Drawing.Point(60, 382);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(98, 27);
-            this.cmbStatus.TabIndex = 1111204;
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(9, 382);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(45, 20);
-            this.lblStatus.TabIndex = 1111203;
-            this.lblStatus.Text = "Status";
-            // 
             // PUR_PurchaseDC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -697,7 +670,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.ComboBox cmbStatus;
-        private System.Windows.Forms.Label lblStatus;
     }
 }
