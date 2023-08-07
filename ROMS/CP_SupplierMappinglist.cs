@@ -23,11 +23,7 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_SupplierMapping = new CP_SupplierMapping();
-                //MainForm.objCP_SupplierMapping.StartPosition = FormStartPosition.Manual;  
-                //int dialogX = this.Location.X + (this.Width - MainForm.objCP_SupplierMapping.Width ) / 2;
-                //int dialogY = this.Location.Y + (this.Height - MainForm.objCP_SupplierMapping.Height + 100) / 2; 
-                //MainForm.objCP_SupplierMapping.Location = new Point(dialogX, dialogY); 
+                MainForm.objCP_SupplierMapping = new CP_SupplierMapping(); 
 
                 MainForm.objCP_SupplierMapping.MdiParent = this.ParentForm;
                 MainForm.objCP_SupplierMapping.Show();
@@ -62,49 +58,12 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void CP_BrandList_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnList();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+        } 
         public void udfndelete()
-        {
+        {  
             try
             {
-                if (grdSupplierMappingList.SelectedRows.Count > 0)
-                {
-                    string result = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-
-                        SPDataService objspdservice = new SPDataService();
-                        result = "";
-                    //    result = objspdservice.udfnSPBrandMaster("Delete", grdBrandList.SelectedRows[0].Cells["BrandCode"].Value.ToString(), "", "","", "", MainForm.pbUserID, MainForm.pbIpAddress, "Brand Delete");
-
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
+                DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
             catch (Exception ex)
             {
@@ -113,21 +72,11 @@ namespace ROMS
             }
 
         }
-
+    
         private void udfnEdit()
         {
             try
-            {
-
-                if (grdSupplierMappingList.SelectedRows.Count > 0)
-                {
-                    //MainForm.objCP_Brand = new CP_Brand();
-                    ////MainForm.objCP_Brand.MdiParent = this.ParentForm;
-                    //MainForm.objCP_Brand.varbrandcode = grdSupplierMappingList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
-                    //MainForm.objCP_Brand.ShowDialog();
-
-                }
-
+            { 
             }
             catch (Exception ex)
             {
@@ -136,229 +85,25 @@ namespace ROMS
             }
 
         }
-
-        public void udfnList()
-        {
-            try
-            {
-                picLoader.Visible = true;
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                grdSupplierMappingList.DataSource = null;
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                //objDs = objdserv.udfnSPBrandList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                objdserv.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-                            grdSupplierMappingList.DataSource = objDs.Tables[0];
-                            grdSupplierMappingList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdSupplierMappingList.Columns["Total No. of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdSupplierMappingList.Columns["Brand Name in Tamil"].Width = 275;
-                            grdSupplierMappingList.Columns["Brand Name in English"].Width = 275;
-                            grdSupplierMappingList.Columns["Label Name in Tamil"].Width = 275;
-                            grdSupplierMappingList.Columns["Label Name in English"].Width = 275;
-                            grdSupplierMappingList.Columns["BrandCode"].Visible = false;
-                        }
-                        else
-                        {
-                            lblNoRecordsFound.Visible = true;
-                            lblNoRecordsFound.BringToFront();
-                        }
-                    }
-                    else
-                    {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
-                    }
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
-                }
-                udfnSearchGridHead();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                grdSupplierMappingList.ClearSelection();
-                picLoader.Visible = false;
-            }
-        }
-
-        private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    tsbEdit_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdBrandList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdBrandList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) { udfnEdit(); }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+                  
         
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            //try
-            //{
-
-            //    if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
-            //        return;
-            //    if (!(e.ColumnIndex == 0 || e.ColumnIndex == 1))   /*If not our desired columns*/
-            //                                                       //return;
-
-            //        if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
-            //        {
-            //            e.Paint(e.CellBounds, DataGridViewPaintParts.All
-            //                & ~(DataGridViewPaintParts.ContentForeground));
-
-            //            TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-            //                e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
-
-            //            e.Handled = true;
-            //        }
-
-            //    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
-            //}
-            //catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+          
         }
         private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
-            //try
-            //{
-            //    if (grdSupplierMappingList.ColumnCount > 0)
-            //    {
-            //        grdSupplierMappingList.Columns[e.Column.Index].Width = e.Column.Width;
-            //        DGV_SearchGrid.HorizontalScrollingOffset = grdSupplierMappingList.HorizontalScrollingOffset;
-            //        //grdBrandList.HorizontalScrollingOffset = 0;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+             
         }
         private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            //try
-            //{
-            //    //udfnGridSearchFilter();
-            //    DataService objDser = new DataService();
-            //    grdSupplierMappingList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierMappingList);
-            //    objDser.CloseConnection();
-            //    grdSupplierMappingList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-            //    //DGV_SearchGrid_CellPainting(sender,e);
-            //}
-            //catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        { 
         }
         private void udfnSearchGridHead()
-        {
-            //try
-            //{
-            //    udfnGridSearchHeading(grdSupplierMappingList, DGV_SearchGrid);
-            //    DGV_SearchGrid.Columns.Clear();
-            //    List<int> visibleColumns = new List<int>();
-            //    foreach (DataGridViewColumn col in grdSupplierMappingList.Columns)
-            //    {
-            //        DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-            //        visibleColumns.Add(col.Index);
-            //    }
-            //    int rowIndex = 0;
-            //    DGV_SearchGrid.Rows.Clear();
-            //    DGV_SearchGrid.Rows.Add();
-            //    for (int i = 0; i < visibleColumns.Count; i++)
-            //    {
-            //        DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-            //    }
-            //    DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
-            //}
-            //catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        { 
         }
         private void udfnGridSearchFilter()
-        {
-            //try
-            //{
-            //    for (int i = 0; i < DGV_SearchGrid.Rows.Count; ++i)
-            //    {
-            //        if (DGV_SearchGrid.ColumnCount > 0)
-            //        {
-            //            BindingSource bs = new BindingSource();
-            //            bs.DataSource = grdSupplierMappingList.DataSource;
-            //            string filter = "";
-            //            for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
-            //            {
-            //                if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "")
-            //                {
-            //                    if (filter != "") filter += "And ";
-            //                    if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
-            //                        filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + "=" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value);
-            //                    else
-            //                        filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
-            //                }
-            //            }
-            //            bs.Filter = filter;
-            //            grdSupplierMappingList.DataSource = bs;
-            //        }
-            //    }
-            //}
-            //catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        { 
         }
         private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
         {
@@ -385,32 +130,8 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-        private void grdBrandList_Scroll(object sender, ScrollEventArgs e)
-        {
-            //try
-            //{
-
-            //    int totalWidth = 0;
-            //    int offSetValue = grdSupplierMappingList.HorizontalScrollingOffset;
-            //    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-            //        totalWidth += col.Width;
-
-            //    if (totalWidth - grdSupplierMappingList.Width > grdSupplierMappingList.HorizontalScrollingOffset && grdSupplierMappingList.HorizontalScrollingOffset > 0)
-            //    {
-            //        offSetValue = offSetValue ;
-            //        offSetValue = offSetValue;
-            //    }
-            //    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-            //    DGV_SearchGrid.Invalidate();
-
-            //    udfnscrollVisible(DGV_SearchGrid, grdSupplierMappingList);
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
+       
+         
 
         private void DGV_SearchGrid_Sorted(object sender, EventArgs e)
         {
@@ -461,65 +182,33 @@ namespace ROMS
             //DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
 
-        private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
+        
+
+        private void CP_SupplierMappinglist_KeyDown(object sender, KeyEventArgs e)
         {
-            //try
-            //{
-
-            //    int totalWidth = 0;
-            //    int offSetValue = grdSupplierMappingList.HorizontalScrollingOffset;
-            //    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-            //        totalWidth += col.Width;
-
-            //    if (totalWidth - grdSupplierMappingList.Width > grdSupplierMappingList.HorizontalScrollingOffset && grdSupplierMappingList.HorizontalScrollingOffset > 0)
-            //    {
-            //        //offSetValue = offSetValue ;
-            //        offSetValue = offSetValue;
-            //    }
-            //    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-            //    DGV_SearchGrid.Invalidate();
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
-        public void udfnscrollVisible(DataGridView DGV,DataGridView grdGroupList)
-        {
-            //try
-            //{
-            //    var vScrollbar = grdGroupList.Controls.OfType<VScrollBar>().First();
-            //    if (vScrollbar.Visible == true)
-            //    {
-            //        List<int> visibleColumns = new List<int>();
-            //        foreach (DataGridViewColumn col in DGV.Columns)
-            //        {
-            //            visibleColumns.Add(col.Index);
-            //        }
-
-            //        int I = DGV_SearchGrid.Rows.Count - 1;
-            //        if (I == 0)
-            //        {
-            //            int rowIndex = 1;
-            //            DGV_SearchGrid.Rows.Add();
-            //            for (int i = 0; i < visibleColumns.Count; i++)
-            //            {
-            //                DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-            //            }
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
-
-        private void GrdSupplierList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            try
+            {
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    tsbEdit_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

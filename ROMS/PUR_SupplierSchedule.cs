@@ -185,27 +185,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnclose()
-        {
-            try
-            {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        //public void udfnclose()
+        //{
+        //    try
+        //    {
+        //        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        //        if (dialogResult == DialogResult.Yes)
+        //        {
+        //            this.Close();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
         private void btnClose_Click(object sender, EventArgs e)
         {
             try
             {
-                udfnclose();
+              //  udfnclose();
                 //  MainForm.objCP_BrandList.udfnList();
             }
             catch (Exception ex)
@@ -276,7 +276,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    udfnclose();
+               //     udfnclose();
                 }
                 if (e.KeyCode == Keys.F5)
                 {
@@ -299,7 +299,7 @@ namespace ROMS
         {
 
         }
-
+     
         private void BindDataGrid()
         {
             try

@@ -17,7 +17,7 @@ namespace ROMS
         //------- Variable Declaration
         public static int pbCloseForm = 0;
         public static int varCloseFlag = 0;
-        public static string pbVersion = "1.0.1";
+        public static string pbVersion = "1.1.0";
         public static string pbUserID = "";
         public static string pbUserName = "";
         public static string pbUserRoleId;
@@ -83,6 +83,8 @@ namespace ROMS
         public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
         public static INV_InwardPurchaseList objINV_InwardPurchaseList;
         public static INV_InwardPurchase objINV_InwardPurchase;
+        public static CP_GeneralSettings objCP_GeneralSettings;
+        
 
         public static INV_SalesInvoiceList objINV_SalesInvoiceList;
         public static INV_SalesInvoice objINV_SalesInvoice;
@@ -97,6 +99,7 @@ namespace ROMS
         public static INV_StockTransferList objINV_StockTransferList;
         public static INV_DamageEntryList objINV_DamageEntryList;
         public static INV_DamageEntry objINV_DamageEntry;
+
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;  
         public static PUR_PurchaseOrder objPUR_PurchaseOrder;
@@ -115,6 +118,18 @@ namespace ROMS
         public static PUR_RemarksHistory objPUR_RemarksHistory;
         public static PUR_POReturns objPUR_POReturns;
         public static PUR_BulkUnit objPUR_BulkUnit;
+        public static PUR_DCGoodsInward objPUR_DCGoodsInward;
+        public static PUR_GRNApprovalList objPUR_GRNApprovalList;
+        public static PUR_GRNApproval objPUR_GRNApproval;
+        public static PUR_GRNEntry objPUR_GRNEntry;
+        public static PUR_POProducts objPUR_POProducts;
+        public static PUR_POMappedProducts objPUR_POMappedProducts;
+        public static PUR_POIssuedDetails objPUR_POIssuedDetails;
+        public static PUR_POScheduledaywise objPUR_POScheduledaywise;
+        public static PUR_GSTIN objPUR_GSTIN;
+        public static PUR_PurchaseDCList objPUR_PurchaseDCList;
+        public static PUR_PurchaseDC objPUR_PurchaseDC;
+        public static PUR_DCDeatils objPUR_DCDeatils;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
@@ -122,7 +137,7 @@ namespace ROMS
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
-
+        
 
         public MainForm()
         {
@@ -1028,5 +1043,57 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void TsmGRNApproval_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
+                MainForm.objPUR_GRNApprovalList.MdiParent = this;
+                MainForm.objPUR_GRNApprovalList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseDC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPUR_PurchaseDCList = new PUR_PurchaseDCList();
+                MainForm.objPUR_PurchaseDCList.MdiParent = this;
+                MainForm.objPUR_PurchaseDCList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmgeneralSettings_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+                 udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_GeneralSettings = new CP_GeneralSettings();
+                MainForm.objCP_GeneralSettings.MdiParent = this;
+                MainForm.objCP_GeneralSettings.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+    }
     } 
 }

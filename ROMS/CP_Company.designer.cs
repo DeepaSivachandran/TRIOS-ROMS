@@ -450,7 +450,7 @@
             this.grdSupplierList.Name = "grdSupplierList";
             this.grdSupplierList.ReadOnly = true;
             this.grdSupplierList.RowHeadersVisible = false;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
             this.grdSupplierList.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.grdSupplierList.RowTemplate.Height = 25;
@@ -1176,7 +1176,7 @@
             this.grdContactManager.Name = "grdContactManager";
             this.grdContactManager.ReadOnly = true;
             this.grdContactManager.RowHeadersVisible = false;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
             this.grdContactManager.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.grdContactManager.RowTemplate.Height = 25;
@@ -1276,8 +1276,7 @@
             this.Name = "CP_Company";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Company";
-            this.Load += new System.EventHandler(this.CP_Supplierlist_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Supplierlist_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Company_KeyDown);
             this.tsBrandList.ResumeLayout(false);
             this.tsBrandList.PerformLayout();
             this.pnlCompany.ResumeLayout(false);

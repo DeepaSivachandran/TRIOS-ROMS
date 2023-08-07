@@ -292,19 +292,20 @@
             // 
             // btnView
             // 
-            this.btnView.Image = global::ROMS.Properties.Resources.save;
+            this.btnView.Image = global::ROMS.Properties.Resources.passkey;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(46, 59);
+            this.btnView.Location = new System.Drawing.Point(50, 59);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(95, 29);
+            this.btnView.Size = new System.Drawing.Size(91, 29);
             this.btnView.TabIndex = 4;
             this.btnView.Text = "Generate";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
             // 
             // btnUpdatePasskey
             // 
-            this.btnUpdatePasskey.Image = global::ROMS.Properties.Resources.view_eye;
+            this.btnUpdatePasskey.Image = global::ROMS.Properties.Resources.close_eye;
             this.btnUpdatePasskey.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUpdatePasskey.Location = new System.Drawing.Point(115, 26);
             this.btnUpdatePasskey.Name = "btnUpdatePasskey";
@@ -312,6 +313,7 @@
             this.btnUpdatePasskey.TabIndex = 3;
             this.btnUpdatePasskey.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdatePasskey.UseVisualStyleBackColor = true;
+            this.btnUpdatePasskey.Click += new System.EventHandler(this.BtnUpdatePasskey_Click_1);
             // 
             // txtGenratePasskey
             // 

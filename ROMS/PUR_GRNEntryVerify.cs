@@ -28,9 +28,19 @@ namespace ROMS
 
          
 
-        private void TxtEUnitName_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtPassKey_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+        }
+
+        private void btnAuthorise_Click(object sender, EventArgs e)
+        {
+            try { this.Close(); }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

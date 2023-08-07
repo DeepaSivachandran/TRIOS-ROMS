@@ -46,7 +46,7 @@ namespace ROMS
             }
         }
       
-        private void CP_BrandList_Load(object sender, EventArgs e)
+        private void PUR_PurchaseOrder_Load(object sender, EventArgs e)
         {
             try
             {
@@ -54,6 +54,8 @@ namespace ROMS
                 dpPlanDate.MaxDate = DateTime.MaxValue;
                 dpPlanDate.Value = DateTime.Today;
                 udfnList();
+                grdPendingorder.Rows.Add("1","PO0001", "30/07/2023", "20");
+                cmbStatus.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -180,7 +182,7 @@ namespace ROMS
             }
         }
 
-        private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)
+        private void PUR_PurchaseOrder_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -282,7 +284,7 @@ namespace ROMS
         {
             try
             {
-                DialogResult result = MessageBox.Show("These are pending purchase returns for this supplier. Do you want to save & continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("There are pending purchase returns for this supplier. Do you want to save & continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                  
                 if (result == DialogResult.Yes)
                 {
@@ -321,5 +323,76 @@ namespace ROMS
 
             }
         }
+
+        private void BtnViewedProduct_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_POMappedProducts = new PUR_POMappedProducts();
+                MainForm.objPUR_POMappedProducts.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void CmbDPurchaseShop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Grdsupplieradd_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void BtnAppprove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_GRNEntryVerify = new PUR_GRNEntryVerify();
+                MainForm.objPUR_GRNEntryVerify.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void BtnSalesmanSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_GRNEntryVerify = new PUR_GRNEntryVerify();
+                MainForm.objPUR_GRNEntryVerify.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void GrdPendingorder_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_POProducts = new PUR_POProducts();
+                MainForm.objPUR_POProducts.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        
     }
 }

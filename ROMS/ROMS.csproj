@@ -75,6 +75,30 @@
     <Compile Include="CP_ChangePasswordConfirmation.designer.cs">
       <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_GeneralSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_GeneralSettings.designer.cs">
+      <DependentUpon>CP_GeneralSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_DCDeatils.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_DCDeatils.designer.cs">
+      <DependentUpon>PUR_DCDeatils.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseDCList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseDCList.designer.cs">
+      <DependentUpon>PUR_PurchaseDCList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_DCGoodsInward.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_DCGoodsInward.designer.cs">
+      <DependentUpon>PUR_DCGoodsInward.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_ProductDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +147,18 @@
     <Compile Include="INV_DamageEntry.designer.cs">
       <DependentUpon>INV_DamageEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_GRNApproval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNApproval.designer.cs">
+      <DependentUpon>PUR_GRNApproval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNApprovalList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNApprovalList.designer.cs">
+      <DependentUpon>PUR_GRNApprovalList.cs</DependentUpon>
+    </Compile>
     <Compile Include="INV_InwardPurchaseList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +170,42 @@
     </Compile>
     <Compile Include="INV_InwardPurchase.designer.cs">
       <DependentUpon>INV_InwardPurchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNEntry.designer.cs">
+      <DependentUpon>PUR_GRNEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GSTIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GSTIN.designer.cs">
+      <DependentUpon>PUR_GSTIN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_POIssuedDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_POIssuedDetails.designer.cs">
+      <DependentUpon>PUR_POIssuedDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_POProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_POProducts.designer.cs">
+      <DependentUpon>PUR_POProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_POScheduledaywise.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_POScheduledaywise.designer.cs">
+      <DependentUpon>PUR_POScheduledaywise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_POMappedProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_POMappedProducts.designer.cs">
+      <DependentUpon>PUR_POMappedProducts.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_POReturns.cs">
       <SubType>Form</SubType>
@@ -272,6 +344,12 @@
     </Compile>
     <Compile Include="PUR_PurchaseApproval.designer.cs">
       <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseDC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseDC.designer.cs">
+      <DependentUpon>PUR_PurchaseDC.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_RemarksHistory.cs">
       <SubType>Form</SubType>
@@ -599,6 +677,18 @@
     <EmbeddedResource Include="CP_ChangePasswordConfirmation.resx">
       <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_GeneralSettings.resx">
+      <DependentUpon>CP_GeneralSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_DCDeatils.resx">
+      <DependentUpon>PUR_DCDeatils.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseDCList.resx">
+      <DependentUpon>PUR_PurchaseDCList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_DCGoodsInward.resx">
+      <DependentUpon>PUR_DCGoodsInward.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_ProductDetails.resx">
       <DependentUpon>CP_ProductDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -623,11 +713,35 @@
     <EmbeddedResource Include="INV_DamageEntry.resx">
       <DependentUpon>INV_DamageEntry.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNApproval.resx">
+      <DependentUpon>PUR_GRNApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNApprovalList.resx">
+      <DependentUpon>PUR_GRNApprovalList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="INV_InwardPurchaseList.resx">
       <DependentUpon>INV_InwardPurchaseList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_InwardPurchase.resx">
       <DependentUpon>INV_InwardPurchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNEntry.resx">
+      <DependentUpon>PUR_GRNEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GSTIN.resx">
+      <DependentUpon>PUR_GSTIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_POIssuedDetails.resx">
+      <DependentUpon>PUR_POIssuedDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_POProducts.resx">
+      <DependentUpon>PUR_POProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_POScheduledaywise.resx">
+      <DependentUpon>PUR_POScheduledaywise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_POMappedProducts.resx">
+      <DependentUpon>PUR_POMappedProducts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_POReturns.resx">
       <DependentUpon>PUR_POReturns.cs</DependentUpon>
@@ -697,6 +811,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseApproval.resx">
       <DependentUpon>PUR_PurchaseApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseDC.resx">
+      <DependentUpon>PUR_PurchaseDC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_RemarksHistory.resx">
       <DependentUpon>PUR_RemarksHistory.cs</DependentUpon>
@@ -1017,6 +1134,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\returns.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\undo16x16.png" />
+    <None Include="Resources\save16x16.png" />
+    <None Include="Resources\print16x16.png" />
+    <None Include="Resources\clear.png" />
+    <Content Include="Resources\close-eye.png" />
+    <None Include="Resources\exclude1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

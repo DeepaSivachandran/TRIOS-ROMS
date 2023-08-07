@@ -24,7 +24,8 @@ namespace ROMS
             try
             {
                 MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                MainForm.objINV_StockTransfer.ShowDialog();
+                MainForm.objINV_StockTransfer.MdiParent = this.ParentForm;
+                MainForm.objINV_StockTransfer.Show();
             }
             catch (Exception ex)
             {
@@ -32,223 +33,7 @@ namespace ROMS
                 objError.WriteFile(ex);
 
             }
-        }
-        private void tsbEdit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void tsbDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfndelete();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        
-        private void CP_Supplierlist_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnList();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        
-        public void udfndelete()
-        {
-            //try
-            //{
-            //    if (grdStockTransferList.SelectedRows.Count > 0)
-            //    {
-            //        string result = "";
-            //        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //        if (dialogResult == DialogResult.Yes)
-            //        {
-
-            //            SPDataService objspdservice = new SPDataService();
-            //            result = "";
-            //        //    result = objspdservice.udfnSPBrandMaster("Delete", grdSupplierList.SelectedRows[0].Cells["BrandCode"].Value.ToString(), "", "","", "", MainForm.pbUserID, MainForm.pbIpAddress, "Brand Delete");
-
-            //            string[] varvalue = result.Split('~');
-            //            if (varvalue[0] == "3")
-            //            {
-            //                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //                udfnList();
-
-            //            }
-            //            else
-            //            {
-            //                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //            }
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-
-        }
-
-        private void udfnEdit()
-        {
-            //try
-            //{
-
-            //    if (grdStockTransferList.SelectedRows.Count > 0)
-            //    {
-            //        MainForm.objCP_Brand = new CP_Brand();
-            //        //MainForm.objCP_Brand.MdiParent = this.ParentForm;
-            //        MainForm.objCP_Brand.varbrandcode = grdStockTransferList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
-            //        MainForm.objCP_Brand.ShowDialog();
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-
-        }
-
-        public void udfnList()
-        {
-            //try
-            //{
-            //    picLoader.Visible = true;
-            //    Application.DoEvents();
-            //    //********** To display a data in a grid  ******************
-            //    grdStockTransferList.DataSource = null;
-            //    DataSet objDs = new DataSet();
-            //    //**** To call the function from SP ***************
-            //    SPDataService objdserv = new SPDataService();
-            //    //objDs = objdserv.udfnSPBrandList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-            //    objdserv.CloseConnection();
-            //    if (objDs != null)
-            //    {
-            //        if (objDs.Tables.Count != 0)
-            //        {
-            //            lblNoRecordsFound.Visible = false;
-            //            if (objDs.Tables[0].Rows.Count != 0)
-            //            {
-            //                lblNoRecordsFound.Visible = false;
-            //                lblNoRecordsFound.SendToBack();
-            //                grdStockTransferList.DataSource = objDs.Tables[0];
-            //                grdStockTransferList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            //                grdStockTransferList.Columns["Total No. of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            //                grdStockTransferList.Columns["Brand Name in Tamil"].Width = 275;
-            //                grdStockTransferList.Columns["Brand Name in English"].Width = 275;
-            //                grdStockTransferList.Columns["Label Name in Tamil"].Width = 275;
-            //                grdStockTransferList.Columns["Label Name in English"].Width = 275;
-            //                grdStockTransferList.Columns["BrandCode"].Visible = false;
-            //            }
-            //            else
-            //            {
-            //                lblNoRecordsFound.Visible = true;
-            //                lblNoRecordsFound.BringToFront();
-            //            }
-            //        }
-            //        else
-            //        {
-            //            lblNoRecordsFound.Visible = true;
-            //            lblNoRecordsFound.BringToFront();
-            //        }
-            //    }
-            //    else
-            //    {
-            //        lblNoRecordsFound.Visible = true;
-            //        lblNoRecordsFound.BringToFront();
-            //    }
-            //    udfnSearchGridHead();
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-            //finally
-            //{
-            //    grdStockTransferList.ClearSelection();
-            //    picLoader.Visible = false;
-            //}
-        }
-
-      
-        private void CP_Supplierlist_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    tsbEdit_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        
-        
-        public void grdSupplierList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdSupplierList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) { udfnEdit(); }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        
+        } 
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -274,141 +59,7 @@ namespace ROMS
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        }
-        //private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (grdStockTransferList.ColumnCount > 0)
-        //        {
-        //            grdStockTransferList.Columns[e.Column.Index].Width = e.Column.Width;
-        //            DGV_SearchGrid.HorizontalScrollingOffset = grdStockTransferList.HorizontalScrollingOffset;
-        //            //grdSupplierList.HorizontalScrollingOffset = 0;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        objError = new DataError();
-        //        objError.WriteFile(ex);
-        //    }
-        //}
-        //private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    try
-        //    {
-        //        //udfnGridSearchFilter();
-        //        DataService objDser = new DataService();
-        //        grdStockTransferList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdStockTransferList);
-        //        objDser.CloseConnection();
-        //        grdStockTransferList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-        //        //DGV_SearchGrid_CellPainting(sender,e);
-        //    }
-        //    catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        //}
-        //private void udfnSearchGridHead()
-        //{
-        //    try
-        //    {
-        //        udfnGridSearchHeading(grdStockTransferList, DGV_SearchGrid);
-        //        DGV_SearchGrid.Columns.Clear();
-        //        List<int> visibleColumns = new List<int>();
-        //        foreach (DataGridViewColumn col in grdStockTransferList.Columns)
-        //        {
-        //            DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-        //            visibleColumns.Add(col.Index);
-        //        }
-        //        int rowIndex = 0;
-        //        DGV_SearchGrid.Rows.Clear();
-        //        DGV_SearchGrid.Rows.Add();
-        //        for (int i = 0; i < visibleColumns.Count; i++)
-        //        {
-        //            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-        //        }
-        //        DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
-        //    }
-        //    catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        //}
-        //private void udfnGridSearchFilter()
-        //{
-        //    try
-        //    {
-        //        for (int i = 0; i < DGV_SearchGrid.Rows.Count; ++i)
-        //        {
-        //            if (DGV_SearchGrid.ColumnCount > 0)
-        //            {
-        //                BindingSource bs = new BindingSource();
-        //                bs.DataSource = grdStockTransferList.DataSource;
-        //                string filter = "";
-        //                for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
-        //                {
-        //                    if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "")
-        //                    {
-        //                        if (filter != "") filter += "And ";
-        //                        if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
-        //                            filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + "=" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value);
-        //                        else
-        //                            filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
-        //                    }
-        //                }
-        //                bs.Filter = filter;
-        //                grdStockTransferList.DataSource = bs;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        //}
-        //private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
-        //{
-        //    try
-        //    {
-        //        //dgv2.DataSource = null;
-        //        dgv2.Columns.Clear();
-        //        List<int> visibleColumns = new List<int>();
-        //        foreach (DataGridViewColumn col in dgv1.Columns)
-        //        {
-        //            if (col.Visible)
-        //            {
-        //                dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-        //                visibleColumns.Add(col.Index);
-        //            }
-        //        }
-        //        int rowIndex = 0;
-        //        dgv2.Rows.Clear();
-        //        dgv2.Rows.Add();
-        //        for (int i = 0; i < visibleColumns.Count; i++)
-        //        {
-        //            dgv2.Rows[rowIndex].Cells[i].Value = "";
-        //        }
-        //    }
-        //    catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        //}
-        //private void grdSupplierList_Scroll(object sender, ScrollEventArgs e)
-        //{
-        //    try
-        //    {
-
-        //        int totalWidth = 0;
-        //        int offSetValue = grdStockTransferList.HorizontalScrollingOffset;
-        //        foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-        //            totalWidth += col.Width;
-
-        //        if (totalWidth - grdStockTransferList.Width > grdStockTransferList.HorizontalScrollingOffset && grdStockTransferList.HorizontalScrollingOffset > 0)
-        //        {
-        //            offSetValue = offSetValue ;
-        //            offSetValue = offSetValue;
-        //        }
-        //        DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-        //        DGV_SearchGrid.Invalidate();
-
-        //        udfnscrollVisible(DGV_SearchGrid, grdStockTransferList);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        objError = new DataError();
-        //        objError.WriteFile(ex);
-        //    }
-        //}
-
+        } 
         private void DGV_SearchGrid_Sorted(object sender, EventArgs e)
         {
 
@@ -422,65 +73,12 @@ namespace ROMS
      
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //DataGridViewColumn newColumn = grdStockTransferList.Columns[e.ColumnIndex];
-            //DataGridViewColumn oldColumn = grdStockTransferList.SortedColumn;
-            //ListSortDirection direction;
-
-            //// If oldColumn is null, then the DataGridView is not sorted.
-            //if (oldColumn != null)
-            //{
-            //    // Sort the same column again, reversing the SortOrder.
-            //    if (oldColumn == newColumn &&
-            //        grdStockTransferList.SortOrder == SortOrder.Ascending)
-            //    {
-            //        direction = ListSortDirection.Descending;
-            //    }
-            //    else
-            //    {
-            //        // Sort a new column and remove the old SortGlyph.
-            //        direction = ListSortDirection.Ascending;
-            //        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
-            //    }
-            //}
-            //else
-            //{
-            //    direction = ListSortDirection.Ascending;
-            //}
-            //grdStockTransferList.Sort(newColumn, direction);
-            //newColumn.HeaderCell.SortGlyphDirection =
-            //    direction == ListSortDirection.Ascending ?
-            //    SortOrder.Ascending : SortOrder.Descending;
-
-            //DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-            //DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-
-            //DGV_SearchGrid.HorizontalScrollingOffset = grdStockTransferList.HorizontalScrollingOffset;
-            //DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+          
         }
 
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
-            //try
-            //{
-
-            //    int totalWidth = 0;
-            //    int offSetValue = grdStockTransferList.HorizontalScrollingOffset;
-            //    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-            //        totalWidth += col.Width;
-
-            //    if (totalWidth - grdStockTransferList.Width > grdStockTransferList.HorizontalScrollingOffset && grdStockTransferList.HorizontalScrollingOffset > 0)
-            //    {
-            //        //offSetValue = offSetValue ;
-            //        offSetValue = offSetValue;
-            //    }
-            //    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-            //    DGV_SearchGrid.Invalidate();
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+             
         }
         public void udfnscrollVisible(DataGridView DGV,DataGridView grdGroupList)
         {
@@ -505,6 +103,33 @@ namespace ROMS
                             DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                         }
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void INV_StockTransferList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
                 }
             }
             catch (Exception ex)

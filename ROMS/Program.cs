@@ -22,9 +22,9 @@ namespace ROMS
             {
                 SecurityController _security = new SecurityController();
                 //  DataService objDser = new DataService();
-                string version = "v1.0.1";
+                string version = "v1.1.0";
               //  string path = Application.StartupPath + "\\Server Settings\\serversettings.txt";
-                //if (File.Exists(path))
+                //if (File.Exists(pa th))
                 //{
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);

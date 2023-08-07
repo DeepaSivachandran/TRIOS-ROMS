@@ -62,30 +62,7 @@ namespace ROMS
             }
         }
        
-        public void loadnoofgroup()
-        {
-            try
-            {
-                string condition = "1=1";
-                if(Convert.ToInt16(cmbGroupType.SelectedValue)==0)
-                {
-                    condition = "1=1";
-                }
-                else
-                {
-                    condition = "a.GroupTypeCode=" + Convert.ToInt16(cmbGroupType.SelectedValue);
-                }
-                DataService objDserv = new DataService();
-                lblGC.Text = objDserv.displaydata("SELECT count(*) from CP_GROUP as a inner join DEF_GROUPTYPE as b on a.GroupTypeCode=b.GroupTypeCode where "+ condition);
-                objDserv.CloseConnection();
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+ 
 
         public void udfnList()
         {
@@ -160,43 +137,7 @@ namespace ROMS
         }
 
         public void udfndelete()
-        {
-            try
-            {
-                
-                MessageBox.Show("Do you want to delete  ?", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-                //if (grdGroupList.SelectedRows.Count > 0)
-                //{
-                //    string result = "";
-                //    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //    if (dialogResult == DialogResult.Yes)
-                //    {
-
-                //        SPDataService objspdservice = new SPDataService();
-                //     //   result = objspdservice.udfnSPGroupMaster("Delete", grdGroupList.SelectedRows[0].Cells["GroupCode"].Value.ToString(),"","","", "", "","", MainForm.pbUserID, MainForm.pbIpAddress, "Group Delete");
-
-                //        string[] varvalue = result.Split('~');
-                //        if (varvalue[0] == "3")
-                //        {
-                //            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //            udfnList();
-                //            loadnoofgroup();
-
-                //        }
-                //        else
-                //        {
-                //            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //        }
-                //    }
-                //}
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+        { 
 
         }
 
@@ -215,134 +156,10 @@ namespace ROMS
                 objError.WriteFile(ex);
 
             }
-            //    if (grdGroupList.SelectedRows.Count > 0)
-            //    {
-            //        MainForm.objCP_Group = new CP_Group();
-            //        //MainForm.objCP_Group.MdiParent = this.ParentForm;
-            //        MainForm.objCP_Group.vargroupcode = grdGroupList.SelectedRows[0].Cells["GroupCode"].Value.ToString();
-            //        MainForm.objCP_Group.ShowDialog();
-
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-
+           
 
         }
-
-        private void btnExport_Click(object sender, EventArgs e)
-        {
-            try {
-                if (grdGroupList.Rows.Count > 0)
-                {
-                    //Microsoft.Office.Interop.Excel._Application ExcelObj = new Microsoft.Office.Interop.Excel.Application();
-                    //// creating new WorkBook within Excel application  
-                    //Microsoft.Office.Interop.Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
-                    //// creating new Excelsheet in workbook  
-                    //Microsoft.Office.Interop.Excel._Worksheet ExcelSheet = null;
-                    //// see the excel sheet behind the program  
-                    //ExcelObj.Visible = true;
-                    //ExcelSheet = ExcelBook.Sheets["Sheet1"];
-                    //ExcelSheet = ExcelBook.ActiveSheet;
-                    //ExcelSheet.Name = "Group Master List";
-                    //int count = 0;
-                    //foreach (DataGridViewColumn col in grdGroupList.Columns)
-                    //{
-                    //    if (col.Visible)
-                    //    {
-                    //        count++;
-                    //    }
-
-                    //}
-                    //ExcelSheet.Cells[1, 1].Value = "Group Master List";
-                    //ExcelSheet.Columns.AutoFit();
-                    //ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
-                    //ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
-                    //ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Excel.XlRgbColor.rgbLightBlue;
-                    //ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 15;
-                    //ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
-                    //ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
-                    //ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Excel.XlRgbColor.rgbSlateGray;
-                    //int cIndex = 0;
-                    //foreach (DataGridViewColumn col in grdGroupList.Columns)
-                    //{
-                    //    if (col.Visible)
-                    //    {
-                    //        if (col.HeaderText != "Remove")
-                    //        {
-                    //            cIndex++;
-                    //            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
-
-                    //            foreach (DataGridViewRow rowa in grdGroupList.Rows)
-                    //            {
-                    //                ExcelSheet.Columns[cIndex].NumberFormat = "@";
-                    //                ExcelSheet.Cells[(rowa.Index + 3), cIndex] = rowa.Cells[col.Index].Value.ToString();
-                    //                ExcelSheet.Cells[(rowa.Index +3), cIndex].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlLeft;
-                    //            }
-                    //        }
-                    //    }
-                    //}
-                    ////ExcelObj.Visible = true;
-                    //ExcelObj.GetSaveAsFilename();
-                    DataTable objDt = new DataTable();
-                    objDt = objDtExcel.Copy();
-                    objDt.Columns.Remove("GroupCode");
-                    //using (XLWorkbook wb = new XLWorkbook())
-                    //{
-                    //    SaveFileDialog sv = new SaveFileDialog();
-                    //    sv.Filter = "Execl files (*.xls)|*.xls";
-                    //    sv.FilterIndex = 0;
-                    //    if (sv.ShowDialog() == DialogResult.OK)
-                    //    {
-                    //        var sheet = wb.Worksheets.Add("Group List");
-                    //        //sheet.Cell(1, 1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-                    //        //sheet.Cell(1, 1).Style.Fill.BackgroundColor = XLColor.White;
-                    //        //sheet.Cell(1, 1).Style.Font.Bold = true;
-                    //        //sheet.Cell(1, 1).Style.Font.FontSize = 15; 
-
-                    //        sheet.Cell(1, 1).InsertTable(objDt);
-
-                    //     //   sheet.Cell(objDt.Rows.Count + 4, 1).InsertData(objDt.Rows);
-                    //        sheet.Tables.FirstOrDefault().ShowAutoFilter = false;
-                    //        wb.SaveAs(sv.FileName);
-                    //        MessageBox.Show("Successfully Downloaded", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //    }
-                    //}
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void grdGroupList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            //udfnscrollVisible();
-            //int IntVScrollBarWidth = 0;
-            //DataService objDser = new DataService();
-            //IntVScrollBarWidth = objDser.udfnVscrollBarWidth(grdGroupList);
-            //objDser.CloseConnection();
-            //if (IntVScrollBarWidth != 0)
-            //{
-            //    //List<int> visibleColumns = new List<int>();
-            //    //foreach (DataGridViewColumn col in grdGroupList.Columns)
-            //    //{
-            //    //    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-            //    //    visibleColumns.Add(col.Index);
-            //    //}
-            //    //int rowIndex = 1;
-            //    //DGV_SearchGrid.Rows.Add();
-            //    //for (int i = 0; i < visibleColumns.Count; i++)
-            //    //{
-            //    //    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-            //    //}
-            //}
-        }
+          
 
         private void CmbGroupType_KeyDown(object sender, KeyEventArgs e)
         {

@@ -54,13 +54,11 @@ namespace ROMS
         {
             if (btnSave.Text == "Save")
             {
-                grpproductname.Visible = true;
-                txtsuppliername.Enabled = true;
+                grpproductname.Visible = true; 
                 
             }
             else {
-                grpproductname.Visible = false;
-                txtsuppliername.Enabled = false;
+                grpproductname.Visible = false; 
                 //cmbPoNo.Enabled = false; 
             }
         }
@@ -78,6 +76,28 @@ namespace ROMS
         private void Btnsaveasdraft_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbtransfertype.SelectedItem != "Regular")
+            {
+                grpproductname.Enabled = false;
+                 
+
+                DGV_inward.Columns["clmreceive"].Visible = true;
+                DGV_inward.Columns["clmtransfer"].Visible = true;
+                DGV_inward.Columns["clmactualqty"].Visible = false;
+                
+            }
+            else
+            {
+                 
+                grpproductname.Enabled = true;
+                DGV_inward.Columns["clmreceive"].Visible = false;
+                DGV_inward.Columns["clmtransfer"].Visible = false;
+                DGV_inward.Columns["clmactualqty"].Visible = true;
+            }
         }
     }
 }

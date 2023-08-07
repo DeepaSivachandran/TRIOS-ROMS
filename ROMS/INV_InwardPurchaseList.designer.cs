@@ -37,8 +37,6 @@
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlinward = new System.Windows.Forms.Panel();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,6 +63,7 @@
             this.clmdinvoicedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsuppliername = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
@@ -79,6 +78,7 @@
             this.clminvoicedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsuppliername = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
@@ -97,9 +97,7 @@
             this.tsInwardList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsInwardList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
-            this.tsbEdit,
-            this.toolStripSeparator1,
-            this.tsbNew});
+            this.tsbEdit});
             this.tsInwardList.Location = new System.Drawing.Point(0, 0);
             this.tsInwardList.Name = "tsInwardList";
             this.tsInwardList.Size = new System.Drawing.Size(1354, 27);
@@ -128,22 +126,6 @@
             this.tsbEdit.Size = new System.Drawing.Size(50, 24);
             this.tsbEdit.Text = "&Edit";
             this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
-            // 
-            // tsbNew
-            // 
-            this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbNew.Image = global::ROMS.Properties.Resources.New;
-            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNew.Name = "tsbNew";
-            this.tsbNew.Size = new System.Drawing.Size(52, 24);
-            this.tsbNew.Text = "&New";
-            this.tsbNew.Click += new System.EventHandler(this.TsbNew_Click_1);
             // 
             // pnlinward
             // 
@@ -188,18 +170,18 @@
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.label1.Location = new System.Drawing.Point(163, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 20);
+            this.label1.Size = new System.Drawing.Size(65, 20);
             this.label1.TabIndex = 958816;
-            this.label1.Text = "Date Type";
+            this.label1.Text = "Date Filter";
             // 
             // cmbDateType
             // 
             this.cmbDateType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDateType.FormattingEnabled = true;
             this.cmbDateType.Items.AddRange(new object[] {
-            "GRN",
-            "Purchase",
-            "Inward"});
+            "GRN Date",
+            "Purchase Date",
+            "Inward Date"});
             this.cmbDateType.Location = new System.Drawing.Point(163, 42);
             this.cmbDateType.Name = "cmbDateType";
             this.cmbDateType.Size = new System.Drawing.Size(122, 27);
@@ -322,8 +304,8 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
@@ -339,6 +321,7 @@
             this.clmdinvoicedate,
             this.clmdsuppliername,
             this.clmdtotalitems,
+            this.Column12,
             this.clmdtotalqty,
             this.Column5});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -354,8 +337,8 @@
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 81);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -416,8 +399,15 @@
             // 
             // clmdtotalitems
             // 
-            this.clmdtotalitems.HeaderText = "Total Products";
+            this.clmdtotalitems.HeaderText = "Total Products in Invoice";
             this.clmdtotalitems.Name = "clmdtotalitems";
+            this.clmdtotalitems.Width = 150;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "My Products";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
             // 
             // clmdtotalqty
             // 
@@ -454,8 +444,8 @@
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdInwardList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdInwardList.ColumnHeadersHeight = 30;
@@ -471,6 +461,7 @@
             this.clminvoicedate,
             this.clmsuppliername,
             this.clmtotalitems,
+            this.Column11,
             this.clmtotalqty,
             this.Column10});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -487,7 +478,7 @@
             this.grdInwardList.Name = "grdInwardList";
             this.grdInwardList.ReadOnly = true;
             this.grdInwardList.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdInwardList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdInwardList.RowTemplate.Height = 25;
@@ -552,9 +543,16 @@
             // 
             // clmtotalitems
             // 
-            this.clmtotalitems.HeaderText = "Total Products";
+            this.clmtotalitems.HeaderText = "Total Products in Invoice";
             this.clmtotalitems.Name = "clmtotalitems";
             this.clmtotalitems.ReadOnly = true;
+            this.clmtotalitems.Width = 150;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "My Products";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
             // 
             // clmtotalqty
             // 
@@ -597,8 +595,8 @@
             this.Name = "INV_InwardPurchaseList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Brand";
-            this.Load += new System.EventHandler(this.CP_BrandList_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrandList_KeyDown);
+            this.Load += new System.EventHandler(this.INV_InwardPurchaseList_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_InwardPurchaseList_KeyDown);
             this.tsInwardList.ResumeLayout(false);
             this.tsInwardList.PerformLayout();
             this.pnlinward.ResumeLayout(false);
@@ -617,8 +615,6 @@
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbEdit;
         private System.Windows.Forms.ToolStrip tsInwardList;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.Panel pnlinward;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblNoRecordsFound;
@@ -636,6 +632,8 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ComboBox cmbconcern;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbDateType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -646,6 +644,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdinvoicedate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsuppliername;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdtotalitems;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdtotalqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
@@ -658,9 +657,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clminvoicedate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsuppliername;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitems;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbDateType;
     }
 }

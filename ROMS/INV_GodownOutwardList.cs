@@ -24,7 +24,9 @@ namespace ROMS
             try
             {
                 MainForm.objINV_GodownOutward = new INV_GodownOutward();
-                MainForm.objINV_GodownOutward.ShowDialog();
+
+                MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
+                MainForm.objINV_GodownOutward.Show();
 
             }
             catch (Exception ex)
@@ -38,8 +40,9 @@ namespace ROMS
             try
             {
                 MainForm.objINV_GodownOutward = new INV_GodownOutward();
+                MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
                 MainForm.objINV_GodownOutward.btnSave.Text = "Update";
-                MainForm.objINV_GodownOutward.ShowDialog();
+                MainForm.objINV_GodownOutward.Show();
 
             }
             catch (Exception ex)
@@ -51,8 +54,7 @@ namespace ROMS
         private void tsbDelete_Click(object sender, EventArgs e)
         {
             try
-            {
-                udfndelete();
+            { 
             }
             catch (Exception ex)
             {
@@ -64,158 +66,19 @@ namespace ROMS
         private void CP_UserList_Load(object sender, EventArgs e)
         {
             try
-            {
-                udfnList();
+            { 
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        public void udfndelete()
-        {
-            try
-            {
-                if (grdUserList.SelectedRows.Count > 0)
-                {
-                    string result = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-
-                        SPDataService objspdservice = new SPDataService();
-                       // result = objspdservice.udfnSPUserMaster("Delete", grdUserList.SelectedRows[0].Cells["Autonum"].Value.ToString(),"","","","","",MainForm.pbUserID, MainForm.pbIpAddress, "User Delete");
-
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        private void udfnEdit()
-        {
-            //try
-            //{
-
-            //    if (grdUserList.SelectedRows.Count > 0)
-            //    {
-            //        MainForm.objCP_User = new CP_User();
-            //        //MainForm.objCP_User.MdiParent = this.ParentForm;
-            //        MainForm.objCP_User.varusercode = grdUserList.SelectedRows[0].Cells["Autonum"].Value.ToString();
-            //        MainForm.objCP_User.ShowDialog();
-
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-
-        }
-
-        public void udfnList()
-        {
-            try
-            {
-                picLoader.Visible = true;
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                grdUserList.DataSource = null;
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-              //  objDs = objdserv.udfnSPUserList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                objdserv.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-                            grdUserList.DataSource = objDs.Tables[0];
-                            grdUserList.Columns["Name of the User"].Width = 320;
-                            grdUserList.Columns["User Role"].Width = 320;
-                            grdUserList.Columns["SI.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdUserList.Columns["Autonum"].Visible = false;
-                        }
-                        else
-                        {
-                            lblNoRecordsFound.Visible = true;
-                            lblNoRecordsFound.BringToFront();
-                        }
-                    }
-                    else
-                    {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
-                    }
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
-                }
-                udfnSearchGridHead();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                grdUserList.ClearSelection();
-                picLoader.Visible = false;
-            }
-        }
+        }  
+         
 
         private void CP_UserList_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    tsbEdit_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
 
 
@@ -252,9 +115,31 @@ namespace ROMS
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
-        private void GrbFilterBy_Enter(object sender, EventArgs e)
+        private void INV_GodownOutwardList_KeyDown(object sender, KeyEventArgs e)
         {
-
+            try
+            {
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    tsbEdit_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

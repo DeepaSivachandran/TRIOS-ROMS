@@ -58,10 +58,7 @@ namespace ROMS
             }
         }
 
-        private void CP_UserList_Load(object sender, EventArgs e)
-        {
-
-        }
+        
         public void udfndelete()
         {
             try
@@ -124,62 +121,7 @@ namespace ROMS
         }
 
         public void udfnList()
-        {
-            try
-            {
-                picLoader.Visible = true;
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                grdUserList.DataSource = null;
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-              //  objDs = objdserv.udfnSPUserList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                objdserv.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-                            grdUserList.DataSource = objDs.Tables[0];
-                            grdUserList.Columns["Name of the User"].Width = 320;
-                            grdUserList.Columns["User Role"].Width = 320;
-                            grdUserList.Columns["SI.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdUserList.Columns["Autonum"].Visible = false;
-                        }
-                        else
-                        {
-                            lblNoRecordsFound.Visible = true;
-                            lblNoRecordsFound.BringToFront();
-                        }
-                    }
-                    else
-                    {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
-                    }
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
-                }
-                udfnSearchGridHead();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                grdUserList.ClearSelection();
-                picLoader.Visible = false;
-            }
+        { 
         }
 
 

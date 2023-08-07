@@ -137,64 +137,64 @@ namespace ROMS
 
         public void udfnList()
         {
-            try
-            {
-                picLoader.Visible = true;
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                grdBrandList.DataSource = null;
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                //objDs = objdserv.udfnSPBrandList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                objdserv.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-                            grdBrandList.DataSource = objDs.Tables[0];
-                            grdBrandList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdBrandList.Columns["Total No. of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdBrandList.Columns["Brand Name in Tamil"].Width = 275;
-                            grdBrandList.Columns["Brand Name in English"].Width = 275;
-                            grdBrandList.Columns["Label Name in Tamil"].Width = 275;
-                            grdBrandList.Columns["Label Name in English"].Width = 275;
-                            grdBrandList.Columns["BrandCode"].Visible = false;
-                        }
-                        else
-                        {
-                            lblNoRecordsFound.Visible = true;
-                            lblNoRecordsFound.BringToFront();
-                        }
-                    }
-                    else
-                    {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
-                    }
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
-                }
-                udfnSearchGridHead();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                grdBrandList.ClearSelection();
-                picLoader.Visible = false;
-            }
+            
+                //    picLoader.Visible = true;
+                //    Application.DoEvents();
+                //    //********** To display a data in a grid  ******************
+                //    grdBrandList.DataSource = null;
+                //    DataSet objDs = new DataSet();
+                //    //**** To call the function from SP ***************
+                //    SPDataService objdserv = new SPDataService();
+                //    //objDs = objdserv.udfnSPBrandList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
+                //    objdserv.CloseConnection();
+                //    if (objDs != null)
+                //    {
+                //        if (objDs.Tables.Count != 0)
+                //        {
+                //            lblNoRecordsFound.Visible = false;
+                //            if (objDs.Tables[0].Rows.Count != 0)
+                //            {
+                //                lblNoRecordsFound.Visible = false;
+                //                lblNoRecordsFound.SendToBack();
+                //                grdBrandList.DataSource = objDs.Tables[0];
+                //                grdBrandList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                //                grdBrandList.Columns["Total No. of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                //                grdBrandList.Columns["Brand Name in Tamil"].Width = 275;
+                //                grdBrandList.Columns["Brand Name in English"].Width = 275;
+                //                grdBrandList.Columns["Label Name in Tamil"].Width = 275;
+                //                grdBrandList.Columns["Label Name in English"].Width = 275;
+                //                grdBrandList.Columns["BrandCode"].Visible = false;
+                //            }
+                //            else
+                //            {
+                //                lblNoRecordsFound.Visible = true;
+                //                lblNoRecordsFound.BringToFront();
+                //            }
+                //        }
+                //        else
+                //        {
+                //            lblNoRecordsFound.Visible = true;
+                //            lblNoRecordsFound.BringToFront();
+                //        }
+                //    }
+                //    else
+                //    {
+                //        lblNoRecordsFound.Visible = true;
+                //        lblNoRecordsFound.BringToFront();
+                //    }
+                //    udfnSearchGridHead();
+                //}
+                //catch (Exception ex)
+                //{
+                //    objError = new DataError();
+                //    objError.WriteFile(ex);
+                //}
+                //finally
+                //{
+                //    grdBrandList.ClearSelection();
+                //    picLoader.Visible = false;
+                //}
+            
         }
 
         private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)

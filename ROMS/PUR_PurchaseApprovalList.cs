@@ -66,5 +66,31 @@ namespace ROMS
             }
 
         }
+
+        private void PUR_PurchaseApprovalList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void GrdPurchaseApproval_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

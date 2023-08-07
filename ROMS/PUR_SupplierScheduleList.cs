@@ -23,8 +23,14 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_SupplierSchedule = new PUR_SupplierSchedule();
-                MainForm.objPUR_SupplierSchedule.ShowDialog();
+                MainForm.objCP_SupplierMapping = new CP_SupplierMapping();
+                //MainForm.objCP_SupplierMapping.StartPosition = FormStartPosition.Manual;  
+                //int dialogX = this.Location.X + (this.Width - MainForm.objCP_SupplierMapping.Width ) / 2;
+                //int dialogY = this.Location.Y + (this.Height - MainForm.objCP_SupplierMapping.Height + 100) / 2; 
+                //MainForm.objCP_SupplierMapping.Location = new Point(dialogX, dialogY); 
+
+                MainForm.objCP_SupplierMapping.MdiParent = this.ParentForm;
+                MainForm.objCP_SupplierMapping.Show();
             }
             catch (Exception ex)
             {
@@ -33,128 +39,25 @@ namespace ROMS
 
             }
         }
-        private void tsbEdit_Click(object sender, EventArgs e)
+      
+        private void BtnSchedulePopup_Click(object sender, EventArgs e)
         {
             try
             {
-                udfnEdit();
+                MainForm.objPUR_POScheduledaywise = new PUR_POScheduledaywise();   
+                MainForm.objPUR_POScheduledaywise.ShowDialog();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-        }
-        private void tsbDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfndelete();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+
             }
         }
 
-        private void CP_LocationList_Load(object sender, EventArgs e)
+        private void PUR_SupplierScheduleList_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
-                udfnList();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
 
-
-        public void udfnList()
-        {
-            try
-            {
-                picLoader.Visible = true;
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                
-                DataSet objDs =new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-               // objDs = objdserv.udfnSPLocationList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                objdserv.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                             
-                        }
-                        else
-                        {
-                            lblNoRecordsFound.Visible = true;
-                            lblNoRecordsFound.BringToFront();
-                        }
-                    }
-                    else
-                    {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
-                    }
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            { 
-                picLoader.Visible = false;
-            }
-        }
-
-        public void udfndelete()
-        {
-            try
-            {
-                 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        private void udfnEdit()
-        {
-            try
-            {
-
-                
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        private void CP_LocationList_KeyDown(object sender, KeyEventArgs e)
-        {
             try
             {
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
@@ -163,7 +66,7 @@ namespace ROMS
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
-                    tsbEdit_Click(sender, e);
+                   // tsbEdit_Click(sender, e);
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -172,6 +75,7 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
+
             }
             catch (Exception ex)
             {
@@ -179,32 +83,5 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void grdLocationList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void grdLocationList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) {
-                    udfnEdit();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-       
     }
 }

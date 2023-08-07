@@ -104,15 +104,7 @@ namespace ROMS
             {
                 MainForm.objCP_Unit = new CP_Unit();
                 MainForm.objCP_Unit.btnSave.Text = "Update";
-                MainForm.objCP_Unit.ShowDialog();
-
-                //if (grdUnitList.SelectedRows.Count > 0)
-                //{
-                //    MainForm.objCP_Brand = new CP_Brand();
-                //    //MainForm.objCP_Brand.MdiParent = this.ParentForm;
-                //    MainForm.objCP_Brand.varbrandcode = grdUnitList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
-                //    MainForm.objCP_Brand.ShowDialog();
-                //}
+                MainForm.objCP_Unit.ShowDialog(); 
 
             }
             catch (Exception ex)
@@ -124,67 +116,9 @@ namespace ROMS
         }
 
         public void udfnList()
-        {
-            try
-            {
-                picLoader.Visible = true;
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                grdUnitList.DataSource = null;
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                //objDs = objdserv.udfnSPBrandList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                objdserv.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-                            grdUnitList.DataSource = objDs.Tables[0];
-                            grdUnitList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdUnitList.Columns["Total No. of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdUnitList.Columns["Brand Name in Tamil"].Width = 275;
-                            grdUnitList.Columns["Brand Name in English"].Width = 275;
-                            grdUnitList.Columns["Label Name in Tamil"].Width = 275;
-                            grdUnitList.Columns["Label Name in English"].Width = 275;
-                            grdUnitList.Columns["BrandCode"].Visible = false;
-                        }
-                        else
-                        {
-                            lblNoRecordsFound.Visible = true;
-                            lblNoRecordsFound.BringToFront();
-                        }
-                    }
-                    else
-                    {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
-                    }
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
-                }
-                udfnSearchGridHead();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                grdUnitList.ClearSelection();
-                picLoader.Visible = false;
-            }
+        { 
         }
-
+ 
 
         public void grdBrandList_DoubleClick(object sender, EventArgs e)
         {
@@ -198,20 +132,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void grdBrandList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) { udfnEdit();  }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {

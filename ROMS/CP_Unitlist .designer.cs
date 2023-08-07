@@ -198,8 +198,8 @@
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -284,7 +284,7 @@
             this.grdUnitList.ReadOnly = true;
             this.grdUnitList.RowHeadersVisible = false;
             this.grdUnitList.RowHeadersWidth = 100;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdUnitList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdUnitList.RowTemplate.Height = 25;
@@ -375,9 +375,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_Unitlist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
-            this.Load += new System.EventHandler(this.CP_Unitlist_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Unitlist_KeyDown);
+            this.Text = "Unit";
             this.tsUnitList.ResumeLayout(false);
             this.tsUnitList.PerformLayout();
             this.pnlunitlist.ResumeLayout(false);

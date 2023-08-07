@@ -90,7 +90,28 @@ namespace ROMS
             }
         }
 
-      
+        private void txtEGroupNameEnglish_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtEGroupNameEnglish.Text == "")
+                {
+                    txtEGroupNameEnglish.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    epGroup.SetError(txtEGroupNameEnglish, "Please Enter Group Name in English");
+                }
+                else
+                {
+                    txtEGroupNameEnglish.BackColor = Color.White;
+                    epGroup.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
 
         private void RbActive_KeyDown(object sender, KeyEventArgs e)
         {

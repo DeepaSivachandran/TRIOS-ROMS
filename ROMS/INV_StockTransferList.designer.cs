@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsStockTransferList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
@@ -45,37 +45,35 @@
             this.lvProductNamePICode = new System.Windows.Forms.ListView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.dgvStockTransferList = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.dpTransferToDate = new System.Windows.Forms.DateTimePicker();
             this.dpTrannsferFromDate = new System.Windows.Forms.DateTimePicker();
             this.lblProductNamePICode = new System.Windows.Forms.Label();
             this.lblTransferFromDate = new System.Windows.Forms.Label();
-            this.lblConcern = new System.Windows.Forms.Label();
-            this.cmbConcer = new System.Windows.Forms.ComboBox();
             this.btnView = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdtransferdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTransferNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdestination = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsalename = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsStockTransferList.SuspendLayout();
             this.pnlStockTransferList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStockTransferList)).BeginInit();
@@ -100,7 +98,7 @@
             this.tsStockTransferList.Name = "tsStockTransferList";
             this.tsStockTransferList.Size = new System.Drawing.Size(1354, 27);
             this.tsStockTransferList.TabIndex = 35;
-            this.tsStockTransferList.Text = "Stock Transfer List";
+            this.tsStockTransferList.Text = "Stock Transfer";
             // 
             // tspHeader
             // 
@@ -109,8 +107,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(126, 24);
-            this.tspHeader.Text = "Stock Transfer List";
+            this.tspHeader.Size = new System.Drawing.Size(103, 24);
+            this.tspHeader.Text = "Stock Transfer";
             // 
             // tsbDelete
             // 
@@ -123,7 +121,6 @@
             this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbDelete.Size = new System.Drawing.Size(63, 24);
             this.tsbDelete.Text = "Delete";
-            this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
             // 
             // tssEdit
             // 
@@ -143,7 +140,6 @@
             this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbEdit.Size = new System.Drawing.Size(50, 24);
             this.tsbEdit.Text = "&Edit";
-            this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
             // 
             // tssNew
             // 
@@ -182,7 +178,7 @@
             // lvProductNamePICode
             // 
             this.lvProductNamePICode.HideSelection = false;
-            this.lvProductNamePICode.Location = new System.Drawing.Point(634, 57);
+            this.lvProductNamePICode.Location = new System.Drawing.Point(613, 55);
             this.lvProductNamePICode.Name = "lvProductNamePICode";
             this.lvProductNamePICode.Size = new System.Drawing.Size(340, 95);
             this.lvProductNamePICode.TabIndex = 958823;
@@ -208,43 +204,42 @@
             this.dgvStockTransferList.AllowUserToResizeRows = false;
             this.dgvStockTransferList.BackgroundColor = System.Drawing.Color.White;
             this.dgvStockTransferList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStockTransferList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStockTransferList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvStockTransferList.ColumnHeadersHeight = 30;
             this.dgvStockTransferList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvStockTransferList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn4,
+            this.Column1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn5,
-            this.Column1,
             this.Column2,
-            this.Column3,
             this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvStockTransferList.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn8,
+            this.Column4});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStockTransferList.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvStockTransferList.EnableHeadersVisualStyles = false;
             this.dgvStockTransferList.GridColor = System.Drawing.Color.White;
             this.dgvStockTransferList.Location = new System.Drawing.Point(3, 130);
             this.dgvStockTransferList.Name = "dgvStockTransferList";
             this.dgvStockTransferList.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvStockTransferList.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.dgvStockTransferList.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvStockTransferList.RowTemplate.Height = 25;
             this.dgvStockTransferList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvStockTransferList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -252,15 +247,66 @@
             this.dgvStockTransferList.Size = new System.Drawing.Size(1339, 493);
             this.dgvStockTransferList.TabIndex = 958802;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Concern";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Transfer Date";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Transfer No.";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Source";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 150;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Destination";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Total Products";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Created by";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.Width = 200;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Status";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
             // grbFilterBy
             // 
+            this.grbFilterBy.Controls.Add(this.cmbConcern);
+            this.grbFilterBy.Controls.Add(this.label12);
             this.grbFilterBy.Controls.Add(this.txtProductNamePICode);
             this.grbFilterBy.Controls.Add(this.dpTransferToDate);
             this.grbFilterBy.Controls.Add(this.dpTrannsferFromDate);
             this.grbFilterBy.Controls.Add(this.lblProductNamePICode);
             this.grbFilterBy.Controls.Add(this.lblTransferFromDate);
-            this.grbFilterBy.Controls.Add(this.lblConcern);
-            this.grbFilterBy.Controls.Add(this.cmbConcer);
             this.grbFilterBy.Controls.Add(this.btnView);
             this.grbFilterBy.Location = new System.Drawing.Point(3, 2);
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -271,9 +317,29 @@
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By";
             // 
+            // cmbConcern
+            // 
+            this.cmbConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(82, 23);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(121, 27);
+            this.cmbConcern.TabIndex = 1111185;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(26, 26);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(54, 20);
+            this.label12.TabIndex = 1111186;
+            this.label12.Text = "Concern";
+            // 
             // txtProductNamePICode
             // 
-            this.txtProductNamePICode.Location = new System.Drawing.Point(631, 25);
+            this.txtProductNamePICode.Location = new System.Drawing.Point(613, 23);
             this.txtProductNamePICode.Name = "txtProductNamePICode";
             this.txtProductNamePICode.Size = new System.Drawing.Size(340, 27);
             this.txtProductNamePICode.TabIndex = 958822;
@@ -282,7 +348,7 @@
             // 
             this.dpTransferToDate.CustomFormat = "dd/MM/yyyy";
             this.dpTransferToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpTransferToDate.Location = new System.Drawing.Point(397, 25);
+            this.dpTransferToDate.Location = new System.Drawing.Point(383, 23);
             this.dpTransferToDate.Name = "dpTransferToDate";
             this.dpTransferToDate.Size = new System.Drawing.Size(92, 27);
             this.dpTransferToDate.TabIndex = 958821;
@@ -291,7 +357,7 @@
             // 
             this.dpTrannsferFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpTrannsferFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpTrannsferFromDate.Location = new System.Drawing.Point(299, 25);
+            this.dpTrannsferFromDate.Location = new System.Drawing.Point(289, 23);
             this.dpTrannsferFromDate.Name = "dpTrannsferFromDate";
             this.dpTrannsferFromDate.Size = new System.Drawing.Size(92, 27);
             this.dpTrannsferFromDate.TabIndex = 958820;
@@ -299,7 +365,7 @@
             // lblProductNamePICode
             // 
             this.lblProductNamePICode.AutoSize = true;
-            this.lblProductNamePICode.Location = new System.Drawing.Point(491, 28);
+            this.lblProductNamePICode.Location = new System.Drawing.Point(477, 26);
             this.lblProductNamePICode.Name = "lblProductNamePICode";
             this.lblProductNamePICode.Size = new System.Drawing.Size(134, 20);
             this.lblProductNamePICode.TabIndex = 958818;
@@ -308,36 +374,17 @@
             // lblTransferFromDate
             // 
             this.lblTransferFromDate.AutoSize = true;
-            this.lblTransferFromDate.Location = new System.Drawing.Point(211, 28);
+            this.lblTransferFromDate.Location = new System.Drawing.Point(205, 26);
             this.lblTransferFromDate.Name = "lblTransferFromDate";
             this.lblTransferFromDate.Size = new System.Drawing.Size(82, 20);
             this.lblTransferFromDate.TabIndex = 958816;
             this.lblTransferFromDate.Text = "Transfer Date";
             // 
-            // lblConcern
-            // 
-            this.lblConcern.AutoSize = true;
-            this.lblConcern.Location = new System.Drawing.Point(26, 28);
-            this.lblConcern.Name = "lblConcern";
-            this.lblConcern.Size = new System.Drawing.Size(54, 20);
-            this.lblConcern.TabIndex = 958815;
-            this.lblConcern.Text = "Concern";
-            // 
-            // cmbConcer
-            // 
-            this.cmbConcer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbConcer.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbConcer.FormattingEnabled = true;
-            this.cmbConcer.Location = new System.Drawing.Point(83, 25);
-            this.cmbConcer.Name = "cmbConcer";
-            this.cmbConcer.Size = new System.Drawing.Size(122, 27);
-            this.cmbConcer.TabIndex = 958814;
-            // 
             // btnView
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(977, 24);
+            this.btnView.Location = new System.Drawing.Point(955, 22);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 4;
@@ -352,49 +399,98 @@
             this.DGV_SearchGrid.AllowUserToResizeRows = false;
             this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmdsno,
-            this.clmconcern,
+            this.Column3,
             this.clmdtransferdate,
             this.clmTransferNo,
             this.clmsource,
-            this.Column4,
             this.clmdestination,
-            this.Column5,
             this.clmdsalename,
-            this.clmTotalQty});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle5;
+            this.clmTotalQty,
+            this.Column5});
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle11;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1339, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Concern";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // clmdtransferdate
+            // 
+            this.clmdtransferdate.HeaderText = "Transfer Date";
+            this.clmdtransferdate.Name = "clmdtransferdate";
+            // 
+            // clmTransferNo
+            // 
+            this.clmTransferNo.HeaderText = "Transfer No.";
+            this.clmTransferNo.Name = "clmTransferNo";
+            // 
+            // clmsource
+            // 
+            this.clmsource.HeaderText = "Source";
+            this.clmsource.Name = "clmsource";
+            this.clmsource.Width = 150;
+            // 
+            // clmdestination
+            // 
+            this.clmdestination.HeaderText = "Destination";
+            this.clmdestination.Name = "clmdestination";
+            this.clmdestination.Width = 150;
+            // 
+            // clmdsalename
+            // 
+            this.clmdsalename.HeaderText = "Total Products";
+            this.clmdsalename.Name = "clmdsalename";
+            // 
+            // clmTotalQty
+            // 
+            this.clmTotalQty.HeaderText = "Created By";
+            this.clmTotalQty.Name = "clmTotalQty";
+            this.clmTotalQty.Width = 200;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Status";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // picLoader
             // 
@@ -409,121 +505,6 @@
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Concern";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Transfer Date";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Transfer No.";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Source Stock Location";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 150;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Source Rack Location";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 150;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Destination Stock Location";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 150;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Destination Rack Location";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Total Products";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Created by";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.Width = 200;
-            // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmconcern
-            // 
-            this.clmconcern.HeaderText = "Concern";
-            this.clmconcern.Name = "clmconcern";
-            // 
-            // clmdtransferdate
-            // 
-            this.clmdtransferdate.HeaderText = "Transfer Date";
-            this.clmdtransferdate.Name = "clmdtransferdate";
-            // 
-            // clmTransferNo
-            // 
-            this.clmTransferNo.HeaderText = "Transfer No.";
-            this.clmTransferNo.Name = "clmTransferNo";
-            // 
-            // clmsource
-            // 
-            this.clmsource.HeaderText = "Source Stock Location";
-            this.clmsource.Name = "clmsource";
-            this.clmsource.Width = 150;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Source Ravk Location";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 150;
-            // 
-            // clmdestination
-            // 
-            this.clmdestination.HeaderText = "Destination Stock Location";
-            this.clmdestination.Name = "clmdestination";
-            this.clmdestination.Width = 150;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Destination Rack Location";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 150;
-            // 
-            // clmdsalename
-            // 
-            this.clmdsalename.HeaderText = "Total Products";
-            this.clmdsalename.Name = "clmdsalename";
-            // 
-            // clmTotalQty
-            // 
-            this.clmTotalQty.HeaderText = "Created By";
-            this.clmTotalQty.Name = "clmTotalQty";
-            this.clmTotalQty.Width = 200;
             // 
             // INV_StockTransferList
             // 
@@ -540,8 +521,7 @@
             this.Name = "INV_StockTransferList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Supplier List";
-            this.Load += new System.EventHandler(this.CP_Supplierlist_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Supplierlist_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_StockTransferList_KeyDown);
             this.tsStockTransferList.ResumeLayout(false);
             this.tsStockTransferList.PerformLayout();
             this.pnlStockTransferList.ResumeLayout(false);
@@ -571,8 +551,6 @@
         private System.Windows.Forms.PictureBox picLoader;
         private System.Windows.Forms.GroupBox grbFilterBy;
         private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.Label lblConcern;
-        private System.Windows.Forms.ComboBox cmbConcer;
         private System.Windows.Forms.Label lblTransferFromDate;
         private System.Windows.Forms.Label lblProductNamePICode;
         private System.Windows.Forms.DateTimePicker dpTransferToDate;
@@ -580,25 +558,25 @@
         public System.Windows.Forms.DataGridView dgvStockTransferList;
         private System.Windows.Forms.TextBox txtProductNamePICode;
         private System.Windows.Forms.ListView lvProductNamePICode;
+        private System.Windows.Forms.ComboBox cmbConcern;
+        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmconcern;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdtransferdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTransferNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdestination;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsalename;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }

@@ -20,24 +20,19 @@ namespace ROMS
         {
             InitializeComponent();
         }
-
-        private void tsbNew_Click(object sender, EventArgs e)
-        {
-           
-        }
+         
         private void tsbEdit_Click(object sender, EventArgs e)
         {
             try
             {
+                MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
 
-                MainForm.objINV_Inward = new INV_Inward();
-                MainForm.objINV_Inward.btnSave.Text = "Update";
-
-                MainForm.objINV_Inward.Show();
-                //GroupBox objgrbgodown = new GroupBox();
-                // objgrbgodown.Visible = false;
-
-
+                MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
+                //MainForm.objINV_Inward.StartPosition = FormStartPosition.Manual;
+                //int dialogX = this.Location.X + (this.Width - MainForm.objINV_Inward.Width) / 2;
+                //int dialogY = this.Location.Y + (this.Height - MainForm.objINV_Inward.Height + 100) / 2;
+                //MainForm.objINV_Inward.Location = new Point(dialogX, dialogY);
+                MainForm.objINV_InwardPurchase.Show();
             }
             catch (Exception ex)
             {
@@ -45,33 +40,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void tsbDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfndelete();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CP_BrandList_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnList();
-                cmbDateType.SelectedIndex=0;
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+    
 
         public void udfndelete()
         {
@@ -86,13 +55,11 @@ namespace ROMS
 
                         SPDataService objspdservice = new SPDataService();
                         result = "";
-                    //    result = objspdservice.udfnSPBrandMaster("Delete", grdBrandList.SelectedRows[0].Cells["BrandCode"].Value.ToString(), "", "","", "", MainForm.pbUserID, MainForm.pbIpAddress, "Brand Delete");
-
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
+                           
 
                         }
                         else
@@ -110,142 +77,9 @@ namespace ROMS
 
         }
 
-        private void udfnEdit()
-        {
-            try
-            {
-
-                if (grdInwardList.SelectedRows.Count > 0)
-                {
-                    MainForm.objCP_Brand = new CP_Brand();
-                    //MainForm.objCP_Brand.MdiParent = this.ParentForm;
-                    MainForm.objCP_Brand.varbrandcode = grdInwardList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
-                    MainForm.objCP_Brand.ShowDialog();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        public void udfnList()
-        {
-            try
-            {
-                picLoader.Visible = true;
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                grdInwardList.DataSource = null;
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                //objDs = objdserv.udfnSPBrandList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                objdserv.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-                            grdInwardList.DataSource = objDs.Tables[0];
-                            grdInwardList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdInwardList.Columns["Total No. of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdInwardList.Columns["Brand Name in Tamil"].Width = 275;
-                            grdInwardList.Columns["Brand Name in English"].Width = 275;
-                            grdInwardList.Columns["Label Name in Tamil"].Width = 275;
-                            grdInwardList.Columns["Label Name in English"].Width = 275;
-                            grdInwardList.Columns["BrandCode"].Visible = false;
-                        }
-                        else
-                        {
-                            lblNoRecordsFound.Visible = true;
-                            lblNoRecordsFound.BringToFront();
-                        }
-                    }
-                    else
-                    {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
-                    }
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
-                }
-                udfnSearchGridHead();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                grdInwardList.ClearSelection();
-                picLoader.Visible = false;
-            }
-        }
-
-        private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    tsbEdit_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdBrandList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdBrandList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) { udfnEdit(); }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+     
+  
+         
         
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -280,8 +114,7 @@ namespace ROMS
                 if (grdInwardList.ColumnCount > 0)
                 {
                     grdInwardList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdInwardList.HorizontalScrollingOffset;
-                    //grdBrandList.HorizontalScrollingOffset = 0;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdInwardList.HorizontalScrollingOffset; 
                 }
             }
             catch (Exception ex)
@@ -380,32 +213,7 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-        private void grdBrandList_Scroll(object sender, ScrollEventArgs e)
-        {
-            try
-            {
-
-                int totalWidth = 0;
-                int offSetValue = grdInwardList.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
-                    totalWidth += col.Width;
-
-                if (totalWidth - grdInwardList.Width > grdInwardList.HorizontalScrollingOffset && grdInwardList.HorizontalScrollingOffset > 0)
-                {
-                    offSetValue = offSetValue ;
-                    offSetValue = offSetValue;
-                }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
-
-                udfnscrollVisible(DGV_SearchGrid, grdInwardList);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        
 
         private void DGV_SearchGrid_Sorted(object sender, EventArgs e)
         {
@@ -510,29 +318,24 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
+        } 
 
-        private void GrdInwardList_MouseDoubleClick(object sender, MouseEventArgs e)
-        { 
-        }
-
-        private void GrdInwardList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void TsbNew_Click_1(object sender, EventArgs e)
+        private void CmbDateType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
-
-                MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
-                //MainForm.objINV_Inward.StartPosition = FormStartPosition.Manual;
-                //int dialogX = this.Location.X + (this.Width - MainForm.objINV_Inward.Width) / 2;
-                //int dialogY = this.Location.Y + (this.Height - MainForm.objINV_Inward.Height + 100) / 2;
-                //MainForm.objINV_Inward.Location = new Point(dialogX, dialogY);
-                MainForm.objINV_InwardPurchase.Show();
+                if (cmbDateType.SelectedItem == "GRN Date")
+                {
+                    lblinwarddate.Text = "GRN Date";
+                }
+                if (cmbDateType.SelectedItem == "Purchase Date")
+                {
+                    lblinwarddate.Text = "Purchase Date";
+                }
+                if (cmbDateType.SelectedItem == "Inward Date")
+                {
+                    lblinwarddate.Text = "Inward Date";
+                }
             }
             catch (Exception ex)
             {
@@ -541,22 +344,39 @@ namespace ROMS
             }
         }
 
-        private void CmbDateType_SelectedIndexChanged(object sender, EventArgs e)
+        private void INV_InwardPurchaseList_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                if (cmbDateType.SelectedItem == "GRN")
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
                 {
-                    lblinwarddate.Text = "GRN Date";
+                    //tsbNew_Click(sender, e);
                 }
-                if (cmbDateType.SelectedItem == "Purchase")
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
-                    lblinwarddate.Text = "Purchase Date";
+                    tsbEdit_Click(sender, e);
                 }
-                if (cmbDateType.SelectedItem == "Inward")
+                if (e.KeyCode == Keys.Escape)
                 {
-                    lblinwarddate.Text = "Inward Date";
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void INV_InwardPurchaseList_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbDateType.SelectedIndex = 0;
+
             }
             catch (Exception ex)
             {

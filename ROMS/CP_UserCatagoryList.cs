@@ -75,29 +75,7 @@ namespace ROMS
             try
             {
                 DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //if (grdUserCatagoryList.SelectedRows.Count > 0)
-                //{
-                //    string result = "";
-                //    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //    if (dialogResult == DialogResult.Yes)
-                //    {
-
-                //        SPDataService objspdservice = new SPDataService();
-                //       // result = objspdservice.udfnSPUserMaster("Delete", grdUserList.SelectedRows[0].Cells["Autonum"].Value.ToString(),"","","","","",MainForm.pbUserID, MainForm.pbIpAddress, "User Delete");
-
-                //        string[] varvalue = result.Split('~');
-                //        if (varvalue[0] == "3")
-                //        {
-                //            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //            udfnList();
-
-                //        }
-                //        else
-                //        {
-                //            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //        }
-                //    }
-                //}
+                
             }
             catch (Exception ex)
             {
@@ -217,34 +195,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        public void grdUserList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) { udfnEdit(); }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdUserList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-               udfnEdit(); 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-
+         
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try

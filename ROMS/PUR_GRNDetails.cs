@@ -19,8 +19,7 @@ namespace ROMS
             InitializeComponent();
             try
             {
-                MainForm.objPUR_GRNEntryVerify = new PUR_GRNEntryVerify();
-                MainForm.objPUR_GRNEntryVerify.ShowDialog();
+               
             }
             catch (Exception ex)
             {
@@ -40,8 +39,7 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex);
-
+                objError.WriteFile(ex); 
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -67,20 +65,13 @@ namespace ROMS
             }
         }
 
-        private void CP_BrandList_Load(object sender, EventArgs e)
+        private void PUR_GRNEntry_Load(object sender, EventArgs e)
         {
-            try
-            { 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+          
         }
 
         
-        private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)
+        private void PUR_GRNEntry_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -254,7 +245,7 @@ namespace ROMS
         {
             try
             {
-                if (cmbOrderType.SelectedItem == "Purchase Order")
+                if (cmbOrderType.SelectedItem == "Against PO")
                 {
 
                     MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
@@ -318,6 +309,36 @@ namespace ROMS
         private void GrpSupplierMapping_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_GRNEntryVerify = new PUR_GRNEntryVerify();
+                MainForm.objPUR_GRNEntryVerify.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void GrdPODetails_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_POProducts = new PUR_POProducts();
+                MainForm.objPUR_POProducts.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
         }
     }
 }

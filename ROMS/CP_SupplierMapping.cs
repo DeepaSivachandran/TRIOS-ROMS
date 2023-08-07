@@ -19,98 +19,8 @@ namespace ROMS
             InitializeComponent();
         }
 
-        private void tsbNew_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void tsbEdit_Click(object sender, EventArgs e)
-        {
-            try
-            { 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void tsbDelete_Click(object sender, EventArgs e)
-        {
-            try
-            { 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CP_BrandList_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbDay.SelectedIndex = 0;
-                cmbOrderType.SelectedIndex = 0;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        
-        private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    tsbEdit_Click(sender, e);
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdBrandList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            { 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdBrandList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            { 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+     
+       
         
          
         private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
@@ -177,11 +87,104 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+       
+
+        private void CP_SupplierMapping_Load(object sender, EventArgs e)
+        {
+
+            try
+            {
+                cmbDay.SelectedIndex = 0;
+                cmbOrderType.SelectedIndex = 0;
+                BindDataGrid();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_SupplierMapping_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        
+        private void BindDataGrid()
+        {
+            try
+            {
+                string[] item = new string[30];
+                ListViewItem listitem = new ListViewItem(); DataTable dataTable = new DataTable();
+                dataTable.Columns.Add("Day", typeof(string));
+
+                dataTable.Rows.Add("Monday");
+                dataTable.Rows.Add("Tuesday");
+                dataTable.Rows.Add("Wednesday");
+                dataTable.Rows.Add("Thursday");
+                dataTable.Rows.Add("Friday");
+                dataTable.Rows.Add("Saturday");
+                dataTable.Rows.Add("Sunday");
+
+
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    string day = dataTable.Rows[i]["Day"].ToString();
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(grddays);
+                    row.Cells[1].Value = day;
+                    grddays.Rows.Add(row);
+
+                    //item[0] = "";
+                    //item[1] = dataTable.Rows[i]["Day"].ToString();
+                    //listitem = new ListViewItem(item);
+                    //grddays.Rows.Add(item[0],item[1]);
+                }
+                // Assign the DataTable as the data source for the DataGridView 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+
+        }
+
+        private void BtnScheduleClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void BtnClose_Click(object sender, EventArgs e)
         {
             try
             {
-                udfnclose(); 
+                udfnclose();
             }
             catch (Exception ex)
             {

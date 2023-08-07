@@ -79,24 +79,7 @@ namespace ROMS
                 {
                     string result = "";
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-
-                        SPDataService objspdservice = new SPDataService();
-                       // result = objspdservice.udfnSPUserMaster("Delete", grdUserList.SelectedRows[0].Cells["Autonum"].Value.ToString(),"","","","","",MainForm.pbUserID, MainForm.pbIpAddress, "User Delete");
-
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
+                     
                 }
             }
             catch (Exception ex)
@@ -115,14 +98,7 @@ namespace ROMS
                 MainForm.objCP_User.btnSave.Text = "Update";
                 MainForm.objCP_User.ShowDialog();
 
-                //    if (grdUserList.SelectedRows.Count > 0)
-                //    {
-                //        MainForm.objCP_User = new CP_User();
-                //        //MainForm.objCP_User.MdiParent = this.ParentForm;
-                //        MainForm.objCP_User.varusercode = grdUserList.SelectedRows[0].Cells["Autonum"].Value.ToString();
-                //        MainForm.objCP_User.ShowDialog();
-
-                //    }
+         
 
             }
             catch (Exception ex)
@@ -133,64 +109,7 @@ namespace ROMS
 
         }
 
-        public void udfnList()
-        {
-            try
-            {
-                picLoader.Visible = true;
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                grdUserList.DataSource = null;
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-              //  objDs = objdserv.udfnSPUserList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                objdserv.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-                            grdUserList.DataSource = objDs.Tables[0];
-                            grdUserList.Columns["Name of the User"].Width = 320;
-                            grdUserList.Columns["User Role"].Width = 320;
-                            grdUserList.Columns["SI.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdUserList.Columns["Autonum"].Visible = false;
-                        }
-                        else
-                        {
-                            lblNoRecordsFound.Visible = true;
-                            lblNoRecordsFound.BringToFront();
-                        }
-                    }
-                    else
-                    {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
-                    }
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
-                }
-                udfnSearchGridHead();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                grdUserList.ClearSelection();
-                picLoader.Visible = false;
-            }
-        }
+      
 
         private void CP_UserList_KeyDown(object sender, KeyEventArgs e)
         {
@@ -223,34 +142,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        public void grdUserList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) { udfnEdit(); }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdUserList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-               udfnEdit(); 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+        }  
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {

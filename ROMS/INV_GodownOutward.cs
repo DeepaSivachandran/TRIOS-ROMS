@@ -27,123 +27,11 @@ namespace ROMS
         {
             InitializeComponent();
         }
-        private void CP_Rack_Load(object sender, EventArgs e)
-        {
-            try
-            {      
-                udfnEdit();
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void udfnEdit()
-        {
-            try
-            {
-                if (vargroupcode != "")
-                {
-                    SPDataService objspservice = new SPDataService();
-                    DataSet objDS = new DataSet();
-                   // objDS = objspservice.udfnSPGroupList("EditLoad", vargroupcode, "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                    objspservice.CloseConnection();
-
-                    if (objDS != null)
-                    {
-                        if (objDS.Tables[0].Rows.Count > 0)
-                        {
-                            //cmbGroupType.SelectedValue = objDS.Tables[0].Rows[0]["GroupTypeCode"].ToString();
-                            //txtTGroupName.Text = objDS.Tables[0].Rows[0]["GTName"].ToString().Replace("''", "'");
-                            //txtEGroupName.Text = objDS.Tables[0].Rows[0]["GEName"].ToString().Replace("''", "'");
-                            //txtTLabelName.Text = objDS.Tables[0].Rows[0]["GTLabelName"].ToString().Replace("''", "'");
-                            //txtELabelName.Text = objDS.Tables[0].Rows[0]["GELabelName"].ToString().Replace("''", "'");
-                            //udfnLoadSlNo();
-                            //cmbSINO.SelectedValue = objDS.Tables[0].Rows[0]["SINO"].ToString();
-                            //if (Convert.ToString(objDS.Tables[0].Rows[0]["RawCount"]) != "0" || Convert.ToString(objDS.Tables[0].Rows[0]["FinishedCount"]) != "0") {
-                            //    cmbGroupType.Enabled = false;
-                            //}
-                            btnSave.Text = "Update";
-                        }
-                    }
-
-                }
-                else {// udfnLoadSlNo(); 
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
      
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
-            {
-
-                errGroup.Clear();
-              
-                SPDataService objspdservice = new SPDataService();
-                string result = "";
-                if (btnSave.Text == "Save")
-                {
-                 //   result = objspdservice.udfnSPGroupMaster("Create", "0",cmbGroupType.SelectedValue.ToString(),txtTGroupName.Text,txtEGroupName.Text,txtTLabelName.Text,txtELabelName.Text,cmbSINO.SelectedValue.ToString(),  MainForm.pbUserID, MainForm.pbIpAddress, "Group Create");
-                }
-                else
-                {
-                  //  result = objspdservice.udfnSPGroupMaster("Update",vargroupcode, cmbGroupType.SelectedValue.ToString(), txtTGroupName.Text, txtEGroupName.Text, txtTLabelName.Text, txtELabelName.Text, cmbSINO.SelectedValue.ToString(), MainForm.pbUserID, MainForm.pbIpAddress, "Group Update");
-                }
-                string[] varvalue = result.Split('~');
-                if (varvalue[0] == "3")
-                {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (pbFormStatus == "Finished")
-                    {
-                        pbFormStatus = "";
-                        //MainForm.objCP_Product.varGroupCode = varvalue[2];
-                        //MainForm.objCP_Product.varGroupName = txtEGroupName.Text;
-                        //MainForm.objCP_Product.udfnLoadGroup();
-                        this.Close();
-                    }
-                    if (pbFormStatus == "Raw")
-                    {
-                        pbFormStatus = "";
-                        //MainForm.objCP_RawMaterial.varGroupCode = varvalue[2];
-                        //MainForm.objCP_RawMaterial.varGroupName = txtEGroupName.Text;
-                        //MainForm.objCP_RawMaterial.udfnLoadGroup();
-                        this.Close();
-                    }
-                    if (btnSave.Text == "Update")
-                    {
-                        this.Close();
-                    }
-                    else
-                    {
-                        udfnclear();
-                    }
-                  //  udfnLoadSlNo();
-                   // MainForm.objCP_RackList.udfnList();
-                }
-                else
-                {
-                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    if (varvalue[1].Contains("Order number")) {
-                        //udfnLoadSlNo(); 
-                    }
-                }
-
-                objspdservice.CloseConnection();
-
-
-
+            { 
 
             }
             catch (Exception ex)
@@ -155,67 +43,10 @@ namespace ROMS
 
         private void udfnclear()
         {
-            try
-            {
-                btnSave.Text = "Save";
-               // cmbGroupType.SelectedValue = "-1";
-                DataSet objDS = new DataSet();
-                SPDataService objspservice = new SPDataService();
-               // objDS = objspservice.udfnGetSlNo("CP_Rack", "Create", "", "");
-                objspservice.CloseConnection();
-                if (objDS != null)
-                {
-                    //cmbSINO.DataSource = objDS.Tables[0];
-                    //cmbSINO.DisplayMember = "num";
-                    //cmbSINO.ValueMember = "num";
-                }
-              //  txtTGroupName.Focus();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
 
-        private void btnSave_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                btnSave.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void btnSave_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void btnSave_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                btnSave.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
         public void udfnclose()
         {
             try
@@ -231,13 +62,14 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void btnClose_Click(object sender, EventArgs e)
+        }    
+
+
+        private void BtnClose_Click_1(object sender, EventArgs e)
         {
             try
             {
                 udfnclose();
-               // MainForm.objCP_RackList.udfnList();
             }
             catch (Exception ex)
             {
@@ -246,11 +78,23 @@ namespace ROMS
             }
         }
 
-        private void btnClose_Enter(object sender, EventArgs e)
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                btnClose.BackColor = Color.LemonChiffon;
+                if (cmbTransactionType.SelectedItem != "Regular")
+                {
+                  //  grpproductname.Enabled = false; 
+                    DGV_inward.Columns["clmBatch"].Width = 100;
+                    DGV_inward.Columns["clmBatch"].Visible = true;
+                }
+                else
+                {
+
+                    DGV_inward.Columns["clmBatch"].Width = 0;
+                    DGV_inward.Columns["clmBatch"].Visible = false;
+                  //  grpproductname.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -259,34 +103,7 @@ namespace ROMS
             }
         }
 
-        private void btnClose_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void btnClose_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                btnClose.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-
-        private void CP_Rack_KeyDown(object sender, KeyEventArgs e)
+        private void INV_GodownOutward_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -298,19 +115,6 @@ namespace ROMS
                 {
                     btnSave_Click(sender, e);
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnClose_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnclose();
             }
             catch (Exception ex)
             {

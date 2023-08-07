@@ -63,8 +63,7 @@ namespace ROMS
         private void CP_Supplierlist_Load(object sender, EventArgs e)
         {
             try
-            {
-                udfnList();
+            { 
             }
             catch (Exception ex)
             {
@@ -87,13 +86,12 @@ namespace ROMS
 
                         SPDataService objspdservice = new SPDataService();
                         result = "";
-                    //    result = objspdservice.udfnSPBrandMaster("Delete", grdSupplierList.SelectedRows[0].Cells["BrandCode"].Value.ToString(), "", "","", "", MainForm.pbUserID, MainForm.pbIpAddress, "Brand Delete");
-
+                   
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
+                             
 
                         }
                         else
@@ -113,87 +111,10 @@ namespace ROMS
 
         private void udfnEdit()
         {
-            try
-            {
-
-                if (grdStockRequestList.SelectedRows.Count > 0)
-                {
-                    MainForm.objCP_Brand = new CP_Brand();
-                    //MainForm.objCP_Brand.MdiParent = this.ParentForm;
-                    MainForm.objCP_Brand.varbrandcode = grdStockRequestList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
-                    MainForm.objCP_Brand.ShowDialog();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+           
 
         }
-
-        public void udfnList()
-        {
-            try
-            {
-                picLoader.Visible = true;
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                grdStockRequestList.DataSource = null;
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                //objDs = objdserv.udfnSPBrandList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                objdserv.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-                            grdStockRequestList.DataSource = objDs.Tables[0];
-                            grdStockRequestList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdStockRequestList.Columns["Total No. of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdStockRequestList.Columns["Brand Name in Tamil"].Width = 275;
-                            grdStockRequestList.Columns["Brand Name in English"].Width = 275;
-                            grdStockRequestList.Columns["Label Name in Tamil"].Width = 275;
-                            grdStockRequestList.Columns["Label Name in English"].Width = 275;
-                            grdStockRequestList.Columns["BrandCode"].Visible = false;
-                        }
-                        else
-                        {
-                            lblNoRecordsFound.Visible = true;
-                            lblNoRecordsFound.BringToFront();
-                        }
-                    }
-                    else
-                    {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
-                    }
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
-                }
-                udfnSearchGridHead();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                grdStockRequestList.ClearSelection();
-                picLoader.Visible = false;
-            }
-        }
+         
 
       
         private void CP_Supplierlist_KeyDown(object sender, KeyEventArgs e)
