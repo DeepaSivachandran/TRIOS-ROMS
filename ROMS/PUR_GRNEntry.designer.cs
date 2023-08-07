@@ -206,6 +206,7 @@
             this.grdUnitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdUnitList.Size = new System.Drawing.Size(157, 188);
             this.grdUnitList.TabIndex = 1111197;
+            this.grdUnitList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdUnitList_CellFormatting);
             // 
             // clmUnit
             // 

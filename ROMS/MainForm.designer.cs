@@ -43,6 +43,7 @@ namespace ROMS
             this.tsmGRNApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmpurchaseApprove = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmpurchaseReturn = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseDC = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsminward = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmfromPurchase = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,7 +84,7 @@ namespace ROMS
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmPurchaseDC = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmgeneralSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -190,6 +191,13 @@ namespace ROMS
             this.tsmpurchaseReturn.Size = new System.Drawing.Size(180, 22);
             this.tsmpurchaseReturn.Text = "Pruchase Return DC";
             this.tsmpurchaseReturn.Click += new System.EventHandler(this.TsmpurchaseReturn_Click);
+            // 
+            // tsmPurchaseDC
+            // 
+            this.tsmPurchaseDC.Name = "tsmPurchaseDC";
+            this.tsmPurchaseDC.Size = new System.Drawing.Size(180, 22);
+            this.tsmPurchaseDC.Text = "Purchase DC";
+            this.tsmPurchaseDC.Click += new System.EventHandler(this.TsmPurchaseDC_Click);
             // 
             // inventoryToolStripMenuItem
             // 
@@ -357,7 +365,7 @@ namespace ROMS
             this.tsmSuppliyer,
             this.tsmbroker});
             this.tsmMasters.Name = "tsmMasters";
-            this.tsmMasters.Size = new System.Drawing.Size(115, 22);
+            this.tsmMasters.Size = new System.Drawing.Size(180, 22);
             this.tsmMasters.Text = "Masters";
             // 
             // stateToolStripMenuItem
@@ -472,9 +480,10 @@ namespace ROMS
             this.tsmsupplierMapping,
             this.tsmrackSettings,
             this.tsmbatchno,
-            this.tsmgenralSettings});
+            this.tsmgenralSettings,
+            this.tsmgeneralSettings});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // tsmpurchaseSupplier
@@ -543,12 +552,12 @@ namespace ROMS
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
-            // tsmPurchaseDC
+            // tsmgeneralSettings
             // 
-            this.tsmPurchaseDC.Name = "tsmPurchaseDC";
-            this.tsmPurchaseDC.Size = new System.Drawing.Size(180, 22);
-            this.tsmPurchaseDC.Text = "Purchase DC";
-            this.tsmPurchaseDC.Click += new System.EventHandler(this.TsmPurchaseDC_Click);
+            this.tsmgeneralSettings.Name = "tsmgeneralSettings";
+            this.tsmgeneralSettings.Size = new System.Drawing.Size(207, 22);
+            this.tsmgeneralSettings.Text = "General Settings";
+            this.tsmgeneralSettings.Click += new System.EventHandler(this.TsmgeneralSettings_Click);
             // 
             // MainForm
             // 
@@ -632,5 +641,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmpurchaseSupplier;
         private System.Windows.Forms.ToolStripMenuItem tsmGRNApproval;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseDC;
+        private System.Windows.Forms.ToolStripMenuItem tsmgeneralSettings;
     }
 }

@@ -1030,7 +1030,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PUR_PurchaseOrderList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
+            this.Text = "Purchase Order";
             this.Load += new System.EventHandler(this.PUR_PurchaseOrderList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PurchaseOrderList_KeyDown);
             this.tsBrandList.ResumeLayout(false);

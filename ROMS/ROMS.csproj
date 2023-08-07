@@ -75,6 +75,12 @@
     <Compile Include="CP_ChangePasswordConfirmation.designer.cs">
       <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_GeneralSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_GeneralSettings.designer.cs">
+      <DependentUpon>CP_GeneralSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_DCDeatils.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -670,6 +676,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_ChangePasswordConfirmation.resx">
       <DependentUpon>CP_ChangePasswordConfirmation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_GeneralSettings.resx">
+      <DependentUpon>CP_GeneralSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_DCDeatils.resx">
       <DependentUpon>PUR_DCDeatils.cs</DependentUpon>

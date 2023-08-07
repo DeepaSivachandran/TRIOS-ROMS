@@ -83,6 +83,8 @@ namespace ROMS
         public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
         public static INV_InwardPurchaseList objINV_InwardPurchaseList;
         public static INV_InwardPurchase objINV_InwardPurchase;
+        public static CP_GeneralSettings objCP_GeneralSettings;
+        
 
         public static INV_SalesInvoiceList objINV_SalesInvoiceList;
         public static INV_SalesInvoice objINV_SalesInvoice;
@@ -1075,5 +1077,23 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void TsmgeneralSettings_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+                 udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_GeneralSettings = new CP_GeneralSettings();
+                MainForm.objCP_GeneralSettings.MdiParent = this;
+                MainForm.objCP_GeneralSettings.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+    }
     } 
 }

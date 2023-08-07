@@ -122,5 +122,19 @@ namespace ROMS
 
             }
         }
+
+        private void GrdUnitList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            int targetRowIndex = 3; // Replace with the desired row index
+            int targetColumnIndex = 1; // Replace with the desired column index
+             
+            if (e.RowIndex == targetRowIndex && e.ColumnIndex == targetColumnIndex)
+            { 
+                grdUnitList.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = true;
+                 
+                e.CellStyle.BackColor = System.Drawing.Color.LightGray;
+                e.CellStyle.ForeColor = System.Drawing.Color.Black;
+            }
+        }
     }
 }

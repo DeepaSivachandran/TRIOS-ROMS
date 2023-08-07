@@ -136,7 +136,11 @@ namespace ROMS
             try
             {
                 cmbShow.SelectedItem = 0;
-                grdPurchaseorderlist.Rows.Add(1, "GNM","PO001","02/08/2023","",19,"15.000","","Venkat","02/08/2023","","","",""); 
+                grdPurchaseorderlist.Rows.Add(1, "GNM","PO001","02/08/2023","",19,"15.000","","Venkat","02/08/2023","","","","");
+
+               //this.grdPurchaseorderlist.Dock = DockStyle.Fill;
+               // this.grdPurchaseorderlist.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right; 
+
             }
             catch (Exception ex)
             {
