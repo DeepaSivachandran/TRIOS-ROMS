@@ -376,6 +376,7 @@
             this.Name = "CP_Unitlist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Unit";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Unitlist_KeyDown);
             this.tsUnitList.ResumeLayout(false);
             this.tsUnitList.PerformLayout();
             this.pnlunitlist.ResumeLayout(false);
