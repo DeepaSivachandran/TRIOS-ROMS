@@ -91,7 +91,7 @@
             // 
             this.txtDescription.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescription.Location = new System.Drawing.Point(221, 139);
-            this.txtDescription.MaxLength = 50;
+            this.txtDescription.MaxLength = 100;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(288, 27);
             this.txtDescription.TabIndex = 5;
@@ -165,7 +165,7 @@
             // 
             this.txtShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtShortName.Location = new System.Drawing.Point(221, 112);
-            this.txtShortName.MaxLength = 50;
+            this.txtShortName.MaxLength = 10;
             this.txtShortName.Name = "txtShortName";
             this.txtShortName.Size = new System.Drawing.Size(288, 27);
             this.txtShortName.TabIndex = 4;

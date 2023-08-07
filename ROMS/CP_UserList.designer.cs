@@ -410,7 +410,7 @@
             // 
             // clmUserCatagory
             // 
-            this.clmUserCatagory.HeaderText = "User CataGory";
+            this.clmUserCatagory.HeaderText = "User Catagory";
             this.clmUserCatagory.Name = "clmUserCatagory";
             // 
             // UserRole
@@ -478,13 +478,6 @@
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ListView lvUserList;
         private System.Windows.Forms.TextBox txtDUserList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nameoftheuser;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmLoginID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmUserCatagory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserRole;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Passkey;
-        private System.Windows.Forms.DataGridViewTextBoxColumn status;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -492,5 +485,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmuserrole;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPassKey;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nameoftheuser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmLoginID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUserCatagory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserRole;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Passkey;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
     }
 }

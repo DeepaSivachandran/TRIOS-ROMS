@@ -96,6 +96,7 @@
             // 
             this.txtCityName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCityName.Location = new System.Drawing.Point(159, 74);
+            this.txtCityName.MaxLength = 50;
             this.txtCityName.Name = "txtCityName";
             this.txtCityName.Size = new System.Drawing.Size(240, 28);
             this.txtCityName.TabIndex = 1;
