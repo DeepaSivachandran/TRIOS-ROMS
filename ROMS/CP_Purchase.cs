@@ -162,7 +162,7 @@ namespace ROMS
                 cmbType.Items.Insert(0, "Against GRN");
                 cmbType.Items.Insert(1, "Against PO");
                 cmbType.Items.Insert(2, "Direct");
-                cmbType.Items.Insert(3, "Direct DC");
+                cmbType.Items.Insert(3, "Against Purchase DC");
                 cmbType.SelectedIndex = 0;
                 cmbPurchaseType.SelectedIndex = 0;
                 dpInvoiceDate.Enabled = true;
