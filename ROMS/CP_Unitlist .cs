@@ -203,7 +203,7 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Enter) { udfnEdit(); }
+                if (e.KeyCode == Keys.Enter) { udfnEdit();  }
             }
             catch (Exception ex)
             {
