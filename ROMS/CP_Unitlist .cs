@@ -185,10 +185,6 @@ namespace ROMS
             }
         }
 
-        private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)
-        {
-           
-        }
 
         public void grdBrandList_DoubleClick(object sender, EventArgs e)
         {
@@ -374,16 +370,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void DGV_SearchGrid_Sorted(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DGV_SearchGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-
         }
 
      
