@@ -280,7 +280,7 @@
             this.ClientSize = new System.Drawing.Size(585, 278);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
@@ -291,6 +291,7 @@
             this.Text = "Unit";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Unit_FormClosing);
             this.Load += new System.EventHandler(this.CP_Unit_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.CP_Unit_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Unit_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Unit_Leave);
             this.grbform.ResumeLayout(false);
