@@ -418,7 +418,7 @@
             // 
             // Status
             // 
-            this.Status.HeaderText = "Stuatus";
+            this.Status.HeaderText = "Status";
             this.Status.Name = "Status";
             // 
             // CP_BrandList

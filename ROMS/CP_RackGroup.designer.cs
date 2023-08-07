@@ -347,6 +347,7 @@
             // 
             this.txtRackGroupName.Location = new System.Drawing.Point(134, 58);
             this.txtRackGroupName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtRackGroupName.MaxLength = 20;
             this.txtRackGroupName.Name = "txtRackGroupName";
             this.txtRackGroupName.Size = new System.Drawing.Size(194, 27);
             this.txtRackGroupName.TabIndex = 1;
