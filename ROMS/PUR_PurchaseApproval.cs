@@ -100,12 +100,78 @@ namespace ROMS
         {
             try
             {
-                if (e.Button == MouseButtons.Right)
+                if (e.RowIndex != -1)
                 {
-                    ContextMenu cm = new ContextMenu();
-                    cm.MenuItems.Add(new MenuItem("Mistake"));
-                    cm.Show(grdPurchaseApproval, new Point(e.X, e.Y));
+                    switch (grdPurchaseApproval.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmMrp":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.Show(grdPurchaseApproval, new Point(e.X, e.Y));
+                            }
+                            break;
+
+                        case "clmPurchaseRate":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.Show(grdPurchaseApproval, new Point(e.X, e.Y));
+                            }
+                            break;
+                        case "clmExpDate":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.Show(grdPurchaseApproval, new Point(e.X, e.Y));
+                            }
+                            break;
+                        case "clmBatch":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.Show(grdPurchaseApproval, new Point(e.X, e.Y));
+                            }
+                            break;
+                        case "clmInvQty":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.Show(grdPurchaseApproval, new Point(e.X, e.Y));
+                            }
+                            break;
+                        case "clmfreeqty":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.Show(grdPurchaseApproval, new Point(e.X, e.Y));
+                            }
+                            break;
+                        case "clmdiscountamt":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.Show(grdPurchaseApproval, new Point(e.X, e.Y));
+                            }
+                            break;
+                        case "clmdiscountpercentage":
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                ContextMenu cm = new ContextMenu();
+                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.Show(grdPurchaseApproval, new Point(e.X, e.Y));
+                            }
+                            break;
+                    }
                 }
+               
             }
             catch (Exception ex)
             {

@@ -77,17 +77,17 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPurchaseRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmExpDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmrack = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmfreeqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdiscountamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdiscountpercentage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -233,17 +233,17 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.clmMrp,
-            this.Column18,
-            this.Column19,
-            this.Column20,
+            this.clmPurchaseRate,
+            this.clmExpDate,
+            this.clmBatch,
             this.Column21,
             this.clmrack,
             this.Column3,
-            this.Column4,
-            this.Column12,
+            this.clmInvQty,
+            this.clmfreeqty,
             this.Column5,
-            this.Column7,
-            this.Column8,
+            this.clmdiscountamt,
+            this.clmdiscountpercentage,
             this.Column11,
             this.Column9,
             this.Column10,
@@ -652,26 +652,26 @@
             this.clmMrp.ReadOnly = true;
             this.clmMrp.Width = 50;
             // 
-            // Column18
+            // clmPurchaseRate
             // 
-            this.Column18.HeaderText = "Purchase Rate";
-            this.Column18.Name = "Column18";
-            this.Column18.ReadOnly = true;
-            this.Column18.Width = 75;
+            this.clmPurchaseRate.HeaderText = "Purchase Rate";
+            this.clmPurchaseRate.Name = "clmPurchaseRate";
+            this.clmPurchaseRate.ReadOnly = true;
+            this.clmPurchaseRate.Width = 75;
             // 
-            // Column19
+            // clmExpDate
             // 
-            this.Column19.HeaderText = "Expiry Date";
-            this.Column19.Name = "Column19";
-            this.Column19.ReadOnly = true;
-            this.Column19.Width = 80;
+            this.clmExpDate.HeaderText = "Expiry Date";
+            this.clmExpDate.Name = "clmExpDate";
+            this.clmExpDate.ReadOnly = true;
+            this.clmExpDate.Width = 80;
             // 
-            // Column20
+            // clmBatch
             // 
-            this.Column20.HeaderText = "Batch";
-            this.Column20.Name = "Column20";
-            this.Column20.ReadOnly = true;
-            this.Column20.Width = 60;
+            this.clmBatch.HeaderText = "Batch";
+            this.clmBatch.Name = "clmBatch";
+            this.clmBatch.ReadOnly = true;
+            this.clmBatch.Width = 60;
             // 
             // Column21
             // 
@@ -694,19 +694,19 @@
             this.Column3.ReadOnly = true;
             this.Column3.Width = 40;
             // 
-            // Column4
+            // clmInvQty
             // 
-            this.Column4.HeaderText = "Invoice Qty";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 50;
+            this.clmInvQty.HeaderText = "Invoice Qty";
+            this.clmInvQty.Name = "clmInvQty";
+            this.clmInvQty.ReadOnly = true;
+            this.clmInvQty.Width = 50;
             // 
-            // Column12
+            // clmfreeqty
             // 
-            this.Column12.HeaderText = "Free Qty";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            this.Column12.Width = 50;
+            this.clmfreeqty.HeaderText = "Free Qty";
+            this.clmfreeqty.Name = "clmfreeqty";
+            this.clmfreeqty.ReadOnly = true;
+            this.clmfreeqty.Width = 50;
             // 
             // Column5
             // 
@@ -715,19 +715,19 @@
             this.Column5.ReadOnly = true;
             this.Column5.Width = 40;
             // 
-            // Column7
+            // clmdiscountamt
             // 
-            this.Column7.HeaderText = "Discount Amnt";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 60;
+            this.clmdiscountamt.HeaderText = "Discount Amnt";
+            this.clmdiscountamt.Name = "clmdiscountamt";
+            this.clmdiscountamt.ReadOnly = true;
+            this.clmdiscountamt.Width = 60;
             // 
-            // Column8
+            // clmdiscountpercentage
             // 
-            this.Column8.HeaderText = "Discount %";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 60;
+            this.clmdiscountpercentage.HeaderText = "Discount %";
+            this.clmdiscountpercentage.Name = "clmdiscountpercentage";
+            this.clmdiscountpercentage.ReadOnly = true;
+            this.clmdiscountpercentage.Width = 60;
             // 
             // Column11
             // 
@@ -833,17 +833,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMrp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurchaseRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmExpDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatch;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmrack;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmfreeqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdiscountamt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdiscountpercentage;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
