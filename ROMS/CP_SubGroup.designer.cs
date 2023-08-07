@@ -135,7 +135,7 @@
             // 
             this.txtESubGroupNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtESubGroupNameTamil.Location = new System.Drawing.Point(224, 74);
-            this.txtESubGroupNameTamil.MaxLength = 50;
+            this.txtESubGroupNameTamil.MaxLength = 100;
             this.txtESubGroupNameTamil.Name = "txtESubGroupNameTamil";
             this.txtESubGroupNameTamil.Size = new System.Drawing.Size(200, 27);
             this.txtESubGroupNameTamil.TabIndex = 2;
@@ -284,7 +284,7 @@
             // 
             this.txtESubGroupNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtESubGroupNameEnglish.Location = new System.Drawing.Point(224, 47);
-            this.txtESubGroupNameEnglish.MaxLength = 50;
+            this.txtESubGroupNameEnglish.MaxLength = 100;
             this.txtESubGroupNameEnglish.Name = "txtESubGroupNameEnglish";
             this.txtESubGroupNameEnglish.Size = new System.Drawing.Size(200, 27);
             this.txtESubGroupNameEnglish.TabIndex = 1;

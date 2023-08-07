@@ -479,5 +479,9 @@ namespace ROMS
 
         }
 
+        private void TxtEBrandNameInTamil_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
