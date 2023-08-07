@@ -53,7 +53,7 @@ namespace ROMS
         {
             try
             {
-                cmbStatus.SelectedIndex = 0;
+                //cmbStatus.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
