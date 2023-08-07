@@ -83,7 +83,7 @@
             this.txtEUnitName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEUnitName.Location = new System.Drawing.Point(159, 46);
             this.txtEUnitName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtEUnitName.MaxLength = 50;
+            this.txtEUnitName.MaxLength = 20;
             this.txtEUnitName.Name = "txtEUnitName";
             this.txtEUnitName.Size = new System.Drawing.Size(361, 28);
             this.txtEUnitName.TabIndex = 0;
@@ -171,7 +171,7 @@
             this.txtSymbol.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSymbol.Location = new System.Drawing.Point(159, 74);
             this.txtSymbol.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtSymbol.MaxLength = 50;
+            this.txtSymbol.MaxLength = 5;
             this.txtSymbol.Name = "txtSymbol";
             this.txtSymbol.Size = new System.Drawing.Size(361, 28);
             this.txtSymbol.TabIndex = 1;

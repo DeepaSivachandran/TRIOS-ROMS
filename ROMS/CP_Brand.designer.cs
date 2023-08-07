@@ -462,10 +462,11 @@
             // 
             this.txtEBrandNameInTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEBrandNameInTamil.Location = new System.Drawing.Point(189, 48);
-            this.txtEBrandNameInTamil.MaxLength = 50;
+            this.txtEBrandNameInTamil.MaxLength = 20;
             this.txtEBrandNameInTamil.Name = "txtEBrandNameInTamil";
             this.txtEBrandNameInTamil.Size = new System.Drawing.Size(287, 27);
             this.txtEBrandNameInTamil.TabIndex = 1;
+            this.txtEBrandNameInTamil.TextChanged += new System.EventHandler(this.TxtEBrandNameInTamil_TextChanged);
             this.txtEBrandNameInTamil.Enter += new System.EventHandler(this.TxtEBrandNameInTamil_Enter);
             this.txtEBrandNameInTamil.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEBrandNameInTamil_KeyDown);
             this.txtEBrandNameInTamil.Leave += new System.EventHandler(this.TxtEBrandNameInTamil_Leave);
@@ -518,7 +519,7 @@
             // 
             this.txtEBrandNameInEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEBrandNameInEnglish.Location = new System.Drawing.Point(189, 21);
-            this.txtEBrandNameInEnglish.MaxLength = 50;
+            this.txtEBrandNameInEnglish.MaxLength = 20;
             this.txtEBrandNameInEnglish.Name = "txtEBrandNameInEnglish";
             this.txtEBrandNameInEnglish.Size = new System.Drawing.Size(287, 27);
             this.txtEBrandNameInEnglish.TabIndex = 0;

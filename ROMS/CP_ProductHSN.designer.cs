@@ -65,7 +65,7 @@
             // 
             this.txtHSNName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtHSNName.Location = new System.Drawing.Point(124, 23);
-            this.txtHSNName.MaxLength = 100;
+            this.txtHSNName.MaxLength = 20;
             this.txtHSNName.Name = "txtHSNName";
             this.txtHSNName.Size = new System.Drawing.Size(200, 27);
             this.txtHSNName.TabIndex = 0;
@@ -89,7 +89,7 @@
             // 
             this.txtHSNCode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtHSNCode.Location = new System.Drawing.Point(124, 50);
-            this.txtHSNCode.MaxLength = 10;
+            this.txtHSNCode.MaxLength = 20;
             this.txtHSNCode.Name = "txtHSNCode";
             this.txtHSNCode.Size = new System.Drawing.Size(200, 27);
             this.txtHSNCode.TabIndex = 1;

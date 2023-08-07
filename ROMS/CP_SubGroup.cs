@@ -828,6 +828,9 @@ namespace ROMS
             }
         }
 
-        
+        private void TxtShopLocation_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

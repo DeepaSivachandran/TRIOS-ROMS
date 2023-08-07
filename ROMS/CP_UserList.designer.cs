@@ -50,13 +50,21 @@
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUserList = new System.Windows.Forms.DataGridView();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmusercategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmuserrole = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPassKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nameoftheuser = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmLoginID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUserCatagory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Passkey = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsUserList.SuspendLayout();
             this.pnluser.SuspendLayout();
             this.grbFilterByUser.SuspendLayout();
@@ -163,7 +171,7 @@
             // lvUserList
             // 
             this.lvUserList.HideSelection = false;
-            this.lvUserList.Location = new System.Drawing.Point(21, 56);
+            this.lvUserList.Location = new System.Drawing.Point(21, 62);
             this.lvUserList.Name = "lvUserList";
             this.lvUserList.Size = new System.Drawing.Size(474, 266);
             this.lvUserList.TabIndex = 958804;
@@ -234,6 +242,14 @@
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SNo,
+            this.Nameoftheuser,
+            this.clmLoginID,
+            this.clmUserCatagory,
+            this.UserRole,
+            this.Passkey,
+            this.status});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -293,6 +309,7 @@
             this.Column3,
             this.clmusercategory,
             this.clmuserrole,
+            this.clmPassKey,
             this.Column4});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -315,6 +332,20 @@
             this.grdUserList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdUserList.Size = new System.Drawing.Size(1348, 510);
             this.grdUserList.TabIndex = 958797;
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(690, 442);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(653, 184);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // Column1
             // 
@@ -348,25 +379,54 @@
             this.clmuserrole.Name = "clmuserrole";
             this.clmuserrole.ReadOnly = true;
             // 
+            // clmPassKey
+            // 
+            this.clmPassKey.HeaderText = "Pass Key";
+            this.clmPassKey.Name = "clmPassKey";
+            this.clmPassKey.ReadOnly = true;
+            // 
             // Column4
             // 
             this.Column4.HeaderText = "Status";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
-            // picLoader
+            // SNo
             // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(690, 442);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(653, 184);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
+            this.SNo.HeaderText = "S.No.";
+            this.SNo.Name = "SNo";
+            // 
+            // Nameoftheuser
+            // 
+            this.Nameoftheuser.HeaderText = "Name of the User";
+            this.Nameoftheuser.Name = "Nameoftheuser";
+            this.Nameoftheuser.Width = 400;
+            // 
+            // clmLoginID
+            // 
+            this.clmLoginID.HeaderText = "Login ID";
+            this.clmLoginID.Name = "clmLoginID";
+            this.clmLoginID.Width = 200;
+            // 
+            // clmUserCatagory
+            // 
+            this.clmUserCatagory.HeaderText = "User CataGory";
+            this.clmUserCatagory.Name = "clmUserCatagory";
+            // 
+            // UserRole
+            // 
+            this.UserRole.HeaderText = "User Role";
+            this.UserRole.Name = "UserRole";
+            // 
+            // Passkey
+            // 
+            this.Passkey.HeaderText = "Pass Key";
+            this.Passkey.Name = "Passkey";
+            // 
+            // status
+            // 
+            this.status.HeaderText = "Status";
+            this.status.Name = "status";
             // 
             // CP_UserList
             // 
@@ -418,11 +478,19 @@
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ListView lvUserList;
         private System.Windows.Forms.TextBox txtDUserList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nameoftheuser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmLoginID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUserCatagory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserRole;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Passkey;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmusercategory;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmuserrole;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPassKey;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }
