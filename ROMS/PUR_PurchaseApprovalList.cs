@@ -88,9 +88,5 @@ namespace ROMS
             }
         }
 
-        private void GrdPurchaseApproval_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }

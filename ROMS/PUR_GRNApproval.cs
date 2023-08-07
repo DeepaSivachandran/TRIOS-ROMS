@@ -89,5 +89,15 @@ namespace ROMS
         {
 
         }
+
+        private void TxtDloading_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtDConcern_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

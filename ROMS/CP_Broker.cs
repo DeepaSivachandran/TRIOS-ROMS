@@ -918,7 +918,7 @@ namespace ROMS
                     epBroker.SetError(txtBankname, "Please enter bank name");
                     txtBankname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpBankName.ShowAlways = true;
-                    tpMobileNo.Show("Please enter bank name", txtBankname, 5000);
+                    tpBankName.Show("Please enter bank name", txtBankname, 5000);
                 }
                 else
                 {

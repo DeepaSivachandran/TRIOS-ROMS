@@ -95,5 +95,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void GrdPurchaseApproval_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    ContextMenu cm = new ContextMenu();
+                    cm.MenuItems.Add(new MenuItem("Mistake"));
+                    cm.Show(grdPurchaseApproval, new Point(e.X, e.Y));
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        
     }
 }

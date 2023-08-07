@@ -118,8 +118,7 @@ namespace ROMS
         }
 
         public void udfnList()
-        {
-           
+        { 
         }
  
 
@@ -135,8 +134,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
-        
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
