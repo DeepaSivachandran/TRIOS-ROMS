@@ -68,6 +68,10 @@ namespace ROMS
         {
             try
             {
+
+                grdPODetails.Rows.Add(1,"07/08/2023","10");
+
+
                 grdUnitList.Rows.Add("Bag","");
                 grdUnitList.Rows.Add("Tin","");
                 grdUnitList.Rows.Add("Box","");
@@ -114,6 +118,36 @@ namespace ROMS
                     MainForm.objPUR_GRNOrderType = new PUR_GRNOrderType();
                     MainForm.objPUR_GRNOrderType.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void GrdPODetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+
+               // grdPODetails.Rows.Add(1, "GNM", "02/08/2023", "GRN001", "", "02/08/2023", "I001", "50,000", "", "", "Venkat", "02/08/2023");
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void GrdPODetails_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_POProducts = new PUR_POProducts();
+                MainForm.objPUR_POProducts.ShowDialog();
             }
             catch (Exception ex)
             {
