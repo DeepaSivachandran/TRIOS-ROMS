@@ -170,7 +170,6 @@ namespace ROMS
         private void BtnViewProducts_Click(object sender, EventArgs e)
         {
 
-
             try
             {
                 if (cmbShow.SelectedIndex == 0)
@@ -197,13 +196,50 @@ namespace ROMS
 
         }
 
-        private void CmbShow_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void CbSupplier_CheckedChanged(object sender, EventArgs e)
         {
+            try
+            {
+                if (cbSupplier.Checked == true)
+                {
+                    clmSupplierName.Visible = true;
+                }
+                else
+                {
+                    clmSupplierName.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
         }
 
-        private void BtnView_Click(object sender, EventArgs e)
+        private void CbPoNo_CheckedChanged(object sender, EventArgs e)
         {
+            try
+            {
+               if(cbPoNo.Checked==true)
+               {
+                    clmPoNumber.Visible = true;
+                    clmPoDate.Visible = true;
+               }
+               else
+               {
+                    clmPoNumber.Visible = false;
+                    clmPoDate.Visible = false;
+               }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
 
+            }
         }
+
     }
 }

@@ -46,7 +46,6 @@
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
@@ -131,7 +130,6 @@
             this.grpfilter.Controls.Add(this.txtSupplier);
             this.grpfilter.Controls.Add(this.label12);
             this.grpfilter.Controls.Add(this.dateTimePicker1);
-            this.grpfilter.Controls.Add(this.button1);
             this.grpfilter.Controls.Add(this.btnView);
             this.grpfilter.Controls.Add(this.label2);
             this.grpfilter.Controls.Add(this.dpPlanDate);
@@ -230,22 +228,6 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(107, 27);
             this.dateTimePicker1.TabIndex = 1111143;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::ROMS.Properties.Resources.view;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(109, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(10, 10);
-            this.button1.TabIndex = 1111142;
-            this.button1.Text = "new";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // btnView
             // 
@@ -480,7 +462,6 @@
             this.grdPurchaseApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseApproval.Size = new System.Drawing.Size(1348, 510);
             this.grdPurchaseApproval.TabIndex = 958797;
-            this.grdPurchaseApproval.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseApproval_CellContentClick);
             this.grdPurchaseApproval.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
             // 
             // clmsno
@@ -615,7 +596,6 @@
         private System.Windows.Forms.DateTimePicker dpPlanDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.ComboBox cmbConcern;

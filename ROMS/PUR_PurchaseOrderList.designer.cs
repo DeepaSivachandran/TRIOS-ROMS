@@ -50,23 +50,25 @@
             this.btnViewProducts = new System.Windows.Forms.Button();
             this.grdProDetails = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPoNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPoDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSupplierName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpProFilter = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.grpGroupBy = new System.Windows.Forms.GroupBox();
+            this.cbSupplier = new System.Windows.Forms.CheckBox();
+            this.cbPoNo = new System.Windows.Forms.CheckBox();
             this.button3 = new System.Windows.Forms.Button();
             this.cmbSubGroup = new System.Windows.Forms.ComboBox();
             this.lblDESubGroup = new System.Windows.Forms.Label();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
             this.lblDEGroup = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblPartialPending = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblInactive = new System.Windows.Forms.Label();
@@ -124,6 +126,7 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).BeginInit();
             this.grpProFilter.SuspendLayout();
+            this.grpGroupBy.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -235,20 +238,19 @@
             this.groupBox2.Size = new System.Drawing.Size(214, 95);
             this.groupBox2.TabIndex = 1111174;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Show By";
+            this.groupBox2.Text = "Show";
             // 
             // cmbShow
             // 
             this.cmbShow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbShow.FormattingEnabled = true;
             this.cmbShow.Items.AddRange(new object[] {
-            "Show PO List",
-            "Show Product List"});
+            "Purchase Order List",
+            "Product List"});
             this.cmbShow.Location = new System.Drawing.Point(7, 49);
             this.cmbShow.Name = "cmbShow";
             this.cmbShow.Size = new System.Drawing.Size(131, 27);
             this.cmbShow.TabIndex = 1111144;
-            this.cmbShow.SelectedIndexChanged += new System.EventHandler(this.CmbShow_SelectedIndexChanged);
             // 
             // btnViewProducts
             // 
@@ -285,9 +287,9 @@
             this.grdProDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdProDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
+            this.clmPoNumber,
+            this.clmPoDate,
+            this.clmSupplierName,
             this.clmpicode,
             this.clmProduct,
             this.clmUnit,
@@ -324,26 +326,26 @@
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Width = 75;
             // 
-            // dataGridViewTextBoxColumn3
+            // clmPoNumber
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "PO No.";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.clmPoNumber.HeaderText = "PO No.";
+            this.clmPoNumber.MinimumWidth = 6;
+            this.clmPoNumber.Name = "clmPoNumber";
+            this.clmPoNumber.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn4
+            // clmPoDate
             // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "PO Date";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.clmPoDate.HeaderText = "PO Date";
+            this.clmPoDate.MinimumWidth = 6;
+            this.clmPoDate.Name = "clmPoDate";
+            this.clmPoDate.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn5
+            // clmSupplierName
             // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Supplier Name";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 200;
+            this.clmSupplierName.HeaderText = "Supplier Name";
+            this.clmSupplierName.Name = "clmSupplierName";
+            this.clmSupplierName.ReadOnly = true;
+            this.clmSupplierName.Width = 200;
             // 
             // clmpicode
             // 
@@ -371,9 +373,7 @@
             // 
             // grpProFilter
             // 
-            this.grpProFilter.Controls.Add(this.checkBox2);
-            this.grpProFilter.Controls.Add(this.checkBox1);
-            this.grpProFilter.Controls.Add(this.label9);
+            this.grpProFilter.Controls.Add(this.grpGroupBy);
             this.grpProFilter.Controls.Add(this.button3);
             this.grpProFilter.Controls.Add(this.cmbSubGroup);
             this.grpProFilter.Controls.Add(this.lblDESubGroup);
@@ -387,35 +387,43 @@
             this.grpProFilter.Text = "Filter By";
             this.grpProFilter.Visible = false;
             // 
-            // checkBox2
+            // grpGroupBy
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(781, 23);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(63, 24);
-            this.checkBox2.TabIndex = 39;
-            this.checkBox2.Text = "PO No.";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.grpGroupBy.Controls.Add(this.cbSupplier);
+            this.grpGroupBy.Controls.Add(this.cbPoNo);
+            this.grpGroupBy.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpGroupBy.Location = new System.Drawing.Point(639, 12);
+            this.grpGroupBy.Name = "grpGroupBy";
+            this.grpGroupBy.Size = new System.Drawing.Size(225, 39);
+            this.grpGroupBy.TabIndex = 40;
+            this.grpGroupBy.TabStop = false;
+            this.grpGroupBy.Text = "Group By";
             // 
-            // checkBox1
+            // cbSupplier
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(701, 23);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(73, 24);
-            this.checkBox1.TabIndex = 38;
-            this.checkBox1.Text = "Supplier";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbSupplier.AutoSize = true;
+            this.cbSupplier.Checked = true;
+            this.cbSupplier.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSupplier.Location = new System.Drawing.Point(69, 11);
+            this.cbSupplier.Name = "cbSupplier";
+            this.cbSupplier.Size = new System.Drawing.Size(73, 24);
+            this.cbSupplier.TabIndex = 38;
+            this.cbSupplier.Text = "Supplier";
+            this.cbSupplier.UseVisualStyleBackColor = true;
+            this.cbSupplier.CheckedChanged += new System.EventHandler(this.CbSupplier_CheckedChanged);
             // 
-            // label9
+            // cbPoNo
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(634, 25);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(59, 20);
-            this.label9.TabIndex = 37;
-            this.label9.Text = "Group By";
+            this.cbPoNo.AutoSize = true;
+            this.cbPoNo.Checked = true;
+            this.cbPoNo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbPoNo.Location = new System.Drawing.Point(149, 12);
+            this.cbPoNo.Name = "cbPoNo";
+            this.cbPoNo.Size = new System.Drawing.Size(63, 24);
+            this.cbPoNo.TabIndex = 39;
+            this.cbPoNo.Text = "PO No.";
+            this.cbPoNo.UseVisualStyleBackColor = true;
+            this.cbPoNo.CheckedChanged += new System.EventHandler(this.CbPoNo_CheckedChanged);
             // 
             // button3
             // 
@@ -472,6 +480,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.lblPartialPending);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.lblInactive);
@@ -486,12 +496,32 @@
             this.groupBox1.TabIndex = 1111170;
             this.groupBox1.TabStop = false;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.BlueViolet;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(171, 67);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 20);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "8888";
+            // 
+            // lblPartialPending
+            // 
+            this.lblPartialPending.AutoSize = true;
+            this.lblPartialPending.Location = new System.Drawing.Point(76, 67);
+            this.lblPartialPending.Name = "lblPartialPending";
+            this.lblPartialPending.Size = new System.Drawing.Size(91, 20);
+            this.lblPartialPending.TabIndex = 24;
+            this.lblPartialPending.Text = "Partial Pending";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Olive;
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(56, 60);
+            this.label7.Location = new System.Drawing.Point(56, 41);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(37, 20);
             this.label7.TabIndex = 23;
@@ -500,7 +530,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(2, 60);
+            this.label8.Location = new System.Drawing.Point(2, 41);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 20);
             this.label8.TabIndex = 22;
@@ -511,7 +541,7 @@
             this.lblInactive.AutoSize = true;
             this.lblInactive.BackColor = System.Drawing.Color.Tomato;
             this.lblInactive.ForeColor = System.Drawing.Color.White;
-            this.lblInactive.Location = new System.Drawing.Point(171, 60);
+            this.lblInactive.Location = new System.Drawing.Point(171, 41);
             this.lblInactive.Name = "lblInactive";
             this.lblInactive.Size = new System.Drawing.Size(37, 20);
             this.lblInactive.TabIndex = 21;
@@ -522,7 +552,7 @@
             this.lblActive.AutoSize = true;
             this.lblActive.BackColor = System.Drawing.Color.LimeGreen;
             this.lblActive.ForeColor = System.Drawing.Color.White;
-            this.lblActive.Location = new System.Drawing.Point(171, 26);
+            this.lblActive.Location = new System.Drawing.Point(171, 14);
             this.lblActive.Name = "lblActive";
             this.lblActive.Size = new System.Drawing.Size(37, 20);
             this.lblActive.TabIndex = 20;
@@ -533,7 +563,7 @@
             this.lblTotal.AutoSize = true;
             this.lblTotal.BackColor = System.Drawing.Color.CornflowerBlue;
             this.lblTotal.ForeColor = System.Drawing.Color.White;
-            this.lblTotal.Location = new System.Drawing.Point(56, 26);
+            this.lblTotal.Location = new System.Drawing.Point(56, 14);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(37, 20);
             this.lblTotal.TabIndex = 19;
@@ -542,7 +572,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(2, 26);
+            this.label5.Location = new System.Drawing.Point(2, 14);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 20);
             this.label5.TabIndex = 18;
@@ -551,7 +581,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(101, 60);
+            this.label4.Location = new System.Drawing.Point(101, 41);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 20);
             this.label4.TabIndex = 17;
@@ -560,7 +590,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(101, 26);
+            this.label6.Location = new System.Drawing.Point(101, 14);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 20);
             this.label6.TabIndex = 16;
@@ -684,7 +714,6 @@
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
             // 
             // label2
             // 
@@ -1040,6 +1069,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).EndInit();
             this.grpProFilter.ResumeLayout(false);
             this.grpProFilter.PerformLayout();
+            this.grpGroupBy.ResumeLayout(false);
+            this.grpGroupBy.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grpfilter.ResumeLayout(false);
@@ -1122,18 +1153,20 @@
         private System.Windows.Forms.ComboBox cmbGroup;
         private System.Windows.Forms.Label lblDEGroup;
         public System.Windows.Forms.DataGridView grdProDetails;
+        private System.Windows.Forms.CheckBox cbPoNo;
+        private System.Windows.Forms.CheckBox cbSupplier;
+        private System.Windows.Forms.GroupBox groupBox2;
+        public System.Windows.Forms.ComboBox cmbShow;
+        private System.Windows.Forms.GroupBox grpGroupBy;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblPartialPending;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPoNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPoDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSupplierName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQty;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.GroupBox groupBox2;
-        public System.Windows.Forms.ComboBox cmbShow;
     }
 }
