@@ -96,8 +96,7 @@ namespace ROMS
                 {
                     udfnclose();
                 }
-                
-             
+               
             }
             catch (Exception ex)
             {
@@ -1107,7 +1106,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtEmail.Text).Trim() == "")
+                if (Convert.ToString(txtEmail.Text).Trim() == "" && objValidation.FormatEMail(txtEmail.Text) == false)
                 {
                     epCompany.SetError(txtEmail, "Please enter email");
                     txtEmail.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -2193,7 +2192,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnAdd.Focus();
+                    btnAddContact.Focus();
                 }
             }
             catch (Exception ex)
@@ -2276,7 +2275,128 @@ namespace ROMS
 
         private void BtnSaveContact_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if(grdContactManager.Rows.Count>1)
+                {
+                   //BtnSaveContact_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void BtnAddContact_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnAddContact_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSaveContact_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSaveContact.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSaveContact_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSaveContact.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSaveContact_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnSaveContact_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnCloseContact_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                 udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnCloseContact_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnCloseContact.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnCloseContact_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnCloseContact.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnCloseContact_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }
