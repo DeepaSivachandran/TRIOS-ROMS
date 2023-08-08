@@ -133,7 +133,41 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return udfn;
-        }       
-       
+        }
+
+        public string udfnSaveUnitMaster(string paraprocess, string paratemplateid, string paratempname, string paratemplatevalue, string paraconenttype, string parasender, string paratempconent, string parastatus, string paraUserID, string paraOriginator)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[PROC_TEMPLATE]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraProcess", paraprocess);
+                varSqlCommand.Parameters.AddWithValue("@paratempname", paratempname);
+                varSqlCommand.Parameters.AddWithValue("@paratemplateid", paratemplateid);
+                varSqlCommand.Parameters.AddWithValue("@paratemplatevalue", paratemplatevalue);
+                varSqlCommand.Parameters.AddWithValue("@paraconenttype", paraconenttype);
+                varSqlCommand.Parameters.AddWithValue("@parasender", parasender);
+                varSqlCommand.Parameters.AddWithValue("@paratempconent", paratempconent);
+                varSqlCommand.Parameters.AddWithValue("@parastatus", parastatus);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
+
     }
 }
