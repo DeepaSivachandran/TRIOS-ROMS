@@ -74,7 +74,7 @@
             // 
             this.txtLoginID.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLoginID.Location = new System.Drawing.Point(204, 51);
-            this.txtLoginID.MaxLength = 20;
+            this.txtLoginID.MaxLength = 15;
             this.txtLoginID.Name = "txtLoginID";
             this.txtLoginID.Size = new System.Drawing.Size(288, 27);
             this.txtLoginID.TabIndex = 1;
@@ -98,7 +98,7 @@
             // 
             this.txtUserName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserName.Location = new System.Drawing.Point(204, 24);
-            this.txtUserName.MaxLength = 50;
+            this.txtUserName.MaxLength = 30;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(288, 27);
             this.txtUserName.TabIndex = 0;
@@ -122,7 +122,7 @@
             // 
             this.txtPassword.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(204, 131);
-            this.txtPassword.MaxLength = 20;
+            this.txtPassword.MaxLength = 50;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(288, 27);
@@ -147,7 +147,7 @@
             // 
             this.txtCPassword.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCPassword.Location = new System.Drawing.Point(204, 158);
-            this.txtCPassword.MaxLength = 20;
+            this.txtCPassword.MaxLength = 50;
             this.txtCPassword.Name = "txtCPassword";
             this.txtCPassword.PasswordChar = '*';
             this.txtCPassword.Size = new System.Drawing.Size(288, 27);

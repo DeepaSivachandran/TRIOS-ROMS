@@ -135,7 +135,7 @@
             // 
             this.txtGstinNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGstinNo.Location = new System.Drawing.Point(182, 54);
-            this.txtGstinNo.MaxLength = 50;
+            this.txtGstinNo.MaxLength = 15;
             this.txtGstinNo.Name = "txtGstinNo";
             this.txtGstinNo.Size = new System.Drawing.Size(274, 27);
             this.txtGstinNo.TabIndex = 1;
@@ -181,7 +181,7 @@
             // 
             this.txtBankShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtBankShortName.Location = new System.Drawing.Point(113, 54);
-            this.txtBankShortName.MaxLength = 100;
+            this.txtBankShortName.MaxLength = 20;
             this.txtBankShortName.Name = "txtBankShortName";
             this.txtBankShortName.Size = new System.Drawing.Size(300, 27);
             this.txtBankShortName.TabIndex = 12;
@@ -205,7 +205,7 @@
             // 
             this.txtbranchname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtbranchname.Location = new System.Drawing.Point(541, 27);
-            this.txtbranchname.MaxLength = 100;
+            this.txtbranchname.MaxLength = 50;
             this.txtbranchname.Name = "txtbranchname";
             this.txtbranchname.Size = new System.Drawing.Size(300, 27);
             this.txtbranchname.TabIndex = 13;
@@ -340,7 +340,7 @@
             // 
             this.txtIFScode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtIFScode.Location = new System.Drawing.Point(541, 81);
-            this.txtIFScode.MaxLength = 100;
+            this.txtIFScode.MaxLength = 11;
             this.txtIFScode.Name = "txtIFScode";
             this.txtIFScode.Size = new System.Drawing.Size(300, 27);
             this.txtIFScode.TabIndex = 15;
@@ -364,7 +364,7 @@
             // 
             this.txtAccno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtAccno.Location = new System.Drawing.Point(541, 54);
-            this.txtAccno.MaxLength = 100;
+            this.txtAccno.MaxLength = 20;
             this.txtAccno.Name = "txtAccno";
             this.txtAccno.Size = new System.Drawing.Size(300, 27);
             this.txtAccno.TabIndex = 14;
@@ -388,7 +388,7 @@
             // 
             this.txtBankname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtBankname.Location = new System.Drawing.Point(113, 27);
-            this.txtBankname.MaxLength = 100;
+            this.txtBankname.MaxLength = 50;
             this.txtBankname.Name = "txtBankname";
             this.txtBankname.Size = new System.Drawing.Size(300, 27);
             this.txtBankname.TabIndex = 11;
@@ -438,7 +438,7 @@
             // 
             this.txtAddressLine1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddressLine1.Location = new System.Drawing.Point(182, 161);
-            this.txtAddressLine1.MaxLength = 50;
+            this.txtAddressLine1.MaxLength = 100;
             this.txtAddressLine1.Name = "txtAddressLine1";
             this.txtAddressLine1.Size = new System.Drawing.Size(274, 27);
             this.txtAddressLine1.TabIndex = 5;
@@ -450,7 +450,7 @@
             // 
             this.txtAddressLine2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddressLine2.Location = new System.Drawing.Point(182, 186);
-            this.txtAddressLine2.MaxLength = 50;
+            this.txtAddressLine2.MaxLength = 100;
             this.txtAddressLine2.Name = "txtAddressLine2";
             this.txtAddressLine2.Size = new System.Drawing.Size(274, 27);
             this.txtAddressLine2.TabIndex = 6;
@@ -486,7 +486,7 @@
             // 
             this.txtPincode.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPincode.Location = new System.Drawing.Point(182, 240);
-            this.txtPincode.MaxLength = 50;
+            this.txtPincode.MaxLength = 6;
             this.txtPincode.Name = "txtPincode";
             this.txtPincode.Size = new System.Drawing.Size(274, 27);
             this.txtPincode.TabIndex = 8;
@@ -560,7 +560,7 @@
             // 
             this.txtWhatsAppNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWhatsAppNo.Location = new System.Drawing.Point(182, 135);
-            this.txtWhatsAppNo.MaxLength = 50;
+            this.txtWhatsAppNo.MaxLength = 10;
             this.txtWhatsAppNo.Name = "txtWhatsAppNo";
             this.txtWhatsAppNo.Size = new System.Drawing.Size(274, 27);
             this.txtWhatsAppNo.TabIndex = 4;
@@ -683,7 +683,7 @@
             // 
             this.txtMobileNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMobileNo.Location = new System.Drawing.Point(182, 108);
-            this.txtMobileNo.MaxLength = 50;
+            this.txtMobileNo.MaxLength = 10;
             this.txtMobileNo.Name = "txtMobileNo";
             this.txtMobileNo.Size = new System.Drawing.Size(274, 27);
             this.txtMobileNo.TabIndex = 3;

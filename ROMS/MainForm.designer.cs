@@ -81,10 +81,10 @@ namespace ROMS
             this.tsmrackSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmbatchno = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmgenralSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmgeneralSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmgeneralSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -189,7 +189,7 @@ namespace ROMS
             // 
             this.tsmpurchaseReturn.Name = "tsmpurchaseReturn";
             this.tsmpurchaseReturn.Size = new System.Drawing.Size(180, 22);
-            this.tsmpurchaseReturn.Text = "Pruchase Return DC";
+            this.tsmpurchaseReturn.Text = "Purchase Return DC";
             this.tsmpurchaseReturn.Click += new System.EventHandler(this.TsmpurchaseReturn_Click);
             // 
             // tsmPurchaseDC
@@ -523,6 +523,13 @@ namespace ROMS
             this.tsmgenralSettings.Text = "Voucher Settings";
             this.tsmgenralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
             // 
+            // tsmgeneralSettings
+            // 
+            this.tsmgeneralSettings.Name = "tsmgeneralSettings";
+            this.tsmgeneralSettings.Size = new System.Drawing.Size(207, 22);
+            this.tsmgeneralSettings.Text = "General Settings";
+            this.tsmgeneralSettings.Click += new System.EventHandler(this.TsmgeneralSettings_Click);
+            // 
             // tsmMyProfile
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -551,13 +558,6 @@ namespace ROMS
             this.tsmLogout.Size = new System.Drawing.Size(109, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
-            // 
-            // tsmgeneralSettings
-            // 
-            this.tsmgeneralSettings.Name = "tsmgeneralSettings";
-            this.tsmgeneralSettings.Size = new System.Drawing.Size(207, 22);
-            this.tsmgeneralSettings.Text = "General Settings";
-            this.tsmgeneralSettings.Click += new System.EventHandler(this.TsmgeneralSettings_Click);
             // 
             // MainForm
             // 

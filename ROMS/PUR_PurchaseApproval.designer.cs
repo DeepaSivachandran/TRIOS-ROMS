@@ -77,27 +77,45 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPurchaseRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmExpDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBatch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmrack = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmfreeqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdiscountamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdiscountpercentage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pnlStatus = new System.Windows.Forms.Panel();
+            this.label36 = new System.Windows.Forms.Label();
+            this.textBox30 = new System.Windows.Forms.TextBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.textBox29 = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.textBox21 = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseApproval)).BeginInit();
             this.grpfilter.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdpurchasedetails)).BeginInit();
+            this.pnlStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsBrandList
@@ -126,6 +144,7 @@
             // pnlpurchaseapproval
             // 
             this.pnlpurchaseapproval.BackColor = System.Drawing.Color.White;
+            this.pnlpurchaseapproval.Controls.Add(this.pnlStatus);
             this.pnlpurchaseapproval.Controls.Add(this.textBox7);
             this.pnlpurchaseapproval.Controls.Add(this.label1);
             this.pnlpurchaseapproval.Controls.Add(this.lblRupee);
@@ -189,7 +208,7 @@
             this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
             this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemarks.Location = new System.Drawing.Point(909, 549);
+            this.btnRemarks.Location = new System.Drawing.Point(717, 549);
             this.btnRemarks.Name = "btnRemarks";
             this.btnRemarks.Size = new System.Drawing.Size(116, 29);
             this.btnRemarks.TabIndex = 1111208;
@@ -233,17 +252,17 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.clmMrp,
-            this.Column18,
-            this.Column19,
-            this.Column20,
+            this.clmPurchaseRate,
+            this.clmExpDate,
+            this.clmBatch,
             this.Column21,
             this.clmrack,
             this.Column3,
-            this.Column4,
-            this.Column12,
+            this.clmInvQty,
+            this.clmfreeqty,
             this.Column5,
-            this.Column7,
-            this.Column8,
+            this.clmdiscountamt,
+            this.clmdiscountpercentage,
             this.Column11,
             this.Column9,
             this.Column10,
@@ -265,11 +284,11 @@
             // txtRemarks
             // 
             this.txtRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemarks.Location = new System.Drawing.Point(307, 549);
+            this.txtRemarks.Location = new System.Drawing.Point(293, 549);
             this.txtRemarks.MaxLength = 50;
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(586, 86);
+            this.txtRemarks.Size = new System.Drawing.Size(409, 86);
             this.txtRemarks.TabIndex = 1111149;
             // 
             // lblRemarks
@@ -652,26 +671,26 @@
             this.clmMrp.ReadOnly = true;
             this.clmMrp.Width = 50;
             // 
-            // Column18
+            // clmPurchaseRate
             // 
-            this.Column18.HeaderText = "Purchase Rate";
-            this.Column18.Name = "Column18";
-            this.Column18.ReadOnly = true;
-            this.Column18.Width = 75;
+            this.clmPurchaseRate.HeaderText = "Purchase Rate";
+            this.clmPurchaseRate.Name = "clmPurchaseRate";
+            this.clmPurchaseRate.ReadOnly = true;
+            this.clmPurchaseRate.Width = 75;
             // 
-            // Column19
+            // clmExpDate
             // 
-            this.Column19.HeaderText = "Expiry Date";
-            this.Column19.Name = "Column19";
-            this.Column19.ReadOnly = true;
-            this.Column19.Width = 80;
+            this.clmExpDate.HeaderText = "Expiry Date";
+            this.clmExpDate.Name = "clmExpDate";
+            this.clmExpDate.ReadOnly = true;
+            this.clmExpDate.Width = 80;
             // 
-            // Column20
+            // clmBatch
             // 
-            this.Column20.HeaderText = "Batch";
-            this.Column20.Name = "Column20";
-            this.Column20.ReadOnly = true;
-            this.Column20.Width = 60;
+            this.clmBatch.HeaderText = "Batch";
+            this.clmBatch.Name = "clmBatch";
+            this.clmBatch.ReadOnly = true;
+            this.clmBatch.Width = 60;
             // 
             // Column21
             // 
@@ -694,19 +713,19 @@
             this.Column3.ReadOnly = true;
             this.Column3.Width = 40;
             // 
-            // Column4
+            // clmInvQty
             // 
-            this.Column4.HeaderText = "Invoice Qty";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 50;
+            this.clmInvQty.HeaderText = "Invoice Qty";
+            this.clmInvQty.Name = "clmInvQty";
+            this.clmInvQty.ReadOnly = true;
+            this.clmInvQty.Width = 50;
             // 
-            // Column12
+            // clmfreeqty
             // 
-            this.Column12.HeaderText = "Free Qty";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            this.Column12.Width = 50;
+            this.clmfreeqty.HeaderText = "Free Qty";
+            this.clmfreeqty.Name = "clmfreeqty";
+            this.clmfreeqty.ReadOnly = true;
+            this.clmfreeqty.Width = 50;
             // 
             // Column5
             // 
@@ -715,19 +734,19 @@
             this.Column5.ReadOnly = true;
             this.Column5.Width = 40;
             // 
-            // Column7
+            // clmdiscountamt
             // 
-            this.Column7.HeaderText = "Discount Amnt";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 60;
+            this.clmdiscountamt.HeaderText = "Discount Amnt";
+            this.clmdiscountamt.Name = "clmdiscountamt";
+            this.clmdiscountamt.ReadOnly = true;
+            this.clmdiscountamt.Width = 60;
             // 
-            // Column8
+            // clmdiscountpercentage
             // 
-            this.Column8.HeaderText = "Discount %";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 60;
+            this.clmdiscountpercentage.HeaderText = "Discount %";
+            this.clmdiscountpercentage.Name = "clmdiscountpercentage";
+            this.clmdiscountpercentage.ReadOnly = true;
+            this.clmdiscountpercentage.Width = 60;
             // 
             // Column11
             // 
@@ -757,6 +776,198 @@
             this.Column16.ReadOnly = true;
             this.Column16.Width = 60;
             // 
+            // pnlStatus
+            // 
+            this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlStatus.Controls.Add(this.label36);
+            this.pnlStatus.Controls.Add(this.textBox30);
+            this.pnlStatus.Controls.Add(this.label35);
+            this.pnlStatus.Controls.Add(this.textBox29);
+            this.pnlStatus.Controls.Add(this.label34);
+            this.pnlStatus.Controls.Add(this.textBox28);
+            this.pnlStatus.Controls.Add(this.label33);
+            this.pnlStatus.Controls.Add(this.textBox25);
+            this.pnlStatus.Controls.Add(this.label32);
+            this.pnlStatus.Controls.Add(this.textBox22);
+            this.pnlStatus.Controls.Add(this.label31);
+            this.pnlStatus.Controls.Add(this.textBox21);
+            this.pnlStatus.Controls.Add(this.label30);
+            this.pnlStatus.Controls.Add(this.textBox20);
+            this.pnlStatus.Controls.Add(this.label29);
+            this.pnlStatus.Controls.Add(this.textBox9);
+            this.pnlStatus.Location = new System.Drawing.Point(717, 584);
+            this.pnlStatus.Name = "pnlStatus";
+            this.pnlStatus.Size = new System.Drawing.Size(372, 51);
+            this.pnlStatus.TabIndex = 1111242;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(218, 7);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(57, 16);
+            this.label36.TabIndex = 1111257;
+            this.label36.Text = "Invoice Qty";
+            // 
+            // textBox30
+            // 
+            this.textBox30.BackColor = System.Drawing.Color.MediumOrchid;
+            this.textBox30.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox30.Location = new System.Drawing.Point(191, 7);
+            this.textBox30.MaxLength = 50;
+            this.textBox30.Multiline = true;
+            this.textBox30.Name = "textBox30";
+            this.textBox30.Size = new System.Drawing.Size(27, 16);
+            this.textBox30.TabIndex = 1111256;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Location = new System.Drawing.Point(218, 28);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(45, 16);
+            this.label35.TabIndex = 1111255;
+            this.label35.Text = "Free Qty";
+            // 
+            // textBox29
+            // 
+            this.textBox29.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.textBox29.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox29.Location = new System.Drawing.Point(191, 28);
+            this.textBox29.MaxLength = 50;
+            this.textBox29.Multiline = true;
+            this.textBox29.Name = "textBox29";
+            this.textBox29.Size = new System.Drawing.Size(27, 16);
+            this.textBox29.TabIndex = 1111254;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(307, 7);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(66, 16);
+            this.label34.TabIndex = 1111253;
+            this.label34.Text = "Discount Amt";
+            // 
+            // textBox28
+            // 
+            this.textBox28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.textBox28.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox28.Location = new System.Drawing.Point(276, 7);
+            this.textBox28.MaxLength = 50;
+            this.textBox28.Multiline = true;
+            this.textBox28.Name = "textBox28";
+            this.textBox28.Size = new System.Drawing.Size(27, 16);
+            this.textBox28.TabIndex = 1111252;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(307, 28);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(59, 16);
+            this.label33.TabIndex = 1111251;
+            this.label33.Text = "Discount %";
+            // 
+            // textBox25
+            // 
+            this.textBox25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.textBox25.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox25.Location = new System.Drawing.Point(276, 28);
+            this.textBox25.MaxLength = 50;
+            this.textBox25.Multiline = true;
+            this.textBox25.Name = "textBox25";
+            this.textBox25.Size = new System.Drawing.Size(27, 16);
+            this.textBox25.TabIndex = 1111250;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(130, 28);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(33, 16);
+            this.label32.TabIndex = 1111249;
+            this.label32.Text = "Batch";
+            // 
+            // textBox22
+            // 
+            this.textBox22.BackColor = System.Drawing.Color.Pink;
+            this.textBox22.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox22.Location = new System.Drawing.Point(103, 28);
+            this.textBox22.MaxLength = 50;
+            this.textBox22.Multiline = true;
+            this.textBox22.Name = "textBox22";
+            this.textBox22.Size = new System.Drawing.Size(27, 16);
+            this.textBox22.TabIndex = 1111248;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(130, 7);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(58, 16);
+            this.label31.TabIndex = 1111247;
+            this.label31.Text = "Expiry Rate";
+            // 
+            // textBox21
+            // 
+            this.textBox21.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.textBox21.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox21.Location = new System.Drawing.Point(103, 7);
+            this.textBox21.MaxLength = 50;
+            this.textBox21.Multiline = true;
+            this.textBox21.Name = "textBox21";
+            this.textBox21.Size = new System.Drawing.Size(27, 16);
+            this.textBox21.TabIndex = 1111246;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(31, 28);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(70, 16);
+            this.label30.TabIndex = 1111245;
+            this.label30.Text = "Purchase Rate";
+            // 
+            // textBox20
+            // 
+            this.textBox20.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.textBox20.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox20.Location = new System.Drawing.Point(4, 28);
+            this.textBox20.MaxLength = 50;
+            this.textBox20.Multiline = true;
+            this.textBox20.Name = "textBox20";
+            this.textBox20.Size = new System.Drawing.Size(27, 16);
+            this.textBox20.TabIndex = 1111244;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(31, 7);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(28, 16);
+            this.label29.TabIndex = 1111243;
+            this.label29.Text = "MRP";
+            // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.Color.Khaki;
+            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox9.Location = new System.Drawing.Point(4, 7);
+            this.textBox9.MaxLength = 50;
+            this.textBox9.Multiline = true;
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(27, 16);
+            this.textBox9.TabIndex = 1111242;
+            // 
             // PUR_PurchaseApproval
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -782,6 +993,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdpurchasedetails)).EndInit();
+            this.pnlStatus.ResumeLayout(false);
+            this.pnlStatus.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -833,20 +1046,37 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMrp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurchaseRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmExpDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBatch;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmrack;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmInvQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmfreeqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdiscountamt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdiscountpercentage;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
+        private System.Windows.Forms.Panel pnlStatus;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.TextBox textBox30;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox textBox29;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.TextBox textBox28;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.TextBox textBox25;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TextBox textBox22;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox textBox21;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox textBox9;
     }
 }
