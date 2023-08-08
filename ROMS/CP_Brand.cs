@@ -26,7 +26,6 @@ namespace ROMS
 
         private void CP_Brand_Leave(object sender, EventArgs e)
         {
-
             try
             {
                 tpBrandNameInEnglish.Active = false;
@@ -474,10 +473,6 @@ namespace ROMS
             }
         }
 
-        private void CP_Brand_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void TxtEBrandNameInTamil_TextChanged(object sender, EventArgs e)
         {
