@@ -47,13 +47,15 @@
             this.cmbGroupType = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdGroupList = new System.Windows.Forms.DataGridView();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproductsubgroupnameintamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmstocklocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsGroupList.SuspendLayout();
             this.pnlSubgroup.SuspendLayout();
             this.grbFilterBy.SuspendLayout();
@@ -260,6 +262,8 @@
             this.Column3,
             this.Column2,
             this.clmproductsubgroupnameintamil,
+            this.clmstocklocation,
+            this.clmRack,
             this.Column4,
             this.Column5});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -283,6 +287,20 @@
             this.grdGroupList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGroupList.Size = new System.Drawing.Size(1348, 570);
             this.grdGroupList.TabIndex = 958792;
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(14, 81);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1325, 550);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958794;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // Column1
             // 
@@ -311,6 +329,20 @@
             this.clmproductsubgroupnameintamil.ReadOnly = true;
             this.clmproductsubgroupnameintamil.Width = 200;
             // 
+            // clmstocklocation
+            // 
+            this.clmstocklocation.HeaderText = "Stock Location";
+            this.clmstocklocation.Name = "clmstocklocation";
+            this.clmstocklocation.ReadOnly = true;
+            this.clmstocklocation.Width = 150;
+            // 
+            // clmRack
+            // 
+            this.clmRack.HeaderText = "Rack";
+            this.clmRack.Name = "clmRack";
+            this.clmRack.ReadOnly = true;
+            this.clmRack.Width = 120;
+            // 
             // Column4
             // 
             this.Column4.HeaderText = "Total Products";
@@ -323,20 +355,6 @@
             this.Column5.HeaderText = "Status";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
-            // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(14, 81);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1325, 550);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958794;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
             // 
             // CP_SubGroupList
             // 
@@ -390,6 +408,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproductsubgroupnameintamil;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmstocklocation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRack;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }

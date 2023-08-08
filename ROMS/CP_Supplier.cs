@@ -392,6 +392,8 @@ namespace ROMS
                 cmbPolicyContent.Visible = false;
                 txtNextLevel.Visible = false;
                 cmbSecondLevel.Visible = false;
+
+                BeginInvoke(new Action(() => cmbOrderschedule.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {
@@ -2585,14 +2587,20 @@ namespace ROMS
                     txtName.Focus();
                     txtName.SelectionStart = txtName.Text.Length;
                 }
-                if (tcSupplier.SelectedIndex == 2)
+                if (tcSupplier.SelectedIndex == 3)
                 {
-                    cmborder.Focus();
+                    cmbOrderschedule.Focus();
                     BeginInvoke(new Action(() => cmborder.Select(int.MaxValue, 0)));
                     BeginInvoke(new Action(() => cmborderday.Select(int.MaxValue, 0)));
                     cmborderday.SelectedIndex = 0;
                     cmborder.SelectedIndex = 0;
                     cmborder.SelectionStart = cmborder.Text.Length;
+                    cmbOrderschedule.SelectedIndex = 0;
+
+                }
+                if (tcSupplier.SelectedIndex == 2)
+                {
+                    txtSupplier.Focus(); 
 
                 }
             }
@@ -2637,8 +2645,17 @@ namespace ROMS
 
         private void Cmborder_Leave(object sender, EventArgs e)
         {
+            try
+            {
 
-            cmborder.BackColor = Color.White;
+                cmborder.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
 
         private void Cmborder_KeyPress(object sender, KeyPressEventArgs e)
@@ -2747,6 +2764,82 @@ namespace ROMS
             {
 
                 cmborderday.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbOrderschedule_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+
+                cmbOrderschedule.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void CmbOrderschedule_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+
+                    cmbOrderType.Focus();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbOrderschedule_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+
+                cmbOrderschedule.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbOrderschedule_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbOrderschedule_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                BeginInvoke(new Action(() => cmbOrderschedule.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {

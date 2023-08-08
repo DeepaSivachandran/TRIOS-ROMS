@@ -49,7 +49,7 @@ namespace ROMS
 
             try
             {
-
+                this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -654,6 +654,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
+ 
     }
 }

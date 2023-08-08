@@ -340,5 +340,10 @@ namespace ROMS
 
             }
         }
+
+        private void GrdPODetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

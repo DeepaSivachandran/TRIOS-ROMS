@@ -81,6 +81,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnsave()
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
         public void udfnclose()
         {
             try

@@ -33,7 +33,7 @@
             this.grbform = new System.Windows.Forms.GroupBox();
             this.cmbBatchNo = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtShopLocation = new System.Windows.Forms.TextBox();
+            this.txtStockLocation = new System.Windows.Forms.TextBox();
             this.txtEProductSubGroupNameTamil = new System.Windows.Forms.TextBox();
             this.txtESubGroupNameTamil = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Label();
@@ -62,7 +62,7 @@
             // 
             this.grbform.Controls.Add(this.cmbBatchNo);
             this.grbform.Controls.Add(this.textBox1);
-            this.grbform.Controls.Add(this.txtShopLocation);
+            this.grbform.Controls.Add(this.txtStockLocation);
             this.grbform.Controls.Add(this.txtEProductSubGroupNameTamil);
             this.grbform.Controls.Add(this.txtESubGroupNameTamil);
             this.grbform.Controls.Add(this.btnAdd);
@@ -107,17 +107,18 @@
             this.textBox1.TabIndex = 1111142;
             this.textBox1.Text = "Batch No.";
             // 
-            // txtShopLocation
+            // txtStockLocation
             // 
-            this.txtShopLocation.BackColor = System.Drawing.SystemColors.Control;
-            this.txtShopLocation.Enabled = false;
-            this.txtShopLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtShopLocation.Location = new System.Drawing.Point(24, 162);
-            this.txtShopLocation.Name = "txtShopLocation";
-            this.txtShopLocation.ReadOnly = true;
-            this.txtShopLocation.Size = new System.Drawing.Size(200, 27);
-            this.txtShopLocation.TabIndex = 1111136;
-            this.txtShopLocation.Text = "Shop Location";
+            this.txtStockLocation.BackColor = System.Drawing.SystemColors.Control;
+            this.txtStockLocation.Enabled = false;
+            this.txtStockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStockLocation.Location = new System.Drawing.Point(24, 162);
+            this.txtStockLocation.Name = "txtStockLocation";
+            this.txtStockLocation.ReadOnly = true;
+            this.txtStockLocation.Size = new System.Drawing.Size(200, 27);
+            this.txtStockLocation.TabIndex = 1111136;
+            this.txtStockLocation.Text = "Stock Location";
+            this.txtStockLocation.TextChanged += new System.EventHandler(this.TxtShopLocation_TextChanged);
             // 
             // txtEProductSubGroupNameTamil
             // 
@@ -135,7 +136,7 @@
             // 
             this.txtESubGroupNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtESubGroupNameTamil.Location = new System.Drawing.Point(224, 74);
-            this.txtESubGroupNameTamil.MaxLength = 50;
+            this.txtESubGroupNameTamil.MaxLength = 100;
             this.txtESubGroupNameTamil.Name = "txtESubGroupNameTamil";
             this.txtESubGroupNameTamil.Size = new System.Drawing.Size(200, 27);
             this.txtESubGroupNameTamil.TabIndex = 2;
@@ -284,7 +285,7 @@
             // 
             this.txtESubGroupNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtESubGroupNameEnglish.Location = new System.Drawing.Point(224, 47);
-            this.txtESubGroupNameEnglish.MaxLength = 50;
+            this.txtESubGroupNameEnglish.MaxLength = 100;
             this.txtESubGroupNameEnglish.Name = "txtESubGroupNameEnglish";
             this.txtESubGroupNameEnglish.Size = new System.Drawing.Size(200, 27);
             this.txtESubGroupNameEnglish.TabIndex = 1;
@@ -303,7 +304,7 @@
             this.grpPurchaseStockLocation.Size = new System.Drawing.Size(440, 103);
             this.grpPurchaseStockLocation.TabIndex = 4;
             this.grpPurchaseStockLocation.TabStop = false;
-            this.grpPurchaseStockLocation.Text = "Default Stock Location For Purchase";
+            this.grpPurchaseStockLocation.Text = "Default Stock Location for Purchase";
             // 
             // txtRack
             // 
@@ -397,7 +398,7 @@
         private System.Windows.Forms.TextBox txtEProductSubGroupNameTamil;
         private System.Windows.Forms.TextBox txtESubGroupNameTamil;
         private System.Windows.Forms.ComboBox cmbShopLocation;
-        private System.Windows.Forms.TextBox txtShopLocation;
+        private System.Windows.Forms.TextBox txtStockLocation;
         private System.Windows.Forms.ComboBox cmbRack;
         private System.Windows.Forms.TextBox txtRack;
         private System.Windows.Forms.GroupBox grpPurchaseStockLocation;

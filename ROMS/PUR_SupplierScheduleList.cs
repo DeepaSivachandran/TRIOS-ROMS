@@ -23,14 +23,10 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_SupplierMapping = new CP_SupplierMapping();
-                //MainForm.objCP_SupplierMapping.StartPosition = FormStartPosition.Manual;  
-                //int dialogX = this.Location.X + (this.Width - MainForm.objCP_SupplierMapping.Width ) / 2;
-                //int dialogY = this.Location.Y + (this.Height - MainForm.objCP_SupplierMapping.Height + 100) / 2; 
-                //MainForm.objCP_SupplierMapping.Location = new Point(dialogX, dialogY); 
 
-                MainForm.objCP_SupplierMapping.MdiParent = this.ParentForm;
-                MainForm.objCP_SupplierMapping.Show();
+                MainForm.objCP_Supplier = new CP_Supplier();
+                MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                MainForm.objCP_Supplier.Show();
             }
             catch (Exception ex)
             {
@@ -44,7 +40,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_POScheduledaywise = new PUR_POScheduledaywise();   
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                MainForm.objPUR_POScheduledaywise = new PUR_POScheduledaywise();
                 MainForm.objPUR_POScheduledaywise.ShowDialog();
             }
             catch (Exception ex)
@@ -52,6 +50,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+            finally
+            {
+                //picLoader.Visible = false;
             }
         }
 
@@ -75,6 +77,42 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DgvSupplierScheduleList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+
+
+                MainForm.objCP_Supplier = new CP_Supplier();
+                MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                MainForm.objCP_Supplier.btnSave.Text = "Update";
+                MainForm.objCP_Supplier.Show();
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void PUR_SupplierScheduleList_Load(object sender, EventArgs e)
+        {
+            try
+            {
+
+                cmbStatus.SelectedIndex = 0;
+
+                dgvSupplierScheduleList.Rows.Add(1, "Shiva Softwares Solutions", "Virudhunagar", "22AAAAA0000A1Z5", "", "", "Mobile", "Friday","48");
 
             }
             catch (Exception ex)

@@ -39,13 +39,13 @@
             this.txtEInvoiceUnitName = new System.Windows.Forms.TextBox();
             this.txtDSymbol = new System.Windows.Forms.TextBox();
             this.txtSymbol = new System.Windows.Forms.TextBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.epUnit = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUnit)).BeginInit();
@@ -83,7 +83,7 @@
             this.txtEUnitName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEUnitName.Location = new System.Drawing.Point(159, 46);
             this.txtEUnitName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtEUnitName.MaxLength = 50;
+            this.txtEUnitName.MaxLength = 20;
             this.txtEUnitName.Name = "txtEUnitName";
             this.txtEUnitName.Size = new System.Drawing.Size(361, 28);
             this.txtEUnitName.TabIndex = 0;
@@ -171,7 +171,7 @@
             this.txtSymbol.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSymbol.Location = new System.Drawing.Point(159, 74);
             this.txtSymbol.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtSymbol.MaxLength = 50;
+            this.txtSymbol.MaxLength = 5;
             this.txtSymbol.Name = "txtSymbol";
             this.txtSymbol.Size = new System.Drawing.Size(361, 28);
             this.txtSymbol.TabIndex = 1;
@@ -215,6 +215,7 @@
             this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
+
             // txtStatus
             // 
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
@@ -273,6 +274,41 @@
             // 
             this.epUnit.ContainerControl = this;
             // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(440, 200);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(80, 33);
+            this.btnClose.TabIndex = 7;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(356, 200);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(80, 33);
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
+            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
+            this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
+            // 
             // CP_Unit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -281,7 +317,7 @@
             this.ClientSize = new System.Drawing.Size(585, 278);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
@@ -292,6 +328,7 @@
             this.Text = "Unit";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Unit_FormClosing);
             this.Load += new System.EventHandler(this.CP_Unit_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.CP_Unit_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Unit_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Unit_Leave);
             this.grbform.ResumeLayout(false);

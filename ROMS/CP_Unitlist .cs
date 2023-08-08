@@ -24,6 +24,8 @@ namespace ROMS
             try
             {
                 MainForm.objCP_Unit = new CP_Unit();
+                MainForm.objCP_Unit.FormBorderStyle = FormBorderStyle.FixedSingle;
+                MainForm.objCP_Unit.Invalidate(true);
                 MainForm.objCP_Unit.ShowDialog();
             }
             catch (Exception ex)

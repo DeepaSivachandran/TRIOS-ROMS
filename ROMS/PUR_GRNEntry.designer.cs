@@ -64,6 +64,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.grpRepresentativeDetails = new System.Windows.Forms.GroupBox();
+            this.grpSalesmanDetails = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPODetails)).BeginInit();
@@ -76,6 +78,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.grpSalesmanDetails);
+            this.groupBox1.Controls.Add(this.grpRepresentativeDetails);
             this.groupBox1.Controls.Add(this.grdPODetails);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.grdUnitList);
@@ -97,7 +101,7 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Location = new System.Drawing.Point(10, -1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(956, 250);
+            this.groupBox1.Size = new System.Drawing.Size(1164, 250);
             this.groupBox1.TabIndex = 1111181;
             this.groupBox1.TabStop = false;
             // 
@@ -135,6 +139,8 @@
             this.grdPODetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPODetails.Size = new System.Drawing.Size(297, 88);
             this.grdPODetails.TabIndex = 1111199;
+            this.grdPODetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPODetails_CellContentClick);
+            this.grdPODetails.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPODetails_CellDoubleClick);
             // 
             // Column14
             // 
@@ -158,9 +164,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Location = new System.Drawing.Point(508, 17);
+            this.groupBox2.Location = new System.Drawing.Point(517, 17);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(260, 126);
+            this.groupBox2.Size = new System.Drawing.Size(209, 126);
             this.groupBox2.TabIndex = 1111198;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Supplier Details";
@@ -196,7 +202,7 @@
             this.grdUnitList.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdUnitList.EnableHeadersVisualStyles = false;
             this.grdUnitList.GridColor = System.Drawing.Color.White;
-            this.grdUnitList.Location = new System.Drawing.Point(785, 17);
+            this.grdUnitList.Location = new System.Drawing.Point(377, 50);
             this.grdUnitList.Name = "grdUnitList";
             this.grdUnitList.RowHeadersVisible = false;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -204,7 +210,7 @@
             this.grdUnitList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdUnitList.RowTemplate.Height = 25;
             this.grdUnitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdUnitList.Size = new System.Drawing.Size(157, 188);
+            this.grdUnitList.Size = new System.Drawing.Size(132, 190);
             this.grdUnitList.TabIndex = 1111197;
             this.grdUnitList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdUnitList_CellFormatting);
             // 
@@ -263,7 +269,7 @@
             this.txtSupplier.Location = new System.Drawing.Point(266, 17);
             this.txtSupplier.MaxLength = 50;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(225, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(243, 27);
             this.txtSupplier.TabIndex = 1111194;
             // 
             // label5
@@ -388,7 +394,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(891, 256);
+            this.btnClose.Location = new System.Drawing.Point(1099, 256);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 1111183;
@@ -402,7 +408,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(762, 256);
+            this.btnSave.Location = new System.Drawing.Point(968, 256);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(125, 29);
             this.btnSave.TabIndex = 1111182;
@@ -410,12 +416,30 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             // 
+            // grpRepresentativeDetails
+            // 
+            this.grpRepresentativeDetails.Location = new System.Drawing.Point(732, 17);
+            this.grpRepresentativeDetails.Name = "grpRepresentativeDetails";
+            this.grpRepresentativeDetails.Size = new System.Drawing.Size(209, 126);
+            this.grpRepresentativeDetails.TabIndex = 1111200;
+            this.grpRepresentativeDetails.TabStop = false;
+            this.grpRepresentativeDetails.Text = "Representative Details";
+            // 
+            // grpSalesmanDetails
+            // 
+            this.grpSalesmanDetails.Location = new System.Drawing.Point(947, 17);
+            this.grpSalesmanDetails.Name = "grpSalesmanDetails";
+            this.grpSalesmanDetails.Size = new System.Drawing.Size(209, 126);
+            this.grpSalesmanDetails.TabIndex = 1111201;
+            this.grpSalesmanDetails.TabStop = false;
+            this.grpSalesmanDetails.Text = "Salesman Details";
+            // 
             // PUR_GRNEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(976, 294);
+            this.ClientSize = new System.Drawing.Size(1186, 294);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupBox1);
@@ -469,5 +493,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
+        private System.Windows.Forms.GroupBox grpRepresentativeDetails;
+        private System.Windows.Forms.GroupBox grpSalesmanDetails;
     }
 }
