@@ -20,7 +20,7 @@ namespace ROMS
 
         public string varcompanycode;
         public string pbFormStatus;
-        public string varstatecode = "";
+        public int vargstcode = 0;
 
         //tool tip
         private ToolTip tpHsnName = new ToolTip();
@@ -49,7 +49,8 @@ namespace ROMS
         private void CP_ProductHSN_Load(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                udfnLoadGst();
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -240,6 +241,21 @@ namespace ROMS
             }
         }
 
+        public void udfnLoadGst()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_GST", " GSTID  not in (0)", "GST_Text,GSTID", cmbGST, "", "GST_Text", "GSTID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbGST_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -268,7 +284,7 @@ namespace ROMS
 
         private void CmbGST_Leave(object sender, EventArgs e)
         {
-            if (Convert.ToString(cmbGST.SelectedValue) != "0")
+            if (Convert.ToString(cmbGST.SelectedValue) == "0" || Convert.ToString(cmbGST.SelectedValue) == "-1")
             {
                 epHsn.SetError(cmbGST, "Please select GST.");
                 cmbGST.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -332,7 +348,7 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                if (Convert.ToString(cmbGST.SelectedValue) != "0")
+                if (Convert.ToString(cmbGST.SelectedValue) == "0" || Convert.ToString(cmbGST.SelectedValue) == "-1")
                 {
                     epHsn.SetError(cmbGST, "Please select GST.");
                     cmbGST.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
