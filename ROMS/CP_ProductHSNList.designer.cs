@@ -43,21 +43,15 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlhsntaxlist = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.grdHSNList = new System.Windows.Forms.DataGridView();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdhsnname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdhsncode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdgst = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdHSNList = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmhsnname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmhsncode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmgst = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsBrandList.SuspendLayout();
             this.pnlhsntaxlist.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -149,10 +143,10 @@
             // pnlhsntaxlist
             // 
             this.pnlhsntaxlist.BackColor = System.Drawing.Color.White;
+            this.pnlhsntaxlist.Controls.Add(this.picLoader);
             this.pnlhsntaxlist.Controls.Add(this.DGV_SearchGrid);
             this.pnlhsntaxlist.Controls.Add(this.lblNoRecordsFound);
             this.pnlhsntaxlist.Controls.Add(this.grdHSNList);
-            this.pnlhsntaxlist.Controls.Add(this.picLoader);
             this.pnlhsntaxlist.Location = new System.Drawing.Point(0, 31);
             this.pnlhsntaxlist.Name = "pnlhsntaxlist";
             this.pnlhsntaxlist.Size = new System.Drawing.Size(1354, 641);
@@ -205,39 +199,6 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
             // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmdhsnname
-            // 
-            this.clmdhsnname.HeaderText = "HSN Group";
-            this.clmdhsnname.Name = "clmdhsnname";
-            this.clmdhsnname.Width = 200;
-            // 
-            // clmdhsncode
-            // 
-            this.clmdhsncode.HeaderText = "HSN Code";
-            this.clmdhsncode.Name = "clmdhsncode";
-            // 
-            // clmdgst
-            // 
-            this.clmdgst.HeaderText = "GST %";
-            this.clmdgst.Name = "clmdgst";
-            this.clmdgst.Width = 75;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Total Products";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Status";
-            this.clmdstatus.Name = "clmdstatus";
-            // 
             // lblNoRecordsFound
             // 
             this.lblNoRecordsFound.AutoSize = true;
@@ -268,13 +229,6 @@
             this.grdHSNList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdHSNList.ColumnHeadersHeight = 30;
             this.grdHSNList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdHSNList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmsno,
-            this.clmhsnname,
-            this.clmhsncode,
-            this.clmgst,
-            this.Column1,
-            this.clmStatus});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -297,57 +251,52 @@
             this.grdHSNList.Size = new System.Drawing.Size(1348, 581);
             this.grdHSNList.TabIndex = 958797;
             // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            // 
-            // clmhsnname
-            // 
-            this.clmhsnname.HeaderText = "HSN Name";
-            this.clmhsnname.Name = "clmhsnname";
-            this.clmhsnname.ReadOnly = true;
-            this.clmhsnname.Width = 200;
-            // 
-            // clmhsncode
-            // 
-            this.clmhsncode.HeaderText = "HSN Code";
-            this.clmhsncode.Name = "clmhsncode";
-            this.clmhsncode.ReadOnly = true;
-            // 
-            // clmgst
-            // 
-            this.clmgst.HeaderText = "GST %";
-            this.clmgst.Name = "clmgst";
-            this.clmgst.ReadOnly = true;
-            this.clmgst.Width = 75;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Total Products";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
-            // 
             // picLoader
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.loader;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(968, 305);
+            this.picLoader.Location = new System.Drawing.Point(3, 58);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(374, 324);
+            this.picLoader.Size = new System.Drawing.Size(1348, 571);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmdhsnname
+            // 
+            this.clmdhsnname.HeaderText = "HSN Name";
+            this.clmdhsnname.Name = "clmdhsnname";
+            this.clmdhsnname.Width = 200;
+            // 
+            // clmdhsncode
+            // 
+            this.clmdhsncode.HeaderText = "HSN Code";
+            this.clmdhsncode.Name = "clmdhsncode";
+            // 
+            // clmdgst
+            // 
+            this.clmdgst.HeaderText = "GST %";
+            this.clmdgst.Name = "clmdgst";
+            this.clmdgst.Width = 75;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Total Products";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Status";
+            this.clmdstatus.Name = "clmdstatus";
             // 
             // CP_ProductHSNList
             // 
@@ -398,11 +347,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdgst;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmhsnname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmhsncode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmgst;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
     }
 }

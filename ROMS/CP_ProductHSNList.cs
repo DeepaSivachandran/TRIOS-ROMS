@@ -34,12 +34,14 @@ namespace ROMS
         }
         private void tsbEdit_Click(object sender, EventArgs e)
         {
-
             try
             {
                 MainForm.objCP_ProductHSN = new CP_ProductHSN();
                 MainForm.objCP_ProductHSN.btnSave.Text = "Update";
-               MainForm.objCP_ProductHSN.ShowDialog();
+                MainForm.objCP_ProductHSN.varHsnname = grdHSNList.SelectedRows[0].Cells["HSN Name"].Value.ToString();
+                MainForm.objCP_ProductHSN.varHsnCode = grdHSNList.SelectedRows[0].Cells["HSN Code"].Value.ToString();
+                MainForm.objCP_ProductHSN.varGst = grdHSNList.SelectedRows[0].Cells["GST%"].Value.ToString();
+                MainForm.objCP_ProductHSN.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -73,10 +75,81 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnHsnList()
+        {
+            try
+            {
+                picLoader.Visible = true;
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdHSNList.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnHsnList(0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            grdHSNList.DataSource = objDs.Tables[0];
+                            grdHSNList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdHSNList.Columns["S.No."].Width = 50;
+                            grdHSNList.Columns["HSN Name"].Width = 200;
+                            grdHSNList.Columns["HSN Code"].Width = 100;
+                            grdHSNList.Columns["GST%"].Width = 75;
+                            grdHSNList.Columns["Total Products"].Width = 100;
+                            grdHSNList.Columns["Status"].Width = 100;
+                            grdHSNList.Columns["ID"].Visible = false;
+                            grdHSNList.Columns["GST ID"].Visible = false;
+                            grdHSNList.Columns["Status ID"].Visible = false;
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
+                ///udfnSearchGridHead();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdHSNList.ClearSelection();
+                picLoader.Visible = false;
+            }
+        }
         private void CP_ProductHSNList_Load(object sender, EventArgs e)
         {
-            
+            try
+            {
+                udfnHsnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void CP_ProductHSNList_KeyDown(object sender, KeyEventArgs e)

@@ -21,7 +21,7 @@ namespace ROMS
         public string varcompanycode;
         public string pbFormStatus;
         public int vargstcode = 0;
-
+public string varHsnname="";
         //tool tip
         private ToolTip tpHsnName = new ToolTip();
         private ToolTip tpHsnCode = new ToolTip();
@@ -46,6 +46,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+       
         private void CP_ProductHSN_Load(object sender, EventArgs e)
         {
             try
@@ -66,7 +68,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 }
-
+     
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -107,7 +109,6 @@ namespace ROMS
             }
         }
 
-       
 
         private void btnClose_Leave(object sender, EventArgs e)
         {
@@ -335,6 +336,41 @@ namespace ROMS
         {
             try
             {
+                int varStatusid = 1;
+               if(rbActive.Checked)
+               {
+                    varStatusid = 1;
+               }
+               else
+               {
+                    varStatusid = 2;
+               }
+               if (btnSave.Text=="Save")
+               {
+                    SPDataService objDser = new SPDataService();
+                    string varResult = objDser.udfnHsn(0,0, Convert.ToInt16(cmbGST.SelectedValue),  Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "Creation");
+                    objDser.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if(varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+               }
+               //if(btnSave.Text=="Update")
+               //{
+               //     SPDataService objDser = new SPDataService();
+
+
+               //     string varResult = objDser.udfnHsn(1, 0, Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "Creation");
+               //     objDser.CloseConnection();
+               //     if (varResult.Split('~')[0] == "2")
+               //     {
+               //         MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               //     }
+               // }
 
             }
             catch (Exception ex)
