@@ -135,27 +135,27 @@ namespace ROMS
             return udfn;
         }
 
-        public string udfnSaveUnitMaster(string paraprocess, string paratemplateid, string paratempname, string paratemplatevalue, string paraconenttype, string parasender, string paratempconent, string parastatus, string paraUserID, string paraOriginator)
+        public string udfnUnit(int paraviewType, int paraUnitId, string paraUnitName, string paraUnitSymbol, int paraUnitDecimal,int paraUnitStatusId,string paraOriginator)
         {
-            string result = "";
+            // DataSet ds = new DataSet();
+            string varResult = "";
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[PROC_TEMPLATE]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Unit]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@paraProcess", paraprocess);
-                varSqlCommand.Parameters.AddWithValue("@paratempname", paratempname);
-                varSqlCommand.Parameters.AddWithValue("@paratemplateid", paratemplateid);
-                varSqlCommand.Parameters.AddWithValue("@paratemplatevalue", paratemplatevalue);
-                varSqlCommand.Parameters.AddWithValue("@paraconenttype", paraconenttype);
-                varSqlCommand.Parameters.AddWithValue("@parasender", parasender);
-                varSqlCommand.Parameters.AddWithValue("@paratempconent", paratempconent);
-                varSqlCommand.Parameters.AddWithValue("@parastatus", parastatus);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@viewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitId", paraUnitId);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitName", paraUnitName);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitSymbol", paraUnitSymbol);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitDecimal", paraUnitDecimal);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitStatusId", paraUnitStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
-
                 varSqlCommand.CommandTimeout = 0;
-                result = varSqlCommand.ExecuteScalar().ToString();
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+                
             }
             catch (Exception ex)
             {
@@ -166,7 +166,35 @@ namespace ROMS
             {
                 tmpspcall.CloseConnection();
             }
-            return result;
+            return varResult;
+
+        }
+        public DataSet udfnUnitList(int paraviewType)
+        {
+             DataSet ds = new DataSet();
+            
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Unit]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@viewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
         }
 
     }

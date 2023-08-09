@@ -118,7 +118,54 @@ namespace ROMS
         }
 
         public void udfnList()
-        { 
+        {
+            try
+            { 
+                SPDataService objspservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspservice.udfnUnitList(0);
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            grdUnitList.DataSource = objDs.Tables[0];
+
+                            grdUnitList.Columns["ID"].Visible = false;
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
+
+                    objspservice.CloseConnection();
+                }
+                udfnSearchGridHead();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdUnitList.ClearSelection();
+                picLoader.Visible = false;
+            }
+
+           
+
         }
  
 

@@ -50,12 +50,6 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdUnitList = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDSymbols = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDNoOfDecimals = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsUnitList.SuspendLayout();
@@ -262,13 +256,6 @@
             this.grdUnitList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdUnitList.ColumnHeadersHeight = 30;
             this.grdUnitList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdUnitList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmsno,
-            this.clmcompanyname,
-            this.clmDSymbols,
-            this.clmDNoOfDecimals,
-            this.Column2,
-            this.clmStatus});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -291,47 +278,6 @@
             this.grdUnitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdUnitList.Size = new System.Drawing.Size(1348, 581);
             this.grdUnitList.TabIndex = 958797;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.MinimumWidth = 6;
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            // 
-            // clmcompanyname
-            // 
-            this.clmcompanyname.HeaderText = "Unit Name";
-            this.clmcompanyname.MinimumWidth = 6;
-            this.clmcompanyname.Name = "clmcompanyname";
-            this.clmcompanyname.ReadOnly = true;
-            this.clmcompanyname.Width = 200;
-            // 
-            // clmDSymbols
-            // 
-            this.clmDSymbols.HeaderText = "Symbol";
-            this.clmDSymbols.Name = "clmDSymbols";
-            this.clmDSymbols.ReadOnly = true;
-            // 
-            // clmDNoOfDecimals
-            // 
-            this.clmDNoOfDecimals.HeaderText = "No.of Decimals";
-            this.clmDNoOfDecimals.Name = "clmDNoOfDecimals";
-            this.clmDNoOfDecimals.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Total Products";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.MinimumWidth = 6;
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
-            this.clmStatus.Width = 125;
             // 
             // lblNoRecordsFound
             // 
@@ -376,6 +322,7 @@
             this.Name = "CP_Unitlist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Unit";
+            this.Load += new System.EventHandler(this.CP_Unitlist_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Unitlist_KeyDown);
             this.tsUnitList.ResumeLayout(false);
             this.tsUnitList.PerformLayout();
@@ -408,11 +355,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNoOfDecimals;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmcompanyname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDSymbols;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDNoOfDecimals;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
     }
 }

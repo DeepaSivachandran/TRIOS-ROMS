@@ -26,6 +26,8 @@ namespace ROMS
 
         public string varbrandcode;
         public string pbFormStatus;
+        public int varstatus;
+
         public CP_Unit()
         {
             InitializeComponent();
@@ -56,7 +58,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,2) and MSTID !=0 Order by MSTID", "MST_DisplayText,MST_TransactionName", cmbNoOfDecimals, "", "MST_DisplayText", "MST_TransactionName");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,2) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbNoOfDecimals, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
 
 
@@ -76,12 +78,42 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+            public void udfnSave(object sender, EventArgs e)
+            {
 
-        
-        public void udfnSave(object sender, EventArgs e)
-        {
             try
             {
+                if (rbActive.Checked == true)
+                {
+                    varstatus = 1;
+                }
+                else
+                {
+                    varstatus = 2;
+                }
+
+                SPDataService objspservice = new SPDataService();
+                string varResult = "";
+                //string varResult = objspservice.udfnUnit(0, 0,txtEUnitName.Text,txtSymbol.Text, Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus,"Unit Creation");
+                if(btnSave.Text=="Save")
+                {
+                    varResult = objspservice.udfnUnit(0, 0,txtEUnitName.Text,txtSymbol.Text, Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus,"Unit Creation");
+                }
+                else
+                {
+                    varResult = objspservice.udfnUnit(1, 0, txtEUnitName.Text, txtSymbol.Text, Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, "Unit Updation");
+                }
+
+                if (varResult.Split('~')[0] == "3")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(varResult, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                objspservice.CloseConnection();
 
             }
             catch (Exception ex)
@@ -127,6 +159,8 @@ namespace ROMS
                 {
                     udfnSave(sender, e);
                 }
+
+
 
             }
             catch (Exception ex)
@@ -559,5 +593,20 @@ namespace ROMS
             }
         }
 
+        private void RbActive_CheckedChanged(object sender, EventArgs e)
+        {
+            //if (rbActive.Checked == true)
+            //{
+            //    status = "1";
+            //}
+        }
+
+        private void RbInActive_CheckedChanged(object sender, EventArgs e)
+        {
+            //if (rbInActive.Checked == true)
+            //{
+            //    status = "2";
+            //}
+        }
     }
 }
