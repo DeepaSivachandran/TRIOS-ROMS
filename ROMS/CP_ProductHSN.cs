@@ -16,12 +16,15 @@ namespace ROMS
         DataValidation objvalidation = new DataValidation();
         DataError objError;
 
-      
-
         public string varcompanycode;
         public string pbFormStatus;
         public int vargstcode = 0;
-public string varHsnname="";
+        public string varHsnname="";
+        public string varHsnCode="";
+        public int varGstId=-1;
+        public int varId = 0;
+
+        public int varCloseFlag = 0;
         //tool tip
         private ToolTip tpHsnName = new ToolTip();
         private ToolTip tpHsnCode = new ToolTip();
@@ -38,7 +41,6 @@ public string varHsnname="";
                 tpHsnName.Active = false;
                 tpHsnCode.Active = false;
                 tpGst.Active = false;
-
             }
             catch (Exception ex)
             {
@@ -56,10 +58,13 @@ public string varHsnname="";
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
+                    varCloseFlag = 0;
                 }
                 else
                 {
+                    
                     pnlStatus.Enabled = true;
+                    udfnEdit();
                 }
             }
             catch (Exception ex)
@@ -142,7 +147,6 @@ public string varHsnname="";
             {
                 if (txtHSNName.Text.Trim() == "")
                 {
-                    
                     epHsn.SetError(txtHSNName, "Please enter HSN name.");
                     txtHSNName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpHsnName.ShowAlways = true;
@@ -296,6 +300,7 @@ public string varHsnname="";
             {
                 epHsn.Clear();
                 cmbGST.BackColor = Color.White;
+               
             }
            
         }
@@ -304,7 +309,6 @@ public string varHsnname="";
             try
             {
                 this.Close();
-                
             }
             catch (Exception ex)
             {
@@ -332,6 +336,35 @@ public string varHsnname="";
             }
         }
 
+        public void udfnClear()
+        {
+            try
+            {
+                txtHSNName.Text = "";
+                txtHSNCode.Text = "";
+                cmbGST.SelectedIndex = 0;
+                txtHSNName.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnEdit()
+        {
+            try
+            {
+                txtHSNName.Text = varHsnname;
+                txtHSNCode.Text = varHsnCode;
+                cmbGST.SelectedValue = varGstId;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnSave(object sender, EventArgs e)
         {
             try
@@ -353,24 +386,32 @@ public string varHsnname="";
                     if (varResult.Split('~')[0] == "3")
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnClear();
+                        MainForm.objCP_ProductHSNlist.udfnList();
                     }
                     else if(varResult.Split('~')[0] == "4")
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+                  
                }
-               //if(btnSave.Text=="Update")
-               //{
-               //     SPDataService objDser = new SPDataService();
-
-
-               //     string varResult = objDser.udfnHsn(1, 0, Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "Creation");
-               //     objDser.CloseConnection();
-               //     if (varResult.Split('~')[0] == "2")
-               //     {
-               //         MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-               //     }
-               // }
+                if (btnSave.Text == "Update")
+                {
+                    SPDataService objDser = new SPDataService();
+                    string varResult = objDser.udfnHsn(1,Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "Updation");
+                    objDser.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varCloseFlag = 1;
+                        udfnclose();
+                        MainForm.objCP_ProductHSNlist.udfnList();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
 
             }
             catch (Exception ex)
@@ -496,7 +537,6 @@ public string varHsnname="";
 
         private void BtnSave_Leave(object sender, EventArgs e)
         {
-
             try
             {
                 btnSave.BackColor = Color.White;
@@ -510,17 +550,40 @@ public string varHsnname="";
 
         private void CP_ProductHSN_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varCloseFlag == 0)
                 {
-                    e.Cancel = false;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
-                else
+               
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
                 {
-                    e.Cancel = true;
+                    if (pnlStatus.Enabled)
+                    {
+                        btnSave.Focus();
+                    }
+                    else { btnSave.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -530,7 +593,25 @@ public string varHsnname="";
             }
         }
 
-     
+        private void RbInActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (pnlStatus.Enabled)
+                    {
+                        btnSave.Focus();
+                    }
+                    else { btnSave.Focus(); }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
 

@@ -46,12 +46,6 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdHSNList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdhsnname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdhsncode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdgst = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlhsntaxlist.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -143,10 +137,10 @@
             // pnlhsntaxlist
             // 
             this.pnlhsntaxlist.BackColor = System.Drawing.Color.White;
-            this.pnlhsntaxlist.Controls.Add(this.picLoader);
             this.pnlhsntaxlist.Controls.Add(this.DGV_SearchGrid);
             this.pnlhsntaxlist.Controls.Add(this.lblNoRecordsFound);
             this.pnlhsntaxlist.Controls.Add(this.grdHSNList);
+            this.pnlhsntaxlist.Controls.Add(this.picLoader);
             this.pnlhsntaxlist.Location = new System.Drawing.Point(0, 31);
             this.pnlhsntaxlist.Name = "pnlhsntaxlist";
             this.pnlhsntaxlist.Size = new System.Drawing.Size(1354, 641);
@@ -169,13 +163,6 @@
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmdsno,
-            this.clmdhsnname,
-            this.clmdhsncode,
-            this.clmdgst,
-            this.Column2,
-            this.clmdstatus});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -189,8 +176,8 @@
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 2);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -198,6 +185,10 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
+            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
+            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
+            this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             // 
             // lblNoRecordsFound
             // 
@@ -250,6 +241,12 @@
             this.grdHSNList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdHSNList.Size = new System.Drawing.Size(1348, 581);
             this.grdHSNList.TabIndex = 958797;
+            this.grdHSNList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.grdHSNList.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
+            this.grdHSNList.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
+            this.grdHSNList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdHSNList_DataBindingComplete);
+            this.grdHSNList.DoubleClick += new System.EventHandler(this.GrdHSNList_DoubleClick);
+            this.grdHSNList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdHSNList_KeyDown);
             // 
             // picLoader
             // 
@@ -264,39 +261,6 @@
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
-            // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmdhsnname
-            // 
-            this.clmdhsnname.HeaderText = "HSN Name";
-            this.clmdhsnname.Name = "clmdhsnname";
-            this.clmdhsnname.Width = 200;
-            // 
-            // clmdhsncode
-            // 
-            this.clmdhsncode.HeaderText = "HSN Code";
-            this.clmdhsncode.Name = "clmdhsncode";
-            // 
-            // clmdgst
-            // 
-            this.clmdgst.HeaderText = "GST %";
-            this.clmdgst.Name = "clmdgst";
-            this.clmdgst.Width = 75;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Total Products";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Status";
-            this.clmdstatus.Name = "clmdstatus";
             // 
             // CP_ProductHSNList
             // 
@@ -341,11 +305,5 @@
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdHSNList;
         private System.Windows.Forms.PictureBox picLoader;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdhsnname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdhsncode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdgst;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
     }
 }

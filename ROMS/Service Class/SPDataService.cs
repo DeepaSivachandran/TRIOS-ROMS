@@ -134,39 +134,6 @@ namespace ROMS
             return udfn;
         }
 
-        //public string udfnRateChange(string paraProcess, int paraTransactionNo, DataTable paraRCDetails, string paraEntryDate, string paraOriginator, string paraFormtype)
-        //{
-        //    // DataSet ds = new DataSet();
-        //    string varResult = "";
-        //    try
-        //    {
-        //        tmpspcall = new SPCall();
-        //        SqlCommand varSqlCommand = new SqlCommand("[PROC_RATE_CHANGE]", tmpspcall.objConn);
-        //        varSqlCommand.CommandType = CommandType.StoredProcedure;
-        //        varSqlCommand.Parameters.AddWithValue("@paraProcess", paraProcess);
-        //        varSqlCommand.Parameters.AddWithValue("@paraTransactionNo", paraTransactionNo);
-        //        varSqlCommand.Parameters.AddWithValue("@paraRCDetails", paraRCDetails);
-        //        varSqlCommand.Parameters.AddWithValue("@paraEntryDate", paraEntryDate);
-        //        varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
-        //        varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
-        //        varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-        //        varSqlCommand.Parameters.AddWithValue("@paraFormType", paraFormtype);
-        //        varSqlCommand.CommandTimeout = 0;
-        //        varResult = varSqlCommand.ExecuteScalar().ToString();
-        //        return varResult;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return ex.ToString();
-        //    }
-        //    finally
-        //    {
-        //        tmpspcall.CloseConnection();
-        //    }
-
-        //}
-
-       
         // Sivabharathi    Create date: 09/08/2023    Description:	HSN Sp
         public string udfnHsn(int ViewType,int paraHsnId,int paraGstId,string paraHsnName,string paraHsnCode,int paraStatusId,string paraOriginator)
         {
