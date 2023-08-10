@@ -327,7 +327,7 @@
             this.Text = "Unit";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Unit_FormClosing);
             this.Load += new System.EventHandler(this.CP_Unit_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.CP_Unit_Paint);
+//            this.Paint += new System.Windows.Forms.PaintEventHandler(this.CP_Unit_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Unit_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Unit_Leave);
             this.grbform.ResumeLayout(false);

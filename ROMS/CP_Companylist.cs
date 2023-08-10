@@ -76,16 +76,37 @@ namespace ROMS
         {
             try
             {
-                if (grdSupplierList.SelectedRows.Count > 0)
+                if (grdCompanyList.SelectedRows.Count > 0)
                 {
+
                     string result = "";
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
 
                         SPDataService objspdservice = new SPDataService();
-                        result = "";
-                  
+                        DataTable objContactTable = new DataTable();
+                        objContactTable.TableName = "MR_Company_Contact";
+                        objContactTable.Columns.Add("CMCON_Name", typeof(string));
+                        objContactTable.Columns.Add("CMCON_TransactionType", typeof(int));
+                        objContactTable.Columns.Add("CMCON_MobileNo", typeof(string));
+                        objContactTable.Columns.Add("CMCON_Operator", typeof(string));
+                        objContactTable.Columns.Add("CMCON_MobileBrand", typeof(string));
+                        objContactTable.Columns.Add("CMCON_Primary", typeof(int));
+                        objContactTable.Columns.Add("CMCON_WhatsAppEnabled", typeof(int));
+
+
+                        DataTable objBankTable = new DataTable();
+                        objBankTable.TableName = "MR_Bank";
+                        objBankTable.Columns.Add("CMBNK_Name", typeof(string));
+                        objBankTable.Columns.Add("CMBNK_ShortName", typeof(string));
+                        objBankTable.Columns.Add("CMBNK_BranchName", typeof(string));
+                        objBankTable.Columns.Add("CMBNK_AccNo", typeof(string));
+                        objBankTable.Columns.Add("CMBNK_IFSC", typeof(string));
+                        objBankTable.Columns.Add("CMBNK_STSID", typeof(string));
+
+                        result = objspdservice.udfnCompanyMaster(2, Convert.ToInt32(grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", "","", 0, 0, "","","", "","", "","", "","","", "", "", "","","","","", "Company delete", objBankTable, objContactTable);
+
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
@@ -113,8 +134,12 @@ namespace ROMS
             try
             {
 
-                if (grdSupplierList.SelectedRows.Count > 0)
+                if (grdCompanyList.SelectedRows.Count > 0)
                 { 
+                    MainForm.objCP_Company = new CP_Company();
+                    MainForm.objCP_Company.MdiParent = this.ParentForm; 
+                    MainForm.objCP_Company.varcompanyid = grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString();
+                    MainForm.objCP_Company.Show();
                 }
 
             }
@@ -133,11 +158,12 @@ namespace ROMS
                 picLoader.Visible = true;
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdSupplierList.DataSource = null;
+                grdCompanyList.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                //objDs = objdserv.udfnSPBrandList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
+                 
+                objDs = objdserv.udfnCompanyList(0, 0, MainForm.pbUserID, MainForm.pbIpAddress);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -148,14 +174,14 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdSupplierList.DataSource = objDs.Tables[0];
-                            //grdSupplierList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            //grdSupplierList.Columns["Total No. of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            //grdSupplierList.Columns["Brand Name in Tamil"].Width = 275;
-                            //grdSupplierList.Columns["Brand Name in English"].Width = 275;
-                            //grdSupplierList.Columns["Label Name in Tamil"].Width = 275;
-                            //grdSupplierList.Columns["Label Name in English"].Width = 275;
-                            //grdSupplierList.Columns["BrandCode"].Visible = false;
+                            grdCompanyList.DataSource = objDs.Tables[0];
+                            grdCompanyList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdCompanyList.Columns["S.No."].Width = 50;
+                            grdCompanyList.Columns["Company Name"].Width = 200;
+                            grdCompanyList.Columns["City - Pincode"].Width = 150;
+                            grdCompanyList.Columns["GSTIN"].Width = 150;
+                            grdCompanyList.Columns["Status"].Width = 80;
+                            grdCompanyList.Columns["ID"].Visible = false; 
                         }
                         else
                         {
@@ -183,7 +209,7 @@ namespace ROMS
             }
             finally
             {
-                grdSupplierList.ClearSelection();
+                grdCompanyList.ClearSelection();
                 picLoader.Visible = false;
             }
         }
@@ -227,7 +253,7 @@ namespace ROMS
 
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 1))   /*If not our desired columns*/
+                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/
                                                                    //return;
 
                     if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
@@ -249,10 +275,10 @@ namespace ROMS
         {
             try
             {
-                if (grdSupplierList.ColumnCount > 0)
+                if (grdCompanyList.ColumnCount > 0)
                 {
-                    grdSupplierList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdSupplierList.HorizontalScrollingOffset;
+                    grdCompanyList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdCompanyList.HorizontalScrollingOffset;
                     //grdBrandList.HorizontalScrollingOffset = 0;
                 }
             }
@@ -268,9 +294,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdSupplierList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierList);
+                grdCompanyList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCompanyList);
                 objDser.CloseConnection();
-                grdSupplierList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdCompanyList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -279,10 +305,10 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdSupplierList, DGV_SearchGrid);
+                udfnGridSearchHeading(grdCompanyList, DGV_SearchGrid);
                 DGV_SearchGrid.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdSupplierList.Columns)
+                foreach (DataGridViewColumn col in grdCompanyList.Columns)
                 {
                     DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                     visibleColumns.Add(col.Index);
@@ -307,7 +333,7 @@ namespace ROMS
                     if (DGV_SearchGrid.ColumnCount > 0)
                     {
                         BindingSource bs = new BindingSource();
-                        bs.DataSource = grdSupplierList.DataSource;
+                        bs.DataSource = grdCompanyList.DataSource;
                         string filter = "";
                         for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
                         {
@@ -321,7 +347,7 @@ namespace ROMS
                             }
                         }
                         bs.Filter = filter;
-                        grdSupplierList.DataSource = bs;
+                        grdCompanyList.DataSource = bs;
                     }
                 }
             }
@@ -358,11 +384,11 @@ namespace ROMS
             {
 
                 int totalWidth = 0;
-                int offSetValue = grdSupplierList.HorizontalScrollingOffset;
+                int offSetValue = grdCompanyList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
 
-                if (totalWidth - grdSupplierList.Width > grdSupplierList.HorizontalScrollingOffset && grdSupplierList.HorizontalScrollingOffset > 0)
+                if (totalWidth - grdCompanyList.Width > grdCompanyList.HorizontalScrollingOffset && grdCompanyList.HorizontalScrollingOffset > 0)
                 {
                     offSetValue = offSetValue ;
                     offSetValue = offSetValue;
@@ -370,7 +396,7 @@ namespace ROMS
                 DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGrid.Invalidate();
 
-                udfnscrollVisible(DGV_SearchGrid, grdSupplierList);
+                udfnscrollVisible(DGV_SearchGrid, grdCompanyList);
             }
             catch (Exception ex)
             {
@@ -392,8 +418,8 @@ namespace ROMS
      
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdSupplierList.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdSupplierList.SortedColumn;
+            DataGridViewColumn newColumn = grdCompanyList.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = grdCompanyList.SortedColumn;
             ListSortDirection direction;
 
             // If oldColumn is null, then the DataGridView is not sorted.
@@ -401,7 +427,7 @@ namespace ROMS
             {
                 // Sort the same column again, reversing the SortOrder.
                 if (oldColumn == newColumn &&
-                    grdSupplierList.SortOrder == SortOrder.Ascending)
+                    grdCompanyList.SortOrder == SortOrder.Ascending)
                 {
                     direction = ListSortDirection.Descending;
                 }
@@ -416,7 +442,7 @@ namespace ROMS
             {
                 direction = ListSortDirection.Ascending;
             }
-            grdSupplierList.Sort(newColumn, direction);
+            grdCompanyList.Sort(newColumn, direction);
             newColumn.HeaderCell.SortGlyphDirection =
                 direction == ListSortDirection.Ascending ?
                 SortOrder.Ascending : SortOrder.Descending;
@@ -424,7 +450,7 @@ namespace ROMS
             DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
             DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-            DGV_SearchGrid.HorizontalScrollingOffset = grdSupplierList.HorizontalScrollingOffset;
+            DGV_SearchGrid.HorizontalScrollingOffset = grdCompanyList.HorizontalScrollingOffset;
             DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
 
@@ -434,11 +460,11 @@ namespace ROMS
             {
 
                 int totalWidth = 0;
-                int offSetValue = grdSupplierList.HorizontalScrollingOffset;
+                int offSetValue = grdCompanyList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
 
-                if (totalWidth - grdSupplierList.Width > grdSupplierList.HorizontalScrollingOffset && grdSupplierList.HorizontalScrollingOffset > 0)
+                if (totalWidth - grdCompanyList.Width > grdCompanyList.HorizontalScrollingOffset && grdCompanyList.HorizontalScrollingOffset > 0)
                 {
                     //offSetValue = offSetValue ;
                     offSetValue = offSetValue;

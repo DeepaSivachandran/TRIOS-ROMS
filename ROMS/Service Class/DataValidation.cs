@@ -739,5 +739,130 @@ namespace ROMS
             }
             return PrinterName;
         }
-    }
+        //Created by Venkat
+        //created on 08/08/2023; reason validate gstin
+
+        public bool IsValidGSTIN(string gstin)
+        {
+            try
+            { 
+                if (string.IsNullOrWhiteSpace(gstin))
+                    return false; 
+                return gstin.Length == 15 && Regex.IsMatch(gstin, @"^[a-zA-Z0-9]+$");
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                return false;
+            }
+        }
+
+
+        //Created by Venkat
+        //created on 08/08/2023; reason validate PAN
+                public bool IsValidPAN(string pan)
+               {
+                try
+                {
+                    // Check if PAN is null or empty
+                    if (string.IsNullOrWhiteSpace(pan))
+                        return false;
+
+                    // Check if PAN matches the format: 5 alphabets, 4 numbers, 1 alphabet
+                    return Regex.IsMatch(pan, @"^[A-Z]{5}\d{4}[A-Z]$");
+                }
+                 catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    return false;
+                }
+              }
+
+        //Created by Venkat
+        //created on 08/08/2023; reason validate esiNumber
+        public bool IsValidESINumber(string esiNumber)
+        {
+           
+            try
+            {  // Check if ESI Number is null or empty
+                if (string.IsNullOrWhiteSpace(esiNumber))
+                    return false;
+
+                // Check if length is 17 characters
+                return esiNumber.Length == 17;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                return false;
+            }
+        }
+
+        //Created by Venkat
+        //created on 08/08/2023; reason validate fssai
+
+        public bool IsValidFSSAI(string fssai)
+         {
+            try
+            {
+                // Check if FSSAI is null or empty
+                if (string.IsNullOrWhiteSpace(fssai))
+                    return false;
+
+                // Check if FSSAI matches the format: 14 digits
+                return Regex.IsMatch(fssai, @"^\d{14}$");
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                return false;
+            }
+        }
+        //Created by Venkat
+        //created on 08/08/2023; reason validate fssai
+
+        public bool IsValidEPF(string epf)
+         {
+            try
+            {
+                // Check if EPF is null or empty
+                if (string.IsNullOrWhiteSpace(epf))
+                    return false;
+
+                // Check if EPF matches the format
+                return Regex.IsMatch(epf, @"^[A-Z]{2}/[A-Z]{3}/\d{1,7}/\d{0,3}/\d{1,7}$");
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                return false;
+            }
+        }
+        //Created by Venkat
+        //created on 08/08/2023; reason validate fssai
+
+        public bool IsValidUrl(string url)
+         { 
+            try
+            {
+                Uri uriResult;
+                bool result = Uri.TryCreate(url, UriKind.Absolute, out uriResult)
+                    && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                return false;
+            }
+        }
+
+}
 }

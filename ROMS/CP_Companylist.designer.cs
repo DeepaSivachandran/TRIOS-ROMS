@@ -52,21 +52,12 @@
             this.clmDPan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdSupplierList = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmcompanyname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmshtname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmcitypincode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPhoneNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmWhatsAppNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmgstin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdCompanyList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCompanyList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
@@ -156,7 +147,7 @@
             this.pnlCompany.BackColor = System.Drawing.Color.White;
             this.pnlCompany.Controls.Add(this.DGV_SearchGrid);
             this.pnlCompany.Controls.Add(this.lblNoRecordsFound);
-            this.pnlCompany.Controls.Add(this.grdSupplierList);
+            this.pnlCompany.Controls.Add(this.grdCompanyList);
             this.pnlCompany.Controls.Add(this.picLoader);
             this.pnlCompany.Location = new System.Drawing.Point(0, 31);
             this.pnlCompany.Name = "pnlCompany";
@@ -212,6 +203,10 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
+            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
+            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
+            this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             // 
             // clmdsno
             // 
@@ -277,14 +272,14 @@
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // grdSupplierList
+            // grdCompanyList
             // 
-            this.grdSupplierList.AllowUserToAddRows = false;
-            this.grdSupplierList.AllowUserToDeleteRows = false;
-            this.grdSupplierList.AllowUserToResizeColumns = false;
-            this.grdSupplierList.AllowUserToResizeRows = false;
-            this.grdSupplierList.BackgroundColor = System.Drawing.Color.White;
-            this.grdSupplierList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdCompanyList.AllowUserToAddRows = false;
+            this.grdCompanyList.AllowUserToDeleteRows = false;
+            this.grdCompanyList.AllowUserToResizeColumns = false;
+            this.grdCompanyList.AllowUserToResizeRows = false;
+            this.grdCompanyList.BackgroundColor = System.Drawing.Color.White;
+            this.grdCompanyList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -292,93 +287,22 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSupplierList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grdSupplierList.ColumnHeadersHeight = 30;
-            this.grdSupplierList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdSupplierList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmsno,
-            this.clmcompanyname,
-            this.clmshtname,
-            this.clmcitypincode,
-            this.clmPhoneNo,
-            this.clmWhatsAppNo,
-            this.clmgstin,
-            this.clmPan,
-            this.clmStatus});
-            this.grdSupplierList.EnableHeadersVisualStyles = false;
-            this.grdSupplierList.GridColor = System.Drawing.Color.White;
-            this.grdSupplierList.Location = new System.Drawing.Point(3, 58);
-            this.grdSupplierList.Name = "grdSupplierList";
-            this.grdSupplierList.ReadOnly = true;
-            this.grdSupplierList.RowHeadersVisible = false;
+            this.grdCompanyList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdCompanyList.ColumnHeadersHeight = 30;
+            this.grdCompanyList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdCompanyList.EnableHeadersVisualStyles = false;
+            this.grdCompanyList.GridColor = System.Drawing.Color.White;
+            this.grdCompanyList.Location = new System.Drawing.Point(3, 58);
+            this.grdCompanyList.Name = "grdCompanyList";
+            this.grdCompanyList.ReadOnly = true;
+            this.grdCompanyList.RowHeadersVisible = false;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            this.grdSupplierList.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.grdSupplierList.RowTemplate.Height = 25;
-            this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSupplierList.Size = new System.Drawing.Size(1348, 581);
-            this.grdSupplierList.TabIndex = 958797;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 50;
-            // 
-            // clmcompanyname
-            // 
-            this.clmcompanyname.HeaderText = "Company Name";
-            this.clmcompanyname.Name = "clmcompanyname";
-            this.clmcompanyname.ReadOnly = true;
-            this.clmcompanyname.Width = 200;
-            // 
-            // clmshtname
-            // 
-            this.clmshtname.HeaderText = "Short Name";
-            this.clmshtname.Name = "clmshtname";
-            this.clmshtname.ReadOnly = true;
-            // 
-            // clmcitypincode
-            // 
-            this.clmcitypincode.HeaderText = "City-Pincode";
-            this.clmcitypincode.Name = "clmcitypincode";
-            this.clmcitypincode.ReadOnly = true;
-            this.clmcitypincode.Width = 180;
-            // 
-            // clmPhoneNo
-            // 
-            this.clmPhoneNo.HeaderText = "Phone No.";
-            this.clmPhoneNo.Name = "clmPhoneNo";
-            this.clmPhoneNo.ReadOnly = true;
-            this.clmPhoneNo.Width = 120;
-            // 
-            // clmWhatsAppNo
-            // 
-            this.clmWhatsAppNo.HeaderText = "WhatsApp No.";
-            this.clmWhatsAppNo.Name = "clmWhatsAppNo";
-            this.clmWhatsAppNo.ReadOnly = true;
-            this.clmWhatsAppNo.Width = 120;
-            // 
-            // clmgstin
-            // 
-            this.clmgstin.HeaderText = "GSTIN";
-            this.clmgstin.Name = "clmgstin";
-            this.clmgstin.ReadOnly = true;
-            this.clmgstin.Width = 180;
-            // 
-            // clmPan
-            // 
-            this.clmPan.HeaderText = "PAN";
-            this.clmPan.Name = "clmPan";
-            this.clmPan.ReadOnly = true;
-            this.clmPan.Width = 150;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
+            this.grdCompanyList.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.grdCompanyList.RowTemplate.Height = 25;
+            this.grdCompanyList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdCompanyList.Size = new System.Drawing.Size(1348, 581);
+            this.grdCompanyList.TabIndex = 958797;
             // 
             // picLoader
             // 
@@ -416,7 +340,7 @@
             this.pnlCompany.ResumeLayout(false);
             this.pnlCompany.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCompanyList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -435,7 +359,7 @@
         private System.Windows.Forms.Panel pnlCompany;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblNoRecordsFound;
-        public System.Windows.Forms.DataGridView grdSupplierList;
+        public System.Windows.Forms.DataGridView grdCompanyList;
         private System.Windows.Forms.PictureBox picLoader;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdcompanyname;
@@ -446,14 +370,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdgstin;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDPan;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmcompanyname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmshtname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmcitypincode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPhoneNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmWhatsAppNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmgstin;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
     }
 }

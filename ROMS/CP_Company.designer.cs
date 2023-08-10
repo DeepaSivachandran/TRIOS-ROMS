@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
@@ -59,11 +59,12 @@
             this.grdBankDetails = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBankShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtIFScode = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
@@ -122,18 +123,18 @@
             this.btnCloseContact = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grdContactManager = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtMobilenumber = new System.Windows.Forms.TextBox();
+            this.cmbTransactionType = new System.Windows.Forms.ComboBox();
+            this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
+            this.clmContsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmmobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPrimary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmWhatsAppNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmOperator = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMobileBrand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.txtMobilenumber = new System.Windows.Forms.TextBox();
-            this.cmbTransactionType = new System.Windows.Forms.ComboBox();
-            this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.tcCompanyDetails.SuspendLayout();
@@ -316,6 +317,7 @@
             this.txtwhatsappNo.TabIndex = 11;
             this.txtwhatsappNo.Enter += new System.EventHandler(this.TxtwhatsappNo_Enter);
             this.txtwhatsappNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtwhatsappNo_KeyDown);
+            this.txtwhatsappNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtwhatsappNo_KeyPress);
             this.txtwhatsappNo.Leave += new System.EventHandler(this.TxtwhatsappNo_Leave);
             // 
             // textBox4
@@ -458,45 +460,47 @@
             this.grdBankDetails.AllowUserToResizeRows = false;
             this.grdBankDetails.BackgroundColor = System.Drawing.Color.White;
             this.grdBankDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdBankDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdBankDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.grdBankDetails.ColumnHeadersHeight = 30;
             this.grdBankDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdBankDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmsno,
             this.clmbankname,
-            this.Column1,
+            this.clmBankShortName,
             this.clmbranch,
             this.clmaccno,
             this.clmifscode,
-            this.clmStatus});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdBankDetails.DefaultCellStyle = dataGridViewCellStyle2;
+            this.clmStatus,
+            this.clmremovebank});
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdBankDetails.DefaultCellStyle = dataGridViewCellStyle14;
             this.grdBankDetails.EnableHeadersVisualStyles = false;
             this.grdBankDetails.GridColor = System.Drawing.Color.White;
             this.grdBankDetails.Location = new System.Drawing.Point(6, 60);
             this.grdBankDetails.Name = "grdBankDetails";
             this.grdBankDetails.ReadOnly = true;
             this.grdBankDetails.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdBankDetails.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
+            this.grdBankDetails.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.grdBankDetails.RowTemplate.Height = 25;
             this.grdBankDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdBankDetails.Size = new System.Drawing.Size(1277, 162);
             this.grdBankDetails.TabIndex = 1111136;
+            this.grdBankDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBankDetails_CellContentClick);
             // 
             // clmsno
             // 
@@ -512,12 +516,12 @@
             this.clmbankname.ReadOnly = true;
             this.clmbankname.Width = 200;
             // 
-            // Column1
+            // clmBankShortName
             // 
-            this.Column1.HeaderText = "Bank Short Name";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 150;
+            this.clmBankShortName.HeaderText = "Bank Short Name";
+            this.clmBankShortName.Name = "clmBankShortName";
+            this.clmBankShortName.ReadOnly = true;
+            this.clmBankShortName.Width = 150;
             // 
             // clmbranch
             // 
@@ -545,6 +549,13 @@
             this.clmStatus.HeaderText = "Status";
             this.clmStatus.Name = "clmStatus";
             this.clmStatus.ReadOnly = true;
+            // 
+            // clmremovebank
+            // 
+            this.clmremovebank.HeaderText = "Remove";
+            this.clmremovebank.Name = "clmremovebank";
+            this.clmremovebank.ReadOnly = true;
+            this.clmremovebank.Width = 80;
             // 
             // textBox15
             // 
@@ -645,7 +656,7 @@
             this.txtDPlno.BackColor = System.Drawing.SystemColors.Control;
             this.txtDPlno.Enabled = false;
             this.txtDPlno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPlno.Location = new System.Drawing.Point(18, 158);
+            this.txtDPlno.Location = new System.Drawing.Point(18, 162);
             this.txtDPlno.Name = "txtDPlno";
             this.txtDPlno.ReadOnly = true;
             this.txtDPlno.Size = new System.Drawing.Size(53, 27);
@@ -655,7 +666,7 @@
             // txtPlno
             // 
             this.txtPlno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPlno.Location = new System.Drawing.Point(71, 158);
+            this.txtPlno.Location = new System.Drawing.Point(71, 162);
             this.txtPlno.MaxLength = 15;
             this.txtPlno.Name = "txtPlno";
             this.txtPlno.Size = new System.Drawing.Size(197, 27);
@@ -669,7 +680,7 @@
             this.textBox13.BackColor = System.Drawing.SystemColors.Control;
             this.textBox13.Enabled = false;
             this.textBox13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox13.Location = new System.Drawing.Point(18, 131);
+            this.textBox13.Location = new System.Drawing.Point(18, 135);
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
             this.textBox13.Size = new System.Drawing.Size(53, 27);
@@ -679,7 +690,7 @@
             // txtFSSAI
             // 
             this.txtFSSAI.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtFSSAI.Location = new System.Drawing.Point(71, 131);
+            this.txtFSSAI.Location = new System.Drawing.Point(71, 135);
             this.txtFSSAI.MaxLength = 14;
             this.txtFSSAI.Name = "txtFSSAI";
             this.txtFSSAI.Size = new System.Drawing.Size(197, 27);
@@ -717,7 +728,7 @@
             this.textBox9.BackColor = System.Drawing.SystemColors.Control;
             this.textBox9.Enabled = false;
             this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox9.Location = new System.Drawing.Point(18, 105);
+            this.textBox9.Location = new System.Drawing.Point(18, 108);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(53, 27);
@@ -727,7 +738,7 @@
             // txtEPF
             // 
             this.txtEPF.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtEPF.Location = new System.Drawing.Point(71, 105);
+            this.txtEPF.Location = new System.Drawing.Point(71, 108);
             this.txtEPF.MaxLength = 22;
             this.txtEPF.Name = "txtEPF";
             this.txtEPF.Size = new System.Drawing.Size(197, 27);
@@ -741,7 +752,7 @@
             this.textBox7.BackColor = System.Drawing.SystemColors.Control;
             this.textBox7.Enabled = false;
             this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox7.Location = new System.Drawing.Point(18, 78);
+            this.textBox7.Location = new System.Drawing.Point(18, 81);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(53, 27);
@@ -751,7 +762,7 @@
             // txtESI
             // 
             this.txtESI.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtESI.Location = new System.Drawing.Point(71, 78);
+            this.txtESI.Location = new System.Drawing.Point(71, 81);
             this.txtESI.MaxLength = 17;
             this.txtESI.Name = "txtESI";
             this.txtESI.Size = new System.Drawing.Size(197, 27);
@@ -806,6 +817,7 @@
             this.txtAlterMobileno.TabIndex = 10;
             this.txtAlterMobileno.Enter += new System.EventHandler(this.TxtAlterMobileno_Enter);
             this.txtAlterMobileno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAlterMobileno_KeyDown);
+            this.txtAlterMobileno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAlterMobileno_KeyPress);
             this.txtAlterMobileno.Leave += new System.EventHandler(this.TxtAlterMobileno_Leave);
             // 
             // txtAlterPhoneno
@@ -818,6 +830,7 @@
             this.txtAlterPhoneno.TabIndex = 8;
             this.txtAlterPhoneno.Enter += new System.EventHandler(this.TxtAlterPhoneno_Enter);
             this.txtAlterPhoneno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAlterPhoneno_KeyDown);
+            this.txtAlterPhoneno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAlterPhoneno_KeyPress);
             this.txtAlterPhoneno.Leave += new System.EventHandler(this.TxtAlterPhoneno_Leave);
             // 
             // txtDAddressLine2
@@ -880,6 +893,7 @@
             this.txtPincode.TabIndex = 6;
             this.txtPincode.Enter += new System.EventHandler(this.TxtPincode_Enter);
             this.txtPincode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPincode_KeyDown);
+            this.txtPincode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPincode_KeyPress);
             this.txtPincode.Leave += new System.EventHandler(this.TxtPincode_Leave);
             // 
             // textBox1
@@ -988,6 +1002,7 @@
             this.txtmobileNo.TabIndex = 9;
             this.txtmobileNo.Enter += new System.EventHandler(this.TxtmobileNo_Enter);
             this.txtmobileNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtmobileNo_KeyDown);
+            this.txtmobileNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtmobileNo_KeyPress);
             this.txtmobileNo.Leave += new System.EventHandler(this.TxtmobileNo_Leave);
             // 
             // txtDShortName
@@ -1036,6 +1051,7 @@
             this.txtPhoneNo.TabIndex = 7;
             this.txtPhoneNo.Enter += new System.EventHandler(this.TxtPhoneNo_Enter);
             this.txtPhoneNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPhoneNo_KeyDown);
+            this.txtPhoneNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPhoneNo_KeyPress);
             this.txtPhoneNo.Leave += new System.EventHandler(this.TxtPhoneNo_Leave);
             // 
             // txtDAddressLine1
@@ -1258,55 +1274,86 @@
             this.grdContactManager.AllowUserToResizeRows = false;
             this.grdContactManager.BackgroundColor = System.Drawing.Color.White;
             this.grdContactManager.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdContactManager.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdContactManager.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.grdContactManager.ColumnHeadersHeight = 30;
             this.grdContactManager.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdContactManager.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
+            this.clmContsno,
             this.clmName,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
+            this.clmTransaction,
+            this.clmmobile,
             this.clmPrimary,
             this.clmWhatsAppNo,
             this.clmOperator,
             this.clmMobileBrand,
             this.clmRemove});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdContactManager.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdContactManager.DefaultCellStyle = dataGridViewCellStyle17;
             this.grdContactManager.EnableHeadersVisualStyles = false;
             this.grdContactManager.GridColor = System.Drawing.Color.White;
             this.grdContactManager.Location = new System.Drawing.Point(13, 72);
             this.grdContactManager.Name = "grdContactManager";
             this.grdContactManager.ReadOnly = true;
             this.grdContactManager.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdContactManager.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
+            this.grdContactManager.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.grdContactManager.RowTemplate.Height = 25;
             this.grdContactManager.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdContactManager.Size = new System.Drawing.Size(1303, 472);
             this.grdContactManager.TabIndex = 1111149;
+            this.grdContactManager.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdContactManager_CellContentClick);
             // 
-            // dataGridViewTextBoxColumn1
+            // txtMobilenumber
             // 
-            this.dataGridViewTextBoxColumn1.FillWeight = 50F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 50;
+            this.txtMobilenumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtMobilenumber.Location = new System.Drawing.Point(403, 39);
+            this.txtMobilenumber.MaxLength = 100;
+            this.txtMobilenumber.Name = "txtMobilenumber";
+            this.txtMobilenumber.Size = new System.Drawing.Size(195, 27);
+            this.txtMobilenumber.TabIndex = 2;
+            this.txtMobilenumber.Enter += new System.EventHandler(this.TxtMobilenumber_Enter);
+            this.txtMobilenumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMobilenumber_KeyDown);
+            this.txtMobilenumber.Leave += new System.EventHandler(this.TxtMobilenumber_Leave);
+            // 
+            // cmbTransactionType
+            // 
+            this.cmbTransactionType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTransactionType.FormattingEnabled = true;
+            this.cmbTransactionType.Location = new System.Drawing.Point(208, 39);
+            this.cmbTransactionType.Name = "cmbTransactionType";
+            this.cmbTransactionType.Size = new System.Drawing.Size(189, 27);
+            this.cmbTransactionType.TabIndex = 1;
+            this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.CmbTransactionType_SelectedIndexChanged);
+            this.cmbTransactionType.Enter += new System.EventHandler(this.CmbTransactionType_Enter);
+            this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
+            this.cmbTransactionType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTransactionType_KeyPress);
+            this.cmbTransactionType.Leave += new System.EventHandler(this.CmbTransactionType_Leave);
+            // 
+            // epCompany
+            // 
+            this.epCompany.ContainerControl = this;
+            // 
+            // clmContsno
+            // 
+            this.clmContsno.FillWeight = 50F;
+            this.clmContsno.HeaderText = "S.No.";
+            this.clmContsno.Name = "clmContsno";
+            this.clmContsno.ReadOnly = true;
+            this.clmContsno.Width = 50;
             // 
             // clmName
             // 
@@ -1314,18 +1361,18 @@
             this.clmName.Name = "clmName";
             this.clmName.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn2
+            // clmTransaction
             // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Transaction Type";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 125;
+            this.clmTransaction.HeaderText = "Transaction Type";
+            this.clmTransaction.Name = "clmTransaction";
+            this.clmTransaction.ReadOnly = true;
+            this.clmTransaction.Width = 125;
             // 
-            // dataGridViewTextBoxColumn3
+            // clmmobile
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Mobile No.";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.clmmobile.HeaderText = "Mobile No.";
+            this.clmmobile.Name = "clmmobile";
+            this.clmmobile.ReadOnly = true;
             // 
             // clmPrimary
             // 
@@ -1358,36 +1405,6 @@
             this.clmRemove.Name = "clmRemove";
             this.clmRemove.ReadOnly = true;
             // 
-            // txtMobilenumber
-            // 
-            this.txtMobilenumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMobilenumber.Location = new System.Drawing.Point(403, 39);
-            this.txtMobilenumber.MaxLength = 100;
-            this.txtMobilenumber.Name = "txtMobilenumber";
-            this.txtMobilenumber.Size = new System.Drawing.Size(195, 27);
-            this.txtMobilenumber.TabIndex = 2;
-            this.txtMobilenumber.Enter += new System.EventHandler(this.TxtMobilenumber_Enter);
-            this.txtMobilenumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMobilenumber_KeyDown);
-            this.txtMobilenumber.Leave += new System.EventHandler(this.TxtMobilenumber_Leave);
-            // 
-            // cmbTransactionType
-            // 
-            this.cmbTransactionType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbTransactionType.FormattingEnabled = true;
-            this.cmbTransactionType.Location = new System.Drawing.Point(208, 39);
-            this.cmbTransactionType.Name = "cmbTransactionType";
-            this.cmbTransactionType.Size = new System.Drawing.Size(189, 27);
-            this.cmbTransactionType.TabIndex = 1;
-            this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.CmbTransactionType_SelectedIndexChanged);
-            this.cmbTransactionType.Enter += new System.EventHandler(this.CmbTransactionType_Enter);
-            this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
-            this.cmbTransactionType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTransactionType_KeyPress);
-            this.cmbTransactionType.Leave += new System.EventHandler(this.CmbTransactionType_Leave);
-            // 
-            // epCompany
-            // 
-            this.epCompany.ContainerControl = this;
-            // 
             // CP_Company
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1404,6 +1421,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Company";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Company_FormClosing);
+            this.Load += new System.EventHandler(this.CP_Company_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Company_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Company_Leave);
             this.tsBrandList.ResumeLayout(false);
@@ -1452,13 +1470,6 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox txtbranchname;
         public System.Windows.Forms.DataGridView grdBankDetails;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmbankname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmbranch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmaccno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmifscode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.TextBox txtIFScode;
         private System.Windows.Forms.TextBox textBox17;
@@ -1507,19 +1518,9 @@
         private System.Windows.Forms.TextBox txtMobilenumber;
         private System.Windows.Forms.ComboBox cmbTransactionType;
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.Button btnSaveContact;
         private System.Windows.Forms.Button btnCloseContact;
         private System.Windows.Forms.TextBox txtMobileBrand;
         private System.Windows.Forms.TextBox txtOperator;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPrimary;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmWhatsAppNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmOperator;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmMobileBrand;
-        private System.Windows.Forms.DataGridViewButtonColumn clmRemove;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblTransactionType;
         private System.Windows.Forms.Label lblMobileNo;
@@ -1530,5 +1531,23 @@
         private System.Windows.Forms.ErrorProvider epCompany;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnAddContact;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmbankname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBankShortName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmbranch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmaccno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmifscode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewImageColumn clmremovebank;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmContsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTransaction;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmmobile;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPrimary;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmWhatsAppNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmOperator;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMobileBrand;
+        private System.Windows.Forms.DataGridViewButtonColumn clmRemove;
+        public System.Windows.Forms.Button btnSaveContact;
     }
 }
