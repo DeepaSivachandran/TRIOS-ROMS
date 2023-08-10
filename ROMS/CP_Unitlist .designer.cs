@@ -201,6 +201,8 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
+            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
+            this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
             // clmdsno
             // 
@@ -278,6 +280,11 @@
             this.grdUnitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdUnitList.Size = new System.Drawing.Size(1348, 581);
             this.grdUnitList.TabIndex = 958797;
+            this.grdUnitList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUnitList_DataBindingComplete);
+            this.grdUnitList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdUnitList_Scroll);
+            this.grdUnitList.SelectionChanged += new System.EventHandler(this.GrdUnitList_SelectionChanged);
+            this.grdUnitList.DoubleClick += new System.EventHandler(this.GrdUnitList_DoubleClick);
+            this.grdUnitList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUnitList_KeyDown);
             // 
             // lblNoRecordsFound
             // 

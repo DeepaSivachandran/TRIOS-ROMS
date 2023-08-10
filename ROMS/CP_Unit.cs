@@ -24,9 +24,14 @@ namespace ROMS
         private ToolTip tpNoOfDecimals = new ToolTip();
         private ToolTip tpEInvoiceUnitName = new ToolTip();
 
-        public string varbrandcode;
+        public int varUnitCode = 0;
         public string pbFormStatus;
         public int varstatus;
+        public string PbUnitName="";
+        public string PbSymbol="";
+        public string PbNoOfDecimals="";
+        public int PbStatus=0;
+        public int pbDecimalId = 0;
 
         public CP_Unit()
         {
@@ -54,14 +59,11 @@ namespace ROMS
 
         private void CP_Unit_Load(object sender, EventArgs e)
         {
-
             try
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,2) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbNoOfDecimals, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
-
-
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text == "Save")
                 {
@@ -70,6 +72,7 @@ namespace ROMS
                 else
                 {
                     pnlStatus.Enabled = true;
+                    udfnLoad();
                 }
             }
             catch (Exception ex)
@@ -78,49 +81,82 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-            public void udfnSave(object sender, EventArgs e)
-            {
-
+        public void udfnLoad() {
+            try {
+                txtEUnitName.Text = PbUnitName;
+                txtSymbol.Text = PbSymbol;
+                cmbNoOfDecimals.SelectedValue = pbDecimalId;
+                if (PbStatus == 1) { rbActive.Checked = true; } else { rbInActive.Checked = true; }
+            }
+            catch (Exception ex) {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnSave(object sender, EventArgs e)
+        {
             try
             {
-                if (rbActive.Checked == true)
-                {
-                    varstatus = 1;
-                }
-                else
-                {
-                    varstatus = 2;
-                }
-
+                if (rbActive.Checked == true){varstatus = 1;}
+                else { varstatus = 2;}
                 SPDataService objspservice = new SPDataService();
                 string varResult = "";
-                //string varResult = objspservice.udfnUnit(0, 0,txtEUnitName.Text,txtSymbol.Text, Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus,"Unit Creation");
-                if(btnSave.Text=="Save")
+                if (btnSave.Text=="Save")
                 {
                     varResult = objspservice.udfnUnit(0, 0,txtEUnitName.Text,txtSymbol.Text, Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus,"Unit Creation");
                 }
                 else
                 {
-                    varResult = objspservice.udfnUnit(1, 0, txtEUnitName.Text, txtSymbol.Text, Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, "Unit Updation");
+                    varResult = objspservice.udfnUnit(1, varUnitCode, txtEUnitName.Text, txtSymbol.Text, Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, "Unit Updation");
                 }
 
                 if (varResult.Split('~')[0] == "3")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (btnSave.Text=="Update")
+                    {
+                        //this.Close();
+                    }
+                    else
+                    {
+                        if (pbFormStatus == "Finished")
+                        {
+                            pbFormStatus = "";
+                           // this.Close();
+                        }
+                        udfnclear();
+                    }
+                    MainForm.objCP_Unitlist.udfnList();
                 }
                 else
                 {
                     MessageBox.Show(varResult, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
                 objspservice.CloseConnection();
-
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void udfnclear()
+        {
+            try
+            {
+                txtEUnitName.Text = "";
+                txtSymbol.Text = "";
+                cmbNoOfDecimals.SelectedIndex = 0;
+                btnSave.Text = "Save";
+                txtEUnitName.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
