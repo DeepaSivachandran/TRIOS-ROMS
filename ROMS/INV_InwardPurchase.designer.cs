@@ -45,6 +45,7 @@
             this.clmBatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmShopQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -166,6 +167,7 @@
             this.clmBatchno,
             this.Column8,
             this.Column7,
+            this.clmShopQty,
             this.Column6});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -237,16 +239,22 @@
             // 
             // Column8
             // 
-            this.Column8.HeaderText = "Invoice Qty";
+            this.Column8.HeaderText = "Invoice Received Qty";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
-            this.Column8.Width = 80;
+            this.Column8.Width = 150;
             // 
             // Column7
             // 
             this.Column7.HeaderText = "Received Qty";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
+            // 
+            // clmShopQty
+            // 
+            this.clmShopQty.HeaderText = "Shop Qty";
+            this.clmShopQty.Name = "clmShopQty";
+            this.clmShopQty.ReadOnly = true;
             // 
             // Column6
             // 
@@ -289,7 +297,7 @@
             this.textBox9.BackColor = System.Drawing.SystemColors.Control;
             this.textBox9.Enabled = false;
             this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox9.Location = new System.Drawing.Point(815, 21);
+            this.textBox9.Location = new System.Drawing.Point(207, 21);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(77, 25);
@@ -301,7 +309,7 @@
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(892, 21);
+            this.dateTimePicker1.Location = new System.Drawing.Point(284, 21);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(141, 25);
             this.dateTimePicker1.TabIndex = 958822;
@@ -311,7 +319,7 @@
             this.textBox2.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox2.Location = new System.Drawing.Point(815, 46);
+            this.textBox2.Location = new System.Drawing.Point(207, 46);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(77, 25);
@@ -323,7 +331,7 @@
             this.textBox5.BackColor = System.Drawing.SystemColors.Control;
             this.textBox5.Enabled = false;
             this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox5.Location = new System.Drawing.Point(206, 46);
+            this.textBox5.Location = new System.Drawing.Point(429, 46);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(77, 25);
@@ -334,7 +342,7 @@
             // 
             this.textBox6.Enabled = false;
             this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox6.Location = new System.Drawing.Point(283, 46);
+            this.textBox6.Location = new System.Drawing.Point(506, 46);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(123, 25);
@@ -343,7 +351,7 @@
             // txtInwardNo
             // 
             this.txtInwardNo.Enabled = false;
-            this.txtInwardNo.Location = new System.Drawing.Point(892, 46);
+            this.txtInwardNo.Location = new System.Drawing.Point(284, 46);
             this.txtInwardNo.Name = "txtInwardNo";
             this.txtInwardNo.ReadOnly = true;
             this.txtInwardNo.Size = new System.Drawing.Size(141, 25);
@@ -354,7 +362,7 @@
             this.txtDUnloading.BackColor = System.Drawing.SystemColors.Control;
             this.txtDUnloading.Enabled = false;
             this.txtDUnloading.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.txtDUnloading.Location = new System.Drawing.Point(206, 21);
+            this.txtDUnloading.Location = new System.Drawing.Point(429, 21);
             this.txtDUnloading.Name = "txtDUnloading";
             this.txtDUnloading.ReadOnly = true;
             this.txtDUnloading.Size = new System.Drawing.Size(77, 25);
@@ -365,7 +373,7 @@
             // 
             this.textBox26.Enabled = false;
             this.textBox26.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox26.Location = new System.Drawing.Point(283, 21);
+            this.textBox26.Location = new System.Drawing.Point(506, 21);
             this.textBox26.Name = "textBox26";
             this.textBox26.ReadOnly = true;
             this.textBox26.Size = new System.Drawing.Size(123, 25);
@@ -422,7 +430,7 @@
             this.textBox7.BackColor = System.Drawing.SystemColors.Control;
             this.textBox7.Enabled = false;
             this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox7.Location = new System.Drawing.Point(612, 46);
+            this.textBox7.Location = new System.Drawing.Point(835, 46);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(77, 25);
@@ -433,7 +441,7 @@
             // 
             this.textBox8.Enabled = false;
             this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox8.Location = new System.Drawing.Point(689, 46);
+            this.textBox8.Location = new System.Drawing.Point(912, 46);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(123, 25);
@@ -444,7 +452,7 @@
             this.txtDCourier.BackColor = System.Drawing.SystemColors.Control;
             this.txtDCourier.Enabled = false;
             this.txtDCourier.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.txtDCourier.Location = new System.Drawing.Point(409, 21);
+            this.txtDCourier.Location = new System.Drawing.Point(632, 21);
             this.txtDCourier.Name = "txtDCourier";
             this.txtDCourier.ReadOnly = true;
             this.txtDCourier.Size = new System.Drawing.Size(77, 25);
@@ -455,7 +463,7 @@
             // 
             this.textBox19.Enabled = false;
             this.textBox19.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox19.Location = new System.Drawing.Point(486, 21);
+            this.textBox19.Location = new System.Drawing.Point(709, 21);
             this.textBox19.Name = "textBox19";
             this.textBox19.ReadOnly = true;
             this.textBox19.Size = new System.Drawing.Size(123, 25);
@@ -466,7 +474,7 @@
             this.textBox35.BackColor = System.Drawing.SystemColors.Control;
             this.textBox35.Enabled = false;
             this.textBox35.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox35.Location = new System.Drawing.Point(612, 21);
+            this.textBox35.Location = new System.Drawing.Point(835, 21);
             this.textBox35.Name = "textBox35";
             this.textBox35.ReadOnly = true;
             this.textBox35.Size = new System.Drawing.Size(77, 25);
@@ -478,7 +486,7 @@
             this.textBox37.BackColor = System.Drawing.SystemColors.Control;
             this.textBox37.Enabled = false;
             this.textBox37.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox37.Location = new System.Drawing.Point(409, 46);
+            this.textBox37.Location = new System.Drawing.Point(632, 46);
             this.textBox37.Name = "textBox37";
             this.textBox37.ReadOnly = true;
             this.textBox37.Size = new System.Drawing.Size(77, 25);
@@ -489,7 +497,7 @@
             // 
             this.textBox38.Enabled = false;
             this.textBox38.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox38.Location = new System.Drawing.Point(689, 21);
+            this.textBox38.Location = new System.Drawing.Point(912, 21);
             this.textBox38.Name = "textBox38";
             this.textBox38.ReadOnly = true;
             this.textBox38.Size = new System.Drawing.Size(123, 25);
@@ -499,7 +507,7 @@
             // 
             this.textBox43.Enabled = false;
             this.textBox43.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.textBox43.Location = new System.Drawing.Point(486, 46);
+            this.textBox43.Location = new System.Drawing.Point(709, 46);
             this.textBox43.Name = "textBox43";
             this.textBox43.ReadOnly = true;
             this.textBox43.Size = new System.Drawing.Size(123, 25);
@@ -673,6 +681,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmShopQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
     }
 }
