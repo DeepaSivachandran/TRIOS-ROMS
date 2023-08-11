@@ -74,7 +74,7 @@ namespace ROMS
             {
                 cmbReturnType.Items.Clear();
                 cmbReturnType.Items.Add("Credit Note Received");
-                cmbReturnType.Items.Add("Equivalent Products Received");
+                cmbReturnType.Items.Add("Same/Alt. Products Received");
                 cmbReturnType.Items.Add("Debit Note Created");
                 cmbReturnType.SelectedIndex = 0;
             }
@@ -89,9 +89,19 @@ namespace ROMS
         {
             try
             {
+                txtLCrDate.Visible = false;
+                txtLCrNo.Visible = false;
+                txtCrDate.Visible = false;
+                txtCrNo.Visible = false;
                 if (cmbReturnType.SelectedIndex == 1) {
                     MainForm.objPUR_DCGoodsInward = new PUR_DCGoodsInward();
                     MainForm.objPUR_DCGoodsInward.ShowDialog();
+                }
+                if (cmbReturnType.SelectedIndex == 0) {
+                    txtLCrDate.Visible = true;
+                    txtLCrNo.Visible = true;
+                    txtCrDate.Visible = true;
+                    txtCrNo.Visible = true;
                 }
             }
             catch (Exception ex)

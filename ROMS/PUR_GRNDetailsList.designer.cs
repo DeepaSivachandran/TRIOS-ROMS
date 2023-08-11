@@ -115,8 +115,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(137, 24);
-            this.tspHeader.Text = "Goods Received Note";
+            this.tspHeader.Size = new System.Drawing.Size(81, 24);
+            this.tspHeader.Text = "GRN Entry";
             // 
             // tsbDelete
             // 
@@ -584,7 +584,7 @@
             // clmPrint
             // 
             this.clmPrint.HeaderText = "Reprint";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16;
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
             this.clmPrint.Name = "clmPrint";
             this.clmPrint.ReadOnly = true;
             this.clmPrint.Width = 50;

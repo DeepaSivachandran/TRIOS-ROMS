@@ -37,22 +37,11 @@
             this.lvProductName = new System.Windows.Forms.ListView();
             this.txttotalitem = new System.Windows.Forms.TextBox();
             this.lbltotalproducts = new System.Windows.Forms.Label();
-            this.grpsalesmandetails = new System.Windows.Forms.GroupBox();
-            this.grbSupplierDetails = new System.Windows.Forms.GroupBox();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.lblnarration = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.DGV_inward = new System.Windows.Forms.DataGridView();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmremove = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbgodown = new System.Windows.Forms.GroupBox();
             this.txtEntryNo = new System.Windows.Forms.TextBox();
             this.lbEntryNo = new System.Windows.Forms.Label();
@@ -60,14 +49,14 @@
             this.dpEntryDate = new System.Windows.Forms.DateTimePicker();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.lblConcern = new System.Windows.Forms.Label();
-            this.txtsuppliername = new System.Windows.Forms.TextBox();
-            this.lblSupplierName = new System.Windows.Forms.Label();
             this.grpproductname = new System.Windows.Forms.GroupBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtunitrate = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblbatchno = new System.Windows.Forms.Label();
             this.lblExpiryDate = new System.Windows.Forms.Label();
+            this.txtsuppliername = new System.Windows.Forms.TextBox();
+            this.lblSupplierName = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.txtActualQty = new System.Windows.Forms.TextBox();
             this.lblQty = new System.Windows.Forms.Label();
@@ -76,7 +65,22 @@
             this.txtMrp = new System.Windows.Forms.TextBox();
             this.lblMrp = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtDay = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblYyyy = new System.Windows.Forms.Label();
+            this.lblMM = new System.Windows.Forms.Label();
+            this.lblDd = new System.Windows.Forms.Label();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmproductname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmunit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremove = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_inward)).BeginInit();
@@ -113,8 +117,6 @@
             this.pnlinward.Controls.Add(this.lvProductName);
             this.pnlinward.Controls.Add(this.txttotalitem);
             this.pnlinward.Controls.Add(this.lbltotalproducts);
-            this.pnlinward.Controls.Add(this.grpsalesmandetails);
-            this.pnlinward.Controls.Add(this.grbSupplierDetails);
             this.pnlinward.Controls.Add(this.txtRemark);
             this.pnlinward.Controls.Add(this.lblnarration);
             this.pnlinward.Controls.Add(this.btnSave);
@@ -153,24 +155,6 @@
             this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
             this.lbltotalproducts.TabIndex = 958821;
             this.lbltotalproducts.Text = "Total Products";
-            // 
-            // grpsalesmandetails
-            // 
-            this.grpsalesmandetails.Location = new System.Drawing.Point(1116, 2);
-            this.grpsalesmandetails.Name = "grpsalesmandetails";
-            this.grpsalesmandetails.Size = new System.Drawing.Size(227, 147);
-            this.grpsalesmandetails.TabIndex = 958814;
-            this.grpsalesmandetails.TabStop = false;
-            this.grpsalesmandetails.Text = "SalesMan Details";
-            // 
-            // grbSupplierDetails
-            // 
-            this.grbSupplierDetails.Location = new System.Drawing.Point(879, 2);
-            this.grbSupplierDetails.Name = "grbSupplierDetails";
-            this.grbSupplierDetails.Size = new System.Drawing.Size(227, 147);
-            this.grbSupplierDetails.TabIndex = 958813;
-            this.grbSupplierDetails.TabStop = false;
-            this.grbSupplierDetails.Text = "Supplier Details";
             // 
             // txtRemark
             // 
@@ -243,6 +227,7 @@
             this.Column1,
             this.clmQuantity,
             this.clmunit,
+            this.clmSupplier,
             this.clmremove});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -267,53 +252,6 @@
             this.DGV_inward.Size = new System.Drawing.Size(1340, 423);
             this.DGV_inward.TabIndex = 958809;
             // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmicode
-            // 
-            this.clmicode.HeaderText = "P.I Code";
-            this.clmicode.Name = "clmicode";
-            // 
-            // clmproductname
-            // 
-            this.clmproductname.HeaderText = "Product Name";
-            this.clmproductname.Name = "clmproductname";
-            this.clmproductname.Width = 200;
-            // 
-            // clmmrp
-            // 
-            this.clmmrp.HeaderText = "MRP";
-            this.clmmrp.Name = "clmmrp";
-            // 
-            // clmexpirydate
-            // 
-            this.clmexpirydate.HeaderText = "Expiry Date";
-            this.clmexpirydate.Name = "clmexpirydate";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Batch No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // clmQuantity
-            // 
-            this.clmQuantity.HeaderText = "Quantity";
-            this.clmQuantity.Name = "clmQuantity";
-            // 
-            // clmunit
-            // 
-            this.clmunit.HeaderText = "Unit";
-            this.clmunit.Name = "clmunit";
-            // 
-            // clmremove
-            // 
-            this.clmremove.HeaderText = "Remove";
-            this.clmremove.Name = "clmremove";
-            // 
             // grbgodown
             // 
             this.grbgodown.Controls.Add(this.txtEntryNo);
@@ -322,13 +260,11 @@
             this.grbgodown.Controls.Add(this.dpEntryDate);
             this.grbgodown.Controls.Add(this.comboBox1);
             this.grbgodown.Controls.Add(this.lblConcern);
-            this.grbgodown.Controls.Add(this.txtsuppliername);
-            this.grbgodown.Controls.Add(this.lblSupplierName);
             this.grbgodown.Location = new System.Drawing.Point(3, 2);
             this.grbgodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbgodown.Name = "grbgodown";
             this.grbgodown.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbgodown.Size = new System.Drawing.Size(866, 77);
+            this.grbgodown.Size = new System.Drawing.Size(1338, 77);
             this.grbgodown.TabIndex = 958805;
             this.grbgodown.TabStop = false;
             // 
@@ -387,31 +323,21 @@
             this.lblConcern.TabIndex = 86;
             this.lblConcern.Text = "Concern";
             // 
-            // txtsuppliername
-            // 
-            this.txtsuppliername.Location = new System.Drawing.Point(530, 36);
-            this.txtsuppliername.Name = "txtsuppliername";
-            this.txtsuppliername.Size = new System.Drawing.Size(317, 27);
-            this.txtsuppliername.TabIndex = 83;
-            this.txtsuppliername.TextChanged += new System.EventHandler(this.Txtsuppliername_TextChanged);
-            // 
-            // lblSupplierName
-            // 
-            this.lblSupplierName.AutoSize = true;
-            this.lblSupplierName.Location = new System.Drawing.Point(530, 14);
-            this.lblSupplierName.Name = "lblSupplierName";
-            this.lblSupplierName.Size = new System.Drawing.Size(87, 20);
-            this.lblSupplierName.TabIndex = 27;
-            this.lblSupplierName.Text = "Supplier Name";
-            // 
             // grpproductname
             // 
+            this.grpproductname.Controls.Add(this.textBox2);
+            this.grpproductname.Controls.Add(this.txtDay);
+            this.grpproductname.Controls.Add(this.textBox1);
+            this.grpproductname.Controls.Add(this.lblYyyy);
+            this.grpproductname.Controls.Add(this.lblMM);
+            this.grpproductname.Controls.Add(this.lblDd);
             this.grpproductname.Controls.Add(this.textBox5);
             this.grpproductname.Controls.Add(this.label3);
             this.grpproductname.Controls.Add(this.txtunitrate);
-            this.grpproductname.Controls.Add(this.textBox1);
             this.grpproductname.Controls.Add(this.lblbatchno);
             this.grpproductname.Controls.Add(this.lblExpiryDate);
+            this.grpproductname.Controls.Add(this.txtsuppliername);
+            this.grpproductname.Controls.Add(this.lblSupplierName);
             this.grpproductname.Controls.Add(this.txtProductName);
             this.grpproductname.Controls.Add(this.txtActualQty);
             this.grpproductname.Controls.Add(this.lblQty);
@@ -421,14 +347,24 @@
             this.grpproductname.Controls.Add(this.lblMrp);
             this.grpproductname.Location = new System.Drawing.Point(3, 72);
             this.grpproductname.Name = "grpproductname";
-            this.grpproductname.Size = new System.Drawing.Size(865, 77);
+            this.grpproductname.Size = new System.Drawing.Size(1339, 77);
             this.grpproductname.TabIndex = 958806;
             this.grpproductname.TabStop = false;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
+            this.textBox5.Location = new System.Drawing.Point(334, 36);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(17, 27);
+            this.textBox5.TabIndex = 1111237;
+            this.textBox5.Text = "₹";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(763, 40);
+            this.label3.Location = new System.Drawing.Point(801, 40);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 20);
             this.label3.TabIndex = 1111186;
@@ -436,26 +372,15 @@
             // 
             // txtunitrate
             // 
-            this.txtunitrate.Enabled = false;
-            this.txtunitrate.Location = new System.Drawing.Point(530, 36);
+            this.txtunitrate.Location = new System.Drawing.Point(592, 36);
             this.txtunitrate.Name = "txtunitrate";
-            this.txtunitrate.ReadOnly = true;
             this.txtunitrate.Size = new System.Drawing.Size(124, 27);
             this.txtunitrate.TabIndex = 958815;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(409, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(106, 27);
-            this.textBox1.TabIndex = 958823;
             // 
             // lblbatchno
             // 
             this.lblbatchno.AutoSize = true;
-            this.lblbatchno.Location = new System.Drawing.Point(530, 14);
+            this.lblbatchno.Location = new System.Drawing.Point(592, 14);
             this.lblbatchno.Name = "lblbatchno";
             this.lblbatchno.Size = new System.Drawing.Size(61, 20);
             this.lblbatchno.TabIndex = 958816;
@@ -464,11 +389,28 @@
             // lblExpiryDate
             // 
             this.lblExpiryDate.AutoSize = true;
-            this.lblExpiryDate.Location = new System.Drawing.Point(409, 13);
+            this.lblExpiryDate.Location = new System.Drawing.Point(409, 39);
             this.lblExpiryDate.Name = "lblExpiryDate";
             this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
             this.lblExpiryDate.TabIndex = 958821;
             this.lblExpiryDate.Text = "Expiry Date";
+            // 
+            // txtsuppliername
+            // 
+            this.txtsuppliername.Location = new System.Drawing.Point(836, 36);
+            this.txtsuppliername.Name = "txtsuppliername";
+            this.txtsuppliername.Size = new System.Drawing.Size(317, 27);
+            this.txtsuppliername.TabIndex = 83;
+            this.txtsuppliername.TextChanged += new System.EventHandler(this.Txtsuppliername_TextChanged);
+            // 
+            // lblSupplierName
+            // 
+            this.lblSupplierName.AutoSize = true;
+            this.lblSupplierName.Location = new System.Drawing.Point(836, 14);
+            this.lblSupplierName.Name = "lblSupplierName";
+            this.lblSupplierName.Size = new System.Drawing.Size(87, 20);
+            this.lblSupplierName.TabIndex = 27;
+            this.lblSupplierName.Text = "Supplier Name";
             // 
             // txtProductName
             // 
@@ -479,7 +421,7 @@
             // 
             // txtActualQty
             // 
-            this.txtActualQty.Location = new System.Drawing.Point(681, 37);
+            this.txtActualQty.Location = new System.Drawing.Point(721, 37);
             this.txtActualQty.Name = "txtActualQty";
             this.txtActualQty.Size = new System.Drawing.Size(76, 27);
             this.txtActualQty.TabIndex = 81;
@@ -487,7 +429,7 @@
             // lblQty
             // 
             this.lblQty.AutoSize = true;
-            this.lblQty.Location = new System.Drawing.Point(681, 14);
+            this.lblQty.Location = new System.Drawing.Point(721, 14);
             this.lblQty.Name = "lblQty";
             this.lblQty.Size = new System.Drawing.Size(56, 20);
             this.lblQty.TabIndex = 80;
@@ -497,7 +439,7 @@
             // 
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
             this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(809, 39);
+            this.btnAdd.Location = new System.Drawing.Point(1158, 39);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(21, 22);
@@ -515,10 +457,8 @@
             // 
             // txtMrp
             // 
-            this.txtMrp.Enabled = false;
             this.txtMrp.Location = new System.Drawing.Point(351, 36);
             this.txtMrp.Name = "txtMrp";
-            this.txtMrp.ReadOnly = true;
             this.txtMrp.Size = new System.Drawing.Size(52, 27);
             this.txtMrp.TabIndex = 74;
             this.txtMrp.TextChanged += new System.EventHandler(this.TxtMrp_TextChanged);
@@ -542,15 +482,113 @@
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
-            // textBox5
+            // textBox2
             // 
-            this.textBox5.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
-            this.textBox5.Location = new System.Drawing.Point(334, 36);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(17, 27);
-            this.textBox5.TabIndex = 1111237;
-            this.textBox5.Text = "₹";
+            this.textBox2.Location = new System.Drawing.Point(551, 36);
+            this.textBox2.MaxLength = 2;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(34, 27);
+            this.textBox2.TabIndex = 1111240;
+            // 
+            // txtDay
+            // 
+            this.txtDay.Location = new System.Drawing.Point(484, 36);
+            this.txtDay.MaxLength = 2;
+            this.txtDay.Name = "txtDay";
+            this.txtDay.Size = new System.Drawing.Size(33, 27);
+            this.txtDay.TabIndex = 1111238;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(517, 36);
+            this.textBox1.MaxLength = 2;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(34, 27);
+            this.textBox1.TabIndex = 1111239;
+            // 
+            // lblYyyy
+            // 
+            this.lblYyyy.AutoSize = true;
+            this.lblYyyy.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.lblYyyy.Location = new System.Drawing.Point(557, 21);
+            this.lblYyyy.Name = "lblYyyy";
+            this.lblYyyy.Size = new System.Drawing.Size(20, 16);
+            this.lblYyyy.TabIndex = 1111243;
+            this.lblYyyy.Text = "YY";
+            // 
+            // lblMM
+            // 
+            this.lblMM.AutoSize = true;
+            this.lblMM.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.lblMM.Location = new System.Drawing.Point(523, 21);
+            this.lblMM.Name = "lblMM";
+            this.lblMM.Size = new System.Drawing.Size(24, 16);
+            this.lblMM.TabIndex = 1111242;
+            this.lblMM.Text = "MM";
+            // 
+            // lblDd
+            // 
+            this.lblDd.AutoSize = true;
+            this.lblDd.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            this.lblDd.Location = new System.Drawing.Point(490, 21);
+            this.lblDd.Name = "lblDd";
+            this.lblDd.Size = new System.Drawing.Size(20, 16);
+            this.lblDd.TabIndex = 1111241;
+            this.lblDd.Text = "DD";
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmicode
+            // 
+            this.clmicode.HeaderText = "P.I Code";
+            this.clmicode.Name = "clmicode";
+            // 
+            // clmproductname
+            // 
+            this.clmproductname.HeaderText = "Product Name";
+            this.clmproductname.Name = "clmproductname";
+            this.clmproductname.Width = 200;
+            // 
+            // clmmrp
+            // 
+            this.clmmrp.HeaderText = "MRP";
+            this.clmmrp.Name = "clmmrp";
+            // 
+            // clmexpirydate
+            // 
+            this.clmexpirydate.HeaderText = "Expiry Date";
+            this.clmexpirydate.Name = "clmexpirydate";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Batch No.";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // clmQuantity
+            // 
+            this.clmQuantity.HeaderText = "Quantity";
+            this.clmQuantity.Name = "clmQuantity";
+            // 
+            // clmunit
+            // 
+            this.clmunit.HeaderText = "Unit";
+            this.clmunit.Name = "clmunit";
+            // 
+            // clmSupplier
+            // 
+            this.clmSupplier.HeaderText = "Supplier";
+            this.clmSupplier.Name = "clmSupplier";
+            this.clmSupplier.ReadOnly = true;
+            this.clmSupplier.Width = 200;
+            // 
+            // clmremove
+            // 
+            this.clmremove.HeaderText = "Remove";
+            this.clmremove.Name = "clmremove";
             // 
             // INV_DamageEntry
             // 
@@ -588,7 +626,6 @@
         private System.Windows.Forms.ToolStrip tsInwardList;
         private System.Windows.Forms.Panel pnlinward;
         private System.Windows.Forms.TextBox txtsuppliername;
-        private System.Windows.Forms.GroupBox grbSupplierDetails;
         private System.Windows.Forms.TextBox txtRemark;
         private System.Windows.Forms.Label lblnarration;
         private System.Windows.Forms.ListView lvProductName;
@@ -603,7 +640,6 @@
         private System.Windows.Forms.GroupBox grbgodown;
         private System.Windows.Forms.Label lblSupplierName;
         private System.Windows.Forms.TextBox txtMrp;
-        private System.Windows.Forms.GroupBox grpsalesmandetails;
         private System.Windows.Forms.TextBox txttotalitem;
         private System.Windows.Forms.Label lbltotalproducts;
         private System.Windows.Forms.Label lblEdit;
@@ -618,8 +654,14 @@
         private System.Windows.Forms.Label lbEntryNo;
         private System.Windows.Forms.Label lblEntryDate;
         private System.Windows.Forms.DateTimePicker dpEntryDate;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtDay;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lblYyyy;
+        private System.Windows.Forms.Label lblMM;
+        private System.Windows.Forms.Label lblDd;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
@@ -628,7 +670,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSupplier;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmremove;
-        private System.Windows.Forms.TextBox textBox5;
     }
 }
