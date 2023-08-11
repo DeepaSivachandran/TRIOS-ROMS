@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
+    //Created By:Sathish ; Created On:-11/08/2023
     public partial class CP_Citylist : Form
     {
         DataValidation objValidation = new DataValidation();
@@ -18,12 +19,12 @@ namespace ROMS
         {
             InitializeComponent();
         }
-
         private void tsbNew_Click(object sender, EventArgs e)
         {
             try
             {
                 MainForm.objCP_City = new CP_City();
+                MainForm.objCP_City.FormBorderStyle = FormBorderStyle.FixedSingle;
                 MainForm.objCP_City.ShowDialog();
             }
             catch (Exception ex)
@@ -37,9 +38,10 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_City = new CP_City();
-                MainForm.objCP_City.btnSave.Text = "Update";
-                MainForm.objCP_City.ShowDialog();
+                udfnEdit();
+                //MainForm.objCP_City = new CP_City();
+                //MainForm.objCP_City.btnSave.Text = "Update";
+                //MainForm.objCP_City.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -82,37 +84,30 @@ namespace ROMS
         {
             try
             {
-
                 if (grdCityList.SelectedRows.Count > 0)
                 {
-                    MainForm.objCP_Brand = new CP_Brand();
-                    //MainForm.objCP_Brand.MdiParent = this.ParentForm;
-                    MainForm.objCP_Brand.varbrandcode = grdCityList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
-                    MainForm.objCP_Brand.ShowDialog();
+                    MainForm.objCP_City = new CP_City();
+                    MainForm.objCP_City.btnSave.Text = "Update";
+                    MainForm.objCP_City.varCityCode = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_City.PbStateId = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["State Name"].Value);
+                    MainForm.objCP_City.PbCityName = Convert.ToString(grdCityList.SelectedRows[0].Cells["City Name"].Value);
+                    MainForm.objCP_City.PbStatus = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["Status"].Value);
+                    MainForm.objCP_City.ShowDialog();
                 }
-
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         public void udfnList()
         {
             try
             {
-                picLoader.Visible = true;
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                grdCityList.DataSource = null;
+                SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                //objDs = objdserv.udfnSPBrandList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                objdserv.CloseConnection();
+                objDs = objspservice.udfnCityList(0);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -123,13 +118,15 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdCityList.DataSource = objDs.Tables[0];
-                            grdCityList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdCityList.Columns["Total No. of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdCityList.Columns["Brand Name in Tamil"].Width = 275;
-                            grdCityList.Columns["Brand Name in English"].Width = 275;
-                            grdCityList.Columns["Label Name in Tamil"].Width = 275;
-                            grdCityList.Columns["Label Name in English"].Width = 275;
-                            grdCityList.Columns["BrandCode"].Visible = false;
+
+                            grdCityList.Columns["ID"].Visible = false;
+                            grdCityList.Columns["StateId"].Visible = false;
+                            grdCityList.Columns["StatusID"].Visible = false;
+                            grdCityList.Columns["S.No."].Width = 50;
+                            grdCityList.Columns["Status"].Width = 80;
+                            grdCityList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdCityList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdCityList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
@@ -142,11 +139,7 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
+                    objspservice.CloseConnection();
                 }
                 udfnSearchGridHead();
             }
@@ -242,6 +235,199 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void CP_Citylist_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdCityList_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdCityList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                udfnEdit();
+            }
+        }
+
+        private void GrdCityList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            for (int i = 0; i < grdCityList.Rows.Count; i++)
+            {
+                if (Convert.ToString(grdCityList.Rows[i].Cells["StatusID"].Value) == "1")
+                {
+                    grdCityList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                    grdCityList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                }
+                else
+                {
+                    grdCityList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                    grdCityList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                }
+            }
+        }
+
+        private void GrdCityList_SelectionChanged(object sender, EventArgs e)
+        {
+            udfnSearchGridHead();
+        }
+
+        private void GrdCityList_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdCityList.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdCityList.Width > grdCityList.HorizontalScrollingOffset && grdCityList.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdCityList);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void udfnscrollVisible(DataGridView DGV, DataGridView grdCityList)
+        {
+            try
+            {
+                var vScrollbar = grdCityList.Controls.OfType<VScrollBar>().First();
+                if (vScrollbar.Visible == true)
+                {
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in DGV.Columns)
+                    {
+                        visibleColumns.Add(col.Index);
+                    }
+                    int I = DGV_SearchGrid.Rows.Count - 1;
+                    if (I == 0)
+                    {
+                        int rowIndex = 1;
+                        DGV_SearchGrid.Rows.Add();
+                        for (int i = 0; i < visibleColumns.Count; i++)
+                        {
+                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdCityList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCityList);
+                objDser.CloseConnection();
+                grdCityList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void udfnGridSearchFilter()
+        {
+            try
+            {
+                for (int i = 0; i < DGV_SearchGrid.Rows.Count; ++i)
+                {
+                    if (DGV_SearchGrid.ColumnCount > 0)
+                    {
+                        BindingSource bs = new BindingSource();
+                        bs.DataSource = grdCityList.DataSource;
+                        string filter = "";
+                        for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
+                        {
+                            if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "")
+                            {
+                                if (filter != "") filter += "And ";
+                                if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
+                                    filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + "=" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value);
+                                else
+                                    filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                            }
+                        }
+                        bs.Filter = filter;
+                        grdCityList.DataSource = bs;
+                    }
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                    return;
+                if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
+                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                    {
+                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                            & ~(DataGridViewPaintParts.ContentForeground));
+                        TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                            e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+                        e.Handled = true;
+                    }
+                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdCityList.ColumnCount > 0)
+                {
+                    grdCityList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdCityList.HorizontalScrollingOffset;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
+        {
+
         }
     }
 }
