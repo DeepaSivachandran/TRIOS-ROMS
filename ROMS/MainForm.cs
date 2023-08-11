@@ -81,10 +81,9 @@ namespace ROMS
         public static CP_UserCatagory objCP_UserCatagory;
         public static CP_SupplierOrderDetailsList objCP_SupplierOrderDetailslist;
         public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
-        public static INV_InwardPurchaseList objINV_InwardPurchaseList;
-        public static INV_InwardPurchase objINV_InwardPurchase;
         public static CP_GeneralSettings objCP_GeneralSettings;
-        
+        public static CP_BulkAttributes objCP_BulkAttributes;
+
 
         public static INV_SalesInvoiceList objINV_SalesInvoiceList;
         public static INV_SalesInvoice objINV_SalesInvoice;
@@ -99,6 +98,8 @@ namespace ROMS
         public static INV_StockTransferList objINV_StockTransferList;
         public static INV_DamageEntryList objINV_DamageEntryList;
         public static INV_DamageEntry objINV_DamageEntry;
+        public static INV_InwardPurchaseList objINV_InwardPurchaseList;
+        public static INV_InwardPurchase objINV_InwardPurchase;
 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;  
@@ -1095,5 +1096,22 @@ namespace ROMS
             }
 
     }
+
+        private void TsmBulkAttr_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     } 
 }
