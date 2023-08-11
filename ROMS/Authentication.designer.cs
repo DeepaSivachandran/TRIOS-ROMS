@@ -134,7 +134,6 @@
             this.lnklblServerSettings.TabIndex = 6;
             this.lnklblServerSettings.TabStop = true;
             this.lnklblServerSettings.Text = "Server Settings";
-            this.lnklblServerSettings.Visible = false;
             this.lnklblServerSettings.VisitedLinkColor = System.Drawing.Color.Blue;
             this.lnklblServerSettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 

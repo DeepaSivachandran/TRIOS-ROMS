@@ -212,5 +212,18 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void ChkCompleted_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkCompleted.Checked) { btnSave.Text = "Save & Print"; } else { btnSave.Text = "Draft"; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

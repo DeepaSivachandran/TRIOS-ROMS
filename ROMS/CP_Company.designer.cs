@@ -40,8 +40,8 @@
             this.pnlCompany = new System.Windows.Forms.Panel();
             this.tcCompanyDetails = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblcityid = new System.Windows.Forms.Label();
             this.grbform = new System.Windows.Forms.GroupBox();
-            this.lvCity = new System.Windows.Forms.ListView();
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.rbInactive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
@@ -59,11 +59,12 @@
             this.grdBankDetails = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBankShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtIFScode = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
@@ -122,18 +123,27 @@
             this.btnCloseContact = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grdContactManager = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPrimary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmWhatsAppNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOperator = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmMobileBrand = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtMobilenumber = new System.Windows.Forms.TextBox();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
             this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
+            this.LV_Group = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvCity = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmContsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmmobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmWhatsAppNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPrimary = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOperator = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMobileBrand = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.tcCompanyDetails.SuspendLayout();
@@ -192,6 +202,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lblcityid);
             this.tabPage1.Controls.Add(this.grbform);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
@@ -200,6 +211,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Company Details";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // lblcityid
+            // 
+            this.lblcityid.AutoSize = true;
+            this.lblcityid.Location = new System.Drawing.Point(20, 9);
+            this.lblcityid.Name = "lblcityid";
+            this.lblcityid.Size = new System.Drawing.Size(0, 20);
+            this.lblcityid.TabIndex = 3;
+            this.lblcityid.Visible = false;
             // 
             // grbform
             // 
@@ -242,19 +262,10 @@
             this.grbform.TabIndex = 2;
             this.grbform.TabStop = false;
             // 
-            // lvCity
-            // 
-            this.lvCity.HideSelection = false;
-            this.lvCity.Location = new System.Drawing.Point(126, 186);
-            this.lvCity.Name = "lvCity";
-            this.lvCity.Size = new System.Drawing.Size(186, 65);
-            this.lvCity.TabIndex = 63;
-            this.lvCity.UseCompatibleStateImageBehavior = false;
-            this.lvCity.Visible = false;
-            // 
             // pnlStatus
             // 
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlStatus.Controls.Add(this.LV_Group);
             this.pnlStatus.Controls.Add(this.rbInactive);
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Enabled = false;
@@ -316,6 +327,7 @@
             this.txtwhatsappNo.TabIndex = 11;
             this.txtwhatsappNo.Enter += new System.EventHandler(this.TxtwhatsappNo_Enter);
             this.txtwhatsappNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtwhatsappNo_KeyDown);
+            this.txtwhatsappNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtwhatsappNo_KeyPress);
             this.txtwhatsappNo.Leave += new System.EventHandler(this.TxtwhatsappNo_Leave);
             // 
             // textBox4
@@ -471,11 +483,12 @@
             this.grdBankDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmsno,
             this.clmbankname,
-            this.Column1,
+            this.clmBankShortName,
             this.clmbranch,
             this.clmaccno,
             this.clmifscode,
-            this.clmStatus});
+            this.clmStatus,
+            this.clmremovebank});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -497,6 +510,7 @@
             this.grdBankDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdBankDetails.Size = new System.Drawing.Size(1277, 162);
             this.grdBankDetails.TabIndex = 1111136;
+            this.grdBankDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBankDetails_CellContentClick);
             // 
             // clmsno
             // 
@@ -512,12 +526,12 @@
             this.clmbankname.ReadOnly = true;
             this.clmbankname.Width = 200;
             // 
-            // Column1
+            // clmBankShortName
             // 
-            this.Column1.HeaderText = "Bank Short Name";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 150;
+            this.clmBankShortName.HeaderText = "Bank Short Name";
+            this.clmBankShortName.Name = "clmBankShortName";
+            this.clmBankShortName.ReadOnly = true;
+            this.clmBankShortName.Width = 150;
             // 
             // clmbranch
             // 
@@ -545,6 +559,13 @@
             this.clmStatus.HeaderText = "Status";
             this.clmStatus.Name = "clmStatus";
             this.clmStatus.ReadOnly = true;
+            // 
+            // clmremovebank
+            // 
+            this.clmremovebank.HeaderText = "Remove";
+            this.clmremovebank.Name = "clmremovebank";
+            this.clmremovebank.ReadOnly = true;
+            this.clmremovebank.Width = 80;
             // 
             // textBox15
             // 
@@ -645,7 +666,7 @@
             this.txtDPlno.BackColor = System.Drawing.SystemColors.Control;
             this.txtDPlno.Enabled = false;
             this.txtDPlno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPlno.Location = new System.Drawing.Point(18, 158);
+            this.txtDPlno.Location = new System.Drawing.Point(18, 162);
             this.txtDPlno.Name = "txtDPlno";
             this.txtDPlno.ReadOnly = true;
             this.txtDPlno.Size = new System.Drawing.Size(53, 27);
@@ -655,7 +676,7 @@
             // txtPlno
             // 
             this.txtPlno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPlno.Location = new System.Drawing.Point(71, 158);
+            this.txtPlno.Location = new System.Drawing.Point(71, 162);
             this.txtPlno.MaxLength = 15;
             this.txtPlno.Name = "txtPlno";
             this.txtPlno.Size = new System.Drawing.Size(197, 27);
@@ -669,7 +690,7 @@
             this.textBox13.BackColor = System.Drawing.SystemColors.Control;
             this.textBox13.Enabled = false;
             this.textBox13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox13.Location = new System.Drawing.Point(18, 131);
+            this.textBox13.Location = new System.Drawing.Point(18, 135);
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
             this.textBox13.Size = new System.Drawing.Size(53, 27);
@@ -679,7 +700,7 @@
             // txtFSSAI
             // 
             this.txtFSSAI.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtFSSAI.Location = new System.Drawing.Point(71, 131);
+            this.txtFSSAI.Location = new System.Drawing.Point(71, 135);
             this.txtFSSAI.MaxLength = 14;
             this.txtFSSAI.Name = "txtFSSAI";
             this.txtFSSAI.Size = new System.Drawing.Size(197, 27);
@@ -717,7 +738,7 @@
             this.textBox9.BackColor = System.Drawing.SystemColors.Control;
             this.textBox9.Enabled = false;
             this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox9.Location = new System.Drawing.Point(18, 105);
+            this.textBox9.Location = new System.Drawing.Point(18, 108);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(53, 27);
@@ -727,7 +748,7 @@
             // txtEPF
             // 
             this.txtEPF.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtEPF.Location = new System.Drawing.Point(71, 105);
+            this.txtEPF.Location = new System.Drawing.Point(71, 108);
             this.txtEPF.MaxLength = 22;
             this.txtEPF.Name = "txtEPF";
             this.txtEPF.Size = new System.Drawing.Size(197, 27);
@@ -741,7 +762,7 @@
             this.textBox7.BackColor = System.Drawing.SystemColors.Control;
             this.textBox7.Enabled = false;
             this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox7.Location = new System.Drawing.Point(18, 78);
+            this.textBox7.Location = new System.Drawing.Point(18, 81);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(53, 27);
@@ -751,7 +772,7 @@
             // txtESI
             // 
             this.txtESI.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtESI.Location = new System.Drawing.Point(71, 78);
+            this.txtESI.Location = new System.Drawing.Point(71, 81);
             this.txtESI.MaxLength = 17;
             this.txtESI.Name = "txtESI";
             this.txtESI.Size = new System.Drawing.Size(197, 27);
@@ -806,6 +827,7 @@
             this.txtAlterMobileno.TabIndex = 10;
             this.txtAlterMobileno.Enter += new System.EventHandler(this.TxtAlterMobileno_Enter);
             this.txtAlterMobileno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAlterMobileno_KeyDown);
+            this.txtAlterMobileno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAlterMobileno_KeyPress);
             this.txtAlterMobileno.Leave += new System.EventHandler(this.TxtAlterMobileno_Leave);
             // 
             // txtAlterPhoneno
@@ -818,6 +840,7 @@
             this.txtAlterPhoneno.TabIndex = 8;
             this.txtAlterPhoneno.Enter += new System.EventHandler(this.TxtAlterPhoneno_Enter);
             this.txtAlterPhoneno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAlterPhoneno_KeyDown);
+            this.txtAlterPhoneno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAlterPhoneno_KeyPress);
             this.txtAlterPhoneno.Leave += new System.EventHandler(this.TxtAlterPhoneno_Leave);
             // 
             // txtDAddressLine2
@@ -880,6 +903,7 @@
             this.txtPincode.TabIndex = 6;
             this.txtPincode.Enter += new System.EventHandler(this.TxtPincode_Enter);
             this.txtPincode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPincode_KeyDown);
+            this.txtPincode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPincode_KeyPress);
             this.txtPincode.Leave += new System.EventHandler(this.TxtPincode_Leave);
             // 
             // textBox1
@@ -988,6 +1012,7 @@
             this.txtmobileNo.TabIndex = 9;
             this.txtmobileNo.Enter += new System.EventHandler(this.TxtmobileNo_Enter);
             this.txtmobileNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtmobileNo_KeyDown);
+            this.txtmobileNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtmobileNo_KeyPress);
             this.txtmobileNo.Leave += new System.EventHandler(this.TxtmobileNo_Leave);
             // 
             // txtDShortName
@@ -1036,6 +1061,7 @@
             this.txtPhoneNo.TabIndex = 7;
             this.txtPhoneNo.Enter += new System.EventHandler(this.TxtPhoneNo_Enter);
             this.txtPhoneNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPhoneNo_KeyDown);
+            this.txtPhoneNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPhoneNo_KeyPress);
             this.txtPhoneNo.Leave += new System.EventHandler(this.TxtPhoneNo_Leave);
             // 
             // txtDAddressLine1
@@ -1070,6 +1096,7 @@
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(186, 27);
             this.txtCity.TabIndex = 5;
+            this.txtCity.TextChanged += new System.EventHandler(this.TxtCity_TextChanged);
             this.txtCity.Enter += new System.EventHandler(this.TxtCity_Enter);
             this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCity_KeyDown);
             this.txtCity.Leave += new System.EventHandler(this.TxtCity_Leave);
@@ -1269,15 +1296,16 @@
             this.grdContactManager.ColumnHeadersHeight = 30;
             this.grdContactManager.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdContactManager.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
+            this.clmContsno,
             this.clmName,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.clmPrimary,
+            this.clmTransaction,
+            this.clmmobile,
             this.clmWhatsAppNo,
+            this.clmPrimary,
             this.clmOperator,
             this.clmMobileBrand,
-            this.clmRemove});
+            this.clmRemove,
+            this.clmid});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -1299,75 +1327,19 @@
             this.grdContactManager.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdContactManager.Size = new System.Drawing.Size(1303, 472);
             this.grdContactManager.TabIndex = 1111149;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.FillWeight = 50F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // clmName
-            // 
-            this.clmName.HeaderText = "Name";
-            this.clmName.Name = "clmName";
-            this.clmName.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Transaction Type";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Mobile No.";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // clmPrimary
-            // 
-            this.clmPrimary.HeaderText = "Primary";
-            this.clmPrimary.Name = "clmPrimary";
-            this.clmPrimary.ReadOnly = true;
-            this.clmPrimary.Width = 50;
-            // 
-            // clmWhatsAppNo
-            // 
-            this.clmWhatsAppNo.HeaderText = "WhatsApp No.";
-            this.clmWhatsAppNo.Name = "clmWhatsAppNo";
-            this.clmWhatsAppNo.ReadOnly = true;
-            // 
-            // clmOperator
-            // 
-            this.clmOperator.HeaderText = "Operator";
-            this.clmOperator.Name = "clmOperator";
-            this.clmOperator.ReadOnly = true;
-            // 
-            // clmMobileBrand
-            // 
-            this.clmMobileBrand.HeaderText = "Mobile Brand";
-            this.clmMobileBrand.Name = "clmMobileBrand";
-            this.clmMobileBrand.ReadOnly = true;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
+            this.grdContactManager.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdContactManager_CellContentClick);
             // 
             // txtMobilenumber
             // 
             this.txtMobilenumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtMobilenumber.Location = new System.Drawing.Point(403, 39);
-            this.txtMobilenumber.MaxLength = 100;
+            this.txtMobilenumber.MaxLength = 10;
             this.txtMobilenumber.Name = "txtMobilenumber";
             this.txtMobilenumber.Size = new System.Drawing.Size(195, 27);
             this.txtMobilenumber.TabIndex = 2;
             this.txtMobilenumber.Enter += new System.EventHandler(this.TxtMobilenumber_Enter);
             this.txtMobilenumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMobilenumber_KeyDown);
+            this.txtMobilenumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMobilenumber_KeyPress);
             this.txtMobilenumber.Leave += new System.EventHandler(this.TxtMobilenumber_Leave);
             // 
             // cmbTransactionType
@@ -1388,6 +1360,132 @@
             // 
             this.epCompany.ContainerControl = this;
             // 
+            // LV_Group
+            // 
+            this.LV_Group.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader6,
+            this.columnHeader7});
+            this.LV_Group.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.LV_Group.HideSelection = false;
+            this.LV_Group.Location = new System.Drawing.Point(-81, -72);
+            this.LV_Group.Name = "LV_Group";
+            this.LV_Group.Size = new System.Drawing.Size(313, 169);
+            this.LV_Group.TabIndex = 28;
+            this.LV_Group.UseCompatibleStateImageBehavior = false;
+            this.LV_Group.View = System.Windows.Forms.View.Details;
+            this.LV_Group.Visible = false;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 180;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Width = 120;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Width = 0;
+            // 
+            // lvCity
+            // 
+            this.lvCity.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvCity.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvCity.HideSelection = false;
+            this.lvCity.Location = new System.Drawing.Point(125, 186);
+            this.lvCity.Name = "lvCity";
+            this.lvCity.Size = new System.Drawing.Size(313, 99);
+            this.lvCity.TabIndex = 62;
+            this.lvCity.UseCompatibleStateImageBehavior = false;
+            this.lvCity.View = System.Windows.Forms.View.Details;
+            this.lvCity.Visible = false;
+            this.lvCity.DoubleClick += new System.EventHandler(this.LvCity_DoubleClick);
+            this.lvCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvCity_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
+            // 
+            // clmContsno
+            // 
+            this.clmContsno.FillWeight = 50F;
+            this.clmContsno.HeaderText = "S.No.";
+            this.clmContsno.Name = "clmContsno";
+            this.clmContsno.ReadOnly = true;
+            this.clmContsno.Width = 50;
+            // 
+            // clmName
+            // 
+            this.clmName.HeaderText = "Name";
+            this.clmName.Name = "clmName";
+            this.clmName.ReadOnly = true;
+            // 
+            // clmTransaction
+            // 
+            this.clmTransaction.HeaderText = "Transaction Type";
+            this.clmTransaction.Name = "clmTransaction";
+            this.clmTransaction.ReadOnly = true;
+            this.clmTransaction.Width = 125;
+            // 
+            // clmmobile
+            // 
+            this.clmmobile.HeaderText = "Mobile No.";
+            this.clmmobile.Name = "clmmobile";
+            this.clmmobile.ReadOnly = true;
+            // 
+            // clmWhatsAppNo
+            // 
+            this.clmWhatsAppNo.HeaderText = "WhatsApp";
+            this.clmWhatsAppNo.Name = "clmWhatsAppNo";
+            this.clmWhatsAppNo.ReadOnly = true;
+            this.clmWhatsAppNo.Width = 70;
+            // 
+            // clmPrimary
+            // 
+            this.clmPrimary.HeaderText = "Primary";
+            this.clmPrimary.Name = "clmPrimary";
+            this.clmPrimary.ReadOnly = true;
+            this.clmPrimary.Width = 50;
+            // 
+            // clmOperator
+            // 
+            this.clmOperator.HeaderText = "Operator";
+            this.clmOperator.Name = "clmOperator";
+            this.clmOperator.ReadOnly = true;
+            // 
+            // clmMobileBrand
+            // 
+            this.clmMobileBrand.HeaderText = "Mobile Brand";
+            this.clmMobileBrand.Name = "clmMobileBrand";
+            this.clmMobileBrand.ReadOnly = true;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.exclude;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // clmid
+            // 
+            this.clmid.HeaderText = "id";
+            this.clmid.Name = "clmid";
+            this.clmid.ReadOnly = true;
+            this.clmid.Visible = false;
+            // 
             // CP_Company
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1404,6 +1502,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Company";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Company_FormClosing);
+            this.Load += new System.EventHandler(this.CP_Company_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Company_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Company_Leave);
             this.tsBrandList.ResumeLayout(false);
@@ -1411,6 +1510,7 @@
             this.pnlCompany.ResumeLayout(false);
             this.tcCompanyDetails.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             this.pnlStatus.ResumeLayout(false);
@@ -1437,7 +1537,6 @@
         private System.Windows.Forms.TabControl tcCompanyDetails;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox grbform;
-        private System.Windows.Forms.ListView lvCity;
         private System.Windows.Forms.Panel pnlStatus;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
@@ -1452,13 +1551,6 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox txtbranchname;
         public System.Windows.Forms.DataGridView grdBankDetails;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmbankname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmbranch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmaccno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmifscode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.TextBox txtIFScode;
         private System.Windows.Forms.TextBox textBox17;
@@ -1507,19 +1599,9 @@
         private System.Windows.Forms.TextBox txtMobilenumber;
         private System.Windows.Forms.ComboBox cmbTransactionType;
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.Button btnSaveContact;
         private System.Windows.Forms.Button btnCloseContact;
         private System.Windows.Forms.TextBox txtMobileBrand;
         private System.Windows.Forms.TextBox txtOperator;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPrimary;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmWhatsAppNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmOperator;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmMobileBrand;
-        private System.Windows.Forms.DataGridViewButtonColumn clmRemove;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblTransactionType;
         private System.Windows.Forms.Label lblMobileNo;
@@ -1530,5 +1612,33 @@
         private System.Windows.Forms.ErrorProvider epCompany;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnAddContact;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmbankname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBankShortName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmbranch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmaccno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmifscode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewImageColumn clmremovebank;
+        public System.Windows.Forms.Button btnSaveContact;
+        private System.Windows.Forms.Label lblcityid;
+        public System.Windows.Forms.ListView lvCity;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        public System.Windows.Forms.ListView LV_Group;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmContsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTransaction;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmmobile;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmWhatsAppNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPrimary;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmOperator;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMobileBrand;
+        private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmid;
     }
 }
