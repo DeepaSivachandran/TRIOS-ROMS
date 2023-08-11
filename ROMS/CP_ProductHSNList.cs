@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
+    // Sivabharathi    Create date: 09/08/2023   
     public partial class CP_ProductHSNList : Form
     {
         DataValidation objValidation = new DataValidation();
@@ -32,7 +33,7 @@ namespace ROMS
                 objError.WriteFile(ex); 
             }
         }
-        private void tsbEdit_Click(object sender, EventArgs e)
+        public void udfnEdit()
         {
             try
             {
@@ -42,10 +43,22 @@ namespace ROMS
                     MainForm.objCP_ProductHSN.btnSave.Text = "Update";
                     MainForm.objCP_ProductHSN.varId = Convert.ToInt32(grdHSNList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_ProductHSN.varHsnname = Convert.ToString(grdHSNList.SelectedRows[0].Cells["HSN Name"].Value);
-                    MainForm.objCP_ProductHSN.varHsnCode = Convert.ToString(grdHSNList.SelectedRows[0].Cells["HSN Code"].Value); 
+                    MainForm.objCP_ProductHSN.varHsnCode = Convert.ToString(grdHSNList.SelectedRows[0].Cells["HSN Code"].Value);
                     MainForm.objCP_ProductHSN.varGstId = Convert.ToInt32(grdHSNList.SelectedRows[0].Cells["GST ID"].Value);
                     MainForm.objCP_ProductHSN.ShowDialog();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void tsbEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEdit();
             }
             catch (Exception ex)
             {
@@ -76,7 +89,6 @@ namespace ROMS
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -317,6 +329,7 @@ namespace ROMS
             try
             {
                 udfnList();
+                grdHSNList.ClearSelection();
             }
             catch (Exception ex)
             {

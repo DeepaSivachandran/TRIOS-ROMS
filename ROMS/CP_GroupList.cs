@@ -62,26 +62,19 @@ namespace ROMS
             }
         }
        
- 
-
         public void udfnList()
         {
             try
-            { 
+            {
+                //picLoader.Visible = true;
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdGroupList.DataSource = null; 
+                grdGroupList.DataSource = null;
+                DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
-
-                if (cmbGroupType.Text == "")
-                {
-                    cmbGroupType.SelectedValue = 0;
-                }
-
                 SPDataService objdserv = new SPDataService();
-            //    objDs = objdserv.udfnSPGroupList("List", "0",cmbGroupType.SelectedValue.ToString(), MainForm.pbUserID, MainForm.pbIpAddress);
+                objDs = objdserv.udfnGroupList(0, Convert.ToInt32(cmbProductGroup.SelectedValue));
                 objdserv.CloseConnection();
-                objDtExcel = objDs.Tables[0].Copy();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -92,20 +85,18 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdGroupList.DataSource = objDs.Tables[0];
-                            grdGroupList.Columns["SI.No."].Width = 60;
-                            grdGroupList.Columns["Group Type"].Width = 200;
-                            grdGroupList.Columns["Group Name in Tamil"].Width = 350;
-                            grdGroupList.Columns["Group Name in English"].Width = 350;
-                            grdGroupList.Columns["Total No.of RM"].Width = 100;
-                            grdGroupList.Columns["Total No.of FG"].Width = 100; 
-                            //grdGroupList.Columns["Label Name in English"].Width = 220;
-                            //grdGroupList.Columns["Label Name in Tamil"].Width = 220;
-                            grdGroupList.Columns["Group Order"].Width = 100;                           
-                            grdGroupList.Columns["Group Order"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGroupList.Columns["SI.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdGroupList.Columns["Total No.of RM"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGroupList.Columns["Total No.of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGroupList.Columns["GroupCode"].Visible = false;
+                            grdGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGroupList.Columns["Total Sub Groups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGroupList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                           
+                            grdGroupList.Columns["S.No."].Width = 50;
+                            grdGroupList.Columns["Product Group Name in English"].Width = 200;
+                            grdGroupList.Columns["Product Group Name in Tamil"].Width = 200;
+                            grdGroupList.Columns["Total Sub Groups"].Width = 200;
+                            grdGroupList.Columns["Total Products"].Width = 100;
+                            grdGroupList.Columns["Status"].Width = 80;
+                            grdGroupList.Columns["ID"].Visible = false;
+                            grdGroupList.Columns["Status ID"].Visible = false;
                         }
                         else
                         {
@@ -124,6 +115,7 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
+               // udfnSearchGridHead();
             }
             catch (Exception ex)
             {
@@ -137,18 +129,50 @@ namespace ROMS
         }
 
         public void udfndelete()
-        { 
+        {
+            try
+            {
+                if (grdGroupList.SelectedRows.Count > 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        SPDataService objDser = new SPDataService();
+                        string varResult = objDser.udfnGroup(2, Convert.ToInt16(grdGroupList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", 0, "Deletion");
+                        objDser.CloseConnection();
+                        if (varResult.Split('~')[0] == "3")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            udfnList();
+                        }
+                        else if (varResult.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void udfnEdit()
         {
-
             try
             {
-                MainForm.objCP_Group = new CP_Group();
-                MainForm.objCP_Group.btnSave.Text = "Update";
-                MainForm.objCP_Group.ShowDialog();
+                if(grdGroupList.SelectedRows.Count != 0)
+                {
+                    MainForm.objCP_Group = new CP_Group();
+                    MainForm.objCP_Group.btnSave.Text = "Update";
+                    MainForm.objCP_Group.varId = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_Group.varGroupNameinEnglish = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Product Group Name in English"].Value);
+                    MainForm.objCP_Group.varGroupNameinTamil = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Product Group Name in Tamil"].Value);
+                    MainForm.objCP_Group.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -156,11 +180,8 @@ namespace ROMS
                 objError.WriteFile(ex);
 
             }
-           
-
         }
           
-
         private void CmbGroupType_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -207,9 +228,7 @@ namespace ROMS
         {
             try
             {
-               
-                    btnView.BackColor = Color.White;
-                
+                btnView.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -222,9 +241,7 @@ namespace ROMS
         {
             try
             {
-               
-                    btnExport.BackColor = Color.White;
-             
+                btnExport.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -290,7 +307,162 @@ namespace ROMS
 
         private void CP_GroupList_Load(object sender, EventArgs e)
         {
+            try
+            {
+                udfnLoadCmbProductGroup();
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void GrdGroupList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdGroupList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdGroupList.Rows[i].Cells["Status ID"].Value) == "1")
+                    {
+                        grdGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdGroupList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        grdGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdGroupList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdGroupList_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdGroupList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfndelete();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbProductGroup_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductGroup.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+        private void CmbProductGroup_Leave(object sender, EventArgs e)
+        {
+            if (Convert.ToString(cmbProductGroup.SelectedValue) == "0" || Convert.ToString(cmbProductGroup.SelectedValue) == "-1")
+            {
+                cmbProductGroup.BackColor = Color.White;
+            }
+        }
+
+        private void CmbProductGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbProductGroup.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbProductGroup_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbProductGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnLoadCmbProductGroup()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_ProductGroup", " PRGID  not in (-1) ORDER BY PRG_EName", "PRG_EName,PRGID", cmbProductGroup, "", "PRG_EName", "PRGID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

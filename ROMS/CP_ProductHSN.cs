@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
+    // Sivabharathi    Create date: 09/08/2023    
     public partial class CP_ProductHSN : Form
     {
         DataValidation objvalidation = new DataValidation();
@@ -54,7 +55,7 @@ namespace ROMS
         {
             try
             {
-                udfnLoadGst();
+                udfnLoadCmbGst();
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -62,7 +63,6 @@ namespace ROMS
                 }
                 else
                 {
-                    
                     pnlStatus.Enabled = true;
                     udfnEdit();
                 }
@@ -113,7 +113,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
 
         private void btnClose_Leave(object sender, EventArgs e)
         {
@@ -246,7 +245,7 @@ namespace ROMS
             }
         }
 
-        public void udfnLoadGst()
+        public void udfnLoadCmbGst()
         {
             try
             {
@@ -369,7 +368,7 @@ namespace ROMS
         {
             try
             {
-                int varStatusid = 1;
+               int varStatusid = 1;
                if(rbActive.Checked)
                {
                     varStatusid = 1;

@@ -21,6 +21,13 @@ namespace ROMS
       
         public string vargroupcode;
         public String pbFormStatus;
+
+        public int varCloseFlag = 0;
+        public string varGroupNameinTamil = "";
+        public string varGroupNameinEnglish = "";
+        public string varHsnCode = "";
+        public int varId = 0;
+
         public CP_Group()
         {
             InitializeComponent();
@@ -43,9 +50,7 @@ namespace ROMS
         {
             try
             {
-                
-                    this.Close();
-              
+                 this.Close();
             }
             catch (Exception ex)
             {
@@ -57,7 +62,23 @@ namespace ROMS
 
         private void CP_Group_KeyDown(object sender, KeyEventArgs e)
         {
-
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    btnSave.Focus();
+                    BtnSave_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
 
@@ -119,7 +140,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbInActive.Focus();
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -149,14 +170,17 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varCloseFlag == 0)
                 {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -267,7 +291,7 @@ namespace ROMS
                 else
                 {
                     epGroup.Clear();
-                    tpGroupNameinTamil.BackColor = Color.White;
+                    txtEGroupNameTamil.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -277,11 +301,79 @@ namespace ROMS
             }
 
         }
+        public void udfnClear()
+        {
+            try
+            {
+                txtEGroupNameEnglish.Text = "";
+                txtEGroupNameTamil.Text = "";
+                txtEGroupNameEnglish.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnEdit()
+        {
+            try
+            {
+                txtEGroupNameEnglish.Text = varGroupNameinEnglish;
+                txtEGroupNameTamil.Text = varGroupNameinTamil;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnSave(object sender, EventArgs e)
         {
             try
             {
-
+                int varStatusid = 1;
+                if (rbActive.Checked)
+                {
+                    varStatusid = 1;
+                }
+                else
+                {
+                    varStatusid = 2;
+                }
+                if (btnSave.Text == "Save")
+                {
+                    SPDataService objDser = new SPDataService();
+                    string varResult = objDser.udfnGroup(0, 0,Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Creation");
+                    objDser.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnClear();
+                        MainForm.objCP_GroupList.udfnList();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                if (btnSave.Text == "Update")
+                {
+                    SPDataService objDser = new SPDataService();
+                    string varResult = objDser.udfnGroup(1,varId , Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Updation");
+                    objDser.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varCloseFlag = 1;
+                        udfnclose();
+                        MainForm.objCP_GroupList.udfnList();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -397,10 +489,11 @@ namespace ROMS
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
+                      varCloseFlag = 0;
                 }
                 else
                 {
-                    pnlStatus.Enabled = true;
+                    pnlStatus.Enabled = true; udfnEdit();
                 }
             }
             catch (Exception ex)
@@ -413,7 +506,6 @@ namespace ROMS
 
         private void RbActive_Enter(object sender, EventArgs e)
         {
-
             try
             {
                 rbActive.BackColor = Color.LemonChiffon;
@@ -464,7 +556,5 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-      
     }
 }
