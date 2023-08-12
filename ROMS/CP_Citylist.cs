@@ -31,7 +31,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -39,15 +38,14 @@ namespace ROMS
             try
             {
                 udfnEdit();
-                //MainForm.objCP_City = new CP_City();
-                //MainForm.objCP_City.btnSave.Text = "Update";
-                //MainForm.objCP_City.ShowDialog();
+                MainForm.objCP_City = new CP_City();
+                MainForm.objCP_City.btnSave.Text = "Update";
+                MainForm.objCP_City.ShowDialog();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
         }
         private void tsbDelete_Click(object sender, EventArgs e)
@@ -62,24 +60,39 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-      
-
         public void udfndelete()
         {
             try
-            { 
-                MessageBox.Show("Do you want to delete  ?", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+            {
+                if (grdCityList.SelectedRows.Count > 0)
+                {
+                    string varResult = "";
+                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+
+                        SPDataService objspservice = new SPDataService();
+                        varResult = "";
+                        varResult = objspservice.udfnCity(2, Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete");
+
+                        if (varResult.Split('~')[0] == "3")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            udfnList();
+                        }
+                        else
+                        {
+                            MessageBox.Show(varResult, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void udfnEdit()
         {
             try
@@ -89,9 +102,10 @@ namespace ROMS
                     MainForm.objCP_City = new CP_City();
                     MainForm.objCP_City.btnSave.Text = "Update";
                     MainForm.objCP_City.varCityCode = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_City.PbStateId = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["State Name"].Value);
+                    MainForm.objCP_City.PbStateId = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["StateId"].Value);
+                    MainForm.objCP_City.PbStateName = Convert.ToString(grdCityList.SelectedRows[0].Cells["State Name"].Value);
                     MainForm.objCP_City.PbCityName = Convert.ToString(grdCityList.SelectedRows[0].Cells["City Name"].Value);
-                    MainForm.objCP_City.PbStatus = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["Status"].Value);
+                    MainForm.objCP_City.PbStatus = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objCP_City.ShowDialog();
                 }
             }
@@ -107,7 +121,7 @@ namespace ROMS
             {
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objspservice.udfnCityList(0);
+                objDs = objspservice.udfnCityList(0,"",0);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -118,7 +132,6 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdCityList.DataSource = objDs.Tables[0];
-
                             grdCityList.Columns["ID"].Visible = false;
                             grdCityList.Columns["StateId"].Visible = false;
                             grdCityList.Columns["StatusID"].Visible = false;
@@ -154,7 +167,6 @@ namespace ROMS
                 picLoader.Visible = false;
             }
         }
-
         private void udfnSearchGridHead()
         {
             try
@@ -174,7 +186,7 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
-                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
+                DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -202,8 +214,7 @@ namespace ROMS
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        }
-     
+        }    
         private void CP_Citylist_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -236,7 +247,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_Citylist_Load(object sender, EventArgs e)
         {
             try
@@ -249,7 +259,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdCityList_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -262,7 +271,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdCityList_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -270,7 +278,6 @@ namespace ROMS
                 udfnEdit();
             }
         }
-
         private void GrdCityList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             for (int i = 0; i < grdCityList.Rows.Count; i++)
@@ -287,12 +294,10 @@ namespace ROMS
                 }
             }
         }
-
         private void GrdCityList_SelectionChanged(object sender, EventArgs e)
         {
             udfnSearchGridHead();
         }
-
         private void GrdCityList_Scroll(object sender, ScrollEventArgs e)
         {
             try
@@ -315,7 +320,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void udfnscrollVisible(DataGridView DGV, DataGridView grdCityList)
         {
             try
@@ -346,7 +350,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -359,7 +362,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void udfnGridSearchFilter()
         {
             try
@@ -389,7 +391,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
@@ -427,7 +428,36 @@ namespace ROMS
         }
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
-
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdCityList.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdCityList.Width > grdCityList.HorizontalScrollingOffset && grdCityList.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CP_Citylist_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

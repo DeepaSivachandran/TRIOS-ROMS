@@ -167,18 +167,6 @@ namespace ROMS
                 picLoader.Visible = false;
             }
         }
-        public void grdBrandList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try

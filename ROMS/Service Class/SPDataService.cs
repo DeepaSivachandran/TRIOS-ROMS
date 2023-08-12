@@ -198,7 +198,7 @@ namespace ROMS
                 tmpspcall = new SPCall();
                 SqlCommand varSqlCommand = new SqlCommand("[TRNS_City]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@viewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCityId", paraCityId);
                 varSqlCommand.Parameters.AddWithValue("@paraStateId", paraStateId);
                 varSqlCommand.Parameters.AddWithValue("@paraCityName", paraCityName);
@@ -220,7 +220,8 @@ namespace ROMS
             }
             return varResult;
         }
-        public DataSet udfnCityList(int paraviewType)
+        //Created By :-Sathish ; Created On :-11/08/2023
+        public DataSet udfnCityList(int paraviewType,string paraCityName,int paraStateId)
         {
             DataSet ds = new DataSet();
             try
@@ -228,7 +229,9 @@ namespace ROMS
                 tmpspcall = new SPCall();
                 SqlCommand varSqlCommand = new SqlCommand("[TRNG_City]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@viewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraCityName", paraCityName);
+                varSqlCommand.Parameters.AddWithValue("@paraStateId", paraStateId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

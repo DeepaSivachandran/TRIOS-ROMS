@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
+    //Created By:-Sathish ; Created On:-11-08-2023
     public partial class CP_City : Form
     {
         DataValidation objValidation = new DataValidation();
@@ -18,10 +19,12 @@ namespace ROMS
         private ToolTip tpState = new ToolTip();
         public string varbrandcode;
         public int varstatus;
-        public string PbCityName;
+        public string PbCityName="";
         public int varCityCode= 0;
-        public int PbStateId;
-        public int PbStatus;
+        public string PbStateName="";
+        public int PbStateId=0;
+        public int PbStatus=0;
+        public int varUpdate = 0;
         public CP_City()
         {
             InitializeComponent();
@@ -43,7 +46,6 @@ namespace ROMS
         {
             try
             {
-                //BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID in (1) and STID !=0 Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind = null;
@@ -93,13 +95,15 @@ namespace ROMS
                 else
                 {
                     varResult = objspservice.udfnCity(1,varCityCode,Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, "City Updation");
-                    this.Close();
+                    //this.Close();
+                    varUpdate = 1;
+                    udfnclose();
                 }
                 if (varResult.Split('~')[0] == "3")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     udfnclear();
-                    MainForm.objCP_Unitlist.udfnList();
+                    MainForm.objCP_Citylist.udfnList();
                 }
                 else
                 {
@@ -121,7 +125,6 @@ namespace ROMS
                 cmbState.SelectedIndex = 0;
                 btnSave.Text = "Save";
                 cmbState.Focus();
-                //txtCityName.Focus();
                 this.ActiveControl = cmbState;
             }
             catch (Exception ex)
@@ -436,14 +439,17 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varUpdate == 0)
                 {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
             catch (Exception ex)
