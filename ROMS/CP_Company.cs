@@ -44,7 +44,7 @@ namespace ROMS
         private ToolTip tpBranchName = new ToolTip();
         private ToolTip tpAccountNo = new ToolTip();
         private ToolTip tpIfsCode = new ToolTip();
-
+        public string varupdate = "0";
         public string varcompanyid="0";
         public CP_Company()
         {
@@ -1590,7 +1590,7 @@ namespace ROMS
         {
             try
             {
-                if (btnSave.Text!="Update" || btnSaveContact.Text != "Update")
+                if (varupdate == "0")
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
@@ -1847,23 +1847,42 @@ namespace ROMS
                     objContactTable.Columns.Add("CMCON_Operator", typeof(string));
                     objContactTable.Columns.Add("CMCON_MobileBrand", typeof(string));
                     objContactTable.Columns.Add("CMCON_Primary", typeof(int));
-                    objContactTable.Columns.Add("CMCON_WhatsAppEnabled", typeof(int)); 
+                    objContactTable.Columns.Add("CMCON_WhatsAppEnabled", typeof(int));
+
+                    int cityid = 0;string varpincode="";
+                    if (lblcityid.Text=="")
+                    {
+                        cityid = 0;
+                    }
+                    else
+                    {
+                        cityid = Convert.ToInt32(lblcityid.Text);
+                    }
+                    if (txtPincode.Text == "")
+                    {
+                        varpincode = "";
+                    }
+                    else
+                    {
+                        varpincode = txtPincode.Text;
+                    }
 
                     objBankTable = udfnBankSave();
                     if (btnSave.Text == "Save")
                     {
-                    result = objspdservice.udfnCompanyMaster(0, 0, txtCompanyName.Text, txtShortName.Text, txtAddressLine1.Text, txtAddressLine2.Text, Convert.ToInt32(lblcityid.Text)
-                    , Convert.ToInt32(txtPincode.Text), txtPhoneNo.Text, txtAlterPhoneno.Text, txtwhatsappNo.Text, txtmobileNo.Text, txtAlterMobileno.Text, txtEmail.Text, txtwebsite.Text
+                    result = objspdservice.udfnCompanyMaster(0, 0, txtCompanyName.Text, txtShortName.Text, txtAddressLine1.Text, txtAddressLine2.Text, cityid
+                    , varpincode, txtPhoneNo.Text, txtAlterPhoneno.Text, txtwhatsappNo.Text, txtmobileNo.Text, txtAlterMobileno.Text, txtEmail.Text, txtwebsite.Text
                     , txtGSTTIN.Text, txtPan.Text, txtESI.Text, txtEPF.Text, txtFSSAI.Text, txtPlno.Text, Convert.ToString(cmbState.SelectedValue), "1",
                     MainForm.pbUserID, MainForm.pbIpAddress, "Company Create",objBankTable, objContactTable);  
                     }
                     else
                     {
-                    result = objspdservice.udfnCompanyMaster(1, Convert.ToInt32(varcompanyid), txtCompanyName.Text, txtShortName.Text, txtAddressLine1.Text, txtAddressLine2.Text, Convert.ToInt32(lblcityid.Text)
-                    , Convert.ToInt32(txtPincode.Text), txtPhoneNo.Text, txtAlterPhoneno.Text, txtwhatsappNo.Text, txtmobileNo.Text, txtAlterMobileno.Text, txtEmail.Text, txtwebsite.Text
+                    result = objspdservice.udfnCompanyMaster(1, Convert.ToInt32(varcompanyid), txtCompanyName.Text, txtShortName.Text, txtAddressLine1.Text, txtAddressLine2.Text, cityid
+                    , varpincode, txtPhoneNo.Text, txtAlterPhoneno.Text, txtwhatsappNo.Text, txtmobileNo.Text, txtAlterMobileno.Text, txtEmail.Text, txtwebsite.Text
                     , txtGSTTIN.Text, txtPan.Text, txtESI.Text, txtEPF.Text, txtFSSAI.Text, txtPlno.Text, Convert.ToString(cmbState.SelectedValue), varStatus,
                     MainForm.pbUserID, MainForm.pbIpAddress, "Company Update", objBankTable, objContactTable);
-                    this.Close();
+                        varupdate = "1";
+                        udfnclose();
                     }
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -2610,7 +2629,7 @@ namespace ROMS
         {
             try {
                 txtName.Text = "";
-                cmbTransactionType.SelectedValue = 0;
+                cmbTransactionType.SelectedValue = -1;
                 txtMobilenumber.Text = "";
                 txtOperator.Text = "";
                 txtMobileBrand.Text = "";
@@ -2707,11 +2726,11 @@ namespace ROMS
                 }
                 if (btnSave.Text == "Save")
                 {
-                    result = objspdservice.udfnCompanyMaster(3, Convert.ToInt32(varcompanyid), "", "", "", "", 0, 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Create", objBankTable, objContactTable);
+                    result = objspdservice.udfnCompanyMaster(3, Convert.ToInt32(varcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Create", objBankTable, objContactTable);
                 }
                 else
                 {
-                    result = objspdservice.udfnCompanyMaster(4, Convert.ToInt32(varcompanyid), "", "", "", "", 0, 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Update", objBankTable, objContactTable);
+                    result = objspdservice.udfnCompanyMaster(4, Convert.ToInt32(varcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Update", objBankTable, objContactTable);
                     this.Close();
                 }
                 string[] varvalue = result.Split('~');
@@ -2949,10 +2968,11 @@ namespace ROMS
             try
             { 
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1  ORDER BY ST_Name", "ST_Name,ST_TIN", cmbState, "", "ST_Name", "ST_TIN");
+                objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,1) AND MSTID !=0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbTransactionType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
-                udfnEdit();
+                udfnEdit(); 
+
             }
             catch (Exception ex)
             {
@@ -3007,7 +3027,6 @@ namespace ROMS
                     DataSet objDS;
                     objDS = objspservice.udfnCompanyList(1, Convert.ToInt32(varcompanyid), MainForm.pbUserID, MainForm.pbIpAddress);
                     objspservice.CloseConnection();
-
                     if (objDS != null)
                     {
                         if (objDS.Tables[0].Rows.Count > 0)
@@ -3020,7 +3039,7 @@ namespace ROMS
                             txtGSTTIN.Text = objDS.Tables[0].Rows[0]["GSTIN"].ToString().Replace("''", "'");
                             txtPan.Text = objDS.Tables[0].Rows[0]["Pan"].ToString().Replace("''", "'");
                             txtAddressLine1.Text = objDS.Tables[0].Rows[0]["Address1"].ToString().Replace("''", "'");
-                            txtAddressLine2.Text = objDS.Tables[0].Rows[0]["Address2"].ToString().Replace("''", "'"); 
+                            txtAddressLine2.Text = objDS.Tables[0].Rows[0]["Address2"].ToString().Replace("''", "'");
                             cmbState.Text = objDS.Tables[0].Rows[0]["State"].ToString();
                             txtPincode.Text = objDS.Tables[0].Rows[0]["Pincode"].ToString();
                             txtmobileNo.Text = objDS.Tables[0].Rows[0]["Mobile"].ToString();
@@ -3029,10 +3048,11 @@ namespace ROMS
                             txtESI.Text = objDS.Tables[0].Rows[0]["ESI"].ToString().Replace("''", "'");
                             txtEPF.Text = objDS.Tables[0].Rows[0]["EPF"].ToString().Replace("''", "'");
                             txtFSSAI.Text = objDS.Tables[0].Rows[0]["FSSAI"].ToString().Replace("''", "'");
-                            txtPlno.Text = objDS.Tables[0].Rows[0]["PLNO"].ToString().Replace("''", "'"); 
+                            txtPlno.Text = objDS.Tables[0].Rows[0]["PLNO"].ToString().Replace("''", "'");
                             txtAlterMobileno.Text = objDS.Tables[0].Rows[0]["MobileAlt"].ToString();
-                            txtAlterPhoneno.Text = objDS.Tables[0].Rows[0]["PhoneAlt"].ToString(); 
+                            txtAlterPhoneno.Text = objDS.Tables[0].Rows[0]["PhoneAlt"].ToString();
                             btnSave.Text = "Update";
+                            pnlStatus.Enabled = true;
                         }
                         if (objDS.Tables[1].Rows.Count > 0)
                         {
@@ -3042,9 +3062,23 @@ namespace ROMS
                                 Convert.ToString(objDS.Tables[1].Rows[0]["MOBILE"]), Convert.ToString(objDS.Tables[1].Rows[0]["WHATSAPP"]), Convert.ToString(objDS.Tables[1].Rows[0]["PRIMAY"])
                                 , Convert.ToString(objDS.Tables[1].Rows[0]["OPERATOR"]), Convert.ToString(objDS.Tables[1].Rows[0]["BRAND"]), Convert.ToString(objDS.Tables[1].Rows[0]["id"]));
                                 btnSaveContact.Text = "Update"; ;
+                                pnlStatus.Enabled = true;
                             }
-                            
+
                         }
+                        if (objDS.Tables[2].Rows.Count > 0)
+                        {
+                            for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
+                            {
+                                grdBankDetails.Rows.Add(Convert.ToString(objDS.Tables[2].Rows[0]["S.No."]), Convert.ToString(objDS.Tables[2].Rows[0]["NAME"]), Convert.ToString(objDS.Tables[2].Rows[0]["SHORTNAME"]),
+                                Convert.ToString(objDS.Tables[2].Rows[0]["BRANCH"]), Convert.ToString(objDS.Tables[2].Rows[0]["ACCOUNT"]), Convert.ToString(objDS.Tables[2].Rows[0]["IFSC"])
+                                , Convert.ToString(objDS.Tables[2].Rows[0]["STATUS"]),  Convert.ToString(objDS.Tables[2].Rows[0]["sts"]));
+                                
+                            }
+
+
+                        }
+
                     }
                     lvCity.Visible = false;
                 }
@@ -3112,15 +3146,10 @@ namespace ROMS
         {
             try
             {
-                if (txtCity.Text != "")
-                {
-                    txtCity.Text = lvCity.SelectedItems[0].SubItems[0].Text;
-                    lvCity.Visible = false;
-                    DataService objDataService = new DataService();
-                    lblcityid.Text = lvCity.SelectedItems[0].SubItems[2].Text;
-                    objDataService.CloseConnection();
-                }
-                txtPincode.Focus();
+               
+                    udfnGrdevent();
+                    txtPincode.Focus();
+                
             }
             catch (Exception ex)
             {
@@ -3131,19 +3160,11 @@ namespace ROMS
 
         private void LvCity_KeyDown(object sender, KeyEventArgs e)
         {
-
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (txtCity.Text != "")
-                    {
-                        txtCity.Text = lvCity.SelectedItems[0].SubItems[0].Text;
-                        lvCity.Visible = false;
-                        DataService objDataService = new DataService();
-                        lblcityid.Text = lvCity.SelectedItems[0].SubItems[2].Text;
-                        objDataService.CloseConnection();
-                    }
+                    udfnGrdevent();
                     txtPincode.Focus();
                 }
             }
@@ -3153,6 +3174,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
+        }
+        public void udfnGrdevent()
+        {
+            try
+            {
+                    if (txtCity.Text != "")
+                    {
+                        txtCity.Text = lvCity.SelectedItems[0].SubItems[0].Text;
+                        lvCity.Visible = false;
+                        DataService objDataService = new DataService();
+                        lblcityid.Text = lvCity.SelectedItems[0].SubItems[2].Text;
+                        objDataService.CloseConnection();
+                    }
+                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtMobilenumber_KeyPress(object sender, KeyPressEventArgs e)
@@ -3170,5 +3211,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        
     }
 }

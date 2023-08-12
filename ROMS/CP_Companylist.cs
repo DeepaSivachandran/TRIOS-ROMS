@@ -96,7 +96,7 @@ namespace ROMS
                         objBankTable.Columns.Add("CMBNK_IFSC", typeof(string));
                         objBankTable.Columns.Add("CMBNK_STSID", typeof(string));
 
-                        result = objspdservice.udfnCompanyMaster(2, Convert.ToInt32(grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", "","", 0, 0, "","","", "","", "","", "","","", "", "", "","","","","", "Company delete", objBankTable, objContactTable);
+                        result = objspdservice.udfnCompanyMaster(2, Convert.ToInt32(grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", "","", 0, "", "","","", "","", "","", "","","", "", "", "","","","","", "Company delete", objBankTable, objContactTable);
 
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")

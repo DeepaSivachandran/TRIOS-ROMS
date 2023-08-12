@@ -138,7 +138,7 @@ namespace ROMS
         //Company Master 
         //created by Venkat,Created on 09/08/2023
         public string udfnCompanyMaster(int ViewType, int paraCompanyId, string paraCompanyName, string paraShortName, string paraAddress1,
-            string paraAddress2, int paraCityId, int paraPincode, string paraPhoneNumber,string paraAltPhoneNumber, string paraWhatsappNumber, string paraMobileNumber,
+            string paraAddress2, int paraCityId, string paraPincode, string paraPhoneNumber,string paraAltPhoneNumber, string paraWhatsappNumber, string paraMobileNumber,
              string paraAltMobileNumber, string paraEmail, string paraWebsite, string paraGstin, string paraPan, string paraESI, string paraEPF,
               string paraFssai, string paraPlno, string paraStateId, string paraStatusId,string paraUserID, string paraIPAddress, string paraOriginator,DataTable ParaMR_Bank,DataTable ParaMR_Company_Contact)
         {
