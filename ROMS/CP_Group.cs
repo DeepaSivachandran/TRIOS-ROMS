@@ -81,20 +81,6 @@ namespace ROMS
             }
         }
 
-
-        private void txtEGroupNameEnglish_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtEGroupNameEnglish.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TxtEGroupNameEnglish_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -110,29 +96,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void txtEGroupNameEnglish_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtEGroupNameEnglish.Text == "")
-                {
-                    txtEGroupNameEnglish.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    epGroup.SetError(txtEGroupNameEnglish, "Please Enter Group Name in English");
-                }
-                else
-                {
-                    txtEGroupNameEnglish.BackColor = Color.White;
-                    epGroup.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
 
         private void RbActive_KeyDown(object sender, KeyEventArgs e)
         {
@@ -219,22 +182,6 @@ namespace ROMS
                 {
                     epGroup.Clear();
                     txtEGroupNameEnglish.BackColor = Color.White;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtEGroupNameEnglish_KeyDown_1(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtEGroupNameTamil.Focus();
                 }
             }
             catch (Exception ex)
@@ -351,6 +298,7 @@ namespace ROMS
                         MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         udfnClear();
                         MainForm.objCP_GroupList.udfnList();
+                        MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
@@ -503,7 +451,6 @@ namespace ROMS
             }
         }
 
-
         private void RbActive_Enter(object sender, EventArgs e)
         {
             try
@@ -519,7 +466,6 @@ namespace ROMS
 
         private void RbActive_Leave(object sender, EventArgs e)
         {
-
             try
             {
                 rbActive.BackColor = Color.White;

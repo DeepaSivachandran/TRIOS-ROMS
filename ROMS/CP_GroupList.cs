@@ -181,23 +181,7 @@ namespace ROMS
 
             }
         }
-          
-        private void CmbGroupType_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+       
         private void BtnView_Enter(object sender, EventArgs e)
         {
             try
@@ -256,7 +240,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnExport.Focus();
+                    BtnView_Click(sender, e);
                 }
             }
             catch (Exception ex)
@@ -300,15 +284,12 @@ namespace ROMS
 
         }
 
-        private void TsGroupList_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void CP_GroupList_Load(object sender, EventArgs e)
         {
             try
             {
+                BeginInvoke(new Action(() => cmbProductGroup.Select(int.MaxValue, 0)));
+                this.ActiveControl = cmbProductGroup;
                 udfnLoadCmbProductGroup();
                 udfnList();
             }
@@ -361,7 +342,7 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.Delete)
                 {
                     udfndelete();
                 }
@@ -463,6 +444,24 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void BtnExport_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                BtnExport_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
