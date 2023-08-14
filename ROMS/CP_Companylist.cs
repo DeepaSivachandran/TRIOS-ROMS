@@ -522,7 +522,10 @@ namespace ROMS
                 {
                     tsbDelete_Click(sender, e);
                 }
-
+                if ( (e.KeyCode == Keys.Delete))
+                {
+                    tsbDelete_Click(sender, e);
+                }
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm objMainForm = new MainForm();

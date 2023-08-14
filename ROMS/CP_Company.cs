@@ -72,7 +72,12 @@ namespace ROMS
                 {
                     udfnclose();
                 }
-               
+                if (e.KeyCode == Keys.F5)
+                {
+                    BtnSave_Click(sender, e); 
+                    BtnSaveContact_Click(sender, e);
+                }
+
             }
             catch (Exception ex)
             {
@@ -378,6 +383,7 @@ namespace ROMS
             {
                 bool blnErrorFlag = false;
                 int varflag = 0;
+
                 if (Convert.ToString(txtBankname.Text).Trim() == "")
                 {
                     epCompany.SetError(txtBankname, "Please enter bank name");
@@ -440,10 +446,12 @@ namespace ROMS
 
                         grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, txtBankname.Text, txtBankShortName.Text, txtbranchname.Text, txtAccno.Text, txtIFScode.Text, varstatusid);
                         udfnBankclear();
+                        txtBankname.Focus();
+                        grdBankDetails.ClearSelection();
                     }
                     else
                     {
-                        MessageBox.Show("Values already exists in the grid!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Bank details already exists!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                      
                 }
@@ -829,13 +837,20 @@ namespace ROMS
 
             try
             {
-                if (Convert.ToString(txtPhoneNo.Text).Trim() == "" && txtPhoneNo.TextLength !=10)
+                if (Convert.ToString(txtPhoneNo.Text).Trim() == "")
                 {
                     epCompany.SetError(txtPhoneNo, "Please enter phone number");
                     txtPhoneNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpPhoneNo.ShowAlways = true;
                     tpPhoneNo.Show("Please enter phone number", txtPhoneNo, 5000);
                 }
+                else if (txtPhoneNo.TextLength != 10)
+                {
+                    epCompany.SetError(txtPhoneNo, "Please enter valid phone number");
+                    txtPhoneNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPhoneNo.ShowAlways = true;
+                    tpPhoneNo.Show("Please enter valid phone number", txtPhoneNo, 5000);
+                } 
                 else
                 {
                     epCompany.Clear();
@@ -882,12 +897,19 @@ namespace ROMS
         {
             try
             {
-                if (txtAlterPhoneno.Text !="" && txtAlterPhoneno.TextLength != 10)
+                if (txtAlterPhoneno.Text !="" )
                 {
-                    epCompany.SetError(txtAlterPhoneno, "Invalid alter mobile no.");
+                    epCompany.SetError(txtAlterPhoneno, "please enter alter mobile no.");
                     txtAlterPhoneno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpPhoneNo.ShowAlways = true;
-                    tpPhoneNo.Show("Invalid alter mobile no.", txtAlterPhoneno, 5000);
+                    tpPhoneNo.Show("please enter  alter mobile no.", txtAlterPhoneno, 5000);
+                }
+                else if (txtAlterPhoneno.TextLength != 10)
+                {
+                    epCompany.SetError(txtAlterPhoneno, "please enter valid alter mobile no.");
+                    txtAlterPhoneno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPhoneNo.ShowAlways = true;
+                    tpPhoneNo.Show("please enter valid alter mobile no.", txtAlterPhoneno, 5000);
                 }
                 else
                 {
@@ -942,6 +964,15 @@ namespace ROMS
                     tpMobileNo.ShowAlways = true;
                     tpMobileNo.Show("Please enter mobile number", txtmobileNo, 5000);
                 }
+
+                else if (txtmobileNo.Text.Length != 10)
+                {
+                    epCompany.SetError(txtmobileNo, "Please enter valid mobile number");
+                    txtmobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpMobileNo.ShowAlways = true;
+                    tpMobileNo.Show("Please enter valid mobile number", txtmobileNo, 5000);
+                }
+
                 else
                 {
                     epCompany.Clear();
@@ -988,12 +1019,19 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtPincode.Text).Trim() == "" && txtPincode.TextLength != 7)
+                if (Convert.ToString(txtPincode.Text).Trim() == "")
                 {
                     epCompany.SetError(txtPincode, "Please enter pincode");
                     txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpPincode.ShowAlways = true;
                     tpPincode.Show("Please enter pincode", txtPincode, 5000);
+                }
+                else if( txtPincode.TextLength != 7)
+                {
+                    epCompany.SetError(txtPincode, "Please enter valid pincode");
+                    txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPincode.ShowAlways = true;
+                    tpPincode.Show("Please enter valid pincode", txtPincode, 5000);
                 }
                 else
                 {
@@ -1042,13 +1080,21 @@ namespace ROMS
             try
             {
 
-                if (txtAlterMobileno.Text != "" && txtAlterMobileno.TextLength != 10)
+                if (txtAlterMobileno.Text != "")
                 {
-                    epCompany.SetError(txtAlterMobileno, "Invalid alter mobile no.");
+                    epCompany.SetError(txtAlterMobileno, "please enter alter mobile no.");
                     txtAlterMobileno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpPhoneNo.ShowAlways = true;
-                    tpPhoneNo.Show("Invalid alter mobile no.", txtAlterMobileno, 5000);
+                    tpPhoneNo.Show("please enter alter mobile no.", txtAlterMobileno, 5000);
                 }
+                else if (txtAlterMobileno.TextLength != 10)
+                {
+                    epCompany.SetError(txtAlterMobileno, "please enter valid alter mobile no.");
+                    txtAlterMobileno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPhoneNo.ShowAlways = true;
+                    tpPhoneNo.Show("please enter valid alter mobile no.", txtAlterMobileno, 5000);
+                }
+                
                 else
                 {
                     epCompany.Clear();
@@ -1095,13 +1141,20 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtwhatsappNo.Text).Trim() == "" && txtwhatsappNo.TextLength != 10)
+                if (Convert.ToString(txtwhatsappNo.Text).Trim() == "" )
                 {
                     epCompany.SetError(txtwhatsappNo, "Please enter whatsapp number");
                     txtwhatsappNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpWhatsAppNo.ShowAlways = true;
                     tpWhatsAppNo.Show("Please enter whatsapp number", txtwhatsappNo, 5000);
                 }
+               else if (txtwhatsappNo.TextLength != 10)
+                {
+                    epCompany.SetError(txtwhatsappNo, "Please enter valid whatsapp number");
+                    txtwhatsappNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpWhatsAppNo.ShowAlways = true;
+                    tpWhatsAppNo.Show("Please enter valid whatsapp number", txtwhatsappNo, 5000);
+                } 
                 else
                 {
                     epCompany.Clear();
@@ -1148,13 +1201,21 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtEmail.Text).Trim() == "" || objValidation.FormatEMail(txtEmail.Text) == false)
+                if (Convert.ToString(txtEmail.Text).Trim() == "")
                 {
                     epCompany.SetError(txtEmail, "Please enter email");
                     txtEmail.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpEmail.ShowAlways = true;
                     tpEmail.Show("Please enter email", txtEmail, 5000);
                 }
+                else if (objValidation.FormatEMail(txtEmail.Text) == false)
+                {
+                    epCompany.SetError(txtEmail, "Please enter valid email");
+                    txtEmail.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpEmail.ShowAlways = true;
+                    tpEmail.Show("Please enter valid email", txtEmail, 5000); 
+                }
+
                 else
                 {
                     epCompany.Clear();
@@ -1201,13 +1262,21 @@ namespace ROMS
         {
             try
             { 
-                if (Convert.ToString(txtwebsite.Text).Trim() == "" || !objValidation.IsValidUrl(txtwebsite.Text))
+                if (Convert.ToString(txtwebsite.Text).Trim() == "" )
                 {
                     epCompany.SetError(txtwebsite, "Please enter website");
                     txtwebsite.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpWebsite.ShowAlways = true;
                     tpWebsite.Show("Please enter website", txtwebsite, 5000);
                 }
+                else if (!objValidation.IsValidUrl(txtwebsite.Text))
+                {
+                    epCompany.SetError(txtwebsite, "Please enter valid website");
+                    txtwebsite.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpWebsite.ShowAlways = true;
+                    tpWebsite.Show("Please enter valid website", txtwebsite, 5000);
+                }
+                
                 else
                 {
                     epCompany.Clear();
@@ -1254,13 +1323,20 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtGSTTIN.Text).Trim() == "" || txtGSTTIN.Text.Length != 15)
+                if (Convert.ToString(txtGSTTIN.Text).Trim() == "")
                 {
                     epCompany.SetError(txtGSTTIN, "Please enter GSTTIN");
                     txtGSTTIN.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpGstin.ShowAlways = true;
                     tpGstin.Show("Please enter GSTTIN", txtGSTTIN, 5000);
                 }
+               else if (txtGSTTIN.Text.Length != 15)
+                {
+                    epCompany.SetError(txtGSTTIN, "Please enter valid GSTTIN");
+                    txtGSTTIN.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpGstin.ShowAlways = true;
+                    tpGstin.Show("Please enter valid GSTTIN", txtGSTTIN, 5000);
+                } 
                 else
                 {
                     epCompany.Clear();
@@ -1307,13 +1383,20 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtPan.Text).Trim() == "" || txtPan.Text.Length !=10)
+                if (Convert.ToString(txtPan.Text).Trim() == "" )
                 {
                     epCompany.SetError(txtPan, "Please enter PAN");
                     txtPan.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpPan.ShowAlways = true;
                     tpPan.Show("Please enter PAN", txtPan, 5000);
                 }
+                else if (txtPan.Text.Length != 10)
+                {
+                    epCompany.SetError(txtPan, "Please enter valid PAN");
+                    txtPan.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPan.ShowAlways = true;
+                    tpPan.Show("Please enter valid PAN", txtPan, 5000);
+                } 
                 else
                 {
                     epCompany.Clear();
@@ -1359,13 +1442,21 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtESI.Text).Trim() == "" || txtESI.Text.Length != 17)
+                if (Convert.ToString(txtESI.Text).Trim() == "" )
                 {
                     epCompany.SetError(txtESI, "Please enter ESI");
                     txtESI.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpEsi.ShowAlways = true;
                     tpEsi.Show("Please enter ESI", txtESI, 5000);
                 }
+               else if (txtESI.Text.Length != 17)
+                {
+                    epCompany.SetError(txtESI, "Please enter valid ESI");
+                    txtESI.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpEsi.ShowAlways = true;
+                    tpEsi.Show("Please enter valid ESI", txtESI, 5000);
+                }
+                 
                 else
                 {
                     epCompany.Clear();
@@ -1412,13 +1503,21 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtEPF.Text).Trim() == "" || txtEPF.Text.Length != 22)
+                if (Convert.ToString(txtEPF.Text).Trim() == "" )
                 {
                     epCompany.SetError(txtEPF, "Please enter EPF");
                     txtEPF.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpEsf.ShowAlways = true;
                     tpEsf.Show("Please enter EPF", txtEPF, 5000);
                 }
+               else if (txtEPF.Text.Length != 22)
+                {
+                    epCompany.SetError(txtEPF, "Please enter valid EPF");
+                    txtEPF.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpEsf.ShowAlways = true;
+                    tpEsf.Show("Please enter valid EPF", txtEPF, 5000);
+                }
+                
                 else
                 {
                     epCompany.Clear();
@@ -1465,13 +1564,20 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtFSSAI.Text).Trim() == "" && txtFSSAI.Text.Length != 14)
+                if (Convert.ToString(txtFSSAI.Text).Trim() == "")
                 {
                     epCompany.SetError(txtFSSAI, "Please enter FSSAI");
                     txtFSSAI.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpFssai.ShowAlways = true;
                     tpFssai.Show("Please enter FSSAI", txtFSSAI, 5000);
                 }
+                else if (txtFSSAI.Text.Length != 14)
+                {
+                    epCompany.SetError(txtFSSAI, "Please enter valid FSSAI");
+                    txtFSSAI.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpFssai.ShowAlways = true;
+                    tpFssai.Show("Please enter valid FSSAI", txtFSSAI, 5000);
+                } 
                 else
                 {
                     epCompany.Clear();
@@ -1541,6 +1647,13 @@ namespace ROMS
                     tpPlNo.ShowAlways = true;
                     tpPlNo.Show("Please enter PL number", txtPlno, 5000);
                 }
+                else if (txtPlno.Text.Length != 10)
+                {
+                    epCompany.SetError(txtPlno, "Please enter valid PL number");
+                    txtPlno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPlNo.ShowAlways = true;
+                    tpPlNo.Show("Please enter valid PL number", txtPlno, 5000);
+                }
                 else
                 {
                     epCompany.Clear();
@@ -1554,13 +1667,7 @@ namespace ROMS
             }
         }
 
-       
-
-        private void CP_Company_Leave(object sender, EventArgs e)
-        {
-
-        }
-
+     
         private void CP_Company_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -1689,7 +1796,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -1731,7 +1838,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -1857,7 +1964,6 @@ namespace ROMS
                     , txtGSTTIN.Text, txtPan.Text, txtESI.Text, txtEPF.Text, txtFSSAI.Text, txtPlno.Text, Convert.ToString(cmbState.SelectedValue), varStatus,
                     MainForm.pbUserID, MainForm.pbIpAddress, "Company Update", objBankTable, objContactTable);
                         varupdate = "1";
-                        udfnclose();
                     }
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -1865,6 +1971,10 @@ namespace ROMS
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         udfnClear(); 
                         MainForm.objCP_Companylist.udfnList();
+                        if (btnSave.Text == "Update")
+                        {
+                            udfnclose();
+                        }
                     }
                     else
                     {
@@ -1915,7 +2025,7 @@ namespace ROMS
                 for (int i = 0; i < grdBankDetails.Rows.Count; i++)
                 {
                     string varStatus = "1";
-                    if (Convert.ToString(grdBankDetails.Rows[i].Cells["clmStatus"].Value) == "Active")
+                    if (Convert.ToString(grdBankDetails.Rows[i].Cells["clmStatus"].Value) == "ACTIVE")
                     {
                         varStatus = "1";
                     }
@@ -2035,129 +2145,131 @@ namespace ROMS
                     tpShortName.Show("Please enter short name", txtShortName, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(txtAddressLine1.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtAddressLine1, "Please enter address");
-                    txtAddressLine1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpAddressLine1.ShowAlways = true;
-                    tpAddressLine1.Show("Please enter address", txtAddressLine1, 5000);
-                  //  blnErrorFlag = true;
-                }
-                if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
-                {
-                    epCompany.SetError(cmbState, "Please select state");
-                    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpState.ShowAlways = true;
-                    tpState.Show("Please select state", cmbState, 5000);
-                   // blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtCity.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtCity, "Please enter city");
-                    txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpCity.ShowAlways = true;
-                    tpCity.Show("Please enter city", txtCity, 5000);
-                //    blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtPincode.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtPincode, "Please enter pincode");
-                    txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpPincode.ShowAlways = true;
-                    tpPincode.Show("Please enter pincode", txtPincode, 5000);
-               //     blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtPhoneNo.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtPhoneNo, "Please enter phone number");
-                    txtPhoneNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpPhoneNo.ShowAlways = true;
-                    tpPhoneNo.Show("Please enter phone number", txtPhoneNo, 5000);
-               //     blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtmobileNo.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtmobileNo, "Please enter mobile number");
-                    txtmobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpMobileNo.ShowAlways = true;
-                    tpMobileNo.Show("Please enter mobile number", txtmobileNo, 5000);
-                //    blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtwhatsappNo.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtwhatsappNo, "Please enter whatsapp number");
-                    txtwhatsappNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpWhatsAppNo.ShowAlways = true;
-                    tpWhatsAppNo.Show("Please enter whatsapp number", txtwhatsappNo, 5000);
-                //    blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtEmail.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtEmail, "Please enter email");
-                    txtEmail.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpEmail.ShowAlways = true;
-                    tpEmail.Show("Please enter email", txtEmail, 5000);
-               //     blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtwebsite.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtwebsite, "Please enter website");
-                    txtwebsite.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpWebsite.ShowAlways = true;
-                    tpWebsite.Show("Please enter website", txtwebsite, 5000);
-                  //  blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtGSTTIN.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtGSTTIN, "Please enter GSTTIN");
-                    txtGSTTIN.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpGstin.ShowAlways = true;
-                    tpGstin.Show("Please enter GSTTIN", txtGSTTIN, 5000);
-                //    blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtPan.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtPan, "Please enter PAN");
-                    txtPan.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpPan.ShowAlways = true;
-                    tpPan.Show("Please enter PAN", txtPan, 5000);
-                //    blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtESI.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtESI, "Please enter ESI");
-                    txtESI.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpEsi.ShowAlways = true;
-                    tpEsi.Show("Please enter ESI", txtESI, 5000);
-                 //   blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtEPF.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtEPF, "Please enter ESF");
-                    txtEPF.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpEsf.ShowAlways = true;
-                    tpEsf.Show("Please enter ESF", txtEPF, 5000);
-                //    blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtFSSAI.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtFSSAI, "Please enter FSSAI");
-                    txtFSSAI.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpFssai.ShowAlways = true;
-                    tpFssai.Show("Please enter FSSAI", txtFSSAI, 5000);
-                //    blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtPlno.Text).Trim() == "")
-                {
-                    epCompany.SetError(txtPlno, "Please enter PL number");
-                    txtPlno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpPlNo.ShowAlways = true;
-                    tpPlNo.Show("Please enter PL number", txtPlno, 5000);
-                //    blnErrorFlag = true;
-                }
+               // if (Convert.ToString(txtAddressLine1.Text).Trim() == "")
+               // {
+               //     epCompany.SetError(txtAddressLine1, "Please enter address");
+               //     txtAddressLine1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpAddressLine1.ShowAlways = true;
+               //     tpAddressLine1.Show("Please enter address", txtAddressLine1, 5000);
+               //   //  blnErrorFlag = true;
+               // }
+               // if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
+               // {
+               //     epCompany.SetError(cmbState, "Please select state");
+               //     cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpState.ShowAlways = true;
+               //     tpState.Show("Please select state", cmbState, 5000);
+               //    // blnErrorFlag = true;
+               // }
+               // if (Convert.ToString(txtCity.Text).Trim() == "")
+               // {
+               //     epCompany.SetError(txtCity, "Please enter city");
+               //     txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpCity.ShowAlways = true;
+               //     tpCity.Show("Please enter city", txtCity, 5000);
+               // //    blnErrorFlag = true;
+               // }
+               // if (Convert.ToString(txtPincode.Text).Trim() == "")
+               // {
+               //     epCompany.SetError(txtPincode, "Please enter pincode");
+               //     txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpPincode.ShowAlways = true;
+               //     tpPincode.Show("Please enter pincode", txtPincode, 5000);
+               ////     blnErrorFlag = true;
+               // }
+               // if (Convert.ToString(txtPhoneNo.Text).Trim() == "")
+               // {
+               //     epCompany.SetError(txtPhoneNo, "Please enter phone number");
+               //     txtPhoneNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpPhoneNo.ShowAlways = true;
+               //     tpPhoneNo.Show("Please enter phone number", txtPhoneNo, 5000);
+               ////     blnErrorFlag = true;
+               // }
+               // if (Convert.ToString(txtmobileNo.Text).Trim() == "")
+               // {
+               //     epCompany.SetError(txtmobileNo, "Please enter mobile number");
+               //     txtmobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpMobileNo.ShowAlways = true;
+               //     tpMobileNo.Show("Please enter mobile number", txtmobileNo, 5000);
+               // //    blnErrorFlag = true;
+               // }
+               // if (Convert.ToString(txtwhatsappNo.Text).Trim() == "")
+               // {
+               //     epCompany.SetError(txtwhatsappNo, "Please enter whatsapp number");
+               //     txtwhatsappNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpWhatsAppNo.ShowAlways = true;
+               //     tpWhatsAppNo.Show("Please enter whatsapp number", txtwhatsappNo, 5000);
+               // //    blnErrorFlag = true;
+               // }
+               // if (Convert.ToString(txtEmail.Text).Trim() == "")
+               // {
+               //     epCompany.SetError(txtEmail, "Please enter email");
+               //     txtEmail.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpEmail.ShowAlways = true;
+               //     tpEmail.Show("Please enter email", txtEmail, 5000);
+               ////     blnErrorFlag = true;
+               // }
+               // if (Convert.ToString(txtwebsite.Text).Trim() == "")
+               // {
+               //     epCompany.SetError(txtwebsite, "Please enter website");
+               //     txtwebsite.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpWebsite.ShowAlways = true;
+               //     tpWebsite.Show("Please enter website", txtwebsite, 5000);
+               //   //  blnErrorFlag = true;
+               // }
+               // if (Convert.ToString(txtGSTTIN.Text).Trim() == "")
+               // {
+               //     epCompany.SetError(txtGSTTIN, "Please enter GSTTIN");
+               //     txtGSTTIN.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpGstin.ShowAlways = true;
+               //     tpGstin.Show("Please enter GSTTIN", txtGSTTIN, 5000);
+               // //    blnErrorFlag = true;
+               // }
+               // if (Convert.ToString(txtPan.Text).Trim() == "")
+               // {
+               //     epCompany.SetError(txtPan, "Please enter PAN");
+               //     txtPan.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpPan.ShowAlways = true;
+               //     tpPan.Show("Please enter PAN", txtPan, 5000);
+               // //    blnErrorFlag = true;
+               // }
+               // if (Convert.ToString(txtESI.Text).Trim() == "")
+               // {
+               //     epCompany.SetError(txtESI, "Please enter ESI");
+               //     txtESI.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpEsi.ShowAlways = true;
+               //     tpEsi.Show("Please enter ESI", txtESI, 5000);
+               //  //   blnErrorFlag = true;
+               // }
+               // if (Convert.ToString(txtEPF.Text).Trim() == "")
+               // {
+               //     epCompany.SetError(txtEPF, "Please enter ESF");
+               //     txtEPF.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpEsf.ShowAlways = true;
+               //     tpEsf.Show("Please enter ESF", txtEPF, 5000);
+               // //    blnErrorFlag = true;
+               // }
+               // if (Convert.ToString(txtFSSAI.Text).Trim() == "")
+               // {
+               //     epCompany.SetError(txtFSSAI, "Please enter FSSAI");
+               //     txtFSSAI.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpFssai.ShowAlways = true;
+               //     tpFssai.Show("Please enter FSSAI", txtFSSAI, 5000);
+               // //    blnErrorFlag = true;
+               // }
+               // if (Convert.ToString(txtPlno.Text).Trim() == "")
+               // {
+               //     epCompany.SetError(txtPlno, "Please enter PL number");
+               //     txtPlno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpPlNo.ShowAlways = true;
+               //     tpPlNo.Show("Please enter PL number", txtPlno, 5000);
+               // //    blnErrorFlag = true;
+               // }
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
+                    udfnBankclear();
+                    grdBankDetails.DataSource = null;
                 }
             }
             catch (Exception ex)
@@ -2574,10 +2686,19 @@ namespace ROMS
                     { 
                         grdContactManager.Rows.Add(grdContactManager.Rows.Count + 1, txtName.Text, varvalue, txtMobilenumber.Text, varwhatsapp, varcheckedvalue, txtOperator.Text, txtMobileBrand.Text, Convert.ToString(cmbTransactionType.SelectedValue));
                         udfnContactClear();
+                        txtName.Focus();
+                        grdContactManager.ClearSelection();
                     }
                     else
                     {
-                        MessageBox.Show("Values already exists in the grid!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                        if (varflag1 != 0)
+                        {
+                            MessageBox.Show("Mobile Number already exists for this transaction!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        if (varflag2 != 0)
+                        {
+                            MessageBox.Show("Primary already exists for this transaction type!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
             }
@@ -2607,19 +2728,7 @@ namespace ROMS
 
         }
 
-        public void udfnSaveContact()
-        {
-        try
-            {
-                
-        }
-          
-        catch (Exception ex)
-        {
-        objError = new DataError();
-        objError.WriteFile(ex);
-        }
-}
+       
 
         private void BtnSaveContact_Click(object sender, EventArgs e)
         {
@@ -2627,7 +2736,9 @@ namespace ROMS
             {
                 if(grdContactManager.Rows.Count>0)
                 {
-                    udfnContactSave();
+                    udfnContactSave(); 
+                    udfnContactClear();
+                    grdContactManager.DataSource = null;
                 }
             }
             catch (Exception ex)
@@ -2694,8 +2805,7 @@ namespace ROMS
                 else
                 {
                     result = objspdservice.udfnCompanyMaster(4, Convert.ToInt32(varcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Update", objBankTable, objContactTable);
-                    varupdate = "1";
-                    udfnclose();
+                    varupdate = "1"; 
                 }
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -2703,6 +2813,10 @@ namespace ROMS
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     udfnClear();
                     MainForm.objCP_Companylist.udfnList();
+                    if (btnSave.Text == "Update")
+                    {
+                        udfnclose();
+                    }
                 }
                 else
                 {
@@ -2749,7 +2863,7 @@ namespace ROMS
         {
             try
             {
-                btnSaveContact.BackColor = Color.White;
+                btnSaveContact.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -2804,7 +2918,7 @@ namespace ROMS
         {
             try
             {
-                btnCloseContact.BackColor = Color.White;
+                btnCloseContact.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -2939,6 +3053,7 @@ namespace ROMS
                 DataService objdservice = new DataService();  
                 varstatusid = objdservice.displaydata("select STS_Name as name from DEF_Status where STS_ModuleID=1 AND STSID=1"); 
                 udfnEdit();
+                txtCompanyName.Focus();
                 objdservice.CloseConnection();
             }
             catch (Exception ex)
@@ -2960,7 +3075,7 @@ namespace ROMS
 
                         case "clmRemove":
 
-                            grdContactManager.Rows.RemoveAt(this.grdBankDetails.SelectedRows[0].Index);
+                            grdContactManager.Rows.RemoveAt(this.grdContactManager.SelectedRows[0].Index);
                             for (int i = 0; i < grdContactManager.RowCount; i++)
                             { 
                                 grdContactManager.Rows[i].Cells["clmContsno"].Value = i + 1;
@@ -3041,7 +3156,8 @@ namespace ROMS
                             txtFSSAI.Text = objDS.Tables[0].Rows[0]["FSSAI"].ToString().Replace("''", "'");
                             txtPlno.Text = objDS.Tables[0].Rows[0]["PLNO"].ToString().Replace("''", "'");
                             txtAlterMobileno.Text = objDS.Tables[0].Rows[0]["MobileAlt"].ToString();
-                            txtAlterPhoneno.Text = objDS.Tables[0].Rows[0]["PhoneAlt"].ToString();
+                            txtAlterPhoneno.Text = objDS.Tables[0].Rows[0]["PhoneAlt"].ToString(); 
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                             btnSave.Text = "Update";
                             pnlStatus.Enabled = true;
                         }
@@ -3096,7 +3212,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtCity.Text.Length > 2)
                 {
-                    objDs = objspdservice.udfncitylist(1, txtCity.Text, MainForm.pbUserID, MainForm.pbIpAddress);
+                    objDs = objspdservice.udfncitylist(1, txtCity.Text, MainForm.pbUserID, MainForm.pbIpAddress,Convert.ToString(cmbState.SelectedValue));
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -3229,7 +3345,8 @@ namespace ROMS
             } 
             return varstr;
         }
-            private void GrdBankDetails_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+
+        private void GrdBankDetails_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
             {

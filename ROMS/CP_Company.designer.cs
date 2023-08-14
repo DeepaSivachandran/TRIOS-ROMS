@@ -47,10 +47,6 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlStatus = new System.Windows.Forms.Panel();
-            this.LV_Group = new System.Windows.Forms.ListView();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.rbInactive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -59,12 +55,25 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.LV_Group = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAdd = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.txtBankShortName = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.txtbranchname = new System.Windows.Forms.TextBox();
             this.grdBankDetails = new System.Windows.Forms.DataGridView();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBankShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtIFScode = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
@@ -123,18 +132,6 @@
             this.btnCloseContact = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grdContactManager = new System.Windows.Forms.DataGridView();
-            this.txtMobilenumber = new System.Windows.Forms.TextBox();
-            this.cmbTransactionType = new System.Windows.Forms.ComboBox();
-            this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBankShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmContsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -145,6 +142,9 @@
             this.clmMobileBrand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.txtMobilenumber = new System.Windows.Forms.TextBox();
+            this.cmbTransactionType = new System.Windows.Forms.ComboBox();
+            this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.tcCompanyDetails.SuspendLayout();
@@ -305,34 +305,6 @@
             this.pnlStatus.Size = new System.Drawing.Size(153, 27);
             this.pnlStatus.TabIndex = 26;
             // 
-            // LV_Group
-            // 
-            this.LV_Group.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader4,
-            this.columnHeader6,
-            this.columnHeader7});
-            this.LV_Group.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.LV_Group.HideSelection = false;
-            this.LV_Group.Location = new System.Drawing.Point(544, 285);
-            this.LV_Group.Name = "LV_Group";
-            this.LV_Group.Size = new System.Drawing.Size(310, 10);
-            this.LV_Group.TabIndex = 28;
-            this.LV_Group.UseCompatibleStateImageBehavior = false;
-            this.LV_Group.View = System.Windows.Forms.View.Details;
-            this.LV_Group.Visible = false;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Width = 180;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Width = 120;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Width = 0;
-            // 
             // rbInactive
             // 
             this.rbInactive.AutoSize = true;
@@ -457,6 +429,34 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bank Details";
             // 
+            // LV_Group
+            // 
+            this.LV_Group.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader6,
+            this.columnHeader7});
+            this.LV_Group.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.LV_Group.HideSelection = false;
+            this.LV_Group.Location = new System.Drawing.Point(544, 285);
+            this.LV_Group.Name = "LV_Group";
+            this.LV_Group.Size = new System.Drawing.Size(310, 10);
+            this.LV_Group.TabIndex = 28;
+            this.LV_Group.UseCompatibleStateImageBehavior = false;
+            this.LV_Group.View = System.Windows.Forms.View.Details;
+            this.LV_Group.Visible = false;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 180;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Width = 120;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Width = 0;
+            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.White;
@@ -571,6 +571,66 @@
             this.grdBankDetails.TabIndex = 1111136;
             this.grdBankDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBankDetails_CellContentClick);
             this.grdBankDetails.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdBankDetails_EditingControlShowing);
+            // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
+            // 
+            // clmbankname
+            // 
+            this.clmbankname.HeaderText = "Bank Name";
+            this.clmbankname.Name = "clmbankname";
+            this.clmbankname.ReadOnly = true;
+            this.clmbankname.Width = 200;
+            // 
+            // clmBankShortName
+            // 
+            this.clmBankShortName.HeaderText = "Bank Short Name";
+            this.clmBankShortName.Name = "clmBankShortName";
+            this.clmBankShortName.ReadOnly = true;
+            this.clmBankShortName.Width = 150;
+            // 
+            // clmbranch
+            // 
+            this.clmbranch.HeaderText = "Branch Name";
+            this.clmbranch.Name = "clmbranch";
+            this.clmbranch.ReadOnly = true;
+            this.clmbranch.Width = 175;
+            // 
+            // clmaccno
+            // 
+            this.clmaccno.HeaderText = "Account No.";
+            this.clmaccno.Name = "clmaccno";
+            this.clmaccno.ReadOnly = true;
+            this.clmaccno.Width = 200;
+            // 
+            // clmifscode
+            // 
+            this.clmifscode.HeaderText = "IFS Code";
+            this.clmifscode.Name = "clmifscode";
+            this.clmifscode.ReadOnly = true;
+            this.clmifscode.Width = 175;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // clmsts
+            // 
+            this.clmsts.HeaderText = "sts";
+            this.clmsts.Name = "clmsts";
+            this.clmsts.Visible = false;
+            // 
+            // clmremovebank
+            // 
+            this.clmremovebank.HeaderText = "Remove";
+            this.clmremovebank.Name = "clmremovebank";
+            this.clmremovebank.Width = 80;
             // 
             // textBox15
             // 
@@ -1334,97 +1394,6 @@
             this.grdContactManager.TabIndex = 1111149;
             this.grdContactManager.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdContactManager_CellContentClick);
             // 
-            // txtMobilenumber
-            // 
-            this.txtMobilenumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMobilenumber.Location = new System.Drawing.Point(403, 39);
-            this.txtMobilenumber.MaxLength = 10;
-            this.txtMobilenumber.Name = "txtMobilenumber";
-            this.txtMobilenumber.Size = new System.Drawing.Size(195, 27);
-            this.txtMobilenumber.TabIndex = 2;
-            this.txtMobilenumber.Enter += new System.EventHandler(this.TxtMobilenumber_Enter);
-            this.txtMobilenumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMobilenumber_KeyDown);
-            this.txtMobilenumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMobilenumber_KeyPress);
-            this.txtMobilenumber.Leave += new System.EventHandler(this.TxtMobilenumber_Leave);
-            // 
-            // cmbTransactionType
-            // 
-            this.cmbTransactionType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbTransactionType.FormattingEnabled = true;
-            this.cmbTransactionType.Location = new System.Drawing.Point(208, 39);
-            this.cmbTransactionType.Name = "cmbTransactionType";
-            this.cmbTransactionType.Size = new System.Drawing.Size(189, 27);
-            this.cmbTransactionType.TabIndex = 1;
-            this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.CmbTransactionType_SelectedIndexChanged);
-            this.cmbTransactionType.Enter += new System.EventHandler(this.CmbTransactionType_Enter);
-            this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
-            this.cmbTransactionType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTransactionType_KeyPress);
-            this.cmbTransactionType.Leave += new System.EventHandler(this.CmbTransactionType_Leave);
-            // 
-            // epCompany
-            // 
-            this.epCompany.ContainerControl = this;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 50;
-            // 
-            // clmbankname
-            // 
-            this.clmbankname.HeaderText = "Bank Name";
-            this.clmbankname.Name = "clmbankname";
-            this.clmbankname.ReadOnly = true;
-            this.clmbankname.Width = 200;
-            // 
-            // clmBankShortName
-            // 
-            this.clmBankShortName.HeaderText = "Bank Short Name";
-            this.clmBankShortName.Name = "clmBankShortName";
-            this.clmBankShortName.ReadOnly = true;
-            this.clmBankShortName.Width = 150;
-            // 
-            // clmbranch
-            // 
-            this.clmbranch.HeaderText = "Branch Name";
-            this.clmbranch.Name = "clmbranch";
-            this.clmbranch.ReadOnly = true;
-            this.clmbranch.Width = 175;
-            // 
-            // clmaccno
-            // 
-            this.clmaccno.HeaderText = "Account No.";
-            this.clmaccno.Name = "clmaccno";
-            this.clmaccno.ReadOnly = true;
-            this.clmaccno.Width = 200;
-            // 
-            // clmifscode
-            // 
-            this.clmifscode.HeaderText = "IFS Code";
-            this.clmifscode.Name = "clmifscode";
-            this.clmifscode.ReadOnly = true;
-            this.clmifscode.Width = 175;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // clmsts
-            // 
-            this.clmsts.HeaderText = "sts";
-            this.clmsts.Name = "clmsts";
-            this.clmsts.Visible = false;
-            // 
-            // clmremovebank
-            // 
-            this.clmremovebank.HeaderText = "Remove";
-            this.clmremovebank.Name = "clmremovebank";
-            this.clmremovebank.Width = 80;
-            // 
             // clmContsno
             // 
             this.clmContsno.FillWeight = 50F;
@@ -1493,6 +1462,37 @@
             this.clmRemove.ReadOnly = true;
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
+            // txtMobilenumber
+            // 
+            this.txtMobilenumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtMobilenumber.Location = new System.Drawing.Point(403, 39);
+            this.txtMobilenumber.MaxLength = 10;
+            this.txtMobilenumber.Name = "txtMobilenumber";
+            this.txtMobilenumber.Size = new System.Drawing.Size(195, 27);
+            this.txtMobilenumber.TabIndex = 2;
+            this.txtMobilenumber.Enter += new System.EventHandler(this.TxtMobilenumber_Enter);
+            this.txtMobilenumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMobilenumber_KeyDown);
+            this.txtMobilenumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMobilenumber_KeyPress);
+            this.txtMobilenumber.Leave += new System.EventHandler(this.TxtMobilenumber_Leave);
+            // 
+            // cmbTransactionType
+            // 
+            this.cmbTransactionType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTransactionType.FormattingEnabled = true;
+            this.cmbTransactionType.Location = new System.Drawing.Point(208, 39);
+            this.cmbTransactionType.Name = "cmbTransactionType";
+            this.cmbTransactionType.Size = new System.Drawing.Size(189, 27);
+            this.cmbTransactionType.TabIndex = 1;
+            this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.CmbTransactionType_SelectedIndexChanged);
+            this.cmbTransactionType.Enter += new System.EventHandler(this.CmbTransactionType_Enter);
+            this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
+            this.cmbTransactionType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTransactionType_KeyPress);
+            this.cmbTransactionType.Leave += new System.EventHandler(this.CmbTransactionType_Leave);
+            // 
+            // epCompany
+            // 
+            this.epCompany.ContainerControl = this;
+            // 
             // CP_Company
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1510,8 +1510,7 @@
             this.Text = "Company";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Company_FormClosing);
             this.Load += new System.EventHandler(this.CP_Company_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Company_KeyDown);
-            this.Leave += new System.EventHandler(this.CP_Company_Leave);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Company_KeyDown); 
             this.tsBrandList.ResumeLayout(false);
             this.tsBrandList.PerformLayout();
             this.pnlCompany.ResumeLayout(false);

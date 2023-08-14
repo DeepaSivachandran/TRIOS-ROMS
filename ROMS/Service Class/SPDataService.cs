@@ -227,7 +227,7 @@ namespace ROMS
         }
         //City Master List
         //created by Venkat,Created on 09/08/2023
-        public DataSet udfncitylist(int ViewType, string paraCityName, string paraUserID, string paraIPAddress)
+        public DataSet udfncitylist(int ViewType, string paraCityName, string paraUserID, string paraIPAddress, string paraStateId)
         {
             DataSet ds = new DataSet();
             try
@@ -239,6 +239,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraCityName", paraCityName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraStateId", paraStateId);
+                
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

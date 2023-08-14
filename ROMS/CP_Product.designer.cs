@@ -349,7 +349,7 @@
             this.txtUpp.MaxLength = 5;
             this.txtUpp.Name = "txtUpp";
             this.txtUpp.Size = new System.Drawing.Size(42, 27);
-            this.txtUpp.TabIndex = 12;
+            this.txtUpp.TabIndex = 11;
             this.txtUpp.Enter += new System.EventHandler(this.TxtUpp_Enter);
             this.txtUpp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUpp_KeyDown);
             this.txtUpp.Leave += new System.EventHandler(this.TxtUpp_Leave);
@@ -374,7 +374,7 @@
             this.cmbBulkUnit.Location = new System.Drawing.Point(330, 239);
             this.cmbBulkUnit.Name = "cmbBulkUnit";
             this.cmbBulkUnit.Size = new System.Drawing.Size(88, 27);
-            this.cmbBulkUnit.TabIndex = 11;
+            this.cmbBulkUnit.TabIndex = 10;
             this.cmbBulkUnit.SelectedIndexChanged += new System.EventHandler(this.CmbBulkUnit_SelectedIndexChanged);
             this.cmbBulkUnit.Enter += new System.EventHandler(this.CmbBulkUnit_Enter);
             this.cmbBulkUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBulkUnit_KeyDown);
@@ -406,7 +406,7 @@
             this.cmbProductCategory.Location = new System.Drawing.Point(160, 131);
             this.cmbProductCategory.Name = "cmbProductCategory";
             this.cmbProductCategory.Size = new System.Drawing.Size(363, 27);
-            this.cmbProductCategory.TabIndex = 6;
+            this.cmbProductCategory.TabIndex = 5;
             this.cmbProductCategory.SelectedIndexChanged += new System.EventHandler(this.CmbProductCategory_SelectedIndexChanged);
             this.cmbProductCategory.Enter += new System.EventHandler(this.CmbProductCategory_Enter);
             this.cmbProductCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProductCategory_KeyDown);
@@ -460,7 +460,7 @@
             this.cmbUnit.Location = new System.Drawing.Point(160, 239);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(88, 27);
-            this.cmbUnit.TabIndex = 10;
+            this.cmbUnit.TabIndex = 9;
             this.cmbUnit.SelectedIndexChanged += new System.EventHandler(this.CmbUnit_SelectedIndexChanged);
             this.cmbUnit.Enter += new System.EventHandler(this.CmbUnit_Enter);
             this.cmbUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUnit_KeyDown);
@@ -474,7 +474,7 @@
             this.cmbBrand.Location = new System.Drawing.Point(160, 212);
             this.cmbBrand.Name = "cmbBrand";
             this.cmbBrand.Size = new System.Drawing.Size(337, 27);
-            this.cmbBrand.TabIndex = 9;
+            this.cmbBrand.TabIndex = 8;
             this.cmbBrand.SelectedIndexChanged += new System.EventHandler(this.CmbBrand_SelectedIndexChanged);
             this.cmbBrand.Enter += new System.EventHandler(this.CmbBrand_Enter);
             this.cmbBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBrand_KeyDown);
@@ -488,7 +488,7 @@
             this.cmbSubGroup.Location = new System.Drawing.Point(160, 158);
             this.cmbSubGroup.Name = "cmbSubGroup";
             this.cmbSubGroup.Size = new System.Drawing.Size(337, 27);
-            this.cmbSubGroup.TabIndex = 7;
+            this.cmbSubGroup.TabIndex = 6;
             this.cmbSubGroup.SelectedIndexChanged += new System.EventHandler(this.CmbSubGroup_SelectedIndexChanged);
             this.cmbSubGroup.Enter += new System.EventHandler(this.CmbSubGroup_Enter);
             this.cmbSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSubGroup_KeyDown);
@@ -515,7 +515,7 @@
             this.cmbGroup.Location = new System.Drawing.Point(160, 185);
             this.cmbGroup.Name = "cmbGroup";
             this.cmbGroup.Size = new System.Drawing.Size(337, 27);
-            this.cmbGroup.TabIndex = 8;
+            this.cmbGroup.TabIndex = 7;
             this.cmbGroup.SelectedIndexChanged += new System.EventHandler(this.CmbGroup_SelectedIndexChanged);
             this.cmbGroup.Enter += new System.EventHandler(this.CmbGroup_Enter);
             this.cmbGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGroup_KeyDown);
@@ -1059,6 +1059,10 @@
             this.txtSelfLife.TabIndex = 113;
             this.txtSelfLife.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSelfLife.Visible = false;
+            this.txtSelfLife.Enter += new System.EventHandler(this.TxtSelfLife_Enter);
+            this.txtSelfLife.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSelfLife_KeyDown);
+            this.txtSelfLife.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtSelfLife_KeyPress);
+            this.txtSelfLife.Leave += new System.EventHandler(this.TxtSelfLife_Leave);
             // 
             // cmbPeriod
             // 
