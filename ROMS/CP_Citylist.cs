@@ -79,7 +79,7 @@ namespace ROMS
                         }
                         else
                         {
-                            MessageBox.Show(varResult, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
