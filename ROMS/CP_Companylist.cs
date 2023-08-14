@@ -498,6 +498,8 @@ namespace ROMS
             try
             {
                 udfnList();
+                grdCompanyList.ClearSelection();
+                DGV_SearchGrid.ClearSelection();
             }
             catch (Exception ex)
             {
