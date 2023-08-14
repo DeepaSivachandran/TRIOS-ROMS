@@ -249,5 +249,41 @@ namespace ROMS
             }
             return ds;
         }
+        //Created BY:-Sathish
+        public string udfnStock(int paraviewType, int paraStockId, int paraConcern, int paraLocationType,string paraLocationNameEnglish,string paraLocationNameTamil,string paraShortName, int paraGodownType, int paraStockApplicable,int paraStockStatusId, string paraOriginator)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_StockLocation]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@viewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraStockId", paraStockId);
+                varSqlCommand.Parameters.AddWithValue("@paraConcern",paraConcern);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationType",paraLocationType);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationNameEnglish", paraLocationNameEnglish);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationNameTamil", paraLocationNameTamil);
+                varSqlCommand.Parameters.AddWithValue("@paraShortName",paraShortName);
+                varSqlCommand.Parameters.AddWithValue("@paraGodownType", paraGodownType);
+                varSqlCommand.Parameters.AddWithValue("@paraStockApplicable", paraStockApplicable);
+                varSqlCommand.Parameters.AddWithValue("@paraStockStatusId", paraStockStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
     }
 }

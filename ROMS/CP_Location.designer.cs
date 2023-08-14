@@ -38,7 +38,7 @@
             this.txtDStatus = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.pnlGodownType = new System.Windows.Forms.Panel();
-            this.rboutside = new System.Windows.Forms.RadioButton();
+            this.rbOutside = new System.Windows.Forms.RadioButton();
             this.rbInside = new System.Windows.Forms.RadioButton();
             this.txtDGodowntype = new System.Windows.Forms.TextBox();
             this.txtLocationNameInEnglish = new System.Windows.Forms.TextBox();
@@ -154,7 +154,7 @@
             // 
             this.pnlGodownType.AutoScroll = true;
             this.pnlGodownType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlGodownType.Controls.Add(this.rboutside);
+            this.pnlGodownType.Controls.Add(this.rbOutside);
             this.pnlGodownType.Controls.Add(this.rbInside);
             this.pnlGodownType.Enabled = false;
             this.pnlGodownType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -163,19 +163,19 @@
             this.pnlGodownType.Size = new System.Drawing.Size(288, 27);
             this.pnlGodownType.TabIndex = 5;
             // 
-            // rboutside
+            // rbOutside
             // 
-            this.rboutside.AutoSize = true;
-            this.rboutside.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rboutside.Location = new System.Drawing.Point(146, 1);
-            this.rboutside.Name = "rboutside";
-            this.rboutside.Size = new System.Drawing.Size(62, 21);
-            this.rboutside.TabIndex = 6;
-            this.rboutside.Text = "Outside";
-            this.rboutside.UseVisualStyleBackColor = true;
-            this.rboutside.Enter += new System.EventHandler(this.Rboutside_Enter);
-            this.rboutside.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Rboutside_KeyDown);
-            this.rboutside.Leave += new System.EventHandler(this.Rboutside_Leave);
+            this.rbOutside.AutoSize = true;
+            this.rbOutside.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.rbOutside.Location = new System.Drawing.Point(146, 1);
+            this.rbOutside.Name = "rbOutside";
+            this.rbOutside.Size = new System.Drawing.Size(62, 21);
+            this.rbOutside.TabIndex = 6;
+            this.rbOutside.Text = "Outside";
+            this.rbOutside.UseVisualStyleBackColor = true;
+            this.rbOutside.Enter += new System.EventHandler(this.Rboutside_Enter);
+            this.rbOutside.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Rboutside_KeyDown);
+            this.rbOutside.Leave += new System.EventHandler(this.Rboutside_Leave);
             // 
             // rbInside
             // 
@@ -308,9 +308,6 @@
             // 
             this.cmbStockApplicable.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStockApplicable.FormattingEnabled = true;
-            this.cmbStockApplicable.Items.AddRange(new object[] {
-            "Yes",
-            "No"});
             this.cmbStockApplicable.Location = new System.Drawing.Point(203, 186);
             this.cmbStockApplicable.Name = "cmbStockApplicable";
             this.cmbStockApplicable.Size = new System.Drawing.Size(288, 27);
@@ -337,9 +334,6 @@
             // 
             this.cmbLocationType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLocationType.FormattingEnabled = true;
-            this.cmbLocationType.Items.AddRange(new object[] {
-            "Godown",
-            "Shop"});
             this.cmbLocationType.Location = new System.Drawing.Point(203, 51);
             this.cmbLocationType.Name = "cmbLocationType";
             this.cmbLocationType.Size = new System.Drawing.Size(288, 27);
@@ -429,7 +423,7 @@
         private System.Windows.Forms.TextBox txtLocationNameInEnglish;
         private System.Windows.Forms.TextBox txtDGodowntype;
         private System.Windows.Forms.Panel pnlGodownType;
-        private System.Windows.Forms.RadioButton rboutside;
+        private System.Windows.Forms.RadioButton rbOutside;
         private System.Windows.Forms.RadioButton rbInside;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TextBox txtDStatus;

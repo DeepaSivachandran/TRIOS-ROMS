@@ -10,27 +10,29 @@ using System.Windows.Forms;
 
 namespace ROMS
 { 
-
+    //Created By:-Sathish ; Created On:-
     public partial class CP_Location : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
-
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpLocationType = new ToolTip();
         private ToolTip tpLocationTypeInEnglish = new ToolTip();
         private ToolTip tpLocationTypeInTamil = new ToolTip();
         private ToolTip tpStoctApplicable = new ToolTip();
-
-
         public string varlocationcode;
-       
+        public string PbLocationEName = "";
+        public string PbLocationTName = "";
+        public string PbLocationSName = "";
+        public int PbConcern = 0;
+        public int PbLType=0;
+        public int PbStockApplicable = 0;
+        public int PbStatus = 0;
+
         public CP_Location()
         {
             InitializeComponent();
         }
-
         private void CP_Location_Leave(object sender, EventArgs e)
         {
             try
@@ -40,20 +42,15 @@ namespace ROMS
                 tpLocationTypeInEnglish.Active = false;
                 tpLocationTypeInTamil.Active = false;
                 tpStoctApplicable.Active = false;
-          
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            }
-      
-
+        }
         private void udfnclear()
         {
-
-
             //try
             //{
             //    txtLocationName.Text = "";
@@ -65,9 +62,7 @@ namespace ROMS
             //    objError = new DataError();
             //    objError.WriteFile(ex);
             //}
-
         }
-
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -80,12 +75,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -93,7 +87,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             try
@@ -107,7 +100,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Enter(object sender, EventArgs e)
         {
             try
@@ -120,13 +112,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-      
         private void btnClose_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -146,6 +136,7 @@ namespace ROMS
                 else
                 {
                     pnlStatus.Enabled = true;
+                    udfnLoad();
                 }
                 this.ActiveControl = cmbConcern;
             }
@@ -155,8 +146,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
+        private void udfnLoad()
+        {
+            try
+            {
+                txtLocationNameInEnglish.Text = PbLocationEName;
+                txtLocationNameInTamil.Text = PbLocationTName;
+                txtShortName.Text = PbLocationSName;
+                cmbConcern.SelectedValue = PbConcern;
+                cmbLocationType.SelectedValue = PbLType;
+                cmbStockApplicable.SelectedValue = PbStockApplicable;
+                if (PbStatus == 1) { rbInside.Checked = true; } else { rbOutside.Checked = true; }
+                if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void udfnEdit()
         {
             
@@ -165,9 +173,7 @@ namespace ROMS
         {
             try
             {
-
-                this.Close();
-                
+                this.Close(); 
             }
             catch (Exception ex)
             {
@@ -266,7 +272,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbLocation_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -280,7 +285,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Rbrack_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -310,7 +314,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -326,7 +329,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -342,10 +344,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-       
-
         private void CP_Location_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -366,7 +364,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
             try
@@ -379,7 +376,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_Leave(object sender, EventArgs e)
         {
             try
@@ -403,7 +399,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -419,7 +414,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -434,7 +428,6 @@ namespace ROMS
             }
           
         }
-
         private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -447,7 +440,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbLocationType_Enter(object sender, EventArgs e)
         {
 
@@ -461,7 +453,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbLocationType_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -477,7 +468,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbLocationType_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -492,7 +482,6 @@ namespace ROMS
             }
 
         }
-
         private void CmbLocationType_Leave(object sender, EventArgs e)
         {
             try
@@ -516,20 +505,19 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbLocationType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                BeginInvoke(new Action(() => cmbLocationType.Select(int.MaxValue, 0)));
-                if (Convert.ToString(cmbLocationType.SelectedItem) == "Godown")
-                {
-                    pnlGodownType.Enabled = true;
-                }
-                else
-                {
-                    pnlGodownType.Enabled = false;
-                }
+                //BeginInvoke(new Action(() => cmbLocationType.Select(int.MaxValue, 0)));
+                //if (Convert.ToString(cmbLocationType.SelectedItem) == "Godown")
+                //{
+                //    pnlGodownType.Enabled = true;
+                //}
+                //else
+                //{
+                //    pnlGodownType.Enabled = false;
+                //}
             }
             catch (Exception ex)
             {
@@ -537,7 +525,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtLocationNameInEnglish_Enter(object sender, EventArgs e)
         {
             try
@@ -550,7 +537,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtLocationNameInEnglish_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -566,7 +552,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtLocationNameInEnglish_Leave(object sender, EventArgs e)
         {
             try
@@ -590,7 +575,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtLocationNameInTamil_Enter(object sender, EventArgs e)
         {
             try
@@ -603,7 +587,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-    
         private void TxtLocationNameInTamil_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -621,7 +604,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtLocationNameInTamil_Leave(object sender, EventArgs e)
         {
             try
@@ -645,7 +627,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInside_Enter(object sender, EventArgs e)
         {
             try
@@ -658,7 +639,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInside_Leave(object sender, EventArgs e)
         {
             try
@@ -671,7 +651,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockApplicable_Enter(object sender, EventArgs e)
         {
             try
@@ -684,7 +663,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockApplicable_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -705,7 +683,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockApplicable_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -719,7 +696,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockApplicable_Leave(object sender, EventArgs e)
         {
             try
@@ -743,12 +719,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockApplicable_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                BeginInvoke(new Action(() => cmbStockApplicable.Select(int.MaxValue, 0)));
+                //BeginInvoke(new Action(() => cmbStockApplicable.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {
@@ -756,7 +731,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Enter(object sender, EventArgs e)
         {
             try
@@ -769,7 +743,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Leave(object sender, EventArgs e)
         {
             try
@@ -782,7 +755,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_Enter(object sender, EventArgs e)
         {
             try
@@ -795,7 +767,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_Leave(object sender, EventArgs e)
         {
             try
@@ -808,7 +779,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInside_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -824,12 +794,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Rboutside_Enter(object sender, EventArgs e)
         {
             try
             {
-                rboutside.BackColor = Color.LemonChiffon;
+                rbOutside.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -837,12 +806,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Rboutside_Leave(object sender, EventArgs e)
         {
             try
             {
-                rboutside.BackColor = Color.White;
+                rbOutside.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -850,10 +818,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtShortName_Leave(object sender, EventArgs e)
-        {
-            
+        { 
             try
             {
                 if (Convert.ToString(txtShortName.Text).Trim() == "")
@@ -875,13 +841,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtShortName_KeyDown(object sender, KeyEventArgs e)
         {
-
             try
             {
-
                 if (e.KeyCode == Keys.Enter)
                 {
                     if (pnlGodownType.Enabled)
@@ -893,7 +856,6 @@ namespace ROMS
                         cmbStockApplicable.Focus();
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -901,7 +863,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtShortName_Enter(object sender, EventArgs e)
         {
             try
@@ -913,7 +874,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
     }
 }
