@@ -173,7 +173,7 @@ namespace ROMS
             {
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                if (!(e.ColumnIndex == 0 ))   /*If not our desired columns*/ //return;
+                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/  //return;
                     if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
                     {
                         e.Paint(e.CellBounds, DataGridViewPaintParts.All
@@ -182,6 +182,7 @@ namespace ROMS
                             e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
                         e.Handled = true;
                     }
+
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -206,11 +207,12 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchFilter();
+                //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdUnitList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUnitList);
                 objDser.CloseConnection();
                 grdUnitList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -233,36 +235,7 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
-                DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        }
-        private void udfnGridSearchFilter()
-        {
-            try
-            {
-                for (int i = 0; i < DGV_SearchGrid.Rows.Count; ++i)
-                {
-                    if (DGV_SearchGrid.ColumnCount > 0)
-                    {
-                        BindingSource bs = new BindingSource();
-                        bs.DataSource = grdUnitList.DataSource;
-                        string filter = "";
-                        for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
-                        {
-                            if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "")
-                            {
-                                if (filter != "") filter += "And ";
-                                if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
-                                    filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + "=" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value);
-                                else
-                                    filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
-                            }
-                        }
-                        bs.Filter = filter;
-                        grdUnitList.DataSource = bs;
-                    }
-                }
+                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -305,7 +278,8 @@ namespace ROMS
                     direction = ListSortDirection.Descending;
                 }
                 else
-                {   // Sort a new column and remove the old SortGlyph.
+                {
+                    // Sort a new column and remove the old SortGlyph.
                     direction = ListSortDirection.Ascending;
                     oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                 }
@@ -398,6 +372,10 @@ namespace ROMS
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();
                     this.Close();
+                }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    udfndelete();
                 }
             }
             catch (Exception ex)

@@ -13,7 +13,6 @@ namespace ROMS
     //Created By:-Sathish ; Created On:-11-08-2023
     public partial class CP_City : Form
     {
-        DataValidation objValidation = new DataValidation();
         DataError objError;
         private ToolTip tpCityName = new ToolTip();
         private ToolTip tpState = new ToolTip();
@@ -95,9 +94,9 @@ namespace ROMS
                 else
                 {
                     varResult = objspservice.udfnCity(1,varCityCode,Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, "City Updation");
-                    //this.Close();
                     varUpdate = 1;
                     udfnclose();
+                   // udfnclose();
                 }
                 if (varResult.Split('~')[0] == "3")
                 {
@@ -181,7 +180,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -229,7 +228,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
