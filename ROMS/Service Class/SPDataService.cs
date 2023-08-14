@@ -193,5 +193,132 @@ namespace ROMS
             }
             return ds;
         }
+
+        // Sivabharathi    Create date: 10/08/2023    Description:	Group Sp
+        public string udfnGroup(int ViewType, int paraPRGID, string paraPRG_EName, string paraPRG_TName, int paraStatusId, string paraOriginator)
+        {
+           
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("TRNS_ProductGroup", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraPRGID", paraPRGID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRG_EName", paraPRG_EName);
+                varSqlCommand.Parameters.AddWithValue("@paraPRG_TName", paraPRG_TName);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        // Sivabharathi    Create date: 11/08/2023    Description:	Group list Sp
+        public DataSet udfnGroupList(int ViewType, int paraPRGID)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_ProductGroup]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraPRGID", paraPRGID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+
+        // @ViewType AS INT =0,@paraPRSGID AS INT=0,@paraPRSG_PRGID AS INT=0,@paraPRSG_EName AS NVARCHAR(100)='',@paraPRSG_TName AS NVARCHAR(100)='',@paraStatusId INT = 0,
+        //   @paraSG_BatchNo INT=0,@paraPRSG_SLID INT = 0, @paraPRSG_RKID INT=0,@paraUserID AS INT=0, @paraIPAddress AS nvarchar(20)='', @paraOriginator AS nvarchar(100)=''
+        public string udfnSubGroup(int ViewType, int paraPRSGID,int paraPRSG_PRGID, string paraPRSG_EName, string paraPRSG_TName, int paraStatusId,int paraSG_BatchNo,int paraPRSG_SLID, int paraPRSG_RKID,string paraOriginator)
+        {
+
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("TRNS_ProductSubGroup", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRSG_PRGID", paraPRSG_PRGID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRSG_EName", paraPRSG_EName);
+                varSqlCommand.Parameters.AddWithValue("@paraPRSG_TName", paraPRSG_TName);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraSG_BatchNo", paraSG_BatchNo);
+                varSqlCommand.Parameters.AddWithValue("@paraPRSG_SLID", paraPRSG_SLID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRSG_RKID", paraPRSG_RKID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+
+        public DataSet udfnSubGroupList(int ViewType, int paraPRSGID)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_ProductSubGroup]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 }

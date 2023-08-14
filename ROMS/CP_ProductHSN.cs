@@ -299,7 +299,6 @@ namespace ROMS
             {
                 epHsn.Clear();
                 cmbGST.BackColor = Color.White;
-               
             }
            
         }

@@ -299,6 +299,7 @@ namespace ROMS
                         udfnClear();
                         MainForm.objCP_GroupList.udfnList();
                         MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
+                        MainForm.objCP_GroupList.cmbProductGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
@@ -316,6 +317,8 @@ namespace ROMS
                         varCloseFlag = 1;
                         udfnclose();
                         MainForm.objCP_GroupList.udfnList();
+                        MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
+                        
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
@@ -380,7 +383,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -421,7 +424,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -502,5 +505,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
     }
 }

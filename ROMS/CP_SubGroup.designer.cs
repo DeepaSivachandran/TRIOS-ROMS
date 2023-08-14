@@ -80,6 +80,7 @@
             this.grbform.Size = new System.Drawing.Size(453, 319);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
             // 
             // cmbBatchNo
             // 

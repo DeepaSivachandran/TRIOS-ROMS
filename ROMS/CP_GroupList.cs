@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using Excel = Microsoft.Office.Interop.Excel;
-//using ClosedXML.Excel;
+using Excel = Microsoft.Office.Interop.Excel;
+using ClosedXML.Excel;
 namespace ROMS
 {
     public partial class CP_GroupList : Form
@@ -18,6 +18,9 @@ namespace ROMS
 
         DataSet objDs = new DataSet();
         DataTable objDtExcel = new DataTable();
+        public int varGroupCode = 0;
+
+      
         public CP_GroupList()
         {
             InitializeComponent();
@@ -97,6 +100,8 @@ namespace ROMS
                             grdGroupList.Columns["Status"].Width = 80;
                             grdGroupList.Columns["ID"].Visible = false;
                             grdGroupList.Columns["Status ID"].Visible = false;
+
+                            lblNoOfPrGroup.Text = Convert.ToString(grdGroupList.Rows.Count);
                         }
                         else
                         {
@@ -124,7 +129,8 @@ namespace ROMS
             }
             finally
             {
-                grdGroupList.ClearSelection(); 
+                grdGroupList.ClearSelection();
+                varGroupCode = Convert.ToInt32(cmbProductGroup.SelectedValue);
             }
         }
 
@@ -212,7 +218,7 @@ namespace ROMS
         {
             try
             {
-                btnView.BackColor = Color.White;
+                btnView.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -225,7 +231,7 @@ namespace ROMS
         {
             try
             {
-                btnExport.BackColor = Color.White;
+                btnExport.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -292,6 +298,7 @@ namespace ROMS
                 this.ActiveControl = cmbProductGroup;
                 udfnLoadCmbProductGroup();
                 udfnList();
+               
             }
             catch (Exception ex)
             {
@@ -342,6 +349,10 @@ namespace ROMS
         {
             try
             {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnEdit();
+                }
                 if (e.KeyCode == Keys.Delete)
                 {
                     udfndelete();
@@ -370,9 +381,15 @@ namespace ROMS
 
         private void CmbProductGroup_Leave(object sender, EventArgs e)
         {
-            if (Convert.ToString(cmbProductGroup.SelectedValue) == "0" || Convert.ToString(cmbProductGroup.SelectedValue) == "-1")
+            
+            try
             {
                 cmbProductGroup.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
@@ -461,7 +478,80 @@ namespace ROMS
 
         private void BtnExport_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if ((grdGroupList.Rows.Count > 0))
+                {
+                    Excel._Application ExcelObj = new Excel.Application();
+                    // creating new WorkBook within Excel application  
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    // creating new Excelsheet in workbook  
+                    Excel._Worksheet ExcelSheet = null;
+                    // see the excel sheet behind the program  
+                    ExcelObj.Visible = true;
+                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
+                    ExcelSheet = ExcelBook.ActiveSheet;
+                    // changing the name of active sheet  
+                    ExcelSheet.Name = "Product Group List";
+                    int cIndex = 0;
+                    int count = 0;
+                    foreach (DataGridViewColumn col in grdGroupList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            count += 1;
+                        }
+                    }
+                    //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
+                    //er.EntireColumn.ColumnWidth = 35;
+                    ExcelSheet.Cells[1, 1].Value = "Product Group List";
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
+                    foreach (DataGridViewColumn col in grdGroupList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            cIndex += 1;
+                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
+                            if (col.Name == "S.No." || col.Name == "Status"  )
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                            else if (col.Name == "Total Sub Groups" || col.Name == "Total Products")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            }
+                            else
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 50;
+                            }
+                           
+                            if (col.Name == "Total Sub Groups"  || col.Name == "Total Products")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            }
+                            foreach (DataGridViewRow rowa in grdGroupList.Rows)
+                            {
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                            }
+                        }
+                    }
+                    //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
+                    ExcelObj.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }
