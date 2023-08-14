@@ -43,6 +43,7 @@ namespace ROMS
             {
                 udfnHideGrids();
                 grdLoction.Visible = true;
+                tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ";
             }
             catch (Exception ex)
             {
@@ -57,6 +58,7 @@ namespace ROMS
             {
                 udfnHideGrids();
                 grdMSQ.Visible = true;
+                tspHeader.Text = "Product Attributes Bulk Update : Minsales Qty & Barcode";
             }
             catch (Exception ex)
             {
@@ -71,6 +73,7 @@ namespace ROMS
             {
                 udfnHideGrids();
                 grdStock.Visible = true;
+                tspHeader.Text = "Product Attributes Bulk Update : Min, Max stock & Reorder Qty";
             }
             catch (Exception ex)
             {
@@ -85,6 +88,7 @@ namespace ROMS
             {
                 udfnHideGrids();
                 grdShelfLife.Visible = true;
+                tspHeader.Text = "Product Attributes Bulk Update : Bulk Unit, UPP & Shelf Life";
             }
             catch (Exception ex)
             {
@@ -99,6 +103,7 @@ namespace ROMS
             {
                 udfnHideGrids();
                 grdBatch.Visible = true;
+                tspHeader.Text = "Product Attributes Bulk Update : Product Category, RM Flag & Batch";
             }
             catch (Exception ex)
             {
@@ -113,6 +118,7 @@ namespace ROMS
             {
                 udfnHideGrids();
                 grdWeight.Visible = true;
+                tspHeader.Text = "Product Attributes Bulk Update : Net & Gross Weight";
             }
             catch (Exception ex)
             {
@@ -127,6 +133,7 @@ namespace ROMS
             {
                 udfnHideGrids();
                 grdBrand.Visible = true;
+                tspHeader.Text = "Product Attributes Bulk Update : Group, Subgroup & Brand";
             }
             catch (Exception ex)
             {
@@ -141,6 +148,7 @@ namespace ROMS
             {
                 udfnHideGrids();
                 grdHSN.Visible = true;
+                tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
             }
             catch (Exception ex)
             {
@@ -155,6 +163,20 @@ namespace ROMS
             {
                 udfnHideGrids();
                 grdName.Visible = true;
+                tspHeader.Text = "Product Attributes Bulk Update : Pro. Code, Name & Unit";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_BulkAttributes_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                TsbLocation_Click(sender,e);
             }
             catch (Exception ex)
             {
