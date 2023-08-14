@@ -87,6 +87,12 @@
     <Compile Include="CP_BulkAttributes.designer.cs">
       <DependentUpon>CP_BulkAttributes.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_PODamagedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PODamagedView.designer.cs">
+      <DependentUpon>PUR_PODamagedView.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_DCDeatils.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -688,6 +694,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_BulkAttributes.resx">
       <DependentUpon>CP_BulkAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PODamagedView.resx">
+      <DependentUpon>PUR_PODamagedView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_DCDeatils.resx">
       <DependentUpon>PUR_DCDeatils.cs</DependentUpon>

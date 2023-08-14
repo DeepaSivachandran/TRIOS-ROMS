@@ -180,7 +180,7 @@
             this.MinimizeBox = false;
             this.Name = "PUR_PODamaged";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Pending Delivery Challans";
+            this.Text = "Damaged Products";
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).EndInit();
             this.ResumeLayout(false);
