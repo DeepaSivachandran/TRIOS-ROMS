@@ -40,7 +40,7 @@
             this.txtDSubGroup = new System.Windows.Forms.TextBox();
             this.txtDUnit = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtUPPvalue = new System.Windows.Forms.TextBox();
             this.btnUnit = new System.Windows.Forms.Label();
             this.btnBrand = new System.Windows.Forms.Label();
             this.btnGroup = new System.Windows.Forms.Label();
@@ -77,7 +77,7 @@
             this.txtDMaxStock = new System.Windows.Forms.TextBox();
             this.txtWeight = new System.Windows.Forms.TextBox();
             this.txtDNettWeight = new System.Windows.Forms.TextBox();
-            this.txtMaxOrderQty = new System.Windows.Forms.TextBox();
+            this.txtRackMOQQty = new System.Windows.Forms.TextBox();
             this.txtDMaxOrderQty = new System.Windows.Forms.TextBox();
             this.txtRMinSaleQty = new System.Windows.Forms.TextBox();
             this.txtDRMinSaleQty = new System.Windows.Forms.TextBox();
@@ -248,7 +248,7 @@
             // 
             // grbform
             // 
-            this.grbform.Controls.Add(this.textBox6);
+            this.grbform.Controls.Add(this.txtUPPvalue);
             this.grbform.Controls.Add(this.btnUnit);
             this.grbform.Controls.Add(this.btnBrand);
             this.grbform.Controls.Add(this.btnGroup);
@@ -282,17 +282,17 @@
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
-            // textBox6
+            // txtUPPvalue
             // 
-            this.textBox6.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox6.Enabled = false;
-            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox6.Location = new System.Drawing.Point(497, 239);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(26, 27);
-            this.textBox6.TabIndex = 118;
-            this.textBox6.Text = "Pkt";
+            this.txtUPPvalue.BackColor = System.Drawing.SystemColors.Control;
+            this.txtUPPvalue.Enabled = false;
+            this.txtUPPvalue.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtUPPvalue.Location = new System.Drawing.Point(497, 239);
+            this.txtUPPvalue.Name = "txtUPPvalue";
+            this.txtUPPvalue.ReadOnly = true;
+            this.txtUPPvalue.Size = new System.Drawing.Size(26, 27);
+            this.txtUPPvalue.TabIndex = 118;
+            this.txtUPPvalue.Text = "Pkt";
             // 
             // btnUnit
             // 
@@ -341,6 +341,7 @@
             this.btnSubgroup.TabIndex = 26;
             this.btnSubgroup.Text = "        ";
             this.btnSubgroup.ClientSizeChanged += new System.EventHandler(this.BtnSubgroup_Click);
+            this.btnSubgroup.Click += new System.EventHandler(this.BtnSubgroup_Click);
             // 
             // txtUpp
             // 
@@ -352,6 +353,7 @@
             this.txtUpp.TabIndex = 11;
             this.txtUpp.Enter += new System.EventHandler(this.TxtUpp_Enter);
             this.txtUpp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUpp_KeyDown);
+            this.txtUpp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUpp_KeyPress);
             this.txtUpp.Leave += new System.EventHandler(this.TxtUpp_Leave);
             // 
             // txtDUPP
@@ -646,6 +648,7 @@
             this.txtGrossWeight.Name = "txtGrossWeight";
             this.txtGrossWeight.Size = new System.Drawing.Size(124, 27);
             this.txtGrossWeight.TabIndex = 23;
+            this.txtGrossWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGrossWeight.Enter += new System.EventHandler(this.TxtGrossWeight_Enter);
             this.txtGrossWeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGrossWeight_KeyDown);
             this.txtGrossWeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtGrossWeight_KeyPress);
@@ -672,6 +675,7 @@
             this.txtReOrderQty.Name = "txtReOrderQty";
             this.txtReOrderQty.Size = new System.Drawing.Size(145, 27);
             this.txtReOrderQty.TabIndex = 26;
+            this.txtReOrderQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtReOrderQty.Enter += new System.EventHandler(this.TxtReOrderQty_Enter);
             this.txtReOrderQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtReOrderQty_KeyDown);
             this.txtReOrderQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtReOrderQty_KeyPress);
@@ -698,6 +702,7 @@
             this.txtMinStock.Name = "txtMinStock";
             this.txtMinStock.Size = new System.Drawing.Size(145, 27);
             this.txtMinStock.TabIndex = 24;
+            this.txtMinStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMinStock.Enter += new System.EventHandler(this.TxtMinStock_Enter);
             this.txtMinStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMinStock_KeyDown);
             this.txtMinStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMinStock_KeyPress);
@@ -724,6 +729,7 @@
             this.txtMaxStock.Name = "txtMaxStock";
             this.txtMaxStock.Size = new System.Drawing.Size(145, 27);
             this.txtMaxStock.TabIndex = 25;
+            this.txtMaxStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMaxStock.Enter += new System.EventHandler(this.TxtMaxStock_Enter);
             this.txtMaxStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxStock_KeyDown);
             this.txtMaxStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMaxStock_KeyPress);
@@ -750,6 +756,7 @@
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.Size = new System.Drawing.Size(124, 27);
             this.txtWeight.TabIndex = 22;
+            this.txtWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWeight.Enter += new System.EventHandler(this.TxtWeight_Enter);
             this.txtWeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWeight_KeyDown);
             this.txtWeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWeight_KeyPress);
@@ -768,17 +775,17 @@
             this.txtDNettWeight.TabStop = false;
             this.txtDNettWeight.Text = "Net Weight";
             // 
-            // txtMaxOrderQty
+            // txtRackMOQQty
             // 
-            this.txtMaxOrderQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMaxOrderQty.Location = new System.Drawing.Point(135, 86);
-            this.txtMaxOrderQty.MaxLength = 50;
-            this.txtMaxOrderQty.Name = "txtMaxOrderQty";
-            this.txtMaxOrderQty.Size = new System.Drawing.Size(127, 27);
-            this.txtMaxOrderQty.TabIndex = 27;
-            this.txtMaxOrderQty.Enter += new System.EventHandler(this.TxtMaxOrderQty_Enter);
-            this.txtMaxOrderQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxOrderQty_KeyDown);
-            this.txtMaxOrderQty.Leave += new System.EventHandler(this.TxtMaxOrderQty_Leave);
+            this.txtRackMOQQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtRackMOQQty.Location = new System.Drawing.Point(135, 86);
+            this.txtRackMOQQty.MaxLength = 50;
+            this.txtRackMOQQty.Name = "txtRackMOQQty";
+            this.txtRackMOQQty.Size = new System.Drawing.Size(127, 27);
+            this.txtRackMOQQty.TabIndex = 27;
+            this.txtRackMOQQty.Enter += new System.EventHandler(this.TxtMaxOrderQty_Enter);
+            this.txtRackMOQQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxOrderQty_KeyDown);
+            this.txtRackMOQQty.Leave += new System.EventHandler(this.TxtMaxOrderQty_Leave);
             // 
             // txtDMaxOrderQty
             // 
@@ -801,6 +808,7 @@
             this.txtRMinSaleQty.Name = "txtRMinSaleQty";
             this.txtRMinSaleQty.Size = new System.Drawing.Size(145, 27);
             this.txtRMinSaleQty.TabIndex = 28;
+            this.txtRMinSaleQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRMinSaleQty.Enter += new System.EventHandler(this.TxtRMinSaleQty_Enter);
             this.txtRMinSaleQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRMinSaleQty_KeyDown);
             this.txtRMinSaleQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtRMinSaleQty_KeyPress);
@@ -841,6 +849,7 @@
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(145, 27);
             this.txtBarcode.TabIndex = 32;
+            this.txtBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtBarcode.Enter += new System.EventHandler(this.TxtBarcode_Enter);
             this.txtBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBarcode_KeyDown);
             this.txtBarcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBarcode_KeyPress);
@@ -867,6 +876,7 @@
             this.txtWSaleRate.Name = "txtWSaleRate";
             this.txtWSaleRate.Size = new System.Drawing.Size(145, 27);
             this.txtWSaleRate.TabIndex = 31;
+            this.txtWSaleRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWSaleRate.Enter += new System.EventHandler(this.TxtWSaleRate_Enter);
             this.txtWSaleRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWSaleRate_KeyDown);
             this.txtWSaleRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWSaleRate_KeyPress);
@@ -906,6 +916,7 @@
             this.txtRetailRate.Name = "txtRetailRate";
             this.txtRetailRate.Size = new System.Drawing.Size(145, 27);
             this.txtRetailRate.TabIndex = 29;
+            this.txtRetailRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRetailRate.Enter += new System.EventHandler(this.TxtRetailRate_Enter);
             this.txtRetailRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRetailRate_KeyDown);
             this.txtRetailRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtRetailRate_KeyPress);
@@ -939,6 +950,7 @@
             this.txtWMinSaleQty.Name = "txtWMinSaleQty";
             this.txtWMinSaleQty.Size = new System.Drawing.Size(145, 27);
             this.txtWMinSaleQty.TabIndex = 30;
+            this.txtWMinSaleQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWMinSaleQty.Enter += new System.EventHandler(this.TxtWMinSaleQty_Enter);
             this.txtWMinSaleQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWMinSaleQty_KeyDown);
             this.txtWMinSaleQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWMinSaleQty_KeyPress);
@@ -980,6 +992,7 @@
             this.txtGST.ReadOnly = true;
             this.txtGST.Size = new System.Drawing.Size(124, 27);
             this.txtGST.TabIndex = 34;
+            this.txtGST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGST.Enter += new System.EventHandler(this.TxtGST_Enter);
             this.txtGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGST_KeyDown);
             this.txtGST.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtGST_KeyPress);
@@ -1135,7 +1148,7 @@
             // 
             this.grbSalesStockLocation.Controls.Add(this.cmbSalesGodown);
             this.grbSalesStockLocation.Controls.Add(this.txtDSalesGodown);
-            this.grbSalesStockLocation.Controls.Add(this.txtMaxOrderQty);
+            this.grbSalesStockLocation.Controls.Add(this.txtRackMOQQty);
             this.grbSalesStockLocation.Controls.Add(this.txtDMaxOrderQty);
             this.grbSalesStockLocation.Controls.Add(this.txtDSalesShop);
             this.grbSalesStockLocation.Controls.Add(this.cmbSalesRack);
@@ -1225,6 +1238,7 @@
             this.txtHSNCode.ReadOnly = true;
             this.txtHSNCode.Size = new System.Drawing.Size(145, 27);
             this.txtHSNCode.TabIndex = 33;
+            this.txtHSNCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox4
             // 
@@ -1460,7 +1474,7 @@
         private System.Windows.Forms.GroupBox grplocation;
         private System.Windows.Forms.ComboBox cmbPosition;
         private System.Windows.Forms.TextBox txtDPurchaseLocation;
-        private System.Windows.Forms.TextBox txtMaxOrderQty;
+        private System.Windows.Forms.TextBox txtRackMOQQty;
         private System.Windows.Forms.TextBox txtDMaxOrderQty;
         private System.Windows.Forms.CheckBox cbRMFromProduction;
         private System.Windows.Forms.GroupBox grbSalesStockLocation;
@@ -1483,7 +1497,7 @@
         private System.Windows.Forms.TextBox txtHSNCode;
         private System.Windows.Forms.ComboBox cmbHSNName;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtUPPvalue;
         private System.Windows.Forms.GroupBox grbBatchNoDetails;
         private System.Windows.Forms.ComboBox cmbBatchNoGeneration;
         private System.Windows.Forms.TextBox txtBatchNoGeneration;

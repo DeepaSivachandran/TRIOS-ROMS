@@ -21,7 +21,7 @@ namespace ROMS
         private ToolTip tpBatchNo = new ToolTip();
         private ToolTip tpShopLocation = new ToolTip();
         private ToolTip tpRack = new ToolTip();
-        
+        public int varmastertype = 0;
 
         public string vargroupcode;
         public String pbFormStatus;
@@ -73,6 +73,19 @@ namespace ROMS
         {
             try
             {
+                if (varmastertype == 1)
+                {
+                    this.Close();
+
+                    MainForm.objCP_Items = new CP_Product();
+                    MainForm.objCP_Items.MdiParent = this.ParentForm;
+                    MainForm.objCP_Items.Show();
+
+                }
+                else
+                {
+
+                }
 
             }
             catch (Exception ex)

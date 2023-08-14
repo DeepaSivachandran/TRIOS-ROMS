@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
@@ -65,15 +65,6 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.txtbranchname = new System.Windows.Forms.TextBox();
             this.grdBankDetails = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBankShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtIFScode = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
@@ -145,6 +136,15 @@
             this.txtMobilenumber = new System.Windows.Forms.TextBox();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
             this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBankShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.tcCompanyDetails.SuspendLayout();
@@ -440,7 +440,7 @@
             this.LV_Group.Location = new System.Drawing.Point(544, 285);
             this.LV_Group.Name = "LV_Group";
             this.LV_Group.Size = new System.Drawing.Size(310, 10);
-            this.LV_Group.TabIndex = 28;
+            this.LV_Group.TabIndex = 40000;
             this.LV_Group.UseCompatibleStateImageBehavior = false;
             this.LV_Group.View = System.Windows.Forms.View.Details;
             this.LV_Group.Visible = false;
@@ -466,7 +466,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 27);
-            this.btnAdd.TabIndex = 1111141;
+            this.btnAdd.TabIndex = 25;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
@@ -513,7 +513,7 @@
             // 
             this.txtbranchname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtbranchname.Location = new System.Drawing.Point(618, 27);
-            this.txtbranchname.MaxLength = 20;
+            this.txtbranchname.MaxLength = 50;
             this.txtbranchname.Name = "txtbranchname";
             this.txtbranchname.Size = new System.Drawing.Size(147, 27);
             this.txtbranchname.TabIndex = 22;
@@ -529,14 +529,14 @@
             this.grdBankDetails.AllowUserToResizeRows = false;
             this.grdBankDetails.BackgroundColor = System.Drawing.Color.White;
             this.grdBankDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdBankDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle55.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle55.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle55.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle55.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle55.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle55.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdBankDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle55;
             this.grdBankDetails.ColumnHeadersHeight = 30;
             this.grdBankDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdBankDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -549,88 +549,28 @@
             this.clmStatus,
             this.clmsts,
             this.clmremovebank});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdBankDetails.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle56.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle56.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle56.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle56.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle56.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle56.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdBankDetails.DefaultCellStyle = dataGridViewCellStyle56;
             this.grdBankDetails.EnableHeadersVisualStyles = false;
             this.grdBankDetails.GridColor = System.Drawing.Color.White;
             this.grdBankDetails.Location = new System.Drawing.Point(6, 60);
             this.grdBankDetails.Name = "grdBankDetails";
             this.grdBankDetails.RowHeadersVisible = false;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            this.grdBankDetails.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle57.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle57.SelectionForeColor = System.Drawing.Color.White;
+            this.grdBankDetails.RowsDefaultCellStyle = dataGridViewCellStyle57;
             this.grdBankDetails.RowTemplate.Height = 25;
             this.grdBankDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdBankDetails.Size = new System.Drawing.Size(1277, 162);
             this.grdBankDetails.TabIndex = 1111136;
             this.grdBankDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBankDetails_CellContentClick);
             this.grdBankDetails.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdBankDetails_EditingControlShowing);
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 50;
-            // 
-            // clmbankname
-            // 
-            this.clmbankname.HeaderText = "Bank Name";
-            this.clmbankname.Name = "clmbankname";
-            this.clmbankname.ReadOnly = true;
-            this.clmbankname.Width = 200;
-            // 
-            // clmBankShortName
-            // 
-            this.clmBankShortName.HeaderText = "Bank Short Name";
-            this.clmBankShortName.Name = "clmBankShortName";
-            this.clmBankShortName.ReadOnly = true;
-            this.clmBankShortName.Width = 150;
-            // 
-            // clmbranch
-            // 
-            this.clmbranch.HeaderText = "Branch Name";
-            this.clmbranch.Name = "clmbranch";
-            this.clmbranch.ReadOnly = true;
-            this.clmbranch.Width = 175;
-            // 
-            // clmaccno
-            // 
-            this.clmaccno.HeaderText = "Account No.";
-            this.clmaccno.Name = "clmaccno";
-            this.clmaccno.ReadOnly = true;
-            this.clmaccno.Width = 200;
-            // 
-            // clmifscode
-            // 
-            this.clmifscode.HeaderText = "IFS Code";
-            this.clmifscode.Name = "clmifscode";
-            this.clmifscode.ReadOnly = true;
-            this.clmifscode.Width = 175;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // clmsts
-            // 
-            this.clmsts.HeaderText = "sts";
-            this.clmsts.Name = "clmsts";
-            this.clmsts.Visible = false;
-            // 
-            // clmremovebank
-            // 
-            this.clmremovebank.HeaderText = "Remove";
-            this.clmremovebank.Name = "clmremovebank";
-            this.clmremovebank.Width = 80;
             // 
             // textBox15
             // 
@@ -648,7 +588,7 @@
             // 
             this.txtIFScode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtIFScode.Location = new System.Drawing.Point(1112, 27);
-            this.txtIFScode.MaxLength = 20;
+            this.txtIFScode.MaxLength = 11;
             this.txtIFScode.Name = "txtIFScode";
             this.txtIFScode.Size = new System.Drawing.Size(147, 27);
             this.txtIFScode.TabIndex = 24;
@@ -672,7 +612,7 @@
             // 
             this.txtAccno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtAccno.Location = new System.Drawing.Point(865, 27);
-            this.txtAccno.MaxLength = 30;
+            this.txtAccno.MaxLength = 20;
             this.txtAccno.Name = "txtAccno";
             this.txtAccno.Size = new System.Drawing.Size(147, 27);
             this.txtAccno.TabIndex = 23;
@@ -1201,7 +1141,7 @@
             this.btnAddContact.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddContact.Name = "btnAddContact";
             this.btnAddContact.Size = new System.Drawing.Size(23, 27);
-            this.btnAddContact.TabIndex = 5;
+            this.btnAddContact.TabIndex = 7;
             this.btnAddContact.UseVisualStyleBackColor = false;
             this.btnAddContact.Click += new System.EventHandler(this.BtnAddContact_Click);
             this.btnAddContact.Enter += new System.EventHandler(this.BtnAddContact_Enter);
@@ -1231,9 +1171,12 @@
             this.cbPrimary.Location = new System.Drawing.Point(694, 40);
             this.cbPrimary.Name = "cbPrimary";
             this.cbPrimary.Size = new System.Drawing.Size(70, 24);
-            this.cbPrimary.TabIndex = 500000;
+            this.cbPrimary.TabIndex = 4;
             this.cbPrimary.Text = "Primary";
             this.cbPrimary.UseVisualStyleBackColor = true;
+            this.cbPrimary.Enter += new System.EventHandler(this.CbPrimary_Enter);
+            this.cbPrimary.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CbPrimary_KeyDown);
+            this.cbPrimary.Leave += new System.EventHandler(this.CbPrimary_Leave);
             // 
             // cbWhatsApp
             // 
@@ -1241,9 +1184,12 @@
             this.cbWhatsApp.Location = new System.Drawing.Point(604, 40);
             this.cbWhatsApp.Name = "cbWhatsApp";
             this.cbWhatsApp.Size = new System.Drawing.Size(84, 24);
-            this.cbWhatsApp.TabIndex = 400000;
+            this.cbWhatsApp.TabIndex = 3;
             this.cbWhatsApp.Text = "WhatsApp";
             this.cbWhatsApp.UseVisualStyleBackColor = true;
+            this.cbWhatsApp.Enter += new System.EventHandler(this.CbWhatsApp_Enter);
+            this.cbWhatsApp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CbWhatsApp_KeyDown);
+            this.cbWhatsApp.Leave += new System.EventHandler(this.CbWhatsApp_Leave);
             // 
             // lblMobileNo
             // 
@@ -1279,7 +1225,7 @@
             this.txtMobileBrand.MaxLength = 100;
             this.txtMobileBrand.Name = "txtMobileBrand";
             this.txtMobileBrand.Size = new System.Drawing.Size(195, 27);
-            this.txtMobileBrand.TabIndex = 4;
+            this.txtMobileBrand.TabIndex = 6;
             this.txtMobileBrand.Enter += new System.EventHandler(this.TxtMobileBrand_Enter);
             this.txtMobileBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMobileBrand_KeyDown);
             this.txtMobileBrand.Leave += new System.EventHandler(this.TxtMobileBrand_Leave);
@@ -1291,7 +1237,7 @@
             this.txtOperator.MaxLength = 100;
             this.txtOperator.Name = "txtOperator";
             this.txtOperator.Size = new System.Drawing.Size(195, 27);
-            this.txtOperator.TabIndex = 3;
+            this.txtOperator.TabIndex = 5;
             this.txtOperator.Enter += new System.EventHandler(this.TxtOperator_Enter);
             this.txtOperator.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtOperator_KeyDown);
             this.txtOperator.Leave += new System.EventHandler(this.TxtOperator_Leave);
@@ -1304,7 +1250,7 @@
             this.btnSaveContact.Location = new System.Drawing.Point(1151, 551);
             this.btnSaveContact.Name = "btnSaveContact";
             this.btnSaveContact.Size = new System.Drawing.Size(84, 29);
-            this.btnSaveContact.TabIndex = 6;
+            this.btnSaveContact.TabIndex = 8;
             this.btnSaveContact.Text = "Save";
             this.btnSaveContact.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSaveContact.UseVisualStyleBackColor = true;
@@ -1321,7 +1267,7 @@
             this.btnCloseContact.Location = new System.Drawing.Point(1241, 551);
             this.btnCloseContact.Name = "btnCloseContact";
             this.btnCloseContact.Size = new System.Drawing.Size(75, 29);
-            this.btnCloseContact.TabIndex = 7;
+            this.btnCloseContact.TabIndex = 9;
             this.btnCloseContact.Text = "Close";
             this.btnCloseContact.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCloseContact.UseVisualStyleBackColor = true;
@@ -1350,14 +1296,14 @@
             this.grdContactManager.AllowUserToResizeRows = false;
             this.grdContactManager.BackgroundColor = System.Drawing.Color.White;
             this.grdContactManager.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdContactManager.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle58.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle58.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle58.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle58.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle58.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle58.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle58.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdContactManager.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle58;
             this.grdContactManager.ColumnHeadersHeight = 30;
             this.grdContactManager.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdContactManager.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1371,23 +1317,23 @@
             this.clmMobileBrand,
             this.clmid,
             this.clmRemove});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdContactManager.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle59.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle59.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle59.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle59.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle59.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle59.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle59.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdContactManager.DefaultCellStyle = dataGridViewCellStyle59;
             this.grdContactManager.EnableHeadersVisualStyles = false;
             this.grdContactManager.GridColor = System.Drawing.Color.White;
             this.grdContactManager.Location = new System.Drawing.Point(13, 72);
             this.grdContactManager.Name = "grdContactManager";
             this.grdContactManager.ReadOnly = true;
             this.grdContactManager.RowHeadersVisible = false;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
-            this.grdContactManager.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle60.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle60.SelectionForeColor = System.Drawing.Color.White;
+            this.grdContactManager.RowsDefaultCellStyle = dataGridViewCellStyle60;
             this.grdContactManager.RowTemplate.Height = 25;
             this.grdContactManager.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdContactManager.Size = new System.Drawing.Size(1303, 472);
@@ -1493,6 +1439,67 @@
             // 
             this.epCompany.ContainerControl = this;
             // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
+            // 
+            // clmbankname
+            // 
+            this.clmbankname.HeaderText = "Bank Name";
+            this.clmbankname.Name = "clmbankname";
+            this.clmbankname.ReadOnly = true;
+            this.clmbankname.Width = 200;
+            // 
+            // clmBankShortName
+            // 
+            this.clmBankShortName.HeaderText = "Bank Short Name";
+            this.clmBankShortName.Name = "clmBankShortName";
+            this.clmBankShortName.ReadOnly = true;
+            this.clmBankShortName.Width = 150;
+            // 
+            // clmbranch
+            // 
+            this.clmbranch.HeaderText = "Branch Name";
+            this.clmbranch.Name = "clmbranch";
+            this.clmbranch.ReadOnly = true;
+            this.clmbranch.Width = 175;
+            // 
+            // clmaccno
+            // 
+            this.clmaccno.HeaderText = "Account No.";
+            this.clmaccno.Name = "clmaccno";
+            this.clmaccno.ReadOnly = true;
+            this.clmaccno.Width = 200;
+            // 
+            // clmifscode
+            // 
+            this.clmifscode.HeaderText = "IFS Code";
+            this.clmifscode.Name = "clmifscode";
+            this.clmifscode.ReadOnly = true;
+            this.clmifscode.Width = 175;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // clmsts
+            // 
+            this.clmsts.HeaderText = "sts";
+            this.clmsts.Name = "clmsts";
+            this.clmsts.Visible = false;
+            // 
+            // clmremovebank
+            // 
+            this.clmremovebank.HeaderText = "Remove";
+            this.clmremovebank.Image = global::ROMS.Properties.Resources.remove;
+            this.clmremovebank.Name = "clmremovebank";
+            this.clmremovebank.Width = 80;
+            // 
             // CP_Company
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1510,7 +1517,7 @@
             this.Text = "Company";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Company_FormClosing);
             this.Load += new System.EventHandler(this.CP_Company_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Company_KeyDown); 
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Company_KeyDown);
             this.tsBrandList.ResumeLayout(false);
             this.tsBrandList.PerformLayout();
             this.pnlCompany.ResumeLayout(false);
@@ -1628,15 +1635,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmbankname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmBankShortName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmbranch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmaccno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmifscode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsts;
-        private System.Windows.Forms.DataGridViewImageColumn clmremovebank;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmContsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTransaction;
@@ -1647,5 +1645,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMobileBrand;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmid;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmbankname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBankShortName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmbranch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmaccno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmifscode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsts;
+        private System.Windows.Forms.DataGridViewImageColumn clmremovebank;
     }
 }

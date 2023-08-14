@@ -45,7 +45,7 @@ namespace ROMS
         private ToolTip tpAccountNo = new ToolTip();
         private ToolTip tpIfsCode = new ToolTip();
         public string varupdate = "0";
-        public string varcompanyid="0",varstatusid ="0";
+        public string varcompanyid="0",varstatusid ="0", varcontactcompanyid = "0";
         public CP_Company()
         {
             InitializeComponent();
@@ -899,14 +899,14 @@ namespace ROMS
             {
                 if (txtAlterPhoneno.Text !="" )
                 {
-                    epCompany.SetError(txtAlterPhoneno, "please enter alter mobile no.");
+                    epCompany.SetError(txtAlterPhoneno, "please enter alter Phone no.");
                     txtAlterPhoneno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpPhoneNo.ShowAlways = true;
                     tpPhoneNo.Show("please enter  alter mobile no.", txtAlterPhoneno, 5000);
                 }
-                else if (txtAlterPhoneno.TextLength != 10)
+                else if (txtAlterPhoneno.Text.Length != 10)
                 {
-                    epCompany.SetError(txtAlterPhoneno, "please enter valid alter mobile no.");
+                    epCompany.SetError(txtAlterPhoneno, "please enter valid alter Phone no.");
                     txtAlterPhoneno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpPhoneNo.ShowAlways = true;
                     tpPhoneNo.Show("please enter valid alter mobile no.", txtAlterPhoneno, 5000);
@@ -1026,7 +1026,7 @@ namespace ROMS
                     tpPincode.ShowAlways = true;
                     tpPincode.Show("Please enter pincode", txtPincode, 5000);
                 }
-                else if( txtPincode.TextLength != 7)
+                else if( txtPincode.TextLength != 6)
                 {
                     epCompany.SetError(txtPincode, "Please enter valid pincode");
                     txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1087,7 +1087,7 @@ namespace ROMS
                     tpPhoneNo.ShowAlways = true;
                     tpPhoneNo.Show("please enter alter mobile no.", txtAlterMobileno, 5000);
                 }
-                else if (txtAlterMobileno.TextLength != 10)
+                else if (txtAlterMobileno.Text.Length != 10)
                 {
                     epCompany.SetError(txtAlterMobileno, "please enter valid alter mobile no.");
                     txtAlterMobileno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1647,13 +1647,7 @@ namespace ROMS
                     tpPlNo.ShowAlways = true;
                     tpPlNo.Show("Please enter PL number", txtPlno, 5000);
                 }
-                else if (txtPlno.Text.Length != 10)
-                {
-                    epCompany.SetError(txtPlno, "Please enter valid PL number");
-                    txtPlno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpPlNo.ShowAlways = true;
-                    tpPlNo.Show("Please enter valid PL number", txtPlno, 5000);
-                }
+                 
                 else
                 {
                     epCompany.Clear();
@@ -1963,23 +1957,30 @@ namespace ROMS
                     , varpincode, txtPhoneNo.Text, txtAlterPhoneno.Text, txtwhatsappNo.Text, txtmobileNo.Text, txtAlterMobileno.Text, txtEmail.Text, txtwebsite.Text
                     , txtGSTTIN.Text, txtPan.Text, txtESI.Text, txtEPF.Text, txtFSSAI.Text, txtPlno.Text, Convert.ToString(cmbState.SelectedValue), varStatus,
                     MainForm.pbUserID, MainForm.pbIpAddress, "Company Update", objBankTable, objContactTable);
-                        varupdate = "1";
+                       
                     }
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        udfnClear(); 
+                        this.ActiveControl = tcCompanyDetails;
                         MainForm.objCP_Companylist.udfnList();
+
+                        varcontactcompanyid = varvalue[2];
+                        txtCompanyName.Focus();
                         if (btnSave.Text == "Update")
                         {
+                            varupdate = "1";
                             udfnclose();
+                            udfnClear();
                         }
                     }
                     else
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    } 
+                    }
+
+                    grdBankDetails.Rows.Clear();
                 }
                 else
                 {
@@ -1991,6 +1992,7 @@ namespace ROMS
                         tpCompanyName.Show("Please enter company name", txtCompanyName, 5000);
                         
                     }
+
                     if (Convert.ToString(txtShortName.Text).Trim() == "")
                     {
                         epCompany.SetError(txtShortName, "Please enter short name");
@@ -2123,6 +2125,7 @@ namespace ROMS
             txtbranchname.Text = "";
             txtAccno.Text = "";
             txtIFScode.Text = "";
+
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {
@@ -2268,8 +2271,7 @@ namespace ROMS
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
-                    udfnBankclear();
-                    grdBankDetails.DataSource = null;
+                    udfnBankclear(); 
                 }
             }
             catch (Exception ex)
@@ -2323,7 +2325,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    cmbTransactionType.Focus();
                 }
             }
             catch (Exception ex)
@@ -2483,7 +2485,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtOperator.Focus();
+                    cbWhatsApp.Focus();
                 }
             }
             catch (Exception ex)
@@ -2738,7 +2740,7 @@ namespace ROMS
                 {
                     udfnContactSave(); 
                     udfnContactClear();
-                    grdContactManager.DataSource = null;
+                    grdContactManager.Rows.Clear();
                 }
             }
             catch (Exception ex)
@@ -2800,7 +2802,7 @@ namespace ROMS
                 }
                 if (btnSave.Text == "Save")
                 {
-                    result = objspdservice.udfnCompanyMaster(3, Convert.ToInt32(varcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Create", objBankTable, objContactTable);
+                    result = objspdservice.udfnCompanyMaster(3, Convert.ToInt32(varcontactcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Create", objBankTable, objContactTable);
                 }
                 else
                 {
@@ -3053,7 +3055,7 @@ namespace ROMS
                 DataService objdservice = new DataService();  
                 varstatusid = objdservice.displaydata("select STS_Name as name from DEF_Status where STS_ModuleID=1 AND STSID=1"); 
                 udfnEdit();
-                txtCompanyName.Focus();
+                this.ActiveControl = txtCompanyName;
                 objdservice.CloseConnection();
             }
             catch (Exception ex)
@@ -3158,17 +3160,19 @@ namespace ROMS
                             txtAlterMobileno.Text = objDS.Tables[0].Rows[0]["MobileAlt"].ToString();
                             txtAlterPhoneno.Text = objDS.Tables[0].Rows[0]["PhoneAlt"].ToString(); 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+
                             btnSave.Text = "Update";
+                            btnSaveContact.Text = "Update"; ;
                             pnlStatus.Enabled = true;
                         }
                         if (objDS.Tables[1].Rows.Count > 0)
                         {
                             for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
                             {
-                                grdContactManager.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[0]["S.No."]), Convert.ToString(objDS.Tables[1].Rows[0]["NAME"]), Convert.ToString(objDS.Tables[1].Rows[0]["TRANSACTIONNAME"]),
-                                Convert.ToString(objDS.Tables[1].Rows[0]["MOBILE"]), Convert.ToString(objDS.Tables[1].Rows[0]["WHATSAPP"]), Convert.ToString(objDS.Tables[1].Rows[0]["PRIMAY"])
-                                , Convert.ToString(objDS.Tables[1].Rows[0]["OPERATOR"]), Convert.ToString(objDS.Tables[1].Rows[0]["BRAND"]), Convert.ToString(objDS.Tables[1].Rows[0]["id"]));
-                                btnSaveContact.Text = "Update"; ;
+                                grdContactManager.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[1].Rows[i]["NAME"]), Convert.ToString(objDS.Tables[1].Rows[i]["TRANSACTIONNAME"]),
+                                Convert.ToString(objDS.Tables[1].Rows[i]["MOBILE"]), Convert.ToString(objDS.Tables[1].Rows[i]["WHATSAPP"]), Convert.ToString(objDS.Tables[1].Rows[i]["PRIMAY"])
+                                , Convert.ToString(objDS.Tables[1].Rows[i]["OPERATOR"]), Convert.ToString(objDS.Tables[1].Rows[i]["BRAND"]), Convert.ToString(objDS.Tables[1].Rows[i]["id"]));
+                                
                                 pnlStatus.Enabled = true;
                             }
 
@@ -3177,12 +3181,14 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
                             {
-                                grdBankDetails.Rows.Add(Convert.ToString(objDS.Tables[2].Rows[0]["S.No."]), Convert.ToString(objDS.Tables[2].Rows[0]["NAME"]), Convert.ToString(objDS.Tables[2].Rows[0]["SHORTNAME"]),
-                                Convert.ToString(objDS.Tables[2].Rows[0]["BRANCH"]), Convert.ToString(objDS.Tables[2].Rows[0]["ACCOUNT"]), Convert.ToString(objDS.Tables[2].Rows[0]["IFSC"])
-                                , Convert.ToString(objDS.Tables[2].Rows[0]["STATUS"]),  Convert.ToString(objDS.Tables[2].Rows[0]["sts"]));
+                                grdBankDetails.Rows.Add(Convert.ToString(objDS.Tables[2].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[2].Rows[i]["NAME"]), Convert.ToString(objDS.Tables[2].Rows[i]["SHORTNAME"]),
+                                Convert.ToString(objDS.Tables[2].Rows[i]["BRANCH"]), Convert.ToString(objDS.Tables[2].Rows[i]["ACCOUNT"]), Convert.ToString(objDS.Tables[2].Rows[i]["IFSC"])
+                                , Convert.ToString(objDS.Tables[2].Rows[i]["STATUS"]),  Convert.ToString(objDS.Tables[2].Rows[i]["sts"]));
                                 
                             }
 
+                            btnSave.Text = "Update";
+                            btnSaveContact.Text = "Update"; ;
 
                         }
 
@@ -3222,8 +3228,8 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    //string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString(), objDs.Tables[0].Rows[i]["CTYID"].ToString() };
-                                    string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString(), objDs.Tables[0].Rows[i]["CTYID"].ToString() };
+                                  //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvCity.Items.Add(objList);
                                 }
@@ -3344,6 +3350,90 @@ namespace ROMS
                 varstr.Add(varValue.ToList()[i].ToString());
             } 
             return varstr;
+        }
+
+        private void CbWhatsApp_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cbPrimary.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CbPrimary_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtOperator.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CbWhatsApp_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cbWhatsApp.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CbWhatsApp_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cbWhatsApp.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CbPrimary_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cbPrimary.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CbPrimary_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cbPrimary.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void GrdBankDetails_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

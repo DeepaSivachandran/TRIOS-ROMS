@@ -256,6 +256,85 @@ namespace ROMS
             }
             return ds;
         }
-        
+
+
+        //Product Master 
+        //created by Venkat,Created on 14/08/2023
+        public string udfnProductMaster(int ViewType, int paraProductid, string paraProductNameEng, string paraProductNameTam, string paraPIcode,
+            int ParaCompanycode, int paraProductCategory, int paraGroup, int paraSubgroup, int paraBrand, int paraUnit, int paraBulkunit,
+             string paraUpp, int paraPurStklocation, int paraSaleStklocation, int paraPurRack, int parasaleRack, int paraRkMOQ, int paraBatchNo,
+              int paraBatchNoGeneration, int paraShelfLife, double paranetweight,double paraMaxstk,double paraGrossweight,double paraMinstk,
+              double paraReorderQty,double paraRetailMinstk,double paraRetailrate,double paraWMinqty,double paraWsaleRate,string paraBarcode,int paraHSNCode
+            , string paraGST ,int paraRMPROD,int paraShelflifeValue,int paraShelflifeType
+
+
+            , string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("TRNS_Product", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraProductid", paraProductid);
+                varSqlCommand.Parameters.AddWithValue("@paraProductNameEng", paraProductNameEng);
+                varSqlCommand.Parameters.AddWithValue("@paraProductNameTam", paraProductNameTam);
+                varSqlCommand.Parameters.AddWithValue("@paraPIcode", paraPIcode);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", ParaCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraProductCategory", paraProductCategory);
+                varSqlCommand.Parameters.AddWithValue("@paraGroup", paraGroup);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroup", paraSubgroup);
+                varSqlCommand.Parameters.AddWithValue("@paraBrand", paraBrand);
+                varSqlCommand.Parameters.AddWithValue("@paraUnit", paraUnit);
+                varSqlCommand.Parameters.AddWithValue("@paraBulkunit", paraBulkunit);
+                varSqlCommand.Parameters.AddWithValue("@paraUpp", paraUpp);
+                varSqlCommand.Parameters.AddWithValue("@paraPurStklocation", paraPurStklocation);
+                varSqlCommand.Parameters.AddWithValue("@paraSaleStklocation", paraSaleStklocation);
+                varSqlCommand.Parameters.AddWithValue("@paraPurRack", paraPurRack);
+                varSqlCommand.Parameters.AddWithValue("@parasaleRack", parasaleRack);
+                varSqlCommand.Parameters.AddWithValue("@paraRkMOQ", paraRkMOQ);
+                varSqlCommand.Parameters.AddWithValue("@paraBatchNo", paraBatchNo);
+                varSqlCommand.Parameters.AddWithValue("@paraBatchNoGeneration", paraBatchNoGeneration);
+                varSqlCommand.Parameters.AddWithValue("@paraShelfLife", paraShelfLife);
+                varSqlCommand.Parameters.AddWithValue("@paranetweight", paranetweight);
+                varSqlCommand.Parameters.AddWithValue("@paraMaxstk", paraMaxstk);
+                varSqlCommand.Parameters.AddWithValue("@paraGrossweight", paraGrossweight);
+                varSqlCommand.Parameters.AddWithValue("@paraMinstk", paraMinstk); 
+                varSqlCommand.Parameters.AddWithValue("@paraReorderQty", paraReorderQty);
+                varSqlCommand.Parameters.AddWithValue("@paraRetailMinstk", paraRetailMinstk);
+                varSqlCommand.Parameters.AddWithValue("@paraRetailrate", paraRetailrate);
+                varSqlCommand.Parameters.AddWithValue("@paraWMinqty", paraWMinqty);
+                varSqlCommand.Parameters.AddWithValue("@paraWsaleRate", paraWsaleRate);
+                varSqlCommand.Parameters.AddWithValue("@paraBarcode", paraBarcode);  
+                varSqlCommand.Parameters.AddWithValue("@paraHSNCode", paraHSNCode);
+                varSqlCommand.Parameters.AddWithValue("@paraGST", paraGST);
+                varSqlCommand.Parameters.AddWithValue("@paraRMPROD", paraRMPROD);
+                varSqlCommand.Parameters.AddWithValue("@paraShelflifeValue", paraShelflifeValue);
+                varSqlCommand.Parameters.AddWithValue("@paraShelflifeType", paraShelflifeType); 
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator); 
+
+
+
+                varSqlCommand.CommandTimeout = 0;
+
+                result = varSqlCommand.ExecuteScalar().ToString();
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
+
     }
 }

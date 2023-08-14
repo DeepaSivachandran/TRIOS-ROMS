@@ -15,6 +15,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
+        public int varmastertype = 0;
         private ToolTip tpGroupNameinTamil = new ToolTip();
         private ToolTip tpGroupNameinEnglish = new ToolTip();
        
@@ -43,8 +44,15 @@ namespace ROMS
         {
             try
             {
-                
+                if (varmastertype == 1)
+                { 
                     this.Close();
+
+                }
+                else
+                {
+
+                }
               
             }
             catch (Exception ex)
@@ -281,6 +289,19 @@ namespace ROMS
         {
             try
             {
+                if (varmastertype == 1)
+                {
+                    this.Close();
+
+                    MainForm.objCP_Items = new CP_Product();
+                    MainForm.objCP_Items.MdiParent = this.ParentForm;
+                    MainForm.objCP_Items.Show();
+
+                }
+                else
+                {
+
+                }
 
             }
             catch (Exception ex)

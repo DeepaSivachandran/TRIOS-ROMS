@@ -19,7 +19,7 @@ namespace ROMS
         private ToolTip tpSymbol = new ToolTip();
         private ToolTip tpNoOfDecimals = new ToolTip();
         private ToolTip tpEInvoiceUnitName = new ToolTip();
-
+        public int varmastertype = 0;
         public string varbrandcode;
         public string pbFormStatus;
         public CP_Unit()
@@ -109,6 +109,19 @@ namespace ROMS
         {
             try
             {
+                if (varmastertype == 1)
+                {
+                    this.Close();
+
+                    MainForm.objCP_Items = new CP_Product();
+                    MainForm.objCP_Items.MdiParent = this.ParentForm;
+                    MainForm.objCP_Items.Show();
+
+                }
+                else
+                {
+
+                }
 
             }
             catch (Exception ex)
