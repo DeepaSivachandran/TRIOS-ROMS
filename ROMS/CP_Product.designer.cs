@@ -41,10 +41,10 @@
             this.txtDUnit = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Label();
+            this.btnUnit = new System.Windows.Forms.Label();
+            this.btnBrand = new System.Windows.Forms.Label();
+            this.btnGroup = new System.Windows.Forms.Label();
+            this.btnSubgroup = new System.Windows.Forms.Label();
             this.txtUpp = new System.Windows.Forms.TextBox();
             this.txtDUPP = new System.Windows.Forms.TextBox();
             this.cmbBulkUnit = new System.Windows.Forms.ComboBox();
@@ -67,8 +67,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.txtrupee = new System.Windows.Forms.TextBox();
-            this.txtMaxOrderQty = new System.Windows.Forms.TextBox();
-            this.txtDMaxOrderQty = new System.Windows.Forms.TextBox();
             this.txtGrossWeight = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.txtReOrderQty = new System.Windows.Forms.TextBox();
@@ -79,6 +77,8 @@
             this.txtDMaxStock = new System.Windows.Forms.TextBox();
             this.txtWeight = new System.Windows.Forms.TextBox();
             this.txtDNettWeight = new System.Windows.Forms.TextBox();
+            this.txtMaxOrderQty = new System.Windows.Forms.TextBox();
+            this.txtDMaxOrderQty = new System.Windows.Forms.TextBox();
             this.txtRMinSaleQty = new System.Windows.Forms.TextBox();
             this.txtDRMinSaleQty = new System.Windows.Forms.TextBox();
             this.cbExpiry = new System.Windows.Forms.CheckBox();
@@ -148,7 +148,7 @@
             // 
             this.txtPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtPICode.Location = new System.Drawing.Point(160, 50);
-            this.txtPICode.MaxLength = 100;
+            this.txtPICode.MaxLength = 50;
             this.txtPICode.Name = "txtPICode";
             this.txtPICode.Size = new System.Drawing.Size(363, 27);
             this.txtPICode.TabIndex = 2;
@@ -249,10 +249,10 @@
             // grbform
             // 
             this.grbform.Controls.Add(this.textBox6);
-            this.grbform.Controls.Add(this.label3);
-            this.grbform.Controls.Add(this.label2);
-            this.grbform.Controls.Add(this.label1);
-            this.grbform.Controls.Add(this.btnAdd);
+            this.grbform.Controls.Add(this.btnUnit);
+            this.grbform.Controls.Add(this.btnBrand);
+            this.grbform.Controls.Add(this.btnGroup);
+            this.grbform.Controls.Add(this.btnSubgroup);
             this.grbform.Controls.Add(this.txtUpp);
             this.grbform.Controls.Add(this.txtDUPP);
             this.grbform.Controls.Add(this.cmbBulkUnit);
@@ -294,58 +294,62 @@
             this.textBox6.TabIndex = 118;
             this.textBox6.Text = "Pkt";
             // 
-            // label3
+            // btnUnit
             // 
-            this.label3.Image = global::ROMS.Properties.Resources.New;
-            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(251, 242);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(21, 22);
-            this.label3.TabIndex = 29;
-            this.label3.Text = "        ";
+            this.btnUnit.Image = global::ROMS.Properties.Resources.New;
+            this.btnUnit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnUnit.Location = new System.Drawing.Point(251, 242);
+            this.btnUnit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnUnit.Name = "btnUnit";
+            this.btnUnit.Size = new System.Drawing.Size(21, 22);
+            this.btnUnit.TabIndex = 29;
+            this.btnUnit.Text = "        ";
+            this.btnUnit.Click += new System.EventHandler(this.BtnUnit_Click);
             // 
-            // label2
+            // btnBrand
             // 
-            this.label2.Image = global::ROMS.Properties.Resources.New;
-            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(502, 214);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 22);
-            this.label2.TabIndex = 28;
-            this.label2.Text = "        ";
+            this.btnBrand.Image = global::ROMS.Properties.Resources.New;
+            this.btnBrand.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBrand.Location = new System.Drawing.Point(502, 214);
+            this.btnBrand.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnBrand.Name = "btnBrand";
+            this.btnBrand.Size = new System.Drawing.Size(21, 22);
+            this.btnBrand.TabIndex = 28;
+            this.btnBrand.Text = "        ";
+            this.btnBrand.Click += new System.EventHandler(this.BtnBrand_Click);
             // 
-            // label1
+            // btnGroup
             // 
-            this.label1.Image = global::ROMS.Properties.Resources.New;
-            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(502, 187);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(21, 22);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "        ";
+            this.btnGroup.Image = global::ROMS.Properties.Resources.New;
+            this.btnGroup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnGroup.Location = new System.Drawing.Point(502, 187);
+            this.btnGroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnGroup.Name = "btnGroup";
+            this.btnGroup.Size = new System.Drawing.Size(21, 22);
+            this.btnGroup.TabIndex = 27;
+            this.btnGroup.Text = "        ";
+            this.btnGroup.Click += new System.EventHandler(this.BtnGroup_Click);
             // 
-            // btnAdd
+            // btnSubgroup
             // 
-            this.btnAdd.Image = global::ROMS.Properties.Resources.New;
-            this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(502, 160);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(21, 22);
-            this.btnAdd.TabIndex = 26;
-            this.btnAdd.Text = "        ";
+            this.btnSubgroup.Image = global::ROMS.Properties.Resources.New;
+            this.btnSubgroup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSubgroup.Location = new System.Drawing.Point(502, 160);
+            this.btnSubgroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnSubgroup.Name = "btnSubgroup";
+            this.btnSubgroup.Size = new System.Drawing.Size(21, 22);
+            this.btnSubgroup.TabIndex = 26;
+            this.btnSubgroup.Text = "        ";
+            this.btnSubgroup.ClientSizeChanged += new System.EventHandler(this.BtnSubgroup_Click);
             // 
             // txtUpp
             // 
             this.txtUpp.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtUpp.Location = new System.Drawing.Point(455, 239);
-            this.txtUpp.MaxLength = 100;
+            this.txtUpp.MaxLength = 5;
             this.txtUpp.Name = "txtUpp";
             this.txtUpp.Size = new System.Drawing.Size(42, 27);
-            this.txtUpp.TabIndex = 12;
+            this.txtUpp.TabIndex = 11;
             this.txtUpp.Enter += new System.EventHandler(this.TxtUpp_Enter);
             this.txtUpp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUpp_KeyDown);
             this.txtUpp.Leave += new System.EventHandler(this.TxtUpp_Leave);
@@ -370,7 +374,7 @@
             this.cmbBulkUnit.Location = new System.Drawing.Point(330, 239);
             this.cmbBulkUnit.Name = "cmbBulkUnit";
             this.cmbBulkUnit.Size = new System.Drawing.Size(88, 27);
-            this.cmbBulkUnit.TabIndex = 11;
+            this.cmbBulkUnit.TabIndex = 10;
             this.cmbBulkUnit.SelectedIndexChanged += new System.EventHandler(this.CmbBulkUnit_SelectedIndexChanged);
             this.cmbBulkUnit.Enter += new System.EventHandler(this.CmbBulkUnit_Enter);
             this.cmbBulkUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBulkUnit_KeyDown);
@@ -402,7 +406,7 @@
             this.cmbProductCategory.Location = new System.Drawing.Point(160, 131);
             this.cmbProductCategory.Name = "cmbProductCategory";
             this.cmbProductCategory.Size = new System.Drawing.Size(363, 27);
-            this.cmbProductCategory.TabIndex = 6;
+            this.cmbProductCategory.TabIndex = 5;
             this.cmbProductCategory.SelectedIndexChanged += new System.EventHandler(this.CmbProductCategory_SelectedIndexChanged);
             this.cmbProductCategory.Enter += new System.EventHandler(this.CmbProductCategory_Enter);
             this.cmbProductCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProductCategory_KeyDown);
@@ -456,7 +460,7 @@
             this.cmbUnit.Location = new System.Drawing.Point(160, 239);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(88, 27);
-            this.cmbUnit.TabIndex = 10;
+            this.cmbUnit.TabIndex = 9;
             this.cmbUnit.SelectedIndexChanged += new System.EventHandler(this.CmbUnit_SelectedIndexChanged);
             this.cmbUnit.Enter += new System.EventHandler(this.CmbUnit_Enter);
             this.cmbUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUnit_KeyDown);
@@ -470,7 +474,7 @@
             this.cmbBrand.Location = new System.Drawing.Point(160, 212);
             this.cmbBrand.Name = "cmbBrand";
             this.cmbBrand.Size = new System.Drawing.Size(337, 27);
-            this.cmbBrand.TabIndex = 9;
+            this.cmbBrand.TabIndex = 8;
             this.cmbBrand.SelectedIndexChanged += new System.EventHandler(this.CmbBrand_SelectedIndexChanged);
             this.cmbBrand.Enter += new System.EventHandler(this.CmbBrand_Enter);
             this.cmbBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBrand_KeyDown);
@@ -484,7 +488,7 @@
             this.cmbSubGroup.Location = new System.Drawing.Point(160, 158);
             this.cmbSubGroup.Name = "cmbSubGroup";
             this.cmbSubGroup.Size = new System.Drawing.Size(337, 27);
-            this.cmbSubGroup.TabIndex = 7;
+            this.cmbSubGroup.TabIndex = 6;
             this.cmbSubGroup.SelectedIndexChanged += new System.EventHandler(this.CmbSubGroup_SelectedIndexChanged);
             this.cmbSubGroup.Enter += new System.EventHandler(this.CmbSubGroup_Enter);
             this.cmbSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSubGroup_KeyDown);
@@ -511,7 +515,7 @@
             this.cmbGroup.Location = new System.Drawing.Point(160, 185);
             this.cmbGroup.Name = "cmbGroup";
             this.cmbGroup.Size = new System.Drawing.Size(337, 27);
-            this.cmbGroup.TabIndex = 8;
+            this.cmbGroup.TabIndex = 7;
             this.cmbGroup.SelectedIndexChanged += new System.EventHandler(this.CmbGroup_SelectedIndexChanged);
             this.cmbGroup.Enter += new System.EventHandler(this.CmbGroup_Enter);
             this.cmbGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGroup_KeyDown);
@@ -634,31 +638,6 @@
             this.txtrupee.TabIndex = 114;
             this.txtrupee.Text = "Kg";
             // 
-            // txtMaxOrderQty
-            // 
-            this.txtMaxOrderQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMaxOrderQty.Location = new System.Drawing.Point(135, 86);
-            this.txtMaxOrderQty.MaxLength = 50;
-            this.txtMaxOrderQty.Name = "txtMaxOrderQty";
-            this.txtMaxOrderQty.Size = new System.Drawing.Size(127, 27);
-            this.txtMaxOrderQty.TabIndex = 27;
-            this.txtMaxOrderQty.Enter += new System.EventHandler(this.TxtMaxOrderQty_Enter);
-            this.txtMaxOrderQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxOrderQty_KeyDown);
-            this.txtMaxOrderQty.Leave += new System.EventHandler(this.TxtMaxOrderQty_Leave);
-            // 
-            // txtDMaxOrderQty
-            // 
-            this.txtDMaxOrderQty.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDMaxOrderQty.Enabled = false;
-            this.txtDMaxOrderQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDMaxOrderQty.Location = new System.Drawing.Point(5, 86);
-            this.txtDMaxOrderQty.Name = "txtDMaxOrderQty";
-            this.txtDMaxOrderQty.ReadOnly = true;
-            this.txtDMaxOrderQty.Size = new System.Drawing.Size(130, 27);
-            this.txtDMaxOrderQty.TabIndex = 90;
-            this.txtDMaxOrderQty.TabStop = false;
-            this.txtDMaxOrderQty.Text = "Rack MOQ";
-            // 
             // txtGrossWeight
             // 
             this.txtGrossWeight.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -669,6 +648,7 @@
             this.txtGrossWeight.TabIndex = 23;
             this.txtGrossWeight.Enter += new System.EventHandler(this.TxtGrossWeight_Enter);
             this.txtGrossWeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGrossWeight_KeyDown);
+            this.txtGrossWeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtGrossWeight_KeyPress);
             this.txtGrossWeight.Leave += new System.EventHandler(this.TxtGrossWeight_Leave);
             // 
             // textBox2
@@ -787,6 +767,31 @@
             this.txtDNettWeight.TabIndex = 18;
             this.txtDNettWeight.TabStop = false;
             this.txtDNettWeight.Text = "Net Weight";
+            // 
+            // txtMaxOrderQty
+            // 
+            this.txtMaxOrderQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtMaxOrderQty.Location = new System.Drawing.Point(135, 86);
+            this.txtMaxOrderQty.MaxLength = 50;
+            this.txtMaxOrderQty.Name = "txtMaxOrderQty";
+            this.txtMaxOrderQty.Size = new System.Drawing.Size(127, 27);
+            this.txtMaxOrderQty.TabIndex = 27;
+            this.txtMaxOrderQty.Enter += new System.EventHandler(this.TxtMaxOrderQty_Enter);
+            this.txtMaxOrderQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxOrderQty_KeyDown);
+            this.txtMaxOrderQty.Leave += new System.EventHandler(this.TxtMaxOrderQty_Leave);
+            // 
+            // txtDMaxOrderQty
+            // 
+            this.txtDMaxOrderQty.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDMaxOrderQty.Enabled = false;
+            this.txtDMaxOrderQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDMaxOrderQty.Location = new System.Drawing.Point(4, 86);
+            this.txtDMaxOrderQty.Name = "txtDMaxOrderQty";
+            this.txtDMaxOrderQty.ReadOnly = true;
+            this.txtDMaxOrderQty.Size = new System.Drawing.Size(131, 27);
+            this.txtDMaxOrderQty.TabIndex = 90;
+            this.txtDMaxOrderQty.TabStop = false;
+            this.txtDMaxOrderQty.Text = "Rack MOQ";
             // 
             // txtRMinSaleQty
             // 
@@ -936,6 +941,7 @@
             this.txtWMinSaleQty.TabIndex = 30;
             this.txtWMinSaleQty.Enter += new System.EventHandler(this.TxtWMinSaleQty_Enter);
             this.txtWMinSaleQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWMinSaleQty_KeyDown);
+            this.txtWMinSaleQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWMinSaleQty_KeyPress);
             this.txtWMinSaleQty.Leave += new System.EventHandler(this.TxtWMinSaleQty_Leave);
             // 
             // txtDMinSaleQty
@@ -1053,15 +1059,14 @@
             this.txtSelfLife.TabIndex = 113;
             this.txtSelfLife.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSelfLife.Visible = false;
+            this.txtSelfLife.Enter += new System.EventHandler(this.TxtSelfLife_Enter);
+            this.txtSelfLife.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSelfLife_KeyDown);
+            this.txtSelfLife.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtSelfLife_KeyPress);
+            this.txtSelfLife.Leave += new System.EventHandler(this.TxtSelfLife_Leave);
             // 
             // cmbPeriod
             // 
             this.cmbPeriod.FormattingEnabled = true;
-            this.cmbPeriod.Items.AddRange(new object[] {
-            "--Select--",
-            "DAY(S)",
-            "MONTH(S)",
-            "YEAR(S)"});
             this.cmbPeriod.Location = new System.Drawing.Point(154, 24);
             this.cmbPeriod.Name = "cmbPeriod";
             this.cmbPeriod.Size = new System.Drawing.Size(103, 27);
@@ -1173,10 +1178,10 @@
             this.txtDSalesShop.BackColor = System.Drawing.SystemColors.Control;
             this.txtDSalesShop.Enabled = false;
             this.txtDSalesShop.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDSalesShop.Location = new System.Drawing.Point(5, 59);
+            this.txtDSalesShop.Location = new System.Drawing.Point(4, 59);
             this.txtDSalesShop.Name = "txtDSalesShop";
             this.txtDSalesShop.ReadOnly = true;
-            this.txtDSalesShop.Size = new System.Drawing.Size(130, 27);
+            this.txtDSalesShop.Size = new System.Drawing.Size(131, 27);
             this.txtDSalesShop.TabIndex = 24;
             this.txtDSalesShop.TabStop = false;
             this.txtDSalesShop.Text = "Rack";
@@ -1470,10 +1475,10 @@
         private System.Windows.Forms.GroupBox grpHsndetail;
         private System.Windows.Forms.TextBox txtSelfLife;
         private System.Windows.Forms.ComboBox cmbPeriod;
-        internal System.Windows.Forms.Label label3;
-        internal System.Windows.Forms.Label label2;
-        internal System.Windows.Forms.Label label1;
-        internal System.Windows.Forms.Label btnAdd;
+        internal System.Windows.Forms.Label btnUnit;
+        internal System.Windows.Forms.Label btnBrand;
+        internal System.Windows.Forms.Label btnGroup;
+        internal System.Windows.Forms.Label btnSubgroup;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox txtHSNCode;
         private System.Windows.Forms.ComboBox cmbHSNName;
