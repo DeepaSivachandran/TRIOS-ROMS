@@ -70,7 +70,7 @@ namespace ROMS
 
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
-                        varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "","",0,0, "Unit Delete");
+                      //  varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "","",0,0, "Unit Delete");
 
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -119,7 +119,7 @@ namespace ROMS
             {               
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objspservice.udfnUnitList(0);
+             //   objDs = objspservice.udfnUnitList(0);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)

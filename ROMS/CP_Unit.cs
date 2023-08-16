@@ -93,11 +93,11 @@ namespace ROMS
                 string varResult = "";
                 if (btnSave.Text=="Save")
                 {
-                    varResult = objspservice.udfnUnit(0, 0,(txtEUnitName.Text).Trim(),txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus,"Unit Creation");
+               //     varResult = objspservice.udfnUnit(0, 0,(txtEUnitName.Text).Trim(),txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus,"Unit Creation");
                 }
                 else
                 {
-                    varResult = objspservice.udfnUnit(1, varUnitCode, (txtEUnitName.Text).Trim(), (txtSymbol.Text).Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, "Unit Updation");
+                  //  varResult = objspservice.udfnUnit(1, varUnitCode, (txtEUnitName.Text).Trim(), (txtSymbol.Text).Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, "Unit Updation");
                     this.Close();
                 }
                 if (varResult.Split('~')[0] == "3")
