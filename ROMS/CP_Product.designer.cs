@@ -1320,9 +1320,9 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(692, 483);
+            this.btnSave.Location = new System.Drawing.Point(683, 483);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(74, 29);
+            this.btnSave.Size = new System.Drawing.Size(82, 29);
             this.btnSave.TabIndex = 37;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1416,12 +1416,8 @@
         private System.Windows.Forms.TextBox txtDUnit;
         private System.Windows.Forms.GroupBox grbform;
         private System.Windows.Forms.ErrorProvider errItems;
-        private System.Windows.Forms.ComboBox cmbGroup;
         private System.Windows.Forms.TextBox txtDBrand;
         private System.Windows.Forms.TextBox txtDGroup;
-        private System.Windows.Forms.ComboBox cmbUnit;
-        private System.Windows.Forms.ComboBox cmbBrand;
-        private System.Windows.Forms.ComboBox cmbSubGroup;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtDRetailRate;
         private System.Windows.Forms.TextBox txtRetailRate;
@@ -1494,5 +1490,9 @@
         private System.Windows.Forms.TextBox txtBatchNoGeneration;
         private System.Windows.Forms.ComboBox cmbBatchNoEntry;
         private System.Windows.Forms.TextBox txtDBatchNoEntry;
+        public System.Windows.Forms.ComboBox cmbGroup;
+        public System.Windows.Forms.ComboBox cmbUnit;
+        public System.Windows.Forms.ComboBox cmbBrand;
+        public System.Windows.Forms.ComboBox cmbSubGroup;
     }
 }

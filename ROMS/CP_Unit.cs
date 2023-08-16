@@ -123,20 +123,7 @@ namespace ROMS
         private void udfnclear()
         {
             try
-            {
-                if (varmastertype == 1)
-                {
-                    this.Close();
-
-                    MainForm.objCP_Items = new CP_Product();
-                    MainForm.objCP_Items.MdiParent = this.ParentForm;
-                    MainForm.objCP_Items.Show();
-
-                }
-                else
-                {
-
-                }
+            { 
 
                 txtEUnitName.Text = "";
                 txtSymbol.Text = "";
@@ -233,14 +220,28 @@ namespace ROMS
         public void udfnclose()
         {
             try
-            {               
-                    this.Close();               
+            {
+                if (varmastertype == 1)
+                {
+                    this.Close();
+
+                    MainForm.objCP_Items = new CP_Product();
+                    MainForm.objCP_Items.MdiParent = this.ParentForm; 
+                    MainForm.objCP_Items.MdiParent = this.ParentForm;
+                    MainForm.objCP_Items.Show();
+
+                }
+                else
+                {
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+             
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -539,15 +540,28 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varmastertype == 1)
                 {
-                    e.Cancel = false;
+                    this.Close();
+
+                    MainForm.objCP_Items = new CP_Product();
+                    MainForm.objCP_Items.MdiParent = this.ParentForm;
+                    MainForm.objCP_Items.Show();
+
                 }
                 else
                 {
-                    e.Cancel = true;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
+               
             }
             catch (Exception ex)
             {
