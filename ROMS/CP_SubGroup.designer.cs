@@ -50,7 +50,7 @@
             this.grpPurchaseStockLocation = new System.Windows.Forms.GroupBox();
             this.txtRack = new System.Windows.Forms.TextBox();
             this.cmbRack = new System.Windows.Forms.ComboBox();
-            this.cmbShopLocation = new System.Windows.Forms.ComboBox();
+            this.cmbStockLocation = new System.Windows.Forms.ComboBox();
             this.epSubGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
@@ -80,7 +80,7 @@
             this.grbform.Size = new System.Drawing.Size(453, 319);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
-            this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
+          
             // 
             // cmbBatchNo
             // 
@@ -119,7 +119,6 @@
             this.txtStockLocation.Size = new System.Drawing.Size(200, 27);
             this.txtStockLocation.TabIndex = 1111136;
             this.txtStockLocation.Text = "Stock Location";
-            this.txtStockLocation.TextChanged += new System.EventHandler(this.TxtShopLocation_TextChanged);
             // 
             // txtEProductSubGroupNameTamil
             // 
@@ -218,6 +217,7 @@
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
+           
             this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
             this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
@@ -298,7 +298,7 @@
             // 
             this.grpPurchaseStockLocation.Controls.Add(this.txtRack);
             this.grpPurchaseStockLocation.Controls.Add(this.cmbRack);
-            this.grpPurchaseStockLocation.Controls.Add(this.cmbShopLocation);
+            this.grpPurchaseStockLocation.Controls.Add(this.cmbStockLocation);
             this.grpPurchaseStockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.grpPurchaseStockLocation.Location = new System.Drawing.Point(7, 132);
             this.grpPurchaseStockLocation.Name = "grpPurchaseStockLocation";
@@ -333,19 +333,19 @@
             this.cmbRack.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbRack_KeyPress);
             this.cmbRack.Leave += new System.EventHandler(this.CmbRack_Leave);
             // 
-            // cmbShopLocation
+            // cmbStockLocation
             // 
-            this.cmbShopLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.cmbShopLocation.FormattingEnabled = true;
-            this.cmbShopLocation.Location = new System.Drawing.Point(217, 30);
-            this.cmbShopLocation.Name = "cmbShopLocation";
-            this.cmbShopLocation.Size = new System.Drawing.Size(200, 27);
-            this.cmbShopLocation.TabIndex = 4;
-            this.cmbShopLocation.SelectedIndexChanged += new System.EventHandler(this.CmbShopLocation_SelectedIndexChanged);
-            this.cmbShopLocation.Enter += new System.EventHandler(this.CmbShopLocation_Enter);
-            this.cmbShopLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbShopLocation_KeyDown);
-            this.cmbShopLocation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbShopLocation_KeyPress);
-            this.cmbShopLocation.Leave += new System.EventHandler(this.CmbShopLocation_Leave);
+            this.cmbStockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.cmbStockLocation.FormattingEnabled = true;
+            this.cmbStockLocation.Location = new System.Drawing.Point(217, 30);
+            this.cmbStockLocation.Name = "cmbStockLocation";
+            this.cmbStockLocation.Size = new System.Drawing.Size(200, 27);
+            this.cmbStockLocation.TabIndex = 4;
+            this.cmbStockLocation.SelectedIndexChanged += new System.EventHandler(this.CmbStockLocation_SelectedIndexChanged);
+            this.cmbStockLocation.Enter += new System.EventHandler(this.CmbStockLocation_Enter);
+            this.cmbStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStockLocation_KeyDown);
+            this.cmbStockLocation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStockLocation_KeyPress);
+            this.cmbStockLocation.Leave += new System.EventHandler(this.CmbStockLocation_Leave);
             // 
             // epSubGroup
             // 
@@ -398,7 +398,7 @@
         private System.Windows.Forms.TextBox txtDGroupName;
         private System.Windows.Forms.TextBox txtEProductSubGroupNameTamil;
         private System.Windows.Forms.TextBox txtESubGroupNameTamil;
-        private System.Windows.Forms.ComboBox cmbShopLocation;
+        private System.Windows.Forms.ComboBox cmbStockLocation;
         private System.Windows.Forms.TextBox txtStockLocation;
         private System.Windows.Forms.ComboBox cmbRack;
         private System.Windows.Forms.TextBox txtRack;

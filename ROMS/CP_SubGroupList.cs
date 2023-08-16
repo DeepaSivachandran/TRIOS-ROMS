@@ -29,7 +29,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", " PRSGID not in (-1) ORDER BY PRSG_EName", "PRSG_EName,PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
+                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", " PRSGID not in (-1) ORDER BY PRSGID,PRSG_EName", "PRSG_EName,PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
                 objDataBind = null;
             }
             catch (Exception ex)
@@ -93,30 +93,6 @@ namespace ROMS
             }
         }
 
-        public void loadnoofgroup()
-        {
-            try
-            {
-                string condition = "1=1";
-                if(Convert.ToInt16(cmbProductSubGroup.SelectedValue)==0)
-                {
-                    condition = "1=1";
-                }
-                else
-                {
-                    condition = "a.GroupTypeCode=" + Convert.ToInt16(cmbProductSubGroup.SelectedValue);
-                }
-                DataService objDserv = new DataService();
-                lblNoOfPrSubGroup.Text = objDserv.displaydata("SELECT count(*) from CP_GROUP as a inner join DEF_GROUPTYPE as b on a.GroupTypeCode=b.GroupTypeCode where "+ condition);
-                objDserv.CloseConnection();
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
 
         public void udfnList()
         {
@@ -156,11 +132,11 @@ namespace ROMS
                             grdSubGroupList.Columns["ID"].Visible = false;
                             grdSubGroupList.Columns["Status ID"].Visible = false;
                             grdSubGroupList.Columns["Batch No"].Visible = false;
-                            grdSubGroupList.Columns["ShopLocation ID"].Visible = false;
+                            grdSubGroupList.Columns["StockLocation ID"].Visible = false;
                             grdSubGroupList.Columns["Rack ID"].Visible = false;
                             grdSubGroupList.Columns["Product Group Id"].Visible = false;
 
-                            lblNoOfPrSubGroup.Text = Convert.ToString(grdSubGroupList.Rows.Count);
+
                         }
                         else
                         {
@@ -189,6 +165,7 @@ namespace ROMS
             finally
             {
                 grdSubGroupList.ClearSelection();
+                lblNoOfPrSubGroup.Text = Convert.ToString(grdSubGroupList.Rows.Count);
                 varSubGroupCode = Convert.ToInt32(cmbProductSubGroup.SelectedValue);
             }
         }
@@ -240,8 +217,9 @@ namespace ROMS
                     MainForm.objCP_SubGroup.varSubGroupNameinEnglish = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Product Sub Group Name in English"].Value);
                     MainForm.objCP_SubGroup.varSubGroupNameinTamil = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Product Sub Group Name in Tamil"].Value);
                     MainForm.objCP_SubGroup.varBatchNo = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Batch No"].Value);
-                    MainForm.objCP_SubGroup.varShopLocation = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["ShopLocation ID"].Value);
+                    MainForm.objCP_SubGroup.varStockLocation = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
                     MainForm.objCP_SubGroup.varRack = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Rack ID"].Value);
+                    MainForm.objCP_SubGroup.varStatus = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Status ID"].Value);
                     MainForm.objCP_SubGroup.ShowDialog();
                 }
             }
@@ -253,10 +231,6 @@ namespace ROMS
             }
         }
 
-        private void cmbGroupType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
         private void btnView_Click(object sender, EventArgs e)
         {
             try
@@ -334,7 +308,7 @@ namespace ROMS
         {
             try
             {
-                btnExport.BackColor = Color.Transparent;
+                btnExport.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -347,9 +321,7 @@ namespace ROMS
         {
             try
             {
-
-                btnExport.BackColor = Color.White;
-
+                btnExport.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -573,6 +545,22 @@ namespace ROMS
                     }
                     //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
                     ExcelObj.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnExport_Click(sender, e);
                 }
             }
             catch (Exception ex)

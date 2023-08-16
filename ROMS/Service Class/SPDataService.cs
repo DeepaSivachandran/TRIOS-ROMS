@@ -255,8 +255,6 @@ namespace ROMS
             return ds;
         }
 
-        // @ViewType AS INT =0,@paraPRSGID AS INT=0,@paraPRSG_PRGID AS INT=0,@paraPRSG_EName AS NVARCHAR(100)='',@paraPRSG_TName AS NVARCHAR(100)='',@paraStatusId INT = 0,
-        //   @paraSG_BatchNo INT=0,@paraPRSG_SLID INT = 0, @paraPRSG_RKID INT=0,@paraUserID AS INT=0, @paraIPAddress AS nvarchar(20)='', @paraOriginator AS nvarchar(100)=''
         public string udfnSubGroup(int ViewType, int paraPRSGID,int paraPRSG_PRGID, string paraPRSG_EName, string paraPRSG_TName, int paraStatusId,int paraSG_BatchNo,int paraPRSG_SLID, int paraPRSG_RKID,string paraOriginator)
         {
 
@@ -303,6 +301,7 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -320,5 +319,6 @@ namespace ROMS
             }
             return ds;
         }
+
     }
 }

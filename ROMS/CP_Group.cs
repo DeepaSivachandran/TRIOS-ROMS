@@ -17,8 +17,8 @@ namespace ROMS
 
         private ToolTip tpGroupNameinTamil = new ToolTip();
         private ToolTip tpGroupNameinEnglish = new ToolTip();
-       
-      
+
+        int varStatusid = 1;
         public String pbFormStatus;
 
         public int varCloseFlag = 0;
@@ -26,7 +26,8 @@ namespace ROMS
         public string varGroupNameinEnglish = "";
         public int varGroupCode =0;
         public int varId = 0;
-
+        public int varStatus = 0;
+        
         public CP_Group()
         {
             InitializeComponent();
@@ -267,6 +268,15 @@ namespace ROMS
             {
                 txtEGroupNameEnglish.Text = varGroupNameinEnglish;
                 txtEGroupNameTamil.Text = varGroupNameinTamil;
+                varStatusid = varStatus;
+                if (varStatusid == 1)
+                {
+                    rbActive.Checked = true;
+                }
+                else
+                {
+                    rbInActive.Checked = true;
+                }
             }
             catch (Exception ex)
             {
@@ -278,7 +288,7 @@ namespace ROMS
         {
             try
             {
-                int varStatusid = 1;
+               
                 if (rbActive.Checked)
                 {
                     varStatusid = 1;
@@ -307,7 +317,6 @@ namespace ROMS
                         MainForm.objCP_GroupList.udfnList();
                         MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
                         MainForm.objCP_GroupList.cmbProductGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
-                        
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
@@ -452,7 +461,8 @@ namespace ROMS
                 }
                 else
                 {
-                    pnlStatus.Enabled = true; udfnEdit();
+                    pnlStatus.Enabled = true;
+                    udfnEdit();
                 }
             }
             catch (Exception ex)
