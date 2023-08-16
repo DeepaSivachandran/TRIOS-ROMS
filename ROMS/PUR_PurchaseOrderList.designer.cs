@@ -121,6 +121,7 @@
             this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmView = new System.Windows.Forms.DataGridViewImageColumn();
             this.button1 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -480,6 +481,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.lblPartialPending);
             this.groupBox1.Controls.Add(this.label7);
@@ -501,7 +503,7 @@
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.BlueViolet;
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(195, 70);
+            this.label9.Location = new System.Drawing.Point(195, 71);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(37, 20);
             this.label9.TabIndex = 25;
@@ -510,7 +512,7 @@
             // lblPartialPending
             // 
             this.lblPartialPending.AutoSize = true;
-            this.lblPartialPending.Location = new System.Drawing.Point(100, 70);
+            this.lblPartialPending.Location = new System.Drawing.Point(100, 71);
             this.lblPartialPending.Name = "lblPartialPending";
             this.lblPartialPending.Size = new System.Drawing.Size(91, 20);
             this.lblPartialPending.TabIndex = 24;
@@ -521,7 +523,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Olive;
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(56, 70);
+            this.label7.Location = new System.Drawing.Point(56, 71);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(37, 20);
             this.label7.TabIndex = 23;
@@ -530,7 +532,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(2, 70);
+            this.label8.Location = new System.Drawing.Point(2, 71);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 20);
             this.label8.TabIndex = 22;
@@ -541,7 +543,7 @@
             this.lblInactive.AutoSize = true;
             this.lblInactive.BackColor = System.Drawing.Color.Tomato;
             this.lblInactive.ForeColor = System.Drawing.Color.White;
-            this.lblInactive.Location = new System.Drawing.Point(195, 44);
+            this.lblInactive.Location = new System.Drawing.Point(195, 45);
             this.lblInactive.Name = "lblInactive";
             this.lblInactive.Size = new System.Drawing.Size(37, 20);
             this.lblInactive.TabIndex = 21;
@@ -552,7 +554,7 @@
             this.lblActive.AutoSize = true;
             this.lblActive.BackColor = System.Drawing.Color.LimeGreen;
             this.lblActive.ForeColor = System.Drawing.Color.White;
-            this.lblActive.Location = new System.Drawing.Point(56, 44);
+            this.lblActive.Location = new System.Drawing.Point(56, 45);
             this.lblActive.Name = "lblActive";
             this.lblActive.Size = new System.Drawing.Size(37, 20);
             this.lblActive.TabIndex = 20;
@@ -564,7 +566,7 @@
             this.lblTotal.BackColor = System.Drawing.Color.CornflowerBlue;
             this.lblTotal.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.Color.White;
-            this.lblTotal.Location = new System.Drawing.Point(56, 14);
+            this.lblTotal.Location = new System.Drawing.Point(120, 14);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(48, 26);
             this.lblTotal.TabIndex = 19;
@@ -574,7 +576,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(2, 14);
+            this.label5.Location = new System.Drawing.Point(66, 14);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 26);
             this.label5.TabIndex = 18;
@@ -583,7 +585,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(125, 44);
+            this.label4.Location = new System.Drawing.Point(125, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 20);
             this.label4.TabIndex = 17;
@@ -592,7 +594,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(2, 44);
+            this.label6.Location = new System.Drawing.Point(2, 45);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 20);
             this.label6.TabIndex = 16;
@@ -1046,6 +1048,14 @@
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
+            // label11
+            // 
+            this.label11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label11.Location = new System.Drawing.Point(0, 42);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(246, 2);
+            this.label11.TabIndex = 26;
+            // 
             // PUR_PurchaseOrderList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1170,5 +1180,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQty;
+        private System.Windows.Forms.Label label11;
     }
 }

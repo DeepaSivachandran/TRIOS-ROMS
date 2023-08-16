@@ -38,11 +38,17 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -84,6 +90,24 @@
     </Compile>
     <Compile Include="CP_GeneralSettings.designer.cs">
       <DependentUpon>CP_GeneralSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_BulkAttributes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BulkAttributes.designer.cs">
+      <DependentUpon>CP_BulkAttributes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_ChequePrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_ChequePrint.designer.cs">
+      <DependentUpon>PAY_ChequePrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PODamagedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PODamagedView.designer.cs">
+      <DependentUpon>PUR_PODamagedView.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_DCDeatils.cs">
       <SubType>Form</SubType>
@@ -683,6 +707,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_GeneralSettings.resx">
       <DependentUpon>CP_GeneralSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_BulkAttributes.resx">
+      <DependentUpon>CP_BulkAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_ChequePrint.resx">
+      <DependentUpon>PAY_ChequePrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PODamagedView.resx">
+      <DependentUpon>PUR_PODamagedView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_DCDeatils.resx">
       <DependentUpon>PUR_DCDeatils.cs</DependentUpon>

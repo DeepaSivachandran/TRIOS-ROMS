@@ -123,6 +123,7 @@
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
             this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
+            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
             // rbInActive
@@ -136,6 +137,7 @@
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
             this.rbInActive.Enter += new System.EventHandler(this.RbInactive_Enter);
+            this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInactive_KeyDown);
             this.rbInActive.Leave += new System.EventHandler(this.RbInactive_Leave);
             // 
             // txtDProductGroupNameEnglish
@@ -191,7 +193,7 @@
             this.txtEGroupNameEnglish.Size = new System.Drawing.Size(288, 27);
             this.txtEGroupNameEnglish.TabIndex = 0;
             this.txtEGroupNameEnglish.Enter += new System.EventHandler(this.TxtEGroupNameEnglish_Enter);
-            this.txtEGroupNameEnglish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEGroupNameEnglish_KeyDown_1);
+            this.txtEGroupNameEnglish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEGroupNameEnglish_KeyDown);
             this.txtEGroupNameEnglish.Leave += new System.EventHandler(this.TxtEGroupNameEnglish_Leave);
             // 
             // epGroup
