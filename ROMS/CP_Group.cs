@@ -18,17 +18,17 @@ namespace ROMS
         public int varmastertype = 0;
         private ToolTip tpGroupNameinTamil = new ToolTip();
         private ToolTip tpGroupNameinEnglish = new ToolTip();
-       
-      
-        public string vargroupcode;
+
+        int varStatusid = 1;
         public String pbFormStatus;
 
         public int varCloseFlag = 0;
         public string varGroupNameinTamil = "";
         public string varGroupNameinEnglish = "";
-        public string varHsnCode = "";
+        public int varGroupCode =0;
         public int varId = 0;
-
+        public int varStatus = 0;
+        
         public CP_Group()
         {
             InitializeComponent();
@@ -278,6 +278,15 @@ namespace ROMS
             {
                 txtEGroupNameEnglish.Text = varGroupNameinEnglish;
                 txtEGroupNameTamil.Text = varGroupNameinTamil;
+                varStatusid = varStatus;
+                if (varStatusid == 1)
+                {
+                    rbActive.Checked = true;
+                }
+                else
+                {
+                    rbInActive.Checked = true;
+                }
             }
             catch (Exception ex)
             {
@@ -289,7 +298,7 @@ namespace ROMS
         {
             try
             {
-                int varStatusid = 1;
+               
                 if (rbActive.Checked)
                 {
                     varStatusid = 1;
@@ -301,15 +310,23 @@ namespace ROMS
                 if (btnSave.Text == "Save")
                 {
                     SPDataService objDser = new SPDataService();
-                    string varResult = "";
-                  //  string varResult = objDser.udfnGroup(0, 0,Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Creation");
+                    string varResult = objDser.udfnGroup(0, 0,Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Creation");
                     objDser.CloseConnection();
                     if (varResult.Split('~')[0] == "3")
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varGroupCode = Convert.ToInt16(varResult.Split('~')[2]);
+                        if (MainForm.objCP_SubGroup.varFormFlag == 1)
+                        {
+                            MainForm.objCP_SubGroup.varFormFlag = 0;
+                            MainForm.objCP_SubGroup.varGroupCode = varGroupCode;
+                            varCloseFlag = 1;
+                            udfnclose();
+                        }
                         udfnClear();
                         MainForm.objCP_GroupList.udfnList();
                         MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
+                        MainForm.objCP_GroupList.cmbProductGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
@@ -319,8 +336,7 @@ namespace ROMS
                 if (btnSave.Text == "Update")
                 {
                     SPDataService objDser = new SPDataService();
-                    string varResult = "";
-                    //  string varResult = objDser.udfnGroup(1,varId , Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Updation");
+                    string varResult = objDser.udfnGroup(1,varId , Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Updation");
                     objDser.CloseConnection();
                     if (varResult.Split('~')[0] == "3")
                     {
@@ -328,6 +344,8 @@ namespace ROMS
                         varCloseFlag = 1;
                         udfnclose();
                         MainForm.objCP_GroupList.udfnList();
+                        MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
+                        
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
@@ -392,7 +410,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -433,7 +451,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -453,7 +471,8 @@ namespace ROMS
                 }
                 else
                 {
-                    pnlStatus.Enabled = true; udfnEdit();
+                    pnlStatus.Enabled = true;
+                    udfnEdit();
                 }
             }
             catch (Exception ex)
@@ -514,5 +533,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
     }
 }

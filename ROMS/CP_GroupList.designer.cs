@@ -39,7 +39,7 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlgroup = new System.Windows.Forms.Panel();
-            this.lblGC = new System.Windows.Forms.Label();
+            this.lblNoOfPrGroup = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.btnExport = new System.Windows.Forms.Button();
@@ -137,7 +137,7 @@
             // pnlgroup
             // 
             this.pnlgroup.BackColor = System.Drawing.Color.White;
-            this.pnlgroup.Controls.Add(this.lblGC);
+            this.pnlgroup.Controls.Add(this.lblNoOfPrGroup);
             this.pnlgroup.Controls.Add(this.label1);
             this.pnlgroup.Controls.Add(this.grbFilterBy);
             this.pnlgroup.Controls.Add(this.lblNoRecordsFound);
@@ -147,16 +147,16 @@
             this.pnlgroup.Size = new System.Drawing.Size(1354, 641);
             this.pnlgroup.TabIndex = 958792;
             // 
-            // lblGC
+            // lblNoOfPrGroup
             // 
-            this.lblGC.AutoSize = true;
-            this.lblGC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblGC.ForeColor = System.Drawing.Color.Crimson;
-            this.lblGC.Location = new System.Drawing.Point(829, 30);
-            this.lblGC.Name = "lblGC";
-            this.lblGC.Size = new System.Drawing.Size(17, 20);
-            this.lblGC.TabIndex = 958796;
-            this.lblGC.Text = "0";
+            this.lblNoOfPrGroup.AutoSize = true;
+            this.lblNoOfPrGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblNoOfPrGroup.ForeColor = System.Drawing.Color.Crimson;
+            this.lblNoOfPrGroup.Location = new System.Drawing.Point(829, 30);
+            this.lblNoOfPrGroup.Name = "lblNoOfPrGroup";
+            this.lblNoOfPrGroup.Size = new System.Drawing.Size(17, 20);
+            this.lblNoOfPrGroup.TabIndex = 958796;
+            this.lblNoOfPrGroup.Text = "0";
             // 
             // label1
             // 
@@ -321,13 +321,13 @@
         public System.Windows.Forms.ToolStripSeparator tssNew;
         public System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.Panel pnlgroup;
-        private System.Windows.Forms.Label lblGC;
+        private System.Windows.Forms.Label lblNoOfPrGroup;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox grbFilterBy;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.ComboBox cmbProductGroup;
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdGroupList;
+        public System.Windows.Forms.ComboBox cmbProductGroup;
     }
 }
