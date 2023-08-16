@@ -34,6 +34,7 @@
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
+            this.btnRemarks = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.lblDPercentage = new System.Windows.Forms.Label();
             this.lblPercentage = new System.Windows.Forms.Label();
@@ -71,7 +72,6 @@
             this.clmremove = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpproductname = new System.Windows.Forms.GroupBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtunitrate = new System.Windows.Forms.TextBox();
             this.lblbatchno = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
@@ -89,7 +89,7 @@
             this.lblMM = new System.Windows.Forms.Label();
             this.lblDd = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
-            this.btnRemarks = new System.Windows.Forms.Button();
+            this.txtunit = new System.Windows.Forms.TextBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -140,6 +140,20 @@
             this.pnlinward.Name = "pnlinward";
             this.pnlinward.Size = new System.Drawing.Size(1354, 645);
             this.pnlinward.TabIndex = 36;
+            // 
+            // btnRemarks
+            // 
+            this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
+            this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemarks.Location = new System.Drawing.Point(603, 612);
+            this.btnRemarks.Name = "btnRemarks";
+            this.btnRemarks.Size = new System.Drawing.Size(108, 29);
+            this.btnRemarks.TabIndex = 1111211;
+            this.btnRemarks.Text = "See Remarks";
+            this.btnRemarks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemarks.UseVisualStyleBackColor = true;
+            this.btnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
             // 
             // groupBox10
             // 
@@ -504,8 +518,8 @@
             // 
             // grpproductname
             // 
+            this.grpproductname.Controls.Add(this.txtunit);
             this.grpproductname.Controls.Add(this.textBox4);
-            this.grpproductname.Controls.Add(this.label1);
             this.grpproductname.Controls.Add(this.txtunitrate);
             this.grpproductname.Controls.Add(this.lblbatchno);
             this.grpproductname.Controls.Add(this.txtProductName);
@@ -537,15 +551,6 @@
             this.textBox4.Size = new System.Drawing.Size(17, 27);
             this.textBox4.TabIndex = 1111236;
             this.textBox4.Text = "₹";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(824, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 20);
-            this.label1.TabIndex = 958825;
-            this.label1.Text = "Pkts";
             // 
             // txtunitrate
             // 
@@ -695,19 +700,15 @@
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
-            // btnRemarks
+            // txtunit
             // 
-            this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
-            this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemarks.Location = new System.Drawing.Point(603, 612);
-            this.btnRemarks.Name = "btnRemarks";
-            this.btnRemarks.Size = new System.Drawing.Size(108, 29);
-            this.btnRemarks.TabIndex = 1111211;
-            this.btnRemarks.Text = "See Remarks";
-            this.btnRemarks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRemarks.UseVisualStyleBackColor = true;
-            this.btnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
+            this.txtunit.Enabled = false;
+            this.txtunit.Location = new System.Drawing.Point(820, 37);
+            this.txtunit.Name = "txtunit";
+            this.txtunit.ReadOnly = true;
+            this.txtunit.Size = new System.Drawing.Size(31, 27);
+            this.txtunit.TabIndex = 1111245;
+            this.txtunit.Text = "Pkts";
             // 
             // INV_Inward
             // 
@@ -781,7 +782,6 @@
         private System.Windows.Forms.Label lblYyyy;
         private System.Windows.Forms.Label lblMM;
         private System.Windows.Forms.Label lblDd;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbtransfertype;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
@@ -802,5 +802,6 @@
         private System.Windows.Forms.TextBox txtDGPercentageCheck;
         private System.Windows.Forms.TextBox textBox4;
         public System.Windows.Forms.Button btnRemarks;
+        private System.Windows.Forms.TextBox txtunit;
     }
 }

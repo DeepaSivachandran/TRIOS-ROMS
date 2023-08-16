@@ -100,6 +100,9 @@ namespace ROMS
         public static INV_DamageEntry objINV_DamageEntry;
         public static INV_InwardPurchaseList objINV_InwardPurchaseList;
         public static INV_InwardPurchase objINV_InwardPurchase;
+        public static INV_StockHold objINV_StockHold;
+        public static INV_StockConversionList objINV_StockConversionList;
+        public static INV_StockConversion objINV_StockConversion;
 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;  
@@ -1125,6 +1128,40 @@ namespace ROMS
                 MainForm.objPAY_ChequePrint = new PAY_ChequePrint();
                 MainForm.objPAY_ChequePrint.MdiParent = this;
                 MainForm.objPAY_ChequePrint.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmStockHold_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objINV_StockHold = new INV_StockHold();
+                MainForm.objINV_StockHold.MdiParent = this;
+                MainForm.objINV_StockHold.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsbStockConversion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objINV_StockConversionList = new INV_StockConversionList();
+                MainForm.objINV_StockConversionList.MdiParent = this;
+                MainForm.objINV_StockConversionList.Show();
             }
             catch (Exception ex)
             {
