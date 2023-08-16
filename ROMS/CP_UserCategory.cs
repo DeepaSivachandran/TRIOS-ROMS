@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Security.Cryptography;
 namespace ROMS
 {
-    public partial class CP_UserCatagory : Form
+    public partial class CP_UserCategory : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -23,7 +23,7 @@ namespace ROMS
         public string varusercode="";
         public string varUserRoleCode = "";
 
-        public CP_UserCatagory()
+        public CP_UserCategory()
         {
             InitializeComponent();
         }
@@ -118,12 +118,12 @@ namespace ROMS
             {
                 bool blnErrorFlag = false;
 
-                if (Convert.ToString(txtCatagoryName.Text).Trim() == "")
+                if (Convert.ToString(txtCategoryName.Text).Trim() == "")
                 {
-                    epUserCatagory.SetError(txtCatagoryName, "Please enter catogory name");
-                    txtCatagoryName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    epUserCategory.SetError(txtCategoryName, "Please enter catogory name");
+                    txtCategoryName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCatogaroryName.ShowAlways = true;
-                    tpCatogaroryName.Show("Please enter catogory name", txtCatagoryName, 5000);
+                    tpCatogaroryName.Show("Please enter catogory name", txtCategoryName, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
@@ -247,7 +247,7 @@ namespace ROMS
 
 
 
-        private void CP_UserCatagory_FormClosing(object sender, FormClosingEventArgs e)
+        private void CP_UserCategory_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
@@ -268,7 +268,7 @@ namespace ROMS
             }
         }
 
-        private void CP_UserCatagory_KeyDown(object sender, KeyEventArgs e)
+        private void CP_UserCategory_KeyDown(object sender, KeyEventArgs e)
         {
 
             try
@@ -290,7 +290,7 @@ namespace ROMS
             }
         }
 
-        private void CP_UserCatagory_Load(object sender, EventArgs e)
+        private void CP_UserCategory_Load(object sender, EventArgs e)
         {
             try
             {
@@ -311,11 +311,11 @@ namespace ROMS
             }
         }
 
-        private void TxtCatagoryName_Enter(object sender, EventArgs e)
+        private void TxtCategoryName_Enter(object sender, EventArgs e)
         {
             try
             {
-                txtCatagoryName.BackColor = Color.LemonChiffon;
+                txtCategoryName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -324,23 +324,23 @@ namespace ROMS
             }
         }
 
-        private void TxtCatagoryName_Leave(object sender, EventArgs e)
+        private void TxtCategoryName_Leave(object sender, EventArgs e)
         {
 
             try
             {
-                if (Convert.ToString(txtCatagoryName.Text).Trim() == "")
+                if (Convert.ToString(txtCategoryName.Text).Trim() == "")
                 {
-                    epUserCatagory.SetError(txtCatagoryName, "Please enter catogory name");
-                    txtCatagoryName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    epUserCategory.SetError(txtCategoryName, "Please enter catogory name");
+                    txtCategoryName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCatogaroryName.ShowAlways = true;
-                    tpCatogaroryName.Show("Please enter catogory name", txtCatagoryName, 5000);
+                    tpCatogaroryName.Show("Please enter catogory name", txtCategoryName, 5000);
 
                 }
                 else
                 {
-                    epUserCatagory.Clear();
-                    txtCatagoryName.BackColor = Color.White;
+                    epUserCategory.Clear();
+                    txtCategoryName.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -363,7 +363,7 @@ namespace ROMS
             }
         }
 
-        private void TxtCatagoryName_KeyDown(object sender, KeyEventArgs e)
+        private void TxtCategoryName_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -383,7 +383,7 @@ namespace ROMS
             }
         }
 
-        private void CP_UserCatagory_Leave(object sender, EventArgs e)
+        private void CP_UserCategory_Leave(object sender, EventArgs e)
         {
 
         }

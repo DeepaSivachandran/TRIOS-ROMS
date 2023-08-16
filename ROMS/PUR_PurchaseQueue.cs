@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class CP_PurchaseList : Form
+    public partial class PUR_PurchaseQueue : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public CP_PurchaseList()
+        public PUR_PurchaseQueue()
         {
             InitializeComponent();
         }
@@ -286,7 +286,7 @@ namespace ROMS
             }
         }
 
-        private void CP_PurchaseList_KeyDown(object sender, KeyEventArgs e)
+        private void PUR_PurchaseQueue_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -315,56 +315,18 @@ namespace ROMS
             }
         }
 
-        private void TsbQue_Click(object sender, EventArgs e)
+        private void TsbPurchaseList_Click(object sender, EventArgs e)
         {
             try
             {
-                MainForm.objPUR_PurchaseQueue = new PUR_PurchaseQueue();
-                MainForm.objPUR_PurchaseQueue.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseQueue.Show();
+                MainForm.objCP_PurchaseList = new CP_PurchaseList();
+                MainForm.objCP_PurchaseList.MdiParent = this.ParentForm;
+                MainForm.objCP_PurchaseList.Show();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-        }
-
-        private void GrdSupplierList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (e.RowIndex != -1)
-                {
-                    switch (grdSupplierList.Columns[e.ColumnIndex].Name)
-                    {
-                        case "clmEdit":
-                            MainForm.objPUR_GRNEntry = new PUR_GRNEntry();
-                            MainForm.objPUR_GRNEntry.ShowDialog();
-                            break;
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-
-            }
-        }
-
-        private void CP_PurchaseList_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                grdSupplierList.Rows.Add(1, "GNM", "16/08/2023", "PUR001", "9097337", "16/08/2023", "ABCD Suppliers", "Against PO", "10","Pending","10,000","ABCD","16/08/2023 01:50PM");
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-
             }
         }
     }

@@ -54,6 +54,7 @@
             this.clmproductsubgroupnameintamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmstocklocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsGroupList.SuspendLayout();
@@ -264,6 +265,7 @@
             this.clmproductsubgroupnameintamil,
             this.clmstocklocation,
             this.clmRack,
+            this.Column6,
             this.Column4,
             this.Column5});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -343,6 +345,12 @@
             this.clmRack.ReadOnly = true;
             this.clmRack.Width = 120;
             // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Batch No.";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
             // Column4
             // 
             this.Column4.HeaderText = "Total Products";
@@ -410,6 +418,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmproductsubgroupnameintamil;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmstocklocation;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRack;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }

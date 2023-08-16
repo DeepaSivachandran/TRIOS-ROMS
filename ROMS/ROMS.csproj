@@ -93,11 +93,41 @@
     <Compile Include="CP_BulkAttributes.designer.cs">
       <DependentUpon>CP_BulkAttributes.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_InwardQueueList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_InwardQueueList.designer.cs">
+      <DependentUpon>INV_InwardQueueList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseQueue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseQueue.designer.cs">
+      <DependentUpon>PUR_PurchaseQueue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockConversionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockConversionList.designer.cs">
+      <DependentUpon>INV_StockConversionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockHold.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockHold.designer.cs">
+      <DependentUpon>INV_StockHold.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAY_ChequePrint.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PAY_ChequePrint.designer.cs">
       <DependentUpon>PAY_ChequePrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_DebitNoteList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_DebitNoteList.designer.cs">
+      <DependentUpon>PAY_DebitNoteList.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_PODamagedView.cs">
       <SubType>Form</SubType>
@@ -374,6 +404,12 @@
     </Compile>
     <Compile Include="PUR_PurchaseDC.designer.cs">
       <DependentUpon>PUR_PurchaseDC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockConversion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockConversion.designer.cs">
+      <DependentUpon>INV_StockConversion.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_RemarksHistory.cs">
       <SubType>Form</SubType>
@@ -707,8 +743,23 @@
     <EmbeddedResource Include="CP_BulkAttributes.resx">
       <DependentUpon>CP_BulkAttributes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="INV_InwardQueueList.resx">
+      <DependentUpon>INV_InwardQueueList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseQueue.resx">
+      <DependentUpon>PUR_PurchaseQueue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockConversionList.resx">
+      <DependentUpon>INV_StockConversionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockHold.resx">
+      <DependentUpon>INV_StockHold.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PAY_ChequePrint.resx">
       <DependentUpon>PAY_ChequePrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_DebitNoteList.resx">
+      <DependentUpon>PAY_DebitNoteList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PODamagedView.resx">
       <DependentUpon>PUR_PODamagedView.cs</DependentUpon>
@@ -847,6 +898,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseDC.resx">
       <DependentUpon>PUR_PurchaseDC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockConversion.resx">
+      <DependentUpon>INV_StockConversion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_RemarksHistory.resx">
       <DependentUpon>PUR_RemarksHistory.cs</DependentUpon>

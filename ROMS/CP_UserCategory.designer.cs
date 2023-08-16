@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_UserCatagory
+    partial class CP_UserCategory
     {
         /// <summary>
         /// Required designer variable.
@@ -36,13 +36,13 @@
             this.txtDStatus = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.grbUserCatagory = new System.Windows.Forms.GroupBox();
-            this.txtDCatagoryName = new System.Windows.Forms.TextBox();
-            this.txtCatagoryName = new System.Windows.Forms.TextBox();
-            this.epUserCatagory = new System.Windows.Forms.ErrorProvider(this.components);
+            this.grbUserCategory = new System.Windows.Forms.GroupBox();
+            this.txtDCategoryName = new System.Windows.Forms.TextBox();
+            this.txtCategoryName = new System.Windows.Forms.TextBox();
+            this.epUserCategory = new System.Windows.Forms.ErrorProvider(this.components);
             this.pnlStatus.SuspendLayout();
-            this.grbUserCatagory.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epUserCatagory)).BeginInit();
+            this.grbUserCategory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epUserCategory)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlStatus
@@ -133,56 +133,56 @@
             this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
-            // grbUserCatagory
+            // grbUserCategory
             // 
-            this.grbUserCatagory.Controls.Add(this.txtDCatagoryName);
-            this.grbUserCatagory.Controls.Add(this.txtCatagoryName);
-            this.grbUserCatagory.Controls.Add(this.btnClose);
-            this.grbUserCatagory.Controls.Add(this.txtDStatus);
-            this.grbUserCatagory.Controls.Add(this.btnSave);
-            this.grbUserCatagory.Controls.Add(this.pnlStatus);
-            this.grbUserCatagory.Location = new System.Drawing.Point(17, 4);
-            this.grbUserCatagory.Name = "grbUserCatagory";
-            this.grbUserCatagory.Size = new System.Drawing.Size(503, 131);
-            this.grbUserCatagory.TabIndex = 0;
-            this.grbUserCatagory.TabStop = false;
+            this.grbUserCategory.Controls.Add(this.txtDCategoryName);
+            this.grbUserCategory.Controls.Add(this.txtCategoryName);
+            this.grbUserCategory.Controls.Add(this.btnClose);
+            this.grbUserCategory.Controls.Add(this.txtDStatus);
+            this.grbUserCategory.Controls.Add(this.btnSave);
+            this.grbUserCategory.Controls.Add(this.pnlStatus);
+            this.grbUserCategory.Location = new System.Drawing.Point(17, 4);
+            this.grbUserCategory.Name = "grbUserCategory";
+            this.grbUserCategory.Size = new System.Drawing.Size(503, 131);
+            this.grbUserCategory.TabIndex = 0;
+            this.grbUserCategory.TabStop = false;
             // 
-            // txtDCatagoryName
+            // txtDCategoryName
             // 
-            this.txtDCatagoryName.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDCatagoryName.Enabled = false;
-            this.txtDCatagoryName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDCatagoryName.Location = new System.Drawing.Point(17, 26);
-            this.txtDCatagoryName.Name = "txtDCatagoryName";
-            this.txtDCatagoryName.ReadOnly = true;
-            this.txtDCatagoryName.Size = new System.Drawing.Size(181, 27);
-            this.txtDCatagoryName.TabIndex = 19;
-            this.txtDCatagoryName.Text = "Catagory Name";
+            this.txtDCategoryName.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDCategoryName.Enabled = false;
+            this.txtDCategoryName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDCategoryName.Location = new System.Drawing.Point(17, 26);
+            this.txtDCategoryName.Name = "txtDCategoryName";
+            this.txtDCategoryName.ReadOnly = true;
+            this.txtDCategoryName.Size = new System.Drawing.Size(181, 27);
+            this.txtDCategoryName.TabIndex = 19;
+            this.txtDCategoryName.Text = "Category Name";
             // 
-            // txtCatagoryName
+            // txtCategoryName
             // 
-            this.txtCatagoryName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCatagoryName.Location = new System.Drawing.Point(197, 26);
-            this.txtCatagoryName.MaxLength = 20;
-            this.txtCatagoryName.Name = "txtCatagoryName";
-            this.txtCatagoryName.PasswordChar = '*';
-            this.txtCatagoryName.Size = new System.Drawing.Size(288, 27);
-            this.txtCatagoryName.TabIndex = 0;
-            this.txtCatagoryName.Enter += new System.EventHandler(this.TxtCatagoryName_Enter);
-            this.txtCatagoryName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCatagoryName_KeyDown);
-            this.txtCatagoryName.Leave += new System.EventHandler(this.TxtCatagoryName_Leave);
+            this.txtCategoryName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCategoryName.Location = new System.Drawing.Point(197, 26);
+            this.txtCategoryName.MaxLength = 20;
+            this.txtCategoryName.Name = "txtCategoryName";
+            this.txtCategoryName.PasswordChar = '*';
+            this.txtCategoryName.Size = new System.Drawing.Size(288, 27);
+            this.txtCategoryName.TabIndex = 0;
+            this.txtCategoryName.Enter += new System.EventHandler(this.TxtCategoryName_Enter);
+            this.txtCategoryName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCategoryName_KeyDown);
+            this.txtCategoryName.Leave += new System.EventHandler(this.TxtCategoryName_Leave);
             // 
-            // epUserCatagory
+            // epUserCategory
             // 
-            this.epUserCatagory.ContainerControl = this;
+            this.epUserCategory.ContainerControl = this;
             // 
-            // CP_UserCatagory
+            // CP_UserCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(540, 147);
-            this.Controls.Add(this.grbUserCatagory);
+            this.Controls.Add(this.grbUserCategory);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -190,18 +190,18 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CP_UserCatagory";
+            this.Name = "CP_UserCategory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User Catagory";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_UserCatagory_FormClosing);
-            this.Load += new System.EventHandler(this.CP_UserCatagory_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_UserCatagory_KeyDown);
-            this.Leave += new System.EventHandler(this.CP_UserCatagory_Leave);
+            this.Text = "User Category";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_UserCategory_FormClosing);
+            this.Load += new System.EventHandler(this.CP_UserCategory_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_UserCategory_KeyDown);
+            this.Leave += new System.EventHandler(this.CP_UserCategory_Leave);
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
-            this.grbUserCatagory.ResumeLayout(false);
-            this.grbUserCatagory.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epUserCatagory)).EndInit();
+            this.grbUserCategory.ResumeLayout(false);
+            this.grbUserCategory.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epUserCategory)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -212,10 +212,10 @@
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.TextBox txtDStatus;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.GroupBox grbUserCatagory;
-        private System.Windows.Forms.ErrorProvider epUserCatagory;
-        private System.Windows.Forms.TextBox txtDCatagoryName;
-        private System.Windows.Forms.TextBox txtCatagoryName;
+        private System.Windows.Forms.GroupBox grbUserCategory;
+        private System.Windows.Forms.ErrorProvider epUserCategory;
+        private System.Windows.Forms.TextBox txtDCategoryName;
+        private System.Windows.Forms.TextBox txtCategoryName;
         public System.Windows.Forms.Button btnSave;
     }
 }

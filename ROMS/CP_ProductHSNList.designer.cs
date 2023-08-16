@@ -46,6 +46,12 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdHSNList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdhsnname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdhsncode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdgst = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlhsntaxlist.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -261,6 +267,39 @@
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmdhsnname
+            // 
+            this.clmdhsnname.HeaderText = "HSN Name";
+            this.clmdhsnname.Name = "clmdhsnname";
+            this.clmdhsnname.Width = 200;
+            // 
+            // clmdhsncode
+            // 
+            this.clmdhsncode.HeaderText = "HSN Code";
+            this.clmdhsncode.Name = "clmdhsncode";
+            // 
+            // clmdgst
+            // 
+            this.clmdgst.HeaderText = "GST %";
+            this.clmdgst.Name = "clmdgst";
+            this.clmdgst.Width = 75;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Total Products";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Status";
+            this.clmdstatus.Name = "clmdstatus";
             // 
             // CP_ProductHSNList
             // 
