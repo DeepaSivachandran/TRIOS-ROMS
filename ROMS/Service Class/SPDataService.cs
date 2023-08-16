@@ -111,7 +111,6 @@ namespace ROMS
         public int udfnExecuteQuery3Parameter(string paraConnectedQuery1, string paraConnectedQuery2, string paraConnectedQuery3)
         {
             int udfn = 0;
-
             try
             {
                 tmpspcall = new SPCall();
@@ -257,5 +256,66 @@ namespace ROMS
             return ds;
         }
         
+        }
+
+        // Sivabharathi    Create date: 09/08/2023    Description:	HSN Sp
+        public string udfnHsn(int ViewType,int paraHsnId,int paraGstId,string paraHsnName,string paraHsnCode,int paraStatusId,string paraOriginator)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("TRNS_HSN", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraHsnId", paraHsnId);
+                varSqlCommand.Parameters.AddWithValue("@paraGstId", paraGstId);
+                varSqlCommand.Parameters.AddWithValue("@paraHsnName", paraHsnName);
+                varSqlCommand.Parameters.AddWithValue("@paraHsnCode", paraHsnCode);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        // Sivabharathi    Create date: 09/08/2023    Description:	HSN list Sp
+        public DataSet udfnHsnList(int ViewType)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_HSN]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 }
