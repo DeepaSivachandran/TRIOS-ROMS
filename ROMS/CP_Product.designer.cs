@@ -148,7 +148,7 @@
             // 
             this.txtPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtPICode.Location = new System.Drawing.Point(160, 50);
-            this.txtPICode.MaxLength = 50;
+            this.txtPICode.MaxLength = 15;
             this.txtPICode.Name = "txtPICode";
             this.txtPICode.Size = new System.Drawing.Size(363, 27);
             this.txtPICode.TabIndex = 2;
@@ -400,11 +400,6 @@
             // 
             this.cmbProductCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProductCategory.FormattingEnabled = true;
-            this.cmbProductCategory.Items.AddRange(new object[] {
-            "Trading",
-            "Conversion",
-            "Free",
-            "Production"});
             this.cmbProductCategory.Location = new System.Drawing.Point(160, 131);
             this.cmbProductCategory.Name = "cmbProductCategory";
             this.cmbProductCategory.Size = new System.Drawing.Size(363, 27);
@@ -845,7 +840,7 @@
             // 
             this.txtBarcode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtBarcode.Location = new System.Drawing.Point(122, 127);
-            this.txtBarcode.MaxLength = 50;
+            this.txtBarcode.MaxLength = 20;
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(145, 27);
             this.txtBarcode.TabIndex = 32;
@@ -1067,9 +1062,10 @@
             // txtSelfLife
             // 
             this.txtSelfLife.Location = new System.Drawing.Point(85, 24);
+            this.txtSelfLife.MaxLength = 2;
             this.txtSelfLife.Name = "txtSelfLife";
             this.txtSelfLife.Size = new System.Drawing.Size(69, 27);
-            this.txtSelfLife.TabIndex = 113;
+            this.txtSelfLife.TabIndex = 20;
             this.txtSelfLife.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSelfLife.Visible = false;
             this.txtSelfLife.Enter += new System.EventHandler(this.TxtSelfLife_Enter);
@@ -1269,9 +1265,6 @@
             // 
             this.cmbBatchNoGeneration.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBatchNoGeneration.FormattingEnabled = true;
-            this.cmbBatchNoGeneration.Items.AddRange(new object[] {
-            "Auto",
-            "Manual"});
             this.cmbBatchNoGeneration.Location = new System.Drawing.Point(135, 51);
             this.cmbBatchNoGeneration.Name = "cmbBatchNoGeneration";
             this.cmbBatchNoGeneration.Size = new System.Drawing.Size(127, 27);
@@ -1299,9 +1292,6 @@
             // 
             this.cmbBatchNoEntry.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBatchNoEntry.FormattingEnabled = true;
-            this.cmbBatchNoEntry.Items.AddRange(new object[] {
-            "Enabled",
-            "Disabled"});
             this.cmbBatchNoEntry.Location = new System.Drawing.Point(135, 24);
             this.cmbBatchNoEntry.Name = "cmbBatchNoEntry";
             this.cmbBatchNoEntry.Size = new System.Drawing.Size(127, 27);
@@ -1387,6 +1377,7 @@
             this.Name = "CP_Product";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Product_FormClosing);
             this.Load += new System.EventHandler(this.CP_Product_Load);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();

@@ -21,6 +21,7 @@ namespace ROMS
         public string pbFormStatus;
         public string varstatecode = "";
 
+        public string varupdate = "0";
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
         private ToolTip tpAltContactNo = new ToolTip();
@@ -292,15 +293,15 @@ namespace ROMS
 
                 if (blnErrorFlag == false)
                 {
-
                     SPDataService objspdservice = new SPDataService();
                     string result = "";
-                    string varStatus = "1";
-                    int varshelflife = 0;
-                    int varrmproduction = 0;
-                    errItems.Clear(); 
-                    
-                        if (rbActive.Checked == true)
+                    string varStatus = "1";  
+                    double netweight = 0, grossweight = 0, minstk = 0, maxstk = 0, reorderqty = 0, rminsale = 0, retailrate = 0, wminsaleqty = 0, wsalesrate = 0;
+                    int shelflife = 0, rackmoq = 0, varshelflife = 0, varrmproduction = 0;
+                    errItems.Clear();
+                    udfncolorchange();
+
+                    if (rbActive.Checked == true)
                         {
                             varStatus = "1";
                         }
@@ -320,45 +321,146 @@ namespace ROMS
                     }
                     if (cbRMFromProduction.Checked == true)
                     {
-                        varshelflife = 1;
+                        varrmproduction = 1;
                     }
                     else
                     {
-                        varshelflife = 0;
+                        varrmproduction = 0;
+                    }
+
+                    if (txtWeight.Text == "")
+                    {
+                        netweight = 0;
+                    }
+                    else
+                    {
+                        netweight = Convert.ToDouble(txtWeight.Text);
+                    }
+                    if (txtGrossWeight.Text == "")
+                    {
+                        grossweight = 0;
+                    }
+                    else
+                    {
+                        grossweight = Convert.ToDouble(txtGrossWeight.Text);
+                    }
+                    if (txtMinStock.Text == "")
+                    {
+                        minstk = 0;
+                    }
+                    else
+                    {
+                        minstk = Convert.ToDouble(txtMinStock.Text);
+                    }
+                    if (txtMaxStock.Text == "")
+                    {
+                        maxstk = 0;
+                    }
+                    else
+                    {
+                        maxstk = Convert.ToDouble(txtMaxStock.Text);
+                    }
+
+
+                    if (txtReOrderQty.Text == "")
+                    {
+                        reorderqty = 0;
+                    }
+                    else
+                    {
+                        reorderqty = Convert.ToDouble(txtReOrderQty.Text);
+                    }
+                    if (txtRMinSaleQty.Text == "")
+                    {
+                        rminsale = 0;
+                    }
+                    else
+                    {
+                        rminsale = Convert.ToDouble(txtRMinSaleQty.Text);
+                    }
+                    if (txtRetailRate.Text == "")
+                    {
+                        retailrate = 0;
+                    }
+                    else
+                    {
+                        retailrate = Convert.ToDouble(txtRetailRate.Text);
+                    }
+                    if (txtWMinSaleQty.Text == "")
+                    {
+                        wminsaleqty = 0;
+                    }
+                    else
+                    {
+                        wminsaleqty = Convert.ToDouble(txtWMinSaleQty.Text);
+                    }
+                    if (txtWSaleRate.Text == "")
+                    {
+                        wsalesrate = 0;
+                    }
+                    else
+                    {
+                        wsalesrate = Convert.ToDouble(txtWSaleRate.Text);
+                    }
+
+                    if (txtRackMOQQty.Text == "")
+                    {
+                        rackmoq = 0;
+                    }
+                    else
+                    {
+                        rackmoq = Convert.ToInt32(txtRackMOQQty.Text);
+                    }
+                    if (txtSelfLife.Text == "")
+                    {
+                        shelflife = 0;
+                    }
+                    else
+                    {
+                        shelflife = Convert.ToInt32(txtSelfLife.Text);
                     }
 
                     if (btnSave.Text == "Save")
                         {
-                       result = objspdservice.udfnProductMaster(0, 0, txtItemNameEnglish.Text, txtItemNameTamil.Text ,txtPICode.Text,Convert.ToInt32(cmbConcern.SelectedValue),
-                        Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(cmbGroup.Text), Convert.ToInt32(cmbSubGroup.SelectedValue), Convert.ToInt32(cmbBrand.SelectedValue),
+
+
+                        result = objspdservice.udfnProductMaster(0, 0, txtItemNameEnglish.Text, txtItemNameTamil.Text ,txtPICode.Text,Convert.ToInt32(cmbConcern.SelectedValue),
+                        Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(cmbGroup.SelectedValue), Convert.ToInt32(cmbSubGroup.SelectedValue), Convert.ToInt32(cmbBrand.SelectedValue),
                         Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue),txtUpp.Text, Convert.ToInt32(cmbPosition.SelectedValue), Convert.ToInt32(cmbSalesGodown.SelectedValue)
-                        , Convert.ToInt32(cmbPurchaseRack.SelectedValue), Convert.ToInt32(cmbSalesRack.SelectedValue), Convert.ToInt32(txtRackMOQQty.Text), Convert.ToInt32(cmbBatchNoEntry.SelectedValue)
-                        , Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, Convert.ToDouble(txtWeight.Text), Convert.ToDouble(txtGrossWeight.Text),Convert.ToDouble(txtMinStock.Text)
-                        , Convert.ToDouble(txtMaxStock.Text), Convert.ToDouble(txtReOrderQty.Text), Convert.ToDouble(txtRMinSaleQty.Text), Convert.ToDouble(txtRetailRate.Text),
-                        Convert.ToDouble(txtWMinSaleQty.Text), Convert.ToDouble(txtWSaleRate.Text),txtBarcode.Text, Convert.ToInt32(txtHSNCode.Text),txtGST.Text,
-                        varrmproduction,Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.SelectedValue),varStatus,MainForm.pbUserID, MainForm.pbIpAddress, "Product Create");
+                        , Convert.ToInt32(cmbPurchaseRack.SelectedValue), Convert.ToInt32(cmbSalesRack.SelectedValue), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue)
+                        , Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, netweight, grossweight,minstk, maxstk, reorderqty, rminsale, retailrate,wminsaleqty, 
+                        wsalesrate,txtBarcode.Text, Convert.ToInt32(cmbHSNName.SelectedValue),varrmproduction, shelflife, 
+                        Convert.ToInt32(cmbPeriod.SelectedValue),varStatus,MainForm.pbUserID, MainForm.pbIpAddress, "Product Create");
                         }
                         else
                         {
+
                         result = objspdservice.udfnProductMaster(1, varproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text, Convert.ToInt32(cmbConcern.SelectedValue),
-Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(cmbGroup.Text), Convert.ToInt32(cmbSubGroup.SelectedValue), Convert.ToInt32(cmbBrand.SelectedValue),
-Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(cmbPosition.SelectedValue), Convert.ToInt32(cmbSalesGodown.SelectedValue)
-, Convert.ToInt32(cmbPurchaseRack.SelectedValue), Convert.ToInt32(cmbSalesRack.SelectedValue), Convert.ToInt32(txtRackMOQQty.Text), Convert.ToInt32(cmbBatchNoEntry.SelectedValue)
-, Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, Convert.ToDouble(txtWeight.Text), Convert.ToDouble(txtGrossWeight.Text), Convert.ToDouble(txtMinStock.Text)
-, Convert.ToDouble(txtMaxStock.Text), Convert.ToDouble(txtReOrderQty.Text), Convert.ToDouble(txtRMinSaleQty.Text), Convert.ToDouble(txtRetailRate.Text),
-Convert.ToDouble(txtWMinSaleQty.Text), Convert.ToDouble(txtWSaleRate.Text), txtBarcode.Text, Convert.ToInt32(txtHSNCode.Text), txtGST.Text,
-varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, "Product Update");
+                        Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(cmbGroup.SelectedValue), Convert.ToInt32(cmbSubGroup.SelectedValue), Convert.ToInt32(cmbBrand.SelectedValue),
+                        Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(cmbPosition.SelectedValue), Convert.ToInt32(cmbSalesGodown.SelectedValue)
+                        , Convert.ToInt32(cmbPurchaseRack.SelectedValue), Convert.ToInt32(cmbSalesRack.SelectedValue), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue)
+                        , Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, netweight, grossweight, minstk, maxstk, reorderqty, rminsale, retailrate, wminsaleqty,
+                        wsalesrate, txtBarcode.Text, Convert.ToInt32(cmbHSNName.SelectedValue), varrmproduction, shelflife,
+                        Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, "Product Update");
+                         
                     }
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        udfnclear();
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                            MainForm.objCP_Itemlist.udfnList();
+                            cmbConcern.Focus();
+                            if (btnSave.Text == "Update")
+                                {
+                                    varupdate = "1";
+                                    udfnclose();
+                                    udfnclear();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                     
                   
                      objspdservice.CloseConnection();
@@ -409,7 +511,8 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
                 txtWSaleRate.Text = "";
                 txtBarcode.Text = "";
                 txtHSNCode.Text = "";
-                txtGST.Text = ""; 
+                txtGST.Text = "";
+                txtUpp.Text = ""; 
 
             }
             catch (Exception ex)
@@ -418,6 +521,55 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
                 objError.WriteFile(ex);
             }
         }
+
+
+        public void udfncolorchange()
+        {
+            try
+            {
+                cmbConcern.BackColor = Color.White;
+                cmbProductCategory.BackColor = Color.White;
+                cmbSubGroup.BackColor = Color.White;
+                cmbGroup.BackColor = Color.White;
+                cmbBrand.BackColor = Color.White;
+                cmbUnit.BackColor = Color.White;
+                cmbBulkUnit.BackColor = Color.White;
+                cmbPurchaseRack.BackColor = Color.White;
+                cmbPosition.BackColor = Color.White;
+                cmbSalesGodown.BackColor = Color.White;
+                cmbSalesRack.BackColor = Color.White;
+                cmbBatchNoEntry.BackColor = Color.White;
+                cmbBatchNoGeneration.BackColor = Color.White;
+                cmbPeriod.BackColor = Color.White;
+                cbExpiry.BackColor = Color.White;;
+                cbRMFromProduction.BackColor = Color.White;;
+                cmbHSNName.BackColor = Color.White;;
+                txtPICode.BackColor = Color.White;
+                txtItemNameEnglish.BackColor = Color.White;
+                txtItemNameTamil.BackColor = Color.White;
+                txtRackMOQQty.BackColor = Color.White;
+                txtWeight.BackColor = Color.White;
+                txtGrossWeight.BackColor = Color.White;
+                txtMinStock.BackColor = Color.White;
+                txtMaxStock.BackColor = Color.White;
+                txtReOrderQty.BackColor = Color.White;
+                txtRMinSaleQty.BackColor = Color.White;
+                txtRetailRate.BackColor = Color.White;
+                txtWMinSaleQty.BackColor = Color.White;
+                txtWSaleRate.BackColor = Color.White;
+                txtBarcode.BackColor = Color.White;
+                txtHSNCode.BackColor = Color.White;
+                txtGST.BackColor = Color.White;
+                txtUpp.BackColor = Color.White;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
 
 
         private void btnSave_Enter(object sender, EventArgs e)
@@ -594,7 +746,7 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbHSNName.Focus();
+                    cmbProductCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -722,7 +874,11 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
         {
             try
             {
-                txtGrossWeight.Focus();            }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtGrossWeight.Focus();
+                }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -832,18 +988,12 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
         private void TxtBarcode_KeyDown(object sender, KeyEventArgs e)
         {
             try
-            {
-                if (pnlStatus.Enabled == true)
-                {
+            { 
                     if (e.KeyCode == Keys.Enter)
                     {
-                        rbActive.Focus();
+                        cmbHSNName.Focus();
                     }
-                }
-                else
-                {
-                    btnSave.Focus();
-                }
+                
             }
             catch (Exception ex)
             {
@@ -861,7 +1011,7 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
                     //   txtDay.Focus();
                     if (cmbPeriod.Visible==true)
                     {
-                        cmbPeriod.Focus();
+                        txtSelfLife.Focus();
                     }
                     else{
 
@@ -898,7 +1048,7 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtRackMOQQty.Focus();
+                    txtRMinSaleQty.Focus();
                 }
             }
             catch (Exception ex)
@@ -1835,9 +1985,20 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
+              
+                if (pnlStatus.Enabled == true)
                 {
-                    cmbProductCategory.Focus();
+                    if (e.KeyCode == Keys.Enter)
+                        { 
+                        rbActive.Focus(); 
+                    }
+                }
+                else
+                {
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1867,6 +2028,28 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
             try
             {
                 BeginInvoke(new Action(() => cmbHSNName.Select(int.MaxValue, 0)));
+
+                DataSet objds;
+                DataService objdservice = new DataService();
+                objds = objdservice.GetDataset("SELECT HSN_Code,GST_Value FROM MR_HSN INNER JOIN DEF_GST ON HSN_GSTID=GSTID WHERE HSNID  IN ('" + Convert.ToInt32(cmbHSNName.SelectedValue) + "') AND GSTID  NOT IN (0,-1)");
+                objdservice.CloseConnection();
+                if (objds != null)
+                {
+                    if (objds.Tables.Count > 0)
+                    {
+                        if (objds.Tables[0].Rows.Count > 0)
+                        {
+                            txtHSNCode.Text = Convert.ToString(objds.Tables[0].Rows[0]["HSN_Code"]);
+                            txtGST.Text = Convert.ToString(objds.Tables[0].Rows[0]["GST_Value"]);
+                        }
+                        else
+                        {
+                            txtHSNCode.Text = "";
+                            txtGST.Text = "";
+
+                        }
+                    }
+                }
             }
             catch (Exception ex)
 
@@ -1879,8 +2062,20 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
         private void CmbHSNName_Leave(object sender, EventArgs e)
         {
             try
-            {
-                cmbHSNName.BackColor = Color.White;
+            { 
+                if (Convert.ToString(cmbHSNName.SelectedValue) == "" || Convert.ToString(cmbHSNName.SelectedValue) == "-1")
+                {
+                    errItems.SetError(cmbHSNName, "Please select HSN name");
+                    cmbHSNName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpcompanyname.ShowAlways = true;
+                    tpcompanyname.Show("Please select sales HSN name", cmbHSNName, 5000);
+                }
+                else
+                {
+                    errItems.Clear();
+                    cmbHSNName.BackColor = Color.White;
+                }
+
             }
             catch (Exception ex)
 
@@ -2592,7 +2787,7 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBatchNoEntry.Focus();
+                    txtRackMOQQty.Focus();
                 }
             }
             catch (Exception ex)
@@ -3001,7 +3196,7 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtRMinSaleQty.Focus();
+                    cmbBatchNoEntry.Focus();
                 }
             }
             catch (Exception ex)
@@ -3085,7 +3280,11 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
             try
             {
                 BeginInvoke(new Action(() => cmbUnit.Select(int.MaxValue, 0)));
-                txtUPPvalue.Text = Convert.ToString(cmbUnit.SelectedText);
+
+                DataService objds = new DataService();
+                txtUPPvalue.Text = objds.displaydata("Select UT_Symbol FROM MR_UNIT WHERE UTID='" + Convert.ToString(cmbUnit.SelectedValue) + "'");
+                objds.CloseConnection();
+               
             }
             catch (Exception ex)
 
@@ -3158,23 +3357,139 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
         {
             try
             {
-                cmbPeriod.SelectedIndex = 0;
-                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-                cmbConcern.Focus();
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0))); 
+                this.ActiveControl = cmbConcern;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 AND COMID !=0 ORDER BY COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID !=0 AND PRG_STSID=1 ORDER BY PRGID", "PRG_EName,PRGID", cmbGroup, "", "PRG_EName", "PRGID");
-                objDataBind.BindComboBoxListSelected("MR_Unit", "UT_STSID=1 AND UTID!=0 ORDER BY UTID", "UT_Name,UTID", cmbUnit, "", "UT_Name", "UTID");
-                objDataBind.BindComboBoxListSelected("MR_Unit", "UT_STSID=1 AND UTID!=0 ORDER BY UTID", "UT_Name,UTID", cmbBulkUnit, "", "UT_Name", "UTID");
-                objDataBind.BindComboBoxListSelected("MR_HSN", "HSN_STSID=1 AND UTID!=-1 ORDER BY HSN_STSID", "HSN_Name,HSNID", cmbHSNName, "", "HSN_Name", "HSNID");
+                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID !=0 AND PRG_STSID=1 ORDER BY PRGID", "PRG_EName,PRGID", cmbGroup, "", "PRG_EName", "PRGID"); 
+                objDataBind.BindComboBoxListSelected("MR_HSN", "HSN_STSID=1 AND HSNID!=0 ORDER BY HSN_STSID", "HSN_Name,HSNID", cmbHSNName, "", "HSN_Name", "HSNID");
 
+                objDataBind.BindComboBoxListSelected("MR_Unit", "UT_STSID=1 AND UTID!=0 ORDER BY UTID", "UT_Symbol,UTID", cmbUnit, "", "UT_Symbol", "UTID");
+                objDataBind.BindComboBoxListSelected("MR_Unit", "UT_STSID=1 AND UTID!=0 ORDER BY UTID", "UT_Symbol,UTID", cmbBulkUnit, "", "UT_Symbol", "UTID");
+
+
+                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID <> 0 AND PRSG_STSID=1", "PRSG_EName,PRSGID", cmbSubGroup, "", "PRSG_EName", "PRSGID");
+                objDataBind.BindComboBoxListSelected("MR_BRAND", "BDID <> 0 AND BD_STSID=1", "BD_EName,BDID", cmbBrand, "", "BD_EName", "BDID");
+
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (6,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbPeriod, "", "MST_DisplayText", "MSTID");
+
+                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID<>0 AND SL_STSID=1 ", "SL_ShortName,SLID", cmbPosition, "", "SL_ShortName", "SLID");
+                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID<>0 AND SL_STSID=1", "SL_ShortName,SLID", cmbSalesGodown, "", "SL_ShortName", "SLID");
+
+                objDataBind.BindComboBoxListSelected("MR_Rack", "RKID<>0 AND RK_STSID=1 ", "RK_ShortName,RKID", cmbPurchaseRack, "", "RK_ShortName", "RKID");
+                objDataBind.BindComboBoxListSelected("MR_Rack", "RKID<>0 AND RK_STSID=1 ", "RK_ShortName,RKID", cmbSalesRack, "", "RK_ShortName", "RKID");
+
+
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (25,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoEntry, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (26,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoGeneration, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+
+                cmbConcern.SelectedValue = -1;
+                cmbGroup.SelectedValue = -1;
+                cmbHSNName.SelectedValue = -1;
+                cmbUnit.SelectedValue = -1;
+                cmbBulkUnit.SelectedValue = -1;
+                cmbProductCategory.SelectedValue = -1;
+                cmbPeriod.SelectedValue = -1;
+                cmbPosition.SelectedValue = -1;
+                cmbSalesGodown.SelectedValue = -1;
+                cmbPurchaseRack.SelectedValue = -1;
+                cmbSalesRack.SelectedValue = -1;
+                cmbBatchNoEntry.SelectedValue = -1;
+                cmbBatchNoGeneration.SelectedValue = -1;
+                udfnEdit();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        public void udfnEdit()
+        {
+            try
+            {   
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                if (varproductcode != 0)
+                {
+                    SPDataService objspservice = new SPDataService();
+                    DataSet objDS; 
+                    DataService objdservice = new DataService();
+                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                    objdserv.CloseConnection();
+                    if (objDS != null)
+                    {
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["COMPANY"].ToString();
+                            txtPICode.Text = Convert.ToString( objDS.Tables[0].Rows[0]["PICODE"].ToString().Replace("''", "'")); 
+                            txtItemNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ENAME"].ToString().Replace("''", "'"));
+                            txtItemNameTamil.Text = Convert.ToString(objDS.Tables[0].Rows[0]["TNAME"].ToString().Replace("''", "'"));
+                            cmbProductCategory.SelectedValue= objDS.Tables[0].Rows[0]["PRODUCTCATEGORY"].ToString();
+                            cmbGroup.SelectedValue = objDS.Tables[0].Rows[0]["GROUP"].ToString();
+                            cmbSubGroup.SelectedValue = objDS.Tables[0].Rows[0]["SUBGROUP"].ToString();
+                            cmbBrand.SelectedValue = objDS.Tables[0].Rows[0]["BRAND"].ToString();
+
+                            cmbUnit.SelectedValue = objDS.Tables[0].Rows[0]["UNIT"].ToString();
+                            cmbBulkUnit.SelectedValue = objDS.Tables[0].Rows[0]["BULK UNIT"].ToString();
+                            txtUpp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UPP"].ToString().Replace("''", "'"));
+                            cmbPosition.SelectedValue = objDS.Tables[0].Rows[0]["LOCATION PURCHASE"].ToString();
+                            cmbPurchaseRack.SelectedValue = objDS.Tables[0].Rows[0]["RACK LOCATION"].ToString();
+                            cmbSalesGodown.SelectedValue = objDS.Tables[0].Rows[0]["LOCATION SALES"].ToString();
+                            cmbSalesRack.SelectedValue = objDS.Tables[0].Rows[0]["RACK SALES"].ToString();
+                            txtRackMOQQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["RACK MOQ"].ToString().Replace("''", "'"));
+                            cmbBatchNoEntry.SelectedValue = objDS.Tables[0].Rows[0]["BATCHNO"].ToString();
+                            cmbBatchNoGeneration.SelectedValue = objDS.Tables[0].Rows[0]["BARCODE GENERATION"].ToString();
+                            cmbPeriod.SelectedValue = objDS.Tables[0].Rows[0]["SHELF LIFE TYPE"].ToString(); 
+                            txtSelfLife.Text = Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE VALUE"].ToString().Replace("''", "'"));
+                            txtWeight.Text = Convert.ToString(objDS.Tables[0].Rows[0]["NET WEIGHT"].ToString().Replace("''", "'"));
+                            txtGrossWeight.Text = Convert.ToString(objDS.Tables[0].Rows[0]["GROSS WEIGHT"].ToString().Replace("''", "'"));
+                            txtMinStock.Text = Convert.ToString(objDS.Tables[0].Rows[0]["MINSTK"].ToString().Replace("''", "'"));
+                            txtMaxStock.Text = Convert.ToString(objDS.Tables[0].Rows[0]["MAXSTK"].ToString().Replace("''", "'"));
+                            txtReOrderQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["REORDER QTY"].ToString().Replace("''", "'"));
+                            txtRMinSaleQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["RMIN SALES QTY"].ToString().Replace("''", "'"));
+                            txtRetailRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["RETAIL RATE"].ToString().Replace("''", "'"));
+                            txtWMinSaleQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WMINSALE QTY"].ToString().Replace("''", "'"));
+                            txtWSaleRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WSALERATE"].ToString().Replace("''", "'"));
+                            txtBarcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["BARCODE"].ToString().Replace("''", "'")); 
+                            cmbHSNName.SelectedValue = objDS.Tables[0].Rows[0]["HSN"].ToString();
+                             
+
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cbRMFromProduction.Checked = true; } else { cbRMFromProduction.Checked = false; }
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInActive.Checked = false; }
+                             
+                            objDS = objdservice.GetDataset("SELECT HSN_Code,GST_Value FROM MR_HSN INNER JOIN DEF_GST ON HSN_GSTID=GSTID WHERE HSNID  IN ('" + Convert.ToInt32(objDS.Tables[0].Rows[0]["HSN"].ToString()) + "') AND GSTID  NOT IN (0,-1)");
+                            objdservice.CloseConnection();
+                            if (objDS != null)
+                            {
+                                if (objDS.Tables.Count > 0)
+                                {
+                                    if (objDS.Tables[0].Rows.Count > 0)
+                                    {
+                                        txtHSNCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Code"]);
+                                        txtGST.Text = Convert.ToString(objDS.Tables[0].Rows[0]["GST_Value"]);
+                                    }
+                                }
+                            }
+
+                            btnSave.Text = "Update"; 
+                            pnlStatus.Enabled = true;
+                        }
+                       
+
+                    } 
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
         }
 
         private void BtnSubgroup_Click(object sender, EventArgs e)
@@ -3363,10 +3678,15 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
 
             try
             {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cmbPeriod.Focus();
+                if (cmbPeriod.Visible == true)
+                { 
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        cmbPeriod.Focus();
+                    }
                 }
+
+                
             }
             catch (Exception ex)
             {
@@ -3398,6 +3718,31 @@ varrmproduction, Convert.ToInt32(txtSelfLife.Text), Convert.ToInt32(cmbPeriod.Se
             finally
             {
 
+            }
+        }
+
+        private void CP_Product_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (varupdate == "0")
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

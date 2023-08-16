@@ -59,9 +59,7 @@ namespace ROMS
             }
         }
         
-        private void CP_Supplierlist_Load(object sender, EventArgs e)
-        {
-        }
+      
 
         public void udfndelete()
         {
@@ -543,6 +541,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void GrdCompanyList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -3159,7 +3159,7 @@ namespace ROMS
                             txtPlno.Text = objDS.Tables[0].Rows[0]["PLNO"].ToString().Replace("''", "'");
                             txtAlterMobileno.Text = objDS.Tables[0].Rows[0]["MobileAlt"].ToString();
                             txtAlterPhoneno.Text = objDS.Tables[0].Rows[0]["PhoneAlt"].ToString(); 
-                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInactive.Checked = false; }
 
                             btnSave.Text = "Update";
                             btnSaveContact.Text = "Update"; ;
@@ -3173,7 +3173,6 @@ namespace ROMS
                                 Convert.ToString(objDS.Tables[1].Rows[i]["MOBILE"]), Convert.ToString(objDS.Tables[1].Rows[i]["WHATSAPP"]), Convert.ToString(objDS.Tables[1].Rows[i]["PRIMAY"])
                                 , Convert.ToString(objDS.Tables[1].Rows[i]["OPERATOR"]), Convert.ToString(objDS.Tables[1].Rows[i]["BRAND"]), Convert.ToString(objDS.Tables[1].Rows[i]["id"]));
                                 
-                                pnlStatus.Enabled = true;
                             }
 
                         }

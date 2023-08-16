@@ -265,7 +265,7 @@ namespace ROMS
              string paraUpp, int paraPurStklocation, int paraSaleStklocation, int paraPurRack, int parasaleRack, int paraRkMOQ, int paraBatchNo,
               int paraBatchNoGeneration, int paraShelfLife, double paranetweight,double paraMaxstk,double paraGrossweight,double paraMinstk,
               double paraReorderQty,double paraRetailMinstk,double paraRetailrate,double paraWMinqty,double paraWsaleRate,string paraBarcode,int paraHSNCode
-            , string paraGST ,int paraRMPROD,int paraShelflifeValue,int paraShelflifeType
+             ,int paraRMPROD,int paraShelflifeValue,int paraShelflifeType
 
 
             , string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator)
@@ -307,8 +307,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraWMinqty", paraWMinqty);
                 varSqlCommand.Parameters.AddWithValue("@paraWsaleRate", paraWsaleRate);
                 varSqlCommand.Parameters.AddWithValue("@paraBarcode", paraBarcode);  
-                varSqlCommand.Parameters.AddWithValue("@paraHSNCode", paraHSNCode);
-                varSqlCommand.Parameters.AddWithValue("@paraGST", paraGST);
+                varSqlCommand.Parameters.AddWithValue("@paraHSNCode", paraHSNCode); 
                 varSqlCommand.Parameters.AddWithValue("@paraRMPROD", paraRMPROD);
                 varSqlCommand.Parameters.AddWithValue("@paraShelflifeValue", paraShelflifeValue);
                 varSqlCommand.Parameters.AddWithValue("@paraShelflifeType", paraShelflifeType); 
@@ -334,6 +333,41 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return result;
+        }
+
+        //Product Master List
+        //created by Venkat,Created on 16/08/2023
+        public DataSet udfnproductmasterlist(int ViewType, int ParaProductCode, int paraProductCategory, int paraGroup, int paraSubgroup, string paraUserID, string paraIPAddress, int ParaCompanycode)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("TRNG_Product", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaProductCode", ParaProductCode);
+                varSqlCommand.Parameters.AddWithValue("@paraProductCategory", paraProductCategory);
+                varSqlCommand.Parameters.AddWithValue("@paraGroup", paraGroup);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroup", paraSubgroup); 
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", ParaCompanycode);
+
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
         }
 
     }
