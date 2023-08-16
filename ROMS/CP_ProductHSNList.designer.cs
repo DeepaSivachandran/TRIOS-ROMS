@@ -43,12 +43,6 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlhsntaxlist = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdhsnname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdhsncode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdgst = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdHSNList = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +52,12 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdhsnname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdhsncode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdgst = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlhsntaxlist.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -205,39 +205,6 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
             // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmdhsnname
-            // 
-            this.clmdhsnname.HeaderText = "HSN Group";
-            this.clmdhsnname.Name = "clmdhsnname";
-            this.clmdhsnname.Width = 200;
-            // 
-            // clmdhsncode
-            // 
-            this.clmdhsncode.HeaderText = "HSN Code";
-            this.clmdhsncode.Name = "clmdhsncode";
-            // 
-            // clmdgst
-            // 
-            this.clmdgst.HeaderText = "GST %";
-            this.clmdgst.Name = "clmdgst";
-            this.clmdgst.Width = 75;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Total Products";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Status";
-            this.clmdstatus.Name = "clmdstatus";
-            // 
             // lblNoRecordsFound
             // 
             this.lblNoRecordsFound.AutoSize = true;
@@ -349,6 +316,39 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmdhsnname
+            // 
+            this.clmdhsnname.HeaderText = "HSN Name";
+            this.clmdhsnname.Name = "clmdhsnname";
+            this.clmdhsnname.Width = 200;
+            // 
+            // clmdhsncode
+            // 
+            this.clmdhsncode.HeaderText = "HSN Code";
+            this.clmdhsncode.Name = "clmdhsncode";
+            // 
+            // clmdgst
+            // 
+            this.clmdgst.HeaderText = "GST %";
+            this.clmdgst.Name = "clmdgst";
+            this.clmdgst.Width = 75;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Total Products";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Status";
+            this.clmdstatus.Name = "clmdstatus";
+            // 
             // CP_ProductHSNList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -392,17 +392,17 @@
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdHSNList;
         private System.Windows.Forms.PictureBox picLoader;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdhsnname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdhsncode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdgst;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmhsnname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmhsncode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmgst;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdhsnname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdhsncode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdgst;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
     }
 }

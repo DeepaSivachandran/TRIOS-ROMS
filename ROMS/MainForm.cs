@@ -77,8 +77,8 @@ namespace ROMS
         public static CP_Settings objCP_Settings;
         public static CP_BrokerList objCP_CP_BrokerList;
         public static CP_Broker objCP_CP_Broker;
-        public static CP_UserCatagoryList objCP_UserCatagoryList;
-        public static CP_UserCatagory objCP_UserCatagory;
+        public static CP_UserCategoryList objCP_UserCategoryList;
+        public static CP_UserCategory objCP_UserCategory;
         public static CP_SupplierOrderDetailsList objCP_SupplierOrderDetailslist;
         public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
         public static CP_GeneralSettings objCP_GeneralSettings;
@@ -973,9 +973,9 @@ namespace ROMS
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objCP_UserCatagoryList = new CP_UserCatagoryList();
-                MainForm.objCP_UserCatagoryList.MdiParent = this;
-                MainForm.objCP_UserCatagoryList.Show();
+                MainForm.objCP_UserCategoryList = new CP_UserCategoryList();
+                MainForm.objCP_UserCategoryList.MdiParent = this;
+                MainForm.objCP_UserCategoryList.Show();
             }
             catch (Exception ex)
             {

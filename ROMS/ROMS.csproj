@@ -177,17 +177,17 @@
     <Compile Include="CP_SupplierOrderDetails.designer.cs">
       <DependentUpon>CP_SupplierOrderDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_UserCatagory.cs">
+    <Compile Include="CP_UserCategory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_UserCatagory.designer.cs">
-      <DependentUpon>CP_UserCatagory.cs</DependentUpon>
+    <Compile Include="CP_UserCategory.designer.cs">
+      <DependentUpon>CP_UserCategory.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_UserCatagoryList.cs">
+    <Compile Include="CP_UserCategoryList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_UserCatagoryList.designer.cs">
-      <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
+    <Compile Include="CP_UserCategoryList.designer.cs">
+      <DependentUpon>CP_UserCategoryList.cs</DependentUpon>
     </Compile>
     <Compile Include="INV_DamageEntryList.cs">
       <SubType>Form</SubType>
@@ -785,11 +785,11 @@
     <EmbeddedResource Include="CP_SupplierOrderDetails.resx">
       <DependentUpon>CP_SupplierOrderDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_UserCatagory.resx">
-      <DependentUpon>CP_UserCatagory.cs</DependentUpon>
+    <EmbeddedResource Include="CP_UserCategory.resx">
+      <DependentUpon>CP_UserCategory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_UserCatagoryList.resx">
-      <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
+    <EmbeddedResource Include="CP_UserCategoryList.resx">
+      <DependentUpon>CP_UserCategoryList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_DamageEntryList.resx">
       <DependentUpon>INV_DamageEntryList.cs</DependentUpon>
