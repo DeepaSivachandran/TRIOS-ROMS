@@ -217,7 +217,7 @@ namespace ROMS
         {
             try
             {
-                if (chkCompleted.Checked) { btnSave.Text = "Save & Print"; } else { btnSave.Text = "Draft"; }
+                if (chkCompleted.Checked) { btnSave.Text = "Save && Print"; } else { btnSave.Text = "Draft"; }
             }
             catch (Exception ex)
             {

@@ -135,6 +135,7 @@ namespace ROMS
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
+        public static PAY_ChequePrint objPAY_ChequePrint;
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -1107,6 +1108,23 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.MdiParent = this;
                 MainForm.objCP_BulkAttributes.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsbDirectCheque_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPAY_ChequePrint = new PAY_ChequePrint();
+                MainForm.objPAY_ChequePrint.MdiParent = this;
+                MainForm.objPAY_ChequePrint.Show();
             }
             catch (Exception ex)
             {

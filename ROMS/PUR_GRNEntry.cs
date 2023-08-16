@@ -170,5 +170,35 @@ namespace ROMS
                 e.CellStyle.ForeColor = System.Drawing.Color.Black;
             }
         }
+
+        private void BtnDamage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_PODamagedView = new PUR_PODamagedView();
+                MainForm.objPUR_PODamagedView.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_PODamaged = new PUR_PODamaged();
+                MainForm.objPUR_PODamaged.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
     }
 }

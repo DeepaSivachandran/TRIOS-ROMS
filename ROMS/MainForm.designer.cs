@@ -57,6 +57,7 @@ namespace ROMS
             this.damageEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.paymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierPaymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbDirectCheque = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDb = new System.Windows.Forms.ToolStripMenuItem();
             this.tsDLogo = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTimeValue = new System.Windows.Forms.ToolStripMenuItem();
@@ -299,19 +300,27 @@ namespace ROMS
             // paymentToolStripMenuItem
             // 
             this.paymentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.supplierPaymentToolStripMenuItem});
+            this.supplierPaymentToolStripMenuItem,
+            this.tsbDirectCheque});
             this.paymentToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
-            this.paymentToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.A)));
-            this.paymentToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
-            this.paymentToolStripMenuItem.Text = "P&ayment";
+            this.paymentToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
+            this.paymentToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
+            this.paymentToolStripMenuItem.Text = "&Finance";
             // 
             // supplierPaymentToolStripMenuItem
             // 
             this.supplierPaymentToolStripMenuItem.Name = "supplierPaymentToolStripMenuItem";
-            this.supplierPaymentToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.supplierPaymentToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.supplierPaymentToolStripMenuItem.Text = "Supplier Payment";
             this.supplierPaymentToolStripMenuItem.Click += new System.EventHandler(this.SupplierPaymentToolStripMenuItem_Click);
+            // 
+            // tsbDirectCheque
+            // 
+            this.tsbDirectCheque.Name = "tsbDirectCheque";
+            this.tsbDirectCheque.Size = new System.Drawing.Size(183, 22);
+            this.tsbDirectCheque.Text = "Direct Cheque Printing";
+            this.tsbDirectCheque.Click += new System.EventHandler(this.TsbDirectCheque_Click);
             // 
             // lblDb
             // 
@@ -666,5 +675,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmpurchaseApprove;
         private System.Windows.Forms.ToolStripMenuItem tsmrackSettings;
         private System.Windows.Forms.ToolStripMenuItem tsmBulkAttr;
+        private System.Windows.Forms.ToolStripMenuItem tsbDirectCheque;
     }
 }
