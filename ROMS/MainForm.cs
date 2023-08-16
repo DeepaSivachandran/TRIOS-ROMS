@@ -103,6 +103,7 @@ namespace ROMS
         public static INV_StockHold objINV_StockHold;
         public static INV_StockConversionList objINV_StockConversionList;
         public static INV_StockConversion objINV_StockConversion;
+        public static INV_InwardQueueList objINV_InwardQueueList;
 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;  
@@ -135,10 +136,12 @@ namespace ROMS
         public static PUR_PurchaseDC objPUR_PurchaseDC;
         public static PUR_DCDeatils objPUR_DCDeatils;
         public static PUR_PODamagedView objPUR_PODamagedView;
+        public static PUR_PurchaseQueue objPUR_PurchaseQueue;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
         public static PAY_ChequePrint objPAY_ChequePrint;
+        public static PAY_DebitNoteList objPAY_DebitNoteList;
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -1162,6 +1165,23 @@ namespace ROMS
                 MainForm.objINV_StockConversionList = new INV_StockConversionList();
                 MainForm.objINV_StockConversionList.MdiParent = this;
                 MainForm.objINV_StockConversionList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsbDebitNote_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPAY_DebitNoteList = new PAY_DebitNoteList();
+                MainForm.objPAY_DebitNoteList.MdiParent = this;
+                MainForm.objPAY_DebitNoteList.Show();
             }
             catch (Exception ex)
             {

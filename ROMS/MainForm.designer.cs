@@ -56,6 +56,7 @@ namespace ROMS
             this.tsmOutward = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockTransfer = new System.Windows.Forms.ToolStripMenuItem();
             this.damageEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbStockConversion = new System.Windows.Forms.ToolStripMenuItem();
             this.paymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierPaymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbDirectCheque = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,7 +90,7 @@ namespace ROMS
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbStockConversion = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbDebitNote = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -308,11 +309,19 @@ namespace ROMS
             this.damageEntryToolStripMenuItem.Text = "Damage Entry";
             this.damageEntryToolStripMenuItem.Click += new System.EventHandler(this.DamageEntryToolStripMenuItem_Click);
             // 
+            // tsbStockConversion
+            // 
+            this.tsbStockConversion.Name = "tsbStockConversion";
+            this.tsbStockConversion.Size = new System.Drawing.Size(180, 22);
+            this.tsbStockConversion.Text = "Stock Conversion";
+            this.tsbStockConversion.Click += new System.EventHandler(this.TsbStockConversion_Click);
+            // 
             // paymentToolStripMenuItem
             // 
             this.paymentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.supplierPaymentToolStripMenuItem,
-            this.tsbDirectCheque});
+            this.tsbDirectCheque,
+            this.tsbDebitNote});
             this.paymentToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
             this.paymentToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
@@ -601,12 +610,12 @@ namespace ROMS
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
-            // tsbStockConversion
+            // tsbDebitNote
             // 
-            this.tsbStockConversion.Name = "tsbStockConversion";
-            this.tsbStockConversion.Size = new System.Drawing.Size(180, 22);
-            this.tsbStockConversion.Text = "Stock Conversion";
-            this.tsbStockConversion.Click += new System.EventHandler(this.TsbStockConversion_Click);
+            this.tsbDebitNote.Name = "tsbDebitNote";
+            this.tsbDebitNote.Size = new System.Drawing.Size(183, 22);
+            this.tsbDebitNote.Text = "Debit Note";
+            this.tsbDebitNote.Click += new System.EventHandler(this.TsbDebitNote_Click);
             // 
             // MainForm
             // 
@@ -696,5 +705,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsbDirectCheque;
         private System.Windows.Forms.ToolStripMenuItem tsmStockHold;
         private System.Windows.Forms.ToolStripMenuItem tsbStockConversion;
+        private System.Windows.Forms.ToolStripMenuItem tsbDebitNote;
     }
 }
