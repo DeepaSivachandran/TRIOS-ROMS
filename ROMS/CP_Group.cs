@@ -50,17 +50,9 @@ namespace ROMS
         public void udfnclose()
         {
             try
-            {
-                if (varmastertype == 1)
-                { 
-                    this.Close();
-
-                }
-                else
-                {
-
-                }
-              
+            { 
+                    this.Close(); 
+                 
             }
             catch (Exception ex)
             {
@@ -320,6 +312,13 @@ namespace ROMS
                         {
                             MainForm.objCP_SubGroup.varFormFlag = 0;
                             MainForm.objCP_SubGroup.varGroupCode = varGroupCode;
+                            varCloseFlag = 1;
+                            udfnclose();
+                        }
+                        if (varmastertype == 1)
+                        {
+                            varmastertype = 0;
+                            MainForm.objCP_Items.varGroupCode = varGroupCode;
                             varCloseFlag = 1;
                             udfnclose();
                         }

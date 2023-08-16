@@ -37,8 +37,8 @@ namespace ROMS
         public int varRack = -1;
         public int varId = 0;
         public int varStatus = 0;
-        public int varGroupCode = 0;
-
+        public int varGroupCode = 0, varmastertype=0,varSubgroupCode=0;
+        
 
         public CP_SubGroup()
         {
@@ -212,12 +212,21 @@ namespace ROMS
                     if (varResult.Split('~')[0] == "3")
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varSubgroupCode = Convert.ToInt16(varResult.Split('~')[2]);
+                        if (varmastertype == 1)
+                        {
+                            varmastertype = 0;
+                            MainForm.objCP_Items.varSubgroupCode = varSubgroupCode;
+                            varCloseFlag = 1;
+                            udfnclose();
+                        }
                         udfnClear();
                         MainForm.objCP_SubGroupList.udfnList();
                         MainForm.objCP_SubGroupList.udfnLoadCmbProductSubGroup();
                         udfnLoadCmbGroupName();
-                        cmbGroupName.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
-                        MainForm.objCP_SubGroupList.cmbProductSubGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_SubGroupList.varSubGroupCode);
+                        //cmbGroupName.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
+                        //MainForm.objCP_SubGroupList.cmbProductSubGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_SubGroupList.varSubGroupCode);
+                       
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {

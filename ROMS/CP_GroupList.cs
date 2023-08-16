@@ -7,8 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Excel = Microsoft.Office.Interop.Excel;
-using ClosedXML.Excel;
+using Excel = Microsoft.Office.Interop.Excel; 
 namespace ROMS
 {
     public partial class CP_GroupList : Form

@@ -20,7 +20,7 @@ namespace ROMS
         private ToolTip tpSymbol = new ToolTip();
         private ToolTip tpNoOfDecimals = new ToolTip();
         private ToolTip tpEInvoiceUnitName = new ToolTip();
-        public int varmastertype = 0;
+        public int varmastertype = 0, varUnitCodeProduct=0;
         public string varbrandcode;
         public int varUnitCode = 0;
         public string pbFormStatus;
@@ -105,8 +105,17 @@ namespace ROMS
                 if (varResult.Split('~')[0] == "3")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    varUnitCodeProduct = Convert.ToInt16(varResult.Split('~')[2]);
                     udfnclear();
                     MainForm.objCP_Unitlist.udfnList();
+                    if (varmastertype == 1)
+                    {
+                        varmastertype = 0;
+                        MainForm.objCP_Items.varUnitCode = varUnitCodeProduct;
+                         
+                        udfnclose();
+                    }
+                    
                 }
                 else
                 {
@@ -542,12 +551,10 @@ namespace ROMS
             {
                 if (varmastertype == 1)
                 {
-                    this.Close();
-
+                    MainForm.objCP_Unit.Close();
                     MainForm.objCP_Items = new CP_Product();
                     MainForm.objCP_Items.MdiParent = this.ParentForm;
-                    MainForm.objCP_Items.Show();
-
+                    MainForm.objCP_Items.Show(); 
                 }
                 else
                 {
