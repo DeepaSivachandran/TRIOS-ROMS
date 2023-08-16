@@ -517,7 +517,7 @@ namespace ROMS
                     ExcelSheet = ExcelBook.Sheets["Sheet1"];
                     ExcelSheet = ExcelBook.ActiveSheet;
                     // changing the name of active sheet  
-                    ExcelSheet.Name = "Finished Goods List";
+                    ExcelSheet.Name = "Product Sub Group List";
                     int cIndex = 0;
                     int count = 0;
                     foreach (DataGridViewColumn col in grdSubGroupList.Columns)
@@ -530,7 +530,7 @@ namespace ROMS
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
 
-                    ExcelSheet.Cells[1, 1].Value = "Finished Goods List";
+                    ExcelSheet.Cells[1, 1].Value = "Product Sub Group List";
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
@@ -538,29 +538,36 @@ namespace ROMS
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
+
+                   
                     foreach (DataGridViewColumn col in grdSubGroupList.Columns)
                     {
                         if (col.Visible)
                         {
                             cIndex += 1;
-                            ExcelSheet.Cells[3, cIndex] = col.HeaderText;
+                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
-                            if (cIndex == 1)
-                            {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 35;
-                            }
-                            else
+
+                            if (col.Name == "S.No." || col.Name == "Status")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
+                            else if (col.Name == "Stock Location" || col.Name == "Rack" || col.Name == "Total Products")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            }
+                            else
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 50;
+                            }
 
-                            if (col.Name == "clmQty" || col.Name == "clmTotal")
+                            if (col.Name == "Total Products")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
                             foreach (DataGridViewRow rowa in grdSubGroupList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 4, cIndex] = rowa.Cells[col.Index].Value;
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
                             }
                         }
                     }

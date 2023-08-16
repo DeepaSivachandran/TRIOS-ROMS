@@ -205,6 +205,9 @@ namespace ROMS
                         udfnClear();
                         MainForm.objCP_SubGroupList.udfnList();
                         MainForm.objCP_SubGroupList.udfnLoadCmbProductSubGroup();
+                        udfnLoadCmbGroupName();
+                        cmbGroupName.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
+                        MainForm.objCP_SubGroupList.cmbProductSubGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_SubGroupList.varSubGroupCode);
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
@@ -433,7 +436,10 @@ namespace ROMS
             try
             {
                 MainForm.objCP_Group = new CP_Group();
+                varCloseFlag = 1;
                 MainForm.objCP_Group.ShowDialog();
+                udfnLoadCmbGroupName();
+                cmbGroupName.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
             }
             catch (Exception ex)
             {
@@ -870,7 +876,6 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -892,7 +897,6 @@ namespace ROMS
                 }
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -930,6 +934,7 @@ namespace ROMS
             try
             {
                 rbInactive.BackColor = Color.LemonChiffon;
+                udfnLoadCmbGroupName();
             }
             catch (Exception ex)
             {
@@ -953,7 +958,6 @@ namespace ROMS
 
         private void CP_SubGroup_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             try
             {
                 DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -978,6 +982,7 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbGroupName.Select(int.MaxValue, 0)));
+              
             }
             catch (Exception ex)
             {

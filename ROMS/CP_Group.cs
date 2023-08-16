@@ -19,13 +19,12 @@ namespace ROMS
         private ToolTip tpGroupNameinEnglish = new ToolTip();
        
       
-        public string vargroupcode;
         public String pbFormStatus;
 
         public int varCloseFlag = 0;
         public string varGroupNameinTamil = "";
         public string varGroupNameinEnglish = "";
-        public string varHsnCode = "";
+        public int varGroupCode =0;
         public int varId = 0;
 
         public CP_Group()
@@ -296,10 +295,17 @@ namespace ROMS
                     if (varResult.Split('~')[0] == "3")
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varGroupCode = Convert.ToInt16(varResult.Split('~')[2]);
+                        if (MainForm.objCP_SubGroup.varCloseFlag == 1)
+                        {
+                            varCloseFlag = 1;
+                            udfnclose();
+                        }
                         udfnClear();
                         MainForm.objCP_GroupList.udfnList();
                         MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
                         MainForm.objCP_GroupList.cmbProductGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
+                        
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
