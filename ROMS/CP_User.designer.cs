@@ -47,8 +47,8 @@
             this.grbForm = new System.Windows.Forms.GroupBox();
             this.btnNew = new System.Windows.Forms.Label();
             this.cmbPasskey = new System.Windows.Forms.ComboBox();
-            this.cmbUserCatagory = new System.Windows.Forms.ComboBox();
-            this.txtDUserCatagory = new System.Windows.Forms.TextBox();
+            this.cmbUserCategory = new System.Windows.Forms.ComboBox();
+            this.txtDUserCategory = new System.Windows.Forms.TextBox();
             this.cmbUserRole = new System.Windows.Forms.ComboBox();
             this.txtDUserRole = new System.Windows.Forms.TextBox();
             this.txtDPassKey = new System.Windows.Forms.TextBox();
@@ -247,8 +247,8 @@
             // 
             this.grbForm.Controls.Add(this.btnNew);
             this.grbForm.Controls.Add(this.cmbPasskey);
-            this.grbForm.Controls.Add(this.cmbUserCatagory);
-            this.grbForm.Controls.Add(this.txtDUserCatagory);
+            this.grbForm.Controls.Add(this.cmbUserCategory);
+            this.grbForm.Controls.Add(this.txtDUserCategory);
             this.grbForm.Controls.Add(this.cmbUserRole);
             this.grbForm.Controls.Add(this.txtDUserRole);
             this.grbForm.Controls.Add(this.txtDPassKey);
@@ -299,31 +299,31 @@
             this.cmbPasskey.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPasskey_KeyPress);
             this.cmbPasskey.Leave += new System.EventHandler(this.CmbPasskey_Leave);
             // 
-            // cmbUserCatagory
+            // cmbUserCategory
             // 
-            this.cmbUserCatagory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbUserCatagory.FormattingEnabled = true;
-            this.cmbUserCatagory.Location = new System.Drawing.Point(204, 77);
-            this.cmbUserCatagory.Name = "cmbUserCatagory";
-            this.cmbUserCatagory.Size = new System.Drawing.Size(288, 27);
-            this.cmbUserCatagory.TabIndex = 2;
-            this.cmbUserCatagory.SelectedIndexChanged += new System.EventHandler(this.CmbUserCatagory_SelectedIndexChanged);
-            this.cmbUserCatagory.Enter += new System.EventHandler(this.CmbUserCatagory_Enter);
-            this.cmbUserCatagory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUserCatagory_KeyDown);
-            this.cmbUserCatagory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbUserCatagory_KeyPress);
-            this.cmbUserCatagory.Leave += new System.EventHandler(this.CmbUserCatagory_Leave);
+            this.cmbUserCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbUserCategory.FormattingEnabled = true;
+            this.cmbUserCategory.Location = new System.Drawing.Point(204, 77);
+            this.cmbUserCategory.Name = "cmbUserCategory";
+            this.cmbUserCategory.Size = new System.Drawing.Size(288, 27);
+            this.cmbUserCategory.TabIndex = 2;
+            this.cmbUserCategory.SelectedIndexChanged += new System.EventHandler(this.CmbUserCategory_SelectedIndexChanged);
+            this.cmbUserCategory.Enter += new System.EventHandler(this.CmbUserCategory_Enter);
+            this.cmbUserCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUserCategory_KeyDown);
+            this.cmbUserCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbUserCategory_KeyPress);
+            this.cmbUserCategory.Leave += new System.EventHandler(this.CmbUserCategory_Leave);
             // 
-            // txtDUserCatagory
+            // txtDUserCategory
             // 
-            this.txtDUserCatagory.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDUserCatagory.Enabled = false;
-            this.txtDUserCatagory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDUserCatagory.Location = new System.Drawing.Point(24, 77);
-            this.txtDUserCatagory.Name = "txtDUserCatagory";
-            this.txtDUserCatagory.ReadOnly = true;
-            this.txtDUserCatagory.Size = new System.Drawing.Size(181, 27);
-            this.txtDUserCatagory.TabIndex = 22;
-            this.txtDUserCatagory.Text = "User Catagory";
+            this.txtDUserCategory.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDUserCategory.Enabled = false;
+            this.txtDUserCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDUserCategory.Location = new System.Drawing.Point(24, 77);
+            this.txtDUserCategory.Name = "txtDUserCategory";
+            this.txtDUserCategory.ReadOnly = true;
+            this.txtDUserCategory.Size = new System.Drawing.Size(181, 27);
+            this.txtDUserCategory.TabIndex = 22;
+            this.txtDUserCategory.Text = "User Category";
             // 
             // cmbUserRole
             // 
@@ -417,8 +417,8 @@
         private System.Windows.Forms.TextBox txtDPassKey;
         private System.Windows.Forms.TextBox txtDUserRole;
         private System.Windows.Forms.ComboBox cmbUserRole;
-        private System.Windows.Forms.ComboBox cmbUserCatagory;
-        private System.Windows.Forms.TextBox txtDUserCatagory;
+        private System.Windows.Forms.ComboBox cmbUserCategory;
+        private System.Windows.Forms.TextBox txtDUserCategory;
         private System.Windows.Forms.ComboBox cmbPasskey;
         public System.Windows.Forms.Button btnSave;
         internal System.Windows.Forms.Label btnNew;
