@@ -39,28 +39,19 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlSubgroup = new System.Windows.Forms.Panel();
-            this.lblGC = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblNoOfPrSubGroup = new System.Windows.Forms.Label();
+            this.lblNoPrSubGroup = new System.Windows.Forms.Label();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
-            this.cmbGroupType = new System.Windows.Forms.ComboBox();
+            this.cmbProductSubGroup = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdGroupList = new System.Windows.Forms.DataGridView();
+            this.grdSubGroupList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmproductsubgroupnameintamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmstocklocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsGroupList.SuspendLayout();
             this.pnlSubgroup.SuspendLayout();
             this.grbFilterBy.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdGroupList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSubGroupList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
@@ -148,44 +139,44 @@
             // pnlSubgroup
             // 
             this.pnlSubgroup.BackColor = System.Drawing.Color.White;
-            this.pnlSubgroup.Controls.Add(this.lblGC);
-            this.pnlSubgroup.Controls.Add(this.label1);
+            this.pnlSubgroup.Controls.Add(this.lblNoOfPrSubGroup);
+            this.pnlSubgroup.Controls.Add(this.lblNoPrSubGroup);
             this.pnlSubgroup.Controls.Add(this.grbFilterBy);
             this.pnlSubgroup.Controls.Add(this.lblNoRecordsFound);
-            this.pnlSubgroup.Controls.Add(this.grdGroupList);
+            this.pnlSubgroup.Controls.Add(this.grdSubGroupList);
             this.pnlSubgroup.Controls.Add(this.picLoader);
             this.pnlSubgroup.Location = new System.Drawing.Point(0, 31);
             this.pnlSubgroup.Name = "pnlSubgroup";
             this.pnlSubgroup.Size = new System.Drawing.Size(1354, 641);
             this.pnlSubgroup.TabIndex = 958792;
             // 
-            // lblGC
+            // lblNoOfPrSubGroup
             // 
-            this.lblGC.AutoSize = true;
-            this.lblGC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblGC.ForeColor = System.Drawing.Color.Crimson;
-            this.lblGC.Location = new System.Drawing.Point(858, 30);
-            this.lblGC.Name = "lblGC";
-            this.lblGC.Size = new System.Drawing.Size(17, 20);
-            this.lblGC.TabIndex = 958797;
-            this.lblGC.Text = "0";
+            this.lblNoOfPrSubGroup.AutoSize = true;
+            this.lblNoOfPrSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblNoOfPrSubGroup.ForeColor = System.Drawing.Color.Crimson;
+            this.lblNoOfPrSubGroup.Location = new System.Drawing.Point(858, 27);
+            this.lblNoOfPrSubGroup.Name = "lblNoOfPrSubGroup";
+            this.lblNoOfPrSubGroup.Size = new System.Drawing.Size(17, 20);
+            this.lblNoOfPrSubGroup.TabIndex = 958797;
+            this.lblNoOfPrSubGroup.Text = "0";
             // 
-            // label1
+            // lblNoPrSubGroup
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(702, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(154, 20);
-            this.label1.TabIndex = 958796;
-            this.label1.Text = "No.of Product Sub Groups :";
+            this.lblNoPrSubGroup.AutoSize = true;
+            this.lblNoPrSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lblNoPrSubGroup.ForeColor = System.Drawing.Color.Black;
+            this.lblNoPrSubGroup.Location = new System.Drawing.Point(702, 27);
+            this.lblNoPrSubGroup.Name = "lblNoPrSubGroup";
+            this.lblNoPrSubGroup.Size = new System.Drawing.Size(154, 20);
+            this.lblNoPrSubGroup.TabIndex = 958796;
+            this.lblNoPrSubGroup.Text = "No.of Product Sub Groups :";
             // 
             // grbFilterBy
             // 
             this.grbFilterBy.Controls.Add(this.btnExport);
             this.grbFilterBy.Controls.Add(this.btnView);
-            this.grbFilterBy.Controls.Add(this.cmbGroupType);
+            this.grbFilterBy.Controls.Add(this.cmbProductSubGroup);
             this.grbFilterBy.Location = new System.Drawing.Point(3, 2);
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
@@ -206,6 +197,7 @@
             this.btnExport.Text = "Export";
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             // 
             // btnView
             // 
@@ -218,15 +210,23 @@
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
+            this.btnView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnView_KeyDown);
+            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
-            // cmbGroupType
+            // cmbProductSubGroup
             // 
-            this.cmbGroupType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGroupType.FormattingEnabled = true;
-            this.cmbGroupType.Location = new System.Drawing.Point(27, 23);
-            this.cmbGroupType.Name = "cmbGroupType";
-            this.cmbGroupType.Size = new System.Drawing.Size(454, 27);
-            this.cmbGroupType.TabIndex = 0;
+            this.cmbProductSubGroup.FormattingEnabled = true;
+            this.cmbProductSubGroup.Location = new System.Drawing.Point(27, 23);
+            this.cmbProductSubGroup.Name = "cmbProductSubGroup";
+            this.cmbProductSubGroup.Size = new System.Drawing.Size(454, 27);
+            this.cmbProductSubGroup.TabIndex = 0;
+            this.cmbProductSubGroup.SelectedIndexChanged += new System.EventHandler(this.CmbProductSubGroup_SelectedIndexChanged);
+            this.cmbProductSubGroup.Enter += new System.EventHandler(this.CmbProductSubGroup_Enter);
+            this.cmbProductSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProductSubGroup_KeyDown);
+            this.cmbProductSubGroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbProductSubGroup_KeyPress);
+            this.cmbProductSubGroup.Leave += new System.EventHandler(this.CmbProductSubGroup_Leave);
             // 
             // lblNoRecordsFound
             // 
@@ -240,14 +240,14 @@
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // grdGroupList
+            // grdSubGroupList
             // 
-            this.grdGroupList.AllowUserToAddRows = false;
-            this.grdGroupList.AllowUserToDeleteRows = false;
-            this.grdGroupList.AllowUserToResizeColumns = false;
-            this.grdGroupList.AllowUserToResizeRows = false;
-            this.grdGroupList.BackgroundColor = System.Drawing.Color.White;
-            this.grdGroupList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdSubGroupList.AllowUserToAddRows = false;
+            this.grdSubGroupList.AllowUserToDeleteRows = false;
+            this.grdSubGroupList.AllowUserToResizeColumns = false;
+            this.grdSubGroupList.AllowUserToResizeRows = false;
+            this.grdSubGroupList.BackgroundColor = System.Drawing.Color.White;
+            this.grdSubGroupList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -255,19 +255,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGroupList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdGroupList.ColumnHeadersHeight = 30;
-            this.grdGroupList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdGroupList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column3,
-            this.Column2,
-            this.clmproductsubgroupnameintamil,
-            this.clmstocklocation,
-            this.clmRack,
-            this.Column6,
-            this.Column4,
-            this.Column5});
+            this.grdSubGroupList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdSubGroupList.ColumnHeadersHeight = 30;
+            this.grdSubGroupList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -275,20 +265,23 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGroupList.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grdGroupList.EnableHeadersVisualStyles = false;
-            this.grdGroupList.GridColor = System.Drawing.Color.White;
-            this.grdGroupList.Location = new System.Drawing.Point(3, 71);
-            this.grdGroupList.Name = "grdGroupList";
-            this.grdGroupList.ReadOnly = true;
-            this.grdGroupList.RowHeadersVisible = false;
+            this.grdSubGroupList.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdSubGroupList.EnableHeadersVisualStyles = false;
+            this.grdSubGroupList.GridColor = System.Drawing.Color.White;
+            this.grdSubGroupList.Location = new System.Drawing.Point(3, 71);
+            this.grdSubGroupList.Name = "grdSubGroupList";
+            this.grdSubGroupList.ReadOnly = true;
+            this.grdSubGroupList.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGroupList.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.grdGroupList.RowTemplate.Height = 25;
-            this.grdGroupList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdGroupList.Size = new System.Drawing.Size(1348, 570);
-            this.grdGroupList.TabIndex = 958792;
+            this.grdSubGroupList.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdSubGroupList.RowTemplate.Height = 25;
+            this.grdSubGroupList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdSubGroupList.Size = new System.Drawing.Size(1348, 570);
+            this.grdSubGroupList.TabIndex = 958792;
+            this.grdSubGroupList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSubGroupList_DataBindingComplete);
+            this.grdSubGroupList.DoubleClick += new System.EventHandler(this.GrdSubGroupList_DoubleClick);
+            this.grdSubGroupList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdSubGroupList_KeyDown);
             // 
             // picLoader
             // 
@@ -303,66 +296,6 @@
             this.picLoader.TabIndex = 958794;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "S.No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Product Group Name";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 200;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Product Sub Group Name in English";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 250;
-            // 
-            // clmproductsubgroupnameintamil
-            // 
-            this.clmproductsubgroupnameintamil.HeaderText = "Product Sub Group Name in Tamil";
-            this.clmproductsubgroupnameintamil.Name = "clmproductsubgroupnameintamil";
-            this.clmproductsubgroupnameintamil.ReadOnly = true;
-            this.clmproductsubgroupnameintamil.Width = 200;
-            // 
-            // clmstocklocation
-            // 
-            this.clmstocklocation.HeaderText = "Stock Location";
-            this.clmstocklocation.Name = "clmstocklocation";
-            this.clmstocklocation.ReadOnly = true;
-            this.clmstocklocation.Width = 150;
-            // 
-            // clmRack
-            // 
-            this.clmRack.HeaderText = "Rack";
-            this.clmRack.Name = "clmRack";
-            this.clmRack.ReadOnly = true;
-            this.clmRack.Width = 120;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Batch No.";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Total Products";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 200;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Status";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
             // 
             // CP_SubGroupList
             // 
@@ -386,7 +319,7 @@
             this.pnlSubgroup.ResumeLayout(false);
             this.pnlSubgroup.PerformLayout();
             this.grbFilterBy.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdGroupList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSubGroupList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -403,23 +336,14 @@
         public System.Windows.Forms.ToolStripSeparator tssNew;
         public System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.Panel pnlSubgroup;
-        private System.Windows.Forms.Label lblGC;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNoOfPrSubGroup;
+        private System.Windows.Forms.Label lblNoPrSubGroup;
         private System.Windows.Forms.GroupBox grbFilterBy;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.ComboBox cmbGroupType;
         private System.Windows.Forms.Label lblNoRecordsFound;
-        public System.Windows.Forms.DataGridView grdGroupList;
+        public System.Windows.Forms.DataGridView grdSubGroupList;
         private System.Windows.Forms.PictureBox picLoader;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmproductsubgroupnameintamil;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmstocklocation;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmRack;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        public System.Windows.Forms.ComboBox cmbProductSubGroup;
     }
 }

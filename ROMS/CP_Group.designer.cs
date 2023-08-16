@@ -62,6 +62,7 @@
             this.grbform.Size = new System.Drawing.Size(552, 160);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+           
             // 
             // txtDProductGroupNameTamil
             // 

@@ -19,13 +19,12 @@ namespace ROMS
         private ToolTip tpGroupNameinEnglish = new ToolTip();
        
       
-        public string vargroupcode;
         public String pbFormStatus;
 
         public int varCloseFlag = 0;
         public string varGroupNameinTamil = "";
         public string varGroupNameinEnglish = "";
-        public string varHsnCode = "";
+        public int varGroupCode =0;
         public int varId = 0;
 
         public CP_Group()
@@ -296,9 +295,19 @@ namespace ROMS
                     if (varResult.Split('~')[0] == "3")
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varGroupCode = Convert.ToInt16(varResult.Split('~')[2]);
+                        if (MainForm.objCP_SubGroup.varFormFlag == 1)
+                        {
+                            MainForm.objCP_SubGroup.varFormFlag = 0;
+                            MainForm.objCP_SubGroup.varGroupCode = varGroupCode;
+                            varCloseFlag = 1;
+                            udfnclose();
+                        }
                         udfnClear();
                         MainForm.objCP_GroupList.udfnList();
                         MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
+                        MainForm.objCP_GroupList.cmbProductGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
+                        
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
@@ -316,6 +325,8 @@ namespace ROMS
                         varCloseFlag = 1;
                         udfnclose();
                         MainForm.objCP_GroupList.udfnList();
+                        MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
+                        
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
@@ -380,7 +391,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -421,7 +432,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -502,5 +513,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
     }
 }
