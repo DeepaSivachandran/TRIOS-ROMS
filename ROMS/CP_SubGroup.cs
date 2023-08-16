@@ -28,6 +28,7 @@ namespace ROMS
 
 
         public int varCloseFlag = 0;
+        public int varFormFlag = 0;
         public string varSubGroupNameinTamil = "";
         public string varSubGroupNameinEnglish = "";
         public int varProductName = -1;
@@ -35,6 +36,7 @@ namespace ROMS
         public int varShopLocation = -1;
         public int varRack = -1;
         public int varId = 0;
+        public int varGroupCode = 0;
 
 
         public CP_SubGroup()
@@ -436,10 +438,10 @@ namespace ROMS
             try
             {
                 MainForm.objCP_Group = new CP_Group();
-                varCloseFlag = 1;
+                varFormFlag = 1;
                 MainForm.objCP_Group.ShowDialog();
                 udfnLoadCmbGroupName();
-                cmbGroupName.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
+                cmbGroupName.SelectedValue = Convert.ToInt16(varGroupCode);
             }
             catch (Exception ex)
             {

@@ -76,7 +76,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-              //  objDs = objdserv.udfnGroupList(0, Convert.ToInt32(cmbProductGroup.SelectedValue));
+                objDs = objdserv.udfnGroupList(0, Convert.ToInt32(cmbProductGroup.SelectedValue));
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -144,8 +144,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = "";
-                       // string varResult = objDser.udfnGroup(2, Convert.ToInt16(grdGroupList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", 0, "Deletion");
+                        string varResult = objDser.udfnGroup(2, Convert.ToInt16(grdGroupList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", 0, "Deletion");
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -441,7 +440,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductGroup", " PRGID  not in (-1) ORDER BY PRG_EName", "PRG_EName,PRGID", cmbProductGroup, "", "PRG_EName", "PRGID");
+                objDataBind.BindComboBoxListSelected("MR_ProductGroup", " PRGID  not in (-1) ORDER BY PRGID, PRG_EName", "PRG_EName,PRGID", cmbProductGroup, "", "PRG_EName", "PRGID");
                 objDataBind = null;
             }
             catch (Exception ex)

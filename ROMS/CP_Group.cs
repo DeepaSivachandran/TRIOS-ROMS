@@ -290,15 +290,16 @@ namespace ROMS
                 if (btnSave.Text == "Save")
                 {
                     SPDataService objDser = new SPDataService();
-                    string varResult = "";
-                  //  string varResult = objDser.udfnGroup(0, 0,Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Creation");
+                    string varResult = objDser.udfnGroup(0, 0,Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Creation");
                     objDser.CloseConnection();
                     if (varResult.Split('~')[0] == "3")
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         varGroupCode = Convert.ToInt16(varResult.Split('~')[2]);
-                        if (MainForm.objCP_SubGroup.varCloseFlag == 1)
+                        if (MainForm.objCP_SubGroup.varFormFlag == 1)
                         {
+                            MainForm.objCP_SubGroup.varFormFlag = 0;
+                            MainForm.objCP_SubGroup.varGroupCode = varGroupCode;
                             varCloseFlag = 1;
                             udfnclose();
                         }
@@ -316,8 +317,7 @@ namespace ROMS
                 if (btnSave.Text == "Update")
                 {
                     SPDataService objDser = new SPDataService();
-                    string varResult = "";
-                    //  string varResult = objDser.udfnGroup(1,varId , Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Updation");
+                    string varResult = objDser.udfnGroup(1,varId , Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Updation");
                     objDser.CloseConnection();
                     if (varResult.Split('~')[0] == "3")
                     {
