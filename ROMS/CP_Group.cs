@@ -291,8 +291,7 @@ namespace ROMS
                 if (btnSave.Text == "Save")
                 {
                     SPDataService objDser = new SPDataService();
-                    string varResult = "";
-                  //  string varResult = objDser.udfnGroup(0, 0,Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Creation");
+                    string varResult = objDser.udfnGroup(0, 0,Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Creation");
                     objDser.CloseConnection();
                     if (varResult.Split('~')[0] == "3")
                     {
@@ -309,8 +308,7 @@ namespace ROMS
                 if (btnSave.Text == "Update")
                 {
                     SPDataService objDser = new SPDataService();
-                    string varResult = "";
-                    //  string varResult = objDser.udfnGroup(1,varId , Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Updation");
+                    string varResult = objDser.udfnGroup(1,varId , Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Updation");
                     objDser.CloseConnection();
                     if (varResult.Split('~')[0] == "3")
                     {
