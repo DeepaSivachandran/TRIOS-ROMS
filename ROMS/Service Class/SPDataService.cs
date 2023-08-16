@@ -291,7 +291,7 @@ namespace ROMS
             return varResult;
         }
 
-        public DataSet udfnSubGroupList(int ViewType, int paraPRSGID)
+        public DataSet udfnSubGroupList(int ViewType, int paraPRSGID,int paraPRGID)
         {
             DataSet ds = new DataSet();
             try
@@ -301,7 +301,7 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
-                varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRGID", paraPRGID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

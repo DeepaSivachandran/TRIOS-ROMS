@@ -38,12 +38,92 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnList()
+        {
+            try
+            {
+                //picLoader.Visible = true;
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdGroup.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnGroupList(0, 0);
+                objdserv.CloseConnection();
+
+                if (objDs.Tables[0].Rows.Count != 0)
+                {
+                    grdGroup.DataSource = objDs.Tables[0];
+                    grdGroup.Columns["S.No."].Visible = false;
+                    grdGroup.Columns["Product Group Name in English"].Width = 200;
+                    grdGroup.Columns["Product Group Name in English"].HeaderText = "Product Group";
+                    grdGroup.Columns["Product Group Name in Tamil"].Visible = false;
+                    grdGroup.Columns["Total Sub Groups"].Visible = false;
+                    grdGroup.Columns["Total Products"].Visible = false;
+                    grdGroup.Columns["Status"].Visible = false;
+                    grdGroup.Columns["ID"].Visible = false;
+                    grdGroup.Columns["Status ID"].Visible = false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnSubGroupList()
+        {
+            try
+            {
+                //picLoader.Visible = true;
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdSubGroup.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnSubGroupList(0, 16,0);
+                objdserv.CloseConnection();
+              
+                if (objDs.Tables[0].Rows.Count != 0)
+                {
+
+                    grdSubGroup.DataSource = objDs.Tables[0];
+                    grdSubGroup.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    grdSubGroup.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                    grdSubGroup.Columns["S.No."].Visible = false;
+                    grdSubGroup.Columns["Product Group Name"].Width = 200;
+                    grdSubGroup.Columns["Product Sub Group Name in English"].Width = 250;
+                    grdSubGroup.Columns["Product Sub Group Name in Tamil"].Visible = false;
+                    grdSubGroup.Columns["Stock Location"].Visible = false;
+                    grdSubGroup.Columns["Rack"].Visible = false;
+                    grdSubGroup.Columns["Total Products"].Visible = false;
+                    grdSubGroup.Columns["Status"].Visible = false;
+
+                    grdSubGroup.Columns["ID"].Visible = false;
+                    grdSubGroup.Columns["Status ID"].Visible = false;
+                    grdSubGroup.Columns["Batch No"].Visible = false;
+                    grdSubGroup.Columns["StockLocation ID"].Visible = false;
+                    grdSubGroup.Columns["Rack ID"].Visible = false;
+                    grdSubGroup.Columns["Product Group Id"].Visible = false;
+                }    
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnclose()
         {
             try
             {
                  this.Close();
-              
             }
             catch (Exception ex)
             {
@@ -478,5 +558,33 @@ namespace ROMS
         {
 
         }
+
+        private void TxtProductGroup_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (grdGroup.DataSource as DataTable).DefaultView.RowFilter = "([Product Group Name in English]) LIKE '%" + txtProductGroup.Text + "%'";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_Brand_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList();
+                udfnSubGroupList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
+  
 }

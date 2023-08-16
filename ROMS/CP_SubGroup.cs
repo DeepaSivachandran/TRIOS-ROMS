@@ -205,8 +205,6 @@ namespace ROMS
                 if (btnSave.Text == "Save")
                 {
                     SPDataService objDser = new SPDataService();
-                   
-       
                     string varResult = objDser.udfnSubGroup(0, 0, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid,Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Creation");
                     objDser.CloseConnection();
                     if (varResult.Split('~')[0] == "3")
@@ -316,7 +314,7 @@ namespace ROMS
 
         private void btnSave_KeyDown(object sender, KeyEventArgs e)
         {
-            try
+            try 
             {
                 if (e.KeyCode == Keys.Enter)
                 {
