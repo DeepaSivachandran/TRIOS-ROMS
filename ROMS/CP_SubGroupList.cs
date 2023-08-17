@@ -119,6 +119,7 @@ namespace ROMS
                             grdSubGroupList.DataSource = objDs.Tables[0];
                             grdSubGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSubGroupList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdSubGroupList.Columns["Batch No"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                             grdSubGroupList.Columns["S.No."].Width = 50;
                             grdSubGroupList.Columns["Product Group Name"].Width = 200;
@@ -135,8 +136,6 @@ namespace ROMS
                             grdSubGroupList.Columns["StockLocation ID"].Visible = false;
                             grdSubGroupList.Columns["Rack ID"].Visible = false;
                             grdSubGroupList.Columns["Product Group Id"].Visible = false;
-
-
                         }
                         else
                         {
@@ -422,6 +421,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                grdSubGroupList.ClearSelection();
+            }
         }
 
         private void GrdSubGroupList_DoubleClick(object sender, EventArgs e)
@@ -520,7 +523,7 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "S.No." || col.Name == "Status")
+                            if (col.Name == "S.No." || col.Name == "Status" || col.Name == "Batch No")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
@@ -532,8 +535,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 50;
                             }
-
-                            if (col.Name == "Total Products")
+                            if (col.Name == "Total Products" || col.Name == "Batch No")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
@@ -545,6 +547,10 @@ namespace ROMS
                     }
                     //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
                     ExcelObj.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

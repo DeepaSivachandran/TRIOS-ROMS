@@ -82,7 +82,31 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnSubGroupAdd()
+        {
+            try
+            {
+               // string name = "";
+                for (int i = 0; i < grdSubGroup.Rows.Count; i++)
+                {
+                   // int flag = 0;
+                    if (Convert.ToBoolean(grdSubGroup.Rows[i].Cells["clmchkProductSubGroup"].Value) == true)
+                    {
+                        
+                            grdSubGroupAdd.Rows.Add(false,grdSubGroup.Rows[i].Cells["clmProductGroup"].Value, grdSubGroup.Rows[i].Cells["clmSubGroups"].Value);
+                            //varStaffCodeList = varStaffCodeList + "," + grdStaffDetails.Rows[i].Cells["StaffCode"].Value;
+                            //grdStaffDetails.Rows[i].Cells["clmchkStaff"].Value = false;
+                            //grdStaffDetails.Rows[i].Visible = false;
 
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnSubGroupList()
         {
             try
@@ -97,34 +121,20 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnSubGroupList(0,0, varGroup);
                 objdserv.CloseConnection();
-              
+                grdSubGroup.Columns["clmGroupId"].Visible = false;
+                grdSubGroup.Columns["clmSubGroupId"].Visible = false;
+
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
+                  
                     grdSubGroup.Rows.Clear();
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
-                        grdSubGroup.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name"], objDs.Tables[0].Rows[i]["Product Sub Group Name in English"]);
+                        grdSubGroup.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name"], objDs.Tables[0].Rows[i]["Product Sub Group Name in English"], objDs.Tables[0].Rows[i]["Product Group Id"], objDs.Tables[0].Rows[i]["Id"]);
                     }
-                    //grdSubGroup.DataSource = objDs.Tables[0];
-                    //grdSubGroup.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    //grdSubGroup.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-                    //grdSubGroup.Columns["S.No."].Visible = false;
-                    //grdSubGroup.Columns["Product Group Name"].Width = 200;
-                    //grdSubGroup.Columns["Product Sub Group Name in English"].Width = 250;
-                    //grdSubGroup.Columns["Product Sub Group Name in Tamil"].Visible = false;
-                    //grdSubGroup.Columns["Stock Location"].Visible = false;
-                    //grdSubGroup.Columns["Rack"].Visible = false;
-                    //grdSubGroup.Columns["Total Products"].Visible = false;
-                    //grdSubGroup.Columns["Status"].Visible = false;
-
-                    //grdSubGroup.Columns["ID"].Visible = false;
-                    //grdSubGroup.Columns["Status ID"].Visible = false;
-                    //grdSubGroup.Columns["Batch No"].Visible = false;
-                    //grdSubGroup.Columns["StockLocation ID"].Visible = false;
-                    //grdSubGroup.Columns["Rack ID"].Visible = false;
-                    //grdSubGroup.Columns["Product Group Id"].Visible = false;
-                }    
+                 
+                }
+              
             }
             catch (Exception ex)
             {
@@ -673,6 +683,7 @@ namespace ROMS
                 {
                     grdGroup.Rows[i].Cells["clmChkProductGroup"].Value = chkgroup.Checked;
                 }
+                udfnSubGroupList();
             }
             catch (Exception ex)
             {
@@ -738,6 +749,77 @@ namespace ROMS
             {
                 grdGroup.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
+        }
+
+        private void TxtSelectedProductSubGroup_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (grdSubGroup.DataSource as DataTable).DefaultView.RowFilter = "([Product Sub Group Name in English]) LIKE '%" + txtProductSubGroup.Text + "%'";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (grdSubGroup.SelectedRows.Count > 0)
+                {
+                    // udfnAddSelectedSubGroup();
+                    udfnSubGroupAdd();
+                }
+                else
+                {
+                    MessageBox.Show("Please select the section.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSubGroup_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //varGroup = "";
+                //for (int i = 0; i < grdSubGroup.Rows.Count; i++)
+                //{
+                //    // int flag = 0;
+                //    if (Convert.ToBoolean(grdSubGroup.Rows[i].Cells["clmchkProductSubGroup"].Value) == true)
+                //    {
+                //        if (varGroup == "")
+                //        {
+                //            varGroup = Convert.ToString(grdSubGroup.Rows[i].Cells["ID"].Value);
+                //        }
+                //        else
+                //        {
+                //            varGroup = varGroup + "," + Convert.ToString(grdSubGroup.Rows[i].Cells["ID"].Value);
+                //        }
+                //    }
+                //}
+
+               
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void GrdSubGroupAdd_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
   
