@@ -104,7 +104,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnSubGroupList(0, Convert.ToInt32(cmbProductSubGroup.SelectedValue));
+                objDs = objdserv.udfnSubGroupList(0, Convert.ToInt32(cmbProductSubGroup.SelectedValue),0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -125,12 +125,12 @@ namespace ROMS
                             grdSubGroupList.Columns["Product Sub Group Name in Tamil"].Width = 250;
                             grdSubGroupList.Columns["Stock Location"].Width = 150;
                             grdSubGroupList.Columns["Rack"].Width = 100;
+                            grdSubGroupList.Columns["Batch No"].Width = 100;
                             grdSubGroupList.Columns["Total Products"].Width = 100;
                             grdSubGroupList.Columns["Status"].Width = 80;
 
                             grdSubGroupList.Columns["ID"].Visible = false;
                             grdSubGroupList.Columns["Status ID"].Visible = false;
-                            grdSubGroupList.Columns["Batch No"].Visible = false;
                             grdSubGroupList.Columns["StockLocation ID"].Visible = false;
                             grdSubGroupList.Columns["Rack ID"].Visible = false;
                             grdSubGroupList.Columns["Product Group Id"].Visible = false;
