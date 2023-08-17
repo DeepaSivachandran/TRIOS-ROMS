@@ -22,6 +22,8 @@ namespace ROMS
         public int varStatusid = 0;
         public int varCloseFlag = 0;
         public int varFormFlag = 0;
+        public int varGroupId = -1;
+        public string varGroup = "";
         public CP_Brand()
         {
             InitializeComponent();
@@ -69,6 +71,10 @@ namespace ROMS
                     grdGroup.Columns["Status ID"].Visible = false;
 
                 }
+
+
+
+                //udfnRefreshStaffDetails();
             }
             catch (Exception ex)
             {
@@ -81,6 +87,7 @@ namespace ROMS
         {
             try
             {
+               
                 //picLoader.Visible = true;
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
@@ -88,31 +95,35 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnSubGroupList(0, 16,0);
+                objDs = objdserv.udfnSubGroupList(0,0, varGroup);
                 objdserv.CloseConnection();
               
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
+                    grdSubGroup.Rows.Clear();
+                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    {
+                        grdSubGroup.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name"], objDs.Tables[0].Rows[i]["Product Sub Group Name in English"]);
+                    }
+                    //grdSubGroup.DataSource = objDs.Tables[0];
+                    //grdSubGroup.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    //grdSubGroup.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                    grdSubGroup.DataSource = objDs.Tables[0];
-                    grdSubGroup.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    grdSubGroup.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    //grdSubGroup.Columns["S.No."].Visible = false;
+                    //grdSubGroup.Columns["Product Group Name"].Width = 200;
+                    //grdSubGroup.Columns["Product Sub Group Name in English"].Width = 250;
+                    //grdSubGroup.Columns["Product Sub Group Name in Tamil"].Visible = false;
+                    //grdSubGroup.Columns["Stock Location"].Visible = false;
+                    //grdSubGroup.Columns["Rack"].Visible = false;
+                    //grdSubGroup.Columns["Total Products"].Visible = false;
+                    //grdSubGroup.Columns["Status"].Visible = false;
 
-                    grdSubGroup.Columns["S.No."].Visible = false;
-                    grdSubGroup.Columns["Product Group Name"].Width = 200;
-                    grdSubGroup.Columns["Product Sub Group Name in English"].Width = 250;
-                    grdSubGroup.Columns["Product Sub Group Name in Tamil"].Visible = false;
-                    grdSubGroup.Columns["Stock Location"].Visible = false;
-                    grdSubGroup.Columns["Rack"].Visible = false;
-                    grdSubGroup.Columns["Total Products"].Visible = false;
-                    grdSubGroup.Columns["Status"].Visible = false;
-
-                    grdSubGroup.Columns["ID"].Visible = false;
-                    grdSubGroup.Columns["Status ID"].Visible = false;
-                    grdSubGroup.Columns["Batch No"].Visible = false;
-                    grdSubGroup.Columns["StockLocation ID"].Visible = false;
-                    grdSubGroup.Columns["Rack ID"].Visible = false;
-                    grdSubGroup.Columns["Product Group Id"].Visible = false;
+                    //grdSubGroup.Columns["ID"].Visible = false;
+                    //grdSubGroup.Columns["Status ID"].Visible = false;
+                    //grdSubGroup.Columns["Batch No"].Visible = false;
+                    //grdSubGroup.Columns["StockLocation ID"].Visible = false;
+                    //grdSubGroup.Columns["Rack ID"].Visible = false;
+                    //grdSubGroup.Columns["Product Group Id"].Visible = false;
                 }    
             }
             catch (Exception ex)
@@ -442,7 +453,12 @@ namespace ROMS
                 //    }
 
                 //}
-                udfnSave(sender, e);
+
+                if (blnErrorFlag == false)
+                {
+                    udfnSave(sender, e);
+                }
+              
             }
             catch (Exception ex)
             {
@@ -618,7 +634,7 @@ namespace ROMS
             try
             {
                 udfnList();
-                udfnSubGroupList();
+                //udfnSubGroupList();
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -655,7 +671,7 @@ namespace ROMS
             {
                 for (int i = 0; i < grdGroup.Rows.Count; i++)
                 {
-                    grdGroup.Rows[i].Cells["clmChkAllProductGroup"].Value = chkgroup.Checked;
+                    grdGroup.Rows[i].Cells["clmChkProductGroup"].Value = chkgroup.Checked;
                 }
             }
             catch (Exception ex)
@@ -665,9 +681,63 @@ namespace ROMS
             }
         }
 
+        private void ChkSubGroup_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdGroup.Rows.Count; i++)
+                {
+                    grdGroup.Rows[i].Cells["clmchkProductSubGroup"].Value = chkSubGroup.Checked;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdGroup_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+          
+        }
+
         private void GrdGroup_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+                varGroup = "";
+                for (int i = 0; i < grdSubGroup.Rows.Count; i++)
+                {
+                    // int flag = 0;
+                    if (Convert.ToBoolean(grdGroup.Rows[i].Cells["clmChkProductGroup"].Value) == true)
+                    {
+                        if (varGroup == "")
+                        {
+                            varGroup = Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value);
+                        }
+                        else
+                        {
+                            varGroup = varGroup + "," + Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value);
+                        }
+                    }
+                }
+               
+                udfnSubGroupList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void GrdGroup_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (grdGroup.IsCurrentCellDirty)
+            {
+                grdGroup.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
         }
     }
   
