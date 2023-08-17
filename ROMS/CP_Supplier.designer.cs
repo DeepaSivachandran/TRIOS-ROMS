@@ -86,7 +86,6 @@
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
-            this.lvCity = new System.Windows.Forms.ListView();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.txtwhatsapp = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -214,6 +213,11 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lvCity = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblcity = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -329,6 +333,7 @@
             // 
             // grpSupplierDetails
             // 
+            this.grpSupplierDetails.Controls.Add(this.lblcity);
             this.grpSupplierDetails.Controls.Add(this.groupBox3);
             this.grpSupplierDetails.Controls.Add(this.grbEnvelopeDetails);
             this.grpSupplierDetails.Controls.Add(this.panelStatus);
@@ -481,9 +486,6 @@
             // 
             this.cmbDesignation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDesignation.FormattingEnabled = true;
-            this.cmbDesignation.Items.AddRange(new object[] {
-            "The Proprietor",
-            "The Manager"});
             this.cmbDesignation.Location = new System.Drawing.Point(123, 23);
             this.cmbDesignation.Name = "cmbDesignation";
             this.cmbDesignation.Size = new System.Drawing.Size(149, 27);
@@ -792,16 +794,6 @@
             this.grbform.TabStop = false;
             this.grbform.Text = "Concern Contact Details";
             // 
-            // lvCity
-            // 
-            this.lvCity.HideSelection = false;
-            this.lvCity.Location = new System.Drawing.Point(121, 157);
-            this.lvCity.Name = "lvCity";
-            this.lvCity.Size = new System.Drawing.Size(186, 65);
-            this.lvCity.TabIndex = 62;
-            this.lvCity.UseCompatibleStateImageBehavior = false;
-            this.lvCity.Visible = false;
-            // 
             // textBox6
             // 
             this.textBox6.BackColor = System.Drawing.SystemColors.Control;
@@ -1043,6 +1035,7 @@
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(186, 27);
             this.txtCity.TabIndex = 5;
+            this.txtCity.TextChanged += new System.EventHandler(this.TxtCity_TextChanged);
             this.txtCity.Enter += new System.EventHandler(this.txtCity_Enter);
             this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCity_KeyDown);
             this.txtCity.Leave += new System.EventHandler(this.txtCity_Leave);
@@ -2391,6 +2384,44 @@
             this.label3.TabIndex = 958804;
             this.label3.Text = "No.of Products :";
             // 
+            // lvCity
+            // 
+            this.lvCity.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvCity.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvCity.HideSelection = false;
+            this.lvCity.Location = new System.Drawing.Point(121, 158);
+            this.lvCity.Name = "lvCity";
+            this.lvCity.Size = new System.Drawing.Size(313, 78);
+            this.lvCity.TabIndex = 77;
+            this.lvCity.UseCompatibleStateImageBehavior = false;
+            this.lvCity.View = System.Windows.Forms.View.Details;
+            this.lvCity.Visible = false;
+            this.lvCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvCity_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
+            // 
+            // lblcity
+            // 
+            this.lblcity.AutoSize = true;
+            this.lblcity.Location = new System.Drawing.Point(931, 60);
+            this.lblcity.Name = "lblcity";
+            this.lblcity.Size = new System.Drawing.Size(0, 20);
+            this.lblcity.TabIndex = 77;
+            this.lblcity.Visible = false;
+            // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -2528,7 +2559,6 @@
         private System.Windows.Forms.TextBox textBox28;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.GroupBox grbform;
-        private System.Windows.Forms.ListView lvCity;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox txtwhatsapp;
         private System.Windows.Forms.TextBox textBox3;
@@ -2630,5 +2660,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        public System.Windows.Forms.ListView lvCity;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Label lblcity;
     }
 }

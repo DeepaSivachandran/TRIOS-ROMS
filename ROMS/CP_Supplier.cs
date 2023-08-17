@@ -380,6 +380,15 @@ namespace ROMS
                 udfnLoadState(); 
                 udfnEdit();
                 BindDataGrid();
+
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (10,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbDesignation, "", "MST_DisplayText", "MSTID");
+
+                objDataBind = null;
+
+
+
                 cmbReturnPolicy.Items.Add("Yes");
                 cmbReturnPolicy.Items.Add("No");
                 cmbReturnPolicy.SelectedIndex = 0;
@@ -2840,6 +2849,89 @@ namespace ROMS
             {
 
                 BeginInvoke(new Action(() => cmbOrderschedule.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtCity_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                lvCity.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtCity.Text.Length > 2)
+                {
+                    objDs = objspdservice.udfncitylist(1, txtCity.Text, MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToString(cmbState.SelectedValue));
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString(), objDs.Tables[0].Rows[i]["CTYID"].ToString() };
+                                   ListViewItem objList = new ListViewItem(row);
+                                    lvCity.Items.Add(objList);
+                                }
+                                lvCity.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvCity.Visible = false;
+                    lvCity.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void LvCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnGrdevent();
+                    txtPincode.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+        public void udfnGrdevent()
+        {
+            try
+            {
+                if (txtCity.Text != "")
+                {
+                    txtCity.Text = lvCity.SelectedItems[0].SubItems[0].Text;
+                    lvCity.Visible = false;
+                    DataService objDataService = new DataService();
+                    lblcity.Text = lvCity.SelectedItems[0].SubItems[2].Text;
+                    objDataService.CloseConnection();
+                }
+
             }
             catch (Exception ex)
             {
