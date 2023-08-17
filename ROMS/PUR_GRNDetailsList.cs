@@ -87,8 +87,6 @@ namespace ROMS
         {
             try
             {
-
-
                 grdPurchaseApproval.Rows.Add(1, "GNM", "02/08/2023", "GRN001", "", "02/08/2023","I001","50,000","", "", "Venkat", "02/08/2023");
             }
             catch (Exception ex)

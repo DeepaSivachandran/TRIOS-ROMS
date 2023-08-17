@@ -48,6 +48,15 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdSubGroupList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmproductsubgroupnameintamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmstocklocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsGroupList.SuspendLayout();
             this.pnlSubgroup.SuspendLayout();
             this.grbFilterBy.SuspendLayout();
@@ -258,9 +267,19 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSubGroupList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdSubGroupList.ColumnHeadersHeight = 30;
-            this.grdSubGroupList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdGroupList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdGroupList.ColumnHeadersHeight = 30;
+            this.grdGroupList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdGroupList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column3,
+            this.Column2,
+            this.clmproductsubgroupnameintamil,
+            this.clmstocklocation,
+            this.clmRack,
+            this.Column6,
+            this.Column4,
+            this.Column5});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -299,6 +318,66 @@
             this.picLoader.TabIndex = 958794;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "S.No.";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Product Group Name";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 200;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Product Sub Group Name in English";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 250;
+            // 
+            // clmproductsubgroupnameintamil
+            // 
+            this.clmproductsubgroupnameintamil.HeaderText = "Product Sub Group Name in Tamil";
+            this.clmproductsubgroupnameintamil.Name = "clmproductsubgroupnameintamil";
+            this.clmproductsubgroupnameintamil.ReadOnly = true;
+            this.clmproductsubgroupnameintamil.Width = 200;
+            // 
+            // clmstocklocation
+            // 
+            this.clmstocklocation.HeaderText = "Stock Location";
+            this.clmstocklocation.Name = "clmstocklocation";
+            this.clmstocklocation.ReadOnly = true;
+            this.clmstocklocation.Width = 150;
+            // 
+            // clmRack
+            // 
+            this.clmRack.HeaderText = "Rack";
+            this.clmRack.Name = "clmRack";
+            this.clmRack.ReadOnly = true;
+            this.clmRack.Width = 120;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Batch No.";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Total Products";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 200;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Status";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // CP_SubGroupList
             // 
@@ -347,6 +426,15 @@
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdSubGroupList;
         private System.Windows.Forms.PictureBox picLoader;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmproductsubgroupnameintamil;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmstocklocation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRack;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         public System.Windows.Forms.ComboBox cmbProductSubGroup;
     }
 }
