@@ -1379,6 +1379,7 @@
             this.Text = "Product";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Product_FormClosing);
             this.Load += new System.EventHandler(this.CP_Product_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Product_KeyDown);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).EndInit();

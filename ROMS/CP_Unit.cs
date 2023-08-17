@@ -24,7 +24,7 @@ namespace ROMS
         public string varbrandcode;
         public int varUnitCode = 0;
         public string pbFormStatus;
-        public int varstatus;
+        public int varstatus, varupdate=0;
         public string PbUnitName="";
         public string PbSymbol="";
         public string PbNoOfDecimals="";
@@ -96,6 +96,10 @@ namespace ROMS
                 if (btnSave.Text=="Save")
                 {
                     varResult = objspservice.udfnUnit(0, 0,(txtEUnitName.Text).Trim(),txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus,"Unit Creation");
+                    if (varmastertype == 1)
+                    {
+                        varupdate = 1;
+                    }
                 }
                 else
                 {
@@ -107,15 +111,16 @@ namespace ROMS
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     varUnitCodeProduct = Convert.ToInt16(varResult.Split('~')[2]);
                     udfnclear();
-                    MainForm.objCP_Unitlist.udfnList();
                     if (varmastertype == 1)
                     {
-                        varmastertype = 0;
                         MainForm.objCP_Items.varUnitCode = varUnitCodeProduct;
-                         
+                        varmastertype = 0;
                         udfnclose();
                     }
-                    
+                    else
+                    {
+                        MainForm.objCP_Unitlist.udfnList();
+                    }
                 }
                 else
                 {
@@ -230,20 +235,8 @@ namespace ROMS
         {
             try
             {
-                if (varmastertype == 1)
-                {
-                    this.Close();
-
-                    MainForm.objCP_Items = new CP_Product();
-                    MainForm.objCP_Items.MdiParent = this.ParentForm; 
-                    MainForm.objCP_Items.MdiParent = this.ParentForm;
-                    MainForm.objCP_Items.Show();
-
-                }
-                else
-                {
-                    this.Close();
-                }
+                
+                    this.Close(); 
             }
             catch (Exception ex)
             {
@@ -549,14 +542,7 @@ namespace ROMS
         {
             try
             {
-                if (varmastertype == 1)
-                {
-                    MainForm.objCP_Unit.Close();
-                    MainForm.objCP_Items = new CP_Product();
-                    MainForm.objCP_Items.MdiParent = this.ParentForm;
-                    MainForm.objCP_Items.Show(); 
-                }
-                else
+                if (varupdate == 0)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
@@ -567,7 +553,7 @@ namespace ROMS
                     {
                         e.Cancel = true;
                     }
-                }
+                } 
                
             }
             catch (Exception ex)

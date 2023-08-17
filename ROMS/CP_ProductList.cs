@@ -189,9 +189,9 @@ namespace ROMS
                 finally
                 {
                 grdItemList.ClearSelection();
-                 picLoader.Visible = false;
+                 picLoader.Visible = false; 
+                lblPC.Text = Convert.ToString(grdItemList.Rows.Count);
                 }
-                 
         }
         
 
@@ -384,6 +384,7 @@ namespace ROMS
                 }
                 DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdItemList);
             }
             catch (Exception ex)
             {
@@ -946,6 +947,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            
         }
 
         private void GrdItemList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

@@ -428,7 +428,7 @@ namespace ROMS
                         Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(cmbGroup.SelectedValue), Convert.ToInt32(cmbSubGroup.SelectedValue), Convert.ToInt32(cmbBrand.SelectedValue),
                         Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue),txtUpp.Text, Convert.ToInt32(cmbPosition.SelectedValue), Convert.ToInt32(cmbSalesGodown.SelectedValue)
                         , Convert.ToInt32(cmbPurchaseRack.SelectedValue), Convert.ToInt32(cmbSalesRack.SelectedValue), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue)
-                        , Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, netweight, grossweight,minstk, maxstk, reorderqty, rminsale, retailrate,wminsaleqty, 
+                        , Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, netweight, maxstk, grossweight,minstk,  reorderqty, rminsale, retailrate,wminsaleqty, 
                         wsalesrate,txtBarcode.Text, Convert.ToInt32(cmbHSNName.SelectedValue),varrmproduction, shelflife, 
                         Convert.ToInt32(cmbPeriod.SelectedValue),varStatus,MainForm.pbUserID, MainForm.pbIpAddress, "Product Create");
                         }
@@ -439,28 +439,28 @@ namespace ROMS
                         Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(cmbGroup.SelectedValue), Convert.ToInt32(cmbSubGroup.SelectedValue), Convert.ToInt32(cmbBrand.SelectedValue),
                         Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(cmbPosition.SelectedValue), Convert.ToInt32(cmbSalesGodown.SelectedValue)
                         , Convert.ToInt32(cmbPurchaseRack.SelectedValue), Convert.ToInt32(cmbSalesRack.SelectedValue), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue)
-                        , Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, netweight, grossweight, minstk, maxstk, reorderqty, rminsale, retailrate, wminsaleqty,
+                        , Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty,
                         wsalesrate, txtBarcode.Text, Convert.ToInt32(cmbHSNName.SelectedValue), varrmproduction, shelflife,
-                        Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, "Product Update");
-                         
+                        Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, "Product Update"); 
+                        varupdate = "1";
+
                     }
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             MainForm.objCP_Itemlist.udfnList();
-                            cmbConcern.Focus();
+                            cmbConcern.Focus(); 
+                             udfnclear();
                             if (btnSave.Text == "Update")
-                                {
-                                    varupdate = "1";
-                                    udfnclose();
-                                    udfnclear();
-                                }
-                            }
-                            else
                             {
-                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                udfnclose();
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     
                   
                      objspdservice.CloseConnection();
@@ -628,18 +628,8 @@ namespace ROMS
         {
             try
             {
-                if (varupdate == "0")
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        this.Close();
-                    }
-                }
-                else
-                { 
-                    this.Close();
-                }
+                this.Close();
+
             }
             catch (Exception ex)
             {
@@ -3461,7 +3451,7 @@ namespace ROMS
 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cbRMFromProduction.Checked = true; } else { cbRMFromProduction.Checked = false; }
-                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInActive.Checked = false; }
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInActive.Checked = true; }
                              
                             objDS = objdservice.GetDataset("SELECT HSN_Code,GST_Value FROM MR_HSN INNER JOIN DEF_GST ON HSN_GSTID=GSTID WHERE HSNID  IN ('" + Convert.ToInt32(objDS.Tables[0].Rows[0]["HSN"].ToString()) + "') AND GSTID  NOT IN (0,-1)");
                             objdservice.CloseConnection();
@@ -3693,6 +3683,28 @@ namespace ROMS
                 }
 
                 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_Product_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    btnSave_Click(sender, e); 
+                }
+
             }
             catch (Exception ex)
             {

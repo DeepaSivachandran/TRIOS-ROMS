@@ -3159,7 +3159,7 @@ namespace ROMS
                             txtPlno.Text = objDS.Tables[0].Rows[0]["PLNO"].ToString().Replace("''", "'");
                             txtAlterMobileno.Text = objDS.Tables[0].Rows[0]["MobileAlt"].ToString();
                             txtAlterPhoneno.Text = objDS.Tables[0].Rows[0]["PhoneAlt"].ToString(); 
-                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInactive.Checked = false; }
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInactive.Checked = true; }
 
                             btnSave.Text = "Update";
                             btnSaveContact.Text = "Update"; ;

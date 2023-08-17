@@ -253,6 +253,7 @@
             this.grdItemList.Size = new System.Drawing.Size(1348, 496);
             this.grdItemList.TabIndex = 958802;
             this.grdItemList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdItemList_DataBindingComplete);
+            this.grdItemList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             this.grdItemList.DoubleClick += new System.EventHandler(this.GrdItemList_DoubleClick);
             this.grdItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdItemList_KeyDown);
             // 
