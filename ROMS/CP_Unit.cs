@@ -28,6 +28,7 @@ namespace ROMS
         public string PbNoOfDecimals="";
         public int PbStatus=0;
         public int pbDecimalId = 0;
+        public int varUpdate = 0;
         public CP_Unit()
         {
             InitializeComponent();
@@ -98,7 +99,8 @@ namespace ROMS
                 else
                 {
                     varResult = objspservice.udfnUnit(1, varUnitCode, (txtEUnitName.Text).Trim(), (txtSymbol.Text).Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, "Unit Updation");
-                    this.Close();
+                    varUpdate = 1;
+                    udfnclose();
                 }
                 if (varResult.Split('~')[0] == "3")
                 {
@@ -523,14 +525,17 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varUpdate == 0)
                 {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
             catch (Exception ex)

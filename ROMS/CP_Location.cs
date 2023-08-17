@@ -20,14 +20,23 @@ namespace ROMS
         private ToolTip tpLocationTypeInEnglish = new ToolTip();
         private ToolTip tpLocationTypeInTamil = new ToolTip();
         private ToolTip tpStoctApplicable = new ToolTip();
-        public string varlocationcode;
+        public int varlocationcode=0;
+        public int varstatus;
+        //public string PbStatusType ;
+        public int varGodownType;
+        public string PbConcern="";
+        public string PbLocationType = "";
         public string PbLocationEName = "";
         public string PbLocationTName = "";
         public string PbLocationSName = "";
-        public int PbConcern = 0;
-        public int PbLType=0;
-        public int PbStockApplicable = 0;
+        //public string PbGodownType ;
+        public string PbStockApplicable = "";
+        public int PbConcernID = 0;
+        public int PbLocationTypeID=0;
+        public int PbStockApplicableID = 0;
         public int PbStatus = 0;
+        public int PbGodownTypeStatus = 0;
+        public int varUpdate = 0;
 
         public CP_Location()
         {
@@ -51,17 +60,23 @@ namespace ROMS
         }
         private void udfnclear()
         {
-            //try
-            //{
-            //    txtLocationName.Text = "";
-            //    btnSave.Text = "Save";
-            //    txtLocationName.Focus();
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            try
+            {
+                txtLocationNameInEnglish.Text = "";
+                txtLocationNameInTamil.Text = "";
+                txtShortName.Text = "";
+                cmbConcern.SelectedIndex = 0;
+                cmbLocationType.SelectedIndex = 0;
+                cmbStockApplicable.SelectedIndex = 0;
+                btnSave.Text = "Save";
+                txtLocationNameInEnglish.Focus();
+                this.ActiveControl = txtLocationNameInEnglish;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void btnSave_Enter(object sender, EventArgs e)
         {
@@ -92,7 +107,6 @@ namespace ROMS
             try
             {
                 udfnclose();
-              //  MainForm.objCP_LocationList.udfnList();
             }
             catch (Exception ex)
             {
@@ -128,7 +142,12 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,3) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbLocationType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,4) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbStockApplicable, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=0 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind = null;
+                this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -138,7 +157,6 @@ namespace ROMS
                     pnlStatus.Enabled = true;
                     udfnLoad();
                 }
-                this.ActiveControl = cmbConcern;
             }
             catch (Exception ex)
             {
@@ -153,10 +171,10 @@ namespace ROMS
                 txtLocationNameInEnglish.Text = PbLocationEName;
                 txtLocationNameInTamil.Text = PbLocationTName;
                 txtShortName.Text = PbLocationSName;
-                cmbConcern.SelectedValue = PbConcern;
-                cmbLocationType.SelectedValue = PbLType;
-                cmbStockApplicable.SelectedValue = PbStockApplicable;
-                if (PbStatus == 1) { rbInside.Checked = true; } else { rbOutside.Checked = true; }
+                cmbConcern.SelectedValue = PbConcernID;
+                cmbLocationType.SelectedValue = PbLocationTypeID;
+                cmbStockApplicable.SelectedValue = PbStockApplicableID;
+                if (PbGodownTypeStatus == 86) { rbInside.Checked = true; } else { rbOutside.Checked = true; }
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
             }
             catch (Exception ex)
@@ -164,10 +182,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void udfnEdit()
-        {
-            
         }
         public void udfnclose()
         {
@@ -185,7 +199,33 @@ namespace ROMS
         {
             try
             {
-
+                if (rbActive.Checked == true) { varstatus = 1; }
+                else { varstatus = 2; }
+                if (rbInside.Checked == true) { varGodownType = 86; }
+                else { varGodownType = 87; }
+                SPDataService objspservice = new SPDataService();
+                string varResult = "";
+                if (btnSave.Text == "Save")
+                {
+                    varResult = objspservice.udfnStock(0, 0, Convert.ToInt16(cmbConcern.SelectedValue),  Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(),(txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, "Stock Creation");
+                }
+                else
+                {
+                    varResult = objspservice.udfnStock(1,varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, "Stock Creation");
+                    varUpdate = 1;
+                    udfnclose();
+                }
+                if (varResult.Split('~')[0] == "3")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    udfnclear();
+                    MainForm.objCP_LocationList.udfnList();
+                }
+                else
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                objspservice.CloseConnection();
             }
             catch (Exception ex)
             {
@@ -348,14 +388,17 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varUpdate == 0)
                 {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
             catch (Exception ex)

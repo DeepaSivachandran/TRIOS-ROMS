@@ -92,7 +92,7 @@ namespace ROMS
                     varResult = objspservice.udfnCity(0, 0, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, "City Creation");
                 }
                 else
-                {
+                {   
                     varResult = objspservice.udfnCity(1,varCityCode,Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, "City Updation");
                     varUpdate = 1;
                     udfnclose();

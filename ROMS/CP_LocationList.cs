@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ROMS
-{
+{   //Created By:-Sathish
+    //Created On:-17/09/2023
     public partial class CP_LocationList : Form
     {
-        DataValidation objValidation = new DataValidation();
         DataError objError;
         public CP_LocationList()
         {
@@ -24,13 +24,13 @@ namespace ROMS
             try
             {
                 MainForm.objCP_Location = new CP_Location();
+                MainForm.objCP_Location.FormBorderStyle = FormBorderStyle.FixedSingle;
                 MainForm.objCP_Location.ShowDialog();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -62,6 +62,10 @@ namespace ROMS
         {
             try
             {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind = null;
+               // this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 udfnList();
             }
             catch (Exception ex)
@@ -70,21 +74,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         public void udfnList()
         {
             try
             {
-                picLoader.Visible = true;
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                grdGodownList.DataSource = null;
-                DataSet objDs =new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-               // objDs = objdserv.udfnSPLocationList("List", "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                objdserv.CloseConnection();
+                SPDataService objspservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspservice.udfnStockList(0);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -95,11 +91,23 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdGodownList.DataSource = objDs.Tables[0];
-                            grdGodownList.Columns["Location Name"].Width = 220;
-                            grdGodownList.Columns["Location Order"].Width = 100;
-                            grdGodownList.Columns["Location Order"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGodownList.Columns["SI.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdGodownList.Columns["LocationCode"].Visible = false;
+
+                            grdGodownList.Columns["ID"].Visible = false;
+                            grdGodownList.Columns["ConcernID"].Visible = false;
+                            grdGodownList.Columns["LocationTypeID"].Visible = false;
+                            grdGodownList.Columns["StockApplicableID"].Visible = false;
+                            grdGodownList.Columns["GodownTypeID"].Visible = false;
+                            grdGodownList.Columns["StatusID"].Visible = false;
+                            grdGodownList.Columns["S.No."].Width = 50;
+                            grdGodownList.Columns["Location Name in English"].Width = 250;
+                            grdGodownList.Columns["Location Name in Tamil"].Width = 250;
+                            grdGodownList.Columns["Short Name"].Width = 100;
+                            grdGodownList.Columns["Stock Applicable"].Width = 120;
+                            grdGodownList.Columns["Status"].Width = 80;
+                            grdGodownList.Columns["Godown Type"].Width = 150;
+                            grdGodownList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGodownList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGodownList.Columns["Godown Type"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
                         {
@@ -112,12 +120,9 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
+                    objspservice.CloseConnection();
                 }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
-                }
+                //udfnSearchGridHead();
             }
             catch (Exception ex)
             {
@@ -137,24 +142,24 @@ namespace ROMS
             {
                 if (grdGodownList.SelectedRows.Count > 0)
                 {
-                    string result = "";
+                    string varResult = "";
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
 
-                        SPDataService objspdservice = new SPDataService();
-                     //   result = objspdservice.udfnSPLocationMaster("Delete", grdLocationList.SelectedRows[0].Cells["LocationCode"].Value.ToString(),"","", MainForm.pbUserID, MainForm.pbIpAddress, "Location Delete");
+                        SPDataService objspservice = new SPDataService();
+                        varResult = "";
+                        varResult = objspservice.udfnStock(2,Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value),0,0,"","","",0,0,0,"Stock Delete");
 
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
+
+                        if (varResult.Split('~')[0] == "3")
                         {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             udfnList();
-
                         }
                         else
                         {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show(varResult, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -171,19 +176,24 @@ namespace ROMS
         {
             try
             {
-
-                MainForm.objCP_Location = new CP_Location();
-                MainForm.objCP_Location.btnSave.Text = "Update";
-                MainForm.objCP_Location.ShowDialog();
-                //if (grdGodownList.SelectedRows.Count > 0)
-                //{
-                //    MainForm.objCP_Location = new CP_Location();
-                //    //MainForm.objCP_Location.MdiParent = this.ParentForm;
-                //    MainForm.objCP_Location.varlocationcode = grdGodownList.SelectedRows[0].Cells["LocationCode"].Value.ToString();
-                //    MainForm.objCP_Location.ShowDialog();
-
-                //}
-
+                if (grdGodownList.SelectedRows.Count > 0)
+                {
+                    MainForm.objCP_Location = new CP_Location();
+                    MainForm.objCP_Location.btnSave.Text = "Update";
+                    MainForm.objCP_Location.varlocationcode = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_Location.PbConcernID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ConcernID"].Value);
+                    MainForm.objCP_Location.PbLocationTypeID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["LocationTypeID"].Value);
+                    MainForm.objCP_Location.PbStockApplicableID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["StockApplicableID"].Value);
+                    MainForm.objCP_Location.PbLocationEName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Name in English"].Value);
+                    MainForm.objCP_Location.PbLocationTName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Name in Tamil"].Value);
+                    MainForm.objCP_Location.PbLocationSName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Short Name"].Value);
+                    MainForm.objCP_Location.PbConcern = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Concern"].Value);
+                    MainForm.objCP_Location.PbLocationType = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Type"].Value);
+                    MainForm.objCP_Location.PbStockApplicable = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Stock Applicable"].Value);
+                    MainForm.objCP_Location.PbStatus = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["StatusID"].Value);
+                    MainForm.objCP_Location.PbGodownTypeStatus = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["GodownTypeID"].Value);
+                    MainForm.objCP_Location.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -263,9 +273,116 @@ namespace ROMS
             }
         }
 
-        private void GrdGodownList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void GrdGodownList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            for (int i = 0; i < grdGodownList.Rows.Count; i++)
+            {
+                if (Convert.ToString(grdGodownList.Rows[i].Cells["StatusID"].Value) == "1")
+                {
+                    grdGodownList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                    grdGodownList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                }
+                else
+                {
+                    grdGodownList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                    grdGodownList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                }
+            }
+        }
+
+        private void GrdGodownList_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdGodownList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                udfnEdit();
+            }
+        }
+
+        private void CmbConcern_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                    cmbConcern.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }
