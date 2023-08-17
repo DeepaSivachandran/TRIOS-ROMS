@@ -22,14 +22,12 @@ namespace ROMS
         private ToolTip tpStoctApplicable = new ToolTip();
         public int varlocationcode=0;
         public int varstatus;
-        //public string PbStatusType ;
         public int varGodownType;
         public string PbConcern="";
         public string PbLocationType = "";
         public string PbLocationEName = "";
         public string PbLocationTName = "";
         public string PbLocationSName = "";
-        //public string PbGodownType ;
         public string PbStockApplicable = "";
         public int PbConcernID = 0;
         public int PbLocationTypeID=0;
@@ -37,7 +35,6 @@ namespace ROMS
         public int PbStatus = 0;
         public int PbGodownTypeStatus = 0;
         public int varUpdate = 0;
-
         public CP_Location()
         {
             InitializeComponent();
@@ -338,7 +335,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Rboutside_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -523,7 +519,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
         private void CmbLocationType_Leave(object sender, EventArgs e)
         {
@@ -541,26 +536,6 @@ namespace ROMS
                     epLocation.Clear();
                     cmbLocationType.BackColor = Color.White;
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbLocationType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //BeginInvoke(new Action(() => cmbLocationType.Select(int.MaxValue, 0)));
-                //if (Convert.ToString(cmbLocationType.SelectedItem) == "Godown")
-                //{
-                //    pnlGodownType.Enabled = true;
-                //}
-                //else
-                //{
-                //    pnlGodownType.Enabled = false;
-                //}
             }
             catch (Exception ex)
             {

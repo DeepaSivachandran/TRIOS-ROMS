@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
 {   //Created By:-Sathish
@@ -18,7 +19,6 @@ namespace ROMS
         {
             InitializeComponent();
         }
-
         private void tsbNew_Click(object sender, EventArgs e)
         {
             try
@@ -57,7 +57,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_LocationList_Load(object sender, EventArgs e)
         {
             try
@@ -65,7 +64,6 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
-               // this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 udfnList();
             }
             catch (Exception ex)
@@ -80,7 +78,7 @@ namespace ROMS
             {
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objspservice.udfnStockList(0);
+                objDs = objspservice.udfnStockList(0,(Convert.ToInt16(cmbConcern.SelectedValue)));
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -122,7 +120,6 @@ namespace ROMS
                     }
                     objspservice.CloseConnection();
                 }
-                //udfnSearchGridHead();
             }
             catch (Exception ex)
             {
@@ -135,7 +132,6 @@ namespace ROMS
                 picLoader.Visible = false;
             }
         }
-
         public void udfndelete()
         {
             try
@@ -169,9 +165,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void udfnEdit()
         {
             try
@@ -200,9 +194,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void CP_LocationList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -272,7 +264,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdGodownList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             for (int i = 0; i < grdGodownList.Rows.Count; i++)
@@ -289,7 +280,6 @@ namespace ROMS
                 }
             }
         }
-
         private void GrdGodownList_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -302,7 +292,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdGodownList_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -310,7 +299,6 @@ namespace ROMS
                 udfnEdit();
             }
         }
-
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
             try
@@ -323,12 +311,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void BtnView_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -344,7 +326,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -358,7 +339,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_Leave(object sender, EventArgs e)
         {
             try
@@ -371,12 +351,82 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
+        private void BtnView_Click(object sender, EventArgs e)
         {
             try
             {
-                
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if ((grdGodownList.Rows.Count > 0))
+                {
+                    Excel._Application ExcelObj = new Excel.Application();
+                    // creating new WorkBook within Excel application  
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    // creating new Excelsheet in workbook  
+                    Excel._Worksheet ExcelSheet = null;
+                    // see the excel sheet behind the program  
+                    ExcelObj.Visible = true;
+                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
+                    ExcelSheet = ExcelBook.ActiveSheet;
+                    // changing the name of active sheet  
+                    ExcelSheet.Name = "Stock Location List";
+                    int cIndex = 0;
+                    int count = 0;
+                    foreach (DataGridViewColumn col in grdGodownList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            count += 1;
+                        }
+                    }
+                    //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
+                    //er.EntireColumn.ColumnWidth = 35;
+                    ExcelSheet.Cells[1, 1].Value = "Stock Location List";
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
+                    foreach (DataGridViewColumn col in grdGodownList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            cIndex += 1;
+                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+                            if (cIndex == 1)
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                            }
+                            else
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 25;
+                            }
+                            if (col.Name == "clmQty" || col.Name == "clmTotal")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            }
+                            foreach (DataGridViewRow rowa in grdGodownList.Rows)
+                            {
+                                ExcelSheet.Cells[rowa.Index + 4, cIndex] = rowa.Cells[col.Index].Value;
+                            }
+                        }
+                    }
+                    //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
+                    ExcelObj.Visible = true;
+                }
             }
             catch (Exception ex)
             {
