@@ -339,8 +339,8 @@ namespace ROMS
                     switch (grdSupplierList.Columns[e.ColumnIndex].Name)
                     {
                         case "clmEdit":
-                            MainForm.objPUR_GRNEntry = new PUR_GRNEntry();
-                            MainForm.objPUR_GRNEntry.ShowDialog();
+                            MainForm.objPUR_GRNEntryVerify = new PUR_GRNEntryVerify();
+                            MainForm.objPUR_GRNEntryVerify.ShowDialog();
                             break;
                     }
                 }
@@ -358,6 +358,10 @@ namespace ROMS
         {
             try
             {
+                cmbStatus.Items.Add("GRN Draft");
+                cmbStatus.Items.Add("GRN Completed");
+                cmbType.Items.Add("From GRN");
+                cmbType.Items.Add("From DC");
                 grdSupplierList.Rows.Add(1, "GNM", "16/08/2023", "PUR001", "9097337", "16/08/2023", "ABCD Suppliers", "Against PO", "10","Pending","10,000","ABCD","16/08/2023 01:50PM");
             }
             catch (Exception ex)

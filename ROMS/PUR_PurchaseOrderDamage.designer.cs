@@ -35,15 +35,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_PurchaseOrderDamage));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdPurchaseOrder = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtDLNo = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtReason = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtCreatedBy = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtCreatedOn = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmproduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +44,15 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCreatedOn = new System.Windows.Forms.TextBox();
+            this.txtCreatedBy = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtReason = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtDLNo = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -111,90 +111,6 @@
             this.grdPurchaseOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseOrder.Size = new System.Drawing.Size(1006, 343);
             this.grdPurchaseOrder.TabIndex = 1111144;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.txtCreatedOn);
-            this.groupBox1.Controls.Add(this.txtCreatedBy);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtReason);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txtDLNo);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(18, 5);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1000, 58);
-            this.groupBox1.TabIndex = 1111145;
-            this.groupBox1.TabStop = false;
-            // 
-            // txtDLNo
-            // 
-            this.txtDLNo.Location = new System.Drawing.Point(55, 20);
-            this.txtDLNo.Name = "txtDLNo";
-            this.txtDLNo.ReadOnly = true;
-            this.txtDLNo.Size = new System.Drawing.Size(139, 28);
-            this.txtDLNo.TabIndex = 9;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 20);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "DL No.";
-            // 
-            // txtReason
-            // 
-            this.txtReason.Location = new System.Drawing.Point(247, 20);
-            this.txtReason.Name = "txtReason";
-            this.txtReason.ReadOnly = true;
-            this.txtReason.Size = new System.Drawing.Size(139, 28);
-            this.txtReason.TabIndex = 11;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(198, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 20);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Reason";
-            // 
-            // txtCreatedBy
-            // 
-            this.txtCreatedBy.Location = new System.Drawing.Point(458, 20);
-            this.txtCreatedBy.Name = "txtCreatedBy";
-            this.txtCreatedBy.ReadOnly = true;
-            this.txtCreatedBy.Size = new System.Drawing.Size(139, 28);
-            this.txtCreatedBy.TabIndex = 13;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(388, 24);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 20);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Created By";
-            // 
-            // txtCreatedOn
-            // 
-            this.txtCreatedOn.Location = new System.Drawing.Point(667, 20);
-            this.txtCreatedOn.Name = "txtCreatedOn";
-            this.txtCreatedOn.ReadOnly = true;
-            this.txtCreatedOn.Size = new System.Drawing.Size(139, 28);
-            this.txtCreatedOn.TabIndex = 15;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(596, 24);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 20);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Created On";
             // 
             // clmsno
             // 
@@ -257,6 +173,90 @@
             this.Column3.HeaderText = "Batch No.";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtCreatedOn);
+            this.groupBox1.Controls.Add(this.txtCreatedBy);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.txtReason);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtDLNo);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Location = new System.Drawing.Point(18, 5);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1000, 58);
+            this.groupBox1.TabIndex = 1111145;
+            this.groupBox1.TabStop = false;
+            // 
+            // txtCreatedOn
+            // 
+            this.txtCreatedOn.Location = new System.Drawing.Point(667, 20);
+            this.txtCreatedOn.Name = "txtCreatedOn";
+            this.txtCreatedOn.ReadOnly = true;
+            this.txtCreatedOn.Size = new System.Drawing.Size(139, 28);
+            this.txtCreatedOn.TabIndex = 15;
+            // 
+            // txtCreatedBy
+            // 
+            this.txtCreatedBy.Location = new System.Drawing.Point(458, 20);
+            this.txtCreatedBy.Name = "txtCreatedBy";
+            this.txtCreatedBy.ReadOnly = true;
+            this.txtCreatedBy.Size = new System.Drawing.Size(139, 28);
+            this.txtCreatedBy.TabIndex = 13;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(596, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 20);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Created On";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(388, 24);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 20);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Created By";
+            // 
+            // txtReason
+            // 
+            this.txtReason.Location = new System.Drawing.Point(247, 20);
+            this.txtReason.Name = "txtReason";
+            this.txtReason.ReadOnly = true;
+            this.txtReason.Size = new System.Drawing.Size(139, 28);
+            this.txtReason.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(198, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Reason";
+            // 
+            // txtDLNo
+            // 
+            this.txtDLNo.Location = new System.Drawing.Point(55, 20);
+            this.txtDLNo.Name = "txtDLNo";
+            this.txtDLNo.ReadOnly = true;
+            this.txtDLNo.Size = new System.Drawing.Size(139, 28);
+            this.txtDLNo.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 20);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "DC No.";
             // 
             // PUR_PurchaseOrderDamage
             // 
