@@ -188,7 +188,7 @@ namespace ROMS
                 }
                 finally
                 {
-                grdItemList.ClearSelection();
+              //  grdItemList.ClearSelection();
                  picLoader.Visible = false; 
                 lblPC.Text = Convert.ToString(grdItemList.Rows.Count);
                 }
@@ -971,6 +971,9 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally {
+                grdItemList.ClearSelection();
             }
         }
 
