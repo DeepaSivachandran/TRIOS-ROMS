@@ -14,7 +14,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public string varbrandcode;
+        public int varbrandcode=0;
 
         private ToolTip tpBrandNameInEnglish = new ToolTip();
         private ToolTip tpBrandNameInTamil = new ToolTip();
@@ -397,8 +397,19 @@ namespace ROMS
                     if (varResult.Split('~')[0] == "3")
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varbrandcode = Convert.ToInt16(varResult.Split('~')[2]);
+                        if (varmastertype == 1)
+                        {
+                            varmastertype = 0;
+                            MainForm.objCP_Items.varbrandcode = varbrandcode;
+                            varCloseFlag = 1;
+                            udfnclose();
+                        }
+                        else
+                        { 
+                            MainForm.objCP_BrandList.udfnList();
+                        }
                         udfnClear();
-                        MainForm.objCP_BrandList.udfnList();
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {

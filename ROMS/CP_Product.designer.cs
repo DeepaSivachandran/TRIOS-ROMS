@@ -287,12 +287,12 @@
             this.txtUPPvalue.BackColor = System.Drawing.SystemColors.Control;
             this.txtUPPvalue.Enabled = false;
             this.txtUPPvalue.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtUPPvalue.Location = new System.Drawing.Point(497, 239);
+            this.txtUPPvalue.Location = new System.Drawing.Point(489, 239);
             this.txtUPPvalue.Name = "txtUPPvalue";
             this.txtUPPvalue.ReadOnly = true;
-            this.txtUPPvalue.Size = new System.Drawing.Size(26, 27);
+            this.txtUPPvalue.Size = new System.Drawing.Size(34, 27);
             this.txtUPPvalue.TabIndex = 118;
-            this.txtUPPvalue.Text = "Pkt";
+            this.txtUPPvalue.Text = "Pkets";
             // 
             // btnUnit
             // 
@@ -310,12 +310,13 @@
             // 
             this.btnBrand.Image = global::ROMS.Properties.Resources.New;
             this.btnBrand.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBrand.Location = new System.Drawing.Point(502, 214);
+            this.btnBrand.Location = new System.Drawing.Point(527, 202);
             this.btnBrand.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnBrand.Name = "btnBrand";
             this.btnBrand.Size = new System.Drawing.Size(21, 22);
             this.btnBrand.TabIndex = 28;
             this.btnBrand.Text = "        ";
+            this.btnBrand.Visible = false;
             this.btnBrand.Click += new System.EventHandler(this.BtnBrand_Click);
             // 
             // btnGroup
@@ -346,10 +347,10 @@
             // txtUpp
             // 
             this.txtUpp.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtUpp.Location = new System.Drawing.Point(455, 239);
+            this.txtUpp.Location = new System.Drawing.Point(446, 239);
             this.txtUpp.MaxLength = 5;
             this.txtUpp.Name = "txtUpp";
-            this.txtUpp.Size = new System.Drawing.Size(42, 27);
+            this.txtUpp.Size = new System.Drawing.Size(43, 27);
             this.txtUpp.TabIndex = 11;
             this.txtUpp.Enter += new System.EventHandler(this.TxtUpp_Enter);
             this.txtUpp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUpp_KeyDown);
@@ -361,10 +362,10 @@
             this.txtDUPP.BackColor = System.Drawing.SystemColors.Control;
             this.txtDUPP.Enabled = false;
             this.txtDUPP.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDUPP.Location = new System.Drawing.Point(418, 239);
+            this.txtDUPP.Location = new System.Drawing.Point(414, 239);
             this.txtDUPP.Name = "txtDUPP";
             this.txtDUPP.ReadOnly = true;
-            this.txtDUPP.Size = new System.Drawing.Size(37, 27);
+            this.txtDUPP.Size = new System.Drawing.Size(32, 27);
             this.txtDUPP.TabIndex = 22;
             this.txtDUPP.TabStop = false;
             this.txtDUPP.Text = "UPP";
@@ -375,7 +376,7 @@
             this.cmbBulkUnit.FormattingEnabled = true;
             this.cmbBulkUnit.Location = new System.Drawing.Point(330, 239);
             this.cmbBulkUnit.Name = "cmbBulkUnit";
-            this.cmbBulkUnit.Size = new System.Drawing.Size(88, 27);
+            this.cmbBulkUnit.Size = new System.Drawing.Size(84, 27);
             this.cmbBulkUnit.TabIndex = 10;
             this.cmbBulkUnit.SelectedIndexChanged += new System.EventHandler(this.CmbBulkUnit_SelectedIndexChanged);
             this.cmbBulkUnit.Enter += new System.EventHandler(this.CmbBulkUnit_Enter);
@@ -470,7 +471,7 @@
             this.cmbBrand.FormattingEnabled = true;
             this.cmbBrand.Location = new System.Drawing.Point(160, 212);
             this.cmbBrand.Name = "cmbBrand";
-            this.cmbBrand.Size = new System.Drawing.Size(337, 27);
+            this.cmbBrand.Size = new System.Drawing.Size(363, 27);
             this.cmbBrand.TabIndex = 8;
             this.cmbBrand.SelectedIndexChanged += new System.EventHandler(this.CmbBrand_SelectedIndexChanged);
             this.cmbBrand.Enter += new System.EventHandler(this.CmbBrand_Enter);

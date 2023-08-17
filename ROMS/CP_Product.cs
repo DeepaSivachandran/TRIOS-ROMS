@@ -35,7 +35,7 @@ namespace ROMS
         private ToolTip tpcity = new ToolTip();
         private ToolTip tparea = new ToolTip();
         private ToolTip tpstate = new ToolTip();
-        public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0;
+        public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0;
         public CP_Product()
         {
             InitializeComponent();
@@ -3529,10 +3529,15 @@ namespace ROMS
             try
             {
 
-                MainForm.objCP_Brand = new CP_Brand(); 
-                MainForm.objCP_Brand.varmastertype = 1;
-                MainForm.objCP_Brand.ShowDialog();
+               // MainForm.objCP_Brand = new CP_Brand();
+               //// MainForm.objCP_Brand.MdiParent = ParentForm;
+               // MainForm.objCP_Brand.varmastertype = 1;
+               // MainForm.objCP_Brand.ShowDialog();
 
+               // DataBind objDataBind = new DataBind();
+               // objDataBind.BindComboBoxListSelected("MR_BRAND", "BDID <> 0 AND BD_STSID=1", "BD_EName,BDID", cmbBrand, "", "BD_EName", "BDID"); 
+               // cmbBrand.SelectedValue = Convert.ToInt16(varbrandcode);
+               // objDataBind = null;
             }
             catch (Exception ex)
             {
