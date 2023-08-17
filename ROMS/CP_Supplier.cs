@@ -112,13 +112,31 @@ namespace ROMS
         }
 
         private void txtCity_KeyDown(object sender, KeyEventArgs e)
-        {
+        { 
             try
             {
+
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvCity.Items.Count == 0 || txtCity.Text == "")
+                    {
+                        txtCity.Focus();
+                        lvCity.Visible = false;
+                    }
+                    else
+                    {
+                        lvCity.Focus();
+                    }
+                    if (lvCity.Items.Count > 0)
+                    {
+                        lvCity.Items[0].Selected = true;
+                    }
+                }
                 if (e.KeyCode == Keys.Enter)
                 {
                     txtPincode.Focus();
                 }
+
             }
             catch (Exception ex)
             {
@@ -384,18 +402,13 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (10,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbDesignation, "", "MST_DisplayText", "MSTID");
-
-                objDataBind = null;
-
-
-
-                cmbReturnPolicy.Items.Add("Yes");
-                cmbReturnPolicy.Items.Add("No");
-                cmbReturnPolicy.SelectedIndex = 0;
-                cmbReturnType.Items.Add("Any Time");
-                cmbReturnType.Items.Add("Weekly");
-                cmbReturnType.Items.Add("Monthly");
-                cmbReturnType.Items.Add("Quarterly");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (11,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (12,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPaymentTerm, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (29,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbfinance, "", "MST_DisplayText", "MSTID");
+                objDataBind = null; 
+                cmbReturnPolicy.SelectedIndex = 0; 
                 cmbReturnType.SelectedIndex = 0;
                 txtReturnText.Visible = false;
                 cmbPolicyContent.Visible = false;
@@ -1362,13 +1375,17 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbDesignation.Select(int.MaxValue, 0)));
-                if (cmbDesignation.SelectedItem == "The Proprietor")
+                if (Convert.ToString(cmbDesignation.SelectedValue) == "28")
                 {
                     txtDShortName.Text = "Proprietor Name";
                 }
-                if (cmbDesignation.SelectedItem == "The Manager")
+                if (Convert.ToString(cmbDesignation.SelectedValue) == "29")
                 {
                     txtDShortName.Text = "Manager Name";
+                }
+                if (Convert.ToString(cmbDesignation.SelectedValue) == "-1")
+                {
+                    txtDShortName.Text = "";
                 }
             }
             catch (Exception ex)
@@ -1388,8 +1405,8 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbReturnPolicy.Select(int.MaxValue, 0)));
-                if (cmbReturnPolicy.Text == "Yes") { cmbReturnType.Enabled = true; }
-                else { cmbReturnType.Enabled = false; }
+                if (cmbReturnPolicy.Text == "Yes") { cmbReturnType.Visible = true; }
+                else { cmbReturnType.Visible = false; }
             }
             catch (Exception ex)
             {
@@ -1404,109 +1421,63 @@ namespace ROMS
             {
 
                 BeginInvoke(new Action(() => cmbReturnType.Select(int.MaxValue, 0)));
-                if (cmbReturnType.Text == "Any Time") {
-                    cmbPolicyContent.Items.Clear();
+                if (Convert.ToString(cmbReturnType.SelectedValue) == "24")
+                {
+                    cmbPolicyContent.DataSource = null; 
                     txtReturnText.Visible = false;
                     cmbPolicyContent.Visible = false;
                     txtNextLevel.Visible = false;
                     cmbSecondLevel.Visible = false;
                 }
-                else if (cmbReturnType.Text == "Weekly") {
+                else if ((Convert.ToString(cmbReturnType.SelectedValue) == "25")) {
                     txtReturnText.Text = "Day";
                     cmbPolicyContent.Enabled = true;
-                    cmbPolicyContent.Items.Clear();
-                    cmbPolicyContent.Items.Add("Monday");
-                    cmbPolicyContent.Items.Add("Tuesday");
-                    cmbPolicyContent.Items.Add("Wednesday");
-                    cmbPolicyContent.Items.Add("Thursday");
-                    cmbPolicyContent.Items.Add("Friday");
-                    cmbPolicyContent.Items.Add("Saturday");
-                    cmbPolicyContent.Items.Add("Sunday");
+                    cmbPolicyContent.DataSource = null; 
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmbPolicyContent, "", "DY_Name", "DYID");
+                    objDataBind = null; 
                     cmbPolicyContent.SelectedIndex = 0;
                     txtReturnText.Visible = true;
                     cmbPolicyContent.Visible = true;
                     txtNextLevel.Visible = false;
                     cmbSecondLevel.Visible = false;
                 }
-                else if (cmbReturnType.Text == "Monthly") {
+                else if ((Convert.ToString(cmbReturnType.SelectedValue) == "26"))
+                {
                     txtReturnText.Text = "Week No.";
                     txtReturnText.Visible = true;
+                    cmbPolicyContent.DataSource = null;
+                    cmbSecondLevel.DataSource = null;
                     cmbPolicyContent.Visible = true;
                     cmbPolicyContent.Enabled = true;
-                    cmbPolicyContent.Items.Clear();
-                    cmbPolicyContent.Items.Add("1st Week");
-                    cmbPolicyContent.Items.Add("2nd Week");
-                    cmbPolicyContent.Items.Add("3rd Week");
-                    cmbPolicyContent.Items.Add("4th Week");
-                    cmbPolicyContent.Items.Add("5th Week");
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (28,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPolicyContent, "", "MST_DisplayText", "MSTID");
+                    objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmbSecondLevel, "", "DY_Name", "DYID");
+
                     cmbPolicyContent.SelectedIndex = 0;
                     txtNextLevel.Text = "Day";
-                    cmbSecondLevel.Items.Clear();
-                    cmbSecondLevel.Items.Add("Monday");
-                    cmbSecondLevel.Items.Add("Tuesday");
-                    cmbSecondLevel.Items.Add("Wednesday");
-                    cmbSecondLevel.Items.Add("Thursday");
-                    cmbSecondLevel.Items.Add("Friday");
-                    cmbSecondLevel.Items.Add("Saturday");
-                    cmbSecondLevel.Items.Add("Sunday");
+                     
+                    objDataBind = null;
                     txtNextLevel.Visible = true;
                     cmbSecondLevel.Visible = true;
                     cmbSecondLevel.SelectedIndex = 0;
                 }
-                else if (cmbReturnType.Text == "Quarterly") {
+                else if ((Convert.ToString(cmbReturnType.SelectedValue) == "27"))
+                {
                     txtReturnText.Text = "Month";
                     txtReturnText.Visible = true;
                     cmbPolicyContent.Visible = true;
-                    cmbPolicyContent.Enabled = true;
-                    cmbPolicyContent.Items.Clear();
-                    cmbPolicyContent.Items.Add("January");
-                    cmbPolicyContent.Items.Add("February");
-                    cmbPolicyContent.Items.Add("March");
-                    cmbPolicyContent.Items.Add("April");
-                    cmbPolicyContent.Items.Add("May");
-                    cmbPolicyContent.Items.Add("June");
-                    cmbPolicyContent.Items.Add("July");
-                    cmbPolicyContent.Items.Add("August");
-                    cmbPolicyContent.Items.Add("September");
-                    cmbPolicyContent.Items.Add("October");
-                    cmbPolicyContent.Items.Add("November");
-                    cmbPolicyContent.Items.Add("December");
+                    cmbPolicyContent.Enabled = true; 
+                    cmbPolicyContent.DataSource=null;
+                    cmbSecondLevel.DataSource = null;
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Months", "MONID NOT IN (0,-1)", "MON_Name,MONID", cmbPolicyContent, "", "MON_Name", "MONID"); 
                     cmbPolicyContent.SelectedIndex = 0;
                     txtNextLevel.Visible = true;
                     cmbSecondLevel.Visible = true;
-                    txtNextLevel.Text = "Day of the month";
-                    cmbSecondLevel.Items.Clear();
-                    cmbSecondLevel.Items.Add("1");
-                    cmbSecondLevel.Items.Add("2");
-                    cmbSecondLevel.Items.Add("3");
-                    cmbSecondLevel.Items.Add("4");
-                    cmbSecondLevel.Items.Add("5");
-                    cmbSecondLevel.Items.Add("6");
-                    cmbSecondLevel.Items.Add("7");
-                    cmbSecondLevel.Items.Add("8");
-                    cmbSecondLevel.Items.Add("9");
-                    cmbSecondLevel.Items.Add("10");
-                    cmbSecondLevel.Items.Add("11");
-                    cmbSecondLevel.Items.Add("12");
-                    cmbSecondLevel.Items.Add("13");
-                    cmbSecondLevel.Items.Add("14");
-                    cmbSecondLevel.Items.Add("15");
-                    cmbSecondLevel.Items.Add("16");
-                    cmbSecondLevel.Items.Add("17");
-                    cmbSecondLevel.Items.Add("18");
-                    cmbSecondLevel.Items.Add("19");
-                    cmbSecondLevel.Items.Add("20");
-                    cmbSecondLevel.Items.Add("21");
-                    cmbSecondLevel.Items.Add("22");
-                    cmbSecondLevel.Items.Add("23");
-                    cmbSecondLevel.Items.Add("24");
-                    cmbSecondLevel.Items.Add("25");
-                    cmbSecondLevel.Items.Add("26");
-                    cmbSecondLevel.Items.Add("27");
-                    cmbSecondLevel.Items.Add("28");
-                    cmbSecondLevel.Items.Add("29");
-                    cmbSecondLevel.Items.Add("30");
-                    cmbSecondLevel.Items.Add("31");
+                    txtNextLevel.Text = "Day of the month"; 
+                    objDataBind.BindComboBoxListSelected("DEF_Month_Days", "1=1", "MOND_Name,MONDID", cmbSecondLevel, "", "MOND_Name", "MONDID");
+                    objDataBind = null;
                     cmbSecondLevel.SelectedIndex = 0;
                 }
             }
@@ -1925,7 +1896,7 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbSupplierType.Select(int.MaxValue, 0)));
-                if (cmbSupplierType.SelectedItem == "URD")
+                if (Convert.ToString(cmbSupplierType.SelectedValue) == "32" || Convert.ToString(cmbSupplierType.SelectedValue) == "-1")
                 {
                     txtgstin.Text = "";
                     txtgstin.Enabled = false;
