@@ -699,7 +699,7 @@ namespace ROMS
 
         private void GrdGroup_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-          
+           
         }
 
         private void GrdGroup_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -707,7 +707,7 @@ namespace ROMS
             try
             {
                 varGroup = "";
-                for (int i = 0; i < grdSubGroup.Rows.Count; i++)
+                for (int i = 0; i < grdGroup.Rows.Count; i++)
                 {
                     // int flag = 0;
                     if (Convert.ToBoolean(grdGroup.Rows[i].Cells["clmChkProductGroup"].Value) == true)
@@ -722,7 +722,7 @@ namespace ROMS
                         }
                     }
                 }
-               
+
                 udfnSubGroupList();
             }
             catch (Exception ex)
