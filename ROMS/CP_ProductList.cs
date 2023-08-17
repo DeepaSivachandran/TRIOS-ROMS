@@ -326,9 +326,7 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         } 
-       
-
-     
+        
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewColumn newColumn = grdItemList.Columns[e.ColumnIndex];

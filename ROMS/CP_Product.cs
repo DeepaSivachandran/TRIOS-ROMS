@@ -57,8 +57,7 @@ namespace ROMS
         {
             try
             {
-                bool blnErrorFlag = false;
-                int varflag = 0, varflag1 = 0;
+                bool blnErrorFlag = false; 
                 if (Convert.ToString(txtPICode.Text).Trim() == "")
                 {
                     errItems.SetError(txtPICode, "Please enter PICode");
@@ -609,19 +608,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        public void udfnsave()
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
 
 
         public void udfnclose()
@@ -663,19 +650,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void btnClose_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void btnClose_Leave(object sender, EventArgs e)
         {
@@ -689,21 +664,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
- 
-        private void RadioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GroupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RbInActive_CheckedChanged_1(object sender, EventArgs e)
-        {
-
-        }
+  
 
         private void TxtPICode_KeyDown(object sender, KeyEventArgs e)
         {
@@ -882,40 +843,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-       
-
-        private void TxtPurchaseRate_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                   // txtMRPRate.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtMRPRate_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtMaxStock.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void TxtMaxStock_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1085,13 +1013,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-
-            //////////////////////////////////////////////////////
-            
-
-
-
+            } 
         }
 
         private void TxtPICode_Enter(object sender, EventArgs e)
@@ -1172,32 +1094,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtPurchaseRate_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-              //  txtPurchaseRate.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtMRPRate_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-              //  txtMRPRate.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void TxtMaxStock_Enter(object sender, EventArgs e)
         {
@@ -1290,12 +1187,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-
-
-        ////////////////////////////////////////////////////
-
+        } 
 
         private void TxtPICode_Leave(object sender, EventArgs e)
         {
@@ -1869,9 +1761,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
           
-        }
-       
-
+        } 
        
         private void CmbBatchNoGeneration_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -936,7 +936,7 @@
             this.groupBox2.Size = new System.Drawing.Size(279, 163);
             this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
+//            this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
             // 
             // txtWMinSaleQty
             // 
@@ -1005,7 +1005,7 @@
             this.rbInActive.TabStop = true;
             this.rbInActive.Text = "InActive";
             this.rbInActive.UseVisualStyleBackColor = true;
-            this.rbInActive.CheckedChanged += new System.EventHandler(this.RbInActive_CheckedChanged_1);
+          //  this.rbInActive.CheckedChanged += new System.EventHandler(this.RbInActive_CheckedChanged_1);
             this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInActive_KeyDown);
             // 
             // rbActive
@@ -1020,7 +1020,7 @@
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
-            this.rbActive.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
+          //  this.rbActive.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
             this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             // 
             // txtDStatus
@@ -1347,7 +1347,7 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
-            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
+         //   this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
             // CP_Product
