@@ -453,7 +453,7 @@ namespace ROMS
                              udfnclear();
                             if (btnSave.Text == "Update")
                             {
-                                udfnclose();
+                                this.Hide();
                             }
                         }
                         else
