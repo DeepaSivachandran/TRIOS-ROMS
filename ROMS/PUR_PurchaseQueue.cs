@@ -329,5 +329,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void PUR_PurchaseQueue_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.Items.Add("GRN Draft");
+                cmbStatus.Items.Add("GRN Completed");
+                cmbType.Items.Add("From GRN");
+                cmbType.Items.Add("From DC");
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

@@ -134,7 +134,7 @@ namespace ROMS
                 DataSet objDs=new DataSet();
                 if (txtUserName.TextLength != 0 & txtPassword.TextLength != 0)
                 {
-                    DataService objDser = new DataService();
+                    //DataService objDser = new DataService();
                     //int count = 0;
                     //count = Convert.ToInt16(objDser.displaydata("select count(*) as count from CP_USERPROFILE where Userid='" + txtUserName.Text + "' and UserPassword='" + GenerateMD5(txtPassword.Text) + "' And StatusCode = 1"));
                     //objDs = objDser.GetDataset("select *,B.RoleName from CP_USERPROFILE AS A INNER JOIN CP_USERROLE AS B ON A.UserRoleCode=B.RoleCode where A.StatusCode = 1 And A.Userid='" + txtUserName.Text + "' and A.UserPassword='" + GenerateMD5(txtPassword.Text) + "'; SELECT TableName FROM DEF_TABLEDETAILS;SELECT top 1 ReleaseDate from (select  convert(varchar(10),ReleaseDate, 103) AS ReleaseDate,row_number() over( ORDER BY ReleaseDate DESC) as sno FROM TRANS_RELEASEDETAILS) derv where sno=1");
