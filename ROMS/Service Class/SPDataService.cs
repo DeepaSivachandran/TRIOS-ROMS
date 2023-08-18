@@ -319,13 +319,14 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_ProductGroup", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Unit]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraPRGID", paraPRGID);
-                varSqlCommand.Parameters.AddWithValue("@paraPRG_EName", paraPRG_EName);
-                varSqlCommand.Parameters.AddWithValue("@paraPRG_TName", paraPRG_TName);
-                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@viewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitId", paraUnitId);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitName", paraUnitName);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitSymbol", paraUnitSymbol);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitDecimal", paraUnitDecimal);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitStatusId", paraUnitStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
