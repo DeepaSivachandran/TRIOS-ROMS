@@ -89,7 +89,7 @@ namespace ROMS
                 string varResult = "";
                 if (btnSave.Text == "Save")
                 {
-                   // varResult = objspservice.udfnCity(0, 0, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, "City Creation");
+                    varResult = objspservice.udfnCity(0, 0, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, "City Creation");
                 }
                 else
                 {   
