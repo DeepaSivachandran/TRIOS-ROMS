@@ -78,7 +78,7 @@ namespace ROMS
             {
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objspservice.udfnStockList(0,(Convert.ToInt16(cmbConcern.SelectedValue)));
+                objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)));
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -144,7 +144,7 @@ namespace ROMS
 
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
-                        varResult = objspservice.udfnStock(2,Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value),0,0,"","","",0,0,0,"Stock Delete");
+                        varResult = objspservice.udfnStockLocation(2,Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value),0,0,"","","",0,0,0,"Stock Delete");
 
 
                         if (varResult.Split('~')[0] == "3")

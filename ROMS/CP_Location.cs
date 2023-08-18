@@ -204,11 +204,11 @@ namespace ROMS
                 string varResult = "";
                 if (btnSave.Text == "Save")
                 {
-                    varResult = objspservice.udfnStock(0, 0, Convert.ToInt16(cmbConcern.SelectedValue),  Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(),(txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, "Stock Creation");
+                    varResult = objspservice.udfnStockLocation(0, 0, Convert.ToInt16(cmbConcern.SelectedValue),  Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(),(txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, "Stock Creation");
                 }
                 else
                 {
-                    varResult = objspservice.udfnStock(1,varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, "Stock Creation");
+                    varResult = objspservice.udfnStockLocation(1,varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, "Stock Creation");
                     varUpdate = 1;
                     udfnclose();
                 }

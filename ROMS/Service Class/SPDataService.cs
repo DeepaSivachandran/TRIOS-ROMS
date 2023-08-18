@@ -250,7 +250,7 @@ namespace ROMS
             return ds;
         }
         //Created BY:-Sathish
-        public string udfnStock(int paraviewType, int paraStockId, int paraConcern, int paraLocationType,string paraLocationNameEnglish,string paraLocationNameTamil,string paraShortName, int paraGodownType, int paraStockApplicable,int paraStockStatusId, string paraOriginator)
+        public string udfnStockLocation(int paraviewType, int paraStockId, int paraConcern, int paraLocationType,string paraLocationNameEnglish,string paraLocationNameTamil,string paraShortName, int paraGodownType, int paraStockApplicable,int paraStockStatusId, string paraOriginator)
         {
             string varResult = "";
             try
@@ -286,7 +286,7 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-17/08/2023
-        public DataSet udfnStockList(int paraviewType,int paraConcern)
+        public DataSet udfnStockLocationList(int paraviewType,int paraConcern)
         {
             DataSet ds = new DataSet();
             try
