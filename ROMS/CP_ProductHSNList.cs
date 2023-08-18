@@ -320,7 +320,7 @@ namespace ROMS
             }
             finally
             {
-                grdHSNList.ClearSelection();
+               
                 picLoader.Visible = false;
             }
         }
@@ -427,6 +427,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdHSNList.ClearSelection();
             }
         }
     }

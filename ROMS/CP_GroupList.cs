@@ -330,6 +330,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                grdGroupList.ClearSelection();
+            }
         }
 
         private void GrdGroupList_DoubleClick(object sender, EventArgs e)

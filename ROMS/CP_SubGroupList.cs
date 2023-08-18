@@ -163,7 +163,7 @@ namespace ROMS
             }
             finally
             {
-                grdSubGroupList.ClearSelection();
+               
                 lblNoOfPrSubGroup.Text = Convert.ToString(grdSubGroupList.Rows.Count);
                 varSubGroupCode = Convert.ToInt32(cmbProductSubGroup.SelectedValue);
             }

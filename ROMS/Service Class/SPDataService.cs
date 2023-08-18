@@ -320,8 +320,8 @@ namespace ROMS
             return ds;
         }
 
-
-       public string udfnBrand(int ViewType,string paraBD_EName, string paraBD_TName, int paraStatusId,  string paraOriginator)
+        // Sivabharathi    Create date: 17/08/2023    Description:Brand Sp
+        public string udfnBrand(int ViewType,string paraBD_EName, string paraBD_TName, int paraStatusId,  string paraOriginator)
        {
             string varResult = "";
             try
