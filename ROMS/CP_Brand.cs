@@ -102,6 +102,7 @@ namespace ROMS
         {
             try
             {
+                grdSubGroupAdd.Rows.Clear();
                 if (grdSubGroup.Rows.Count > 0)
                 {
                     for (int i = 0; i < grdSubGroup.Rows.Count; i++)
@@ -111,14 +112,7 @@ namespace ROMS
                             grdSubGroupAdd.Rows.Add(false, grdSubGroup.Rows[i].Cells["clmProductGroup"].Value, grdSubGroup.Rows[i].Cells["clmSubGroups"].Value, grdSubGroup.Rows[i].Cells["clmGroupId"].Value, grdSubGroup.Rows[i].Cells["clmSubGroupId"].Value);
 
                         }
-                        if (varGroupId == "")
-                        {
-                            varGroupId = Convert.ToString(grdSubGroup.Rows[i].Cells["clmGroupId"].Value);
-                        }
-                        else
-                        {
-                            varGroupId = varGroupId + "," + Convert.ToString(grdSubGroup.Rows[i].Cells["clmGroupId"].Value);
-                        }
+                       
                         if (varSubGroupId == "")
                         {
                             varSubGroupId = Convert.ToString(grdSubGroup.Rows[i].Cells["clmSubGroupId"].Value);
@@ -154,7 +148,6 @@ namespace ROMS
                             grdSubGroupAdd.Rows.RemoveAt(i);
 
                         }
-                       
                     }
                 }
                 else
@@ -461,8 +454,7 @@ namespace ROMS
         public void udfnSave(object sender, EventArgs e)
         {
             try
-            {
-                int varBrandId = 0;
+            { 
                 if (rbActive.Checked)
                 {
                     varStatusid = 1;
@@ -474,7 +466,7 @@ namespace ROMS
                 if (btnSave.Text == "Save")
                 {
                     SPDataService objDser = new SPDataService();
-                    string varResult = objDser.udfnBrand(0,Convert.ToString(txtEBrandNameInEnglish.Text), Convert.ToString(txtEBrandNameInTamil.Text), varStatusid,varBrandId,varGroupId,varGroupId,"Creation");
+                    string varResult = objDser.udfnBrand(0,0,Convert.ToString(txtEBrandNameInEnglish.Text), Convert.ToString(txtEBrandNameInTamil.Text), varStatusid,varSubGroupId,"Creation");
                     objDser.CloseConnection();
                     if (varResult.Split('~')[0] == "3")
                     {

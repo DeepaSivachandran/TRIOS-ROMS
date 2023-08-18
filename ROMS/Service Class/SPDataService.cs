@@ -621,7 +621,6 @@ namespace ROMS
             }
             return ds;
         }
-
         // Created by : Deepa
         // Created on : 16-08-2023
         public DataSet udfnUserList(int paraviewType, string paraLoginId, string paraPassword)
@@ -768,37 +767,64 @@ namespace ROMS
         }
 
 
-       public string udfnBrand(int ViewType,string paraBD_EName, string paraBD_TName, int paraStatusId,  string paraOriginator)
-       {
-            string varResult = "";
+          public string udfnBrand(int ViewType,int paraBDID, string paraBD_EName, string paraBD_TName,int paraStatusId, string paraPRSGID, string paraOriginator)
+          {
+                 string varResult = "";
+                try
+                {
+                    tmpspcall = new SPCall();
+                    SqlCommand varSqlCommand = new SqlCommand("TRNS_Brand", tmpspcall.objConn);
+                    varSqlCommand.CommandType = CommandType.StoredProcedure;
+                    varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                    varSqlCommand.Parameters.AddWithValue("@paraBDID", @paraBDID);
+                     varSqlCommand.Parameters.AddWithValue("@paraBD_EName", paraBD_EName);
+                    varSqlCommand.Parameters.AddWithValue("@paraBD_TName", paraBD_TName);
+                    varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                    varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
+                    varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                    varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                    varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                    varSqlCommand.CommandTimeout = 0;
+                    varResult = varSqlCommand.ExecuteScalar().ToString();
+                }
+                catch (Exception ex)
+                {
+                     objError = new DataError();
+                     objError.WriteFile(ex);
+                }
+                finally
+                {
+                    tmpspcall.CloseConnection();
+                }
+                return varResult;
+          }
+
+        public DataSet udfnBrandList(int ViewType, int paraBDID)
+        {
+            DataSet ds = new DataSet();
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_Brand", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Brand]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraBD_EName", paraBD_EName);
-                varSqlCommand.Parameters.AddWithValue("@paraBD_TName", paraBD_TName);
-                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
-                varSqlCommand.Parameters.AddWithValue("@paraPR_BDID", paraPR_BDID);
-                varSqlCommand.Parameters.AddWithValue("@paraPRGID", paraPRGID);
-                varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
+                varSqlCommand.Parameters.AddWithValue("@paraBDID", paraBDID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.CommandTimeout = 0;
-                varResult = varSqlCommand.ExecuteScalar().ToString();
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
             }
             catch (Exception ex)
             {
-                 objError = new DataError();
-                 objError.WriteFile(ex);
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
             finally
             {
                 tmpspcall.CloseConnection();
             }
-            return varResult;
-          }
+            return ds;
+        }
     }
 }
