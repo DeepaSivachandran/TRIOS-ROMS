@@ -491,7 +491,7 @@ namespace ROMS
             }
             return ds;
         }
-
+        // Sivabharathi    Create date: 14/08/2023    Description:Sub Group  Sp
         public string udfnSubGroup(int ViewType, int paraPRSGID,int paraPRSG_PRGID, string paraPRSG_EName, string paraPRSG_TName, int paraStatusId,int paraSG_BatchNo,int paraPRSG_SLID, int paraPRSG_RKID,string paraOriginator)
         {
 
@@ -527,8 +527,8 @@ namespace ROMS
             }
             return varResult;
         }
-
-        public DataSet udfnSubGroupList(int ViewType, int paraPRSGID)
+        // Sivabharathi    Create date: 14/08/2023    Description:Sub Group list Sp
+        public DataSet udfnSubGroupList(int ViewType, int paraPRSGID,string paraPRGID)
         {
             DataSet ds = new DataSet();
             try
@@ -538,6 +538,7 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRGIDs", paraPRGID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -704,7 +705,6 @@ namespace ROMS
 
        public string udfnBrand(int ViewType,string paraBD_EName, string paraBD_TName, int paraStatusId,  string paraOriginator)
        {
-
             string varResult = "";
             try
             {

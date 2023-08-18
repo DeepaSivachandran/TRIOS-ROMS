@@ -329,6 +329,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                grdGroupList.ClearSelection();
+            }
         }
 
         private void GrdGroupList_DoubleClick(object sender, EventArgs e)
@@ -548,6 +552,10 @@ namespace ROMS
                     }
                     //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
                     ExcelObj.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
