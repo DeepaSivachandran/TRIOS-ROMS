@@ -54,6 +54,7 @@
             this.tcSupplier = new System.Windows.Forms.TabControl();
             this.tbSupplier = new System.Windows.Forms.TabPage();
             this.grpSupplierDetails = new System.Windows.Forms.GroupBox();
+            this.lblcity = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cmbSecondLevel = new System.Windows.Forms.ComboBox();
             this.txtNextLevel = new System.Windows.Forms.TextBox();
@@ -87,6 +88,9 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
             this.lvCity = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.txtwhatsapp = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -329,6 +333,7 @@
             // 
             // grpSupplierDetails
             // 
+            this.grpSupplierDetails.Controls.Add(this.lblcity);
             this.grpSupplierDetails.Controls.Add(this.groupBox3);
             this.grpSupplierDetails.Controls.Add(this.grbEnvelopeDetails);
             this.grpSupplierDetails.Controls.Add(this.panelStatus);
@@ -343,6 +348,15 @@
             this.grpSupplierDetails.TabIndex = 71;
             this.grpSupplierDetails.TabStop = false;
             this.grpSupplierDetails.Enter += new System.EventHandler(this.GrpSupplierDetails_Enter);
+            // 
+            // lblcity
+            // 
+            this.lblcity.AutoSize = true;
+            this.lblcity.Location = new System.Drawing.Point(931, 60);
+            this.lblcity.Name = "lblcity";
+            this.lblcity.Size = new System.Drawing.Size(0, 20);
+            this.lblcity.TabIndex = 77;
+            this.lblcity.Visible = false;
             // 
             // groupBox3
             // 
@@ -481,9 +495,6 @@
             // 
             this.cmbDesignation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDesignation.FormattingEnabled = true;
-            this.cmbDesignation.Items.AddRange(new object[] {
-            "The Proprietor",
-            "The Manager"});
             this.cmbDesignation.Location = new System.Drawing.Point(123, 23);
             this.cmbDesignation.Name = "cmbDesignation";
             this.cmbDesignation.Size = new System.Drawing.Size(149, 27);
@@ -794,13 +805,32 @@
             // 
             // lvCity
             // 
+            this.lvCity.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvCity.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvCity.HideSelection = false;
-            this.lvCity.Location = new System.Drawing.Point(121, 157);
+            this.lvCity.Location = new System.Drawing.Point(121, 158);
             this.lvCity.Name = "lvCity";
-            this.lvCity.Size = new System.Drawing.Size(186, 65);
-            this.lvCity.TabIndex = 62;
+            this.lvCity.Size = new System.Drawing.Size(313, 78);
+            this.lvCity.TabIndex = 77;
             this.lvCity.UseCompatibleStateImageBehavior = false;
+            this.lvCity.View = System.Windows.Forms.View.Details;
             this.lvCity.Visible = false;
+            this.lvCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvCity_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
             // 
             // textBox6
             // 
@@ -1043,6 +1073,7 @@
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(186, 27);
             this.txtCity.TabIndex = 5;
+            this.txtCity.TextChanged += new System.EventHandler(this.TxtCity_TextChanged);
             this.txtCity.Enter += new System.EventHandler(this.txtCity_Enter);
             this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCity_KeyDown);
             this.txtCity.Leave += new System.EventHandler(this.txtCity_Leave);
@@ -1766,14 +1797,14 @@
             this.grbSupplierMapping.Controls.Add(this.lblDESubGroup);
             this.grbSupplierMapping.Location = new System.Drawing.Point(13, 66);
             this.grbSupplierMapping.Name = "grbSupplierMapping";
-            this.grbSupplierMapping.Size = new System.Drawing.Size(1314, 495);
+            this.grbSupplierMapping.Size = new System.Drawing.Size(1308, 495);
             this.grbSupplierMapping.TabIndex = 25;
             this.grbSupplierMapping.TabStop = false;
             // 
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(897, 43);
+            this.textBox5.Location = new System.Drawing.Point(896, 43);
             this.textBox5.MaxLength = 50;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(403, 27);
@@ -1792,7 +1823,7 @@
             // txtSearchByProduct1
             // 
             this.txtSearchByProduct1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchByProduct1.Location = new System.Drawing.Point(350, 39);
+            this.txtSearchByProduct1.Location = new System.Drawing.Point(398, 43);
             this.txtSearchByProduct1.MaxLength = 50;
             this.txtSearchByProduct1.Name = "txtSearchByProduct1";
             this.txtSearchByProduct1.Size = new System.Drawing.Size(251, 27);
@@ -1802,7 +1833,7 @@
             // 
             this.lblSearchbyProduct1.AutoSize = true;
             this.lblSearchbyProduct1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchbyProduct1.Location = new System.Drawing.Point(350, 18);
+            this.lblSearchbyProduct1.Location = new System.Drawing.Point(398, 18);
             this.lblSearchbyProduct1.Name = "lblSearchbyProduct1";
             this.lblSearchbyProduct1.Size = new System.Drawing.Size(190, 20);
             this.lblSearchbyProduct1.TabIndex = 35;
@@ -1813,7 +1844,7 @@
             this.Add.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.Add.Image = global::ROMS.Properties.Resources.add;
             this.Add.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Add.Location = new System.Drawing.Point(616, 264);
+            this.Add.Location = new System.Drawing.Point(652, 264);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(31, 29);
             this.Add.TabIndex = 33;
@@ -1855,7 +1886,7 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.White;
-            this.dataGridView1.Location = new System.Drawing.Point(653, 76);
+            this.dataGridView1.Location = new System.Drawing.Point(686, 76);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
@@ -1864,7 +1895,7 @@
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(647, 404);
+            this.dataGridView1.Size = new System.Drawing.Size(613, 404);
             this.dataGridView1.TabIndex = 6;
             // 
             // dataGridViewTextBoxColumn1
@@ -1962,7 +1993,7 @@
             this.grdSupplierMapping.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.grdSupplierMapping.RowTemplate.Height = 25;
             this.grdSupplierMapping.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSupplierMapping.Size = new System.Drawing.Size(603, 404);
+            this.grdSupplierMapping.Size = new System.Drawing.Size(639, 404);
             this.grdSupplierMapping.TabIndex = 4;
             // 
             // chksupplier
@@ -2010,7 +2041,7 @@
             this.cmbSubGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSubGroup.FormattingEnabled = true;
-            this.cmbSubGroup.Location = new System.Drawing.Point(142, 39);
+            this.cmbSubGroup.Location = new System.Drawing.Point(141, 43);
             this.cmbSubGroup.Name = "cmbSubGroup";
             this.cmbSubGroup.Size = new System.Drawing.Size(142, 27);
             this.cmbSubGroup.TabIndex = 30;
@@ -2020,7 +2051,7 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(290, 38);
+            this.btnView.Location = new System.Drawing.Point(290, 42);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(33, 29);
             this.btnView.TabIndex = 31;
@@ -2031,7 +2062,7 @@
             // 
             this.lblDEGroup.AutoSize = true;
             this.lblDEGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDEGroup.Location = new System.Drawing.Point(14, 18);
+            this.lblDEGroup.Location = new System.Drawing.Point(10, 18);
             this.lblDEGroup.Name = "lblDEGroup";
             this.lblDEGroup.Size = new System.Drawing.Size(88, 20);
             this.lblDEGroup.TabIndex = 27;
@@ -2042,7 +2073,7 @@
             this.cmbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGroup.FormattingEnabled = true;
-            this.cmbGroup.Location = new System.Drawing.Point(14, 39);
+            this.cmbGroup.Location = new System.Drawing.Point(10, 43);
             this.cmbGroup.Name = "cmbGroup";
             this.cmbGroup.Size = new System.Drawing.Size(120, 27);
             this.cmbGroup.TabIndex = 28;
@@ -2051,7 +2082,7 @@
             // 
             this.lblDESubGroup.AutoSize = true;
             this.lblDESubGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDESubGroup.Location = new System.Drawing.Point(142, 18);
+            this.lblDESubGroup.Location = new System.Drawing.Point(141, 18);
             this.lblDESubGroup.Name = "lblDESubGroup";
             this.lblDESubGroup.Size = new System.Drawing.Size(112, 20);
             this.lblDESubGroup.TabIndex = 29;
@@ -2528,7 +2559,6 @@
         private System.Windows.Forms.TextBox textBox28;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.GroupBox grbform;
-        private System.Windows.Forms.ListView lvCity;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox txtwhatsapp;
         private System.Windows.Forms.TextBox textBox3;
@@ -2630,5 +2660,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        public System.Windows.Forms.ListView lvCity;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Label lblcity;
     }
 }

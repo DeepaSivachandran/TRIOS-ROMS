@@ -488,6 +488,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            { 
+                DGV_SearchGrid.ClearSelection();
+                grdCompanyList.ClearSelection();
+            }
         }
 
         private void CP_Companylist_Load(object sender, EventArgs e)
@@ -495,9 +500,7 @@ namespace ROMS
 
             try
             {
-                udfnList();
-                grdCompanyList.ClearSelection();
-                DGV_SearchGrid.ClearSelection();
+                udfnList(); 
             }
             catch (Exception ex)
             {
@@ -542,10 +545,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void GrdCompanyList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+         
     }
 }
