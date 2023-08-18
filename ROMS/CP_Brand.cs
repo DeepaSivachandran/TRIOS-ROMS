@@ -22,6 +22,7 @@ namespace ROMS
         public int varStatusid = 0;
         public int varCloseFlag = 0;
         public int varFormFlag = 0;
+        public int varmastertype = 0;
         public int varGroupId = -1;
         public string varGroup = "";
         public CP_Brand()
