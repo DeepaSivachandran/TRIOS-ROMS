@@ -311,12 +311,7 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return ds;
-        }
-
-        // Sivabharathi    Create date: 10/08/2023    Description:	Group Sp
-        public string udfnGroup(int ViewType, int paraPRGID, string paraPRG_EName, string paraPRG_TName, int paraStatusId, string paraOriginator)
-        {
-           
+        }           
         //Created By:-Sathish
         public string udfnUnit(int paraviewType, int paraUnitId, string paraUnitName, string paraUnitSymbol, int paraUnitDecimal,int paraUnitStatusId,string paraOriginator)
         {
