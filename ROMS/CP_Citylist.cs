@@ -118,7 +118,7 @@ namespace ROMS
             {
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
-               // objDs = objspservice.udfnCityList(0,"",0);
+                objDs = objspservice.udfnCityList(0,"",0);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -298,7 +298,7 @@ namespace ROMS
         }
         private void GrdCityList_SelectionChanged(object sender, EventArgs e)
         {
-            udfnSearchGridHead();
+            //udfnSearchGridHead();
         }
         private void GrdCityList_Scroll(object sender, ScrollEventArgs e)
         {
