@@ -43,24 +43,6 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlRack = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.lblGC = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.grbFilterBy = new System.Windows.Forms.GroupBox();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.btnView = new System.Windows.Forms.Button();
-            this.cmbGroupType = new System.Windows.Forms.ComboBox();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdGroupList = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmshopgodown = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmrackgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdshtname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,6 +52,24 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblGC = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.grbFilterBy = new System.Windows.Forms.GroupBox();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
+            this.cmbGroupType = new System.Windows.Forms.ComboBox();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.grdGroupList = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmshopgodown = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmrackgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsGroupList.SuspendLayout();
             this.pnlRack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -225,6 +225,60 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958804;
             // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.MinimumWidth = 6;
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // clmdconcern
+            // 
+            this.clmdconcern.HeaderText = "Concern";
+            this.clmdconcern.MinimumWidth = 6;
+            this.clmdconcern.Name = "clmdconcern";
+            this.clmdconcern.Width = 200;
+            // 
+            // clmdshtname
+            // 
+            this.clmdshtname.HeaderText = "Stock Location";
+            this.clmdshtname.MinimumWidth = 6;
+            this.clmdshtname.Name = "clmdshtname";
+            this.clmdshtname.Width = 200;
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Rack Group";
+            this.clmdstatus.MinimumWidth = 6;
+            this.clmdstatus.Name = "clmdstatus";
+            // 
+            // clmDrackname
+            // 
+            this.clmDrackname.HeaderText = "Rack Name";
+            this.clmDrackname.Name = "clmDrackname";
+            this.clmDrackname.Width = 200;
+            // 
+            // clmshortName
+            // 
+            this.clmshortName.HeaderText = "Short Name";
+            this.clmshortName.Name = "clmshortName";
+            this.clmshortName.Width = 200;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Description";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Total Products";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // clmstatus
+            // 
+            this.clmstatus.HeaderText = "Status";
+            this.clmstatus.Name = "clmstatus";
+            // 
             // lblGC
             // 
             this.lblGC.AutoSize = true;
@@ -356,20 +410,6 @@
             this.grdGroupList.Size = new System.Drawing.Size(1348, 510);
             this.grdGroupList.TabIndex = 958798;
             // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(15, 82);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1325, 550);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958800;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "S.No.";
@@ -428,59 +468,19 @@
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
-            // clmdsno
+            // picLoader
             // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.MinimumWidth = 6;
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmdconcern
-            // 
-            this.clmdconcern.HeaderText = "Concern";
-            this.clmdconcern.MinimumWidth = 6;
-            this.clmdconcern.Name = "clmdconcern";
-            this.clmdconcern.Width = 200;
-            // 
-            // clmdshtname
-            // 
-            this.clmdshtname.HeaderText = "Stock Location";
-            this.clmdshtname.MinimumWidth = 6;
-            this.clmdshtname.Name = "clmdshtname";
-            this.clmdshtname.Width = 200;
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Rack Group";
-            this.clmdstatus.MinimumWidth = 6;
-            this.clmdstatus.Name = "clmdstatus";
-            // 
-            // clmDrackname
-            // 
-            this.clmDrackname.HeaderText = "Rack Name";
-            this.clmDrackname.Name = "clmDrackname";
-            this.clmDrackname.Width = 200;
-            // 
-            // clmshortName
-            // 
-            this.clmshortName.HeaderText = "Short Name";
-            this.clmshortName.Name = "clmshortName";
-            this.clmshortName.Width = 200;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Description";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Total Products";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // clmstatus
-            // 
-            this.clmstatus.HeaderText = "Status";
-            this.clmstatus.Name = "clmstatus";
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(15, 82);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1325, 550);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958800;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // CP_RackList
             // 
