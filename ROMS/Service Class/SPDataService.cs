@@ -432,6 +432,70 @@ namespace ROMS
             return ds;
         }
 
+        //Created BY:-Sathish
+        public string udfnStockLocation(int paraviewType, int paraStockId, int paraConcern, int paraLocationType, string paraLocationNameEnglish, string paraLocationNameTamil, string paraShortName, int paraGodownType, int paraStockApplicable, int paraStockStatusId, string paraOriginator)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_StockLocation]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@viewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraStockId", paraStockId);
+                varSqlCommand.Parameters.AddWithValue("@paraConcern", paraConcern);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationType", paraLocationType);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationNameEnglish", paraLocationNameEnglish);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationNameTamil", paraLocationNameTamil);
+                varSqlCommand.Parameters.AddWithValue("@paraShortName", paraShortName);
+                varSqlCommand.Parameters.AddWithValue("@paraGodownType", paraGodownType);
+                varSqlCommand.Parameters.AddWithValue("@paraStockApplicable", paraStockApplicable);
+                varSqlCommand.Parameters.AddWithValue("@paraStockStatusId", paraStockStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        //Created By :-Sathish ; Created On :-17/08/2023
+        public DataSet udfnStockLocationList(int paraviewType, int paraConcern)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_StockLocation]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraConcern", paraConcern);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
         // Sivabharathi    Create date: 10/08/2023    Description:	Group Sp
         public string udfnGroup(int ViewType, int paraPRGID, string paraPRG_EName, string paraPRG_TName, int paraStatusId, string paraOriginator)
         {
