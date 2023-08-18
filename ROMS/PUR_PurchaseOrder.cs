@@ -50,6 +50,18 @@ namespace ROMS
         {
             try
             {
+                cmbReturnPolicy.Items.Add("Yes");
+                cmbReturnPolicy.Items.Add("No");
+                cmbReturnPolicy.SelectedIndex = 0;
+                cmbReturnType.Items.Add("Any Time");
+                cmbReturnType.Items.Add("Weekly");
+                cmbReturnType.Items.Add("Monthly");
+                cmbReturnType.Items.Add("Quarterly");
+                cmbReturnType.SelectedIndex = 0;
+                txtReturnText.Visible = false;
+                cmbPolicyContent.Visible = false;
+                txtNextLevel.Visible = false;
+                cmbSecondLevel.Visible = false;
                 dpPlanDate.MinDate = DateTime.Today;
                 dpPlanDate.MaxDate = DateTime.MaxValue;
                 dpPlanDate.Value = DateTime.Today;
@@ -265,12 +277,12 @@ namespace ROMS
         }
       
 
-        private void BtnDamage_Click(object sender, EventArgs e)
+        private void btnDC_Click(object sender, EventArgs e)
         {
             try
             {
-                MainForm.objPUR_PODamaged = new PUR_PODamaged();
-                MainForm.objPUR_PODamaged.ShowDialog();
+                MainForm.objPUR_PODamagedView = new PUR_PODamagedView();
+                MainForm.objPUR_PODamagedView.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -393,6 +405,185 @@ namespace ROMS
             }
         }
 
-        
+        private void CmbReturnPolicy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbReturnPolicy.Select(int.MaxValue, 0)));
+                if (cmbReturnPolicy.Text == "Yes") { cmbReturnType.Enabled = true; }
+                else { cmbReturnType.Enabled = false; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReturnType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                BeginInvoke(new Action(() => cmbReturnType.Select(int.MaxValue, 0)));
+                if (cmbReturnType.Text == "Any Time")
+                {
+                    cmbPolicyContent.Items.Clear();
+                    txtReturnText.Visible = false;
+                    cmbPolicyContent.Visible = false;
+                    txtNextLevel.Visible = false;
+                    cmbSecondLevel.Visible = false;
+                }
+                else if (cmbReturnType.Text == "Weekly")
+                {
+                    txtReturnText.Text = "Day";
+                    cmbPolicyContent.Enabled = true;
+                    cmbPolicyContent.Items.Clear();
+                    cmbPolicyContent.Items.Add("Monday");
+                    cmbPolicyContent.Items.Add("Tuesday");
+                    cmbPolicyContent.Items.Add("Wednesday");
+                    cmbPolicyContent.Items.Add("Thursday");
+                    cmbPolicyContent.Items.Add("Friday");
+                    cmbPolicyContent.Items.Add("Saturday");
+                    cmbPolicyContent.Items.Add("Sunday");
+                    cmbPolicyContent.SelectedIndex = 0;
+                    txtReturnText.Visible = true;
+                    cmbPolicyContent.Visible = true;
+                    txtNextLevel.Visible = false;
+                    cmbSecondLevel.Visible = false;
+                }
+                else if (cmbReturnType.Text == "Monthly")
+                {
+                    txtReturnText.Text = "Week No.";
+                    txtReturnText.Visible = true;
+                    cmbPolicyContent.Visible = true;
+                    cmbPolicyContent.Enabled = true;
+                    cmbPolicyContent.Items.Clear();
+                    cmbPolicyContent.Items.Add("1st Week");
+                    cmbPolicyContent.Items.Add("2nd Week");
+                    cmbPolicyContent.Items.Add("3rd Week");
+                    cmbPolicyContent.Items.Add("4th Week");
+                    cmbPolicyContent.Items.Add("5th Week");
+                    cmbPolicyContent.SelectedIndex = 0;
+                    txtNextLevel.Text = "Day";
+                    cmbSecondLevel.Items.Clear();
+                    cmbSecondLevel.Items.Add("Monday");
+                    cmbSecondLevel.Items.Add("Tuesday");
+                    cmbSecondLevel.Items.Add("Wednesday");
+                    cmbSecondLevel.Items.Add("Thursday");
+                    cmbSecondLevel.Items.Add("Friday");
+                    cmbSecondLevel.Items.Add("Saturday");
+                    cmbSecondLevel.Items.Add("Sunday");
+                    txtNextLevel.Visible = true;
+                    cmbSecondLevel.Visible = true;
+                    cmbSecondLevel.SelectedIndex = 0;
+                }
+                else if (cmbReturnType.Text == "Quarterly")
+                {
+                    txtReturnText.Text = "Month";
+                    txtReturnText.Visible = true;
+                    cmbPolicyContent.Visible = true;
+                    cmbPolicyContent.Enabled = true;
+                    cmbPolicyContent.Items.Clear();
+                    cmbPolicyContent.Items.Add("January");
+                    cmbPolicyContent.Items.Add("February");
+                    cmbPolicyContent.Items.Add("March");
+                    cmbPolicyContent.Items.Add("April");
+                    cmbPolicyContent.Items.Add("May");
+                    cmbPolicyContent.Items.Add("June");
+                    cmbPolicyContent.Items.Add("July");
+                    cmbPolicyContent.Items.Add("August");
+                    cmbPolicyContent.Items.Add("September");
+                    cmbPolicyContent.Items.Add("October");
+                    cmbPolicyContent.Items.Add("November");
+                    cmbPolicyContent.Items.Add("December");
+                    cmbPolicyContent.SelectedIndex = 0;
+                    txtNextLevel.Visible = true;
+                    cmbSecondLevel.Visible = true;
+                    txtNextLevel.Text = "Day of the month";
+                    cmbSecondLevel.Items.Clear();
+                    cmbSecondLevel.Items.Add("1");
+                    cmbSecondLevel.Items.Add("2");
+                    cmbSecondLevel.Items.Add("3");
+                    cmbSecondLevel.Items.Add("4");
+                    cmbSecondLevel.Items.Add("5");
+                    cmbSecondLevel.Items.Add("6");
+                    cmbSecondLevel.Items.Add("7");
+                    cmbSecondLevel.Items.Add("8");
+                    cmbSecondLevel.Items.Add("9");
+                    cmbSecondLevel.Items.Add("10");
+                    cmbSecondLevel.Items.Add("11");
+                    cmbSecondLevel.Items.Add("12");
+                    cmbSecondLevel.Items.Add("13");
+                    cmbSecondLevel.Items.Add("14");
+                    cmbSecondLevel.Items.Add("15");
+                    cmbSecondLevel.Items.Add("16");
+                    cmbSecondLevel.Items.Add("17");
+                    cmbSecondLevel.Items.Add("18");
+                    cmbSecondLevel.Items.Add("19");
+                    cmbSecondLevel.Items.Add("20");
+                    cmbSecondLevel.Items.Add("21");
+                    cmbSecondLevel.Items.Add("22");
+                    cmbSecondLevel.Items.Add("23");
+                    cmbSecondLevel.Items.Add("24");
+                    cmbSecondLevel.Items.Add("25");
+                    cmbSecondLevel.Items.Add("26");
+                    cmbSecondLevel.Items.Add("27");
+                    cmbSecondLevel.Items.Add("28");
+                    cmbSecondLevel.Items.Add("29");
+                    cmbSecondLevel.Items.Add("30");
+                    cmbSecondLevel.Items.Add("31");
+                    cmbSecondLevel.SelectedIndex = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPolicyContent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbPolicyContent.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSecondLevel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbSecondLevel.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnDamage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_PODamaged = new PUR_PODamaged();
+                MainForm.objPUR_PODamaged.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
     }
 }

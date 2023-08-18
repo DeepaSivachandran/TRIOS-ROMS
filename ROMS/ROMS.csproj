@@ -53,6 +53,15 @@
     <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
       <HintPath>..\packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -99,6 +108,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -144,6 +154,54 @@
     <Compile Include="CP_GeneralSettings.designer.cs">
       <DependentUpon>CP_GeneralSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_BulkAttributes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BulkAttributes.designer.cs">
+      <DependentUpon>CP_BulkAttributes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_InwardQueueList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_InwardQueueList.designer.cs">
+      <DependentUpon>INV_InwardQueueList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseQueue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseQueue.designer.cs">
+      <DependentUpon>PUR_PurchaseQueue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockConversionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockConversionList.designer.cs">
+      <DependentUpon>INV_StockConversionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockHold.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockHold.designer.cs">
+      <DependentUpon>INV_StockHold.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_ChequePrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_ChequePrint.designer.cs">
+      <DependentUpon>PAY_ChequePrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_DebitNoteList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_DebitNoteList.designer.cs">
+      <DependentUpon>PAY_DebitNoteList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PODamagedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PODamagedView.designer.cs">
+      <DependentUpon>PUR_PODamagedView.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_DCDeatils.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,17 +244,17 @@
     <Compile Include="CP_SupplierOrderDetails.designer.cs">
       <DependentUpon>CP_SupplierOrderDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_UserCatagory.cs">
+    <Compile Include="CP_UserCategory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_UserCatagory.designer.cs">
-      <DependentUpon>CP_UserCatagory.cs</DependentUpon>
+    <Compile Include="CP_UserCategory.designer.cs">
+      <DependentUpon>CP_UserCategory.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_UserCatagoryList.cs">
+    <Compile Include="CP_UserCategoryList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_UserCatagoryList.designer.cs">
-      <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
+    <Compile Include="CP_UserCategoryList.designer.cs">
+      <DependentUpon>CP_UserCategoryList.cs</DependentUpon>
     </Compile>
     <Compile Include="INV_DamageEntryList.cs">
       <SubType>Form</SubType>
@@ -413,6 +471,12 @@
     </Compile>
     <Compile Include="PUR_PurchaseDC.designer.cs">
       <DependentUpon>PUR_PurchaseDC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockConversion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockConversion.designer.cs">
+      <DependentUpon>INV_StockConversion.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_RemarksHistory.cs">
       <SubType>Form</SubType>
@@ -743,6 +807,30 @@
     <EmbeddedResource Include="CP_GeneralSettings.resx">
       <DependentUpon>CP_GeneralSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_BulkAttributes.resx">
+      <DependentUpon>CP_BulkAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_InwardQueueList.resx">
+      <DependentUpon>INV_InwardQueueList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseQueue.resx">
+      <DependentUpon>PUR_PurchaseQueue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockConversionList.resx">
+      <DependentUpon>INV_StockConversionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockHold.resx">
+      <DependentUpon>INV_StockHold.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_ChequePrint.resx">
+      <DependentUpon>PAY_ChequePrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_DebitNoteList.resx">
+      <DependentUpon>PAY_DebitNoteList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PODamagedView.resx">
+      <DependentUpon>PUR_PODamagedView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PUR_DCDeatils.resx">
       <DependentUpon>PUR_DCDeatils.cs</DependentUpon>
     </EmbeddedResource>
@@ -764,11 +852,11 @@
     <EmbeddedResource Include="CP_SupplierOrderDetails.resx">
       <DependentUpon>CP_SupplierOrderDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_UserCatagory.resx">
-      <DependentUpon>CP_UserCatagory.cs</DependentUpon>
+    <EmbeddedResource Include="CP_UserCategory.resx">
+      <DependentUpon>CP_UserCategory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_UserCatagoryList.resx">
-      <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
+    <EmbeddedResource Include="CP_UserCategoryList.resx">
+      <DependentUpon>CP_UserCategoryList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_DamageEntryList.resx">
       <DependentUpon>INV_DamageEntryList.cs</DependentUpon>
@@ -877,6 +965,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseDC.resx">
       <DependentUpon>PUR_PurchaseDC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockConversion.resx">
+      <DependentUpon>INV_StockConversion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_RemarksHistory.resx">
       <DependentUpon>PUR_RemarksHistory.cs</DependentUpon>
@@ -1200,6 +1291,7 @@
     <None Include="Resources\returns.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\print16x16 %282%29.png" />
     <None Include="Resources\spinner.gif.gif" />
     <None Include="Resources\undo16x16.png" />
     <None Include="Resources\save16x16.png" />

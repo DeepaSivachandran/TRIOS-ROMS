@@ -45,18 +45,6 @@
             this.txtDChequeNo = new System.Windows.Forms.TextBox();
             this.txtDBankName = new System.Windows.Forms.TextBox();
             this.DGV_inward = new System.Windows.Forms.DataGridView();
-            this.clmch = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmVoucherDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmvoucherno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmenteredBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmApprovedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBillAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lvSupplier = new System.Windows.Forms.ListView();
             this.cbch = new System.Windows.Forms.CheckBox();
             this.grbSalesManDetails = new System.Windows.Forms.GroupBox();
@@ -76,6 +64,18 @@
             this.lblSupplier = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
+            this.clmch = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmVoucherDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmvoucherno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmenteredBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmApprovedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBillAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsSupplierPayment.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_inward)).BeginInit();
@@ -295,74 +295,6 @@
             this.DGV_inward.Size = new System.Drawing.Size(1335, 399);
             this.DGV_inward.TabIndex = 958809;
             // 
-            // clmch
-            // 
-            this.clmch.HeaderText = "";
-            this.clmch.Name = "clmch";
-            this.clmch.Width = 50;
-            // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            this.clmdsno.Width = 50;
-            // 
-            // clmVoucherDate
-            // 
-            this.clmVoucherDate.HeaderText = "Voucher Date";
-            this.clmVoucherDate.Name = "clmVoucherDate";
-            // 
-            // clmvoucherno
-            // 
-            this.clmvoucherno.HeaderText = "Voucher No.";
-            this.clmvoucherno.Name = "clmvoucherno";
-            this.clmvoucherno.Width = 150;
-            // 
-            // clmInvoiceDate
-            // 
-            this.clmInvoiceDate.HeaderText = "Invoice Date";
-            this.clmInvoiceDate.Name = "clmInvoiceDate";
-            // 
-            // clmInvoiceNo
-            // 
-            this.clmInvoiceNo.HeaderText = "Invoice No";
-            this.clmInvoiceNo.Name = "clmInvoiceNo";
-            this.clmInvoiceNo.Width = 150;
-            // 
-            // clmenteredBy
-            // 
-            this.clmenteredBy.HeaderText = "Entered By";
-            this.clmenteredBy.Name = "clmenteredBy";
-            this.clmenteredBy.Width = 150;
-            // 
-            // clmApprovedBy
-            // 
-            this.clmApprovedBy.HeaderText = "Approved By";
-            this.clmApprovedBy.Name = "clmApprovedBy";
-            this.clmApprovedBy.Width = 150;
-            // 
-            // clmBillAmount
-            // 
-            this.clmBillAmount.HeaderText = "Taxable Amount";
-            this.clmBillAmount.Name = "clmBillAmount";
-            // 
-            // clmAmount
-            // 
-            this.clmAmount.HeaderText = "Tax Amount";
-            this.clmAmount.Name = "clmAmount";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Bill Amount";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Amount";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
             // lvSupplier
             // 
             this.lvSupplier.HideSelection = false;
@@ -552,6 +484,74 @@
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
+            // clmch
+            // 
+            this.clmch.HeaderText = "";
+            this.clmch.Name = "clmch";
+            this.clmch.Width = 50;
+            // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            this.clmdsno.Width = 50;
+            // 
+            // clmVoucherDate
+            // 
+            this.clmVoucherDate.HeaderText = "Voucher Date";
+            this.clmVoucherDate.Name = "clmVoucherDate";
+            // 
+            // clmvoucherno
+            // 
+            this.clmvoucherno.HeaderText = "Voucher No.";
+            this.clmvoucherno.Name = "clmvoucherno";
+            this.clmvoucherno.Width = 150;
+            // 
+            // clmInvoiceDate
+            // 
+            this.clmInvoiceDate.HeaderText = "Invoice Date";
+            this.clmInvoiceDate.Name = "clmInvoiceDate";
+            // 
+            // clmInvoiceNo
+            // 
+            this.clmInvoiceNo.HeaderText = "Invoice No";
+            this.clmInvoiceNo.Name = "clmInvoiceNo";
+            this.clmInvoiceNo.Width = 150;
+            // 
+            // clmenteredBy
+            // 
+            this.clmenteredBy.HeaderText = "Entered By";
+            this.clmenteredBy.Name = "clmenteredBy";
+            this.clmenteredBy.Width = 150;
+            // 
+            // clmApprovedBy
+            // 
+            this.clmApprovedBy.HeaderText = "Approved By";
+            this.clmApprovedBy.Name = "clmApprovedBy";
+            this.clmApprovedBy.Width = 150;
+            // 
+            // clmBillAmount
+            // 
+            this.clmBillAmount.HeaderText = "Taxable Amount";
+            this.clmBillAmount.Name = "clmBillAmount";
+            // 
+            // clmAmount
+            // 
+            this.clmAmount.HeaderText = "Tax Amount";
+            this.clmAmount.Name = "clmAmount";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Invoice Amount";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Amount";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
             // PAY_SupplierPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -613,6 +613,8 @@
         private System.Windows.Forms.TextBox txtChequeDate;
         private System.Windows.Forms.TextBox txtDChequeNo;
         private System.Windows.Forms.TextBox txtDBankName;
+        private System.Windows.Forms.Label lblRupee;
+        private System.Windows.Forms.Label lblGrandTotal;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmch;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmVoucherDate;
@@ -625,7 +627,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.Label lblRupee;
-        private System.Windows.Forms.Label lblGrandTotal;
     }
 }

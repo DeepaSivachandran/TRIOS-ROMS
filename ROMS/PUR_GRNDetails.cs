@@ -345,5 +345,33 @@ namespace ROMS
         {
 
         }
+
+        private void ChkCompleted_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkCompleted.Checked) { btnSave.Text = "Save"; } else { btnSave.Text = "Draft"; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_PODamaged = new PUR_PODamaged();
+                MainForm.objPUR_PODamaged.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
     }
 }

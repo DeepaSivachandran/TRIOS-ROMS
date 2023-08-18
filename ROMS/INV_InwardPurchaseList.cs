@@ -320,30 +320,6 @@ namespace ROMS
             }
         } 
 
-        private void CmbDateType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cmbDateType.SelectedItem == "GRN Date")
-                {
-                    lblinwarddate.Text = "GRN Date";
-                }
-                if (cmbDateType.SelectedItem == "Purchase Date")
-                {
-                    lblinwarddate.Text = "Purchase Date";
-                }
-                if (cmbDateType.SelectedItem == "Inward Date")
-                {
-                    lblinwarddate.Text = "Inward Date";
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void INV_InwardPurchaseList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -375,8 +351,21 @@ namespace ROMS
         {
             try
             {
-                cmbDateType.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void TsbQue_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objINV_InwardQueueList = new INV_InwardQueueList();
+                MainForm.objINV_InwardQueueList.MdiParent = this.ParentForm;
+                MainForm.objINV_InwardQueueList.Show();
             }
             catch (Exception ex)
             {

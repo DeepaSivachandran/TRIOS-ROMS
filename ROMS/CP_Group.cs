@@ -15,6 +15,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
+        public int varmastertype = 0;
         private ToolTip tpGroupNameinTamil = new ToolTip();
         private ToolTip tpGroupNameinEnglish = new ToolTip();
 
@@ -49,8 +50,9 @@ namespace ROMS
         public void udfnclose()
         {
             try
-            {
-                 this.Close();
+            { 
+                    this.Close(); 
+                 
             }
             catch (Exception ex)
             {
@@ -310,6 +312,13 @@ namespace ROMS
                         {
                             MainForm.objCP_SubGroup.varFormFlag = 0;
                             MainForm.objCP_SubGroup.varGroupCode = varGroupCode;
+                            varCloseFlag = 1;
+                            udfnclose();
+                        }
+                        if (varmastertype == 1)
+                        {
+                            varmastertype = 0;
+                            MainForm.objCP_Items.varGroupCode = varGroupCode;
                             varCloseFlag = 1;
                             udfnclose();
                         }

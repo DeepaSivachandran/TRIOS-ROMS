@@ -10,16 +10,20 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
+    //Created By:-Sathish ; Created On:-11-08-2023
     public partial class CP_City : Form
     {
-        DataValidation objValidation = new DataValidation();
         DataError objError;
-
         private ToolTip tpCityName = new ToolTip();
         private ToolTip tpState = new ToolTip();
-
         public string varbrandcode;
-        public string pbFormStatus;
+        public int varstatus;
+        public string PbCityName="";
+        public int varCityCode= 0;
+        public string PbStateName="";
+        public int PbStateId=0;
+        public int PbStatus=0;
+        public int varUpdate = 0;
         public CP_City()
         {
             InitializeComponent();
@@ -41,7 +45,10 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID in (1) and STID !=0 Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                objDataBind = null;
+                this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text=="Save")
                 {
                     pnlStatus.Enabled = false;
@@ -49,7 +56,22 @@ namespace ROMS
                 else
                 {
                     pnlStatus.Enabled = true;
+                    udfnLoad();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnLoad()
+        {
+            try
+            {
+                txtCityName.Text = PbCityName;
+                cmbState.SelectedValue = PbStateId;
+                if (PbStatus == 1) { rbActive.Checked = true; } else { rbInActive.Checked = true; }
             }
             catch (Exception ex)
             {
@@ -61,9 +83,50 @@ namespace ROMS
         {
             try
             {
-
+                if (rbActive.Checked == true) { varstatus = 1; }
+                else { varstatus = 2; }
+                SPDataService objspservice = new SPDataService();
+                string varResult = "";
+                if (btnSave.Text == "Save")
+                {
+                    varResult = objspservice.udfnCity(0, 0, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, "City Creation");
+                }
+                else
+                {   
+                    varResult = objspservice.udfnCity(1,varCityCode,Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, "City Updation");
+                    varUpdate = 1;
+                    udfnclose();
+                   // udfnclose();
+                }
+                if (varResult.Split('~')[0] == "3")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    udfnclear();
+                    MainForm.objCP_Citylist.udfnList();
+                }
+                else
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                objspservice.CloseConnection();
             }
-            catch(Exception ex)
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnclear()
+        {
+            try
+            {
+                txtCityName.Text = "";
+                cmbState.SelectedIndex = 0;
+                btnSave.Text = "Save";
+                cmbState.Focus();
+                this.ActiveControl = cmbState;
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -101,7 +164,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -118,7 +180,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -130,8 +192,7 @@ namespace ROMS
         {
             try
             {
-                this.Close();
-                
+                this.Close();   
             }
             catch (Exception ex)
             {
@@ -151,7 +212,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Enter(object sender, EventArgs e)
         {
             try
@@ -164,12 +224,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -177,7 +236,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbState_Enter(object sender, EventArgs e)
         {
             try
@@ -190,7 +248,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbState_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -218,7 +275,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtCityName_Leave(object sender, EventArgs e)
         {
             try
@@ -270,7 +326,7 @@ namespace ROMS
                 {
                     udfnclose();
                 }
-                if(e.KeyCode==Keys.F5)
+                if (e.KeyCode == Keys.F5)
                 {
                     btnSave.Focus();
                     btnSave_Click(sender, e);
@@ -282,7 +338,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbState_Leave(object sender, EventArgs e)
         {
             try
@@ -306,7 +361,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbState_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -319,7 +373,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbState_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -333,9 +386,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-      
-       
-
         private void RbActive_Enter(object sender, EventArgs e)
         {
             try
@@ -348,7 +398,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInActive_Enter(object sender, EventArgs e)
         {
             try
@@ -361,7 +410,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Leave(object sender, EventArgs e)
         {
             try
@@ -374,7 +422,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInActive_Leave(object sender, EventArgs e)
         {
             try
@@ -387,19 +434,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_City_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varUpdate == 0)
                 {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -407,8 +456,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-      
+        }     
     }
 }

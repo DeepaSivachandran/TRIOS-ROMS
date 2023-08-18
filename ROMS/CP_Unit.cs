@@ -7,26 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace ROMS
 {
+    //Created by:-Sathish;Created on:-08/08/2023
     public partial class CP_Unit : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
         private ToolTip tpUnitName = new ToolTip();
         private ToolTip tpSymbol = new ToolTip();
         private ToolTip tpNoOfDecimals = new ToolTip();
         private ToolTip tpEInvoiceUnitName = new ToolTip();
-
+        public int varmastertype = 0, varUnitCodeProduct=0;
         public string varbrandcode;
+        public int varUnitCode = 0;
         public string pbFormStatus;
+        public int varstatus, varupdate=0;
+        public string PbUnitName="";
+        public string PbSymbol="";
+        public string PbNoOfDecimals="";
+        public int PbStatus=0;
+        public int pbDecimalId = 0;
+        public int varUpdate = 0;
         public CP_Unit()
         {
             InitializeComponent();
         }
-
         private void CP_Unit_Leave(object sender, EventArgs e)
         {
             try
@@ -35,7 +43,6 @@ namespace ROMS
                 tpSymbol.Active = false;
                 tpNoOfDecimals.Active = false;
                 tpEInvoiceUnitName.Active = false;
-
             }
             catch (Exception ex)
             {
@@ -43,12 +50,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_Unit_Load(object sender, EventArgs e)
         {
-
             try
             {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,2) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbNoOfDecimals, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text == "Save")
                 {
@@ -57,6 +65,7 @@ namespace ROMS
                 else
                 {
                     pnlStatus.Enabled = true;
+                    udfnLoad();
                 }
             }
             catch (Exception ex)
@@ -65,51 +74,61 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void udfnEdit()
-        {
-            try
-            {
-                if (varbrandcode != "")
-                {
-                    SPDataService objspservice = new SPDataService();
-                    DataSet objDS = new DataSet();
-                 //   objDS = objspservice.udfnSPBrandList("EditLoad", varbrandcode, MainForm.pbUserID, MainForm.pbIpAddress);
-                    objspservice.CloseConnection();
-
-                    if (objDS != null)
-                    {
-                        //if (objDS.Tables[0].Rows.Count > 0)
-                        //{
-                        //    txtTEInvoiceUnitName.Text = objDS.Tables[0].Rows[0]["UName"].ToString().Replace("''","'");
-                        //    txtDUnitName.Text = objDS.Tables[0].Rows[0]["EIName"].ToString().Replace("''", "'");
-                        //    /*  txtDEIUnitName.Text = objDS.Tables[0].Rows[0]["BTLabelName"].ToString().Replace("''", "'");
-                        //      txtELabelName.Text = objDS.Tables[0].Rows[0]["BELabelName"].ToString().Replace("''", "'"); */
-
-                        //    btnSave.Text = "Update";
-                        //}
-                    }
-
-                }
-
+        public void udfnLoad() {
+            try {
+                txtEUnitName.Text = PbUnitName;
+                txtSymbol.Text = PbSymbol;
+                cmbNoOfDecimals.SelectedValue = pbDecimalId;
+                if (PbStatus == 1) { rbActive.Checked = true; } else { rbInActive.Checked = true; }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
-            {
-
-            }
         }
-
-
         public void udfnSave(object sender, EventArgs e)
         {
             try
             {
-
+                if (rbActive.Checked == true){varstatus = 1;}
+                else { varstatus = 2;}
+                SPDataService objspservice = new SPDataService();
+                string varResult = "";
+                if (btnSave.Text=="Save")
+                {
+                    varResult = objspservice.udfnUnit(0, 0,(txtEUnitName.Text).Trim(),txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus,"Unit Creation");
+                    if (varmastertype == 1)
+                    {
+                        varupdate = 1;
+                    }
+                }
+                else
+                {
+                    varResult = objspservice.udfnUnit(1, varUnitCode, (txtEUnitName.Text).Trim(), (txtSymbol.Text).Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, "Unit Updation");
+                    varUpdate = 1;
+                    udfnclose();
+                }
+                if (varResult.Split('~')[0] == "3")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    varUnitCodeProduct = Convert.ToInt16(varResult.Split('~')[2]);
+                    udfnclear();
+                    if (varmastertype == 1)
+                    {
+                        MainForm.objCP_Items.varUnitCode = varUnitCodeProduct;
+                        varmastertype = 0;
+                        udfnclose();
+                    }
+                    else
+                    {
+                        MainForm.objCP_Unitlist.udfnList();
+                    }
+                }
+                else
+                {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                objspservice.CloseConnection();
             }
             catch (Exception ex)
             {
@@ -117,13 +136,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void udfnclear()
+        {
+            try
+            { 
 
+                txtEUnitName.Text = "";
+                txtSymbol.Text = "";
+                cmbNoOfDecimals.SelectedIndex = 0;
+                btnSave.Text = "Save";
+                txtEUnitName.Focus();
+                this.ActiveControl = txtEUnitName;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
                 bool blnErrorFlag = false;
-
                 if (Convert.ToString(txtEUnitName.Text).Trim() == "")
                 {
                     epUnit.SetError(txtEUnitName, "Please enter unit name");
@@ -132,7 +167,6 @@ namespace ROMS
                     tpUnitName.Show("Please enter unit name", txtEUnitName, 5000);
                     blnErrorFlag = true;
                 }
-
                 if (Convert.ToString(txtSymbol.Text).Trim() == "")
                 {
                     epUnit.SetError(txtSymbol, "Please enter symbol");
@@ -149,12 +183,10 @@ namespace ROMS
                     tpNoOfDecimals.Show("Please select No.of decimals", cmbNoOfDecimals, 5000);
                        blnErrorFlag = true;
                 }
-
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
                 }
-
             }
             catch (Exception ex)
             {
@@ -162,8 +194,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -176,7 +206,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnSave_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -192,12 +221,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -209,22 +237,21 @@ namespace ROMS
         {
             try
             {
-               
-                    this.Close();
                 
+                    this.Close(); 
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+             
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
             try
             {
                 udfnclose();
-              //  MainForm.objCP_BrandList.udfnList();
             }
             catch (Exception ex)
             {
@@ -232,7 +259,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Enter(object sender, EventArgs e)
         {
             try
@@ -245,12 +271,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -258,14 +283,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-        private void CP_Brand_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-
         private void txtEUnitName_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -281,23 +298,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtEInvoiceUnitName_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    rbActive.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void RbActive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -313,14 +313,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInActive_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtEInvoiceUnitName.Focus();
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -329,7 +328,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtEUnitName_Enter(object sender, EventArgs e)
         {
             try
@@ -342,20 +340,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtEInvoiceUnitName_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtEInvoiceUnitName.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void txtEUnitName_Leave(object sender, EventArgs e)
         {
             try
@@ -378,9 +362,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void TxtSymbol_Enter(object sender, EventArgs e)
         {
             try
@@ -393,7 +375,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtSymbol_Leave(object sender, EventArgs e)
         {
             try
@@ -416,9 +397,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void TxtSymbol_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -434,10 +413,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Enter(object sender, EventArgs e)
         {
-
             try
             {
                 rbActive.BackColor = Color.LemonChiffon;
@@ -448,7 +425,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Leave(object sender, EventArgs e)
         {
             try
@@ -461,7 +437,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInActive_Enter(object sender, EventArgs e)
         {
             try
@@ -474,7 +449,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInActive_Leave(object sender, EventArgs e)
         {
             try
@@ -487,32 +461,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtEInvoiceUnitName_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Convert.ToString(txtEInvoiceUnitName.Text).Trim() == "")
-                {
-                    epUnit.SetError(txtEInvoiceUnitName, "Please enter E-Invoice unit name");
-                    txtEInvoiceUnitName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpEInvoiceUnitName.ShowAlways = true;
-                    tpEInvoiceUnitName.Show("Please enter E-Invoice unit name", txtEInvoiceUnitName, 5000);
-                }
-                else
-                {
-                    epUnit.Clear();
-                    tpSymbol.BackColor = Color.White;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
         private void CmbNoOfDecimals_Enter(object sender, EventArgs e)
         {
             try
@@ -525,12 +473,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbNoOfDecimals_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                BeginInvoke(new Action(() => cmbNoOfDecimals.Select(int.MaxValue, 0)));
+             //   BeginInvoke(new Action(() => cmbNoOfDecimals.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {
@@ -538,7 +485,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbNoOfDecimals_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -558,7 +504,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbNoOfDecimals_Leave(object sender, EventArgs e)
         {
             try
@@ -582,10 +527,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbNoOfDecimals_KeyPress(object sender, KeyPressEventArgs e)
         {
-
             try
             {
                 e.Handled = true;
@@ -597,20 +540,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_Unit_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varUpdate == 0)
                 {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -619,7 +563,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_Unit_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -631,22 +574,6 @@ namespace ROMS
                 if (e.KeyCode == Keys.F5)
                 {
                     btnSave_Click(sender, e);
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BtnClose_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Escape)
-                {
-                    udfnclose();
                 }
             }
             catch (Exception ex)

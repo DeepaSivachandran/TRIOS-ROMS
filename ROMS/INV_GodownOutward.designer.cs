@@ -338,8 +338,8 @@
             this.cmbTransactionType.FormattingEnabled = true;
             this.cmbTransactionType.Items.AddRange(new object[] {
             "Regular",
-            "Stock Request"});
-            this.cmbTransactionType.Location = new System.Drawing.Point(585, 36);
+            "Shop Stock Request"});
+            this.cmbTransactionType.Location = new System.Drawing.Point(541, 36);
             this.cmbTransactionType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbTransactionType.Name = "cmbTransactionType";
             this.cmbTransactionType.Size = new System.Drawing.Size(135, 27);
@@ -349,7 +349,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(585, 12);
+            this.label1.Location = new System.Drawing.Point(541, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.TabIndex = 90;
@@ -370,7 +370,7 @@
             this.cmbGodown.Enabled = false;
             this.cmbGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGodown.FormattingEnabled = true;
-            this.cmbGodown.Location = new System.Drawing.Point(415, 36);
+            this.cmbGodown.Location = new System.Drawing.Point(397, 36);
             this.cmbGodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbGodown.Name = "cmbGodown";
             this.cmbGodown.Size = new System.Drawing.Size(135, 27);
@@ -389,7 +389,7 @@
             // lblGodown
             // 
             this.lblGodown.AutoSize = true;
-            this.lblGodown.Location = new System.Drawing.Point(415, 12);
+            this.lblGodown.Location = new System.Drawing.Point(397, 12);
             this.lblGodown.Name = "lblGodown";
             this.lblGodown.Size = new System.Drawing.Size(87, 20);
             this.lblGodown.TabIndex = 86;

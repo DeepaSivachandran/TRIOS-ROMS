@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class CP_UserCatagoryList : Form
+    public partial class CP_UserCategoryList : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public CP_UserCatagoryList()
+        public CP_UserCategoryList()
         {
             InitializeComponent();
         }
@@ -23,8 +23,8 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_UserCatagory = new CP_UserCatagory();
-                MainForm.objCP_UserCatagory.ShowDialog();
+                MainForm.objCP_UserCategory = new CP_UserCategory();
+                MainForm.objCP_UserCategory.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -89,9 +89,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_UserCatagory = new CP_UserCatagory();
-                MainForm.objCP_UserCatagory.btnSave.Text = "Update";
-                MainForm.objCP_UserCatagory.ShowDialog();
+                MainForm.objCP_UserCategory = new CP_UserCategory();
+                MainForm.objCP_UserCategory.btnSave.Text = "Update";
+                MainForm.objCP_UserCategory.ShowDialog();
                 //    if (grdUserList.SelectedRows.Count > 0)
                 //    {
                 //        MainForm.objCP_User = new CP_User();
@@ -117,7 +117,7 @@ namespace ROMS
                 picLoader.Visible = true;
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdUserCatagoryList.DataSource = null;
+                grdUserCategoryList.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
@@ -132,11 +132,11 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdUserCatagoryList.DataSource = objDs.Tables[0];
-                            grdUserCatagoryList.Columns["Name of the User"].Width = 320;
-                            grdUserCatagoryList.Columns["User Role"].Width = 320;
-                            grdUserCatagoryList.Columns["SI.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdUserCatagoryList.Columns["Autonum"].Visible = false;
+                            grdUserCategoryList.DataSource = objDs.Tables[0];
+                            grdUserCategoryList.Columns["Name of the User"].Width = 320;
+                            grdUserCategoryList.Columns["User Role"].Width = 320;
+                            grdUserCategoryList.Columns["SI.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdUserCategoryList.Columns["Autonum"].Visible = false;
                         }
                         else
                         {
@@ -164,7 +164,7 @@ namespace ROMS
             }
             finally
             {
-                grdUserCatagoryList.ClearSelection();
+                grdUserCategoryList.ClearSelection();
                 picLoader.Visible = false;
             }
         }
@@ -224,10 +224,10 @@ namespace ROMS
         {
             try
             {
-                if (grdUserCatagoryList.ColumnCount > 0)
+                if (grdUserCategoryList.ColumnCount > 0)
                 {
-                    grdUserCatagoryList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdUserCatagoryList.HorizontalScrollingOffset;
+                    grdUserCategoryList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdUserCategoryList.HorizontalScrollingOffset;
                     //grdUserList.HorizontalScrollingOffset = 0;
                 }
             }
@@ -243,9 +243,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdUserCatagoryList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUserCatagoryList);
+                grdUserCategoryList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUserCategoryList);
                 objDser.CloseConnection();
-                grdUserCatagoryList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdUserCategoryList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -254,10 +254,10 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdUserCatagoryList, DGV_SearchGrid);
+                udfnGridSearchHeading(grdUserCategoryList, DGV_SearchGrid);
                 DGV_SearchGrid.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdUserCatagoryList.Columns)
+                foreach (DataGridViewColumn col in grdUserCategoryList.Columns)
                 {
                     DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                     visibleColumns.Add(col.Index);
@@ -282,7 +282,7 @@ namespace ROMS
                     if (DGV_SearchGrid.ColumnCount > 0)
                     {
                         BindingSource bs = new BindingSource();
-                        bs.DataSource = grdUserCatagoryList.DataSource;
+                        bs.DataSource = grdUserCategoryList.DataSource;
                         string filter = "";
                         for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
                         {
@@ -296,7 +296,7 @@ namespace ROMS
                             }
                         }
                         bs.Filter = filter;
-                        grdUserCatagoryList.DataSource = bs;
+                        grdUserCategoryList.DataSource = bs;
                     }
                 }
             }
@@ -333,17 +333,17 @@ namespace ROMS
             {
 
                 int totalWidth = 0;
-                int offSetValue = grdUserCatagoryList.HorizontalScrollingOffset;
+                int offSetValue = grdUserCategoryList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
 
-                if (totalWidth - grdUserCatagoryList.Width > grdUserCatagoryList.HorizontalScrollingOffset && grdUserCatagoryList.HorizontalScrollingOffset > 0)
+                if (totalWidth - grdUserCategoryList.Width > grdUserCategoryList.HorizontalScrollingOffset && grdUserCategoryList.HorizontalScrollingOffset > 0)
                 {
                     offSetValue = offSetValue ;
                 }
                 DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGrid.Invalidate();
-                udfnscrollVisible(DGV_SearchGrid, grdUserCatagoryList);
+                udfnscrollVisible(DGV_SearchGrid, grdUserCategoryList);
             }
             catch (Exception ex)
             {
@@ -354,8 +354,8 @@ namespace ROMS
 
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdUserCatagoryList.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdUserCatagoryList.SortedColumn;
+            DataGridViewColumn newColumn = grdUserCategoryList.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = grdUserCategoryList.SortedColumn;
             ListSortDirection direction;
 
             // If oldColumn is null, then the DataGridView is not sorted.
@@ -363,7 +363,7 @@ namespace ROMS
             {
                 // Sort the same column again, reversing the SortOrder.
                 if (oldColumn == newColumn &&
-                    grdUserCatagoryList.SortOrder == SortOrder.Ascending)
+                    grdUserCategoryList.SortOrder == SortOrder.Ascending)
                 {
                     direction = ListSortDirection.Descending;
                 }
@@ -378,13 +378,13 @@ namespace ROMS
             {
                 direction = ListSortDirection.Ascending;
             }
-            grdUserCatagoryList.Sort(newColumn, direction);
+            grdUserCategoryList.Sort(newColumn, direction);
             newColumn.HeaderCell.SortGlyphDirection =
                 direction == ListSortDirection.Ascending ?
                 SortOrder.Ascending : SortOrder.Descending;
             DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
             DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-            DGV_SearchGrid.HorizontalScrollingOffset = grdUserCatagoryList.HorizontalScrollingOffset;
+            DGV_SearchGrid.HorizontalScrollingOffset = grdUserCategoryList.HorizontalScrollingOffset;
             DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
         

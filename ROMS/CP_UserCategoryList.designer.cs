@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_UserCatagoryList
+    partial class CP_UserCategoryList
     {
         /// <summary>
         /// Required designer variable.
@@ -33,46 +33,46 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsUserCatagoryList = new System.Windows.Forms.ToolStrip();
+            this.tsUserCategoryList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
-            this.pnlUserCatagoryList = new System.Windows.Forms.Panel();
+            this.pnlUserCategoryList = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdUserCatagoryList = new System.Windows.Forms.DataGridView();
+            this.grdUserCategoryList = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmcatagoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmCategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNoOfUsers = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.tsUserCatagoryList.SuspendLayout();
-            this.pnlUserCatagoryList.SuspendLayout();
+            this.tsUserCategoryList.SuspendLayout();
+            this.pnlUserCategoryList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdUserCatagoryList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdUserCategoryList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsUserCatagoryList
+            // tsUserCategoryList
             // 
-            this.tsUserCatagoryList.BackColor = System.Drawing.Color.White;
-            this.tsUserCatagoryList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsUserCatagoryList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsUserCatagoryList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsUserCategoryList.BackColor = System.Drawing.Color.White;
+            this.tsUserCategoryList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsUserCategoryList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsUserCategoryList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
             this.tsbNew});
-            this.tsUserCatagoryList.Location = new System.Drawing.Point(0, 0);
-            this.tsUserCatagoryList.Name = "tsUserCatagoryList";
-            this.tsUserCatagoryList.Size = new System.Drawing.Size(1354, 27);
-            this.tsUserCatagoryList.TabIndex = 35;
-            this.tsUserCatagoryList.Text = "User";
+            this.tsUserCategoryList.Location = new System.Drawing.Point(0, 0);
+            this.tsUserCategoryList.Name = "tsUserCategoryList";
+            this.tsUserCategoryList.Size = new System.Drawing.Size(1354, 27);
+            this.tsUserCategoryList.TabIndex = 35;
+            this.tsUserCategoryList.Text = "User";
             // 
             // tspHeader
             // 
@@ -82,7 +82,7 @@
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
             this.tspHeader.Size = new System.Drawing.Size(102, 24);
-            this.tspHeader.Text = "User Catagory";
+            this.tspHeader.Text = "User Category";
             // 
             // tsbDelete
             // 
@@ -137,17 +137,17 @@
             this.tsbNew.Text = "&New";
             this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
-            // pnlUserCatagoryList
+            // pnlUserCategoryList
             // 
-            this.pnlUserCatagoryList.BackColor = System.Drawing.Color.White;
-            this.pnlUserCatagoryList.Controls.Add(this.DGV_SearchGrid);
-            this.pnlUserCatagoryList.Controls.Add(this.lblNoRecordsFound);
-            this.pnlUserCatagoryList.Controls.Add(this.grdUserCatagoryList);
-            this.pnlUserCatagoryList.Controls.Add(this.picLoader);
-            this.pnlUserCatagoryList.Location = new System.Drawing.Point(0, 31);
-            this.pnlUserCatagoryList.Name = "pnlUserCatagoryList";
-            this.pnlUserCatagoryList.Size = new System.Drawing.Size(1354, 641);
-            this.pnlUserCatagoryList.TabIndex = 36;
+            this.pnlUserCategoryList.BackColor = System.Drawing.Color.White;
+            this.pnlUserCategoryList.Controls.Add(this.DGV_SearchGrid);
+            this.pnlUserCategoryList.Controls.Add(this.lblNoRecordsFound);
+            this.pnlUserCategoryList.Controls.Add(this.grdUserCategoryList);
+            this.pnlUserCategoryList.Controls.Add(this.picLoader);
+            this.pnlUserCategoryList.Location = new System.Drawing.Point(0, 31);
+            this.pnlUserCategoryList.Name = "pnlUserCategoryList";
+            this.pnlUserCategoryList.Size = new System.Drawing.Size(1354, 641);
+            this.pnlUserCategoryList.TabIndex = 36;
             // 
             // DGV_SearchGrid
             // 
@@ -201,14 +201,14 @@
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // grdUserCatagoryList
+            // grdUserCategoryList
             // 
-            this.grdUserCatagoryList.AllowUserToAddRows = false;
-            this.grdUserCatagoryList.AllowUserToDeleteRows = false;
-            this.grdUserCatagoryList.AllowUserToResizeColumns = false;
-            this.grdUserCatagoryList.AllowUserToResizeRows = false;
-            this.grdUserCatagoryList.BackgroundColor = System.Drawing.Color.White;
-            this.grdUserCatagoryList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdUserCategoryList.AllowUserToAddRows = false;
+            this.grdUserCategoryList.AllowUserToDeleteRows = false;
+            this.grdUserCategoryList.AllowUserToResizeColumns = false;
+            this.grdUserCategoryList.AllowUserToResizeRows = false;
+            this.grdUserCategoryList.BackgroundColor = System.Drawing.Color.White;
+            this.grdUserCategoryList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -216,27 +216,27 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdUserCatagoryList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grdUserCatagoryList.ColumnHeadersHeight = 30;
-            this.grdUserCatagoryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdUserCatagoryList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdUserCategoryList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdUserCategoryList.ColumnHeadersHeight = 30;
+            this.grdUserCategoryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdUserCategoryList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
-            this.clmcatagoryName,
+            this.clmCategoryName,
             this.clmNoOfUsers,
             this.Column4});
-            this.grdUserCatagoryList.EnableHeadersVisualStyles = false;
-            this.grdUserCatagoryList.GridColor = System.Drawing.Color.White;
-            this.grdUserCatagoryList.Location = new System.Drawing.Point(3, 58);
-            this.grdUserCatagoryList.Name = "grdUserCatagoryList";
-            this.grdUserCatagoryList.ReadOnly = true;
-            this.grdUserCatagoryList.RowHeadersVisible = false;
+            this.grdUserCategoryList.EnableHeadersVisualStyles = false;
+            this.grdUserCategoryList.GridColor = System.Drawing.Color.White;
+            this.grdUserCategoryList.Location = new System.Drawing.Point(3, 58);
+            this.grdUserCategoryList.Name = "grdUserCategoryList";
+            this.grdUserCategoryList.ReadOnly = true;
+            this.grdUserCategoryList.RowHeadersVisible = false;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            this.grdUserCatagoryList.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.grdUserCatagoryList.RowTemplate.Height = 25;
-            this.grdUserCatagoryList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdUserCatagoryList.Size = new System.Drawing.Size(1348, 581);
-            this.grdUserCatagoryList.TabIndex = 958804;
+            this.grdUserCategoryList.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.grdUserCategoryList.RowTemplate.Height = 25;
+            this.grdUserCategoryList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdUserCategoryList.Size = new System.Drawing.Size(1348, 581);
+            this.grdUserCategoryList.TabIndex = 958804;
             // 
             // Column1
             // 
@@ -244,12 +244,12 @@
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             // 
-            // clmcatagoryName
+            // clmCategoryName
             // 
-            this.clmcatagoryName.HeaderText = "Catagory Name";
-            this.clmcatagoryName.Name = "clmcatagoryName";
-            this.clmcatagoryName.ReadOnly = true;
-            this.clmcatagoryName.Width = 400;
+            this.clmCategoryName.HeaderText = "Category Name";
+            this.clmCategoryName.Name = "clmCategoryName";
+            this.clmCategoryName.ReadOnly = true;
+            this.clmCategoryName.Width = 400;
             // 
             // clmNoOfUsers
             // 
@@ -278,29 +278,29 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // CP_UserCatagoryList
+            // CP_UserCategoryList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
-            this.Controls.Add(this.tsUserCatagoryList);
-            this.Controls.Add(this.pnlUserCatagoryList);
+            this.Controls.Add(this.tsUserCategoryList);
+            this.Controls.Add(this.pnlUserCategoryList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "CP_UserCatagoryList";
+            this.Name = "CP_UserCategoryList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "User";
             this.Load += new System.EventHandler(this.CP_UserList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_UserList_KeyDown);
-            this.tsUserCatagoryList.ResumeLayout(false);
-            this.tsUserCatagoryList.PerformLayout();
-            this.pnlUserCatagoryList.ResumeLayout(false);
-            this.pnlUserCatagoryList.PerformLayout();
+            this.tsUserCategoryList.ResumeLayout(false);
+            this.tsUserCategoryList.PerformLayout();
+            this.pnlUserCategoryList.ResumeLayout(false);
+            this.pnlUserCategoryList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdUserCatagoryList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdUserCategoryList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -309,20 +309,20 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsUserCatagoryList;
+        private System.Windows.Forms.ToolStrip tsUserCategoryList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ToolStripSeparator tssEdit;
         public System.Windows.Forms.ToolStripButton tsbEdit;
         public System.Windows.Forms.ToolStripSeparator tssNew;
         public System.Windows.Forms.ToolStripButton tsbNew;
-        private System.Windows.Forms.Panel pnlUserCatagoryList;
+        private System.Windows.Forms.Panel pnlUserCategoryList;
         private System.Windows.Forms.PictureBox picLoader;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblNoRecordsFound;
-        public System.Windows.Forms.DataGridView grdUserCatagoryList;
+        public System.Windows.Forms.DataGridView grdUserCategoryList;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmcatagoryName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmCategoryName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNoOfUsers;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
