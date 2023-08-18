@@ -424,7 +424,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
+            finally 
             {
                 tmpspcall.CloseConnection();
             }
