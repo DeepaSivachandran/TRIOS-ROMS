@@ -35,6 +35,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(INV_GRNPODamaged));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdGRNPODamaged = new System.Windows.Forms.DataGridView();
+            this.chkSelectAll = new System.Windows.Forms.CheckBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnOk = new System.Windows.Forms.Button();
             this.chkdays = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,9 +45,6 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkSelectAll = new System.Windows.Forms.CheckBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnOk = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGRNPODamaged)).BeginInit();
             this.SuspendLayout();
@@ -102,53 +102,6 @@
             this.grdGRNPODamaged.TabIndex = 1111144;
             this.grdGRNPODamaged.DoubleClick += new System.EventHandler(this.GrdGRNPODamaged_DoubleClick);
             // 
-            // chkdays
-            // 
-            this.chkdays.HeaderText = "";
-            this.chkdays.Name = "chkdays";
-            this.chkdays.ReadOnly = true;
-            this.chkdays.Width = 40;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmsno.Width = 70;
-            // 
-            // clmInvoiceDate
-            // 
-            this.clmInvoiceDate.HeaderText = "DL Date";
-            this.clmInvoiceDate.Name = "clmInvoiceDate";
-            this.clmInvoiceDate.ReadOnly = true;
-            // 
-            // clmInvoiceNo
-            // 
-            this.clmInvoiceNo.HeaderText = "DL No.";
-            this.clmInvoiceNo.Name = "clmInvoiceNo";
-            this.clmInvoiceNo.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Reason";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 200;
-            // 
-            // clmTotalProduct
-            // 
-            this.clmTotalProduct.HeaderText = "Total Products";
-            this.clmTotalProduct.Name = "clmTotalProduct";
-            this.clmTotalProduct.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Total Value";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
             // chkSelectAll
             // 
             this.chkSelectAll.AutoSize = true;
@@ -186,6 +139,53 @@
             this.btnOk.Text = "Submit";
             this.btnOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOk.UseVisualStyleBackColor = true;
+            // 
+            // chkdays
+            // 
+            this.chkdays.HeaderText = "";
+            this.chkdays.Name = "chkdays";
+            this.chkdays.ReadOnly = true;
+            this.chkdays.Width = 40;
+            // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmsno.Width = 70;
+            // 
+            // clmInvoiceDate
+            // 
+            this.clmInvoiceDate.HeaderText = "DC Date";
+            this.clmInvoiceDate.Name = "clmInvoiceDate";
+            this.clmInvoiceDate.ReadOnly = true;
+            // 
+            // clmInvoiceNo
+            // 
+            this.clmInvoiceNo.HeaderText = "DC No.";
+            this.clmInvoiceNo.Name = "clmInvoiceNo";
+            this.clmInvoiceNo.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Reason";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 200;
+            // 
+            // clmTotalProduct
+            // 
+            this.clmTotalProduct.HeaderText = "Total Products";
+            this.clmTotalProduct.Name = "clmTotalProduct";
+            this.clmTotalProduct.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Total Value";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             // 
             // INV_GRNPODamaged
             // 

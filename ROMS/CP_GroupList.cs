@@ -7,8 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Excel = Microsoft.Office.Interop.Excel;
-using ClosedXML.Excel;
+using Excel = Microsoft.Office.Interop.Excel; 
 namespace ROMS
 {
     public partial class CP_GroupList : Form
@@ -37,7 +36,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -101,7 +99,6 @@ namespace ROMS
                             grdGroupList.Columns["ID"].Visible = false;
                             grdGroupList.Columns["Status ID"].Visible = false;
 
-                            lblNoOfPrGroup.Text = Convert.ToString(grdGroupList.Rows.Count);
                         }
                         else
                         {
@@ -130,6 +127,7 @@ namespace ROMS
             finally
             {
                 grdGroupList.ClearSelection();
+                lblNoOfPrGroup.Text = Convert.ToString(grdGroupList.Rows.Count);
                 varGroupCode = Convert.ToInt32(cmbProductGroup.SelectedValue);
             }
         }
@@ -177,6 +175,7 @@ namespace ROMS
                     MainForm.objCP_Group.varId = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_Group.varGroupNameinEnglish = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Product Group Name in English"].Value);
                     MainForm.objCP_Group.varGroupNameinTamil = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Product Group Name in Tamil"].Value);
+                    MainForm.objCP_Group.varStatus = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["Status ID"].Value);
                     MainForm.objCP_Group.ShowDialog();
                 }
             }
@@ -532,7 +531,11 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 50;
                             }
-                           
+
+                            if (col.Name == "S.No.")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                            }
                             if (col.Name == "Total Sub Groups"  || col.Name == "Total Products")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;

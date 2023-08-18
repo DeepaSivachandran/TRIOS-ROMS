@@ -139,7 +139,7 @@
             this.txtSymbol.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSymbol.Location = new System.Drawing.Point(159, 74);
             this.txtSymbol.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtSymbol.MaxLength = 5;
+            this.txtSymbol.MaxLength = 10;
             this.txtSymbol.Name = "txtSymbol";
             this.txtSymbol.Size = new System.Drawing.Size(361, 28);
             this.txtSymbol.TabIndex = 1;

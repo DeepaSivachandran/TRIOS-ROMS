@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
 {
@@ -64,7 +65,49 @@ namespace ROMS
         {
             try
             {
-                
+                if (grdItemList.SelectedRows.Count > 0)
+                { 
+                    string result = "";
+                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    { 
+                        SPDataService objspdservice = new SPDataService(); 
+                        result = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()),"","","",0,0,0,0,0,0,0,"",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,0,0,0,"","","", "Product Delete");
+                        string[] varvalue = result.Split('~');
+                        if (varvalue[0] == "3")
+                        {
+                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            udfnList(); 
+                        }
+                        else
+                        {
+                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+
+        }
+
+        private void udfnEdit()
+        {
+            try
+            {
+
+                if (grdItemList.SelectedRows.Count > 0)
+                {
+                    MainForm.objCP_Items = new CP_Product();
+                    MainForm.objCP_Items.MdiParent = this.ParentForm;
+                    MainForm.objCP_Items.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString());
+                    MainForm.objCP_Items.Show();
+                }
+
             }
             catch (Exception ex)
             {
@@ -74,19 +117,81 @@ namespace ROMS
 
         }
 
-        private void udfnEdit()
-        { 
-
-        }
-
         public void udfnList()
-        {
-            try
-            { 
-              BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-            { objError = new DataError(); objError.WriteFile(ex); }
+        { 
+                try
+                {
+                    picLoader.Visible = true;
+                    Application.DoEvents();
+                    //********** To display a data in a grid  ******************
+                    grdItemList.DataSource = null;
+                    DataSet objDs = new DataSet();
+                    //**** To call the function from SP ***************
+                    SPDataService objdserv = new SPDataService();
+
+                    objDs = objdserv.udfnproductmasterlist(0, 0,Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbGroupType.SelectedValue), Convert.ToInt32(cmbsubgroup.SelectedValue), MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue));
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                lblNoRecordsFound.Visible = false;
+                                lblNoRecordsFound.SendToBack();
+                            grdItemList.DataSource = objDs.Tables[0];
+                            grdItemList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                            grdItemList.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                            grdItemList.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdItemList.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdItemList.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdItemList.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                            grdItemList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdItemList.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdItemList.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdItemList.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                             
+
+                            grdItemList.Columns["S.No."].Width = 50;
+                            grdItemList.Columns["Product Name in English"].Width = 200;
+                            grdItemList.Columns["Product Name in Tamil"].Width = 200;
+                            grdItemList.Columns["Product Subgroup"].Width = 150;
+                            grdItemList.Columns["Product Group"].Width = 150;
+                            grdItemList.Columns["Status"].Width = 80;
+                            grdItemList.Columns["ID"].Visible = false;
+                            grdItemList.Columns["STSID"].Visible = false;
+                            }
+                            else
+                            {
+                                lblNoRecordsFound.Visible = true;
+                                lblNoRecordsFound.BringToFront();
+                            }
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
+                    udfnSearchGridHead();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+              //  grdItemList.ClearSelection();
+                 picLoader.Visible = false; 
+                lblPC.Text = Convert.ToString(grdItemList.Rows.Count);
+                }
         }
         
 
@@ -221,9 +326,7 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         } 
-       
-
-     
+        
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewColumn newColumn = grdItemList.Columns[e.ColumnIndex];
@@ -279,6 +382,7 @@ namespace ROMS
                 }
                 DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdItemList);
             }
             catch (Exception ex)
             {
@@ -674,7 +778,8 @@ namespace ROMS
         private void BtnView_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                udfnList();
             }
             catch (Exception ex)
 
@@ -688,7 +793,7 @@ namespace ROMS
         {
             try
             {
-                btnView.BackColor = Color.White;
+                btnView.BackColor = Color.Transparent;
             }
             catch (Exception ex)
 
@@ -703,7 +808,7 @@ namespace ROMS
         {
             try
             {
-                
+                udfnImport();
             }
             catch (Exception ex)
 
@@ -713,7 +818,80 @@ namespace ROMS
             }
 
         }
+        public void udfnImport()
+        {
+            try
+            {
+                if ((grdItemList.Rows.Count > 0))
+                {
+                    Excel._Application ExcelObj = new Excel.Application();
+                    // creating new WorkBook within Excel application  
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    // creating new Excelsheet in workbook  
+                    Excel._Worksheet ExcelSheet = null;
+                    // see the excel sheet behind the program  
+                    ExcelObj.Visible = true;
+                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
+                    ExcelSheet = ExcelBook.ActiveSheet;
+                    // changing the name of active sheet  
+                    ExcelSheet.Name = "Product List";
+                    int cIndex = 0;
+                    int count = 0;
+                    foreach (DataGridViewColumn col in grdItemList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            count += 1;
+                        }
+                    } 
 
+                    ExcelSheet.Cells[1, 1].Value = "Product List";
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;  
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
+                    foreach (DataGridViewColumn col in grdItemList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            cIndex += 1;
+                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex].NumberFormat = "@"; 
+                            ExcelSheet.Cells[2, cIndex].Interior.Color = Color.LightSlateGray;
+                            Excel.Range cell = ExcelSheet.Cells[2, cIndex];
+                            cell.Font.Color = Excel.XlRgbColor.rgbWhite; 
+                            if (cIndex == 1)
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 8; 
+                            }
+                            else
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                            if (cIndex == 1 || cIndex == 7 || cIndex == 12 || cIndex == 13 || cIndex == 14 || cIndex == 15)
+                            { 
+                                ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                            }
+                            if (cIndex == 2 || cIndex == 8 || cIndex == 9 || cIndex == 11)
+                            {
+                                ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlRight;  
+                            }
+                            
+                            foreach (DataGridViewRow rowa in grdItemList.Rows)
+                            {
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                            }
+                        }
+                    } 
+                    ExcelObj.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
         private void BtnExport_Enter(object sender, EventArgs e)
         {
             try
@@ -732,7 +910,7 @@ namespace ROMS
         {
             try
             {
-                btnExport.BackColor = Color.White;
+                btnExport.BackColor = Color.Transparent;
             }
             catch (Exception ex)
 
@@ -746,10 +924,82 @@ namespace ROMS
         {
             try
             {
+                this.ActiveControl = cmbConcern;
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 AND COMID !=-1 ORDER BY COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID !=-1 AND PRG_STSID=1 ORDER BY PRGID", "PRG_EName,PRGID", cmbGroupType, "", "PRG_EName", "PRGID");
+                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID <> -1 AND PRSG_STSID=1", "PRSG_EName,PRSGID", cmbsubgroup, "", "PRSG_EName", "PRSGID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+                cmbConcern.SelectedValue = 0;
+                cmbGroupType.SelectedValue = 0;
+                cmbsubgroup.SelectedValue = 0;
+                cmbCategory.SelectedValue = 0;
+
                 udfnList();
             }
             catch (Exception ex)
 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            
+        }
+
+        private void GrdItemList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+
+                for (int i = 0; i < grdItemList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdItemList.Rows[i].Cells["STSID"].Value) == "1")
+                    {
+                        grdItemList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdItemList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        grdItemList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdItemList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally {
+                grdItemList.ClearSelection();
+            }
+        }
+
+        private void GrdItemList_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdItemList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnEdit();
+                }
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);

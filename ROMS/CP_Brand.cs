@@ -14,11 +14,15 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public string varbrandcode;
+        public int varbrandcode=0;
 
         private ToolTip tpBrandNameInEnglish = new ToolTip();
         private ToolTip tpBrandNameInTamil = new ToolTip();
 
+        public int varStatusid = 0;
+        public int varCloseFlag = 0;
+        public int varFormFlag = 0;
+        public int varmastertype = 0;
         public CP_Brand()
         {
             InitializeComponent();
@@ -38,12 +42,92 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnList()
+        {
+            try
+            {
+                //picLoader.Visible = true;
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdGroup.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnGroupList(0, 0);
+                objdserv.CloseConnection();
+
+                if (objDs.Tables[0].Rows.Count != 0)
+                {
+                    grdGroup.DataSource = objDs.Tables[0];
+                    grdGroup.Columns["S.No."].Visible = false;
+                    grdGroup.Columns["Product Group Name in English"].Width = 200;
+                    grdGroup.Columns["Product Group Name in English"].HeaderText = "Product Group";
+                    grdGroup.Columns["Product Group Name in Tamil"].Visible = false;
+                    grdGroup.Columns["Total Sub Groups"].Visible = false;
+                    grdGroup.Columns["Total Products"].Visible = false;
+                    grdGroup.Columns["Status"].Visible = false;
+                    grdGroup.Columns["ID"].Visible = false;
+                    grdGroup.Columns["Status ID"].Visible = false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnSubGroupList()
+        {
+            try
+            {
+                //picLoader.Visible = true;
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdSubGroup.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnSubGroupList(0, 16,0);
+                objdserv.CloseConnection();
+              
+                if (objDs.Tables[0].Rows.Count != 0)
+                {
+
+                    grdSubGroup.DataSource = objDs.Tables[0];
+                    grdSubGroup.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    grdSubGroup.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                    grdSubGroup.Columns["S.No."].Visible = false;
+                    grdSubGroup.Columns["Product Group Name"].Width = 200;
+                    grdSubGroup.Columns["Product Sub Group Name in English"].Width = 250;
+                    grdSubGroup.Columns["Product Sub Group Name in Tamil"].Visible = false;
+                    grdSubGroup.Columns["Stock Location"].Visible = false;
+                    grdSubGroup.Columns["Rack"].Visible = false;
+                    grdSubGroup.Columns["Total Products"].Visible = false;
+                    grdSubGroup.Columns["Status"].Visible = false;
+
+                    grdSubGroup.Columns["ID"].Visible = false;
+                    grdSubGroup.Columns["Status ID"].Visible = false;
+                    grdSubGroup.Columns["Batch No"].Visible = false;
+                    grdSubGroup.Columns["StockLocation ID"].Visible = false;
+                    grdSubGroup.Columns["Rack ID"].Visible = false;
+                    grdSubGroup.Columns["Product Group Id"].Visible = false;
+                }    
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnclose()
         {
             try
             {
                  this.Close();
-              
             }
             catch (Exception ex)
             {
@@ -91,14 +175,17 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varCloseFlag == 0)
                 {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -110,7 +197,6 @@ namespace ROMS
 
         private void TxtEBrandNameInEnglish_Enter(object sender, EventArgs e)
         {
-
             try
             {
                 txtEBrandNameInEnglish.BackColor = Color.LemonChiffon;
@@ -137,7 +223,6 @@ namespace ROMS
                 {
                     epBrand.Clear();
                     txtEBrandNameInEnglish.BackColor = Color.White;
-                   
                 }
             }
             catch (Exception ex)
@@ -279,11 +364,58 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnClear()
+        {
+            try
+            {
+                txtEBrandNameInEnglish.Text = "";
+                txtEBrandNameInTamil.Text = "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnSave(object sender, EventArgs e)
         {
             try
             {
-
+                if (rbActive.Checked)
+                {
+                    varStatusid = 1;
+                }
+                else
+                {
+                    varStatusid = 2;
+                }
+                if (btnSave.Text == "Save")
+                {
+                    SPDataService objDser = new SPDataService();
+                    string varResult = objDser.udfnBrand(0,Convert.ToString(txtEBrandNameInEnglish.Text), Convert.ToString(txtEBrandNameInTamil.Text), varStatusid, "Creation");
+                    objDser.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varbrandcode = Convert.ToInt16(varResult.Split('~')[2]);
+                        if (varmastertype == 1)
+                        {
+                            varmastertype = 0;
+                            MainForm.objCP_Items.varbrandcode = varbrandcode;
+                            varCloseFlag = 1;
+                            udfnclose();
+                        }
+                        else
+                        { 
+                            MainForm.objCP_BrandList.udfnList();
+                        }
+                        udfnClear();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -314,14 +446,15 @@ namespace ROMS
                     tpBrandNameInTamil.Show("Please enter brand name in tamil", txtEBrandNameInTamil, 5000);
                     blnErrorFlag = true;
                 }
-                if (blnErrorFlag == false && grdSubGroupAdd.Rows.Count <= 0)
-                {
-                    if (grdSubGroupAdd.Rows.Count <= 0)
-                    {
-                        DialogResult dialogResult = MessageBox.Show("Please select atleast one product sub group", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    udfnSave(sender, e);
-                }
+                //if (blnErrorFlag == false && grdSubGroupAdd.Rows.Count <= 0)
+                //{
+                //    if (grdSubGroupAdd.Rows.Count <= 0)
+                //    {
+                //        DialogResult dialogResult = MessageBox.Show("Please select atleast one product sub group", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //    }
+
+                //}
+                udfnSave(sender, e);
             }
             catch (Exception ex)
             {
@@ -478,5 +611,76 @@ namespace ROMS
         {
 
         }
+
+        private void TxtProductGroup_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (grdGroup.DataSource as DataTable).DefaultView.RowFilter = "([Product Group Name in English]) LIKE '%" + txtProductGroup.Text + "%'";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_Brand_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList();
+                udfnSubGroupList();
+                if (btnSave.Text == "Save")
+                {
+                    pnlStatus.Enabled = false;
+                }
+                else
+                {
+                    pnlStatus.Enabled = true;
+                    //udfnEdit();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtProductSubGroup_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (grdSubGroup.DataSource as DataTable).DefaultView.RowFilter = "([Product Sub Group Name in English]) LIKE '%" + txtProductSubGroup.Text + "%'";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Chkgroup_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdGroup.Rows.Count; i++)
+                {
+                    grdGroup.Rows[i].Cells["clmChkAllProductGroup"].Value = chkgroup.Checked;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdGroup_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
+  
 }
