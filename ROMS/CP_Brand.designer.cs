@@ -58,9 +58,19 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.grdSubGroup = new System.Windows.Forms.DataGridView();
+            this.clmchkProductSubGroup = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmProductGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSubGroups = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmGroupId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSubGroupId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdGroup = new System.Windows.Forms.DataGridView();
             this.clmChkProductGroup = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.grdSubGroupAdd = new System.Windows.Forms.DataGridView();
+            this.chkSelectedSubGroup = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsubgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmGroupIdAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSubGroupIdAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtDEBrandNameInTamil = new System.Windows.Forms.TextBox();
             this.txtEBrandNameInTamil = new System.Windows.Forms.TextBox();
             this.txtDBrandNameInEnglish = new System.Windows.Forms.TextBox();
@@ -68,14 +78,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtEBrandNameInEnglish = new System.Windows.Forms.TextBox();
             this.epBrand = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmchkProductSubGroup = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clmProductGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSubGroups = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmGroupId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSubGroupId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkSelectedSubGroup = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsubgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.grbform.SuspendLayout();
@@ -302,6 +304,7 @@
             this.btnRemove.Text = "Remove";
             this.btnRemove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
             this.btnRemove.Enter += new System.EventHandler(this.BtnRemove_Enter);
             this.btnRemove.Leave += new System.EventHandler(this.BtnRemove_Leave);
             // 
@@ -363,6 +366,39 @@
             this.grdSubGroup.Size = new System.Drawing.Size(461, 418);
             this.grdSubGroup.TabIndex = 1111141;
             this.grdSubGroup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSubGroup_CellContentClick);
+            // 
+            // clmchkProductSubGroup
+            // 
+            this.clmchkProductSubGroup.HeaderText = "";
+            this.clmchkProductSubGroup.Name = "clmchkProductSubGroup";
+            this.clmchkProductSubGroup.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmchkProductSubGroup.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmchkProductSubGroup.Width = 40;
+            // 
+            // clmProductGroup
+            // 
+            this.clmProductGroup.HeaderText = "Product Group";
+            this.clmProductGroup.Name = "clmProductGroup";
+            this.clmProductGroup.ReadOnly = true;
+            // 
+            // clmSubGroups
+            // 
+            this.clmSubGroups.HeaderText = "Product Subgroup";
+            this.clmSubGroups.Name = "clmSubGroups";
+            this.clmSubGroups.ReadOnly = true;
+            this.clmSubGroups.Width = 200;
+            // 
+            // clmGroupId
+            // 
+            this.clmGroupId.HeaderText = "Group Id";
+            this.clmGroupId.Name = "clmGroupId";
+            this.clmGroupId.ReadOnly = true;
+            // 
+            // clmSubGroupId
+            // 
+            this.clmSubGroupId.HeaderText = "Sub Group Id";
+            this.clmSubGroupId.Name = "clmSubGroupId";
+            this.clmSubGroupId.ReadOnly = true;
             // 
             // grdGroup
             // 
@@ -437,7 +473,9 @@
             this.grdSubGroupAdd.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.chkSelectedSubGroup,
             this.Column2,
-            this.clmsubgroup});
+            this.clmsubgroup,
+            this.clmGroupIdAdd,
+            this.clmSubGroupIdAdd});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -450,7 +488,6 @@
             this.grdSubGroupAdd.GridColor = System.Drawing.Color.White;
             this.grdSubGroupAdd.Location = new System.Drawing.Point(876, 129);
             this.grdSubGroupAdd.Name = "grdSubGroupAdd";
-            this.grdSubGroupAdd.ReadOnly = true;
             this.grdSubGroupAdd.RowHeadersVisible = false;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
@@ -460,6 +497,36 @@
             this.grdSubGroupAdd.Size = new System.Drawing.Size(458, 418);
             this.grdSubGroupAdd.TabIndex = 1111139;
             this.grdSubGroupAdd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSubGroupAdd_CellContentClick);
+            // 
+            // chkSelectedSubGroup
+            // 
+            this.chkSelectedSubGroup.HeaderText = "";
+            this.chkSelectedSubGroup.Name = "chkSelectedSubGroup";
+            this.chkSelectedSubGroup.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.chkSelectedSubGroup.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.chkSelectedSubGroup.Width = 40;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Selected Product Group";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 150;
+            // 
+            // clmsubgroup
+            // 
+            this.clmsubgroup.HeaderText = "Selected Product Sub Group";
+            this.clmsubgroup.Name = "clmsubgroup";
+            this.clmsubgroup.Width = 250;
+            // 
+            // clmGroupIdAdd
+            // 
+            this.clmGroupIdAdd.HeaderText = "Group Id";
+            this.clmGroupIdAdd.Name = "clmGroupIdAdd";
+            // 
+            // clmSubGroupIdAdd
+            // 
+            this.clmSubGroupIdAdd.HeaderText = "Sub Group Id";
+            this.clmSubGroupIdAdd.Name = "clmSubGroupIdAdd";
             // 
             // txtDEBrandNameInTamil
             // 
@@ -546,62 +613,6 @@
             // 
             this.epBrand.ContainerControl = this;
             // 
-            // clmchkProductSubGroup
-            // 
-            this.clmchkProductSubGroup.HeaderText = "";
-            this.clmchkProductSubGroup.Name = "clmchkProductSubGroup";
-            this.clmchkProductSubGroup.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmchkProductSubGroup.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmchkProductSubGroup.Width = 40;
-            // 
-            // clmProductGroup
-            // 
-            this.clmProductGroup.HeaderText = "Product Group";
-            this.clmProductGroup.Name = "clmProductGroup";
-            this.clmProductGroup.ReadOnly = true;
-            // 
-            // clmSubGroups
-            // 
-            this.clmSubGroups.HeaderText = "Product Subgroup";
-            this.clmSubGroups.Name = "clmSubGroups";
-            this.clmSubGroups.ReadOnly = true;
-            this.clmSubGroups.Width = 200;
-            // 
-            // clmGroupId
-            // 
-            this.clmGroupId.HeaderText = "Group Id";
-            this.clmGroupId.Name = "clmGroupId";
-            this.clmGroupId.ReadOnly = true;
-            // 
-            // clmSubGroupId
-            // 
-            this.clmSubGroupId.HeaderText = "Sub Group Id";
-            this.clmSubGroupId.Name = "clmSubGroupId";
-            this.clmSubGroupId.ReadOnly = true;
-            // 
-            // chkSelectedSubGroup
-            // 
-            this.chkSelectedSubGroup.HeaderText = "";
-            this.chkSelectedSubGroup.Name = "chkSelectedSubGroup";
-            this.chkSelectedSubGroup.ReadOnly = true;
-            this.chkSelectedSubGroup.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.chkSelectedSubGroup.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.chkSelectedSubGroup.Width = 40;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Selected Product Group";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 150;
-            // 
-            // clmsubgroup
-            // 
-            this.clmsubgroup.HeaderText = "Selected Product Sub Group";
-            this.clmsubgroup.Name = "clmsubgroup";
-            this.clmsubgroup.ReadOnly = true;
-            this.clmsubgroup.Width = 250;
-            // 
             // CP_Brand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -677,5 +688,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkSelectedSubGroup;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsubgroup;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmGroupIdAdd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSubGroupIdAdd;
     }
 }

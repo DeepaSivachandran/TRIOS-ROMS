@@ -321,7 +321,7 @@ namespace ROMS
         }
 
         // Sivabharathi    Create date: 17/08/2023    Description:Brand Sp
-        public string udfnBrand(int ViewType,string paraBD_EName, string paraBD_TName, int paraStatusId,  string paraOriginator)
+        public string udfnBrand(int ViewType,string paraBD_EName, string paraBD_TName,int paraStatusId,int paraPR_BDID,string paraPRGID, string paraPRSGID, string paraOriginator)
        {
             string varResult = "";
             try
@@ -333,6 +333,9 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraBD_EName", paraBD_EName);
                 varSqlCommand.Parameters.AddWithValue("@paraBD_TName", paraBD_TName);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraPR_BDID", paraPR_BDID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRGID", paraPRGID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
