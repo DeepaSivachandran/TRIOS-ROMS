@@ -163,7 +163,6 @@ namespace ROMS
             }
             finally
             {
-                grdUnitList.ClearSelection();
                 picLoader.Visible = false;
             }
         }
@@ -173,11 +172,13 @@ namespace ROMS
             {
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                if (!(e.ColumnIndex == 0 ))   /*If not our desired columns*/ //return;
+                if (!(e.ColumnIndex == 0)) /*If not our desired columns*/
+                                           //return;
                     if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
                     {
                         e.Paint(e.CellBounds, DataGridViewPaintParts.All
                             & ~(DataGridViewPaintParts.ContentForeground));
+
                         TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
                             e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
                         e.Handled = true;
@@ -206,11 +207,12 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchFilter();
+                //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdUnitList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUnitList);
                 objDser.CloseConnection();
                 grdUnitList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -270,6 +272,7 @@ namespace ROMS
         {
             try
             {
+                //dgv2.DataSource = null;
                 dgv2.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
                 foreach (DataGridViewColumn col in dgv1.Columns)
@@ -295,6 +298,7 @@ namespace ROMS
             DataGridViewColumn newColumn = grdUnitList.Columns[e.ColumnIndex];
             DataGridViewColumn oldColumn = grdUnitList.SortedColumn;
             ListSortDirection direction;
+
             // If oldColumn is null, then the DataGridView is not sorted.
             if (oldColumn != null)
             {
@@ -305,7 +309,8 @@ namespace ROMS
                     direction = ListSortDirection.Descending;
                 }
                 else
-                {   // Sort a new column and remove the old SortGlyph.
+                {
+                    // Sort a new column and remove the old SortGlyph.
                     direction = ListSortDirection.Ascending;
                     oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                 }
@@ -318,8 +323,10 @@ namespace ROMS
             newColumn.HeaderCell.SortGlyphDirection =
                 direction == ListSortDirection.Ascending ?
                 SortOrder.Ascending : SortOrder.Descending;
+
             DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
             DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+
             DGV_SearchGrid.HorizontalScrollingOffset = grdUnitList.HorizontalScrollingOffset;
             DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
@@ -327,16 +334,20 @@ namespace ROMS
         {
             try
             {
+
                 int totalWidth = 0;
                 int offSetValue = grdUnitList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
+
                 if (totalWidth - grdUnitList.Width > grdUnitList.HorizontalScrollingOffset && grdUnitList.HorizontalScrollingOffset > 0)
-                {   //offSetValue = offSetValue ;
+                {
+                    //offSetValue = offSetValue ;
                     offSetValue = offSetValue;
                 }
                 DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdUnitList);
             }
             catch (Exception ex)
             {
@@ -356,6 +367,7 @@ namespace ROMS
                     {
                         visibleColumns.Add(col.Index);
                     }
+
                     int I = DGV_SearchGrid.Rows.Count - 1;
                     if (I == 0)
                     {
@@ -398,6 +410,10 @@ namespace ROMS
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();
                     this.Close();
+                }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    udfndelete();
                 }
             }
             catch (Exception ex)
@@ -451,6 +467,7 @@ namespace ROMS
                     grdUnitList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                     grdUnitList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                 }
+                grdUnitList.ClearSelection();
             }
         }
         private void GrdUnitList_SelectionChanged(object sender, EventArgs e)

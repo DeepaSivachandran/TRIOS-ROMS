@@ -38,9 +38,6 @@ namespace ROMS
             try
             {
                 udfnEdit();
-                MainForm.objCP_City = new CP_City();
-                MainForm.objCP_City.btnSave.Text = "Update";
-                MainForm.objCP_City.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -82,7 +79,7 @@ namespace ROMS
                         }
                         else
                         {
-                            MessageBox.Show(varResult, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -136,10 +133,12 @@ namespace ROMS
                             grdCityList.Columns["StateId"].Visible = false;
                             grdCityList.Columns["StatusID"].Visible = false;
                             grdCityList.Columns["S.No."].Width = 50;
+                            grdCityList.Columns["State Name"].Width = 120;
+                            grdCityList.Columns["City Name"].Width = 200;
                             grdCityList.Columns["Status"].Width = 80;
                             grdCityList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdCityList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdCityList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdCityList.Columns["Total Suppliers"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
@@ -163,7 +162,6 @@ namespace ROMS
             }
             finally
             {
-                grdCityList.ClearSelection();
                 picLoader.Visible = false;
             }
         }
@@ -194,7 +192,6 @@ namespace ROMS
         {
             try
             {
-                //dgv2.DataSource = null;
                 dgv2.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
                 foreach (DataGridViewColumn col in dgv1.Columns)
@@ -239,6 +236,10 @@ namespace ROMS
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();
                     this.Close();
+                }
+                if(e.KeyCode==Keys.Delete)
+                {
+                    udfndelete();
                 }
             }
             catch (Exception ex)
@@ -292,6 +293,7 @@ namespace ROMS
                     grdCityList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                     grdCityList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                 }
+                grdCityList.ClearSelection();
             }
         }
         private void GrdCityList_SelectionChanged(object sender, EventArgs e)
@@ -354,40 +356,12 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchFilter();
+                //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdCityList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCityList);
                 objDser.CloseConnection();
                 grdCityList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        }
-        private void udfnGridSearchFilter()
-        {
-            try
-            {
-                for (int i = 0; i < DGV_SearchGrid.Rows.Count; ++i)
-                {
-                    if (DGV_SearchGrid.ColumnCount > 0)
-                    {
-                        BindingSource bs = new BindingSource();
-                        bs.DataSource = grdCityList.DataSource;
-                        string filter = "";
-                        for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
-                        {
-                            if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "")
-                            {
-                                if (filter != "") filter += "And ";
-                                if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
-                                    filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + "=" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value);
-                                else
-                                    filter += "[" + DGV_SearchGrid.Columns[j].HeaderText.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
-                            }
-                        }
-                        bs.Filter = filter;
-                        grdCityList.DataSource = bs;
-                    }
-                }
+                //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -397,15 +371,18 @@ namespace ROMS
             {
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
+                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
                     if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
                     {
                         e.Paint(e.CellBounds, DataGridViewPaintParts.All
                             & ~(DataGridViewPaintParts.ContentForeground));
+
                         TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
                             e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+
                         e.Handled = true;
                     }
+
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -458,6 +435,41 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewColumn newColumn = grdCityList.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = grdCityList.SortedColumn;
+            ListSortDirection direction;
+            // If oldColumn is null, then the DataGridView is not sorted.
+            if (oldColumn != null)
+            {
+                // Sort the same column again, reversing the SortOrder.
+                if (oldColumn == newColumn &&
+                    grdCityList.SortOrder == SortOrder.Ascending)
+                {
+                    direction = ListSortDirection.Descending;
+                }
+                else
+                {
+                    // Sort a new column and remove the old SortGlyph.
+                    direction = ListSortDirection.Ascending;
+                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                }
+            }
+            else
+            {
+                direction = ListSortDirection.Ascending;
+            }
+            grdCityList.Sort(newColumn, direction);
+            newColumn.HeaderCell.SortGlyphDirection =
+                direction == ListSortDirection.Ascending ?
+                SortOrder.Ascending : SortOrder.Descending;
+            DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+            DGV_SearchGrid.HorizontalScrollingOffset = grdCityList.HorizontalScrollingOffset;
+            DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
     }
 }

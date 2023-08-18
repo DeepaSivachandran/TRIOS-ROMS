@@ -30,6 +30,7 @@ namespace ROMS
         public string PbNoOfDecimals="";
         public int PbStatus=0;
         public int pbDecimalId = 0;
+        public int varUpdate = 0;
         public CP_Unit()
         {
             InitializeComponent();
@@ -103,8 +104,9 @@ namespace ROMS
                 }
                 else
                 {
-                  //  varResult = objspservice.udfnUnit(1, varUnitCode, (txtEUnitName.Text).Trim(), (txtSymbol.Text).Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, "Unit Updation");
-                    this.Close();
+                    varResult = objspservice.udfnUnit(1, varUnitCode, (txtEUnitName.Text).Trim(), (txtSymbol.Text).Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, "Unit Updation");
+                    varUpdate = 1;
+                    udfnclose();
                 }
                 if (varResult.Split('~')[0] == "3")
                 {
@@ -223,7 +225,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -273,7 +275,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -542,7 +544,7 @@ namespace ROMS
         {
             try
             {
-                if (varupdate == 0)
+                if (varUpdate == 0)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
@@ -553,8 +555,7 @@ namespace ROMS
                     {
                         e.Cancel = true;
                     }
-                } 
-               
+                }
             }
             catch (Exception ex)
             {
