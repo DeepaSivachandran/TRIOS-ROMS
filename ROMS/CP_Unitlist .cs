@@ -472,7 +472,7 @@ namespace ROMS
         }
         private void GrdUnitList_SelectionChanged(object sender, EventArgs e)
         {
-            udfnSearchGridHead();
+            //udfnSearchGridHead();
         }
         private void GrdUnitList_Scroll(object sender, ScrollEventArgs e)
         {
