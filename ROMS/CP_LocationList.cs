@@ -128,7 +128,6 @@ namespace ROMS
             }
             finally
             {
-                grdGodownList.ClearSelection();
                 picLoader.Visible = false;
             }
         }
@@ -278,6 +277,7 @@ namespace ROMS
                     grdGodownList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                     grdGodownList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                 }
+                grdGodownList.ClearSelection();
             }
         }
         private void GrdGodownList_DoubleClick(object sender, EventArgs e)

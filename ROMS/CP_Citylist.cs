@@ -162,7 +162,6 @@ namespace ROMS
             }
             finally
             {
-                grdCityList.ClearSelection();
                 picLoader.Visible = false;
             }
         }
@@ -294,6 +293,7 @@ namespace ROMS
                     grdCityList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                     grdCityList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                 }
+                grdCityList.ClearSelection();
             }
         }
         private void GrdCityList_SelectionChanged(object sender, EventArgs e)
