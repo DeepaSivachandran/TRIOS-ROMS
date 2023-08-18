@@ -467,21 +467,8 @@ namespace ROMS
             }
           
         }
-        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void CmbLocationType_Enter(object sender, EventArgs e)
         {
-
             try
             {
                 cmbLocationType.BackColor = Color.LemonChiffon;

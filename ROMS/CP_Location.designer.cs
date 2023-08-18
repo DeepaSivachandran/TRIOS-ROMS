@@ -156,7 +156,6 @@
             this.pnlGodownType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlGodownType.Controls.Add(this.rbOutside);
             this.pnlGodownType.Controls.Add(this.rbInside);
-            this.pnlGodownType.Enabled = false;
             this.pnlGodownType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlGodownType.Location = new System.Drawing.Point(203, 159);
             this.pnlGodownType.Name = "pnlGodownType";
@@ -363,7 +362,6 @@
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(288, 27);
             this.cmbConcern.TabIndex = 0;
-            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);

@@ -154,7 +154,7 @@
             this.grbFilterByConcern.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterByConcern.Name = "grbFilterByConcern";
             this.grbFilterByConcern.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterByConcern.Size = new System.Drawing.Size(672, 67);
+            this.grbFilterByConcern.Size = new System.Drawing.Size(1346, 67);
             this.grbFilterByConcern.TabIndex = 958791;
             this.grbFilterByConcern.TabStop = false;
             this.grbFilterByConcern.Text = "Filter By Concern";

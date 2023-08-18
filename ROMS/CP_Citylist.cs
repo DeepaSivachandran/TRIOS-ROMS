@@ -281,20 +281,28 @@ namespace ROMS
         }
         private void GrdCityList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            for (int i = 0; i < grdCityList.Rows.Count; i++)
+            try
             {
-                if (Convert.ToString(grdCityList.Rows[i].Cells["StatusID"].Value) == "1")
+                for (int i = 0; i < grdCityList.Rows.Count; i++)
                 {
-                    grdCityList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                    grdCityList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    if (Convert.ToString(grdCityList.Rows[i].Cells["StatusID"].Value) == "1")
+                    {
+                        grdCityList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdCityList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        grdCityList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdCityList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    grdCityList.ClearSelection();
                 }
-                else
-                {
-                    grdCityList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                    grdCityList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                }
-                grdCityList.ClearSelection();
             }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }           
         }
         private void GrdCityList_SelectionChanged(object sender, EventArgs e)
         {

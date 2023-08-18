@@ -111,10 +111,11 @@ namespace ROMS
                 if (varResult.Split('~')[0] == "3")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    varUnitCodeProduct = Convert.ToInt16(varResult.Split('~')[2]);
+                    
                     udfnclear();
                     if (varmastertype == 1)
                     {
+                        varUnitCodeProduct = Convert.ToInt16(varResult.Split('~')[2]);
                         MainForm.objCP_Items.varUnitCode = varUnitCodeProduct;
                         varmastertype = 0;
                         udfnclose();

@@ -154,7 +154,7 @@ namespace ROMS
                         }
                         else
                         {
-                            MessageBox.Show(varResult, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -219,6 +219,10 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    udfndelete();
+                }
             }
             catch (Exception ex)
             {
@@ -265,20 +269,28 @@ namespace ROMS
         }
         private void GrdGodownList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            for (int i = 0; i < grdGodownList.Rows.Count; i++)
+            try
             {
-                if (Convert.ToString(grdGodownList.Rows[i].Cells["StatusID"].Value) == "1")
+                for (int i = 0; i < grdGodownList.Rows.Count; i++)
                 {
-                    grdGodownList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                    grdGodownList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    if (Convert.ToString(grdGodownList.Rows[i].Cells["StatusID"].Value) == "1")
+                    {
+                        grdGodownList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdGodownList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        grdGodownList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdGodownList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    grdGodownList.ClearSelection();
                 }
-                else
-                {
-                    grdGodownList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                    grdGodownList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                }
-                grdGodownList.ClearSelection();
             }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }            
         }
         private void GrdGodownList_DoubleClick(object sender, EventArgs e)
         {
