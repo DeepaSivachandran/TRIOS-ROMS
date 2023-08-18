@@ -54,7 +54,7 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.Image = global::ROMS.Properties.Resources.submit;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Location = new System.Drawing.Point(313, 275);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);

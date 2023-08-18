@@ -34,6 +34,12 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.gpissued = new System.Windows.Forms.GroupBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.txtDmode = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -45,12 +51,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtDTamilName = new System.Windows.Forms.TextBox();
             this.dpissuedateandtime = new System.Windows.Forms.DateTimePicker();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.gpissued.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +62,7 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.Image = global::ROMS.Properties.Resources.submit;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Location = new System.Drawing.Point(176, 242);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -115,6 +115,81 @@
             this.gpissued.Size = new System.Drawing.Size(323, 234);
             this.gpissued.TabIndex = 1111176;
             this.gpissued.TabStop = false;
+            // 
+            // textBox12
+            // 
+            this.textBox12.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox12.Enabled = false;
+            this.textBox12.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox12.Location = new System.Drawing.Point(129, 66);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.ReadOnly = true;
+            this.textBox12.Size = new System.Drawing.Size(177, 27);
+            this.textBox12.TabIndex = 1111195;
+            this.textBox12.TabStop = false;
+            // 
+            // textBox11
+            // 
+            this.textBox11.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox11.Enabled = false;
+            this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox11.Location = new System.Drawing.Point(129, 39);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.ReadOnly = true;
+            this.textBox11.Size = new System.Drawing.Size(177, 27);
+            this.textBox11.TabIndex = 1111194;
+            this.textBox11.TabStop = false;
+            // 
+            // textBox10
+            // 
+            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox10.Enabled = false;
+            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox10.Location = new System.Drawing.Point(129, 12);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(177, 27);
+            this.textBox10.TabIndex = 1111193;
+            this.textBox10.TabStop = false;
+            // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox9.Enabled = false;
+            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox9.Location = new System.Drawing.Point(17, 66);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(112, 27);
+            this.textBox9.TabIndex = 1111192;
+            this.textBox9.TabStop = false;
+            this.textBox9.Text = "Supplier";
+            // 
+            // textBox8
+            // 
+            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox8.Enabled = false;
+            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox8.Location = new System.Drawing.Point(17, 39);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(112, 27);
+            this.textBox8.TabIndex = 1111191;
+            this.textBox8.TabStop = false;
+            this.textBox8.Text = "PO No.";
+            // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox7.Enabled = false;
+            this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox7.Location = new System.Drawing.Point(17, 12);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(112, 27);
+            this.textBox7.TabIndex = 1111190;
+            this.textBox7.TabStop = false;
+            this.textBox7.Text = "PO Date";
             // 
             // textBox6
             // 
@@ -245,81 +320,6 @@
             this.dpissuedateandtime.Name = "dpissuedateandtime";
             this.dpissuedateandtime.Size = new System.Drawing.Size(177, 27);
             this.dpissuedateandtime.TabIndex = 0;
-            // 
-            // textBox7
-            // 
-            this.textBox7.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox7.Enabled = false;
-            this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox7.Location = new System.Drawing.Point(17, 12);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(112, 27);
-            this.textBox7.TabIndex = 1111190;
-            this.textBox7.TabStop = false;
-            this.textBox7.Text = "PO Date";
-            // 
-            // textBox8
-            // 
-            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox8.Enabled = false;
-            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox8.Location = new System.Drawing.Point(17, 39);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(112, 27);
-            this.textBox8.TabIndex = 1111191;
-            this.textBox8.TabStop = false;
-            this.textBox8.Text = "PO No.";
-            // 
-            // textBox9
-            // 
-            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox9.Enabled = false;
-            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox9.Location = new System.Drawing.Point(17, 66);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(112, 27);
-            this.textBox9.TabIndex = 1111192;
-            this.textBox9.TabStop = false;
-            this.textBox9.Text = "Supplier";
-            // 
-            // textBox10
-            // 
-            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox10.Enabled = false;
-            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox10.Location = new System.Drawing.Point(129, 12);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(177, 27);
-            this.textBox10.TabIndex = 1111193;
-            this.textBox10.TabStop = false;
-            // 
-            // textBox11
-            // 
-            this.textBox11.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox11.Enabled = false;
-            this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox11.Location = new System.Drawing.Point(129, 39);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(177, 27);
-            this.textBox11.TabIndex = 1111194;
-            this.textBox11.TabStop = false;
-            // 
-            // textBox12
-            // 
-            this.textBox12.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox12.Enabled = false;
-            this.textBox12.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox12.Location = new System.Drawing.Point(129, 66);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.ReadOnly = true;
-            this.textBox12.Size = new System.Drawing.Size(177, 27);
-            this.textBox12.TabIndex = 1111195;
-            this.textBox12.TabStop = false;
             // 
             // PUR_POIssuedDetails
             // 

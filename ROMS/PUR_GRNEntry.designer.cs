@@ -514,11 +514,11 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button1.Image = global::ROMS.Properties.Resources.returns2;
+            this.button1.Image = global::ROMS.Properties.Resources.damage24;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(145, 256);
+            this.button1.Location = new System.Drawing.Point(141, 256);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 29);
+            this.button1.Size = new System.Drawing.Size(85, 29);
             this.button1.TabIndex = 1111203;
             this.button1.Text = "Damages";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -528,11 +528,11 @@
             // btnDamage
             // 
             this.btnDamage.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnDamage.Image = global::ROMS.Properties.Resources.returns2;
+            this.btnDamage.Image = global::ROMS.Properties.Resources.deliverychallan24;
             this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDamage.Location = new System.Drawing.Point(8, 256);
             this.btnDamage.Name = "btnDamage";
-            this.btnDamage.Size = new System.Drawing.Size(134, 29);
+            this.btnDamage.Size = new System.Drawing.Size(129, 29);
             this.btnDamage.TabIndex = 1111202;
             this.btnDamage.Text = "Delivery Challan";
             this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

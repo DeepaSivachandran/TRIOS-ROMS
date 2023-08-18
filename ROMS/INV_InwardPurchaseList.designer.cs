@@ -53,22 +53,6 @@
             this.btnView = new System.Windows.Forms.Button();
             this.cmbconcern = new System.Windows.Forms.ComboBox();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdInwardList = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpurchaseno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsuppliername = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,6 +66,22 @@
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.grdInwardList = new System.Windows.Forms.DataGridView();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpurchaseno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsuppliername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.grbFilterBy.SuspendLayout();
@@ -119,7 +119,7 @@
             // tsbQue
             // 
             this.tsbQue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbQue.Image = global::ROMS.Properties.Resources.include;
+            this.tsbQue.Image = global::ROMS.Properties.Resources.queue;
             this.tsbQue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbQue.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbQue.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
@@ -341,6 +341,81 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
             // 
+            // clmdsno
+            // 
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Concern";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Inward No.";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Inward Date";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // clmdpurchaseno
+            // 
+            this.clmdpurchaseno.HeaderText = "Voucher No.";
+            this.clmdpurchaseno.Name = "clmdpurchaseno";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Voucher Date";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // clmdsuppliername
+            // 
+            this.clmdsuppliername.HeaderText = "Supplier";
+            this.clmdsuppliername.Name = "clmdsuppliername";
+            this.clmdsuppliername.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "City";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "GSTIN";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // clmdtotalitems
+            // 
+            this.clmdtotalitems.HeaderText = "Total Products in Invoice";
+            this.clmdtotalitems.Name = "clmdtotalitems";
+            this.clmdtotalitems.Width = 150;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "My Products";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            // 
+            // clmdtotalqty
+            // 
+            this.clmdtotalqty.HeaderText = "Status";
+            this.clmdtotalqty.Name = "clmdtotalqty";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Created By";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
             // lblNoRecordsFound
             // 
             this.lblNoRecordsFound.AutoSize = true;
@@ -406,20 +481,6 @@
             this.grdInwardList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdInwardList.Size = new System.Drawing.Size(1348, 502);
             this.grdInwardList.TabIndex = 958797;
-            // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(797, 381);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(544, 247);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
             // 
             // clmsno
             // 
@@ -501,80 +562,19 @@
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
             // 
-            // clmdsno
+            // picLoader
             // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Concern";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Inward No.";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Inward Date";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // clmdpurchaseno
-            // 
-            this.clmdpurchaseno.HeaderText = "Voucher No.";
-            this.clmdpurchaseno.Name = "clmdpurchaseno";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Voucher Date";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // clmdsuppliername
-            // 
-            this.clmdsuppliername.HeaderText = "Supplier";
-            this.clmdsuppliername.Name = "clmdsuppliername";
-            this.clmdsuppliername.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "City";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "GSTIN";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // clmdtotalitems
-            // 
-            this.clmdtotalitems.HeaderText = "Total Products in Invoice";
-            this.clmdtotalitems.Name = "clmdtotalitems";
-            this.clmdtotalitems.Width = 150;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "My Products";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
-            // clmdtotalqty
-            // 
-            this.clmdtotalqty.HeaderText = "Status";
-            this.clmdtotalqty.Name = "clmdtotalqty";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Created By";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(797, 381);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(544, 247);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // INV_InwardPurchaseList
             // 
