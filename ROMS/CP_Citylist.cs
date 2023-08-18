@@ -304,10 +304,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }           
         }
-        private void GrdCityList_SelectionChanged(object sender, EventArgs e)
-        {
-            //udfnSearchGridHead();
-        }
         private void GrdCityList_Scroll(object sender, ScrollEventArgs e)
         {
             try

@@ -474,18 +474,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CmbNoOfDecimals_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-             //   BeginInvoke(new Action(() => cmbNoOfDecimals.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void CmbNoOfDecimals_KeyDown(object sender, KeyEventArgs e)
         {
             try

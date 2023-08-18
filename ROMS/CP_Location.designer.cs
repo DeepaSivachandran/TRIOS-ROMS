@@ -311,7 +311,6 @@
             this.cmbStockApplicable.Name = "cmbStockApplicable";
             this.cmbStockApplicable.Size = new System.Drawing.Size(288, 27);
             this.cmbStockApplicable.TabIndex = 7;
-            this.cmbStockApplicable.SelectedIndexChanged += new System.EventHandler(this.CmbStockApplicable_SelectedIndexChanged);
             this.cmbStockApplicable.Enter += new System.EventHandler(this.CmbStockApplicable_Enter);
             this.cmbStockApplicable.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStockApplicable_KeyDown);
             this.cmbStockApplicable.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStockApplicable_KeyPress);

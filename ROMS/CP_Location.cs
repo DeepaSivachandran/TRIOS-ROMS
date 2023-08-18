@@ -309,32 +309,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void RbLocation_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //grbLocation.BringToFront();
-                //grbrack.SendToBack();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void Rbrack_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-               // grbrack.BringToFront();
-                //grbLocation.SendToBack();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void Rboutside_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -717,18 +691,6 @@ namespace ROMS
                     epLocation.Clear();
                     cmbStockApplicable.BackColor = Color.White;
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbStockApplicable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //BeginInvoke(new Action(() => cmbStockApplicable.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {

@@ -250,7 +250,6 @@
             this.grdCityList.TabIndex = 958797;
             this.grdCityList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdCityList_DataBindingComplete);
             this.grdCityList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdCityList_Scroll);
-            this.grdCityList.SelectionChanged += new System.EventHandler(this.GrdCityList_SelectionChanged);
             this.grdCityList.DoubleClick += new System.EventHandler(this.GrdCityList_DoubleClick);
             this.grdCityList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdCityList_KeyDown);
             // 

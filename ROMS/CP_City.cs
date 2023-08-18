@@ -361,18 +361,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CmbState_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void CmbState_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
