@@ -59,6 +59,7 @@
             // 
             this.txtUserName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserName.Location = new System.Drawing.Point(198, 25);
+            this.txtUserName.MaxLength = 15;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(170, 28);
             this.txtUserName.TabIndex = 0;
