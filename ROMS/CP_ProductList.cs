@@ -15,6 +15,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        public int varconcern = 0, vargroup = 0, varsubgroup = 0, varcategory = 0;
         public CP_ProductList()
         {
             InitializeComponent();
@@ -24,8 +25,9 @@ namespace ROMS
         {
             try
             {
+                udfnlistcmbdata();
                 MainForm.objCP_Items = new CP_Product();
-                MainForm.objCP_Items.ShowDialog();
+                MainForm.objCP_Items.ShowDialog(); 
             }
             catch (Exception ex)
             {
@@ -38,6 +40,7 @@ namespace ROMS
         {
             try
             {
+                udfnlistcmbdata();
                 udfnEdit();
             }
             catch (Exception ex)
@@ -46,6 +49,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnlistcmbdata()
+        {
+            try
+            {
+                vargroup = Convert.ToInt32(cmbGroupType.SelectedValue);
+                varsubgroup = Convert.ToInt32(cmbsubgroup.SelectedValue);
+                varconcern = Convert.ToInt32(cmbConcern.SelectedValue);
+                varcategory = Convert.ToInt32(cmbCategory.SelectedValue);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void tsbDelete_Click(object sender, EventArgs e)
         {
             try
@@ -128,8 +147,8 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
-
-                    objDs = objdserv.udfnproductmasterlist(0, 0,Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbGroupType.SelectedValue), Convert.ToInt32(cmbsubgroup.SelectedValue), MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue));
+                
+                objDs = objdserv.udfnproductmasterlist(0, 0,Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbGroupType.SelectedValue), Convert.ToInt32(cmbsubgroup.SelectedValue),"",MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue));
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -926,18 +945,9 @@ namespace ROMS
             {
                 this.ActiveControl = cmbConcern;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 AND COMID !=-1 ORDER BY COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID !=-1 AND PRG_STSID=1 ORDER BY PRGID", "PRG_EName,PRGID", cmbGroupType, "", "PRG_EName", "PRGID");
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID <> -1 AND PRSG_STSID=1", "PRSG_EName,PRSGID", cmbsubgroup, "", "PRSG_EName", "PRSGID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
-                objDataBind = null;
-                cmbConcern.SelectedValue = 0;
-                cmbGroupType.SelectedValue = 0;
-                cmbsubgroup.SelectedValue = 0;
-                cmbCategory.SelectedValue = 0;
-
+                udfnDropdownbind();
                 udfnList();
+
             }
             catch (Exception ex)
 
@@ -946,6 +956,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             
+        }
+        public void udfnDropdownbind()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 AND COMID !=-1 ORDER BY COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID !=-1 AND PRG_STSID=1 ORDER BY PRGID", "PRG_EName,PRGID", cmbGroupType, "", "PRG_EName", "PRGID");
+                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID <> -1 AND PRSG_STSID=1", "PRSG_EName,PRSGID", cmbsubgroup, "", "PRSG_EName", "PRSGID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+                cmbGroupType.SelectedValue = vargroup;
+                cmbsubgroup.SelectedValue = varsubgroup;
+                cmbConcern.SelectedValue = varconcern;
+                cmbCategory.SelectedValue = varcategory;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
 
         private void GrdItemList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

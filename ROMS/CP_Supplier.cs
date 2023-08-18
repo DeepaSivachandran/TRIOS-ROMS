@@ -19,8 +19,7 @@ namespace ROMS
 
         public string varcompanycode;
         public string pbFormStatus;
-        public string varstatecode = "";
-
+        public string varstatecode = "", vardays = "";
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
         private ToolTip tpAltContactNo = new ToolTip();
@@ -199,22 +198,34 @@ namespace ROMS
             { 
                 try
                 {
-                    if (txtContactNumber.Text == "")
+                    if (txtContactNumber.Text != "")
                     {
-                        if (objvalidation.FormatNumeric(txtContactNumber.Text) == false || txtContactNumber.Text.Length < 10)
+                        if ( txtContactNumber.Text.Length < 10)
                         {
                             errCompany.SetError(txtContactNumber, "Please enter valid phone No.");
                             txtContactNumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                             tpContactNo.ShowAlways = true;
                             tpContactNo.Show("Please enter valid phone No.", txtContactNumber, 5000); 
-                        }
-
+                        } 
                         else
                         {
                             errCompany.Clear();
                             txtContactNumber.BackColor = Color.White;
                             tpContactNo.Hide(txtContactNumber);
                         }
+                    }
+                    else if (txtContactNumber.Text == "")
+                    { 
+                            errCompany.SetError(txtContactNumber, "Please enter phone No.");
+                            txtContactNumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpContactNo.ShowAlways = true;
+                            tpContactNo.Show("Please enter phone No.", txtContactNumber, 5000); 
+                    }
+                    else
+                    {
+                        errCompany.Clear();
+                        txtContactNumber.BackColor = Color.White;
+                        tpContactNo.Hide(txtContactNumber);
                     }
                 }
                 catch (Exception ex)
@@ -263,9 +274,9 @@ namespace ROMS
         {
             try
             { 
-                if (txtAContactNumber.Text == "")
+                if (txtAContactNumber.Text != "")
                 {
-                    if (objvalidation.FormatNumeric(txtAContactNumber.Text) == false || txtAContactNumber.Text.Length < 10)
+                    if ( txtAContactNumber.Text.Length < 10)
                     {
                         errCompany.SetError(txtAContactNumber, "Please enter valid mobile No.");
                         txtAContactNumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -279,6 +290,20 @@ namespace ROMS
                         txtAContactNumber.BackColor = Color.White;
                         tpAltContactNo.Hide(txtAContactNumber);
                     }
+                }
+                else if (txtAContactNumber.Text == "")
+                {
+                    errCompany.SetError(txtAContactNumber, "Please enter mobile No.");
+                    txtAContactNumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpAltContactNo.ShowAlways = true;
+                    tpAltContactNo.Show("Please enter mobile No.", txtAContactNumber, 5000);
+                }
+
+                else
+                {
+                    errCompany.Clear();
+                    txtAContactNumber.BackColor = Color.White;
+                    tpAltContactNo.Hide(txtAContactNumber);
                 }
             }
             catch (Exception ex)
@@ -407,6 +432,8 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (11,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (12,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPaymentTerm, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (29,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbfinance, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
+
                 objDataBind = null; 
                 cmbReturnPolicy.SelectedIndex = 0; 
                 cmbReturnType.SelectedIndex = 0;
@@ -634,9 +661,9 @@ namespace ROMS
                 txtPincode.BackColor = Color.White;
                 try
                 {
-                    if (txtPincode.Text == "")
+                    if (txtPincode.Text != "")
                     {
-                        if (objvalidation.FormatNumeric(txtPincode.Text) == false || txtPincode.Text.Length < 6)
+                        if (txtPincode.Text.Length < 6)
                         {
                             errCompany.SetError(txtPincode, "Please enter valid pincode");
                             txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -871,7 +898,7 @@ namespace ROMS
 
         private void Txtwhatsapp_Leave(object sender, EventArgs e)
         {
-            if (txtwhatsapp.Text  == "")
+            if (txtwhatsapp.Text == "")
             {
 
                 errCompany.SetError(txtwhatsapp, "Please enter whatsapp No.");
@@ -879,6 +906,23 @@ namespace ROMS
                 tparea.ShowAlways = true;
                 tparea.Show("Please enter whatsapp No.", txtwhatsapp, 5000);
 
+            }
+            else if (txtwhatsapp.Text != "")
+            {
+                if (txtwhatsapp.Text.Length < 10 )
+                {
+
+                    errCompany.SetError(txtwhatsapp, "Please enter valid whatsapp No.");
+                    txtwhatsapp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tparea.ShowAlways = true;
+                    tparea.Show("Please enter valid whatsapp No.", txtwhatsapp, 5000); 
+                }
+                else
+                {
+                    errCompany.Clear();
+                    txtwhatsapp.BackColor = Color.White;
+                    tparea.Hide(txtwhatsapp);
+                }
             }
             else
             {
@@ -1017,7 +1061,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                  //  txtrepaddress.Focus();
+                   txtrepmobileno.Focus();
                 }
             }
             catch (Exception ex)
@@ -1178,7 +1222,7 @@ namespace ROMS
         {
             try
             {
-               // txtsalesmanaddress.Focus();
+                txtsalesmanmobile.Focus();
             }
             catch (Exception ex)
             {
@@ -1291,12 +1335,21 @@ namespace ROMS
         private void Cmbsuppliertype_KeyDown(object sender, KeyEventArgs e)
         {
             try
-            { 
+            {
+                if (txtgstin.Enabled == true)
+                {
                     if (e.KeyCode == Keys.Enter)
                     {
                         txtgstin.Focus();
                     }
-               
+                }
+                else
+                {
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        cmbReturnPolicy.Focus();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1405,8 +1458,8 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbReturnPolicy.Select(int.MaxValue, 0)));
-                if (cmbReturnPolicy.Text == "Yes") { cmbReturnType.Visible = true; }
-                else { cmbReturnType.Visible = false; }
+                if (cmbReturnPolicy.Text == "Yes") { cmbReturnType.Visible = true; txtDReturnCycle.Visible = true; }
+                else { cmbReturnType.Visible = false; txtDReturnCycle.Visible = false; }
             }
             catch (Exception ex)
             {
@@ -1465,6 +1518,7 @@ namespace ROMS
                 else if ((Convert.ToString(cmbReturnType.SelectedValue) == "27"))
                 {
                     txtReturnText.Text = "Month";
+                    vardays = "";
                     txtReturnText.Visible = true;
                     cmbPolicyContent.Visible = true;
                     cmbPolicyContent.Enabled = true; 
@@ -1472,11 +1526,14 @@ namespace ROMS
                     cmbSecondLevel.DataSource = null;
                     DataBind objDataBind = new DataBind();
                     objDataBind.BindComboBoxListSelected("DEF_Months", "MONID NOT IN (0,-1)", "MON_Name,MONID", cmbPolicyContent, "", "MON_Name", "MONID"); 
-                    cmbPolicyContent.SelectedIndex = 0;
+                    cmbPolicyContent.SelectedIndex = 0; 
+                    DataService objds = new DataService();
+                    vardays = objds.displaydata("SELECT MON_DAY FROM DEF_Months WHERE MONID ='" + Convert.ToString(cmbPolicyContent.SelectedValue) + "'");
+                    objds.CloseConnection();
                     txtNextLevel.Visible = true;
                     cmbSecondLevel.Visible = true;
                     txtNextLevel.Text = "Day of the month"; 
-                    objDataBind.BindComboBoxListSelected("DEF_Month_Days", "1=1", "MOND_Name,MONDID", cmbSecondLevel, "", "MOND_Name", "MONDID");
+                    objDataBind.BindComboBoxListSelected("DEF_Month_Days", "MOND_Name <='"+vardays+"'", "MOND_Name,MONDID", cmbSecondLevel, "", "MOND_Name", "MONDID");
                     objDataBind = null;
                     cmbSecondLevel.SelectedIndex = 0;
                 }
@@ -1620,18 +1677,18 @@ namespace ROMS
             try
             {
                 cmbDesignation.BackColor = Color.White;
-                //if (Convert.ToString(cmbDesignation.SelectedValue) == "" || Convert.ToString(cmbDesignation.SelectedValue) == "-1")
-                //{
-                //    errCompany.SetError(cmbDesignation, "Please Select Designation");
-                //    cmbDesignation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpstate.ShowAlways = true;
-                //    tpstate.Show("Please Select Designation", cmbDesignation, 5000);
-                //}
-                //else
-                //{
-                //    errCompany.Clear();
-                //    cmbDesignation.BackColor = Color.White;
-                //}
+                if (Convert.ToString(cmbDesignation.SelectedValue) == "" || Convert.ToString(cmbDesignation.SelectedValue) == "-1")
+                {
+                    errCompany.SetError(cmbDesignation, "Please Select Designation");
+                    cmbDesignation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpstate.ShowAlways = true;
+                    tpstate.Show("Please Select Designation", cmbDesignation, 5000);
+                }
+                else
+                {
+                    errCompany.Clear();
+                    cmbDesignation.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -1804,18 +1861,18 @@ namespace ROMS
             try
             {
                 cmbPaymentTerm.BackColor = Color.White;
-                //if (Convert.ToString(cmbPaymentTerm.SelectedValue) == "" || Convert.ToString(cmbPaymentTerm.SelectedValue) == "-1")
-                //{
-                //    errCompany.SetError(cmbPaymentTerm, "Please Select Payment Term");
-                //    cmbPaymentTerm.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpstate.ShowAlways = true;
-                //    tpstate.Show("Please Select Payment Term", cmbPaymentTerm, 5000);
-                //}
-                //else
-                //{
-                //    errCompany.Clear();
-                //    cmbPaymentTerm.BackColor = Color.White;
-                //}
+                if (Convert.ToString(cmbPaymentTerm.SelectedValue) == "" || Convert.ToString(cmbPaymentTerm.SelectedValue) == "-1")
+                {
+                    errCompany.SetError(cmbPaymentTerm, "Please Select Payment Term");
+                    cmbPaymentTerm.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpstate.ShowAlways = true;
+                    tpstate.Show("Please Select Payment Term", cmbPaymentTerm, 5000);
+                }
+                else
+                {
+                    errCompany.Clear();
+                    cmbPaymentTerm.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -1857,18 +1914,18 @@ namespace ROMS
             try
             {
                 cmbSupplierType.BackColor = Color.White;
-                //if (Convert.ToString(cmbSupplierType.SelectedValue) == "" || Convert.ToString(cmbSupplierType.SelectedValue) == "-1")
-                //{
-                //    errCompany.SetError(cmbSupplierType, "Please Select Supplier Type");
-                //    cmbSupplierType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpstate.ShowAlways = true;
-                //    tpstate.Show("Please Select Payment Supplier Type", cmbSupplierType, 5000);
-                //}
-                //else
-                //{
-                //    errCompany.Clear();
-                //    cmbSupplierType.BackColor = Color.White;
-                //}
+                if (Convert.ToString(cmbSupplierType.SelectedValue) == "" || Convert.ToString(cmbSupplierType.SelectedValue) == "-1")
+                {
+                    errCompany.SetError(cmbSupplierType, "Please Select Supplier Type");
+                    cmbSupplierType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpstate.ShowAlways = true;
+                    tpstate.Show("Please Select Payment Supplier Type", cmbSupplierType, 5000);
+                }
+                else
+                {
+                    errCompany.Clear();
+                    cmbSupplierType.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -2077,6 +2134,15 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbPolicyContent.Select(int.MaxValue, 0)));
+                vardays = "";
+                cmbSecondLevel.DataSource = null;
+                DataBind objDataBind = new DataBind();
+                DataService objds = new DataService();
+                vardays = objds.displaydata("SELECT MON_DAY FROM DEF_Months WHERE MONID ='" + Convert.ToString(cmbPolicyContent.SelectedValue) + "'");
+                objds.CloseConnection();
+                objDataBind.BindComboBoxListSelected("DEF_Month_Days", "MOND_Name <='" + vardays + "'", "MOND_Name,MONDID", cmbSecondLevel, "", "MOND_Name", "MONDID");
+                objDataBind = null;
+                cmbSecondLevel.SelectedIndex = 0;
             }
             catch (Exception ex)
 
@@ -2337,7 +2403,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
 
-                    btnAdd.Focus();
+                    grddays.Focus();
 
                 }
             }

@@ -61,7 +61,7 @@
             this.cmbPolicyContent = new System.Windows.Forms.ComboBox();
             this.txtReturnText = new System.Windows.Forms.TextBox();
             this.cmbReturnType = new System.Windows.Forms.ComboBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txtDReturnCycle = new System.Windows.Forms.TextBox();
             this.cmbReturnPolicy = new System.Windows.Forms.ComboBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.grbEnvelopeDetails = new System.Windows.Forms.GroupBox();
@@ -365,7 +365,7 @@
             this.groupBox3.Controls.Add(this.cmbPolicyContent);
             this.groupBox3.Controls.Add(this.txtReturnText);
             this.groupBox3.Controls.Add(this.cmbReturnType);
-            this.groupBox3.Controls.Add(this.textBox10);
+            this.groupBox3.Controls.Add(this.txtDReturnCycle);
             this.groupBox3.Controls.Add(this.cmbReturnPolicy);
             this.groupBox3.Controls.Add(this.textBox9);
             this.groupBox3.Location = new System.Drawing.Point(571, 58);
@@ -439,17 +439,17 @@
             this.cmbReturnType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReturnType_KeyPress);
             this.cmbReturnType.Leave += new System.EventHandler(this.CmbReturnType_Leave);
             // 
-            // textBox10
+            // txtDReturnCycle
             // 
-            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox10.Enabled = false;
-            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox10.Location = new System.Drawing.Point(12, 50);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(111, 27);
-            this.textBox10.TabIndex = 73;
-            this.textBox10.Text = "Return Cycle";
+            this.txtDReturnCycle.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDReturnCycle.Enabled = false;
+            this.txtDReturnCycle.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDReturnCycle.Location = new System.Drawing.Point(12, 50);
+            this.txtDReturnCycle.Name = "txtDReturnCycle";
+            this.txtDReturnCycle.ReadOnly = true;
+            this.txtDReturnCycle.Size = new System.Drawing.Size(111, 27);
+            this.txtDReturnCycle.TabIndex = 73;
+            this.txtDReturnCycle.Text = "Return Cycle";
             // 
             // cmbReturnPolicy
             // 
@@ -2596,7 +2596,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderType;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cmbReturnType;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox txtDReturnCycle;
         private System.Windows.Forms.ComboBox cmbReturnPolicy;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox txtReturnText;
