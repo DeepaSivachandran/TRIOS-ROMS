@@ -51,20 +51,8 @@
             this.dpPlanDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdpurchasenumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdsupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdbillamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdtotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdapprovedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdPurchaseApproval = new System.Windows.Forms.DataGridView();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,12 +61,30 @@
             this.clmpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmbill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSupplierName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmGSTIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmapproved = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdpurchasenumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdsupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdbillamt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdtotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdapprovedby = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -298,6 +304,9 @@
             this.clmdpono,
             this.clmdsupplier,
             this.clmdbillamt,
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
             this.clmdtotalitem,
             this.clmdstatus,
             this.clmdenterby,
@@ -327,87 +336,6 @@
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958798;
             // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.MinimumWidth = 6;
-            this.clmdsno.Name = "clmdsno";
-            this.clmdsno.Width = 75;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Concern";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // clmddate
-            // 
-            this.clmddate.HeaderText = "Voucher Date";
-            this.clmddate.MinimumWidth = 6;
-            this.clmddate.Name = "clmddate";
-            // 
-            // clmdpurchasenumber
-            // 
-            this.clmdpurchasenumber.HeaderText = "Voucher No.";
-            this.clmdpurchasenumber.MinimumWidth = 6;
-            this.clmdpurchasenumber.Name = "clmdpurchasenumber";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Invoice Date";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // clmdpono
-            // 
-            this.clmdpono.HeaderText = "Invoice No.";
-            this.clmdpono.MinimumWidth = 6;
-            this.clmdpono.Name = "clmdpono";
-            // 
-            // clmdsupplier
-            // 
-            this.clmdsupplier.HeaderText = "Invoice Amt";
-            this.clmdsupplier.Name = "clmdsupplier";
-            this.clmdsupplier.ReadOnly = true;
-            // 
-            // clmdbillamt
-            // 
-            this.clmdbillamt.HeaderText = "Purchase Type";
-            this.clmdbillamt.Name = "clmdbillamt";
-            this.clmdbillamt.ReadOnly = true;
-            // 
-            // clmdtotalitem
-            // 
-            this.clmdtotalitem.HeaderText = "Total Products";
-            this.clmdtotalitem.Name = "clmdtotalitem";
-            this.clmdtotalitem.ReadOnly = true;
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Status";
-            this.clmdstatus.Name = "clmdstatus";
-            this.clmdstatus.ReadOnly = true;
-            // 
-            // clmdenterby
-            // 
-            this.clmdenterby.HeaderText = "Created By";
-            this.clmdenterby.Name = "clmdenterby";
-            this.clmdenterby.ReadOnly = true;
-            this.clmdenterby.Width = 150;
-            // 
-            // clmdapprovedby
-            // 
-            this.clmdapprovedby.HeaderText = "Approved By";
-            this.clmdapprovedby.Name = "clmdapprovedby";
-            this.clmdapprovedby.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Remarks";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 200;
-            // 
             // grdPurchaseApproval
             // 
             this.grdPurchaseApproval.AllowUserToAddRows = false;
@@ -435,6 +363,9 @@
             this.clmpono,
             this.clmsupplier,
             this.clmbill,
+            this.clmSupplierName,
+            this.clmCity,
+            this.clmGSTIN,
             this.clmtotalitem,
             this.clmsts,
             this.clmenterby,
@@ -463,6 +394,12 @@
             this.grdPurchaseApproval.Size = new System.Drawing.Size(1348, 510);
             this.grdPurchaseApproval.TabIndex = 958797;
             this.grdPurchaseApproval.DoubleClick += new System.EventHandler(this.GrdPurchaseApproval_DoubleClick);
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Reason";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
             // 
             // clmsno
             // 
@@ -517,6 +454,27 @@
             this.clmbill.Name = "clmbill";
             this.clmbill.ReadOnly = true;
             // 
+            // clmSupplierName
+            // 
+            this.clmSupplierName.HeaderText = "Supplier";
+            this.clmSupplierName.Name = "clmSupplierName";
+            this.clmSupplierName.ReadOnly = true;
+            this.clmSupplierName.Width = 150;
+            // 
+            // clmCity
+            // 
+            this.clmCity.HeaderText = "City";
+            this.clmCity.Name = "clmCity";
+            this.clmCity.ReadOnly = true;
+            this.clmCity.Width = 150;
+            // 
+            // clmGSTIN
+            // 
+            this.clmGSTIN.HeaderText = "GSTIN";
+            this.clmGSTIN.Name = "clmGSTIN";
+            this.clmGSTIN.ReadOnly = true;
+            this.clmGSTIN.Width = 150;
+            // 
             // clmtotalitem
             // 
             this.clmtotalitem.HeaderText = "Total Products";
@@ -549,11 +507,107 @@
             this.Column3.ReadOnly = true;
             this.Column3.Width = 200;
             // 
-            // Column7
+            // clmdsno
             // 
-            this.Column7.HeaderText = "Reason";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.MinimumWidth = 6;
+            this.clmdsno.Name = "clmdsno";
+            this.clmdsno.Width = 75;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Concern";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // clmddate
+            // 
+            this.clmddate.HeaderText = "Voucher Date";
+            this.clmddate.MinimumWidth = 6;
+            this.clmddate.Name = "clmddate";
+            // 
+            // clmdpurchasenumber
+            // 
+            this.clmdpurchasenumber.HeaderText = "Voucher No.";
+            this.clmdpurchasenumber.MinimumWidth = 6;
+            this.clmdpurchasenumber.Name = "clmdpurchasenumber";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Invoice Date";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // clmdpono
+            // 
+            this.clmdpono.HeaderText = "Invoice No.";
+            this.clmdpono.MinimumWidth = 6;
+            this.clmdpono.Name = "clmdpono";
+            // 
+            // clmdsupplier
+            // 
+            this.clmdsupplier.HeaderText = "Invoice Amt";
+            this.clmdsupplier.Name = "clmdsupplier";
+            this.clmdsupplier.ReadOnly = true;
+            // 
+            // clmdbillamt
+            // 
+            this.clmdbillamt.HeaderText = "Purchase Type";
+            this.clmdbillamt.Name = "clmdbillamt";
+            this.clmdbillamt.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Supplier";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "City";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "GSTIN";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 150;
+            // 
+            // clmdtotalitem
+            // 
+            this.clmdtotalitem.HeaderText = "Total Products";
+            this.clmdtotalitem.Name = "clmdtotalitem";
+            this.clmdtotalitem.ReadOnly = true;
+            // 
+            // clmdstatus
+            // 
+            this.clmdstatus.HeaderText = "Status";
+            this.clmdstatus.Name = "clmdstatus";
+            this.clmdstatus.ReadOnly = true;
+            // 
+            // clmdenterby
+            // 
+            this.clmdenterby.HeaderText = "Created By";
+            this.clmdenterby.Name = "clmdenterby";
+            this.clmdenterby.ReadOnly = true;
+            this.clmdenterby.Width = 150;
+            // 
+            // clmdapprovedby
+            // 
+            this.clmdapprovedby.HeaderText = "Approved By";
+            this.clmdapprovedby.Name = "clmdapprovedby";
+            this.clmdapprovedby.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Remarks";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 200;
             // 
             // PUR_PurchaseApprovalList
             // 
@@ -604,20 +658,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpurchaseno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupplier;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmbill;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsts;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmenterby;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmapproved;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmddate;
@@ -626,10 +667,29 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdpono;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsupplier;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdbillamt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdtotalitem;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdenterby;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdapprovedby;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpurchaseno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupplier;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmbill;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSupplierName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmCity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmGSTIN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmenterby;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmapproved;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }

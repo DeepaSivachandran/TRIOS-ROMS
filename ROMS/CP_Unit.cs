@@ -20,9 +20,11 @@ namespace ROMS
         private ToolTip tpSymbol = new ToolTip();
         private ToolTip tpNoOfDecimals = new ToolTip();
         private ToolTip tpEInvoiceUnitName = new ToolTip();
+        public int varmastertype = 0, varUnitCodeProduct=0;
+        public string varbrandcode;
         public int varUnitCode = 0;
         public string pbFormStatus;
-        public int varstatus;
+        public int varstatus, varupdate=0;
         public string PbUnitName="";
         public string PbSymbol="";
         public string PbNoOfDecimals="";
@@ -95,6 +97,10 @@ namespace ROMS
                 if (btnSave.Text=="Save")
                 {
                     varResult = objspservice.udfnUnit(0, 0,(txtEUnitName.Text).Trim(),txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus,"Unit Creation");
+                    if (varmastertype == 1)
+                    {
+                        varupdate = 1;
+                    }
                 }
                 else
                 {
@@ -105,8 +111,18 @@ namespace ROMS
                 if (varResult.Split('~')[0] == "3")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    varUnitCodeProduct = Convert.ToInt16(varResult.Split('~')[2]);
                     udfnclear();
-                    MainForm.objCP_Unitlist.udfnList();
+                    if (varmastertype == 1)
+                    {
+                        MainForm.objCP_Items.varUnitCode = varUnitCodeProduct;
+                        varmastertype = 0;
+                        udfnclose();
+                    }
+                    else
+                    {
+                        MainForm.objCP_Unitlist.udfnList();
+                    }
                 }
                 else
                 {
@@ -123,7 +139,8 @@ namespace ROMS
         private void udfnclear()
         {
             try
-            {
+            { 
+
                 txtEUnitName.Text = "";
                 txtSymbol.Text = "";
                 cmbNoOfDecimals.SelectedIndex = 0;
@@ -219,14 +236,16 @@ namespace ROMS
         public void udfnclose()
         {
             try
-            {               
-                    this.Close();               
+            {
+                
+                    this.Close(); 
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+             
         }
         private void btnClose_Click(object sender, EventArgs e)
         {

@@ -34,15 +34,81 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.102.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.102.0\lib\netstandard2.0\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.16.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.16.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="Irony, Version=1.0.11.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <HintPath>..\packages\Irony.NetCore.1.0.11\lib\net461\Irony.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.IO.Packaging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.6.0.0\lib\net461\System.IO.Packaging.dll</HintPath>
+    </Reference>
     <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,9 +116,12 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="XLParser, Version=1.5.2.0, Culture=neutral, PublicKeyToken=63397e1e46bb91b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\XLParser.1.5.2\lib\net461\XLParser.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication.cs">
@@ -84,6 +153,54 @@
     </Compile>
     <Compile Include="CP_GeneralSettings.designer.cs">
       <DependentUpon>CP_GeneralSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_BulkAttributes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BulkAttributes.designer.cs">
+      <DependentUpon>CP_BulkAttributes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_InwardQueueList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_InwardQueueList.designer.cs">
+      <DependentUpon>INV_InwardQueueList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PurchaseQueue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PurchaseQueue.designer.cs">
+      <DependentUpon>PUR_PurchaseQueue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockConversionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockConversionList.designer.cs">
+      <DependentUpon>INV_StockConversionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockHold.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockHold.designer.cs">
+      <DependentUpon>INV_StockHold.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_ChequePrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_ChequePrint.designer.cs">
+      <DependentUpon>PAY_ChequePrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAY_DebitNoteList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAY_DebitNoteList.designer.cs">
+      <DependentUpon>PAY_DebitNoteList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_PODamagedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_PODamagedView.designer.cs">
+      <DependentUpon>PUR_PODamagedView.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_DCDeatils.cs">
       <SubType>Form</SubType>
@@ -127,17 +244,17 @@
     <Compile Include="CP_SupplierOrderDetails.designer.cs">
       <DependentUpon>CP_SupplierOrderDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_UserCatagory.cs">
+    <Compile Include="CP_UserCategory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_UserCatagory.designer.cs">
-      <DependentUpon>CP_UserCatagory.cs</DependentUpon>
+    <Compile Include="CP_UserCategory.designer.cs">
+      <DependentUpon>CP_UserCategory.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_UserCatagoryList.cs">
+    <Compile Include="CP_UserCategoryList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_UserCatagoryList.designer.cs">
-      <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
+    <Compile Include="CP_UserCategoryList.designer.cs">
+      <DependentUpon>CP_UserCategoryList.cs</DependentUpon>
     </Compile>
     <Compile Include="INV_DamageEntryList.cs">
       <SubType>Form</SubType>
@@ -354,6 +471,12 @@
     </Compile>
     <Compile Include="PUR_PurchaseDC.designer.cs">
       <DependentUpon>PUR_PurchaseDC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockConversion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockConversion.designer.cs">
+      <DependentUpon>INV_StockConversion.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_RemarksHistory.cs">
       <SubType>Form</SubType>
@@ -684,6 +807,30 @@
     <EmbeddedResource Include="CP_GeneralSettings.resx">
       <DependentUpon>CP_GeneralSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_BulkAttributes.resx">
+      <DependentUpon>CP_BulkAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_InwardQueueList.resx">
+      <DependentUpon>INV_InwardQueueList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PurchaseQueue.resx">
+      <DependentUpon>PUR_PurchaseQueue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockConversionList.resx">
+      <DependentUpon>INV_StockConversionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockHold.resx">
+      <DependentUpon>INV_StockHold.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_ChequePrint.resx">
+      <DependentUpon>PAY_ChequePrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAY_DebitNoteList.resx">
+      <DependentUpon>PAY_DebitNoteList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_PODamagedView.resx">
+      <DependentUpon>PUR_PODamagedView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PUR_DCDeatils.resx">
       <DependentUpon>PUR_DCDeatils.cs</DependentUpon>
     </EmbeddedResource>
@@ -705,11 +852,11 @@
     <EmbeddedResource Include="CP_SupplierOrderDetails.resx">
       <DependentUpon>CP_SupplierOrderDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_UserCatagory.resx">
-      <DependentUpon>CP_UserCatagory.cs</DependentUpon>
+    <EmbeddedResource Include="CP_UserCategory.resx">
+      <DependentUpon>CP_UserCategory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_UserCatagoryList.resx">
-      <DependentUpon>CP_UserCatagoryList.cs</DependentUpon>
+    <EmbeddedResource Include="CP_UserCategoryList.resx">
+      <DependentUpon>CP_UserCategoryList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_DamageEntryList.resx">
       <DependentUpon>INV_DamageEntryList.cs</DependentUpon>
@@ -818,6 +965,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseDC.resx">
       <DependentUpon>PUR_PurchaseDC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockConversion.resx">
+      <DependentUpon>INV_StockConversion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_RemarksHistory.resx">
       <DependentUpon>PUR_RemarksHistory.cs</DependentUpon>
@@ -1141,6 +1291,7 @@
     <None Include="Resources\returns.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\print16x16 %282%29.png" />
     <None Include="Resources\spinner.gif.gif" />
     <None Include="Resources\undo16x16.png" />
     <None Include="Resources\save16x16.png" />

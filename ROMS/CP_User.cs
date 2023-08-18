@@ -20,7 +20,7 @@ namespace ROMS
         private ToolTip tppassword = new ToolTip();
         private ToolTip tpconfirmpassword = new ToolTip();
         private ToolTip tpUserRole  = new ToolTip();
-        private ToolTip tpUserCatagory  = new ToolTip();
+        private ToolTip tpUserCategory  = new ToolTip();
         private ToolTip tpPassKey  = new ToolTip();
 
         public string oldpassword,varpassword;
@@ -59,7 +59,7 @@ namespace ROMS
                 tppassword.Active = false;
                 tpconfirmpassword.Active = false;
                 tpUserRole.Active = false;
-                tpUserCatagory.Active = false;
+                tpUserCategory.Active = false;
                 tpPassKey.Active = false;
             }
             catch (Exception ex)
@@ -114,7 +114,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbUserCatagory.Focus();
+                    cmbUserCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -381,12 +381,12 @@ namespace ROMS
                     tploginid.Show("Please enter login id", txtLoginID, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(cmbUserCatagory.SelectedValue) == "" || Convert.ToString(cmbUserCatagory.SelectedValue) == "-1")
+                if (Convert.ToString(cmbUserCategory.SelectedValue) == "" || Convert.ToString(cmbUserCategory.SelectedValue) == "-1")
                 {
-                    epUser.SetError(cmbUserCatagory, "Please select user catagory");
-                    cmbUserCatagory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpUserCatagory.ShowAlways = true;
-                    tpUserCatagory.Show("Please select user catagory", cmbUserCatagory, 5000);
+                    epUser.SetError(cmbUserCategory, "Please select user Category");
+                    cmbUserCategory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpUserCategory.ShowAlways = true;
+                    tpUserCategory.Show("Please select user Category", cmbUserCategory, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(cmbUserRole.SelectedValue) == "" || Convert.ToString(cmbUserRole.SelectedValue) == "-1")
@@ -624,11 +624,11 @@ namespace ROMS
             }
         }
 
-        private void CmbUserCatagory_Enter(object sender, EventArgs e)
+        private void CmbUserCategory_Enter(object sender, EventArgs e)
         {
             try
             {
-                cmbUserCatagory.BackColor = Color.LemonChiffon;
+                cmbUserCategory.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -637,7 +637,7 @@ namespace ROMS
             }
         }
 
-        private void CmbUserCatagory_KeyDown(object sender, KeyEventArgs e)
+        private void CmbUserCategory_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -653,7 +653,7 @@ namespace ROMS
             }
         }
 
-        private void CmbUserCatagory_KeyPress(object sender, KeyPressEventArgs e)
+        private void CmbUserCategory_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -667,21 +667,21 @@ namespace ROMS
             }
         }
 
-        private void CmbUserCatagory_Leave(object sender, EventArgs e)
+        private void CmbUserCategory_Leave(object sender, EventArgs e)
         {
             try
             {
-                if (Convert.ToString(cmbUserCatagory.SelectedValue) == "" || Convert.ToString(cmbUserCatagory.SelectedValue) == "-1")
+                if (Convert.ToString(cmbUserCategory.SelectedValue) == "" || Convert.ToString(cmbUserCategory.SelectedValue) == "-1")
                 {
-                    epUser.SetError(cmbUserCatagory, "Please select user catagory");
-                    cmbUserCatagory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpUserCatagory.ShowAlways = true;
-                    tpUserCatagory.Show("Please select user catagory", cmbUserCatagory, 5000);
+                    epUser.SetError(cmbUserCategory, "Please select user Category");
+                    cmbUserCategory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpUserCategory.ShowAlways = true;
+                    tpUserCategory.Show("Please select user Category", cmbUserCategory, 5000);
                 }
                 else
                 {
                     epUser.Clear();
-                    cmbUserCatagory.BackColor = Color.White;
+                    cmbUserCategory.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
@@ -691,12 +691,12 @@ namespace ROMS
             }
         }
 
-        private void CmbUserCatagory_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbUserCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             try
             {
-                BeginInvoke(new Action(() => cmbUserCatagory.Select(int.MaxValue, 0)));
+                BeginInvoke(new Action(() => cmbUserCategory.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {
@@ -876,8 +876,8 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_UserCatagory = new CP_UserCatagory();
-                MainForm.objCP_UserCatagory.ShowDialog();
+                MainForm.objCP_UserCategory = new CP_UserCategory();
+                MainForm.objCP_UserCategory.ShowDialog();
             }
             catch (Exception ex)
             {

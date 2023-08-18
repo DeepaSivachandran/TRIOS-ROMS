@@ -139,7 +139,7 @@
             this.txtSymbol.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSymbol.Location = new System.Drawing.Point(159, 74);
             this.txtSymbol.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtSymbol.MaxLength = 5;
+            this.txtSymbol.MaxLength = 10;
             this.txtSymbol.Name = "txtSymbol";
             this.txtSymbol.Size = new System.Drawing.Size(361, 28);
             this.txtSymbol.TabIndex = 1;
@@ -259,6 +259,9 @@
             this.Text = "Unit";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Unit_FormClosing);
             this.Load += new System.EventHandler(this.CP_Unit_Load);
+
+            //this.Paint += new System.Windows.Forms.PaintEventHandler(this.CP_Unit_Paint);
+
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Unit_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Unit_Leave);
             this.grbform.ResumeLayout(false);

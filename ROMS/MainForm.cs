@@ -17,7 +17,7 @@ namespace ROMS
         //------- Variable Declaration
         public static int pbCloseForm = 0;
         public static int varCloseFlag = 0;
-        public static string pbVersion = "1.1.0";
+        public static string pbVersion = "1.1.1";
         public static string pbUserID = "";
         public static string pbUserName = "";
         public static string pbUserRoleId;
@@ -27,7 +27,7 @@ namespace ROMS
         public static string pbHostName = "";
         public static string pbUserRoleName = "";
         public static string pbReleaseDt = "";
-        public static string pbLablingSoftwareName = "";
+        public static string pbSSSSoftwareName = "";
         public static string pbRomsSoftwareName = "";
         public static bool isFormClosed = false;
         public static bool isClose = false;
@@ -77,14 +77,13 @@ namespace ROMS
         public static CP_Settings objCP_Settings;
         public static CP_BrokerList objCP_CP_BrokerList;
         public static CP_Broker objCP_CP_Broker;
-        public static CP_UserCatagoryList objCP_UserCatagoryList;
-        public static CP_UserCatagory objCP_UserCatagory;
+        public static CP_UserCategoryList objCP_UserCategoryList;
+        public static CP_UserCategory objCP_UserCategory;
         public static CP_SupplierOrderDetailsList objCP_SupplierOrderDetailslist;
         public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
-        public static INV_InwardPurchaseList objINV_InwardPurchaseList;
-        public static INV_InwardPurchase objINV_InwardPurchase;
         public static CP_GeneralSettings objCP_GeneralSettings;
-        
+        public static CP_BulkAttributes objCP_BulkAttributes;
+
 
         public static INV_SalesInvoiceList objINV_SalesInvoiceList;
         public static INV_SalesInvoice objINV_SalesInvoice;
@@ -99,6 +98,12 @@ namespace ROMS
         public static INV_StockTransferList objINV_StockTransferList;
         public static INV_DamageEntryList objINV_DamageEntryList;
         public static INV_DamageEntry objINV_DamageEntry;
+        public static INV_InwardPurchaseList objINV_InwardPurchaseList;
+        public static INV_InwardPurchase objINV_InwardPurchase;
+        public static INV_StockHold objINV_StockHold;
+        public static INV_StockConversionList objINV_StockConversionList;
+        public static INV_StockConversion objINV_StockConversion;
+        public static INV_InwardQueueList objINV_InwardQueueList;
 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;  
@@ -130,9 +135,13 @@ namespace ROMS
         public static PUR_PurchaseDCList objPUR_PurchaseDCList;
         public static PUR_PurchaseDC objPUR_PurchaseDC;
         public static PUR_DCDeatils objPUR_DCDeatils;
+        public static PUR_PODamagedView objPUR_PODamagedView;
+        public static PUR_PurchaseQueue objPUR_PurchaseQueue;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
+        public static PAY_ChequePrint objPAY_ChequePrint;
+        public static PAY_DebitNoteList objPAY_DebitNoteList;
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -217,7 +226,7 @@ namespace ROMS
             try
             {
                 GetLocalIPAddress();
-                this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbLablingSoftwareName + " ]";
+                this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbSSSSoftwareName + " ]";
                 udfnCloseChildForms();
                 lblTime.Text = "Welcome " + MainForm.pbUserName + " / " + MainForm.pbUserRoleName + " @ " + MainForm.pbHostName;
                 //lblDb.Text = "ROMS DB : "+MainForm.pbRomsSoftwareName;
@@ -964,9 +973,9 @@ namespace ROMS
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objCP_UserCatagoryList = new CP_UserCatagoryList();
-                MainForm.objCP_UserCatagoryList.MdiParent = this;
-                MainForm.objCP_UserCatagoryList.Show();
+                MainForm.objCP_UserCategoryList = new CP_UserCategoryList();
+                MainForm.objCP_UserCategoryList.MdiParent = this;
+                MainForm.objCP_UserCategoryList.Show();
             }
             catch (Exception ex)
             {
@@ -1095,5 +1104,90 @@ namespace ROMS
             }
 
     }
+
+        private void TsmBulkAttr_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsbDirectCheque_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPAY_ChequePrint = new PAY_ChequePrint();
+                MainForm.objPAY_ChequePrint.MdiParent = this;
+                MainForm.objPAY_ChequePrint.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmStockHold_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objINV_StockHold = new INV_StockHold();
+                MainForm.objINV_StockHold.MdiParent = this;
+                MainForm.objINV_StockHold.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsbStockConversion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objINV_StockConversionList = new INV_StockConversionList();
+                MainForm.objINV_StockConversionList.MdiParent = this;
+                MainForm.objINV_StockConversionList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsbDebitNote_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPAY_DebitNoteList = new PAY_DebitNoteList();
+                MainForm.objPAY_DebitNoteList.MdiParent = this;
+                MainForm.objPAY_DebitNoteList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     } 
 }

@@ -11,17 +11,21 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
+    // Sivabharathi    Create date: 09/08/2023    
     public partial class CP_ProductHSN : Form
     {
         DataValidation objvalidation = new DataValidation();
         DataError objError;
 
-      
-
         public string varcompanycode;
         public string pbFormStatus;
-        public string varstatecode = "";
+        public int vargstcode = 0;
+        public string varHsnname="";
+        public string varHsnCode="";
+        public int varGstId=-1;
+        public int varId = 0;
 
+        public int varCloseFlag = 0;
         //tool tip
         private ToolTip tpHsnName = new ToolTip();
         private ToolTip tpHsnCode = new ToolTip();
@@ -38,7 +42,6 @@ namespace ROMS
                 tpHsnName.Active = false;
                 tpHsnCode.Active = false;
                 tpGst.Active = false;
-
             }
             catch (Exception ex)
             {
@@ -46,17 +49,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+       
         private void CP_ProductHSN_Load(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                udfnLoadCmbGst();
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
+                    varCloseFlag = 0;
                 }
                 else
                 {
                     pnlStatus.Enabled = true;
+                    udfnEdit();
                 }
             }
             catch (Exception ex)
@@ -65,7 +73,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 }
-
+     
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -106,8 +114,6 @@ namespace ROMS
             }
         }
 
-       
-
         private void btnClose_Leave(object sender, EventArgs e)
         {
             try
@@ -140,7 +146,6 @@ namespace ROMS
             {
                 if (txtHSNName.Text.Trim() == "")
                 {
-                    
                     epHsn.SetError(txtHSNName, "Please enter HSN name.");
                     txtHSNName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpHsnName.ShowAlways = true;
@@ -240,6 +245,21 @@ namespace ROMS
             }
         }
 
+        public void udfnLoadCmbGst()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_GST", " GSTID  not in (0)", "GST_Text,GSTID", cmbGST, "", "GST_Text", "GSTID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbGST_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -268,7 +288,7 @@ namespace ROMS
 
         private void CmbGST_Leave(object sender, EventArgs e)
         {
-            if (Convert.ToString(cmbGST.SelectedValue) != "0")
+            if (Convert.ToString(cmbGST.SelectedValue) == "0" || Convert.ToString(cmbGST.SelectedValue) == "-1")
             {
                 epHsn.SetError(cmbGST, "Please select GST.");
                 cmbGST.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -287,7 +307,6 @@ namespace ROMS
             try
             {
                 this.Close();
-                
             }
             catch (Exception ex)
             {
@@ -315,10 +334,82 @@ namespace ROMS
             }
         }
 
+        public void udfnClear()
+        {
+            try
+            {
+                txtHSNName.Text = "";
+                txtHSNCode.Text = "";
+                cmbGST.SelectedIndex = 0;
+                txtHSNName.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnEdit()
+        {
+            try
+            {
+                txtHSNName.Text = varHsnname;
+                txtHSNCode.Text = varHsnCode;
+                cmbGST.SelectedValue = varGstId;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnSave(object sender, EventArgs e)
         {
             try
             {
+               int varStatusid = 1;
+               if(rbActive.Checked)
+               {
+                    varStatusid = 1;
+               }
+               else
+               {
+                    varStatusid = 2;
+               }
+               if (btnSave.Text=="Save")
+               {
+                    SPDataService objDser = new SPDataService();
+                    string varResult = objDser.udfnHsn(0,0, Convert.ToInt16(cmbGST.SelectedValue),  Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "Creation");
+                    objDser.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnClear();
+                        MainForm.objCP_ProductHSNlist.udfnList();
+                    }
+                    else if(varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                  
+               }
+                if (btnSave.Text == "Update")
+                {
+                    SPDataService objDser = new SPDataService();
+                    string varResult = objDser.udfnHsn(1,Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "Updation");
+                    objDser.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varCloseFlag = 1;
+                        udfnclose();
+                        MainForm.objCP_ProductHSNlist.udfnList();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
 
             }
             catch (Exception ex)
@@ -332,7 +423,7 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                if (Convert.ToString(cmbGST.SelectedValue) != "0")
+                if (Convert.ToString(cmbGST.SelectedValue) == "0" || Convert.ToString(cmbGST.SelectedValue) == "-1")
                 {
                     epHsn.SetError(cmbGST, "Please select GST.");
                     cmbGST.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -444,7 +535,6 @@ namespace ROMS
 
         private void BtnSave_Leave(object sender, EventArgs e)
         {
-
             try
             {
                 btnSave.BackColor = Color.White;
@@ -458,17 +548,40 @@ namespace ROMS
 
         private void CP_ProductHSN_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varCloseFlag == 0)
                 {
-                    e.Cancel = false;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
-                else
+               
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
                 {
-                    e.Cancel = true;
+                    if (pnlStatus.Enabled)
+                    {
+                        btnSave.Focus();
+                    }
+                    else { btnSave.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -478,7 +591,25 @@ namespace ROMS
             }
         }
 
-     
+        private void RbInActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (pnlStatus.Enabled)
+                    {
+                        btnSave.Focus();
+                    }
+                    else { btnSave.Focus(); }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
 

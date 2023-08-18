@@ -41,15 +41,15 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.grdBrandList = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBrandNameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBrandNameInTamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmtotsubgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNoofproducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
+            this.sno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrandNameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrandNameInTamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalSubGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlbrand = new System.Windows.Forms.Panel();
             this.BrandFilterby = new System.Windows.Forms.GroupBox();
             this.btnView = new System.Windows.Forms.Button();
@@ -57,9 +57,17 @@
             this.cmbProductSubGroup = new System.Windows.Forms.ComboBox();
             this.lblProductgroup = new System.Windows.Forms.Label();
             this.cmbProductgroup = new System.Windows.Forms.ComboBox();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBrandNameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBrandNameInTamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmtotsubgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNoofproducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrandNameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrandNameInTamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalSubGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -174,6 +182,7 @@
             this.clmsno,
             this.clmBrandNameInEnglish,
             this.clmBrandNameInTamil,
+            this.Column1,
             this.clmtotsubgroup,
             this.clmNoofproducts,
             this.clmStatus});
@@ -193,46 +202,6 @@
             this.grdBrandList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.grdBrandList_Scroll);
             this.grdBrandList.DoubleClick += new System.EventHandler(this.grdBrandList_DoubleClick);
             this.grdBrandList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdBrandList_KeyDown);
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 50;
-            // 
-            // clmBrandNameInEnglish
-            // 
-            this.clmBrandNameInEnglish.HeaderText = "Brand Name in English";
-            this.clmBrandNameInEnglish.Name = "clmBrandNameInEnglish";
-            this.clmBrandNameInEnglish.ReadOnly = true;
-            this.clmBrandNameInEnglish.Width = 200;
-            // 
-            // clmBrandNameInTamil
-            // 
-            this.clmBrandNameInTamil.HeaderText = "Brand Name in Tamil";
-            this.clmBrandNameInTamil.Name = "clmBrandNameInTamil";
-            this.clmBrandNameInTamil.ReadOnly = true;
-            this.clmBrandNameInTamil.Width = 200;
-            // 
-            // clmtotsubgroup
-            // 
-            this.clmtotsubgroup.HeaderText = "Total Sub Groups";
-            this.clmtotsubgroup.Name = "clmtotsubgroup";
-            this.clmtotsubgroup.ReadOnly = true;
-            this.clmtotsubgroup.Width = 120;
-            // 
-            // clmNoofproducts
-            // 
-            this.clmNoofproducts.HeaderText = "Total Products";
-            this.clmNoofproducts.Name = "clmNoofproducts";
-            this.clmNoofproducts.ReadOnly = true;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
             // 
             // lblNoRecordsFound
             // 
@@ -281,6 +250,7 @@
             this.sno,
             this.BrandNameInEnglish,
             this.BrandNameInTamil,
+            this.dataGridViewTextBoxColumn1,
             this.TotalSubGroup,
             this.TotalProducts,
             this.Status});
@@ -312,6 +282,40 @@
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             this.DGV_SearchGrid.Sorted += new System.EventHandler(this.DGV_SearchGrid_Sorted);
             // 
+            // sno
+            // 
+            this.sno.HeaderText = "S.No.";
+            this.sno.Name = "sno";
+            this.sno.Width = 50;
+            // 
+            // BrandNameInEnglish
+            // 
+            this.BrandNameInEnglish.HeaderText = "Brand Name In English";
+            this.BrandNameInEnglish.Name = "BrandNameInEnglish";
+            this.BrandNameInEnglish.Width = 200;
+            // 
+            // BrandNameInTamil
+            // 
+            this.BrandNameInTamil.HeaderText = "Brand Name in Tamil";
+            this.BrandNameInTamil.Name = "BrandNameInTamil";
+            this.BrandNameInTamil.Width = 200;
+            // 
+            // TotalSubGroup
+            // 
+            this.TotalSubGroup.HeaderText = "Total SubGroup";
+            this.TotalSubGroup.Name = "TotalSubGroup";
+            this.TotalSubGroup.Width = 120;
+            // 
+            // TotalProducts
+            // 
+            this.TotalProducts.HeaderText = "Total Products";
+            this.TotalProducts.Name = "TotalProducts";
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            // 
             // pnlbrand
             // 
             this.pnlbrand.BackColor = System.Drawing.Color.White;
@@ -334,7 +338,7 @@
             this.BrandFilterby.Controls.Add(this.cmbProductgroup);
             this.BrandFilterby.Location = new System.Drawing.Point(3, 6);
             this.BrandFilterby.Name = "BrandFilterby";
-            this.BrandFilterby.Size = new System.Drawing.Size(785, 80);
+            this.BrandFilterby.Size = new System.Drawing.Size(572, 80);
             this.BrandFilterby.TabIndex = 958802;
             this.BrandFilterby.TabStop = false;
             this.BrandFilterby.Text = "Filter By";
@@ -343,7 +347,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(697, 42);
+            this.btnView.Location = new System.Drawing.Point(483, 43);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 958797;
@@ -354,7 +358,7 @@
             // lblProductSubGroup
             // 
             this.lblProductSubGroup.AutoSize = true;
-            this.lblProductSubGroup.Location = new System.Drawing.Point(353, 19);
+            this.lblProductSubGroup.Location = new System.Drawing.Point(250, 19);
             this.lblProductSubGroup.Name = "lblProductSubGroup";
             this.lblProductSubGroup.Size = new System.Drawing.Size(108, 20);
             this.lblProductSubGroup.TabIndex = 4;
@@ -364,9 +368,9 @@
             // 
             this.cmbProductSubGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProductSubGroup.FormattingEnabled = true;
-            this.cmbProductSubGroup.Location = new System.Drawing.Point(353, 42);
+            this.cmbProductSubGroup.Location = new System.Drawing.Point(247, 43);
             this.cmbProductSubGroup.Name = "cmbProductSubGroup";
-            this.cmbProductSubGroup.Size = new System.Drawing.Size(338, 27);
+            this.cmbProductSubGroup.Size = new System.Drawing.Size(227, 27);
             this.cmbProductSubGroup.TabIndex = 3;
             // 
             // lblProductgroup
@@ -384,8 +388,54 @@
             this.cmbProductgroup.FormattingEnabled = true;
             this.cmbProductgroup.Location = new System.Drawing.Point(9, 43);
             this.cmbProductgroup.Name = "cmbProductgroup";
-            this.cmbProductgroup.Size = new System.Drawing.Size(338, 27);
+            this.cmbProductgroup.Size = new System.Drawing.Size(227, 27);
             this.cmbProductgroup.TabIndex = 1;
+            // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
+            // 
+            // clmBrandNameInEnglish
+            // 
+            this.clmBrandNameInEnglish.HeaderText = "Brand Name in English";
+            this.clmBrandNameInEnglish.Name = "clmBrandNameInEnglish";
+            this.clmBrandNameInEnglish.ReadOnly = true;
+            this.clmBrandNameInEnglish.Width = 200;
+            // 
+            // clmBrandNameInTamil
+            // 
+            this.clmBrandNameInTamil.HeaderText = "Brand Name in Tamil";
+            this.clmBrandNameInTamil.Name = "clmBrandNameInTamil";
+            this.clmBrandNameInTamil.ReadOnly = true;
+            this.clmBrandNameInTamil.Width = 200;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Total Groups";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // clmtotsubgroup
+            // 
+            this.clmtotsubgroup.HeaderText = "Total Subgroups";
+            this.clmtotsubgroup.Name = "clmtotsubgroup";
+            this.clmtotsubgroup.ReadOnly = true;
+            this.clmtotsubgroup.Width = 120;
+            // 
+            // clmNoofproducts
+            // 
+            this.clmNoofproducts.HeaderText = "Total Products";
+            this.clmNoofproducts.Name = "clmNoofproducts";
+            this.clmNoofproducts.ReadOnly = true;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
             // 
             // sno
             // 
@@ -405,9 +455,14 @@
             this.BrandNameInTamil.Name = "BrandNameInTamil";
             this.BrandNameInTamil.Width = 200;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Total Groups";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
             // TotalSubGroup
             // 
-            this.TotalSubGroup.HeaderText = "Total SubGroup";
+            this.TotalSubGroup.HeaderText = "Total Subgroups";
             this.TotalSubGroup.Name = "TotalSubGroup";
             this.TotalSubGroup.Width = 120;
             // 
@@ -466,21 +521,23 @@
         public System.Windows.Forms.ToolStripButton tsbNew;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Panel pnlbrand;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmBrandNameInEnglish;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmBrandNameInTamil;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotsubgroup;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmNoofproducts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.GroupBox BrandFilterby;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Label lblProductSubGroup;
         private System.Windows.Forms.ComboBox cmbProductSubGroup;
         private System.Windows.Forms.Label lblProductgroup;
         private System.Windows.Forms.ComboBox cmbProductgroup;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBrandNameInEnglish;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBrandNameInTamil;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotsubgroup;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmNoofproducts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn sno;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrandNameInEnglish;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrandNameInTamil;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalSubGroup;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalProducts;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;

@@ -119,7 +119,7 @@ namespace ROMS
                 {
                     MainForm.objCP_Brand = new CP_Brand();
                     //MainForm.objCP_Brand.MdiParent = this.ParentForm;
-                    MainForm.objCP_Brand.varbrandcode = grdSupplierList.SelectedRows[0].Cells["BrandCode"].Value.ToString();
+                    MainForm.objCP_Brand.varbrandcode = Convert.ToInt32( grdSupplierList.SelectedRows[0].Cells["BrandCode"].Value.ToString());
                     MainForm.objCP_Brand.ShowDialog();
                 }
 

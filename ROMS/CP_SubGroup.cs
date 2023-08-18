@@ -21,10 +21,25 @@ namespace ROMS
         private ToolTip tpBatchNo = new ToolTip();
         private ToolTip tpShopLocation = new ToolTip();
         private ToolTip tpRack = new ToolTip();
+
+        public int varShopLocationId = -1;
+        public string varsubgroupcode;
+        public String pbFormStatus;
+
+        int varStatusid = 1;
+        public int varCloseFlag = 0;
+        public int varFormFlag = 0;
+        public string varSubGroupNameinTamil = "";
+        public string varSubGroupNameinEnglish = "";
+        public int varProductName = -1;
+        public int varBatchNo = -1;
+        public int varStockLocation = -1;
+        public int varRack = -1;
+        public int varId = 0;
+        public int varStatus = 0;
+        public int varGroupCode = 0, varmastertype=0,varSubgroupCode=0;
         
 
-        public string vargroupcode;
-        public String pbFormStatus;
         public CP_SubGroup()
         {
             InitializeComponent();
@@ -39,7 +54,6 @@ namespace ROMS
                 tpBatchNo.Active = false;
                 tpShopLocation.Active = false;
                 tpRack.Active = false;
-
             }
             catch (Exception ex)
             {
@@ -47,10 +61,73 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        public void udfnLoadCmbBatchNo()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=25 OR MSTID=-1", "MST_DisplayText,MSTID", cmbBatchNo, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLoadCmbGroupName()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID not in (0)", "PRG_EName,PRGID", cmbGroupName, "", "PRG_EName", "PRGID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+         public void udfnLoadcmbShopLocation()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID NOT IN(0)", "SLID,SL_EName", cmbStockLocation, "", "SL_EName", "SLID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLoadcmbRack()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+               
+                objDataBind.BindComboBoxListSelected("MR_Rack", "RK_SLID="+varShopLocationId+"  OR RKID=-1 ", "RK_Name,RKID", cmbRack, "", "RK_Name", "RKID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+       
         private void CP_SubGroup_Load(object sender, EventArgs e)
         {
             try
             {
+                udfnLoadCmbGroupName();
+                udfnLoadCmbBatchNo();
+                udfnLoadcmbShopLocation();
+                
                 BeginInvoke(new Action(() => cmbGroupName.Select(int.MaxValue, 0)));
                 if (btnSave.Text == "Save")
                 {
@@ -59,8 +136,8 @@ namespace ROMS
                 else
                 {
                     pnlStatus.Enabled = true;
+                    udfnEdit();
                 }
-
             }
             catch (Exception ex)
             {
@@ -69,10 +146,109 @@ namespace ROMS
             }
         }
 
+        public void udfnEdit()
+        {
+            try
+            {
+                cmbGroupName.SelectedValue = varProductName;
+                txtESubGroupNameEnglish.Text = varSubGroupNameinEnglish;
+                txtESubGroupNameTamil.Text = varSubGroupNameinTamil;
+                cmbBatchNo.SelectedValue = varBatchNo;
+                cmbStockLocation.SelectedValue = varStockLocation;
+                cmbRack.SelectedValue = varRack;
+                varStatusid = varStatus;
+                if(varStatusid==1)
+                {
+                    rbActive.Checked=true;
+                }
+                else
+                {
+                    rbInactive.Checked = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnClear()
+        {
+            try
+            {
+                cmbGroupName.SelectedValue = -1;
+                txtESubGroupNameEnglish.Text = "";
+                txtESubGroupNameTamil.Text = "";
+                cmbBatchNo.SelectedValue = -1;
+                cmbStockLocation.SelectedValue = -1;
+                cmbRack.SelectedValue = -1;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnSave(object sender, EventArgs e)
         {
             try
             {
+               
+                if (rbActive.Checked)
+                {
+                    varStatusid = 1;
+                }
+                else
+                {
+                    varStatusid = 2;
+                }
+                if (btnSave.Text == "Save")
+                {
+                    SPDataService objDser = new SPDataService();
+                    string varResult = objDser.udfnSubGroup(0, 0, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid,Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Creation");
+                    objDser.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varSubgroupCode = Convert.ToInt16(varResult.Split('~')[2]);
+                        if (varmastertype == 1)
+                        {
+                            varmastertype = 0;
+                            MainForm.objCP_Items.varSubgroupCode = varSubgroupCode;
+                            varCloseFlag = 1;
+                            udfnclose();
+                        }
+                        udfnClear();
+                        MainForm.objCP_SubGroupList.udfnList();
+                        MainForm.objCP_SubGroupList.udfnLoadCmbProductSubGroup();
+                        udfnLoadCmbGroupName();
+                        //cmbGroupName.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
+                        //MainForm.objCP_SubGroupList.cmbProductSubGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_SubGroupList.varSubGroupCode);
+                       
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                if (btnSave.Text == "Update")
+                {
+                    SPDataService objDser = new SPDataService();
+                    string varResult = objDser.udfnSubGroup(1, varId, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Updation");
+                    objDser.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varCloseFlag = 1;
+                        udfnclose();
+                        MainForm.objCP_SubGroupList.udfnList();
+                        MainForm.objCP_SubGroupList.udfnLoadCmbProductSubGroup();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
 
             }
             catch (Exception ex)
@@ -86,7 +262,7 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                if (Convert.ToString(cmbGroupName.SelectedValue) == "" || Convert.ToString(cmbGroupName.SelectedValue) == "-1")
+                if (Convert.ToString(cmbGroupName.SelectedValue) == "0" || Convert.ToString(cmbGroupName.SelectedValue) == "-1")
                 {
                     epSubGroup.SetError(cmbGroupName, "Please select product group name");
                     cmbGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -111,7 +287,7 @@ namespace ROMS
                     blnErrorFlag = true;
 
                 }
-                if (Convert.ToString(cmbBatchNo.SelectedValue) == "" || Convert.ToString(cmbBatchNo.SelectedValue) == "-1")
+                if (Convert.ToString(cmbBatchNo.SelectedValue) == "0" || Convert.ToString(cmbBatchNo.SelectedValue) == "-1")
                 {
                     epSubGroup.SetError(cmbBatchNo, "Please select batch No. status");
                     cmbBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -119,21 +295,7 @@ namespace ROMS
                     tpBatchNo.Show("Please select batch No. status", cmbBatchNo, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(cmbShopLocation.SelectedValue) == "" || Convert.ToString(cmbShopLocation.SelectedValue) == "-1")
-                {
-                    epSubGroup.SetError(cmbShopLocation, "Please select shop location");
-                    cmbShopLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpShopLocation.ShowAlways = true;
-                    tpShopLocation.Show("Please select shop location.", cmbShopLocation, 5000);
-                }
-                if (Convert.ToString(cmbRack.SelectedValue) == "" || Convert.ToString(cmbRack.SelectedValue) != "-1")
-                {
-                    epSubGroup.SetError(cmbRack, "Please select rack");
-                    cmbRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpRack.ShowAlways = true;
-                    tpRack.Show("Please select rack", cmbRack, 5000);
-                    blnErrorFlag = true;
-                }
+              
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
@@ -161,9 +323,12 @@ namespace ROMS
 
         private void btnSave_KeyDown(object sender, KeyEventArgs e)
         {
-            try
+            try 
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave_Click(sender, e);
+                }
             }
             catch (Exception ex)
             {
@@ -176,7 +341,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -188,8 +353,7 @@ namespace ROMS
         {
             try
             {
-                  this.Close();
-                
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -202,7 +366,7 @@ namespace ROMS
             try
             {
                 udfnclose();
-               // MainForm.objCP_SubGroupList.udfnList();
+                MainForm.objCP_SubGroupList.udfnList();
             }
             catch (Exception ex)
             {
@@ -228,7 +392,10 @@ namespace ROMS
         {
             try
             {
-                
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnClose_Click(sender, e);
+                }
             }
             catch (Exception ex)
             {
@@ -241,7 +408,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -277,7 +444,10 @@ namespace ROMS
             try
             {
                 MainForm.objCP_Group = new CP_Group();
+                varFormFlag = 1;
                 MainForm.objCP_Group.ShowDialog();
+                udfnLoadCmbGroupName();
+                cmbGroupName.SelectedValue = Convert.ToInt16(varGroupCode);
             }
             catch (Exception ex)
             {
@@ -416,7 +586,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbInactive.Focus();
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -472,7 +642,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(cmbGroupName.SelectedValue) == "")
+                if (Convert.ToString(cmbGroupName.SelectedValue) == "-1")
                 {
                     epSubGroup.SetError(cmbGroupName, "Please select product group name");
                     cmbGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -537,7 +707,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(cmbBatchNo.SelectedValue) == "")
+                if (Convert.ToString(cmbBatchNo.SelectedValue) == "-1")
                 {
                     epSubGroup.SetError(cmbBatchNo, "Please select batch No. status");
                     cmbBatchNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -563,7 +733,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbShopLocation.Focus();
+                    cmbStockLocation.Focus();
                 }
             }
             catch (Exception ex)
@@ -588,85 +758,6 @@ namespace ROMS
             }
         }
 
-        private void CmbShopLocation_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Convert.ToString(cmbShopLocation.SelectedValue) == "" || Convert.ToString(cmbShopLocation.SelectedValue) == "-1")
-                {
-                    epSubGroup.SetError(cmbShopLocation, "Please select shop location");
-                    cmbShopLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpShopLocation.ShowAlways = true;
-                    tpShopLocation.Show("Please select shop location.", cmbShopLocation, 5000);
-                }
-                else
-                {
-                    cmbShopLocation.BackColor = Color.White;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbShopLocation_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbShopLocation.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbShopLocation_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbShopLocation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbShopLocation.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbShopLocation_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cmbRack.Focus();
-                }
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
 
         private void CmbRack_Enter(object sender, EventArgs e)
         {
@@ -685,18 +776,9 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(cmbRack.SelectedValue) == "" || Convert.ToString(cmbRack.SelectedValue) == "-1")
-                {
-                    epSubGroup.SetError(cmbRack, "Please select Rack");
-                    cmbRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpRack.ShowAlways = true;
-                    tpRack.Show("Please select Rack", cmbRack, 5000);
-                }
-                else
-                {
-                    epSubGroup.Clear();
-                    cmbRack.BackColor = Color.White;
-                }
+               
+              cmbRack.BackColor = Color.White;
+                
             }
             catch (Exception ex)
             {
@@ -712,7 +794,6 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -734,7 +815,6 @@ namespace ROMS
                 }
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -795,17 +875,20 @@ namespace ROMS
 
         private void CP_SubGroup_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varCloseFlag == 0)
                 {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -820,6 +903,7 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbGroupName.Select(int.MaxValue, 0)));
+              
             }
             catch (Exception ex)
             {
@@ -828,9 +912,88 @@ namespace ROMS
             }
         }
 
-        private void TxtShopLocation_TextChanged(object sender, EventArgs e)
-        {
+     
 
+        private void CmbStockLocation_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStockLocation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbStockLocation.SelectedValue) == "0" || Convert.ToString(cmbStockLocation.SelectedValue) == "-1")
+                {
+                    epSubGroup.SetError(cmbStockLocation, "Please select shop location");
+                    cmbStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpShopLocation.ShowAlways = true;
+                    tpShopLocation.Show("Please select shop location.", cmbStockLocation, 5000);
+                }
+                else
+                {
+                    cmbStockLocation.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbRack.Focus();
+                }
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbStockLocation.Select(int.MaxValue, 0)));
+                varShopLocationId = Convert.ToInt32(cmbStockLocation.SelectedValue);
+                udfnLoadcmbRack();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
+            this.btnRemarks = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.lblDPercentage = new System.Windows.Forms.Label();
             this.lblPercentage = new System.Windows.Forms.Label();
@@ -71,7 +72,6 @@
             this.clmremove = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpproductname = new System.Windows.Forms.GroupBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtunitrate = new System.Windows.Forms.TextBox();
             this.lblbatchno = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
@@ -89,6 +89,7 @@
             this.lblMM = new System.Windows.Forms.Label();
             this.lblDd = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
+            this.txtunit = new System.Windows.Forms.TextBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -123,6 +124,7 @@
             // pnlinward
             // 
             this.pnlinward.BackColor = System.Drawing.Color.White;
+            this.pnlinward.Controls.Add(this.btnRemarks);
             this.pnlinward.Controls.Add(this.groupBox10);
             this.pnlinward.Controls.Add(this.grbgodown);
             this.pnlinward.Controls.Add(this.lvProductName);
@@ -139,13 +141,27 @@
             this.pnlinward.Size = new System.Drawing.Size(1354, 645);
             this.pnlinward.TabIndex = 36;
             // 
+            // btnRemarks
+            // 
+            this.btnRemarks.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnRemarks.Image = global::ROMS.Properties.Resources.comment;
+            this.btnRemarks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemarks.Location = new System.Drawing.Point(603, 612);
+            this.btnRemarks.Name = "btnRemarks";
+            this.btnRemarks.Size = new System.Drawing.Size(108, 29);
+            this.btnRemarks.TabIndex = 1111211;
+            this.btnRemarks.Text = "See Remarks";
+            this.btnRemarks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemarks.UseVisualStyleBackColor = true;
+            this.btnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
+            // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.lblDPercentage);
             this.groupBox10.Controls.Add(this.lblPercentage);
             this.groupBox10.Controls.Add(this.txtRDPercentageCheck);
             this.groupBox10.Controls.Add(this.txtDGPercentageCheck);
-            this.groupBox10.Location = new System.Drawing.Point(604, 575);
+            this.groupBox10.Location = new System.Drawing.Point(604, 568);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(187, 42);
             this.groupBox10.TabIndex = 1111210;
@@ -346,16 +362,16 @@
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(83, 585);
+            this.txtRemark.Location = new System.Drawing.Point(83, 578);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(511, 56);
+            this.txtRemark.Size = new System.Drawing.Size(511, 61);
             this.txtRemark.TabIndex = 958807;
             // 
             // lblnarration
             // 
             this.lblnarration.AutoSize = true;
-            this.lblnarration.Location = new System.Drawing.Point(18, 593);
+            this.lblnarration.Location = new System.Drawing.Point(18, 578);
             this.lblnarration.Name = "lblnarration";
             this.lblnarration.Size = new System.Drawing.Size(56, 20);
             this.lblnarration.TabIndex = 958812;
@@ -396,14 +412,14 @@
             this.DGV_inward.AllowUserToResizeRows = false;
             this.DGV_inward.BackgroundColor = System.Drawing.Color.White;
             this.DGV_inward.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_inward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_inward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DGV_inward.ColumnHeadersHeight = 30;
             this.DGV_inward.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGV_inward.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -418,22 +434,22 @@
             this.clmreceive,
             this.clmunit,
             this.clmremove});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_inward.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_inward.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_inward.EnableHeadersVisualStyles = false;
             this.DGV_inward.GridColor = System.Drawing.Color.White;
             this.DGV_inward.Location = new System.Drawing.Point(3, 146);
             this.DGV_inward.Name = "DGV_inward";
             this.DGV_inward.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_inward.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_inward.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_inward.RowTemplate.Height = 25;
             this.DGV_inward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_inward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -502,8 +518,8 @@
             // 
             // grpproductname
             // 
+            this.grpproductname.Controls.Add(this.txtunit);
             this.grpproductname.Controls.Add(this.textBox4);
-            this.grpproductname.Controls.Add(this.label1);
             this.grpproductname.Controls.Add(this.txtunitrate);
             this.grpproductname.Controls.Add(this.lblbatchno);
             this.grpproductname.Controls.Add(this.txtProductName);
@@ -535,15 +551,6 @@
             this.textBox4.Size = new System.Drawing.Size(17, 27);
             this.textBox4.TabIndex = 1111236;
             this.textBox4.Text = "₹";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(824, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 20);
-            this.label1.TabIndex = 958825;
-            this.label1.Text = "Pkts";
             // 
             // txtunitrate
             // 
@@ -693,6 +700,16 @@
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
+            // txtunit
+            // 
+            this.txtunit.Enabled = false;
+            this.txtunit.Location = new System.Drawing.Point(820, 37);
+            this.txtunit.Name = "txtunit";
+            this.txtunit.ReadOnly = true;
+            this.txtunit.Size = new System.Drawing.Size(31, 27);
+            this.txtunit.TabIndex = 1111245;
+            this.txtunit.Text = "Pkts";
+            // 
             // INV_Inward
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -765,7 +782,6 @@
         private System.Windows.Forms.Label lblYyyy;
         private System.Windows.Forms.Label lblMM;
         private System.Windows.Forms.Label lblDd;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbtransfertype;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
@@ -785,5 +801,7 @@
         private System.Windows.Forms.TextBox txtRDPercentageCheck;
         private System.Windows.Forms.TextBox txtDGPercentageCheck;
         private System.Windows.Forms.TextBox textBox4;
+        public System.Windows.Forms.Button btnRemarks;
+        private System.Windows.Forms.TextBox txtunit;
     }
 }

@@ -150,6 +150,7 @@
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
             this.rbInActive.Enter += new System.EventHandler(this.RbInActive_Enter);
+            this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInActive_KeyDown);
             this.rbInActive.Leave += new System.EventHandler(this.RbInActive_Leave);
             // 
             // rbActive
@@ -165,6 +166,7 @@
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
             this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
+            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
             // cmbGST
@@ -262,18 +264,18 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtDHsnName;
-        private System.Windows.Forms.TextBox txtHSNName;
         private System.Windows.Forms.TextBox txtDHsnCode;
-        private System.Windows.Forms.TextBox txtHSNCode;
         private System.Windows.Forms.TextBox txtDSGT;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbform;
         private System.Windows.Forms.ErrorProvider epHsn;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.ComboBox cmbGST;
         private System.Windows.Forms.Panel pnlStatus;
-        private System.Windows.Forms.RadioButton rbInActive;
-        private System.Windows.Forms.RadioButton rbActive;
         public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.TextBox txtHSNName;
+        public System.Windows.Forms.TextBox txtHSNCode;
+        public System.Windows.Forms.ComboBox cmbGST;
+        public System.Windows.Forms.RadioButton rbInActive;
+        public System.Windows.Forms.RadioButton rbActive;
     }
 }

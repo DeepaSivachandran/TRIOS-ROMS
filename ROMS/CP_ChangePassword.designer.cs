@@ -285,7 +285,7 @@
             this.gpChangePassKey.Controls.Add(this.txtGenratePasskey);
             this.gpChangePassKey.Location = new System.Drawing.Point(836, 26);
             this.gpChangePassKey.Name = "gpChangePassKey";
-            this.gpChangePassKey.Size = new System.Drawing.Size(154, 97);
+            this.gpChangePassKey.Size = new System.Drawing.Size(154, 122);
             this.gpChangePassKey.TabIndex = 59;
             this.gpChangePassKey.TabStop = false;
             this.gpChangePassKey.Text = "Generate Passkey";
@@ -294,7 +294,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.passkey;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(50, 59);
+            this.btnView.Location = new System.Drawing.Point(50, 72);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(91, 29);
             this.btnView.TabIndex = 4;
@@ -307,9 +307,9 @@
             // 
             this.btnUpdatePasskey.Image = global::ROMS.Properties.Resources.close_eye;
             this.btnUpdatePasskey.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdatePasskey.Location = new System.Drawing.Point(115, 26);
+            this.btnUpdatePasskey.Location = new System.Drawing.Point(115, 25);
             this.btnUpdatePasskey.Name = "btnUpdatePasskey";
-            this.btnUpdatePasskey.Size = new System.Drawing.Size(26, 27);
+            this.btnUpdatePasskey.Size = new System.Drawing.Size(26, 42);
             this.btnUpdatePasskey.TabIndex = 3;
             this.btnUpdatePasskey.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdatePasskey.UseVisualStyleBackColor = true;
@@ -317,15 +317,16 @@
             // 
             // txtGenratePasskey
             // 
-            this.txtGenratePasskey.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtGenratePasskey.Font = new System.Drawing.Font("Oswald Regular", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGenratePasskey.Location = new System.Drawing.Point(12, 26);
             this.txtGenratePasskey.MaxLength = 6;
             this.txtGenratePasskey.Name = "txtGenratePasskey";
             this.txtGenratePasskey.PasswordChar = '*';
             this.txtGenratePasskey.ReadOnly = true;
-            this.txtGenratePasskey.Size = new System.Drawing.Size(103, 27);
+            this.txtGenratePasskey.Size = new System.Drawing.Size(103, 40);
             this.txtGenratePasskey.TabIndex = 0;
             this.txtGenratePasskey.Text = "200203";
+            this.txtGenratePasskey.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
             // 

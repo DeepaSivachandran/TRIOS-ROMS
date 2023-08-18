@@ -7,8 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using Excel = Microsoft.Office.Interop.Excel;
-//using ClosedXML.Excel;
+using Excel = Microsoft.Office.Interop.Excel; 
 namespace ROMS
 {
     public partial class CP_SubGroupList : Form
@@ -18,11 +17,26 @@ namespace ROMS
 
         DataSet objDs = new DataSet();
         DataTable objDtExcel = new DataTable();
+
+        public int varSubGroupCode = 0;
         public CP_SubGroupList()
         {
             InitializeComponent();
         }
-
+        public void udfnLoadCmbProductSubGroup()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", " PRSGID not in (-1) ORDER BY PRSGID,PRSG_EName", "PRSG_EName,PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void tsbNew_Click(object sender, EventArgs e)
         {
             try
@@ -41,19 +55,8 @@ namespace ROMS
         {
             try
             {
-                // udfnEdit();
-                try
-                {
-                    MainForm.objCP_SubGroup = new CP_SubGroup();
-                    MainForm.objCP_SubGroup.btnSave.Text = "Update";
-                    MainForm.objCP_SubGroup.ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-
-                }
+                udfnEdit();
+               
             }
             catch (Exception ex)
             {
@@ -77,16 +80,10 @@ namespace ROMS
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("VIEW_GroupType", "grouptypecode<>-1 and 1=1 Order by grouptypecode", "grouptypename,grouptypecode", cmbGroupType, "", "grouptypename", "grouptypecode");
-                objDataBind = null;
+                BeginInvoke(new Action(() => cmbProductSubGroup.Select(int.MaxValue, 0)));
+                this.ActiveControl = cmbProductSubGroup;
+                udfnLoadCmbProductSubGroup();
                 udfnList();
-                loadnoofgroup();
-                DataService objDserv = new DataService();
-                lblGC.Text = objDserv.displaydata("SELECT count(*)from CP_GROUP");
-                objDserv.CloseConnection();
-                loadnoofgroup();
-
             }
             catch (Exception ex)
             {
@@ -95,50 +92,20 @@ namespace ROMS
             }
         }
 
-        public void loadnoofgroup()
-        {
-            try
-            {
-                string condition = "1=1";
-                if(Convert.ToInt16(cmbGroupType.SelectedValue)==0)
-                {
-                    condition = "1=1";
-                }
-                else
-                {
-                    condition = "a.GroupTypeCode=" + Convert.ToInt16(cmbGroupType.SelectedValue);
-                }
-                DataService objDserv = new DataService();
-                lblGC.Text = objDserv.displaydata("SELECT count(*) from CP_GROUP as a inner join DEF_GROUPTYPE as b on a.GroupTypeCode=b.GroupTypeCode where "+ condition);
-                objDserv.CloseConnection();
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
 
         public void udfnList()
         {
             try
             {
-                picLoader.Visible = true;
+                //picLoader.Visible = true;
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdGroupList.DataSource = null; 
+                grdSubGroupList.DataSource = null;
+                DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
-
-                if (cmbGroupType.Text == "")
-                {
-                    cmbGroupType.SelectedValue = 0;
-                }
-
                 SPDataService objdserv = new SPDataService();
-            //    objDs = objdserv.udfnSPGroupList("List", "0",cmbGroupType.SelectedValue.ToString(), MainForm.pbUserID, MainForm.pbIpAddress);
+                objDs = objdserv.udfnSubGroupList(0, Convert.ToInt32(cmbProductSubGroup.SelectedValue),"");
                 objdserv.CloseConnection();
-                objDtExcel = objDs.Tables[0].Copy();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -148,21 +115,26 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdGroupList.DataSource = objDs.Tables[0];
-                            grdGroupList.Columns["SI.No."].Width = 60;
-                            grdGroupList.Columns["Group Type"].Width = 200;
-                            grdGroupList.Columns["Group Name in Tamil"].Width = 350;
-                            grdGroupList.Columns["Group Name in English"].Width = 350;
-                            grdGroupList.Columns["Total No.of RM"].Width = 100;
-                            grdGroupList.Columns["Total No.of FG"].Width = 100; 
-                            //grdGroupList.Columns["Label Name in English"].Width = 220;
-                            //grdGroupList.Columns["Label Name in Tamil"].Width = 220;
-                            grdGroupList.Columns["Group Order"].Width = 100;                           
-                            grdGroupList.Columns["Group Order"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGroupList.Columns["SI.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdGroupList.Columns["Total No.of RM"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGroupList.Columns["Total No.of FG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGroupList.Columns["GroupCode"].Visible = false;
+                            grdSubGroupList.DataSource = objDs.Tables[0];
+                            grdSubGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdSubGroupList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdSubGroupList.Columns["Batch No"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                            grdSubGroupList.Columns["S.No."].Width = 50;
+                            grdSubGroupList.Columns["Product Group Name"].Width = 200;
+                            grdSubGroupList.Columns["Product Sub Group Name in English"].Width = 250;
+                            grdSubGroupList.Columns["Product Sub Group Name in Tamil"].Width = 250;
+                            grdSubGroupList.Columns["Stock Location"].Width = 150;
+                            grdSubGroupList.Columns["Rack"].Width = 100;
+                            grdSubGroupList.Columns["Batch No"].Width = 100;
+                            grdSubGroupList.Columns["Total Products"].Width = 100;
+                            grdSubGroupList.Columns["Status"].Width = 80;
+
+                            grdSubGroupList.Columns["ID"].Visible = false;
+                            grdSubGroupList.Columns["Status ID"].Visible = false;
+                            grdSubGroupList.Columns["StockLocation ID"].Visible = false;
+                            grdSubGroupList.Columns["Rack ID"].Visible = false;
+                            grdSubGroupList.Columns["Product Group Id"].Visible = false;
                         }
                         else
                         {
@@ -181,6 +153,7 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
+                // udfnSearchGridHead();
             }
             catch (Exception ex)
             {
@@ -189,8 +162,9 @@ namespace ROMS
             }
             finally
             {
-                grdGroupList.ClearSelection();
-                picLoader.Visible = false;
+               
+                lblNoOfPrSubGroup.Text = Convert.ToString(grdSubGroupList.Rows.Count);
+                varSubGroupCode = Convert.ToInt32(cmbProductSubGroup.SelectedValue);
             }
         }
 
@@ -198,31 +172,26 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //if (grdGroupList.SelectedRows.Count > 0)
-                //{
-                //    string result = "";
-                //    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //    if (dialogResult == DialogResult.Yes)
-                //    {
+                if (grdSubGroupList.SelectedRows.Count > 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        SPDataService objDser = new SPDataService();
+                        string varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()),0, "", "", 0,0,0,0, "Deletion");
+                        objDser.CloseConnection();
+                        if (varResult.Split('~')[0] == "3")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            udfnList();
+                        }
+                        else if (varResult.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
 
-                //        SPDataService objspdservice = new SPDataService();
-                //     //   result = objspdservice.udfnSPGroupMaster("Delete", grdGroupList.SelectedRows[0].Cells["GroupCode"].Value.ToString(),"","","", "", "","", MainForm.pbUserID, MainForm.pbIpAddress, "Group Delete");
-
-                //        string[] varvalue = result.Split('~');
-                //        if (varvalue[0] == "3")
-                //        {
-                //            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //            udfnList();
-                //            loadnoofgroup();
-
-                //        }
-                //        else
-                //        {
-                //            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //        }
-                //    }
-                //}
             }
             catch (Exception ex)
             {
@@ -234,37 +203,37 @@ namespace ROMS
 
         private void udfnEdit()
         {
-            //try
-            //{
+            try
+            {
+                if (grdSubGroupList.SelectedRows.Count != 0)
+                {
+                    MainForm.objCP_SubGroup = new CP_SubGroup();
+                    MainForm.objCP_SubGroup.btnSave.Text = "Update";
 
-            //    if (grdGroupList.SelectedRows.Count > 0)
-            //    {
-            //        MainForm.objCP_Group = new CP_Group();
-            //        //MainForm.objCP_Group.MdiParent = this.ParentForm;
-            //        MainForm.objCP_Group.vargroupcode = grdGroupList.SelectedRows[0].Cells["GroupCode"].Value.ToString();
-            //        MainForm.objCP_Group.ShowDialog();
+                    MainForm.objCP_SubGroup.varId = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_SubGroup.varProductName = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Product Group Id"].Value);
+                    MainForm.objCP_SubGroup.varSubGroupNameinEnglish = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Product Sub Group Name in English"].Value);
+                    MainForm.objCP_SubGroup.varSubGroupNameinTamil = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Product Sub Group Name in Tamil"].Value);
+                    MainForm.objCP_SubGroup.varBatchNo = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Batch No"].Value);
+                    MainForm.objCP_SubGroup.varStockLocation = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
+                    MainForm.objCP_SubGroup.varRack = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Rack ID"].Value);
+                    MainForm.objCP_SubGroup.varStatus = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Status ID"].Value);
+                    MainForm.objCP_SubGroup.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
 
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-
+            }
         }
 
-        private void cmbGroupType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
         private void btnView_Click(object sender, EventArgs e)
         {
             try
             {
                 udfnList();
-                loadnoofgroup();
             }
             catch (Exception ex)
             {
@@ -306,160 +275,7 @@ namespace ROMS
             }
         }
 
-        public void grdGroupList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        public void grdGroupList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) {
-                    udfnEdit();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void btnExport_Click(object sender, EventArgs e)
-        {
-            try {
-                if (grdGroupList.Rows.Count > 0)
-                {
-                    //Microsoft.Office.Interop.Excel._Application ExcelObj = new Microsoft.Office.Interop.Excel.Application();
-                    //// creating new WorkBook within Excel application  
-                    //Microsoft.Office.Interop.Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
-                    //// creating new Excelsheet in workbook  
-                    //Microsoft.Office.Interop.Excel._Worksheet ExcelSheet = null;
-                    //// see the excel sheet behind the program  
-                    //ExcelObj.Visible = true;
-                    //ExcelSheet = ExcelBook.Sheets["Sheet1"];
-                    //ExcelSheet = ExcelBook.ActiveSheet;
-                    //ExcelSheet.Name = "Group Master List";
-                    //int count = 0;
-                    //foreach (DataGridViewColumn col in grdGroupList.Columns)
-                    //{
-                    //    if (col.Visible)
-                    //    {
-                    //        count++;
-                    //    }
-
-                    //}
-                    //ExcelSheet.Cells[1, 1].Value = "Group Master List";
-                    //ExcelSheet.Columns.AutoFit();
-                    //ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
-                    //ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlCenter;
-                    //ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Excel.XlRgbColor.rgbLightBlue;
-                    //ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 15;
-                    //ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
-                    //ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
-                    //ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Excel.XlRgbColor.rgbSlateGray;
-                    //int cIndex = 0;
-                    //foreach (DataGridViewColumn col in grdGroupList.Columns)
-                    //{
-                    //    if (col.Visible)
-                    //    {
-                    //        if (col.HeaderText != "Remove")
-                    //        {
-                    //            cIndex++;
-                    //            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
-
-                    //            foreach (DataGridViewRow rowa in grdGroupList.Rows)
-                    //            {
-                    //                ExcelSheet.Columns[cIndex].NumberFormat = "@";
-                    //                ExcelSheet.Cells[(rowa.Index + 3), cIndex] = rowa.Cells[col.Index].Value.ToString();
-                    //                ExcelSheet.Cells[(rowa.Index +3), cIndex].HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlLeft;
-                    //            }
-                    //        }
-                    //    }
-                    //}
-                    ////ExcelObj.Visible = true;
-                    //ExcelObj.GetSaveAsFilename();
-                    DataTable objDt = new DataTable();
-                    objDt = objDtExcel.Copy();
-                    objDt.Columns.Remove("GroupCode");
-                    //using (XLWorkbook wb = new XLWorkbook())
-                    //{
-                    //    SaveFileDialog sv = new SaveFileDialog();
-                    //    sv.Filter = "Execl files (*.xls)|*.xls";
-                    //    sv.FilterIndex = 0;
-                    //    if (sv.ShowDialog() == DialogResult.OK)
-                    //    {
-                    //        var sheet = wb.Worksheets.Add("Group List");
-                    //        //sheet.Cell(1, 1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-                    //        //sheet.Cell(1, 1).Style.Fill.BackgroundColor = XLColor.White;
-                    //        //sheet.Cell(1, 1).Style.Font.Bold = true;
-                    //        //sheet.Cell(1, 1).Style.Font.FontSize = 15; 
-
-                    //        sheet.Cell(1, 1).InsertTable(objDt);
-
-                    //     //   sheet.Cell(objDt.Rows.Count + 4, 1).InsertData(objDt.Rows);
-                    //        sheet.Tables.FirstOrDefault().ShowAutoFilter = false;
-                    //        wb.SaveAs(sv.FileName);
-                    //        MessageBox.Show("Successfully Downloaded", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //    }
-                    //}
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void grdGroupList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            //udfnscrollVisible();
-            //int IntVScrollBarWidth = 0;
-            //DataService objDser = new DataService();
-            //IntVScrollBarWidth = objDser.udfnVscrollBarWidth(grdGroupList);
-            //objDser.CloseConnection();
-            //if (IntVScrollBarWidth != 0)
-            //{
-            //    //List<int> visibleColumns = new List<int>();
-            //    //foreach (DataGridViewColumn col in grdGroupList.Columns)
-            //    //{
-            //    //    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
-            //    //    visibleColumns.Add(col.Index);
-            //    //}
-            //    //int rowIndex = 1;
-            //    //DGV_SearchGrid.Rows.Add();
-            //    //for (int i = 0; i < visibleColumns.Count; i++)
-            //    //{
-            //    //    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
-            //    //}
-            //}
-        }
-
-        private void CmbGroupType_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+   
         private void BtnView_Enter(object sender, EventArgs e)
         {
             try
@@ -477,9 +293,7 @@ namespace ROMS
         {
             try
             {
-
-                btnView.BackColor = Color.White;
-
+                btnView.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -505,9 +319,254 @@ namespace ROMS
         {
             try
             {
+                btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
-                btnExport.BackColor = Color.White;
 
+        private void CmbProductSubGroup_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductSubGroup.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbProductSubGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbProductSubGroup_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbProductSubGroup_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductSubGroup.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbProductSubGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbProductSubGroup.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSubGroupList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdSubGroupList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdSubGroupList.Rows[i].Cells["Status ID"].Value) == "1")
+                    {
+                        grdSubGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdSubGroupList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        grdSubGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdSubGroupList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdSubGroupList.ClearSelection();
+            }
+        }
+
+        private void GrdSubGroupList_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSubGroupList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnEdit();
+                }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    udfndelete();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if ((grdSubGroupList.Rows.Count > 0))
+                {
+                    Excel._Application ExcelObj = new Excel.Application();
+                    // creating new WorkBook within Excel application  
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    // creating new Excelsheet in workbook  
+                    Excel._Worksheet ExcelSheet = null;
+                    // see the excel sheet behind the program  
+                    ExcelObj.Visible = true;
+                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
+                    ExcelSheet = ExcelBook.ActiveSheet;
+                    // changing the name of active sheet  
+                    ExcelSheet.Name = "Product Sub Group List";
+                    int cIndex = 0;
+                    int count = 0;
+                    foreach (DataGridViewColumn col in grdSubGroupList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            count += 1;
+                        }
+                    }
+                    //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
+                    //er.EntireColumn.ColumnWidth = 35;
+
+                    ExcelSheet.Cells[1, 1].Value = "Product Sub Group List";
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
+
+                   
+                    foreach (DataGridViewColumn col in grdSubGroupList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            cIndex += 1;
+                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+
+                            if (col.Name == "S.No." || col.Name == "Status" || col.Name == "Batch No")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                            else if (col.Name == "Stock Location" || col.Name == "Rack" || col.Name == "Total Products")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            }
+                            else
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 50;
+                            }
+                            if (col.Name == "Total Products" || col.Name == "Batch No")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            }
+                            foreach (DataGridViewRow rowa in grdSubGroupList.Rows)
+                            {
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                            }
+                        }
+                    }
+                    //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
+                    ExcelObj.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnExport_Click(sender, e);
+                }
             }
             catch (Exception ex)
             {

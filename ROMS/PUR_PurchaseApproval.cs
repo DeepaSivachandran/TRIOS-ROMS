@@ -107,28 +107,28 @@ namespace ROMS
                         case "clmMrp":
                             if (e.Button == MouseButtons.Right)
                             {
-                                grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Khaki;
+                                grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
                                 ContextMenu cm = new ContextMenu();
-                                cm.MenuItems.Add(new MenuItem("Mistake"));
-                                cm.Show(grdPurchaseApproval, grdPurchaseApproval.PointToClient(Cursor.Position)); 
+                                cm.MenuItems.Add(new MenuItem("Error"));
+                                cm.Show(grdPurchaseApproval, grdPurchaseApproval.PointToClient(Cursor.Position));
                             }
                             break;
 
                         case "clmPurchaseRate":
                             if (e.Button == MouseButtons.Right)
                             {
-                                grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.PaleTurquoise;
+                                grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
                                 ContextMenu cm = new ContextMenu();
-                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.MenuItems.Add(new MenuItem("Error"));
                                 cm.Show(grdPurchaseApproval, grdPurchaseApproval.PointToClient(Cursor.Position));
                             }
                             break;
                         case "clmExpDate":
                             if (e.Button == MouseButtons.Right)
                             {
-                                grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.LightSkyBlue;
+                                grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
                                 ContextMenu cm = new ContextMenu();
-                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.MenuItems.Add(new MenuItem("Error"));
                                 cm.Show(grdPurchaseApproval, grdPurchaseApproval.PointToClient(Cursor.Position));
                             }
                             break;
@@ -137,55 +137,56 @@ namespace ROMS
                             {
                                 grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
                                 ContextMenu cm = new ContextMenu();
-                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.MenuItems.Add(new MenuItem("Error"));
                                 cm.Show(grdPurchaseApproval, grdPurchaseApproval.PointToClient(Cursor.Position));
                             }
                             break;
                         case "clmInvQty":
                             if (e.Button == MouseButtons.Right)
                             {
-                                grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.MediumOrchid;
+                                grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
                                 ContextMenu cm = new ContextMenu();
-                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.MenuItems.Add(new MenuItem("Error"));
                                 cm.Show(grdPurchaseApproval, grdPurchaseApproval.PointToClient(Cursor.Position));
                             }
                             break;
                         case "clmfreeqty":
                             if (e.Button == MouseButtons.Right)
                             {
-                                grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.PaleTurquoise;
+                                grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
                                 ContextMenu cm = new ContextMenu();
-                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.MenuItems.Add(new MenuItem("Error"));
                                 cm.Show(grdPurchaseApproval, grdPurchaseApproval.PointToClient(Cursor.Position));
                             }
                             break;
                         case "clmdiscountamt":
                             if (e.Button == MouseButtons.Right)
                             {
-                                grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.FromArgb(192, 192, 0);
+                                grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
                                 ContextMenu cm = new ContextMenu();
-                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.MenuItems.Add(new MenuItem("Error"));
                                 cm.Show(grdPurchaseApproval, grdPurchaseApproval.PointToClient(Cursor.Position));
                             }
                             break;
                         case "clmdiscountpercentage":
                             if (e.Button == MouseButtons.Right)
                             {
-                                grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.FromArgb(0, 192, 192);
+                                grdPurchaseApproval.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Pink;
                                 ContextMenu cm = new ContextMenu();
-                                cm.MenuItems.Add(new MenuItem("Mistake"));
+                                cm.MenuItems.Add(new MenuItem("Error"));
                                 cm.Show(grdPurchaseApproval, grdPurchaseApproval.PointToClient(Cursor.Position));
                             }
                             break;
                     }
                 }
-               
+
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally { grdPurchaseApproval.ClearSelection(); }
         }
 
         

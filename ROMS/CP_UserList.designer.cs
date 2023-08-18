@@ -61,7 +61,7 @@
             this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nameoftheuser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmLoginID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUserCatagory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUserCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Passkey = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -246,7 +246,7 @@
             this.SNo,
             this.Nameoftheuser,
             this.clmLoginID,
-            this.clmUserCatagory,
+            this.clmUserCategory,
             this.UserRole,
             this.Passkey,
             this.status});
@@ -408,10 +408,10 @@
             this.clmLoginID.Name = "clmLoginID";
             this.clmLoginID.Width = 200;
             // 
-            // clmUserCatagory
+            // clmUserCategory
             // 
-            this.clmUserCatagory.HeaderText = "User Catagory";
-            this.clmUserCatagory.Name = "clmUserCatagory";
+            this.clmUserCategory.HeaderText = "User Category";
+            this.clmUserCategory.Name = "clmUserCategory";
             // 
             // UserRole
             // 
@@ -488,7 +488,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nameoftheuser;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmLoginID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmUserCatagory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUserCategory;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserRole;
         private System.Windows.Forms.DataGridViewTextBoxColumn Passkey;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;

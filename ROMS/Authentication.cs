@@ -134,33 +134,39 @@ namespace ROMS
                 DataSet objDs=new DataSet();
                 if (txtUserName.TextLength != 0 & txtPassword.TextLength != 0)
                 {
-                    DataService objDser = new DataService();
-                    //int count = 0;
-                    //count = Convert.ToInt16(objDser.displaydata("select count(*) as count from CP_USERPROFILE where Userid='" + txtUserName.Text + "' and UserPassword='" + GenerateMD5(txtPassword.Text) + "' And StatusCode = 1"));
-                    //objDs = objDser.GetDataset("select *,B.RoleName from CP_USERPROFILE AS A INNER JOIN CP_USERROLE AS B ON A.UserRoleCode=B.RoleCode where A.StatusCode = 1 And A.Userid='" + txtUserName.Text + "' and A.UserPassword='" + GenerateMD5(txtPassword.Text) + "'; SELECT TableName FROM DEF_TABLEDETAILS;SELECT top 1 ReleaseDate from (select  convert(varchar(10),ReleaseDate, 103) AS ReleaseDate,row_number() over( ORDER BY ReleaseDate DESC) as sno FROM TRANS_RELEASEDETAILS) derv where sno=1");
-                    //objDser.CloseConnection();
-                    //if (count == 1)
-                    //{
-                        //MainForm.pbUserID = objDs.Tables[0].Rows[0]["Userid"].ToString();
-                        //MainForm.pbUserRoleId = objDs.Tables[0].Rows[0]["UserRoleCode"].ToString();
-                        //MainForm.pbUserName = objDs.Tables[0].Rows[0]["UserName"].ToString();
-                        //MainForm.pbUserRoleName = objDs.Tables[0].Rows[0]["RoleName"].ToString();
-                        //MainForm.pbVersion = lblDVersion.Text;
-                        //MainForm.pbHostName = Dns.GetHostName();
-                        //MainForm.pbLablingSoftwareName = objDs.Tables[1].Rows[0]["TableName"].ToString();
-                        //MainForm.pbRomsSoftwareName = objDs.Tables[1].Rows[1]["TableName"].ToString();
-                        //MainForm.pbReleaseDt = objDs.Tables[2].Rows[0]["ReleaseDate"].ToString();
-                        this.Hide();
-                        MainForm obj = new MainForm();
-                        obj.Show();
-                    //}
-                    //else if (count == 0)
-                    //{
-                    //    DialogResult response = MessageBox.Show("User Name or Password is incorrect", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
-                    //    txtUserName.Text = "";
-                    //    txtPassword.Text = "";
-                    //    txtUserName.Focus();
-                    //}
+                    SPDataService objDser = new SPDataService();
+                    int count = 0;
+                    objDs = objDser.udfnUserList(0, txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text));
+                    objDser.CloseConnection();
+                    if (objDs != null) {
+                        if (objDs.Tables.Count > 0) {
+                            if (objDs.Tables[0].Rows.Count > 0) {
+                                count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
+                                if (count != 0)
+                                {
+                                    MainForm.pbUserID = objDs.Tables[1].Rows[0]["Userid"].ToString();
+                                    MainForm.pbUserRoleId = objDs.Tables[1].Rows[0]["UserRoleCode"].ToString();
+                                    MainForm.pbUserName = objDs.Tables[1].Rows[0]["UserName"].ToString();
+                                    MainForm.pbUserRoleName = objDs.Tables[1].Rows[0]["RoleName"].ToString();
+                                    MainForm.pbVersion = lblDVersion.Text;
+                                    MainForm.pbHostName = Dns.GetHostName();
+                                    MainForm.pbSSSSoftwareName = udfnDBName();
+                                    //MainForm.pbRomsSoftwareName = objDs.Tables[2].Rows[1]["TableName"].ToString();
+                                    MainForm.pbReleaseDt = objDs.Tables[2].Rows[0]["ReleaseDate"].ToString();
+                                    this.Hide();
+                                    MainForm obj = new MainForm();
+                                    obj.Show();
+                                }
+                                else if (count == 0)
+                                {
+                                    DialogResult response = MessageBox.Show(Convert.ToString(objDs.Tables[1].Rows[0]["MessageText"]), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                                    txtUserName.Text = "";
+                                    txtPassword.Text = "";
+                                    txtUserName.Focus();
+                                }
+                            }
+                        }
+                    }
                 }
                 else
                 {
@@ -189,6 +195,25 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public string udfnDBName()
+        {
+            string varDBName = "";
+            try
+            {
+                string path = Application.StartupPath + "\\Server Settings\\serversettings.txt";
+                if (File.Exists(path))
+                {
+                    string lines = File.ReadAllText(path);
+                    if (lines != null & lines != "")
+                    {
+                        string[] words = lines.Split(',');
+                        varDBName = words[1];
+                    }
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            return varDBName;
         }
         public string GenerateMD5(string HashString)
         {
@@ -269,7 +294,7 @@ namespace ROMS
             //string paths = Application.StartupPath + "\\Server Settings\\serversettings.txt";
             //if (File.Exists(paths))
             //{
-                lblDVersion.Text = "v1.1.0";
+                lblDVersion.Text = "v1.1.1";
                 lblDVersion.BringToFront();
                 Authentication objAuthetication = new Authentication();
                 objAuthetication.Name = " - " + lblDVersion.Text;
