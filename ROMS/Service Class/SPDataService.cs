@@ -313,5 +313,39 @@ namespace ROMS
             }
             return ds;
         }
+        //Created By :-Sathish ; Created On :-18/08/2023
+        public string udfnRack(int paraviewType, int paraRackId, int paraConcern,int paraStockLocation, string paraRackName, string paraShortName,string paraDescription, int paraStatusId, string paraOriginator)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Rack]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraRackId", paraRackId);
+                varSqlCommand.Parameters.AddWithValue("@paraConcern", paraConcern);
+                varSqlCommand.Parameters.AddWithValue("@paraStockLocation", paraStockLocation);
+                varSqlCommand.Parameters.AddWithValue("@paraRackName", paraRackName);
+                varSqlCommand.Parameters.AddWithValue("@paraShortName", paraShortName);
+                varSqlCommand.Parameters.AddWithValue("@paraDescription", paraDescription);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
     }
 }

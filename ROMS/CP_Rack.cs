@@ -9,20 +9,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ROMS
-{
+{    //Created By:-Sathish ; Created On:-18-08-2023
     public partial class CP_Rack : Form
     {
-        DataValidation objValidation = new DataValidation();
         DataError objError;
-
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpStockLocation = new ToolTip();
         private ToolTip tpRackName = new ToolTip();
         private ToolTip tpShortName = new ToolTip();
         private ToolTip tpDescription = new ToolTip();
-
-        public string vargroupcode;
-        public String pbFormStatus;
+        public int varRackcode=0;
+        public int varstatus;
+        public string PbRackName = "";
+        public string PbShortName = "";
+        public string PbDescription = "";
+        public int PbConcernID = 0;
+        public int PbStockLocationID = 0;
+        public int PbStatus = 0;
+        public int varUpdate = 0;
         public CP_Rack()
         {
             InitializeComponent();
@@ -48,7 +52,14 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                DataBind objDataBind = new DataBind();
+
+                //select SL_COMID, SL_EName, (select COMID from MR_Company where MR_StockLocation.SL_COMID = MR_Company.COMID)AS CSID from MR_StockLocation;
+                objDataBind.BindComboBoxListSelected("MR_StockLocation,MR_Company ","SL_COMID=COMID","SL_EName,SLID",cmbStockLocation,"", "SL_EName", "SLID");
+                //objDataBind.BindComboBoxListSelected("MR_StockLocation", " SL_COMID and SLID !=0 Order by SLID", "SL_EName,SLID", cmbStockLocation, "", "SL_EName", "SLID");
+                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=0 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind = null;
+                this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -56,6 +67,7 @@ namespace ROMS
                 else
                 {
                     pnlStatus.Enabled = true;
+                    udfnLoad();
                 }
             }
             catch (Exception ex)
@@ -64,55 +76,52 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void udfnEdit()
+        private void udfnLoad()
         {
             try
             {
-                if (vargroupcode != "")
-                {
-                    SPDataService objspservice = new SPDataService();
-                    DataSet objDS = new DataSet();
-                    // objDS = objspservice.udfnSPGroupList("EditLoad", vargroupcode, "0", MainForm.pbUserID, MainForm.pbIpAddress);
-                    objspservice.CloseConnection();
-
-                    if (objDS != null)
-                    {
-                        if (objDS.Tables[0].Rows.Count > 0)
-                        {
-                            //cmbGroupType.SelectedValue = objDS.Tables[0].Rows[0]["GroupTypeCode"].ToString();
-                            //txtTGroupName.Text = objDS.Tables[0].Rows[0]["GTName"].ToString().Replace("''", "'");
-                            //txtEGroupName.Text = objDS.Tables[0].Rows[0]["GEName"].ToString().Replace("''", "'");
-                            //txtTLabelName.Text = objDS.Tables[0].Rows[0]["GTLabelName"].ToString().Replace("''", "'");
-                            //txtELabelName.Text = objDS.Tables[0].Rows[0]["GELabelName"].ToString().Replace("''", "'");
-                            //udfnLoadSlNo();
-                            //cmbSINO.SelectedValue = objDS.Tables[0].Rows[0]["SINO"].ToString();
-                            //if (Convert.ToString(objDS.Tables[0].Rows[0]["RawCount"]) != "0" || Convert.ToString(objDS.Tables[0].Rows[0]["FinishedCount"]) != "0") {
-                            //    cmbGroupType.Enabled = false;
-                            //}
-                            btnSave.Text = "Update";
-                        }
-                    }
-
-                }
-                else
-                {// udfnLoadSlNo(); 
-                }
+                txtRackName.Text = PbRackName;
+                txtShortName.Text = PbShortName;
+                txtDescription.Text = PbDescription;
+                cmbConcern.SelectedValue = PbConcernID;
+                cmbStockLocation.SelectedValue = PbStockLocationID;
+                if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-
             }
         }
         public void udfnSave(object sender, EventArgs e)
         {
             try
             {
-
+                if (rbActive.Checked == true) { varstatus = 1; }
+                else { varstatus = 2; }
+                SPDataService objspservice = new SPDataService();
+                string varResult = "";
+                if (btnSave.Text == "Save")
+                {
+                    varResult = objspservice.udfnRack(0, 0, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(),varstatus, "Rack Creation");
+                }
+                else
+                {
+                    varResult = objspservice.udfnRack(1, 0, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, "Rack Updation");
+                    varUpdate = 1;
+                    udfnclose();
+                }
+                if (varResult.Split('~')[0] == "3")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    udfnclear();
+                    MainForm.objCP_RackList.udfnList();
+                }
+                else
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                objspservice.CloseConnection();
             }
             catch (Exception ex)
             {
@@ -120,7 +129,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -134,7 +142,6 @@ namespace ROMS
                     tpConcern.Show("Please select concern", cmbConcern, 5000);
                     blnErrorFlag = true;
                 }
-
                 if (Convert.ToString(cmbStockLocation.SelectedValue) == "" || Convert.ToString(cmbStockLocation.SelectedValue) == "-1")
                 {
                     epRack.SetError(cmbStockLocation, "Please select stock location");
@@ -150,7 +157,6 @@ namespace ROMS
                     tpRackName.ShowAlways = true;
                     tpRackName.Show("Please enter rack name", txtRackName, 5000);
                     blnErrorFlag = true;
-
                 }
                 if (Convert.ToString(txtShortName.Text).Trim() == "")
                 {
@@ -179,24 +185,18 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void udfnclear()
         {
             try
             {
+                txtRackName.Text = "";
+                txtShortName.Text = "";
+                txtDescription.Text = "";
+                cmbConcern.SelectedIndex = 0;
+                cmbStockLocation.SelectedIndex = 0;
                 btnSave.Text = "Save";
-                // cmbGroupType.SelectedValue = "-1";
-                DataSet objDS = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                // objDS = objspservice.udfnGetSlNo("CP_Rack", "Create", "", "");
-                objspservice.CloseConnection();
-                if (objDS != null)
-                {
-                    //cmbSINO.DataSource = objDS.Tables[0];
-                    //cmbSINO.DisplayMember = "num";
-                    //cmbSINO.ValueMember = "num";
-                }
-                //  txtTGroupName.Focus();
+                txtRackName.Focus();
+                this.ActiveControl = txtRackName;
             }
             catch (Exception ex)
             {
@@ -204,7 +204,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -217,7 +216,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnSave_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -230,8 +228,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
@@ -248,9 +244,7 @@ namespace ROMS
         {
             try
             {
-
                 this.Close();
-
             }
             catch (Exception ex)
             {
@@ -271,7 +265,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Enter(object sender, EventArgs e)
         {
             try
@@ -284,7 +277,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Leave(object sender, EventArgs e)
         {
             try
@@ -297,8 +289,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void CP_Rack_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -319,7 +309,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_Rack_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -340,7 +329,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
             try
@@ -353,7 +341,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_Leave(object sender, EventArgs e)
         {
             try
@@ -377,7 +364,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -393,7 +379,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -407,7 +392,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -420,7 +404,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockLocation_Enter(object sender, EventArgs e)
         {
             try
@@ -433,7 +416,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -449,7 +431,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockLocation_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -463,7 +444,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockLocation_Leave(object sender, EventArgs e)
         {
 
@@ -488,7 +468,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -501,7 +480,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtRackName_Enter(object sender, EventArgs e)
         {
             try
@@ -514,7 +492,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtRackName_Leave(object sender, EventArgs e)
         {
             try
@@ -525,7 +502,6 @@ namespace ROMS
                     txtRackName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRackName.ShowAlways = true;
                     tpRackName.Show("Please enter rack name", txtRackName, 5000);
-
                 }
                 else
                 {
@@ -566,7 +542,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtShortName_Leave(object sender, EventArgs e)
         {
             try
@@ -605,7 +580,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtDescription_Enter(object sender, EventArgs e)
         {
             try
@@ -618,7 +592,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtDescription_Leave(object sender, EventArgs e)
         {
             try
@@ -642,7 +615,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtDescription_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -663,7 +635,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Enter(object sender, EventArgs e)
         {
             try
@@ -676,7 +647,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Leave(object sender, EventArgs e)
         {
             try
@@ -689,7 +659,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_Enter(object sender, EventArgs e)
         {
             try
@@ -702,7 +671,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_Leave(object sender, EventArgs e)
         {
             try
@@ -715,7 +683,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -731,7 +698,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -746,10 +712,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        
+        }        
     }
-   
-
 }
