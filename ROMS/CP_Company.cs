@@ -2969,7 +2969,18 @@ namespace ROMS
         {
             try
             {
-                udfnclose();
+                try
+                {
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        udfnclose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
             catch (Exception ex)
             {
