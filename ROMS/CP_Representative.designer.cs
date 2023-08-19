@@ -84,7 +84,7 @@
             this.txtDProductGroupNameTamil.BackColor = System.Drawing.SystemColors.Control;
             this.txtDProductGroupNameTamil.Enabled = false;
             this.txtDProductGroupNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDProductGroupNameTamil.Location = new System.Drawing.Point(10, 49);
+            this.txtDProductGroupNameTamil.Location = new System.Drawing.Point(10, 22);
             this.txtDProductGroupNameTamil.Name = "txtDProductGroupNameTamil";
             this.txtDProductGroupNameTamil.ReadOnly = true;
             this.txtDProductGroupNameTamil.Size = new System.Drawing.Size(181, 27);
@@ -94,7 +94,7 @@
             // txtEGroupNameTamil
             // 
             this.txtEGroupNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEGroupNameTamil.Location = new System.Drawing.Point(191, 49);
+            this.txtEGroupNameTamil.Location = new System.Drawing.Point(191, 22);
             this.txtEGroupNameTamil.MaxLength = 100;
             this.txtEGroupNameTamil.Name = "txtEGroupNameTamil";
             this.txtEGroupNameTamil.Size = new System.Drawing.Size(288, 27);
@@ -159,7 +159,7 @@
             this.txtDProductGroupNameEnglish.BackColor = System.Drawing.SystemColors.Control;
             this.txtDProductGroupNameEnglish.Enabled = false;
             this.txtDProductGroupNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDProductGroupNameEnglish.Location = new System.Drawing.Point(10, 22);
+            this.txtDProductGroupNameEnglish.Location = new System.Drawing.Point(10, 49);
             this.txtDProductGroupNameEnglish.Name = "txtDProductGroupNameEnglish";
             this.txtDProductGroupNameEnglish.ReadOnly = true;
             this.txtDProductGroupNameEnglish.Size = new System.Drawing.Size(181, 27);
@@ -201,7 +201,7 @@
             // txtEGroupNameEnglish
             // 
             this.txtEGroupNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEGroupNameEnglish.Location = new System.Drawing.Point(191, 22);
+            this.txtEGroupNameEnglish.Location = new System.Drawing.Point(191, 49);
             this.txtEGroupNameEnglish.MaxLength = 100;
             this.txtEGroupNameEnglish.Name = "txtEGroupNameEnglish";
             this.txtEGroupNameEnglish.Size = new System.Drawing.Size(288, 27);
