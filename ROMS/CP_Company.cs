@@ -2758,11 +2758,15 @@ namespace ROMS
         {
             try
             {
-                if(grdContactManager.Rows.Count>0)
+                if (grdContactManager.Rows.Count > 0)
                 {
-                    udfnContactSave(); 
+                    udfnContactSave();
                     udfnContactClear();
                     //grdContactManager.Rows.Clear();
+                }
+                else
+                { 
+                    MessageBox.Show("Please enter atleast one Transaction", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
