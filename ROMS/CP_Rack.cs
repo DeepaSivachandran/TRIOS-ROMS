@@ -23,6 +23,8 @@ namespace ROMS
         public string PbRackName = "";
         public string PbShortName = "";
         public string PbDescription = "";
+        public string PbConcern = "";
+        public string PbStockLocation = "";
         public int PbConcernID = 0;
         public int PbStockLocationID = 0;
         public int PbStatus = 0;
@@ -107,7 +109,7 @@ namespace ROMS
                 }
                 else
                 {
-                    varResult = objspservice.udfnRack(1, 0, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, "Rack Updation");
+                    varResult = objspservice.udfnRack(1, varRackcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, "Rack Updation");
                     varUpdate = 1;
                     udfnclose();
                 }
@@ -192,8 +194,8 @@ namespace ROMS
                 txtRackName.Text = "";
                 txtShortName.Text = "";
                 txtDescription.Text = "";
-                cmbConcern.SelectedIndex = 0;
-                cmbStockLocation.SelectedIndex = 0;
+                //cmbConcern.SelectedIndex = 0;
+                //cmbStockLocation.SelectedIndex = 0;
                 btnSave.Text = "Save";
                 txtRackName.Focus();
                 this.ActiveControl = txtRackName;
@@ -216,23 +218,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void btnSave_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -281,7 +271,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -313,14 +303,17 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varUpdate == 0)
                 {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -392,18 +385,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void CmbStockLocation_Enter(object sender, EventArgs e)
         {
             try
@@ -461,18 +442,6 @@ namespace ROMS
                     epRack.Clear();
                     cmbStockLocation.BackColor = Color.White;
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbStockLocation.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {

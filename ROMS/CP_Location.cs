@@ -62,8 +62,8 @@ namespace ROMS
                 txtLocationNameInEnglish.Text = "";
                 txtLocationNameInTamil.Text = "";
                 txtShortName.Text = "";
-                cmbConcern.SelectedIndex = 0;
-                cmbLocationType.SelectedIndex = 0;
+                //cmbConcern.SelectedIndex = 0;
+                //cmbLocationType.SelectedIndex = 0;
                 cmbStockApplicable.SelectedIndex = 0;
                 btnSave.Text = "Save";
                 txtLocationNameInEnglish.Focus();
@@ -644,7 +644,6 @@ namespace ROMS
         }
         private void CmbStockApplicable_KeyDown(object sender, KeyEventArgs e)
         {
-
             try
             {
                 if (e.KeyCode == Keys.Enter)

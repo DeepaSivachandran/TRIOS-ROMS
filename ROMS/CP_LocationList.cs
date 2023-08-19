@@ -229,33 +229,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        public void grdLocationList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void grdLocationList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) {
-                    udfnEdit();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        }     
         private void grdLocationList_SelectionChanged(object sender, EventArgs e)
         {
             try {
@@ -306,9 +280,16 @@ namespace ROMS
         }
         private void GrdGodownList_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            try
             {
-                udfnEdit();
+                if (e.KeyCode == Keys.Enter) {
+                    udfnEdit();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void CmbConcern_Enter(object sender, EventArgs e)

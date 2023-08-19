@@ -339,7 +339,7 @@ namespace ROMS
                         visibleColumns.Add(col.Index);
                     }
                     int I = DGV_SearchGrid.Rows.Count - 1;
-                    if (I == 0)
+                    if (I == 0) 
                     {
                         int rowIndex = 1;
                         DGV_SearchGrid.Rows.Add();
