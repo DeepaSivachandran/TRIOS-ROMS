@@ -17,7 +17,7 @@ namespace ROMS
         //------- Variable Declaration
         public static int pbCloseForm = 0;
         public static int varCloseFlag = 0;
-        public static string pbVersion = "1.1.1";
+        public static string pbVersion = "1.1.2";
         public static string pbUserID = "";
         public static string pbUserName = "";
         public static string pbUserRoleId;
@@ -83,6 +83,8 @@ namespace ROMS
         public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
         public static CP_GeneralSettings objCP_GeneralSettings;
         public static CP_BulkAttributes objCP_BulkAttributes;
+        public static CP_RepresentativeList objCP_RepresentativeList;
+        public static CP_Representative objCP_Representative;
 
 
         public static INV_SalesInvoiceList objINV_SalesInvoiceList;
@@ -1188,6 +1190,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void TsmRepresentative_Click(object sender, EventArgs e)
+        {
+
         }
     } 
 }

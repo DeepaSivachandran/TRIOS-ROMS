@@ -37,12 +37,12 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grdPurchaseOrder = new System.Windows.Forms.DataGridView();
-            this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.chkdays = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkSelectAll = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).BeginInit();
             this.SuspendLayout();
@@ -54,7 +54,7 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.Image = global::ROMS.Properties.Resources.submit;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Location = new System.Drawing.Point(313, 275);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -126,15 +126,6 @@
             this.grdPurchaseOrder.Size = new System.Drawing.Size(456, 261);
             this.grdPurchaseOrder.TabIndex = 1111144;
             // 
-            // chkSelectAll
-            // 
-            this.chkSelectAll.AutoSize = true;
-            this.chkSelectAll.Location = new System.Drawing.Point(26, 17);
-            this.chkSelectAll.Name = "chkSelectAll";
-            this.chkSelectAll.Size = new System.Drawing.Size(15, 14);
-            this.chkSelectAll.TabIndex = 1111145;
-            this.chkSelectAll.UseVisualStyleBackColor = true;
-            // 
             // chkdays
             // 
             this.chkdays.HeaderText = "";
@@ -169,6 +160,15 @@
             this.clmTotalitem.Name = "clmTotalitem";
             this.clmTotalitem.ReadOnly = true;
             this.clmTotalitem.Width = 120;
+            // 
+            // chkSelectAll
+            // 
+            this.chkSelectAll.AutoSize = true;
+            this.chkSelectAll.Location = new System.Drawing.Point(26, 17);
+            this.chkSelectAll.Name = "chkSelectAll";
+            this.chkSelectAll.Size = new System.Drawing.Size(15, 14);
+            this.chkSelectAll.TabIndex = 1111145;
+            this.chkSelectAll.UseVisualStyleBackColor = true;
             // 
             // PUR_DCDeatils
             // 

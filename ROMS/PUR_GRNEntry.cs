@@ -163,11 +163,13 @@ namespace ROMS
             int targetColumnIndex = 1; // Replace with the desired column index
              
             if (e.RowIndex == targetRowIndex && e.ColumnIndex == targetColumnIndex)
-            { 
-                grdUnitList.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = true;
-                 
-                e.CellStyle.BackColor = System.Drawing.Color.LightGray;
-                e.CellStyle.ForeColor = System.Drawing.Color.Black;
+            {
+                // grdUnitList.Rows[e.RowIndex].Cells[e.ColumnIndex].ReadOnly = true;
+                grdUnitList.Rows[e.RowIndex].ReadOnly = true;
+                grdUnitList.Rows[e.RowIndex].DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+                grdUnitList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+                //e.CellStyle.BackColor = System.Drawing.Color.LightGray;
+                //e.CellStyle.ForeColor = System.Drawing.Color.Black;
             }
         }
 

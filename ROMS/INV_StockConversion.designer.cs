@@ -42,6 +42,8 @@
             this.lblExpiryDate = new System.Windows.Forms.Label();
             this.lblMrp = new System.Windows.Forms.Label();
             this.grpExcessProduct = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -84,8 +86,7 @@
             this.txtActualQty = new System.Windows.Forms.TextBox();
             this.lblQty = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.tsPurchaseInvoiceList.SuspendLayout();
             this.pnldl.SuspendLayout();
@@ -175,6 +176,7 @@
             // 
             // grpExcessProduct
             // 
+            this.grpExcessProduct.Controls.Add(this.textBox11);
             this.grpExcessProduct.Controls.Add(this.label5);
             this.grpExcessProduct.Controls.Add(this.textBox10);
             this.grpExcessProduct.Controls.Add(this.textBox2);
@@ -201,6 +203,23 @@
             this.grpExcessProduct.Size = new System.Drawing.Size(1313, 531);
             this.grpExcessProduct.TabIndex = 1111204;
             this.grpExcessProduct.TabStop = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(294, 492);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 20);
+            this.label5.TabIndex = 1111262;
+            this.label5.Text = "Total Qty";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(353, 488);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(77, 28);
+            this.textBox10.TabIndex = 1111261;
             // 
             // textBox2
             // 
@@ -631,22 +650,15 @@
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
             // 
-            // label5
+            // textBox11
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(294, 492);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 20);
-            this.label5.TabIndex = 1111262;
-            this.label5.Text = "Total Qty";
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(353, 488);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(77, 28);
-            this.textBox10.TabIndex = 1111261;
+            this.textBox11.Enabled = false;
+            this.textBox11.Location = new System.Drawing.Point(430, 488);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.ReadOnly = true;
+            this.textBox11.Size = new System.Drawing.Size(31, 28);
+            this.textBox11.TabIndex = 1111263;
+            this.textBox11.Text = "Pkts";
             // 
             // INV_StockConversion
             // 
@@ -737,5 +749,6 @@
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox11;
     }
 }

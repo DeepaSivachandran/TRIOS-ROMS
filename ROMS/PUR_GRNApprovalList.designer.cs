@@ -53,22 +53,9 @@
             this.btnView = new System.Windows.Forms.Button();
             this.cmbconcern = new System.Windows.Forms.ComboBox();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdpurchaseno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdinvoiceno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdinvoicedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdsuppliername = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdInwardList = new System.Windows.Forms.DataGridView();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,12 +65,29 @@
             this.clminvoiceno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clminvoicedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsuppliername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdpurchaseno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdinvoiceno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdinvoicedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdsuppliername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             this.grbFilterBy.SuspendLayout();
@@ -321,6 +325,8 @@
             this.clmdinvoiceno,
             this.clmdinvoicedate,
             this.clmdsuppliername,
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
             this.clmdtotalitems,
             this.Column12,
             this.clmdtotalqty,
@@ -348,85 +354,6 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
-            // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Concern";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "GRN No.";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "GRN Date";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // clmdpurchaseno
-            // 
-            this.clmdpurchaseno.HeaderText = "Voucher No.";
-            this.clmdpurchaseno.Name = "clmdpurchaseno";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Voucher Date";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // clmdinvoiceno
-            // 
-            this.clmdinvoiceno.HeaderText = "Invoice No.";
-            this.clmdinvoiceno.Name = "clmdinvoiceno";
-            // 
-            // clmdinvoicedate
-            // 
-            this.clmdinvoicedate.HeaderText = "Invoice Date";
-            this.clmdinvoicedate.Name = "clmdinvoicedate";
-            // 
-            // clmdsuppliername
-            // 
-            this.clmdsuppliername.HeaderText = "Supplier Name";
-            this.clmdsuppliername.Name = "clmdsuppliername";
-            this.clmdsuppliername.Width = 200;
-            // 
-            // clmdtotalitems
-            // 
-            this.clmdtotalitems.HeaderText = "Total Products in Invoice";
-            this.clmdtotalitems.Name = "clmdtotalitems";
-            this.clmdtotalitems.Width = 150;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "My Products";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
-            // clmdtotalqty
-            // 
-            this.clmdtotalqty.HeaderText = "Status";
-            this.clmdtotalqty.Name = "clmdtotalqty";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Created By";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "Reason";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
             // 
             // lblNoRecordsFound
             // 
@@ -468,6 +395,8 @@
             this.clminvoiceno,
             this.clminvoicedate,
             this.clmsuppliername,
+            this.Column15,
+            this.Column16,
             this.clmtotalitems,
             this.Column11,
             this.clmtotalqty,
@@ -494,6 +423,20 @@
             this.grdInwardList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdInwardList.Size = new System.Drawing.Size(1348, 502);
             this.grdInwardList.TabIndex = 958797;
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(797, 381);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(544, 247);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // clmsno
             // 
@@ -545,10 +488,22 @@
             // 
             // clmsuppliername
             // 
-            this.clmsuppliername.HeaderText = "Supplier Name";
+            this.clmsuppliername.HeaderText = "Supplier";
             this.clmsuppliername.Name = "clmsuppliername";
             this.clmsuppliername.ReadOnly = true;
             this.clmsuppliername.Width = 200;
+            // 
+            // Column15
+            // 
+            this.Column15.HeaderText = "City";
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
+            // 
+            // Column16
+            // 
+            this.Column16.HeaderText = "GSTIN";
+            this.Column16.Name = "Column16";
+            this.Column16.ReadOnly = true;
             // 
             // clmtotalitems
             // 
@@ -581,19 +536,96 @@
             this.Column14.Name = "Column14";
             this.Column14.ReadOnly = true;
             // 
-            // picLoader
+            // clmdsno
             // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(797, 381);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(544, 247);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
+            this.clmdsno.HeaderText = "S.No.";
+            this.clmdsno.Name = "clmdsno";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Concern";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "GRN No.";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "GRN Date";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // clmdpurchaseno
+            // 
+            this.clmdpurchaseno.HeaderText = "Voucher No.";
+            this.clmdpurchaseno.Name = "clmdpurchaseno";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Voucher Date";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // clmdinvoiceno
+            // 
+            this.clmdinvoiceno.HeaderText = "Invoice No.";
+            this.clmdinvoiceno.Name = "clmdinvoiceno";
+            // 
+            // clmdinvoicedate
+            // 
+            this.clmdinvoicedate.HeaderText = "Invoice Date";
+            this.clmdinvoicedate.Name = "clmdinvoicedate";
+            // 
+            // clmdsuppliername
+            // 
+            this.clmdsuppliername.HeaderText = "Supplier";
+            this.clmdsuppliername.Name = "clmdsuppliername";
+            this.clmdsuppliername.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "City";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "GSTIN";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // clmdtotalitems
+            // 
+            this.clmdtotalitems.HeaderText = "Total Products in Invoice";
+            this.clmdtotalitems.Name = "clmdtotalitems";
+            this.clmdtotalitems.Width = 150;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "My Products";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            // 
+            // clmdtotalqty
+            // 
+            this.clmdtotalqty.HeaderText = "Status";
+            this.clmdtotalqty.Name = "clmdtotalqty";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Created By";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "Reason";
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
             // 
             // PUR_GRNApprovalList
             // 
@@ -658,6 +690,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdinvoiceno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdinvoicedate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsuppliername;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdtotalitems;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdtotalqty;
@@ -672,6 +706,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clminvoiceno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clminvoicedate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsuppliername;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitems;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalqty;

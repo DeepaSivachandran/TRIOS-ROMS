@@ -61,6 +61,8 @@
             this.clminvoicedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clminvoiceno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsuppliername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,10 +73,12 @@
             this.clmInwardType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdinvoicedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdsuppliername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -303,10 +307,12 @@
             this.clmInwardType,
             this.clmdinvoicedate,
             this.clmdsuppliername,
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
             this.Column1,
             this.Column2,
             this.clmdtotalitems,
-            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn3,
             this.clmdtotalqty});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -367,6 +373,8 @@
             this.clminvoicedate,
             this.clminvoiceno,
             this.clmsuppliername,
+            this.Column5,
+            this.Column6,
             this.Column4,
             this.Column3,
             this.clmtotalitems,
@@ -439,6 +447,18 @@
             this.clmsuppliername.ReadOnly = true;
             this.clmsuppliername.Width = 200;
             // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "City";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "GSTIN";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
             // Column4
             // 
             this.Column4.HeaderText = "Stock Location";
@@ -498,6 +518,18 @@
             this.clmdsuppliername.Name = "clmdsuppliername";
             this.clmdsuppliername.Width = 200;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "City";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "GSTIN";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
             // Column1
             // 
             this.Column1.HeaderText = "Stock Location";
@@ -517,11 +549,11 @@
             this.clmdtotalitems.Name = "clmdtotalitems";
             this.clmdtotalitems.Width = 200;
             // 
-            // dataGridViewTextBoxColumn1
+            // dataGridViewTextBoxColumn3
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Status";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Status";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // clmdtotalqty
             // 
@@ -587,16 +619,20 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInwardType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdinvoicedate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsuppliername;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdtotalitems;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdtotalqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpurchaseno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clminvoicedate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clminvoiceno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsuppliername;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitems;
