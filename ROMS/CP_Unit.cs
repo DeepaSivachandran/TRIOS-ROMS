@@ -92,44 +92,42 @@ namespace ROMS
             {
                 if (rbActive.Checked == true){varstatus = 1;}
                 else { varstatus = 2;}
-                SPDataService objspservice = new SPDataService();
-                string varResult = "";
-                if (btnSave.Text=="Save")
+
+
+
+                if (btnSave.Text == "Save")
                 {
-                    varResult = objspservice.udfnUnit(0, 0,(txtEUnitName.Text).Trim(),txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus,"Unit Creation");
-                    if (varmastertype == 1)
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = objspservice.udfnUnit(0, 0,(txtEUnitName.Text).Trim(),txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus,"Unit Creation");
+                    objspservice.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
                     {
-                        varupdate = 1;
-                    }
-                }
-                else
-                {
-                    varResult = objspservice.udfnUnit(1, varUnitCode, (txtEUnitName.Text).Trim(), (txtSymbol.Text).Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, "Unit Updation");
-                    varUpdate = 1;
-                    udfnclose();
-                }
-                if (varResult.Split('~')[0] == "3")
-                {
-                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                    udfnclear();
-                    if (varmastertype == 1)
-                    {
-                        varUnitCodeProduct = Convert.ToInt16(varResult.Split('~')[2]);
-                        MainForm.objCP_Items.varUnitCode = varUnitCodeProduct;
-                        varmastertype = 0;
-                        udfnclose();
-                    }
-                    else
-                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnclear();
                         MainForm.objCP_Unitlist.udfnList();
                     }
-                }
-                else
-                {
+                    else if (varResult.Split('~')[0] == "4")
+                    {
                         MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                objspservice.CloseConnection();
+                if (btnSave.Text == "Update")
+                {
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = objspservice.udfnUnit(1, varUnitCode, (txtEUnitName.Text).Trim(), (txtSymbol.Text).Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, "Unit Updation");
+                    objspservice.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varUpdate = 1;
+                        udfnclose();
+                        MainForm.objCP_Unitlist.udfnList();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
             }
             catch (Exception ex)
             {

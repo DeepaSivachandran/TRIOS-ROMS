@@ -101,29 +101,39 @@ namespace ROMS
             {
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
-                SPDataService objspservice = new SPDataService();
-                string varResult = "";
                 if (btnSave.Text == "Save")
                 {
-                    varResult = objspservice.udfnRack(0, 0, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(),varstatus, "Rack Creation");
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = objspservice.udfnRack(0, 0, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, "Rack Creation");
+                    objspservice.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnclear();
+                        MainForm.objCP_RackList.udfnList();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                else
+                if (btnSave.Text == "Update")
                 {
-                    varResult = objspservice.udfnRack(1, varRackcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, "Rack Updation");
-                    varUpdate = 1;
-                    udfnclose();
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = objspservice.udfnRack(1, varRackcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, "Rack Updation");
+                    objspservice.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varUpdate = 1;
+                        udfnclose();
+                        MainForm.objCP_RackList.udfnList();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                if (varResult.Split('~')[0] == "3")
-                {
-                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udfnclear();
-                    MainForm.objCP_RackList.udfnList();
-                }
-                else
-                {
-                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                objspservice.CloseConnection();
             }
             catch (Exception ex)
             {
