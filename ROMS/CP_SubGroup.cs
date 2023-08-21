@@ -26,7 +26,7 @@ namespace ROMS
         public string varsubgroupcode;
         public String pbFormStatus;
 
-        int varStatusid = 1;
+        public int varStatusid = 1;
         public int varCloseFlag = 0;
         public int varFormFlag = 0;
         public string varSubGroupNameinTamil = "";
@@ -193,7 +193,7 @@ namespace ROMS
         {
             try
             {
-               
+                string varResult = "";
                 if (rbActive.Checked)
                 {
                     varStatusid = 1;
@@ -202,14 +202,22 @@ namespace ROMS
                 {
                     varStatusid = 2;
                 }
+                SPDataService objDser = new SPDataService();
                 if (btnSave.Text == "Save")
                 {
-                    SPDataService objDser = new SPDataService();
-                    string varResult = objDser.udfnSubGroup(0, 0, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid,Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Creation");
-                    objDser.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
+
+                    varResult = objDser.udfnSubGroup(0, 0, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Creation");
+                }
+                else
+                {
+                    varResult = objDser.udfnSubGroup(1, varId, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Updation");
+                }
+                objDser.CloseConnection();
+                if (varResult.Split('~')[0] == "3")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (btnSave.Text == "Save")
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         varSubgroupCode = Convert.ToInt16(varResult.Split('~')[2]);
                         if (varmastertype == 1)
                         {
@@ -219,37 +227,21 @@ namespace ROMS
                             udfnclose();
                         }
                         udfnClear();
-                        MainForm.objCP_SubGroupList.udfnList();
-                        MainForm.objCP_SubGroupList.udfnLoadCmbProductSubGroup();
                         udfnLoadCmbGroupName();
-                        //cmbGroupName.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
-                        //MainForm.objCP_SubGroupList.cmbProductSubGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_SubGroupList.varSubGroupCode);
-                       
                     }
-                    else if (varResult.Split('~')[0] == "4")
+                    else
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                if (btnSave.Text == "Update")
-                {
-                    SPDataService objDser = new SPDataService();
-                    string varResult = objDser.udfnSubGroup(1, varId, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Updation");
-                    objDser.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         varCloseFlag = 1;
                         udfnclose();
-                        MainForm.objCP_SubGroupList.udfnList();
-                        MainForm.objCP_SubGroupList.udfnLoadCmbProductSubGroup();
                     }
-                    else if (varResult.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    MainForm.objCP_SubGroupList.udfnList();
+                    MainForm.objCP_SubGroupList.udfnLoadCmbProductSubGroup();
                 }
-
+                else if (varResult.Split('~')[0] == "4")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                
             }
             catch (Exception ex)
             {

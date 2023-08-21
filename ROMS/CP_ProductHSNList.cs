@@ -45,6 +45,7 @@ namespace ROMS
                     MainForm.objCP_ProductHSN.varHsnname = Convert.ToString(grdHSNList.SelectedRows[0].Cells["HSN Name"].Value);
                     MainForm.objCP_ProductHSN.varHsnCode = Convert.ToString(grdHSNList.SelectedRows[0].Cells["HSN Code"].Value);
                     MainForm.objCP_ProductHSN.varGstId = Convert.ToInt32(grdHSNList.SelectedRows[0].Cells["GST ID"].Value);
+                    MainForm.objCP_ProductHSN.varStatusid  = Convert.ToInt32(grdHSNList.SelectedRows[0].Cells["GST ID"].Value);
                     MainForm.objCP_ProductHSN.ShowDialog();
                 }
             }

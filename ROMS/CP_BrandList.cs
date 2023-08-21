@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Excel = Microsoft.Office.Interop.Excel;
 namespace ROMS
 {
     public partial class CP_BrandList : Form
@@ -27,8 +27,8 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID not in (-1) ORDER BY PRG_EName", "PRG_EName,PRGID", cmbProductgroup, "", "PRG_EName", "PRGID");
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID not in (-1) ORDER BY PRSG_EName", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
+                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID not in (-1) ORDER BY PRGID,PRG_EName", "PRG_EName,PRGID", cmbProductgroup, "", "PRG_EName", "PRGID");
+                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID not in (-1) ORDER BY PRSGID,PRSG_EName", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
                 objDataBind = null;
             }
             catch (Exception ex)
@@ -83,6 +83,7 @@ namespace ROMS
             {
                 udfnList();
                 udfnCmbLoad();
+                BeginInvoke(new Action(() => cmbProductgroup.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {
@@ -170,20 +171,21 @@ namespace ROMS
                         lblNoRecordsFound.Visible = false;
                         lblNoRecordsFound.SendToBack();
                         grdBrandList.DataSource = objDs.Tables[0];
-                        //grdBrandList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        //grdBrandList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                     
+                        grdBrandList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        grdBrandList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdBrandList.Columns["Total Groups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdBrandList.Columns["Total Subgroups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                        //grdBrandList.Columns["S.No."].Width = 50;
-                      
-                        //grdBrandList.Columns["Brand Name in English"].Width = 250;
-                        //grdBrandList.Columns["Brand Name in Tamil"].Width = 250;
-                        //grdBrandList.Columns["Total Products"].Width = 100;
-                        //grdBrandList.Columns["Status"].Width = 80;
+                        grdBrandList.Columns["S.No."].Width = 50;
+                        grdBrandList.Columns["Brand Name in English"].Width = 250;
+                        grdBrandList.Columns["Brand Name in Tamil"].Width = 250;
+                        grdBrandList.Columns["Total Products"].Width = 100;
+                        grdBrandList.Columns["Total Groups"].Width = 100;
+                        grdBrandList.Columns["Total Subgroups"].Width = 100;
+                        grdBrandList.Columns["Status"].Width = 80;
 
-                        //grdBrandList.Columns["ID"].Visible = false;
-                        //grdBrandList.Columns["Status ID"].Visible = false;
-                       
+                        grdBrandList.Columns["ID"].Visible = false;
+                        grdBrandList.Columns["Status ID"].Visible = false;
                     }
                     else
                     {
@@ -265,8 +267,6 @@ namespace ROMS
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
       
-    
-
         private void CmbProductgroup_Enter(object sender, EventArgs e)
         {
             try
@@ -331,8 +331,8 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbProductgroup.Select(int.MaxValue, 0)));
                 varGroupId= Convert.ToInt32(cmbProductgroup.SelectedValue);
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSG_PRGID=" + varGroupId + " ORDER BY PRSG_EName", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
-               objDataBind = null;
+                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSG_PRGID=" + varGroupId + " ORDER BY PRSG_EName ", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
+                objDataBind = null;
             }
             catch (Exception ex)
             {
@@ -427,7 +427,6 @@ namespace ROMS
 
         private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-           
            try
            {   
                     //udfnGridSearchFilter();
@@ -623,7 +622,193 @@ namespace ROMS
 
         private void BtnView_KeyDown(object sender, KeyEventArgs e)
         {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnView_Click(sender,e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if ((grdBrandList.Rows.Count > 0))
+                {
+                    Excel._Application ExcelObj = new Excel.Application();
+                    // creating new WorkBook within Excel application  
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    // creating new Excelsheet in workbook  
+                    Excel._Worksheet ExcelSheet = null;
+                    // see the excel sheet behind the program  
+                    ExcelObj.Visible = true;
+                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
+                    ExcelSheet = ExcelBook.ActiveSheet;
+                    // changing the name of active sheet  
+                    ExcelSheet.Name = "Brand List";
+                    int cIndex = 0;
+                    int count = 0;
+                    foreach (DataGridViewColumn col in grdBrandList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            count += 1;
+                        }
+                    }
+                    //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
+                    //er.EntireColumn.ColumnWidth = 35;
+
+                    ExcelSheet.Cells[1, 1].Value = "Brand List";
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
+
+                    grdBrandList.Columns["S.No."].Width = 50;
+                    grdBrandList.Columns["Brand Name in English"].Width = 250;
+                    grdBrandList.Columns["Brand Name in Tamil"].Width = 250;
+                    grdBrandList.Columns["Total Products"].Width = 100;
+                    grdBrandList.Columns["Total Groups"].Width = 100;
+                    grdBrandList.Columns["Total Subgroups"].Width = 100;
+                    grdBrandList.Columns["Status"].Width = 80;
+
+                    grdBrandList.Columns["ID"].Visible = false;
+                    grdBrandList.Columns["Status ID"].Visible = false;
+
+                    foreach (DataGridViewColumn col in grdBrandList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            cIndex += 1;
+                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+
+                            if (col.Name == "S.No." || col.Name == "Status" )
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                            else if (col.Name == "Total Groups" || col.Name == "Total Subgroups" || col.Name == "Total Products")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            }
+                            else
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 50;
+                            }
+
+                            if(col.Name == "S.No.")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                            }
+                            else if (col.Name == "Total Products" || col.Name == "Total Groups" || col.Name == "Total Subgroups")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            }
+
+                            foreach (DataGridViewRow rowa in grdBrandList.Rows)
+                            {
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                            }
+                        }
+                    }
+                    //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
+                    ExcelObj.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnExport_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
+                {
+                    tsbNew_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
+                {
+                    tsbEdit_Click(sender, e);
+                }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                {
+                    tsbDelete_Click(sender, e);
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm objMainForm = new MainForm();
+                    objMainForm.udfnCloseChildForms();
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }
