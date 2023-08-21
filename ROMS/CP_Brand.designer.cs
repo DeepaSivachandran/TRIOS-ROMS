@@ -59,7 +59,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.grdSubGroup = new System.Windows.Forms.DataGridView();
             this.grdGroup = new System.Windows.Forms.DataGridView();
-            this.clmChkProductGroup = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.grdSubGroupAdd = new System.Windows.Forms.DataGridView();
             this.chkSelectedSubGroup = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -377,8 +376,6 @@
             this.grdGroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdGroup.ColumnHeadersHeight = 30;
             this.grdGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdGroup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmChkProductGroup});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -402,14 +399,6 @@
             this.grdGroup.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGroup_CellClick);
             this.grdGroup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGroup_CellContentClick);
             this.grdGroup.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGroup_CurrentCellDirtyStateChanged);
-            // 
-            // clmChkProductGroup
-            // 
-            this.clmChkProductGroup.HeaderText = "";
-            this.clmChkProductGroup.Name = "clmChkProductGroup";
-            this.clmChkProductGroup.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmChkProductGroup.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmChkProductGroup.Width = 40;
             // 
             // grdSubGroupAdd
             // 
@@ -640,7 +629,6 @@
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.RadioButton rbInactive;
         public System.Windows.Forms.DataGridView grdGroup;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn clmChkProductGroup;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkSelectedSubGroup;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsubgroup;
