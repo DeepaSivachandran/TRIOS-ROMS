@@ -1194,7 +1194,19 @@ namespace ROMS
 
         private void TsmRepresentative_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_RepresentativeList = new CP_RepresentativeList();
+                MainForm.objCP_RepresentativeList.MdiParent = this;
+                MainForm.objCP_RepresentativeList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     } 
 }
