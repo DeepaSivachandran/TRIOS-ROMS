@@ -413,27 +413,27 @@
         #endregion
         private System.Windows.Forms.ErrorProvider epLocation;
         private System.Windows.Forms.GroupBox grbGodown;
-        private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.TextBox txtConcern;
-        private System.Windows.Forms.TextBox txtDGodownName;
-        private System.Windows.Forms.TextBox txtLocationNameInEnglish;
         private System.Windows.Forms.TextBox txtDGodowntype;
-        private System.Windows.Forms.Panel pnlGodownType;
         private System.Windows.Forms.RadioButton rbOutside;
         private System.Windows.Forms.RadioButton rbInside;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TextBox txtDStatus;
-        private System.Windows.Forms.Panel pnlStatus;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
-        private System.Windows.Forms.ComboBox cmbLocationType;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox cmbStockApplicable;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox txtLocationNameInTamil;
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox txtShortName;
+        public System.Windows.Forms.TextBox txtLocationNameInEnglish;
+        private System.Windows.Forms.TextBox txtDGodownName;
+        public System.Windows.Forms.ComboBox cmbConcern;
+        public System.Windows.Forms.Panel pnlGodownType;
+        public System.Windows.Forms.Panel pnlStatus;
+        public System.Windows.Forms.ComboBox cmbLocationType;
+        public System.Windows.Forms.ComboBox cmbStockApplicable;
+        public System.Windows.Forms.TextBox txtLocationNameInTamil;
+        public System.Windows.Forms.TextBox txtShortName;
     }
 }

@@ -92,9 +92,6 @@ namespace ROMS
             {
                 if (rbActive.Checked == true){varstatus = 1;}
                 else { varstatus = 2;}
-
-
-
                 if (btnSave.Text == "Save")
                 {
                     SPDataService objspservice = new SPDataService();

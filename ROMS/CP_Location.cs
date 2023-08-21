@@ -32,6 +32,7 @@ namespace ROMS
         public int PbConcernID = 0;
         public int PbLocationTypeID=0;
         public int PbStockApplicableID = 0;
+        public string PbDefault;
         public int PbStatus = 0;
         public int PbGodownTypeStatus = 0;
         public int varUpdate = 0;
@@ -151,7 +152,10 @@ namespace ROMS
                 }
                 else
                 {
-                    pnlStatus.Enabled = true;
+                    if (btnSave.Visible)
+                    {
+                        pnlStatus.Enabled = true;
+                    }
                     udfnLoad();
                 }
             }
@@ -192,11 +196,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         public void udfnSave(object sender, EventArgs e)
         {
             try
             {
-                if (rbActive.Checked == true) { varstatus = 1; }
+                if (PbDefault == "1" || PbDefault == "2")
+                {
+                    btnSave.Visible = false;
+                    cmbConcern.Visible = false;
+                    cmbLocationType.Visible = false;
+                    txtLocationNameInEnglish.Visible = false;
+                    txtLocationNameInTamil.Visible = false;
+                    txtShortName.Visible = false;
+                    pnlGodownType.Visible = false;
+                    cmbStockApplicable.Visible = false;
+                    pnlStatus.Visible = false;
+                }
+                else
+                {
+
+                    if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
                 if (rbInside.Checked == true) { varGodownType = 86; }
                 else { varGodownType = 87; }
@@ -216,21 +236,38 @@ namespace ROMS
                         MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+                 
                 if (btnSave.Text == "Update")
                 {
-                    SPDataService objspservice = new SPDataService();
-                    string varResult = objspservice.udfnStockLocation(1,varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, "Stock Creation");
-                    objspservice.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        varUpdate = 1;
-                        udfnclose();
-                        MainForm.objCP_LocationList.udfnList();
-                    }
-                    else if (varResult.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //if (PbDefault == 1 || PbDefault == 2)
+                    //{
+                    //    btnSave.Visible = false;
+                    //    cmbConcern.Visible = false;
+                    //    cmbLocationType.Visible = false;
+                    //    txtLocationNameInEnglish.Visible = false;
+                    //    txtLocationNameInTamil.Visible = false;
+                    //    txtShortName.Visible = false;
+                    //    pnlGodownType.Visible = false;
+                    //    cmbStockApplicable.Visible = false;
+                    //    pnlStatus.Visible = false;
+                    //}
+                    //else
+                   // {
+
+                        SPDataService objspservice = new SPDataService();
+                        string varResult = objspservice.udfnStockLocation(1, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, "Stock Creation");
+                        objspservice.CloseConnection();
+                        if (varResult.Split('~')[0] == "3")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            varUpdate = 1;
+                            udfnclose();
+                            MainForm.objCP_LocationList.udfnList();
+                        }
+                        else if (varResult.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                 }
             }
@@ -263,7 +300,6 @@ namespace ROMS
                     tpLocationType.Show("Please select location type", cmbLocationType, 5000);
                     blnErrorFlag = true;
                 }
-
                 if (Convert.ToString(txtLocationNameInEnglish.Text).Trim() == "")
                 {
                     epLocation.SetError(txtLocationNameInEnglish, "Please enter location name in english");

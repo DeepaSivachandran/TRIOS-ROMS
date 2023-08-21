@@ -9,26 +9,26 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 namespace ROMS
-{
+{   //Created by:-Sathish;Created on:-21/08/2023
     public partial class CP_UserCategory : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
         private ToolTip tpCatogaroryName = new ToolTip();
-    
-
-
         public string oldpassword,varpassword;
         public string varusercode="";
-        public string varUserRoleCode = "";
+        public int varUserCategoryCode = 0;
+        public int PbUserCategorycode = 0;
+        public string PbUserCategoryName = "";
+        public int PbStatus = 0;
+        public int varstatus = 0;
+        public int varUpdate = 0;
 
         public CP_UserCategory()
         {
             InitializeComponent();
         }
-      
-
         private void rbActive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -103,7 +103,41 @@ namespace ROMS
         {
             try
             {
-
+                if (rbActive.Checked == true) { varstatus = 1; }
+                else { varstatus = 2; }
+                if (btnSave.Text == "Save")
+                {
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = objspservice.udfnUserCategory(0, 0,(txtCategoryName.Text).Trim(), varstatus, "UserCategory Creation");
+                    objspservice.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnclear();
+                        MainForm.objCP_UserCategoryList.udfnList();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                if (btnSave.Text == "Update")
+                {
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = objspservice.udfnUserCategory(1, varUserCategoryCode, (txtCategoryName.Text).Trim(), varstatus, "UserCategory Updation");
+                    objspservice.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varUpdate = 1;
+                        udfnclose();
+                        MainForm.objCP_UserCategoryList.udfnList();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -111,6 +145,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void udfnclear()
+        {
+            try
+            {
+                txtCategoryName.Text = "";
+                btnSave.Text = "Save";
+                txtCategoryName.Focus();
+                this.ActiveControl = txtCategoryName;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
 
@@ -151,25 +201,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void btnSave_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -193,7 +229,6 @@ namespace ROMS
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
-        
             try
             {
                 udfnclose();
@@ -204,7 +239,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Enter(object sender, EventArgs e)
         {
             try
@@ -217,7 +251,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -230,7 +263,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Leave(object sender, EventArgs e)
         {
             try
@@ -243,22 +275,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-
-
         private void CP_UserCategory_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varUpdate == 0)
                 {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -302,7 +333,22 @@ namespace ROMS
                 else
                 {
                     pnlStatus.Enabled = true;
+                    udfnLoad();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void udfnLoad()
+        {
+            try
+            {
+                txtCategoryName.Text = PbUserCategoryName;
+                if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
             }
             catch (Exception ex)
             {

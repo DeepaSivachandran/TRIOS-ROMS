@@ -44,10 +44,6 @@
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUserCategoryList = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmCategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNoOfUsers = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsUserCategoryList.SuspendLayout();
             this.pnlUserCategoryList.SuspendLayout();
@@ -179,8 +175,8 @@
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 2);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -188,6 +184,11 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958805;
+            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
+            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
+            this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
+            this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
             // lblNoRecordsFound
             // 
@@ -219,11 +220,6 @@
             this.grdUserCategoryList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdUserCategoryList.ColumnHeadersHeight = 30;
             this.grdUserCategoryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdUserCategoryList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.clmCategoryName,
-            this.clmNoOfUsers,
-            this.Column4});
             this.grdUserCategoryList.EnableHeadersVisualStyles = false;
             this.grdUserCategoryList.GridColor = System.Drawing.Color.White;
             this.grdUserCategoryList.Location = new System.Drawing.Point(3, 58);
@@ -237,32 +233,10 @@
             this.grdUserCategoryList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdUserCategoryList.Size = new System.Drawing.Size(1348, 581);
             this.grdUserCategoryList.TabIndex = 958804;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "S.No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // clmCategoryName
-            // 
-            this.clmCategoryName.HeaderText = "Category Name";
-            this.clmCategoryName.Name = "clmCategoryName";
-            this.clmCategoryName.ReadOnly = true;
-            this.clmCategoryName.Width = 400;
-            // 
-            // clmNoOfUsers
-            // 
-            this.clmNoOfUsers.HeaderText = "No.of Users";
-            this.clmNoOfUsers.Name = "clmNoOfUsers";
-            this.clmNoOfUsers.ReadOnly = true;
-            this.clmNoOfUsers.Width = 200;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Status";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.grdUserCategoryList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUserCategoryList_DataBindingComplete);
+            this.grdUserCategoryList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdUserCategoryList_Scroll);
+            this.grdUserCategoryList.DoubleClick += new System.EventHandler(this.GrdUserCategoryList_DoubleClick);
+            this.grdUserCategoryList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUserCategoryList_KeyDown);
             // 
             // picLoader
             // 
@@ -321,9 +295,5 @@
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdUserCategoryList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmCategoryName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmNoOfUsers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }

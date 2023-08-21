@@ -1434,42 +1434,6 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.Visible = false;
             // 
-            // txtrepwhatsappno
-            // 
-            this.txtrepwhatsappno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtrepwhatsappno.Location = new System.Drawing.Point(137, 81);
-            this.txtrepwhatsappno.MaxLength = 10;
-            this.txtrepwhatsappno.Name = "txtrepwhatsappno";
-            this.txtrepwhatsappno.Size = new System.Drawing.Size(204, 27);
-            this.txtrepwhatsappno.TabIndex = 10;
-            this.txtrepwhatsappno.Enter += new System.EventHandler(this.Txtrepwhatsappno_Enter);
-            this.txtrepwhatsappno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtrepwhatsappno_KeyDown);
-            this.txtrepwhatsappno.Leave += new System.EventHandler(this.Txtrepwhatsappno_Leave);
-            // 
-            // txtrepmobileno
-            // 
-            this.txtrepmobileno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtrepmobileno.Location = new System.Drawing.Point(137, 54);
-            this.txtrepmobileno.MaxLength = 10;
-            this.txtrepmobileno.Name = "txtrepmobileno";
-            this.txtrepmobileno.Size = new System.Drawing.Size(204, 27);
-            this.txtrepmobileno.TabIndex = 9;
-            this.txtrepmobileno.Enter += new System.EventHandler(this.Txtrepmobileno_Enter);
-            this.txtrepmobileno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtrepmobileno_KeyDown);
-            this.txtrepmobileno.Leave += new System.EventHandler(this.Txtrepmobileno_Leave);
-            // 
-            // txtrepname
-            // 
-            this.txtrepname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtrepname.Location = new System.Drawing.Point(137, 27);
-            this.txtrepname.MaxLength = 100;
-            this.txtrepname.Name = "txtrepname";
-            this.txtrepname.Size = new System.Drawing.Size(204, 27);
-            this.txtrepname.TabIndex = 7;
-            this.txtrepname.Enter += new System.EventHandler(this.Txtrepname_Enter);
-            this.txtrepname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtrepname_KeyDown);
-            this.txtrepname.Leave += new System.EventHandler(this.Txtrepname_Leave);
-            // 
             // textBox11
             // 
             this.textBox11.BackColor = System.Drawing.SystemColors.Control;

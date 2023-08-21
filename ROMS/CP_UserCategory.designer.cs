@@ -113,7 +113,6 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
-            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
             // btnClose
@@ -165,7 +164,6 @@
             this.txtCategoryName.Location = new System.Drawing.Point(197, 26);
             this.txtCategoryName.MaxLength = 20;
             this.txtCategoryName.Name = "txtCategoryName";
-            this.txtCategoryName.PasswordChar = '*';
             this.txtCategoryName.Size = new System.Drawing.Size(288, 27);
             this.txtCategoryName.TabIndex = 0;
             this.txtCategoryName.Enter += new System.EventHandler(this.TxtCategoryName_Enter);
