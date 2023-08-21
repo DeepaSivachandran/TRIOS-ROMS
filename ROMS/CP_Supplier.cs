@@ -368,6 +368,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+ 
+        private void btnSave_Click(object sender, EventArgs e)
+        { 
+        }
           
         private void udfnclear()
         {
@@ -565,7 +569,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
-                 //   btnSave_Click(sender, e);
+                    btnSave_Click(sender, e);
                 }
             }
             catch (Exception ex)
@@ -1042,36 +1046,7 @@ namespace ROMS
             }
 
         }
-
-        private void Txtrepname_KeyDown(object sender, KeyEventArgs e)
-        {
-
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                   txtrepmobileno.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        } 
-
-        private void Txtrepwhatsappno_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                cmbOrderType.Focus();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        } 
+         
 
         private void Txtsalesmanname_Leave(object sender, EventArgs e)
         {
@@ -1206,7 +1181,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                  //  txtrepname.Focus();
+                    cmbOrderType.Focus();
                 }
             }
             catch (Exception ex)
@@ -1230,7 +1205,7 @@ namespace ROMS
                 {
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbReturnPolicy.Focus();
+                        btnSave.Focus();
                     }
                 }
             }
@@ -2289,7 +2264,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
 
-                    grddays.Focus();
+                    cmbReturnPolicy.Focus();
 
                 }
             }
@@ -2334,18 +2309,18 @@ namespace ROMS
             try
             {
                 cmbOrderType.BackColor = Color.White;
-                //if (Convert.ToString(cmbOrderType.SelectedValue) == "" || Convert.ToString(cmbOrderType.SelectedValue) == "-1")
-                //{
-                //    errCompany.SetError(cmbOrderType, "Please select order type");
-                //    cmbOrderType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpstate.ShowAlways = true;
-                //    tpstate.Show("Please select order type", cmbOrderType, 5000);
-                //}
-                //else
-                //{
-                //    errCompany.Clear();
-                //    cmbOrderType.BackColor = Color.White;
-                //}
+                if (Convert.ToString(cmbOrderType.SelectedValue) == "" || Convert.ToString(cmbOrderType.SelectedValue) == "-1")
+                {
+                    errCompany.SetError(cmbOrderType, "Please select order type");
+                    cmbOrderType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpstate.ShowAlways = true;
+                    tpstate.Show("Please select order type", cmbOrderType, 5000);
+                }
+                else
+                {
+                    errCompany.Clear();
+                    cmbOrderType.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {

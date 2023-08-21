@@ -55,15 +55,6 @@
             this.tbSupplier = new System.Windows.Forms.TabPage();
             this.grpSupplierDetails = new System.Windows.Forms.GroupBox();
             this.lblcity = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.cmbSecondLevel = new System.Windows.Forms.ComboBox();
-            this.txtNextLevel = new System.Windows.Forms.TextBox();
-            this.cmbPolicyContent = new System.Windows.Forms.ComboBox();
-            this.txtReturnText = new System.Windows.Forms.TextBox();
-            this.cmbReturnType = new System.Windows.Forms.ComboBox();
-            this.txtDReturnCycle = new System.Windows.Forms.TextBox();
-            this.cmbReturnPolicy = new System.Windows.Forms.ComboBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
             this.grbEnvelopeDetails = new System.Windows.Forms.GroupBox();
             this.cmbDesignation = new System.Windows.Forms.ComboBox();
             this.txtDShortName = new System.Windows.Forms.TextBox();
@@ -114,25 +105,9 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.tbOrder = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.cmbSecondLevel = new System.Windows.Forms.ComboBox();
-            this.txtNextLevel = new System.Windows.Forms.TextBox();
-            this.cmbPolicyContent = new System.Windows.Forms.ComboBox();
-            this.txtReturnText = new System.Windows.Forms.TextBox();
-            this.cmbReturnType = new System.Windows.Forms.ComboBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.cmbReturnPolicy = new System.Windows.Forms.ComboBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsalesname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOrderType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.btn_close = new System.Windows.Forms.Button();
             this.gpSupplier = new System.Windows.Forms.GroupBox();
             this.txtScheduleName = new System.Windows.Forms.TextBox();
@@ -148,6 +123,7 @@
             this.textBox20 = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.grddays = new System.Windows.Forms.DataGridView();
+            this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cmbOrderType = new System.Windows.Forms.ComboBox();
             this.txtDOrderDay = new System.Windows.Forms.TextBox();
             this.textBox34 = new System.Windows.Forms.TextBox();
@@ -215,12 +191,23 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBrand = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRep = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmCompany = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsalesname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOrderType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cmbSecondLevel = new System.Windows.Forms.ComboBox();
+            this.txtNextLevel = new System.Windows.Forms.TextBox();
+            this.cmbPolicyContent = new System.Windows.Forms.ComboBox();
+            this.txtReturnText = new System.Windows.Forms.TextBox();
+            this.cmbReturnType = new System.Windows.Forms.ComboBox();
+            this.txtDReturnCycle = new System.Windows.Forms.TextBox();
+            this.cmbReturnPolicy = new System.Windows.Forms.ComboBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -232,7 +219,6 @@
             this.groupBox4.SuspendLayout();
             this.grbform.SuspendLayout();
             this.tbOrder.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
             this.gpSupplier.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -246,6 +232,7 @@
             this.tbSchedule.SuspendLayout();
             this.grpSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewSupplierMapping)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // errCompany
@@ -336,7 +323,6 @@
             // grpSupplierDetails
             // 
             this.grpSupplierDetails.Controls.Add(this.lblcity);
-            this.grpSupplierDetails.Controls.Add(this.groupBox3);
             this.grpSupplierDetails.Controls.Add(this.grbEnvelopeDetails);
             this.grpSupplierDetails.Controls.Add(this.panelStatus);
             this.grpSupplierDetails.Controls.Add(this.groupBox4);
@@ -359,125 +345,6 @@
             this.lblcity.Size = new System.Drawing.Size(0, 20);
             this.lblcity.TabIndex = 77;
             this.lblcity.Visible = false;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.cmbSecondLevel);
-            this.groupBox3.Controls.Add(this.txtNextLevel);
-            this.groupBox3.Controls.Add(this.cmbPolicyContent);
-            this.groupBox3.Controls.Add(this.txtReturnText);
-            this.groupBox3.Controls.Add(this.cmbReturnType);
-            this.groupBox3.Controls.Add(this.txtDReturnCycle);
-            this.groupBox3.Controls.Add(this.cmbReturnPolicy);
-            this.groupBox3.Controls.Add(this.textBox9);
-            this.groupBox3.Location = new System.Drawing.Point(571, 58);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(281, 141);
-            this.groupBox3.TabIndex = 21;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Return Policy";
-            // 
-            // cmbSecondLevel
-            // 
-            this.cmbSecondLevel.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSecondLevel.FormattingEnabled = true;
-            this.cmbSecondLevel.Location = new System.Drawing.Point(123, 104);
-            this.cmbSecondLevel.Name = "cmbSecondLevel";
-            this.cmbSecondLevel.Size = new System.Drawing.Size(149, 27);
-            this.cmbSecondLevel.TabIndex = 24;
-            this.cmbSecondLevel.SelectedIndexChanged += new System.EventHandler(this.CmbSecondLevel_SelectedIndexChanged);
-            this.cmbSecondLevel.Enter += new System.EventHandler(this.CmbSecondLevel_Enter);
-            this.cmbSecondLevel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSecondLevel_KeyDown);
-            this.cmbSecondLevel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbSecondLevel_KeyPress);
-            this.cmbSecondLevel.Leave += new System.EventHandler(this.CmbSecondLevel_Leave);
-            // 
-            // txtNextLevel
-            // 
-            this.txtNextLevel.BackColor = System.Drawing.SystemColors.Control;
-            this.txtNextLevel.Enabled = false;
-            this.txtNextLevel.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtNextLevel.Location = new System.Drawing.Point(12, 104);
-            this.txtNextLevel.Name = "txtNextLevel";
-            this.txtNextLevel.ReadOnly = true;
-            this.txtNextLevel.Size = new System.Drawing.Size(111, 27);
-            this.txtNextLevel.TabIndex = 77;
-            // 
-            // cmbPolicyContent
-            // 
-            this.cmbPolicyContent.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPolicyContent.FormattingEnabled = true;
-            this.cmbPolicyContent.Location = new System.Drawing.Point(123, 77);
-            this.cmbPolicyContent.Name = "cmbPolicyContent";
-            this.cmbPolicyContent.Size = new System.Drawing.Size(149, 27);
-            this.cmbPolicyContent.TabIndex = 23;
-            this.cmbPolicyContent.SelectedIndexChanged += new System.EventHandler(this.CmbPolicyContent_SelectedIndexChanged);
-            this.cmbPolicyContent.Enter += new System.EventHandler(this.CmbPolicyContent_Enter);
-            this.cmbPolicyContent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPolicyContent_KeyDown);
-            this.cmbPolicyContent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPolicyContent_KeyPress);
-            this.cmbPolicyContent.Leave += new System.EventHandler(this.CmbPolicyContent_Leave);
-            // 
-            // txtReturnText
-            // 
-            this.txtReturnText.BackColor = System.Drawing.SystemColors.Control;
-            this.txtReturnText.Enabled = false;
-            this.txtReturnText.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtReturnText.Location = new System.Drawing.Point(12, 77);
-            this.txtReturnText.Name = "txtReturnText";
-            this.txtReturnText.ReadOnly = true;
-            this.txtReturnText.Size = new System.Drawing.Size(111, 27);
-            this.txtReturnText.TabIndex = 75;
-            // 
-            // cmbReturnType
-            // 
-            this.cmbReturnType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbReturnType.FormattingEnabled = true;
-            this.cmbReturnType.Location = new System.Drawing.Point(123, 50);
-            this.cmbReturnType.Name = "cmbReturnType";
-            this.cmbReturnType.Size = new System.Drawing.Size(149, 27);
-            this.cmbReturnType.TabIndex = 22;
-            this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.CmbReturnType_SelectedIndexChanged);
-            this.cmbReturnType.Enter += new System.EventHandler(this.CmbReturnType_Enter);
-            this.cmbReturnType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReturnType_KeyDown);
-            this.cmbReturnType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReturnType_KeyPress);
-            this.cmbReturnType.Leave += new System.EventHandler(this.CmbReturnType_Leave);
-            // 
-            // txtDReturnCycle
-            // 
-            this.txtDReturnCycle.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDReturnCycle.Enabled = false;
-            this.txtDReturnCycle.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDReturnCycle.Location = new System.Drawing.Point(12, 50);
-            this.txtDReturnCycle.Name = "txtDReturnCycle";
-            this.txtDReturnCycle.ReadOnly = true;
-            this.txtDReturnCycle.Size = new System.Drawing.Size(111, 27);
-            this.txtDReturnCycle.TabIndex = 73;
-            this.txtDReturnCycle.Text = "Return Cycle";
-            // 
-            // cmbReturnPolicy
-            // 
-            this.cmbReturnPolicy.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbReturnPolicy.FormattingEnabled = true;
-            this.cmbReturnPolicy.Location = new System.Drawing.Point(123, 23);
-            this.cmbReturnPolicy.Name = "cmbReturnPolicy";
-            this.cmbReturnPolicy.Size = new System.Drawing.Size(149, 27);
-            this.cmbReturnPolicy.TabIndex = 21;
-            this.cmbReturnPolicy.SelectedIndexChanged += new System.EventHandler(this.CmbReturnPolicy_SelectedIndexChanged);
-            this.cmbReturnPolicy.Enter += new System.EventHandler(this.CmbReturnPolicy_Enter);
-            this.cmbReturnPolicy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReturnPolicy_KeyDown);
-            this.cmbReturnPolicy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReturnPolicy_KeyPress);
-            this.cmbReturnPolicy.Leave += new System.EventHandler(this.CmbReturnPolicy_Leave);
-            // 
-            // textBox9
-            // 
-            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox9.Enabled = false;
-            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox9.Location = new System.Drawing.Point(12, 23);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(111, 27);
-            this.textBox9.TabIndex = 72;
-            this.textBox9.Text = "Returns Applicable";
             // 
             // grbEnvelopeDetails
             // 
@@ -549,16 +416,16 @@
             this.panelStatus.Controls.Add(this.rbActive);
             this.panelStatus.Enabled = false;
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(404, 519);
+            this.panelStatus.Location = new System.Drawing.Point(404, 525);
             this.panelStatus.Name = "panelStatus";
-            this.panelStatus.Size = new System.Drawing.Size(149, 27);
+            this.panelStatus.Size = new System.Drawing.Size(147, 27);
             this.panelStatus.TabIndex = 76;
             // 
             // rbInactive
             // 
             this.rbInactive.AutoSize = true;
             this.rbInactive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbInactive.Location = new System.Drawing.Point(79, 1);
+            this.rbInactive.Location = new System.Drawing.Point(76, 1);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
             this.rbInactive.TabIndex = 26;
@@ -767,7 +634,7 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(293, 519);
+            this.textBox4.Location = new System.Drawing.Point(293, 525);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(111, 27);
@@ -1085,7 +952,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(383, 552);
+            this.btnSave.Location = new System.Drawing.Point(378, 561);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 27;
@@ -1100,7 +967,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(481, 552);
+            this.btnClose.Location = new System.Drawing.Point(476, 561);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 28;
@@ -1113,7 +980,6 @@
             // 
             // tbOrder
             // 
-            this.tbOrder.Controls.Add(this.groupBox3);
             this.tbOrder.Controls.Add(this.btnAdd);
             this.tbOrder.Controls.Add(this.lblNoRecordsFound);
             this.tbOrder.Controls.Add(this.grdSupplierList);
@@ -1128,129 +994,15 @@
             this.tbOrder.UseVisualStyleBackColor = true;
             this.tbOrder.Enter += new System.EventHandler(this.TbOrder_Enter);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Controls.Add(this.cmbSecondLevel);
-            this.groupBox3.Controls.Add(this.txtNextLevel);
-            this.groupBox3.Controls.Add(this.cmbPolicyContent);
-            this.groupBox3.Controls.Add(this.txtReturnText);
-            this.groupBox3.Controls.Add(this.cmbReturnType);
-            this.groupBox3.Controls.Add(this.textBox10);
-            this.groupBox3.Controls.Add(this.cmbReturnPolicy);
-            this.groupBox3.Controls.Add(this.textBox9);
-            this.groupBox3.Location = new System.Drawing.Point(760, 10);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(281, 228);
-            this.groupBox3.TabIndex = 958802;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Return Policy";
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = global::ROMS.Properties.Resources.save;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(192, 140);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(80, 33);
-            this.button3.TabIndex = 78;
-            this.button3.Text = "Save";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // cmbSecondLevel
-            // 
-            this.cmbSecondLevel.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSecondLevel.FormattingEnabled = true;
-            this.cmbSecondLevel.Location = new System.Drawing.Point(123, 104);
-            this.cmbSecondLevel.Name = "cmbSecondLevel";
-            this.cmbSecondLevel.Size = new System.Drawing.Size(149, 27);
-            this.cmbSecondLevel.TabIndex = 24;
-            // 
-            // txtNextLevel
-            // 
-            this.txtNextLevel.BackColor = System.Drawing.SystemColors.Control;
-            this.txtNextLevel.Enabled = false;
-            this.txtNextLevel.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtNextLevel.Location = new System.Drawing.Point(12, 104);
-            this.txtNextLevel.Name = "txtNextLevel";
-            this.txtNextLevel.ReadOnly = true;
-            this.txtNextLevel.Size = new System.Drawing.Size(111, 27);
-            this.txtNextLevel.TabIndex = 77;
-            // 
-            // cmbPolicyContent
-            // 
-            this.cmbPolicyContent.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPolicyContent.FormattingEnabled = true;
-            this.cmbPolicyContent.Location = new System.Drawing.Point(123, 77);
-            this.cmbPolicyContent.Name = "cmbPolicyContent";
-            this.cmbPolicyContent.Size = new System.Drawing.Size(149, 27);
-            this.cmbPolicyContent.TabIndex = 23;
-            // 
-            // txtReturnText
-            // 
-            this.txtReturnText.BackColor = System.Drawing.SystemColors.Control;
-            this.txtReturnText.Enabled = false;
-            this.txtReturnText.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtReturnText.Location = new System.Drawing.Point(12, 77);
-            this.txtReturnText.Name = "txtReturnText";
-            this.txtReturnText.ReadOnly = true;
-            this.txtReturnText.Size = new System.Drawing.Size(111, 27);
-            this.txtReturnText.TabIndex = 75;
-            // 
-            // cmbReturnType
-            // 
-            this.cmbReturnType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbReturnType.FormattingEnabled = true;
-            this.cmbReturnType.Location = new System.Drawing.Point(123, 50);
-            this.cmbReturnType.Name = "cmbReturnType";
-            this.cmbReturnType.Size = new System.Drawing.Size(149, 27);
-            this.cmbReturnType.TabIndex = 22;
-            // 
-            // textBox10
-            // 
-            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox10.Enabled = false;
-            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox10.Location = new System.Drawing.Point(12, 50);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(111, 27);
-            this.textBox10.TabIndex = 73;
-            this.textBox10.Text = "Return Cycle";
-            // 
-            // cmbReturnPolicy
-            // 
-            this.cmbReturnPolicy.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbReturnPolicy.FormattingEnabled = true;
-            this.cmbReturnPolicy.Location = new System.Drawing.Point(123, 23);
-            this.cmbReturnPolicy.Name = "cmbReturnPolicy";
-            this.cmbReturnPolicy.Size = new System.Drawing.Size(149, 27);
-            this.cmbReturnPolicy.TabIndex = 21;
-            // 
-            // textBox9
-            // 
-            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox9.Enabled = false;
-            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox9.Location = new System.Drawing.Point(12, 23);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(111, 27);
-            this.textBox9.TabIndex = 72;
-            this.textBox9.Text = "Returns Applicable";
-            // 
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(1049, 248);
+            this.btnAdd.Location = new System.Drawing.Point(1006, 248);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(59, 29);
-            this.btnAdd.TabIndex = 12;
+            this.btnAdd.TabIndex = 17;
             this.btnAdd.Text = "Save";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -1293,8 +1045,6 @@
             this.clmsupname,
             this.clmsalesname,
             this.Column3,
-            this.clmrepname,
-            this.Column4,
             this.clmOrderType,
             this.clmDelete});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1317,47 +1067,7 @@
             this.grdSupplierList.RowTemplate.Height = 25;
             this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupplierList.Size = new System.Drawing.Size(1307, 286);
-            this.grdSupplierList.TabIndex = 958799;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            // 
-            // clmsupname
-            // 
-            this.clmsupname.HeaderText = "Schedule Name";
-            this.clmsupname.Name = "clmsupname";
-            this.clmsupname.ReadOnly = true;
-            this.clmsupname.Width = 200;
-            // 
-            // clmsalesname
-            // 
-            this.clmsalesname.HeaderText = "Salesman Name";
-            this.clmsalesname.Name = "clmsalesname";
-            this.clmsalesname.ReadOnly = true;
-            this.clmsalesname.Width = 200;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Salesman Mobile No.";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 140;
-            // 
-            // clmOrderType
-            // 
-            this.clmOrderType.HeaderText = "Order Type";
-            this.clmOrderType.Name = "clmOrderType";
-            this.clmOrderType.ReadOnly = true;
-            // 
-            // clmDelete
-            // 
-            this.clmDelete.HeaderText = "Delete";
-            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
-            this.clmDelete.Name = "clmDelete";
-            this.clmDelete.ReadOnly = true;
+            this.grdSupplierList.TabIndex = 18;
             // 
             // btn_close
             // 
@@ -1377,6 +1087,7 @@
             // 
             // gpSupplier
             // 
+            this.gpSupplier.Controls.Add(this.groupBox3);
             this.gpSupplier.Controls.Add(this.txtScheduleName);
             this.gpSupplier.Controls.Add(this.label1);
             this.gpSupplier.Controls.Add(this.txtSupplier);
@@ -1385,17 +1096,17 @@
             this.gpSupplier.Controls.Add(this.groupBox6);
             this.gpSupplier.Location = new System.Drawing.Point(8, -5);
             this.gpSupplier.Name = "gpSupplier";
-            this.gpSupplier.Size = new System.Drawing.Size(1100, 253);
+            this.gpSupplier.Size = new System.Drawing.Size(1057, 253);
             this.gpSupplier.TabIndex = 958801;
             this.gpSupplier.TabStop = false;
             // 
             // txtScheduleName
             // 
             this.txtScheduleName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScheduleName.Location = new System.Drawing.Point(154, 57);
+            this.txtScheduleName.Location = new System.Drawing.Point(154, 73);
             this.txtScheduleName.MaxLength = 50;
             this.txtScheduleName.Name = "txtScheduleName";
-            this.txtScheduleName.Size = new System.Drawing.Size(212, 27);
+            this.txtScheduleName.Size = new System.Drawing.Size(204, 27);
             this.txtScheduleName.TabIndex = 2;
             this.txtScheduleName.Text = "Regular";
             this.txtScheduleName.Enter += new System.EventHandler(this.TxtScheduleName_Enter);
@@ -1406,7 +1117,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(22, 60);
+            this.label1.Location = new System.Drawing.Point(22, 76);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 20);
             this.label1.TabIndex = 1111180;
@@ -1420,7 +1131,7 @@
             this.txtSupplier.MaxLength = 50;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.ReadOnly = true;
-            this.txtSupplier.Size = new System.Drawing.Size(212, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(204, 27);
             this.txtSupplier.TabIndex = 1;
             // 
             // label2
@@ -1442,7 +1153,7 @@
             this.groupBox2.Controls.Add(this.textBox18);
             this.groupBox2.Controls.Add(this.textBox20);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(8, 109);
+            this.groupBox2.Location = new System.Drawing.Point(14, 125);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(358, 127);
             this.groupBox2.TabIndex = 3;
@@ -1528,7 +1239,7 @@
             this.groupBox6.Controls.Add(this.txtDOrderDay);
             this.groupBox6.Controls.Add(this.textBox34);
             this.groupBox6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(372, 14);
+            this.groupBox6.Location = new System.Drawing.Point(387, 14);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(358, 235);
             this.groupBox6.TabIndex = 11;
@@ -1575,8 +1286,14 @@
             this.grddays.RowTemplate.Height = 25;
             this.grddays.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grddays.Size = new System.Drawing.Size(132, 177);
-            this.grddays.TabIndex = 61;
+            this.grddays.TabIndex = 12;
             this.grddays.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grddays_CellContentClick);
+            // 
+            // clmcheck
+            // 
+            this.clmcheck.HeaderText = "";
+            this.clmcheck.Name = "clmcheck";
+            this.clmcheck.Width = 30;
             // 
             // cmbOrderType
             // 
@@ -2359,10 +2076,7 @@
             this.Column5,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
-            this.Column2,
-            this.clmBrand,
-            this.clmRep,
-            this.clmCompany});
+            this.Column2});
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2390,7 +2104,6 @@
             this.Column1.HeaderText = "S.No.";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 50;
             // 
             // Column8
             // 
@@ -2415,7 +2128,6 @@
             this.clmdpicode.HeaderText = "P.I Code";
             this.clmdpicode.Name = "clmdpicode";
             this.clmdpicode.ReadOnly = true;
-            this.clmdpicode.Width = 70;
             // 
             // Column5
             // 
@@ -2436,32 +2148,13 @@
             this.dataGridViewTextBoxColumn4.HeaderText = "Unit";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 70;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "R.Sales Rate";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 90;
-            // 
-            // clmBrand
-            // 
-            this.clmBrand.HeaderText = "Brand";
-            this.clmBrand.Name = "clmBrand";
-            this.clmBrand.ReadOnly = true;
-            // 
-            // clmRep
-            // 
-            this.clmRep.HeaderText = "Representative Name";
-            this.clmRep.Name = "clmRep";
-            this.clmRep.ReadOnly = true;
-            // 
-            // clmCompany
-            // 
-            this.clmCompany.HeaderText = "Company";
-            this.clmCompany.Name = "clmCompany";
-            this.clmCompany.ReadOnly = true;
+            this.Column2.Width = 120;
             // 
             // lblGC
             // 
@@ -2485,11 +2178,164 @@
             this.label3.TabIndex = 958804;
             this.label3.Text = "No.of Products :";
             // 
-            // clmcheck
+            // clmsno
             // 
-            this.clmcheck.HeaderText = "";
-            this.clmcheck.Name = "clmcheck";
-            this.clmcheck.Width = 30;
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            // 
+            // clmsupname
+            // 
+            this.clmsupname.HeaderText = "Schedule Name";
+            this.clmsupname.Name = "clmsupname";
+            this.clmsupname.ReadOnly = true;
+            this.clmsupname.Width = 200;
+            // 
+            // clmsalesname
+            // 
+            this.clmsalesname.HeaderText = "Salesman Name";
+            this.clmsalesname.Name = "clmsalesname";
+            this.clmsalesname.ReadOnly = true;
+            this.clmsalesname.Width = 200;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Salesman Mobile No.";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 140;
+            // 
+            // clmOrderType
+            // 
+            this.clmOrderType.HeaderText = "Order Type";
+            this.clmOrderType.Name = "clmOrderType";
+            this.clmOrderType.ReadOnly = true;
+            // 
+            // clmDelete
+            // 
+            this.clmDelete.HeaderText = "Delete";
+            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
+            this.clmDelete.Name = "clmDelete";
+            this.clmDelete.ReadOnly = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.cmbSecondLevel);
+            this.groupBox3.Controls.Add(this.txtNextLevel);
+            this.groupBox3.Controls.Add(this.cmbPolicyContent);
+            this.groupBox3.Controls.Add(this.txtReturnText);
+            this.groupBox3.Controls.Add(this.cmbReturnType);
+            this.groupBox3.Controls.Add(this.txtDReturnCycle);
+            this.groupBox3.Controls.Add(this.cmbReturnPolicy);
+            this.groupBox3.Controls.Add(this.textBox9);
+            this.groupBox3.Location = new System.Drawing.Point(760, 14);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(281, 141);
+            this.groupBox3.TabIndex = 1111181;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Return Policy";
+            // 
+            // cmbSecondLevel
+            // 
+            this.cmbSecondLevel.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSecondLevel.FormattingEnabled = true;
+            this.cmbSecondLevel.Location = new System.Drawing.Point(123, 104);
+            this.cmbSecondLevel.Name = "cmbSecondLevel";
+            this.cmbSecondLevel.Size = new System.Drawing.Size(149, 27);
+            this.cmbSecondLevel.TabIndex = 16;
+            this.cmbSecondLevel.SelectedIndexChanged += new System.EventHandler(this.CmbSecondLevel_SelectedIndexChanged);
+            this.cmbSecondLevel.Enter += new System.EventHandler(this.CmbSecondLevel_Enter);
+            this.cmbSecondLevel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSecondLevel_KeyDown);
+            this.cmbSecondLevel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbSecondLevel_KeyPress);
+            this.cmbSecondLevel.Leave += new System.EventHandler(this.CmbSecondLevel_Leave);
+            // 
+            // txtNextLevel
+            // 
+            this.txtNextLevel.BackColor = System.Drawing.SystemColors.Control;
+            this.txtNextLevel.Enabled = false;
+            this.txtNextLevel.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtNextLevel.Location = new System.Drawing.Point(12, 104);
+            this.txtNextLevel.Name = "txtNextLevel";
+            this.txtNextLevel.ReadOnly = true;
+            this.txtNextLevel.Size = new System.Drawing.Size(111, 27);
+            this.txtNextLevel.TabIndex = 77;
+            // 
+            // cmbPolicyContent
+            // 
+            this.cmbPolicyContent.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPolicyContent.FormattingEnabled = true;
+            this.cmbPolicyContent.Location = new System.Drawing.Point(123, 77);
+            this.cmbPolicyContent.Name = "cmbPolicyContent";
+            this.cmbPolicyContent.Size = new System.Drawing.Size(149, 27);
+            this.cmbPolicyContent.TabIndex = 15;
+            this.cmbPolicyContent.SelectedIndexChanged += new System.EventHandler(this.CmbPolicyContent_SelectedIndexChanged);
+            this.cmbPolicyContent.Enter += new System.EventHandler(this.CmbPolicyContent_Enter);
+            this.cmbPolicyContent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPolicyContent_KeyDown);
+            this.cmbPolicyContent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPolicyContent_KeyPress);
+            this.cmbPolicyContent.Leave += new System.EventHandler(this.CmbPolicyContent_Leave);
+            // 
+            // txtReturnText
+            // 
+            this.txtReturnText.BackColor = System.Drawing.SystemColors.Control;
+            this.txtReturnText.Enabled = false;
+            this.txtReturnText.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtReturnText.Location = new System.Drawing.Point(12, 77);
+            this.txtReturnText.Name = "txtReturnText";
+            this.txtReturnText.ReadOnly = true;
+            this.txtReturnText.Size = new System.Drawing.Size(111, 27);
+            this.txtReturnText.TabIndex = 75;
+            // 
+            // cmbReturnType
+            // 
+            this.cmbReturnType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbReturnType.FormattingEnabled = true;
+            this.cmbReturnType.Location = new System.Drawing.Point(123, 50);
+            this.cmbReturnType.Name = "cmbReturnType";
+            this.cmbReturnType.Size = new System.Drawing.Size(149, 27);
+            this.cmbReturnType.TabIndex = 14;
+            this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.CmbReturnType_SelectedIndexChanged);
+            this.cmbReturnType.Enter += new System.EventHandler(this.CmbReturnType_Enter);
+            this.cmbReturnType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReturnType_KeyDown);
+            this.cmbReturnType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReturnType_KeyPress);
+            this.cmbReturnType.Leave += new System.EventHandler(this.CmbReturnType_Leave);
+            // 
+            // txtDReturnCycle
+            // 
+            this.txtDReturnCycle.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDReturnCycle.Enabled = false;
+            this.txtDReturnCycle.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDReturnCycle.Location = new System.Drawing.Point(12, 50);
+            this.txtDReturnCycle.Name = "txtDReturnCycle";
+            this.txtDReturnCycle.ReadOnly = true;
+            this.txtDReturnCycle.Size = new System.Drawing.Size(111, 27);
+            this.txtDReturnCycle.TabIndex = 73;
+            this.txtDReturnCycle.Text = "Return Cycle";
+            // 
+            // cmbReturnPolicy
+            // 
+            this.cmbReturnPolicy.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbReturnPolicy.FormattingEnabled = true;
+            this.cmbReturnPolicy.Location = new System.Drawing.Point(123, 23);
+            this.cmbReturnPolicy.Name = "cmbReturnPolicy";
+            this.cmbReturnPolicy.Size = new System.Drawing.Size(149, 27);
+            this.cmbReturnPolicy.TabIndex = 13;
+            this.cmbReturnPolicy.SelectedValueChanged += new System.EventHandler(this.CmbReturnPolicy_SelectedIndexChanged);
+            this.cmbReturnPolicy.Enter += new System.EventHandler(this.CmbReturnPolicy_Enter);
+            this.cmbReturnPolicy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReturnPolicy_KeyDown);
+            this.cmbReturnPolicy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReturnPolicy_KeyPress);
+            this.cmbReturnPolicy.Leave += new System.EventHandler(this.CmbReturnPolicy_Leave);
+            // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox9.Enabled = false;
+            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox9.Location = new System.Drawing.Point(12, 23);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(111, 27);
+            this.textBox9.TabIndex = 72;
+            this.textBox9.Text = "Returns Applicable";
             // 
             // CP_Supplier
             // 
@@ -2531,8 +2377,6 @@
             this.grbform.PerformLayout();
             this.tbOrder.ResumeLayout(false);
             this.tbOrder.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).EndInit();
             this.gpSupplier.ResumeLayout(false);
             this.gpSupplier.PerformLayout();
@@ -2553,6 +2397,8 @@
             this.grpSchedule.ResumeLayout(false);
             this.grpSchedule.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewSupplierMapping)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2644,15 +2490,6 @@
         public System.Windows.Forms.DataGridView grdViewSupplierMapping;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ComboBox cmbReturnType;
-        private System.Windows.Forms.TextBox txtDReturnCycle;
-        private System.Windows.Forms.ComboBox cmbReturnPolicy;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox txtReturnText;
-        private System.Windows.Forms.ComboBox cmbPolicyContent;
-        private System.Windows.Forms.ComboBox cmbSecondLevel;
-        private System.Windows.Forms.TextBox txtNextLevel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmborder;
         private System.Windows.Forms.Label label7;
@@ -2715,32 +2552,21 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Label lblcity;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmcheck;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsalesname;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmrepname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderType;
         private System.Windows.Forms.DataGridViewImageColumn clmDelete;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn clmcheck;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmBrand;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmRep;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmCompany;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cmbSecondLevel;
         private System.Windows.Forms.TextBox txtNextLevel;
         private System.Windows.Forms.ComboBox cmbPolicyContent;
         private System.Windows.Forms.TextBox txtReturnText;
         private System.Windows.Forms.ComboBox cmbReturnType;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox txtDReturnCycle;
         private System.Windows.Forms.ComboBox cmbReturnPolicy;
         private System.Windows.Forms.TextBox textBox9;
-        public System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsalesname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderType;
     }
 }
