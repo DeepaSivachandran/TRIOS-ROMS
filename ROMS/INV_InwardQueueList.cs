@@ -349,7 +349,12 @@ namespace ROMS
         private void INV_InwardQueueList_Load(object sender, EventArgs e)
         {
             try
-            {}
+            {
+                cmbStatus.Items.Add("GRN Draft");
+                cmbStatus.Items.Add("GRN Completed");
+                cmbType.Items.Add("From GRN");
+                cmbType.Items.Add("From DC");
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
