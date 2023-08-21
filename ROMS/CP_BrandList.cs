@@ -14,6 +14,9 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+
+        public int varGroupId = 0;
+        public int varSubGroupId = 0;
         public CP_BrandList()
         {
             InitializeComponent();
@@ -24,8 +27,8 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID not in (0)", "PRG_EName,PRGID", cmbProductgroup, "", "PRG_EName", "PRGID");
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID not in (0)", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
+                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID not in (-1) ORDER BY PRG_EName", "PRG_EName,PRGID", cmbProductgroup, "", "PRG_EName", "PRGID");
+                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID not in (-1) ORDER BY PRSG_EName", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
                 objDataBind = null;
             }
             catch (Exception ex)
@@ -131,6 +134,7 @@ namespace ROMS
                     MainForm.objCP_Brand = new CP_Brand();
                     MainForm.objCP_Brand.MdiParent = ParentForm;
                     MainForm.objCP_Brand.btnSave.Text = "Update";
+                    MainForm.objCP_Brand.varId = Convert.ToInt32(grdBrandList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_Brand.Show();
                
                 }
@@ -154,7 +158,7 @@ namespace ROMS
             DataSet objDs = new DataSet();
             //**** To call the function from SP ***************
             SPDataService objdserv = new SPDataService();
-            objDs = objdserv.udfnBrandList(0, 0);
+            objDs = objdserv.udfnBrandList(0, 0,varGroupId,varSubGroupId);
             objdserv.CloseConnection();
             if (objDs != null)
             {
@@ -192,6 +196,7 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
+                udfnSearchGridHead();
             }
             else
             {
@@ -240,23 +245,21 @@ namespace ROMS
         {
             try
             {
-
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 1))   /*If not our desired columns*/
+                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/
                                                                    //return;
 
-                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
-                    {
-                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                {
+                     e.Paint(e.CellBounds, DataGridViewPaintParts.All
                             & ~(DataGridViewPaintParts.ContentForeground));
 
                         TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
                             e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
 
                         e.Handled = true;
-                    }
-
+                }
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -326,6 +329,10 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbProductgroup.Select(int.MaxValue, 0)));
+                varGroupId= Convert.ToInt32(cmbProductgroup.SelectedValue);
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSG_PRGID=" + varGroupId + " ORDER BY PRSG_EName", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
+               objDataBind = null;
             }
             catch (Exception ex)
             {
@@ -396,6 +403,7 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbProductSubGroup.Select(int.MaxValue, 0)));
+                varSubGroupId = Convert.ToInt32(cmbProductSubGroup.SelectedValue);
             }
             catch (Exception ex)
             {
@@ -415,6 +423,207 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+           
+           try
+           {   
+                    //udfnGridSearchFilter();
+                    DataService objDser = new DataService();
+                    grdBrandList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdBrandList);
+                    objDser.CloseConnection();
+                    grdBrandList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                    //DGV_SearchGrid_CellPainting(sender,e);
+           }
+           catch (Exception ex)
+           {
+                objError = new DataError(); objError.WriteFile(ex);
+           }
+            
+        }
+
+        private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewColumn newColumn = grdBrandList.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = grdBrandList.SortedColumn;
+            ListSortDirection direction;
+
+            // If oldColumn is null, then the DataGridView is not sorted.
+            if (oldColumn != null)
+            {
+                // Sort the same column again, reversing the SortOrder.
+                if (oldColumn == newColumn &&grdBrandList.SortOrder == SortOrder.Ascending)
+                {
+                    direction = ListSortDirection.Descending;
+                }
+                else
+                {
+                    // Sort a new column and remove the old SortGlyph.
+                    direction = ListSortDirection.Ascending;
+                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                }
+            }
+            else
+            {
+                direction = ListSortDirection.Ascending;
+            }
+            grdBrandList.Sort(newColumn, direction);
+            newColumn.HeaderCell.SortGlyphDirection =
+                direction == ListSortDirection.Ascending ?
+                SortOrder.Ascending : SortOrder.Descending;
+
+            DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+
+            DGV_SearchGrid.HorizontalScrollingOffset = grdBrandList.HorizontalScrollingOffset;
+            DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+        }
+
+        private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdBrandList.ColumnCount > 0)
+                {
+                    grdBrandList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdBrandList.HorizontalScrollingOffset;
+                    //grdBrandList.HorizontalScrollingOffset = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
+        {
+            try
+            {
+                //dgv2.DataSource = null;
+                dgv2.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in dgv1.Columns)
+                {
+                    if (col.Visible)
+                    {
+                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                }
+                int rowIndex = 0;
+                dgv2.Rows.Clear();
+                dgv2.Rows.Add();
+                for (int i = 0; i < visibleColumns.Count; i++)
+                {
+                    dgv2.Rows[rowIndex].Cells[i].Value = "";
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void udfnSearchGridHead()
+        {
+            try
+            {
+                udfnGridSearchHeading(grdBrandList, DGV_SearchGrid);
+                DGV_SearchGrid.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in grdBrandList.Columns)
+                {
+                    DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                    visibleColumns.Add(col.Index);
+                }
+                int rowIndex = 0;
+                DGV_SearchGrid.Rows.Clear();
+                DGV_SearchGrid.Rows.Add();
+                for (int i = 0; i < visibleColumns.Count; i++)
+                {
+                    DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                }
+                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void GrdBrandList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+
+                for (int i = 0; i < grdBrandList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdBrandList.Rows[i].Cells["Status ID"].Value) == "1")
+                    {
+                        grdBrandList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdBrandList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        grdBrandList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdBrandList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdBrandList.ClearSelection();
+            }
+        }
+
+        private void BtnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdBrandList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdBrandList.ClearSelection();
+            }
+        }
+
+        private void BtnView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

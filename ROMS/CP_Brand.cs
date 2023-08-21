@@ -22,6 +22,8 @@ namespace ROMS
         public int varStatusid = 0;
         public int varCloseFlag = 0;
         public int varFormFlag = 0;
+        public int varId = 0;
+
         public string varGroupId = "";
         public string varSubGroupId = "";
         public int varmastertype = 0;
@@ -38,6 +40,81 @@ namespace ROMS
                 tpBrandNameInEnglish.Active = false;
                 tpBrandNameInTamil.Active = false;
               
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnEdit()
+        {
+            try
+            {
+
+                string varSubgroupId = "";
+                int varGroupId = 0;
+                DataSet objDS = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDS = objdserv.udfnBrandList(1, varId,0,0);
+                objdserv.CloseConnection();
+                if (objDS != null)
+                {
+                    if (objDS.Tables[0].Rows.Count > 0)
+                    {
+                        txtEBrandNameInEnglish.Text = objDS.Tables[0].Rows[0]["BD_EName"].ToString().Replace("''", "'");
+                        txtEBrandNameInTamil.Text = objDS.Tables[0].Rows[0]["BD_TName"].ToString().Replace("''", "'");
+                    }
+                    if (objDS.Tables[1].Rows.Count > 0)
+                    {
+                        for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
+                        {
+                            //grdSubGroup.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["PRGID"]), Convert.ToString(objDS.Tables[1].Rows[i]["PRG_EName"]));
+                            grdSubGroupAdd.Rows.Add(false, objDS.Tables[1].Rows[i]["Selected Product Group"], 
+                                objDS.Tables[1].Rows[i]["Selected Product Sub Group"], objDS.Tables[1].Rows[i]["PRGID"],
+                                objDS.Tables[1].Rows[i]["PRSGID"]);
+                        }
+                    }
+                }
+                foreach (DataGridViewRow row in grdGroup.Rows)
+                {
+
+                    DataGridViewCheckBoxCell chkBox = (DataGridViewCheckBoxCell)row.Cells[0];
+                    chkBox.Value = true;
+                    if (chkBox.Value == chkBox.TrueValue)
+                    {
+                        chkBox.Value = chkBox.FalseValue;
+                    }
+                    else
+                    {
+                        chkBox.Value = chkBox.TrueValue;
+                    }
+
+                    chkBox.Value = true;
+
+
+                }
+
+
+                if (grdSubGroupAdd.Rows.Count > 0)
+                 {
+                    for (int i = 0; i< grdSubGroupAdd.Rows.Count; i++)
+                    {
+                        foreach (DataGridViewRow row in this.grdSubGroupAdd.Rows)
+                        {
+                            ((DataGridViewCheckBoxCell)row.Cells[0]).Value = true;
+                        }
+
+                        //for (int j = 0; j < grdGroup.Rows.Count; j++)
+                        //{
+                        //    if (Convert.ToInt32(grdSubGroupAdd.Rows[i].Cells["clmGroupIdAdd"].Value) == Convert.ToInt32( grdGroup.Rows[j].Cells["ID"].Value))
+                        //    {
+                        //        grdGroup.Rows[j].Cells["clmChkProductGroup"].Value = true; 
+                        //    }
+                        //}
+
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -83,21 +160,6 @@ namespace ROMS
             }
         }
 
-        private void udfnRefreshSubGroupAdd()
-        {
-            try
-            {
-
-                (grdSubGroup.DataSource as DataTable).DefaultView.RowFilter = "([clmGroupId]) NOT IN ('" + varGroup + "')";
-                // (grdStaffDetails.DataSource as DataTable).DefaultView.ToTable();
-                // (grdStaffDetails.DataSource as DataTable).Dump();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         public void udfnSubGroupAdd()
         {
             try
@@ -152,7 +214,7 @@ namespace ROMS
                 }
                 else
                 {
-
+                    MessageBox.Show("Please select atleast one row.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
             }
@@ -490,6 +552,35 @@ namespace ROMS
                         MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+                    else if(btnSave.Text == "Update")
+                    {
+                        SPDataService objDser = new SPDataService();
+                        string varResult = objDser.udfnBrand(1,varId, Convert.ToString(txtEBrandNameInEnglish.Text), Convert.ToString(txtEBrandNameInTamil.Text), varStatusid, varSubGroupId, "Updation");
+                        objDser.CloseConnection();
+                        if (varResult.Split('~')[0] == "3")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            varbrandcode = Convert.ToInt16(varResult.Split('~')[2]);
+                            if (varmastertype == 1)
+                            {
+                                varmastertype = 0;
+                                MainForm.objCP_Items.varbrandcode = varbrandcode;
+                                varCloseFlag = 1;
+                                udfnclose();
+                            }
+                            else
+                            {
+                                MainForm.objCP_BrandList.udfnList();
+                            }
+                            udfnClear();
+                        }
+                        else if (varResult.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+
+
             }
             catch (Exception ex)
             {
@@ -717,7 +808,7 @@ namespace ROMS
                 else
                 {
                     pnlStatus.Enabled = true;
-                    //udfnEdit();
+                    udfnEdit();
                 }
             }
             catch (Exception ex)
@@ -731,7 +822,7 @@ namespace ROMS
         {
             try
             {
-                (grdSubGroup.DataSource as DataTable).DefaultView.RowFilter = "([clmSubGroups]) LIKE '%" + txtProductSubGroup.Text + "%'";
+                (grdSubGroup.DataSource as DataTable).DefaultView.RowFilter = "([Product Subgroup]) LIKE '%" + txtProductSubGroup.Text + "%'";
             }
             catch (Exception ex)
             {
@@ -744,11 +835,22 @@ namespace ROMS
         {
             try
             {
+                varGroup = "";
+
                 for (int i = 0; i < grdGroup.Rows.Count; i++)
                 {
                     grdGroup.Rows[i].Cells["clmChkProductGroup"].Value = chkgroup.Checked;
+                    if (varGroup == "")
+                    {
+                        varGroup = Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value);
+                    }
+                    else
+                    {
+                        varGroup = varGroup + "," + Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value);
+                    }
                 }
                 udfnSubGroupList();
+
             }
             catch (Exception ex)
             {
@@ -893,6 +995,69 @@ namespace ROMS
             try
             {
                 udfnSelectedSubGroupRemove();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSave_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                   
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnClose_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void BtnAdd_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAdd.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnAdd_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAdd.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnRemove_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnSelectedSubGroupRemove();
+                }
             }
             catch (Exception ex)
             {

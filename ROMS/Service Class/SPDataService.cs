@@ -799,7 +799,7 @@ namespace ROMS
                 return varResult;
           }
 
-        public DataSet udfnBrandList(int ViewType, int paraBDID)
+        public DataSet udfnBrandList(int ViewType, int paraBDID,int paraGroupId, int paraSubGroupId)
         {
             DataSet ds = new DataSet();
             try
@@ -809,6 +809,8 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraBDID", paraBDID);
+                varSqlCommand.Parameters.AddWithValue("@paraGroupId", paraGroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraSubGroupId", @paraSubGroupId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
