@@ -101,6 +101,7 @@ namespace ROMS
                         else
                         {
                             MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }

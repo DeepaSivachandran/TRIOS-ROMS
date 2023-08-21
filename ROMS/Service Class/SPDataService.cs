@@ -703,5 +703,79 @@ namespace ROMS
             }
             return varResult;
           }
+
+
+        // Created by Venkat
+        //Create date: 21/08/2023 
+        //Description:	repmaster
+        public string udfnRepMaster(int ViewType, int paraRepId, string paraRepName, string paracompanyname, string paraphoneno,string parawhatsapp, string paraBrandID, int ParaStatus, string paraOriginator)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("TRNS_Representative", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraRepId", paraRepId);
+                varSqlCommand.Parameters.AddWithValue("@paraRepName", paraRepName);
+                varSqlCommand.Parameters.AddWithValue("@paracompanyname", paracompanyname);
+                varSqlCommand.Parameters.AddWithValue("@paraphoneno", paraphoneno);
+                varSqlCommand.Parameters.AddWithValue("@parawhatsapp", parawhatsapp); 
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", paraBrandID); 
+                varSqlCommand.Parameters.AddWithValue("@ParaStatus", ParaStatus);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+
+
+        // Created by Venkat
+        //Create date: 21/08/2023 
+        //Description:	repmasterList
+
+        public DataSet udfnRepMasterList(int ViewType, int paraRepId,string paraUserID, string paraIPAddress)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("TRNG_Representative", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraRepId", paraRepId); 
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", paraIPAddress); 
+
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+
+
     }
 }
