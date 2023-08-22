@@ -352,6 +352,7 @@
             this.txtUpp.Name = "txtUpp";
             this.txtUpp.Size = new System.Drawing.Size(43, 27);
             this.txtUpp.TabIndex = 11;
+            this.txtUpp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtUpp.Enter += new System.EventHandler(this.TxtUpp_Enter);
             this.txtUpp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUpp_KeyDown);
             this.txtUpp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUpp_KeyPress);
@@ -779,6 +780,7 @@
             this.txtRackMOQQty.Name = "txtRackMOQQty";
             this.txtRackMOQQty.Size = new System.Drawing.Size(127, 27);
             this.txtRackMOQQty.TabIndex = 27;
+            this.txtRackMOQQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRackMOQQty.Enter += new System.EventHandler(this.TxtMaxOrderQty_Enter);
             this.txtRackMOQQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxOrderQty_KeyDown);
             this.txtRackMOQQty.Leave += new System.EventHandler(this.TxtMaxOrderQty_Leave);
@@ -936,7 +938,6 @@
             this.groupBox2.Size = new System.Drawing.Size(279, 163);
             this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
-//            this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
             // 
             // txtWMinSaleQty
             // 
@@ -1005,7 +1006,6 @@
             this.rbInActive.TabStop = true;
             this.rbInActive.Text = "InActive";
             this.rbInActive.UseVisualStyleBackColor = true;
-          //  this.rbInActive.CheckedChanged += new System.EventHandler(this.RbInActive_CheckedChanged_1);
             this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInActive_KeyDown);
             // 
             // rbActive
@@ -1020,7 +1020,6 @@
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
-          //  this.rbActive.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
             this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             // 
             // txtDStatus
@@ -1063,7 +1062,7 @@
             // txtSelfLife
             // 
             this.txtSelfLife.Location = new System.Drawing.Point(85, 24);
-            this.txtSelfLife.MaxLength = 2;
+            this.txtSelfLife.MaxLength = 3;
             this.txtSelfLife.Name = "txtSelfLife";
             this.txtSelfLife.Size = new System.Drawing.Size(69, 27);
             this.txtSelfLife.TabIndex = 20;
@@ -1347,7 +1346,6 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
-         //   this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
             // CP_Product

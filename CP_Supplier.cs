@@ -1046,7 +1046,142 @@ namespace ROMS
             }
 
         }
+
+        private void Txtrepname_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                   txtrepmobileno.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtrepname_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtrepname.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtrepname_Leave(object sender, EventArgs e)
+        {
+            if (txtrepname.Text == "")
+            {
+
+                errCompany.SetError(txtrepname, "Please enter representative name");
+                txtrepname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tparea.ShowAlways = true;
+                tparea.Show("Please enter representative name", txtrepname, 5000);
+
+            }
+            else
+            {
+                errCompany.Clear();
+                txtrepname.BackColor = Color.White;
+                tparea.Hide(txtrepname);
+            }
+        }
          
+        private void Txtrepmobileno_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+
+                txtrepmobileno.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtrepmobileno_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtrepwhatsappno.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtrepmobileno_Leave(object sender, EventArgs e)
+        {
+            if (txtrepmobileno.Text == "")
+            {
+
+                errCompany.SetError(txtrepmobileno, "Please enter representative mobile No.");
+                txtrepmobileno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tparea.ShowAlways = true;
+                tparea.Show("Please enter representative mobile No.", txtrepmobileno, 5000);
+
+            }
+            else
+            {
+                errCompany.Clear();
+                txtrepmobileno.BackColor = Color.White;
+                tparea.Hide(txtrepmobileno);
+            }
+        }
+
+        private void Txtrepwhatsappno_Leave(object sender, EventArgs e)
+        {
+            if (txtrepwhatsappno.Text == "")
+            {
+
+                errCompany.SetError(txtrepwhatsappno, "Please enter representative whatsapp No.");
+                txtrepwhatsappno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tparea.ShowAlways = true;
+                tparea.Show("Please enter representative whatsapp No.", txtrepwhatsappno, 5000);
+
+            }
+            else
+            {
+                errCompany.Clear();
+                txtrepwhatsappno.BackColor = Color.White;
+                tparea.Hide(txtrepwhatsappno);
+            }
+
+        }
+
+        private void Txtrepwhatsappno_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                cmbOrderType.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtrepwhatsappno_Enter(object sender, EventArgs e)
+        { 
+                txtrepwhatsappno.BackColor = Color.LemonChiffon; 
+        }
 
         private void Txtsalesmanname_Leave(object sender, EventArgs e)
         {
@@ -1181,7 +1316,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbOrderType.Focus();
+                    txtrepname.Focus();
                 }
             }
             catch (Exception ex)
@@ -1205,7 +1340,7 @@ namespace ROMS
                 {
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnSave.Focus();
+                        cmbReturnPolicy.Focus();
                     }
                 }
             }
@@ -2264,7 +2399,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
 
-                    cmbReturnPolicy.Focus();
+                    grddays.Focus();
 
                 }
             }
@@ -2309,18 +2444,18 @@ namespace ROMS
             try
             {
                 cmbOrderType.BackColor = Color.White;
-                if (Convert.ToString(cmbOrderType.SelectedValue) == "" || Convert.ToString(cmbOrderType.SelectedValue) == "-1")
-                {
-                    errCompany.SetError(cmbOrderType, "Please select order type");
-                    cmbOrderType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpstate.ShowAlways = true;
-                    tpstate.Show("Please select order type", cmbOrderType, 5000);
-                }
-                else
-                {
-                    errCompany.Clear();
-                    cmbOrderType.BackColor = Color.White;
-                }
+                //if (Convert.ToString(cmbOrderType.SelectedValue) == "" || Convert.ToString(cmbOrderType.SelectedValue) == "-1")
+                //{
+                //    errCompany.SetError(cmbOrderType, "Please select order type");
+                //    cmbOrderType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpstate.ShowAlways = true;
+                //    tpstate.Show("Please select order type", cmbOrderType, 5000);
+                //}
+                //else
+                //{
+                //    errCompany.Clear();
+                //    cmbOrderType.BackColor = Color.White;
+                //}
             }
             catch (Exception ex)
             {

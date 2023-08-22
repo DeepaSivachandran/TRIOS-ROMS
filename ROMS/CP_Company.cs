@@ -74,8 +74,14 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
-                    BtnSave_Click(sender, e); 
-                    BtnSaveContact_Click(sender, e);
+                    if(tcCompanyDetails.SelectedIndex == 1)
+                    {
+                        BtnSaveContact_Click(sender, e);
+                    }
+                    else
+                    { 
+                        BtnSave_Click(sender, e);
+                    }
                 }
 
             }
@@ -1944,6 +1950,16 @@ namespace ROMS
                     }
 
                     objBankTable = udfnBankSave();
+                    int companyupdate = 0;
+                    if (Convert.ToInt32(varcontactcompanyid) != 0)
+                    {
+                        companyupdate = Convert.ToInt32(varcontactcompanyid);
+                    }
+                    else
+                    {
+                        companyupdate = Convert.ToInt32(varcompanyid);
+                    }
+
                     if (btnSave.Text == "Save")
                     {
                     result = objspdservice.udfnCompanyMaster(0, 0, txtCompanyName.Text, txtShortName.Text, txtAddressLine1.Text, txtAddressLine2.Text, cityid
@@ -1953,7 +1969,7 @@ namespace ROMS
                     }
                     else
                     {
-                    result = objspdservice.udfnCompanyMaster(1, Convert.ToInt32(varcompanyid), txtCompanyName.Text, txtShortName.Text, txtAddressLine1.Text, txtAddressLine2.Text, cityid
+                    result = objspdservice.udfnCompanyMaster(1, Convert.ToInt32(companyupdate), txtCompanyName.Text, txtShortName.Text, txtAddressLine1.Text, txtAddressLine2.Text, cityid
                     , varpincode, txtPhoneNo.Text, txtAlterPhoneno.Text, txtwhatsappNo.Text, txtmobileNo.Text, txtAlterMobileno.Text, txtEmail.Text, txtwebsite.Text
                     , txtGSTTIN.Text, txtPan.Text, txtESI.Text, txtEPF.Text, txtFSSAI.Text, txtPlno.Text, Convert.ToString(cmbState.SelectedValue), varStatus,
                     MainForm.pbUserID, MainForm.pbIpAddress, "Company Update", objBankTable, objContactTable);
@@ -1963,7 +1979,8 @@ namespace ROMS
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.ActiveControl = tcCompanyDetails;
+                        this.ActiveControl = tcCompanyDetails; 
+                        tcCompanyDetails.SelectedIndex = 1;
                         MainForm.objCP_Companylist.udfnList();
 
                         varcontactcompanyid = varvalue[2];
@@ -1974,13 +1991,17 @@ namespace ROMS
                             udfnclose();
                             udfnClear();
                         }
+
+                        if (tcCompanyDetails.SelectedIndex == 1)
+                        { 
+                            btnSaveContact.Text = "Update";
+                            btnSave.Text = "Update";
+                        }
                     }
                     else
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-
-                    grdBankDetails.Rows.Clear();
                 }
                 else
                 {
@@ -2713,7 +2734,8 @@ namespace ROMS
 }
         public void udfnContactClear()
         {
-            try {
+            try
+            {
                 txtName.Text = "";
                 cmbTransactionType.SelectedValue = -1;
                 txtMobilenumber.Text = "";
@@ -2736,11 +2758,15 @@ namespace ROMS
         {
             try
             {
-                if(grdContactManager.Rows.Count>0)
+                if (grdContactManager.Rows.Count > 0)
                 {
-                    udfnContactSave(); 
+                    udfnContactSave();
                     udfnContactClear();
-                    grdContactManager.Rows.Clear();
+                    //grdContactManager.Rows.Clear();
+                }
+                else
+                { 
+                    MessageBox.Show("Please enter atleast one Transaction", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -2752,6 +2778,7 @@ namespace ROMS
         public void udfnContactSave()
         {
             string result = "";
+            int contactupdate = 0;
             SPDataService objspdservice = new SPDataService();
             DataTable objContactTable = new DataTable();
             try
@@ -2800,13 +2827,22 @@ namespace ROMS
                     Convert.ToString(grdContactManager.Rows[i].Cells["clmmobile"].Value), Convert.ToString(grdContactManager.Rows[i].Cells["clmOperator"].Value),
                     Convert.ToString(grdContactManager.Rows[i].Cells["clmMobileBrand"].Value), varprimary,varwhatsapp);
                 }
+                if (Convert.ToInt32(varcontactcompanyid) != 0)
+                {
+                    contactupdate = Convert.ToInt32(varcontactcompanyid);
+                }
+                else
+                { 
+                    contactupdate = Convert.ToInt32(varcompanyid);
+                }
+
                 if (btnSave.Text == "Save")
                 {
                     result = objspdservice.udfnCompanyMaster(3, Convert.ToInt32(varcontactcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Create", objBankTable, objContactTable);
                 }
                 else
                 {
-                    result = objspdservice.udfnCompanyMaster(4, Convert.ToInt32(varcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Update", objBankTable, objContactTable);
+                    result = objspdservice.udfnCompanyMaster(4, Convert.ToInt32(contactupdate), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Update", objBankTable, objContactTable);
                     varupdate = "1"; 
                 }
                 string[] varvalue = result.Split('~');
@@ -2933,7 +2969,18 @@ namespace ROMS
         {
             try
             {
-                udfnclose();
+                try
+                {
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        udfnclose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
             catch (Exception ex)
             {
@@ -3054,6 +3101,8 @@ namespace ROMS
                 objDataBind = null; 
                 DataService objdservice = new DataService();  
                 varstatusid = objdservice.displaydata("select STS_Name as name from DEF_Status where STS_ModuleID=1 AND STSID=1"); 
+                grdContactManager.Rows.Clear();
+                grdBankDetails.Rows.Clear();
                 udfnEdit();
                 this.ActiveControl = txtCompanyName;
                 objdservice.CloseConnection();
@@ -3414,6 +3463,33 @@ namespace ROMS
             try
             {
                 cbPrimary.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdBankDetails_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        { try
+            {
+
+                grdBankDetails.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdContactManager_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+
+                grdContactManager.ClearSelection();
             }
             catch (Exception ex)
             {

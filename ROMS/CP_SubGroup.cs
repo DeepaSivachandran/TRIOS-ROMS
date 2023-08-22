@@ -218,10 +218,14 @@ namespace ROMS
                             varCloseFlag = 1;
                             udfnclose();
                         }
+                        else
+                        {
+
+                            MainForm.objCP_SubGroupList.udfnList();
+                            MainForm.objCP_SubGroupList.udfnLoadCmbProductSubGroup();
+                            udfnLoadCmbGroupName();
+                        }
                         udfnClear();
-                        MainForm.objCP_SubGroupList.udfnList();
-                        MainForm.objCP_SubGroupList.udfnLoadCmbProductSubGroup();
-                        udfnLoadCmbGroupName();
                         //cmbGroupName.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
                         //MainForm.objCP_SubGroupList.cmbProductSubGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_SubGroupList.varSubGroupCode);
                        

@@ -733,7 +733,7 @@ namespace ROMS
 
         //Product Master List
         //created by Venkat,Created on 16/08/2023
-        public DataSet udfnproductmasterlist(int ViewType, int ParaProductCode, int paraProductCategory, int paraGroup, int paraSubgroup, string paraUserID, string paraIPAddress, int ParaCompanycode)
+        public DataSet udfnproductmasterlist(int ViewType, int ParaProductCode, int paraProductCategory, int paraGroup, int paraSubgroup, string paraPicode, string paraUserID, string paraIPAddress, int ParaCompanycode)
         {
             DataSet ds = new DataSet();
             try
@@ -745,7 +745,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaProductCode", ParaProductCode);
                 varSqlCommand.Parameters.AddWithValue("@paraProductCategory", paraProductCategory);
                 varSqlCommand.Parameters.AddWithValue("@paraGroup", paraGroup);
-                varSqlCommand.Parameters.AddWithValue("@paraSubgroup", paraSubgroup); 
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroup", paraSubgroup);
+                varSqlCommand.Parameters.AddWithValue("@paraPicode", paraPicode); 
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", paraIPAddress);
                 varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", ParaCompanycode);

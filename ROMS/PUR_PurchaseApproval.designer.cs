@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
@@ -87,7 +87,6 @@
             this.txtDVoucherNo = new System.Windows.Forms.TextBox();
             this.txtInvoiceNo = new System.Windows.Forms.TextBox();
             this.txtVoucherNo = new System.Windows.Forms.TextBox();
-            this.grbRepresentativeDetails = new System.Windows.Forms.GroupBox();
             this.grdpurchasedetails = new System.Windows.Forms.DataGridView();
             this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -243,14 +242,14 @@
             this.grdPurchaseApproval.AllowUserToResizeRows = false;
             this.grdPurchaseApproval.BackgroundColor = System.Drawing.Color.White;
             this.grdPurchaseApproval.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPurchaseApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdPurchaseApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.grdPurchaseApproval.ColumnHeadersHeight = 50;
             this.grdPurchaseApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPurchaseApproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -278,9 +277,9 @@
             this.grdPurchaseApproval.Location = new System.Drawing.Point(3, 150);
             this.grdPurchaseApproval.Name = "grdPurchaseApproval";
             this.grdPurchaseApproval.RowHeadersVisible = false;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdPurchaseApproval.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdPurchaseApproval.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.grdPurchaseApproval.RowTemplate.Height = 25;
             this.grdPurchaseApproval.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdPurchaseApproval.Size = new System.Drawing.Size(1348, 388);
@@ -469,7 +468,6 @@
             // 
             this.grpfilter.Controls.Add(this.grbSalesmanDetails);
             this.grpfilter.Controls.Add(this.groupBox1);
-            this.grpfilter.Controls.Add(this.grbRepresentativeDetails);
             this.grpfilter.Controls.Add(this.grdpurchasedetails);
             this.grpfilter.Controls.Add(this.groupBox2);
             this.grpfilter.Location = new System.Drawing.Point(3, -4);
@@ -481,9 +479,9 @@
             // grbSalesmanDetails
             // 
             this.grbSalesmanDetails.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.grbSalesmanDetails.Location = new System.Drawing.Point(1175, 16);
+            this.grbSalesmanDetails.Location = new System.Drawing.Point(1087, 16);
             this.grbSalesmanDetails.Name = "grbSalesmanDetails";
-            this.grbSalesmanDetails.Size = new System.Drawing.Size(166, 123);
+            this.grbSalesmanDetails.Size = new System.Drawing.Size(256, 123);
             this.grbSalesmanDetails.TabIndex = 1111216;
             this.grbSalesmanDetails.TabStop = false;
             this.grbSalesmanDetails.Text = "Salesman Details";
@@ -689,16 +687,6 @@
             this.txtVoucherNo.Size = new System.Drawing.Size(123, 25);
             this.txtVoucherNo.TabIndex = 95;
             // 
-            // grbRepresentativeDetails
-            // 
-            this.grbRepresentativeDetails.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.grbRepresentativeDetails.Location = new System.Drawing.Point(1000, 16);
-            this.grbRepresentativeDetails.Name = "grbRepresentativeDetails";
-            this.grbRepresentativeDetails.Size = new System.Drawing.Size(166, 123);
-            this.grbRepresentativeDetails.TabIndex = 1111217;
-            this.grbRepresentativeDetails.TabStop = false;
-            this.grbRepresentativeDetails.Text = "Representative Details";
-            // 
             // grdpurchasedetails
             // 
             this.grdpurchasedetails.AllowUserToAddRows = false;
@@ -707,14 +695,14 @@
             this.grdpurchasedetails.AllowUserToResizeRows = false;
             this.grdpurchasedetails.BackgroundColor = System.Drawing.Color.White;
             this.grdpurchasedetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdpurchasedetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdpurchasedetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.grdpurchasedetails.ColumnHeadersHeight = 30;
             this.grdpurchasedetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdpurchasedetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -722,23 +710,23 @@
             this.clmsno,
             this.clmproductname,
             this.clmTotalProduct});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdpurchasedetails.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdpurchasedetails.DefaultCellStyle = dataGridViewCellStyle9;
             this.grdpurchasedetails.EnableHeadersVisualStyles = false;
             this.grdpurchasedetails.GridColor = System.Drawing.Color.White;
             this.grdpurchasedetails.Location = new System.Drawing.Point(428, 16);
             this.grdpurchasedetails.Name = "grdpurchasedetails";
             this.grdpurchasedetails.ReadOnly = true;
             this.grdpurchasedetails.RowHeadersVisible = false;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            this.grdpurchasedetails.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            this.grdpurchasedetails.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.grdpurchasedetails.RowTemplate.Height = 25;
             this.grdpurchasedetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdpurchasedetails.Size = new System.Drawing.Size(390, 123);
@@ -777,7 +765,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.groupBox2.Location = new System.Drawing.Point(825, 16);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(166, 123);
+            this.groupBox2.Size = new System.Drawing.Size(256, 123);
             this.groupBox2.TabIndex = 1111215;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Supplier Details";
@@ -847,7 +835,6 @@
         private System.Windows.Forms.TextBox txtDVoucherNo;
         private System.Windows.Forms.TextBox txtInvoiceNo;
         private System.Windows.Forms.TextBox txtVoucherNo;
-        private System.Windows.Forms.GroupBox grbRepresentativeDetails;
         public System.Windows.Forms.DataGridView grdpurchasedetails;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;

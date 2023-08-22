@@ -28,28 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsStockRequest = new System.Windows.Forms.ToolStrip();
             this.tspStockRequest = new System.Windows.Forms.ToolStripLabel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.pnlStockRequest = new System.Windows.Forms.Panel();
             this.grpStockRequest = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtProductName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.txtunit = new System.Windows.Forms.TextBox();
+            this.lblExpiryDate = new System.Windows.Forms.Label();
+            this.txtExpiryDate = new System.Windows.Forms.TextBox();
+            this.txtunitrate = new System.Windows.Forms.TextBox();
+            this.lblbatchno = new System.Windows.Forms.Label();
+            this.lblMrp = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtMrp = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.grdStockRequest = new System.Windows.Forms.DataGridView();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblDEProductName = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.txtMrp = new System.Windows.Forms.TextBox();
-            this.txtunitrate = new System.Windows.Forms.TextBox();
-            this.lblbatchno = new System.Windows.Forms.Label();
-            this.lblMrp = new System.Windows.Forms.Label();
-            this.txtExpiryDate = new System.Windows.Forms.TextBox();
-            this.lblExpiryDate = new System.Windows.Forms.Label();
-            this.txtunit = new System.Windows.Forms.TextBox();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductnameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRackGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,15 +63,11 @@
             this.clmRequiredQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtProductName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.tsStockRequest.SuspendLayout();
             this.pnlStockRequest.SuspendLayout();
             this.grpStockRequest.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdStockRequest)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdStockRequest)).BeginInit();
             this.SuspendLayout();
             // 
             // tsStockRequest
@@ -138,112 +139,73 @@
             this.grpStockRequest.TabIndex = 958765;
             this.grpStockRequest.TabStop = false;
             // 
-            // textBox2
+            // groupBox2
             // 
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(710, 35);
-            this.textBox2.MaxLength = 50;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(69, 27);
-            this.textBox2.TabIndex = 1111180;
+            this.groupBox2.Controls.Add(this.txtProductName);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Location = new System.Drawing.Point(888, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(432, 53);
+            this.groupBox2.TabIndex = 1111246;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Search By";
             // 
-            // label2
+            // txtProductName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(710, 14);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 20);
-            this.label2.TabIndex = 1111179;
-            this.label2.Text = "Quantity";
+            this.txtProductName.Location = new System.Drawing.Point(145, 18);
+            this.txtProductName.Name = "txtProductName";
+            this.txtProductName.Size = new System.Drawing.Size(275, 27);
+            this.txtProductName.TabIndex = 12;
             // 
-            // grdStockRequest
+            // label1
             // 
-            this.grdStockRequest.AllowUserToAddRows = false;
-            this.grdStockRequest.AllowUserToDeleteRows = false;
-            this.grdStockRequest.AllowUserToResizeColumns = false;
-            this.grdStockRequest.AllowUserToResizeRows = false;
-            this.grdStockRequest.BackgroundColor = System.Drawing.Color.White;
-            this.grdStockRequest.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdStockRequest.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grdStockRequest.ColumnHeadersHeight = 30;
-            this.grdStockRequest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdStockRequest.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.clmPICode,
-            this.clmProductnameInEnglish,
-            this.clmRackGroup,
-            this.clmRack,
-            this.clmIncharge,
-            this.clmRequiredQty,
-            this.clmUnit,
-            this.clmRemove});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdStockRequest.DefaultCellStyle = dataGridViewCellStyle5;
-            this.grdStockRequest.EnableHeadersVisualStyles = false;
-            this.grdStockRequest.GridColor = System.Drawing.Color.White;
-            this.grdStockRequest.Location = new System.Drawing.Point(10, 68);
-            this.grdStockRequest.Name = "grdStockRequest";
-            this.grdStockRequest.ReadOnly = true;
-            this.grdStockRequest.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdStockRequest.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.grdStockRequest.RowTemplate.Height = 25;
-            this.grdStockRequest.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdStockRequest.Size = new System.Drawing.Size(1310, 555);
-            this.grdStockRequest.TabIndex = 1111167;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(134, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Product Name/P.I Code";
             // 
-            // txtProductNamePICode
+            // btnUpdate
             // 
-            this.txtProductNamePICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductNamePICode.Location = new System.Drawing.Point(10, 35);
-            this.txtProductNamePICode.MaxLength = 50;
-            this.txtProductNamePICode.Name = "txtProductNamePICode";
-            this.txtProductNamePICode.Size = new System.Drawing.Size(356, 27);
-            this.txtProductNamePICode.TabIndex = 1111160;
+            this.btnUpdate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnUpdate.Image = global::ROMS.Properties.Resources.save;
+            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdate.Location = new System.Drawing.Point(816, 34);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(66, 29);
+            this.btnUpdate.TabIndex = 1111245;
+            this.btnUpdate.Text = "Save";
+            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUpdate.UseVisualStyleBackColor = true;
             // 
-            // lblDEProductName
+            // txtunit
             // 
-            this.lblDEProductName.AutoSize = true;
-            this.lblDEProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDEProductName.Location = new System.Drawing.Point(10, 14);
-            this.lblDEProductName.Name = "lblDEProductName";
-            this.lblDEProductName.Size = new System.Drawing.Size(134, 20);
-            this.lblDEProductName.TabIndex = 1111161;
-            this.lblDEProductName.Text = "Product Name/P.I Code";
+            this.txtunit.Enabled = false;
+            this.txtunit.Location = new System.Drawing.Point(779, 35);
+            this.txtunit.Name = "txtunit";
+            this.txtunit.ReadOnly = true;
+            this.txtunit.Size = new System.Drawing.Size(31, 27);
+            this.txtunit.TabIndex = 1111244;
+            this.txtunit.Text = "Pkts";
             // 
-            // textBox4
+            // lblExpiryDate
             // 
-            this.textBox4.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
-            this.textBox4.Location = new System.Drawing.Point(373, 35);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(17, 27);
-            this.textBox4.TabIndex = 1111238;
-            this.textBox4.Text = "₹";
+            this.lblExpiryDate.AutoSize = true;
+            this.lblExpiryDate.Location = new System.Drawing.Point(470, 14);
+            this.lblExpiryDate.Name = "lblExpiryDate";
+            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
+            this.lblExpiryDate.TabIndex = 1111243;
+            this.lblExpiryDate.Text = "Expiry Date";
             // 
-            // txtMrp
+            // txtExpiryDate
             // 
-            this.txtMrp.Enabled = false;
-            this.txtMrp.Location = new System.Drawing.Point(390, 35);
-            this.txtMrp.Name = "txtMrp";
-            this.txtMrp.ReadOnly = true;
-            this.txtMrp.Size = new System.Drawing.Size(75, 27);
-            this.txtMrp.TabIndex = 1111237;
+            this.txtExpiryDate.Enabled = false;
+            this.txtExpiryDate.Location = new System.Drawing.Point(470, 35);
+            this.txtExpiryDate.Name = "txtExpiryDate";
+            this.txtExpiryDate.ReadOnly = true;
+            this.txtExpiryDate.Size = new System.Drawing.Size(115, 27);
+            this.txtExpiryDate.TabIndex = 1111242;
             // 
             // txtunitrate
             // 
@@ -272,33 +234,113 @@
             this.lblMrp.TabIndex = 1111239;
             this.lblMrp.Text = "MRP";
             // 
-            // txtExpiryDate
+            // textBox4
             // 
-            this.txtExpiryDate.Enabled = false;
-            this.txtExpiryDate.Location = new System.Drawing.Point(470, 35);
-            this.txtExpiryDate.Name = "txtExpiryDate";
-            this.txtExpiryDate.ReadOnly = true;
-            this.txtExpiryDate.Size = new System.Drawing.Size(115, 27);
-            this.txtExpiryDate.TabIndex = 1111242;
+            this.textBox4.Font = new System.Drawing.Font("Rupee Foradian", 12.75F);
+            this.textBox4.Location = new System.Drawing.Point(373, 35);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(17, 27);
+            this.textBox4.TabIndex = 1111238;
+            this.textBox4.Text = "₹";
             // 
-            // lblExpiryDate
+            // txtMrp
             // 
-            this.lblExpiryDate.AutoSize = true;
-            this.lblExpiryDate.Location = new System.Drawing.Point(470, 14);
-            this.lblExpiryDate.Name = "lblExpiryDate";
-            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
-            this.lblExpiryDate.TabIndex = 1111243;
-            this.lblExpiryDate.Text = "Expiry Date";
+            this.txtMrp.Enabled = false;
+            this.txtMrp.Location = new System.Drawing.Point(390, 35);
+            this.txtMrp.Name = "txtMrp";
+            this.txtMrp.ReadOnly = true;
+            this.txtMrp.Size = new System.Drawing.Size(75, 27);
+            this.txtMrp.TabIndex = 1111237;
             // 
-            // txtunit
+            // textBox2
             // 
-            this.txtunit.Enabled = false;
-            this.txtunit.Location = new System.Drawing.Point(779, 35);
-            this.txtunit.Name = "txtunit";
-            this.txtunit.ReadOnly = true;
-            this.txtunit.Size = new System.Drawing.Size(31, 27);
-            this.txtunit.TabIndex = 1111244;
-            this.txtunit.Text = "Pkts";
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(710, 35);
+            this.textBox2.MaxLength = 50;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(69, 27);
+            this.textBox2.TabIndex = 1111180;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(710, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 20);
+            this.label2.TabIndex = 1111179;
+            this.label2.Text = "Quantity";
+            // 
+            // grdStockRequest
+            // 
+            this.grdStockRequest.AllowUserToAddRows = false;
+            this.grdStockRequest.AllowUserToDeleteRows = false;
+            this.grdStockRequest.AllowUserToResizeColumns = false;
+            this.grdStockRequest.AllowUserToResizeRows = false;
+            this.grdStockRequest.BackgroundColor = System.Drawing.Color.White;
+            this.grdStockRequest.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdStockRequest.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdStockRequest.ColumnHeadersHeight = 30;
+            this.grdStockRequest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdStockRequest.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.clmPICode,
+            this.clmProductnameInEnglish,
+            this.clmRackGroup,
+            this.clmRack,
+            this.clmIncharge,
+            this.clmRequiredQty,
+            this.clmUnit,
+            this.clmRemove});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdStockRequest.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdStockRequest.EnableHeadersVisualStyles = false;
+            this.grdStockRequest.GridColor = System.Drawing.Color.White;
+            this.grdStockRequest.Location = new System.Drawing.Point(10, 68);
+            this.grdStockRequest.Name = "grdStockRequest";
+            this.grdStockRequest.ReadOnly = true;
+            this.grdStockRequest.RowHeadersVisible = false;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdStockRequest.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdStockRequest.RowTemplate.Height = 25;
+            this.grdStockRequest.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdStockRequest.Size = new System.Drawing.Size(1310, 555);
+            this.grdStockRequest.TabIndex = 1111167;
+            // 
+            // txtProductNamePICode
+            // 
+            this.txtProductNamePICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductNamePICode.Location = new System.Drawing.Point(10, 35);
+            this.txtProductNamePICode.MaxLength = 50;
+            this.txtProductNamePICode.Name = "txtProductNamePICode";
+            this.txtProductNamePICode.Size = new System.Drawing.Size(356, 27);
+            this.txtProductNamePICode.TabIndex = 1111160;
+            // 
+            // lblDEProductName
+            // 
+            this.lblDEProductName.AutoSize = true;
+            this.lblDEProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDEProductName.Location = new System.Drawing.Point(10, 14);
+            this.lblDEProductName.Name = "lblDEProductName";
+            this.lblDEProductName.Size = new System.Drawing.Size(134, 20);
+            this.lblDEProductName.TabIndex = 1111161;
+            this.lblDEProductName.Text = "Product Name/P.I Code";
             // 
             // Column1
             // 
@@ -306,6 +348,12 @@
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Width = 50;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Created On";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             // 
             // clmPICode
             // 
@@ -357,46 +405,6 @@
             this.clmRemove.Name = "clmRemove";
             this.clmRemove.ReadOnly = true;
             // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnUpdate.Image = global::ROMS.Properties.Resources.save;
-            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(816, 34);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(66, 29);
-            this.btnUpdate.TabIndex = 1111245;
-            this.btnUpdate.Text = "Save";
-            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.txtProductName);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(888, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(432, 53);
-            this.groupBox2.TabIndex = 1111246;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Search By";
-            // 
-            // txtProductName
-            // 
-            this.txtProductName.Location = new System.Drawing.Point(145, 18);
-            this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(275, 27);
-            this.txtProductName.TabIndex = 12;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 20);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Product Name/P.I Code";
-            // 
             // INV_StockHold
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -418,9 +426,9 @@
             this.pnlStockRequest.ResumeLayout(false);
             this.grpStockRequest.ResumeLayout(false);
             this.grpStockRequest.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdStockRequest)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdStockRequest)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -446,7 +454,12 @@
         private System.Windows.Forms.TextBox txtExpiryDate;
         private System.Windows.Forms.Label lblExpiryDate;
         private System.Windows.Forms.TextBox txtunit;
+        public System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox txtProductName;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductnameInEnglish;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRackGroup;
@@ -455,9 +468,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRequiredQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
         private System.Windows.Forms.DataGridViewButtonColumn clmRemove;
-        public System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtProductName;
-        private System.Windows.Forms.Label label1;
     }
 }

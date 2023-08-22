@@ -37,7 +37,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grdPurchaseOrder = new System.Windows.Forms.DataGridView();
-            this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.chkdays = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +46,9 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkSelectAll = new System.Windows.Forms.CheckBox();
+            this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
+            this.lblSearchByProduct2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +62,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(761, 391);
+            this.btnSave.Location = new System.Drawing.Point(761, 458);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(81, 33);
@@ -74,7 +76,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(845, 391);
+            this.btnClose.Location = new System.Drawing.Point(845, 458);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(72, 33);
@@ -122,7 +124,7 @@
             this.grdPurchaseOrder.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdPurchaseOrder.EnableHeadersVisualStyles = false;
             this.grdPurchaseOrder.GridColor = System.Drawing.Color.White;
-            this.grdPurchaseOrder.Location = new System.Drawing.Point(12, 7);
+            this.grdPurchaseOrder.Location = new System.Drawing.Point(12, 37);
             this.grdPurchaseOrder.Name = "grdPurchaseOrder";
             this.grdPurchaseOrder.ReadOnly = true;
             this.grdPurchaseOrder.RowHeadersVisible = false;
@@ -131,17 +133,8 @@
             this.grdPurchaseOrder.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdPurchaseOrder.RowTemplate.Height = 25;
             this.grdPurchaseOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseOrder.Size = new System.Drawing.Size(905, 378);
+            this.grdPurchaseOrder.Size = new System.Drawing.Size(905, 415);
             this.grdPurchaseOrder.TabIndex = 1111144;
-            // 
-            // chkSelectAll
-            // 
-            this.chkSelectAll.AutoSize = true;
-            this.chkSelectAll.Location = new System.Drawing.Point(26, 17);
-            this.chkSelectAll.Name = "chkSelectAll";
-            this.chkSelectAll.Size = new System.Drawing.Size(15, 14);
-            this.chkSelectAll.TabIndex = 1111145;
-            this.chkSelectAll.UseVisualStyleBackColor = true;
             // 
             // chkdays
             // 
@@ -203,12 +196,42 @@
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
+            // chkSelectAll
+            // 
+            this.chkSelectAll.AutoSize = true;
+            this.chkSelectAll.Location = new System.Drawing.Point(25, 47);
+            this.chkSelectAll.Name = "chkSelectAll";
+            this.chkSelectAll.Size = new System.Drawing.Size(15, 14);
+            this.chkSelectAll.TabIndex = 1111145;
+            this.chkSelectAll.UseVisualStyleBackColor = true;
+            // 
+            // txtSearchByProduct2
+            // 
+            this.txtSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchByProduct2.Location = new System.Drawing.Point(499, 6);
+            this.txtSearchByProduct2.MaxLength = 50;
+            this.txtSearchByProduct2.Name = "txtSearchByProduct2";
+            this.txtSearchByProduct2.Size = new System.Drawing.Size(418, 27);
+            this.txtSearchByProduct2.TabIndex = 1111146;
+            // 
+            // lblSearchByProduct2
+            // 
+            this.lblSearchByProduct2.AutoSize = true;
+            this.lblSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchByProduct2.Location = new System.Drawing.Point(305, 9);
+            this.lblSearchByProduct2.Name = "lblSearchByProduct2";
+            this.lblSearchByProduct2.Size = new System.Drawing.Size(190, 20);
+            this.lblSearchByProduct2.TabIndex = 1111147;
+            this.lblSearchByProduct2.Text = "Search by Product Name/P.I Code";
+            // 
             // PUR_POMappedProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(929, 429);
+            this.ClientSize = new System.Drawing.Size(929, 502);
+            this.Controls.Add(this.txtSearchByProduct2);
+            this.Controls.Add(this.lblSearchByProduct2);
             this.Controls.Add(this.chkSelectAll);
             this.Controls.Add(this.grdPurchaseOrder);
             this.Controls.Add(this.btnClose);
@@ -222,7 +245,7 @@
             this.MinimizeBox = false;
             this.Name = "PUR_POMappedProducts";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PO Product Mapping";
+            this.Text = "Products Mapped for ABCD Suppliers";
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).EndInit();
             this.ResumeLayout(false);
@@ -245,5 +268,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.TextBox txtSearchByProduct2;
+        private System.Windows.Forms.Label lblSearchByProduct2;
     }
 }

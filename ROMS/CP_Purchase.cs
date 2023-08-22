@@ -167,10 +167,8 @@ namespace ROMS
                 cmbType.SelectedIndex = 0;
                 cmbPurchaseType.SelectedIndex = 0;
                 dpInvoiceDate.Enabled = true;
-                this.tbDetails.DrawMode = TabDrawMode.OwnerDrawFixed;
-                this.tbDetails.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TbDetails_DrawItem);
-
-
+               // this.tbDetails.DrawMode = TabDrawMode.OwnerDrawFixed;
+              //  this.tbDetails.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TbDetails_DrawItem);
             }
             catch (Exception ex)
             {
