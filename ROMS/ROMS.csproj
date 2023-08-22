@@ -1309,6 +1309,7 @@
     <None Include="Resources\returns.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Iphone-spinner-2.gif" />
     <None Include="Resources\list.png" />
     <None Include="Resources\pending.png" />
     <None Include="Resources\deliverychallan24.png" />
