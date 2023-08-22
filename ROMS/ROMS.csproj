@@ -1291,6 +1291,7 @@
     <None Include="Resources\returns.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Iphone-spinner-2.gif" />
     <None Include="Resources\print16x16 %282%29.png" />
     <None Include="Resources\spinner.gif.gif" />
     <None Include="Resources\undo16x16.png" />
