@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {        //Created By:-Sathish
-        //Created On:-09/09/2023
+        //Created On:-09/08/2023
     public partial class CP_Unitlist : Form
     {
         DataValidation objValidation = new DataValidation();
@@ -70,7 +70,7 @@ namespace ROMS
 
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
-                      //  varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "","",0,0, "Unit Delete");
+                        varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "","",0,0, "Unit Delete");
 
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -79,7 +79,7 @@ namespace ROMS
                         }
                         else
                         {
-                            MessageBox.Show(varResult, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -455,24 +455,28 @@ namespace ROMS
         }
         private void GrdUnitList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            for (int i = 0; i < grdUnitList.Rows.Count; i++)
+            try
             {
-                if (Convert.ToString(grdUnitList.Rows[i].Cells["StatusID"].Value) == "1")
+                for (int i = 0; i < grdUnitList.Rows.Count; i++)
                 {
-                    grdUnitList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                    grdUnitList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    if (Convert.ToString(grdUnitList.Rows[i].Cells["StatusID"].Value) == "1")
+                    {
+                        grdUnitList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdUnitList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        grdUnitList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdUnitList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    grdUnitList.ClearSelection();
                 }
-                else
-                {
-                    grdUnitList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                    grdUnitList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                }
-                grdUnitList.ClearSelection();
             }
-        }
-        private void GrdUnitList_SelectionChanged(object sender, EventArgs e)
-        {
-            //udfnSearchGridHead();
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }    
         }
         private void GrdUnitList_Scroll(object sender, ScrollEventArgs e)
         {

@@ -154,7 +154,7 @@
             this.grbFilterByConcern.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterByConcern.Name = "grbFilterByConcern";
             this.grbFilterByConcern.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterByConcern.Size = new System.Drawing.Size(672, 67);
+            this.grbFilterByConcern.Size = new System.Drawing.Size(1346, 67);
             this.grbFilterByConcern.TabIndex = 958791;
             this.grbFilterByConcern.TabStop = false;
             this.grbFilterByConcern.Text = "Filter By Concern";
@@ -241,6 +241,7 @@
             this.grdGodownList.Size = new System.Drawing.Size(1348, 570);
             this.grdGodownList.TabIndex = 958788;
             this.grdGodownList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGodownList_DataBindingComplete);
+            this.grdGodownList.SelectionChanged += new System.EventHandler(this.grdLocationList_SelectionChanged);
             this.grdGodownList.DoubleClick += new System.EventHandler(this.GrdGodownList_DoubleClick);
             this.grdGodownList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdGodownList_KeyDown);
             // 

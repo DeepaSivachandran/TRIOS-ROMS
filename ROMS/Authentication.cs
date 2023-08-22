@@ -28,6 +28,7 @@ namespace ROMS
 
         // ***** Declaration Part *****
         public static string varUserID;
+        public string varUserName = "";
         ToolTip tpUserName = new ToolTip();
         ToolTip tpPassword = new ToolTip();
         public Authentication()
@@ -136,7 +137,7 @@ namespace ROMS
                 {
                     SPDataService objDser = new SPDataService();
                     int count = 0;
-                    objDs = objDser.udfnUserList(0, txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text));
+                    objDs = objDser.udfnUserList(0,varUserName ,txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text));
                     objDser.CloseConnection();
                     if (objDs != null) {
                         if (objDs.Tables.Count > 0) {

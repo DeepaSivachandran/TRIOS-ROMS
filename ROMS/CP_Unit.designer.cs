@@ -102,7 +102,6 @@
             this.cmbNoOfDecimals.Name = "cmbNoOfDecimals";
             this.cmbNoOfDecimals.Size = new System.Drawing.Size(361, 28);
             this.cmbNoOfDecimals.TabIndex = 2;
-            this.cmbNoOfDecimals.SelectedIndexChanged += new System.EventHandler(this.CmbNoOfDecimals_SelectedIndexChanged);
             this.cmbNoOfDecimals.Enter += new System.EventHandler(this.CmbNoOfDecimals_Enter);
             this.cmbNoOfDecimals.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbNoOfDecimals_KeyDown);
             this.cmbNoOfDecimals.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbNoOfDecimals_KeyPress);
