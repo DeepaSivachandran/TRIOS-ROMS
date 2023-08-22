@@ -374,7 +374,7 @@ namespace ROMS
                         {
                             MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             udfnClear();
-                            //MainForm.objCP_Userlist.udfnList();
+                            MainForm.objCP_Userlist.udfnList();
                     }
                     else if (varResult.Split('~')[0] == "4")
                         {
@@ -392,7 +392,7 @@ namespace ROMS
                             MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             varUpdate = 1;
                             udfnclose();
-                            //MainForm.objCP_Userlist.udfnList();
+                            MainForm.objCP_Userlist.udfnList();
                     }
                     else if (varResult.Split('~')[0] == "4")
                         {
@@ -635,7 +635,7 @@ namespace ROMS
                 txtLoginID.Text = PbLoginid;
                 cmbUserCategory.SelectedValue = PbUserCategoryID;
                 cmbUserRole.SelectedValue = PbUserRoleID;
-                txtPassword.Text = PbPassword;
+                //txtPassword.Text = PbPassword;
                 cmbPasskey.SelectedValue = PbPasskeyID;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
             }
