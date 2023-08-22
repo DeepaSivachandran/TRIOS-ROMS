@@ -111,7 +111,20 @@ namespace ROMS
             {
                 if (grdUserCategoryList.SelectedRows.Count > 0)
                 {
-                    MainForm.objCP_UserCategory = new CP_UserCategory();
+                    if (Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
+                    {
+                        MainForm.objCP_UserCategory = new CP_UserCategory();
+                        MainForm.objCP_UserCategory.btnSave.Visible = false;
+                        MainForm.objCP_UserCategory.txtCategoryName.Enabled = false;
+                        MainForm.objCP_UserCategory.pnlStatus.Enabled = false;
+                    }
+                    else
+                    {
+                        MainForm.objCP_UserCategory = new CP_UserCategory();
+                        MainForm.objCP_UserCategory.btnSave.Visible = true;
+                        MainForm.objCP_UserCategory.txtCategoryName.Enabled = true;
+                        MainForm.objCP_UserCategory.pnlStatus.Enabled = true;
+                    }
                     MainForm.objCP_UserCategory.btnSave.Text = "Update";
                     MainForm.objCP_UserCategory.varUserCategoryCode = Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_UserCategory.PbUserCategoryName = Convert.ToString(grdUserCategoryList.SelectedRows[0].Cells["Category Name"].Value);
@@ -124,7 +137,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         public void udfnList()
@@ -147,6 +159,7 @@ namespace ROMS
 
                             grdUserCategoryList.Columns["ID"].Visible = false;
                             grdUserCategoryList.Columns["StatusID"].Visible = false;
+                            grdUserCategoryList.Columns["DefaultID"].Visible = false;
                             grdUserCategoryList.Columns["S.No."].Width = 50;
                             grdUserCategoryList.Columns["Status"].Width = 80;
                             grdUserCategoryList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -524,6 +537,21 @@ namespace ROMS
                 DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGrid.Invalidate();
                 udfnscrollVisible(DGV_SearchGrid, grdUserCategoryList);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdUserCategoryList_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
+                { tsbDelete.Visible = false; tsbNew.Visible = false; }
+                else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }
             }
             catch (Exception ex)
             {

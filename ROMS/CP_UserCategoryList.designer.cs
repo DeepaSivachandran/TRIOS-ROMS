@@ -235,6 +235,7 @@
             this.grdUserCategoryList.TabIndex = 958804;
             this.grdUserCategoryList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUserCategoryList_DataBindingComplete);
             this.grdUserCategoryList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdUserCategoryList_Scroll);
+            this.grdUserCategoryList.SelectionChanged += new System.EventHandler(this.GrdUserCategoryList_SelectionChanged);
             this.grdUserCategoryList.DoubleClick += new System.EventHandler(this.GrdUserCategoryList_DoubleClick);
             this.grdUserCategoryList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUserCategoryList_KeyDown);
             // 

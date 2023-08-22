@@ -239,21 +239,6 @@ namespace ROMS
                  
                 if (btnSave.Text == "Update")
                 {
-                    //if (PbDefault == 1 || PbDefault == 2)
-                    //{
-                    //    btnSave.Visible = false;
-                    //    cmbConcern.Visible = false;
-                    //    cmbLocationType.Visible = false;
-                    //    txtLocationNameInEnglish.Visible = false;
-                    //    txtLocationNameInTamil.Visible = false;
-                    //    txtShortName.Visible = false;
-                    //    pnlGodownType.Visible = false;
-                    //    cmbStockApplicable.Visible = false;
-                    //    pnlStatus.Visible = false;
-                    //}
-                    //else
-                   // {
-
                         SPDataService objspservice = new SPDataService();
                         string varResult = objspservice.udfnStockLocation(1, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, "Stock Creation");
                         objspservice.CloseConnection();

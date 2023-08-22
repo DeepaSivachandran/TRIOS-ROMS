@@ -205,7 +205,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel pnlStatus;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.TextBox txtDStatus;
@@ -213,7 +212,8 @@
         private System.Windows.Forms.GroupBox grbUserCategory;
         private System.Windows.Forms.ErrorProvider epUserCategory;
         private System.Windows.Forms.TextBox txtDCategoryName;
-        private System.Windows.Forms.TextBox txtCategoryName;
         public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.Panel pnlStatus;
+        public System.Windows.Forms.TextBox txtCategoryName;
     }
 }

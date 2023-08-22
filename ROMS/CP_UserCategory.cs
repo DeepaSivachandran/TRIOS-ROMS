@@ -21,6 +21,7 @@ namespace ROMS
         public int varUserCategoryCode = 0;
         public int PbUserCategorycode = 0;
         public string PbUserCategoryName = "";
+        public string PbDefault;
         public int PbStatus = 0;
         public int varstatus = 0;
         public int varUpdate = 0;
@@ -103,39 +104,48 @@ namespace ROMS
         {
             try
             {
-                if (rbActive.Checked == true) { varstatus = 1; }
-                else { varstatus = 2; }
-                if (btnSave.Text == "Save")
+                if (PbDefault == "1" || PbDefault == "2")
                 {
-                    SPDataService objspservice = new SPDataService();
-                    string varResult = objspservice.udfnUserCategory(0, 0,(txtCategoryName.Text).Trim(), varstatus, "UserCategory Creation");
-                    objspservice.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        udfnclear();
-                        MainForm.objCP_UserCategoryList.udfnList();
-                    }
-                    else if (varResult.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    btnSave.Visible = false;
+                    txtCategoryName.Visible = false;
+                    pnlStatus.Visible = false;
                 }
-                if (btnSave.Text == "Update")
+                else
                 {
-                    SPDataService objspservice = new SPDataService();
-                    string varResult = objspservice.udfnUserCategory(1, varUserCategoryCode, (txtCategoryName.Text).Trim(), varstatus, "UserCategory Updation");
-                    objspservice.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
+                    if (rbActive.Checked == true) { varstatus = 1; }
+                    else { varstatus = 2; }
+                    if (btnSave.Text == "Save")
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        varUpdate = 1;
-                        udfnclose();
-                        MainForm.objCP_UserCategoryList.udfnList();
+                        SPDataService objspservice = new SPDataService();
+                        string varResult = objspservice.udfnUserCategory(0, 0, (txtCategoryName.Text).Trim(), varstatus, "UserCategory Creation");
+                        objspservice.CloseConnection();
+                        if (varResult.Split('~')[0] == "3")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            udfnclear();
+                            MainForm.objCP_UserCategoryList.udfnList();
+                        }
+                        else if (varResult.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
-                    else if (varResult.Split('~')[0] == "4")
+                    if (btnSave.Text == "Update")
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        SPDataService objspservice = new SPDataService();
+                        string varResult = objspservice.udfnUserCategory(1, varUserCategoryCode, (txtCategoryName.Text).Trim(), varstatus, "UserCategory Updation");
+                        objspservice.CloseConnection();
+                        if (varResult.Split('~')[0] == "3")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            varUpdate = 1;
+                            udfnclose();
+                            MainForm.objCP_UserCategoryList.udfnList();
+                        }
+                        else if (varResult.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                 }
             }
@@ -325,14 +335,17 @@ namespace ROMS
         {
             try
             {
-             
+
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
                 }
                 else
                 {
-                    pnlStatus.Enabled = true;
+                    if (btnSave.Visible)
+                    {
+                        pnlStatus.Enabled = true;
+                    }
                     udfnLoad();
                 }
             }
