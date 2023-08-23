@@ -35,14 +35,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.tsbQue = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,30 +46,36 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.pnlpurchase = new System.Windows.Forms.Panel();
             this.grpFilterby = new System.Windows.Forms.GroupBox();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.dpToDate = new System.Windows.Forms.DateTimePicker();
             this.dpFromDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnView = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.lblDESupplier = new System.Windows.Forms.Label();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnView = new System.Windows.Forms.Button();
+            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.cmbType = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbQue = new System.Windows.Forms.ToolStripButton();
+            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
+            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
+            this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.tsBrandList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -103,48 +104,12 @@
             this.tsBrandList.TabIndex = 35;
             this.tsBrandList.Text = "Brand";
             // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(107, 24);
-            this.tspHeader.Text = "Purchase Entry";
-            // 
-            // tsbQue
-            // 
-            this.tsbQue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbQue.Image = global::ROMS.Properties.Resources.include;
-            this.tsbQue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbQue.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbQue.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbQue.Name = "tsbQue";
-            this.tsbQue.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbQue.Size = new System.Drawing.Size(63, 24);
-            this.tsbQue.Text = "Queue";
-            this.tsbQue.Click += new System.EventHandler(this.TsbQue_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
-            // 
-            // tsbDelete
-            // 
-            this.tsbDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
-            this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbDelete.Name = "tsbDelete";
-            this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbDelete.Size = new System.Drawing.Size(63, 24);
-            this.tsbDelete.Text = "Delete";
-            this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
             // 
             // tssEdit
             // 
@@ -153,38 +118,12 @@
             this.tssEdit.Name = "tssEdit";
             this.tssEdit.Size = new System.Drawing.Size(6, 27);
             // 
-            // tsbEdit
-            // 
-            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbEdit.Name = "tsbEdit";
-            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
-            this.tsbEdit.Text = "&Edit";
-            this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
-            // 
             // tssNew
             // 
             this.tssNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tssNew.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
             this.tssNew.Name = "tssNew";
             this.tssNew.Size = new System.Drawing.Size(6, 27);
-            // 
-            // tsbNew
-            // 
-            this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbNew.Image = global::ROMS.Properties.Resources.New;
-            this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
-            this.tsbNew.Name = "tsbNew";
-            this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbNew.Size = new System.Drawing.Size(52, 24);
-            this.tsbNew.Text = "&New";
-            this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
             // grdSupplierList
             // 
@@ -212,6 +151,8 @@
             this.Column3,
             this.Column4,
             this.clmsupname,
+            this.Column12,
+            this.Column13,
             this.Column5,
             this.Column6,
             this.Column8,
@@ -287,6 +228,18 @@
             this.clmsupname.ReadOnly = true;
             this.clmsupname.Width = 200;
             // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "City";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "GSTIN";
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            // 
             // Column5
             // 
             this.Column5.HeaderText = "Purchase Type";
@@ -322,15 +275,6 @@
             this.Column11.HeaderText = "Created On";
             this.Column11.Name = "Column11";
             this.Column11.ReadOnly = true;
-            // 
-            // clmEdit
-            // 
-            this.clmEdit.HeaderText = "Tax Paid";
-            this.clmEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.clmEdit.Name = "clmEdit";
-            this.clmEdit.ReadOnly = true;
-            this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // lblNoRecordsFound
             // 
@@ -399,10 +343,8 @@
             // 
             // grpFilterby
             // 
-            this.grpFilterby.Controls.Add(this.cmbType);
-            this.grpFilterby.Controls.Add(this.label4);
-            this.grpFilterby.Controls.Add(this.cmbStatus);
-            this.grpFilterby.Controls.Add(this.label3);
+            this.grpFilterby.Controls.Add(this.comboBox1);
+            this.grpFilterby.Controls.Add(this.label5);
             this.grpFilterby.Controls.Add(this.dpToDate);
             this.grpFilterby.Controls.Add(this.dpFromDate);
             this.grpFilterby.Controls.Add(this.label2);
@@ -418,24 +360,24 @@
             this.grpFilterby.TabStop = false;
             this.grpFilterby.Text = "Filter By";
             // 
-            // cmbStatus
+            // comboBox1
             // 
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(918, 23);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(134, 27);
-            this.cmbStatus.TabIndex = 1111147;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(921, 23);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(160, 27);
+            this.comboBox1.TabIndex = 1111151;
             // 
-            // label3
+            // label5
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(869, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 20);
-            this.label3.TabIndex = 1111146;
-            this.label3.Text = "Status";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(872, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 20);
+            this.label5.TabIndex = 1111150;
+            this.label5.Text = "Status";
             // 
             // dpToDate
             // 
@@ -464,18 +406,6 @@
             this.label2.Size = new System.Drawing.Size(82, 20);
             this.label2.TabIndex = 1111144;
             this.label2.Text = "Voucher Date";
-            // 
-            // btnView
-            // 
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1274, 22);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(64, 29);
-            this.btnView.TabIndex = 958797;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -514,6 +444,35 @@
             this.lblDESupplier.TabIndex = 958798;
             this.lblDESupplier.Text = "Supplier";
             // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "GSTR Status";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.pending;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // btnView
+            // 
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(1087, 22);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(64, 29);
+            this.btnView.TabIndex = 958797;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            // 
+            // clmEdit
+            // 
+            this.clmEdit.HeaderText = "GSTR Status";
+            this.clmEdit.Image = global::ROMS.Properties.Resources.pending;
+            this.clmEdit.Name = "clmEdit";
+            this.clmEdit.ReadOnly = true;
+            this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // picLoader
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -528,24 +487,67 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // cmbType
+            // tspHeader
             // 
-            this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbType.FormattingEnabled = true;
-            this.cmbType.Location = new System.Drawing.Point(1125, 24);
-            this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(134, 27);
-            this.cmbType.TabIndex = 1111149;
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(107, 24);
+            this.tspHeader.Text = "Purchase Entry";
             // 
-            // label4
+            // tsbQue
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(1055, 27);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 20);
-            this.label4.TabIndex = 1111148;
-            this.label4.Text = "Entry Type";
+            this.tsbQue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbQue.Image = global::ROMS.Properties.Resources.queue;
+            this.tsbQue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbQue.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbQue.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbQue.Name = "tsbQue";
+            this.tsbQue.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbQue.Size = new System.Drawing.Size(63, 24);
+            this.tsbQue.Text = "Queue";
+            this.tsbQue.Click += new System.EventHandler(this.TsbQue_Click);
+            // 
+            // tsbDelete
+            // 
+            this.tsbDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
+            this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbDelete.Name = "tsbDelete";
+            this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbDelete.Size = new System.Drawing.Size(63, 24);
+            this.tsbDelete.Text = "Delete";
+            this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
+            // 
+            // tsbEdit
+            // 
+            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbEdit.Name = "tsbEdit";
+            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
+            this.tsbEdit.Text = "&Edit";
+            this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
+            // 
+            // tsbNew
+            // 
+            this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbNew.Image = global::ROMS.Properties.Resources.New;
+            this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbNew.Name = "tsbNew";
+            this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbNew.Size = new System.Drawing.Size(52, 24);
+            this.tsbNew.Text = "&New";
+            this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
             // CP_PurchaseList
             // 
@@ -603,8 +605,8 @@
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.ToolStripButton tsbQue;
         public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ComboBox cmbStatus;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -612,6 +614,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
@@ -619,7 +623,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewImageColumn clmEdit;
-        private System.Windows.Forms.ComboBox cmbType;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
     }
 }

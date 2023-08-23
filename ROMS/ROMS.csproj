@@ -160,6 +160,18 @@
     <Compile Include="CP_BulkAttributes.designer.cs">
       <DependentUpon>CP_BulkAttributes.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Representative.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Representative.designer.cs">
+      <DependentUpon>CP_Representative.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_RepresentativeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_RepresentativeList.designer.cs">
+      <DependentUpon>CP_RepresentativeList.cs</DependentUpon>
+    </Compile>
     <Compile Include="INV_InwardQueueList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -810,6 +822,12 @@
     <EmbeddedResource Include="CP_BulkAttributes.resx">
       <DependentUpon>CP_BulkAttributes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_Representative.resx">
+      <DependentUpon>CP_Representative.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_RepresentativeList.resx">
+      <DependentUpon>CP_RepresentativeList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="INV_InwardQueueList.resx">
       <DependentUpon>INV_InwardQueueList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1291,6 +1309,13 @@
     <None Include="Resources\returns.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Iphone-spinner-2.gif" />
+    <None Include="Resources\list.png" />
+    <None Include="Resources\pending.png" />
+    <None Include="Resources\deliverychallan24.png" />
+    <None Include="Resources\submit.png" />
+    <None Include="Resources\queue.png" />
+    <None Include="Resources\damage24.png" />
     <None Include="Resources\print16x16 %282%29.png" />
     <None Include="Resources\spinner.gif.gif" />
     <None Include="Resources\undo16x16.png" />

@@ -28,6 +28,7 @@ namespace ROMS
 
         // ***** Declaration Part *****
         public static string varUserID;
+        public string varUserName = "";
         ToolTip tpUserName = new ToolTip();
         ToolTip tpPassword = new ToolTip();
         public Authentication()
@@ -136,7 +137,7 @@ namespace ROMS
                 {
                     SPDataService objDser = new SPDataService();
                     int count = 0;
-                    objDs = objDser.udfnUserList(0, txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text),0);
+                    objDs = objDser.udfnUserList(0,varUserName ,txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text));
                     objDser.CloseConnection();
                     if (objDs != null) {
                         if (objDs.Tables.Count > 0) {
@@ -294,7 +295,7 @@ namespace ROMS
             //string paths = Application.StartupPath + "\\Server Settings\\serversettings.txt";
             //if (File.Exists(paths))
             //{
-                lblDVersion.Text = "v1.1.1";
+                lblDVersion.Text = "v1.1.2";
                 lblDVersion.BringToFront();
                 Authentication objAuthetication = new Authentication();
                 objAuthetication.Name = " - " + lblDVersion.Text;

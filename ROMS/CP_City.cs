@@ -85,30 +85,39 @@ namespace ROMS
             {
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
-                SPDataService objspservice = new SPDataService();
-                string varResult = "";
                 if (btnSave.Text == "Save")
                 {
-                    varResult = objspservice.udfnCity(0, 0, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, "City Creation");
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = objspservice.udfnCity(0, 0, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, "City Creation");
+                    objspservice.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnclear();
+                        MainForm.objCP_Citylist.udfnList();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                else
-                {   
-                    varResult = objspservice.udfnCity(1,varCityCode,Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, "City Updation");
-                    varUpdate = 1;
-                    udfnclose();
-                   // udfnclose();
-                }
-                if (varResult.Split('~')[0] == "3")
+                if (btnSave.Text == "Update")
                 {
-                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udfnclear();
-                    MainForm.objCP_Citylist.udfnList();
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = objspservice.udfnCity(1, varCityCode, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, "City Updation");
+                    objspservice.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varUpdate = 1;
+                        udfnclose();
+                        MainForm.objCP_Citylist.udfnList();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                objspservice.CloseConnection();
             }
             catch (Exception ex)
             {
@@ -354,18 +363,6 @@ namespace ROMS
                     epCity.Clear();
                     cmbState.BackColor = Color.White;
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbState_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {

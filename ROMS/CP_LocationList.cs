@@ -11,7 +11,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
 {   //Created By:-Sathish
-    //Created On:-17/09/2023
+    //Created On:-17/08/2023
     public partial class CP_LocationList : Form
     {
         DataError objError;
@@ -96,6 +96,7 @@ namespace ROMS
                             grdGodownList.Columns["StockApplicableID"].Visible = false;
                             grdGodownList.Columns["GodownTypeID"].Visible = false;
                             grdGodownList.Columns["StatusID"].Visible = false;
+                            grdGodownList.Columns["DefaultID"].Visible = false;
                             grdGodownList.Columns["S.No."].Width = 50;
                             grdGodownList.Columns["Location Name in English"].Width = 250;
                             grdGodownList.Columns["Location Name in Tamil"].Width = 250;
@@ -154,7 +155,7 @@ namespace ROMS
                         }
                         else
                         {
-                            MessageBox.Show(varResult, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -169,14 +170,39 @@ namespace ROMS
         {
             try
             {
-                if (grdGodownList.SelectedRows.Count > 0)
-                {
-                    MainForm.objCP_Location = new CP_Location();
+                    if (grdGodownList.SelectedRows.Count > 0)
+                    {
+                    if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
+                    {
+                        MainForm.objCP_Location = new CP_Location();
+                        MainForm.objCP_Location.btnSave.Visible = false;
+                        MainForm.objCP_Location.cmbConcern.Enabled = false;
+                        MainForm.objCP_Location.cmbLocationType.Enabled = false;
+                        MainForm.objCP_Location.txtLocationNameInEnglish.Enabled = false;
+                        MainForm.objCP_Location.txtLocationNameInTamil.Enabled = false;
+                        MainForm.objCP_Location.txtShortName.Enabled = false;
+                        MainForm.objCP_Location.pnlGodownType.Enabled = false;
+                        MainForm.objCP_Location.cmbStockApplicable.Enabled = false;
+                        MainForm.objCP_Location.pnlStatus.Enabled = false;
+                    }
+                    else {
+                        MainForm.objCP_Location = new CP_Location();
+                        MainForm.objCP_Location.btnSave.Visible = true;
+                        MainForm.objCP_Location.cmbConcern.Enabled = true;
+                        MainForm.objCP_Location.cmbLocationType.Enabled = true;
+                        MainForm.objCP_Location.txtLocationNameInEnglish.Enabled = true;
+                        MainForm.objCP_Location.txtLocationNameInTamil.Enabled = true;
+                        MainForm.objCP_Location.txtShortName.Enabled = true;
+                        MainForm.objCP_Location.pnlGodownType.Enabled = true;
+                        MainForm.objCP_Location.cmbStockApplicable.Enabled = true;
+                        MainForm.objCP_Location.pnlStatus.Enabled = true;
+                    }
                     MainForm.objCP_Location.btnSave.Text = "Update";
                     MainForm.objCP_Location.varlocationcode = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_Location.PbConcernID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ConcernID"].Value);
                     MainForm.objCP_Location.PbLocationTypeID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["LocationTypeID"].Value);
                     MainForm.objCP_Location.PbStockApplicableID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["StockApplicableID"].Value);
+                    MainForm.objCP_Location.PbDefault = Convert.ToString(grdGodownList.SelectedRows[0].Cells["DefaultID"].Value);
                     MainForm.objCP_Location.PbLocationEName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Name in English"].Value);
                     MainForm.objCP_Location.PbLocationTName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Name in Tamil"].Value);
                     MainForm.objCP_Location.PbLocationSName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Short Name"].Value);
@@ -219,31 +245,9 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void grdLocationList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void grdLocationList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter) {
-                    udfnEdit();
+                if (e.KeyCode == Keys.Delete)
+                {
+                    udfndelete();
                 }
             }
             catch (Exception ex)
@@ -251,12 +255,13 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
+        }     
         private void grdLocationList_SelectionChanged(object sender, EventArgs e)
         {
             try {
-                if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["LocationCode"].Value) == "1") { tsbDelete.Visible = false; tsbEdit.Visible = false;tssNew.Visible = false; }
-                else { tsbDelete.Visible = true; tsbEdit.Visible = true; tssNew.Visible = true; }
+                if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1"||Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
+                { tsbDelete.Visible = false; tsbNew.Visible = false; }
+                else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }
             }
             catch (Exception ex) {
                 objError = new DataError();
@@ -265,20 +270,28 @@ namespace ROMS
         }
         private void GrdGodownList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            for (int i = 0; i < grdGodownList.Rows.Count; i++)
+            try
             {
-                if (Convert.ToString(grdGodownList.Rows[i].Cells["StatusID"].Value) == "1")
+                for (int i = 0; i < grdGodownList.Rows.Count; i++)
                 {
-                    grdGodownList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                    grdGodownList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    if (Convert.ToString(grdGodownList.Rows[i].Cells["StatusID"].Value) == "1")
+                    {
+                        grdGodownList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdGodownList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        grdGodownList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdGodownList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    grdGodownList.ClearSelection();
                 }
-                else
-                {
-                    grdGodownList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                    grdGodownList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                }
-                grdGodownList.ClearSelection();
             }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }            
         }
         private void GrdGodownList_DoubleClick(object sender, EventArgs e)
         {
@@ -294,9 +307,16 @@ namespace ROMS
         }
         private void GrdGodownList_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            try
             {
-                udfnEdit();
+                if (e.KeyCode == Keys.Enter) {
+                    udfnEdit();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void CmbConcern_Enter(object sender, EventArgs e)

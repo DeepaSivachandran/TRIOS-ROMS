@@ -227,6 +227,13 @@ namespace ROMS
                             varCloseFlag = 1;
                             udfnclose();
                         }
+                        else
+                        {
+
+                            MainForm.objCP_SubGroupList.udfnList();
+                            MainForm.objCP_SubGroupList.udfnLoadCmbProductSubGroup();
+                            udfnLoadCmbGroupName();
+                        }
                         udfnClear();
                         udfnLoadCmbGroupName();
                     }

@@ -49,14 +49,6 @@
             this.cmbShow = new System.Windows.Forms.ComboBox();
             this.btnViewProducts = new System.Windows.Forms.Button();
             this.grdProDetails = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPoNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPoDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSupplierName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpProFilter = new System.Windows.Forms.GroupBox();
             this.grpGroupBy = new System.Windows.Forms.GroupBox();
             this.cbPoNo = new System.Windows.Forms.CheckBox();
@@ -80,6 +72,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lvSupplier = new System.Windows.Forms.ListView();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -106,11 +99,24 @@
             this.clmdenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdPurchaseorderlist = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPoNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPoDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSupplierName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmbill = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -121,8 +127,6 @@
             this.clmenterby = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmView = new System.Windows.Forms.DataGridViewImageColumn();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -292,6 +296,8 @@
             this.clmPoNumber,
             this.clmPoDate,
             this.clmSupplierName,
+            this.Column1,
+            this.Column2,
             this.clmpicode,
             this.clmProduct,
             this.clmUnit,
@@ -319,59 +325,6 @@
             this.grdProDetails.Size = new System.Drawing.Size(1348, 480);
             this.grdProDetails.TabIndex = 1111173;
             this.grdProDetails.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 75;
-            // 
-            // clmPoNumber
-            // 
-            this.clmPoNumber.HeaderText = "PO No.";
-            this.clmPoNumber.MinimumWidth = 6;
-            this.clmPoNumber.Name = "clmPoNumber";
-            this.clmPoNumber.ReadOnly = true;
-            // 
-            // clmPoDate
-            // 
-            this.clmPoDate.HeaderText = "PO Date";
-            this.clmPoDate.MinimumWidth = 6;
-            this.clmPoDate.Name = "clmPoDate";
-            this.clmPoDate.ReadOnly = true;
-            // 
-            // clmSupplierName
-            // 
-            this.clmSupplierName.HeaderText = "Supplier";
-            this.clmSupplierName.Name = "clmSupplierName";
-            this.clmSupplierName.ReadOnly = true;
-            this.clmSupplierName.Width = 200;
-            // 
-            // clmpicode
-            // 
-            this.clmpicode.HeaderText = "P.I Code";
-            this.clmpicode.Name = "clmpicode";
-            this.clmpicode.ReadOnly = true;
-            // 
-            // clmProduct
-            // 
-            this.clmProduct.HeaderText = "Product Name";
-            this.clmProduct.Name = "clmProduct";
-            this.clmProduct.ReadOnly = true;
-            // 
-            // clmUnit
-            // 
-            this.clmUnit.HeaderText = "Unit";
-            this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
-            // 
-            // clmQty
-            // 
-            this.clmQty.HeaderText = "Quantity";
-            this.clmQty.Name = "clmQty";
-            this.clmQty.ReadOnly = true;
             // 
             // grpProFilter
             // 
@@ -638,6 +591,17 @@
             this.grpfilter.TabIndex = 958799;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(598, 28);
+            this.label12.Name = "label12";
+            this.label12.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label12.Size = new System.Drawing.Size(80, 17);
+            this.label12.TabIndex = 1111171;
+            this.label12.Text = "Schedule Name";
             // 
             // dateTimePicker1
             // 
@@ -907,6 +871,8 @@
             this.clmpono,
             this.clmdate,
             this.clmsupplier,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
             this.clmtotalitem,
             this.clmtotalqty,
             this.clmbill,
@@ -942,6 +908,87 @@
             this.grdPurchaseorderlist.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseorderlist_CellContentClick);
             this.grdPurchaseorderlist.DoubleClick += new System.EventHandler(this.GrdPurchaseorderlist_DoubleClick);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::ROMS.Properties.Resources.view;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(1059, 28);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(11, 12);
+            this.button1.TabIndex = 1111142;
+            this.button1.Text = "new";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 75;
+            // 
+            // clmPoNumber
+            // 
+            this.clmPoNumber.HeaderText = "PO No.";
+            this.clmPoNumber.MinimumWidth = 6;
+            this.clmPoNumber.Name = "clmPoNumber";
+            this.clmPoNumber.ReadOnly = true;
+            // 
+            // clmPoDate
+            // 
+            this.clmPoDate.HeaderText = "PO Date";
+            this.clmPoDate.MinimumWidth = 6;
+            this.clmPoDate.Name = "clmPoDate";
+            this.clmPoDate.ReadOnly = true;
+            // 
+            // clmSupplierName
+            // 
+            this.clmSupplierName.HeaderText = "Supplier";
+            this.clmSupplierName.Name = "clmSupplierName";
+            this.clmSupplierName.ReadOnly = true;
+            this.clmSupplierName.Width = 200;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "City";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "GSTIN";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // clmpicode
+            // 
+            this.clmpicode.HeaderText = "P.I Code";
+            this.clmpicode.Name = "clmpicode";
+            this.clmpicode.ReadOnly = true;
+            // 
+            // clmProduct
+            // 
+            this.clmProduct.HeaderText = "Product Name";
+            this.clmProduct.Name = "clmProduct";
+            this.clmProduct.ReadOnly = true;
+            // 
+            // clmUnit
+            // 
+            this.clmUnit.HeaderText = "Unit";
+            this.clmUnit.Name = "clmUnit";
+            this.clmUnit.ReadOnly = true;
+            // 
+            // clmQty
+            // 
+            this.clmQty.HeaderText = "Quantity";
+            this.clmQty.Name = "clmQty";
+            this.clmQty.ReadOnly = true;
+            // 
             // clmsno
             // 
             this.clmsno.HeaderText = "S.No.";
@@ -972,10 +1019,22 @@
             // 
             // clmsupplier
             // 
-            this.clmsupplier.HeaderText = "Supplier Name";
+            this.clmsupplier.HeaderText = "Supplier";
             this.clmsupplier.Name = "clmsupplier";
             this.clmsupplier.ReadOnly = true;
             this.clmsupplier.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "City";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "GSTIN";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // clmtotalitem
             // 
@@ -1041,33 +1100,6 @@
             this.clmView.ReadOnly = true;
             this.clmView.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmView.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::ROMS.Properties.Resources.view;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1059, 28);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(11, 12);
-            this.button1.TabIndex = 1111142;
-            this.button1.Text = "new";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(598, 28);
-            this.label12.Name = "label12";
-            this.label12.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label12.Size = new System.Drawing.Size(80, 17);
-            this.label12.TabIndex = 1111171;
-            this.label12.Text = "Schedule Name";
             // 
             // PUR_PurchaseOrderList
             // 
@@ -1145,21 +1177,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdinwarddate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdenterby;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmconcern;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupplier;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalqty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmbill;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmcdreated;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdcreatedon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmmodeofisse;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clminwarddate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmenterby;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsts;
-        private System.Windows.Forms.DataGridViewImageColumn clmView;
         private System.Windows.Forms.ListView lvSupplier;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label7;
@@ -1185,15 +1202,34 @@
         private System.Windows.Forms.GroupBox grpGroupBy;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblPartialPending;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPoNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPoDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSupplierName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpicode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQty;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmconcern;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmpono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsupplier;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmbill;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmcdreated;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdcreatedon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmmodeofisse;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clminwarddate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmenterby;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsts;
+        private System.Windows.Forms.DataGridViewImageColumn clmView;
     }
 }

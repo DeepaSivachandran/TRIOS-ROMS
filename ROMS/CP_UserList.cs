@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ROMS
-{
+{   //Created By:-Sathish
+    //Created On:-22/08/2023
     public partial class CP_UserList : Form
     {
         DataValidation objValidation = new DataValidation();
@@ -62,7 +63,7 @@ namespace ROMS
         {
             try
             {
-                //udfnList();
+                udfnList();
 
             }
             catch (Exception ex)
@@ -71,15 +72,86 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void udfnList()
+        {
+            try
+            {
+                SPDataService objspservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspservice.udfnUserList(2,"", "","");
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            grdUserList.DataSource = objDs.Tables[0];
+
+                            grdUserList.Columns["ID"].Visible = false;
+                            grdUserList.Columns["UserCategoryID"].Visible = false;
+                            grdUserList.Columns["UserRoleID"].Visible = false;
+                            grdUserList.Columns["PasskeyID"].Visible = false;
+                            grdUserList.Columns["StatusID"].Visible = false;
+                            grdUserList.Columns["S.No."].Width = 50;
+                            grdUserList.Columns["Status"].Width = 80;
+                            grdUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
+                    objspservice.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+            }
+        }
+
         public void udfndelete()
         {
             try
             {
                 if (grdUserList.SelectedRows.Count > 0)
                 {
-                    string result = "";
+                    string varResult = "";
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                     
+                    if (dialogResult == DialogResult.Yes)
+                    {
+
+                        SPDataService objspservice = new SPDataService();
+                        varResult = "";
+                        varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value), "", "", 0,0,"",0, 0, "User Delete");
+
+
+                        if (varResult.Split('~')[0] == "3")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            udfnList();
+                        }
+                        else
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
                 }
             }
             catch (Exception ex)

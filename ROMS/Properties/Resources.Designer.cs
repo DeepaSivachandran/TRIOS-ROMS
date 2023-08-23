@@ -133,9 +133,29 @@ namespace ROMS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap damage24 {
+            get {
+                object obj = ResourceManager.GetObject("damage24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Delete {
             get {
                 object obj = ResourceManager.GetObject("Delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap deliverychallan24 {
+            get {
+                object obj = ResourceManager.GetObject("deliverychallan24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,9 +223,29 @@ namespace ROMS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Iphone_spinner_2 {
+            get {
+                object obj = ResourceManager.GetObject("Iphone-spinner-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Launcher {
             get {
                 object obj = ResourceManager.GetObject("Launcher", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap list {
+            get {
+                object obj = ResourceManager.GetObject("list", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -333,6 +373,16 @@ namespace ROMS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pending {
+            get {
+                object obj = ResourceManager.GetObject("pending", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap plus {
             get {
                 object obj = ResourceManager.GetObject("plus", resourceCulture);
@@ -396,6 +446,16 @@ namespace ROMS.Properties {
         internal static System.Drawing.Bitmap purchase_return {
             get {
                 object obj = ResourceManager.GetObject("purchase_return", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap queue {
+            get {
+                object obj = ResourceManager.GetObject("queue", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -516,6 +576,16 @@ namespace ROMS.Properties {
         internal static System.Drawing.Bitmap spinner_gif {
             get {
                 object obj = ResourceManager.GetObject("spinner.gif", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap submit {
+            get {
+                object obj = ResourceManager.GetObject("submit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
