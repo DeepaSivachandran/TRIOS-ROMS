@@ -1891,6 +1891,7 @@
             this.btnMappingsave.Text = "Save";
             this.btnMappingsave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnMappingsave.UseVisualStyleBackColor = true;
+            this.btnMappingsave.Click += new System.EventHandler(this.BtnMappingsave_Click);
             this.btnMappingsave.Enter += new System.EventHandler(this.BtnMappingsave_Enter);
             this.btnMappingsave.Leave += new System.EventHandler(this.BtnMappingsave_Leave);
             // 

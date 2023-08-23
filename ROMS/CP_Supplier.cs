@@ -3805,7 +3805,7 @@ namespace ROMS
         {
             try
             {
-                (grdFinalSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%'";
+                (grdFinalSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtmappingproductsearch2.Text + "%' OR ([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
             }
             catch (Exception ex)
             {
@@ -3866,7 +3866,7 @@ namespace ROMS
         {
             try
             {
-                string varRemoveGroup = "", varAddGroup = "";
+                string varRemoveProduct = "", varAddProduct = "";
 
                 dtSubGroupMapping = new DataTable(); 
                 dtSubGroupMapping.Columns.Add("S.No.", typeof(string));
@@ -3875,7 +3875,9 @@ namespace ROMS
                 dtSubGroupMapping.Columns.Add("Unit", typeof(string));
                 dtSubGroupMapping.Columns.Add("Product SubGroup", typeof(string));
                 dtSubGroupMapping.Columns.Add("GROUPID", typeof(int));
-                dtSubGroupMapping.Columns.Add("SUBGROUPID", typeof(int)); 
+                dtSubGroupMapping.Columns.Add("SUBGROUPID", typeof(int));
+                dtSubGroupMapping.Columns.Add("PRODUCTID", typeof(int));
+                
 
                 if (grdSupplierMappingLoad.Rows.Count > 0)
                 {
@@ -3883,24 +3885,26 @@ namespace ROMS
                     {
                         if (Convert.ToBoolean(grdSupplierMappingLoad.Rows[i].Cells[0].Value) == true)
                         {
-                            int varFlag = 0;
+                            int varFlag = 0,varcount=1;
                             for (int j = 0; j < dtSubGroupMapping.Rows.Count; j++)
                             {
-                                varAddGroup = Convert.ToString(grdSupplierMappingLoad.Rows[i].Cells["SUBGROUPID"].Value);
-                                if (varAddGroup == Convert.ToString(dtSubGroupMapping.Rows[j]["SUBGROUPID"]))
+                                varRemoveProduct = Convert.ToString(grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value);
+                                if (varRemoveProduct == Convert.ToString(dtSubGroupMapping.Rows[j]["PRODUCTID"]))
+
                                 { varFlag = 1; }
+                                varcount++;
                             }
                             if (varFlag == 0)
                             {
-                                dtSubGroupMapping.Rows.Add(grdSupplierMappingLoad.Rows[i].Cells["S.No."].Value, grdSupplierMappingLoad.Rows[i].Cells["P.I Code"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product Name in Tamil"].Value, grdSupplierMappingLoad.Rows[i].Cells["Unit"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product SubGroup"].Value, grdSupplierMappingLoad.Rows[i].Cells["GROUPID"].Value, grdSupplierMappingLoad.Rows[i].Cells["SUBGROUPID"].Value);
+                                dtSubGroupMapping.Rows.Add(varcount, grdSupplierMappingLoad.Rows[i].Cells["P.I Code"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product Name in Tamil"].Value, grdSupplierMappingLoad.Rows[i].Cells["Unit"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product SubGroup"].Value, grdSupplierMappingLoad.Rows[i].Cells["GROUPID"].Value, grdSupplierMappingLoad.Rows[i].Cells["SUBGROUPID"].Value, grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value);
                             }
                         }
                         else
                         {
-                            varRemoveGroup = Convert.ToString(grdSupplierMappingLoad.Rows[i].Cells["SUBGROUPID"].Value);
                             for (int j = 0; j < dtSubGroupMapping.Rows.Count; j++)
                             {
-                                if (varRemoveGroup == Convert.ToString(dtSubGroupMapping.Rows[j]["SUBGROUPID"]))
+                                varAddProduct = Convert.ToString(grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value);
+                                if (varAddProduct == Convert.ToString(dtSubGroupMapping.Rows[j]["PRODUCTID"]))
                                 {
                                     dtSubGroupMapping.Rows[j].Delete();
                                     dtSubGroupMapping.AcceptChanges();
@@ -3940,31 +3944,78 @@ namespace ROMS
             {
                 if (e.RowIndex != -1)
                 {
-                    switch (grdSupplierList.Columns[e.ColumnIndex].Name)
+                    switch (grdFinalSupplierMapping.Columns[e.ColumnIndex].Name)
                     {
-                        case "clmdelete":
+                        case "clmMappingRemove":
 
-                            grdSupplierList.Rows.RemoveAt(this.grdSupplierList.SelectedRows[0].Index);
-                            for (int i = 0; i < grdSupplierList.RowCount; i++)
+                            grdFinalSupplierMapping.Rows.RemoveAt(this.grdFinalSupplierMapping.SelectedRows[0].Index);
+                            for (int i = 0; i < grdFinalSupplierMapping.RowCount; i++)
                             {
-                                grdSupplierList.Rows[i].Cells["S.No."].Value = i + 1;
+                                grdFinalSupplierMapping.Rows[i].Cells["S.No."].Value = i + 1;
                             }
                             break;
                     }
                 }  
-                //if (e.RowIndex != -1)
-                //{
-                //    if (grdSupplierList.Columns[e.ColumnIndex].Name == "clmdelete")
-                //    {
-                //        grdSupplierList.Rows.RemoveAt(this.grdSupplierList.SelectedRows[0].Index);
-                //        for (int i = 0; i < grdSupplierList.RowCount; i++)
-                //        {
-                //            grdSupplierList.Rows[i].Cells["S.No."].Value = i + 1;
-                             
-                //        }
-                //    }
-                //}
+                
              }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnMappingsave_Click(object sender, EventArgs e)
+        {
+            try {
+                string VarproductId = "", result="";
+
+
+                for (int i = 0; i < grdSupplierMappingLoad.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(grdSupplierMappingLoad.Rows[i].Cells[0].Value) == true)
+                    {
+                        if (VarproductId == "")
+                        {
+                            VarproductId = Convert.ToString(grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value);
+                        }
+                        else
+                        {
+                            VarproductId = VarproductId + ',' + Convert.ToString(grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value);
+                        }
+                    }
+                }
+
+                //if (btnSave.Text == "Save")
+                //{
+                //    }
+                //else
+                //{
+                  
+                //}
+                //string[] varvalue = result.Split('~');
+                //if (varvalue[0] == "3")
+                //{
+                //    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                //    MainForm.objCP_RepresentativeList.udfnlist();
+                //    txtCompanyName.Focus();
+                //    if (btnSave.Text == "Update")
+                //    {
+                //        varupdate = "1";
+                //        udfnclose();
+                //    }
+
+                //    udfnClear();
+                //}
+                //else
+                //{
+                //    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //}
+
+
+                //objspdservice.CloseConnection();
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
