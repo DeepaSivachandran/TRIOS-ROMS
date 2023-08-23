@@ -32,7 +32,8 @@ namespace ROMS
         public string varSubGroupNameinTamil = "";
         public string varSubGroupNameinEnglish = "";
         public int varProductName = -1;
-        public int varBatchNo = -1;
+        public string varBatchNo = "";
+        public int varBatchId = -1;
         public int varStockLocation = -1;
         public int varRack = -1;
         public int varId = 0;
@@ -153,7 +154,7 @@ namespace ROMS
                 cmbGroupName.SelectedValue = varProductName;
                 txtESubGroupNameEnglish.Text = varSubGroupNameinEnglish;
                 txtESubGroupNameTamil.Text = varSubGroupNameinTamil;
-                cmbBatchNo.SelectedValue = varBatchNo;
+                cmbBatchNo.SelectedValue = varBatchId;
                 cmbStockLocation.SelectedValue = varStockLocation;
                 cmbRack.SelectedValue = varRack;
                 varStatusid = varStatus;

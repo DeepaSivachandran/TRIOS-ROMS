@@ -84,6 +84,7 @@ namespace ROMS
                 udfnList();
                 udfnCmbLoad();
                 BeginInvoke(new Action(() => cmbProductgroup.Select(int.MaxValue, 0)));
+                this.ActiveControl = cmbProductgroup;
             }
             catch (Exception ex)
             {
@@ -136,6 +137,7 @@ namespace ROMS
                     MainForm.objCP_Brand.MdiParent = ParentForm;
                     MainForm.objCP_Brand.btnSave.Text = "Update";
                     MainForm.objCP_Brand.varId = Convert.ToInt32(grdBrandList.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_Brand.varStatusid = Convert.ToInt32(grdBrandList.SelectedRows[0].Cells["Status ID"].Value);
                     MainForm.objCP_Brand.Show();
                
                 }

@@ -623,7 +623,7 @@ namespace ROMS
         }
         // Created by : Deepa
         // Created on : 16-08-2023
-        public DataSet udfnUserList(int paraviewType, string paraLoginId, string paraPassword)
+        public DataSet udfnUserList(int paraviewType, string paraLoginId, string paraPassword,int paraUser)
         {
             DataSet ds = new DataSet();
             try
@@ -636,6 +636,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraPassword", paraPassword);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraUser", paraUser);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

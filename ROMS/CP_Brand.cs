@@ -581,8 +581,6 @@ namespace ROMS
                 {
                     row.Cells[0].Value = false;
                 }
-                //grdSubGroup.Rows.Clear();
-                //grdSubGroupAdd.Rows.Clear();
                 grdSubGroup.DataSource = null;
                 grdSubGroupAdd.DataSource = null;
                 chkSubGroup.Checked = false;
@@ -949,7 +947,6 @@ namespace ROMS
                     {
                         row.Cells[0].Value = false;
                     }
-                   // grdSubGroup.DataSource = null;
                     dtSubGroup.Rows.Clear();
                     dtSubGroup.AcceptChanges();
                     grdSubGroup.DataSource = dtSubGroup;
@@ -1014,11 +1011,7 @@ namespace ROMS
                     dtSubGroup.AcceptChanges();
                     grdSubGroup.DataSource = dtSubGroup;
                     grdSubGroup.Columns[0].HeaderText = "";
-                        //if (varRemoveGroup == Convert.ToString(grdSubGroup.Rows[i].Cells["clmGroupId"].Value))
-                        //{
-                        //    grdSubGroup.Rows.RemoveAt(i);
-                        //}
-
+                       
                 }
                 grdSubGroup.Columns["Product Group"].Width = 150;
                 grdSubGroup.Columns["Product Subgroup"].Width = 200;
