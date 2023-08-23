@@ -189,6 +189,19 @@ namespace ROMS
             finally { grdPurchaseApproval.ClearSelection(); }
         }
 
-        
+        private void BtnRemars_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                MainForm.objPUR_RemarksHistory = new PUR_RemarksHistory();
+                MainForm.objPUR_RemarksHistory.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

@@ -201,6 +201,7 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label18 = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             this.tsPurchase.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -297,6 +298,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnClear);
             this.groupBox1.Controls.Add(this.tbDetails);
             this.groupBox1.Controls.Add(this.grdDCDetails);
             this.groupBox1.Controls.Add(this.label12);
@@ -370,7 +372,7 @@
             this.tbDetails.Location = new System.Drawing.Point(3, 106);
             this.tbDetails.Name = "tbDetails";
             this.tbDetails.SelectedIndex = 0;
-            this.tbDetails.Size = new System.Drawing.Size(1320, 317);
+            this.tbDetails.Size = new System.Drawing.Size(1330, 317);
             this.tbDetails.TabIndex = 1111201;
             this.tbDetails.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TbDetails_DrawItem);
             this.tbDetails.SelectedIndexChanged += new System.EventHandler(this.TbDetails_SelectedIndexChanged);
@@ -665,7 +667,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1312, 287);
+            this.tabPage2.Size = new System.Drawing.Size(1322, 287);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Purchase Details";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -710,7 +712,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1292, 276);
+            this.dataGridView1.Size = new System.Drawing.Size(1316, 276);
             this.dataGridView1.TabIndex = 1111201;
             // 
             // dataGridViewTextBoxColumn6
@@ -1992,6 +1994,19 @@
             this.label18.TabIndex = 37;
             this.label18.Text = "Waiting for Approval";
             // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClear.Image = global::ROMS.Properties.Resources.reset;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(1249, 105);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(80, 28);
+            this.btnClear.TabIndex = 1111218;
+            this.btnClear.Text = "Refresh";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = true;
+            // 
             // CP_Purchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -2216,5 +2231,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
+        private System.Windows.Forms.Button btnClear;
     }
 }
