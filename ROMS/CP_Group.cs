@@ -302,11 +302,11 @@ namespace ROMS
                 SPDataService objDser = new SPDataService();
                 if (btnSave.Text == "Save")
                 {
-                    varResult = objDser.udfnGroup(0, 0, Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Creation");
+                    varResult = objDser.udfnGroup(0, 0, Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Product Group Creation");
                 }
                 else
                 {
-                    varResult = objDser.udfnGroup(1, varId, Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Updation");
+                    varResult = objDser.udfnGroup(1, varId, Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Product Group Updation");
                 }
                 objDser.CloseConnection();
                 if (varResult.Split('~')[0] == "3")

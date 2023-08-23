@@ -387,11 +387,11 @@ namespace ROMS
                SPDataService objDser = new SPDataService();
                if (btnSave.Text == "Save")
                {
-                    varResult = objDser.udfnHsn(0, 0, Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "Creation");
+                    varResult = objDser.udfnHsn(0, 0, Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "HSN Creation");
                }
                else
                {
-                    varResult = objDser.udfnHsn(1, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "Updation");
+                    varResult = objDser.udfnHsn(1, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "HSN Updation");
                }
                 objDser.CloseConnection();
                 if (varResult.Split('~')[0] == "3")

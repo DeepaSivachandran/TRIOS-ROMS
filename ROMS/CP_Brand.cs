@@ -602,11 +602,11 @@ namespace ROMS
                 SPDataService objDser = new SPDataService();
                 if (btnSave.Text == "Save")
                 {
-                    varResult = objDser.udfnBrand(0, 0, Convert.ToString(txtEBrandNameInEnglish.Text), Convert.ToString(txtEBrandNameInTamil.Text), varStatusid, varSubGroupId, "Creation");
+                    varResult = objDser.udfnBrand(0, 0, Convert.ToString(txtEBrandNameInEnglish.Text), Convert.ToString(txtEBrandNameInTamil.Text), varStatusid, varSubGroupId, "Brand Creation");
                 }
                 else
                 {
-                    varResult = objDser.udfnBrand(1, varId, Convert.ToString(txtEBrandNameInEnglish.Text), Convert.ToString(txtEBrandNameInTamil.Text), varStatusid, varSubGroupId, "Updation");
+                    varResult = objDser.udfnBrand(1, varId, Convert.ToString(txtEBrandNameInEnglish.Text), Convert.ToString(txtEBrandNameInTamil.Text), varStatusid, varSubGroupId, "Brand Updation");
                 }
                 objDser.CloseConnection();
                 if (varResult.Split('~')[0] == "3")

@@ -103,7 +103,7 @@ namespace ROMS
                     {
                         SPDataService objDser = new SPDataService();
                         
-                        string varResult = objDser.udfnBrand(2, Convert.ToInt16(grdBrandList.SelectedRows[0].Cells["ID"].Value.ToString()),"","", 0, "", "Deletion");
+                        string varResult = objDser.udfnBrand(2, Convert.ToInt16(grdBrandList.SelectedRows[0].Cells["ID"].Value.ToString()),"","", 0, "", "Brand Deletion");
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {

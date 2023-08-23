@@ -110,6 +110,7 @@
             this.grbform.Size = new System.Drawing.Size(769, 481);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            
             // 
             // Add
             // 
@@ -119,7 +120,7 @@
             this.Add.Location = new System.Drawing.Point(369, 291);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(31, 29);
-            this.Add.TabIndex = 52;
+            this.Add.TabIndex = 5;
             this.Add.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Add.UseVisualStyleBackColor = true;
             this.Add.Enter += new System.EventHandler(this.Add_Enter);
@@ -169,7 +170,7 @@
             this.grdSelectedRackList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdSelectedRackList.ShowRowErrors = false;
             this.grdSelectedRackList.Size = new System.Drawing.Size(347, 314);
-            this.grdSelectedRackList.TabIndex = 53;
+            this.grdSelectedRackList.TabIndex = 6;
             this.grdSelectedRackList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GrdSelectedRackList_CellMouseDoubleClick);
             this.grdSelectedRackList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdSelectedRackList_KeyDown);
             // 
@@ -468,7 +469,7 @@
             this.grpUserList.Location = new System.Drawing.Point(797, 11);
             this.grpUserList.Name = "grpUserList";
             this.grpUserList.Size = new System.Drawing.Size(481, 233);
-            this.grpUserList.TabIndex = 4;
+            this.grpUserList.TabIndex = 7;
             this.grpUserList.TabStop = false;
             this.grpUserList.Text = "Staff Details";
             // 
@@ -481,7 +482,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 27);
-            this.btnAdd.TabIndex = 5;
+            this.btnAdd.TabIndex = 13;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
@@ -570,7 +571,7 @@
             this.txtStaffName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtStaffName.Name = "txtStaffName";
             this.txtStaffName.Size = new System.Drawing.Size(313, 27);
-            this.txtStaffName.TabIndex = 4;
+            this.txtStaffName.TabIndex = 12;
             this.txtStaffName.Enter += new System.EventHandler(this.TxtStaffName_Enter);
             this.txtStaffName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtStaffName_KeyDown);
             this.txtStaffName.Leave += new System.EventHandler(this.TxtStaffName_Leave);
