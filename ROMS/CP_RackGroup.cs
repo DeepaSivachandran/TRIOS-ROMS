@@ -22,6 +22,10 @@ namespace ROMS
       
         public string vargroupcode;
         public String pbFormStatus;
+
+        public int varStockLocationId = 0;
+        public DataTable dtRack = new DataTable();
+
         public CP_RackGroup()
         {
             InitializeComponent();
@@ -47,8 +51,17 @@ namespace ROMS
             {
                 udfnCmbConcern();
                 udfncmbShopLocation();
-                DGV_Racklist.Rows.Add(false, 1, "RACK 01");
-                DGV_Racklist.Rows.Add(false, 2, "RACK 02");
+                dtRack = new DataTable();
+                dtRack.Columns.Add("", typeof(Boolean));
+                dtRack.Columns.Add("Rack", typeof(string));
+                dtRack.Columns.Add("Short Name", typeof(string));
+                dtRack.Columns.Add("Description", typeof(string));
+                dtRack.Columns.Add("Description", typeof(string));
+                dtRack.Columns.Add("ID", typeof(int));
+                dtRack.Columns.Add("StockLocationID", typeof(int));
+
+                grdRack.Rows.Add(false, 1, "RACK 01");
+                grdRack.Rows.Add(false, 2, "RACK 02");
 
                 grdSelectedRackList.Rows.Add(1, "RACK 01");
                 grdSelectedRackList.Rows.Add(2, "RACK 02");
@@ -97,6 +110,65 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnList()
+        {
+            try
+            {
+                SPDataService objspservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspservice.udfnRackList(0, 0, varStockLocationId);
+                if (objDs != null)
+                {
+
+                    if (objDs.Tables[0].Rows.Count != 0)
+                    {
+
+                        grdRack.DataSource = objDs.Tables[0];
+
+                        grdRack.Columns["ID"].Visible = false;
+                        grdRack.Columns["ConcernID"].Visible = false;
+                        grdRack.Columns["StockLocationID"].Visible = false;
+                        grdRack.Columns["StatusID"].Visible = false;
+                        grdRack.Columns["S.No."].Width = 50;
+                        grdRack.Columns["Concern"].Width = 100;
+                        grdRack.Columns["Stock Location"].Width = 200;
+                        grdRack.Columns["Rack Group"].Width = 150;
+                        grdRack.Columns["Rack Name"].Width = 200;
+                        grdRack.Columns["Short Name"].Width = 100;
+                        grdRack.Columns["Description"].Width = 200;
+                        grdRack.Columns["Total Products"].Width = 100;
+                        grdRack.Columns["Status"].Width = 80;
+                        grdRack.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        grdRack.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        grdRack.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    }
+
+                    objspservice.CloseConnection();
+
+                    //if (objDs.Tables[0].Rows.Count != 0)
+                    //{
+                    //    //  dtGroup = objDs.Tables[0];
+                    //    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    //    {
+                    //        dtRack.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name in English"], objDs.Tables[0].Rows[i]["ID"]);
+                    //    }
+
+                        
+                    //    grdGroup.DataSource = dtGroup;
+                    //    grdGroup.Columns[0].HeaderText = "";
+                    //    grdGroup.Columns[0].Width = 80;
+                    //    grdGroup.Columns["Product Group Name in English"].Width = 200;
+                    //    grdGroup.Columns["ID"].Visible = false;
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+           
         }
         private void udfnEdit()
         {
@@ -861,6 +933,32 @@ namespace ROMS
         }
 
         private void CmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                varStockLocationId = Convert.ToInt32(cmbStockLocation.SelectedValue);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Cbracklist_CheckedChanged(object sender, EventArgs e)
         {
 
         }
