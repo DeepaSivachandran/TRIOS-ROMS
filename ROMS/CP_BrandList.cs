@@ -333,7 +333,7 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbProductgroup.Select(int.MaxValue, 0)));
                 varGroupId= Convert.ToInt32(cmbProductgroup.SelectedValue);
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSG_PRGID=" + varGroupId + " ORDER BY PRSG_EName ", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
+                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSG_PRGID=" + varGroupId + " or PRSGID=0 ORDER BY PRSG_EName ", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
                 objDataBind = null;
             }
             catch (Exception ex)

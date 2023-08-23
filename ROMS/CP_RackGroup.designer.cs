@@ -110,7 +110,6 @@
             this.grbform.Size = new System.Drawing.Size(769, 481);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
-            
             // 
             // Add
             // 
@@ -365,6 +364,7 @@
             this.cmbStockLocation.Name = "cmbStockLocation";
             this.cmbStockLocation.Size = new System.Drawing.Size(116, 27);
             this.cmbStockLocation.TabIndex = 2;
+            this.cmbStockLocation.SelectedIndexChanged += new System.EventHandler(this.CmbStockLocation_SelectedIndexChanged);
             this.cmbStockLocation.Enter += new System.EventHandler(this.CmbStockLocation_Enter);
             this.cmbStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStockLocation_KeyDown);
             this.cmbStockLocation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStockLocation_KeyPress);

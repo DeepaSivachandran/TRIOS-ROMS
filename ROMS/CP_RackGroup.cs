@@ -860,6 +860,10 @@ namespace ROMS
             }
         }
 
+        private void CmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
      
 }
