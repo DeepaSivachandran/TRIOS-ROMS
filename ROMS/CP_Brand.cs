@@ -158,15 +158,24 @@ namespace ROMS
         {
             try
             {
-                string varRemoveGroup = "";
+                string varRemoveGroup = "", varAddGroup = "";
                
                 if (grdSubGroup.Rows.Count > 0)
                 {
-                    for (int i = 0; i < grdSubGroup.Rows.Count; i++)
+                   for (int i = 0; i < grdSubGroup.Rows.Count; i++)
                     {
                         if (Convert.ToBoolean(grdSubGroup.Rows[i].Cells[0].Value) == true)
                         {
-                            dtSubGroupAdd.Rows.Add(false, grdSubGroup.Rows[i].Cells["Product Group"].Value, grdSubGroup.Rows[i].Cells["Product Subgroup"].Value, grdSubGroup.Rows[i].Cells["Group Id"].Value, grdSubGroup.Rows[i].Cells["Sub Group Id"].Value); 
+                            int varFlag = 0;
+                            for (int j = 0; j < dtSubGroupAdd.Rows.Count; j++)
+                            {
+                                varAddGroup = Convert.ToString(grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
+                                if (varAddGroup == Convert.ToString(dtSubGroupAdd.Rows[j]["Sub Group Id"]))
+                                { varFlag = 1; }
+                            }
+                            if (varFlag == 0) {
+                                dtSubGroupAdd.Rows.Add(false, grdSubGroup.Rows[i].Cells["Product Group"].Value, grdSubGroup.Rows[i].Cells["Product Subgroup"].Value, grdSubGroup.Rows[i].Cells["Group Id"].Value, grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
+                            }
                         }
                         else
                         {
@@ -176,11 +185,11 @@ namespace ROMS
                                 if (varRemoveGroup == Convert.ToString(dtSubGroupAdd.Rows[j]["Sub Group Id"]))
                                 {
                                     dtSubGroupAdd.Rows[j].Delete();
+                                    dtSubGroupAdd.AcceptChanges();
                                 }
                             }
                         }
                     }
-                    dtSubGroupAdd.AcceptChanges();
                     grdSubGroupAdd.DataSource = dtSubGroupAdd;
                     grdSubGroupAdd.Columns[0].HeaderText = "";
                     grdSubGroupAdd.Columns[0].Width = 80;
@@ -244,17 +253,19 @@ namespace ROMS
                 if (chkSubGroupAdd.Checked == true) { dtSubGroupAdd.Rows.Clear(); dtSubGroupAdd.AcceptChanges(); chkSubGroupAdd.Checked = false; }
                 else
                 {
-                    for (int i = 0; i < grdSubGroupAdd.Rows.Count; i++)
+                  L:  for (int i = 0; i < grdSubGroupAdd.Rows.Count; i++)
                     {
                         if (Convert.ToBoolean(grdSubGroupAdd.Rows[i].Cells[0].EditedFormattedValue) == true)
                         {
                             varRemoveSubGroup = Convert.ToString(grdSubGroupAdd.Rows[i].Cells["Sub Group ID"].Value);
-                            for (int j = 0; j < dtSubGroupAdd.Rows.Count; j++)
+                            int varSubGroupCount = dtSubGroupAdd.Rows.Count;
+                            for (int j = 0; j < varSubGroupCount; j++)
                             {
                                 if (varRemoveSubGroup == Convert.ToString(dtSubGroupAdd.Rows[j]["Sub Group ID"]))
                                 {
                                     dtSubGroupAdd.Rows[j].Delete();
                                     dtSubGroupAdd.AcceptChanges();
+                                    goto L;
                                 }
                             }
                         }
@@ -287,15 +298,24 @@ namespace ROMS
                     objDs = objdserv.udfnSubGroupList(0, 0, varGroup);
                 }
                 objdserv.CloseConnection();
+                if (chkgroup.Checked) { dtSubGroup.Rows.Clear(); dtSubGroup.AcceptChanges(); }
                 if(objDs.Tables[0].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
-                        dtSubGroup.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name"], objDs.Tables[0].Rows[i]["Product Sub Group Name in English"], objDs.Tables[0].Rows[i]["Product Group Id"], objDs.Tables[0].Rows[i]["Id"]);
+                        int varFlag = 0;
+                        for (int j = 0; j < dtSubGroup.Rows.Count; j++) {
+                            if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Id"]) ==Convert.ToInt32( dtSubGroup.Rows[j]["Sub Group Id"])) {
+                                varFlag = 1;
+                            }
+                        }
+                        if (varFlag == 0)
+                        {
+                            dtSubGroup.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name"], objDs.Tables[0].Rows[i]["Product Sub Group Name in English"], objDs.Tables[0].Rows[i]["Product Group Id"], objDs.Tables[0].Rows[i]["Id"]);
+                        }
                       
                     }
                 }
-
                 grdSubGroup.DataSource = dtSubGroup;
                 grdSubGroup.Columns[0].HeaderText = "";
                 grdSubGroup.Columns[0].Width = 80;
@@ -611,30 +631,31 @@ namespace ROMS
                 objDser.CloseConnection();
                 if (varResult.Split('~')[0] == "3")
                 {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                       
-                        if (btnSave.Text == "Save")
+                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dtSubGroup.Rows.Clear();
+                    dtSubGroupAdd.Rows.Clear();
+                    if (btnSave.Text == "Save")
+                    {
+                        varbrandcode = Convert.ToInt16(varResult.Split('~')[2]);
+                        if (varmastertype == 1)
                         {
-                            varbrandcode = Convert.ToInt16(varResult.Split('~')[2]);
-                            if (varmastertype == 1)
-                            {
-                                varmastertype = 0;
-                                MainForm.objCP_Items.varbrandcode = varbrandcode;
-                                varCloseFlag = 1;
-                                udfnclose();
-                            }
-                            else
-                            {
-                                // udfnclose(); 
-                                 udfnClear();
-                            }
-                        }
-                        else
-                        {
+                            varmastertype = 0;
+                            MainForm.objCP_Items.varbrandcode = varbrandcode;
                             varCloseFlag = 1;
                             udfnclose();
                         }
-                        MainForm.objCP_BrandList.udfnList();
+                        else
+                        {
+                            // udfnclose(); 
+                                udfnClear();
+                        }
+                    }
+                    else
+                    {
+                        varCloseFlag = 1;
+                        udfnclose();
+                    }
+                    MainForm.objCP_BrandList.udfnList();
                 }
                 else 
                 {
@@ -872,7 +893,6 @@ namespace ROMS
                 dtSubGroupAdd.Columns.Add("Group Id", typeof(int));
                 dtSubGroupAdd.Columns.Add("Sub Group Id", typeof(int));
                 udfnList();
-                udfnSubGroupList();
                 //udfnSubGroupAdd();
                 if (btnSave.Text == "Save")
                 {
@@ -909,7 +929,6 @@ namespace ROMS
             try
             {
                 varGroup = "";
-
                 for (int i = 0; i < grdGroup.Rows.Count; i++)
                 {
                     grdGroup.Rows[i].Cells[0].Value = chkgroup.Checked;
@@ -960,9 +979,9 @@ namespace ROMS
                     {
                         row.Cells[0].Value = false;
                     }
-                    dtSubGroupAdd.Rows.Clear();
-                    dtSubGroupAdd.AcceptChanges();
-                    grdSubGroupAdd.DataSource = dtSubGroupAdd;
+                    //dtSubGroupAdd.Rows.Clear();
+                    //dtSubGroupAdd.AcceptChanges();
+                    //grdSubGroupAdd.DataSource = dtSubGroupAdd;
                 }
             }
             catch (Exception ex)
