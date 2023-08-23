@@ -33,8 +33,6 @@ namespace ROMS
                 tpConcern.Active = false;
                 tpStockLocation.Active = false;
                 tpRackGroupName.Active = false;
-              
-
             }
             catch (Exception ex)
             {
@@ -42,8 +40,63 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CP_SubGroup_Load(object sender, EventArgs e)
+        private void CP_RackGroup_Load(object sender, EventArgs e)
         {
+
+            try
+            {
+                udfnCmbConcern();
+                udfncmbShopLocation();
+                DGV_Racklist.Rows.Add(false, 1, "RACK 01");
+                DGV_Racklist.Rows.Add(false, 2, "RACK 02");
+
+                grdSelectedRackList.Rows.Add(1, "RACK 01");
+                grdSelectedRackList.Rows.Add(2, "RACK 02");
+
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                if (btnSave.Text == "Save")
+                {
+                    pnlStatus.Enabled = false;
+                }
+                else
+                {
+                    pnlStatus.Enabled = true;
+                    udfnEdit();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnCmbConcern()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_Company", " COMID not in (0)", "COMID,COM_ShortName", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfncmbShopLocation()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID NOT IN(0)", "SLID,SL_EName", cmbStockLocation, "", "SL_EName", "SLID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void udfnEdit()
         {
@@ -807,35 +860,6 @@ namespace ROMS
             }
         }
 
-        private void CP_RackGroup_Load(object sender, EventArgs e)
-        {
-
-            try
-            {
-                udfnEdit();
-                DGV_Racklist.Rows.Add(false, 1, "RACK 01");
-                DGV_Racklist.Rows.Add(false, 2, "RACK 02");
-
-                grdSelectedRackList.Rows.Add(1, "RACK 01");
-                grdSelectedRackList.Rows.Add(2, "RACK 02");
-
-                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-                if (btnSave.Text == "Save")
-                {
-                    pnlStatus.Enabled = false;
-                }
-                else
-                {
-                    pnlStatus.Enabled = true;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
     }
      
 }

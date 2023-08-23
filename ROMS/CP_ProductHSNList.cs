@@ -77,7 +77,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnHsn(2, Convert.ToInt16(grdHSNList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, "Deletion");
+                        string varResult = objDser.udfnHsn(2, Convert.ToInt16(grdHSNList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, "HSN Deletion");
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
