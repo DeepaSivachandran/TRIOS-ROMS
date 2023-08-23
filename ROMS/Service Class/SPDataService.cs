@@ -776,6 +776,106 @@ namespace ROMS
             return ds;
         }
 
+        //Supplier Master 
+        //created by Venkat,Created on 22/08/2023
+        public string udfnSupplierMaster(int ViewType, int paraSupplierid, string paraSupplierName, string paraAddress1,
+            string paraAddress2, int paraCityId, string paraPincode, string paraPhoneNumber, string paraWhatsappNumber, string paraMobileNumber,
+              string paraEmail, string paraGstin,int paraPaymentterm, int paraReturnApplicable, int paraReturnCycle,
+              double paraopeningType, int paraSupplierType, int parastateid,string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator
+            , int paraDesignation, string paraDesignationName, double paraCreditLimit,int paraDayid,int paramonthid,int paraweekid,int paradaymonthid,
+              string paraSalesmanName, string paraSchedulename, string paraSalesmanMobile,string paraSalesmanWhatsapp,int paraSaleOrderType,string ParaOrderDays,int ParaSupplierOrderid)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("TRNS_Supplier", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierid", paraSupplierid);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierName", paraSupplierName); 
+                varSqlCommand.Parameters.AddWithValue("@paraAddress1", paraAddress1);
+                varSqlCommand.Parameters.AddWithValue("@paraAddress2", paraAddress2);
+                varSqlCommand.Parameters.AddWithValue("@paraCityId", paraCityId);
+                varSqlCommand.Parameters.AddWithValue("@paraPincode", paraPincode);
+                varSqlCommand.Parameters.AddWithValue("@paraPhoneNumber", paraPhoneNumber); 
+                varSqlCommand.Parameters.AddWithValue("@paraWhatsappNumber", paraWhatsappNumber);
+                varSqlCommand.Parameters.AddWithValue("@paraMobileNumber", paraMobileNumber); 
+                varSqlCommand.Parameters.AddWithValue("@paraEmail", paraEmail); 
+                varSqlCommand.Parameters.AddWithValue("@paraGSTIN", paraGstin);
+                varSqlCommand.Parameters.AddWithValue("@paraPaymentterm", paraPaymentterm);
+                varSqlCommand.Parameters.AddWithValue("@paraReturnApplicable", paraReturnApplicable);
+                varSqlCommand.Parameters.AddWithValue("@paraReturnCycle", paraReturnCycle); 
+                varSqlCommand.Parameters.AddWithValue("@parastateid", parastateid);
+                varSqlCommand.Parameters.AddWithValue("@paraopeningType", paraopeningType);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierType", paraSupplierType); 
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator); 
+                varSqlCommand.Parameters.AddWithValue("@paraDesignation", paraDesignation);
+                varSqlCommand.Parameters.AddWithValue("@paraDesignationName", paraDesignationName);
+                varSqlCommand.Parameters.AddWithValue("@paraCreditLimit", paraCreditLimit); 
+                varSqlCommand.Parameters.AddWithValue("@paraDayid", paraDayid);
+                varSqlCommand.Parameters.AddWithValue("@paramonthid", paramonthid);
+                varSqlCommand.Parameters.AddWithValue("@paraweekid", paraweekid);
+                varSqlCommand.Parameters.AddWithValue("@paradaymonthid", paradaymonthid);
 
+                varSqlCommand.Parameters.AddWithValue("@paraSalesmanName", paraSalesmanName);
+                varSqlCommand.Parameters.AddWithValue("@paraSchedulename", paraSchedulename);
+                varSqlCommand.Parameters.AddWithValue("@paraSalesmanMobile", paraSalesmanMobile);
+                varSqlCommand.Parameters.AddWithValue("@paraSalesmanWhatsapp", paraSalesmanWhatsapp);
+                varSqlCommand.Parameters.AddWithValue("@paraSaleOrderType", paraSaleOrderType);
+                varSqlCommand.Parameters.AddWithValue("@ParaOrderDays", ParaOrderDays);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierOrderid", ParaSupplierOrderid);
+                
+
+
+                varSqlCommand.CommandTimeout = 0;
+
+                result = varSqlCommand.ExecuteScalar().ToString();
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
+        public DataSet udfnSupplierList(int ViewType,int paraSupplierid,int paraSupplierScheduleid)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Supplier]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierid", paraSupplierid);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierScheduleid", paraSupplierScheduleid);
+                
+                    
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 }

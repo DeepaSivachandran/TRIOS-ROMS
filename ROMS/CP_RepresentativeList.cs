@@ -60,8 +60,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         public void udfndelete()
         {
             try
@@ -92,8 +90,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
-
         }
 
         private void udfnEdit()
@@ -113,7 +109,6 @@ namespace ROMS
 
             }
            
-
         }
 
         private void CP_RepresentativeList_KeyDown(object sender, KeyEventArgs e)
@@ -132,6 +127,7 @@ namespace ROMS
                 {
                     tsbDelete_Click(sender, e);
                 }
+               
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm objMainForm = new MainForm();
@@ -424,6 +420,10 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnEdit();
+                }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    tsbDelete_Click(sender, e);
                 }
             }
             catch (Exception ex)

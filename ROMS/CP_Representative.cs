@@ -420,8 +420,7 @@ namespace ROMS
                                     { 
                                         if (Convert.ToInt32(grdRepBrand.Rows[i].Cells["ID"].Value) == Convert.ToInt32(objdatabrand.Rows[k]["ID"]))
                                         {
-                                            grdRepBrand.Rows[i].Cells["clmcheckbrand"].Value = true;
-                                             
+                                            grdRepBrand.Rows[i].Cells["clmcheckbrand"].Value = true; 
                                         }
                                     }
                                 }

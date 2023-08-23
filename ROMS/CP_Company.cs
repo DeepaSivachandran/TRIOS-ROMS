@@ -3117,8 +3117,7 @@ namespace ROMS
         private void GrdContactManager_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
-            {
-
+            { 
                 if (e.RowIndex != -1)
                 {
                     switch (grdContactManager.Columns[e.ColumnIndex].Name)
@@ -3131,8 +3130,7 @@ namespace ROMS
                             { 
                                 grdContactManager.Rows[i].Cells["clmContsno"].Value = i + 1;
                             }
-                            break;
-
+                            break; 
                     }
                 }
             }
