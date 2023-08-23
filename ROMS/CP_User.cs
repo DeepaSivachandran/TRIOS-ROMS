@@ -31,30 +31,32 @@ namespace ROMS
         public string PbNameoftheUser = "";
         public string PbLoginid = "";
         public string PbUserCategory = "";
-        public int PbUserCategoryID = 0;
         public string PbUserRole = "";
-        public int PbUserRoleID = 0;
-        public string PbPassword = "";
-        public string PbConfirmPassword = "";
+        //public string PbPassword = "";
+        //public string PbConfirmPassword = "";
         public string PbPasskey = "";
+        public int PbUserCategoryID = 0;
+        public int PbUserRoleID = 0;
         public int PbPasskeyID = 0;
         public int PbStatus=0;
         public int varUpdate = 0;
+        public int varCategoryCode;
+
         public CP_User()
         {
             InitializeComponent();
         }
-        public void udfnLoadUserRole()
+        public void udfnLoadUserCategory()
         {
             //try
             //{
             //    // Bind combobox
             //    DataBind objDataBind = new DataBind();
-            //    objDataBind.BindComboBoxListSelected("View_UserRole", "rolecode<>0 and 1=1 Order by rolecode", "rolename,rolecode", cmbUserRole, "", "rolename", "rolecode");
+            //    objDataBind.BindComboBoxListSelected("MR_UserCategory", " CT_STSID=1 and CTID !=0 Order by CTID", "CT_Name,CTID", cmbUserCategory, "", "CT_Name", "CTID");
             //    objDataBind = null;
             //    if (varUserRoleCode != "")
             //    {
-            //        cmbUserRole.SelectedValue = varUserRoleCode;
+            //        cmbUserCategory.SelectedValue = varCategoryCode;
             //    }
             //}
             //catch (Exception ex)
@@ -84,7 +86,6 @@ namespace ROMS
 
         private void txtUserName_Leave(object sender, EventArgs e)
         {
-
             try
             {
                 if (Convert.ToString(txtUserName.Text).Trim() == "")
@@ -363,42 +364,38 @@ namespace ROMS
         {
             try
             {
-                    if (rbActive.Checked == true) { varstatus = 1; }
-                    else { varstatus = 2; }
-                    if (btnSave.Text == "Save")
-                    {
-                        SPDataService objspservice = new SPDataService();
-                        string varResult = objspservice.udfnUser(0, 0,(txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), Convert.ToInt16(cmbUserRole.SelectedValue), (txtPassword.Text).Trim(), Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, "User Creation");
-                        objspservice.CloseConnection();
-                        if (varResult.Split('~')[0] == "3")
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnClear();
-                            MainForm.objCP_Userlist.udfnList();
-                    }
-                    else if (varResult.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-
+                if (rbActive.Checked == true) { varstatus = 1; }
+                else { varstatus = 2; }
+                SPDataService objspservice = new SPDataService();
+                string varResult = "",
+                varoriginator = ""; int varType = 0;
+                if (btnSave.Text == "Save")
+                {
+                    varoriginator = "User Creation";
+                    varType = 0;
+                }
+                else
+                {
+                    varoriginator = "User Updation";
+                    varType = 1;
+                }
+                varResult = objspservice.udfnUser(varType, varUserID, (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), Convert.ToInt16(cmbUserRole.SelectedValue), (txtPassword.Text).Trim(), Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, varoriginator);
+                string[] varvalue = varResult.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MainForm.objCP_Userlist.udfnList();
                     if (btnSave.Text == "Update")
                     {
-                        SPDataService objspservice = new SPDataService();
-                        string varResult = objspservice.udfnUser(1, varUserID, (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), Convert.ToInt16(cmbUserRole.SelectedValue), (txtPassword.Text).Trim(), Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, "User Updation");
-                        objspservice.CloseConnection();
-                        if (varResult.Split('~')[0] == "3")
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            varUpdate = 1;
-                            udfnclose();
-                            MainForm.objCP_Userlist.udfnList();
+                        varUpdate = 1;
+                        udfnclose();
                     }
-                    else if (varResult.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
+                    udfnClear();
+                }
+                else
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
             {
@@ -462,6 +459,16 @@ namespace ROMS
                     tpconfirmpassword.Show("Please enter confirm password", txtCPassword, 5000);
                     blnErrorFlag = true;
                 }
+                if (txtPassword.Text.Trim() != txtCPassword.Text.Trim())
+                {
+                    epUser.SetError(txtCPassword, "Password not match.");
+                    txtCPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+
+                    tpconfirmpassword.ShowAlways = true;
+                    tpconfirmpassword.Show("Password not match.", txtCPassword, 5000);
+                    txtCPassword.Text = "";
+                    blnErrorFlag = true;
+                }
                 if (Convert.ToString(cmbPasskey.SelectedValue) == "" || Convert.ToString(cmbPasskey.SelectedValue) == "-1")
                 {
                     epUser.SetError(cmbPasskey, "Please select pass key");
@@ -489,7 +496,6 @@ namespace ROMS
             txtPassword.Text = "";
             txtCPassword.Text = "";
             rbActive.Checked = true;
-            //cmbUserRole.SelectedValue = "-1";
             btnSave.Text = "Save";
         }
 
@@ -635,7 +641,6 @@ namespace ROMS
                 txtLoginID.Text = PbLoginid;
                 cmbUserCategory.SelectedValue = PbUserCategoryID;
                 cmbUserRole.SelectedValue = PbUserRoleID;
-                //txtPassword.Text = PbPassword;
                 cmbPasskey.SelectedValue = PbPasskeyID;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
             }
@@ -950,7 +955,13 @@ namespace ROMS
             try
             {
                 MainForm.objCP_UserCategory = new CP_UserCategory();
+                MainForm.objCP_UserCategory.varmastertype = 1;
                 MainForm.objCP_UserCategory.ShowDialog();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_UserCategory", " CT_STSID=1 and CTID !=0 Order by CTID", "CT_Name,CTID", cmbUserCategory, "", "CT_Name", "CTID");
+          
+                objDataBind = null;
+                cmbUserCategory.SelectedValue = Convert.ToInt16(varCategoryCode);
             }
             catch (Exception ex)
             {

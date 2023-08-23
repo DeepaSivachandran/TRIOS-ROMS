@@ -215,44 +215,39 @@ namespace ROMS
                 }
                 else
                 {
-
                     if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
                 if (rbInside.Checked == true) { varGodownType = 86; }
                 else { varGodownType = 87; }
-                if (btnSave.Text == "Save")
-                {
                     SPDataService objspservice = new SPDataService();
-                    string varResult = objspservice.udfnStockLocation(0, 0, Convert.ToInt16(cmbConcern.SelectedValue),  Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(),(txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, "Stock Creation");
-                    objspservice.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
+                    string varResult = "",
+                    varoriginator = ""; int varType = 0;
+                    if (btnSave.Text == "Save")
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        udfnclear();
+                        varoriginator = "Stock Creation";
+                        varType = 0;
+                    }
+                    else
+                    {
+                        varoriginator = "Stock Updation";
+                        varType = 1;
+                    }
+                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator);
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MainForm.objCP_LocationList.udfnList();
-                    }
-                    else if (varResult.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                 
-                if (btnSave.Text == "Update")
-                {
-                        SPDataService objspservice = new SPDataService();
-                        string varResult = objspservice.udfnStockLocation(1, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, "Stock Creation");
-                        objspservice.CloseConnection();
-                        if (varResult.Split('~')[0] == "3")
+                        if (btnSave.Text == "Update")
                         {
-                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             varUpdate = 1;
                             udfnclose();
-                            MainForm.objCP_LocationList.udfnList();
                         }
-                        else if (varResult.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                        udfnclear();
+                    }
+                    else
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
