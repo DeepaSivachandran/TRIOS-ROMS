@@ -956,6 +956,35 @@ namespace ROMS
           }
 
 
+        public DataSet udfnBrandList(int ViewType, int paraBDID, int paraGroupId, int paraSubGroupId)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Brand]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraBDID", paraBDID);
+                varSqlCommand.Parameters.AddWithValue("@paraGroupId", paraGroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraSubGroupId", @paraSubGroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
         // Created by Venkat
         //Create date: 21/08/2023 
         //Description:	repmaster
