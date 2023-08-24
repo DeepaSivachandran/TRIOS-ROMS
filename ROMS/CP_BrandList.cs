@@ -153,61 +153,68 @@ namespace ROMS
 
         public void udfnList()
         {
-
-            picLoader.Visible = true;
-            Application.DoEvents();
-            //********** To display a data in a grid  ******************
-            grdBrandList.DataSource = null;
-            DataSet objDs = new DataSet();
-            //**** To call the function from SP ***************
-            SPDataService objdserv = new SPDataService();
-            objDs = objdserv.udfnBrandList(0, 0,varGroupId,varSubGroupId);
-            objdserv.CloseConnection();
-            if (objDs != null)
+            try
             {
-                if (objDs.Tables.Count != 0)
+                picLoader.Visible = true;
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdBrandList.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnBrandList(0, 0, varGroupId, varSubGroupId);
+                objdserv.CloseConnection();
+                if (objDs != null)
                 {
-                    lblNoRecordsFound.Visible = false;
-                    if (objDs.Tables[0].Rows.Count != 0)
+                    if (objDs.Tables.Count != 0)
                     {
                         lblNoRecordsFound.Visible = false;
-                        lblNoRecordsFound.SendToBack();
-                        grdBrandList.DataSource = objDs.Tables[0];
-                        grdBrandList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        grdBrandList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        grdBrandList.Columns["Total Groups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        grdBrandList.Columns["Total Subgroups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            grdBrandList.DataSource = objDs.Tables[0];
+                            grdBrandList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdBrandList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdBrandList.Columns["Total Groups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdBrandList.Columns["Total Subgroups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                        grdBrandList.Columns["S.No."].Width = 50;
-                        grdBrandList.Columns["Brand Name in English"].Width = 250;
-                        grdBrandList.Columns["Brand Name in Tamil"].Width = 250;
-                        grdBrandList.Columns["Total Products"].Width = 100;
-                        grdBrandList.Columns["Total Groups"].Width = 100;
-                        grdBrandList.Columns["Total Subgroups"].Width = 150;
-                        grdBrandList.Columns["Status"].Width = 80;
+                            grdBrandList.Columns["S.No."].Width = 50;
+                            grdBrandList.Columns["Brand Name in English"].Width = 250;
+                            grdBrandList.Columns["Brand Name in Tamil"].Width = 250;
+                            grdBrandList.Columns["Total Products"].Width = 100;
+                            grdBrandList.Columns["Total Groups"].Width = 100;
+                            grdBrandList.Columns["Total Subgroups"].Width = 150;
+                            grdBrandList.Columns["Status"].Width = 80;
 
-                        grdBrandList.Columns["ID"].Visible = false;
-                        grdBrandList.Columns["Status ID"].Visible = false;
+                            grdBrandList.Columns["ID"].Visible = false;
+                            grdBrandList.Columns["Status ID"].Visible = false;
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
                     }
                     else
                     {
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
+                    udfnSearchGridHead();
                 }
                 else
                 {
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
-                udfnSearchGridHead();
+                // udfnSearchGridHead();
             }
-            else
+            catch (Exception ex)
             {
-                lblNoRecordsFound.Visible = true;
-                lblNoRecordsFound.BringToFront();
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
-            // udfnSearchGridHead();
         }
 
 
@@ -333,7 +340,7 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbProductgroup.Select(int.MaxValue, 0)));
                 varGroupId= Convert.ToInt32(cmbProductgroup.SelectedValue);
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSG_PRGID=" + varGroupId + " or PRSGID=0 ORDER BY PRSG_EName ", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
+                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSG_PRGID=" + varGroupId + "  ORDER BY PRSG_EName ", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
                 objDataBind = null;
             }
             catch (Exception ex)
