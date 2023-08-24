@@ -430,6 +430,11 @@ namespace ROMS
                 {
                     udfnEdit();
                 }
+
+                if (e.KeyCode == Keys.Delete)
+                {
+                    tsbDelete_Click(sender, e);
+                }
             }
             catch (Exception ex)
             {

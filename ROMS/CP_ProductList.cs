@@ -101,6 +101,7 @@ namespace ROMS
                         else
                         {
                             MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -1032,6 +1033,11 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnEdit();
+                }
+
+                if (e.KeyCode == Keys.Delete)
+                {
+                    tsbDelete_Click(sender, e);
                 }
             }
             catch (Exception ex)
