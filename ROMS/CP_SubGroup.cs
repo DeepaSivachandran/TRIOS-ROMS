@@ -26,13 +26,14 @@ namespace ROMS
         public string varsubgroupcode;
         public String pbFormStatus;
 
-        int varStatusid = 1;
+        public int varStatusid = 1;
         public int varCloseFlag = 0;
         public int varFormFlag = 0;
         public string varSubGroupNameinTamil = "";
         public string varSubGroupNameinEnglish = "";
         public int varProductName = -1;
-        public int varBatchNo = -1;
+        public string varBatchNo = "";
+        public int varBatchId = -1;
         public int varStockLocation = -1;
         public int varRack = -1;
         public int varId = 0;
@@ -91,7 +92,7 @@ namespace ROMS
             }
         }
          public void udfnLoadcmbShopLocation()
-        {
+         {
             try
             {
                 DataBind objDataBind = new DataBind();
@@ -103,7 +104,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
+         }
         public void udfnLoadcmbRack()
         {
             try
@@ -153,7 +154,7 @@ namespace ROMS
                 cmbGroupName.SelectedValue = varProductName;
                 txtESubGroupNameEnglish.Text = varSubGroupNameinEnglish;
                 txtESubGroupNameTamil.Text = varSubGroupNameinTamil;
-                cmbBatchNo.SelectedValue = varBatchNo;
+                cmbBatchNo.SelectedValue = varBatchId;
                 cmbStockLocation.SelectedValue = varStockLocation;
                 cmbRack.SelectedValue = varRack;
                 varStatusid = varStatus;
@@ -193,7 +194,7 @@ namespace ROMS
         {
             try
             {
-               
+                string varResult = "";
                 if (rbActive.Checked)
                 {
                     varStatusid = 1;
@@ -202,14 +203,22 @@ namespace ROMS
                 {
                     varStatusid = 2;
                 }
+                SPDataService objDser = new SPDataService();
                 if (btnSave.Text == "Save")
                 {
-                    SPDataService objDser = new SPDataService();
-                    string varResult = objDser.udfnSubGroup(0, 0, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid,Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Creation");
-                    objDser.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
+
+                    varResult = objDser.udfnSubGroup(0, 0, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Product Sub Group Creation");
+                }
+                else
+                {
+                    varResult = objDser.udfnSubGroup(1, varId, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Product Sub Group Updation");
+                }
+                objDser.CloseConnection();
+                if (varResult.Split('~')[0] == "3")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (btnSave.Text == "Save")
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         varSubgroupCode = Convert.ToInt16(varResult.Split('~')[2]);
                         if (varmastertype == 1)
                         {
@@ -226,34 +235,21 @@ namespace ROMS
                             udfnLoadCmbGroupName();
                         }
                         udfnClear();
-                        //cmbGroupName.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
-                        //MainForm.objCP_SubGroupList.cmbProductSubGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_SubGroupList.varSubGroupCode);
-                       
+                        udfnLoadCmbGroupName();
                     }
-                    else if (varResult.Split('~')[0] == "4")
+                    else
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                if (btnSave.Text == "Update")
-                {
-                    SPDataService objDser = new SPDataService();
-                    string varResult = objDser.udfnSubGroup(1, varId, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Updation");
-                    objDser.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         varCloseFlag = 1;
                         udfnclose();
-                        MainForm.objCP_SubGroupList.udfnList();
-                        MainForm.objCP_SubGroupList.udfnLoadCmbProductSubGroup();
                     }
-                    else if (varResult.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    MainForm.objCP_SubGroupList.udfnList();
+                    MainForm.objCP_SubGroupList.udfnLoadCmbProductSubGroup();
                 }
-
+                else if (varResult.Split('~')[0] == "4")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                
             }
             catch (Exception ex)
             {

@@ -45,6 +45,7 @@ namespace ROMS
                     MainForm.objCP_ProductHSN.varHsnname = Convert.ToString(grdHSNList.SelectedRows[0].Cells["HSN Name"].Value);
                     MainForm.objCP_ProductHSN.varHsnCode = Convert.ToString(grdHSNList.SelectedRows[0].Cells["HSN Code"].Value);
                     MainForm.objCP_ProductHSN.varGstId = Convert.ToInt32(grdHSNList.SelectedRows[0].Cells["GST ID"].Value);
+                    MainForm.objCP_ProductHSN.varStatusid  = Convert.ToInt32(grdHSNList.SelectedRows[0].Cells["GST ID"].Value);
                     MainForm.objCP_ProductHSN.ShowDialog();
                 }
             }
@@ -76,7 +77,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnHsn(2, Convert.ToInt16(grdHSNList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, "Deletion");
+                        string varResult = objDser.udfnHsn(2, Convert.ToInt16(grdHSNList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, "HSN Deletion");
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {

@@ -102,15 +102,7 @@ namespace ROMS
                 MainForm.objCP_RackGroup = new CP_RackGroup();
                 MainForm.objCP_RackGroup.btnSave.Text = "Update";
                 MainForm.objCP_RackGroup.ShowDialog();
-                //if (grdUserList.SelectedRows.Count > 0)
-                //{
-                //    MainForm.objCP_User = new CP_User();
-                //    //MainForm.objCP_User.MdiParent = this.ParentForm;
-                //    MainForm.objCP_User.varusercode = grdUserList.SelectedRows[0].Cells["Autonum"].Value.ToString();
-                //    MainForm.objCP_User.ShowDialog();
-
-                //}
-
+               
             }
             catch (Exception ex)
             {
@@ -122,37 +114,6 @@ namespace ROMS
 
         public void udfnList()
         { 
-        }
-
-
-        private void udfnSearchGridHead()
-        {
-        }
-       
-        private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
-        {
-            try
-            {
-                //dgv2.DataSource = null;
-                dgv2.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in dgv1.Columns)
-                {
-                    if (col.Visible)
-                    {
-                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-                        visibleColumns.Add(col.Index);
-                    }
-                }
-                int rowIndex = 0;
-                dgv2.Rows.Clear();
-                dgv2.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    dgv2.Rows[rowIndex].Cells[i].Value = "";
-                }
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
         private void CP_RackGroupList_KeyDown(object sender, KeyEventArgs e)

@@ -531,7 +531,7 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-18/08/2023
-        public DataSet udfnRackList(int paraviewType, int paraRackGroup)
+        public DataSet udfnRackList(int paraviewType, int paraRackGroup, int paraStockLocationId)
         {
             DataSet ds = new DataSet();
             try
@@ -541,6 +541,7 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRackGroup", paraRackGroup);
+                varSqlCommand.Parameters.AddWithValue("@paraStockLocationId", paraStockLocationId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -778,7 +779,7 @@ namespace ROMS
 
         // Created by : Deepa    Modified by: Sathish
         // Created on : 16-08-2023 Modified on: 22-08-2023
-        public DataSet udfnUserList(int paraviewType,string paraUserName, string paraLoginId, string paraPassword)
+        public DataSet udfnUserList(int paraviewType,string paraUserName, string paraLoginId, string paraPassword, int paraUser)
         {
             DataSet ds = new DataSet();
             try
@@ -792,6 +793,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraPassword", paraPassword);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraUser", paraUser);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

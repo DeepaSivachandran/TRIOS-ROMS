@@ -52,12 +52,7 @@
             this.cbracklist = new System.Windows.Forms.CheckBox();
             this.lblGC = new System.Windows.Forms.Label();
             this.lblNoofproducts = new System.Windows.Forms.Label();
-            this.DGV_Racklist = new System.Windows.Forms.DataGridView();
-            this.clmcheckbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmracklist = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdRack = new System.Windows.Forms.DataGridView();
             this.txtRackGroupName = new System.Windows.Forms.TextBox();
             this.cmbStockLocation = new System.Windows.Forms.ComboBox();
             this.txtDRackGroup = new System.Windows.Forms.TextBox();
@@ -81,7 +76,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSelectedRackList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_Racklist)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdRack)).BeginInit();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epRackGroup)).BeginInit();
             this.grpUserList.SuspendLayout();
@@ -97,7 +92,7 @@
             this.grbform.Controls.Add(this.cbracklist);
             this.grbform.Controls.Add(this.lblGC);
             this.grbform.Controls.Add(this.lblNoofproducts);
-            this.grbform.Controls.Add(this.DGV_Racklist);
+            this.grbform.Controls.Add(this.grdRack);
             this.grbform.Controls.Add(this.txtRackGroupName);
             this.grbform.Controls.Add(this.cmbStockLocation);
             this.grbform.Controls.Add(this.txtDRackGroup);
@@ -119,7 +114,7 @@
             this.Add.Location = new System.Drawing.Point(369, 291);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(31, 29);
-            this.Add.TabIndex = 52;
+            this.Add.TabIndex = 5;
             this.Add.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Add.UseVisualStyleBackColor = true;
             this.Add.Enter += new System.EventHandler(this.Add_Enter);
@@ -169,7 +164,7 @@
             this.grdSelectedRackList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdSelectedRackList.ShowRowErrors = false;
             this.grdSelectedRackList.Size = new System.Drawing.Size(347, 314);
-            this.grdSelectedRackList.TabIndex = 53;
+            this.grdSelectedRackList.TabIndex = 6;
             this.grdSelectedRackList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GrdSelectedRackList_CellMouseDoubleClick);
             this.grdSelectedRackList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdSelectedRackList_KeyDown);
             // 
@@ -219,6 +214,7 @@
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
@@ -239,6 +235,7 @@
             this.cbracklist.Size = new System.Drawing.Size(15, 14);
             this.cbracklist.TabIndex = 1111138;
             this.cbracklist.UseVisualStyleBackColor = true;
+            this.cbracklist.CheckedChanged += new System.EventHandler(this.Cbracklist_CheckedChanged);
             // 
             // lblGC
             // 
@@ -262,13 +259,13 @@
             this.lblNoofproducts.TabIndex = 1111136;
             this.lblNoofproducts.Text = "Total Products :";
             // 
-            // DGV_Racklist
+            // grdRack
             // 
-            this.DGV_Racklist.AllowUserToAddRows = false;
-            this.DGV_Racklist.AllowUserToDeleteRows = false;
-            this.DGV_Racklist.AllowUserToResizeRows = false;
-            this.DGV_Racklist.BackgroundColor = System.Drawing.Color.White;
-            this.DGV_Racklist.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdRack.AllowUserToAddRows = false;
+            this.grdRack.AllowUserToDeleteRows = false;
+            this.grdRack.AllowUserToResizeRows = false;
+            this.grdRack.BackgroundColor = System.Drawing.Color.White;
+            this.grdRack.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -276,15 +273,9 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_Racklist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.DGV_Racklist.ColumnHeadersHeight = 30;
-            this.DGV_Racklist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DGV_Racklist.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmcheckbox,
-            this.Column4,
-            this.clmracklist,
-            this.Column7,
-            this.Column1});
+            this.grdRack.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdRack.ColumnHeadersHeight = 30;
+            this.grdRack.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -292,56 +283,22 @@
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_Racklist.DefaultCellStyle = dataGridViewCellStyle5;
-            this.DGV_Racklist.EnableHeadersVisualStyles = false;
-            this.DGV_Racklist.GridColor = System.Drawing.Color.White;
-            this.DGV_Racklist.Location = new System.Drawing.Point(18, 149);
-            this.DGV_Racklist.Name = "DGV_Racklist";
-            this.DGV_Racklist.RowHeadersVisible = false;
-            this.DGV_Racklist.RowHeadersWidth = 70;
+            this.grdRack.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdRack.EnableHeadersVisualStyles = false;
+            this.grdRack.GridColor = System.Drawing.Color.White;
+            this.grdRack.Location = new System.Drawing.Point(18, 149);
+            this.grdRack.Name = "grdRack";
+            this.grdRack.RowHeadersVisible = false;
+            this.grdRack.RowHeadersWidth = 70;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_Racklist.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.DGV_Racklist.RowTemplate.Height = 25;
-            this.DGV_Racklist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DGV_Racklist.ShowRowErrors = false;
-            this.DGV_Racklist.Size = new System.Drawing.Size(347, 314);
-            this.DGV_Racklist.TabIndex = 51;
-            this.DGV_Racklist.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_Racklist_CellMouseDoubleClick);
-            // 
-            // clmcheckbox
-            // 
-            this.clmcheckbox.HeaderText = "";
-            this.clmcheckbox.Name = "clmcheckbox";
-            this.clmcheckbox.Width = 50;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "S.No.";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 50;
-            // 
-            // clmracklist
-            // 
-            this.clmracklist.HeaderText = "Rack";
-            this.clmracklist.MinimumWidth = 6;
-            this.clmracklist.Name = "clmracklist";
-            this.clmracklist.ReadOnly = true;
-            this.clmracklist.Width = 60;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Description";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 250;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Total Products";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.grdRack.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdRack.RowTemplate.Height = 25;
+            this.grdRack.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.grdRack.ShowRowErrors = false;
+            this.grdRack.Size = new System.Drawing.Size(347, 314);
+            this.grdRack.TabIndex = 51;
+            this.grdRack.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_Racklist_CellMouseDoubleClick);
             // 
             // txtRackGroupName
             // 
@@ -364,6 +321,7 @@
             this.cmbStockLocation.Name = "cmbStockLocation";
             this.cmbStockLocation.Size = new System.Drawing.Size(116, 27);
             this.cmbStockLocation.TabIndex = 2;
+            this.cmbStockLocation.SelectedIndexChanged += new System.EventHandler(this.CmbStockLocation_SelectedIndexChanged);
             this.cmbStockLocation.Enter += new System.EventHandler(this.CmbStockLocation_Enter);
             this.cmbStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStockLocation_KeyDown);
             this.cmbStockLocation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStockLocation_KeyPress);
@@ -468,7 +426,7 @@
             this.grpUserList.Location = new System.Drawing.Point(797, 11);
             this.grpUserList.Name = "grpUserList";
             this.grpUserList.Size = new System.Drawing.Size(481, 233);
-            this.grpUserList.TabIndex = 4;
+            this.grpUserList.TabIndex = 7;
             this.grpUserList.TabStop = false;
             this.grpUserList.Text = "Staff Details";
             // 
@@ -481,7 +439,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 27);
-            this.btnAdd.TabIndex = 5;
+            this.btnAdd.TabIndex = 13;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
@@ -570,7 +528,7 @@
             this.txtStaffName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtStaffName.Name = "txtStaffName";
             this.txtStaffName.Size = new System.Drawing.Size(313, 27);
-            this.txtStaffName.TabIndex = 4;
+            this.txtStaffName.TabIndex = 12;
             this.txtStaffName.Enter += new System.EventHandler(this.TxtStaffName_Enter);
             this.txtStaffName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtStaffName_KeyDown);
             this.txtStaffName.Leave += new System.EventHandler(this.TxtStaffName_Leave);
@@ -666,7 +624,7 @@
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSelectedRackList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_Racklist)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdRack)).EndInit();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epRackGroup)).EndInit();
@@ -687,7 +645,7 @@
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.TextBox txtConcern;
         private System.Windows.Forms.ComboBox cmbStockLocation;
-        public System.Windows.Forms.DataGridView DGV_Racklist;
+        public System.Windows.Forms.DataGridView grdRack;
         private System.Windows.Forms.ErrorProvider epRackGroup;
         private System.Windows.Forms.GroupBox grpUserList;
         private System.Windows.Forms.TextBox txtDUserName;
@@ -709,11 +667,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn clmcheckbox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmracklist;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;

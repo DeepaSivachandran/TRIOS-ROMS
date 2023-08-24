@@ -22,6 +22,10 @@ namespace ROMS
       
         public string vargroupcode;
         public String pbFormStatus;
+
+        public int varStockLocationId = 0;
+        public DataTable dtRack = new DataTable();
+
         public CP_RackGroup()
         {
             InitializeComponent();
@@ -33,8 +37,6 @@ namespace ROMS
                 tpConcern.Active = false;
                 tpStockLocation.Active = false;
                 tpRackGroupName.Active = false;
-              
-
             }
             catch (Exception ex)
             {
@@ -42,8 +44,131 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CP_SubGroup_Load(object sender, EventArgs e)
+        private void CP_RackGroup_Load(object sender, EventArgs e)
         {
+
+            try
+            {
+                udfnCmbConcern();
+                udfncmbShopLocation();
+                dtRack = new DataTable();
+                dtRack.Columns.Add("", typeof(Boolean));
+                dtRack.Columns.Add("Rack", typeof(string));
+                dtRack.Columns.Add("Short Name", typeof(string));
+                dtRack.Columns.Add("Description", typeof(string));
+                dtRack.Columns.Add("Description", typeof(string));
+                dtRack.Columns.Add("ID", typeof(int));
+                dtRack.Columns.Add("StockLocationID", typeof(int));
+
+                grdRack.Rows.Add(false, 1, "RACK 01");
+                grdRack.Rows.Add(false, 2, "RACK 02");
+
+                grdSelectedRackList.Rows.Add(1, "RACK 01");
+                grdSelectedRackList.Rows.Add(2, "RACK 02");
+
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                if (btnSave.Text == "Save")
+                {
+                    pnlStatus.Enabled = false;
+                }
+                else
+                {
+                    pnlStatus.Enabled = true;
+                    udfnEdit();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnCmbConcern()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_Company", " COMID not in (0)", "COMID,COM_ShortName", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfncmbShopLocation()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID NOT IN(0)", "SLID,SL_EName", cmbStockLocation, "", "SL_EName", "SLID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnList()
+        {
+            try
+            {
+                SPDataService objspservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspservice.udfnRackList(0, 0, varStockLocationId);
+                if (objDs != null)
+                {
+
+                    if (objDs.Tables[0].Rows.Count != 0)
+                    {
+
+                        grdRack.DataSource = objDs.Tables[0];
+
+                        grdRack.Columns["ID"].Visible = false;
+                        grdRack.Columns["ConcernID"].Visible = false;
+                        grdRack.Columns["StockLocationID"].Visible = false;
+                        grdRack.Columns["StatusID"].Visible = false;
+                        grdRack.Columns["S.No."].Width = 50;
+                        grdRack.Columns["Concern"].Width = 100;
+                        grdRack.Columns["Stock Location"].Width = 200;
+                        grdRack.Columns["Rack Group"].Width = 150;
+                        grdRack.Columns["Rack Name"].Width = 200;
+                        grdRack.Columns["Short Name"].Width = 100;
+                        grdRack.Columns["Description"].Width = 200;
+                        grdRack.Columns["Total Products"].Width = 100;
+                        grdRack.Columns["Status"].Width = 80;
+                        grdRack.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        grdRack.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        grdRack.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    }
+
+                    objspservice.CloseConnection();
+
+                    //if (objDs.Tables[0].Rows.Count != 0)
+                    //{
+                    //    //  dtGroup = objDs.Tables[0];
+                    //    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    //    {
+                    //        dtRack.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name in English"], objDs.Tables[0].Rows[i]["ID"]);
+                    //    }
+
+                        
+                    //    grdGroup.DataSource = dtGroup;
+                    //    grdGroup.Columns[0].HeaderText = "";
+                    //    grdGroup.Columns[0].Width = 80;
+                    //    grdGroup.Columns["Product Group Name in English"].Width = 200;
+                    //    grdGroup.Columns["ID"].Visible = false;
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+           
         }
         private void udfnEdit()
         {
@@ -206,7 +331,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -271,7 +396,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -572,7 +697,7 @@ namespace ROMS
         {
             try
             {
-                btnView.BackColor = Color.White;
+                btnView.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -586,7 +711,7 @@ namespace ROMS
 
             try
             {
-                btnView.BackColor = Color.White;
+                btnView.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -807,34 +932,35 @@ namespace ROMS
             }
         }
 
-        private void CP_RackGroup_Load(object sender, EventArgs e)
+        private void CmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             try
             {
-                udfnEdit();
-                DGV_Racklist.Rows.Add(false, 1, "RACK 01");
-                DGV_Racklist.Rows.Add(false, 2, "RACK 02");
-
-                grdSelectedRackList.Rows.Add(1, "RACK 01");
-                grdSelectedRackList.Rows.Add(2, "RACK 02");
-
-                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-                if (btnSave.Text == "Save")
-                {
-                    pnlStatus.Enabled = false;
-                }
-                else
-                {
-                    pnlStatus.Enabled = true;
-                }
-
+                varStockLocationId = Convert.ToInt32(cmbStockLocation.SelectedValue);
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void BtnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Cbracklist_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
      

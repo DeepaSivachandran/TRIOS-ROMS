@@ -79,7 +79,7 @@ namespace ROMS
             {
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objspservice.udfnUserList(2,"", "","");
+                objDs = objspservice.udfnUserList(2,"", "","",0);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
