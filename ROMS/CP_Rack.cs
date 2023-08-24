@@ -14,7 +14,7 @@ namespace ROMS
     {
         DataError objError;
         private ToolTip tpConcern = new ToolTip();
-        private ToolTip tpStockLocation = new ToolTip();
+        private ToolTip tpStockLocation = new ToolTip();    
         private ToolTip tpRackName = new ToolTip();
         private ToolTip tpShortName = new ToolTip();
         private ToolTip tpDescription = new ToolTip();
@@ -101,39 +101,36 @@ namespace ROMS
             {
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
+                SPDataService objspservice = new SPDataService();
+                string varResult = "",
+                varoriginator = ""; int varType = 0;
                 if (btnSave.Text == "Save")
                 {
-                    SPDataService objspservice = new SPDataService();
-                    string varResult = objspservice.udfnRack(0, 0, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, "Rack Creation");
-                    objspservice.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        udfnclear();
-                        MainForm.objCP_RackList.udfnList();
-                    }
-                    else if (varResult.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    varoriginator = "Rack Creation";
+                    varType = 0;
                 }
-                if (btnSave.Text == "Update")
+                else
                 {
-                    SPDataService objspservice = new SPDataService();
-                    string varResult = objspservice.udfnRack(1, varRackcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, "Rack Updation");
-                    objspservice.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
+                    varoriginator = "Rack Updation";
+                    varType = 1;
+                }
+                varResult = objspservice.udfnRack(varType,varRackcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, varoriginator);
+                string[] varvalue = varResult.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MainForm.objCP_RackList.udfnList();
+                    if (btnSave.Text == "Update")
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         varUpdate = 1;
                         udfnclose();
-                        MainForm.objCP_RackList.udfnList();
                     }
-                    else if (varResult.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    udfnclear();
                 }
+                else
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }   
             }
             catch (Exception ex)
             {
