@@ -139,6 +139,8 @@
             this.textBox34 = new System.Windows.Forms.TextBox();
             this.tpSupplierProduct = new System.Windows.Forms.TabPage();
             this.grpSupplierMapping = new System.Windows.Forms.GroupBox();
+            this.lblOrderTypeId = new System.Windows.Forms.Label();
+            this.txtordertype = new System.Windows.Forms.TextBox();
             this.cmbMappingorderschedule = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.cmbMappingordeDay = new System.Windows.Forms.ComboBox();
@@ -150,12 +152,14 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.grbSupplierMapping = new System.Windows.Forms.GroupBox();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.txtmappingproductsearch2 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtSearchByProduct1 = new System.Windows.Forms.TextBox();
             this.lblSearchbyProduct1 = new System.Windows.Forms.Label();
             this.BtnaddMove = new System.Windows.Forms.Button();
             this.grdFinalSupplierMapping = new System.Windows.Forms.DataGridView();
+            this.clmMappingRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.grdSupplierMappingLoad = new System.Windows.Forms.DataGridView();
             this.cmbMappingSubGroup = new System.Windows.Forms.ComboBox();
@@ -172,8 +176,7 @@
             this.cmborderday = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.cmborder = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblMappedproductcountlist = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btn_Close2 = new System.Windows.Forms.Button();
             this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
@@ -194,12 +197,18 @@
             this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsalesname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesmanWhatsapp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmOrderType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmscheduleid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOrderdays = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.daysid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmedit = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.txtordertype = new System.Windows.Forms.TextBox();
-            this.clmMappingRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.txtMappedSupplierName = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtMappedOrder = new System.Windows.Forms.TextBox();
+            this.lblMappedOrderTypeId = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -1025,7 +1034,7 @@
             this.btnSaveOrderType.Name = "btnSaveOrderType";
             this.btnSaveOrderType.Size = new System.Drawing.Size(84, 29);
             this.btnSaveOrderType.TabIndex = 18;
-            this.btnSaveOrderType.Text = "Save";
+            this.btnSaveOrderType.Text = "Update";
             this.btnSaveOrderType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSaveOrderType.UseVisualStyleBackColor = true;
             this.btnSaveOrderType.Click += new System.EventHandler(this.BtnSaveOrderType_Click);
@@ -1114,7 +1123,7 @@
             this.cmbReturnPolicy.Name = "cmbReturnPolicy";
             this.cmbReturnPolicy.Size = new System.Drawing.Size(149, 27);
             this.cmbReturnPolicy.TabIndex = 14;
-            this.cmbReturnPolicy.SelectedValueChanged += new System.EventHandler(this.CmbReturnPolicy_SelectedIndexChanged);
+            this.cmbReturnPolicy.SelectedIndexChanged += new System.EventHandler(this.CmbReturnPolicy_SelectedIndexChanged);
             this.cmbReturnPolicy.Enter += new System.EventHandler(this.CmbReturnPolicy_Enter);
             this.cmbReturnPolicy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReturnPolicy_KeyDown);
             this.cmbReturnPolicy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReturnPolicy_KeyPress);
@@ -1137,9 +1146,9 @@
             this.btnAdd.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(702, 248);
+            this.btnAdd.Location = new System.Drawing.Point(685, 248);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(59, 29);
+            this.btnAdd.Size = new System.Drawing.Size(76, 29);
             this.btnAdd.TabIndex = 13;
             this.btnAdd.Text = "Save";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1172,8 +1181,12 @@
             this.clmsupname,
             this.clmsalesname,
             this.Column3,
+            this.clmSalesmanWhatsapp,
             this.clmOrderType,
             this.clmscheduleid,
+            this.clmOrderdays,
+            this.daysid,
+            this.ID,
             this.clmedit,
             this.clmDelete});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1198,6 +1211,7 @@
             this.grdSupplierList.Size = new System.Drawing.Size(1307, 286);
             this.grdSupplierList.TabIndex = 19;
             this.grdSupplierList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierList_CellContentClick);
+            this.grdSupplierList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupplierList_DataBindingComplete);
             // 
             // btn_close
             // 
@@ -1297,7 +1311,6 @@
             this.txtsalesmanwhatsapp.Name = "txtsalesmanwhatsapp";
             this.txtsalesmanwhatsapp.Size = new System.Drawing.Size(194, 27);
             this.txtsalesmanwhatsapp.TabIndex = 6;
-            this.txtsalesmanwhatsapp.Enter += new System.EventHandler(this.Txtsalesmanaddress_Enter);
             this.txtsalesmanwhatsapp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsalesmanwhatsapp_KeyDown);
             this.txtsalesmanwhatsapp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtsalesmanwhatsapp_KeyPress);
             this.txtsalesmanwhatsapp.Leave += new System.EventHandler(this.Txtsalesmanwhatsapp_Leave);
@@ -1419,6 +1432,8 @@
             this.grddays.Size = new System.Drawing.Size(132, 177);
             this.grddays.TabIndex = 12;
             this.grddays.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grddays_CellContentClick);
+            this.grddays.CurrentCellDirtyStateChanged += new System.EventHandler(this.Grddays_CurrentCellDirtyStateChanged);
+            this.grddays.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.Grddays_DataBindingComplete);
             // 
             // clmcheck
             // 
@@ -1482,6 +1497,7 @@
             // grpSupplierMapping
             // 
             this.grpSupplierMapping.BackColor = System.Drawing.Color.White;
+            this.grpSupplierMapping.Controls.Add(this.lblOrderTypeId);
             this.grpSupplierMapping.Controls.Add(this.txtordertype);
             this.grpSupplierMapping.Controls.Add(this.cmbMappingorderschedule);
             this.grpSupplierMapping.Controls.Add(this.label13);
@@ -1501,6 +1517,27 @@
             this.grpSupplierMapping.Size = new System.Drawing.Size(1322, 602);
             this.grpSupplierMapping.TabIndex = 958768;
             this.grpSupplierMapping.TabStop = false;
+            // 
+            // lblOrderTypeId
+            // 
+            this.lblOrderTypeId.AutoSize = true;
+            this.lblOrderTypeId.Location = new System.Drawing.Point(827, 33);
+            this.lblOrderTypeId.Name = "lblOrderTypeId";
+            this.lblOrderTypeId.Size = new System.Drawing.Size(16, 20);
+            this.lblOrderTypeId.TabIndex = 958806;
+            this.lblOrderTypeId.Text = "0";
+            this.lblOrderTypeId.Visible = false;
+            // 
+            // txtordertype
+            // 
+            this.txtordertype.Enabled = false;
+            this.txtordertype.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtordertype.Location = new System.Drawing.Point(476, 37);
+            this.txtordertype.MaxLength = 50;
+            this.txtordertype.Name = "txtordertype";
+            this.txtordertype.ReadOnly = true;
+            this.txtordertype.Size = new System.Drawing.Size(121, 27);
+            this.txtordertype.TabIndex = 958805;
             // 
             // cmbMappingorderschedule
             // 
@@ -1614,6 +1651,7 @@
             this.btnClear.Text = "Clear";
             this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             this.btnClear.Enter += new System.EventHandler(this.BtnClear_Enter);
             this.btnClear.Leave += new System.EventHandler(this.BtnClear_Leave);
             // 
@@ -1629,6 +1667,7 @@
             // 
             // grbSupplierMapping
             // 
+            this.grbSupplierMapping.Controls.Add(this.lblNoRecordsFound);
             this.grbSupplierMapping.Controls.Add(this.txtmappingproductsearch2);
             this.grbSupplierMapping.Controls.Add(this.label12);
             this.grbSupplierMapping.Controls.Add(this.txtSearchByProduct1);
@@ -1647,6 +1686,19 @@
             this.grbSupplierMapping.Size = new System.Drawing.Size(1308, 495);
             this.grbSupplierMapping.TabIndex = 25;
             this.grbSupplierMapping.TabStop = false;
+            // 
+            // lblNoRecordsFound
+            // 
+            this.lblNoRecordsFound.AutoSize = true;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(276, 268);
+            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.TabIndex = 958799;
+            this.lblNoRecordsFound.Text = "No Records Found";
+            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblNoRecordsFound.Visible = false;
             // 
             // txtmappingproductsearch2
             // 
@@ -1750,6 +1802,15 @@
             this.grdFinalSupplierMapping.Size = new System.Drawing.Size(613, 404);
             this.grdFinalSupplierMapping.TabIndex = 6;
             this.grdFinalSupplierMapping.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdFinalSupplierMapping_CellContentClick);
+            this.grdFinalSupplierMapping.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdFinalSupplierMapping_DataBindingComplete);
+            // 
+            // clmMappingRemove
+            // 
+            this.clmMappingRemove.HeaderText = "Remove";
+            this.clmMappingRemove.Image = global::ROMS.Properties.Resources.Delete;
+            this.clmMappingRemove.Name = "clmMappingRemove";
+            this.clmMappingRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmMappingRemove.Width = 70;
             // 
             // chkSelectAll
             // 
@@ -1800,6 +1861,7 @@
             this.grdSupplierMappingLoad.Size = new System.Drawing.Size(639, 404);
             this.grdSupplierMappingLoad.TabIndex = 4;
             this.grdSupplierMappingLoad.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdSupplierMappingLoad_CurrentCellDirtyStateChanged);
+            this.grdSupplierMappingLoad.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupplierMappingLoad_DataBindingComplete);
             // 
             // cmbMappingSubGroup
             // 
@@ -1876,6 +1938,7 @@
             this.btnMappingClose.Text = "Close";
             this.btnMappingClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnMappingClose.UseVisualStyleBackColor = true;
+            this.btnMappingClose.Click += new System.EventHandler(this.BtnMappingClose_Click);
             this.btnMappingClose.Enter += new System.EventHandler(this.BtnMappingClose_Enter);
             this.btnMappingClose.Leave += new System.EventHandler(this.BtnMappingClose_Leave);
             // 
@@ -1910,13 +1973,16 @@
             // 
             // grpSchedule
             // 
+            this.grpSchedule.Controls.Add(this.lblMappedOrderTypeId);
+            this.grpSchedule.Controls.Add(this.txtMappedOrder);
+            this.grpSchedule.Controls.Add(this.txtMappedSupplierName);
+            this.grpSchedule.Controls.Add(this.label10);
             this.grpSchedule.Controls.Add(this.cmbOrderschedule);
             this.grpSchedule.Controls.Add(this.label14);
             this.grpSchedule.Controls.Add(this.cmborderday);
             this.grpSchedule.Controls.Add(this.label7);
             this.grpSchedule.Controls.Add(this.label6);
-            this.grpSchedule.Controls.Add(this.cmborder);
-            this.grpSchedule.Controls.Add(this.label4);
+            this.grpSchedule.Controls.Add(this.lblMappedproductcountlist);
             this.grpSchedule.Controls.Add(this.label5);
             this.grpSchedule.Controls.Add(this.btn_Close2);
             this.grpSchedule.Controls.Add(this.txtSearchByProduct2);
@@ -1933,7 +1999,7 @@
             this.cmbOrderschedule.FormattingEnabled = true;
             this.cmbOrderschedule.Items.AddRange(new object[] {
             "--All--"});
-            this.cmbOrderschedule.Location = new System.Drawing.Point(37, 37);
+            this.cmbOrderschedule.Location = new System.Drawing.Point(339, 37);
             this.cmbOrderschedule.Name = "cmbOrderschedule";
             this.cmbOrderschedule.Size = new System.Drawing.Size(121, 27);
             this.cmbOrderschedule.TabIndex = 0;
@@ -1947,7 +2013,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(37, 14);
+            this.label14.Location = new System.Drawing.Point(339, 12);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(92, 20);
             this.label14.TabIndex = 958819;
@@ -1966,7 +2032,7 @@
             "Friday",
             "Saturday",
             "Sunday"});
-            this.cmborderday.Location = new System.Drawing.Point(293, 37);
+            this.cmborderday.Location = new System.Drawing.Point(599, 37);
             this.cmborderday.Name = "cmborderday";
             this.cmborderday.Size = new System.Drawing.Size(116, 27);
             this.cmborderday.TabIndex = 2;
@@ -1980,7 +2046,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(293, 14);
+            this.label7.Location = new System.Drawing.Point(599, 12);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(63, 20);
             this.label7.TabIndex = 958818;
@@ -1990,40 +2056,22 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(173, 14);
+            this.label6.Location = new System.Drawing.Point(469, 12);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 20);
             this.label6.TabIndex = 958817;
             this.label6.Text = "Order Type";
             // 
-            // cmborder
+            // lblMappedproductcountlist
             // 
-            this.cmborder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmborder.FormattingEnabled = true;
-            this.cmborder.Items.AddRange(new object[] {
-            "--All--",
-            "Phone",
-            "Visit"});
-            this.cmborder.Location = new System.Drawing.Point(173, 37);
-            this.cmborder.Name = "cmborder";
-            this.cmborder.Size = new System.Drawing.Size(98, 27);
-            this.cmborder.TabIndex = 1;
-            this.cmborder.SelectedIndexChanged += new System.EventHandler(this.Cmborder_SelectedIndexChanged);
-            this.cmborder.Enter += new System.EventHandler(this.Cmborder_Enter);
-            this.cmborder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmborder_KeyDown);
-            this.cmborder.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Cmborder_KeyPress);
-            this.cmborder.Leave += new System.EventHandler(this.Cmborder_Leave);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.Crimson;
-            this.label4.Location = new System.Drawing.Point(1260, 40);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(17, 20);
-            this.label4.TabIndex = 958816;
-            this.label4.Text = "0";
+            this.lblMappedproductcountlist.AutoSize = true;
+            this.lblMappedproductcountlist.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblMappedproductcountlist.ForeColor = System.Drawing.Color.Crimson;
+            this.lblMappedproductcountlist.Location = new System.Drawing.Point(1260, 40);
+            this.lblMappedproductcountlist.Name = "lblMappedproductcountlist";
+            this.lblMappedproductcountlist.Size = new System.Drawing.Size(17, 20);
+            this.lblMappedproductcountlist.TabIndex = 958816;
+            this.lblMappedproductcountlist.Text = "0";
             // 
             // label5
             // 
@@ -2055,11 +2103,12 @@
             // txtSearchByProduct2
             // 
             this.txtSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchByProduct2.Location = new System.Drawing.Point(728, 37);
+            this.txtSearchByProduct2.Location = new System.Drawing.Point(724, 37);
             this.txtSearchByProduct2.MaxLength = 50;
             this.txtSearchByProduct2.Name = "txtSearchByProduct2";
             this.txtSearchByProduct2.Size = new System.Drawing.Size(418, 27);
             this.txtSearchByProduct2.TabIndex = 3;
+            this.txtSearchByProduct2.TextChanged += new System.EventHandler(this.TxtSearchByProduct2_TextChanged);
             this.txtSearchByProduct2.Enter += new System.EventHandler(this.TxtSearchByProduct2_Enter);
             this.txtSearchByProduct2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByProduct2_KeyDown);
             this.txtSearchByProduct2.Leave += new System.EventHandler(this.TxtSearchByProduct2_Leave);
@@ -2068,7 +2117,7 @@
             // 
             this.lblSearchByProduct2.AutoSize = true;
             this.lblSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchByProduct2.Location = new System.Drawing.Point(728, 14);
+            this.lblSearchByProduct2.Location = new System.Drawing.Point(724, 12);
             this.lblSearchByProduct2.Name = "lblSearchByProduct2";
             this.lblSearchByProduct2.Size = new System.Drawing.Size(190, 20);
             this.lblSearchByProduct2.TabIndex = 958810;
@@ -2123,6 +2172,7 @@
             this.grdViewSupplierMapping.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdViewSupplierMapping.Size = new System.Drawing.Size(1248, 495);
             this.grdViewSupplierMapping.TabIndex = 958809;
+            this.grdViewSupplierMapping.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdViewSupplierMapping_DataBindingComplete);
             // 
             // Column1
             // 
@@ -2208,13 +2258,14 @@
             this.clmsno.HeaderText = "S.No.";
             this.clmsno.Name = "clmsno";
             this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
             // 
             // clmsupname
             // 
             this.clmsupname.HeaderText = "Schedule Name";
             this.clmsupname.Name = "clmsupname";
             this.clmsupname.ReadOnly = true;
-            this.clmsupname.Width = 200;
+            this.clmsupname.Width = 150;
             // 
             // clmsalesname
             // 
@@ -2230,11 +2281,19 @@
             this.Column3.ReadOnly = true;
             this.Column3.Width = 140;
             // 
+            // clmSalesmanWhatsapp
+            // 
+            this.clmSalesmanWhatsapp.HeaderText = "Salesman WhatsApp No.";
+            this.clmSalesmanWhatsapp.Name = "clmSalesmanWhatsapp";
+            this.clmSalesmanWhatsapp.ReadOnly = true;
+            this.clmSalesmanWhatsapp.Width = 150;
+            // 
             // clmOrderType
             // 
             this.clmOrderType.HeaderText = "Order Type";
             this.clmOrderType.Name = "clmOrderType";
             this.clmOrderType.ReadOnly = true;
+            this.clmOrderType.Width = 80;
             // 
             // clmscheduleid
             // 
@@ -2244,13 +2303,34 @@
             this.clmscheduleid.Visible = false;
             this.clmscheduleid.Width = 5;
             // 
+            // clmOrderdays
+            // 
+            this.clmOrderdays.HeaderText = "Order Days";
+            this.clmOrderdays.Name = "clmOrderdays";
+            this.clmOrderdays.ReadOnly = true;
+            this.clmOrderdays.Width = 300;
+            // 
+            // daysid
+            // 
+            this.daysid.HeaderText = "Column4";
+            this.daysid.Name = "daysid";
+            this.daysid.ReadOnly = true;
+            this.daysid.Visible = false;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "Column9";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
             // clmedit
             // 
             this.clmedit.HeaderText = "Edit";
             this.clmedit.Image = global::ROMS.Properties.Resources.Edit;
             this.clmedit.Name = "clmedit";
             this.clmedit.ReadOnly = true;
-            this.clmedit.Width = 80;
+            this.clmedit.Width = 60;
             // 
             // clmDelete
             // 
@@ -2258,26 +2338,49 @@
             this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
             this.clmDelete.Name = "clmDelete";
             this.clmDelete.ReadOnly = true;
-            this.clmDelete.Width = 80;
+            this.clmDelete.Width = 60;
             // 
-            // txtordertype
+            // txtMappedSupplierName
             // 
-            this.txtordertype.Enabled = false;
-            this.txtordertype.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtordertype.Location = new System.Drawing.Point(476, 37);
-            this.txtordertype.MaxLength = 50;
-            this.txtordertype.Name = "txtordertype";
-            this.txtordertype.ReadOnly = true;
-            this.txtordertype.Size = new System.Drawing.Size(121, 27);
-            this.txtordertype.TabIndex = 958805;
+            this.txtMappedSupplierName.Enabled = false;
+            this.txtMappedSupplierName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMappedSupplierName.Location = new System.Drawing.Point(37, 37);
+            this.txtMappedSupplierName.MaxLength = 50;
+            this.txtMappedSupplierName.Name = "txtMappedSupplierName";
+            this.txtMappedSupplierName.ReadOnly = true;
+            this.txtMappedSupplierName.Size = new System.Drawing.Size(293, 27);
+            this.txtMappedSupplierName.TabIndex = 958820;
             // 
-            // clmMappingRemove
+            // label10
             // 
-            this.clmMappingRemove.HeaderText = "Remove";
-            this.clmMappingRemove.Image = global::ROMS.Properties.Resources.Delete;
-            this.clmMappingRemove.Name = "clmMappingRemove";
-            this.clmMappingRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmMappingRemove.Width = 70;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(37, 12);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 20);
+            this.label10.TabIndex = 958821;
+            this.label10.Text = "Supplier";
+            // 
+            // txtMappedOrder
+            // 
+            this.txtMappedOrder.Enabled = false;
+            this.txtMappedOrder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMappedOrder.Location = new System.Drawing.Point(469, 37);
+            this.txtMappedOrder.MaxLength = 50;
+            this.txtMappedOrder.Name = "txtMappedOrder";
+            this.txtMappedOrder.ReadOnly = true;
+            this.txtMappedOrder.Size = new System.Drawing.Size(121, 27);
+            this.txtMappedOrder.TabIndex = 958822;
+            // 
+            // lblMappedOrderTypeId
+            // 
+            this.lblMappedOrderTypeId.AutoSize = true;
+            this.lblMappedOrderTypeId.Location = new System.Drawing.Point(648, 295);
+            this.lblMappedOrderTypeId.Name = "lblMappedOrderTypeId";
+            this.lblMappedOrderTypeId.Size = new System.Drawing.Size(16, 20);
+            this.lblMappedOrderTypeId.TabIndex = 958823;
+            this.lblMappedOrderTypeId.Text = "0";
+            this.lblMappedOrderTypeId.Visible = false;
             // 
             // CP_Supplier
             // 
@@ -2298,6 +2401,7 @@
             this.Name = "CP_Supplier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Supplier Details";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Supplier_FormClosing);
             this.Load += new System.EventHandler(this.CP_Supplier_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Supplier_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Supplier_Leave);
@@ -2428,10 +2532,9 @@
         private System.Windows.Forms.TextBox txtSearchByProduct2;
         private System.Windows.Forms.Label lblSearchByProduct2;
         public System.Windows.Forms.DataGridView grdViewSupplierMapping;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblMappedproductcountlist;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cmborder;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmborderday;
         public System.Windows.Forms.Button btnSave;
@@ -2460,7 +2563,6 @@
         private System.Windows.Forms.CheckBox chkSelectAll;
         public System.Windows.Forms.DataGridView grdSupplierMappingLoad;
         private System.Windows.Forms.Button btnMappingClose;
-        private System.Windows.Forms.Button btnMappingsave;
         private System.Windows.Forms.ComboBox cmbMappingorderschedule;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cmbOrderschedule;
@@ -2491,15 +2593,26 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label lblcityid;
         public System.Windows.Forms.Button btnSaveOrderType;
+        private System.Windows.Forms.TextBox txtordertype;
+        private System.Windows.Forms.DataGridViewImageColumn clmMappingRemove;
+        private System.Windows.Forms.Label lblNoRecordsFound;
+        private System.Windows.Forms.Label lblOrderTypeId;
+        public System.Windows.Forms.Button btnMappingsave;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsupname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsalesname;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesmanWhatsapp;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmscheduleid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderdays;
+        private System.Windows.Forms.DataGridViewTextBoxColumn daysid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewImageColumn clmedit;
         private System.Windows.Forms.DataGridViewImageColumn clmDelete;
-        private System.Windows.Forms.TextBox txtordertype;
-        private System.Windows.Forms.DataGridViewImageColumn clmMappingRemove;
+        private System.Windows.Forms.TextBox txtMappedSupplierName;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtMappedOrder;
+        private System.Windows.Forms.Label lblMappedOrderTypeId;
     }
 }
