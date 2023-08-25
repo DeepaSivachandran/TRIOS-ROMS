@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Broker));
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.lblcityid = new System.Windows.Forms.Label();
             this.btnNew = new System.Windows.Forms.Label();
             this.txtGstinNo = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -49,6 +50,8 @@
             this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnAdd = new System.Windows.Forms.Label();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtIFScode = new System.Windows.Forms.TextBox();
@@ -64,7 +67,6 @@
             this.txtBrokerName = new System.Windows.Forms.TextBox();
             this.txtDPincode = new System.Windows.Forms.TextBox();
             this.txtPincode = new System.Windows.Forms.TextBox();
-            this.cmbCity = new System.Windows.Forms.ComboBox();
             this.txtDCity = new System.Windows.Forms.TextBox();
             this.txtDAddressLine2 = new System.Windows.Forms.TextBox();
             this.txtDAddressLine1 = new System.Windows.Forms.TextBox();
@@ -80,6 +82,11 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtMobileNo = new System.Windows.Forms.TextBox();
             this.epBroker = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtCity = new System.Windows.Forms.TextBox();
+            this.lvCity = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grbform.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdBankDetails)).BeginInit();
@@ -89,6 +96,9 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.lvCity);
+            this.grbform.Controls.Add(this.txtCity);
+            this.grbform.Controls.Add(this.lblcityid);
             this.grbform.Controls.Add(this.btnNew);
             this.grbform.Controls.Add(this.txtGstinNo);
             this.grbform.Controls.Add(this.groupBox2);
@@ -100,7 +110,6 @@
             this.grbform.Controls.Add(this.txtBrokerName);
             this.grbform.Controls.Add(this.txtDPincode);
             this.grbform.Controls.Add(this.txtPincode);
-            this.grbform.Controls.Add(this.cmbCity);
             this.grbform.Controls.Add(this.txtDCity);
             this.grbform.Controls.Add(this.txtDAddressLine2);
             this.grbform.Controls.Add(this.txtDAddressLine1);
@@ -118,6 +127,14 @@
             this.grbform.Size = new System.Drawing.Size(999, 623);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // lblcityid
+            // 
+            this.lblcityid.AutoSize = true;
+            this.lblcityid.Location = new System.Drawing.Point(588, 31);
+            this.lblcityid.Name = "lblcityid";
+            this.lblcityid.Size = new System.Drawing.Size(0, 18);
+            this.lblcityid.TabIndex = 1111151;
             // 
             // btnNew
             // 
@@ -238,7 +255,9 @@
             this.clmbranch,
             this.clmaccno,
             this.clmifscode,
-            this.clmStatus});
+            this.clmStatus,
+            this.clmsts,
+            this.clmremovebank});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -251,7 +270,6 @@
             this.grdBankDetails.GridColor = System.Drawing.Color.White;
             this.grdBankDetails.Location = new System.Drawing.Point(13, 135);
             this.grdBankDetails.Name = "grdBankDetails";
-            this.grdBankDetails.ReadOnly = true;
             this.grdBankDetails.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
@@ -260,6 +278,8 @@
             this.grdBankDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdBankDetails.Size = new System.Drawing.Size(938, 98);
             this.grdBankDetails.TabIndex = 1111136;
+            this.grdBankDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBankDetails_CellContentClick);
+            this.grdBankDetails.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdBankDetails_EditingControlShowing);
             // 
             // clmsno
             // 
@@ -307,7 +327,21 @@
             // 
             this.clmStatus.HeaderText = "Status";
             this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
+            // 
+            // clmsts
+            // 
+            this.clmsts.HeaderText = "sts";
+            this.clmsts.Name = "clmsts";
+            this.clmsts.Visible = false;
+            // 
+            // clmremovebank
+            // 
+            this.clmremovebank.HeaderText = "Remove";
+            this.clmremovebank.Image = global::ROMS.Properties.Resources.remove;
+            this.clmremovebank.Name = "clmremovebank";
+            this.clmremovebank.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmremovebank.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmremovebank.Width = 80;
             // 
             // btnAdd
             // 
@@ -493,20 +527,6 @@
             this.txtPincode.Enter += new System.EventHandler(this.TxtPincode_Enter);
             this.txtPincode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPincode_KeyDown);
             this.txtPincode.Leave += new System.EventHandler(this.TxtPincode_Leave);
-            // 
-            // cmbCity
-            // 
-            this.cmbCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.cmbCity.FormattingEnabled = true;
-            this.cmbCity.Location = new System.Drawing.Point(182, 213);
-            this.cmbCity.Name = "cmbCity";
-            this.cmbCity.Size = new System.Drawing.Size(274, 27);
-            this.cmbCity.TabIndex = 7;
-            this.cmbCity.SelectedIndexChanged += new System.EventHandler(this.CmbCity_SelectedIndexChanged);
-            this.cmbCity.Enter += new System.EventHandler(this.CmbCity_Enter);
-            this.cmbCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbCity_KeyDown);
-            this.cmbCity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbCity_KeyPress);
-            this.cmbCity.Leave += new System.EventHandler(this.CmbCity_Leave);
             // 
             // txtDCity
             // 
@@ -695,6 +715,49 @@
             // 
             this.epBroker.ContainerControl = this;
             // 
+            // txtCity
+            // 
+            this.txtCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtCity.Location = new System.Drawing.Point(182, 213);
+            this.txtCity.MaxLength = 100;
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Size = new System.Drawing.Size(274, 27);
+            this.txtCity.TabIndex = 1111152;
+            this.txtCity.TextChanged += new System.EventHandler(this.TxtCity_TextChanged);
+            this.txtCity.Enter += new System.EventHandler(this.TxtCity_Enter);
+            this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCity_KeyDown);
+            this.txtCity.Leave += new System.EventHandler(this.TxtCity_Leave);
+            // 
+            // lvCity
+            // 
+            this.lvCity.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvCity.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvCity.HideSelection = false;
+            this.lvCity.Location = new System.Drawing.Point(182, 240);
+            this.lvCity.Name = "lvCity";
+            this.lvCity.Size = new System.Drawing.Size(306, 90);
+            this.lvCity.TabIndex = 1111153;
+            this.lvCity.UseCompatibleStateImageBehavior = false;
+            this.lvCity.View = System.Windows.Forms.View.Details;
+            this.lvCity.Visible = false;
+            this.lvCity.DoubleClick += new System.EventHandler(this.LvCity_DoubleClick);
+            this.lvCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvCity_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
+            // 
             // CP_Broker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -743,7 +806,6 @@
         private System.Windows.Forms.TextBox txtWhatsAppNo;
         private System.Windows.Forms.TextBox txtDAddressLine2;
         private System.Windows.Forms.TextBox txtDAddressLine1;
-        private System.Windows.Forms.ComboBox cmbCity;
         private System.Windows.Forms.TextBox txtDCity;
         private System.Windows.Forms.TextBox txtDPincode;
         private System.Windows.Forms.TextBox txtPincode;
@@ -769,6 +831,7 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox txtBankShortName;
         internal System.Windows.Forms.Label btnNew;
+        private System.Windows.Forms.Label lblcityid;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmbankname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBankShortName;
@@ -776,5 +839,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmaccno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmifscode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsts;
+        private System.Windows.Forms.DataGridViewImageColumn clmremovebank;
+        private System.Windows.Forms.TextBox txtCity;
+        public System.Windows.Forms.ListView lvCity;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }

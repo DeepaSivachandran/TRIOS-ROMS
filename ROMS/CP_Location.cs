@@ -201,27 +201,13 @@ namespace ROMS
         {
             try
             {
-                if (PbDefault == "1" || PbDefault == "2")
-                {
-                    btnSave.Visible = false;
-                    cmbConcern.Visible = false;
-                    cmbLocationType.Visible = false;
-                    txtLocationNameInEnglish.Visible = false;
-                    txtLocationNameInTamil.Visible = false;
-                    txtShortName.Visible = false;
-                    pnlGodownType.Visible = false;
-                    cmbStockApplicable.Visible = false;
-                    pnlStatus.Visible = false;
-                }
-                else
-                {
-                    if (rbActive.Checked == true) { varstatus = 1; }
+                if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
                 if (rbInside.Checked == true) { varGodownType = 86; }
                 else { varGodownType = 87; }
-                    SPDataService objspservice = new SPDataService();
-                    string varResult = "",
-                    varoriginator = ""; int varType = 0;
+                SPDataService objspservice = new SPDataService();
+                string varResult = "",
+                varoriginator = ""; int varType = 0;
                     if (btnSave.Text == "Save")
                     {
                         varoriginator = "Stock Creation";
@@ -249,7 +235,6 @@ namespace ROMS
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                }
             }
             catch (Exception ex)
             {
