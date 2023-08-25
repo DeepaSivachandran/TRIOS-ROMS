@@ -1743,7 +1743,7 @@ namespace ROMS
         {
             try
             {
-                bool varResult = objvalidation.CheckNumeric(e);
+                bool varResult = objvalidation.FormatNumericOnly(e);
                 if (varResult == true)
                 {
                     e.Handled = true;
@@ -1768,7 +1768,7 @@ namespace ROMS
         {
             try
             {
-                bool varResult = objvalidation.CheckNumeric(e);
+                bool varResult = objvalidation.FormatNumericOnly(e);
                 if (varResult == true)
                 {
                     e.Handled = true;
@@ -1793,7 +1793,7 @@ namespace ROMS
         {
             try
             {
-                bool varResult = objvalidation.CheckNumeric(e);
+                bool varResult = objvalidation.FormatNumericOnly(e);
                 if (varResult == true)
                 {
                     e.Handled = true;
@@ -1818,7 +1818,7 @@ namespace ROMS
         {
             try
             {
-                bool varResult = objvalidation.CheckNumeric(e);
+                bool varResult = objvalidation.FormatNumericOnly(e);
                 if (varResult == true)
                 {
                     e.Handled = true;

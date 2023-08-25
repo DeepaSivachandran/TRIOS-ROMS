@@ -45,7 +45,6 @@ namespace ROMS
             try
             {      
                 //udfnEdit();
-
             }
             catch (Exception ex)
             {
@@ -1789,6 +1788,106 @@ namespace ROMS
                 {
                     lvCity.Visible = false;
                     lvCity.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void TxtGstinNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                bool varResult = objValidation.FormatNumericOnly(e);
+                if (varResult == true)
+                {
+                    e.Handled = true;
+                }
+                else
+                {
+                    e.Handled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void TxtAccno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                bool varResult = objValidation.FormatNumericOnly(e);
+                if (varResult == true)
+                {
+                    e.Handled = true;
+                }
+                else
+                {
+                    e.Handled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void TxtIFScode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                bool varResult = objValidation.FormatNumericOnly(e);
+                if (varResult == true)
+                {
+                    e.Handled = true;
+                }
+                else
+                {
+                    e.Handled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void TxtPincode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                bool varResult = objValidation.FormatNumericOnly(e);
+                if (varResult == true)
+                {
+                    e.Handled = true;
+                }
+                else
+                {
+                    e.Handled = false;
                 }
             }
             catch (Exception ex)

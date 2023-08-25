@@ -485,7 +485,7 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); return false; }
         }
-        public bool CheckNumeric(KeyPressEventArgs e)
+        public bool FormatNumericOnly(KeyPressEventArgs e)
         {
             try
             {

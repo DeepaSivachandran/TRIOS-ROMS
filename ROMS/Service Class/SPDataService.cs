@@ -431,7 +431,7 @@ namespace ROMS
             }
             return ds;
         }
-        //Created By :-Sathish ; Created On :-11/08/2023
+        //Created By :-Sathish ; Created On :-24/08/2023
         public string udfnBroker(int paraviewType, int paraBrokerId,int paraConcern,string paraGstinNo, string paraBrokerName,
             string paraAddressLine1,string paraAddressLine2,int paraCityId,string paraPincode,string paraWhatsappNumber,
             string paraMobileNumber,int paraStatusId, string paraOriginator, DataTable ParaMR_Broker_Bank)
@@ -472,7 +472,7 @@ namespace ROMS
             }
             return varResult;
         }
-        //Created By :-Sathish ; Created On :-11/08/2023
+        //Created By :-Sathish ; Created On :-24/08/2023
         public DataSet udfnBrokerList(int paraviewType,int paraBrokerId)
         {
             DataSet ds = new DataSet();

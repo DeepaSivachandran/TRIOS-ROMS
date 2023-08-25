@@ -159,6 +159,7 @@
             this.txtGstinNo.TabIndex = 1;
             this.txtGstinNo.Enter += new System.EventHandler(this.TxtGstinNo_Enter);
             this.txtGstinNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGstinNo_KeyDown);
+            this.txtGstinNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtGstinNo_KeyPress);
             this.txtGstinNo.Leave += new System.EventHandler(this.TxtGstinNo_Leave);
             // 
             // groupBox2
@@ -381,6 +382,7 @@
             this.txtIFScode.TabIndex = 15;
             this.txtIFScode.Enter += new System.EventHandler(this.TxtIFScode_Enter);
             this.txtIFScode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtIFScode_KeyDown);
+            this.txtIFScode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIFScode_KeyPress);
             this.txtIFScode.Leave += new System.EventHandler(this.TxtIFScode_Leave);
             // 
             // textBox17
@@ -405,6 +407,7 @@
             this.txtAccno.TabIndex = 14;
             this.txtAccno.Enter += new System.EventHandler(this.TxtAccno_Enter);
             this.txtAccno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAccno_KeyDown);
+            this.txtAccno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAccno_KeyPress);
             this.txtAccno.Leave += new System.EventHandler(this.TxtAccno_Leave);
             // 
             // textBox19
@@ -527,6 +530,7 @@
             this.txtPincode.TabIndex = 8;
             this.txtPincode.Enter += new System.EventHandler(this.TxtPincode_Enter);
             this.txtPincode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPincode_KeyDown);
+            this.txtPincode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPincode_KeyPress);
             this.txtPincode.Leave += new System.EventHandler(this.TxtPincode_Leave);
             // 
             // txtDCity
