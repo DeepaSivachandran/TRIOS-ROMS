@@ -135,6 +135,7 @@
             this.lblcityid.Name = "lblcityid";
             this.lblcityid.Size = new System.Drawing.Size(0, 18);
             this.lblcityid.TabIndex = 1111151;
+            this.lblcityid.Visible = false;
             // 
             // btnNew
             // 

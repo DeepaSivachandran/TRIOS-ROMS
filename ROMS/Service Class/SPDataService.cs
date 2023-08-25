@@ -444,7 +444,7 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraBrokerId", paraBrokerId);
-                varSqlCommand.Parameters.AddWithValue("@paraConcern", paraConcern);
+                varSqlCommand.Parameters.AddWithValue("@paraConcernId", paraConcern);
                 varSqlCommand.Parameters.AddWithValue("@paraGstinNo", paraGstinNo);
                 varSqlCommand.Parameters.AddWithValue("@paraBrokerName", paraBrokerName);
                 varSqlCommand.Parameters.AddWithValue("@paraAddressLine1", paraAddressLine1);
