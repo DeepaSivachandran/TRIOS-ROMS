@@ -95,6 +95,10 @@ namespace ROMS
                         grdSubGroupAdd.Columns["Selected Product Subgroup"].Width = 200;
                         grdSubGroupAdd.Columns["Group Id"].Visible = false;
                         grdSubGroupAdd.Columns["Sub Group Id"].Visible = false;
+                        grdSubGroupAdd.Columns["Selected Product Group"].ReadOnly = true;
+                        grdSubGroupAdd.Columns["Selected Product Subgroup"].ReadOnly = true;
+                        grdSubGroupAdd.Columns["Group Id"].ReadOnly = true;
+                        grdSubGroupAdd.Columns["Sub Group Id"].ReadOnly = true;
                     }
                     for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
                     {
@@ -134,8 +138,8 @@ namespace ROMS
 
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
-                  //  dtGroup = objDs.Tables[0];
-                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++) {
+                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    {
                              dtGroup.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name in English"], objDs.Tables[0].Rows[i]["ID"]);
                     }
                     
@@ -144,6 +148,8 @@ namespace ROMS
                     grdGroup.Columns[0].Width = 80;
                     grdGroup.Columns["Product Group Name in English"].Width = 200;
                     grdGroup.Columns["ID"].Visible = false;
+                    grdGroup.Columns["Product Group Name in English"].ReadOnly = true;
+                    grdGroup.Columns["ID"].ReadOnly = true;
                 }
 
             }
@@ -198,28 +204,10 @@ namespace ROMS
                     grdSubGroupAdd.Columns["Group Id"].Visible = false;
                     grdSubGroupAdd.Columns["Sub Group Id"].Visible = false;
 
-                 
-                    //if (varSubGroupId == "")
-                    //{
-                    //    varSubGroupId = Convert.ToString(grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
-                    //}
-                    //else
-                    //{
-                    //    varSubGroupId = varSubGroupId + "," + Convert.ToString(grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
-                    //}
-                    //else
-                    //{
-                    //    varRemoveGroup = Convert.ToString(grdGroup.SelectedRows[0].Cells["ID"].Value);
-                    //    for (int i = 0; i < dtSubGroup.Rows.Count; i++)
-                    //    {
-                    //        if (varRemoveGroup == Convert.ToString(dtSubGroup.Rows[i]["Group ID"]))
-                    //        {
-                    //            dtSubGroup.Rows[i].Delete();
-                    //        }
-                    //    }
-                    //    dtSubGroup.AcceptChanges();
-                    //    grdSubGroup.DataSource = dtSubGroup;
-                    //    grdSubGroup.Columns[0].HeaderText = "";
+                    grdSubGroupAdd.Columns["Selected Product Group"].ReadOnly = true;
+                    grdSubGroupAdd.Columns["Selected Product Subgroup"].ReadOnly = true;
+                    grdSubGroupAdd.Columns["Group Id"].ReadOnly = true;
+                    grdSubGroupAdd.Columns["Sub Group Id"].ReadOnly = true;
 
                 }
                 else
@@ -239,17 +227,7 @@ namespace ROMS
             try
             {
                 string varRemoveSubGroup = "";
-                //if (grdSubGroupAdd.Rows.Count > 0)
-                //{
-                //    for (int i = 0; i < grdSubGroupAdd.Rows.Count; i++)
-                //    {
-                //        if (Convert.ToBoolean(grdSubGroupAdd.Rows[i].Cells["chkSelectedSubGroup"].EditedFormattedValue) == true)
-                //        {
-                //            grdSubGroupAdd.Rows.RemoveAt(i);
-
-                //        }
-                //    }
-                //}
+               
                 if (chkSubGroupAdd.Checked == true) { dtSubGroupAdd.Rows.Clear(); dtSubGroupAdd.AcceptChanges(); chkSubGroupAdd.Checked = false; }
                 else
                 {
@@ -323,6 +301,10 @@ namespace ROMS
                 grdSubGroup.Columns["Product Subgroup"].Width = 200;
                 grdSubGroup.Columns["Group Id"].Visible = false;
                 grdSubGroup.Columns["Sub Group Id"].Visible = false;
+                grdSubGroup.Columns["Product Group"].ReadOnly = true;
+                grdSubGroup.Columns["Product Subgroup"].ReadOnly = true;
+                grdSubGroup.Columns["Group Id"].ReadOnly = true;
+                grdSubGroup.Columns["Sub Group Id"].ReadOnly = true;
                 //udfnRefreshSubGroup();
 
             }

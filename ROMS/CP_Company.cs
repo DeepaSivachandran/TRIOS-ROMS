@@ -3305,10 +3305,8 @@ namespace ROMS
         {
             try
             {
-               
                     udfnGrdevent();
                     txtPincode.Focus();
-                
             }
             catch (Exception ex)
             {

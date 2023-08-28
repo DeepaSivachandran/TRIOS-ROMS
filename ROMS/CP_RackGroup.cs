@@ -20,11 +20,17 @@ namespace ROMS
         private ToolTip tpStockLocation = new ToolTip();
         private ToolTip tpStaffName = new ToolTip();
       
-        public string vargroupcode;
-        public String pbFormStatus;
+        public string vargroupcode="";
+        public String pbFormStatus="";
+        public String varDesignation="";
+        public String varUserID = "";
+        public String varRackID = "";
+        public String varUserId = "";
+        public int varStatusid = 1;
 
         public int varStockLocationId = 0;
         public DataTable dtRack = new DataTable();
+        public DataTable dtSelectedRack = new DataTable();
 
         public CP_RackGroup()
         {
@@ -46,26 +52,37 @@ namespace ROMS
         }
         private void CP_RackGroup_Load(object sender, EventArgs e)
         {
-
             try
             {
-                udfnCmbConcern();
-                udfncmbShopLocation();
                 dtRack = new DataTable();
+                dtSelectedRack = new DataTable();
+
                 dtRack.Columns.Add("", typeof(Boolean));
+                dtRack.Columns.Add("S.No.", typeof(string));
+                dtRack.Columns.Add("Concern", typeof(string));
+                dtRack.Columns.Add("Stock Location", typeof(string));
+                dtRack.Columns.Add("Rack Group", typeof(string));
                 dtRack.Columns.Add("Rack", typeof(string));
                 dtRack.Columns.Add("Short Name", typeof(string));
                 dtRack.Columns.Add("Description", typeof(string));
-                dtRack.Columns.Add("Description", typeof(string));
+                dtRack.Columns.Add("Total Products", typeof(int));
+                dtRack.Columns.Add("Status", typeof(string));
                 dtRack.Columns.Add("ID", typeof(int));
-                dtRack.Columns.Add("StockLocationID", typeof(int));
+                dtRack.Columns.Add("Concern ID", typeof(int));
+                dtRack.Columns.Add("StockLocation ID", typeof(int));
+                dtRack.Columns.Add("Status ID", typeof(int));
 
-                grdRack.Rows.Add(false, 1, "RACK 01");
-                grdRack.Rows.Add(false, 2, "RACK 02");
+                dtSelectedRack.Columns.Add("S.No.", typeof(string));
+                dtSelectedRack.Columns.Add("Rack", typeof(string));
+                dtSelectedRack.Columns.Add("Description", typeof(string));
+                dtSelectedRack.Columns.Add("Total Products", typeof(int));
+                dtSelectedRack.Columns.Add("ID", typeof(int));
+                dtSelectedRack.Columns.Add("Remove", typeof(Boolean));
 
-                grdSelectedRackList.Rows.Add(1, "RACK 01");
-                grdSelectedRackList.Rows.Add(2, "RACK 02");
-
+                udfnList();
+                udfnCmbConcern();
+                udfncmbShopLocation();
+               
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 if (btnSave.Text == "Save")
                 {
@@ -115,53 +132,44 @@ namespace ROMS
         {
             try
             {
-                SPDataService objspservice = new SPDataService();
+                dtRack.Rows.Clear();
+                Application.DoEvents();
+                grdRack.DataSource = null;
                 DataSet objDs = new DataSet();
-                objDs = objspservice.udfnRackList(0, 0, varStockLocationId);
-                if (objDs != null)
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnRackList(0, 0, varStockLocationId);
+                objdserv.CloseConnection();
+
+                if (objDs.Tables[0].Rows.Count != 0)
                 {
-
-                    if (objDs.Tables[0].Rows.Count != 0)
+                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
-
-                        grdRack.DataSource = objDs.Tables[0];
-
-                        grdRack.Columns["ID"].Visible = false;
-                        grdRack.Columns["ConcernID"].Visible = false;
-                        grdRack.Columns["StockLocationID"].Visible = false;
-                        grdRack.Columns["StatusID"].Visible = false;
-                        grdRack.Columns["S.No."].Width = 50;
-                        grdRack.Columns["Concern"].Width = 100;
-                        grdRack.Columns["Stock Location"].Width = 200;
-                        grdRack.Columns["Rack Group"].Width = 150;
-                        grdRack.Columns["Rack Name"].Width = 200;
-                        grdRack.Columns["Short Name"].Width = 100;
-                        grdRack.Columns["Description"].Width = 200;
-                        grdRack.Columns["Total Products"].Width = 100;
-                        grdRack.Columns["Status"].Width = 80;
-                        grdRack.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        grdRack.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        grdRack.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        dtRack.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Concern"], objDs.Tables[0].Rows[i]["Stock Location"],
+                           objDs.Tables[0].Rows[i]["Rack Group"],objDs.Tables[0].Rows[i]["Rack Name"], objDs.Tables[0].Rows[i]["Short Name"], objDs.Tables[0].Rows[i]["Description"], 
+                           objDs.Tables[0].Rows[i]["Total Products"], objDs.Tables[0].Rows[i]["Status"], objDs.Tables[0].Rows[i]["ID"], objDs.Tables[0].Rows[i]["ConcernID"],
+                           objDs.Tables[0].Rows[i]["StockLocationID"], objDs.Tables[0].Rows[i]["StatusID"]);
                     }
-
-                    objspservice.CloseConnection();
-
-                    //if (objDs.Tables[0].Rows.Count != 0)
-                    //{
-                    //    //  dtGroup = objDs.Tables[0];
-                    //    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                    //    {
-                    //        dtRack.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name in English"], objDs.Tables[0].Rows[i]["ID"]);
-                    //    }
-
-                        
-                    //    grdGroup.DataSource = dtGroup;
-                    //    grdGroup.Columns[0].HeaderText = "";
-                    //    grdGroup.Columns[0].Width = 80;
-                    //    grdGroup.Columns["Product Group Name in English"].Width = 200;
-                    //    grdGroup.Columns["ID"].Visible = false;
-                    //}
                 }
+
+                grdRack.DataSource = dtRack;
+                grdRack.Columns[0].HeaderText = "";
+                grdRack.Columns[0].Width = 50;
+                grdRack.Columns["S.No."].Width = 50;
+                grdRack.Columns["Rack"].Width = 100;
+                grdRack.Columns["Description"].Width = 100;
+                grdRack.Columns["Total Products"].Width = 100;
+                grdRack.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                grdRack.Columns["Concern"].Visible = false;
+                grdRack.Columns["Stock Location"].Visible = false;
+                grdRack.Columns["Rack Group"].Visible = false;
+                grdRack.Columns["Short Name"].Visible = false;
+                grdRack.Columns["Status"].Visible = false;
+                grdRack.Columns["ID"].Visible = false;
+                grdRack.Columns["Concern ID"].Visible = false;
+                grdRack.Columns["StockLocation ID"].Visible = false;
+                grdRack.Columns["Status ID"].Visible = false;
+
             }
             catch (Exception ex)
             {
@@ -217,6 +225,69 @@ namespace ROMS
         {
             try
             {
+                string varResult = "";
+                if (rbActive.Checked)
+                {
+                    varStatusid = 1;
+                }
+                else
+                {
+                    varStatusid = 2;
+                }
+                varRackID = "";  varUserID = "";
+                for (int i = 0; i < grdSelectedRack.RowCount; i++)
+                {
+                    if (varRackID == "")
+                    {
+                        varRackID = Convert.ToString(grdSelectedRack.Rows[i].Cells["ID"].Value);
+                    }
+                    else
+                    {
+                        varRackID = varRackID + "," + Convert.ToString(grdSelectedRack.Rows[i].Cells["ID"].Value);
+                    }
+                }
+                for (int i = 0; i < grdStaffDetails.RowCount; i++)
+                {
+                    if (varUserID == "")
+                    {
+                        varUserID = Convert.ToString(grdStaffDetails.Rows[i].Cells["clmUserId"].Value);
+                    }
+                    else
+                    {
+                        varUserID = varUserID + "," + Convert.ToString(grdStaffDetails.Rows[i].Cells["clmUserId"].Value);
+                    }
+                }
+                SPDataService objDser = new SPDataService();
+                if (btnSave.Text == "Save")
+                {
+                    varResult = objDser.udfnRackGroup(0, 0, Convert.ToInt16(cmbConcern.SelectedValue), txtRackGroupName.Text, varRackID, varUserID, varStatusid, "Rack Group Creation");
+                }
+                else
+                {
+                    
+                }
+                objDser.CloseConnection();
+                if (varResult.Split('~')[0] == "3")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (btnSave.Text == "Save")
+                    {
+                            //udfnclose();
+                         
+                         // udfnClear();
+                        
+                    }
+                    else
+                    {
+                        //varCloseFlag = 1;
+                        udfnclose();
+                    }
+                    //MainForm.objCP_BrandList.udfnList();
+                }
+                else
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
 
             }
             catch (Exception ex)
@@ -256,9 +327,9 @@ namespace ROMS
                 //{
                 //    DialogResult dialogResult = MessageBox.Show("Please enter atleast one staff name", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 //}
-                if (blnErrorFlag == false && grdStaffDetails.Rows.Count <= 0 && grdSelectedRackList.Rows.Count <= 0)
+                if (blnErrorFlag == false && grdStaffDetails.Rows.Count <= 0 && grdSelectedRack.Rows.Count <= 0)
                 {
-                    if (grdSelectedRackList.Rows.Count <= 0)
+                    if (grdSelectedRack.Rows.Count <= 0)
                     {
                         DialogResult dialogResult = MessageBox.Show("Please select atleast one rack", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
@@ -266,8 +337,9 @@ namespace ROMS
                     {
                         DialogResult dialogResult = MessageBox.Show("Please enter atleast one staff name", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-                    udfnSave(sender, e);
+                    
                 }
+                udfnSave(sender, e);
             }
             catch (Exception ex)
             {
@@ -418,7 +490,7 @@ namespace ROMS
                 }
                 else
                 {
-                    grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count+1, txtStaffName.Text);
+                    grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count+1, txtStaffName.Text, varDesignation,varUserId);
                     txtStaffName.Text = "";
                     txtStaffName.Focus();
                 }
@@ -683,7 +755,7 @@ namespace ROMS
         {
             try
             {
-                btnView.BackColor = Color.LemonChiffon;
+                btnAdd.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -957,10 +1029,208 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void Cbracklist_CheckedChanged(object sender, EventArgs e)
+        public void udfnSelectedRack()
         {
+            try
+            {
+                string varRemoveRack = "", varAddRack = "";
 
+                if (grdRack.Rows.Count > 0)
+                {
+                    for (int i = 0; i < grdRack.Rows.Count; i++)
+                    {
+                        if (Convert.ToBoolean(grdRack.Rows[i].Cells[0].Value) == true)
+                        {
+                            int varFlag = 0,varcount = 1; ;
+                            for (int j = 0; j < dtSelectedRack.Rows.Count; j++)
+                            {
+                                varAddRack = Convert.ToString(grdRack.Rows[i].Cells["ID"].Value);
+                                if (varAddRack == Convert.ToString(dtSelectedRack.Rows[j]["ID"]))
+                                { varFlag = 1; }
+                                varcount++;
+                            }
+                            if (varFlag == 0)
+                            {
+                                dtSelectedRack.Rows.Add(varcount, grdRack.Rows[i].Cells["Rack"].Value, grdRack.Rows[i].Cells["Description"].Value, 
+                                    grdRack.Rows[i].Cells["Total Products"].Value, grdRack.Rows[i].Cells["ID"].Value,false);
+                            }
+                        }
+                        else
+                        {
+                            varRemoveRack = Convert.ToString(grdRack.Rows[i].Cells["ID"].Value);
+                            for (int j = 0; j < dtSelectedRack.Rows.Count; j++)
+                            {
+                                if (varRemoveRack == Convert.ToString(dtSelectedRack.Rows[j]["ID"]))
+                                {
+                                    dtSelectedRack.Rows[j].Delete();
+                                    dtSelectedRack.AcceptChanges();
+                                }
+                            }
+                        }
+                    }
+
+                    grdSelectedRack.DataSource = dtSelectedRack;
+                    grdSelectedRack.Columns["S.No."].Width = 50;
+                    grdSelectedRack.Columns["Rack"].Width = 100;
+                    grdSelectedRack.Columns["Description"].Width = 100;
+                    grdSelectedRack.Columns["Total Products"].Width = 100;
+                    grdSelectedRack.Columns["Remove"].Width = 50;
+                    grdSelectedRack.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdSelectedRack.Columns["ID"].Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("Please select atleast one row.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void Add_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnSelectedRack();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRack_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdRack.Rows.Count; i++)
+                {
+                    grdRack.Rows[i].Cells[0].Value = chkRack.Checked;
+
+                }
+                if (chkRack.Checked == false)
+                {
+                    foreach (DataGridViewRow row in grdRack.Rows)
+                    {
+                        row.Cells[0].Value = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSelectedRack_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                grdSelectedRack.Rows.RemoveAt(this.grdSelectedRack.SelectedRows[0].Index);
+                for (int i = 0; i < grdSelectedRack.RowCount; i++)
+                {
+                    grdSelectedRack.Rows[i].Cells["S.No."].Value = i + 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnlvStaffname()
+        {
+            try
+            {
+                if (txtStaffName.Text != "")
+                {
+                    txtStaffName.Text = lvStaffName.SelectedItems[0].Text;
+                    lvStaffName.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtStaffName_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvStaffName.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtStaffName.Text.Length > 2)
+                {
+                    objDs = objspdservice.udfnUserList(1, txtStaffName.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["U_Name"].ToString(), objDs.Tables[0].Rows[i]["U_CTID"].ToString(),objDs.Tables[0].Rows[i]["Designation"].ToString(), objDs.Tables[0].Rows[i]["UID"].ToString() };
+                                    varDesignation = objDs.Tables[0].Rows[i]["Designation"].ToString();
+                                    varUserId = objDs.Tables[0].Rows[i]["UID"].ToString();
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvStaffName.Items.Add(objList);
+                                }
+                                lvStaffName.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvStaffName.Visible = false;
+                    lvStaffName.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvStaffName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnlvStaffname();
+                    btnAdd.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvStaffName_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                udfnlvStaffname();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
      
