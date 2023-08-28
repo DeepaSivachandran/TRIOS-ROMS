@@ -51,8 +51,7 @@ namespace ROMS
         {
             try
             { 
-                    this.Close(); 
-                 
+                this.Close(); 
             }
             catch (Exception ex)
             {
@@ -290,7 +289,8 @@ namespace ROMS
         {
             try
             {
-                string varResult = "";
+                string varResult = ""; string varOriginator = "Product Group Creation";
+                int varViewType=0; 
                 if (rbActive.Checked)
                 {
                     varStatusid = 1;
@@ -300,14 +300,16 @@ namespace ROMS
                     varStatusid = 2;
                 }
                 SPDataService objDser = new SPDataService();
-                if (btnSave.Text == "Save")
+                if (btnSave.Text == "Update")
                 {
-                    varResult = objDser.udfnGroup(0, 0, Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Product Group Creation");
+                    varViewType=1;
+                    varOriginator = "Product Group Updation";
                 }
-                else
-                {
-                    varResult = objDser.udfnGroup(1, varId, Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Product Group Updation");
-                }
+                varResult = objDser.udfnGroup(varViewType,varId, Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid,varOriginator );
+                // else
+                // {
+                //     varResult = objDser.udfnGroup(1, varId, Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Product Group Updation");
+                // }
                 objDser.CloseConnection();
                 if (varResult.Split('~')[0] == "3")
                 {
@@ -321,7 +323,7 @@ namespace ROMS
                             MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
                             MainForm.objCP_GroupList.cmbProductGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
                         }
-                            if (MainForm.objCP_SubGroup.varFormFlag == 1)
+                        if (MainForm.objCP_SubGroup.varFormFlag == 1)
                         {
                             MainForm.objCP_SubGroup.varFormFlag = 0;
                             MainForm.objCP_SubGroup.varGroupCode = varGroupCode;
@@ -335,16 +337,15 @@ namespace ROMS
                             varCloseFlag = 1;
                             udfnclose();
                         }
-
                         udfnClear();
                     }
                     else
                     {
                         varCloseFlag = 1;
                         udfnclose();
-                        MainForm.objCP_GroupList.udfnList();
                         MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
                     }
+                    MainForm.objCP_GroupList.udfnList();
                 }
                 else if (varResult.Split('~')[0] == "4")
                 {
@@ -362,6 +363,7 @@ namespace ROMS
         {
             try
             {
+                btnSave.Enabled=false;
                 bool blnErrorFlag = false;
                 if (txtEGroupNameEnglish.Text.Trim() == "")
                 {
@@ -389,6 +391,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnSave.Enabled=true;
             }
         }
 

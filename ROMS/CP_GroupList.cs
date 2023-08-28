@@ -67,7 +67,7 @@ namespace ROMS
         {
             try
             {
-                //picLoader.Visible = true;
+                picLoader.Visible = true;
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdGroupList.DataSource = null;
@@ -129,6 +129,7 @@ namespace ROMS
                 grdGroupList.ClearSelection();
                 lblNoOfPrGroup.Text = Convert.ToString(grdGroupList.Rows.Count);
                 varGroupCode = Convert.ToInt32(cmbProductGroup.SelectedValue);
+                picLoader.Visible = false;
             }
         }
 
@@ -457,12 +458,17 @@ namespace ROMS
         {
             try
             {
+                btnView.Enabled=true;
                 udfnList();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnView.Enabled=false;
             }
         }
 
@@ -483,6 +489,7 @@ namespace ROMS
         {
             try
             {
+                btnExport.Enabled=true;
                 if ((grdGroupList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -562,6 +569,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled=false;
             }
         }
     }

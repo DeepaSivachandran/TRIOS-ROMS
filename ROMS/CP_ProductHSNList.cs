@@ -325,8 +325,7 @@ namespace ROMS
             }
             finally
             {
-               
-                picLoader.Visible = false;
+                picLoader.Enabled=false;
             }
         }
         private void CP_ProductHSNList_Load(object sender, EventArgs e)
@@ -413,7 +412,6 @@ namespace ROMS
         {
             try
             {
-
                 for (int i = 0; i < grdHSNList.Rows.Count; i++)
                 {
                     if (Convert.ToString(grdHSNList.Rows[i].Cells["Status ID"].Value) == "1")

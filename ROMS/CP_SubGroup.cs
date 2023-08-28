@@ -194,7 +194,8 @@ namespace ROMS
         {
             try
             {
-                string varResult = "";
+                string varResult = ""; string varOriginator = "Product Sub Group Creation";
+                int varViewType=0; 
                 if (rbActive.Checked)
                 {
                     varStatusid = 1;
@@ -204,15 +205,16 @@ namespace ROMS
                     varStatusid = 2;
                 }
                 SPDataService objDser = new SPDataService();
-                if (btnSave.Text == "Save")
+                if (btnSave.Text == "Update")
                 {
-
-                    varResult = objDser.udfnSubGroup(0, 0, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Product Sub Group Creation");
+                    string varOriginator = "Product Sub Group Updation";
+                    int varViewType=1; 
                 }
-                else
-                {
-                    varResult = objDser.udfnSubGroup(1, varId, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Product Sub Group Updation");
-                }
+                // else
+                // {
+                //     varResult = objDser.udfnSubGroup(1, varId, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Product Sub Group Updation");
+                // }
+                varResult = objDser.udfnSubGroup(varOriginator, varId, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), varOriginator);
                 objDser.CloseConnection();
                 if (varResult.Split('~')[0] == "3")
                 {
@@ -229,7 +231,6 @@ namespace ROMS
                         }
                         else
                         {
-
                             MainForm.objCP_SubGroupList.udfnList();
                             MainForm.objCP_SubGroupList.udfnLoadCmbProductSubGroup();
                             udfnLoadCmbGroupName();
@@ -249,7 +250,6 @@ namespace ROMS
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                
             }
             catch (Exception ex)
             {

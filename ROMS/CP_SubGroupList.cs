@@ -97,7 +97,7 @@ namespace ROMS
         {
             try
             {
-                //picLoader.Visible = true;
+                picLoader.Visible = true;
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdSubGroupList.DataSource = null;
@@ -163,9 +163,9 @@ namespace ROMS
             }
             finally
             {
-               
                 lblNoOfPrSubGroup.Text = Convert.ToString(grdSubGroupList.Rows.Count);
                 varSubGroupCode = Convert.ToInt32(cmbProductSubGroup.SelectedValue);
+                picLoader.Visible=false;
             }
         }
 

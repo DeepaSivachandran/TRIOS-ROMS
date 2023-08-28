@@ -358,7 +358,9 @@ namespace ROMS
         {
             try
             {
-                string varResult = "";
+                string varResult = ""; string varOriginator = "HSN Creation";
+                int varViewType=0; 
+                 
                if (rbActive.Checked)
                {
                     varStatusid = 1;
@@ -368,14 +370,16 @@ namespace ROMS
                     varStatusid = 2;
                }
                SPDataService objDser = new SPDataService();
-               if (btnSave.Text == "Save")
+               if (btnSave.Text == "Update")
                {
-                    varResult = objDser.udfnHsn(0, 0, Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "HSN Creation");
+                    varViewType=1;
+                    varOriginator = "HSN Updation";
                }
-               else
-               {
-                    varResult = objDser.udfnHsn(1, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "HSN Updation");
-               }
+            //    else
+            //    {
+            //         varResult = objDser.udfnHsn(1, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "HSN Updation");
+            //    }
+                varResult = objDser.udfnHsn(varViewType, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, varOriginator);
                 objDser.CloseConnection();
                 if (varResult.Split('~')[0] == "3")
                 {
@@ -402,11 +406,13 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+           
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
             {
+                btnSave.Enabled=false;
                 bool blnErrorFlag = false;
                 if (Convert.ToString(cmbGST.SelectedValue) == "0" || Convert.ToString(cmbGST.SelectedValue) == "-1")
                 {
@@ -443,7 +449,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-          
+            finally
+            {
+                btnSave.Enabled=true;
+            }
         }
         private void CP_ProductHSN_KeyDown(object sender, KeyEventArgs e)
         {
