@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Excel = Microsoft.Office.Interop.Excel;
 namespace ROMS
 {
     public partial class CP_RackGroupList : Form
@@ -17,7 +17,7 @@ namespace ROMS
 
         public int varStockLocationId = 0;
         public int varCompanyId = 0;
-        
+        public int varId = 0;
         public CP_RackGroupList()
         {
             InitializeComponent();
@@ -62,7 +62,6 @@ namespace ROMS
             }
         }
 
-        
         public void udfndelete()
         {
             try
@@ -74,17 +73,17 @@ namespace ROMS
                     {
                         SPDataService objDser = new SPDataService();
 
-                        //string varResult = objDser.udfnBrand(2, Convert.ToInt16(grdBrandList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, "", "Brand Deletion");
-                        //objDser.CloseConnection();
-                        //if (varResult.Split('~')[0] == "3")
-                        //{
-                        //    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //    udfnList();
-                        //}
-                        //else if (varResult.Split('~')[0] == "4")
-                        //{
-                        //    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        //}
+                        string varResult = objDser.udfnRackGroup(2, Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "","", 0, "Rack Group Deletion");
+                        objDser.CloseConnection();
+                        if (varResult.Split('~')[0] == "3")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            udfnList();
+                        }
+                        else if (varResult.Split('~')[0] == "4")
+                        {
+                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                 }
 
@@ -103,6 +102,9 @@ namespace ROMS
             {
                 MainForm.objCP_RackGroup = new CP_RackGroup();
                 MainForm.objCP_RackGroup.btnSave.Text = "Update";
+                MainForm.objCP_RackGroup.varId = Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value);
+                MainForm.objCP_RackGroup.varStatusid = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["Status ID"].Value);
+                MainForm.objCP_RackGroup.varStockId = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
                 MainForm.objCP_RackGroup.ShowDialog();
                
             }
@@ -125,7 +127,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnRackGroupList(0,varCompanyId,varStockLocationId);
+                objDs = objdserv.udfnRackGroupList(0,varCompanyId,varStockLocationId,varId);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -137,21 +139,24 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdRackGroupList.DataSource = objDs.Tables[0];
-                            //grdRackGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            //grdRackGroupList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            //grdRackGroupList.Columns["Total Groups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            //grdRackGroupList.Columns["Total Subgroups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdRackGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdRackGroupList.Columns["TotalProducts"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                         
+                            grdRackGroupList.Columns["S.No."].Width = 50;
+                            grdRackGroupList.Columns["Concern"].Width = 150;
+                            grdRackGroupList.Columns["Rack Group"].Width = 150;
+                            grdRackGroupList.Columns["Stock Location"].Width = 150;
+                            grdRackGroupList.Columns["Rack"].Width = 150;
+                            grdRackGroupList.Columns["Short Name"].Width = 150;
+                            grdRackGroupList.Columns["Description"].Width = 150;
+                            grdRackGroupList.Columns["Staff Name"].Width = 150;
+                            grdRackGroupList.Columns["TotalProducts"].Width = 150;
+                            grdRackGroupList.Columns["Status"].Width = 80;
 
-                            //grdRackGroupList.Columns["S.No."].Width = 50;
-                            //grdRackGroupList.Columns["Brand Name in English"].Width = 250;
-                            //grdRackGroupList.Columns["Brand Name in Tamil"].Width = 250;
-                            //grdRackGroupList.Columns["Total Products"].Width = 100;
-                            //grdRackGroupList.Columns["Total Groups"].Width = 100;
-                            //grdRackGroupList.Columns["Total Subgroups"].Width = 150;
-                            //grdRackGroupList.Columns["Status"].Width = 80;
-
-                            //grdRackGroupList.Columns["ID"].Visible = false;
-                            //grdRackGroupList.Columns["Status ID"].Visible = false;
+                            grdRackGroupList.Columns["ID"].Visible = false;
+                            grdRackGroupList.Columns["Status ID"].Visible = false;
+                            grdRackGroupList.Columns["SL_ShortName"].Visible = false;
+                            grdRackGroupList.Columns["StockLocation ID"].Visible = false;
                         }
                         else
                         {
@@ -164,7 +169,6 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-                    //udfnSearchGridHead();
                 }
                 else
                 {
@@ -226,12 +230,19 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfncmbShopLocation()
+        public void udfncmbStockLocation()
         {
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID NOT IN(-1)", "SLID,SL_EName", cmbStockLocation, "", "SL_EName", "SLID");
+                if (varCompanyId == 0)
+                {
+                    objDataBind.BindComboBoxListSelected("MR_StockLocation", " SLID not in (-1) ORDER BY SLID,SL_EName ", "SLID,SL_EName", cmbStockLocation, "", "SL_EName", "SLID");
+                }
+                else
+                {
+                    objDataBind.BindComboBoxListSelected("MR_StockLocation", "  SL_COMID=" + varCompanyId + " or SLID=0 ORDER BY SLID,SL_EName ", "SLID,SL_EName", cmbStockLocation, "", "SL_EName", "SLID");
+                }
                 objDataBind = null;
             }
             catch (Exception ex)
@@ -245,8 +256,9 @@ namespace ROMS
             try
             {
                 udfnCmbConcern();
-                udfncmbShopLocation();
+                udfncmbStockLocation();
                 udfnList();
+                this.ActiveControl = cmbConcern;
             }
             catch (Exception ex)
             {
@@ -313,6 +325,7 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 varCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                udfncmbStockLocation();
             }
             catch (Exception ex)
             {
@@ -553,6 +566,239 @@ namespace ROMS
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if ((grdRackGroupList.Rows.Count > 0))
+                {
+                    Excel._Application ExcelObj = new Excel.Application();
+                    // creating new WorkBook within Excel application  
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    // creating new Excelsheet in workbook  
+                    Excel._Worksheet ExcelSheet = null;
+                    // see the excel sheet behind the program  
+                    ExcelObj.Visible = true;
+                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
+                    ExcelSheet = ExcelBook.ActiveSheet;
+                    // changing the name of active sheet  
+                    ExcelSheet.Name = "Rack Group List";
+                    int cIndex = 0;
+                    int count = 0;
+                    foreach (DataGridViewColumn col in grdRackGroupList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            count += 1;
+                        }
+                    }
+                    //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
+                    //er.EntireColumn.ColumnWidth = 35;
 
+                    ExcelSheet.Cells[1, 1].Value = "Rack Group List";
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
+
+
+                    foreach (DataGridViewColumn col in grdRackGroupList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            cIndex += 1;
+                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+
+                            if (col.Name == "S.No." || col.Name == "Status" || col.Name == "TotalProducts")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                            else if (col.Name == "TotalProducts" || col.Name == "Total Subgroups" || col.Name == "Total Products")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            }
+                            else
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            }
+
+                            if (col.Name == "S.No.")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                            }
+                            else if (col.Name == "TotalProducts" )
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            }
+
+                            foreach (DataGridViewRow rowa in grdRackGroupList.Rows)
+                            {
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                            }
+                        }
+                    }
+                    //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
+                    ExcelObj.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnExport_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnExport_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnView_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRackGroupList_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRackGroupList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnEdit();
+                }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    udfndelete();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRackGroupList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+
+                for (int i = 0; i < grdRackGroupList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdRackGroupList.Rows[i].Cells["Status ID"].Value) == "1")
+                    {
+                        grdRackGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdRackGroupList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToString(grdRackGroupList.Rows[i].Cells["Status ID"].Value) == "2")
+                    {
+                        grdRackGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdRackGroupList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdRackGroupList.ClearSelection();
+            }
+        }
     }
 }
