@@ -14,7 +14,6 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpGstinNo = new ToolTip();
         private ToolTip tpBrokerName = new ToolTip();
@@ -28,8 +27,8 @@ namespace ROMS
         private ToolTip tpBranchName = new ToolTip();
         private ToolTip tpAccountNo = new ToolTip();
         private ToolTip tpIfsCode = new ToolTip();
-
         public int varCityCode;
+        public string varCityName="";
         public int varstatus;
         public string vargroupcode;
         public string varBrokerCode = "0";
@@ -39,18 +38,6 @@ namespace ROMS
         public CP_Broker()
         {
             InitializeComponent();
-        }
-        private void CP_SubGroup_Load(object sender, EventArgs e)
-        {
-            try
-            {      
-                //udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
         }
         private void udfnEdit()
         {
@@ -74,14 +61,12 @@ namespace ROMS
                             txtAddressLine2.Text = objDS.Tables[0].Rows[0]["Address2"].ToString().Replace("''", "'");
                             txtCity.Text = objDS.Tables[0].Rows[0]["City"].ToString().Replace("''", "'");
                             cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["Concern"].ToString();
-
+                            lblcityid.Text = objDS.Tables[0].Rows[0]["CityID"].ToString();
                             txtPincode.Text = objDS.Tables[0].Rows[0]["Pincode"].ToString();
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInactive.Checked = true; }
-
                             btnSave.Text = "Update";
                             pnlStatus.Enabled = true;
                         }
-                        
                         if (objDS.Tables[1].Rows.Count > 0)
                         {
                             for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
@@ -95,8 +80,6 @@ namespace ROMS
                     }
                     //lvCity.Visible = false;
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -184,7 +167,6 @@ namespace ROMS
                         tpBrokerName.Show("Please enter broker name", txtBrokerName, 5000);
 
                     }
-
                     if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                     {
                         epBroker.SetError(cmbConcern, "Please select concern");
@@ -192,16 +174,7 @@ namespace ROMS
                         tpConcern.ShowAlways = true;
                         tpConcern.Show("Please select concern", cmbConcern, 5000);
                     }
-
-                    //if (Convert.ToString(txtBankname.Text).Trim() == "")
-                    //{
-                    //    epBroker.SetError(txtBankname, "Please enter short name");
-                    //    txtBankname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //    tpBankName.ShowAlways = true;
-                    //    tpBankName.Show("Please enter short name", txtBankname, 5000);
-                    //}
                 }
-
                 //objspservice.CloseConnection();
             }
             catch (Exception ex)
@@ -210,10 +183,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public DataTable udfnBankSave()
         {
-
             DataTable objBankTable = new DataTable();
             try
             {
@@ -239,7 +210,6 @@ namespace ROMS
                     Convert.ToString(grdBankDetails.Rows[i].Cells["clmbranch"].Value), Convert.ToString(grdBankDetails.Rows[i].Cells["clmaccno"].Value),
                     Convert.ToString(grdBankDetails.Rows[i].Cells["clmifscode"].Value), varStatus);
                 }
-
             }
             catch (Exception ex)
             {
@@ -248,7 +218,6 @@ namespace ROMS
             }
             return objBankTable;
         }
-
         public void udfnTextBoxColor()
         {
             try
@@ -275,7 +244,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnClear()
         {
             try
@@ -297,7 +265,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -310,25 +277,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void btnSave_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -341,7 +294,6 @@ namespace ROMS
             try
             {
                     this.Close();
-                
             }
             catch (Exception ex)
             {
@@ -354,7 +306,6 @@ namespace ROMS
             try
             {
                 udfnclose();
-               // MainForm.objCP_SubGroupList.udfnList();
             }
             catch (Exception ex)
             {
@@ -362,7 +313,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Enter(object sender, EventArgs e)
         {
             try
@@ -375,25 +325,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void btnClose_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void btnClose_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -401,9 +337,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-
         private void RbActive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -419,7 +352,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -435,16 +367,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void CP_Broker_Load(object sender, EventArgs e)
         {
-
             try
             {
                 DataBind objDataBind = new DataBind();
-                //objDataBind.BindComboBoxListSelected("MR_City", " CTY_STSID=1 and CTYID<>0 order by CTYID", "CTY_Name,CTYID", cmbCity, "", "CTY_Name", "CTYID");
-                //select ctyid, CTY_Name from MR_City inner join DEF_State on STID = CTY_STID and STID = 27
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID <>0 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
                 DataService objdservice = new DataService();
@@ -470,7 +397,6 @@ namespace ROMS
                 lvCity.Visible = false;
             }
         }
-
         private void CP_Broker_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -491,10 +417,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_Broker_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             try
             {
                 if (varUpdate == 0)
@@ -551,7 +475,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -567,7 +490,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -581,7 +503,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -594,7 +515,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnNew_Click(object sender, EventArgs e)
         {
             try
@@ -602,20 +522,18 @@ namespace ROMS
                 MainForm.objCP_City = new CP_City();
                 MainForm.objCP_City.varmastertype = 1;
                 MainForm.objCP_City.ShowDialog();
-                DataBind objDataBind = new DataBind();
                 udfnListView();
-                //objDataBind.BindComboBoxListSelected("MR_City", " CTY_STSID=1 and CTYID !=0 Order by CTYID", "CTY_Name,CTYID", cmbCity, "", "CTY_Name", "CTYID");
                 //txtCity.Text = Convert.ToString( varCityCode);
-                objDataBind = null;
+                txtCity.Text = varCityName;
+                lblcityid.Text = Convert.ToString(varCityCode);
+                lvCity.Focus();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
         }
-
         private void TxtGstinNo_Enter(object sender, EventArgs e)
         {
             try
@@ -628,18 +546,24 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtGstinNo_Leave(object sender, EventArgs e)
         {
+
             try
             {
                 if (Convert.ToString(txtGstinNo.Text).Trim() == "")
                 {
-                    epBroker.SetError(txtGstinNo, "Please enter GSTIN No");
+                    epBroker.SetError(txtGstinNo, "Please enter GSTINNo");
                     txtGstinNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpGstinNo.ShowAlways = true;
-                    tpGstinNo.Show("Please enter GSTIN No", txtGstinNo, 5000);
-
+                    tpGstinNo.Show("Please enter GSTTINNo", txtGstinNo, 5000);
+                }
+                else if (txtGstinNo.Text.Length != 15)
+                {
+                    epBroker.SetError(txtGstinNo, "Please enter valid GSTINNo");
+                    txtGstinNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpGstinNo.ShowAlways = true;
+                    tpGstinNo.Show("Please enter valid GSTINNo", txtGstinNo, 5000);
                 }
                 else
                 {
@@ -653,7 +577,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtGstinNo_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -669,7 +592,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtBrokerName_Enter(object sender, EventArgs e)
         {
             try
@@ -682,7 +604,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtBrokerName_Leave(object sender, EventArgs e)
         {
             try
@@ -706,7 +627,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtBrokerName_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -722,7 +642,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtMobileNo_Enter(object sender, EventArgs e)
         {
             try
@@ -735,7 +654,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtMobileNo_Leave(object sender, EventArgs e)
         {
             try
@@ -746,6 +664,13 @@ namespace ROMS
                     txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpMobileNo.ShowAlways = true;
                     tpMobileNo.Show("Please enter mobile number", txtMobileNo, 5000);
+                }
+                else if (txtMobileNo.Text.Length != 10)
+                {
+                    epBroker.SetError(txtMobileNo, "Please enter valid mobile number");
+                    txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpMobileNo.ShowAlways = true;
+                    tpMobileNo.Show("Please enter valid mobile number", txtMobileNo, 5000);
                 }
                 else
                 {
@@ -759,7 +684,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtMobileNo_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -775,7 +699,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtWhatsAppNo_Enter(object sender, EventArgs e)
         {
             try
@@ -788,7 +711,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtWhatsAppNo_Leave(object sender, EventArgs e)
         {
             try
@@ -799,6 +721,13 @@ namespace ROMS
                     txtWhatsAppNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpWhatsAppNo.ShowAlways = true;
                     tpWhatsAppNo.Show("Please enter whatsapp number", txtWhatsAppNo, 5000);
+                }
+                else if (txtWhatsAppNo.Text.Length != 10)
+                {
+                    epBroker.SetError(txtWhatsAppNo, "Please enter valid whatsapp number");
+                    txtWhatsAppNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpWhatsAppNo.ShowAlways = true;
+                    tpWhatsAppNo.Show("Please enter valid whatsapp number", txtWhatsAppNo, 5000);
                 }
                 else
                 {
@@ -812,7 +741,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtWhatsAppNo_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -828,7 +756,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAddressLine1_Enter(object sender, EventArgs e)
         {
 
@@ -842,7 +769,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAddressLine1_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -858,7 +784,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAddressLine1_Leave(object sender, EventArgs e)
         {
             try
@@ -882,7 +807,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAddressLine2_Enter(object sender, EventArgs e)
         {
             try
@@ -895,7 +819,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAddressLine2_Leave(object sender, EventArgs e)
         {
             try
@@ -908,7 +831,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAddressLine2_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -936,7 +858,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtPincode_Leave(object sender, EventArgs e)
         {
             try
@@ -947,6 +868,13 @@ namespace ROMS
                     txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpPincode.ShowAlways = true;
                     tpPincode.Show("Please enter pincode", txtPincode, 5000);
+                }
+                else if (txtPincode.TextLength != 6)
+                {
+                    epBroker.SetError(txtPincode, "Please enter valid pincode");
+                    txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPincode.ShowAlways = true;
+                    tpPincode.Show("Please enter valid pincode", txtPincode, 5000);
                 }
                 else
                 {
@@ -960,7 +888,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtPincode_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -980,7 +907,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Enter(object sender, EventArgs e)
         {
             try
@@ -993,7 +919,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_Enter(object sender, EventArgs e)
         {
             try
@@ -1006,7 +931,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_Leave(object sender, EventArgs e)
         {
             try
@@ -1019,7 +943,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Leave(object sender, EventArgs e)
         {
             try
@@ -1032,7 +955,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtBankname_Enter(object sender, EventArgs e)
         {
             try
@@ -1045,7 +967,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtBankname_Leave(object sender, EventArgs e)
         {
             try
@@ -1069,7 +990,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtBankname_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1085,7 +1005,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtBankShortName_Enter(object sender, EventArgs e)
         {
             try
@@ -1098,7 +1017,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtBankShortName_Leave(object sender, EventArgs e)
         {
             try
@@ -1122,7 +1040,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtBankShortName_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1138,7 +1055,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Txtbranchname_Enter(object sender, EventArgs e)
         {
             try
@@ -1151,7 +1067,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Txtbranchname_Leave(object sender, EventArgs e)
         {
             try
@@ -1175,7 +1090,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Txtbranchname_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1191,7 +1105,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAccno_Enter(object sender, EventArgs e)
         {
             try
@@ -1204,7 +1117,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAccno_Leave(object sender, EventArgs e)
         {
             try
@@ -1215,6 +1127,13 @@ namespace ROMS
                     txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpAccountNo.ShowAlways = true;
                     tpAccountNo.Show("Please enter account number", txtAccno, 5000);
+                }
+                else if (txtAccno.Text.Length != 20)
+                {
+                    epBroker.SetError(txtAccno, "Please enter valid account number");
+                    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpAccountNo.ShowAlways = true;
+                    tpAccountNo.Show("Please enter valid account number", txtAccno, 5000);
                 }
                 else
                 {
@@ -1228,7 +1147,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtAccno_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1244,7 +1162,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtIFScode_Enter(object sender, EventArgs e)
         {
             try
@@ -1257,7 +1174,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtIFScode_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1272,25 +1188,30 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-           
         }
-
         private void TxtIFScode_Leave(object sender, EventArgs e)
         {
             try
             {
-                //if (Convert.ToString(txtIFScode.Text).Trim() == "")
-                //{
-                //    epBroker.SetError(txtIFScode, "Please enter IFS Code");
-                //    txtIFScode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpIfsCode.ShowAlways = true;
-                //    tpIfsCode.Show("Please enter IFS Code", txtIFScode, 5000);
-                //}
-                //else
-                //{
-                //    epBroker.Clear();
-                //    txtIFScode.BackColor = Color.White;
-                //}
+                if (Convert.ToString(txtIFScode.Text).Trim() == "")
+                {
+                    epBroker.SetError(txtIFScode, "Please enter IFS Code");
+                    txtIFScode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpIfsCode.ShowAlways = true;
+                    tpIfsCode.Show("Please enter IFS Code", txtIFScode, 5000);
+                }
+                else if (txtIFScode.Text.Length != 11)
+                {
+                    epBroker.SetError(txtIFScode, "Please enter valid IFS Code");
+                    txtIFScode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpIfsCode.ShowAlways = true;
+                    tpIfsCode.Show("Please enter valid IFS Code", txtIFScode, 5000);
+                }
+                else
+                {
+                    epBroker.Clear();
+                    txtIFScode.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -1298,7 +1219,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnAdd_Enter(object sender, EventArgs e)
         {
             try
@@ -1311,7 +1231,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnAdd_Leave(object sender, EventArgs e)
         {
             try
@@ -1338,14 +1257,6 @@ namespace ROMS
                     tpConcern.Show("Please select concern", cmbConcern, 5000);
                     blnErrorFlag = true;
                 }
-                //if (Convert.ToString(txtGstinNo.Text).Trim() == "")
-                //{
-                //    epBroker.SetError(txtGstinNo, "Please enter GSTIN No");
-                //    txtGstinNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpGstinNo.ShowAlways = true;
-                //    tpGstinNo.Show("Please enter GSTIN No", txtGstinNo, 5000);
-                //    blnErrorFlag = true;
-                //}
                 if (Convert.ToString(txtBrokerName.Text).Trim() == "")
                 {
                     epBroker.SetError(txtBrokerName, "Please enter broker name");
@@ -1354,47 +1265,6 @@ namespace ROMS
                     tpBrokerName.Show("Please enter broker name", txtBrokerName, 5000);
                     blnErrorFlag = true;
                 }
-                //if (Convert.ToString(txtMobileNo.Text).Trim() == "")
-                //{
-                //    epBroker.SetError(txtMobileNo, "Please enter mobile number");
-                //    txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpMobileNo.ShowAlways = true;
-                //    tpMobileNo.Show("Please enter mobile number", txtMobileNo, 5000);
-                //    blnErrorFlag = true;
-                //}
-                //if (Convert.ToString(txtWhatsAppNo.Text).Trim() == "")
-                //{
-                //    epBroker.SetError(txtWhatsAppNo, "Please enter whatsapp number");
-                //    txtWhatsAppNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpWhatsAppNo.ShowAlways = true;
-                //    tpWhatsAppNo.Show("Please enter whatsapp number", txtWhatsAppNo, 5000);
-                //    blnErrorFlag = true;
-                //}
-                //if (Convert.ToString(txtAddressLine1.Text).Trim() == "")
-                //{
-                //    epBroker.SetError(txtAddressLine1, "Please enter address line");
-                //    txtAddressLine1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpAddressLine1.ShowAlways = true;
-                //    tpAddressLine1.Show("Please enter address line", txtAddressLine1, 5000);
-                //    blnErrorFlag = true;
-                //}
-                //if (Convert.ToString(cmbCity.SelectedValue) == "" || Convert.ToString(cmbCity.SelectedValue) == "-1")
-                //{
-                //    epBroker.SetError(cmbCity, "Please select city");
-                //    cmbCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpCity.ShowAlways = true;
-                //    tpCity.Show("Please select city", cmbCity, 5000);
-                //    blnErrorFlag = true;
-                //}
-              
-                //if (Convert.ToString(txtPincode.Text).Trim() == "")
-                //{
-                //    epBroker.SetError(txtPincode, "Please enter pincode");
-                //    txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpPincode.ShowAlways = true;
-                //    tpPincode.Show("Please enter pincode", txtPincode, 5000);
-                //    blnErrorFlag = true;
-                //}
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
@@ -1407,7 +1277,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_Broker_Leave(object sender, EventArgs e)
         {
             try
@@ -1432,7 +1301,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -1471,7 +1339,14 @@ namespace ROMS
                     tpAccountNo.Show("Please enter account number", txtAccno, 5000);
                     blnErrorFlag = true;
                 }
-
+                else if (txtAccno.Text.Length != 20)
+                {
+                    epBroker.SetError(txtAccno, "Please enter valid account number");
+                    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpAccountNo.ShowAlways = true;
+                    tpAccountNo.Show("Please enter valid account number", txtAccno, 5000);
+                    blnErrorFlag = true;
+                }
                 if (Convert.ToString(txtIFScode.Text).Trim() == "")
                 {
                     epBroker.SetError(txtIFScode, "Please enter IFS Code");
@@ -1480,6 +1355,32 @@ namespace ROMS
                     tpIfsCode.Show("Please enter IFS Code", txtIFScode, 5000);
                     blnErrorFlag = true;
                 }
+                else if (txtIFScode.Text.Length != 11)
+                {
+                    epBroker.SetError(txtIFScode, "Please enter valid IFS Code");
+                    txtIFScode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpIfsCode.ShowAlways = true;
+                    tpIfsCode.Show("Please enter valid IFS Code", txtIFScode, 5000);
+                    blnErrorFlag = true;
+                }
+                /*
+                if (txtAccno.Text.Length != 20)
+                {
+                    epBroker.SetError(txtAccno, "Please enter valid account number");
+                    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpAccountNo.ShowAlways = true;
+                    tpAccountNo.Show("Please enter valid account number", txtAccno, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtIFScode.Text.Length != 11)
+                {
+                    epBroker.SetError(txtIFScode, "Please enter valid IFS Code");
+                    txtIFScode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpIfsCode.ShowAlways = true;
+                    tpIfsCode.Show("Please enter valid IFS Code", txtIFScode, 5000);
+                    blnErrorFlag = true;
+                }
+                */
                 if (blnErrorFlag == false)
                 {
                     foreach (DataGridViewRow row in grdBankDetails.Rows)
@@ -1514,16 +1415,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnBankclear()
         {
-
             txtBankname.Text = "";
             txtBankShortName.Text = "";
             txtbranchname.Text = "";
             txtAccno.Text = "";
             txtIFScode.Text = "";
-
         }
         private void GrdBankDetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1550,7 +1448,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdBankDetails_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -1580,7 +1477,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtCity_Enter(object sender, EventArgs e)
         {
             try
@@ -1593,12 +1489,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtCity_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     if (lvCity.Items.Count == 0 || txtCity.Text == "")
@@ -1619,7 +1513,6 @@ namespace ROMS
                 {
                     txtPincode.Focus();
                 }
-
             }
             catch (Exception ex)
             {
@@ -1627,12 +1520,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtCity_Leave(object sender, EventArgs e)
         {
             try
             {
-                //if (txtCity.Text.Trim() == "") { lblcityid.Text = "0"; }
                 if (Convert.ToString(txtCity.Text).Trim() == "")
                 {
                     epBroker.SetError(txtCity, "Please enter city");
@@ -1652,15 +1543,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvCity_DoubleClick(object sender, EventArgs e)
         {
             try
             {
-
                 udfnGrdevent();
                 txtPincode.Focus();
-
             }
             catch (Exception ex)
             {
@@ -1668,7 +1556,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvCity_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1685,18 +1572,16 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnGrdevent()
         {
             try
-
             {
                 if (txtCity.Text != "")
                 {
-                    lblcityid.Text = lvCity.SelectedItems[0].SubItems[1].Text;
-                    txtCity.Text = lvCity.SelectedItems[0].SubItems[0].Text;
+                    ListViewItem selectedItem = lvCity.SelectedItems[0];
+                    lblcityid.Text = selectedItem.SubItems[1].Text;
+                    txtCity.Text = selectedItem.SubItems[0].Text;
                 }
-
             }
             catch (Exception ex)
             {
@@ -1712,7 +1597,6 @@ namespace ROMS
         {
             try
             {
-
                 lvCity.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -1753,12 +1637,10 @@ namespace ROMS
 
             }
         }
-
         private void TxtCity_TextChanged(object sender, EventArgs e)
         {
             try
             {
-
                 lvCity.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -1775,7 +1657,6 @@ namespace ROMS
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(),objDs.Tables[0].Rows[i]["CTYID"].ToString() };
-                                    //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvCity.Items.Add(objList);
                                 }
@@ -1800,94 +1681,27 @@ namespace ROMS
 
             }
         }
-
-        private void TxtGstinNo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objValidation.FormatNumericOnly(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
-
         private void TxtAccno_KeyPress(object sender, KeyPressEventArgs e)
         {
-            try
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
-                bool varResult = objValidation.FormatNumericOnly(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
+                e.Handled = true; // This will prevent the character from being entered in the TextBox
             }
         }
-
         private void TxtIFScode_KeyPress(object sender, KeyPressEventArgs e)
         {
-            try
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
-                bool varResult = objValidation.FormatNumericOnly(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
+                e.Handled = true; // This will prevent the character from being entered in the TextBox
             }
         }
-
         private void TxtPincode_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
-                bool varResult = objValidation.FormatNumericOnly(e);
-                if (varResult == true)
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 {
                     e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
                 }
             }
             catch (Exception ex)
@@ -1895,9 +1709,43 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
+        }
+        private void TxtMobileNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
             {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtWhatsAppNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void TxtGstinNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // This will prevent the character from being entered in the TextBox
             }
         }
 
@@ -1908,7 +1756,6 @@ namespace ROMS
             objds = null;
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
-
             objds = objdservice.GetDataset("select STSID as id,STS_Name as Name from DEF_Status where STS_ModuleID=1 ");
             objdservice.CloseConnection();
             if (objds != null)

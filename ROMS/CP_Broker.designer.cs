@@ -34,6 +34,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Broker));
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.lvCity = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtCity = new System.Windows.Forms.TextBox();
             this.lblcityid = new System.Windows.Forms.Label();
             this.btnNew = new System.Windows.Forms.Label();
             this.txtGstinNo = new System.Windows.Forms.TextBox();
@@ -82,11 +87,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtMobileNo = new System.Windows.Forms.TextBox();
             this.epBroker = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtCity = new System.Windows.Forms.TextBox();
-            this.lvCity = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grbform.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdBankDetails)).BeginInit();
@@ -128,6 +128,49 @@
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
+            // lvCity
+            // 
+            this.lvCity.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvCity.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvCity.HideSelection = false;
+            this.lvCity.Location = new System.Drawing.Point(182, 240);
+            this.lvCity.Name = "lvCity";
+            this.lvCity.Size = new System.Drawing.Size(306, 90);
+            this.lvCity.TabIndex = 8;
+            this.lvCity.UseCompatibleStateImageBehavior = false;
+            this.lvCity.View = System.Windows.Forms.View.Details;
+            this.lvCity.Visible = false;
+            this.lvCity.DoubleClick += new System.EventHandler(this.LvCity_DoubleClick);
+            this.lvCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvCity_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
+            // 
+            // txtCity
+            // 
+            this.txtCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtCity.Location = new System.Drawing.Point(182, 213);
+            this.txtCity.MaxLength = 100;
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Size = new System.Drawing.Size(274, 27);
+            this.txtCity.TabIndex = 7;
+            this.txtCity.TextChanged += new System.EventHandler(this.TxtCity_TextChanged);
+            this.txtCity.Enter += new System.EventHandler(this.TxtCity_Enter);
+            this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCity_KeyDown);
+            this.txtCity.Leave += new System.EventHandler(this.TxtCity_Leave);
+            // 
             // lblcityid
             // 
             this.lblcityid.AutoSize = true;
@@ -145,7 +188,7 @@
             this.btnNew.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(21, 22);
-            this.btnNew.TabIndex = 1111150;
+            this.btnNew.TabIndex = 9;
             this.btnNew.Text = "        ";
             this.btnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
@@ -180,7 +223,7 @@
             this.groupBox2.Location = new System.Drawing.Point(12, 309);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(968, 253);
-            this.groupBox2.TabIndex = 1111149;
+            this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bank Details";
             // 
@@ -203,7 +246,7 @@
             this.txtBankShortName.MaxLength = 20;
             this.txtBankShortName.Name = "txtBankShortName";
             this.txtBankShortName.Size = new System.Drawing.Size(300, 27);
-            this.txtBankShortName.TabIndex = 12;
+            this.txtBankShortName.TabIndex = 13;
             this.txtBankShortName.Enter += new System.EventHandler(this.TxtBankShortName_Enter);
             this.txtBankShortName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBankShortName_KeyDown);
             this.txtBankShortName.Leave += new System.EventHandler(this.TxtBankShortName_Leave);
@@ -227,7 +270,7 @@
             this.txtbranchname.MaxLength = 50;
             this.txtbranchname.Name = "txtbranchname";
             this.txtbranchname.Size = new System.Drawing.Size(300, 27);
-            this.txtbranchname.TabIndex = 13;
+            this.txtbranchname.TabIndex = 14;
             this.txtbranchname.Enter += new System.EventHandler(this.Txtbranchname_Enter);
             this.txtbranchname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtbranchname_KeyDown);
             this.txtbranchname.Leave += new System.EventHandler(this.Txtbranchname_Leave);
@@ -347,14 +390,14 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAdd.BackColor = System.Drawing.Color.White;
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
             this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnAdd.Location = new System.Drawing.Point(846, 82);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(21, 22);
-            this.btnAdd.TabIndex = 16;
+            this.btnAdd.TabIndex = 17;
             this.btnAdd.Text = "        ";
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
@@ -379,7 +422,7 @@
             this.txtIFScode.MaxLength = 11;
             this.txtIFScode.Name = "txtIFScode";
             this.txtIFScode.Size = new System.Drawing.Size(300, 27);
-            this.txtIFScode.TabIndex = 15;
+            this.txtIFScode.TabIndex = 16;
             this.txtIFScode.Enter += new System.EventHandler(this.TxtIFScode_Enter);
             this.txtIFScode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtIFScode_KeyDown);
             this.txtIFScode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIFScode_KeyPress);
@@ -404,7 +447,7 @@
             this.txtAccno.MaxLength = 20;
             this.txtAccno.Name = "txtAccno";
             this.txtAccno.Size = new System.Drawing.Size(300, 27);
-            this.txtAccno.TabIndex = 14;
+            this.txtAccno.TabIndex = 15;
             this.txtAccno.Enter += new System.EventHandler(this.TxtAccno_Enter);
             this.txtAccno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAccno_KeyDown);
             this.txtAccno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAccno_KeyPress);
@@ -429,7 +472,7 @@
             this.txtBankname.MaxLength = 50;
             this.txtBankname.Name = "txtBankname";
             this.txtBankname.Size = new System.Drawing.Size(300, 27);
-            this.txtBankname.TabIndex = 11;
+            this.txtBankname.TabIndex = 12;
             this.txtBankname.Enter += new System.EventHandler(this.TxtBankname_Enter);
             this.txtBankname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBankname_KeyDown);
             this.txtBankname.Leave += new System.EventHandler(this.TxtBankname_Leave);
@@ -527,7 +570,7 @@
             this.txtPincode.MaxLength = 6;
             this.txtPincode.Name = "txtPincode";
             this.txtPincode.Size = new System.Drawing.Size(274, 27);
-            this.txtPincode.TabIndex = 8;
+            this.txtPincode.TabIndex = 10;
             this.txtPincode.Enter += new System.EventHandler(this.TxtPincode_Enter);
             this.txtPincode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPincode_KeyDown);
             this.txtPincode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPincode_KeyPress);
@@ -591,6 +634,7 @@
             this.txtWhatsAppNo.TabIndex = 4;
             this.txtWhatsAppNo.Enter += new System.EventHandler(this.TxtWhatsAppNo_Enter);
             this.txtWhatsAppNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWhatsAppNo_KeyDown);
+            this.txtWhatsAppNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWhatsAppNo_KeyPress);
             this.txtWhatsAppNo.Leave += new System.EventHandler(this.TxtWhatsAppNo_Leave);
             // 
             // txtDBrokerName
@@ -626,7 +670,7 @@
             this.pnlStatus.Location = new System.Drawing.Point(182, 267);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(274, 27);
-            this.pnlStatus.TabIndex = 9;
+            this.pnlStatus.TabIndex = 11;
             // 
             // rbActive
             // 
@@ -678,13 +722,12 @@
             this.btnClose.Location = new System.Drawing.Point(905, 573);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 18;
+            this.btnClose.TabIndex = 19;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
-            this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
             // btnSave
@@ -695,13 +738,12 @@
             this.btnSave.Location = new System.Drawing.Point(816, 573);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 17;
+            this.btnSave.TabIndex = 18;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
-            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
             // txtMobileNo
@@ -714,54 +756,12 @@
             this.txtMobileNo.TabIndex = 3;
             this.txtMobileNo.Enter += new System.EventHandler(this.TxtMobileNo_Enter);
             this.txtMobileNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMobileNo_KeyDown);
+            this.txtMobileNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMobileNo_KeyPress);
             this.txtMobileNo.Leave += new System.EventHandler(this.TxtMobileNo_Leave);
             // 
             // epBroker
             // 
             this.epBroker.ContainerControl = this;
-            // 
-            // txtCity
-            // 
-            this.txtCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtCity.Location = new System.Drawing.Point(182, 213);
-            this.txtCity.MaxLength = 100;
-            this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(274, 27);
-            this.txtCity.TabIndex = 1111152;
-            this.txtCity.TextChanged += new System.EventHandler(this.TxtCity_TextChanged);
-            this.txtCity.Enter += new System.EventHandler(this.TxtCity_Enter);
-            this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCity_KeyDown);
-            this.txtCity.Leave += new System.EventHandler(this.TxtCity_Leave);
-            // 
-            // lvCity
-            // 
-            this.lvCity.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.lvCity.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvCity.HideSelection = false;
-            this.lvCity.Location = new System.Drawing.Point(182, 240);
-            this.lvCity.Name = "lvCity";
-            this.lvCity.Size = new System.Drawing.Size(306, 90);
-            this.lvCity.TabIndex = 1111153;
-            this.lvCity.UseCompatibleStateImageBehavior = false;
-            this.lvCity.View = System.Windows.Forms.View.Details;
-            this.lvCity.Visible = false;
-            this.lvCity.DoubleClick += new System.EventHandler(this.LvCity_DoubleClick);
-            this.lvCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvCity_KeyDown);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 180;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 120;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 0;
             // 
             // CP_Broker
             // 

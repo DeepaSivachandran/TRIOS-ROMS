@@ -20,7 +20,6 @@ namespace ROMS
         {
             InitializeComponent();
         }
-
         private void tsbNew_Click(object sender, EventArgs e)
         {
             try
@@ -32,7 +31,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -59,19 +57,16 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfndelete()
         {
             try
             {
                 if (grdBrokerList.SelectedRows.Count > 0)
                 {
-
                     string result = "";
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-
                         SPDataService objspdservice = new SPDataService();
                         DataTable objBankTable = new DataTable();
                         objBankTable.TableName = "MR_Broker_Bank";
@@ -81,15 +76,12 @@ namespace ROMS
                         objBankTable.Columns.Add("BRB_AccNo", typeof(string));
                         objBankTable.Columns.Add("BRB_IFSC", typeof(string));
                         objBankTable.Columns.Add("BRB_STSID", typeof(string));
-
                         result = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", "", 0, "", "", "",0,"Company delete", objBankTable);
-
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             udfnList();
-
                         }
                         else
                         {
@@ -103,9 +95,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         public void udfnList()
         {
             try
@@ -123,7 +113,6 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdBrokerList.DataSource = objDs.Tables[0];
-
                             grdBrokerList.Columns["ID"].Visible = false;
                             grdBrokerList.Columns["STSID"].Visible = false;
                             grdBrokerList.Columns["S.No."].Width = 50;
@@ -157,7 +146,6 @@ namespace ROMS
                 picLoader.Visible = false;
             }
         }
-
         private void udfnEdit()
         {
             try
@@ -175,9 +163,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-         
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
@@ -195,7 +181,6 @@ namespace ROMS
 
                         e.Handled = true;
                     }
-
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -208,7 +193,6 @@ namespace ROMS
                 {
                     grdBrokerList.Columns[e.Column.Index].Width = e.Column.Width;
                     DGV_SearchGrid.HorizontalScrollingOffset = grdBrokerList.HorizontalScrollingOffset;
-                   
                 }
             }
             catch (Exception ex)
@@ -306,19 +290,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-        
-
-        private void DGV_SearchGrid_Sorted(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DGV_SearchGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-
-        }
-
-     
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewColumn newColumn = grdBrokerList.Columns[e.ColumnIndex];
@@ -351,7 +322,6 @@ namespace ROMS
             DGV_SearchGrid.HorizontalScrollingOffset = grdBrokerList.HorizontalScrollingOffset;
             DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
-
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try
@@ -385,7 +355,6 @@ namespace ROMS
                     {
                         visibleColumns.Add(col.Index);
                     }
-
                     int I = DGV_SearchGrid.Rows.Count - 1;
                     if (I == 0)
                     {
@@ -404,7 +373,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_BrokerList_Load(object sender, EventArgs e)
         {
             try
@@ -417,7 +385,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_BrokerList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -454,7 +421,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdBrokerList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -480,7 +446,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdBrokerList_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -493,7 +458,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdBrokerList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -509,7 +473,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdBrokerList_Scroll(object sender, ScrollEventArgs e)
         {
             try

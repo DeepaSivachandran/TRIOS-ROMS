@@ -21,6 +21,7 @@ namespace ROMS
         public int varstatus;
         public string PbCityName="";
         public int varCityCode= 0;
+        public string varCityName = "";
         public string PbStateName="";
         public int PbStateId=0;
         public int PbStatus=0;
@@ -48,7 +49,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID in (1) and STID =27 Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID in (1) Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text=="Save")
@@ -106,12 +107,14 @@ namespace ROMS
                 {
 
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udfnclear();
+                    //udfnclear();
                     if (varmastertype == 1)
                     {
                         varmastertype = 0;
                         varUpdate = 1;
                         varCityCode = Convert.ToInt16(varResult.Split('~')[2]);
+                        varCityName = Convert.ToString(varResult.Split('~')[2]);
+                        MainForm.objCP_CP_Broker.varCityName = txtCityName.Text;
                         MainForm.objCP_CP_Broker.varCityCode = varCityCode;
                         udfnclose();
                     }
@@ -130,20 +133,6 @@ namespace ROMS
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
-                //MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //    MainForm.objCP_Citylist.udfnList();
-                //    if (btnSave.Text == "Update")
-                //    {
-                //        varUpdate = 1;
-                //        udfnclose();
-                //    }
-                //    udfnclear();
-                //}
-                //else
-                //{
-                //    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //}
             }
             catch (Exception ex)
             {
