@@ -49,8 +49,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-       
         private void CP_ProductHSN_Load(object sender, EventArgs e)
         {
             try
@@ -72,8 +70,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-}
-     
+        }
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -86,8 +83,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-       
         private void btnClose_Click(object sender, EventArgs e)
         {
             try
@@ -100,7 +95,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Enter(object sender, EventArgs e)
         {
             try
@@ -113,7 +107,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Leave(object sender, EventArgs e)
         {
             try
@@ -126,7 +119,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtHSNName_Enter(object sender, EventArgs e)
         {
             try
@@ -139,7 +131,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtHSNName_Leave(object sender, EventArgs e)
         {
             try
@@ -191,7 +182,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtHSNCode_Leave(object sender, EventArgs e)
         {
             try
@@ -215,7 +205,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtHSNCode_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -231,7 +220,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbGST_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -244,7 +232,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnLoadCmbGst()
         {
             try
@@ -259,7 +246,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbGST_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -272,7 +258,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbGST_Enter(object sender, EventArgs e)
         {
             try
@@ -285,7 +270,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbGST_Leave(object sender, EventArgs e)
         {
             if (Convert.ToString(cmbGST.SelectedValue) == "0" || Convert.ToString(cmbGST.SelectedValue) == "-1")
@@ -333,7 +317,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnClear()
         {
             try
@@ -482,7 +465,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Enter(object sender, EventArgs e)
         {
             try
@@ -495,7 +477,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Leave(object sender, EventArgs e)
         {
             try
@@ -508,7 +489,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInActive_Enter(object sender, EventArgs e)
         {
             try
@@ -521,7 +501,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInActive_Leave(object sender, EventArgs e)
         {
             try
@@ -534,7 +513,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnSave_Leave(object sender, EventArgs e)
         {
             try
@@ -547,7 +525,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_ProductHSN_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -572,7 +549,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -592,7 +568,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInActive_KeyDown(object sender, KeyEventArgs e)
         {
             try

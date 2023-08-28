@@ -46,7 +46,10 @@ namespace ROMS
                             txtRackName.Text = varRackName;
                             txtDescription.Text = varDescription;
                             grdProductDetails.DataSource = objDs.Tables[0];
-                            
+                            grdProductDetails.Columns["PR_UTID"].Visible = false;
+                            grdProductDetails.Columns["PR_PUR_RKID"].Visible = false;
+                            grdProductDetails.Columns["Product Name in English"].Width = 200;
+                            grdProductDetails.Columns["S.NO."].Width = 80;
                         }
 
                     }
@@ -56,6 +59,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                lblTotalProducts.Text = Convert.ToString( grdProductDetails.Rows.Count);
             }
         }
 
@@ -398,42 +405,6 @@ namespace ROMS
             }
         }
 
-        private void btnSave_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void udfnclear()
-        {
-            //try
-            //{
-            //    txtName.Text = "";
-            //    txtcontactName.Text = "";
-            //    txtArea.Text = "";
-            //    txtCity.Text = "";
-            //    txtContactNumber.Text = "";
-            //    txtAContactNumber.Text = "";
-            //    txtEmail.Text = "";  
-            //    txtPincode.Text = "";
-            //    btnSave.Text = "Save";
-            //    txtName.Focus();
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
-
-   
      
 
         private void CP_Company_Load(object sender, EventArgs e)
@@ -448,75 +419,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             
-            
-
-
         }
 
 
-        private void udfnEdit()
-        {
-            //try
-            //{
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-            //finally
-            //{
-
-            //}
-        }
-
-        private void txtContactNumber_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //try
-            //{
-            //    bool varResult = objvalidation.CheckNumeric(e);
-            //    if (varResult == true)
-            //    {
-            //        e.Handled = true;
-            //    }
-            //    else
-            //    {
-            //        e.Handled = false;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-            //finally
-            //{
-
-            //}
-
-        }
-
-        private void txtAContactNumber_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //try
-            //{
-            //    bool varResult = objvalidation.CheckNumeric(e);
-            //    if (varResult == true)
-            //    {
-            //        e.Handled = true;
-            //    }
-            //    else
-            //    {
-            //        e.Handled = false;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
+       
 
         private void CP_Company_Leave(object sender, EventArgs e)
         {

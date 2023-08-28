@@ -627,8 +627,8 @@ namespace ROMS
             {
                 MainForm.objCP_ProductDetails = new CP_ProductDetails();
                 MainForm.objCP_ProductDetails.varRackId = Convert.ToInt32(grdSelectedRack.SelectedRows[0].Cells["ID"].Value);
-                MainForm.objCP_ProductDetails.varRackName = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["Rack"].Value);
-                MainForm.objCP_ProductDetails.varDescription = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["Description"].Value);
+                MainForm.objCP_ProductDetails.varRackName = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["clmRack"].Value);
+                MainForm.objCP_ProductDetails.varDescription = Convert.ToString(grdSelectedRack.SelectedRows[0].Cells["clmDescription"].Value);
                 MainForm.objCP_ProductDetails.ShowDialog();
             }
             catch (Exception ex)
@@ -1201,10 +1201,10 @@ namespace ROMS
             try
             {
                 udfnSelectedRack();
-                if (chkRack.Checked == false)
-                {
-                    grdSelectedRack.Rows.Clear();
-                }
+                //if (chkRack.Checked == false)
+                //{
+                //    grdSelectedRack.Rows.Clear();
+                //}
                 udfnTotalProducts();
             }
             catch (Exception ex)
@@ -1350,6 +1350,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+       
     }
      
 }

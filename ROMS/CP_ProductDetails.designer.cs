@@ -40,7 +40,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.txtRackName = new System.Windows.Forms.TextBox();
             this.txtDRackGroup = new System.Windows.Forms.TextBox();
-            this.lblGC = new System.Windows.Forms.Label();
+            this.lblTotalProducts = new System.Windows.Forms.Label();
             this.lblNoofproducts = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdProductDetails)).BeginInit();
@@ -99,7 +99,7 @@
             this.grbProductDetails.Controls.Add(this.txtRackName);
             this.grbProductDetails.Controls.Add(this.txtDRackGroup);
             this.grbProductDetails.Controls.Add(this.grdProductDetails);
-            this.grbProductDetails.Controls.Add(this.lblGC);
+            this.grbProductDetails.Controls.Add(this.lblTotalProducts);
             this.grbProductDetails.Controls.Add(this.lblNoofproducts);
             this.grbProductDetails.Location = new System.Drawing.Point(16, 12);
             this.grbProductDetails.Name = "grbProductDetails";
@@ -151,23 +151,23 @@
             this.txtDRackGroup.TabIndex = 1111143;
             this.txtDRackGroup.Text = "Rack Name";
             // 
-            // lblGC
+            // lblTotalProducts
             // 
-            this.lblGC.AutoSize = true;
-            this.lblGC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblGC.ForeColor = System.Drawing.Color.Crimson;
-            this.lblGC.Location = new System.Drawing.Point(680, 349);
-            this.lblGC.Name = "lblGC";
-            this.lblGC.Size = new System.Drawing.Size(17, 20);
-            this.lblGC.TabIndex = 1111140;
-            this.lblGC.Text = "0";
+            this.lblTotalProducts.AutoSize = true;
+            this.lblTotalProducts.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblTotalProducts.ForeColor = System.Drawing.Color.Crimson;
+            this.lblTotalProducts.Location = new System.Drawing.Point(678, 349);
+            this.lblTotalProducts.Name = "lblTotalProducts";
+            this.lblTotalProducts.Size = new System.Drawing.Size(17, 20);
+            this.lblTotalProducts.TabIndex = 1111140;
+            this.lblTotalProducts.Text = "0";
             // 
             // lblNoofproducts
             // 
             this.lblNoofproducts.AutoSize = true;
             this.lblNoofproducts.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lblNoofproducts.ForeColor = System.Drawing.Color.Black;
-            this.lblNoofproducts.Location = new System.Drawing.Point(586, 349);
+            this.lblNoofproducts.Location = new System.Drawing.Point(583, 349);
             this.lblNoofproducts.Name = "lblNoofproducts";
             this.lblNoofproducts.Size = new System.Drawing.Size(93, 20);
             this.lblNoofproducts.TabIndex = 1111139;
@@ -205,7 +205,7 @@
         private System.Windows.Forms.ErrorProvider errItems;
         public System.Windows.Forms.DataGridView grdProductDetails;
         private System.Windows.Forms.GroupBox grbProductDetails;
-        private System.Windows.Forms.Label lblGC;
+        private System.Windows.Forms.Label lblTotalProducts;
         private System.Windows.Forms.Label lblNoofproducts;
         private System.Windows.Forms.TextBox txtRackName;
         private System.Windows.Forms.TextBox txtDRackGroup;
