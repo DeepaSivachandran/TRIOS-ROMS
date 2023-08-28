@@ -104,7 +104,7 @@ namespace ROMS
                 MainForm.objCP_RackGroup.btnSave.Text = "Update";
                 MainForm.objCP_RackGroup.varId = Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value);
                 MainForm.objCP_RackGroup.varStatusid = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["Status ID"].Value);
-                MainForm.objCP_RackGroup.varConcernId = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["Status ID"].Value);
+                MainForm.objCP_RackGroup.varStockId = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
                 MainForm.objCP_RackGroup.ShowDialog();
                
             }
@@ -156,6 +156,7 @@ namespace ROMS
                             grdRackGroupList.Columns["ID"].Visible = false;
                             grdRackGroupList.Columns["Status ID"].Visible = false;
                             grdRackGroupList.Columns["SL_ShortName"].Visible = false;
+                            grdRackGroupList.Columns["StockLocation ID"].Visible = false;
                         }
                         else
                         {
@@ -234,7 +235,14 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_StockLocation", "  SL_COMID=" + varCompanyId + " or SLID=0 ORDER BY SL_EName ", "SLID,SL_EName", cmbStockLocation, "", "SL_EName", "SLID");
+                if (varCompanyId == 0)
+                {
+                    objDataBind.BindComboBoxListSelected("MR_StockLocation", " SLID not in (-1) ORDER BY SLID,SL_EName ", "SLID,SL_EName", cmbStockLocation, "", "SL_EName", "SLID");
+                }
+                else
+                {
+                    objDataBind.BindComboBoxListSelected("MR_StockLocation", "  SL_COMID=" + varCompanyId + " or SLID=0 ORDER BY SLID,SL_EName ", "SLID,SL_EName", cmbStockLocation, "", "SL_EName", "SLID");
+                }
                 objDataBind = null;
             }
             catch (Exception ex)
