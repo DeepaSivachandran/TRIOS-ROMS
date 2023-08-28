@@ -20,20 +20,45 @@ namespace ROMS
         public string varcompanycode;
         public string pbFormStatus;
         public string varstatecode = "";
+        public int varRackId = 0;
+        public string varDescription = "";
+        public string varRackName = "";
 
-        //tool tip
-        private ToolTip tpContactNo = new ToolTip();
-        private ToolTip tpAltContactNo = new ToolTip();
-        private ToolTip tpemail = new ToolTip();
-        private ToolTip tpgstin = new ToolTip();
-        private ToolTip tpfssai = new ToolTip();
-        private ToolTip tpplno = new ToolTip();
-        private ToolTip tpcompanyname = new ToolTip();
-        private ToolTip tpshortname = new ToolTip();
-        private ToolTip tppincode = new ToolTip();
-        private ToolTip tpcity = new ToolTip();
-        private ToolTip tparea = new ToolTip();
-        private ToolTip tpstate = new ToolTip();
+        public void udfnList()
+        {
+            try
+            {
+                
+                Application.DoEvents();
+               
+                grdProductDetails.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnProductDetailsList(0, varRackId);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            txtRackName.Text = varRackName;
+                            txtDescription.Text = varDescription;
+                            grdProductDetails.DataSource = objDs.Tables[0];
+                            
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public CP_ProductDetails()
         {
             InitializeComponent();
@@ -413,30 +438,19 @@ namespace ROMS
 
         private void CP_Company_Load(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    this.ActiveControl = txtName;
-            //    udfnLoadState();
-            //    udfnEdit();
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-            //finally
-            //{
+            try
+            {
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            
+            
 
-            //}
 
-            //txtDDay.Visible = false;
-            //txtDay.Visible = false;
-            //txtDMonth.Visible = false;
-            //txtMonth.Visible = false;
-            //txtDYear.Visible = false;
-            //txtYear.Visible = false;
-
-            //cmbPeriod.SelectedIndex = 0;
         }
 
 

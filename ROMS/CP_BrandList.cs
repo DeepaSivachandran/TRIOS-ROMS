@@ -683,16 +683,7 @@ namespace ROMS
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
                     ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
 
-                    grdBrandList.Columns["S.No."].Width = 50;
-                    grdBrandList.Columns["Brand Name in English"].Width = 200;
-                    grdBrandList.Columns["Brand Name in Tamil"].Width = 200;
-                    grdBrandList.Columns["Total Products"].Width = 100;
-                    grdBrandList.Columns["Total Groups"].Width = 100;
-                    grdBrandList.Columns["Total Subgroups"].Width = 100;
-                    grdBrandList.Columns["Status"].Width = 80;
-
-                    grdBrandList.Columns["ID"].Visible = false;
-                    grdBrandList.Columns["Status ID"].Visible = false;
+                  
 
                     foreach (DataGridViewColumn col in grdBrandList.Columns)
                     {
