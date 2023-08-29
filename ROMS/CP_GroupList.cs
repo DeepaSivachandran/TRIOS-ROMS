@@ -142,7 +142,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnGroup(2, Convert.ToInt16(grdGroupList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", 0, "Deletion");
+                        string varResult = objDser.udfnGroup(2, Convert.ToInt16(grdGroupList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", 0, "Product Group Deletion");
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {

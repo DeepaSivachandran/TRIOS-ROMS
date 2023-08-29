@@ -570,6 +570,7 @@
             this.grdBankDetails.Size = new System.Drawing.Size(1277, 162);
             this.grdBankDetails.TabIndex = 1111136;
             this.grdBankDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBankDetails_CellContentClick);
+            this.grdBankDetails.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdBankDetails_DataBindingComplete);
             this.grdBankDetails.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdBankDetails_EditingControlShowing);
             // 
             // clmsno
@@ -1400,6 +1401,7 @@
             this.grdContactManager.Size = new System.Drawing.Size(1303, 472);
             this.grdContactManager.TabIndex = 1111149;
             this.grdContactManager.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdContactManager_CellContentClick);
+            this.grdContactManager.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdContactManager_DataBindingComplete);
             // 
             // clmContsno
             // 

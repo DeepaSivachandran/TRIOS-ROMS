@@ -24,7 +24,7 @@ namespace ROMS
         public string varHsnCode="";
         public int varGstId=-1;
         public int varId = 0;
-
+        public int varStatusid = 1;
         public int varCloseFlag = 0;
         //tool tip
         private ToolTip tpHsnName = new ToolTip();
@@ -356,6 +356,14 @@ namespace ROMS
                 txtHSNName.Text = varHsnname;
                 txtHSNCode.Text = varHsnCode;
                 cmbGST.SelectedValue = varGstId;
+                if (varStatusid == 1)
+                {
+                    rbActive.Checked = true;
+                }
+                else
+                {
+                    rbInActive.Checked = true;
+                }
             }
             catch (Exception ex)
             {
@@ -367,8 +375,8 @@ namespace ROMS
         {
             try
             {
-               int varStatusid = 1;
-               if(rbActive.Checked)
+                string varResult = "";
+               if (rbActive.Checked)
                {
                     varStatusid = 1;
                }
@@ -376,41 +384,35 @@ namespace ROMS
                {
                     varStatusid = 2;
                }
-               if (btnSave.Text=="Save")
+               SPDataService objDser = new SPDataService();
+               if (btnSave.Text == "Save")
                {
-                    SPDataService objDser = new SPDataService();
-                    string varResult = objDser.udfnHsn(0,0, Convert.ToInt16(cmbGST.SelectedValue),  Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "Creation");
-                    objDser.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        udfnClear();
-                        MainForm.objCP_ProductHSNlist.udfnList();
-                    }
-                    else if(varResult.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                  
+                    varResult = objDser.udfnHsn(0, 0, Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "HSN Creation");
                }
-                if (btnSave.Text == "Update")
+               else
+               {
+                    varResult = objDser.udfnHsn(1, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "HSN Updation");
+               }
+                objDser.CloseConnection();
+                if (varResult.Split('~')[0] == "3")
                 {
-                    SPDataService objDser = new SPDataService();
-                    string varResult = objDser.udfnHsn(1,Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "Updation");
-                    objDser.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
+                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (btnSave.Text == "Save")
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnClear();
+                    }
+                    else
+                    {
                         varCloseFlag = 1;
                         udfnclose();
-                        MainForm.objCP_ProductHSNlist.udfnList();
                     }
-                    else if (varResult.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    MainForm.objCP_ProductHSNlist.udfnList();
                 }
-
+                else if(varResult.Split('~')[0] == "4")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+               
             }
             catch (Exception ex)
             {

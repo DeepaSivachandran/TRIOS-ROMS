@@ -116,6 +116,10 @@ namespace ROMS
             try
             {
                 this.ActiveControl = txtSupplier;
+
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmbDay, "", "DY_Name", "DYID");
+                objDataBind = null;
             }
             catch (Exception ex)
             {

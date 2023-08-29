@@ -15,6 +15,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        public int varconcern = 0, vargroup = 0, varsubgroup = 0, varcategory = 0;
         public CP_ProductList()
         {
             InitializeComponent();
@@ -24,8 +25,9 @@ namespace ROMS
         {
             try
             {
+                udfnlistcmbdata();
                 MainForm.objCP_Items = new CP_Product();
-                MainForm.objCP_Items.ShowDialog();
+                MainForm.objCP_Items.ShowDialog(); 
             }
             catch (Exception ex)
             {
@@ -38,6 +40,7 @@ namespace ROMS
         {
             try
             {
+                udfnlistcmbdata();
                 udfnEdit();
             }
             catch (Exception ex)
@@ -46,6 +49,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnlistcmbdata()
+        {
+            try
+            {
+                vargroup = Convert.ToInt32(cmbGroupType.SelectedValue);
+                varsubgroup = Convert.ToInt32(cmbsubgroup.SelectedValue);
+                varconcern = Convert.ToInt32(cmbConcern.SelectedValue);
+                varcategory = Convert.ToInt32(cmbCategory.SelectedValue);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void tsbDelete_Click(object sender, EventArgs e)
         {
             try
@@ -81,6 +100,7 @@ namespace ROMS
                         }
                         else
                         {
+                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
@@ -118,40 +138,41 @@ namespace ROMS
         }
 
         public void udfnList()
-        { 
-                try
-                {
-                    picLoader.Visible = true;
-                    Application.DoEvents();
-                    //********** To display a data in a grid  ******************
-                    grdItemList.DataSource = null;
-                    DataSet objDs = new DataSet();
-                    //**** To call the function from SP ***************
-                    SPDataService objdserv = new SPDataService();
+        {
+            try
+            {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdItemList.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
 
-                    objDs = objdserv.udfnproductmasterlist(0, 0,Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbGroupType.SelectedValue), Convert.ToInt32(cmbsubgroup.SelectedValue), MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue));
-                    objdserv.CloseConnection();
-                    if (objDs != null)
+                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbGroupType.SelectedValue), Convert.ToInt32(cmbsubgroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue));
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
                     {
-                        if (objDs.Tables.Count != 0)
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0)
                         {
                             lblNoRecordsFound.Visible = false;
-                            if (objDs.Tables[0].Rows.Count != 0)
-                            {
-                                lblNoRecordsFound.Visible = false;
-                                lblNoRecordsFound.SendToBack();
+                            lblNoRecordsFound.SendToBack();
                             grdItemList.DataSource = objDs.Tables[0];
-                            grdItemList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
-                            grdItemList.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                            grdItemList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdItemList.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdItemList.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdItemList.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdItemList.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdItemList.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                            grdItemList.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdItemList.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdItemList.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdItemList.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdItemList.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                             
+
 
                             grdItemList.Columns["S.No."].Width = 50;
                             grdItemList.Columns["Product Name in English"].Width = 200;
@@ -161,12 +182,6 @@ namespace ROMS
                             grdItemList.Columns["Status"].Width = 80;
                             grdItemList.Columns["ID"].Visible = false;
                             grdItemList.Columns["STSID"].Visible = false;
-                            }
-                            else
-                            {
-                                lblNoRecordsFound.Visible = true;
-                                lblNoRecordsFound.BringToFront();
-                            }
                         }
                         else
                         {
@@ -179,19 +194,26 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-                    udfnSearchGridHead();
                 }
-                catch (Exception ex)
+                else
                 {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
                 }
-                finally
-                {
-              //  grdItemList.ClearSelection();
-                 picLoader.Visible = false; 
+                udfnSearchGridHead();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                //  grdItemList.ClearSelection();
+                picLoader.Visible = false;
+                picLoader.SendToBack();
                 lblPC.Text = Convert.ToString(grdItemList.Rows.Count);
-                }
+            }
         }
         
 
@@ -926,18 +948,9 @@ namespace ROMS
             {
                 this.ActiveControl = cmbConcern;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 AND COMID !=-1 ORDER BY COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID !=-1 AND PRG_STSID=1 ORDER BY PRGID", "PRG_EName,PRGID", cmbGroupType, "", "PRG_EName", "PRGID");
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID <> -1 AND PRSG_STSID=1", "PRSG_EName,PRSGID", cmbsubgroup, "", "PRSG_EName", "PRSGID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
-                objDataBind = null;
-                cmbConcern.SelectedValue = 0;
-                cmbGroupType.SelectedValue = 0;
-                cmbsubgroup.SelectedValue = 0;
-                cmbCategory.SelectedValue = 0;
-
+                udfnDropdownbind();
                 udfnList();
+
             }
             catch (Exception ex)
 
@@ -946,6 +959,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             
+        }
+        public void udfnDropdownbind()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 AND COMID !=-1 ORDER BY COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID !=-1 AND PRG_STSID=1 ORDER BY PRGID", "PRG_EName,PRGID", cmbGroupType, "", "PRG_EName", "PRGID");
+                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID <> -1 AND PRSG_STSID=1", "PRSG_EName,PRSGID", cmbsubgroup, "", "PRSG_EName", "PRSGID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+                cmbGroupType.SelectedValue = vargroup;
+                cmbsubgroup.SelectedValue = varsubgroup;
+                cmbConcern.SelectedValue = varconcern;
+                cmbCategory.SelectedValue = varcategory;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
 
         private void GrdItemList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -997,6 +1033,11 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnEdit();
+                }
+
+                if (e.KeyCode == Keys.Delete)
+                {
+                    tsbDelete_Click(sender, e);
                 }
             }
             catch (Exception ex)

@@ -448,7 +448,9 @@ namespace ROMS
                         if (varvalue[0] == "3")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            MainForm.objCP_Itemlist.udfnList();
+
+                        MainForm.objCP_Itemlist.udfnDropdownbind();
+                        MainForm.objCP_Itemlist.udfnList();
                             cmbConcern.Focus(); 
                              udfnclear();
                             if (btnSave.Text == "Update")
@@ -615,8 +617,7 @@ namespace ROMS
         {
             try
             {
-                this.Close();
-
+                this.Close(); 
             }
             catch (Exception ex)
             {
@@ -1203,6 +1204,25 @@ namespace ROMS
                     txtPICode.BackColor = Color.White;
                     errItems.Clear();
                 }
+
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+
+                objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress,0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    { 
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            txtItemNameEnglish.Text = objDs.Tables[0].Rows[0]["ENAME"].ToString();
+                            txtItemNameTamil.Text = objDs.Tables[0].Rows[0]["Tname"].ToString();
+                        }
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -1790,6 +1810,16 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+
+                 
+                DataBind objDataBind = new DataBind();
+                DataService objds = new DataService(); 
+
+                    objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID<>0 AND SL_STSID=1 AND SL_COMID='" + Convert.ToString(cmbConcern.SelectedValue) + "' OR  SLID=-1", "SL_ShortName,SLID", cmbPosition, "", "SL_ShortName", "SLID");
+                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID<>0 AND SL_STSID=1 AND SL_COMID='" + Convert.ToString(cmbConcern.SelectedValue) + "' OR  SLID=-1 ", "SL_ShortName,SLID", cmbSalesGodown, "", "SL_ShortName", "SLID");
+
+                objds.CloseConnection();
+                objDataBind = null; 
             }
             catch (Exception ex)
 
@@ -2129,6 +2159,14 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbSubGroup.Select(int.MaxValue, 0)));
+
+                string varcmbgroupcode = "";
+                DataBind objDataBind = new DataBind();
+                DataService objds = new DataService();
+                varcmbgroupcode = objds.displaydata("SELECT PRGID FROM MR_ProductSubGroup WHERE  PRSGID='" + Convert.ToString(cmbSubGroup.SelectedValue) + "'");
+                objds.CloseConnection();
+                 objDataBind = null;
+                cmbSubGroup.SelectedValue = varcmbgroupcode;
             }
             catch (Exception ex)
 
@@ -2409,6 +2447,14 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbPosition.Select(int.MaxValue, 0)));
+                  
+                DataBind objDataBind = new DataBind();
+                DataService objds = new DataService(); 
+                objDataBind.BindComboBoxListSelected("MR_Rack", "RKID<>0 AND RK_STSID=1 AND RK_SLID='" + Convert.ToString(cmbPosition.SelectedValue) + "' OR  RKID=-1", "RK_ShortName,RKID", cmbPurchaseRack, "", "RK_ShortName", "RKID");
+             
+                objds.CloseConnection();
+                objDataBind = null; 
+
             }
             catch (Exception ex)
 
@@ -2563,6 +2609,13 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbSalesGodown.Select(int.MaxValue, 0)));
+                 
+                DataBind objDataBind = new DataBind();
+                DataService objds = new DataService(); 
+                objDataBind.BindComboBoxListSelected("MR_Rack", "RKID<>0 AND RK_STSID=1 AND RK_SLID='" + Convert.ToString(cmbSalesGodown.SelectedValue) + "' OR  RKID=-1 ", "RK_ShortName,RKID", cmbSalesRack, "", "RK_ShortName", "RKID");
+
+                objds.CloseConnection();
+                objDataBind = null; 
             }
             catch (Exception ex)
 
@@ -2732,6 +2785,15 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbBatchNoEntry.Select(int.MaxValue, 0)));
+                if (Convert.ToString(cmbBatchNoEntry.SelectedValue) == "72")
+                {
+                    cmbBatchNoGeneration.Enabled = true;
+                }
+                else
+                {
+                    cmbBatchNoGeneration.SelectedValue = -1;
+                    cmbBatchNoGeneration.Enabled = false;
+                }
             }
             catch (Exception ex)
 
@@ -3169,7 +3231,14 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbUnit.Select(int.MaxValue, 0)));
 
                 DataService objds = new DataService();
-                txtUPPvalue.Text = objds.displaydata("Select UT_Symbol FROM MR_UNIT WHERE UTID='" + Convert.ToString(cmbUnit.SelectedValue) + "'");
+                if (Convert.ToString(cmbUnit.SelectedValue) == "-1")
+                {
+                    txtUPPvalue.Text = "";
+                }
+                else
+                {
+                    txtUPPvalue.Text = objds.displaydata("Select UT_Symbol FROM MR_UNIT WHERE UTID='" + Convert.ToString(cmbUnit.SelectedValue) + "'");
+                }
                 objds.CloseConnection();
                
             }
@@ -3245,21 +3314,21 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0))); 
-                this.ActiveControl = cmbConcern;
+                this.ActiveControl = cmbConcern; 
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Unit", "UT_STSID=1 AND UTID!=0 ORDER BY UTID", "UT_Symbol,UTID", cmbUnit, "", "UT_Symbol", "UTID");
+                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID <> 0 AND PRSG_STSID=1", "PRSG_EName,PRSGID", cmbSubGroup, "", "PRSG_EName", "PRSGID"); 
                 objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID !=0 AND PRG_STSID=1 ORDER BY PRGID", "PRG_EName,PRGID", cmbGroup, "", "PRG_EName", "PRGID");
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID <> 0 AND PRSG_STSID=1", "PRSG_EName,PRSGID", cmbSubGroup, "", "PRSG_EName", "PRSGID");
                 objDataBind.BindComboBoxListSelected("MR_BRAND", "BDID <> 0 AND BD_STSID=1", "BD_EName,BDID", cmbBrand, "", "BD_EName", "BDID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 AND COMID !=0 ORDER BY COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("MR_HSN", "HSN_STSID=1 AND HSNID!=0 ORDER BY HSN_STSID", "HSN_Name,HSNID", cmbHSNName, "", "HSN_Name", "HSNID");
                 objDataBind.BindComboBoxListSelected("MR_Unit", "UT_STSID=1 AND UTID!=0 ORDER BY UTID", "UT_Symbol,UTID", cmbBulkUnit, "", "UT_Symbol", "UTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (6,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbPeriod, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID<>0 AND SL_STSID=1 ", "SL_ShortName,SLID", cmbPosition, "", "SL_ShortName", "SLID");
-                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID<>0 AND SL_STSID=1", "SL_ShortName,SLID", cmbSalesGodown, "", "SL_ShortName", "SLID");
-                objDataBind.BindComboBoxListSelected("MR_Rack", "RKID<>0 AND RK_STSID=1 ", "RK_ShortName,RKID", cmbPurchaseRack, "", "RK_ShortName", "RKID");
-                objDataBind.BindComboBoxListSelected("MR_Rack", "RKID<>0 AND RK_STSID=1 ", "RK_ShortName,RKID", cmbSalesRack, "", "RK_ShortName", "RKID");
+                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID=-1 AND SL_STSID=1 ", "SL_ShortName,SLID", cmbPosition, "", "SL_ShortName", "SLID");
+                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID=-1 AND SL_STSID=1", "SL_ShortName,SLID", cmbSalesGodown, "", "SL_ShortName", "SLID");
+                objDataBind.BindComboBoxListSelected("MR_Rack", "RKID=-1 AND RK_STSID=1 ", "RK_ShortName,RKID", cmbPurchaseRack, "", "RK_ShortName", "RKID");
+                objDataBind.BindComboBoxListSelected("MR_Rack", "RKID=-1 AND RK_STSID=1 ", "RK_ShortName,RKID", cmbSalesRack, "", "RK_ShortName", "RKID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (25,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoEntry, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (26,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoGeneration, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
@@ -3299,7 +3368,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS; 
                     DataService objdservice = new DataService();
-                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0,"",MainForm.pbUserID, MainForm.pbIpAddress, 0);
                     objdserv.CloseConnection();
                     if (objDS != null)
                     {
@@ -3375,15 +3444,16 @@ namespace ROMS
         private void BtnSubgroup_Click(object sender, EventArgs e)
         {
             try
-            {
-
-                    MainForm.objCP_SubGroup = new CP_SubGroup(); 
-                    MainForm.objCP_SubGroup.varmastertype = 1;
-                    MainForm.objCP_SubGroup.ShowDialog(); 
+            { 
+                varSubgroupCode = 0;
+                MainForm.objCP_SubGroup = new CP_SubGroup(); 
+                MainForm.objCP_SubGroup.varmastertype = 1;
+                MainForm.objCP_SubGroup.ShowDialog(); 
                 DataBind objDataBind = new DataBind(); 
                 objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID <> 0 AND PRSG_STSID=1", "PRSG_EName,PRSGID", cmbSubGroup, "", "PRSG_EName", "PRSGID");
                 cmbSubGroup.SelectedValue = Convert.ToInt16(varSubgroupCode);
                 objDataBind = null;
+                cmbSubGroup.Focus();
             }
             catch (Exception ex)
             {
@@ -3397,7 +3467,7 @@ namespace ROMS
 
             try
             {
-
+                varGroupCode = 0;
                 MainForm.objCP_Group = new CP_Group(); 
                 MainForm.objCP_Group.varmastertype = 1;
                 MainForm.objCP_Group.ShowDialog();
@@ -3405,6 +3475,11 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID !=0 AND PRG_STSID=1 ORDER BY PRGID", "PRG_EName,PRGID", cmbGroup, "", "PRG_EName", "PRGID"); 
                 cmbGroup.SelectedValue = Convert.ToInt16(varGroupCode);
                 objDataBind = null;
+                cmbGroup.Focus();
+                if (varGroupCode != 0)
+                {
+                    cmbSubGroup.SelectedValue = -1;
+                } 
             }
             catch (Exception ex)
             {
@@ -3440,15 +3515,17 @@ namespace ROMS
         {
             try
             {
-
+                varUnitCode = 0;
                 MainForm.objCP_Unit = new CP_Unit(); 
                 MainForm.objCP_Unit.varmastertype = 1;
                 MainForm.objCP_Unit.ShowDialog();
 
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Unit", "UT_STSID=1 AND UTID!=0 ORDER BY UTID", "UT_Symbol,UTID", cmbUnit, "", "UT_Symbol", "UTID"); 
+                objDataBind.BindComboBoxListSelected("MR_Unit", "UT_STSID=1 AND UTID!=0 ORDER BY UTID", "UT_Symbol,UTID", cmbUnit, "", "UT_Symbol", "UTID");
+                objDataBind.BindComboBoxListSelected("MR_Unit", "UT_STSID=1 AND UTID!=0 ORDER BY UTID", "UT_Symbol,UTID", cmbBulkUnit, "", "UT_Symbol", "UTID");
                 cmbUnit.SelectedValue = Convert.ToInt16(varUnitCode);
                 objDataBind = null;
+                cmbUnit.Focus();
             }
             catch (Exception ex)
             {

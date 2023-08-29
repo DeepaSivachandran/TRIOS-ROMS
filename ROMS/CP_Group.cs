@@ -290,7 +290,7 @@ namespace ROMS
         {
             try
             {
-               
+                string varResult = "";
                 if (rbActive.Checked)
                 {
                     varStatusid = 1;
@@ -299,16 +299,29 @@ namespace ROMS
                 {
                     varStatusid = 2;
                 }
+                SPDataService objDser = new SPDataService();
                 if (btnSave.Text == "Save")
                 {
-                    SPDataService objDser = new SPDataService();
-                    string varResult = objDser.udfnGroup(0, 0,Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Creation");
-                    objDser.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
+                    varResult = objDser.udfnGroup(0, 0, Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Product Group Creation");
+                }
+                else
+                {
+                    varResult = objDser.udfnGroup(1, varId, Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Product Group Updation");
+                }
+                objDser.CloseConnection();
+                if (varResult.Split('~')[0] == "3")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (btnSave.Text == "Save")
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         varGroupCode = Convert.ToInt16(varResult.Split('~')[2]);
-                        if (MainForm.objCP_SubGroup.varFormFlag == 1)
+                        if (varmastertype == 0 && MainForm.objCP_SubGroup.varFormFlag == 1)
+                        {
+                            MainForm.objCP_GroupList.udfnList();
+                            MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
+                            MainForm.objCP_GroupList.cmbProductGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
+                        }
+                            if (MainForm.objCP_SubGroup.varFormFlag == 1)
                         {
                             MainForm.objCP_SubGroup.varFormFlag = 0;
                             MainForm.objCP_SubGroup.varGroupCode = varGroupCode;
@@ -322,35 +335,22 @@ namespace ROMS
                             varCloseFlag = 1;
                             udfnclose();
                         }
+
                         udfnClear();
-                        MainForm.objCP_GroupList.udfnList();
-                        MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
-                        MainForm.objCP_GroupList.cmbProductGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
                     }
-                    else if (varResult.Split('~')[0] == "4")
+                    else
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                if (btnSave.Text == "Update")
-                {
-                    SPDataService objDser = new SPDataService();
-                    string varResult = objDser.udfnGroup(1,varId , Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Updation");
-                    objDser.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         varCloseFlag = 1;
                         udfnclose();
                         MainForm.objCP_GroupList.udfnList();
                         MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
-                        
-                    }
-                    else if (varResult.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+                else if (varResult.Split('~')[0] == "4")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+               
             }
             catch (Exception ex)
             {

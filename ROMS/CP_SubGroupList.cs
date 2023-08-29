@@ -132,6 +132,7 @@ namespace ROMS
 
                             grdSubGroupList.Columns["ID"].Visible = false;
                             grdSubGroupList.Columns["Status ID"].Visible = false;
+                            grdSubGroupList.Columns["Batch No Id"].Visible = false;
                             grdSubGroupList.Columns["StockLocation ID"].Visible = false;
                             grdSubGroupList.Columns["Rack ID"].Visible = false;
                             grdSubGroupList.Columns["Product Group Id"].Visible = false;
@@ -178,7 +179,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()),0, "", "", 0,0,0,0, "Deletion");
+                        string varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()),0, "", "", 0,0,0,0, "Product Sub Group Deletion");
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -214,7 +215,8 @@ namespace ROMS
                     MainForm.objCP_SubGroup.varProductName = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Product Group Id"].Value);
                     MainForm.objCP_SubGroup.varSubGroupNameinEnglish = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Product Sub Group Name in English"].Value);
                     MainForm.objCP_SubGroup.varSubGroupNameinTamil = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Product Sub Group Name in Tamil"].Value);
-                    MainForm.objCP_SubGroup.varBatchNo = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Batch No"].Value);
+                    MainForm.objCP_SubGroup.varBatchNo = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Batch No"].Value);
+                    MainForm.objCP_SubGroup.varBatchId = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Batch No Id"].Value);
                     MainForm.objCP_SubGroup.varStockLocation = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
                     MainForm.objCP_SubGroup.varRack = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Rack ID"].Value);
                     MainForm.objCP_SubGroup.varStatus = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Status ID"].Value);
