@@ -28,7 +28,8 @@ namespace ROMS
         public int varGroupCode =0;
         public int varId = 0;
         public int varStatus = 0;
-        
+        public int varFormFlag = 0;
+
         public CP_Group()
         {
             InitializeComponent();
@@ -39,7 +40,6 @@ namespace ROMS
             {
                 tpGroupNameinTamil.Active = false;
                 tpGroupNameinEnglish.Active = false;
-
             }
             catch (Exception ex)
             {
@@ -59,8 +59,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-     
-
         private void CP_Group_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -289,6 +287,7 @@ namespace ROMS
         {
             try
             {
+                btnSave.Enabled = false;
                 string varResult = ""; string varOriginator = "Product Group Creation";
                 int varViewType=0; 
                 if (rbActive.Checked)
@@ -305,11 +304,7 @@ namespace ROMS
                     varViewType=1;
                     varOriginator = "Product Group Updation";
                 }
-                varResult = objDser.udfnGroup(varViewType,varId, Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid,varOriginator );
-                // else
-                // {
-                //     varResult = objDser.udfnGroup(1, varId, Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Product Group Updation");
-                // }
+                varResult = objDser.udfnGroup(varViewType,varId, Convert.ToString(txtEGroupNameEnglish.Text).Trim(), Convert.ToString(txtEGroupNameTamil.Text).Trim(), varStatusid,varOriginator );
                 objDser.CloseConnection();
                 if (varResult.Split('~')[0] == "3")
                 {
@@ -317,15 +312,15 @@ namespace ROMS
                     if (btnSave.Text == "Save")
                     {
                         varGroupCode = Convert.ToInt16(varResult.Split('~')[2]);
-                        if (varmastertype == 0 && MainForm.objCP_SubGroup.varFormFlag == 1)
+                        if (varmastertype == 0 &&  varFormFlag == 1)
                         {
                             MainForm.objCP_GroupList.udfnList();
                             MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
                             MainForm.objCP_GroupList.cmbProductGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
                         }
-                        if (MainForm.objCP_SubGroup.varFormFlag == 1)
+                        if (varFormFlag == 1)
                         {
-                            MainForm.objCP_SubGroup.varFormFlag = 0;
+                            varFormFlag = 0;
                             MainForm.objCP_SubGroup.varGroupCode = varGroupCode;
                             varCloseFlag = 1;
                             udfnclose();
@@ -358,12 +353,15 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnSave.Enabled = true;
+            }
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                btnSave.Enabled=false;
                 bool blnErrorFlag = false;
                 if (txtEGroupNameEnglish.Text.Trim() == "")
                 {
@@ -385,16 +383,11 @@ namespace ROMS
                 {
                     udfnSave(sender, e);
                 }
-
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-                btnSave.Enabled=true;
             }
         }
 

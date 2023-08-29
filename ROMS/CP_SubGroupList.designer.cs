@@ -155,7 +155,7 @@
             this.lblNoOfPrSubGroup.AutoSize = true;
             this.lblNoOfPrSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblNoOfPrSubGroup.ForeColor = System.Drawing.Color.Crimson;
-            this.lblNoOfPrSubGroup.Location = new System.Drawing.Point(858, 27);
+            this.lblNoOfPrSubGroup.Location = new System.Drawing.Point(655, 29);
             this.lblNoOfPrSubGroup.Name = "lblNoOfPrSubGroup";
             this.lblNoOfPrSubGroup.Size = new System.Drawing.Size(17, 20);
             this.lblNoOfPrSubGroup.TabIndex = 958797;
@@ -166,7 +166,7 @@
             this.lblNoPrSubGroup.AutoSize = true;
             this.lblNoPrSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lblNoPrSubGroup.ForeColor = System.Drawing.Color.Black;
-            this.lblNoPrSubGroup.Location = new System.Drawing.Point(702, 27);
+            this.lblNoPrSubGroup.Location = new System.Drawing.Point(499, 29);
             this.lblNoPrSubGroup.Name = "lblNoPrSubGroup";
             this.lblNoPrSubGroup.Size = new System.Drawing.Size(154, 20);
             this.lblNoPrSubGroup.TabIndex = 958796;
@@ -181,7 +181,7 @@
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
             this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterBy.Size = new System.Drawing.Size(672, 67);
+            this.grbFilterBy.Size = new System.Drawing.Size(685, 67);
             this.grbFilterBy.TabIndex = 958795;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By Product Sub Group";
@@ -190,7 +190,7 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(581, 23);
+            this.btnExport.Location = new System.Drawing.Point(401, 23);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
             this.btnExport.TabIndex = 2;
@@ -206,7 +206,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(498, 23);
+            this.btnView.Location = new System.Drawing.Point(318, 23);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 1;
@@ -223,7 +223,7 @@
             this.cmbProductSubGroup.FormattingEnabled = true;
             this.cmbProductSubGroup.Location = new System.Drawing.Point(27, 23);
             this.cmbProductSubGroup.Name = "cmbProductSubGroup";
-            this.cmbProductSubGroup.Size = new System.Drawing.Size(454, 27);
+            this.cmbProductSubGroup.Size = new System.Drawing.Size(278, 27);
             this.cmbProductSubGroup.TabIndex = 0;
             this.cmbProductSubGroup.SelectedIndexChanged += new System.EventHandler(this.CmbProductSubGroup_SelectedIndexChanged);
             this.cmbProductSubGroup.Enter += new System.EventHandler(this.CmbProductSubGroup_Enter);

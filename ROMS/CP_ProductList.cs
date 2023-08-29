@@ -209,7 +209,6 @@ namespace ROMS
             }
             finally
             {
-                //  grdItemList.ClearSelection();
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 lblPC.Text = Convert.ToString(grdItemList.Rows.Count);

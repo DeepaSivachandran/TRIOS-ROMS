@@ -28,7 +28,7 @@ namespace ROMS
 
         public int varStatusid = 1;
         public int varCloseFlag = 0;
-        public int varFormFlag = 0;
+        //public int varFormFlag = 0;
         public string varSubGroupNameinTamil = "";
         public string varSubGroupNameinEnglish = "";
         public int varProductName = -1;
@@ -207,14 +207,14 @@ namespace ROMS
                 SPDataService objDser = new SPDataService();
                 if (btnSave.Text == "Update")
                 {
-                    string varOriginator = "Product Sub Group Updation";
-                    int varViewType=1; 
+                   varOriginator = "Product Sub Group Updation";
+                    varViewType=1; 
                 }
                 // else
                 // {
                 //     varResult = objDser.udfnSubGroup(1, varId, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Product Sub Group Updation");
                 // }
-                varResult = objDser.udfnSubGroup(varOriginator, varId, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), varOriginator);
+                varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), varOriginator);
                 objDser.CloseConnection();
                 if (varResult.Split('~')[0] == "3")
                 {
@@ -416,8 +416,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void CP_SubGroup_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -438,13 +436,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             try
             {
                 MainForm.objCP_Group = new CP_Group();
-                varFormFlag = 1;
+                MainForm.objCP_Group.varFormFlag = 1;
                 MainForm.objCP_Group.ShowDialog();
                 udfnLoadCmbGroupName();
                 cmbGroupName.SelectedValue = Convert.ToInt16(varGroupCode);
@@ -455,8 +452,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void CmbGroupName_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -472,7 +467,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtESubGroupNameEnglish_Enter(object sender, EventArgs e)
         {
             try
@@ -485,7 +479,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtESubGroupNameEnglish_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -501,7 +494,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtESubGroupNameEnglish_Leave(object sender, EventArgs e)
         {
             try
@@ -525,7 +517,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtESubGroupNameTamil_Enter(object sender, EventArgs e)
         {
             try
@@ -538,7 +529,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtESubGroupNameTamil_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -554,7 +544,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtESubGroupNameTamil_Leave(object sender, EventArgs e)
         {
             try
@@ -579,7 +568,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -595,7 +583,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -611,7 +598,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbRack_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -624,7 +610,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbGroupName_Enter(object sender, EventArgs e)
         {
             try
@@ -637,7 +622,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbGroupName_Leave(object sender, EventArgs e)
         {
             try
@@ -661,7 +645,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbGroupName_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -675,7 +658,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbBatchNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -688,7 +670,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbBatchNo_Enter(object sender, EventArgs e)
         {
             try
@@ -702,7 +683,6 @@ namespace ROMS
             }
 
         }
-
         private void CmbBatchNo_Leave(object sender, EventArgs e)
         {
             try
@@ -726,7 +706,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbBatchNo_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -743,7 +722,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbBatchNo_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -757,8 +735,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void CmbRack_Enter(object sender, EventArgs e)
         {
             try
@@ -771,7 +747,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbRack_Leave(object sender, EventArgs e)
         {
             try
@@ -786,7 +761,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbRack_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -799,7 +773,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbRack_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -820,7 +793,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Enter(object sender, EventArgs e)
         {
             try
@@ -833,7 +805,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Leave(object sender, EventArgs e)
         {
             try
@@ -846,7 +817,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_Enter(object sender, EventArgs e)
         {
             try
@@ -859,7 +829,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInactive_Leave(object sender, EventArgs e)
         {
             try
@@ -872,7 +841,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_SubGroup_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -897,7 +865,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbGroupName_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -911,9 +878,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-     
-
         private void CmbStockLocation_Enter(object sender, EventArgs e)
         {
             try
@@ -926,7 +890,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockLocation_Leave(object sender, EventArgs e)
         {
             try
@@ -949,7 +912,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -966,7 +928,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -981,7 +942,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockLocation_KeyPress(object sender, KeyPressEventArgs e)
         {
             try

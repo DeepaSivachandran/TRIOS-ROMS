@@ -111,7 +111,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -360,7 +360,8 @@ namespace ROMS
             {
                 string varResult = ""; string varOriginator = "HSN Creation";
                 int varViewType=0; 
-                 
+                btnSave.Enabled=false;
+
                if (rbActive.Checked)
                {
                     varStatusid = 1;
@@ -375,14 +376,10 @@ namespace ROMS
                     varViewType=1;
                     varOriginator = "HSN Updation";
                }
-            //    else
-            //    {
-            //         varResult = objDser.udfnHsn(1, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "HSN Updation");
-            //    }
-                varResult = objDser.udfnHsn(varViewType, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, varOriginator);
-                objDser.CloseConnection();
-                if (varResult.Split('~')[0] == "3")
-                {
+               varResult = objDser.udfnHsn(varViewType, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text).Trim(), Convert.ToString(txtHSNCode.Text).Trim(), varStatusid, varOriginator);
+               objDser.CloseConnection();
+               if (varResult.Split('~')[0] == "3")
+               {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (btnSave.Text == "Save")
                     {
@@ -394,25 +391,26 @@ namespace ROMS
                         udfnclose();
                     }
                     MainForm.objCP_ProductHSNlist.udfnList();
-                }
-                else if(varResult.Split('~')[0] == "4")
-                {
+               }
+               else if(varResult.Split('~')[0] == "4")
+               {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-               
+               }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-           
+            finally
+            {
+                btnSave.Enabled = true;
+            }
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                btnSave.Enabled=false;
                 bool blnErrorFlag = false;
                 if (Convert.ToString(cmbGST.SelectedValue) == "0" || Convert.ToString(cmbGST.SelectedValue) == "-1")
                 {
@@ -422,7 +420,7 @@ namespace ROMS
                     tpGst.Show("Please select GST.", cmbGST, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtHSNName.Text.Trim() == "")
+                if (Convert.ToString(txtHSNName.Text).Trim() == "")
                 {
                     epHsn.SetError(txtHSNName, "Please enter HSN name.");
                     txtHSNName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -438,7 +436,6 @@ namespace ROMS
                     tpHsnCode.Show("Please enter HSN code.", txtHSNCode, 5000);
                     blnErrorFlag = true;
                 }
-               
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
@@ -448,10 +445,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-                btnSave.Enabled=true;
             }
         }
         private void CP_ProductHSN_KeyDown(object sender, KeyEventArgs e)
@@ -526,7 +519,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
