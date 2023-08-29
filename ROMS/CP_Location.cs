@@ -146,6 +146,14 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=0 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
+                if (Convert.ToInt32(cmbLocationType.SelectedValue) == 9)
+                {
+                    pnlGodownType.Enabled = true;
+                }
+                else
+                { 
+                    pnlGodownType.Enabled = false;
+                }
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
