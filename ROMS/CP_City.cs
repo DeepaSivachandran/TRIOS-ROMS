@@ -107,21 +107,8 @@ namespace ROMS
                 {
 
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MainForm.objCP_Citylist.udfnList();
                     //udfnclear();
-                    if (varmastertype == 1)
-                    {
-                        varmastertype = 0;
-                        varUpdate = 1;
-                        varCityCode = Convert.ToInt16(varResult.Split('~')[2]);
-                        varCityName = Convert.ToString(varResult.Split('~')[2]);
-                        MainForm.objCP_CP_Broker.varCityName = txtCityName.Text;
-                        MainForm.objCP_CP_Broker.varCityCode = varCityCode;
-                        udfnclose();
-                    }
-                    else
-                    {
-                        MainForm.objCP_UserCategoryList.udfnList();
-                    }
                     if (btnSave.Text == "Update")
                     {
                         varUpdate = 1;
@@ -133,20 +120,38 @@ namespace ROMS
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                if (varmastertype == 1)
+                {
+                    varmastertype = 0;
+                    varUpdate = 1;
+                    varCityCode = Convert.ToInt16(varResult.Split('~')[2]);
+                    varCityName = Convert.ToString(varResult.Split('~')[2]);
+                    MainForm.objCP_CP_Broker.varCityName = txtCityName.Text;
+                    MainForm.objCP_CP_Broker.varCityCode = varCityCode;
+                    udfnclose();
+                }
+                else
+                {
+                    MainForm.objCP_UserCategoryList.udfnList();
+                }
+                 
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
+            }
+            finally
+            {
+                btnSave.Enabled = true;
+            }
         }
         private void udfnclear()
         {
             try
             {
                 txtCityName.Text = "";
-                cmbState.SelectedIndex = 0;
-                btnSave.Text = "Save";
+                //btnSave.Text = "Save";
                 cmbState.Focus();
                 this.ActiveControl = cmbState;
             }
@@ -160,6 +165,7 @@ namespace ROMS
         {
             try
             {
+                btnSave.Enabled = false;
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtCityName.Text).Trim() == "")
                 {

@@ -1681,31 +1681,6 @@ namespace ROMS
             }
         }
 
-        private void TxtBarcode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objvalidation.FormatNumericOnly(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        } 
-
         private void TxtGST_KeyPress(object sender, KeyPressEventArgs e)
         {
             try

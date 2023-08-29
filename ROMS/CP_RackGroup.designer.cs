@@ -457,7 +457,6 @@
             this.lvStaffName.TabIndex = 1111137;
             this.lvStaffName.UseCompatibleStateImageBehavior = false;
             this.lvStaffName.Visible = false;
-            this.lvStaffName.SelectedIndexChanged += new System.EventHandler(this.LvStaffName_SelectedIndexChanged);
             this.lvStaffName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvStaffName_KeyDown);
             this.lvStaffName.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LvStaffName_MouseDoubleClick);
             // 

@@ -66,9 +66,9 @@ namespace ROMS
                 //cmbConcern.SelectedIndex = 0;
                 //cmbLocationType.SelectedIndex = 0;
                 cmbStockApplicable.SelectedIndex = 0;
-                btnSave.Text = "Save";
-                txtLocationNameInEnglish.Focus();
-                this.ActiveControl = txtLocationNameInEnglish;
+                //btnSave.Text = "Save";
+                cmbConcern.Focus();
+                this.ActiveControl = cmbConcern;
             }
             catch (Exception ex)
             {
@@ -241,12 +241,17 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnSave.Enabled = true;
+            }
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
 
             try
             {
+                btnSave.Enabled = false;
                 bool blnErrorFlag = false;
 
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")

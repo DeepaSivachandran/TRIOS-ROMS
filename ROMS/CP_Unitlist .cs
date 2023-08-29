@@ -116,9 +116,15 @@ namespace ROMS
         public void udfnList()
         {           
             try
-            {               
-                SPDataService objspservice = new SPDataService();
+            {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdUnitList.DataSource = null;
                 DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************    
+                SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnUnitList(0);
                 if (objDs != null)
                 {
@@ -164,6 +170,7 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
