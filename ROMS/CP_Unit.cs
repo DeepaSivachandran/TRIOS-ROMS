@@ -128,6 +128,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnSave.Enabled = true;
+            }
         }
         private void udfnclear()
         {
@@ -136,8 +140,7 @@ namespace ROMS
 
                 txtEUnitName.Text = "";
                 txtSymbol.Text = "";
-                cmbNoOfDecimals.SelectedIndex = 0;
-                btnSave.Text = "Save";
+                //btnSave.Text = "Save";
                 txtEUnitName.Focus();
                 this.ActiveControl = txtEUnitName;
             }
@@ -151,6 +154,7 @@ namespace ROMS
         {
             try
             {
+                btnSave.Enabled = false;
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtEUnitName.Text).Trim() == "")
                 {

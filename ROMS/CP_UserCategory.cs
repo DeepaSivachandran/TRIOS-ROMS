@@ -102,14 +102,6 @@ namespace ROMS
         {
             try
             {
-                if (PbDefault == "1" || PbDefault == "2")
-                {
-                    btnSave.Visible = false;
-                    txtCategoryName.Visible = false;
-                    pnlStatus.Visible = false;
-                }
-                else
-                {
                     if (rbActive.Checked == true) { varstatus = 1; }
                     else { varstatus = 2; }
                     SPDataService objspservice = new SPDataService();
@@ -154,7 +146,6 @@ namespace ROMS
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                }
             }
             catch (Exception ex)
             {

@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 namespace ROMS
-{
+{  //Created By:-Sathish
+    //Created On:-22/08/2023
     public partial class CP_User : Form
     {
         DataValidation objValidation = new DataValidation();
@@ -379,7 +380,7 @@ namespace ROMS
                     varoriginator = "User Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnUser(varType, varUserID, (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), Convert.ToInt16(cmbUserRole.SelectedValue), (txtPassword.Text).Trim(), Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, varoriginator);
+                varResult = objspservice.udfnUser(varType, varUserID, (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, varoriginator);
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
@@ -477,6 +478,24 @@ namespace ROMS
                     tpPassKey.Show("Please select pass key", cmbPasskey, 5000);
                     blnErrorFlag = true;
                 }
+
+                if (oldpassword != null && oldpassword != "")
+                {
+
+                    if (oldpassword.Trim() == txtPassword.Text.Trim())
+                    {
+                        varpassword = txtPassword.Text;
+                    }
+                    else
+                    {
+                        varpassword = GenerateMD5(txtPassword.Text);
+                    }
+                }
+                else
+                {
+                    varpassword = GenerateMD5(txtPassword.Text);
+                }
+
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
