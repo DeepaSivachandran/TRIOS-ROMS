@@ -807,6 +807,7 @@ namespace ROMS
                 {
                     epCompany.Clear();
                     txtCity.BackColor = Color.White;
+                         
                 }
             }
             catch (Exception ex)
@@ -1037,6 +1038,7 @@ namespace ROMS
         {
             try
             {
+                lvCity.Visible = false;
                 txtPincode.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2391,7 +2393,21 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-
+                if (Convert.ToString(txtCity.Text) != "")
+                {
+                    string VarCity = "0";
+                    DataService objDserv = new DataService();
+                    VarCity = objDserv.displaydata("SELECT COUNT(*) FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                    if (VarCity == "0")
+                    {
+                        lblcityid.Text = "0";
+                        epCompany.SetError(txtCity, "Invalid city");
+                        txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpCity.ShowAlways = true;
+                        tpCity.Show("Invalid city", txtCity, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
