@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class INV_Inwardlist : Form
+    public partial class INV_InwardlistQueue : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
         
 
-        public INV_Inwardlist()
+        public INV_InwardlistQueue()
         {
             InitializeComponent();
         }
@@ -303,7 +303,7 @@ namespace ROMS
             }
         }
 
-        private void INV_Inwardlist_KeyDown(object sender, KeyEventArgs e)
+        private void INV_InwardlistQueue_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -334,9 +334,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objINV_InwardlistQueue = new INV_InwardlistQueue();
-                MainForm.objINV_InwardlistQueue.MdiParent = this.ParentForm;
-                MainForm.objINV_InwardlistQueue.Show();
+                MainForm.objINV_Inwardlist = new INV_Inwardlist();
+                MainForm.objINV_Inwardlist.MdiParent = this.ParentForm;
+                MainForm.objINV_Inwardlist.Show();
             }
             catch (Exception ex)
             {

@@ -265,7 +265,7 @@ namespace ROMS
             // 
             this.tsmfromPurchase.Name = "tsmfromPurchase";
             this.tsmfromPurchase.Size = new System.Drawing.Size(146, 22);
-            this.tsmfromPurchase.Text = "From Purchase";
+            this.tsmfromPurchase.Text = "From Purchase & GRN";
             this.tsmfromPurchase.Click += new System.EventHandler(this.TsmfromPurchase_Click);
             // 
             // tsmfromOtherStockLocation

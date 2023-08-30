@@ -107,6 +107,7 @@ namespace ROMS
         public static INV_StockConversionList objINV_StockConversionList;
         public static INV_StockConversion objINV_StockConversion;
         public static INV_InwardQueueList objINV_InwardQueueList;
+        public static INV_InwardlistQueue objINV_InwardlistQueue;
 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;  
