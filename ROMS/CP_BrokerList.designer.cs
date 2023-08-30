@@ -243,11 +243,11 @@
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(896, 233);
+            this.picLoader.Location = new System.Drawing.Point(3, 3);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(227, 267);
+            this.picLoader.Size = new System.Drawing.Size(1348, 635);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;

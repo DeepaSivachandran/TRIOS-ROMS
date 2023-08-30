@@ -63,10 +63,8 @@ namespace ROMS
                 txtLocationNameInEnglish.Text = "";
                 txtLocationNameInTamil.Text = "";
                 txtShortName.Text = "";
-                //cmbConcern.SelectedIndex = 0;
-                //cmbLocationType.SelectedIndex = 0;
+                cmbLocationType.SelectedIndex = 0;
                 cmbStockApplicable.SelectedIndex = 0;
-                //btnSave.Text = "Save";
                 cmbConcern.Focus();
                 this.ActiveControl = cmbConcern;
             }
@@ -146,14 +144,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=0 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
-                if (Convert.ToInt32(cmbLocationType.SelectedValue) == 9)
-                {
-                    pnlGodownType.Enabled = true;
-                }
-                else
-                { 
-                    pnlGodownType.Enabled = false;
-                }
+                
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -863,6 +854,18 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbLocationType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(cmbLocationType.SelectedValue) == 9)
+            {
+                pnlGodownType.Enabled = true;
+            }
+            else
+            {
+                pnlGodownType.Enabled = false;
             }
         }
     }

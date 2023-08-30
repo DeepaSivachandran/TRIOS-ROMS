@@ -42,6 +42,10 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnluser = new System.Windows.Forms.Panel();
+            this.lvUserList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblUserId = new System.Windows.Forms.Label();
             this.grbFilterByUser = new System.Windows.Forms.GroupBox();
             this.btnExport = new System.Windows.Forms.Button();
@@ -51,10 +55,6 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUserList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.lvUserList = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tsUserList.SuspendLayout();
             this.pnluser.SuspendLayout();
             this.grbFilterByUser.SuspendLayout();
@@ -159,6 +159,36 @@
             this.pnluser.Size = new System.Drawing.Size(1354, 641);
             this.pnluser.TabIndex = 36;
             // 
+            // lvUserList
+            // 
+            this.lvUserList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvUserList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvUserList.HideSelection = false;
+            this.lvUserList.Location = new System.Drawing.Point(21, 62);
+            this.lvUserList.Name = "lvUserList";
+            this.lvUserList.Size = new System.Drawing.Size(313, 99);
+            this.lvUserList.TabIndex = 1;
+            this.lvUserList.UseCompatibleStateImageBehavior = false;
+            this.lvUserList.View = System.Windows.Forms.View.Details;
+            this.lvUserList.Visible = false;
+            this.lvUserList.DoubleClick += new System.EventHandler(this.LvUserList_DoubleClick);
+            this.lvUserList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvUserList_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 10;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
+            // 
             // lblUserId
             // 
             this.lblUserId.AutoSize = true;
@@ -178,7 +208,7 @@
             this.grbFilterByUser.Name = "grbFilterByUser";
             this.grbFilterByUser.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterByUser.Size = new System.Drawing.Size(1348, 67);
-            this.grbFilterByUser.TabIndex = 958801;
+            this.grbFilterByUser.TabIndex = 0;
             this.grbFilterByUser.TabStop = false;
             this.grbFilterByUser.Text = "Filter By User";
             // 
@@ -329,45 +359,15 @@
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(690, 442);
+            this.picLoader.Location = new System.Drawing.Point(3, 74);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(653, 184);
+            this.picLoader.Size = new System.Drawing.Size(1348, 564);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
-            // 
-            // lvUserList
-            // 
-            this.lvUserList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.lvUserList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvUserList.HideSelection = false;
-            this.lvUserList.Location = new System.Drawing.Point(21, 62);
-            this.lvUserList.Name = "lvUserList";
-            this.lvUserList.Size = new System.Drawing.Size(313, 99);
-            this.lvUserList.TabIndex = 1;
-            this.lvUserList.UseCompatibleStateImageBehavior = false;
-            this.lvUserList.View = System.Windows.Forms.View.Details;
-            this.lvUserList.Visible = false;
-            this.lvUserList.DoubleClick += new System.EventHandler(this.LvUserList_DoubleClick);
-            this.lvUserList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvUserList_KeyDown);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 180;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 10;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 0;
             // 
             // CP_UserList
             // 

@@ -182,6 +182,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnSave.Enabled = true;
+            }
         }
         public DataTable udfnBankSave()
         {
@@ -1247,6 +1251,7 @@ namespace ROMS
         {
             try
             {
+                btnSave.Enabled = false;
                 bool blnErrorFlag = false;
 
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
@@ -1263,6 +1268,30 @@ namespace ROMS
                     txtBrokerName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpBrokerName.ShowAlways = true;
                     tpBrokerName.Show("Please enter broker name", txtBrokerName, 5000);
+                    blnErrorFlag = true;
+                }
+                else if (txtGstinNo.Text.Length != 15)
+                {
+                    epBroker.SetError(txtGstinNo, "Please enter valid GSTINNo");
+                    txtGstinNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpGstinNo.ShowAlways = true;
+                    tpGstinNo.Show("Please enter valid GSTINNo", txtGstinNo, 5000);
+                    blnErrorFlag = true;
+                }
+                else if (txtMobileNo.Text.Length != 10)
+                {
+                    epBroker.SetError(txtMobileNo, "Please enter valid mobile number");
+                    txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpMobileNo.ShowAlways = true;
+                    tpMobileNo.Show("Please enter valid mobile number", txtMobileNo, 5000);
+                    blnErrorFlag = true;
+                }
+                else if (txtWhatsAppNo.Text.Length != 10)
+                {
+                    epBroker.SetError(txtWhatsAppNo, "Please enter valid whatsapp number");
+                    txtWhatsAppNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpWhatsAppNo.ShowAlways = true;
+                    tpWhatsAppNo.Show("Please enter valid whatsapp number", txtWhatsAppNo, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)

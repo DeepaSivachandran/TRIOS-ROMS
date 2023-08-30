@@ -49,7 +49,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID in (1) Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID !=0 Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text=="Save")

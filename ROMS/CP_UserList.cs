@@ -61,8 +61,8 @@ namespace ROMS
         {
             try
             {
+                txtDUserList.Focus();
                 udfnList();
-
             }
             catch (Exception ex)
             {
@@ -74,6 +74,13 @@ namespace ROMS
         {
             try
             {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdUserList.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
                 int varUserId = 0;
                 if (lblUserId.Text == "")
@@ -84,8 +91,8 @@ namespace ROMS
                 {
                     varUserId = Convert.ToInt32(lblUserId.Text);
                 }
-                DataSet objDs = new DataSet();
                 objDs = objspservice.udfnUserList(2,(txtDUserList.Text),"","", varUserId);
+                objspservice.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -102,7 +109,8 @@ namespace ROMS
                             grdUserList.Columns["PassKeyID"].Visible = false;
                             grdUserList.Columns["StatusID"].Visible = false;
                             grdUserList.Columns["S.No."].Width = 50;
-                            grdUserList.Columns["Name of the User"].Width = 200;
+                            grdUserList.Columns["Name of the User"].Width = 150;
+                            grdUserList.Columns["User Category"].Width = 150;
                             grdUserList.Columns["Status"].Width = 80;
                             grdUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -118,7 +126,12 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-                    objspservice.CloseConnection();
+
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
             }
@@ -130,6 +143,7 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
         public void udfndelete()
@@ -145,7 +159,7 @@ namespace ROMS
 
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
-                        varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value),"", "", 0,0,"",0, 0, "User Delete");
+                        varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", 0,0,"",0, 0, "User Delete");
                         if (varResult.Split('~')[0] == "3")
                         {
                             MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -557,14 +571,11 @@ namespace ROMS
                     }
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
-                    ExcelSheet.Cells[1, 1].Value = "Rack List";
+                    ExcelSheet.Cells[1, 1].Value = "User List";
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
-                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
-                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
-                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
                     foreach (DataGridViewColumn col in grdUserList.Columns)
                     {
                         if (col.Visible)
@@ -572,21 +583,29 @@ namespace ROMS
                             cIndex += 1;
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
+                            ExcelSheet.Cells[2, cIndex].Interior.Color = Color.LightSlateGray;
+                            Excel.Range cell = ExcelSheet.Cells[2, cIndex];
+                            cell.Font.Color = Excel.XlRgbColor.rgbWhite;
                             if (cIndex == 1)
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 8;
                             }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 25;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
-                            if (col.Name == "clmQty" || col.Name == "clmTotal")
+                            if (cIndex == 1 || cIndex == 7 )
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
+                            if (cIndex == 2)
+                            {
+                                ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            }
+
                             foreach (DataGridViewRow rowa in grdUserList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 4, cIndex] = rowa.Cells[col.Index].Value;
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
                             }
                         }
                     }
@@ -629,8 +648,6 @@ namespace ROMS
             try
             {
                 lvUserList.Items.Clear();
-
-                lblUserId.Text = "";
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtDUserList.Text.Length > 2)
@@ -756,8 +773,9 @@ namespace ROMS
             {
                 if (txtDUserList.Text != "")
                 {
-                    lblUserId.Text = lvUserList.SelectedItems[0].SubItems[1].Text;
-                    txtDUserList.Text = lvUserList.SelectedItems[0].SubItems[0].Text;
+                    ListViewItem selectedItem = lvUserList.SelectedItems[0];
+                    lblUserId.Text = selectedItem.SubItems[1].Text;
+                    txtDUserList.Text = selectedItem.SubItems[0].Text;
                 }
             }
             catch (Exception ex)

@@ -100,9 +100,16 @@ namespace ROMS
         {
             try
             {
-                SPDataService objspservice = new SPDataService();
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdBrokerList.DataSource = null;
                 DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnBrokerList(0,0);
+                objspservice.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -132,7 +139,11 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-                    objspservice.CloseConnection();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
             }
@@ -144,6 +155,7 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
         private void udfnEdit()

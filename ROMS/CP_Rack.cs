@@ -55,11 +55,9 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-
-                //select SL_COMID, SL_EName, (select COMID from MR_Company where MR_StockLocation.SL_COMID = MR_Company.COMID)AS CSID from MR_StockLocation;
-                objDataBind.BindComboBoxListSelected("MR_StockLocation,MR_Company ","SL_COMID=COMID","SL_EName,SLID",cmbStockLocation,"", "SL_EName", "SLID");
-                //objDataBind.BindComboBoxListSelected("MR_StockLocation", " SL_COMID and SLID !=0 Order by SLID", "SL_EName,SLID", cmbStockLocation, "", "SL_EName", "SLID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=0 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind.BindComboBoxListSelected("MR_StockLocation,MR_Company ", "SL_COMID=COMID and SLID !=0 Order by SLID", "SL_EName,SLID",cmbStockLocation,"", "SL_EName", "SLID");
+                //objDataBind.BindComboBoxListSelected("MR_StockLocation", " SL_COMID and SLID !=0 Order by SLID", "SL_EName,SLID", cmbStockLocation, "", "SL_EName", "SLID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text == "Save")
@@ -137,11 +135,16 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnSave.Enabled = true;
+            }
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
+                btnSave.Enabled = false;
                 bool blnErrorFlag = false;
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
@@ -202,10 +205,10 @@ namespace ROMS
                 txtShortName.Text = "";
                 txtDescription.Text = "";
                 //cmbConcern.SelectedIndex = 0;
-                //cmbStockLocation.SelectedIndex = 0;
+                cmbStockLocation.SelectedIndex = 0;
                 btnSave.Text = "Save";
-                txtRackName.Focus();
-                this.ActiveControl = txtRackName;
+                cmbConcern.Focus();
+                this.ActiveControl = cmbConcern;
             }
             catch (Exception ex)
             {
@@ -688,6 +691,32 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }        
+        }
+
+        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbStockLocation.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

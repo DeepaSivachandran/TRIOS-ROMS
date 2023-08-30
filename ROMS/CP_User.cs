@@ -33,8 +33,6 @@ namespace ROMS
         public string PbLoginid = "";
         public string PbUserCategory = "";
         public string PbUserRole = "";
-        //public string PbPassword = "";
-        //public string PbConfirmPassword = "";
         public string PbPasskey = "";
         public int PbUserCategoryID = 0;
         public int PbUserRoleID = 0;
@@ -403,12 +401,17 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnSave.Enabled = true;
+            }
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
 
             try
             {
+                btnSave.Enabled = false;
                 bool blnErrorFlag = false;
 
                 if (Convert.ToString(txtUserName.Text).Trim() == "")
@@ -514,8 +517,13 @@ namespace ROMS
             txtLoginID.Text = "";
             txtPassword.Text = "";
             txtCPassword.Text = "";
+            cmbUserCategory.SelectedIndex = 0;
+            cmbUserRole.SelectedIndex = 0;
+            cmbPasskey.SelectedIndex = 0;
             rbActive.Checked = true;
             btnSave.Text = "Save";
+            txtUserName.Focus();
+            this.ActiveControl = txtUserName;
         }
 
         private void btnSave_Enter(object sender, EventArgs e)
@@ -625,12 +633,15 @@ namespace ROMS
         {
             try
             {
+                txtUserName.Focus();
+                this.ActiveControl = txtUserName;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_UserCategory", " CT_STSID=1 and CTID !=0 Order by CTID", "CT_Name,CTID", cmbUserCategory, "", "CT_Name", "CTID");
                 objDataBind.BindComboBoxListSelected("MR_UserRole", "UR_STSID=1 and URID !=0 Order by URID", "UR_Name,URID", cmbUserRole, "", "UR_Name", "URID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,7) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbPasskey, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
+                udfnEdit();
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -655,7 +666,7 @@ namespace ROMS
         private void udfnLoad()
         {
             try
-            {
+            {   
                 txtUserName.Text = PbNameoftheUser;
                 txtLoginID.Text = PbLoginid;
                 cmbUserCategory.SelectedValue = PbUserCategoryID;
@@ -1013,9 +1024,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-    
-
         private void udfnEdit()
         {
             try

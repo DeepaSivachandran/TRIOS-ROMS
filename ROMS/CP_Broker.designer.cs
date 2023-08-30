@@ -124,7 +124,7 @@
             this.grbform.Controls.Add(this.txtMobileNo);
             this.grbform.Location = new System.Drawing.Point(21, 10);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(999, 623);
+            this.grbform.Size = new System.Drawing.Size(1142, 648);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
@@ -222,7 +222,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(12, 309);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(968, 253);
+            this.groupBox2.Size = new System.Drawing.Size(1113, 298);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bank Details";
@@ -313,7 +313,7 @@
             this.grdBankDetails.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdBankDetails.EnableHeadersVisualStyles = false;
             this.grdBankDetails.GridColor = System.Drawing.Color.White;
-            this.grdBankDetails.Location = new System.Drawing.Point(13, 135);
+            this.grdBankDetails.Location = new System.Drawing.Point(6, 135);
             this.grdBankDetails.Name = "grdBankDetails";
             this.grdBankDetails.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -321,7 +321,7 @@
             this.grdBankDetails.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdBankDetails.RowTemplate.Height = 25;
             this.grdBankDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdBankDetails.Size = new System.Drawing.Size(938, 98);
+            this.grdBankDetails.Size = new System.Drawing.Size(1101, 157);
             this.grdBankDetails.TabIndex = 1111136;
             this.grdBankDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBankDetails_CellContentClick);
             this.grdBankDetails.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdBankDetails_EditingControlShowing);
@@ -719,7 +719,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(905, 573);
+            this.btnClose.Location = new System.Drawing.Point(1050, 613);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 19;
@@ -735,7 +735,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(816, 573);
+            this.btnSave.Location = new System.Drawing.Point(960, 613);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 18;
@@ -768,7 +768,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1032, 649);
+            this.ClientSize = new System.Drawing.Size(1183, 670);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

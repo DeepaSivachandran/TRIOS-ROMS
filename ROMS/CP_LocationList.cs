@@ -63,8 +63,18 @@ namespace ROMS
             {
                 cmbConcern.Focus();
                 DataBind objDataBind = new DataBind();
+                /*
+                SELECT * FROM (
+                select 1 as sno, COMID,COM_ShortName,COM_STSID from MR_Company where COMID =0 --order by CTY_STSID,CTY_Name
+                union all
+                select 2 ,COMID,COM_ShortName,COM_STSID from MR_Company where COMID not in (-1,0)  ) DERV  order by SNO, COM_STSID,COM_ShortName */
+
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
+
+                tsbNew.Visible = true;
+                tsbEdit.Visible = true;
+                tsbDelete.Visible = true;
                 udfnList();
             }
             catch (Exception ex)
@@ -86,6 +96,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)));
+                objspservice.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -96,7 +107,6 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdGodownList.DataSource = objDs.Tables[0];
-
                             grdGodownList.Columns["ID"].Visible = false;
                             grdGodownList.Columns["ConcernID"].Visible = false;
                             grdGodownList.Columns["LocationTypeID"].Visible = false;
@@ -126,7 +136,12 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-                    objspservice.CloseConnection();
+
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
                 }
             }
             catch (Exception ex)
@@ -145,26 +160,29 @@ namespace ROMS
         {
             try
             {
-                if (grdGodownList.SelectedRows.Count > 0)
+                if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) != "1" && Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) != "2")
                 {
-                    string varResult = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdGodownList.SelectedRows.Count > 0)
                     {
-
-                        SPDataService objspservice = new SPDataService();
-                        varResult = "";
-                        varResult = objspservice.udfnStockLocation(2,Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value),0,0,"","","",0,0,0,"Stock Delete");
-
-
-                        if (varResult.Split('~')[0] == "3")
+                        string varResult = "";
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-                        }
-                        else
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                            SPDataService objspservice = new SPDataService();
+                            varResult = "";
+                            varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete");
+
+
+                            if (varResult.Split('~')[0] == "3")
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnList();
+                            }
+                            else
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
@@ -525,6 +543,45 @@ namespace ROMS
             }
             catch (Exception ex)
 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchbyLocationName_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (grdGodownList.DataSource as DataTable).DefaultView.RowFilter = "([Location Name in English]) LIKE '%" + txtSearchbyLocationName.Text + "%'";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchbyLocationName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchbyLocationName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchbyLocationName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchbyLocationName.BackColor = Color.White;
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
