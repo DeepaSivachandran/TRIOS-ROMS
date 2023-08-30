@@ -34,7 +34,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Representative));
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.chkBrandAll = new System.Windows.Forms.CheckBox();
             this.grdRepBrand = new System.Windows.Forms.DataGridView();
+            this.clmcheckbrand = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.txtWhatsappno = new System.Windows.Forms.TextBox();
@@ -51,8 +53,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.epGroup = new System.Windows.Forms.ErrorProvider(this.components);
-            this.chkBrandAll = new System.Windows.Forms.CheckBox();
-            this.clmcheckbrand = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRepBrand)).BeginInit();
             this.pnlStatus.SuspendLayout();
@@ -79,6 +79,16 @@
             this.grbform.Size = new System.Drawing.Size(491, 447);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // chkBrandAll
+            // 
+            this.chkBrandAll.AutoSize = true;
+            this.chkBrandAll.Location = new System.Drawing.Point(200, 137);
+            this.chkBrandAll.Name = "chkBrandAll";
+            this.chkBrandAll.Size = new System.Drawing.Size(15, 14);
+            this.chkBrandAll.TabIndex = 958794;
+            this.chkBrandAll.UseVisualStyleBackColor = true;
+            this.chkBrandAll.CheckedChanged += new System.EventHandler(this.ChkBrandAll_CheckedChanged);
             // 
             // grdRepBrand
             // 
@@ -120,7 +130,16 @@
             this.grdRepBrand.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdRepBrand.Size = new System.Drawing.Size(288, 280);
             this.grdRepBrand.TabIndex = 5;
+            this.grdRepBrand.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRepBrand_CellValueChanged);
             this.grdRepBrand.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdRepBrand_CurrentCellDirtyStateChanged);
+            // 
+            // clmcheckbrand
+            // 
+            this.clmcheckbrand.HeaderText = "";
+            this.clmcheckbrand.Name = "clmcheckbrand";
+            this.clmcheckbrand.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmcheckbrand.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmcheckbrand.Width = 30;
             // 
             // textBox5
             // 
@@ -319,24 +338,6 @@
             // epGroup
             // 
             this.epGroup.ContainerControl = this;
-            // 
-            // chkBrandAll
-            // 
-            this.chkBrandAll.AutoSize = true;
-            this.chkBrandAll.Location = new System.Drawing.Point(200, 137);
-            this.chkBrandAll.Name = "chkBrandAll";
-            this.chkBrandAll.Size = new System.Drawing.Size(15, 14);
-            this.chkBrandAll.TabIndex = 958794;
-            this.chkBrandAll.UseVisualStyleBackColor = true;
-            this.chkBrandAll.CheckedChanged += new System.EventHandler(this.ChkBrandAll_CheckedChanged);
-            // 
-            // clmcheckbrand
-            // 
-            this.clmcheckbrand.HeaderText = "";
-            this.clmcheckbrand.Name = "clmcheckbrand";
-            this.clmcheckbrand.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmcheckbrand.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmcheckbrand.Width = 30;
             // 
             // CP_Representative
             // 

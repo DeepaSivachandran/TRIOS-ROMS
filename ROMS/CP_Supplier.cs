@@ -21,7 +21,8 @@ namespace ROMS
         public string varcompanycode;
         public string pbFormStatus;
         public string varstatecode = "", varupdate="0", vardays = "";
-        public int varOrderid = 0;
+        public int varOrderid = 0,scheduleselectedIndex = -1;
+
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
         private ToolTip tpAltContactNo = new ToolTip();
@@ -383,13 +384,14 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
+            } 
            
         }
         public void udfnSave()
         {
             try
             {
+                btnSave.Enabled = false;
                 bool blnErrorFlag = false; 
                 if (txtName.Text == "")
                 { 
@@ -399,8 +401,65 @@ namespace ROMS
                     tparea.Show("Please enter the name.", txtName, 5000);
                     blnErrorFlag = true;
                 }
+                if (txtContactNumber.Text != "")
+                {
+                    if (txtContactNumber.Text.Length < 10)
+                    {
+                        errCompany.SetError(txtContactNumber, "Please enter valid phone No.");
+                        txtContactNumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpContactNo.ShowAlways = true;
+                        tpContactNo.Show("Please enter valid phone No.", txtContactNumber, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                if (txtPincode.Text != "")
+                {
+                    if (txtPincode.Text.Length < 6)
+                    {
+                        errCompany.SetError(txtPincode, "Please enter valid pincode");
+                        txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tppincode.ShowAlways = true;
+                        tppincode.Show("Please enter valid pincode.", txtPincode, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                if (txtwhatsapp.Text != "")
+                {
+                    if (txtwhatsapp.Text.Length < 10)
+                    {
+
+                        errCompany.SetError(txtwhatsapp, "Please enter valid whatsapp No.");
+                        txtwhatsapp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tparea.ShowAlways = true;
+                        tparea.Show("Please enter valid whatsapp No.", txtwhatsapp, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                if (txtAContactNumber.Text != "")
+                {
+                    if (txtAContactNumber.Text.Length < 10)
+                    {
+                        errCompany.SetError(txtAContactNumber, "Please enter valid mobile No.");
+                        txtAContactNumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpAltContactNo.ShowAlways = true;
+                        tpAltContactNo.Show("Please enter valid mobile No.", txtAContactNumber, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+
                 if (blnErrorFlag == false)
                 {
+                    tpContactNo.ShowAlways = false;
+                    tpAltContactNo.ShowAlways = false;
+                    tpemail.ShowAlways = false;
+                    tpgstin.ShowAlways = false;
+                    tpfssai.ShowAlways = false;
+                    tpplno.ShowAlways = false;
+                    tpcompanyname.ShowAlways = false;
+                    tpshortname.ShowAlways = false;
+                    tppincode.ShowAlways = false;
+                    tparea.ShowAlways = false;
+                    tpstate.ShowAlways = false;
                     SPDataService objspdservice = new SPDataService();
                     string result = "";
                     string varStatus = "1";
@@ -460,22 +519,24 @@ namespace ROMS
                     {
                         SupplierUpdate = Convert.ToInt32(pbSupplierid);
                     }
-
+                    string varorginator = "";
+                    int varviewtype =0;
                     if (btnSave.Text == "Save")
                     {
-                        result = objspdservice.udfnSupplierMaster(0, SupplierUpdate, (txtName.Text).Trim(), txtArea.Text, txtaddress2.Text, cityid
-                        , varpincode, txtContactNumber.Text,txtwhatsapp.Text, txtAContactNumber.Text, txtEmail.Text, txtgstin.Text,
-                        Convert.ToInt32(cmbPaymentTerm.SelectedValue),22, 24, openingvalue, Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbState.SelectedValue), varStatus,
-                        MainForm.pbUserID, MainForm.pbIpAddress, "Supplier Create", Convert.ToInt32(cmbDesignation.SelectedValue),txtcontactName.Text, creditlimit, -1,-1,-1,-1,"","","","",0,"",0, 0, "");
-                    }
+                        varviewtype = 0;
+                        varorginator = "Supplier Create";
+                     }
                     else
                     {
-                        result = objspdservice.udfnSupplierMaster(1, SupplierUpdate, txtName.Text, txtArea.Text, txtaddress2.Text, cityid
-                      , varpincode, txtContactNumber.Text, txtwhatsapp.Text, txtAContactNumber.Text, txtEmail.Text, txtgstin.Text,
-                      Convert.ToInt32(cmbPaymentTerm.SelectedValue), 22, 24, openingvalue, Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbState.SelectedValue), varStatus,
-                      MainForm.pbUserID, MainForm.pbIpAddress, "Supplier Update", Convert.ToInt32(cmbDesignation.SelectedValue), txtcontactName.Text, creditlimit, -1, -1, -1, -1, "", "", "", "", 0, "",0, 0, "");
+                        varviewtype = 1;
+                        varorginator = "Supplier Update";
 
                     }
+                    result = objspdservice.udfnSupplierMaster(varviewtype, SupplierUpdate, txtName.Text, txtArea.Text, txtaddress2.Text, cityid
+                   , varpincode, txtContactNumber.Text, txtwhatsapp.Text, txtAContactNumber.Text, txtEmail.Text, txtgstin.Text,
+                   Convert.ToInt32(cmbPaymentTerm.SelectedValue), 22, 24, openingvalue, Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbState.SelectedValue), varStatus,
+                   MainForm.pbUserID, MainForm.pbIpAddress, varorginator, Convert.ToInt32(cmbDesignation.SelectedValue), txtcontactName.Text, creditlimit, -1, -1, -1, -1, "", "", "", "", 0, "", 0, 0, "");
+
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
                     {
@@ -487,24 +548,24 @@ namespace ROMS
                         txtName.Focus();
                         if (btnSave.Text == "Update")
                         {
-                            varupdate = "1";
-                            udfnclose();
+                            varupdate = "1"; 
                             udfnclear();
 
                             txtsuppliername.Text = txtName.Text;
                             txtSupplier.Text = txtName.Text;
+                            txtMappedSupplierName.Text= txtName.Text;
+                        } 
+                        else
+                        {
+                            varsupplierID = varvalue[2];
                         }
-
                         if (tcSupplier.SelectedIndex == 1)
                         {
                             btnSave.Text = "Update";
                             btnSaveOrderType.Text = "Update";
                             txtSupplier.Text = txtName.Text;
                             txtsuppliername.Text = txtName.Text;
-                        }
-                        else
-                        { 
-                            varsupplierID = varvalue[2];
+                            txtMappedSupplierName.Text = txtName.Text;
                         }
                     }
                     else
@@ -518,6 +579,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            { 
+                btnSave.Enabled = true;
             }
         }
 
@@ -574,8 +639,7 @@ namespace ROMS
                 txtsalesmanmobile.BackColor = Color.White;
                 txtsalesmanwhatsapp.BackColor = Color.White;
                 txtScheduleName.BackColor = Color.White;
-                cmbOrderType.BackColor = Color.White;
-                
+                cmbOrderType.BackColor = Color.White; 
                 errCompany.Clear();
             }
             catch (Exception ex)
@@ -601,7 +665,18 @@ namespace ROMS
             {
                  
                     this.Close();
-                 
+                tpContactNo.ShowAlways = false;
+                tpAltContactNo.ShowAlways = false;
+                tpemail.ShowAlways = false;
+                tpgstin.ShowAlways = false;
+                tpfssai.ShowAlways = false;
+                tpplno.ShowAlways = false;
+                tpcompanyname.ShowAlways = false;
+                tpshortname.ShowAlways = false;
+                tppincode.ShowAlways = false;
+                tparea.ShowAlways = false;
+                tpstate.ShowAlways = false;
+
             }
             catch (Exception ex)
             {
@@ -709,7 +784,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnSupplierList(2, Convert.ToInt32(pbSupplierid), 0,0);
+                    objDS = objspservice.udfnSupplierList(2, Convert.ToInt32(pbSupplierid), 0,0,0,"");
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -717,7 +792,8 @@ namespace ROMS
                         {
                             txtName.Text = objDS.Tables[0].Rows[0]["NAME"].ToString().Replace("''", "'");
                             txtsuppliername.Text = objDS.Tables[0].Rows[0]["NAME"].ToString().Replace("''", "'"); 
-                            txtSupplier.Text = objDS.Tables[0].Rows[0]["NAME"].ToString().Replace("''", "'");
+                            txtSupplier.Text = objDS.Tables[0].Rows[0]["NAME"].ToString().Replace("''", "'"); 
+                            txtMappedSupplierName.Text = objDS.Tables[0].Rows[0]["NAME"].ToString().Replace("''", "'");
                             txtArea.Text = objDS.Tables[0].Rows[0]["ADDRESS1"].ToString().Replace("''", "'");
                             txtaddress2.Text = objDS.Tables[0].Rows[0]["ADDRESS2"].ToString().Replace("''", "'");
                             txtgstin.Text = objDS.Tables[0].Rows[0]["GSTIN"].ToString().Replace("''", "'");
@@ -731,7 +807,7 @@ namespace ROMS
                             txtEmail.Text = objDS.Tables[0].Rows[0]["EMAIL"].ToString().Replace("''", "'");
                             cmbDesignation.SelectedValue = objDS.Tables[0].Rows[0]["DESIGNATION"].ToString();
                             txtcontactName.Text= objDS.Tables[0].Rows[0]["DESIGNATIONNAME"].ToString().Replace("''", "'");
-
+                            lblcity.Text= objDS.Tables[0].Rows[0]["CTY"].ToString().Replace("''", "'"); 
                             txtcreditlimit.Text = objDS.Tables[0].Rows[0]["CREDIT"].ToString().Replace("''", "'");
                             txtopening.Text = objDS.Tables[0].Rows[0]["OPBALANCE"].ToString().Replace("''", "'");
 
@@ -2881,6 +2957,7 @@ namespace ROMS
                 try
                 { 
                     this.ActiveControl = txtScheduleName;
+
                 }
                 catch (Exception ex)
                 {
@@ -2921,9 +2998,54 @@ namespace ROMS
         private void Cmborderday_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
-            {
+            { 
 
-                BeginInvoke(new Action(() => cmborderday.Select(int.MaxValue, 0)));
+                try
+                { 
+                    BeginInvoke(new Action(() => cmborderday.Select(int.MaxValue, 0)));
+                    grdViewSupplierMapping.DataSource=null;
+                    SPDataService objspservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    SupplierUpdate = 0;
+                    lblMappedNoRecords.Visible = false;
+                    if (Convert.ToInt32(varsupplierID) != 0)
+                    {
+                        SupplierUpdate = Convert.ToInt32(varsupplierID);
+                    }
+                    else
+                    {
+                        SupplierUpdate = Convert.ToInt32(pbSupplierid);
+                    }
+
+                    objDs = objspservice.udfnSupplierList(5, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(cmbOrderschedule.SelectedValue), Convert.ToInt32(cmborderday.SelectedValue), 0, "");
+
+                    if (objDs.Tables[0].Rows.Count > 0)
+                    {
+                        grdViewSupplierMapping.DataSource = objDs.Tables[0];
+
+                        grdViewSupplierMapping.Columns["S.No."].Width = 50;
+                        grdViewSupplierMapping.Columns["Product Name in Tamil"].Width = 250;
+                        grdViewSupplierMapping.Columns["Product Name in English"].Width = 250;
+                        grdSupplierList.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    }
+                    else
+                    {
+                        lblMappedNoRecords.Visible = true;
+                    }
+
+                    objspservice.CloseConnection();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    lblMappedproductcountlist.Text = grdViewSupplierMapping.Rows.Count.ToString();
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -3071,7 +3193,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 cmborderday.DataSource = null;
 
-                objDs = objspservice.udfnSupplierList(0, SupplierUpdate, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), 0);
+                objDs = objspservice.udfnSupplierList(0, SupplierUpdate, Convert.ToInt32(cmbOrderschedule.SelectedValue), 0,0, "");
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -3359,7 +3481,7 @@ namespace ROMS
             DataSet objDs = new DataSet();
             cmbMappingordeDay.DataSource = null;
            
-            objDs = objspservice.udfnSupplierList(0, SupplierUpdate, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), 0);
+            objDs = objspservice.udfnSupplierList(0, SupplierUpdate, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), 0,0, "");
             if (objDs != null)
             {
                 if (objDs.Tables.Count != 0)
@@ -3478,7 +3600,17 @@ namespace ROMS
                 {
                     row.Cells[0].Value = false;
                 }
-                objDs = objspservice.udfnSupplierList(4, Convert.ToInt32(pbSupplierid), Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue));
+                 
+                SupplierUpdate = 0;
+                if (Convert.ToInt32(varsupplierID) != 0)
+                {
+                    SupplierUpdate = Convert.ToInt32(varsupplierID);
+                }
+                else
+                {
+                    SupplierUpdate = Convert.ToInt32(pbSupplierid);
+                }
+                objDs = objspservice.udfnSupplierList(4, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue),0, "");
                  
                 dtSubGroupMapping = new DataTable();
                 dtSubGroupMapping.Columns.Add("S.No.", typeof(string));
@@ -3496,7 +3628,7 @@ namespace ROMS
                     int varcount = 1;
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
-                        dtSubGroupMapping.Rows.Add(i + 1, objDs.Tables[0].Rows[i]["P.I Code"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["Product Name in Tamil"].ToString().Replace("''", "'")
+                        dtSubGroupMapping.Rows.Add(Convert.ToInt32(dtSubGroupMapping.Rows.Count) + 1, objDs.Tables[0].Rows[i]["P.I Code"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["Product Name in Tamil"].ToString().Replace("''", "'")
                         , objDs.Tables[0].Rows[i]["Unit"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["Product SubGroup"].ToString().Replace("''", "'"),
                         objDs.Tables[0].Rows[i]["GROUPID"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["SUBGROUPID"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["PRODUCTID"].ToString().Replace("''", "'"));
 
@@ -3525,7 +3657,7 @@ namespace ROMS
                         {
                             if (Convert.ToInt32(grdFinalSupplierMapping.Rows[j].Cells["PRODUCTID"].Value) == Convert.ToInt32(grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value))
                             {
-                                grdSupplierMappingLoad.Rows[j].Cells[0].Value = true;
+                                grdSupplierMappingLoad.Rows[i].Cells[0].Value = true;
 
                             }
                         }
@@ -3931,7 +4063,11 @@ namespace ROMS
                         case "clmedit":
 
                             if (pbSupplierid != "")
-                            {
+                            { 
+                                if (e.RowIndex >= 0) 
+                                {
+                                    scheduleselectedIndex = e.RowIndex;
+                                }
                                 btnAdd.Text = "Update";
                                 SPDataService objspservice = new SPDataService();
                                 foreach (DataGridViewRow row in grddays.Rows)
@@ -3939,7 +4075,7 @@ namespace ROMS
                                     row.Cells[0].Value = false;
                                 }
                                 DataSet objDS;
-                                objDS = objspservice.udfnSupplierList(3, Convert.ToInt32(pbSupplierid), Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["clmscheduleid"].Value.ToString()), 0);
+                                objDS = objspservice.udfnSupplierList(3, Convert.ToInt32(pbSupplierid), Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["clmscheduleid"].Value.ToString()), 0,0, "");
                                 objspservice.CloseConnection();
                                 if (objDS != null)
                                 {
@@ -3983,26 +4119,38 @@ namespace ROMS
 
         private void BtnSaveOrderType_Click(object sender, EventArgs e)
         {
-
-            SPDataService objspdservice = new SPDataService();
-            string result = "", varoriginator = "";
-            int Vartype = 0;
-
-            if (btnSaveOrderType.Text == "Update")
-            { 
-                result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "","", 0, "", 0,0,"");
-            } 
-
-            string[] varvalue = result.Split('~');
-            if (varvalue[0] == "3")
+            try
             {
-                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MainForm.objCP_Supplierlist.udfnList();
-                cmbReturnPolicy.Focus(); 
+                btnSaveOrderType.Enabled = false;
+                SPDataService objspdservice = new SPDataService();
+                string result = "", varoriginator = "";
+                int Vartype = 0;
+
+                if (btnSaveOrderType.Text == "Update")
+                {
+                    result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "");
+                }
+
+                string[] varvalue = result.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MainForm.objCP_Supplierlist.udfnList();
+                    cmbReturnPolicy.Focus();
+                }
+                else
+                {
+                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            { 
+                btnSaveOrderType.Enabled = true;
             }
         }
 
@@ -4254,6 +4402,7 @@ namespace ROMS
 
             try
             {
+                btnMappingsave.Enabled = false;
                 if (Convert.ToInt32(grdFinalSupplierMapping.Rows.Count) > 0)
                 {
                     string VarproductId = "", result = "", varoriginator = "";
@@ -4319,7 +4468,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
+            finally
+            {
+                btnMappingsave.Enabled = true;
+            }
         }
         public void udfnMappingClear()
         { 
@@ -4395,9 +4547,7 @@ namespace ROMS
         private void CP_Supplier_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
-            {
-                if (varupdate == "0")
-                {
+            { 
                     DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
@@ -4406,8 +4556,7 @@ namespace ROMS
                     else
                     {
                         e.Cancel = true;
-                    }
-                }
+                    } 
 
             }
             catch (Exception ex)
@@ -4420,8 +4569,8 @@ namespace ROMS
         private void TxtSearchByProduct2_TextChanged(object sender, EventArgs e)
         {
             try
-            {
-                (grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%'";
+            { 
+                (grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
             }
             catch (Exception ex)
             {
@@ -4552,20 +4701,91 @@ namespace ROMS
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             try
-            {
-                udfnSupplierOrderSave();
+            { 
+                int errorflag = 0;
+                if (Convert.ToString(cmbOrderType.SelectedValue) == "" || Convert.ToString(cmbOrderType.SelectedValue) == "-1")
+                {
+                    errCompany.SetError(cmbOrderType, "Please select order type");
+                    cmbOrderType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpstate.ShowAlways = true;
+                    tpstate.Show("Please select order type", cmbOrderType, 5000);
+                    errorflag = 1;
+                }
+                if (txtsalesmanmobile.Text == "")
+                {
+                    errCompany.SetError(txtsalesmanmobile, "Please enter  salesman mobile No.");
+                    txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tparea.ShowAlways = true;
+                    tparea.Show("Please enter  salesman mobile No.", txtsalesmanmobile, 5000);
+                    errorflag = 1; 
+                } 
+                if (txtsalesmanmobile.Text.Length != 10 && txtsalesmanmobile.Text != "")
+                {
+
+                    errCompany.SetError(txtsalesmanmobile, "Please enter valid salesman mobile No.");
+                    txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tparea.ShowAlways = true;
+                    tparea.Show("Please enter valid salesman mobile No.", txtsalesmanmobile, 5000);
+                    errorflag = 1;
+                }
+                if (txtsalesmanwhatsapp.Text != "")
+                {
+                    if (txtsalesmanwhatsapp.Text.Length != 10)
+                    {
+
+                        errCompany.SetError(txtsalesmanwhatsapp, "Please enter valid salesman whatsapp No.");
+                        txtsalesmanwhatsapp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tparea.ShowAlways = true;
+                        tparea.Show("Please enter valid salesman whatsapp No.", txtsalesmanwhatsapp, 5000);
+                        errorflag = 1;
+                    }
+                }
+                if (txtScheduleName.Text == "")
+                {
+
+                    errCompany.SetError(txtScheduleName, "Please enter the schedule");
+                    txtScheduleName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tparea.ShowAlways = true;
+                    tparea.Show("Please enter the schedule", txtScheduleName, 5000);
+                    errorflag = 1;
+                }
+                if (txtsalesmanname.Text == "")
+                {
+
+                    errCompany.SetError(txtsalesmanname, "Please enter salesman name");
+                    txtsalesmanname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tparea.ShowAlways = true;
+                    tparea.Show("Please enter salesman name", txtsalesmanname, 5000);
+                    errorflag = 1;
+                }
+                if (errorflag == 0)
+                {
+                    tpContactNo.ShowAlways = false;
+                    tpAltContactNo.ShowAlways = false;
+                    tpemail.ShowAlways = false;
+                    tpgstin.ShowAlways = false;
+                    tpfssai.ShowAlways = false;
+                    tpplno.ShowAlways = false;
+                    tpcompanyname.ShowAlways = false;
+                    tpshortname.ShowAlways = false;
+                    tppincode.ShowAlways = false;
+                    tparea.ShowAlways = false;
+                    tpstate.ShowAlways = false;
+                    udfnSupplierOrderSave();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
+            } 
         }
         public void udfnSupplierOrderSave()
         {
             try
             {
                 bool blnErrorFlag = false;
+                btnAdd.Enabled = false;
                 int varflag = 0;
                 errCompany.Clear();
                 udfnSchedulecolorchange(); 
@@ -4603,7 +4823,7 @@ namespace ROMS
                         {
                             if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                             {
-                                string gridValue1 = row.Cells[4].Value.ToString();
+                                string gridValue1 = row.Cells[5].Value.ToString();
                                 string gridValue2 = row.Cells[1].Value.ToString();
 
                                 if (gridValue1 == Convert.ToString(cmbOrderType.Text) || gridValue2 == txtScheduleName.Text)
@@ -4688,21 +4908,26 @@ namespace ROMS
                         if (varvalue[0] == "3")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                             
+                            grddays.ClearSelection();
                             MainForm.objCP_Supplierlist.udfnList();
                             this.ActiveControl = txtScheduleName;
                             if (btnAdd.Text == "Update")
                             {
                                 varupdate = "1";
-                                grdSupplierList.Rows.Clear ();
-                                udfnEdit();
+                                //grdSupplierList.Rows.Clear ();
+                                //udfnEdit();
+                                if (scheduleselectedIndex >= 0 && scheduleselectedIndex < grdSupplierList.Rows.Count)
+                                {
+                                    grdSupplierList.Rows.RemoveAt(scheduleselectedIndex);
+                                    scheduleselectedIndex = -1;  // Reset the index after deletion.
+                                }
                             }
                             else
                             { 
                                 varOrderid = Convert.ToInt32(varvalue[2]);
-                                grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, txtScheduleName.Text, txtsalesmanname.Text, txtsalesmanmobile.Text, txtsalesmanwhatsapp.Text, Convert.ToString(cmbOrderType.Text), varOrderid, VarDaysname);
-
+                               
                             }
+                            grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, txtScheduleName.Text, txtsalesmanname.Text, txtsalesmanmobile.Text, txtsalesmanwhatsapp.Text, Convert.ToString(cmbOrderType.Text), varOrderid, VarDaysname);
 
                             udfnScheduleClear();
                             btnAdd.Text = "Save";
@@ -4724,6 +4949,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnAdd.Enabled = true;
             }
         }
 
@@ -4772,12 +5001,11 @@ namespace ROMS
             try
             {
                 if (txtCity.Text != "")
-                { 
-                    txtCity.Text = lvCity.SelectedItems[0].SubItems[0].Text;
-                    lvCity.Visible = false;
-                    DataService objDataService = new DataService();
-                    lblcity.Text = lvCity.SelectedItems[0].SubItems[2].Text;
-                    objDataService.CloseConnection();
+                {
+                    ListViewItem selectedItem = lvCity.SelectedItems[0];
+                    txtCity.Text = selectedItem.SubItems[0].Text; 
+                    lblcity.Text = selectedItem.SubItems[2].Text; 
+                    lvCity.Visible = false;  
 
                 }
 

@@ -183,7 +183,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdreplist.DataSource = objDs.Tables[0];
                             grdreplist.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdreplist.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdreplist.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                             grdreplist.Columns["S.No."].Width = 50;
                             grdreplist.Columns["Company Name"].Width = 200;

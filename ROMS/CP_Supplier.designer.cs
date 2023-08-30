@@ -118,6 +118,18 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsalesname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesmanWhatsapp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOrderType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmscheduleid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOrderdays = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.daysid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmedit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.btn_close = new System.Windows.Forms.Button();
             this.gpSupplier = new System.Windows.Forms.GroupBox();
             this.txtScheduleName = new System.Windows.Forms.TextBox();
@@ -171,6 +183,11 @@
             this.btnMappingsave = new System.Windows.Forms.Button();
             this.tbSchedule = new System.Windows.Forms.TabPage();
             this.grpSchedule = new System.Windows.Forms.GroupBox();
+            this.lblMappedNoRecords = new System.Windows.Forms.Label();
+            this.lblMappedOrderTypeId = new System.Windows.Forms.Label();
+            this.txtMappedOrder = new System.Windows.Forms.TextBox();
+            this.txtMappedSupplierName = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.cmbOrderschedule = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.cmborderday = new System.Windows.Forms.ComboBox();
@@ -182,33 +199,8 @@
             this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
             this.lblSearchByProduct2 = new System.Windows.Forms.Label();
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsalesname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSalesmanWhatsapp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOrderType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmscheduleid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOrderdays = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.daysid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmedit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.txtMappedSupplierName = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtMappedOrder = new System.Windows.Forms.TextBox();
-            this.lblMappedOrderTypeId = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -597,7 +589,7 @@
             // 
             this.txtopening.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtopening.Location = new System.Drawing.Point(123, 51);
-            this.txtopening.MaxLength = 50;
+            this.txtopening.MaxLength = 10;
             this.txtopening.Name = "txtopening";
             this.txtopening.Size = new System.Drawing.Size(107, 27);
             this.txtopening.TabIndex = 16;
@@ -621,7 +613,7 @@
             // 
             this.txtcreditlimit.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtcreditlimit.Location = new System.Drawing.Point(123, 25);
-            this.txtcreditlimit.MaxLength = 50;
+            this.txtcreditlimit.MaxLength = 10;
             this.txtcreditlimit.Name = "txtcreditlimit";
             this.txtcreditlimit.Size = new System.Drawing.Size(149, 27);
             this.txtcreditlimit.TabIndex = 15;
@@ -950,7 +942,7 @@
             // 
             this.txtCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtCity.Location = new System.Drawing.Point(121, 131);
-            this.txtCity.MaxLength = 100;
+            this.txtCity.MaxLength = 50;
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(186, 27);
             this.txtCity.TabIndex = 5;
@@ -1213,6 +1205,93 @@
             this.grdSupplierList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierList_CellContentClick);
             this.grdSupplierList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupplierList_DataBindingComplete);
             // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
+            // 
+            // clmsupname
+            // 
+            this.clmsupname.HeaderText = "Schedule Name";
+            this.clmsupname.Name = "clmsupname";
+            this.clmsupname.ReadOnly = true;
+            this.clmsupname.Width = 150;
+            // 
+            // clmsalesname
+            // 
+            this.clmsalesname.HeaderText = "Salesman Name";
+            this.clmsalesname.Name = "clmsalesname";
+            this.clmsalesname.ReadOnly = true;
+            this.clmsalesname.Width = 200;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Salesman Mobile No.";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 140;
+            // 
+            // clmSalesmanWhatsapp
+            // 
+            this.clmSalesmanWhatsapp.HeaderText = "Salesman WhatsApp No.";
+            this.clmSalesmanWhatsapp.Name = "clmSalesmanWhatsapp";
+            this.clmSalesmanWhatsapp.ReadOnly = true;
+            this.clmSalesmanWhatsapp.Width = 150;
+            // 
+            // clmOrderType
+            // 
+            this.clmOrderType.HeaderText = "Order Type";
+            this.clmOrderType.Name = "clmOrderType";
+            this.clmOrderType.ReadOnly = true;
+            this.clmOrderType.Width = 80;
+            // 
+            // clmscheduleid
+            // 
+            this.clmscheduleid.HeaderText = "scheduleid";
+            this.clmscheduleid.Name = "clmscheduleid";
+            this.clmscheduleid.ReadOnly = true;
+            this.clmscheduleid.Visible = false;
+            this.clmscheduleid.Width = 5;
+            // 
+            // clmOrderdays
+            // 
+            this.clmOrderdays.HeaderText = "Order Days";
+            this.clmOrderdays.Name = "clmOrderdays";
+            this.clmOrderdays.ReadOnly = true;
+            this.clmOrderdays.Width = 300;
+            // 
+            // daysid
+            // 
+            this.daysid.HeaderText = "Column4";
+            this.daysid.Name = "daysid";
+            this.daysid.ReadOnly = true;
+            this.daysid.Visible = false;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "Column9";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // clmedit
+            // 
+            this.clmedit.HeaderText = "Edit";
+            this.clmedit.Image = global::ROMS.Properties.Resources.Edit;
+            this.clmedit.Name = "clmedit";
+            this.clmedit.ReadOnly = true;
+            this.clmedit.Width = 60;
+            // 
+            // clmDelete
+            // 
+            this.clmDelete.HeaderText = "Delete";
+            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
+            this.clmDelete.Name = "clmDelete";
+            this.clmDelete.ReadOnly = true;
+            this.clmDelete.Width = 60;
+            // 
             // btn_close
             // 
             this.btn_close.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -1247,7 +1326,7 @@
             // 
             this.txtScheduleName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtScheduleName.Location = new System.Drawing.Point(154, 73);
-            this.txtScheduleName.MaxLength = 50;
+            this.txtScheduleName.MaxLength = 20;
             this.txtScheduleName.Name = "txtScheduleName";
             this.txtScheduleName.Size = new System.Drawing.Size(204, 27);
             this.txtScheduleName.TabIndex = 2;
@@ -1332,7 +1411,7 @@
             // 
             this.txtsalesmanname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtsalesmanname.Location = new System.Drawing.Point(146, 27);
-            this.txtsalesmanname.MaxLength = 100;
+            this.txtsalesmanname.MaxLength = 20;
             this.txtsalesmanname.Name = "txtsalesmanname";
             this.txtsalesmanname.Size = new System.Drawing.Size(194, 27);
             this.txtsalesmanname.TabIndex = 3;
@@ -1973,6 +2052,7 @@
             // 
             // grpSchedule
             // 
+            this.grpSchedule.Controls.Add(this.lblMappedNoRecords);
             this.grpSchedule.Controls.Add(this.lblMappedOrderTypeId);
             this.grpSchedule.Controls.Add(this.txtMappedOrder);
             this.grpSchedule.Controls.Add(this.txtMappedSupplierName);
@@ -1993,6 +2073,61 @@
             this.grpSchedule.Size = new System.Drawing.Size(1313, 610);
             this.grpSchedule.TabIndex = 958809;
             this.grpSchedule.TabStop = false;
+            // 
+            // lblMappedNoRecords
+            // 
+            this.lblMappedNoRecords.AutoSize = true;
+            this.lblMappedNoRecords.BackColor = System.Drawing.Color.White;
+            this.lblMappedNoRecords.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMappedNoRecords.Location = new System.Drawing.Point(608, 305);
+            this.lblMappedNoRecords.Name = "lblMappedNoRecords";
+            this.lblMappedNoRecords.Size = new System.Drawing.Size(106, 20);
+            this.lblMappedNoRecords.TabIndex = 958824;
+            this.lblMappedNoRecords.Text = "No Records Found";
+            this.lblMappedNoRecords.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblMappedNoRecords.Visible = false;
+            // 
+            // lblMappedOrderTypeId
+            // 
+            this.lblMappedOrderTypeId.AutoSize = true;
+            this.lblMappedOrderTypeId.Location = new System.Drawing.Point(648, 295);
+            this.lblMappedOrderTypeId.Name = "lblMappedOrderTypeId";
+            this.lblMappedOrderTypeId.Size = new System.Drawing.Size(16, 20);
+            this.lblMappedOrderTypeId.TabIndex = 958823;
+            this.lblMappedOrderTypeId.Text = "0";
+            this.lblMappedOrderTypeId.Visible = false;
+            // 
+            // txtMappedOrder
+            // 
+            this.txtMappedOrder.Enabled = false;
+            this.txtMappedOrder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMappedOrder.Location = new System.Drawing.Point(469, 37);
+            this.txtMappedOrder.MaxLength = 50;
+            this.txtMappedOrder.Name = "txtMappedOrder";
+            this.txtMappedOrder.ReadOnly = true;
+            this.txtMappedOrder.Size = new System.Drawing.Size(121, 27);
+            this.txtMappedOrder.TabIndex = 958822;
+            // 
+            // txtMappedSupplierName
+            // 
+            this.txtMappedSupplierName.Enabled = false;
+            this.txtMappedSupplierName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMappedSupplierName.Location = new System.Drawing.Point(37, 37);
+            this.txtMappedSupplierName.MaxLength = 50;
+            this.txtMappedSupplierName.Name = "txtMappedSupplierName";
+            this.txtMappedSupplierName.ReadOnly = true;
+            this.txtMappedSupplierName.Size = new System.Drawing.Size(293, 27);
+            this.txtMappedSupplierName.TabIndex = 958820;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(37, 12);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 20);
+            this.label10.TabIndex = 958821;
+            this.label10.Text = "Supplier";
             // 
             // cmbOrderschedule
             // 
@@ -2141,16 +2276,6 @@
             this.grdViewSupplierMapping.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.grdViewSupplierMapping.ColumnHeadersHeight = 30;
             this.grdViewSupplierMapping.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdViewSupplierMapping.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column8,
-            this.Column6,
-            this.Column7,
-            this.clmdpicode,
-            this.Column5,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.Column2});
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2174,63 +2299,6 @@
             this.grdViewSupplierMapping.TabIndex = 958809;
             this.grdViewSupplierMapping.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdViewSupplierMapping_DataBindingComplete);
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "S.No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Order Schedule";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Order Type";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Order Day";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // clmdpicode
-            // 
-            this.clmdpicode.HeaderText = "P.I Code";
-            this.clmdpicode.Name = "clmdpicode";
-            this.clmdpicode.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Product Name in English";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 250;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Product Name in Tamil";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 250;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Unit";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "R.Sales Rate";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 120;
-            // 
             // lblGC
             // 
             this.lblGC.AutoSize = true;
@@ -2252,135 +2320,6 @@
             this.label3.Size = new System.Drawing.Size(94, 20);
             this.label3.TabIndex = 958804;
             this.label3.Text = "No.of Products :";
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 50;
-            // 
-            // clmsupname
-            // 
-            this.clmsupname.HeaderText = "Schedule Name";
-            this.clmsupname.Name = "clmsupname";
-            this.clmsupname.ReadOnly = true;
-            this.clmsupname.Width = 150;
-            // 
-            // clmsalesname
-            // 
-            this.clmsalesname.HeaderText = "Salesman Name";
-            this.clmsalesname.Name = "clmsalesname";
-            this.clmsalesname.ReadOnly = true;
-            this.clmsalesname.Width = 200;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Salesman Mobile No.";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 140;
-            // 
-            // clmSalesmanWhatsapp
-            // 
-            this.clmSalesmanWhatsapp.HeaderText = "Salesman WhatsApp No.";
-            this.clmSalesmanWhatsapp.Name = "clmSalesmanWhatsapp";
-            this.clmSalesmanWhatsapp.ReadOnly = true;
-            this.clmSalesmanWhatsapp.Width = 150;
-            // 
-            // clmOrderType
-            // 
-            this.clmOrderType.HeaderText = "Order Type";
-            this.clmOrderType.Name = "clmOrderType";
-            this.clmOrderType.ReadOnly = true;
-            this.clmOrderType.Width = 80;
-            // 
-            // clmscheduleid
-            // 
-            this.clmscheduleid.HeaderText = "scheduleid";
-            this.clmscheduleid.Name = "clmscheduleid";
-            this.clmscheduleid.ReadOnly = true;
-            this.clmscheduleid.Visible = false;
-            this.clmscheduleid.Width = 5;
-            // 
-            // clmOrderdays
-            // 
-            this.clmOrderdays.HeaderText = "Order Days";
-            this.clmOrderdays.Name = "clmOrderdays";
-            this.clmOrderdays.ReadOnly = true;
-            this.clmOrderdays.Width = 300;
-            // 
-            // daysid
-            // 
-            this.daysid.HeaderText = "Column4";
-            this.daysid.Name = "daysid";
-            this.daysid.ReadOnly = true;
-            this.daysid.Visible = false;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "Column9";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // clmedit
-            // 
-            this.clmedit.HeaderText = "Edit";
-            this.clmedit.Image = global::ROMS.Properties.Resources.Edit;
-            this.clmedit.Name = "clmedit";
-            this.clmedit.ReadOnly = true;
-            this.clmedit.Width = 60;
-            // 
-            // clmDelete
-            // 
-            this.clmDelete.HeaderText = "Delete";
-            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
-            this.clmDelete.Name = "clmDelete";
-            this.clmDelete.ReadOnly = true;
-            this.clmDelete.Width = 60;
-            // 
-            // txtMappedSupplierName
-            // 
-            this.txtMappedSupplierName.Enabled = false;
-            this.txtMappedSupplierName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMappedSupplierName.Location = new System.Drawing.Point(37, 37);
-            this.txtMappedSupplierName.MaxLength = 50;
-            this.txtMappedSupplierName.Name = "txtMappedSupplierName";
-            this.txtMappedSupplierName.ReadOnly = true;
-            this.txtMappedSupplierName.Size = new System.Drawing.Size(293, 27);
-            this.txtMappedSupplierName.TabIndex = 958820;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(37, 12);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(54, 20);
-            this.label10.TabIndex = 958821;
-            this.label10.Text = "Supplier";
-            // 
-            // txtMappedOrder
-            // 
-            this.txtMappedOrder.Enabled = false;
-            this.txtMappedOrder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMappedOrder.Location = new System.Drawing.Point(469, 37);
-            this.txtMappedOrder.MaxLength = 50;
-            this.txtMappedOrder.Name = "txtMappedOrder";
-            this.txtMappedOrder.ReadOnly = true;
-            this.txtMappedOrder.Size = new System.Drawing.Size(121, 27);
-            this.txtMappedOrder.TabIndex = 958822;
-            // 
-            // lblMappedOrderTypeId
-            // 
-            this.lblMappedOrderTypeId.AutoSize = true;
-            this.lblMappedOrderTypeId.Location = new System.Drawing.Point(648, 295);
-            this.lblMappedOrderTypeId.Name = "lblMappedOrderTypeId";
-            this.lblMappedOrderTypeId.Size = new System.Drawing.Size(16, 20);
-            this.lblMappedOrderTypeId.TabIndex = 958823;
-            this.lblMappedOrderTypeId.Text = "0";
-            this.lblMappedOrderTypeId.Visible = false;
             // 
             // CP_Supplier
             // 
@@ -2567,15 +2506,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cmbOrderschedule;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdpicode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         public System.Windows.Forms.ListView lvCity;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -2614,5 +2544,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtMappedOrder;
         private System.Windows.Forms.Label lblMappedOrderTypeId;
+        private System.Windows.Forms.Label lblMappedNoRecords;
     }
 }
