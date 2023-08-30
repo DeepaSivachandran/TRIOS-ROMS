@@ -28,7 +28,8 @@ namespace ROMS
         public int varGroupCode =0;
         public int varId = 0;
         public int varStatus = 0;
-        
+        public int varFormFlag = 0;
+
         public CP_Group()
         {
             InitializeComponent();
@@ -39,7 +40,6 @@ namespace ROMS
             {
                 tpGroupNameinTamil.Active = false;
                 tpGroupNameinEnglish.Active = false;
-
             }
             catch (Exception ex)
             {
@@ -51,8 +51,7 @@ namespace ROMS
         {
             try
             { 
-                    this.Close(); 
-                 
+                this.Close(); 
             }
             catch (Exception ex)
             {
@@ -60,8 +59,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-     
-
         private void CP_Group_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -290,7 +287,9 @@ namespace ROMS
         {
             try
             {
-               
+                btnSave.Enabled = false;
+                string varResult = ""; string varOriginator = "Product Group Creation";
+                int varViewType=0; 
                 if (rbActive.Checked)
                 {
                     varStatusid = 1;
@@ -299,24 +298,29 @@ namespace ROMS
                 {
                     varStatusid = 2;
                 }
-                if (btnSave.Text == "Save")
+                SPDataService objDser = new SPDataService();
+                if (btnSave.Text == "Update")
                 {
-                    SPDataService objDser = new SPDataService();
-                    string varResult = objDser.udfnGroup(0, 0,Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Creation");
-                    objDser.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
+                    varViewType=1;
+                    varOriginator = "Product Group Updation";
+                }
+                varResult = objDser.udfnGroup(varViewType,varId, Convert.ToString(txtEGroupNameEnglish.Text).Trim(), Convert.ToString(txtEGroupNameTamil.Text).Trim(), varStatusid,varOriginator );
+                objDser.CloseConnection();
+                if (varResult.Split('~')[0] == "3")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (btnSave.Text == "Save")
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         varGroupCode = Convert.ToInt16(varResult.Split('~')[2]);
-                        if (varmastertype == 0 && MainForm.objCP_SubGroup.varFormFlag == 1)
+                        if (varmastertype == 0 &&  varFormFlag == 1)
                         {
                             MainForm.objCP_GroupList.udfnList();
                             MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
                             MainForm.objCP_GroupList.cmbProductGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
                         }
-                            if (MainForm.objCP_SubGroup.varFormFlag == 1)
+                        if (varFormFlag == 1)
                         {
-                            MainForm.objCP_SubGroup.varFormFlag = 0;
+                            varFormFlag = 0;
                             MainForm.objCP_SubGroup.varGroupCode = varGroupCode;
                             varCloseFlag = 1;
                             udfnclose();
@@ -330,35 +334,28 @@ namespace ROMS
                         }
                         udfnClear();
                     }
-                    else if (varResult.Split('~')[0] == "4")
+                    else
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                if (btnSave.Text == "Update")
-                {
-                    SPDataService objDser = new SPDataService();
-                    string varResult = objDser.udfnGroup(1,varId , Convert.ToString(txtEGroupNameEnglish.Text), Convert.ToString(txtEGroupNameTamil.Text), varStatusid, "Updation");
-                    objDser.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         varCloseFlag = 1;
                         udfnclose();
-                        MainForm.objCP_GroupList.udfnList();
                         MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
-                        
                     }
-                    else if (varResult.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    MainForm.objCP_GroupList.udfnList();
                 }
+                else if (varResult.Split('~')[0] == "4")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+               
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnSave.Enabled = true;
             }
         }
         private void BtnSave_Click(object sender, EventArgs e)
@@ -386,7 +383,6 @@ namespace ROMS
                 {
                     udfnSave(sender, e);
                 }
-
             }
             catch (Exception ex)
             {

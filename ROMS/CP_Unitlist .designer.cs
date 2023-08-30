@@ -237,7 +237,6 @@
             this.grdUnitList.TabIndex = 958797;
             this.grdUnitList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUnitList_DataBindingComplete);
             this.grdUnitList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdUnitList_Scroll);
-            this.grdUnitList.SelectionChanged += new System.EventHandler(this.GrdUnitList_SelectionChanged);
             this.grdUnitList.DoubleClick += new System.EventHandler(this.GrdUnitList_DoubleClick);
             this.grdUnitList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUnitList_KeyDown);
             // 

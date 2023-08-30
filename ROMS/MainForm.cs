@@ -27,7 +27,7 @@ namespace ROMS
         public static string pbHostName = "";
         public static string pbUserRoleName = "";
         public static string pbReleaseDt = "";
-        public static string pbLablingSoftwareName = "";
+        public static string pbSSSSoftwareName = "";
         public static string pbRomsSoftwareName = "";
         public static bool isFormClosed = false;
         public static bool isClose = false;
@@ -228,7 +228,7 @@ namespace ROMS
             try
             {
                 GetLocalIPAddress();
-                this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbLablingSoftwareName + " ]";
+                this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbSSSSoftwareName + " ]";
                 udfnCloseChildForms();
                 lblTime.Text = "Welcome " + MainForm.pbUserName + " / " + MainForm.pbUserRoleName + " @ " + MainForm.pbHostName;
                 //lblDb.Text = "ROMS DB : "+MainForm.pbRomsSoftwareName;

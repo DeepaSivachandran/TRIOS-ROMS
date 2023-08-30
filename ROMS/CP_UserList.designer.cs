@@ -42,7 +42,7 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnluser = new System.Windows.Forms.Panel();
-            this.lvUserList = new System.Windows.Forms.ListView();
+            this.lblUserId = new System.Windows.Forms.Label();
             this.grbFilterByUser = new System.Windows.Forms.GroupBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.txtDUserList = new System.Windows.Forms.TextBox();
@@ -51,20 +51,10 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUserList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmusercategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmuserrole = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPassKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nameoftheuser = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmLoginID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUserCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Passkey = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lvUserList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tsUserList.SuspendLayout();
             this.pnluser.SuspendLayout();
             this.grbFilterByUser.SuspendLayout();
@@ -158,6 +148,7 @@
             // 
             this.pnluser.BackColor = System.Drawing.Color.White;
             this.pnluser.Controls.Add(this.lvUserList);
+            this.pnluser.Controls.Add(this.lblUserId);
             this.pnluser.Controls.Add(this.grbFilterByUser);
             this.pnluser.Controls.Add(this.DGV_SearchGrid);
             this.pnluser.Controls.Add(this.lblNoRecordsFound);
@@ -168,15 +159,14 @@
             this.pnluser.Size = new System.Drawing.Size(1354, 641);
             this.pnluser.TabIndex = 36;
             // 
-            // lvUserList
+            // lblUserId
             // 
-            this.lvUserList.HideSelection = false;
-            this.lvUserList.Location = new System.Drawing.Point(21, 62);
-            this.lvUserList.Name = "lvUserList";
-            this.lvUserList.Size = new System.Drawing.Size(474, 266);
-            this.lvUserList.TabIndex = 958804;
-            this.lvUserList.UseCompatibleStateImageBehavior = false;
-            this.lvUserList.Visible = false;
+            this.lblUserId.AutoSize = true;
+            this.lblUserId.Location = new System.Drawing.Point(713, 29);
+            this.lblUserId.Name = "lblUserId";
+            this.lblUserId.Size = new System.Drawing.Size(0, 20);
+            this.lblUserId.TabIndex = 958805;
+            this.lblUserId.Visible = false;
             // 
             // grbFilterByUser
             // 
@@ -187,7 +177,7 @@
             this.grbFilterByUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterByUser.Name = "grbFilterByUser";
             this.grbFilterByUser.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterByUser.Size = new System.Drawing.Size(672, 67);
+            this.grbFilterByUser.Size = new System.Drawing.Size(1348, 67);
             this.grbFilterByUser.TabIndex = 958801;
             this.grbFilterByUser.TabStop = false;
             this.grbFilterByUser.Text = "Filter By User";
@@ -196,13 +186,16 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(581, 26);
+            this.btnExport.Location = new System.Drawing.Point(418, 26);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
-            this.btnExport.TabIndex = 5;
+            this.btnExport.TabIndex = 3;
             this.btnExport.Text = "Export";
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
+            this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
             // 
             // txtDUserList
             // 
@@ -210,20 +203,27 @@
             this.txtDUserList.Location = new System.Drawing.Point(18, 27);
             this.txtDUserList.MaxLength = 6;
             this.txtDUserList.Name = "txtDUserList";
-            this.txtDUserList.Size = new System.Drawing.Size(474, 27);
-            this.txtDUserList.TabIndex = 958803;
+            this.txtDUserList.Size = new System.Drawing.Size(313, 27);
+            this.txtDUserList.TabIndex = 0;
+            this.txtDUserList.TextChanged += new System.EventHandler(this.TxtDUserList_TextChanged);
+            this.txtDUserList.Enter += new System.EventHandler(this.TxtDUserList_Enter);
+            this.txtDUserList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDUserList_KeyDown);
+            this.txtDUserList.Leave += new System.EventHandler(this.TxtDUserList_Leave);
             // 
             // btnView
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(498, 26);
+            this.btnView.Location = new System.Drawing.Point(337, 26);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 4;
+            this.btnView.TabIndex = 2;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
+            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
+            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
             // DGV_SearchGrid
             // 
@@ -242,14 +242,6 @@
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.SNo,
-            this.Nameoftheuser,
-            this.clmLoginID,
-            this.clmUserCategory,
-            this.UserRole,
-            this.Passkey,
-            this.status});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -263,8 +255,8 @@
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -272,6 +264,10 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
+            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
+            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
+            this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
             // lblNoRecordsFound
             // 
@@ -303,14 +299,6 @@
             this.grdUserList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdUserList.ColumnHeadersHeight = 30;
             this.grdUserList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdUserList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.clmusercategory,
-            this.clmuserrole,
-            this.clmPassKey,
-            this.Column4});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -331,7 +319,11 @@
             this.grdUserList.RowTemplate.Height = 25;
             this.grdUserList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdUserList.Size = new System.Drawing.Size(1348, 510);
-            this.grdUserList.TabIndex = 958797;
+            this.grdUserList.TabIndex = 4;
+            this.grdUserList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUserList_DataBindingComplete);
+            this.grdUserList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.grdUserList_Scroll);
+            this.grdUserList.DoubleClick += new System.EventHandler(this.GrdUserList_DoubleClick);
+            this.grdUserList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUserList_KeyDown);
             // 
             // picLoader
             // 
@@ -347,86 +339,35 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // Column1
+            // lvUserList
             // 
-            this.Column1.HeaderText = "S.No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.lvUserList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvUserList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvUserList.HideSelection = false;
+            this.lvUserList.Location = new System.Drawing.Point(21, 62);
+            this.lvUserList.Name = "lvUserList";
+            this.lvUserList.Size = new System.Drawing.Size(313, 99);
+            this.lvUserList.TabIndex = 1;
+            this.lvUserList.UseCompatibleStateImageBehavior = false;
+            this.lvUserList.View = System.Windows.Forms.View.Details;
+            this.lvUserList.Visible = false;
+            this.lvUserList.DoubleClick += new System.EventHandler(this.LvUserList_DoubleClick);
+            this.lvUserList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvUserList_KeyDown);
             // 
-            // Column2
+            // columnHeader1
             // 
-            this.Column2.HeaderText = "Name of the User";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 400;
+            this.columnHeader1.Width = 180;
             // 
-            // Column3
+            // columnHeader2
             // 
-            this.Column3.HeaderText = "Login ID";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 200;
+            this.columnHeader2.Width = 10;
             // 
-            // clmusercategory
+            // columnHeader3
             // 
-            this.clmusercategory.HeaderText = "User Category";
-            this.clmusercategory.Name = "clmusercategory";
-            this.clmusercategory.ReadOnly = true;
-            // 
-            // clmuserrole
-            // 
-            this.clmuserrole.HeaderText = "User Role";
-            this.clmuserrole.Name = "clmuserrole";
-            this.clmuserrole.ReadOnly = true;
-            // 
-            // clmPassKey
-            // 
-            this.clmPassKey.HeaderText = "Pass Key";
-            this.clmPassKey.Name = "clmPassKey";
-            this.clmPassKey.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Status";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // SNo
-            // 
-            this.SNo.HeaderText = "S.No.";
-            this.SNo.Name = "SNo";
-            // 
-            // Nameoftheuser
-            // 
-            this.Nameoftheuser.HeaderText = "Name of the User";
-            this.Nameoftheuser.Name = "Nameoftheuser";
-            this.Nameoftheuser.Width = 400;
-            // 
-            // clmLoginID
-            // 
-            this.clmLoginID.HeaderText = "Login ID";
-            this.clmLoginID.Name = "clmLoginID";
-            this.clmLoginID.Width = 200;
-            // 
-            // clmUserCategory
-            // 
-            this.clmUserCategory.HeaderText = "User Category";
-            this.clmUserCategory.Name = "clmUserCategory";
-            // 
-            // UserRole
-            // 
-            this.UserRole.HeaderText = "User Role";
-            this.UserRole.Name = "UserRole";
-            // 
-            // Passkey
-            // 
-            this.Passkey.HeaderText = "Pass Key";
-            this.Passkey.Name = "Passkey";
-            // 
-            // status
-            // 
-            this.status.HeaderText = "Status";
-            this.status.Name = "status";
+            this.columnHeader3.Width = 0;
             // 
             // CP_UserList
             // 
@@ -476,21 +417,12 @@
         private System.Windows.Forms.GroupBox grbFilterByUser;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.ListView lvUserList;
         private System.Windows.Forms.TextBox txtDUserList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmusercategory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmuserrole;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPassKey;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nameoftheuser;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmLoginID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUserCategory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserRole;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Passkey;
-        private System.Windows.Forms.DataGridViewTextBoxColumn status;
+        private System.Windows.Forms.Label lblUserId;
+        public System.Windows.Forms.ListView lvUserList;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }

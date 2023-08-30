@@ -102,7 +102,6 @@
             this.cmbNoOfDecimals.Name = "cmbNoOfDecimals";
             this.cmbNoOfDecimals.Size = new System.Drawing.Size(361, 28);
             this.cmbNoOfDecimals.TabIndex = 2;
-            this.cmbNoOfDecimals.SelectedIndexChanged += new System.EventHandler(this.CmbNoOfDecimals_SelectedIndexChanged);
             this.cmbNoOfDecimals.Enter += new System.EventHandler(this.CmbNoOfDecimals_Enter);
             this.cmbNoOfDecimals.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbNoOfDecimals_KeyDown);
             this.cmbNoOfDecimals.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbNoOfDecimals_KeyPress);
@@ -259,6 +258,9 @@
             this.Text = "Unit";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Unit_FormClosing);
             this.Load += new System.EventHandler(this.CP_Unit_Load);
+
+            //this.Paint += new System.Windows.Forms.PaintEventHandler(this.CP_Unit_Paint);
+
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Unit_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Unit_Leave);
             this.grbform.ResumeLayout(false);

@@ -43,33 +43,15 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlRack = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.lblGC = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.btnExport = new System.Windows.Forms.Button();
+            this.lblGC = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.cmbGroupType = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdGroupList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmshopgodown = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmrackgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdconcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdshtname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDrackname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmshortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsGroupList.SuspendLayout();
             this.pnlRack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -163,8 +145,6 @@
             // 
             this.pnlRack.BackColor = System.Drawing.Color.White;
             this.pnlRack.Controls.Add(this.DGV_SearchGrid);
-            this.pnlRack.Controls.Add(this.lblGC);
-            this.pnlRack.Controls.Add(this.label1);
             this.pnlRack.Controls.Add(this.grbFilterBy);
             this.pnlRack.Controls.Add(this.lblNoRecordsFound);
             this.pnlRack.Controls.Add(this.grdGroupList);
@@ -191,22 +171,12 @@
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmdsno,
-            this.clmdconcern,
-            this.clmdshtname,
-            this.clmdstatus,
-            this.clmDrackname,
-            this.clmshortName,
-            this.Column4,
-            this.dataGridViewTextBoxColumn1,
-            this.clmstatus});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
@@ -215,8 +185,8 @@
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -224,39 +194,24 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958804;
-            // 
-            // lblGC
-            // 
-            this.lblGC.AutoSize = true;
-            this.lblGC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblGC.ForeColor = System.Drawing.Color.Crimson;
-            this.lblGC.Location = new System.Drawing.Point(787, 34);
-            this.lblGC.Name = "lblGC";
-            this.lblGC.Size = new System.Drawing.Size(17, 20);
-            this.lblGC.TabIndex = 958803;
-            this.lblGC.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(703, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 20);
-            this.label1.TabIndex = 958802;
-            this.label1.Text = "No.of Racks :";
+            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
+            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
+            this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
+            this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
             // grbFilterBy
             // 
             this.grbFilterBy.Controls.Add(this.btnExport);
+            this.grbFilterBy.Controls.Add(this.lblGC);
             this.grbFilterBy.Controls.Add(this.btnView);
+            this.grbFilterBy.Controls.Add(this.label1);
             this.grbFilterBy.Controls.Add(this.cmbGroupType);
             this.grbFilterBy.Location = new System.Drawing.Point(3, 2);
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
             this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterBy.Size = new System.Drawing.Size(672, 67);
+            this.grbFilterBy.Size = new System.Drawing.Size(1348, 67);
             this.grbFilterBy.TabIndex = 958801;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By Rack Group";
@@ -265,33 +220,60 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(581, 26);
+            this.btnExport.Location = new System.Drawing.Point(233, 26);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
             this.btnExport.TabIndex = 5;
             this.btnExport.Text = "Export";
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
+            this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
+            // 
+            // lblGC
+            // 
+            this.lblGC.AutoSize = true;
+            this.lblGC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblGC.ForeColor = System.Drawing.Color.Crimson;
+            this.lblGC.Location = new System.Drawing.Point(401, 30);
+            this.lblGC.Name = "lblGC";
+            this.lblGC.Size = new System.Drawing.Size(17, 20);
+            this.lblGC.TabIndex = 958803;
+            this.lblGC.Text = "0";
             // 
             // btnView
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(498, 26);
+            this.btnView.Location = new System.Drawing.Point(152, 26);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 4;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
+            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
+            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(318, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 20);
+            this.label1.TabIndex = 958802;
+            this.label1.Text = "No.of Racks :";
             // 
             // cmbGroupType
             // 
-            this.cmbGroupType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGroupType.FormattingEnabled = true;
-            this.cmbGroupType.Location = new System.Drawing.Point(27, 26);
+            this.cmbGroupType.Location = new System.Drawing.Point(9, 26);
             this.cmbGroupType.Name = "cmbGroupType";
-            this.cmbGroupType.Size = new System.Drawing.Size(454, 27);
+            this.cmbGroupType.Size = new System.Drawing.Size(137, 27);
             this.cmbGroupType.TabIndex = 2;
             // 
             // lblNoRecordsFound
@@ -324,16 +306,6 @@
             this.grdGroupList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdGroupList.ColumnHeadersHeight = 30;
             this.grdGroupList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdGroupList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.clmConcern,
-            this.clmshopgodown,
-            this.clmrackgroup,
-            this.Column2,
-            this.Column3,
-            this.Column6,
-            this.Column7,
-            this.Column5});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -355,6 +327,10 @@
             this.grdGroupList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGroupList.Size = new System.Drawing.Size(1348, 510);
             this.grdGroupList.TabIndex = 958798;
+            this.grdGroupList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGroupList_DataBindingComplete);
+            this.grdGroupList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdGroupList_Scroll);
+            this.grdGroupList.DoubleClick += new System.EventHandler(this.GrdGroupList_DoubleClick);
+            this.grdGroupList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdGroupList_KeyDown);
             // 
             // picLoader
             // 
@@ -369,118 +345,6 @@
             this.picLoader.TabIndex = 958800;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "S.No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // clmConcern
-            // 
-            this.clmConcern.HeaderText = "Concern";
-            this.clmConcern.Name = "clmConcern";
-            this.clmConcern.ReadOnly = true;
-            this.clmConcern.Width = 200;
-            // 
-            // clmshopgodown
-            // 
-            this.clmshopgodown.HeaderText = "Stock Location";
-            this.clmshopgodown.Name = "clmshopgodown";
-            this.clmshopgodown.ReadOnly = true;
-            this.clmshopgodown.Width = 200;
-            // 
-            // clmrackgroup
-            // 
-            this.clmrackgroup.HeaderText = "Rack Group";
-            this.clmrackgroup.Name = "clmrackgroup";
-            this.clmrackgroup.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Rack Name";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 200;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Short Name";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 200;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Description";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Total Products";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Status";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // clmdsno
-            // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.MinimumWidth = 6;
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // clmdconcern
-            // 
-            this.clmdconcern.HeaderText = "Concern";
-            this.clmdconcern.MinimumWidth = 6;
-            this.clmdconcern.Name = "clmdconcern";
-            this.clmdconcern.Width = 200;
-            // 
-            // clmdshtname
-            // 
-            this.clmdshtname.HeaderText = "Stock Location";
-            this.clmdshtname.MinimumWidth = 6;
-            this.clmdshtname.Name = "clmdshtname";
-            this.clmdshtname.Width = 200;
-            // 
-            // clmdstatus
-            // 
-            this.clmdstatus.HeaderText = "Rack Group";
-            this.clmdstatus.MinimumWidth = 6;
-            this.clmdstatus.Name = "clmdstatus";
-            // 
-            // clmDrackname
-            // 
-            this.clmDrackname.HeaderText = "Rack Name";
-            this.clmDrackname.Name = "clmDrackname";
-            this.clmDrackname.Width = 200;
-            // 
-            // clmshortName
-            // 
-            this.clmshortName.HeaderText = "Short Name";
-            this.clmshortName.Name = "clmshortName";
-            this.clmshortName.Width = 200;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Description";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Total Products";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // clmstatus
-            // 
-            this.clmstatus.HeaderText = "Status";
-            this.clmstatus.Name = "clmstatus";
             // 
             // CP_RackList
             // 
@@ -505,6 +369,7 @@
             this.pnlRack.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             this.grbFilterBy.ResumeLayout(false);
+            this.grbFilterBy.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGroupList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
@@ -532,23 +397,5 @@
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdGroupList;
         private System.Windows.Forms.PictureBox picLoader;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdconcern;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdshtname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdstatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDrackname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmshortName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmstatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmConcern;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmshopgodown;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmrackgroup;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }

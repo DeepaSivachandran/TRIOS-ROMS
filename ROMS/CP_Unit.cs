@@ -30,6 +30,7 @@ namespace ROMS
         public string PbNoOfDecimals="";
         public int PbStatus=0;
         public int pbDecimalId = 0;
+        public int varUpdate = 0;
         public CP_Unit()
         {
             InitializeComponent();
@@ -89,49 +90,47 @@ namespace ROMS
         {
             try
             {
-                if (rbActive.Checked == true){varstatus = 1;}
-                else { varstatus = 2;}
+                if (rbActive.Checked == true) { varstatus = 1; }
+                else { varstatus = 2; }
                 SPDataService objspservice = new SPDataService();
-                string varResult = "";
-                if (btnSave.Text=="Save")
+                string varResult = "",
+                varoriginator = ""; int varType = 0;
+                if (btnSave.Text == "Save")
                 {
-                    varResult = objspservice.udfnUnit(0, 0,(txtEUnitName.Text).Trim(),txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus,"Unit Creation");
-                    if (varmastertype == 1)
-                    {
-                        varupdate = 1;
-                    }
+                    varoriginator = "Unit Creation";
+                    varType = 0;
                 }
                 else
                 {
-                    varResult = objspservice.udfnUnit(1, varUnitCode, (txtEUnitName.Text).Trim(), (txtSymbol.Text).Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, "Unit Updation");
-                    this.Close();
+                    varoriginator = "Unit Updation";
+                    varType = 1;
                 }
-                if (varResult.Split('~')[0] == "3")
+                varResult = objspservice.udfnUnit(varType, varUnitCode, (txtEUnitName.Text).Trim(), txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, varoriginator);
+                string[] varvalue = varResult.Split('~');
+                if (varvalue[0] == "3")
                 {
-                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    varUnitCodeProduct = Convert.ToInt16(varResult.Split('~')[2]);
-                    udfnclear();
-                    if (varmastertype == 1)
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MainForm.objCP_Unitlist.udfnList();
+                    if (btnSave.Text == "Update")
                     {
-                        MainForm.objCP_Items.varUnitCode = varUnitCodeProduct;
-                        varmastertype = 0;
+                        varUpdate = 1;
                         udfnclose();
                     }
-                    else
-                    {
-                        MainForm.objCP_Unitlist.udfnList();
-                    }
+                    udfnclear();
                 }
                 else
                 {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                objspservice.CloseConnection();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnSave.Enabled = true;
             }
         }
         private void udfnclear()
@@ -141,8 +140,7 @@ namespace ROMS
 
                 txtEUnitName.Text = "";
                 txtSymbol.Text = "";
-                cmbNoOfDecimals.SelectedIndex = 0;
-                btnSave.Text = "Save";
+                //btnSave.Text = "Save";
                 txtEUnitName.Focus();
                 this.ActiveControl = txtEUnitName;
             }
@@ -156,6 +154,7 @@ namespace ROMS
         {
             try
             {
+                btnSave.Enabled = false;
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtEUnitName.Text).Trim() == "")
                 {
@@ -223,7 +222,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -273,7 +272,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -471,18 +470,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CmbNoOfDecimals_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-             //   BeginInvoke(new Action(() => cmbNoOfDecimals.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void CmbNoOfDecimals_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -542,7 +529,7 @@ namespace ROMS
         {
             try
             {
-                if (varupdate == 0)
+                if (varUpdate == 0)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
@@ -553,8 +540,7 @@ namespace ROMS
                     {
                         e.Cancel = true;
                     }
-                } 
-               
+                }
             }
             catch (Exception ex)
             {

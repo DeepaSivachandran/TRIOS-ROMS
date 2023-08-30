@@ -24,7 +24,7 @@ namespace ROMS
         public string varHsnCode="";
         public int varGstId=-1;
         public int varId = 0;
-
+        public int varStatusid = 1;
         public int varCloseFlag = 0;
         //tool tip
         private ToolTip tpHsnName = new ToolTip();
@@ -49,8 +49,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-       
         private void CP_ProductHSN_Load(object sender, EventArgs e)
         {
             try
@@ -72,8 +70,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-}
-     
+        }
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -86,8 +83,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-       
         private void btnClose_Click(object sender, EventArgs e)
         {
             try
@@ -100,7 +95,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Enter(object sender, EventArgs e)
         {
             try
@@ -113,12 +107,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -126,7 +119,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtHSNName_Enter(object sender, EventArgs e)
         {
             try
@@ -139,7 +131,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtHSNName_Leave(object sender, EventArgs e)
         {
             try
@@ -191,7 +182,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtHSNCode_Leave(object sender, EventArgs e)
         {
             try
@@ -215,7 +205,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtHSNCode_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -231,7 +220,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbGST_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -244,7 +232,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnLoadCmbGst()
         {
             try
@@ -259,7 +246,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbGST_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -272,7 +258,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbGST_Enter(object sender, EventArgs e)
         {
             try
@@ -285,7 +270,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbGST_Leave(object sender, EventArgs e)
         {
             if (Convert.ToString(cmbGST.SelectedValue) == "0" || Convert.ToString(cmbGST.SelectedValue) == "-1")
@@ -333,7 +317,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfnClear()
         {
             try
@@ -356,6 +339,14 @@ namespace ROMS
                 txtHSNName.Text = varHsnname;
                 txtHSNCode.Text = varHsnCode;
                 cmbGST.SelectedValue = varGstId;
+                if (varStatusid == 1)
+                {
+                    rbActive.Checked = true;
+                }
+                else
+                {
+                    rbInActive.Checked = true;
+                }
             }
             catch (Exception ex)
             {
@@ -367,8 +358,11 @@ namespace ROMS
         {
             try
             {
-               int varStatusid = 1;
-               if(rbActive.Checked)
+                string varResult = ""; string varOriginator = "HSN Creation";
+                int varViewType=0; 
+                btnSave.Enabled=false;
+
+               if (rbActive.Checked)
                {
                     varStatusid = 1;
                }
@@ -376,46 +370,41 @@ namespace ROMS
                {
                     varStatusid = 2;
                }
-               if (btnSave.Text=="Save")
+               SPDataService objDser = new SPDataService();
+               if (btnSave.Text == "Update")
                {
-                    SPDataService objDser = new SPDataService();
-                    string varResult = objDser.udfnHsn(0,0, Convert.ToInt16(cmbGST.SelectedValue),  Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "Creation");
-                    objDser.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        udfnClear();
-                        MainForm.objCP_ProductHSNlist.udfnList();
-                    }
-                    else if(varResult.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                  
+                    varViewType=1;
+                    varOriginator = "HSN Updation";
                }
-                if (btnSave.Text == "Update")
-                {
-                    SPDataService objDser = new SPDataService();
-                    string varResult = objDser.udfnHsn(1,Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text), Convert.ToString(txtHSNCode.Text), varStatusid, "Updation");
-                    objDser.CloseConnection();
-                    if (varResult.Split('~')[0] == "3")
+               varResult = objDser.udfnHsn(varViewType, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text).Trim(), Convert.ToString(txtHSNCode.Text).Trim(), varStatusid, varOriginator);
+               objDser.CloseConnection();
+               if (varResult.Split('~')[0] == "3")
+               {
+                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (btnSave.Text == "Save")
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnClear();
+                    }
+                    else
+                    {
                         varCloseFlag = 1;
                         udfnclose();
-                        MainForm.objCP_ProductHSNlist.udfnList();
                     }
-                    else if (varResult.Split('~')[0] == "4")
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-
+                    MainForm.objCP_ProductHSNlist.udfnList();
+               }
+               else if(varResult.Split('~')[0] == "4")
+               {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+               }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnSave.Enabled = true;
             }
         }
         private void BtnSave_Click(object sender, EventArgs e)
@@ -431,7 +420,7 @@ namespace ROMS
                     tpGst.Show("Please select GST.", cmbGST, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtHSNName.Text.Trim() == "")
+                if (Convert.ToString(txtHSNName.Text).Trim() == "")
                 {
                     epHsn.SetError(txtHSNName, "Please enter HSN name.");
                     txtHSNName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -447,7 +436,6 @@ namespace ROMS
                     tpHsnCode.Show("Please enter HSN code.", txtHSNCode, 5000);
                     blnErrorFlag = true;
                 }
-               
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
@@ -458,7 +446,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-          
         }
         private void CP_ProductHSN_KeyDown(object sender, KeyEventArgs e)
         {
@@ -480,7 +467,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Enter(object sender, EventArgs e)
         {
             try
@@ -493,7 +479,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_Leave(object sender, EventArgs e)
         {
             try
@@ -506,7 +491,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInActive_Enter(object sender, EventArgs e)
         {
             try
@@ -519,7 +503,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInActive_Leave(object sender, EventArgs e)
         {
             try
@@ -532,12 +515,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnSave_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -545,7 +527,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_ProductHSN_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -570,7 +551,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbActive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -590,7 +570,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbInActive_KeyDown(object sender, KeyEventArgs e)
         {
             try

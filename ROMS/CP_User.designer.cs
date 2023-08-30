@@ -402,7 +402,6 @@
         private System.Windows.Forms.TextBox txtDLoginID;
         private System.Windows.Forms.TextBox txtLoginID;
         private System.Windows.Forms.TextBox txtDUserName;
-        private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.TextBox txtDPassword;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtDCPassword;
@@ -422,5 +421,6 @@
         private System.Windows.Forms.ComboBox cmbPasskey;
         public System.Windows.Forms.Button btnSave;
         internal System.Windows.Forms.Label btnNew;
+        public System.Windows.Forms.TextBox txtUserName;
     }
 }

@@ -113,7 +113,6 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
-            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
             // btnClose
@@ -165,7 +164,6 @@
             this.txtCategoryName.Location = new System.Drawing.Point(197, 26);
             this.txtCategoryName.MaxLength = 20;
             this.txtCategoryName.Name = "txtCategoryName";
-            this.txtCategoryName.PasswordChar = '*';
             this.txtCategoryName.Size = new System.Drawing.Size(288, 27);
             this.txtCategoryName.TabIndex = 0;
             this.txtCategoryName.Enter += new System.EventHandler(this.TxtCategoryName_Enter);
@@ -196,7 +194,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_UserCategory_FormClosing);
             this.Load += new System.EventHandler(this.CP_UserCategory_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_UserCategory_KeyDown);
-            this.Leave += new System.EventHandler(this.CP_UserCategory_Leave);
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
             this.grbUserCategory.ResumeLayout(false);
@@ -207,7 +204,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel pnlStatus;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.TextBox txtDStatus;
@@ -215,7 +211,8 @@
         private System.Windows.Forms.GroupBox grbUserCategory;
         private System.Windows.Forms.ErrorProvider epUserCategory;
         private System.Windows.Forms.TextBox txtDCategoryName;
-        private System.Windows.Forms.TextBox txtCategoryName;
         public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.Panel pnlStatus;
+        public System.Windows.Forms.TextBox txtCategoryName;
     }
 }

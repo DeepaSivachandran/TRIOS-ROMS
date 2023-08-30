@@ -43,31 +43,13 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlunitlist = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmGstinno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdbrokername = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmMobileno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmWhatsappno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmcity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPincode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grdUnitList = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDGstinNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbrokername = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDSymbols = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clm = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDPincode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdBrokerList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.tsBroker.SuspendLayout();
             this.pnlunitlist.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdUnitList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdBrokerList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,7 +142,7 @@
             // 
             this.pnlunitlist.BackColor = System.Drawing.Color.White;
             this.pnlunitlist.Controls.Add(this.DGV_SearchGrid);
-            this.pnlunitlist.Controls.Add(this.grdUnitList);
+            this.pnlunitlist.Controls.Add(this.grdBrokerList);
             this.pnlunitlist.Controls.Add(this.picLoader);
             this.pnlunitlist.Location = new System.Drawing.Point(0, 31);
             this.pnlunitlist.Name = "pnlunitlist";
@@ -184,16 +166,6 @@
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmdsno,
-            this.Column1,
-            this.clmGstinno,
-            this.clmdbrokername,
-            this.clmMobileno,
-            this.clmWhatsappno,
-            this.clmcity,
-            this.clmPincode,
-            this.clmdStatus});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -208,8 +180,8 @@
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -217,68 +189,19 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958800;
+            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
+            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
+            this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
-            // clmdsno
+            // grdBrokerList
             // 
-            this.clmdsno.HeaderText = "S.No.";
-            this.clmdsno.MinimumWidth = 6;
-            this.clmdsno.Name = "clmdsno";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Concern";
-            this.Column1.Name = "Column1";
-            // 
-            // clmGstinno
-            // 
-            this.clmGstinno.HeaderText = "GSTIN No.";
-            this.clmGstinno.Name = "clmGstinno";
-            this.clmGstinno.Width = 150;
-            // 
-            // clmdbrokername
-            // 
-            this.clmdbrokername.HeaderText = "Broker Name";
-            this.clmdbrokername.MinimumWidth = 6;
-            this.clmdbrokername.Name = "clmdbrokername";
-            this.clmdbrokername.Width = 200;
-            // 
-            // clmMobileno
-            // 
-            this.clmMobileno.HeaderText = "Mobile No.";
-            this.clmMobileno.Name = "clmMobileno";
-            this.clmMobileno.Width = 150;
-            // 
-            // clmWhatsappno
-            // 
-            this.clmWhatsappno.HeaderText = "WhatsApp No.";
-            this.clmWhatsappno.Name = "clmWhatsappno";
-            this.clmWhatsappno.Width = 150;
-            // 
-            // clmcity
-            // 
-            this.clmcity.HeaderText = "City";
-            this.clmcity.MinimumWidth = 6;
-            this.clmcity.Name = "clmcity";
-            this.clmcity.Width = 125;
-            // 
-            // clmPincode
-            // 
-            this.clmPincode.HeaderText = "Pincode";
-            this.clmPincode.Name = "clmPincode";
-            // 
-            // clmdStatus
-            // 
-            this.clmdStatus.HeaderText = "Status";
-            this.clmdStatus.Name = "clmdStatus";
-            // 
-            // grdUnitList
-            // 
-            this.grdUnitList.AllowUserToAddRows = false;
-            this.grdUnitList.AllowUserToDeleteRows = false;
-            this.grdUnitList.AllowUserToResizeColumns = false;
-            this.grdUnitList.AllowUserToResizeRows = false;
-            this.grdUnitList.BackgroundColor = System.Drawing.Color.White;
-            this.grdUnitList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdBrokerList.AllowUserToAddRows = false;
+            this.grdBrokerList.AllowUserToDeleteRows = false;
+            this.grdBrokerList.AllowUserToResizeColumns = false;
+            this.grdBrokerList.AllowUserToResizeRows = false;
+            this.grdBrokerList.BackgroundColor = System.Drawing.Color.White;
+            this.grdBrokerList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -286,19 +209,9 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdUnitList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grdUnitList.ColumnHeadersHeight = 30;
-            this.grdUnitList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdUnitList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmsno,
-            this.clmConcern,
-            this.clmDGstinNo,
-            this.clmbrokername,
-            this.clmDSymbols,
-            this.clm,
-            this.clmDCity,
-            this.clmDPincode,
-            this.ClmStatus});
+            this.grdBrokerList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdBrokerList.ColumnHeadersHeight = 30;
+            this.grdBrokerList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -306,83 +219,25 @@
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdUnitList.DefaultCellStyle = dataGridViewCellStyle5;
-            this.grdUnitList.EnableHeadersVisualStyles = false;
-            this.grdUnitList.GridColor = System.Drawing.Color.White;
-            this.grdUnitList.Location = new System.Drawing.Point(3, 58);
-            this.grdUnitList.Name = "grdUnitList";
-            this.grdUnitList.ReadOnly = true;
-            this.grdUnitList.RowHeadersVisible = false;
-            this.grdUnitList.RowHeadersWidth = 100;
+            this.grdBrokerList.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdBrokerList.EnableHeadersVisualStyles = false;
+            this.grdBrokerList.GridColor = System.Drawing.Color.White;
+            this.grdBrokerList.Location = new System.Drawing.Point(3, 58);
+            this.grdBrokerList.Name = "grdBrokerList";
+            this.grdBrokerList.ReadOnly = true;
+            this.grdBrokerList.RowHeadersVisible = false;
+            this.grdBrokerList.RowHeadersWidth = 100;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdUnitList.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.grdUnitList.RowTemplate.Height = 25;
-            this.grdUnitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdUnitList.Size = new System.Drawing.Size(1348, 581);
-            this.grdUnitList.TabIndex = 958797;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.MinimumWidth = 6;
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            // 
-            // clmConcern
-            // 
-            this.clmConcern.HeaderText = "Concern";
-            this.clmConcern.Name = "clmConcern";
-            this.clmConcern.ReadOnly = true;
-            // 
-            // clmDGstinNo
-            // 
-            this.clmDGstinNo.HeaderText = "GSTIN No.";
-            this.clmDGstinNo.Name = "clmDGstinNo";
-            this.clmDGstinNo.ReadOnly = true;
-            this.clmDGstinNo.Width = 150;
-            // 
-            // clmbrokername
-            // 
-            this.clmbrokername.HeaderText = "Broker Name";
-            this.clmbrokername.MinimumWidth = 6;
-            this.clmbrokername.Name = "clmbrokername";
-            this.clmbrokername.ReadOnly = true;
-            this.clmbrokername.Width = 200;
-            // 
-            // clmDSymbols
-            // 
-            this.clmDSymbols.HeaderText = "Mobile No.";
-            this.clmDSymbols.Name = "clmDSymbols";
-            this.clmDSymbols.ReadOnly = true;
-            this.clmDSymbols.Width = 150;
-            // 
-            // clm
-            // 
-            this.clm.HeaderText = "WhatsApp No.";
-            this.clm.Name = "clm";
-            this.clm.ReadOnly = true;
-            this.clm.Width = 150;
-            // 
-            // clmDCity
-            // 
-            this.clmDCity.HeaderText = "City";
-            this.clmDCity.MinimumWidth = 6;
-            this.clmDCity.Name = "clmDCity";
-            this.clmDCity.ReadOnly = true;
-            this.clmDCity.Width = 125;
-            // 
-            // clmDPincode
-            // 
-            this.clmDPincode.HeaderText = "Pincode";
-            this.clmDPincode.Name = "clmDPincode";
-            this.clmDPincode.ReadOnly = true;
-            // 
-            // ClmStatus
-            // 
-            this.ClmStatus.HeaderText = "Status";
-            this.ClmStatus.Name = "ClmStatus";
-            this.ClmStatus.ReadOnly = true;
+            this.grdBrokerList.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdBrokerList.RowTemplate.Height = 25;
+            this.grdBrokerList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdBrokerList.Size = new System.Drawing.Size(1348, 581);
+            this.grdBrokerList.TabIndex = 958797;
+            this.grdBrokerList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdBrokerList_DataBindingComplete);
+            this.grdBrokerList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdBrokerList_Scroll);
+            this.grdBrokerList.DoubleClick += new System.EventHandler(this.GrdBrokerList_DoubleClick);
+            this.grdBrokerList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdBrokerList_KeyDown);
             // 
             // picLoader
             // 
@@ -432,7 +287,7 @@
             this.tsBroker.PerformLayout();
             this.pnlunitlist.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdUnitList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdBrokerList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -451,25 +306,7 @@
         private System.Windows.Forms.Panel pnlunitlist;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblNoRecordsFound;
-        public System.Windows.Forms.DataGridView grdUnitList;
+        public System.Windows.Forms.DataGridView grdBrokerList;
         private System.Windows.Forms.PictureBox picLoader;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmGstinno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdbrokername;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmMobileno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmWhatsappno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmcity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPincode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmConcern;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDGstinNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmbrokername;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDSymbols;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clm;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDCity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDPincode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ClmStatus;
     }
 }

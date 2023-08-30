@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 namespace ROMS
-{
+{  //Created By:-Sathish
+    //Created On:-22/08/2023
     public partial class CP_User : Form
     {
         DataValidation objValidation = new DataValidation();
@@ -22,26 +23,41 @@ namespace ROMS
         private ToolTip tpUserRole  = new ToolTip();
         private ToolTip tpUserCategory  = new ToolTip();
         private ToolTip tpPassKey  = new ToolTip();
-
         public string oldpassword,varpassword;
+        public string PbDefault;
+        public int varstatus;
+        public int varUserID = 0;
         public string varusercode="";
         public string varUserRoleCode = "";
+        public string PbNameoftheUser = "";
+        public string PbLoginid = "";
+        public string PbUserCategory = "";
+        public string PbUserRole = "";
+        //public string PbPassword = "";
+        //public string PbConfirmPassword = "";
+        public string PbPasskey = "";
+        public int PbUserCategoryID = 0;
+        public int PbUserRoleID = 0;
+        public int PbPasskeyID = 0;
+        public int PbStatus=0;
+        public int varUpdate = 0;
+        public int varCategoryCode;
 
         public CP_User()
         {
             InitializeComponent();
         }
-        public void udfnLoadUserRole()
+        public void udfnLoadUserCategory()
         {
             //try
             //{
             //    // Bind combobox
             //    DataBind objDataBind = new DataBind();
-            //    objDataBind.BindComboBoxListSelected("View_UserRole", "rolecode<>0 and 1=1 Order by rolecode", "rolename,rolecode", cmbUserRole, "", "rolename", "rolecode");
+            //    objDataBind.BindComboBoxListSelected("MR_UserCategory", " CT_STSID=1 and CTID !=0 Order by CTID", "CT_Name,CTID", cmbUserCategory, "", "CT_Name", "CTID");
             //    objDataBind = null;
             //    if (varUserRoleCode != "")
             //    {
-            //        cmbUserRole.SelectedValue = varUserRoleCode;
+            //        cmbUserCategory.SelectedValue = varCategoryCode;
             //    }
             //}
             //catch (Exception ex)
@@ -71,7 +87,6 @@ namespace ROMS
 
         private void txtUserName_Leave(object sender, EventArgs e)
         {
-
             try
             {
                 if (Convert.ToString(txtUserName.Text).Trim() == "")
@@ -350,7 +365,38 @@ namespace ROMS
         {
             try
             {
-
+                if (rbActive.Checked == true) { varstatus = 1; }
+                else { varstatus = 2; }
+                SPDataService objspservice = new SPDataService();
+                string varResult = "",
+                varoriginator = ""; int varType = 0;
+                if (btnSave.Text == "Save")
+                {
+                    varoriginator = "User Creation";
+                    varType = 0;
+                }
+                else
+                {
+                    varoriginator = "User Updation";
+                    varType = 1;
+                }
+                varResult = objspservice.udfnUser(varType, varUserID, (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, varoriginator);
+                string[] varvalue = varResult.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MainForm.objCP_Userlist.udfnList();
+                    if (btnSave.Text == "Update")
+                    {
+                        varUpdate = 1;
+                        udfnclose();
+                    }
+                    udfnClear();
+                }
+                else
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
             {
@@ -414,6 +460,16 @@ namespace ROMS
                     tpconfirmpassword.Show("Please enter confirm password", txtCPassword, 5000);
                     blnErrorFlag = true;
                 }
+                if (txtPassword.Text.Trim() != txtCPassword.Text.Trim())
+                {
+                    epUser.SetError(txtCPassword, "Password not match.");
+                    txtCPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+
+                    tpconfirmpassword.ShowAlways = true;
+                    tpconfirmpassword.Show("Password not match.", txtCPassword, 5000);
+                    txtCPassword.Text = "";
+                    blnErrorFlag = true;
+                }
                 if (Convert.ToString(cmbPasskey.SelectedValue) == "" || Convert.ToString(cmbPasskey.SelectedValue) == "-1")
                 {
                     epUser.SetError(cmbPasskey, "Please select pass key");
@@ -422,6 +478,24 @@ namespace ROMS
                     tpPassKey.Show("Please select pass key", cmbPasskey, 5000);
                     blnErrorFlag = true;
                 }
+
+                if (oldpassword != null && oldpassword != "")
+                {
+
+                    if (oldpassword.Trim() == txtPassword.Text.Trim())
+                    {
+                        varpassword = txtPassword.Text;
+                    }
+                    else
+                    {
+                        varpassword = GenerateMD5(txtPassword.Text);
+                    }
+                }
+                else
+                {
+                    varpassword = GenerateMD5(txtPassword.Text);
+                }
+
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
@@ -441,7 +515,6 @@ namespace ROMS
             txtPassword.Text = "";
             txtCPassword.Text = "";
             rbActive.Checked = true;
-            //cmbUserRole.SelectedValue = "-1";
             btnSave.Text = "Save";
         }
 
@@ -474,7 +547,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -539,7 +612,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -552,17 +625,23 @@ namespace ROMS
         {
             try
             {
-
-                //this.ActiveControl = txtUserName;
-                //udfnLoadUserRole();
-                //udfnEdit();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_UserCategory", " CT_STSID=1 and CTID !=0 Order by CTID", "CT_Name,CTID", cmbUserCategory, "", "CT_Name", "CTID");
+                objDataBind.BindComboBoxListSelected("MR_UserRole", "UR_STSID=1 and URID !=0 Order by URID", "UR_Name,URID", cmbUserRole, "", "UR_Name", "URID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,7) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbPasskey, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+                this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
                 }
                 else
                 {
-                    pnlStatus.Enabled = true;
+                    if (btnSave.Visible)
+                    {
+                        pnlStatus.Enabled = true;
+                    }
+                    udfnLoad();
                 }
             }
             catch (Exception ex)
@@ -570,7 +649,25 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            
+
+        }
+
+        private void udfnLoad()
+        {
+            try
+            {
+                txtUserName.Text = PbNameoftheUser;
+                txtLoginID.Text = PbLoginid;
+                cmbUserCategory.SelectedValue = PbUserCategoryID;
+                cmbUserRole.SelectedValue = PbUserRoleID;
+                cmbPasskey.SelectedValue = PbPasskeyID;
+                if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void CP_User_KeyDown(object sender, KeyEventArgs e)
@@ -877,7 +974,13 @@ namespace ROMS
             try
             {
                 MainForm.objCP_UserCategory = new CP_UserCategory();
+                MainForm.objCP_UserCategory.varmastertype = 1;
                 MainForm.objCP_UserCategory.ShowDialog();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_UserCategory", " CT_STSID=1 and CTID !=0 Order by CTID", "CT_Name,CTID", cmbUserCategory, "", "CT_Name", "CTID");
+          
+                objDataBind = null;
+                cmbUserCategory.SelectedValue = Convert.ToInt16(varCategoryCode);
             }
             catch (Exception ex)
             {
@@ -891,14 +994,17 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varUpdate == 0)
                 {
-                    e.Cancel = false;
-                }
-                else
-                {
-                    e.Cancel = true;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
             catch (Exception ex)

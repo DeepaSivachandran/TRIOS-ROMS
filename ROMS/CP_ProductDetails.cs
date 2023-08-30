@@ -20,20 +20,52 @@ namespace ROMS
         public string varcompanycode;
         public string pbFormStatus;
         public string varstatecode = "";
+        public int varRackId = 0;
+        public string varDescription = "";
+        public string varRackName = "";
 
-        //tool tip
-        private ToolTip tpContactNo = new ToolTip();
-        private ToolTip tpAltContactNo = new ToolTip();
-        private ToolTip tpemail = new ToolTip();
-        private ToolTip tpgstin = new ToolTip();
-        private ToolTip tpfssai = new ToolTip();
-        private ToolTip tpplno = new ToolTip();
-        private ToolTip tpcompanyname = new ToolTip();
-        private ToolTip tpshortname = new ToolTip();
-        private ToolTip tppincode = new ToolTip();
-        private ToolTip tpcity = new ToolTip();
-        private ToolTip tparea = new ToolTip();
-        private ToolTip tpstate = new ToolTip();
+        public void udfnList()
+        {
+            try
+            {
+                
+                Application.DoEvents();
+               
+                grdProductDetails.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnProductDetailsList(0, varRackId);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            txtRackName.Text = varRackName;
+                            txtDescription.Text = varDescription;
+                            grdProductDetails.DataSource = objDs.Tables[0];
+                            grdProductDetails.Columns["PR_UTID"].Visible = false;
+                            grdProductDetails.Columns["PR_PUR_RKID"].Visible = false;
+                            grdProductDetails.Columns["Product Name in English"].Width = 200;
+                            grdProductDetails.Columns["S.NO."].Width = 80;
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lblTotalProducts.Text = Convert.ToString( grdProductDetails.Rows.Count);
+            }
+        }
+
         public CP_ProductDetails()
         {
             InitializeComponent();
@@ -373,136 +405,24 @@ namespace ROMS
             }
         }
 
-        private void btnSave_KeyDown(object sender, KeyEventArgs e)
+     
+
+        private void CP_Company_Load(object sender, EventArgs e)
         {
             try
             {
-
+                udfnList();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void udfnclear()
-        {
-            //try
-            //{
-            //    txtName.Text = "";
-            //    txtcontactName.Text = "";
-            //    txtArea.Text = "";
-            //    txtCity.Text = "";
-            //    txtContactNumber.Text = "";
-            //    txtAContactNumber.Text = "";
-            //    txtEmail.Text = "";  
-            //    txtPincode.Text = "";
-            //    btnSave.Text = "Save";
-            //    txtName.Focus();
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
-
-   
-     
-
-        private void CP_Company_Load(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    this.ActiveControl = txtName;
-            //    udfnLoadState();
-            //    udfnEdit();
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-            //finally
-            //{
-
-            //}
-
-            //txtDDay.Visible = false;
-            //txtDay.Visible = false;
-            //txtDMonth.Visible = false;
-            //txtMonth.Visible = false;
-            //txtDYear.Visible = false;
-            //txtYear.Visible = false;
-
-            //cmbPeriod.SelectedIndex = 0;
+            
         }
 
 
-        private void udfnEdit()
-        {
-            //try
-            //{
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-            //finally
-            //{
-
-            //}
-        }
-
-        private void txtContactNumber_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //try
-            //{
-            //    bool varResult = objvalidation.CheckNumeric(e);
-            //    if (varResult == true)
-            //    {
-            //        e.Handled = true;
-            //    }
-            //    else
-            //    {
-            //        e.Handled = false;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-            //finally
-            //{
-
-            //}
-
-        }
-
-        private void txtAContactNumber_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //try
-            //{
-            //    bool varResult = objvalidation.CheckNumeric(e);
-            //    if (varResult == true)
-            //    {
-            //        e.Handled = true;
-            //    }
-            //    else
-            //    {
-            //        e.Handled = false;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
+       
 
         private void CP_Company_Leave(object sender, EventArgs e)
         {
@@ -1738,107 +1658,6 @@ namespace ROMS
 
             }
         }
-
-        private void TxtBarcode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objvalidation.CheckNumeric(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
-
-        private void TxtDay_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objvalidation.CheckNumeric(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
-
-        private void TxtMonth_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objvalidation.CheckNumeric(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
-
-        private void TxtYear_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objvalidation.CheckNumeric(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
-
         private void TxtGST_KeyPress(object sender, KeyPressEventArgs e)
         {
             try

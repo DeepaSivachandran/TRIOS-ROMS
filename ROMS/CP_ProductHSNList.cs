@@ -19,7 +19,6 @@ namespace ROMS
         {
             InitializeComponent();
         }
-
         private void tsbNew_Click(object sender, EventArgs e)
         {
             try
@@ -45,6 +44,7 @@ namespace ROMS
                     MainForm.objCP_ProductHSN.varHsnname = Convert.ToString(grdHSNList.SelectedRows[0].Cells["HSN Name"].Value);
                     MainForm.objCP_ProductHSN.varHsnCode = Convert.ToString(grdHSNList.SelectedRows[0].Cells["HSN Code"].Value);
                     MainForm.objCP_ProductHSN.varGstId = Convert.ToInt32(grdHSNList.SelectedRows[0].Cells["GST ID"].Value);
+                    MainForm.objCP_ProductHSN.varStatusid  = Convert.ToInt32(grdHSNList.SelectedRows[0].Cells["Status ID"].Value);
                     MainForm.objCP_ProductHSN.ShowDialog();
                 }
             }
@@ -76,7 +76,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnHsn(2, Convert.ToInt16(grdHSNList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, "Deletion");
+                        string varResult = objDser.udfnHsn(2, Convert.ToInt16(grdHSNList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, "HSN Deletion");
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -112,7 +112,6 @@ namespace ROMS
         {
             try
             {
-
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
                 if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/
@@ -133,8 +132,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
-
         private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             try
@@ -192,47 +189,47 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
-
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdHSNList.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdHSNList.SortedColumn;
-            ListSortDirection direction;
-
-            // If oldColumn is null, then the DataGridView is not sorted.
-            if (oldColumn != null)
+            try
             {
-                // Sort the same column again, reversing the SortOrder.
-                if (oldColumn == newColumn &&
-                    grdHSNList.SortOrder == SortOrder.Ascending)
+                DataGridViewColumn newColumn = grdHSNList.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdHSNList.SortedColumn;
+                ListSortDirection direction;
+
+                // If oldColumn is null, then the DataGridView is not sorted.
+                if (oldColumn != null)
                 {
-                    direction = ListSortDirection.Descending;
+                    // Sort the same column again, reversing the SortOrder.
+                    if (oldColumn == newColumn &&
+                        grdHSNList.SortOrder == SortOrder.Ascending)
+                    {
+                        direction = ListSortDirection.Descending;
+                    }
+                    else
+                    {
+                        // Sort a new column and remove the old SortGlyph.
+                        direction = ListSortDirection.Ascending;
+                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    }
                 }
                 else
                 {
-                    // Sort a new column and remove the old SortGlyph.
                     direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                 }
-            }
-            else
-            {
-                direction = ListSortDirection.Ascending;
-            }
-            grdHSNList.Sort(newColumn, direction);
-            newColumn.HeaderCell.SortGlyphDirection =
-                direction == ListSortDirection.Ascending ?
-                SortOrder.Ascending : SortOrder.Descending;
+                grdHSNList.Sort(newColumn, direction);
+                newColumn.HeaderCell.SortGlyphDirection =
+                    direction == ListSortDirection.Ascending ?
+                    SortOrder.Ascending : SortOrder.Descending;
 
-            DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-            DGV_SearchGrid.HorizontalScrollingOffset = grdHSNList.HorizontalScrollingOffset;
-            DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                DGV_SearchGrid.HorizontalScrollingOffset = grdHSNList.HorizontalScrollingOffset;
+                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
-
         private void udfnSearchGridHead()
         {
             try
@@ -256,12 +253,12 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-     
         public void udfnList()
         {
             try
             {
                 picLoader.Visible = true;
+                picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdHSNList.DataSource = null;
@@ -320,8 +317,8 @@ namespace ROMS
             }
             finally
             {
-                grdHSNList.ClearSelection();
                 picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
         private void CP_ProductHSNList_Load(object sender, EventArgs e)
@@ -337,7 +334,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_ProductHSNList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -370,7 +366,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdHSNList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -390,7 +385,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdHSNList_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -403,12 +397,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdHSNList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
             {
-
                 for (int i = 0; i < grdHSNList.Rows.Count; i++)
                 {
                     if (Convert.ToString(grdHSNList.Rows[i].Cells["Status ID"].Value) == "1")
@@ -427,6 +419,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdHSNList.ClearSelection();
             }
         }
     }

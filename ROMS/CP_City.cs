@@ -13,18 +13,20 @@ namespace ROMS
     //Created By:-Sathish ; Created On:-11-08-2023
     public partial class CP_City : Form
     {
-        DataValidation objValidation = new DataValidation();
         DataError objError;
         private ToolTip tpCityName = new ToolTip();
         private ToolTip tpState = new ToolTip();
         public string varbrandcode;
+        public string pbFormStatus;
         public int varstatus;
         public string PbCityName="";
         public int varCityCode= 0;
+        public string varCityName = "";
         public string PbStateName="";
         public int PbStateId=0;
         public int PbStatus=0;
         public int varUpdate = 0;
+        public int varmastertype = 0;
         public CP_City()
         {
             InitializeComponent();
@@ -47,7 +49,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID in (1) and STID !=0 Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID in (1) Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text=="Save")
@@ -87,34 +89,61 @@ namespace ROMS
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
                 SPDataService objspservice = new SPDataService();
-                string varResult = "";
+                string varResult = "",
+                varoriginator = "";int varType = 0;
                 if (btnSave.Text == "Save")
                 {
-                    varResult = objspservice.udfnCity(0, 0, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, "City Creation");
+                    varoriginator = "City Creation";
+                    varType = 0;
                 }
                 else
                 {
-                    varResult = objspservice.udfnCity(1,varCityCode,Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, "City Updation");
-                    //this.Close();
-                    varUpdate = 1;
-                    udfnclose();
+                    varoriginator = "City Updation";
+                    varType = 1;
                 }
-                if (varResult.Split('~')[0] == "3")
+                varResult = objspservice.udfnCity(varType, varCityCode, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, varoriginator);
+                string[] varvalue = varResult.Split('~');
+                if (varvalue[0] == "3")
                 {
-                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udfnclear();
+
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MainForm.objCP_Citylist.udfnList();
+                    //udfnclear();
+                    if (btnSave.Text == "Update")
+                    {
+                        varUpdate = 1;
+                        udfnclose();
+                    }
+                    udfnclear();
                 }
                 else
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                objspservice.CloseConnection();
+                if (varmastertype == 1)
+                {
+                    varmastertype = 0;
+                    varUpdate = 1;
+                    varCityCode = Convert.ToInt16(varResult.Split('~')[2]);
+                    varCityName = Convert.ToString(varResult.Split('~')[2]);
+                    MainForm.objCP_CP_Broker.varCityName = txtCityName.Text;
+                    MainForm.objCP_CP_Broker.varCityCode = varCityCode;
+                    udfnclose();
+                }
+                else
+                {
+                    MainForm.objCP_UserCategoryList.udfnList();
+                }
+                 
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnSave.Enabled = true;
             }
         }
         private void udfnclear()
@@ -122,8 +151,7 @@ namespace ROMS
             try
             {
                 txtCityName.Text = "";
-                cmbState.SelectedIndex = 0;
-                btnSave.Text = "Save";
+                //btnSave.Text = "Save";
                 cmbState.Focus();
                 this.ActiveControl = cmbState;
             }
@@ -137,6 +165,7 @@ namespace ROMS
         {
             try
             {
+                btnSave.Enabled = false;
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtCityName.Text).Trim() == "")
                 {
@@ -181,7 +210,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.BackColor = Color.White;
+                btnSave.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -229,7 +258,7 @@ namespace ROMS
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -355,18 +384,6 @@ namespace ROMS
                     epCity.Clear();
                     cmbState.BackColor = Color.White;
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbState_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {

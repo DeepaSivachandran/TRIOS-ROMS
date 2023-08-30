@@ -207,6 +207,7 @@
             this.tcSupplier.SuspendLayout();
             this.tbSupplier.SuspendLayout();
             this.grpSupplierDetails.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.grbEnvelopeDetails.SuspendLayout();
             this.panelStatus.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -216,6 +217,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
             this.gpSupplier.SuspendLayout();
             this.groupBox2.SuspendLayout();
+         //   this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grddays)).BeginInit();
             this.tpSupplierProduct.SuspendLayout();
@@ -727,7 +729,6 @@
             this.txtwhatsapp.TabIndex = 11;
             this.txtwhatsapp.Enter += new System.EventHandler(this.Txtwhatsapp_Enter);
             this.txtwhatsapp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtwhatsapp_KeyDown);
-            this.txtwhatsapp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtwhatsapp_KeyPress);
             this.txtwhatsapp.Leave += new System.EventHandler(this.Txtwhatsapp_Leave);
             // 
             // textBox3
@@ -874,7 +875,6 @@
             this.txtAContactNumber.TabIndex = 9;
             this.txtAContactNumber.Enter += new System.EventHandler(this.txtAContactNumber_Enter);
             this.txtAContactNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAContactNumber_KeyDown);
-            this.txtAContactNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAContactNumber_KeyPress);
             this.txtAContactNumber.Leave += new System.EventHandler(this.txtAContactNumber_Leave);
             // 
             // txtDContactNumber
@@ -911,7 +911,6 @@
             this.txtContactNumber.TabIndex = 7;
             this.txtContactNumber.Enter += new System.EventHandler(this.txtContactNumber_Enter);
             this.txtContactNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtContactNumber_KeyDown);
-            this.txtContactNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAlterMobileno_KeyPress);
             this.txtContactNumber.Leave += new System.EventHandler(this.txtContactNumber_Leave);
             // 
             // txtDArea

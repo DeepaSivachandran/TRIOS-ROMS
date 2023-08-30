@@ -39,19 +39,6 @@
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.pnlpurchase = new System.Windows.Forms.Panel();
-            this.grpFilterby = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dpToDate = new System.Windows.Forms.DateTimePicker();
-            this.dpFromDate = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtSupplier = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.lblDESupplier = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +54,19 @@
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
+            this.pnlpurchase = new System.Windows.Forms.Panel();
+            this.grpFilterby = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dpToDate = new System.Windows.Forms.DateTimePicker();
+            this.dpFromDate = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSupplier = new System.Windows.Forms.TextBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.lblDESupplier = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnView = new System.Windows.Forms.Button();
             this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
@@ -182,6 +182,99 @@
             this.grdSupplierList.Size = new System.Drawing.Size(1348, 510);
             this.grdSupplierList.TabIndex = 958797;
             this.grdSupplierList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierList_CellContentClick);
+            // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Concern";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Width = 80;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Voucher Date";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Voucher No.";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Invoice No.";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Invoice Date";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // clmsupname
+            // 
+            this.clmsupname.HeaderText = "Supplier Name";
+            this.clmsupname.Name = "clmsupname";
+            this.clmsupname.ReadOnly = true;
+            this.clmsupname.Width = 200;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "City";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "GSTIN";
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Purchase Type";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Total Products";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Status";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Grand Total";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Created By";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "Created On";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
             // 
             // lblNoRecordsFound
             // 
@@ -350,99 +443,6 @@
             this.lblDESupplier.Size = new System.Drawing.Size(54, 20);
             this.lblDESupplier.TabIndex = 958798;
             this.lblDESupplier.Text = "Supplier";
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 50;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "Concern";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Width = 80;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Voucher Date";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Voucher No.";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Invoice No.";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Invoice Date";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // clmsupname
-            // 
-            this.clmsupname.HeaderText = "Supplier Name";
-            this.clmsupname.Name = "clmsupname";
-            this.clmsupname.ReadOnly = true;
-            this.clmsupname.Width = 200;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "City";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "GSTIN";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Purchase Type";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Total Products";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Status";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Grand Total";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Created By";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "Created On";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
             // 
             // dataGridViewImageColumn1
             // 

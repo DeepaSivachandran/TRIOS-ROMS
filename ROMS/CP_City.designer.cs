@@ -106,13 +106,12 @@
             // 
             // cmbState
             // 
-            this.cmbState.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbState.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbState.FormattingEnabled = true;
             this.cmbState.Location = new System.Drawing.Point(159, 46);
             this.cmbState.Name = "cmbState";
-            this.cmbState.Size = new System.Drawing.Size(240, 29);
+            this.cmbState.Size = new System.Drawing.Size(240, 28);
             this.cmbState.TabIndex = 0;
-            this.cmbState.SelectedIndexChanged += new System.EventHandler(this.CmbState_SelectedIndexChanged);
             this.cmbState.Enter += new System.EventHandler(this.CmbState_Enter);
             this.cmbState.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbState_KeyDown);
             this.cmbState.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbState_KeyPress);

@@ -137,28 +137,29 @@ namespace ROMS
         }
 
         public void udfnList()
-        { 
-                try
+        {
+            try
+            {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdItemList.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+
+                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbGroupType.SelectedValue), Convert.ToInt32(cmbsubgroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue));
+                objdserv.CloseConnection();
+                if (objDs != null)
                 {
-                    picLoader.Visible = true;
-                    Application.DoEvents();
-                    //********** To display a data in a grid  ******************
-                    grdItemList.DataSource = null;
-                    DataSet objDs = new DataSet();
-                    //**** To call the function from SP ***************
-                    SPDataService objdserv = new SPDataService();
-                
-                objDs = objdserv.udfnproductmasterlist(0, 0,Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbGroupType.SelectedValue), Convert.ToInt32(cmbsubgroup.SelectedValue),"",MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue));
-                    objdserv.CloseConnection();
-                    if (objDs != null)
+                    if (objDs.Tables.Count != 0)
                     {
-                        if (objDs.Tables.Count != 0)
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0)
                         {
                             lblNoRecordsFound.Visible = false;
-                            if (objDs.Tables[0].Rows.Count != 0)
-                            {
-                                lblNoRecordsFound.Visible = false;
-                                lblNoRecordsFound.SendToBack();
+                            lblNoRecordsFound.SendToBack();
                             grdItemList.DataSource = objDs.Tables[0];
                             grdItemList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
                             grdItemList.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
@@ -170,7 +171,7 @@ namespace ROMS
                             grdItemList.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdItemList.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdItemList.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                             
+
 
                             grdItemList.Columns["S.No."].Width = 50;
                             grdItemList.Columns["Product Name in English"].Width = 200;
@@ -180,12 +181,6 @@ namespace ROMS
                             grdItemList.Columns["Status"].Width = 80;
                             grdItemList.Columns["ID"].Visible = false;
                             grdItemList.Columns["STSID"].Visible = false;
-                            }
-                            else
-                            {
-                                lblNoRecordsFound.Visible = true;
-                                lblNoRecordsFound.BringToFront();
-                            }
                         }
                         else
                         {
@@ -198,19 +193,25 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-                    udfnSearchGridHead();
                 }
-                catch (Exception ex)
+                else
                 {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
                 }
-                finally
-                {
-              //  grdItemList.ClearSelection();
-                 picLoader.Visible = false; 
+                udfnSearchGridHead();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
                 lblPC.Text = Convert.ToString(grdItemList.Rows.Count);
-                }
+            }
         }
         
 
