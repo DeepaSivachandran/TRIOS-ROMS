@@ -220,9 +220,24 @@ namespace ROMS
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Company", " COMID not in (-1)", "COMID,COM_ShortName", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind = null;
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                int varViewType = 2;
+                objDT = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress);
+                objdserv.CloseConnection();
+                cmbConcern.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.DisplayMember = "COM_ShortName";
+                            cmbConcern.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -234,16 +249,28 @@ namespace ROMS
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                if (varCompanyId == 0)
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                int varViewType = 2;
+                if(varCompanyId==0)
                 {
-                    objDataBind.BindComboBoxListSelected("MR_StockLocation", " SLID not in (-1) ORDER BY SLID,SL_EName ", "SLID,SL_EName", cmbStockLocation, "", "SL_EName", "SLID");
+                    varViewType = 1;
                 }
-                else
+                objDT = objdserv.udfnStockLocationList(varViewType, varCompanyId,0);
+                objdserv.CloseConnection();
+                cmbStockLocation.DataSource = null;
+                if (objDT != null)
                 {
-                    objDataBind.BindComboBoxListSelected("MR_StockLocation", "  SL_COMID=" + varCompanyId + " or SLID=0 ORDER BY SLID,SL_EName ", "SLID,SL_EName", cmbStockLocation, "", "SL_EName", "SLID");
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbStockLocation.ValueMember = "SLID";
+                            cmbStockLocation.DisplayMember = "SL_EName";
+                            cmbStockLocation.DataSource = objDT.Tables[0];
+                        }
+                    }
                 }
-                objDataBind = null;
             }
             catch (Exception ex)
             {
@@ -407,12 +434,17 @@ namespace ROMS
         {
             try
             {
+                btnView.Enabled = false;
                 udfnList();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnView.Enabled = true;
             }
         }
 
@@ -570,6 +602,7 @@ namespace ROMS
         {
             try
             {
+                btnExport.Enabled = false;
                 if ((grdRackGroupList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -653,6 +686,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled = true;
             }
         }
 
@@ -800,5 +837,6 @@ namespace ROMS
                 grdRackGroupList.ClearSelection();
             }
         }
+
     }
 }

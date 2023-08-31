@@ -115,7 +115,6 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
-               // udfnSearchGridHead();
             }
             catch (Exception ex)
             {
@@ -128,7 +127,6 @@ namespace ROMS
                 picLoader.SendToBack();
                 lblNoOfPrGroup.Text = Convert.ToString(grdGroupList.Rows.Count);
                 varGroupCode = Convert.ToInt32(cmbProductGroup.SelectedValue);
-                //picLoader.Visible = false;
             }
         }
         public void udfndelete()
@@ -154,7 +152,6 @@ namespace ROMS
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -422,9 +419,24 @@ namespace ROMS
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductGroup", " PRGID  not in (-1) ORDER BY PRG_STSID,PRGID,PRG_EName", "PRG_EName,PRGID", cmbProductGroup, "", "PRG_EName", "PRGID");
-                objDataBind = null;
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                int varViewType = 3;
+                objDT = objdserv.udfnGroupList(varViewType, 0);
+                objdserv.CloseConnection();
+                cmbProductGroup.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbProductGroup.ValueMember = "PRGID";
+                            cmbProductGroup.DisplayMember = "PRG_EName";
+                            cmbProductGroup.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -571,7 +583,6 @@ namespace ROMS
         {
             try
             {
-                //grdGroupList.DefaultView.RowFilter = "([Product Subgroup]) LIKE '%" + txtProductSubGroup.Text + "%'";
                 (grdGroupList.DataSource as DataTable).DefaultView.RowFilter = "([Product Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
             }
             catch (Exception ex)

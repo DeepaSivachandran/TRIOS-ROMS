@@ -31,7 +31,7 @@ namespace ROMS
         //public int varFormFlag = 0;
         public string varSubGroupNameinTamil = "";
         public string varSubGroupNameinEnglish = "";
-        public int varProductName = -1;
+        public int varGroupId = -1;
         public string varBatchNo = "";
         public int varBatchId = -1;
         public int varStockLocation = -1;
@@ -81,9 +81,23 @@ namespace ROMS
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID not in (0)", "PRG_EName,PRGID", cmbGroupName, "", "PRG_EName", "PRGID");
-                objDataBind = null;
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                int varViewType = 2;
+                if (btnSave.Text == "Save") { varViewType = 1; }
+                objDT = objdserv.udfnGroupList(varViewType, varGroupId);
+                objdserv.CloseConnection();
+                cmbGroupName.DataSource = null;
+                if (objDT != null) {
+                    if (objDT.Tables.Count > 0) {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbGroupName.ValueMember = "PRGID";
+                            cmbGroupName.DisplayMember = "PRG_EName";
+                            cmbGroupName.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -151,7 +165,7 @@ namespace ROMS
         {
             try
             {
-                cmbGroupName.SelectedValue = varProductName;
+                cmbGroupName.SelectedValue = varGroupId;
                 txtESubGroupNameEnglish.Text = varSubGroupNameinEnglish;
                 txtESubGroupNameTamil.Text = varSubGroupNameinTamil;
                 cmbBatchNo.SelectedValue = varBatchId;
@@ -183,6 +197,7 @@ namespace ROMS
                 cmbBatchNo.SelectedValue = -1;
                 cmbStockLocation.SelectedValue = -1;
                 cmbRack.SelectedValue = -1;
+                cmbGroupName.Focus();
             }
             catch (Exception ex)
             {
@@ -194,6 +209,7 @@ namespace ROMS
         {
             try
             {
+                btnSave.Visible = false;
                 string varResult = ""; string varOriginator = "Product Sub Group Creation";
                 int varViewType=0; 
                 if (rbActive.Checked)
@@ -208,12 +224,8 @@ namespace ROMS
                 if (btnSave.Text == "Update")
                 {
                    varOriginator = "Product Sub Group Updation";
-                    varViewType=1; 
+                   varViewType=1; 
                 }
-                // else
-                // {
-                //     varResult = objDser.udfnSubGroup(1, varId, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), "Product Sub Group Updation");
-                // }
                 varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), varOriginator);
                 objDser.CloseConnection();
                 if (varResult.Split('~')[0] == "3")
@@ -233,7 +245,7 @@ namespace ROMS
                         {
                             MainForm.objCP_SubGroupList.udfnList();
                             MainForm.objCP_SubGroupList.udfnLoadCmbProductSubGroup();
-                            udfnLoadCmbGroupName();
+                          //  udfnLoadCmbGroupName();
                         }
                         udfnClear();
                         udfnLoadCmbGroupName();
@@ -255,6 +267,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnSave.Visible = true;
             }
         }
         private void btnSave_Click(object sender, EventArgs e)
@@ -295,7 +311,6 @@ namespace ROMS
                     tpBatchNo.Show("Please select batch No. status", cmbBatchNo, 5000);
                     blnErrorFlag = true;
                 }
-              
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);

@@ -27,15 +27,31 @@ namespace ROMS
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", " PRSGID not in (-1) ORDER BY PRSGID,PRSG_EName", "PRSG_EName,PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
-                objDataBind = null;
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                int varViewType = 3;
+                objDT = objdserv.udfnSubGroupList(varViewType, 0,"");
+                objdserv.CloseConnection();
+                cmbProductSubGroup.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbProductSubGroup.ValueMember = "PRSGID";
+                            cmbProductSubGroup.DisplayMember = "PRSG_EName";
+                            cmbProductSubGroup.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {
@@ -56,7 +72,6 @@ namespace ROMS
             try
             {
                 udfnEdit();
-               
             }
             catch (Exception ex)
             {
@@ -91,13 +106,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         public void udfnList()
         {
             try
             {
                 picLoader.Visible = true;
+                picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdSubGroupList.DataSource = null;
@@ -163,9 +177,10 @@ namespace ROMS
             }
             finally
             {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
                 lblNoOfPrSubGroup.Text = Convert.ToString(grdSubGroupList.Rows.Count);
                 varSubGroupCode = Convert.ToInt32(cmbProductSubGroup.SelectedValue);
-                picLoader.Visible=false;
             }
         }
 
@@ -179,7 +194,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()),0, "", "", 0,0,0,0, "Product Sub Group Deletion");
+                        string varResult = objDser.udfnSubGroup(2, Convert.ToInt16(grdSubGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", 0, 0, 0, 0, "Product Sub Group Deletion");
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -192,14 +207,12 @@ namespace ROMS
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void udfnEdit()
@@ -212,7 +225,7 @@ namespace ROMS
                     MainForm.objCP_SubGroup.btnSave.Text = "Update";
 
                     MainForm.objCP_SubGroup.varId = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_SubGroup.varProductName = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Product Group Id"].Value);
+                    MainForm.objCP_SubGroup.varGroupId = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Product Group Id"].Value);
                     MainForm.objCP_SubGroup.varSubGroupNameinEnglish = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Product Sub Group Name in English"].Value);
                     MainForm.objCP_SubGroup.varSubGroupNameinTamil = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Product Sub Group Name in Tamil"].Value);
                     MainForm.objCP_SubGroup.varBatchNo = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Batch No"].Value);
@@ -235,12 +248,19 @@ namespace ROMS
         {
             try
             {
+                btnView.Enabled = false;
                 udfnList();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnView.Enabled = true;
+                btnView.Focus();
+
             }
         }
 
@@ -427,7 +447,6 @@ namespace ROMS
                 grdSubGroupList.ClearSelection();
             }
         }
-
         private void GrdSubGroupList_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -440,7 +459,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdSubGroupList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -481,6 +499,7 @@ namespace ROMS
         {
             try
             {
+                btnExport.Enabled = false;
                 if ((grdSubGroupList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -559,8 +578,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnExport.Enabled = true;
+            }
         }
-
         private void BtnExport_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -569,6 +591,18 @@ namespace ROMS
                 {
                     BtnExport_Click(sender, e);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtSearchProduct_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (grdSubGroupList.DataSource as DataTable).DefaultView.RowFilter = "([Product Sub Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
             }
             catch (Exception ex)
             {

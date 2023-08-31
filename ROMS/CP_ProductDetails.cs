@@ -48,10 +48,10 @@ namespace ROMS
                             grdProductDetails.DataSource = objDs.Tables[0];
                             grdProductDetails.Columns["PR_UTID"].Visible = false;
                             grdProductDetails.Columns["PR_PUR_RKID"].Visible = false;
-                            grdProductDetails.Columns["Product Name in English"].Width = 200;
-                            grdProductDetails.Columns["S.NO."].Width = 80;
+                            grdProductDetails.Columns["Product Name in English"].Width = 250;
+                            grdProductDetails.Columns["S.NO."].Width = 50;
+                            grdProductDetails.Columns["R.Sales Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
-
                     }
                 }
             }
