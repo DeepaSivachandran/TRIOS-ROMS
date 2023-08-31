@@ -35,6 +35,7 @@ namespace ROMS
         public int varId = 0;
         public int varCloseFlag = 0;
         public int varCmbFlag = 0;
+        public int varCompanyId = 0;
 
         public CP_RackGroup()
         {
@@ -128,12 +129,13 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                int varViewType = 3;
+                int varViewType = 3, varConcernId = 0;
                 if(btnSave.Text=="Update")
                 {
                     varViewType = 4;
+                    varConcernId = varCompanyId;
                 }
-                objDT = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress);
+                objDT = objdserv.udfnCompanyList(varViewType, varConcernId, MainForm.pbUserID, MainForm.pbIpAddress);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
                 if (objDT != null)
@@ -161,6 +163,7 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
+                int varRackGroupID = 0;
                 int varViewType = 2;
                 if (btnSave.Text == "Save")
                 {
@@ -175,9 +178,9 @@ namespace ROMS
                     {
                         varViewType = 3;
                     }
-                    else { varViewType = 5; }
+                    else { varViewType = 5; varRackGroupID = varId; }
                 }
-                objDT = objdserv.udfnStockLocationList(varViewType, varConcernId,varStockId);
+                objDT = objdserv.udfnStockLocationList(varViewType, varConcernId,varStockId, varRackGroupID);
                 objdserv.CloseConnection();
                 cmbStockLocation.DataSource = null;
                 if (objDT != null)

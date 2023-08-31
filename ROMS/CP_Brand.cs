@@ -263,7 +263,6 @@ namespace ROMS
         {
             try
             {
-               
                 //picLoader.Visible = true;
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
@@ -273,7 +272,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 if (varGroup != "")
                 {
-                    objDs = objdserv.udfnSubGroupList(0, 0, varGroup);
+                    objDs = objdserv.udfnSubGroupList(0, 0, varGroup,0);
                 }
                 objdserv.CloseConnection();
                 if (chkgroup.Checked) { dtSubGroup.Rows.Clear(); dtSubGroup.AcceptChanges(); }

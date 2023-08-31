@@ -22,14 +22,28 @@ namespace ROMS
             InitializeComponent();
         }
 
-        public void udfnCmbLoad()
+        public void udfnCmbProductGroup()
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID not in (-1) ORDER BY PRGID,PRG_EName", "PRG_EName,PRGID", cmbProductgroup, "", "PRG_EName", "PRGID");
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID not in (-1) ORDER BY PRSGID,PRSG_EName", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
-                objDataBind = null;
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                int varViewType = 3;
+                objDT = objdserv.udfnGroupList(varViewType, 0);
+                objdserv.CloseConnection();
+                cmbProductgroup.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbProductgroup.ValueMember = "PRGID";
+                            cmbProductgroup.DisplayMember = "PRG_EName";
+                            cmbProductgroup.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -37,6 +51,52 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnCmbProductSubGroup()
+        {
+            try
+            {
+                DataSet objDT = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                int varViewType = 4;
+
+                objDT = objdserv.udfnSubGroupList(varViewType, 0,"", varGroupId);
+                objdserv.CloseConnection();
+                cmbProductSubGroup.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbProductSubGroup.ValueMember = "PRSGID";
+                            cmbProductSubGroup.DisplayMember = "PRSG_EName";
+                            cmbProductSubGroup.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+                objdserv.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        //public void udfnCmbLoad()
+        //{
+        //    try
+        //    {
+        //        DataBind objDataBind = new DataBind();
+        //        objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID not in (-1) ORDER BY PRGID,PRG_EName", "PRG_EName,PRGID", cmbProductgroup, "", "PRG_EName", "PRGID");
+        //        objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID not in (-1) ORDER BY PRSGID,PRSG_EName", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
+        //        objDataBind = null;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
         private void tsbNew_Click(object sender, EventArgs e)
         {
             try
@@ -82,7 +142,8 @@ namespace ROMS
             try
             {
                 udfnList();
-                udfnCmbLoad();
+                udfnCmbProductGroup();
+                udfnCmbProductSubGroup();
                 BeginInvoke(new Action(() => cmbProductgroup.Select(int.MaxValue, 0)));
                 this.ActiveControl = cmbProductgroup;
             }
@@ -339,9 +400,7 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbProductgroup.Select(int.MaxValue, 0)));
                 varGroupId= Convert.ToInt32(cmbProductgroup.SelectedValue);
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSG_PRGID=" + varGroupId + "  ORDER BY PRSG_EName ", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
-                objDataBind = null;
+                udfnCmbProductSubGroup();
             }
             catch (Exception ex)
             {

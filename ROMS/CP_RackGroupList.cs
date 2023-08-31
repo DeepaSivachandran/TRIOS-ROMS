@@ -103,6 +103,7 @@ namespace ROMS
                 MainForm.objCP_RackGroup = new CP_RackGroup();
                 MainForm.objCP_RackGroup.btnSave.Text = "Update";
                 MainForm.objCP_RackGroup.varId = Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value);
+                MainForm.objCP_RackGroup.varCompanyId = Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["COMID"].Value);
                 MainForm.objCP_RackGroup.varStatusid = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["Status ID"].Value);
                 MainForm.objCP_RackGroup.varStockId = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
                 MainForm.objCP_RackGroup.ShowDialog();
@@ -154,6 +155,7 @@ namespace ROMS
                             grdRackGroupList.Columns["Status"].Width = 80;
 
                             grdRackGroupList.Columns["ID"].Visible = false;
+                            grdRackGroupList.Columns["COMID"].Visible = false;
                             grdRackGroupList.Columns["Status ID"].Visible = false;
                             grdRackGroupList.Columns["SL_ShortName"].Visible = false;
                             grdRackGroupList.Columns["StockLocation ID"].Visible = false;
@@ -256,7 +258,7 @@ namespace ROMS
                 {
                     varViewType = 1;
                 }
-                objDT = objdserv.udfnStockLocationList(varViewType, varCompanyId,0);
+                objDT = objdserv.udfnStockLocationList(varViewType, varCompanyId,0,0);
                 objdserv.CloseConnection();
                 cmbStockLocation.DataSource = null;
                 if (objDT != null)

@@ -22,7 +22,7 @@ namespace ROMS
         private ToolTip tpShopLocation = new ToolTip();
         private ToolTip tpRack = new ToolTip();
 
-        public int varShopLocationId = -1;
+       // public int varShopLocationId = -1;
         public string varsubgroupcode;
         public String pbFormStatus;
 
@@ -95,6 +95,7 @@ namespace ROMS
                             cmbGroupName.ValueMember = "PRGID";
                             cmbGroupName.DisplayMember = "PRG_EName";
                             cmbGroupName.DataSource = objDT.Tables[0];
+                            //   cmbGroupName.DataBind();
                         }
                     }
                 }
@@ -109,9 +110,25 @@ namespace ROMS
          {
             try
             {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID NOT IN(0)", "SLID,SL_EName", cmbStockLocation, "", "SL_EName", "SLID");
-                objDataBind = null;
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                int varViewType = 7;
+                if (btnSave.Text == "Save") { varViewType = 6; }
+                objDT = objdserv.udfnStockLocationList(varViewType, 0,varStockLocation,0);
+                objdserv.CloseConnection();
+                cmbStockLocation.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbStockLocation.ValueMember = "SLID";
+                            cmbStockLocation.DisplayMember = "SL_EName";
+                            cmbStockLocation.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -123,10 +140,25 @@ namespace ROMS
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-               
-                objDataBind.BindComboBoxListSelected("MR_Rack", "RK_SLID="+varShopLocationId+"  OR RKID=-1 ", "RK_Name,RKID", cmbRack, "", "RK_Name", "RKID");
-                objDataBind = null;
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                int varViewType = 2;
+                if (btnSave.Text == "Save") { varViewType = 1; }
+                objDT = objdserv.udfnRackList(varViewType, varGroupId,0,Convert.ToInt32(cmbStockLocation.SelectedValue));
+                objdserv.CloseConnection();
+                cmbRack.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbRack.ValueMember = "RKID";
+                            cmbRack.DisplayMember = "RK_Name";
+                            cmbRack.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -142,8 +174,8 @@ namespace ROMS
                 udfnLoadCmbGroupName();
                 udfnLoadCmbBatchNo();
                 udfnLoadcmbShopLocation();
-                
-                BeginInvoke(new Action(() => cmbGroupName.Select(int.MaxValue, 0)));
+             //   BeginInvoke(new Action(() => cmbGroupName.Select(int.MaxValue, 0)));
+
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -948,7 +980,7 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbStockLocation.Select(int.MaxValue, 0)));
-                varShopLocationId = Convert.ToInt32(cmbStockLocation.SelectedValue);
+              //  varStockLocation = Convert.ToInt32(cmbStockLocation.SelectedValue);
                 udfnLoadcmbRack();
             }
             catch (Exception ex)
