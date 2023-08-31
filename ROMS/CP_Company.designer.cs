@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
@@ -117,7 +117,7 @@
             this.txtDAddressLine1 = new System.Windows.Forms.TextBox();
             this.txtDCity = new System.Windows.Forms.TextBox();
             this.txtCity = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.grpform2 = new System.Windows.Forms.TabPage();
             this.btnAddContact = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblOperator = new System.Windows.Forms.Label();
@@ -154,7 +154,7 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdBankDetails)).BeginInit();
             this.grbGovtRegisterationIds.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.grpform2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContactManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCompany)).BeginInit();
             this.SuspendLayout();
@@ -194,12 +194,13 @@
             // tcCompanyDetails
             // 
             this.tcCompanyDetails.Controls.Add(this.tabPage1);
-            this.tcCompanyDetails.Controls.Add(this.tabPage2);
+            this.tcCompanyDetails.Controls.Add(this.grpform2);
             this.tcCompanyDetails.Location = new System.Drawing.Point(12, 1);
             this.tcCompanyDetails.Name = "tcCompanyDetails";
             this.tcCompanyDetails.SelectedIndex = 0;
             this.tcCompanyDetails.Size = new System.Drawing.Size(1330, 618);
             this.tcCompanyDetails.TabIndex = 0;
+            this.tcCompanyDetails.Selected += new System.Windows.Forms.TabControlEventHandler(this.TcCompanyDetails_Selected);
             // 
             // tabPage1
             // 
@@ -262,6 +263,7 @@
             this.grbform.Size = new System.Drawing.Size(1320, 596);
             this.grbform.TabIndex = 2;
             this.grbform.TabStop = false;
+            this.grbform.Leave += new System.EventHandler(this.Grbform_Leave);
             // 
             // lvCity
             // 
@@ -529,14 +531,14 @@
             this.grdBankDetails.AllowUserToResizeRows = false;
             this.grdBankDetails.BackgroundColor = System.Drawing.Color.White;
             this.grdBankDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdBankDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdBankDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdBankDetails.ColumnHeadersHeight = 30;
             this.grdBankDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdBankDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -549,22 +551,22 @@
             this.clmStatus,
             this.clmsts,
             this.clmremovebank});
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdBankDetails.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdBankDetails.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdBankDetails.EnableHeadersVisualStyles = false;
             this.grdBankDetails.GridColor = System.Drawing.Color.White;
             this.grdBankDetails.Location = new System.Drawing.Point(6, 60);
             this.grdBankDetails.Name = "grdBankDetails";
             this.grdBankDetails.RowHeadersVisible = false;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.White;
-            this.grdBankDetails.RowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdBankDetails.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdBankDetails.RowTemplate.Height = 25;
             this.grdBankDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdBankDetails.Size = new System.Drawing.Size(1277, 162);
@@ -1170,31 +1172,32 @@
             this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCity_KeyDown);
             this.txtCity.Leave += new System.EventHandler(this.TxtCity_Leave);
             // 
-            // tabPage2
+            // grpform2
             // 
-            this.tabPage2.Controls.Add(this.btnAddContact);
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.lblOperator);
-            this.tabPage2.Controls.Add(this.cbPrimary);
-            this.tabPage2.Controls.Add(this.cbWhatsApp);
-            this.tabPage2.Controls.Add(this.lblMobileNo);
-            this.tabPage2.Controls.Add(this.lblTransactionType);
-            this.tabPage2.Controls.Add(this.lblName);
-            this.tabPage2.Controls.Add(this.txtMobileBrand);
-            this.tabPage2.Controls.Add(this.txtOperator);
-            this.tabPage2.Controls.Add(this.btnSaveContact);
-            this.tabPage2.Controls.Add(this.btnCloseContact);
-            this.tabPage2.Controls.Add(this.txtName);
-            this.tabPage2.Controls.Add(this.grdContactManager);
-            this.tabPage2.Controls.Add(this.txtMobilenumber);
-            this.tabPage2.Controls.Add(this.cmbTransactionType);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1322, 586);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Contact Manager";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.grpform2.Controls.Add(this.btnAddContact);
+            this.grpform2.Controls.Add(this.label2);
+            this.grpform2.Controls.Add(this.lblOperator);
+            this.grpform2.Controls.Add(this.cbPrimary);
+            this.grpform2.Controls.Add(this.cbWhatsApp);
+            this.grpform2.Controls.Add(this.lblMobileNo);
+            this.grpform2.Controls.Add(this.lblTransactionType);
+            this.grpform2.Controls.Add(this.lblName);
+            this.grpform2.Controls.Add(this.txtMobileBrand);
+            this.grpform2.Controls.Add(this.txtOperator);
+            this.grpform2.Controls.Add(this.btnSaveContact);
+            this.grpform2.Controls.Add(this.btnCloseContact);
+            this.grpform2.Controls.Add(this.txtName);
+            this.grpform2.Controls.Add(this.grdContactManager);
+            this.grpform2.Controls.Add(this.txtMobilenumber);
+            this.grpform2.Controls.Add(this.cmbTransactionType);
+            this.grpform2.Location = new System.Drawing.Point(4, 28);
+            this.grpform2.Name = "grpform2";
+            this.grpform2.Padding = new System.Windows.Forms.Padding(3);
+            this.grpform2.Size = new System.Drawing.Size(1322, 586);
+            this.grpform2.TabIndex = 1;
+            this.grpform2.Text = "Contact Manager";
+            this.grpform2.UseVisualStyleBackColor = true;
+            this.grpform2.Leave += new System.EventHandler(this.Grpform2_Leave);
             // 
             // btnAddContact
             // 
@@ -1360,14 +1363,14 @@
             this.grdContactManager.AllowUserToResizeRows = false;
             this.grdContactManager.BackgroundColor = System.Drawing.Color.White;
             this.grdContactManager.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdContactManager.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdContactManager.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdContactManager.ColumnHeadersHeight = 30;
             this.grdContactManager.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdContactManager.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1381,23 +1384,23 @@
             this.clmMobileBrand,
             this.clmid,
             this.clmRemove});
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdContactManager.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdContactManager.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdContactManager.EnableHeadersVisualStyles = false;
             this.grdContactManager.GridColor = System.Drawing.Color.White;
             this.grdContactManager.Location = new System.Drawing.Point(13, 72);
             this.grdContactManager.Name = "grdContactManager";
             this.grdContactManager.ReadOnly = true;
             this.grdContactManager.RowHeadersVisible = false;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.White;
-            this.grdContactManager.RowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdContactManager.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdContactManager.RowTemplate.Height = 25;
             this.grdContactManager.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdContactManager.Size = new System.Drawing.Size(1303, 472);
@@ -1537,8 +1540,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdBankDetails)).EndInit();
             this.grbGovtRegisterationIds.ResumeLayout(false);
             this.grbGovtRegisterationIds.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.grpform2.ResumeLayout(false);
+            this.grpform2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContactManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCompany)).EndInit();
             this.ResumeLayout(false);
@@ -1611,7 +1614,7 @@
         private System.Windows.Forms.TextBox txtDAddressLine1;
         private System.Windows.Forms.TextBox txtDCity;
         private System.Windows.Forms.TextBox txtCity;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage grpform2;
         public System.Windows.Forms.DataGridView grdContactManager;
         private System.Windows.Forms.TextBox txtMobilenumber;
         private System.Windows.Forms.ComboBox cmbTransactionType;

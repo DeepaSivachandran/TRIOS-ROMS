@@ -22,7 +22,7 @@ namespace ROMS
         public int varStatusid = 1;
         public int varCloseFlag = 0;
         public int varFormFlag = 0;
-        public int varId = 0;
+        public string varId = "";
 
         public string varGroupId = "";
         public string varSubGroupId = "";
@@ -67,7 +67,7 @@ namespace ROMS
                 }
                 DataSet objDS = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDS = objdserv.udfnBrandList(1, varId,0,0);
+                objDS = objdserv.udfnBrandList(1, varId,0,0,0);
                 objdserv.CloseConnection();
                 if (objDS != null)
                 {
@@ -602,7 +602,7 @@ namespace ROMS
                 SPDataService objDser = new SPDataService();
                 if (btnSave.Text == "Save")
                 {
-                    varResult = objDser.udfnBrand(0, 0, Convert.ToString(txtEBrandNameInEnglish.Text), Convert.ToString(txtEBrandNameInTamil.Text), varStatusid, varSubGroupId, "Brand Creation");
+                    varResult = objDser.udfnBrand(0, "", Convert.ToString(txtEBrandNameInEnglish.Text), Convert.ToString(txtEBrandNameInTamil.Text), varStatusid, varSubGroupId, "Brand Creation");
                 }
                 else
                 {

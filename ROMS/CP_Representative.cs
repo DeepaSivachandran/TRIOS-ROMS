@@ -22,7 +22,7 @@ namespace ROMS
         private ToolTip tpwhatsapp = new ToolTip();
         public string varupdate = "0", brandid=""; 
         public int varrepid = 0,varbrandselectflag=0,varbrandidflag=0;
-        public string vargroupcode;
+        public string vargroupcode,VARBRANDLOADID = "";
         public String pbFormStatus;
         public CP_Representative()
         {
@@ -427,40 +427,88 @@ namespace ROMS
             }
         }
             public void udfnlist()
-        {
+            {
             try
             {
-                DataSet objdataset = new DataSet();
-                DataService objdservice = new DataService();
-                objdataset = objdservice.GetDataset("select BDID AS ID, BD_EName AS[Brand Name] from MR_Brand WHERE BDID NOT IN(-1, 0) AND BD_STSID = 1");
-                objdservice.CloseConnection();
-                if (objdataset != null)
+                int varviewtype = 0, varloadrepid = 0;string varbrandid  = ""; 
+                if (btnSave.Text == "Update")
                 {
-                    if (objdataset.Tables.Count != 0)
-                    {
-                        if (objdataset.Tables[0].Rows.Count != 0)
+                    varbrandid = Convert.ToString(VARBRANDLOADID);
+                    varviewtype = 4;
+                    varloadrepid = Convert.ToInt32(varrepid);
+                }
+                else
+                { 
+                    varviewtype = 3;
+                }
+
+
+                SPDataService objspservice = new SPDataService();
+                DataSet objDS;
+                objDS = objspservice.udfnBrandList(varviewtype, varbrandid,0,0, varloadrepid);
+                objspservice.CloseConnection();
+                if (objDS != null)
+                {
+                    if (objDS.Tables[0].Rows.Count > 0)
+                    {  
+                        grdRepBrand.DataSource = objDS.Tables[0];
+                        grdRepBrand.Columns["ID"].Visible = false;
+                        grdRepBrand.Columns["Brand Name"].Width = 230;
+                        grdRepBrand.Columns["Brand Name"].ReadOnly = true;
+                        grdRepBrand.Columns["sno"].Visible = false;
+                        grdRepBrand.Columns["BD_STSID"].Visible = false;
+
+                        //foreach (DataGridViewRow row in grdRepBrand.Rows)
+                        //{
+                        //    if (row.Cells["ID"].Value.ToString() == "0" || row.Cells["ID"].Value.ToString() == "-1")
+                        //    {
+                        //        row.Clear();
+                        //    }
+                        //}
+                        int currentRowIndex = grdRepBrand.CurrentCell?.RowIndex ?? -1;
+
+                        foreach (DataGridViewRow row in grdRepBrand.Rows)
                         {
-                            grdRepBrand.DataSource = objdataset.Tables[0];
-                            grdRepBrand.Columns["ID"].Visible = false;
-                            grdRepBrand.Columns["Brand Name"].Width = 230; 
-                            grdRepBrand.Columns["Brand Name"].ReadOnly = true;
-                            if (btnSave.Text=="Update")
-                            { 
-                                for (int i = 0; i < grdRepBrand.Rows.Count; i++)
+                            if (row.Cells["ID"].Value.ToString() == "0" || row.Cells["ID"].Value.ToString() == "-1")
+                            {
+                                if (row.Index == currentRowIndex)
                                 {
-                                    for (int k = 0; k < objdatabrand.Rows.Count; k++)
-                                    { 
-                                        if (Convert.ToInt32(grdRepBrand.Rows[i].Cells["ID"].Value) == Convert.ToInt32(objdatabrand.Rows[k]["ID"]))
-                                        {
-                                            grdRepBrand.Rows[i].Cells["clmcheckbrand"].Value = true; 
-                                        }
+                                    if (row.Index == grdRepBrand.Rows.Count - 1 && grdRepBrand.Rows.Count > 1) // If it's the last row and there are other rows
+                                    {
+                                        grdRepBrand.CurrentCell = grdRepBrand[0, row.Index - 1]; // Switch to the previous row
+                                    }
+                                    else if (row.Index < grdRepBrand.Rows.Count - 1) // If there are rows below
+                                    {
+                                        grdRepBrand.CurrentCell = grdRepBrand[0, row.Index + 1]; // Switch to the next row
+                                    }
+                                    else // If it's the only row
+                                    {
+                                        grdRepBrand.CurrentCell = null;
+                                    }
+                                }
+
+                                row.Visible = false;
+                            }
+                        }
+
+
+                        if (btnSave.Text == "Update")
+                        {
+                            for (int i = 0; i < grdRepBrand.Rows.Count; i++)
+                            {
+                                for (int k = 0; k < objdatabrand.Rows.Count; k++)
+                                {
+                                    if (Convert.ToInt32(grdRepBrand.Rows[i].Cells["ID"].Value) == Convert.ToInt32(objdatabrand.Rows[k]["ID"]))
+                                    {
+                                        grdRepBrand.Rows[i].Cells["clmcheckbrand"].Value = true;
                                     }
                                 }
                             }
-
                         }
-                    }
-                }
+
+                    } 
+                } 
+                     
             }
             catch (Exception ex)
             {

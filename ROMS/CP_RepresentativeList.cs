@@ -100,6 +100,7 @@ namespace ROMS
                 MainForm.objCP_Representative = new CP_Representative();
                 MainForm.objCP_Representative.btnSave.Text = "Update";
                 MainForm.objCP_Representative.varrepid = Convert.ToInt32(grdreplist.SelectedRows[0].Cells["ID"].Value.ToString());
+                MainForm.objCP_Representative.VARBRANDLOADID = Convert.ToString(grdreplist.SelectedRows[0].Cells["BRANDID"].Value.ToString());
                 MainForm.objCP_Representative.ShowDialog();
             }
             catch (Exception ex)
@@ -162,7 +163,8 @@ namespace ROMS
         {
             try
             {
-                //picLoader.Visible = true;
+                picLoader.Visible = true;
+                picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdreplist.DataSource = null;
@@ -194,6 +196,8 @@ namespace ROMS
                             grdreplist.Columns["Status"].Width = 80;
                             grdreplist.Columns["ID"].Visible = false;
                             grdreplist.Columns["STSID"].Visible = false;
+                            grdreplist.Columns["BRANDID"].Visible = false;
+                            
                         }
                         else
                         {
@@ -222,8 +226,9 @@ namespace ROMS
             }
             finally
             {
-                //  grdreplist.ClearSelection();
-               // picLoader.Visible = false; 
+                grdreplist.ClearSelection();
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
         private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)

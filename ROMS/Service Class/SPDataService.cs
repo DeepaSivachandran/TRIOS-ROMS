@@ -991,7 +991,7 @@ namespace ROMS
         }
 
 
-        public string udfnBrand(int ViewType, int paraBDID, string paraBD_EName, string paraBD_TName, int paraStatusId, string paraPRSGID, string paraOriginator)
+        public string udfnBrand(int ViewType, string paraBDID, string paraBD_EName, string paraBD_TName, int paraStatusId, string paraPRSGID, string paraOriginator)
         {
             string varResult = "";
             try
@@ -1023,7 +1023,7 @@ namespace ROMS
             return varResult;
         }
 
-        public DataSet udfnBrandList(int ViewType, int paraBDID, int paraGroupId, int paraSubGroupId)
+        public DataSet udfnBrandList(int ViewType, string paraBDID, int paraGroupId, int paraSubGroupId,int paraREPBRAND)
         {
             DataSet ds = new DataSet();
             try
@@ -1037,6 +1037,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSubGroupId", @paraSubGroupId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraREPBRAND", paraREPBRAND);
+                
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
