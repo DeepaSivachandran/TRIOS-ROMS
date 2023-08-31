@@ -89,7 +89,7 @@ namespace ROMS
                     else
                     {
                         ActivationService.ActivationService activser = new ActivationService.ActivationService();
-                        activser.udfngetOTPForProduct(txtName.Text, txtMobile.Text, txtEmail.Text, txtAddress.Text, txtRegistration.Text, "1.1.4","30");
+                        activser.udfngetOTPForProduct(txtName.Text, txtMobile.Text, txtEmail.Text, txtAddress.Text, txtRegistration.Text, "1.1.5","30");
                         MessageBox.Show("OTP sent successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                        
                     }
