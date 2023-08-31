@@ -200,6 +200,7 @@
             this.tcCompanyDetails.SelectedIndex = 0;
             this.tcCompanyDetails.Size = new System.Drawing.Size(1330, 618);
             this.tcCompanyDetails.TabIndex = 0;
+            this.tcCompanyDetails.SelectedIndexChanged += new System.EventHandler(this.TcCompanyDetails_SelectedIndexChanged);
             this.tcCompanyDetails.Selected += new System.Windows.Forms.TabControlEventHandler(this.TcCompanyDetails_Selected);
             // 
             // tabPage1

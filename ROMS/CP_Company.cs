@@ -3732,30 +3732,30 @@ namespace ROMS
 
         private void TcCompanyDetails_Selected(object sender, TabControlEventArgs e)
         {
-            try
-            {
+            //try
+            //{
 
-                if (e.TabPageIndex == 0)
-                {
-                    udfntooltiphide(); udfntextboxcolor();
-                    this.ActiveControl = txtCompanyName;
-                    txtCompanyName.Focus();
-                }
-                else {
-                    //udfnClear();
-                    udfntextboxcolor();
-                    this.ActiveControl = txtName;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            { 
-               // tpCompanyName.ShowAlways = false;
-            }
+            //    if (e.TabPageIndex == 0)
+            //    {
+            //       // udfntooltiphide(); udfntextboxcolor();
+            //        ActiveControl = txtCompanyName;
+            //       // txtCompanyName.Select();
+            //    }
+            //    else {
+            //        //udfnClear();
+            //        udfntextboxcolor();
+            //        this.ActiveControl = txtName;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+            //finally
+            //{ 
+            //   // tpCompanyName.ShowAlways = false;
+            //}
         }
 
         private void Grbform_Leave(object sender, EventArgs e)
@@ -3780,6 +3780,33 @@ namespace ROMS
             try
             {
                 udfntooltiphide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                // tpCompanyName.ShowAlways = false;
+            }
+        }
+
+        private void TcCompanyDetails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tcCompanyDetails.SelectedIndex == 0)
+                {
+                     udfntooltiphide(); udfntextboxcolor();
+                    ActiveControl = txtCompanyName;
+                }
+                else
+                {
+                    //udfnClear();
+                    udfntextboxcolor();
+                    this.ActiveControl = txtName;
+                }
             }
             catch (Exception ex)
             {
