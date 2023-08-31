@@ -162,13 +162,20 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 2;
-                if (varConcernId == -1)
+                if (btnSave.Text == "Save")
                 {
-                    varViewType = 1;
+                    if (varConcernId == -1)
+                    {
+                        varViewType = 3;
+                    }
+                    else { varViewType = 4; }
                 }
-                if(btnSave.Text=="Update")
-                {
-                    varViewType = 3;
+                else {
+                    if (varConcernId == -1)
+                    {
+                        varViewType = 3;
+                    }
+                    else { varViewType = 5; }
                 }
                 objDT = objdserv.udfnStockLocationList(varViewType, varConcernId,varStockId);
                 objdserv.CloseConnection();
