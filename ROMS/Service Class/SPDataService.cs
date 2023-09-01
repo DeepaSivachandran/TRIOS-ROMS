@@ -998,7 +998,7 @@ namespace ROMS
         }
 
 
-        public string udfnBrand(int ViewType, string paraBDID, string paraBD_EName, string paraBD_TName, int paraStatusId, string paraPRSGID, string paraOriginator)
+        public string udfnBrand(int ViewType, int paraBDID, string paraBD_EName, string paraBD_TName, int paraStatusId, string paraPRSGID, string paraOriginator)
         {
             string varResult = "";
             try
