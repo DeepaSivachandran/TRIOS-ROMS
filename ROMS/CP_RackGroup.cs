@@ -35,6 +35,7 @@ namespace ROMS
         public int varId = 0;
         public int varCloseFlag = 0;
         public int varCmbFlag = 0;
+        public int varCheckAllFlag = 0;
 
         public CP_RackGroup()
         {
@@ -1152,6 +1153,37 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        //Added by deepa on 01-09-2023
+        public void udfnCaculateCheckedCount()
+        {
+            int varCheckedCount = 0;
+            try
+            {
+                for (int i = 0; i < grdRack.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(grdRack.Rows[i].Cells[0].EditedFormattedValue) == true)
+                    {
+                        varCheckedCount++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally {
+                if (grdRack.Rows.Count == varCheckedCount)
+                {
+                    varCheckAllFlag = 1;
+                    chkRack.Checked = true;
+                }
+                else {
+                    varCheckAllFlag = 1;
+                    chkRack.Checked = false;
+                }
+            }
+        }
         public void udfnSelectedRack()
         {
             try
@@ -1218,10 +1250,17 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdRack.Rows.Count; i++)
+                if (varCheckAllFlag != 1)
                 {
-                    grdRack.Rows[i].Cells[0].Value = chkRack.Checked;
+                    for (int i = 0; i < grdRack.Rows.Count; i++)
+                    {
+                        grdRack.Rows[i].Cells[0].Value = chkRack.Checked;
 
+                    }
+                }
+                else
+                {
+                    varCheckAllFlag = 0;
                 }
             }
             catch (Exception ex)
@@ -1351,7 +1390,20 @@ namespace ROMS
             }
         }
 
-       
+        private void GrdRack_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0) {
+                    udfnCaculateCheckedCount();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
      
 }

@@ -312,6 +312,7 @@
             this.grdRack.ShowRowErrors = false;
             this.grdRack.Size = new System.Drawing.Size(347, 314);
             this.grdRack.TabIndex = 51;
+            this.grdRack.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRack_CellContentClick);
             this.grdRack.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_Racklist_CellMouseDoubleClick);
             // 
             // txtRackGroupName
@@ -451,6 +452,7 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
+            this.lvStaffName.HideSelection = false;
             this.lvStaffName.Location = new System.Drawing.Point(120, 58);
             this.lvStaffName.Name = "lvStaffName";
             this.lvStaffName.Size = new System.Drawing.Size(313, 97);
