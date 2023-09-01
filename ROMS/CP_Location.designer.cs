@@ -336,6 +336,7 @@
             this.cmbLocationType.Name = "cmbLocationType";
             this.cmbLocationType.Size = new System.Drawing.Size(288, 27);
             this.cmbLocationType.TabIndex = 1;
+            this.cmbLocationType.SelectedIndexChanged += new System.EventHandler(this.CmbLocationType_SelectedIndexChanged);
             this.cmbLocationType.Enter += new System.EventHandler(this.CmbLocationType_Enter);
             this.cmbLocationType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbLocationType_KeyDown);
             this.cmbLocationType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbLocationType_KeyPress);

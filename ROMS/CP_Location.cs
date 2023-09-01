@@ -63,10 +63,8 @@ namespace ROMS
                 txtLocationNameInEnglish.Text = "";
                 txtLocationNameInTamil.Text = "";
                 txtShortName.Text = "";
-                //cmbConcern.SelectedIndex = 0;
-                //cmbLocationType.SelectedIndex = 0;
+                cmbLocationType.SelectedIndex = 0;
                 cmbStockApplicable.SelectedIndex = 0;
-                //btnSave.Text = "Save";
                 cmbConcern.Focus();
                 this.ActiveControl = cmbConcern;
             }
@@ -140,20 +138,33 @@ namespace ROMS
         {
             try
             {
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                int varViewType = 4;
+                if (btnSave.Text == "Save")
+                {
+                    varViewType = 3;
+                }
+                objDs = objdserv.udfnCompanyList(varViewType, PbConcernID, MainForm.pbUserID, MainForm.pbIpAddress);
+                objdserv.CloseConnection();
+                cmbConcern.DataSource = null;
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.DisplayMember = "COM_ShortName";
+                            cmbConcern.DataSource = objDs.Tables[0];
+                        }
+                    }
+                }
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,3) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbLocationType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,4) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbStockApplicable, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=0 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
-                if (Convert.ToInt32(cmbLocationType.SelectedValue) == 9)
-                {
-                    pnlGodownType.Enabled = true;
-                }
-                else
-                { 
-                    pnlGodownType.Enabled = false;
-                }
+                
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -259,7 +270,6 @@ namespace ROMS
 
             try
             {
-                btnSave.Enabled = false;
                 bool blnErrorFlag = false;
 
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
@@ -304,6 +314,7 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
+                    btnSave.Enabled = false;
                     udfnSave(sender, e);
                 }
             }
@@ -863,6 +874,18 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbLocationType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(cmbLocationType.SelectedValue) == 9)
+            {
+                pnlGodownType.Enabled = true;
+            }
+            else
+            {
+                pnlGodownType.Enabled = false;
             }
         }
     }

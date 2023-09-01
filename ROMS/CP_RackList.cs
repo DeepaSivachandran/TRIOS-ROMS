@@ -66,6 +66,7 @@ namespace ROMS
         {
             try
             {
+                cmbGroupType.Focus();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_RackGroup", "RKG_STSID=1 and RKGID !=-1 Order by RKGID", "RKG_Name,RKGID", cmbGroupType, "", "RKG_Name", "RKGID");
                 objDataBind = null;
@@ -83,9 +84,16 @@ namespace ROMS
         {
             try
             {
-                SPDataService objspservice = new SPDataService();
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdGroupList.DataSource = null;
                 DataSet objDs = new DataSet();
-                objDs = objspservice.udfnRackList(0, (Convert.ToInt16(cmbGroupType.SelectedValue)),0,0,0);
+                //**** To call the function from SP ***************
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnRackList(0, (Convert.ToInt16(cmbGroupType.SelectedValue)),0);
+                objspservice.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -125,7 +133,11 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-                    objspservice.CloseConnection();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
             }
@@ -137,6 +149,7 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
 
@@ -375,9 +388,6 @@ namespace ROMS
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
-                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
-                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
-                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
                     foreach (DataGridViewColumn col in grdGroupList.Columns)
                     {
                         if (col.Visible)
@@ -385,6 +395,9 @@ namespace ROMS
                             cIndex += 1;
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
+                            ExcelSheet.Cells[2, cIndex].Interior.Color = Color.LightSlateGray;
+                            Excel.Range cell = ExcelSheet.Cells[2, cIndex];
+                            cell.Font.Color = Excel.XlRgbColor.rgbWhite;
                             if (cIndex == 1)
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
@@ -393,13 +406,18 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 25;
                             }
-                            if (col.Name == "clmQty" || col.Name == "clmTotal")
+                            if (cIndex == 1 || cIndex == 9)
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
+                            if (cIndex == 8)
+                            {
+                                ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            }
+
                             foreach (DataGridViewRow rowa in grdGroupList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 4, cIndex] = rowa.Cells[col.Index].Value;
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
                             }
                         }
                     }
@@ -635,6 +653,32 @@ namespace ROMS
             try
             {
                 btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbGroupType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbGroupType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbGroupType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbGroupType.BackColor = Color.White;
             }
             catch (Exception ex)
             {

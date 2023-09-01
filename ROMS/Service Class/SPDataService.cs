@@ -662,7 +662,7 @@ namespace ROMS
             return varResult;
         }
         //Created By:-Sathish Created On:-21/08/2023
-        public DataSet udfnUserCategoryList(int paraviewType)
+        public DataSet udfnUserCategoryList(int paraviewType,int paraCategory)
         {
             DataSet ds = new DataSet();
             try
@@ -673,6 +673,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraCategory", paraCategory);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

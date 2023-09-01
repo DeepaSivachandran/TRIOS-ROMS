@@ -62,9 +62,28 @@ namespace ROMS
             try
             {
                 cmbConcern.Focus();
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind = null;
+                tsbNew.Visible = true;
+                tsbEdit.Visible = true;
+                tsbDelete.Visible = true;
+
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                int varViewType = 2;
+                objDs = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress);
+                objdserv.CloseConnection();
+                cmbConcern.DataSource = null;
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.DisplayMember = "COM_ShortName";
+                            cmbConcern.DataSource = objDs.Tables[0];
+                        }
+                    }
+                }
                 udfnList();
             }
             catch (Exception ex)
@@ -97,7 +116,6 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdGodownList.DataSource = objDs.Tables[0];
-
                             grdGodownList.Columns["ID"].Visible = false;
                             grdGodownList.Columns["ConcernID"].Visible = false;
                             grdGodownList.Columns["LocationTypeID"].Visible = false;
@@ -127,6 +145,12 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
+
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
                 }
             }
             catch (Exception ex)
@@ -145,26 +169,29 @@ namespace ROMS
         {
             try
             {
-                if (grdGodownList.SelectedRows.Count > 0)
+                if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) != "1" && Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) != "2")
                 {
-                    string varResult = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdGodownList.SelectedRows.Count > 0)
                     {
-
-                        SPDataService objspservice = new SPDataService();
-                        varResult = "";
-                        varResult = objspservice.udfnStockLocation(2,Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value),0,0,"","","",0,0,0,"Stock Delete");
-
-
-                        if (varResult.Split('~')[0] == "3")
+                        string varResult = "";
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-                        }
-                        else
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                            SPDataService objspservice = new SPDataService();
+                            varResult = "";
+                            varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete");
+
+
+                            if (varResult.Split('~')[0] == "3")
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnList();
+                            }
+                            else
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
@@ -268,6 +295,9 @@ namespace ROMS
         private void grdLocationList_SelectionChanged(object sender, EventArgs e)
         {
             try {
+                tsbNew.Visible = true;
+                tsbEdit.Visible = true;
+                tsbDelete.Visible = true;
                 if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1"||Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
                 { tsbDelete.Visible = false; tsbNew.Visible = false; }
                 else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }
@@ -525,6 +555,45 @@ namespace ROMS
             }
             catch (Exception ex)
 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchbyLocationName_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (grdGodownList.DataSource as DataTable).DefaultView.RowFilter = "([Location Name in English]) LIKE '%" + txtSearchbyLocationName.Text + "%'";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchbyLocationName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchbyLocationName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchbyLocationName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchbyLocationName.BackColor = Color.White;
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);

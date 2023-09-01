@@ -152,13 +152,16 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnSave.Enabled = true;
+            }
         }
         private void udfnclear()
         {
             try
             {
                 txtCategoryName.Text = "";
-                //btnSave.Text = "Save";
                 txtCategoryName.Focus();
                 this.ActiveControl = txtCategoryName;
             }
@@ -185,6 +188,7 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
+                    btnSave.Enabled = false;
                     udfnSave(sender, e);
                 }
             }
@@ -222,9 +226,7 @@ namespace ROMS
         {
             try
             {
-               
                     this.Close();
-                
             }
             catch (Exception ex)
             {
@@ -256,23 +258,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void btnClose_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void btnClose_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnClose.BackColor = Color.White;
+                btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -327,7 +317,6 @@ namespace ROMS
         {
             try
             {
-
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -374,7 +363,6 @@ namespace ROMS
         }
         private void TxtCategoryName_Leave(object sender, EventArgs e)
         {
-
             try
             {
                 if (Convert.ToString(txtCategoryName.Text).Trim() == "")
