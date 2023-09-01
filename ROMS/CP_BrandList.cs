@@ -57,8 +57,11 @@ namespace ROMS
             {
                 DataSet objDT = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                int varViewType = 4;
-
+                int varViewType =5 ;
+                if (varGroupId==0)
+                {
+                    varViewType = 4;
+                }
                 objDT = objdserv.udfnSubGroupList(varViewType, 0,"", varGroupId);
                 objdserv.CloseConnection();
                 cmbProductSubGroup.DataSource = null;

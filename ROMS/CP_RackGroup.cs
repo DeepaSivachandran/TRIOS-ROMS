@@ -206,12 +206,17 @@ namespace ROMS
         {
             try
             {
+                int varViewType = 1;
+                if(btnSave.Text=="Update")
+                {
+                    varViewType = 2;
+                }
                 dtRack.Rows.Clear();
                 Application.DoEvents();
                 grdRack.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-               objDs = objdserv.udfnRackList(1, 0,varConcernId, varStockId);
+               objDs = objdserv.udfnRackList(varViewType, 0,varConcernId, varStockId,0);
                 objdserv.CloseConnection();
                 
                 if (objDs.Tables[0].Rows.Count != 0)

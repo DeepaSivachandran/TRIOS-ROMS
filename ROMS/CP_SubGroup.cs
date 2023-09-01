@@ -106,7 +106,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         public void udfnLoadcmbShopLocation()
+         public void udfnLoadcmbStockLocation()
          {
             try
             {
@@ -144,7 +144,7 @@ namespace ROMS
                 DataSet objDT = new DataSet();
                 int varViewType = 2;
                 if (btnSave.Text == "Save") { varViewType = 1; }
-                objDT = objdserv.udfnRackList(varViewType, varGroupId,0,Convert.ToInt32(cmbStockLocation.SelectedValue));
+                objDT = objdserv.udfnRackList(varViewType, varGroupId,0,Convert.ToInt32(cmbStockLocation.SelectedValue),varRack);
                 objdserv.CloseConnection();
                 cmbRack.DataSource = null;
                 if (objDT != null)
@@ -173,7 +173,7 @@ namespace ROMS
             {
                 udfnLoadCmbGroupName();
                 udfnLoadCmbBatchNo();
-                udfnLoadcmbShopLocation();
+                udfnLoadcmbStockLocation();
              //   BeginInvoke(new Action(() => cmbGroupName.Select(int.MaxValue, 0)));
 
                 if (btnSave.Text == "Save")

@@ -814,7 +814,6 @@ namespace ROMS
         {
             try
             {
-
                 for (int i = 0; i < grdRackGroupList.Rows.Count; i++)
                 {
                     if (Convert.ToString(grdRackGroupList.Rows[i].Cells["Status ID"].Value) == "1")
@@ -822,10 +821,14 @@ namespace ROMS
                         grdRackGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdRackGroupList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    else if (Convert.ToString(grdRackGroupList.Rows[i].Cells["Status ID"].Value) == "2")
+                    else 
                     {
                         grdRackGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdRackGroupList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToString(grdRackGroupList.Rows[i].Cells["Status"].Value) == "")
+                    {
+                        grdRackGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.White;
                     }
                 }
             }
