@@ -231,7 +231,7 @@
             // 
             this.txtDUserList.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtDUserList.Location = new System.Drawing.Point(18, 27);
-            this.txtDUserList.MaxLength = 6;
+            this.txtDUserList.MaxLength = 30;
             this.txtDUserList.Name = "txtDUserList";
             this.txtDUserList.Size = new System.Drawing.Size(313, 27);
             this.txtDUserList.TabIndex = 0;

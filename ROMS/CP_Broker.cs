@@ -79,7 +79,6 @@ namespace ROMS
                             btnSave.Text = "Update";
                         }
                     }
-                    //lvCity.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -89,7 +88,7 @@ namespace ROMS
             }
             finally
             {
-
+                grdBankDetails.ClearSelection();
             }
         }
         public void udfnSave(object sender, EventArgs e)
@@ -135,7 +134,7 @@ namespace ROMS
                     }
                     objBankTable = udfnBankSave();
                     varResult = objspservice.udfnBroker(varType, Convert.ToInt32(Brokerid) , Convert.ToInt16(cmbConcern.SelectedValue), (txtGstinNo.Text).Trim(), (txtBrokerName.Text).Trim(), (txtAddressLine1.Text).Trim(), (txtAddressLine2.Text).Trim(), varcityid, (txtPincode.Text).Trim(), (txtWhatsAppNo.Text).Trim(), (txtMobileNo.Text).Trim(),varstatus, varoriginator, objBankTable);
-                   
+                    objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
                     {
@@ -173,7 +172,6 @@ namespace ROMS
                         tpConcern.Show("Please select concern", cmbConcern, 5000);
                     }
                 }
-                //objspservice.CloseConnection();
             }
             catch (Exception ex)
             {
@@ -295,7 +293,7 @@ namespace ROMS
         {
             try
             {
-                    this.Close();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -417,7 +415,6 @@ namespace ROMS
             finally
             {
                 lvCity.Visible = false;
-                grdBankDetails.ClearSelection();
             }
         }
         private void CP_Broker_KeyDown(object sender, KeyEventArgs e)
@@ -546,7 +543,6 @@ namespace ROMS
                 MainForm.objCP_City.varmastertype = 1;
                 MainForm.objCP_City.ShowDialog();
                 udfnListView();
-                //txtCity.Text = Convert.ToString( varCityCode);
                 txtCity.Text = varCityName;
                 lblcityid.Text = Convert.ToString(varCityCode);
                 lvCity.Focus();
@@ -1468,6 +1464,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally { grdBankDetails.ClearSelection(); }
         }
         public void udfnBankclear()
         {
@@ -1820,6 +1817,18 @@ namespace ROMS
             }
         }
 
+        private void GrdBankDetails_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdBankDetails.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public AutoCompleteStringCollection AutoCompleteLoad()
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
