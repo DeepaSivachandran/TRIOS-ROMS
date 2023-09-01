@@ -83,13 +83,20 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
                 int varUserId = 0;
-                if (lblUserId.Text == "")
+                if (txtDUserList.Text == "")
                 {
                     varUserId = 0;
                 }
                 else
                 {
-                    varUserId = Convert.ToInt32(lblUserId.Text);
+                    DataService objDServ = new DataService();
+                    string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_User WHERE U_Name ='"+txtDUserList.Text.Trim()+"'");
+                    objDServ.CloseConnection();
+                    if (varCount == "0") { varUserId = -1; }
+                    else
+                    {
+                        varUserId = Convert.ToInt32(lblUserId.Text);
+                    }
                 }
                 objDs = objspservice.udfnUserList(2,(txtDUserList.Text),"","", varUserId);
                 objspservice.CloseConnection();
@@ -126,7 +133,6 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-
                 }
                 else
                 {
@@ -186,7 +192,7 @@ namespace ROMS
                 {
                     MainForm.objCP_User = new CP_User();
                     MainForm.objCP_User.btnSave.Text = "Update";
-                    MainForm.objCP_User.varUserID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_User.varUserID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_User.PbUserCategoryID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["CategoryID"].Value);
                     MainForm.objCP_User.PbUserRoleID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value);
                     MainForm.objCP_User.PbPasskeyID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["PassKeyID"].Value);
@@ -511,6 +517,7 @@ namespace ROMS
         {
             try
             {
+                lvUserList.Visible = false;
                 udfnList();
             }
             catch (Exception ex)
@@ -559,7 +566,7 @@ namespace ROMS
                     ExcelSheet = ExcelBook.Sheets["Sheet1"];
                     ExcelSheet = ExcelBook.ActiveSheet;
                     // changing the name of active sheet  
-                    ExcelSheet.Name = "Rack List";
+                    ExcelSheet.Name = "User List";
                     int cIndex = 0;
                     int count = 0;
                     foreach (DataGridViewColumn col in grdUserList.Columns)
@@ -668,7 +675,19 @@ namespace ROMS
                                 }
                                 lvUserList.Visible = true;
                             }
+                            else
+                            {
+                                lvUserList.Visible = false;
+                            }
                         }
+                        else
+                        {
+                            lvUserList.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvUserList.Visible = false;
                     }
                 }
                 else

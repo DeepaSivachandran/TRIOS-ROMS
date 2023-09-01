@@ -62,19 +62,28 @@ namespace ROMS
             try
             {
                 cmbConcern.Focus();
-                DataBind objDataBind = new DataBind();
-                /*
-                SELECT * FROM (
-                select 1 as sno, COMID,COM_ShortName,COM_STSID from MR_Company where COMID =0 --order by CTY_STSID,CTY_Name
-                union all
-                select 2 ,COMID,COM_ShortName,COM_STSID from MR_Company where COMID not in (-1,0)  ) DERV  order by SNO, COM_STSID,COM_ShortName */
-
-                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind = null;
-
                 tsbNew.Visible = true;
                 tsbEdit.Visible = true;
                 tsbDelete.Visible = true;
+
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                int varViewType = 2;
+                objDs = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress);
+                objdserv.CloseConnection();
+                cmbConcern.DataSource = null;
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.DisplayMember = "COM_ShortName";
+                            cmbConcern.DataSource = objDs.Tables[0];
+                        }
+                    }
+                }
                 udfnList();
             }
             catch (Exception ex)
@@ -286,6 +295,9 @@ namespace ROMS
         private void grdLocationList_SelectionChanged(object sender, EventArgs e)
         {
             try {
+                tsbNew.Visible = true;
+                tsbEdit.Visible = true;
+                tsbDelete.Visible = true;
                 if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1"||Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
                 { tsbDelete.Visible = false; tsbNew.Visible = false; }
                 else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }

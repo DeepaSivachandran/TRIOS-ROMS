@@ -359,7 +359,6 @@ namespace ROMS
         {
             try
             {
-                btnExport.Enabled = false;
                 if ((grdGroupList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();

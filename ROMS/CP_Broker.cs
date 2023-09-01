@@ -28,6 +28,7 @@ namespace ROMS
         private ToolTip tpAccountNo = new ToolTip();
         private ToolTip tpIfsCode = new ToolTip();
         public int varCityCode;
+        public int PbConcernID = 0;
         public string varCityName="";
         public int varstatus;
         public string vargroupcode;
@@ -98,7 +99,7 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 string varResult = "";
                 udfnTextBoxColor();
-                if (Convert.ToString(txtBrokerName.Text).Trim() != "" )
+                if (Convert.ToString(txtBrokerName.Text).Trim() != "" && Convert.ToString(cmbConcern.SelectedValue).Trim() != "")
                 {
                     if (rbActive.Checked == true) { varstatus = 1; }
                     else { varstatus = 2; }
@@ -119,7 +120,6 @@ namespace ROMS
                     {
                         Brokerid = Convert.ToString(varBrokerid);
                     }
-
                     DataTable objBankTable = new DataTable();
 
                     string varoriginator = ""; int varType = 0;
@@ -154,7 +154,6 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-
                     grdBankDetails.Rows.Clear();
                 }
                 else
@@ -165,7 +164,6 @@ namespace ROMS
                         txtBrokerName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpBrokerName.ShowAlways = true;
                         tpBrokerName.Show("Please enter broker name", txtBrokerName, 5000);
-
                     }
                     if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                     {
@@ -375,9 +373,29 @@ namespace ROMS
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID <>0 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind = null;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                int varViewType = 4;
+                if (btnSave.Text == "Save")
+                {
+                    varViewType = 3;
+                }
+                
+                objDs = objdserv.udfnCompanyList(varViewType,PbConcernID, MainForm.pbUserID, MainForm.pbIpAddress);
+                objdserv.CloseConnection();
+                cmbConcern.DataSource = null;
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.DisplayMember = "COM_ShortName";
+                            cmbConcern.DataSource = objDs.Tables[0];
+                        }
+                    }
+                }
                 DataService objdservice = new DataService();
                 varstatusid = objdservice.displaydata("select STS_Name as name from DEF_Status where STS_ModuleID=1 AND STSID=1");
                 udfnEdit();
@@ -399,6 +417,7 @@ namespace ROMS
             finally
             {
                 lvCity.Visible = false;
+                grdBankDetails.ClearSelection();
             }
         }
         private void CP_Broker_KeyDown(object sender, KeyEventArgs e)
@@ -1251,7 +1270,6 @@ namespace ROMS
         {
             try
             {
-                btnSave.Enabled = false;
                 bool blnErrorFlag = false;
 
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
@@ -1270,32 +1288,57 @@ namespace ROMS
                     tpBrokerName.Show("Please enter broker name", txtBrokerName, 5000);
                     blnErrorFlag = true;
                 }
-                else if (txtGstinNo.Text.Length != 15)
+                if (Convert.ToString(txtGstinNo.Text) != "")
                 {
-                    epBroker.SetError(txtGstinNo, "Please enter valid GSTINNo");
-                    txtGstinNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpGstinNo.ShowAlways = true;
-                    tpGstinNo.Show("Please enter valid GSTINNo", txtGstinNo, 5000);
-                    blnErrorFlag = true;
+                    if (Convert.ToString(txtGstinNo.Text).Length != 15)
+                    {
+                        epBroker.SetError(txtGstinNo, "Please enter valid GSTINNo");
+                        txtGstinNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpGstinNo.ShowAlways = true;
+                        tpGstinNo.Show("Please enter valid GSTINNo", txtGstinNo, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
-                else if (txtMobileNo.Text.Length != 10)
+                if (Convert.ToString(txtMobileNo.Text) != "")
                 {
-                    epBroker.SetError(txtMobileNo, "Please enter valid mobile number");
-                    txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpMobileNo.ShowAlways = true;
-                    tpMobileNo.Show("Please enter valid mobile number", txtMobileNo, 5000);
-                    blnErrorFlag = true;
+                    if (Convert.ToString(txtMobileNo.Text).Length != 10)
+                    {
+                        epBroker.SetError(txtMobileNo, "Please enter valid mobile number");
+                        txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpMobileNo.ShowAlways = true;
+                        tpMobileNo.Show("Please enter valid mobile number", txtMobileNo, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
-                else if (txtWhatsAppNo.Text.Length != 10)
+                if (Convert.ToString(txtWhatsAppNo.Text) != "")
                 {
-                    epBroker.SetError(txtWhatsAppNo, "Please enter valid whatsapp number");
-                    txtWhatsAppNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpWhatsAppNo.ShowAlways = true;
-                    tpWhatsAppNo.Show("Please enter valid whatsapp number", txtWhatsAppNo, 5000);
-                    blnErrorFlag = true;
+                    if (Convert.ToString(txtWhatsAppNo.Text).Length != 10)
+                    {
+                        epBroker.SetError(txtWhatsAppNo, "Please enter valid whatsapp number");
+                        txtWhatsAppNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpWhatsAppNo.ShowAlways = true;
+                        tpWhatsAppNo.Show("Please enter valid whatsapp number", txtWhatsAppNo, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                if (Convert.ToString(txtCity.Text) != "")
+                {
+                    string VarCity = "0";
+                    DataService objDserv = new DataService();
+                    VarCity = objDserv.displaydata("SELECT COUNT(*) FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                    if (VarCity == "0")
+                    {
+                        lblcityid.Text = "0";
+                        epBroker.SetError(txtCity, "Invalid city");
+                        txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpCity.ShowAlways = true;
+                        tpCity.Show("Invalid city", txtCity, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
                 if (blnErrorFlag == false)
                 {
+                    btnSave.Enabled = false;
                     udfnSave(sender, e);
                     udfnBankclear();
                 }
@@ -1392,24 +1435,6 @@ namespace ROMS
                     tpIfsCode.Show("Please enter valid IFS Code", txtIFScode, 5000);
                     blnErrorFlag = true;
                 }
-                /*
-                if (txtAccno.Text.Length != 20)
-                {
-                    epBroker.SetError(txtAccno, "Please enter valid account number");
-                    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpAccountNo.ShowAlways = true;
-                    tpAccountNo.Show("Please enter valid account number", txtAccno, 5000);
-                    blnErrorFlag = true;
-                }
-                if (txtIFScode.Text.Length != 11)
-                {
-                    epBroker.SetError(txtIFScode, "Please enter valid IFS Code");
-                    txtIFScode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpIfsCode.ShowAlways = true;
-                    tpIfsCode.Show("Please enter valid IFS Code", txtIFScode, 5000);
-                    blnErrorFlag = true;
-                }
-                */
                 if (blnErrorFlag == false)
                 {
                     foreach (DataGridViewRow row in grdBankDetails.Rows)
@@ -1571,6 +1596,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+              //  lvCity.Visible = false;
+            }
         }
         private void LvCity_DoubleClick(object sender, EventArgs e)
         {
@@ -1608,8 +1637,9 @@ namespace ROMS
                 if (txtCity.Text != "")
                 {
                     ListViewItem selectedItem = lvCity.SelectedItems[0];
-                    lblcityid.Text = selectedItem.SubItems[1].Text;
                     txtCity.Text = selectedItem.SubItems[0].Text;
+                    lblcityid.Text = selectedItem.SubItems[1].Text;
+                //    lvCity.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -1691,7 +1721,19 @@ namespace ROMS
                                 }
                                 lvCity.Visible = true;
                             }
+                            else
+                            {
+                                lvCity.Visible = false;
+                            }
                         }
+                        else
+                        {
+                            lvCity.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvCity.Visible = false;
                     }
                 }
                 else

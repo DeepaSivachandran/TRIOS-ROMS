@@ -176,7 +176,6 @@ namespace ROMS
 
             try
             {
-                btnSave.Enabled = false;
                 bool blnErrorFlag = false;
 
                 if (Convert.ToString(txtCategoryName.Text).Trim() == "")
@@ -189,6 +188,7 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
+                    btnSave.Enabled = false;
                     udfnSave(sender, e);
                 }
             }

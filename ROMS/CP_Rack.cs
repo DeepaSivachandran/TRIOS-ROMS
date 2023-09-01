@@ -54,11 +54,29 @@ namespace ROMS
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=0 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind.BindComboBoxListSelected("MR_StockLocation,MR_Company ", "SL_COMID=COMID and SLID !=0 Order by SLID", "SL_EName,SLID",cmbStockLocation,"", "SL_EName", "SLID");
-                //objDataBind.BindComboBoxListSelected("MR_StockLocation", " SL_COMID and SLID !=0 Order by SLID", "SL_EName,SLID", cmbStockLocation, "", "SL_EName", "SLID");
-                objDataBind = null;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                int varViewType = 4;
+                if (btnSave.Text == "Save")
+                {
+                    varViewType = 3;
+                }
+                objDs = objdserv.udfnCompanyList(varViewType, PbConcernID, MainForm.pbUserID, MainForm.pbIpAddress);
+                objdserv.CloseConnection();
+                cmbConcern.DataSource = null;
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.DisplayMember = "COM_ShortName";
+                            cmbConcern.DataSource = objDs.Tables[0];
+                        }
+                    }
+                }
+               
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text == "Save")
                 {
@@ -144,7 +162,6 @@ namespace ROMS
         {
             try
             {
-                btnSave.Enabled = false;
                 bool blnErrorFlag = false;
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
@@ -188,6 +205,7 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
+                    btnSave.Enabled = false;
                     udfnSave(sender, e);
                 }
             }
@@ -698,6 +716,29 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                DataSet objDS = new DataSet();
+                SPDataService objsdserv = new SPDataService();
+                int varparaViewType = 9;
+                if (btnSave.Text == "Save")
+                {
+                    varparaViewType = 8;
+                }
+                objDS = objsdserv.udfnStockLocationList(varparaViewType,Convert.ToInt32(cmbConcern.SelectedValue) );
+                objsdserv.CloseConnection();
+                cmbStockLocation.DataSource = null;
+                if (objDS != null)
+                {
+                    if (objDS.Tables.Count > 0)
+                    {
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            cmbStockLocation.ValueMember = "SLID";
+                            cmbStockLocation.DisplayMember = "SL_EName";
+                            cmbStockLocation.DataSource = objDS.Tables[0];
+                        }
+                    }
+                }
+
             }
             catch (Exception ex)
             {
