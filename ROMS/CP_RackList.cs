@@ -92,7 +92,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRackList(0, (Convert.ToInt16(cmbGroupType.SelectedValue)),0);
+                objDs = objspservice.udfnRackList(0, (Convert.ToInt16(cmbGroupType.SelectedValue)),0,0,0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -112,7 +112,7 @@ namespace ROMS
                             grdGroupList.Columns["S.No."].Width = 50;
                             grdGroupList.Columns["Concern"].Width = 100;
                             grdGroupList.Columns["Stock Location"].Width = 200;
-                            grdGroupList.Columns["Rack Group"].Width = 150;
+                            grdGroupList.Columns["Rack Group"].Width = 250;
                             grdGroupList.Columns["Rack Name"].Width = 200;
                             grdGroupList.Columns["Short Name"].Width = 100;
                             grdGroupList.Columns["Description"].Width = 200;
