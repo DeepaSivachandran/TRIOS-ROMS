@@ -66,9 +66,9 @@ namespace ROMS
                 //cmbConcern.SelectedIndex = 0;
                 //cmbLocationType.SelectedIndex = 0;
                 cmbStockApplicable.SelectedIndex = 0;
-                btnSave.Text = "Save";
-                txtLocationNameInEnglish.Focus();
-                this.ActiveControl = txtLocationNameInEnglish;
+                //btnSave.Text = "Save";
+                cmbConcern.Focus();
+                this.ActiveControl = cmbConcern;
             }
             catch (Exception ex)
             {
@@ -146,6 +146,14 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=0 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
+                if (Convert.ToInt32(cmbLocationType.SelectedValue) == 9)
+                {
+                    pnlGodownType.Enabled = true;
+                }
+                else
+                { 
+                    pnlGodownType.Enabled = false;
+                }
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -201,27 +209,13 @@ namespace ROMS
         {
             try
             {
-                if (PbDefault == "1" || PbDefault == "2")
-                {
-                    btnSave.Visible = false;
-                    cmbConcern.Visible = false;
-                    cmbLocationType.Visible = false;
-                    txtLocationNameInEnglish.Visible = false;
-                    txtLocationNameInTamil.Visible = false;
-                    txtShortName.Visible = false;
-                    pnlGodownType.Visible = false;
-                    cmbStockApplicable.Visible = false;
-                    pnlStatus.Visible = false;
-                }
-                else
-                {
-                    if (rbActive.Checked == true) { varstatus = 1; }
+                if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
                 if (rbInside.Checked == true) { varGodownType = 86; }
                 else { varGodownType = 87; }
-                    SPDataService objspservice = new SPDataService();
-                    string varResult = "",
-                    varoriginator = ""; int varType = 0;
+                SPDataService objspservice = new SPDataService();
+                string varResult = "",
+                varoriginator = ""; int varType = 0;
                     if (btnSave.Text == "Save")
                     {
                         varoriginator = "Stock Creation";
@@ -249,12 +243,15 @@ namespace ROMS
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnSave.Enabled = true;
             }
         }
         private void btnSave_Click(object sender, EventArgs e)
@@ -262,6 +259,7 @@ namespace ROMS
 
             try
             {
+                btnSave.Enabled = false;
                 bool blnErrorFlag = false;
 
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")

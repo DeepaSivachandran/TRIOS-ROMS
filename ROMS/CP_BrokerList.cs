@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
+    //Created By:-Sathish
+    //Created On:-24/08/2023
     public partial class CP_BrokerList : Form
     {
         DataValidation objValidation = new DataValidation();
@@ -18,7 +20,6 @@ namespace ROMS
         {
             InitializeComponent();
         }
-
         private void tsbNew_Click(object sender, EventArgs e)
         {
             try
@@ -30,7 +31,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -57,52 +57,120 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfndelete()
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-               
+                if (grdBrokerList.SelectedRows.Count > 0)
+                {
+                    string result = "";
+                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        SPDataService objspdservice = new SPDataService();
+                        DataTable objBankTable = new DataTable();
+                        objBankTable.TableName = "MR_Broker_Bank";
+                        objBankTable.Columns.Add("BRB_Name", typeof(string));
+                        objBankTable.Columns.Add("BRB_ShortName", typeof(string));
+                        objBankTable.Columns.Add("BRB_BranchName", typeof(string));
+                        objBankTable.Columns.Add("BRB_AccNo", typeof(string));
+                        objBankTable.Columns.Add("BRB_IFSC", typeof(string));
+                        objBankTable.Columns.Add("BRB_STSID", typeof(string));
+                        result = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", "", 0, "", "", "",0,"Company delete", objBankTable);
+                        string[] varvalue = result.Split('~');
+                        if (varvalue[0] == "3")
+                        {
+                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            udfnList();
+                        }
+                        else
+                        {
+                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
+        public void udfnList()
+        {
+            try
+            {
+                SPDataService objspservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspservice.udfnBrokerList(0,0);
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            grdBrokerList.DataSource = objDs.Tables[0];
+                            grdBrokerList.Columns["ID"].Visible = false;
+                            grdBrokerList.Columns["STSID"].Visible = false;
+                            grdBrokerList.Columns["S.No."].Width = 50;
+                            grdBrokerList.Columns["Broker Name"].Width = 150;
+                            grdBrokerList.Columns["Status"].Width = 80;
+                            grdBrokerList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdBrokerList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
+                    objspservice.CloseConnection();
+                }
+                udfnSearchGridHead();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+            }
+        }
         private void udfnEdit()
         {
             try
             {
+                if (grdBrokerList.SelectedRows.Count > 0)
+                {
                     MainForm.objCP_CP_Broker = new CP_Broker();
-                    MainForm.objCP_CP_Broker.btnSave.Text = "Update";
-                    MainForm.objCP_CP_Broker.ShowDialog();
-              
-              
+                    MainForm.objCP_CP_Broker.MdiParent = this.ParentForm;
+                    MainForm.objCP_CP_Broker.varBrokerid = grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString();
+                    MainForm.objCP_CP_Broker.Show();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-         
-        
-
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
             {
-
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 1))   /*If not our desired columns*/
-                                                                   //return;
-
+                if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
                     if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
                     {
                         e.Paint(e.CellBounds, DataGridViewPaintParts.All
@@ -113,7 +181,6 @@ namespace ROMS
 
                         e.Handled = true;
                     }
-
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -122,11 +189,10 @@ namespace ROMS
         {
             try
             {
-                if (grdUnitList.ColumnCount > 0)
+                if (grdBrokerList.ColumnCount > 0)
                 {
-                    grdUnitList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdUnitList.HorizontalScrollingOffset;
-                   
+                    grdBrokerList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdBrokerList.HorizontalScrollingOffset;
                 }
             }
             catch (Exception ex)
@@ -141,9 +207,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdUnitList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUnitList);
+                grdBrokerList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdBrokerList);
                 objDser.CloseConnection();
-                grdUnitList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdBrokerList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -152,10 +218,10 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdUnitList, DGV_SearchGrid);
+                udfnGridSearchHeading(grdBrokerList, DGV_SearchGrid);
                 DGV_SearchGrid.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdUnitList.Columns)
+                foreach (DataGridViewColumn col in grdBrokerList.Columns)
                 {
                     DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                     visibleColumns.Add(col.Index);
@@ -167,7 +233,7 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                 }
-                DGV_SearchGrid.Columns["SI.No."].ReadOnly = true;
+                DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -180,7 +246,7 @@ namespace ROMS
                     if (DGV_SearchGrid.ColumnCount > 0)
                     {
                         BindingSource bs = new BindingSource();
-                        bs.DataSource = grdUnitList.DataSource;
+                        bs.DataSource = grdBrokerList.DataSource;
                         string filter = "";
                         for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
                         {
@@ -194,7 +260,7 @@ namespace ROMS
                             }
                         }
                         bs.Filter = filter;
-                        grdUnitList.DataSource = bs;
+                        grdBrokerList.DataSource = bs;
                     }
                 }
             }
@@ -204,7 +270,6 @@ namespace ROMS
         {
             try
             {
-                //dgv2.DataSource = null;
                 dgv2.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
                 foreach (DataGridViewColumn col in dgv1.Columns)
@@ -225,37 +290,21 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-        
-
-        private void DGV_SearchGrid_Sorted(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DGV_SearchGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-
-        }
-
-     
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdUnitList.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdUnitList.SortedColumn;
+            DataGridViewColumn newColumn = grdBrokerList.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = grdBrokerList.SortedColumn;
             ListSortDirection direction;
-
             // If oldColumn is null, then the DataGridView is not sorted.
             if (oldColumn != null)
-            {
-                // Sort the same column again, reversing the SortOrder.
+            {// Sort the same column again, reversing the SortOrder.
                 if (oldColumn == newColumn &&
-                    grdUnitList.SortOrder == SortOrder.Ascending)
+                    grdBrokerList.SortOrder == SortOrder.Ascending)
                 {
                     direction = ListSortDirection.Descending;
                 }
                 else
-                {
-                    // Sort a new column and remove the old SortGlyph.
+                {// Sort a new column and remove the old SortGlyph.
                     direction = ListSortDirection.Ascending;
                     oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                 }
@@ -264,31 +313,25 @@ namespace ROMS
             {
                 direction = ListSortDirection.Ascending;
             }
-            grdUnitList.Sort(newColumn, direction);
+            grdBrokerList.Sort(newColumn, direction);
             newColumn.HeaderCell.SortGlyphDirection =
                 direction == ListSortDirection.Ascending ?
                 SortOrder.Ascending : SortOrder.Descending;
-
             DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
             DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-
-            DGV_SearchGrid.HorizontalScrollingOffset = grdUnitList.HorizontalScrollingOffset;
+            DGV_SearchGrid.HorizontalScrollingOffset = grdBrokerList.HorizontalScrollingOffset;
             DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
-
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try
             {
-
                 int totalWidth = 0;
-                int offSetValue = grdUnitList.HorizontalScrollingOffset;
+                int offSetValue = grdBrokerList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
-
-                if (totalWidth - grdUnitList.Width > grdUnitList.HorizontalScrollingOffset && grdUnitList.HorizontalScrollingOffset > 0)
+                if (totalWidth - grdBrokerList.Width > grdBrokerList.HorizontalScrollingOffset && grdBrokerList.HorizontalScrollingOffset > 0)
                 {
-                    //offSetValue = offSetValue ;
                     offSetValue = offSetValue;
                 }
                 DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
@@ -312,7 +355,6 @@ namespace ROMS
                     {
                         visibleColumns.Add(col.Index);
                     }
-
                     int I = DGV_SearchGrid.Rows.Count - 1;
                     if (I == 0)
                     {
@@ -331,21 +373,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void GrdSupplierList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void DGV_SearchGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void CP_BrokerList_Load(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                udfnList();
             }
             catch (Exception ex)
             {
@@ -353,7 +385,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_BrokerList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -370,6 +401,10 @@ namespace ROMS
                 {
                     tsbDelete_Click(sender, e);
                 }
+                if ((e.KeyCode == Keys.Delete))
+                {
+                    tsbDelete_Click(sender, e);
+                }
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm objMainForm = new MainForm();
@@ -379,6 +414,80 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdBrokerList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdBrokerList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(grdBrokerList.Rows[i].Cells["STSID"].Value) == "1")
+                    {
+                        grdBrokerList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdBrokerList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        grdBrokerList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdBrokerList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    grdBrokerList.ClearSelection();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdBrokerList_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdBrokerList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnEdit();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdBrokerList_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdBrokerList.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdBrokerList.Width > grdBrokerList.HorizontalScrollingOffset && grdBrokerList.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdBrokerList);
             }
             catch (Exception ex)
             {

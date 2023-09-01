@@ -145,7 +145,7 @@ namespace ROMS
 
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
-                        varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value)," UserId", "", 0,0,"",0, 0, "User Delete");
+                        varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value),"", "", 0,0,"",0, 0, "User Delete");
                         if (varResult.Split('~')[0] == "3")
                         {
                             MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -629,6 +629,8 @@ namespace ROMS
             try
             {
                 lvUserList.Items.Clear();
+
+                lblUserId.Text = "";
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtDUserList.Text.Length > 2)
@@ -665,7 +667,6 @@ namespace ROMS
             }
             finally
             {
-
             }
         }
         private void TxtDUserList_Enter(object sender, EventArgs e)

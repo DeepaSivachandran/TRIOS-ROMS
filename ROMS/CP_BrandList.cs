@@ -153,7 +153,7 @@ namespace ROMS
                     {
                         SPDataService objDser = new SPDataService();
                         
-                        string varResult = objDser.udfnBrand(2, Convert.ToInt16(grdBrandList.SelectedRows[0].Cells["ID"].Value.ToString()),"","", 0, "", "Brand Deletion");
+                        string varResult = objDser.udfnBrand(2, Convert.ToString(grdBrandList.SelectedRows[0].Cells["ID"].Value.ToString()),"","", 0, "", "Brand Deletion");
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -185,7 +185,7 @@ namespace ROMS
                     MainForm.objCP_Brand = new CP_Brand();
                     MainForm.objCP_Brand.MdiParent = ParentForm;
                     MainForm.objCP_Brand.btnSave.Text = "Update";
-                    MainForm.objCP_Brand.varId = Convert.ToInt32(grdBrandList.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_Brand.varId = Convert.ToString(grdBrandList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_Brand.varStatusid = Convert.ToInt32(grdBrandList.SelectedRows[0].Cells["Status ID"].Value);
                     MainForm.objCP_Brand.Show();
                
@@ -211,7 +211,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnBrandList(0, 0, varGroupId, varSubGroupId);
+                objDs = objdserv.udfnBrandList(0, "", varGroupId, varSubGroupId,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

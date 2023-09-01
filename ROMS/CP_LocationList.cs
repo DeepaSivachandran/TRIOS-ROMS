@@ -61,6 +61,7 @@ namespace ROMS
         {
             try
             {
+                cmbConcern.Focus();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
@@ -76,9 +77,16 @@ namespace ROMS
         {
             try
             {
-                SPDataService objspservice = new SPDataService();
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdGodownList.DataSource = null;
                 DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)),0,0);
+                objspservice.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -119,7 +127,6 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-                    objspservice.CloseConnection();
                 }
             }
             catch (Exception ex)
@@ -130,6 +137,8 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnView.Enabled = true;
             }
         }
         public void udfndelete()
@@ -375,6 +384,7 @@ namespace ROMS
         {
             try
             {
+                btnView.Enabled = false;
                 udfnList();
             }
             catch (Exception ex)
@@ -387,6 +397,7 @@ namespace ROMS
         {
             try
             {
+                btnExport.Enabled = false;
                 if ((grdGodownList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -416,9 +427,6 @@ namespace ROMS
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
-                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
-                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
-                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
                     foreach (DataGridViewColumn col in grdGodownList.Columns)
                     {
                         if (col.Visible)
@@ -426,7 +434,10 @@ namespace ROMS
                             cIndex += 1;
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
-                            if (cIndex == 1)
+                            ExcelSheet.Cells[2, cIndex].Interior.Color = Color.LightSlateGray;
+                            Excel.Range cell = ExcelSheet.Cells[2, cIndex];
+                            cell.Font.Color = Excel.XlRgbColor.rgbWhite;
+                            if (cIndex == 1 || cIndex == 8)
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
@@ -434,13 +445,18 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 25;
                             }
-                            if (col.Name == "clmQty" || col.Name == "clmTotal")
+                            if (cIndex == 1 || cIndex == 7 || cIndex == 9)
                             {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
+                            if (cIndex == 2 || cIndex == 3 || cIndex == 4 || cIndex == 5 || cIndex == 6)
+                            {
+                                ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            }
+
                             foreach (DataGridViewRow rowa in grdGodownList.Rows)
                             {
-                                ExcelSheet.Cells[rowa.Index + 4, cIndex] = rowa.Cells[col.Index].Value;
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
                             }
                         }
                     }
@@ -449,6 +465,66 @@ namespace ROMS
                 }
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+            }
+        }
+
+        private void BtnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+
             {
                 objError = new DataError();
                 objError.WriteFile(ex);

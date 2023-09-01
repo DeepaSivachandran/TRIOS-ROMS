@@ -145,6 +145,7 @@ namespace ROMS
             try
             {
                 picLoader.Visible = true;
+                picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdCompanyList.DataSource = null;
@@ -201,12 +202,8 @@ namespace ROMS
             {
                 grdCompanyList.ClearSelection();
                 picLoader.Visible = false;
+                picLoader.SendToBack();
             }
-        }
-        
-             private void CP_Supplierlist_KeyDown(object sender, KeyEventArgs e)
-        {
-            
         }
          
 
@@ -431,10 +428,10 @@ namespace ROMS
                     udfnEdit();
                 }
 
-                if (e.KeyCode == Keys.Delete)
-                {
-                    tsbDelete_Click(sender, e);
-                }
+                //if (e.KeyCode == Keys.Delete)
+                //{
+                //    tsbDelete_Click(sender, e);
+                //}
             }
             catch (Exception ex)
             {

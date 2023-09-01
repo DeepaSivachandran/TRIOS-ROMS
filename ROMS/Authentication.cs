@@ -295,7 +295,7 @@ namespace ROMS
             //string paths = Application.StartupPath + "\\Server Settings\\serversettings.txt";
             //if (File.Exists(paths))
             //{
-                lblDVersion.Text = "v1.1.2";
+                lblDVersion.Text = "v1.1.5";
                 lblDVersion.BringToFront();
                 Authentication objAuthetication = new Authentication();
                 objAuthetication.Name = " - " + lblDVersion.Text;

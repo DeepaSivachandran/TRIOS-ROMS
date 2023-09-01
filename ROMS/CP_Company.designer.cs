@@ -117,7 +117,7 @@
             this.txtDAddressLine1 = new System.Windows.Forms.TextBox();
             this.txtDCity = new System.Windows.Forms.TextBox();
             this.txtCity = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.grpform2 = new System.Windows.Forms.TabPage();
             this.btnAddContact = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblOperator = new System.Windows.Forms.Label();
@@ -154,7 +154,7 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdBankDetails)).BeginInit();
             this.grbGovtRegisterationIds.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.grpform2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContactManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCompany)).BeginInit();
             this.SuspendLayout();
@@ -194,12 +194,14 @@
             // tcCompanyDetails
             // 
             this.tcCompanyDetails.Controls.Add(this.tabPage1);
-            this.tcCompanyDetails.Controls.Add(this.tabPage2);
+            this.tcCompanyDetails.Controls.Add(this.grpform2);
             this.tcCompanyDetails.Location = new System.Drawing.Point(12, 1);
             this.tcCompanyDetails.Name = "tcCompanyDetails";
             this.tcCompanyDetails.SelectedIndex = 0;
             this.tcCompanyDetails.Size = new System.Drawing.Size(1330, 618);
             this.tcCompanyDetails.TabIndex = 0;
+            this.tcCompanyDetails.SelectedIndexChanged += new System.EventHandler(this.TcCompanyDetails_SelectedIndexChanged);
+            this.tcCompanyDetails.Selected += new System.Windows.Forms.TabControlEventHandler(this.TcCompanyDetails_Selected);
             // 
             // tabPage1
             // 
@@ -262,6 +264,7 @@
             this.grbform.Size = new System.Drawing.Size(1320, 596);
             this.grbform.TabIndex = 2;
             this.grbform.TabStop = false;
+            this.grbform.Leave += new System.EventHandler(this.Grbform_Leave);
             // 
             // lvCity
             // 
@@ -656,6 +659,7 @@
             this.txtIFScode.TabIndex = 24;
             this.txtIFScode.Enter += new System.EventHandler(this.TxtIFScode_Enter);
             this.txtIFScode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtIFScode_KeyDown);
+            this.txtIFScode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIFScode_KeyPress);
             this.txtIFScode.Leave += new System.EventHandler(this.TxtIFScode_Leave);
             // 
             // textBox17
@@ -680,6 +684,7 @@
             this.txtAccno.TabIndex = 23;
             this.txtAccno.Enter += new System.EventHandler(this.TxtAccno_Enter);
             this.txtAccno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAccno_KeyDown);
+            this.txtAccno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAccno_KeyPress);
             this.txtAccno.Leave += new System.EventHandler(this.TxtAccno_Leave);
             // 
             // textBox19
@@ -1159,7 +1164,7 @@
             // 
             this.txtCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtCity.Location = new System.Drawing.Point(125, 159);
-            this.txtCity.MaxLength = 100;
+            this.txtCity.MaxLength = 50;
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(186, 27);
             this.txtCity.TabIndex = 5;
@@ -1168,31 +1173,32 @@
             this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCity_KeyDown);
             this.txtCity.Leave += new System.EventHandler(this.TxtCity_Leave);
             // 
-            // tabPage2
+            // grpform2
             // 
-            this.tabPage2.Controls.Add(this.btnAddContact);
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.lblOperator);
-            this.tabPage2.Controls.Add(this.cbPrimary);
-            this.tabPage2.Controls.Add(this.cbWhatsApp);
-            this.tabPage2.Controls.Add(this.lblMobileNo);
-            this.tabPage2.Controls.Add(this.lblTransactionType);
-            this.tabPage2.Controls.Add(this.lblName);
-            this.tabPage2.Controls.Add(this.txtMobileBrand);
-            this.tabPage2.Controls.Add(this.txtOperator);
-            this.tabPage2.Controls.Add(this.btnSaveContact);
-            this.tabPage2.Controls.Add(this.btnCloseContact);
-            this.tabPage2.Controls.Add(this.txtName);
-            this.tabPage2.Controls.Add(this.grdContactManager);
-            this.tabPage2.Controls.Add(this.txtMobilenumber);
-            this.tabPage2.Controls.Add(this.cmbTransactionType);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1322, 586);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Contact Manager";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.grpform2.Controls.Add(this.btnAddContact);
+            this.grpform2.Controls.Add(this.label2);
+            this.grpform2.Controls.Add(this.lblOperator);
+            this.grpform2.Controls.Add(this.cbPrimary);
+            this.grpform2.Controls.Add(this.cbWhatsApp);
+            this.grpform2.Controls.Add(this.lblMobileNo);
+            this.grpform2.Controls.Add(this.lblTransactionType);
+            this.grpform2.Controls.Add(this.lblName);
+            this.grpform2.Controls.Add(this.txtMobileBrand);
+            this.grpform2.Controls.Add(this.txtOperator);
+            this.grpform2.Controls.Add(this.btnSaveContact);
+            this.grpform2.Controls.Add(this.btnCloseContact);
+            this.grpform2.Controls.Add(this.txtName);
+            this.grpform2.Controls.Add(this.grdContactManager);
+            this.grpform2.Controls.Add(this.txtMobilenumber);
+            this.grpform2.Controls.Add(this.cmbTransactionType);
+            this.grpform2.Location = new System.Drawing.Point(4, 28);
+            this.grpform2.Name = "grpform2";
+            this.grpform2.Padding = new System.Windows.Forms.Padding(3);
+            this.grpform2.Size = new System.Drawing.Size(1322, 586);
+            this.grpform2.TabIndex = 1;
+            this.grpform2.Text = "Contact Manager";
+            this.grpform2.UseVisualStyleBackColor = true;
+            this.grpform2.Leave += new System.EventHandler(this.Grpform2_Leave);
             // 
             // btnAddContact
             // 
@@ -1284,7 +1290,7 @@
             // 
             this.txtMobileBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtMobileBrand.Location = new System.Drawing.Point(971, 39);
-            this.txtMobileBrand.MaxLength = 100;
+            this.txtMobileBrand.MaxLength = 20;
             this.txtMobileBrand.Name = "txtMobileBrand";
             this.txtMobileBrand.Size = new System.Drawing.Size(195, 27);
             this.txtMobileBrand.TabIndex = 6;
@@ -1296,7 +1302,7 @@
             // 
             this.txtOperator.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtOperator.Location = new System.Drawing.Point(770, 39);
-            this.txtOperator.MaxLength = 100;
+            this.txtOperator.MaxLength = 20;
             this.txtOperator.Name = "txtOperator";
             this.txtOperator.Size = new System.Drawing.Size(195, 27);
             this.txtOperator.TabIndex = 5;
@@ -1342,7 +1348,7 @@
             // 
             this.txtName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtName.Location = new System.Drawing.Point(13, 39);
-            this.txtName.MaxLength = 100;
+            this.txtName.MaxLength = 500;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(189, 27);
             this.txtName.TabIndex = 0;
@@ -1535,8 +1541,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdBankDetails)).EndInit();
             this.grbGovtRegisterationIds.ResumeLayout(false);
             this.grbGovtRegisterationIds.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.grpform2.ResumeLayout(false);
+            this.grpform2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContactManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCompany)).EndInit();
             this.ResumeLayout(false);
@@ -1609,7 +1615,7 @@
         private System.Windows.Forms.TextBox txtDAddressLine1;
         private System.Windows.Forms.TextBox txtDCity;
         private System.Windows.Forms.TextBox txtCity;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage grpform2;
         public System.Windows.Forms.DataGridView grdContactManager;
         private System.Windows.Forms.TextBox txtMobilenumber;
         private System.Windows.Forms.ComboBox cmbTransactionType;

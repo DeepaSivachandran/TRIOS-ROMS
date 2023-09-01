@@ -21,10 +21,12 @@ namespace ROMS
         public int varstatus;
         public string PbCityName="";
         public int varCityCode= 0;
+        public string varCityName = "";
         public string PbStateName="";
         public int PbStateId=0;
         public int PbStatus=0;
         public int varUpdate = 0;
+        public int varmastertype = 0;
         public CP_City()
         {
             InitializeComponent();
@@ -47,7 +49,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID in (1) and STID !=0 Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID in (1) Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text=="Save")
@@ -103,8 +105,10 @@ namespace ROMS
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
+
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MainForm.objCP_Citylist.udfnList();
+                    //udfnclear();
                     if (btnSave.Text == "Update")
                     {
                         varUpdate = 1;
@@ -116,20 +120,38 @@ namespace ROMS
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                if (varmastertype == 1)
+                {
+                    varmastertype = 0;
+                    varUpdate = 1;
+                    varCityCode = Convert.ToInt16(varResult.Split('~')[2]);
+                    varCityName = Convert.ToString(varResult.Split('~')[2]);
+                    MainForm.objCP_CP_Broker.varCityName = txtCityName.Text;
+                    MainForm.objCP_CP_Broker.varCityCode = varCityCode;
+                    udfnclose();
+                }
+                else
+                {
+                    MainForm.objCP_UserCategoryList.udfnList();
+                }
+                 
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
+            }
+            finally
+            {
+                btnSave.Enabled = true;
+            }
         }
         private void udfnclear()
         {
             try
             {
                 txtCityName.Text = "";
-                cmbState.SelectedIndex = 0;
-                btnSave.Text = "Save";
+                //btnSave.Text = "Save";
                 cmbState.Focus();
                 this.ActiveControl = cmbState;
             }
@@ -143,6 +165,7 @@ namespace ROMS
         {
             try
             {
+                btnSave.Enabled = false;
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtCityName.Text).Trim() == "")
                 {

@@ -28,13 +28,21 @@ namespace ROMS
         private ToolTip tpemail = new ToolTip();
         private ToolTip tpgstin = new ToolTip();
         private ToolTip tpfssai = new ToolTip();
-        private ToolTip tpplno = new ToolTip();
-        private ToolTip tpcompanyname = new ToolTip();
         private ToolTip tpshortname = new ToolTip();
         private ToolTip tppincode = new ToolTip();
         private ToolTip tpcity = new ToolTip();
         private ToolTip tparea = new ToolTip();
         private ToolTip tpstate = new ToolTip();
+        private ToolTip tpplno = new ToolTip();
+        private ToolTip tpcompanyname = new ToolTip();
+        private ToolTip tpunit = new ToolTip();
+        private ToolTip tpbrand = new ToolTip();
+        private ToolTip tpprdG = new ToolTip();
+        private ToolTip tpprdSG = new ToolTip();
+        private ToolTip tpprd = new ToolTip();
+        private ToolTip tptamname = new ToolTip();
+        private ToolTip tpengname = new ToolTip();
+
         public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0;
         public CP_Product()
         {
@@ -57,7 +65,8 @@ namespace ROMS
         {
             try
             {
-                bool blnErrorFlag = false; 
+                btnSave.Enabled = false;
+                bool blnErrorFlag = false;
                 if (Convert.ToString(txtPICode.Text).Trim() == "")
                 {
                     errItems.SetError(txtPICode, "Please enter PICode");
@@ -72,7 +81,7 @@ namespace ROMS
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpcompanyname.ShowAlways = true;
                     tpcompanyname.Show("Please select company", cmbConcern, 5000);
-                      blnErrorFlag = true;
+                    blnErrorFlag = true;
                 }
 
 
@@ -80,7 +89,7 @@ namespace ROMS
                 {
                     errItems.SetError(txtItemNameEnglish, "Please enter product english name");
                     txtItemNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpplno.ShowAlways = true;
+                    tpengname.ShowAlways = true;
                     tpplno.Show("Please enter product english name", txtItemNameEnglish, 5000);
                     blnErrorFlag = true;
                 }
@@ -88,8 +97,8 @@ namespace ROMS
                 {
                     errItems.SetError(txtItemNameTamil, "Please enter product tamil name");
                     txtItemNameTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpplno.ShowAlways = true;
-                    tpplno.Show("Please enter product tamil name", txtItemNameTamil, 5000);
+                    tptamname.ShowAlways = true;
+                    tptamname.Show("Please enter product tamil name", txtItemNameTamil, 5000);
                     blnErrorFlag = true;
                 }
                 //    if (Convert.ToString(txtUpp.Text).Trim() == "")
@@ -178,8 +187,8 @@ namespace ROMS
                 {
                     errItems.SetError(cmbProductCategory, "Please select Product category");
                     cmbProductCategory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select Product category", cmbGroup, 5000);
+                    tpprd.ShowAlways = true;
+                    tpprd.Show("Please select Product category", cmbGroup, 5000);
                     blnErrorFlag = true;
                 }
 
@@ -187,8 +196,8 @@ namespace ROMS
                 {
                     errItems.SetError(cmbSubGroup, "Please select SubGroup");
                     cmbSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select SubGroup", cmbGroup, 5000);
+                    tpprdSG.ShowAlways = true;
+                    tpprdSG.Show("Please select SubGroup", cmbGroup, 5000);
                     blnErrorFlag = true;
                 }
 
@@ -196,17 +205,17 @@ namespace ROMS
                 {
                     errItems.SetError(cmbGroup, "Please select Group");
                     cmbGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select Group", cmbGroup, 5000);
-                     blnErrorFlag = true;
+                    tpprdG.ShowAlways = true;
+                    tpprdG.Show("Please select Group", cmbGroup, 5000);
+                    blnErrorFlag = true;
                 }
 
                 if (Convert.ToString(cmbBrand.SelectedValue) == "" || Convert.ToString(cmbBrand.SelectedValue) == "-1")
                 {
                     errItems.SetError(cmbBrand, "Please select Brand");
                     cmbBrand.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select Brand", cmbBrand, 5000);
+                    tpbrand.ShowAlways = true;
+                    tpbrand.Show("Please select Brand", cmbBrand, 5000);
                     blnErrorFlag = true;
                 }
 
@@ -214,8 +223,8 @@ namespace ROMS
                 {
                     errItems.SetError(cmbUnit, "Please select Unit");
                     cmbUnit.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select Unit", cmbUnit, 5000);
+                    tpunit.ShowAlways = true;
+                    tpunit.Show("Please select Unit", cmbUnit, 5000);
                     blnErrorFlag = true;
                 }
 
@@ -295,21 +304,21 @@ namespace ROMS
                 {
                     SPDataService objspdservice = new SPDataService();
                     string result = "";
-                    string varStatus = "1";  
+                    string varStatus = "1";
                     double netweight = 0, grossweight = 0, minstk = 0, maxstk = 0, reorderqty = 0, rminsale = 0, retailrate = 0, wminsaleqty = 0, wsalesrate = 0;
                     int shelflife = 0, rackmoq = 0, varshelflife = 0, varrmproduction = 0;
                     errItems.Clear();
                     udfncolorchange();
 
                     if (rbActive.Checked == true)
-                        {
-                            varStatus = "1";
-                        }
-                        else
-                        {
-                            varStatus = "2";
+                    {
+                        varStatus = "1";
+                    }
+                    else
+                    {
+                        varStatus = "2";
 
-                        }
+                    }
 
                     if (cbExpiry.Checked == true)
                     {
@@ -419,52 +428,52 @@ namespace ROMS
                     {
                         shelflife = Convert.ToInt32(txtSelfLife.Text);
                     }
-
+                    int varviewtype = 0,varupdateproductcode=0;
+                    string varorignator = "";
+                     
                     if (btnSave.Text == "Save")
-                        {
-
-                        result = objspdservice.udfnProductMaster(0, 0, txtItemNameEnglish.Text, txtItemNameTamil.Text ,txtPICode.Text,Convert.ToInt32(cmbConcern.SelectedValue),
-                        Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(cmbGroup.SelectedValue), Convert.ToInt32(cmbSubGroup.SelectedValue), Convert.ToInt32(cmbBrand.SelectedValue),
-                        Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue),txtUpp.Text, Convert.ToInt32(cmbPosition.SelectedValue), Convert.ToInt32(cmbSalesGodown.SelectedValue)
-                        , Convert.ToInt32(cmbPurchaseRack.SelectedValue), Convert.ToInt32(cmbSalesRack.SelectedValue), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue)
-                        , Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, netweight, maxstk, grossweight,minstk,  reorderqty, rminsale, retailrate,wminsaleqty, 
-                        wsalesrate,txtBarcode.Text, Convert.ToInt32(cmbHSNName.SelectedValue),varrmproduction, shelflife, 
-                        Convert.ToInt32(cmbPeriod.SelectedValue),varStatus,MainForm.pbUserID, MainForm.pbIpAddress, "Product Create");
-                        }
-                        else
-                        {
-
-                        result = objspdservice.udfnProductMaster(1, varproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text, Convert.ToInt32(cmbConcern.SelectedValue),
-                        Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(cmbGroup.SelectedValue), Convert.ToInt32(cmbSubGroup.SelectedValue), Convert.ToInt32(cmbBrand.SelectedValue),
-                        Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(cmbPosition.SelectedValue), Convert.ToInt32(cmbSalesGodown.SelectedValue)
-                        , Convert.ToInt32(cmbPurchaseRack.SelectedValue), Convert.ToInt32(cmbSalesRack.SelectedValue), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue)
-                        , Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty,
-                        wsalesrate, txtBarcode.Text, Convert.ToInt32(cmbHSNName.SelectedValue), varrmproduction, shelflife,
-                        Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, "Product Update"); 
+                    {
+                        varviewtype = 0;
+                        varorignator = "Product Create";
+                        varupdateproductcode = 0; 
+                    }
+                    else
+                    {
+                        varviewtype = 1;
+                        varorignator = "Product Update";
+                        varupdateproductcode = varproductcode;
                         varupdate = "1";
 
-                    }
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    } 
+                    result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text, Convert.ToInt32(cmbConcern.SelectedValue),
+                    Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(cmbGroup.SelectedValue), Convert.ToInt32(cmbSubGroup.SelectedValue), Convert.ToInt32(cmbBrand.SelectedValue),
+                    Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(cmbPosition.SelectedValue), Convert.ToInt32(cmbSalesGodown.SelectedValue)
+                    , Convert.ToInt32(cmbPurchaseRack.SelectedValue), Convert.ToInt32(cmbSalesRack.SelectedValue), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue)
+                    , Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty,
+                    wsalesrate, txtBarcode.Text, Convert.ToInt32(cmbHSNName.SelectedValue), varrmproduction, shelflife,
+                    Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator);
+
+                    string[] varvalue = result.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         MainForm.objCP_Itemlist.udfnDropdownbind();
                         MainForm.objCP_Itemlist.udfnList();
-                            cmbConcern.Focus(); 
-                             udfnclear();
-                            if (btnSave.Text == "Update")
-                            {
-                                this.Hide();
-                            }
-                        }
-                        else
+                        cmbConcern.Focus();
+                        udfnclear();
+                        if (btnSave.Text == "Update")
                         {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            this.Hide();
                         }
-                    
-                  
-                     objspdservice.CloseConnection();
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+
+                    objspdservice.CloseConnection();
                 }
 
 
@@ -473,6 +482,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnSave.Enabled = true;
             }
         }
 
@@ -618,6 +631,15 @@ namespace ROMS
             try
             {
                 this.Close(); 
+                tpplno.ShowAlways = false;
+                tpcompanyname.ShowAlways = false;
+                tpunit.ShowAlways = false;
+                tpbrand.ShowAlways = false;
+                tpprdG.ShowAlways = false;
+                tpprdSG.ShowAlways = false;
+                tpprd.ShowAlways = false;
+                tptamname.ShowAlways = false;
+                tpengname.ShowAlways = false;
             }
             catch (Exception ex)
             {
@@ -1680,31 +1702,6 @@ namespace ROMS
 
             }
         }
-
-        private void TxtBarcode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                bool varResult = objvalidation.CheckNumeric(e);
-                if (varResult == true)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    e.Handled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        } 
 
         private void TxtGST_KeyPress(object sender, KeyPressEventArgs e)
         {

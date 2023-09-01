@@ -98,7 +98,7 @@
             this.lblDVersion.AutoSize = true;
             this.lblDVersion.BackColor = System.Drawing.Color.Transparent;
             this.lblDVersion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDVersion.ForeColor = System.Drawing.Color.White;
+            this.lblDVersion.ForeColor = System.Drawing.Color.Black;
             this.lblDVersion.Location = new System.Drawing.Point(326, 324);
             this.lblDVersion.Name = "lblDVersion";
             this.lblDVersion.Size = new System.Drawing.Size(0, 17);

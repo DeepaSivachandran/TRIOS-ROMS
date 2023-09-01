@@ -17,9 +17,12 @@ namespace ROMS
         DataTable objdatabrand = new DataTable();
         private ToolTip tpGroupNameinTamil = new ToolTip();
         private ToolTip tpGroupNameinEnglish = new ToolTip();
+
+        private ToolTip tpphone = new ToolTip();
+        private ToolTip tpwhatsapp = new ToolTip();
         public string varupdate = "0", brandid=""; 
-        public int varrepid = 0;
-        public string vargroupcode;
+        public int varrepid = 0,varbrandselectflag=0,varbrandidflag=0;
+        public string vargroupcode,VARBRANDLOADID = "";
         public String pbFormStatus;
         public CP_Representative()
         {
@@ -43,7 +46,11 @@ namespace ROMS
         {
             try
             { 
-                    this.Close(); 
+                    this.Close();
+                tpphone.ShowAlways = false;
+                tpwhatsapp.ShowAlways = false;
+                tpGroupNameinEnglish.ShowAlways = false;
+                tpGroupNameinTamil.ShowAlways = false;
             }
             catch (Exception ex)
             {
@@ -104,12 +111,13 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                if (txtRepName.Text.Trim() == "")
+                btnSave.Enabled = false;
+                if ((Convert.ToString(txtRepName.Text).Trim() == ""))
                 {
-                    epGroup.SetError(txtRepName, "Please enter product rep name");
+                    epGroup.SetError(txtRepName, "Please enter rep name");
                     txtRepName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpGroupNameinEnglish.ShowAlways = true;
-                    tpGroupNameinEnglish.Show("Please enter product rep name", txtRepName, 5000);
+                    tpGroupNameinEnglish.Show("Please enter rep name", txtRepName, 5000);
                     blnErrorFlag = true;
                 }
                 if (txtCompanyName.Text.Trim() == "")
@@ -124,20 +132,40 @@ namespace ROMS
                 {
                     epGroup.SetError(txtPhonenumber, "Please enter phone No.");
                     txtPhonenumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpGroupNameinTamil.ShowAlways = true;
-                    tpGroupNameinTamil.Show("Please enter phone No.", txtPhonenumber, 5000);
+                    tpphone.ShowAlways = true;
+                    tpphone.Show("Please enter phone No.", txtPhonenumber, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtPhonenumber.Text.Length != 10)
+                {
+                    epGroup.SetError(txtPhonenumber, "Please enter valid phone No.");
+                    txtPhonenumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpphone.ShowAlways = true;
+                    tpphone.Show("Please enter valid phone No.", txtPhonenumber, 5000);
                     blnErrorFlag = true;
                 }
                 if (txtWhatsappno.Text.Trim() == "")
                 {
                     epGroup.SetError(txtWhatsappno, "Please enter whatsapp No.");
                     txtWhatsappno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpGroupNameinTamil.ShowAlways = true;
-                    tpGroupNameinTamil.Show("Please enter phone No.", txtWhatsappno, 5000);
+                    tpwhatsapp.ShowAlways = true;
+                    tpwhatsapp.Show("Please enter phone No.", txtWhatsappno, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtWhatsappno.Text.Length != 10)
+                {
+                    epGroup.SetError(txtWhatsappno, "Please enter valid whatsapp No.");
+                    txtWhatsappno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpwhatsapp.ShowAlways = true;
+                    tpwhatsapp.Show("Please enter valid whatsapp No.", txtWhatsappno, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
                 {
+                    tpphone.ShowAlways = false;
+                    tpwhatsapp.ShowAlways = false;
+                    tpGroupNameinEnglish.ShowAlways = false;
+                    tpGroupNameinTamil.ShowAlways = false;
                     udfnSave(sender, e);
                 }
 
@@ -146,6 +174,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnSave.Enabled = true;
             }
         }
         public void udfnSave(object sender, EventArgs e)
@@ -188,11 +220,11 @@ namespace ROMS
 
                 if (btnSave.Text == "Save")
                     {
-                    result = objspdservice.udfnRepMaster(0,0,txtRepName.Text,txtCompanyName.Text,txtPhonenumber.Text,txtWhatsappno.Text,Varbrandid,varStatus, "representative Create");
+                    result = objspdservice.udfnRepMaster(0,0, Convert.ToString(txtRepName.Text).Trim(),txtCompanyName.Text,txtPhonenumber.Text,txtWhatsappno.Text,Varbrandid,varStatus, "representative Create");
                     }
                     else
                     {
-                    result = objspdservice.udfnRepMaster(1, Convert.ToInt32(varrepid), txtRepName.Text, txtCompanyName.Text, txtPhonenumber.Text, txtWhatsappno.Text, Varbrandid, varStatus, "representative Create");
+                    result = objspdservice.udfnRepMaster(1, Convert.ToInt32(varrepid), Convert.ToString(txtRepName.Text).Trim(), txtCompanyName.Text, txtPhonenumber.Text, txtWhatsappno.Text, Varbrandid, varStatus, "representative Create");
 
                     }
                 string[] varvalue = result.Split('~');
@@ -395,40 +427,88 @@ namespace ROMS
             }
         }
             public void udfnlist()
-        {
+            {
             try
             {
-                DataSet objdataset = new DataSet();
-                DataService objdservice = new DataService();
-                objdataset = objdservice.GetDataset("select BDID AS ID, BD_EName AS[Brand Name] from MR_Brand WHERE BDID NOT IN(-1, 0) AND BD_STSID = 1");
-                objdservice.CloseConnection();
-                if (objdataset != null)
+                int varviewtype = 0, varloadrepid = 0;string varbrandid  = ""; 
+                if (btnSave.Text == "Update")
                 {
-                    if (objdataset.Tables.Count != 0)
-                    {
-                        if (objdataset.Tables[0].Rows.Count != 0)
-                        {
-                            grdRepBrand.DataSource = objdataset.Tables[0];
-                            grdRepBrand.Columns["ID"].Visible = false;
-                            grdRepBrand.Columns["Brand Name"].Width = 230;
+                    varbrandid = Convert.ToString(VARBRANDLOADID);
+                    varviewtype = 4;
+                    varloadrepid = Convert.ToInt32(varrepid);
+                }
+                else
+                { 
+                    varviewtype = 3;
+                }
 
-                            if (btnSave.Text=="Update")
-                            { 
-                                for (int i = 0; i < grdRepBrand.Rows.Count; i++)
+
+                SPDataService objspservice = new SPDataService();
+                DataSet objDS;
+                objDS = objspservice.udfnBrandList(varviewtype, varbrandid,0,0, varloadrepid);
+                objspservice.CloseConnection();
+                if (objDS != null)
+                {
+                    if (objDS.Tables[0].Rows.Count > 0)
+                    {  
+                        grdRepBrand.DataSource = objDS.Tables[0];
+                        grdRepBrand.Columns["ID"].Visible = false;
+                        grdRepBrand.Columns["Brand Name"].Width = 230;
+                        grdRepBrand.Columns["Brand Name"].ReadOnly = true;
+                        grdRepBrand.Columns["sno"].Visible = false;
+                        grdRepBrand.Columns["BD_STSID"].Visible = false;
+
+                        //foreach (DataGridViewRow row in grdRepBrand.Rows)
+                        //{
+                        //    if (row.Cells["ID"].Value.ToString() == "0" || row.Cells["ID"].Value.ToString() == "-1")
+                        //    {
+                        //        row.Clear();
+                        //    }
+                        //}
+                        int currentRowIndex = grdRepBrand.CurrentCell?.RowIndex ?? -1;
+
+                        foreach (DataGridViewRow row in grdRepBrand.Rows)
+                        {
+                            if (row.Cells["ID"].Value.ToString() == "0" || row.Cells["ID"].Value.ToString() == "-1")
+                            {
+                                if (row.Index == currentRowIndex)
                                 {
-                                    for (int k = 0; k < objdatabrand.Rows.Count; k++)
-                                    { 
-                                        if (Convert.ToInt32(grdRepBrand.Rows[i].Cells["ID"].Value) == Convert.ToInt32(objdatabrand.Rows[k]["ID"]))
-                                        {
-                                            grdRepBrand.Rows[i].Cells["clmcheckbrand"].Value = true; 
-                                        }
+                                    if (row.Index == grdRepBrand.Rows.Count - 1 && grdRepBrand.Rows.Count > 1) // If it's the last row and there are other rows
+                                    {
+                                        grdRepBrand.CurrentCell = grdRepBrand[0, row.Index - 1]; // Switch to the previous row
+                                    }
+                                    else if (row.Index < grdRepBrand.Rows.Count - 1) // If there are rows below
+                                    {
+                                        grdRepBrand.CurrentCell = grdRepBrand[0, row.Index + 1]; // Switch to the next row
+                                    }
+                                    else // If it's the only row
+                                    {
+                                        grdRepBrand.CurrentCell = null;
+                                    }
+                                }
+
+                                row.Visible = false;
+                            }
+                        }
+
+
+                        if (btnSave.Text == "Update")
+                        {
+                            for (int i = 0; i < grdRepBrand.Rows.Count; i++)
+                            {
+                                for (int k = 0; k < objdatabrand.Rows.Count; k++)
+                                {
+                                    if (Convert.ToInt32(grdRepBrand.Rows[i].Cells["ID"].Value) == Convert.ToInt32(objdatabrand.Rows[k]["ID"]))
+                                    {
+                                        grdRepBrand.Rows[i].Cells["clmcheckbrand"].Value = true;
                                     }
                                 }
                             }
-
                         }
-                    }
-                }
+
+                    } 
+                } 
+                     
             }
             catch (Exception ex)
             {
@@ -798,20 +878,74 @@ namespace ROMS
 
         }
 
+        private void GrdRepBrand_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    checkallcheckboxvalue();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void checkallcheckboxvalue()
+        {
+            try
+            {
+                bool varallChecked = true;
+
+                foreach (DataGridViewRow row in grdRepBrand.Rows)
+                {
+                    if (Convert.ToBoolean(row.Cells[0].Value) == false)
+                    {
+                        varallChecked = false;
+                        break;
+                    }
+                    varbrandidflag++;
+                }
+                if (varbrandselectflag == 0)
+                {
+                    chkBrandAll.Checked = varallChecked;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                varbrandselectflag = 0;
+            }
+
+        }
         private void ChkBrandAll_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
-                for (int i = 0; i < grdRepBrand.Rows.Count; i++)
-                {
-                    grdRepBrand.Rows[i].Cells["clmcheckbrand"].Value = chkBrandAll.Checked;
-                }  
+                if (varbrandidflag == 0)
+                { 
+                    for (int i = 0; i < grdRepBrand.Rows.Count; i++)
+                    {
+                        grdRepBrand.Rows[i].Cells["clmcheckbrand"].Value = chkBrandAll.Checked;
+                        varbrandselectflag++;
+                    }
+                }
             }
 
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                varbrandidflag = 0;
             }
         }
     }
