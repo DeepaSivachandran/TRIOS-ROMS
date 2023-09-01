@@ -30,7 +30,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 3;
-                objDT = objdserv.udfnSubGroupList(varViewType, 0,"",0);
+                objDT = objdserv.udfnSubGroupList(varViewType, 0,"",0,0);
                 objdserv.CloseConnection();
                 cmbProductSubGroup.DataSource = null;
                 if (objDT != null)
@@ -118,7 +118,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnSubGroupList(0, Convert.ToInt32(cmbProductSubGroup.SelectedValue),"",0);
+                objDs = objdserv.udfnSubGroupList(0, Convert.ToInt32(cmbProductSubGroup.SelectedValue),"",0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -603,6 +603,33 @@ namespace ROMS
             try
             {
                 (grdSubGroupList.DataSource as DataTable).DefaultView.RowFilter = "([Product Sub Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchProduct_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchProduct.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchProduct_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchProduct.BackColor = Color.White;
+                txtSearchProduct.Text = "";
             }
             catch (Exception ex)
             {

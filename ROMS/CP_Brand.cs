@@ -126,14 +126,18 @@ namespace ROMS
         {
             try
             {
-                //picLoader.Visible = true;
+                int varviewtype = 5;
+                if(btnSave.Text=="Update")
+                {
+                    varviewtype = 6;
+                }
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdGroup.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGroupList(0, 0);
+                objDs = objdserv.udfnGroupList(varviewtype,0, varId);
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[0].Rows.Count != 0)
@@ -262,8 +266,12 @@ namespace ROMS
         public void udfnSubGroupList()
         {
             try
-            {
-                //picLoader.Visible = true;
+           {
+                int varviewtype = 6;
+                if(btnSave.Text=="Update")
+                {
+                    varviewtype = 7;
+                }
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdSubGroup.DataSource = null;
@@ -272,7 +280,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 if (varGroup != "")
                 {
-                    objDs = objdserv.udfnSubGroupList(0, 0, varGroup,0);
+                    objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup,0,varId);
                 }
                 objdserv.CloseConnection();
                 if (chkgroup.Checked) { dtSubGroup.Rows.Clear(); dtSubGroup.AcceptChanges(); }

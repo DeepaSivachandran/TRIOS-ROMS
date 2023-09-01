@@ -85,7 +85,7 @@ namespace ROMS
                 DataSet objDT = new DataSet();
                 int varViewType = 2;
                 if (btnSave.Text == "Save") { varViewType = 1; }
-                objDT = objdserv.udfnGroupList(varViewType, varGroupId);
+                objDT = objdserv.udfnGroupList(varViewType, varGroupId,0);
                 objdserv.CloseConnection();
                 cmbGroupName.DataSource = null;
                 if (objDT != null) {
@@ -142,8 +142,8 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                int varViewType = 2;
-                if (btnSave.Text == "Save") { varViewType = 1; }
+                int varViewType = 3;
+                if (btnSave.Text == "Update") { varViewType = 4; }
                 objDT = objdserv.udfnRackList(varViewType, varGroupId,0,Convert.ToInt32(cmbStockLocation.SelectedValue),varRack);
                 objdserv.CloseConnection();
                 cmbRack.DataSource = null;
@@ -303,6 +303,7 @@ namespace ROMS
             finally
             {
                 btnSave.Visible = true;
+                btnSave.Focus();
             }
         }
         private void btnSave_Click(object sender, EventArgs e)

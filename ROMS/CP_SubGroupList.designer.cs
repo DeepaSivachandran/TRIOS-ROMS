@@ -178,6 +178,8 @@
             this.txtSearchProduct.Size = new System.Drawing.Size(296, 27);
             this.txtSearchProduct.TabIndex = 0;
             this.txtSearchProduct.TextChanged += new System.EventHandler(this.TxtSearchProduct_TextChanged);
+            this.txtSearchProduct.Enter += new System.EventHandler(this.TxtSearchProduct_Enter);
+            this.txtSearchProduct.Leave += new System.EventHandler(this.TxtSearchProduct_Leave);
             // 
             // lblNoOfPrSubGroup
             // 

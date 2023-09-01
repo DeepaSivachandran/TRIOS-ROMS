@@ -688,7 +688,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 11/08/2023    Description:	Group list Sp
-        public DataSet udfnGroupList(int ViewType, int paraPRGID)
+        public DataSet udfnGroupList(int ViewType, int paraPRGID,int paraID)
         {
             DataSet ds = new DataSet();
             try
@@ -698,6 +698,7 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRGID", paraPRGID);
+                varSqlCommand.Parameters.AddWithValue("@paraID", @paraID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -752,7 +753,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 14/08/2023    Description:Sub Group list Sp
-        public DataSet udfnSubGroupList(int ViewType, int paraPRSGID, string paraPRGIDs,int paraPRGID)
+        public DataSet udfnSubGroupList(int ViewType, int paraPRSGID, string paraPRGIDs,int paraPRGID,int paraID)
         {
             DataSet ds = new DataSet();
             try
@@ -763,6 +764,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
                 varSqlCommand.Parameters.AddWithValue("@paraPRGID", paraPRGID);
+                varSqlCommand.Parameters.AddWithValue("@paraID", paraID);
                 varSqlCommand.Parameters.AddWithValue("@paraPRGIDs", paraPRGIDs);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);

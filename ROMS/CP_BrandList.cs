@@ -29,7 +29,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 3;
-                objDT = objdserv.udfnGroupList(varViewType, 0);
+                objDT = objdserv.udfnGroupList(varViewType, 0,0);
                 objdserv.CloseConnection();
                 cmbProductgroup.DataSource = null;
                 if (objDT != null)
@@ -62,7 +62,7 @@ namespace ROMS
                 {
                     varViewType = 4;
                 }
-                objDT = objdserv.udfnSubGroupList(varViewType, 0,"", varGroupId);
+                objDT = objdserv.udfnSubGroupList(varViewType, 0,"", varGroupId,0);
                 objdserv.CloseConnection();
                 cmbProductSubGroup.DataSource = null;
                 if (objDT != null)
@@ -85,21 +85,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        //public void udfnCmbLoad()
-        //{
-        //    try
-        //    {
-        //        DataBind objDataBind = new DataBind();
-        //        objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID not in (-1) ORDER BY PRGID,PRG_EName", "PRG_EName,PRGID", cmbProductgroup, "", "PRG_EName", "PRGID");
-        //        objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID not in (-1) ORDER BY PRSGID,PRSG_EName", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
-        //        objDataBind = null;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        objError = new DataError();
-        //        objError.WriteFile(ex);
-        //    }
-        //}
         private void tsbNew_Click(object sender, EventArgs e)
         {
             try

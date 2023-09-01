@@ -72,7 +72,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGroupList(0, Convert.ToInt32(cmbProductGroup.SelectedValue));
+                objDs = objdserv.udfnGroupList(0, Convert.ToInt32(cmbProductGroup.SelectedValue),0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -422,7 +422,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 3;
-                objDT = objdserv.udfnGroupList(varViewType, 0);
+                objDT = objdserv.udfnGroupList(varViewType, 0,0);
                 objdserv.CloseConnection();
                 cmbProductGroup.DataSource = null;
                 if (objDT != null)
@@ -459,6 +459,7 @@ namespace ROMS
             finally
             {
                 btnView.Enabled= true;
+                btnView.Focus();
             }
         }
         private void BtnExport_KeyDown(object sender, KeyEventArgs e)
@@ -477,7 +478,7 @@ namespace ROMS
         {
             try
             {
-                btnExport.Enabled=true;
+                btnExport.Enabled=false;
                 if ((grdGroupList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -561,6 +562,7 @@ namespace ROMS
             finally
             {
                 btnExport.Enabled=true;
+                btnExport.Focus();
             }
         }
 
@@ -584,6 +586,33 @@ namespace ROMS
             try
             {
                 (grdGroupList.DataSource as DataTable).DefaultView.RowFilter = "([Product Group Name in English]) LIKE '%" + txtSearchProduct.Text + "%'";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchProduct_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchProduct.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchProduct_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchProduct.BackColor = Color.White;
+                txtSearchProduct.Text = "";
             }
             catch (Exception ex)
             {
