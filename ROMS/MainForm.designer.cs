@@ -65,10 +65,6 @@ namespace ROMS
             this.tsDLogo = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTimeValue = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTime = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmControlPanel = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.mastersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCity = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCompany = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,10 +83,14 @@ namespace ROMS
             this.tsmBroker = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBulkUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRepresentative = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmControlPanel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProMapping = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBatchNoConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmVoucherSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGeneralSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -399,51 +399,6 @@ namespace ROMS
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblTime.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // tsmControlPanel
-            // 
-            this.tsmControlPanel.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmProMapping,
-            this.tsmBatchNoConfig,
-            this.tsmVoucherSettings,
-            this.tsmGeneralSettings});
-            this.tsmControlPanel.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmControlPanel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmControlPanel.Name = "tsmControlPanel";
-            this.tsmControlPanel.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.C)));
-            this.tsmControlPanel.ShowShortcutKeys = false;
-            this.tsmControlPanel.Size = new System.Drawing.Size(85, 21);
-            this.tsmControlPanel.Text = "&Control Panel";
-            this.tsmControlPanel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // tsmMyProfile
-            // 
-            this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmProfile,
-            this.tsmLogout});
-            this.tsmMyProfile.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmMyProfile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmMyProfile.Name = "tsmMyProfile";
-            this.tsmMyProfile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
-            this.tsmMyProfile.ShowShortcutKeys = false;
-            this.tsmMyProfile.Size = new System.Drawing.Size(68, 21);
-            this.tsmMyProfile.Text = "&My Profile";
-            this.tsmMyProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsmMyProfile.Click += new System.EventHandler(this.tsbLogout_Click);
-            // 
-            // tsmProfile
-            // 
-            this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
-            this.tsmProfile.Text = "Profile";
-            this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
-            // 
-            // tsmLogout
-            // 
-            this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
-            this.tsmLogout.Text = "Logout";
-            this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
-            // 
             // mastersToolStripMenuItem
             // 
             this.mastersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -589,11 +544,29 @@ namespace ROMS
             this.tsmRepresentative.Text = "Representative";
             this.tsmRepresentative.Click += new System.EventHandler(this.TsmRepresentative_Click);
             // 
+            // tsmControlPanel
+            // 
+            this.tsmControlPanel.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmProMapping,
+            this.tsmBatchNoConfig,
+            this.tsmVoucherSettings,
+            this.tsmGeneralSettings});
+            this.tsmControlPanel.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmControlPanel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmControlPanel.Name = "tsmControlPanel";
+            this.tsmControlPanel.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.C)));
+            this.tsmControlPanel.ShowShortcutKeys = false;
+            this.tsmControlPanel.Size = new System.Drawing.Size(85, 21);
+            this.tsmControlPanel.Text = "&Control Panel";
+            this.tsmControlPanel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
             // tsmProMapping
             // 
             this.tsmProMapping.Name = "tsmProMapping";
             this.tsmProMapping.Size = new System.Drawing.Size(207, 22);
             this.tsmProMapping.Text = "Supplier - Product Mapping";
+            this.tsmProMapping.Visible = false;
+            this.tsmProMapping.Click += new System.EventHandler(this.TsmsupplierMapping_Click);
             // 
             // tsmBatchNoConfig
             // 
@@ -607,6 +580,7 @@ namespace ROMS
             this.tsmVoucherSettings.Name = "tsmVoucherSettings";
             this.tsmVoucherSettings.Size = new System.Drawing.Size(207, 22);
             this.tsmVoucherSettings.Text = "Voucher Settings";
+            this.tsmVoucherSettings.Click += new System.EventHandler(this.TsmgeneralSettings_Click);
             // 
             // tsmGeneralSettings
             // 
@@ -614,6 +588,35 @@ namespace ROMS
             this.tsmGeneralSettings.Size = new System.Drawing.Size(207, 22);
             this.tsmGeneralSettings.Text = "General Settings";
             this.tsmGeneralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
+            // 
+            // tsmMyProfile
+            // 
+            this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmProfile,
+            this.tsmLogout});
+            this.tsmMyProfile.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmMyProfile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmMyProfile.Name = "tsmMyProfile";
+            this.tsmMyProfile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
+            this.tsmMyProfile.ShowShortcutKeys = false;
+            this.tsmMyProfile.Size = new System.Drawing.Size(68, 21);
+            this.tsmMyProfile.Text = "&My Profile";
+            this.tsmMyProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsmMyProfile.Click += new System.EventHandler(this.tsbLogout_Click);
+            // 
+            // tsmProfile
+            // 
+            this.tsmProfile.Name = "tsmProfile";
+            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
+            this.tsmProfile.Text = "Profile";
+            this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
+            // 
+            // tsmLogout
+            // 
+            this.tsmLogout.Name = "tsmLogout";
+            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
+            this.tsmLogout.Text = "Logout";
+            this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
             // MainForm
             // 

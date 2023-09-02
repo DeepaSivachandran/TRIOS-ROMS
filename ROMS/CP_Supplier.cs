@@ -427,11 +427,23 @@ namespace ROMS
                     row.CreateCells(grddays);
                     row.Cells[1].Value = day;
                     grddays.Rows.Add(row);
+                }
 
-                    //item[0] = "";
-                    //item[1] = dataTable.Rows[i]["Day"].ToString();
-                    //listitem = new ListViewItem(item);
-                    //grddays.Rows.Add(item[0],item[1]);
+                string[] item2 = new string[30];
+                ListViewItem listitem2 = new ListViewItem(); DataTable dataTable2 = new DataTable();
+                dataTable2.Columns.Add("Type", typeof(string));
+                dataTable2.Rows.Add("Cash");
+                dataTable2.Rows.Add("Cheque");
+                dataTable2.Rows.Add("RTGS");
+                dataTable2.Rows.Add("NEFT");
+
+                for (int i = 0; i < dataTable2.Rows.Count; i++)
+                {
+                    string Type = dataTable2.Rows[i]["Type"].ToString();
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(grdPaymentMode);
+                    row.Cells[1].Value = Type;
+                    grdPaymentMode.Rows.Add(row);
                 }
                 // Assign the DataTable as the data source for the DataGridView 
             }

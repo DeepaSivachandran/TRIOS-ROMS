@@ -124,6 +124,11 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.pbYes = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtRPICode = new System.Windows.Forms.Label();
+            this.txtREnglishName = new System.Windows.Forms.Label();
+            this.txtRTamilName = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -134,6 +139,8 @@
             this.grbSalesStockLocation.SuspendLayout();
             this.grpHsndetail.SuspendLayout();
             this.grbBatchNoDetails.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbYes)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDPICode
@@ -155,7 +162,7 @@
             this.txtPICode.Location = new System.Drawing.Point(160, 44);
             this.txtPICode.MaxLength = 100;
             this.txtPICode.Name = "txtPICode";
-            this.txtPICode.Size = new System.Drawing.Size(363, 27);
+            this.txtPICode.Size = new System.Drawing.Size(337, 27);
             this.txtPICode.TabIndex = 2;
             this.txtPICode.Enter += new System.EventHandler(this.TxtPICode_Enter);
             this.txtPICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPICode_KeyDown);
@@ -253,6 +260,7 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.pbYes);
             this.grbform.Controls.Add(this.textBox6);
             this.grbform.Controls.Add(this.label3);
             this.grbform.Controls.Add(this.label2);
@@ -609,7 +617,7 @@
             this.groupBox1.Controls.Add(this.txtWeight);
             this.groupBox1.Controls.Add(this.txtDNettWeight);
             this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(567, 107);
+            this.groupBox1.Location = new System.Drawing.Point(567, 96);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(279, 166);
             this.groupBox1.TabIndex = 22;
@@ -924,9 +932,9 @@
             this.groupBox2.Controls.Add(this.txtRMinSaleQty);
             this.groupBox2.Controls.Add(this.txtDRMinSaleQty);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(567, 274);
+            this.groupBox2.Location = new System.Drawing.Point(567, 263);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(279, 163);
+            this.groupBox2.Size = new System.Drawing.Size(279, 166);
             this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
@@ -1018,7 +1026,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDStatus.Location = new System.Drawing.Point(578, 548);
+            this.txtDStatus.Location = new System.Drawing.Point(578, 553);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(111, 27);
@@ -1032,7 +1040,7 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
             this.pnlStatus.Enabled = false;
-            this.pnlStatus.Location = new System.Drawing.Point(689, 548);
+            this.pnlStatus.Location = new System.Drawing.Point(689, 553);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(153, 27);
             this.pnlStatus.TabIndex = 35;
@@ -1261,9 +1269,9 @@
             this.grpHsndetail.Controls.Add(this.txtDHSNNumber);
             this.grpHsndetail.Controls.Add(this.txtDGST);
             this.grpHsndetail.Controls.Add(this.txtGST);
-            this.grpHsndetail.Location = new System.Drawing.Point(568, 434);
+            this.grpHsndetail.Location = new System.Drawing.Point(568, 430);
             this.grpHsndetail.Name = "grpHsndetail";
-            this.grpHsndetail.Size = new System.Drawing.Size(279, 103);
+            this.grpHsndetail.Size = new System.Drawing.Size(279, 108);
             this.grpHsndetail.TabIndex = 33;
             this.grpHsndetail.TabStop = false;
             // 
@@ -1399,11 +1407,65 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.txtRTamilName);
+            this.groupBox3.Controls.Add(this.txtREnglishName);
+            this.groupBox3.Controls.Add(this.txtRPICode);
+            this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Location = new System.Drawing.Point(567, -6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(278, 116);
+            this.groupBox3.Size = new System.Drawing.Size(278, 100);
             this.groupBox3.TabIndex = 94;
             this.groupBox3.TabStop = false;
+            // 
+            // pbYes
+            // 
+            this.pbYes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.pbYes.Image = global::ROMS.Properties.Resources.approve;
+            this.pbYes.Location = new System.Drawing.Point(499, 45);
+            this.pbYes.Name = "pbYes";
+            this.pbYes.Size = new System.Drawing.Size(24, 25);
+            this.pbYes.TabIndex = 1111136;
+            this.pbYes.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 20);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "P.I Code :";
+            // 
+            // txtRPICode
+            // 
+            this.txtRPICode.AutoSize = true;
+            this.txtRPICode.ForeColor = System.Drawing.Color.Red;
+            this.txtRPICode.Location = new System.Drawing.Point(71, 21);
+            this.txtRPICode.Name = "txtRPICode";
+            this.txtRPICode.Size = new System.Drawing.Size(62, 20);
+            this.txtRPICode.TabIndex = 3;
+            this.txtRPICode.Text = "DSMS500";
+            // 
+            // txtREnglishName
+            // 
+            this.txtREnglishName.AutoSize = true;
+            this.txtREnglishName.ForeColor = System.Drawing.Color.Red;
+            this.txtREnglishName.Location = new System.Drawing.Point(7, 47);
+            this.txtREnglishName.Name = "txtREnglishName";
+            this.txtREnglishName.Size = new System.Drawing.Size(251, 20);
+            this.txtREnglishName.TabIndex = 5;
+            this.txtREnglishName.Text = "500g Mapilaisampa Arisi (MapilaiSampa Rice)";
+            // 
+            // txtRTamilName
+            // 
+            this.txtRTamilName.AutoSize = true;
+            this.txtRTamilName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRTamilName.ForeColor = System.Drawing.Color.Red;
+            this.txtRTamilName.Location = new System.Drawing.Point(7, 74);
+            this.txtRTamilName.Name = "txtRTamilName";
+            this.txtRTamilName.Size = new System.Drawing.Size(252, 20);
+            this.txtRTamilName.TabIndex = 7;
+            this.txtRTamilName.Text = "500கி மாப்பிள்ளை சம்பா அரிசி ";
             // 
             // CP_Product
             // 
@@ -1454,6 +1516,9 @@
             this.grpHsndetail.PerformLayout();
             this.grbBatchNoDetails.ResumeLayout(false);
             this.grbBatchNoDetails.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbYes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1555,5 +1620,10 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.PictureBox pbYes;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label txtRPICode;
+        private System.Windows.Forms.Label txtRTamilName;
+        private System.Windows.Forms.Label txtREnglishName;
     }
 }
