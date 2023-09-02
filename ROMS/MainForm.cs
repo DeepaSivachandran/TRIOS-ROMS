@@ -142,6 +142,7 @@ namespace ROMS
         public static PUR_PODamagedView objPUR_PODamagedView;
         public static PUR_PurchaseQueue objPUR_PurchaseQueue;
         public static PUR_GRNApprovalVerify objPUR_GRNApprovalVerify;
+        public static PUR_Calculator objPUR_Calculator;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;

@@ -129,6 +129,12 @@
     <Compile Include="PUR_GRNApprovalVerify.designer.cs">
       <DependentUpon>PUR_GRNApprovalVerify.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_Calculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_Calculator.designer.cs">
+      <DependentUpon>PUR_Calculator.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_PurchaseQueue.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -790,6 +796,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNApprovalVerify.resx">
       <DependentUpon>PUR_GRNApprovalVerify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_Calculator.resx">
+      <DependentUpon>PUR_Calculator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseQueue.resx">
       <DependentUpon>PUR_PurchaseQueue.cs</DependentUpon>
