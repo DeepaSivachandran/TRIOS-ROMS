@@ -236,7 +236,7 @@
             this.grpSalesManDetails.Size = new System.Drawing.Size(241, 180);
             this.grpSalesManDetails.TabIndex = 1111183;
             this.grpSalesManDetails.TabStop = false;
-            this.grpSalesManDetails.Text = "Sales Man Details";
+            this.grpSalesManDetails.Text = "Salesman Details";
             // 
             // grpSupplierDetails
             // 

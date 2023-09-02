@@ -67,8 +67,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.txtrupee = new System.Windows.Forms.TextBox();
-            this.txtMaxOrderQty = new System.Windows.Forms.TextBox();
-            this.txtDMaxOrderQty = new System.Windows.Forms.TextBox();
             this.txtGrossWeight = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.txtReOrderQty = new System.Windows.Forms.TextBox();
@@ -79,6 +77,8 @@
             this.txtDMaxStock = new System.Windows.Forms.TextBox();
             this.txtWeight = new System.Windows.Forms.TextBox();
             this.txtDNettWeight = new System.Windows.Forms.TextBox();
+            this.txtMaxOrderQty = new System.Windows.Forms.TextBox();
+            this.txtDMaxOrderQty = new System.Windows.Forms.TextBox();
             this.txtRMinSaleQty = new System.Windows.Forms.TextBox();
             this.txtDRMinSaleQty = new System.Windows.Forms.TextBox();
             this.cbExpiry = new System.Windows.Forms.CheckBox();
@@ -102,9 +102,13 @@
             this.cmbPeriod = new System.Windows.Forms.ComboBox();
             this.cbRMFromProduction = new System.Windows.Forms.CheckBox();
             this.grplocation = new System.Windows.Forms.GroupBox();
+            this.txtPurRackDescription = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
             this.cmbPosition = new System.Windows.Forms.ComboBox();
             this.txtDPurchaseLocation = new System.Windows.Forms.TextBox();
             this.grbSalesStockLocation = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             this.cmbSalesGodown = new System.Windows.Forms.ComboBox();
             this.txtDSalesGodown = new System.Windows.Forms.TextBox();
             this.txtDSalesShop = new System.Windows.Forms.TextBox();
@@ -119,6 +123,7 @@
             this.txtDBatchNoEntry = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -136,7 +141,7 @@
             this.txtDPICode.BackColor = System.Drawing.SystemColors.Control;
             this.txtDPICode.Enabled = false;
             this.txtDPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPICode.Location = new System.Drawing.Point(21, 50);
+            this.txtDPICode.Location = new System.Drawing.Point(21, 44);
             this.txtDPICode.Name = "txtDPICode";
             this.txtDPICode.ReadOnly = true;
             this.txtDPICode.Size = new System.Drawing.Size(139, 27);
@@ -147,7 +152,7 @@
             // txtPICode
             // 
             this.txtPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPICode.Location = new System.Drawing.Point(160, 50);
+            this.txtPICode.Location = new System.Drawing.Point(160, 44);
             this.txtPICode.MaxLength = 100;
             this.txtPICode.Name = "txtPICode";
             this.txtPICode.Size = new System.Drawing.Size(363, 27);
@@ -162,7 +167,7 @@
             this.txtDName.BackColor = System.Drawing.SystemColors.Control;
             this.txtDName.Enabled = false;
             this.txtDName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDName.Location = new System.Drawing.Point(21, 77);
+            this.txtDName.Location = new System.Drawing.Point(21, 71);
             this.txtDName.Name = "txtDName";
             this.txtDName.ReadOnly = true;
             this.txtDName.Size = new System.Drawing.Size(139, 27);
@@ -173,7 +178,7 @@
             // txtItemNameEnglish
             // 
             this.txtItemNameEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtItemNameEnglish.Location = new System.Drawing.Point(160, 77);
+            this.txtItemNameEnglish.Location = new System.Drawing.Point(160, 71);
             this.txtItemNameEnglish.MaxLength = 100;
             this.txtItemNameEnglish.Name = "txtItemNameEnglish";
             this.txtItemNameEnglish.Size = new System.Drawing.Size(363, 27);
@@ -187,7 +192,7 @@
             this.txtDTamilName.BackColor = System.Drawing.SystemColors.Control;
             this.txtDTamilName.Enabled = false;
             this.txtDTamilName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDTamilName.Location = new System.Drawing.Point(21, 104);
+            this.txtDTamilName.Location = new System.Drawing.Point(21, 98);
             this.txtDTamilName.Name = "txtDTamilName";
             this.txtDTamilName.ReadOnly = true;
             this.txtDTamilName.Size = new System.Drawing.Size(139, 27);
@@ -198,7 +203,7 @@
             // txtItemNameTamil
             // 
             this.txtItemNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtItemNameTamil.Location = new System.Drawing.Point(160, 104);
+            this.txtItemNameTamil.Location = new System.Drawing.Point(160, 98);
             this.txtItemNameTamil.MaxLength = 100;
             this.txtItemNameTamil.Name = "txtItemNameTamil";
             this.txtItemNameTamil.Size = new System.Drawing.Size(363, 27);
@@ -225,7 +230,7 @@
             this.txtDSubGroup.BackColor = System.Drawing.SystemColors.Control;
             this.txtDSubGroup.Enabled = false;
             this.txtDSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDSubGroup.Location = new System.Drawing.Point(21, 158);
+            this.txtDSubGroup.Location = new System.Drawing.Point(21, 152);
             this.txtDSubGroup.Name = "txtDSubGroup";
             this.txtDSubGroup.ReadOnly = true;
             this.txtDSubGroup.Size = new System.Drawing.Size(139, 27);
@@ -238,7 +243,7 @@
             this.txtDUnit.BackColor = System.Drawing.SystemColors.Control;
             this.txtDUnit.Enabled = false;
             this.txtDUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDUnit.Location = new System.Drawing.Point(21, 239);
+            this.txtDUnit.Location = new System.Drawing.Point(21, 233);
             this.txtDUnit.Name = "txtDUnit";
             this.txtDUnit.ReadOnly = true;
             this.txtDUnit.Size = new System.Drawing.Size(139, 27);
@@ -278,7 +283,7 @@
             this.grbform.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbform.Location = new System.Drawing.Point(12, -6);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(543, 278);
+            this.grbform.Size = new System.Drawing.Size(543, 268);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
@@ -287,7 +292,7 @@
             this.textBox6.BackColor = System.Drawing.SystemColors.Control;
             this.textBox6.Enabled = false;
             this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox6.Location = new System.Drawing.Point(497, 239);
+            this.textBox6.Location = new System.Drawing.Point(497, 233);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(26, 27);
@@ -298,7 +303,7 @@
             // 
             this.label3.Image = global::ROMS.Properties.Resources.New;
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(251, 242);
+            this.label3.Location = new System.Drawing.Point(251, 236);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(21, 22);
@@ -309,7 +314,7 @@
             // 
             this.label2.Image = global::ROMS.Properties.Resources.New;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(502, 214);
+            this.label2.Location = new System.Drawing.Point(502, 208);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(21, 22);
@@ -320,7 +325,7 @@
             // 
             this.label1.Image = global::ROMS.Properties.Resources.New;
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(502, 187);
+            this.label1.Location = new System.Drawing.Point(502, 181);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(21, 22);
@@ -331,7 +336,7 @@
             // 
             this.btnAdd.Image = global::ROMS.Properties.Resources.New;
             this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(502, 160);
+            this.btnAdd.Location = new System.Drawing.Point(502, 154);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(21, 22);
@@ -341,7 +346,7 @@
             // txtUpp
             // 
             this.txtUpp.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtUpp.Location = new System.Drawing.Point(455, 239);
+            this.txtUpp.Location = new System.Drawing.Point(455, 233);
             this.txtUpp.MaxLength = 100;
             this.txtUpp.Name = "txtUpp";
             this.txtUpp.Size = new System.Drawing.Size(42, 27);
@@ -355,7 +360,7 @@
             this.txtDUPP.BackColor = System.Drawing.SystemColors.Control;
             this.txtDUPP.Enabled = false;
             this.txtDUPP.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDUPP.Location = new System.Drawing.Point(418, 239);
+            this.txtDUPP.Location = new System.Drawing.Point(418, 233);
             this.txtDUPP.Name = "txtDUPP";
             this.txtDUPP.ReadOnly = true;
             this.txtDUPP.Size = new System.Drawing.Size(37, 27);
@@ -367,7 +372,7 @@
             // 
             this.cmbBulkUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBulkUnit.FormattingEnabled = true;
-            this.cmbBulkUnit.Location = new System.Drawing.Point(330, 239);
+            this.cmbBulkUnit.Location = new System.Drawing.Point(330, 233);
             this.cmbBulkUnit.Name = "cmbBulkUnit";
             this.cmbBulkUnit.Size = new System.Drawing.Size(88, 27);
             this.cmbBulkUnit.TabIndex = 11;
@@ -382,7 +387,7 @@
             this.txtDBulkUnit.BackColor = System.Drawing.SystemColors.Control;
             this.txtDBulkUnit.Enabled = false;
             this.txtDBulkUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDBulkUnit.Location = new System.Drawing.Point(275, 239);
+            this.txtDBulkUnit.Location = new System.Drawing.Point(275, 233);
             this.txtDBulkUnit.Name = "txtDBulkUnit";
             this.txtDBulkUnit.ReadOnly = true;
             this.txtDBulkUnit.Size = new System.Drawing.Size(55, 27);
@@ -399,7 +404,7 @@
             "Conversion",
             "Free",
             "Production"});
-            this.cmbProductCategory.Location = new System.Drawing.Point(160, 131);
+            this.cmbProductCategory.Location = new System.Drawing.Point(160, 125);
             this.cmbProductCategory.Name = "cmbProductCategory";
             this.cmbProductCategory.Size = new System.Drawing.Size(363, 27);
             this.cmbProductCategory.TabIndex = 6;
@@ -414,7 +419,7 @@
             this.txtDProductCategory.BackColor = System.Drawing.SystemColors.Control;
             this.txtDProductCategory.Enabled = false;
             this.txtDProductCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDProductCategory.Location = new System.Drawing.Point(21, 131);
+            this.txtDProductCategory.Location = new System.Drawing.Point(21, 125);
             this.txtDProductCategory.Name = "txtDProductCategory";
             this.txtDProductCategory.ReadOnly = true;
             this.txtDProductCategory.Size = new System.Drawing.Size(139, 27);
@@ -426,7 +431,7 @@
             // 
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(160, 24);
+            this.cmbConcern.Location = new System.Drawing.Point(160, 18);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(363, 27);
             this.cmbConcern.TabIndex = 1;
@@ -441,7 +446,7 @@
             this.txtdcompany.BackColor = System.Drawing.SystemColors.Control;
             this.txtdcompany.Enabled = false;
             this.txtdcompany.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtdcompany.Location = new System.Drawing.Point(21, 24);
+            this.txtdcompany.Location = new System.Drawing.Point(21, 18);
             this.txtdcompany.Name = "txtdcompany";
             this.txtdcompany.ReadOnly = true;
             this.txtdcompany.Size = new System.Drawing.Size(139, 27);
@@ -453,7 +458,7 @@
             // 
             this.cmbUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUnit.FormattingEnabled = true;
-            this.cmbUnit.Location = new System.Drawing.Point(160, 239);
+            this.cmbUnit.Location = new System.Drawing.Point(160, 233);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(88, 27);
             this.cmbUnit.TabIndex = 10;
@@ -467,7 +472,7 @@
             // 
             this.cmbBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBrand.FormattingEnabled = true;
-            this.cmbBrand.Location = new System.Drawing.Point(160, 212);
+            this.cmbBrand.Location = new System.Drawing.Point(160, 206);
             this.cmbBrand.Name = "cmbBrand";
             this.cmbBrand.Size = new System.Drawing.Size(337, 27);
             this.cmbBrand.TabIndex = 9;
@@ -481,7 +486,7 @@
             // 
             this.cmbSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSubGroup.FormattingEnabled = true;
-            this.cmbSubGroup.Location = new System.Drawing.Point(160, 158);
+            this.cmbSubGroup.Location = new System.Drawing.Point(160, 152);
             this.cmbSubGroup.Name = "cmbSubGroup";
             this.cmbSubGroup.Size = new System.Drawing.Size(337, 27);
             this.cmbSubGroup.TabIndex = 7;
@@ -496,7 +501,7 @@
             this.txtDBrand.BackColor = System.Drawing.SystemColors.Control;
             this.txtDBrand.Enabled = false;
             this.txtDBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDBrand.Location = new System.Drawing.Point(21, 212);
+            this.txtDBrand.Location = new System.Drawing.Point(21, 206);
             this.txtDBrand.Name = "txtDBrand";
             this.txtDBrand.ReadOnly = true;
             this.txtDBrand.Size = new System.Drawing.Size(139, 27);
@@ -508,7 +513,7 @@
             // 
             this.cmbGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGroup.FormattingEnabled = true;
-            this.cmbGroup.Location = new System.Drawing.Point(160, 185);
+            this.cmbGroup.Location = new System.Drawing.Point(160, 179);
             this.cmbGroup.Name = "cmbGroup";
             this.cmbGroup.Size = new System.Drawing.Size(337, 27);
             this.cmbGroup.TabIndex = 8;
@@ -523,7 +528,7 @@
             this.txtDGroup.BackColor = System.Drawing.SystemColors.Control;
             this.txtDGroup.Enabled = false;
             this.txtDGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDGroup.Location = new System.Drawing.Point(21, 185);
+            this.txtDGroup.Location = new System.Drawing.Point(21, 179);
             this.txtDGroup.Name = "txtDGroup";
             this.txtDGroup.ReadOnly = true;
             this.txtDGroup.Size = new System.Drawing.Size(139, 27);
@@ -562,9 +567,9 @@
             // 
             this.cmbPurchaseRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPurchaseRack.FormattingEnabled = true;
-            this.cmbPurchaseRack.Location = new System.Drawing.Point(135, 59);
+            this.cmbPurchaseRack.Location = new System.Drawing.Point(160, 52);
             this.cmbPurchaseRack.Name = "cmbPurchaseRack";
-            this.cmbPurchaseRack.Size = new System.Drawing.Size(127, 27);
+            this.cmbPurchaseRack.Size = new System.Drawing.Size(363, 27);
             this.cmbPurchaseRack.TabIndex = 14;
             this.cmbPurchaseRack.SelectedIndexChanged += new System.EventHandler(this.CmbPurchaseRack_SelectedIndexChanged);
             this.cmbPurchaseRack.Enter += new System.EventHandler(this.CmbPurchaseRack_Enter);
@@ -577,10 +582,10 @@
             this.txtDShop.BackColor = System.Drawing.SystemColors.Control;
             this.txtDShop.Enabled = false;
             this.txtDShop.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDShop.Location = new System.Drawing.Point(4, 59);
+            this.txtDShop.Location = new System.Drawing.Point(21, 52);
             this.txtDShop.Name = "txtDShop";
             this.txtDShop.ReadOnly = true;
-            this.txtDShop.Size = new System.Drawing.Size(131, 27);
+            this.txtDShop.Size = new System.Drawing.Size(139, 27);
             this.txtDShop.TabIndex = 24;
             this.txtDShop.TabStop = false;
             this.txtDShop.Text = "Rack";
@@ -604,7 +609,7 @@
             this.groupBox1.Controls.Add(this.txtWeight);
             this.groupBox1.Controls.Add(this.txtDNettWeight);
             this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(567, -6);
+            this.groupBox1.Location = new System.Drawing.Point(567, 107);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(279, 166);
             this.groupBox1.TabIndex = 22;
@@ -633,31 +638,6 @@
             this.txtrupee.Size = new System.Drawing.Size(21, 27);
             this.txtrupee.TabIndex = 114;
             this.txtrupee.Text = "Kg";
-            // 
-            // txtMaxOrderQty
-            // 
-            this.txtMaxOrderQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMaxOrderQty.Location = new System.Drawing.Point(135, 86);
-            this.txtMaxOrderQty.MaxLength = 50;
-            this.txtMaxOrderQty.Name = "txtMaxOrderQty";
-            this.txtMaxOrderQty.Size = new System.Drawing.Size(127, 27);
-            this.txtMaxOrderQty.TabIndex = 27;
-            this.txtMaxOrderQty.Enter += new System.EventHandler(this.TxtMaxOrderQty_Enter);
-            this.txtMaxOrderQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxOrderQty_KeyDown);
-            this.txtMaxOrderQty.Leave += new System.EventHandler(this.TxtMaxOrderQty_Leave);
-            // 
-            // txtDMaxOrderQty
-            // 
-            this.txtDMaxOrderQty.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDMaxOrderQty.Enabled = false;
-            this.txtDMaxOrderQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDMaxOrderQty.Location = new System.Drawing.Point(5, 86);
-            this.txtDMaxOrderQty.Name = "txtDMaxOrderQty";
-            this.txtDMaxOrderQty.ReadOnly = true;
-            this.txtDMaxOrderQty.Size = new System.Drawing.Size(130, 27);
-            this.txtDMaxOrderQty.TabIndex = 90;
-            this.txtDMaxOrderQty.TabStop = false;
-            this.txtDMaxOrderQty.Text = "Rack MOQ";
             // 
             // txtGrossWeight
             // 
@@ -787,6 +767,31 @@
             this.txtDNettWeight.TabIndex = 18;
             this.txtDNettWeight.TabStop = false;
             this.txtDNettWeight.Text = "Net Weight";
+            // 
+            // txtMaxOrderQty
+            // 
+            this.txtMaxOrderQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtMaxOrderQty.Location = new System.Drawing.Point(160, 86);
+            this.txtMaxOrderQty.MaxLength = 50;
+            this.txtMaxOrderQty.Name = "txtMaxOrderQty";
+            this.txtMaxOrderQty.Size = new System.Drawing.Size(363, 27);
+            this.txtMaxOrderQty.TabIndex = 27;
+            this.txtMaxOrderQty.Enter += new System.EventHandler(this.TxtMaxOrderQty_Enter);
+            this.txtMaxOrderQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxOrderQty_KeyDown);
+            this.txtMaxOrderQty.Leave += new System.EventHandler(this.TxtMaxOrderQty_Leave);
+            // 
+            // txtDMaxOrderQty
+            // 
+            this.txtDMaxOrderQty.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDMaxOrderQty.Enabled = false;
+            this.txtDMaxOrderQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDMaxOrderQty.Location = new System.Drawing.Point(21, 86);
+            this.txtDMaxOrderQty.Name = "txtDMaxOrderQty";
+            this.txtDMaxOrderQty.ReadOnly = true;
+            this.txtDMaxOrderQty.Size = new System.Drawing.Size(139, 27);
+            this.txtDMaxOrderQty.TabIndex = 90;
+            this.txtDMaxOrderQty.TabStop = false;
+            this.txtDMaxOrderQty.Text = "Rack MOQ";
             // 
             // txtRMinSaleQty
             // 
@@ -919,7 +924,7 @@
             this.groupBox2.Controls.Add(this.txtRMinSaleQty);
             this.groupBox2.Controls.Add(this.txtDRMinSaleQty);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(567, 161);
+            this.groupBox2.Location = new System.Drawing.Point(567, 274);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(279, 163);
             this.groupBox2.TabIndex = 28;
@@ -1013,7 +1018,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDStatus.Location = new System.Drawing.Point(578, 429);
+            this.txtDStatus.Location = new System.Drawing.Point(578, 548);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(111, 27);
@@ -1027,7 +1032,7 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
             this.pnlStatus.Enabled = false;
-            this.pnlStatus.Location = new System.Drawing.Point(689, 429);
+            this.pnlStatus.Location = new System.Drawing.Point(689, 548);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(153, 27);
             this.pnlStatus.TabIndex = 35;
@@ -1039,7 +1044,7 @@
             this.grpExpire.Controls.Add(this.cmbPeriod);
             this.grpExpire.Controls.Add(this.cbExpiry);
             this.grpExpire.Controls.Add(this.cbRMFromProduction);
-            this.grpExpire.Location = new System.Drawing.Point(289, 400);
+            this.grpExpire.Location = new System.Drawing.Point(290, 539);
             this.grpExpire.Name = "grpExpire";
             this.grpExpire.Size = new System.Drawing.Size(266, 90);
             this.grpExpire.TabIndex = 19;
@@ -1088,24 +1093,50 @@
             // 
             // grplocation
             // 
+            this.grplocation.Controls.Add(this.txtPurRackDescription);
+            this.grplocation.Controls.Add(this.textBox7);
             this.grplocation.Controls.Add(this.cmbPosition);
             this.grplocation.Controls.Add(this.txtDPurchaseLocation);
             this.grplocation.Controls.Add(this.txtDShop);
             this.grplocation.Controls.Add(this.cmbPurchaseRack);
-            this.grplocation.Location = new System.Drawing.Point(12, 276);
+            this.grplocation.Location = new System.Drawing.Point(12, 263);
             this.grplocation.Name = "grplocation";
-            this.grplocation.Size = new System.Drawing.Size(266, 121);
+            this.grplocation.Size = new System.Drawing.Size(543, 119);
             this.grplocation.TabIndex = 13;
             this.grplocation.TabStop = false;
             this.grplocation.Text = "Default Stock Location For Purchase";
+            // 
+            // txtPurRackDescription
+            // 
+            this.txtPurRackDescription.Enabled = false;
+            this.txtPurRackDescription.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtPurRackDescription.Location = new System.Drawing.Point(160, 79);
+            this.txtPurRackDescription.MaxLength = 50;
+            this.txtPurRackDescription.Name = "txtPurRackDescription";
+            this.txtPurRackDescription.ReadOnly = true;
+            this.txtPurRackDescription.Size = new System.Drawing.Size(363, 27);
+            this.txtPurRackDescription.TabIndex = 35;
+            // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox7.Enabled = false;
+            this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox7.Location = new System.Drawing.Point(21, 79);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(139, 27);
+            this.textBox7.TabIndex = 34;
+            this.textBox7.TabStop = false;
+            this.textBox7.Text = "Rack Description";
             // 
             // cmbPosition
             // 
             this.cmbPosition.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPosition.FormattingEnabled = true;
-            this.cmbPosition.Location = new System.Drawing.Point(135, 32);
+            this.cmbPosition.Location = new System.Drawing.Point(160, 25);
             this.cmbPosition.Name = "cmbPosition";
-            this.cmbPosition.Size = new System.Drawing.Size(127, 27);
+            this.cmbPosition.Size = new System.Drawing.Size(363, 27);
             this.cmbPosition.TabIndex = 13;
             this.cmbPosition.SelectedIndexChanged += new System.EventHandler(this.CmbPosition_SelectedIndexChanged);
             this.cmbPosition.Enter += new System.EventHandler(this.CmbPosition_Enter);
@@ -1118,36 +1149,62 @@
             this.txtDPurchaseLocation.BackColor = System.Drawing.SystemColors.Control;
             this.txtDPurchaseLocation.Enabled = false;
             this.txtDPurchaseLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPurchaseLocation.Location = new System.Drawing.Point(4, 32);
+            this.txtDPurchaseLocation.Location = new System.Drawing.Point(21, 25);
             this.txtDPurchaseLocation.Name = "txtDPurchaseLocation";
             this.txtDPurchaseLocation.ReadOnly = true;
-            this.txtDPurchaseLocation.Size = new System.Drawing.Size(131, 27);
+            this.txtDPurchaseLocation.Size = new System.Drawing.Size(139, 27);
             this.txtDPurchaseLocation.TabIndex = 12;
             this.txtDPurchaseLocation.TabStop = false;
             this.txtDPurchaseLocation.Text = "Stock Location";
             // 
             // grbSalesStockLocation
             // 
+            this.grbSalesStockLocation.Controls.Add(this.textBox1);
+            this.grbSalesStockLocation.Controls.Add(this.textBox8);
             this.grbSalesStockLocation.Controls.Add(this.cmbSalesGodown);
             this.grbSalesStockLocation.Controls.Add(this.txtDSalesGodown);
             this.grbSalesStockLocation.Controls.Add(this.txtMaxOrderQty);
             this.grbSalesStockLocation.Controls.Add(this.txtDMaxOrderQty);
             this.grbSalesStockLocation.Controls.Add(this.txtDSalesShop);
             this.grbSalesStockLocation.Controls.Add(this.cmbSalesRack);
-            this.grbSalesStockLocation.Location = new System.Drawing.Point(289, 276);
+            this.grbSalesStockLocation.Location = new System.Drawing.Point(12, 386);
             this.grbSalesStockLocation.Name = "grbSalesStockLocation";
-            this.grbSalesStockLocation.Size = new System.Drawing.Size(266, 121);
+            this.grbSalesStockLocation.Size = new System.Drawing.Size(543, 152);
             this.grbSalesStockLocation.TabIndex = 15;
             this.grbSalesStockLocation.TabStop = false;
             this.grbSalesStockLocation.Text = "Default Stock Location For Sales";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox1.Location = new System.Drawing.Point(160, 113);
+            this.textBox1.MaxLength = 50;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(363, 27);
+            this.textBox1.TabIndex = 92;
+            // 
+            // textBox8
+            // 
+            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox8.Enabled = false;
+            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox8.Location = new System.Drawing.Point(21, 113);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(139, 27);
+            this.textBox8.TabIndex = 91;
+            this.textBox8.TabStop = false;
+            this.textBox8.Text = "Rack Description";
             // 
             // cmbSalesGodown
             // 
             this.cmbSalesGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSalesGodown.FormattingEnabled = true;
-            this.cmbSalesGodown.Location = new System.Drawing.Point(135, 32);
+            this.cmbSalesGodown.Location = new System.Drawing.Point(160, 32);
             this.cmbSalesGodown.Name = "cmbSalesGodown";
-            this.cmbSalesGodown.Size = new System.Drawing.Size(127, 27);
+            this.cmbSalesGodown.Size = new System.Drawing.Size(363, 27);
             this.cmbSalesGodown.TabIndex = 15;
             this.cmbSalesGodown.SelectedIndexChanged += new System.EventHandler(this.CmbSalesGodown_SelectedIndexChanged);
             this.cmbSalesGodown.Enter += new System.EventHandler(this.CmbSalesGodown_Enter);
@@ -1160,10 +1217,10 @@
             this.txtDSalesGodown.BackColor = System.Drawing.SystemColors.Control;
             this.txtDSalesGodown.Enabled = false;
             this.txtDSalesGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDSalesGodown.Location = new System.Drawing.Point(4, 32);
+            this.txtDSalesGodown.Location = new System.Drawing.Point(21, 32);
             this.txtDSalesGodown.Name = "txtDSalesGodown";
             this.txtDSalesGodown.ReadOnly = true;
-            this.txtDSalesGodown.Size = new System.Drawing.Size(131, 27);
+            this.txtDSalesGodown.Size = new System.Drawing.Size(139, 27);
             this.txtDSalesGodown.TabIndex = 12;
             this.txtDSalesGodown.TabStop = false;
             this.txtDSalesGodown.Text = "Stock Location";
@@ -1173,10 +1230,10 @@
             this.txtDSalesShop.BackColor = System.Drawing.SystemColors.Control;
             this.txtDSalesShop.Enabled = false;
             this.txtDSalesShop.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDSalesShop.Location = new System.Drawing.Point(5, 59);
+            this.txtDSalesShop.Location = new System.Drawing.Point(21, 59);
             this.txtDSalesShop.Name = "txtDSalesShop";
             this.txtDSalesShop.ReadOnly = true;
-            this.txtDSalesShop.Size = new System.Drawing.Size(130, 27);
+            this.txtDSalesShop.Size = new System.Drawing.Size(139, 27);
             this.txtDSalesShop.TabIndex = 24;
             this.txtDSalesShop.TabStop = false;
             this.txtDSalesShop.Text = "Rack";
@@ -1185,9 +1242,9 @@
             // 
             this.cmbSalesRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSalesRack.FormattingEnabled = true;
-            this.cmbSalesRack.Location = new System.Drawing.Point(135, 59);
+            this.cmbSalesRack.Location = new System.Drawing.Point(160, 59);
             this.cmbSalesRack.Name = "cmbSalesRack";
-            this.cmbSalesRack.Size = new System.Drawing.Size(127, 27);
+            this.cmbSalesRack.Size = new System.Drawing.Size(363, 27);
             this.cmbSalesRack.TabIndex = 16;
             this.cmbSalesRack.SelectedIndexChanged += new System.EventHandler(this.CmbSalesRack_SelectedIndexChanged);
             this.cmbSalesRack.Enter += new System.EventHandler(this.CmbSalesRack_Enter);
@@ -1204,7 +1261,7 @@
             this.grpHsndetail.Controls.Add(this.txtDHSNNumber);
             this.grpHsndetail.Controls.Add(this.txtDGST);
             this.grpHsndetail.Controls.Add(this.txtGST);
-            this.grpHsndetail.Location = new System.Drawing.Point(568, 321);
+            this.grpHsndetail.Location = new System.Drawing.Point(568, 434);
             this.grpHsndetail.Name = "grpHsndetail";
             this.grpHsndetail.Size = new System.Drawing.Size(279, 103);
             this.grpHsndetail.TabIndex = 33;
@@ -1239,9 +1296,9 @@
             this.grbBatchNoDetails.Controls.Add(this.txtBatchNoGeneration);
             this.grbBatchNoDetails.Controls.Add(this.cmbBatchNoEntry);
             this.grbBatchNoDetails.Controls.Add(this.txtDBatchNoEntry);
-            this.grbBatchNoDetails.Location = new System.Drawing.Point(12, 400);
+            this.grbBatchNoDetails.Location = new System.Drawing.Point(12, 539);
             this.grbBatchNoDetails.Name = "grbBatchNoDetails";
-            this.grbBatchNoDetails.Size = new System.Drawing.Size(266, 90);
+            this.grbBatchNoDetails.Size = new System.Drawing.Size(269, 90);
             this.grbBatchNoDetails.TabIndex = 17;
             this.grbBatchNoDetails.TabStop = false;
             this.grbBatchNoDetails.Text = "Batch No. Details";
@@ -1311,7 +1368,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(692, 483);
+            this.btnSave.Location = new System.Drawing.Point(692, 592);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(74, 29);
             this.btnSave.TabIndex = 37;
@@ -1328,7 +1385,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(768, 483);
+            this.btnClose.Location = new System.Drawing.Point(768, 592);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 29);
             this.btnClose.TabIndex = 38;
@@ -1340,12 +1397,21 @@
             this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Location = new System.Drawing.Point(567, -6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(278, 116);
+            this.groupBox3.TabIndex = 94;
+            this.groupBox3.TabStop = false;
+            // 
             // CP_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(859, 521);
+            this.ClientSize = new System.Drawing.Size(859, 636);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.grbBatchNoDetails);
             this.Controls.Add(this.pnlStatus);
             this.Controls.Add(this.txtDStatus);
@@ -1484,5 +1550,10 @@
         private System.Windows.Forms.TextBox txtBatchNoGeneration;
         private System.Windows.Forms.ComboBox cmbBatchNoEntry;
         private System.Windows.Forms.TextBox txtDBatchNoEntry;
+        private System.Windows.Forms.TextBox txtPurRackDescription;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

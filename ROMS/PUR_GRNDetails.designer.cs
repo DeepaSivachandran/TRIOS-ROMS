@@ -128,6 +128,8 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBatchno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsSupplierMapping.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
@@ -463,7 +465,7 @@
             this.btnDamage.Name = "btnDamage";
             this.btnDamage.Size = new System.Drawing.Size(134, 29);
             this.btnDamage.TabIndex = 1111181;
-            this.btnDamage.Text = "Delivery Challan";
+            this.btnDamage.Text = "Purchase Return";
             this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDamage.UseVisualStyleBackColor = true;
             this.btnDamage.Click += new System.EventHandler(this.BtnDamage_Click);
@@ -1015,6 +1017,8 @@
             this.Column3,
             this.clmexpirydate,
             this.Column7,
+            this.Column9,
+            this.Column10,
             this.clmBatchno});
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
@@ -1199,12 +1203,14 @@
             this.Column6.HeaderText = "Unit";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
+            this.Column6.Width = 50;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "MRP";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
+            this.Column3.Width = 50;
             // 
             // clmexpirydate
             // 
@@ -1214,15 +1220,30 @@
             // 
             // Column7
             // 
-            this.Column7.HeaderText = "Shelf Life";
+            this.Column7.HeaderText = "Product Shelf Life";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
+            this.Column7.Width = 120;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Actual Shelf Life";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Width = 120;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Shelf Life (%)";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
             // 
             // clmBatchno
             // 
             this.clmBatchno.HeaderText = "Batch No.";
             this.clmBatchno.Name = "clmBatchno";
             this.clmBatchno.ReadOnly = true;
+            this.clmBatchno.Width = 80;
             // 
             // PUR_GRNDetails
             // 
@@ -1359,6 +1380,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBatchno;
     }
 }

@@ -114,6 +114,13 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsalesname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOrderType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_close = new System.Windows.Forms.Button();
             this.gpSupplier = new System.Windows.Forms.GroupBox();
             this.txtScheduleName = new System.Windows.Forms.TextBox();
@@ -203,13 +210,24 @@
             this.clmCompany = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsupname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsalesname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOrderType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.txtOtherBrands = new System.Windows.Forms.TextBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtBankShortName = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtbranchname = new System.Windows.Forms.TextBox();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.txtIFScode = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtAccno = new System.Windows.Forms.TextBox();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.txtBankname = new System.Windows.Forms.TextBox();
+            this.cmbPaymentMode = new System.Windows.Forms.ComboBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -235,6 +253,8 @@
             this.tbSchedule.SuspendLayout();
             this.grpSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewSupplierMapping)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // errCompany
@@ -324,6 +344,7 @@
             // 
             // grpSupplierDetails
             // 
+            this.grpSupplierDetails.Controls.Add(this.groupBox5);
             this.grpSupplierDetails.Controls.Add(this.grbEnvelopeDetails);
             this.grpSupplierDetails.Controls.Add(this.panelStatus);
             this.grpSupplierDetails.Controls.Add(this.groupBox4);
@@ -411,7 +432,7 @@
             this.panelStatus.Controls.Add(this.rbActive);
             this.panelStatus.Enabled = false;
             this.panelStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelStatus.Location = new System.Drawing.Point(404, 519);
+            this.panelStatus.Location = new System.Drawing.Point(687, 235);
             this.panelStatus.Name = "panelStatus";
             this.panelStatus.Size = new System.Drawing.Size(149, 27);
             this.panelStatus.TabIndex = 76;
@@ -442,6 +463,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.cmbPaymentMode);
+            this.groupBox4.Controls.Add(this.textBox11);
             this.groupBox4.Controls.Add(this.cmbPaymentTerm);
             this.groupBox4.Controls.Add(this.cmbSupplierType);
             this.groupBox4.Controls.Add(this.txtDPaymentTerm);
@@ -629,7 +652,7 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(293, 519);
+            this.textBox4.Location = new System.Drawing.Point(576, 235);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(111, 27);
@@ -927,7 +950,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(383, 552);
+            this.btnSave.Location = new System.Drawing.Point(670, 279);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 27;
@@ -940,7 +963,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(481, 552);
+            this.btnClose.Location = new System.Drawing.Point(768, 279);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 28;
@@ -952,6 +975,7 @@
             // tbOrder
             // 
             this.tbOrder.Controls.Add(this.groupBox3);
+            this.tbOrder.Controls.Add(this.groupBox1);
             this.tbOrder.Controls.Add(this.btnAdd);
             this.tbOrder.Controls.Add(this.lblNoRecordsFound);
             this.tbOrder.Controls.Add(this.grdSupplierList);
@@ -977,7 +1001,7 @@
             this.groupBox3.Controls.Add(this.textBox10);
             this.groupBox3.Controls.Add(this.cmbReturnPolicy);
             this.groupBox3.Controls.Add(this.textBox9);
-            this.groupBox3.Location = new System.Drawing.Point(760, 10);
+            this.groupBox3.Location = new System.Drawing.Point(758, 10);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(281, 228);
             this.groupBox3.TabIndex = 958802;
@@ -1155,6 +1179,53 @@
             this.grdSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupplierList.Size = new System.Drawing.Size(1307, 286);
             this.grdSupplierList.TabIndex = 958799;
+            // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            // 
+            // clmsupname
+            // 
+            this.clmsupname.HeaderText = "Schedule Name";
+            this.clmsupname.Name = "clmsupname";
+            this.clmsupname.ReadOnly = true;
+            this.clmsupname.Width = 200;
+            // 
+            // clmsalesname
+            // 
+            this.clmsalesname.HeaderText = "Salesman Name";
+            this.clmsalesname.Name = "clmsalesname";
+            this.clmsalesname.ReadOnly = true;
+            this.clmsalesname.Width = 200;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Salesman Mobile No.";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 140;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Salesman WhatsApp No.";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 150;
+            // 
+            // clmOrderType
+            // 
+            this.clmOrderType.HeaderText = "Order Type";
+            this.clmOrderType.Name = "clmOrderType";
+            this.clmOrderType.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Order Days";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Width = 300;
             // 
             // btn_close
             // 
@@ -1941,6 +2012,8 @@
             // 
             // grpSchedule
             // 
+            this.grpSchedule.Controls.Add(this.textBox12);
+            this.grpSchedule.Controls.Add(this.label15);
             this.grpSchedule.Controls.Add(this.cmbOrderschedule);
             this.grpSchedule.Controls.Add(this.label14);
             this.grpSchedule.Controls.Add(this.cmborderday);
@@ -1964,7 +2037,7 @@
             this.cmbOrderschedule.FormattingEnabled = true;
             this.cmbOrderschedule.Items.AddRange(new object[] {
             "--All--"});
-            this.cmbOrderschedule.Location = new System.Drawing.Point(37, 37);
+            this.cmbOrderschedule.Location = new System.Drawing.Point(368, 37);
             this.cmbOrderschedule.Name = "cmbOrderschedule";
             this.cmbOrderschedule.Size = new System.Drawing.Size(121, 27);
             this.cmbOrderschedule.TabIndex = 0;
@@ -1978,7 +2051,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(37, 14);
+            this.label14.Location = new System.Drawing.Point(368, 14);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(92, 20);
             this.label14.TabIndex = 958819;
@@ -1997,7 +2070,7 @@
             "Friday",
             "Saturday",
             "Sunday"});
-            this.cmborderday.Location = new System.Drawing.Point(293, 37);
+            this.cmborderday.Location = new System.Drawing.Point(604, 37);
             this.cmborderday.Name = "cmborderday";
             this.cmborderday.Size = new System.Drawing.Size(116, 27);
             this.cmborderday.TabIndex = 2;
@@ -2011,7 +2084,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(293, 14);
+            this.label7.Location = new System.Drawing.Point(604, 14);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(63, 20);
             this.label7.TabIndex = 958818;
@@ -2021,7 +2094,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(173, 14);
+            this.label6.Location = new System.Drawing.Point(498, 14);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 20);
             this.label6.TabIndex = 958817;
@@ -2035,7 +2108,7 @@
             "--All--",
             "Phone",
             "Visit"});
-            this.cmborder.Location = new System.Drawing.Point(173, 37);
+            this.cmborder.Location = new System.Drawing.Point(498, 37);
             this.cmborder.Name = "cmborder";
             this.cmborder.Size = new System.Drawing.Size(98, 27);
             this.cmborder.TabIndex = 1;
@@ -2258,52 +2331,209 @@
             this.label3.TabIndex = 958804;
             this.label3.Text = "No.of Products :";
             // 
-            // clmsno
+            // groupBox1
             // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
+            this.groupBox1.Controls.Add(this.txtOtherBrands);
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Location = new System.Drawing.Point(1048, 10);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(264, 228);
+            this.groupBox1.TabIndex = 958803;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Other brands dealt with";
             // 
-            // clmsupname
+            // button4
             // 
-            this.clmsupname.HeaderText = "Schedule Name";
-            this.clmsupname.Name = "clmsupname";
-            this.clmsupname.ReadOnly = true;
-            this.clmsupname.Width = 200;
+            this.button4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Image = global::ROMS.Properties.Resources.save;
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(178, 188);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(80, 33);
+            this.button4.TabIndex = 78;
+            this.button4.Text = "Save";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button4.UseVisualStyleBackColor = true;
             // 
-            // clmsalesname
+            // txtOtherBrands
             // 
-            this.clmsalesname.HeaderText = "Salesman Name";
-            this.clmsalesname.Name = "clmsalesname";
-            this.clmsalesname.ReadOnly = true;
-            this.clmsalesname.Width = 200;
+            this.txtOtherBrands.Location = new System.Drawing.Point(7, 23);
+            this.txtOtherBrands.Multiline = true;
+            this.txtOtherBrands.Name = "txtOtherBrands";
+            this.txtOtherBrands.Size = new System.Drawing.Size(251, 150);
+            this.txtOtherBrands.TabIndex = 79;
             // 
-            // Column3
+            // groupBox5
             // 
-            this.Column3.HeaderText = "Salesman Mobile No.";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 140;
+            this.groupBox5.Controls.Add(this.textBox2);
+            this.groupBox5.Controls.Add(this.txtBankShortName);
+            this.groupBox5.Controls.Add(this.textBox8);
+            this.groupBox5.Controls.Add(this.txtbranchname);
+            this.groupBox5.Controls.Add(this.textBox15);
+            this.groupBox5.Controls.Add(this.txtIFScode);
+            this.groupBox5.Controls.Add(this.textBox7);
+            this.groupBox5.Controls.Add(this.txtAccno);
+            this.groupBox5.Controls.Add(this.textBox19);
+            this.groupBox5.Controls.Add(this.txtBankname);
+            this.groupBox5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(566, 58);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(277, 168);
+            this.groupBox5.TabIndex = 77;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Bank Details";
             // 
-            // Column4
+            // textBox2
             // 
-            this.Column4.HeaderText = "Salesman WhatsApp No.";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 150;
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox2.Location = new System.Drawing.Point(6, 50);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(100, 27);
+            this.textBox2.TabIndex = 1111140;
+            this.textBox2.Text = "Bank Short Name";
             // 
-            // clmOrderType
+            // txtBankShortName
             // 
-            this.clmOrderType.HeaderText = "Order Type";
-            this.clmOrderType.Name = "clmOrderType";
-            this.clmOrderType.ReadOnly = true;
+            this.txtBankShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtBankShortName.Location = new System.Drawing.Point(106, 50);
+            this.txtBankShortName.MaxLength = 100;
+            this.txtBankShortName.Name = "txtBankShortName";
+            this.txtBankShortName.Size = new System.Drawing.Size(165, 27);
+            this.txtBankShortName.TabIndex = 21;
             // 
-            // Column9
+            // textBox8
             // 
-            this.Column9.HeaderText = "Order Days";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Width = 300;
+            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox8.Enabled = false;
+            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox8.Location = new System.Drawing.Point(6, 77);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(100, 27);
+            this.textBox8.TabIndex = 1111138;
+            this.textBox8.Text = "Branch Name";
+            // 
+            // txtbranchname
+            // 
+            this.txtbranchname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtbranchname.Location = new System.Drawing.Point(106, 77);
+            this.txtbranchname.MaxLength = 100;
+            this.txtbranchname.Name = "txtbranchname";
+            this.txtbranchname.Size = new System.Drawing.Size(165, 27);
+            this.txtbranchname.TabIndex = 22;
+            // 
+            // textBox15
+            // 
+            this.textBox15.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox15.Enabled = false;
+            this.textBox15.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox15.Location = new System.Drawing.Point(6, 131);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.ReadOnly = true;
+            this.textBox15.Size = new System.Drawing.Size(100, 27);
+            this.textBox15.TabIndex = 200000;
+            this.textBox15.Text = "IFS Code";
+            // 
+            // txtIFScode
+            // 
+            this.txtIFScode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtIFScode.Location = new System.Drawing.Point(106, 131);
+            this.txtIFScode.MaxLength = 100;
+            this.txtIFScode.Name = "txtIFScode";
+            this.txtIFScode.Size = new System.Drawing.Size(165, 27);
+            this.txtIFScode.TabIndex = 24;
+            // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox7.Enabled = false;
+            this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox7.Location = new System.Drawing.Point(6, 104);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(100, 27);
+            this.textBox7.TabIndex = 20000;
+            this.textBox7.Text = "Acc. No.";
+            // 
+            // txtAccno
+            // 
+            this.txtAccno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtAccno.Location = new System.Drawing.Point(106, 104);
+            this.txtAccno.MaxLength = 100;
+            this.txtAccno.Name = "txtAccno";
+            this.txtAccno.Size = new System.Drawing.Size(165, 27);
+            this.txtAccno.TabIndex = 23;
+            // 
+            // textBox19
+            // 
+            this.textBox19.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox19.Enabled = false;
+            this.textBox19.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox19.Location = new System.Drawing.Point(6, 23);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.ReadOnly = true;
+            this.textBox19.Size = new System.Drawing.Size(100, 27);
+            this.textBox19.TabIndex = 200000;
+            this.textBox19.Text = "Bank Name";
+            // 
+            // txtBankname
+            // 
+            this.txtBankname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtBankname.Location = new System.Drawing.Point(106, 23);
+            this.txtBankname.MaxLength = 100;
+            this.txtBankname.Name = "txtBankname";
+            this.txtBankname.Size = new System.Drawing.Size(165, 27);
+            this.txtBankname.TabIndex = 20;
+            // 
+            // cmbPaymentMode
+            // 
+            this.cmbPaymentMode.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPaymentMode.FormattingEnabled = true;
+            this.cmbPaymentMode.ItemHeight = 19;
+            this.cmbPaymentMode.Items.AddRange(new object[] {
+            "Nett Amount",
+            "Taxable Amount"});
+            this.cmbPaymentMode.Location = new System.Drawing.Point(383, 78);
+            this.cmbPaymentMode.Name = "cmbPaymentMode";
+            this.cmbPaymentMode.Size = new System.Drawing.Size(136, 27);
+            this.cmbPaymentMode.TabIndex = 67;
+            // 
+            // textBox11
+            // 
+            this.textBox11.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox11.Enabled = false;
+            this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox11.Location = new System.Drawing.Point(272, 78);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.ReadOnly = true;
+            this.textBox11.Size = new System.Drawing.Size(111, 27);
+            this.textBox11.TabIndex = 68;
+            this.textBox11.Text = "Mode of Payment";
+            // 
+            // textBox12
+            // 
+            this.textBox12.Enabled = false;
+            this.textBox12.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox12.Location = new System.Drawing.Point(37, 37);
+            this.textBox12.MaxLength = 50;
+            this.textBox12.Name = "textBox12";
+            this.textBox12.ReadOnly = true;
+            this.textBox12.Size = new System.Drawing.Size(323, 27);
+            this.textBox12.TabIndex = 958821;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(37, 14);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(54, 20);
+            this.label15.TabIndex = 958820;
+            this.label15.Text = "Supplier";
             // 
             // CP_Supplier
             // 
@@ -2367,6 +2597,10 @@
             this.grpSchedule.ResumeLayout(false);
             this.grpSchedule.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewSupplierMapping)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2538,5 +2772,23 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmOrderType;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtOtherBrands;
+        public System.Windows.Forms.Button button4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtBankShortName;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtbranchname;
+        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox txtIFScode;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtAccno;
+        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.TextBox txtBankname;
+        private System.Windows.Forms.ComboBox cmbPaymentMode;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.Label label15;
     }
 }
