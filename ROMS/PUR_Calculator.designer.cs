@@ -49,6 +49,7 @@
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(244, 28);
             this.txtValue.TabIndex = 8;
+            this.txtValue.TextChanged += new System.EventHandler(this.TxtValue_TextChanged);
             this.txtValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassKey_KeyPress);
             // 
             // lblFinalValue
@@ -79,6 +80,7 @@
             this.Name = "PUR_Calculator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculator";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PUR_Calculator_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
