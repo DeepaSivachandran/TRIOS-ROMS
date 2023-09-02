@@ -434,8 +434,7 @@ namespace ROMS
                 dataTable2.Columns.Add("Type", typeof(string));
                 dataTable2.Rows.Add("Cash");
                 dataTable2.Rows.Add("Cheque");
-                dataTable2.Rows.Add("RTGS");
-                dataTable2.Rows.Add("NEFT");
+                dataTable2.Rows.Add("Online");
 
                 for (int i = 0; i < dataTable2.Rows.Count; i++)
                 {

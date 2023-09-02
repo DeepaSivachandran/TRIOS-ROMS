@@ -53,7 +53,7 @@ namespace ROMS
             {
                 if (txtValue.Text != "")
                 {
-                    varResult = Convert.ToDouble(new DataTable().Compute(txtValue.Text, null));
+                    varResult = Math.Round(Convert.ToDouble(new DataTable().Compute(txtValue.Text, null)), 2, MidpointRounding.AwayFromZero);
                 }
                 else { varResult = 0; }
             }
@@ -68,7 +68,6 @@ namespace ROMS
         private void PUR_Calculator_FormClosing(object sender, FormClosingEventArgs e)
         {
             try {
-                MainForm.objCP_Purchase = new CP_Purchase();
                 MainForm.objCP_Purchase.varPurchaseRate = lblFinalValue.Text;
             }
             catch (Exception ex)

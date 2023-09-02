@@ -54,13 +54,14 @@
             // 
             // lblFinalValue
             // 
-            this.lblFinalValue.AutoSize = true;
             this.lblFinalValue.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFinalValue.Location = new System.Drawing.Point(175, 56);
+            this.lblFinalValue.Location = new System.Drawing.Point(160, 56);
             this.lblFinalValue.Name = "lblFinalValue";
-            this.lblFinalValue.Size = new System.Drawing.Size(21, 26);
+            this.lblFinalValue.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblFinalValue.Size = new System.Drawing.Size(91, 26);
             this.lblFinalValue.TabIndex = 9;
             this.lblFinalValue.Text = "0";
+            this.lblFinalValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // PUR_Calculator
             // 
