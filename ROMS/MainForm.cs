@@ -83,6 +83,7 @@ namespace ROMS
         public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
         public static CP_GeneralSettings objCP_GeneralSettings;
         public static CP_BulkAttributes objCP_BulkAttributes;
+        public static CP_BulkAttributeVerify objCP_BulkAttributeVerify;
         public static CP_RepresentativeList objCP_RepresentativeList;
         public static CP_Representative objCP_Representative;
 
@@ -139,6 +140,7 @@ namespace ROMS
         public static PUR_DCDeatils objPUR_DCDeatils;
         public static PUR_PODamagedView objPUR_PODamagedView;
         public static PUR_PurchaseQueue objPUR_PurchaseQueue;
+        
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;
@@ -637,8 +639,6 @@ namespace ROMS
 
         }
 
-     
-
         private void Tsmpurchaseentry_Click(object sender, EventArgs e)
         {
             try
@@ -1105,7 +1105,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
-    }
+        }
 
         private void TsmBulkAttr_Click(object sender, EventArgs e)
         {

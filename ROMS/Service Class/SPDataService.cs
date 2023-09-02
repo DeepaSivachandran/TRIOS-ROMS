@@ -822,7 +822,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 14/08/2023    Description:Sub Group list Sp
-        public DataSet udfnSubGroupList(int ViewType, int paraPRSGID, string paraPRGIDs,int paraPRGID,int paraID)
+        public DataSet udfnSubGroupList(int ViewType, int paraPRSGID, string paraPRGIDs,int paraPRGID,int paraID,string paraPRSG_EName)
         {
             DataSet ds = new DataSet();
             try
@@ -835,6 +835,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraPRGID", paraPRGID);
                 varSqlCommand.Parameters.AddWithValue("@paraID", paraID);
                 varSqlCommand.Parameters.AddWithValue("@paraPRGIDs", paraPRGIDs);
+                varSqlCommand.Parameters.AddWithValue("@paraPRSG_EName", paraPRSG_EName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -1030,7 +1031,6 @@ namespace ROMS
             }
             return varResult;
         }
-
         public DataSet udfnBrandList(int ViewType, string paraBDID, int paraGroupId, int paraSubGroupId,int paraREPBRAND)
         {
             DataSet ds = new DataSet();
@@ -1066,7 +1066,6 @@ namespace ROMS
         // Sivabharathi    Create date: 24/08/2023    Description:Rack Group SP
         public string udfnRackGroup(int ViewType, int paraRKGID, int paraRKG_COMID, string paraRKG_Name,  string paraRKGR_RKID, string paraRKGU_UID, int paraStatusId, string paraOriginator)
         {
-
             string varResult = "";
             try
             {
