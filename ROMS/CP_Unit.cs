@@ -24,8 +24,7 @@ namespace ROMS
         public string varbrandcode;
         public int varUnitCode = 0;
         public string pbFormStatus;
-        public int varstatus, varupdate=0;
-        public string PbUnitName="";
+        public int varstatus;        public string PbUnitName="";
         public string PbSymbol="";
         public string PbNoOfDecimals="";
         public int PbStatus=0;
@@ -99,6 +98,10 @@ namespace ROMS
                 {
                     varoriginator = "Unit Creation";
                     varType = 0;
+                    if (varmastertype == 1)
+                    {
+                        varUpdate = 1;
+                    }
                 }
                 else
                 {
@@ -110,13 +113,27 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objCP_Unitlist.udfnList();
+
                     if (btnSave.Text == "Update")
                     {
                         varUpdate = 1;
                         udfnclose();
                     }
+                    else
+                    {
+                        varUnitCodeProduct = Convert.ToInt16(varResult.Split('~')[2]);
+                    }
                     udfnclear();
+                    if (varmastertype == 1)
+                    {
+                        MainForm.objCP_Items.varUnitCode = varUnitCodeProduct;
+                        varmastertype = 0;
+                        udfnclose();
+                    }
+                    else
+                    {
+                        MainForm.objCP_Unitlist.udfnList();
+                    }
                 }
                 else
                 {

@@ -124,6 +124,17 @@ namespace ROMS
                     MainForm.objCP_Items = new CP_Product();
                     MainForm.objCP_Items.MdiParent = this.ParentForm;
                     MainForm.objCP_Items.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString());
+                    MainForm.objCP_Items.varGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PRGID"].Value.ToString());
+                    MainForm.objCP_Items.varSubGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRSGID"].Value.ToString());
+                    MainForm.objCP_Items.varHsnId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_HSNID"].Value.ToString());
+                    MainForm.objCP_Items.varUnitid = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_UTID"].Value.ToString());
+                    MainForm.objCP_Items.varcompanyid = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_COMID"].Value.ToString());
+                    MainForm.objCP_Items.varBrandId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_BDID"].Value.ToString());
+                    MainForm.objCP_Items.varPURSLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PUR_SLID"].Value.ToString());
+                    MainForm.objCP_Items.varPURRKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PUR_RKID"].Value.ToString());
+                    MainForm.objCP_Items.varSALESLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_SLID"].Value.ToString());
+                    MainForm.objCP_Items.varSALERKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_RKID"].Value.ToString());
+                    MainForm.objCP_Items.btnSave.Text = "Update";
                     MainForm.objCP_Items.Show();
                 }
 
@@ -181,6 +192,16 @@ namespace ROMS
                             grdItemList.Columns["Status"].Width = 80;
                             grdItemList.Columns["ID"].Visible = false;
                             grdItemList.Columns["STSID"].Visible = false;
+                            grdItemList.Columns["PRGID"].Visible = false;
+                            grdItemList.Columns["PR_PRSGID"].Visible = false;
+                            grdItemList.Columns["PR_HSNID"].Visible = false;
+                            grdItemList.Columns["PR_UTID"].Visible = false;
+                            grdItemList.Columns["PR_COMID"].Visible = false;
+                            grdItemList.Columns["PR_BDID"].Visible = false; 
+                            grdItemList.Columns["PR_SALE_RKID"].Visible = false; 
+                            grdItemList.Columns["PR_SALE_SLID"].Visible = false; 
+                            grdItemList.Columns["PR_PUR_RKID"].Visible = false; 
+                            grdItemList.Columns["PR_PUR_SLID"].Visible = false; 
                         }
                         else
                         {
@@ -828,7 +849,14 @@ namespace ROMS
         {
             try
             {
-                udfnImport();
+                if ((grdItemList.Rows.Count < 0))
+                {
+                    udfnImport();
+                }
+                else
+                {
+                    MessageBox.Show("No records found!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
 
@@ -915,6 +943,7 @@ namespace ROMS
             finally
             { 
                 btnExport.Enabled = true;
+                btnExport.Focus();
             }
         }
         private void BtnExport_Enter(object sender, EventArgs e)
@@ -966,11 +995,69 @@ namespace ROMS
         public void udfnDropdownbind()
         {
             try
-            {
+            { 
+                DataSet objDT = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                int varViewType = 3;
+
+                objDT = objdserv.udfnSubGroupList(varViewType, 0, "");
+                objdserv.CloseConnection();
+                cmbsubgroup.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbsubgroup.ValueMember = "PRSGID";
+                            cmbsubgroup.DisplayMember = "PRSG_EName";
+                            cmbsubgroup.DataSource = objDT.Tables[0];
+                        }
+                    }
+                } 
+                objdserv.CloseConnection();
+
+
+                objDT = objdserv.udfnGroupList(varViewType, 0);
+                objdserv.CloseConnection();
+                cmbGroupType.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbGroupType.ValueMember = "PRGID";
+                            cmbGroupType.DisplayMember = "PRG_EName";
+                            cmbGroupType.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+
+
+
+                int varconcerntype = 2; 
+                objDT = objdserv.udfnCompanyList(varconcerntype, 0, MainForm.pbUserID, MainForm.pbIpAddress);
+                objdserv.CloseConnection();
+                cmbConcern.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.DisplayMember = "COM_ShortName";
+                            cmbConcern.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+
+
+
+
+
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 AND COMID !=-1 ORDER BY COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID !=-1 AND PRG_STSID=1 ORDER BY PRGID", "PRG_EName,PRGID", cmbGroupType, "", "PRG_EName", "PRGID");
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID <> -1 AND PRSG_STSID=1", "PRSG_EName,PRSGID", cmbsubgroup, "", "PRSG_EName", "PRSGID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbGroupType.SelectedValue = vargroup;

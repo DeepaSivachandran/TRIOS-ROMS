@@ -43,7 +43,7 @@ namespace ROMS
         private ToolTip tptamname = new ToolTip();
         private ToolTip tpengname = new ToolTip();
 
-        public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0;
+        public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0, varGroupId=0, varSubGroupId = 0,varHsnId=0, varUnitid=0, varcompanyid=0, varBrandId=0,varBatchCode=0, varPURSLID=0, varPURRKID=0, varSALESLID=0, varSALERKID=0;
         public CP_Product()
         {
             InitializeComponent();
@@ -300,6 +300,23 @@ namespace ROMS
                 //        //   blnErrorFlag = true;
                 //    }
 
+                if (Convert.ToInt32(cmbBatchNoEntry.SelectedValue)==72 && Convert.ToInt32(cmbBatchNoGeneration.SelectedValue) == -1)
+                { 
+                    errItems.SetError(cmbBatchNoGeneration, "Please select Batch No. generation");
+                    cmbBatchNoGeneration.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpcompanyname.ShowAlways = true;
+                    tpcompanyname.Show("Please select sales Batch No. generation", cmbBatchNoGeneration, 5000);
+                    blnErrorFlag = true; 
+                }
+                if (cbExpiry.Checked==true)
+                { 
+                    errItems.SetError(cmbPeriod, "Please select shelflife");
+                    cmbPeriod.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpcompanyname.ShowAlways = true;
+                    tpcompanyname.Show("Please select shelflife", cmbPeriod, 5000);
+                    blnErrorFlag = true;
+                }
+
                 if (blnErrorFlag == false)
                 {
                     SPDataService objspdservice = new SPDataService();
@@ -458,14 +475,14 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        MainForm.objCP_Itemlist.udfnDropdownbind();
-                        MainForm.objCP_Itemlist.udfnList();
-                        cmbConcern.Focus();
-                        udfnclear();
                         if (btnSave.Text == "Update")
                         {
                             this.Hide();
                         }
+                        MainForm.objCP_Itemlist.udfnDropdownbind();
+                        MainForm.objCP_Itemlist.udfnList();
+                        cmbConcern.Focus();
+                        udfnclear();
                     }
                     else
                     {
@@ -1807,16 +1824,66 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
-
                  
-                DataBind objDataBind = new DataBind();
-                DataService objds = new DataService(); 
+                //int varviewtype = 2;
+                //if (btnSave.Text == "Save")
+                //{
+                //    varviewtype = 2;
+                //}
+                //objDT = objdserv.udfnBrandList(varbrnadViewtype, Convert.ToString(varBrandId), 0, 0, 0);
+                //objdserv.CloseConnection();
+                //cmbBrand.DataSource = null;
+                //if (objDT != null)
+                //{
+                //    if (objDT.Tables.Count > 0)
+                //    {
+                //        if (objDT.Tables[0].Rows.Count > 0)
+                //        {
+                //            cmbBrand.ValueMember = "BDID";
+                //            cmbBrand.DisplayMember = "BD_EName";
+                //            cmbBrand.DataSource = objDT.Tables[0];
+                //        }
+                //    }
+                //}
 
-                    objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID<>0 AND SL_STSID=1 AND SL_COMID='" + Convert.ToString(cmbConcern.SelectedValue) + "' OR  SLID=-1", "SL_ShortName,SLID", cmbPosition, "", "SL_ShortName", "SLID");
-                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID<>0 AND SL_STSID=1 AND SL_COMID='" + Convert.ToString(cmbConcern.SelectedValue) + "' OR  SLID=-1 ", "SL_ShortName,SLID", cmbSalesGodown, "", "SL_ShortName", "SLID");
+                DataSet objDS = new DataSet();
+                SPDataService objsdserv = new SPDataService();
+                int varparaViewType = 9;
+                if (btnSave.Text == "Save")
+                {
+                    varparaViewType = 8;
+                }
+                objDS = objsdserv.udfnStockLocationList(varparaViewType, Convert.ToInt32(cmbConcern.SelectedValue));
+                objsdserv.CloseConnection(); 
+                cmbPosition.DataSource = null;
+                if (objDS != null)
+                {
+                    if (objDS.Tables.Count > 0)
+                    {
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            cmbPosition.ValueMember = "SLID";
+                            cmbPosition.DisplayMember = "SL_EName";
+                            cmbPosition.DataSource = objDS.Tables[0];
+                        }
+                    }
+                }
 
-                objds.CloseConnection();
-                objDataBind = null; 
+                objDS = objsdserv.udfnStockLocationList(varparaViewType, Convert.ToInt32(cmbConcern.SelectedValue));
+                objsdserv.CloseConnection();
+                cmbSalesGodown.DataSource = null;
+                if (objDS != null)
+                {
+                    if (objDS.Tables.Count > 0)
+                    {
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            cmbSalesGodown.ValueMember = "SLID";
+                            cmbSalesGodown.DisplayMember = "SL_EName";
+                            cmbSalesGodown.DataSource = objDS.Tables[0];
+                        }
+                    }
+                }
             }
             catch (Exception ex)
 
@@ -2157,13 +2224,36 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbSubGroup.Select(int.MaxValue, 0)));
 
-                string varcmbgroupcode = "";
-                DataBind objDataBind = new DataBind();
+
+                DataSet objDT = new DataSet();
+                int varViewType = 2;
+                if (btnSave.Text == "Save")
+                {
+                    varViewType = 4;
+                }
+
                 DataService objds = new DataService();
-                varcmbgroupcode = objds.displaydata("SELECT PRGID FROM MR_ProductSubGroup WHERE  PRSGID='" + Convert.ToString(cmbSubGroup.SelectedValue) + "'");
-                objds.CloseConnection();
-                 objDataBind = null;
-                cmbSubGroup.SelectedValue = varcmbgroupcode;
+                SPDataService objdserv = new SPDataService();
+                string varcmbgroupcode = "";
+                varcmbgroupcode = objds.displaydata("select PRSG_PRGID from MR_ProductSubGroup where PRSGID='"+ Convert.ToInt32(cmbSubGroup.SelectedValue) + "' ") ;
+
+                objDT = objdserv.udfnGroupList(varViewType, Convert.ToInt32(varcmbgroupcode));
+                objdserv.CloseConnection();
+                cmbGroup.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbGroup.ValueMember = "PRGID";
+                            cmbGroup.DisplayMember = "PRG_EName";
+                            cmbGroup.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+
+                //cmbGroup.SelectedValue = varcmbgroupcode;
             }
             catch (Exception ex)
 
@@ -3311,37 +3401,29 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0))); 
-                this.ActiveControl = cmbConcern; 
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Unit", "UT_STSID=1 AND UTID!=0 ORDER BY UTID", "UT_Symbol,UTID", cmbUnit, "", "UT_Symbol", "UTID");
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID <> 0 AND PRSG_STSID=1", "PRSG_EName,PRSGID", cmbSubGroup, "", "PRSG_EName", "PRSGID"); 
-                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID !=0 AND PRG_STSID=1 ORDER BY PRGID", "PRG_EName,PRGID", cmbGroup, "", "PRG_EName", "PRGID");
-                objDataBind.BindComboBoxListSelected("MR_BRAND", "BDID <> 0 AND BD_STSID=1", "BD_EName,BDID", cmbBrand, "", "BD_EName", "BDID");
-                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 AND COMID !=0 ORDER BY COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind.BindComboBoxListSelected("MR_HSN", "HSN_STSID=1 AND HSNID!=0 ORDER BY HSN_STSID", "HSN_Name,HSNID", cmbHSNName, "", "HSN_Name", "HSNID");
-                objDataBind.BindComboBoxListSelected("MR_Unit", "UT_STSID=1 AND UTID!=0 ORDER BY UTID", "UT_Symbol,UTID", cmbBulkUnit, "", "UT_Symbol", "UTID");
+                this.ActiveControl = cmbConcern;
+                udfnDropDownload(); 
+                DataBind objDataBind = new DataBind(); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (6,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbPeriod, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID=-1 AND SL_STSID=1 ", "SL_ShortName,SLID", cmbPosition, "", "SL_ShortName", "SLID");
-                objDataBind.BindComboBoxListSelected("MR_StockLocation", "SLID=-1 AND SL_STSID=1", "SL_ShortName,SLID", cmbSalesGodown, "", "SL_ShortName", "SLID");
-                objDataBind.BindComboBoxListSelected("MR_Rack", "RKID=-1 AND RK_STSID=1 ", "RK_ShortName,RKID", cmbPurchaseRack, "", "RK_ShortName", "RKID");
+                 objDataBind.BindComboBoxListSelected("MR_Rack", "RKID=-1 AND RK_STSID=1 ", "RK_ShortName,RKID", cmbPurchaseRack, "", "RK_ShortName", "RKID");
                 objDataBind.BindComboBoxListSelected("MR_Rack", "RKID=-1 AND RK_STSID=1 ", "RK_ShortName,RKID", cmbSalesRack, "", "RK_ShortName", "RKID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (25,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoEntry, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (26,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoGeneration, "", "MST_DisplayText", "MSTID");
-                objDataBind = null;
-                cmbConcern.SelectedValue = -1;
-                cmbGroup.SelectedValue = -1;
-                cmbHSNName.SelectedValue = -1;
-                cmbUnit.SelectedValue = -1;
-                cmbBulkUnit.SelectedValue = -1;
-                cmbProductCategory.SelectedValue = -1;
-                cmbPeriod.SelectedValue = -1;
-                cmbPosition.SelectedValue = -1;
-                cmbSalesGodown.SelectedValue = -1;
-                cmbPurchaseRack.SelectedValue = -1;
-                cmbSalesRack.SelectedValue = -1;
-                cmbBatchNoEntry.SelectedValue = -1;
-                cmbBatchNoGeneration.SelectedValue = -1;
+                objDataBind = null; 
+                    cmbConcern.SelectedValue = -1;
+                    cmbGroup.SelectedValue = -1;
+                    cmbHSNName.SelectedValue = -1;
+                    cmbUnit.SelectedValue = -1;
+                    cmbBulkUnit.SelectedValue = -1;
+                    cmbProductCategory.SelectedValue = -1;
+                    cmbPeriod.SelectedValue = -1;
+                    cmbPosition.SelectedValue = -1;
+                    cmbSalesGodown.SelectedValue = -1;
+                    cmbPurchaseRack.SelectedValue = -1;
+                    cmbSalesRack.SelectedValue = -1;
+                    cmbBatchNoEntry.SelectedValue = -1;
+                    cmbBatchNoGeneration.SelectedValue = -1;
                 udfnEdit();
             }
             catch (Exception ex)
@@ -3351,7 +3433,126 @@ namespace ROMS
             }
         }
 
-       
+        public void udfnDropDownload()
+        {
+            try
+            {
+                DataSet objDT = new DataSet();
+            SPDataService objdserv = new SPDataService();
+            int varViewType = 2;
+            if (btnSave.Text == "Save")
+            {
+                varViewType = 1;
+            }
+            objDT = objdserv.udfnSubGroupList(varViewType, varSubGroupId, "");
+            objdserv.CloseConnection();
+            cmbSubGroup.DataSource = null;
+            if (objDT != null)
+            {
+                if (objDT.Tables.Count > 0)
+                {
+                    if (objDT.Tables[0].Rows.Count > 0)
+                    {
+                        cmbSubGroup.ValueMember = "PRSGID";
+                        cmbSubGroup.DisplayMember = "PRSG_EName";
+                        cmbSubGroup.DataSource = objDT.Tables[0];
+                    }
+                }
+            }
+            objDT = objdserv.udfnHsnList(varViewType, varHsnId);
+            objdserv.CloseConnection();
+            cmbHSNName.DataSource = null;
+            if (objDT != null)
+            {
+                if (objDT.Tables.Count > 0)
+                {
+                    if (objDT.Tables[0].Rows.Count > 0)
+                    {
+                        cmbHSNName.ValueMember = "HSNID";
+                        cmbHSNName.DisplayMember = "HSN_Name";
+                        cmbHSNName.DataSource = objDT.Tables[0];
+                    }
+                }
+            }
+
+            objDT = objdserv.udfnUnitList(varViewType, varUnitid);
+            cmbUnit.DataSource = null;
+            if (objDT != null)
+            {
+                if (objDT.Tables.Count > 0)
+                {
+                    if (objDT.Tables[0].Rows.Count > 0)
+                    {
+                        cmbUnit.ValueMember = "UTID";
+                        cmbUnit.DisplayMember = "UT_Name";
+                        cmbUnit.DataSource = objDT.Tables[0];
+                    }
+                }
+            }
+            cmbBulkUnit.DataSource = null;
+            if (objDT != null)
+            {
+                if (objDT.Tables.Count > 0)
+                {
+                    if (objDT.Tables[0].Rows.Count > 0)
+                    {
+                        cmbBulkUnit.ValueMember = "UTID";
+                        cmbBulkUnit.DisplayMember = "UT_Name";
+                        cmbBulkUnit.DataSource = objDT.Tables[0];
+                    }
+                }
+            }
+            objdserv.CloseConnection();
+
+            int varconcerntype = 4;
+            if (btnSave.Text == "Save")
+            {
+                varconcerntype = 3;
+            }
+            objDT = objdserv.udfnCompanyList(varconcerntype, varcompanyid, MainForm.pbUserID, MainForm.pbIpAddress);
+            objdserv.CloseConnection();
+            cmbConcern.DataSource = null;
+            if (objDT != null)
+            {
+                if (objDT.Tables.Count > 0)
+                {
+                    if (objDT.Tables[0].Rows.Count > 0)
+                    {
+                        cmbConcern.ValueMember = "COMID";
+                        cmbConcern.DisplayMember = "COM_ShortName";
+                        cmbConcern.DataSource = objDT.Tables[0];
+                    }
+                }
+            }
+
+            int varbrnadViewtype = 4;
+            if (btnSave.Text == "Save")
+            {
+                varbrnadViewtype = 3;
+            }
+            objDT = objdserv.udfnBrandList(varbrnadViewtype, Convert.ToString(varBrandId), 0, 0, 0);
+            objdserv.CloseConnection();
+            cmbBrand.DataSource = null;
+            if (objDT != null)
+            {
+                if (objDT.Tables.Count > 0)
+                {
+                    if (objDT.Tables[0].Rows.Count > 0)
+                    {
+                        cmbBrand.ValueMember = "ID";
+                        cmbBrand.DisplayMember = "Brand Name";
+                        cmbBrand.DataSource = objDT.Tables[0];
+                    }
+                }
+            }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
 
         public void udfnEdit()
         {
@@ -3376,10 +3577,10 @@ namespace ROMS
                             txtItemNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ENAME"].ToString().Replace("''", "'"));
                             txtItemNameTamil.Text = Convert.ToString(objDS.Tables[0].Rows[0]["TNAME"].ToString().Replace("''", "'"));
                             cmbProductCategory.SelectedValue= objDS.Tables[0].Rows[0]["PRODUCTCATEGORY"].ToString();
-                            cmbGroup.SelectedValue = objDS.Tables[0].Rows[0]["GROUP"].ToString();
                             cmbSubGroup.SelectedValue = objDS.Tables[0].Rows[0]["SUBGROUP"].ToString();
-                            cmbBrand.SelectedValue = objDS.Tables[0].Rows[0]["BRAND"].ToString();
-
+                            CmbSubGroup_SelectedIndexChanged(cmbSubGroup, EventArgs.Empty);
+                            cmbGroup.SelectedValue = objDS.Tables[0].Rows[0]["GROUP"].ToString();
+                            cmbBrand.SelectedValue = objDS.Tables[0].Rows[0]["BRAND"].ToString(); 
                             cmbUnit.SelectedValue = objDS.Tables[0].Rows[0]["UNIT"].ToString();
                             cmbBulkUnit.SelectedValue = objDS.Tables[0].Rows[0]["BULK UNIT"].ToString();
                             txtUpp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UPP"].ToString().Replace("''", "'"));
@@ -3403,8 +3604,7 @@ namespace ROMS
                             txtWSaleRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WSALERATE"].ToString().Replace("''", "'"));
                             txtBarcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["BARCODE"].ToString().Replace("''", "'")); 
                             cmbHSNName.SelectedValue = objDS.Tables[0].Rows[0]["HSN"].ToString();
-                             
-
+                            
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cbRMFromProduction.Checked = true; } else { cbRMFromProduction.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInActive.Checked = true; }
@@ -3445,11 +3645,18 @@ namespace ROMS
                 varSubgroupCode = 0;
                 MainForm.objCP_SubGroup = new CP_SubGroup(); 
                 MainForm.objCP_SubGroup.varmastertype = 1;
-                MainForm.objCP_SubGroup.ShowDialog(); 
-                DataBind objDataBind = new DataBind(); 
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID <> 0 AND PRSG_STSID=1", "PRSG_EName,PRSGID", cmbSubGroup, "", "PRSG_EName", "PRSGID");
+                MainForm.objCP_SubGroup.ShowDialog();
+                udfnDropDownload();
                 cmbSubGroup.SelectedValue = Convert.ToInt16(varSubgroupCode);
-                objDataBind = null;
+                if (varBatchCode == 72)
+                {
+                    cmbBatchNoEntry.SelectedValue = 72;
+                }
+                else
+                {
+
+                    cmbBatchNoEntry.SelectedValue = 73;
+                }
                 cmbSubGroup.Focus();
             }
             catch (Exception ex)
@@ -3468,10 +3675,8 @@ namespace ROMS
                 MainForm.objCP_Group = new CP_Group(); 
                 MainForm.objCP_Group.varmastertype = 1;
                 MainForm.objCP_Group.ShowDialog();
-                DataBind objDataBind = new DataBind(); 
-                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID !=0 AND PRG_STSID=1 ORDER BY PRGID", "PRG_EName,PRGID", cmbGroup, "", "PRG_EName", "PRGID"); 
-                cmbGroup.SelectedValue = Convert.ToInt16(varGroupCode);
-                objDataBind = null;
+                udfnDropDownload();
+                cmbGroup.SelectedValue = Convert.ToInt16(varGroupCode); 
                 cmbGroup.Focus();
                 if (varGroupCode != 0)
                 {
@@ -3516,12 +3721,8 @@ namespace ROMS
                 MainForm.objCP_Unit = new CP_Unit(); 
                 MainForm.objCP_Unit.varmastertype = 1;
                 MainForm.objCP_Unit.ShowDialog();
-
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Unit", "UT_STSID=1 AND UTID!=0 ORDER BY UTID", "UT_Symbol,UTID", cmbUnit, "", "UT_Symbol", "UTID");
-                objDataBind.BindComboBoxListSelected("MR_Unit", "UT_STSID=1 AND UTID!=0 ORDER BY UTID", "UT_Symbol,UTID", cmbBulkUnit, "", "UT_Symbol", "UTID");
-                cmbUnit.SelectedValue = Convert.ToInt16(varUnitCode);
-                objDataBind = null;
+                udfnDropDownload();
+                cmbUnit.SelectedValue = Convert.ToInt16(varUnitCode); 
                 cmbUnit.Focus();
             }
             catch (Exception ex)

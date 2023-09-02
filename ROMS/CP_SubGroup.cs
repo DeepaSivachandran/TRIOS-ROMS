@@ -226,7 +226,8 @@ namespace ROMS
                         {
                             varmastertype = 0;
                             MainForm.objCP_Items.varSubgroupCode = varSubgroupCode;
-                            varCloseFlag = 1;
+                            MainForm.objCP_Items.varBatchCode = Convert.ToInt32(cmbBatchNo.SelectedValue); 
+                             varCloseFlag = 1;
                             udfnclose();
                         }
                         else
