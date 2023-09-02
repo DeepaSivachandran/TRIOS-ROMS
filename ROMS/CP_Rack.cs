@@ -723,7 +723,7 @@ namespace ROMS
                 {
                     varparaViewType = 8;
                 }
-                objDS = objsdserv.udfnStockLocationList(varparaViewType,Convert.ToInt32(cmbConcern.SelectedValue) );
+                objDS = objsdserv.udfnStockLocationList(varparaViewType,Convert.ToInt32(cmbConcern.SelectedValue) ,0,0);
                 objsdserv.CloseConnection();
                 cmbStockLocation.DataSource = null;
                 if (objDS != null)

@@ -92,7 +92,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRackList(0, (Convert.ToInt16(cmbGroupType.SelectedValue)),0);
+                objDs = objspservice.udfnRackList(0, (Convert.ToInt16(cmbGroupType.SelectedValue)),0,0,0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
