@@ -112,8 +112,18 @@ namespace ROMS
             {
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                int varViewType = 7;
-                if (btnSave.Text == "Save") { varViewType = 6; }
+                int varViewType = 6;
+                if (btnSave.Text == "Update")
+                {
+                    if (varStockLocation == -1)
+                    {
+                        varViewType = 6;
+                    }
+                    else
+                    {
+                        varViewType = 7;
+                    }
+                }
                 objDT = objdserv.udfnStockLocationList(varViewType, 0,varStockLocation,0);
                 objdserv.CloseConnection();
                 cmbStockLocation.DataSource = null;
@@ -241,7 +251,7 @@ namespace ROMS
         {
             try
             {
-                btnSave.Visible = false;
+                btnSave.Enabled = false;
                 string varResult = ""; string varOriginator = "Product Sub Group Creation";
                 int varViewType=0; 
                 if (rbActive.Checked)
@@ -302,7 +312,7 @@ namespace ROMS
             }
             finally
             {
-                btnSave.Visible = true;
+                btnSave.Enabled = true;
                 btnSave.Focus();
             }
         }

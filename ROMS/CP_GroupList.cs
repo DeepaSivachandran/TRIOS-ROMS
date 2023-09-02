@@ -612,7 +612,7 @@ namespace ROMS
             try
             {
                 txtSearchProduct.BackColor = Color.White;
-                txtSearchProduct.Text = "";
+              
             }
             catch (Exception ex)
             {
