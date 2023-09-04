@@ -112,7 +112,7 @@ namespace ROMS
                             grdGroupList.Columns["S.No."].Width = 50;
                             grdGroupList.Columns["Concern"].Width = 100;
                             grdGroupList.Columns["Stock Location"].Width = 200;
-                            grdGroupList.Columns["Rack Group"].Width = 150;
+                            grdGroupList.Columns["Rack Group"].Width = 250;
                             grdGroupList.Columns["Rack Name"].Width = 200;
                             grdGroupList.Columns["Short Name"].Width = 100;
                             grdGroupList.Columns["Description"].Width = 200;
