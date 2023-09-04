@@ -1859,7 +1859,7 @@ namespace ROMS
                 {
                     varparaViewType = 8;
                 }
-                objDS = objsdserv.udfnStockLocationList(varparaViewType, Convert.ToInt32(cmbConcern.SelectedValue));
+                objDS = objsdserv.udfnStockLocationList(varparaViewType, Convert.ToInt32(cmbConcern.SelectedValue),0,0);
                 objsdserv.CloseConnection(); 
                 cmbPosition.DataSource = null;
                 if (objDS != null)
@@ -1875,7 +1875,7 @@ namespace ROMS
                     }
                 }
 
-                objDS = objsdserv.udfnStockLocationList(varparaViewType, Convert.ToInt32(cmbConcern.SelectedValue));
+                objDS = objsdserv.udfnStockLocationList(varparaViewType, Convert.ToInt32(cmbConcern.SelectedValue),0,0);
                 objsdserv.CloseConnection();
                 cmbSalesGodown.DataSource = null;
                 if (objDS != null)
@@ -2255,7 +2255,7 @@ namespace ROMS
                     cmbBatchNoEntry.SelectedValue = 73;
                 }
 
-                objDT = objdserv.udfnGroupList(varViewType, Convert.ToInt32(varcmbgroupcode));
+                objDT = objdserv.udfnGroupList(varViewType, Convert.ToInt32(varcmbgroupcode),0);
                 objdserv.CloseConnection();
                 cmbGroup.DataSource = null;
                 if (objDT != null)
@@ -3462,7 +3462,7 @@ namespace ROMS
             {
                 varViewType = 1;
             }
-            objDT = objdserv.udfnSubGroupList(varViewType, varSubGroupId, "");
+            objDT = objdserv.udfnSubGroupList(varViewType, varSubGroupId, "",0,0);
             objdserv.CloseConnection();
             cmbSubGroup.DataSource = null;
             if (objDT != null)

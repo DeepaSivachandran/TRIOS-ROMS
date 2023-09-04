@@ -103,6 +103,7 @@ namespace ROMS
                 MainForm.objCP_RackGroup = new CP_RackGroup();
                 MainForm.objCP_RackGroup.btnSave.Text = "Update";
                 MainForm.objCP_RackGroup.varId = Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value);
+                MainForm.objCP_RackGroup.varCompanyId = Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["COMID"].Value);
                 MainForm.objCP_RackGroup.varStatusid = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["Status ID"].Value);
                 MainForm.objCP_RackGroup.varStockId = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
                 MainForm.objCP_RackGroup.ShowDialog();
@@ -154,6 +155,7 @@ namespace ROMS
                             grdRackGroupList.Columns["Status"].Width = 80;
 
                             grdRackGroupList.Columns["ID"].Visible = false;
+                            grdRackGroupList.Columns["COMID"].Visible = false;
                             grdRackGroupList.Columns["Status ID"].Visible = false;
                             grdRackGroupList.Columns["SL_ShortName"].Visible = false;
                             grdRackGroupList.Columns["StockLocation ID"].Visible = false;
@@ -220,9 +222,24 @@ namespace ROMS
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Company", " COMID not in (-1)", "COMID,COM_ShortName", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind = null;
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                int varViewType = 2;
+                objDT = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress);
+                objdserv.CloseConnection();
+                cmbConcern.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.DisplayMember = "COM_ShortName";
+                            cmbConcern.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -234,16 +251,28 @@ namespace ROMS
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                if (varCompanyId == 0)
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                int varViewType = 2;
+                if(varCompanyId==0)
                 {
-                    objDataBind.BindComboBoxListSelected("MR_StockLocation", " SLID not in (-1) ORDER BY SLID,SL_EName ", "SLID,SL_EName", cmbStockLocation, "", "SL_EName", "SLID");
+                    varViewType = 1;
                 }
-                else
+                objDT = objdserv.udfnStockLocationList(varViewType, varCompanyId,0,0);
+                objdserv.CloseConnection();
+                cmbStockLocation.DataSource = null;
+                if (objDT != null)
                 {
-                    objDataBind.BindComboBoxListSelected("MR_StockLocation", "  SL_COMID=" + varCompanyId + " or SLID=0 ORDER BY SLID,SL_EName ", "SLID,SL_EName", cmbStockLocation, "", "SL_EName", "SLID");
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbStockLocation.ValueMember = "SLID";
+                            cmbStockLocation.DisplayMember = "SL_EName";
+                            cmbStockLocation.DataSource = objDT.Tables[0];
+                        }
+                    }
                 }
-                objDataBind = null;
             }
             catch (Exception ex)
             {
@@ -407,12 +436,17 @@ namespace ROMS
         {
             try
             {
+                btnView.Enabled = false;
                 udfnList();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnView.Enabled = true;
             }
         }
 
@@ -570,6 +604,7 @@ namespace ROMS
         {
             try
             {
+                btnExport.Enabled = false;
                 if ((grdRackGroupList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -653,6 +688,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled = true;
             }
         }
 
@@ -775,7 +814,6 @@ namespace ROMS
         {
             try
             {
-
                 for (int i = 0; i < grdRackGroupList.Rows.Count; i++)
                 {
                     if (Convert.ToString(grdRackGroupList.Rows[i].Cells["Status ID"].Value) == "1")
@@ -783,10 +821,14 @@ namespace ROMS
                         grdRackGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdRackGroupList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    else if (Convert.ToString(grdRackGroupList.Rows[i].Cells["Status ID"].Value) == "2")
+                    else 
                     {
                         grdRackGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdRackGroupList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToString(grdRackGroupList.Rows[i].Cells["Status"].Value) == "")
+                    {
+                        grdRackGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.White;
                     }
                 }
             }
@@ -800,5 +842,6 @@ namespace ROMS
                 grdRackGroupList.ClearSelection();
             }
         }
+
     }
 }

@@ -54,13 +54,29 @@ namespace ROMS
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-
-                //select SL_COMID, SL_EName, (select COMID from MR_Company where MR_StockLocation.SL_COMID = MR_Company.COMID)AS CSID from MR_StockLocation;
-                objDataBind.BindComboBoxListSelected("MR_StockLocation,MR_Company ","SL_COMID=COMID","SL_EName,SLID",cmbStockLocation,"", "SL_EName", "SLID");
-                //objDataBind.BindComboBoxListSelected("MR_StockLocation", " SL_COMID and SLID !=0 Order by SLID", "SL_EName,SLID", cmbStockLocation, "", "SL_EName", "SLID");
-                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID=1 and COMID !=0 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind = null;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                int varViewType = 4;
+                if (btnSave.Text == "Save")
+                {
+                    varViewType = 3;
+                }
+                objDs = objdserv.udfnCompanyList(varViewType, PbConcernID, MainForm.pbUserID, MainForm.pbIpAddress);
+                objdserv.CloseConnection();
+                cmbConcern.DataSource = null;
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.DisplayMember = "COM_ShortName";
+                            cmbConcern.DataSource = objDs.Tables[0];
+                        }
+                    }
+                }
+               
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text == "Save")
                 {
@@ -137,6 +153,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnSave.Enabled = true;
+            }
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -185,6 +205,7 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
+                    btnSave.Enabled = false;
                     udfnSave(sender, e);
                 }
             }
@@ -202,10 +223,10 @@ namespace ROMS
                 txtShortName.Text = "";
                 txtDescription.Text = "";
                 //cmbConcern.SelectedIndex = 0;
-                //cmbStockLocation.SelectedIndex = 0;
+                cmbStockLocation.SelectedIndex = 0;
                 btnSave.Text = "Save";
-                txtRackName.Focus();
-                this.ActiveControl = txtRackName;
+                cmbConcern.Focus();
+                this.ActiveControl = cmbConcern;
             }
             catch (Exception ex)
             {
@@ -688,6 +709,55 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }        
+        }
+
+        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+                DataSet objDS = new DataSet();
+                SPDataService objsdserv = new SPDataService();
+                int varparaViewType = 9;
+                if (btnSave.Text == "Save")
+                {
+                    varparaViewType = 8;
+                }
+                objDS = objsdserv.udfnStockLocationList(varparaViewType,Convert.ToInt32(cmbConcern.SelectedValue),0,0 );
+                objsdserv.CloseConnection();
+                cmbStockLocation.DataSource = null;
+                if (objDS != null)
+                {
+                    if (objDS.Tables.Count > 0)
+                    {
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            cmbStockLocation.ValueMember = "SLID";
+                            cmbStockLocation.DisplayMember = "SL_EName";
+                            cmbStockLocation.DataSource = objDS.Tables[0];
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbStockLocation.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

@@ -2995,7 +2995,7 @@ namespace ROMS
                     DataSet objDT = new DataSet();
                     SPDataService objdserv = new SPDataService();
                     int varViewType = 3;
-                    objDT = objdserv.udfnGroupList(varViewType, 0);
+                    objDT = objdserv.udfnGroupList(varViewType, 0,0);
                     objdserv.CloseConnection();
                     if (objDT != null)
                     {
@@ -3764,8 +3764,8 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbMappingGroup.Select(int.MaxValue, 0))); 
                 DataSet objDT = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                int varViewType = 5;
-                objDT = objdserv.udfnSubGroupList(varViewType, 0, Convert.ToString(cmbMappingGroup.SelectedValue));
+                int varViewType = 4;
+                objDT = objdserv.udfnSubGroupList(varViewType, 0, Convert.ToString(cmbMappingGroup.SelectedValue),0,0);
                 objdserv.CloseConnection();
                 if (objDT != null)
                 {

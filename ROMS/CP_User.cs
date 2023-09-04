@@ -26,15 +26,13 @@ namespace ROMS
         public string oldpassword,varpassword;
         public string PbDefault;
         public int varstatus;
-        public int varUserID = 0;
+        public string varUserID ="";
         public string varusercode="";
         public string varUserRoleCode = "";
         public string PbNameoftheUser = "";
         public string PbLoginid = "";
         public string PbUserCategory = "";
         public string PbUserRole = "";
-        //public string PbPassword = "";
-        //public string PbConfirmPassword = "";
         public string PbPasskey = "";
         public int PbUserCategoryID = 0;
         public int PbUserRoleID = 0;
@@ -46,25 +44,6 @@ namespace ROMS
         public CP_User()
         {
             InitializeComponent();
-        }
-        public void udfnLoadUserCategory()
-        {
-            //try
-            //{
-            //    // Bind combobox
-            //    DataBind objDataBind = new DataBind();
-            //    objDataBind.BindComboBoxListSelected("MR_UserCategory", " CT_STSID=1 and CTID !=0 Order by CTID", "CT_Name,CTID", cmbUserCategory, "", "CT_Name", "CTID");
-            //    objDataBind = null;
-            //    if (varUserRoleCode != "")
-            //    {
-            //        cmbUserCategory.SelectedValue = varCategoryCode;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
         }
         private void CP_User_Leave(object sender, EventArgs e)
         {
@@ -84,7 +63,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtUserName_Leave(object sender, EventArgs e)
         {
             try
@@ -109,7 +87,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtLoginID_Enter(object sender, EventArgs e)
         {
             try
@@ -122,7 +99,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtLoginID_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -138,7 +114,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtLoginID_Leave(object sender, EventArgs e)
         {
             try
@@ -163,8 +138,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
         private void txtPassword_Enter(object sender, EventArgs e)
         {
             try
@@ -177,7 +150,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -193,7 +165,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtPassword_Leave(object sender, EventArgs e)
         {
             try
@@ -218,7 +189,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtCPassword_Enter(object sender, EventArgs e)
         {
             try
@@ -231,7 +201,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtCPassword_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -247,7 +216,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtCPassword_Leave(object sender, EventArgs e)
         {
             try
@@ -271,8 +239,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }        
-
+        }
         private void rbActive_Enter(object sender, EventArgs e)
         {
             try
@@ -285,7 +252,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void rbActive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -301,7 +267,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void rbActive_Leave(object sender, EventArgs e)
         {
             try
@@ -314,7 +279,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void rbInactive_Enter(object sender, EventArgs e)
         {
             try
@@ -327,7 +291,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void rbInactive_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -343,7 +306,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void rbInactive_Leave(object sender, EventArgs e)
         {
             try
@@ -356,7 +318,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public string GenerateMD5(string HashString)
         {
             return string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(HashString)).Select(s => s.ToString("x2")));
@@ -380,7 +341,11 @@ namespace ROMS
                     varoriginator = "User Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnUser(varType, varUserID, (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, varoriginator);
+                if(varUserID=="")
+                {
+                    varUserID = "0";
+                }
+                varResult = objspservice.udfnUser(varType,Convert.ToInt32( varUserID), (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, varoriginator);
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
@@ -403,14 +368,16 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnSave.Enabled = true;
+            }
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-
             try
             {
                 bool blnErrorFlag = false;
-
                 if (Convert.ToString(txtUserName.Text).Trim() == "")
                 {
                     epUser.SetError(txtUserName, "Please enter user name");
@@ -478,10 +445,8 @@ namespace ROMS
                     tpPassKey.Show("Please select pass key", cmbPasskey, 5000);
                     blnErrorFlag = true;
                 }
-
                 if (oldpassword != null && oldpassword != "")
                 {
-
                     if (oldpassword.Trim() == txtPassword.Text.Trim())
                     {
                         varpassword = txtPassword.Text;
@@ -498,6 +463,7 @@ namespace ROMS
 
                 if (blnErrorFlag == false)
                 {
+                    btnSave.Enabled = false;
                     udfnSave(sender, e);
                 }
             }
@@ -507,17 +473,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void udfnClear()
         {
             txtUserName.Text = "";
             txtLoginID.Text = "";
             txtPassword.Text = "";
             txtCPassword.Text = "";
+            cmbUserCategory.SelectedIndex = 0;
+            cmbUserRole.SelectedIndex = 0;
+            cmbPasskey.SelectedIndex = 0;
             rbActive.Checked = true;
             btnSave.Text = "Save";
+            txtUserName.Focus();
+            this.ActiveControl = txtUserName;
         }
-
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -530,7 +499,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnSave_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -559,9 +527,7 @@ namespace ROMS
         {
             try
             {
-              
-                    this.Close();
-                
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -594,7 +560,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -607,7 +572,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnClose_Leave(object sender, EventArgs e)
         {
             try
@@ -620,17 +584,40 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-       
         private void CP_User_Load(object sender, EventArgs e)
         {
             try
             {
+                txtUserName.Focus();
+                this.ActiveControl = txtUserName;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                int varViewType = 3;
+                if (btnSave.Text == "Save")
+                {
+                    varViewType = 2;
+                }
+                objDs = objdserv.udfnUserCategoryList(varViewType,PbUserCategoryID);
+                objdserv.CloseConnection();
+                cmbUserCategory.DataSource = null;
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            cmbUserCategory.ValueMember = "CTID";
+                            cmbUserCategory.DisplayMember = "CT_Name";
+                            cmbUserCategory.DataSource = objDs.Tables[0];
+                        }
+                    }
+                }
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_UserCategory", " CT_STSID=1 and CTID !=0 Order by CTID", "CT_Name,CTID", cmbUserCategory, "", "CT_Name", "CTID");
                 objDataBind.BindComboBoxListSelected("MR_UserRole", "UR_STSID=1 and URID !=0 Order by URID", "UR_Name,URID", cmbUserRole, "", "UR_Name", "URID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,7) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbPasskey, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
+                udfnEdit();
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -649,13 +636,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void udfnLoad()
         {
             try
-            {
+            {   
                 txtUserName.Text = PbNameoftheUser;
                 txtLoginID.Text = PbLoginid;
                 cmbUserCategory.SelectedValue = PbUserCategoryID;
@@ -669,7 +654,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_User_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -690,7 +674,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtUserName_Enter(object sender, EventArgs e)
         {
             try
@@ -703,10 +686,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtUserName_KeyDown(object sender, KeyEventArgs e)
         {
-
             try
             {
                 if (e.KeyCode == Keys.Enter)
@@ -720,7 +701,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbUserCategory_Enter(object sender, EventArgs e)
         {
             try
@@ -733,7 +713,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbUserCategory_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -749,7 +728,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbUserCategory_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -763,7 +741,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbUserCategory_Leave(object sender, EventArgs e)
         {
             try
@@ -787,10 +764,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbUserCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             try
             {
                 BeginInvoke(new Action(() => cmbUserCategory.Select(int.MaxValue, 0)));
@@ -801,7 +776,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbUserRole_Enter(object sender, EventArgs e)
         {
             try
@@ -813,9 +787,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void CmbUserRole_Leave(object sender, EventArgs e)
         {
             try
@@ -839,7 +811,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbUserRole_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -852,10 +823,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbUserRole_KeyDown(object sender, KeyEventArgs e)
         {
-
             try
             {
                 if (e.KeyCode == Keys.Enter)
@@ -869,10 +838,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbUserRole_KeyPress(object sender, KeyPressEventArgs e)
         {
-
             try
             {
                 e.Handled = true;
@@ -884,7 +851,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbPasskey_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -904,7 +870,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbPasskey_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -918,7 +883,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbPasskey_Leave(object sender, EventArgs e)
         {
             try
@@ -942,7 +906,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbPasskey_Enter(object sender, EventArgs e)
         {
             try
@@ -955,7 +918,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbPasskey_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -968,7 +930,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnNew_Click(object sender, EventArgs e)
         {
             try
@@ -989,7 +950,6 @@ namespace ROMS
 
             }
         }
-
         private void CP_User_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -1013,33 +973,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-    
-
         private void udfnEdit()
         {
             try
             {
-                if (varusercode != "")
+                if (varUserID != "")
                 {
                     pnlStatus.Enabled = true;
-                    SPDataService objspservice = new SPDataService();
-                    DataSet objDS = new DataSet();
-                  //  objDS = objspservice.udfnSPUserList("EditLoad", varusercode, MainForm.pbUserID, MainForm.pbIpAddress);
-                    objspservice.CloseConnection();
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objspdservice.udfnUserList(3,"", "", "",Convert.ToInt32(varUserID));
+                    objspdservice.CloseConnection();
 
-                    if (objDS != null)
+                    if (objDs != null)
                     {
-                        if (objDS.Tables[0].Rows.Count > 0)
+                        if (objDs.Tables[0].Rows.Count > 0)
                         {
-                            txtUserName.Text = objDS.Tables[0].Rows[0]["UserName"].ToString().Replace("''", "'");
-                            txtLoginID.Text = objDS.Tables[0].Rows[0]["Userid"].ToString();
-                            txtPassword.Text = objDS.Tables[0].Rows[0]["UserPassword"].ToString();
-                            oldpassword = objDS.Tables[0].Rows[0]["UserPassword"].ToString();
-                            txtCPassword.Text = objDS.Tables[0].Rows[0]["UserPassword"].ToString();
+                            txtUserName.Text = objDs.Tables[0].Rows[0]["U_Name"].ToString().Replace("''", "'");
+                            txtLoginID.Text = objDs.Tables[0].Rows[0]["U_LoginID"].ToString();
+                            txtPassword.Text = objDs.Tables[0].Rows[0]["U_Password"].ToString();
+                            oldpassword = objDs.Tables[0].Rows[0]["U_Password"].ToString();
+                            txtCPassword.Text = objDs.Tables[0].Rows[0]["U_Password"].ToString();
                           //  cmbUserRole.SelectedValue= objDS.Tables[0].Rows[0]["UserRoleCode"].ToString();
-
-                            if (objDS.Tables[0].Rows[0]["Statuscode"].ToString() == "1")
+                            if (objDs.Tables[0].Rows[0]["U_STSID"].ToString() == "1")
                             {
                                 rbActive.Checked = true;
                             }
@@ -1047,14 +1003,11 @@ namespace ROMS
                             {
                                 rbInactive.Checked = true;
                             }
-                           
                             btnSave.Text = "Update";
                         }
                     }
-
                 }
                 else { pnlStatus.Enabled = false; }
-
             }
             catch (Exception ex)
             {

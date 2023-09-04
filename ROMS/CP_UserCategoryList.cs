@@ -143,9 +143,16 @@ namespace ROMS
         {
             try
             {
-                SPDataService objspservice = new SPDataService();
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdUserCategoryList.DataSource = null;
                 DataSet objDs = new DataSet();
-                objDs = objspservice.udfnUserCategoryList(0);
+                //**** To call the function from SP ***************
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnUserCategoryList(0,0);
+                objspservice.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -161,6 +168,7 @@ namespace ROMS
                             grdUserCategoryList.Columns["StatusID"].Visible = false;
                             grdUserCategoryList.Columns["DefaultID"].Visible = false;
                             grdUserCategoryList.Columns["S.No."].Width = 50;
+                            grdUserCategoryList.Columns["Category Name"].Width = 150;
                             grdUserCategoryList.Columns["Status"].Width = 80;
                             grdUserCategoryList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserCategoryList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -177,7 +185,11 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-                    objspservice.CloseConnection();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
             }
@@ -189,6 +201,7 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
 

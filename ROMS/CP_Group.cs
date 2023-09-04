@@ -356,6 +356,7 @@ namespace ROMS
             finally
             {
                 btnSave.Enabled = true;
+                btnSave.Focus();
             }
         }
         private void BtnSave_Click(object sender, EventArgs e)

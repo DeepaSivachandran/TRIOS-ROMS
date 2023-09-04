@@ -149,7 +149,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -163,7 +162,6 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
         private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
         {
             try

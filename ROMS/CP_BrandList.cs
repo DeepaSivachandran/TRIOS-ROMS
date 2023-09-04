@@ -22,14 +22,62 @@ namespace ROMS
             InitializeComponent();
         }
 
-        public void udfnCmbLoad()
+        public void udfnCmbProductGroup()
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID not in (-1) ORDER BY PRGID,PRG_EName", "PRG_EName,PRGID", cmbProductgroup, "", "PRG_EName", "PRGID");
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSGID not in (-1) ORDER BY PRSGID,PRSG_EName", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
-                objDataBind = null;
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                int varViewType = 3;
+                objDT = objdserv.udfnGroupList(varViewType, 0,0);
+                objdserv.CloseConnection();
+                cmbProductgroup.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbProductgroup.ValueMember = "PRGID";
+                            cmbProductgroup.DisplayMember = "PRG_EName";
+                            cmbProductgroup.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnCmbProductSubGroup()
+        {
+            try
+            {
+                DataSet objDT = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                int varViewType =5 ;
+                if (varGroupId==0)
+                {
+                    varViewType = 4;
+                }
+                objDT = objdserv.udfnSubGroupList(varViewType, 0,"", varGroupId,0);
+                objdserv.CloseConnection();
+                cmbProductSubGroup.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbProductSubGroup.ValueMember = "PRSGID";
+                            cmbProductSubGroup.DisplayMember = "PRSG_EName";
+                            cmbProductSubGroup.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+                objdserv.CloseConnection();
             }
             catch (Exception ex)
             {
@@ -82,7 +130,8 @@ namespace ROMS
             try
             {
                 udfnList();
-                udfnCmbLoad();
+                udfnCmbProductGroup();
+                udfnCmbProductSubGroup();
                 BeginInvoke(new Action(() => cmbProductgroup.Select(int.MaxValue, 0)));
                 this.ActiveControl = cmbProductgroup;
             }
@@ -103,8 +152,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objDser = new SPDataService();
-                        
-                        string varResult = objDser.udfnBrand(2, Convert.ToString(grdBrandList.SelectedRows[0].Cells["ID"].Value.ToString()),"","", 0, "", "Brand Deletion");
+                        string varResult = objDser.udfnBrand(2, Convert.ToInt32(grdBrandList.SelectedRows[0].Cells["ID"].Value.ToString()),"","", 0, "", "Brand Deletion");
                         objDser.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -136,7 +184,7 @@ namespace ROMS
                     MainForm.objCP_Brand = new CP_Brand();
                     MainForm.objCP_Brand.MdiParent = ParentForm;
                     MainForm.objCP_Brand.btnSave.Text = "Update";
-                    MainForm.objCP_Brand.varId = Convert.ToString(grdBrandList.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_Brand.varId = Convert.ToInt32(grdBrandList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_Brand.varStatusid = Convert.ToInt32(grdBrandList.SelectedRows[0].Cells["Status ID"].Value);
                     MainForm.objCP_Brand.Show();
                
@@ -339,9 +387,7 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbProductgroup.Select(int.MaxValue, 0)));
                 varGroupId= Convert.ToInt32(cmbProductgroup.SelectedValue);
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", "PRSG_PRGID=" + varGroupId + "  ORDER BY PRSG_EName ", "PRSG_EName, PRSGID", cmbProductSubGroup, "", "PRSG_EName", "PRSGID");
-                objDataBind = null;
+                udfnCmbProductSubGroup();
             }
             catch (Exception ex)
             {
