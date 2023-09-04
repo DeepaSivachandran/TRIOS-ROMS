@@ -221,6 +221,8 @@ namespace ROMS
             {
                 if (grdSubGroupList.SelectedRows.Count != 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
                     MainForm.objCP_SubGroup = new CP_SubGroup();
                     MainForm.objCP_SubGroup.btnSave.Text = "Update";
 
@@ -233,6 +235,8 @@ namespace ROMS
                     MainForm.objCP_SubGroup.varStockLocation = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
                     MainForm.objCP_SubGroup.varRack = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Rack ID"].Value);
                     MainForm.objCP_SubGroup.varStatus = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Status ID"].Value);
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
                     MainForm.objCP_SubGroup.ShowDialog();
                 }
             }
@@ -581,6 +585,7 @@ namespace ROMS
             finally
             {
                 btnExport.Enabled = true;
+                btnExport.Focus();
             }
         }
         private void BtnExport_KeyDown(object sender, KeyEventArgs e)

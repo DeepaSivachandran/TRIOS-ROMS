@@ -165,12 +165,16 @@ namespace ROMS
             {
                 if(grdGroupList.SelectedRows.Count != 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
                     MainForm.objCP_Group = new CP_Group();
                     MainForm.objCP_Group.btnSave.Text = "Update";
                     MainForm.objCP_Group.varId = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_Group.varGroupNameinEnglish = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Product Group Name in English"].Value);
                     MainForm.objCP_Group.varGroupNameinTamil = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Product Group Name in Tamil"].Value);
                     MainForm.objCP_Group.varStatus = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["Status ID"].Value);
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
                     MainForm.objCP_Group.ShowDialog();
                 }
             }
@@ -178,7 +182,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
         }
         private void BtnView_Enter(object sender, EventArgs e)

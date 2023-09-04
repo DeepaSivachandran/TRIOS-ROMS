@@ -125,6 +125,7 @@
             this.Add.UseVisualStyleBackColor = true;
             this.Add.Click += new System.EventHandler(this.Add_Click);
             this.Add.Enter += new System.EventHandler(this.Add_Enter);
+            this.Add.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Add_KeyDown);
             this.Add.Leave += new System.EventHandler(this.Add_Leave);
             // 
             // grdSelectedRack
