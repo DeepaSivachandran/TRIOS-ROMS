@@ -74,6 +74,7 @@ namespace ROMS
                 varGroupId = 0;
                 varSubGroupId = 0;
                 varBrandId = 0;
+                varStatusId = 0;
                 udfnCmbProductGroup();
                 udfnCmbBrand();
                 udfnCmbStatus();
@@ -111,6 +112,7 @@ namespace ROMS
             {
                 udfnHideGrids();
                 grdLoction.Visible = true;
+                
                 tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ";
                 tsbLocation.BackColor = Color.SkyBlue;
             }
@@ -141,13 +143,11 @@ namespace ROMS
         {
             try
             {
-               // varViewType = 8;
-                Application.DoEvents();
+               // Application.DoEvents();
                 grdLoction.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-
-                 objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,varStatusId,varBrandId);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,varStatusId,varBrandId);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -156,11 +156,73 @@ namespace ROMS
                         //lblNoRecordsFound.Visible = false;
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            if(grdLoction.Visible==true)
+                            if (grdLoction.Visible == true)
                             {
-                                //grdLoction.DataSource = objDs.Tables[0];
+                                grdLoction.DataSource = objDs.Tables[0];
+                                grdLoction.Columns["S.No."].Width = 50;
+                                grdLoction.Columns["Product Name in Tamil"].Width = 200;
+                                grdLoction.Columns["S.No."].Frozen = true;
+                                grdLoction.Columns["P.I Code"].Frozen = true;
+                                grdLoction.Columns["Product Name in Tamil"].Frozen = true;
+                                grdLoction.Columns["Unit"].Frozen = true;
+                                grdLoction.Columns["S.No."].ReadOnly = true;
+                                grdLoction.Columns["P.I Code"].ReadOnly = true;
+                                grdLoction.Columns["Product Name in Tamil"].ReadOnly = true;
+                                grdLoction.Columns["Unit"].ReadOnly = true;
+
+                                grdLoction.Columns["Pur.Stock Location-Current"].ReadOnly = true;
+                                grdLoction.Columns["Rack MSQ-Current"].ReadOnly = true;
+                                grdLoction.Columns["Pur.Rack-Current"].ReadOnly = true;
+                                grdLoction.Columns["Sales Location-Current"].ReadOnly = true;
+                                grdLoction.Columns["Sales Rack -Current"].ReadOnly = true;
+
+                                grdLoction.Columns["Pur.Stock Location-Current"].Width = 150;
+                                grdLoction.Columns["Pur.Stock Location-New"].Width = 150;
+                                grdLoction.Columns["Pur.Rack-Current"].Width = 120;
+                                grdLoction.Columns["Sales Location-Current"].Width = 150;
+                                grdLoction.Columns["Sales Location-New"].Width = 120;
+                                grdLoction.Columns["Sales Rack -Current"].Width = 120;
+                                grdLoction.Columns["Rack MSQ-Current"].Width = 150;
                             }
-                           
+                            else if(grdMSQ.Visible==true)
+                            {
+                                grdMSQ.DataSource = objDs.Tables[0];
+                                grdMSQ.Columns["S.No."].Width = 50;
+                                grdMSQ.Columns["Product Name in Tamil"].Width = 200;
+                                grdMSQ.Columns["S.No."].Frozen = true;
+                                grdMSQ.Columns["P.I Code"].Frozen = true;
+                                grdMSQ.Columns["Product Name in Tamil"].Frozen = true;
+                                grdMSQ.Columns["Unit"].Frozen = true;
+                                grdMSQ.Columns["S.No."].ReadOnly = true;
+                                grdMSQ.Columns["P.I Code"].ReadOnly = true;
+                                grdMSQ.Columns["Product Name in Tamil"].ReadOnly = true;
+                                grdMSQ.Columns["Unit"].ReadOnly = true;
+
+                                grdLoction.Columns["R Min Sale Qty-New"].ReadOnly = true;
+                                grdLoction.Columns["R.Rate-New"].ReadOnly = true;
+                                grdLoction.Columns["W.Min Sale Qty-New"].ReadOnly = true;
+                                grdLoction.Columns["W.Sale Rate-New"].ReadOnly = true;
+                                grdLoction.Columns["Barcode-New"].ReadOnly = true;
+
+                            }
+                            else if(grdStock.Visible==true)
+                            {
+                                grdStock.DataSource = objDs.Tables[0];
+                                grdStock.Columns["S.No."].Width = 50;
+                                grdStock.Columns["Product Name in Tamil"].Width = 200;
+                                grdStock.Columns["S.No."].Frozen = true;
+                                grdStock.Columns["P.I Code"].Frozen = true;
+                                grdStock.Columns["Product Name in Tamil"].Frozen = true;
+                                grdStock.Columns["Unit"].Frozen = true;
+                                grdStock.Columns["S.No."].ReadOnly = true;
+                                grdStock.Columns["P.I Code"].ReadOnly = true;
+                                grdStock.Columns["Product Name in Tamil"].ReadOnly = true;
+                                grdStock.Columns["Unit"].ReadOnly = true;
+
+                                grdLoction.Columns["Min Stock-New"].ReadOnly = true;
+                                grdLoction.Columns["Max Stock-New"].ReadOnly = true;
+                                grdLoction.Columns["Reorder Qty-New"].ReadOnly = true;
+                            }
                         }
                         else
                         {
@@ -292,6 +354,7 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
+                    varViewType = 5;
                     grdMSQ.Visible = true;
                     tspHeader.Text = "Product Attributes Bulk Update : Minsales Qty & Barcode";
                     tsbMSQ.BackColor = Color.SkyBlue;
@@ -312,6 +375,7 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
+                    varViewType = 6;
                     grdStock.Visible = true;
                     tspHeader.Text = "Product Attributes Bulk Update : Min, Max stock & Reorder Qty";
                     tsbStock.BackColor = Color.SkyBlue;
@@ -972,7 +1036,7 @@ namespace ROMS
         {
             try
             {
-                (grdBulkAttributes.DataSource as DataTable).DefaultView.RowFilter = "([Product Group Name in English]) LIKE '%" + txtSubGroup.Text + "%'";
+                (grdBulkAttributes.DataSource as DataTable).DefaultView.RowFilter = "([Product Group Name in Tamil]) LIKE '%" + txtSubGroup.Text + "%'";
             }
             catch (Exception ex)
             {
