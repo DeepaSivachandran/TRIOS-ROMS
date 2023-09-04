@@ -25,14 +25,20 @@ namespace ROMS
         {
             try
             {
+                picLoader.Visible = true;
+                Application.DoEvents();
+                picLoader.BringToFront();
                 udfnlistcmbdata();
-                MainForm.objCP_Items = new CP_Product();
-                MainForm.objCP_Items.ShowDialog(); 
+                MainForm.objCP_Items = new CP_Product(); 
+                MainForm.objCP_Items.ShowDialog();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex); 
+                objError.WriteFile(ex);
+            }
+            finally
+            { 
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -118,10 +124,12 @@ namespace ROMS
             try
             {
 
+                picLoader.Visible = true;
+                Application.DoEvents();
+                picLoader.BringToFront();
                 if (grdItemList.SelectedRows.Count > 0)
                 {
-                    MainForm.objCP_Items = new CP_Product();
-                    MainForm.objCP_Items.MdiParent = this.ParentForm;
+                    MainForm.objCP_Items = new CP_Product(); 
                     MainForm.objCP_Items.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString());
                     MainForm.objCP_Items.varGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PRGID"].Value.ToString());
                     MainForm.objCP_Items.varSubGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRSGID"].Value.ToString());
@@ -134,7 +142,7 @@ namespace ROMS
                     MainForm.objCP_Items.varSALESLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_SLID"].Value.ToString());
                     MainForm.objCP_Items.varSALERKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_RKID"].Value.ToString());
                     MainForm.objCP_Items.btnSave.Text = "Update";
-                    MainForm.objCP_Items.Show();
+                    MainForm.objCP_Items.ShowDialog();
                 }
 
             }
@@ -142,6 +150,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false; 
             }
 
         }

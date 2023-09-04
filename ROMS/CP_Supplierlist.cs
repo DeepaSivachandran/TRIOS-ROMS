@@ -25,15 +25,22 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_Supplier = new CP_Supplier();  
+                picLoader.Visible = true;
+                Application.DoEvents();
+                picLoader.BringToFront();
+                MainForm.objCP_Supplier = new CP_Supplier();
                 MainForm.objCP_Supplier.MdiParent = this.ParentForm;
-                MainForm.objCP_Supplier.Show(); 
+                MainForm.objCP_Supplier.Show();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+            finally
+            {
+                picLoader.Visible = false; 
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -116,7 +123,7 @@ namespace ROMS
                             vardayide = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["DYID"].Value.ToString());
                         }
                         SPDataService objspdservice = new SPDataService();
-                        result = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["Scheduleid"].Value.ToString()), varordertype, "");
+                        result = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["Scheduleid"].Value.ToString()), varordertype, "", "", "", "", "", "", "", "", "");
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         { 
@@ -139,15 +146,18 @@ namespace ROMS
         }
 
         private void udfnEdit()
-        { 
+        {
             try
             {
+                picLoader.Visible = true;
+                Application.DoEvents();
+                picLoader.BringToFront();
                 if (grdSupplierList.SelectedRows.Count > 0)
                 {
 
                     MainForm.objCP_Supplier = new CP_Supplier();
-                    MainForm.objCP_Supplier.MdiParent = this.ParentForm; 
-                    MainForm.objCP_Supplier.btnSave.Text = "Update"; 
+                    MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                    MainForm.objCP_Supplier.btnSave.Text = "Update";
                     MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
                     MainForm.objCP_Supplier.Show();
                 }
@@ -156,7 +166,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
+            }
+            finally
+            {
+                picLoader.Visible = false; 
             }
         }
 

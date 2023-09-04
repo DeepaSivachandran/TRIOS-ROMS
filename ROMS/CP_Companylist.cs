@@ -23,6 +23,9 @@ namespace ROMS
         {
             try
             {
+                picLoader.Visible = true;
+                Application.DoEvents();
+                picLoader.BringToFront();
                 MainForm.objCP_Company = new CP_Company();
                 MainForm.objCP_Company.MdiParent = this.ParentForm;
                 MainForm.objCP_Company.Show();
@@ -32,6 +35,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+            finally
+            {
+                picLoader.Visible = false; 
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -123,10 +130,13 @@ namespace ROMS
             try
             {
 
+                picLoader.Visible = true;
+                Application.DoEvents();
+                picLoader.BringToFront();
                 if (grdCompanyList.SelectedRows.Count > 0)
-                { 
+                {
                     MainForm.objCP_Company = new CP_Company();
-                    MainForm.objCP_Company.MdiParent = this.ParentForm; 
+                    MainForm.objCP_Company.MdiParent = this.ParentForm;
                     MainForm.objCP_Company.varcompanyid = grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString();
                     MainForm.objCP_Company.Show();
                 }
@@ -137,7 +147,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
+            finally
+            {
+                picLoader.Visible = false; 
+            }
         }
 
         public void udfnList()
