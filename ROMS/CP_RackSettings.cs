@@ -110,10 +110,8 @@ namespace ROMS
                         }
                     }
                 }
-
                 udfnCmbProductGroup();
                 udfnCmbProductSubGroup();
-
             }
             catch (Exception ex)
             {
@@ -905,7 +903,7 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbSubGroup.Select(int.MaxValue, 0)));
                 varSubGroupId = Convert.ToInt32(cmbSubGroup.SelectedValue);
-                udfnCmbProductSubGroup();
+                //udfnCmbProductSubGroup();
             }
             catch (Exception ex)
             {

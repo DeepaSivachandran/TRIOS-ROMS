@@ -111,6 +111,9 @@ namespace ROMS
             {
                 if (grdUserCategoryList.SelectedRows.Count > 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     if (Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
                     {
                         MainForm.objCP_UserCategory = new CP_UserCategory();
@@ -168,7 +171,7 @@ namespace ROMS
                             grdUserCategoryList.Columns["StatusID"].Visible = false;
                             grdUserCategoryList.Columns["DefaultID"].Visible = false;
                             grdUserCategoryList.Columns["S.No."].Width = 50;
-                            grdUserCategoryList.Columns["Category Name"].Width = 150;
+                            grdUserCategoryList.Columns["Category Name"].Width = 200;
                             grdUserCategoryList.Columns["Status"].Width = 80;
                             grdUserCategoryList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserCategoryList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

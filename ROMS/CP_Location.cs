@@ -39,6 +39,7 @@ namespace ROMS
         public CP_Location()
         {
             InitializeComponent();
+            MainForm.objCP_LocationList.picLoader.Visible = false;
         }
         private void CP_Location_Leave(object sender, EventArgs e)
         {
@@ -65,8 +66,8 @@ namespace ROMS
                 txtShortName.Text = "";
                 cmbLocationType.SelectedIndex = 0;
                 cmbStockApplicable.SelectedIndex = 0;
-                cmbConcern.Focus();
-                this.ActiveControl = cmbConcern;
+                cmbLocationType.Focus();
+                this.ActiveControl = cmbLocationType;
             }
             catch (Exception ex)
             {
@@ -223,8 +224,25 @@ namespace ROMS
             {
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
-                if (rbInside.Checked == true) { varGodownType = 86; }
-                else { varGodownType = 87; }
+
+                if (pnlGodownType.Enabled == false)
+                {
+                    rbInside.Checked = false;
+                    rbOutside.Checked = false;
+                    varGodownType = 0;
+                }
+                else
+                {
+                    if (rbInside.Checked == true)
+                    {
+                        varGodownType = 86;
+                    }
+                    else
+                    {
+                        varGodownType = 87;
+                    }
+                }
+                 
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;
@@ -254,6 +272,8 @@ namespace ROMS
                     else
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnSave.Enabled = true;
+                        btnSave.Focus();
                     }
             }
             catch (Exception ex)

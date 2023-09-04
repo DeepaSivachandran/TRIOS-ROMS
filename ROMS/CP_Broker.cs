@@ -36,9 +36,11 @@ namespace ROMS
         public string varBrokerid="", varstatusid = "0";
         public int varUpdate = 0;
         public String pbFormStatus;
+        public int varflog = 0;
         public CP_Broker()
         {
             InitializeComponent();
+            MainForm.objCP_CP_BrokerList.picLoader.Visible = false;
         }
         private void udfnEdit()
         {
@@ -152,6 +154,8 @@ namespace ROMS
                     else
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnSave.Enabled = true;
+                        btnSave.Focus();
                     }
                     grdBankDetails.Rows.Clear();
                 }
@@ -539,13 +543,15 @@ namespace ROMS
         {
             try
             {
+                varflog = 1;
                 MainForm.objCP_City = new CP_City();
                 MainForm.objCP_City.varmastertype = 1;
                 MainForm.objCP_City.ShowDialog();
                 udfnListView();
                 txtCity.Text = varCityName;
                 lblcityid.Text = Convert.ToString(varCityCode);
-                lvCity.Focus();
+                lvCity.Visible = false;
+                txtPincode.Focus();
             }
             catch (Exception ex)
             {
@@ -1331,6 +1337,10 @@ namespace ROMS
                         tpCity.Show("Invalid city", txtCity, 5000);
                         blnErrorFlag = true;
                     }
+                    else
+                    {
+                        lblcityid.Text= objDserv.displaydata("SELECT CTYID FROM MR_City WHERE CTY_NAME='" + txtCity.Text + "'");
+                    }
                 }
                 if (blnErrorFlag == false)
                 {
@@ -1563,6 +1573,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     txtPincode.Focus();
+                    lvCity.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -1714,6 +1725,7 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(),objDs.Tables[0].Rows[i]["CTYID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    lvCity.Columns[1].Width = 0;
                                     lvCity.Items.Add(objList);
                                 }
                                 lvCity.Visible = true;
