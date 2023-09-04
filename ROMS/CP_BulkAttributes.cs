@@ -22,6 +22,7 @@ namespace ROMS
         public int varSubGroupId = 0;
         public int varBrandId = 0;
         public int varViewType = 0;
+        public int varStatusId = 0;
         public CP_BulkAttributes()
         {
             InitializeComponent();
@@ -140,17 +141,13 @@ namespace ROMS
         {
             try
             {
-             
-               // picLoader.Visible = true;
-               // picLoader.BringToFront();
+               // varViewType = 8;
                 Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                grdBulkAttributes.DataSource = null;
+                grdLoction.DataSource = null;
                 DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
 
-               // objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbGroupType.SelectedValue), Convert.ToInt32(cmbsubgroup.SelectedValue), "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue));
+                 objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,varStatusId,varBrandId);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -159,29 +156,11 @@ namespace ROMS
                         //lblNoRecordsFound.Visible = false;
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            //lblNoRecordsFound.Visible = false;
-                            //lblNoRecordsFound.SendToBack();
-                            grdBulkAttributes.DataSource = objDs.Tables[0];
-                            grdBulkAttributes.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdBulkAttributes.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdBulkAttributes.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                            grdBulkAttributes.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                            grdBulkAttributes.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                            grdBulkAttributes.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                            grdBulkAttributes.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                            grdBulkAttributes.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdBulkAttributes.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdBulkAttributes.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-
-                            grdBulkAttributes.Columns["S.No."].Width = 50;
-                            grdBulkAttributes.Columns["Product Name in English"].Width = 200;
-                            grdBulkAttributes.Columns["Product Name in Tamil"].Width = 200;
-                            grdBulkAttributes.Columns["Product Subgroup"].Width = 150;
-                            grdBulkAttributes.Columns["Product Group"].Width = 150;
-                            grdBulkAttributes.Columns["Status"].Width = 80;
-                            grdBulkAttributes.Columns["ID"].Visible = false;
-                            grdBulkAttributes.Columns["STSID"].Visible = false;
+                            if(grdLoction.Visible==true)
+                            {
+                                //grdLoction.DataSource = objDs.Tables[0];
+                            }
+                           
                         }
                         else
                         {
@@ -279,6 +258,7 @@ namespace ROMS
         {
             try
             {
+                varViewType = 4;
                 if (varFormFlag == 0)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -906,7 +886,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSubGroup.Text.Length > 2)
                 {
-                    objDs = objspdservice.udfnSubGroupList(8,0,"",varGroupId,0,Convert.ToString(txtSubGroup.Text));
+                  objDs = objspdservice.udfnSubGroupList(8,0,"",varGroupId,0,Convert.ToString(txtSubGroup.Text));
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -919,6 +899,8 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvSubGroup.Items.Add(objList);
+                                    lvSubGroup.Columns[0].Width = 150;
+                                    lvSubGroup.Columns[1].Width = 0;
                                 }
                                 lvSubGroup.Visible = true;
                             }

@@ -1231,7 +1231,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
 
-                objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress,0);
+                objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -3365,7 +3365,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS; 
                     DataService objdservice = new DataService();
-                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0,"",MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0,"",MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0);
                     objdserv.CloseConnection();
                     if (objDS != null)
                     {
