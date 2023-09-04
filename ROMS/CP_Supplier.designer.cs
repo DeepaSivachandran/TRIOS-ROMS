@@ -171,7 +171,6 @@
             this.lblSearchbyProduct1 = new System.Windows.Forms.Label();
             this.BtnaddMove = new System.Windows.Forms.Button();
             this.grdFinalSupplierMapping = new System.Windows.Forms.DataGridView();
-            this.clmMappingRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.grdSupplierMappingLoad = new System.Windows.Forms.DataGridView();
             this.cmbMappingSubGroup = new System.Windows.Forms.ComboBox();
@@ -201,13 +200,13 @@
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.clmMappingRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tcSupplier.SuspendLayout();
             this.tbSupplier.SuspendLayout();
             this.grpSupplierDetails.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.grbEnvelopeDetails.SuspendLayout();
             this.panelStatus.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -217,7 +216,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
             this.gpSupplier.SuspendLayout();
             this.groupBox2.SuspendLayout();
-         //   this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grddays)).BeginInit();
             this.tpSupplierProduct.SuspendLayout();
@@ -331,7 +329,7 @@
             this.grpSupplierDetails.Size = new System.Drawing.Size(1305, 610);
             this.grpSupplierDetails.TabIndex = 71;
             this.grpSupplierDetails.TabStop = false;
-            this.grpSupplierDetails.Enter += new System.EventHandler(this.GrpSupplierDetails_Enter);
+//            this.grpSupplierDetails.Enter += new System.EventHandler(this.GrpSupplierDetails_Enter);
             // 
             // lblcityid
             // 
@@ -595,6 +593,7 @@
             this.txtopening.Name = "txtopening";
             this.txtopening.Size = new System.Drawing.Size(107, 27);
             this.txtopening.TabIndex = 16;
+            this.txtopening.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtopening.Enter += new System.EventHandler(this.Txtopening_Enter);
             this.txtopening.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtopening_KeyDown);
             this.txtopening.Leave += new System.EventHandler(this.Txtopening_Leave);
@@ -619,6 +618,7 @@
             this.txtcreditlimit.Name = "txtcreditlimit";
             this.txtcreditlimit.Size = new System.Drawing.Size(149, 27);
             this.txtcreditlimit.TabIndex = 15;
+            this.txtcreditlimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtcreditlimit.Enter += new System.EventHandler(this.Txtcreditlimit_Enter);
             this.txtcreditlimit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtcreditlimit_KeyDown);
             this.txtcreditlimit.Leave += new System.EventHandler(this.Txtcreditlimit_Leave);
@@ -729,6 +729,7 @@
             this.txtwhatsapp.TabIndex = 11;
             this.txtwhatsapp.Enter += new System.EventHandler(this.Txtwhatsapp_Enter);
             this.txtwhatsapp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtwhatsapp_KeyDown);
+            this.txtwhatsapp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtwhatsapp_KeyPress);
             this.txtwhatsapp.Leave += new System.EventHandler(this.Txtwhatsapp_Leave);
             // 
             // textBox3
@@ -875,6 +876,7 @@
             this.txtAContactNumber.TabIndex = 9;
             this.txtAContactNumber.Enter += new System.EventHandler(this.txtAContactNumber_Enter);
             this.txtAContactNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAContactNumber_KeyDown);
+            this.txtAContactNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAContactNumber_KeyPress);
             this.txtAContactNumber.Leave += new System.EventHandler(this.txtAContactNumber_Leave);
             // 
             // txtDContactNumber
@@ -911,6 +913,7 @@
             this.txtContactNumber.TabIndex = 7;
             this.txtContactNumber.Enter += new System.EventHandler(this.txtContactNumber_Enter);
             this.txtContactNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtContactNumber_KeyDown);
+            this.txtContactNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtContactNumber_KeyPress);
             this.txtContactNumber.Leave += new System.EventHandler(this.txtContactNumber_Leave);
             // 
             // txtDArea
@@ -1389,6 +1392,7 @@
             this.txtsalesmanwhatsapp.Name = "txtsalesmanwhatsapp";
             this.txtsalesmanwhatsapp.Size = new System.Drawing.Size(194, 27);
             this.txtsalesmanwhatsapp.TabIndex = 6;
+            this.txtsalesmanwhatsapp.Enter += new System.EventHandler(this.Txtsalesmanwhatsapp_Enter);
             this.txtsalesmanwhatsapp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsalesmanwhatsapp_KeyDown);
             this.txtsalesmanwhatsapp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtsalesmanwhatsapp_KeyPress);
             this.txtsalesmanwhatsapp.Leave += new System.EventHandler(this.Txtsalesmanwhatsapp_Leave);
@@ -1882,14 +1886,6 @@
             this.grdFinalSupplierMapping.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdFinalSupplierMapping_CellContentClick);
             this.grdFinalSupplierMapping.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdFinalSupplierMapping_DataBindingComplete);
             // 
-            // clmMappingRemove
-            // 
-            this.clmMappingRemove.HeaderText = "Remove";
-            this.clmMappingRemove.Image = global::ROMS.Properties.Resources.Delete;
-            this.clmMappingRemove.Name = "clmMappingRemove";
-            this.clmMappingRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmMappingRemove.Width = 70;
-            // 
             // chkSelectAll
             // 
             this.chkSelectAll.AutoSize = true;
@@ -1938,6 +1934,7 @@
             this.grdSupplierMappingLoad.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupplierMappingLoad.Size = new System.Drawing.Size(639, 404);
             this.grdSupplierMappingLoad.TabIndex = 4;
+            this.grdSupplierMappingLoad.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierMappingLoad_CellValueChanged);
             this.grdSupplierMappingLoad.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdSupplierMappingLoad_CurrentCellDirtyStateChanged);
             this.grdSupplierMappingLoad.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupplierMappingLoad_DataBindingComplete);
             // 
@@ -2320,6 +2317,14 @@
             this.label3.TabIndex = 958804;
             this.label3.Text = "No.of Products :";
             // 
+            // clmMappingRemove
+            // 
+            this.clmMappingRemove.HeaderText = "Remove";
+            this.clmMappingRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmMappingRemove.Name = "clmMappingRemove";
+            this.clmMappingRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmMappingRemove.Width = 70;
+            // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -2523,7 +2528,6 @@
         private System.Windows.Forms.Label lblcityid;
         public System.Windows.Forms.Button btnSaveOrderType;
         private System.Windows.Forms.TextBox txtordertype;
-        private System.Windows.Forms.DataGridViewImageColumn clmMappingRemove;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.Label lblOrderTypeId;
         public System.Windows.Forms.Button btnMappingsave;
@@ -2544,5 +2548,6 @@
         private System.Windows.Forms.TextBox txtMappedOrder;
         private System.Windows.Forms.Label lblMappedOrderTypeId;
         private System.Windows.Forms.Label lblMappedNoRecords;
+        private System.Windows.Forms.DataGridViewImageColumn clmMappingRemove;
     }
 }

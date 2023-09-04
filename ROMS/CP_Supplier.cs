@@ -352,20 +352,30 @@ namespace ROMS
             try
             {
                 txtEmail.BackColor = Color.White;
-                if (txtEmail.Text == "" && objvalidation.FormatEMail(txtEmail.Text) == false)
+                
+
+                if (Convert.ToString(txtEmail.Text).Trim() == "")
                 {
-                    errCompany.SetError(txtEmail, "Please enter valid EmailID");
+                    errCompany.SetError(txtEmail, "Please enter email");
                     txtEmail.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpemail.ShowAlways = true;
-                    tpemail.Show("Please enter valid EmailID", txtEmail, 5000);
-                     
+                    tpemail.Show("Please enter email", txtEmail, 5000);
                 }
+                else if (objvalidation.FormatEMail(txtEmail.Text) == false)
+                {
+                    errCompany.SetError(txtEmail, "Please enter valid email");
+                    txtEmail.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpemail.ShowAlways = true;
+                    tpemail.Show("Please enter valid email", txtEmail, 5000);
+                }
+
                 else
                 {
                     errCompany.Clear();
                     txtEmail.BackColor = Color.White;
                     tpemail.Hide(txtEmail);
                 }
+
             }
             catch (Exception ex)
             {
@@ -446,7 +456,31 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-
+                if (Convert.ToString(txtCity.Text) != "")
+                {
+                    string VarCity = "0";
+                    DataService objDserv = new DataService();
+                    VarCity = objDserv.displaydata("SELECT COUNT(*) FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                    if (VarCity == "0")
+                    {
+                        lblcityid.Text = "0";
+                        errCompany.SetError(txtCity, "Invalid city");
+                        txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpcity.ShowAlways = true;
+                        tpcity.Show("Invalid city", txtCity, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                if (Convert.ToString(txtEmail.Text) != "")
+                {
+                    if (objvalidation.FormatEMail(txtEmail.Text) == false)
+                    {
+                        errCompany.SetError(txtEmail, "Please enter valid email");
+                        txtEmail.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpemail.ShowAlways = true;
+                        tpemail.Show("Please enter valid email", txtEmail, 5000);
+                    }
+                }
                 if (blnErrorFlag == false)
                 {
                     tpContactNo.ShowAlways = false;
@@ -520,21 +554,25 @@ namespace ROMS
                         SupplierUpdate = Convert.ToInt32(pbSupplierid);
                     }
                     string varorginator = "";
-                    int varviewtype =0;
+                    int varviewtype =0,varretuencycle=0,varreturnapplicable;
                     if (btnSave.Text == "Save")
                     {
                         varviewtype = 0;
-                        varorginator = "Supplier Create";
-                     }
+                        varorginator = "Supplier Create"; 
+                        varretuencycle = 22;
+                        varreturnapplicable = 24;
+                    }
                     else
                     {
                         varviewtype = 1;
                         varorginator = "Supplier Update";
-
+                        varretuencycle=Convert.ToInt32(cmbReturnType.SelectedValue);
+                        varreturnapplicable = Convert.ToInt32(cmbReturnPolicy.SelectedValue);
                     }
+
                     result = objspdservice.udfnSupplierMaster(varviewtype, SupplierUpdate, txtName.Text, txtArea.Text, txtaddress2.Text, cityid
                    , varpincode, txtContactNumber.Text, txtwhatsapp.Text, txtAContactNumber.Text, txtEmail.Text, txtgstin.Text,
-                   Convert.ToInt32(cmbPaymentTerm.SelectedValue), 22, 24, openingvalue, Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbState.SelectedValue), varStatus,
+                   Convert.ToInt32(cmbPaymentTerm.SelectedValue), varreturnapplicable, varretuencycle, Convert.ToInt32(cmbfinance.SelectedValue), openingvalue, Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbState.SelectedValue), varStatus,
                    MainForm.pbUserID, MainForm.pbIpAddress, varorginator, Convert.ToInt32(cmbDesignation.SelectedValue), txtcontactName.Text, creditlimit, -1, -1, -1, -1, "", "", "", "", 0, "", 0, 0, "");
 
                     string[] varvalue = result.Split('~');
@@ -582,7 +620,8 @@ namespace ROMS
             }
             finally
             { 
-                btnSave.Enabled = true;
+                btnSave.Enabled = true; 
+                btnSave.Focus();
             }
         }
 
@@ -695,6 +734,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+
+            finally
+            {
+                MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
+            }
         }
          
         
@@ -782,6 +826,7 @@ namespace ROMS
             {
                 if (pbSupplierid != "")
                 {
+                    txtScheduleName.Text = "";
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     objDS = objspservice.udfnSupplierList(2, Convert.ToInt32(pbSupplierid), 0,0,0,"");
@@ -810,7 +855,7 @@ namespace ROMS
                             lblcity.Text= objDS.Tables[0].Rows[0]["CTY"].ToString().Replace("''", "'"); 
                             txtcreditlimit.Text = objDS.Tables[0].Rows[0]["CREDIT"].ToString().Replace("''", "'");
                             txtopening.Text = objDS.Tables[0].Rows[0]["OPBALANCE"].ToString().Replace("''", "'");
-
+                            
                             cmbSupplierType.SelectedValue = objDS.Tables[0].Rows[0]["SUPPLIERTYPE"].ToString();
                             cmbPaymentTerm.SelectedValue = objDS.Tables[0].Rows[0]["PAYMENT"].ToString(); 
                             cmbfinance.SelectedValue = objDS.Tables[0].Rows[0]["OPTYPE"].ToString(); 
@@ -1427,6 +1472,15 @@ namespace ROMS
                 tparea.Show("Please enter salesman mobile No.", txtsalesmanmobile, 5000);
 
             }
+
+            else if (txtsalesmanmobile.Text.Length != 10)
+            {
+                errCompany.SetError(txtsalesmanmobile, "Please enter valid mobile No.");
+                txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tparea.ShowAlways = true;
+                tparea.Show("Please enter valid mobile No.", txtsalesmanmobile, 5000);
+
+            }
             else
             {
                 errCompany.Clear();
@@ -1438,7 +1492,9 @@ namespace ROMS
         private void Txtsalesmanmobile_Enter(object sender, EventArgs e)
         {
             try
-            {             }
+            {
+                txtsalesmanmobile.BackColor = Color.White;
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1455,6 +1511,15 @@ namespace ROMS
                 txtsalesmanwhatsapp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                 tparea.ShowAlways = true;
                 tparea.Show("Please enter salesman whatsapp No.", txtsalesmanwhatsapp, 5000);
+
+            }
+           else if (txtsalesmanwhatsapp.Text.Length != 10)
+            {
+
+                errCompany.SetError(txtsalesmanwhatsapp, "Please enter valid whatsapp No.");
+                txtsalesmanwhatsapp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tparea.ShowAlways = true;
+                tparea.Show("Please enter valid whatsapp No.", txtsalesmanwhatsapp, 5000);
 
             }
             else
@@ -1595,11 +1660,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void GrpSupplierDetails_Enter(object sender, EventArgs e)
-        {
-
-        }
+         
 
         private void CmbReturnPolicy_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2841,6 +2902,23 @@ namespace ROMS
         {
             try
             {
+
+                errCompany.Clear();
+            tpContactNo.ShowAlways = false;
+             tpAltContactNo.ShowAlways = false;
+          tpemail.ShowAlways = false;
+          tpgstin.ShowAlways = false;
+          tpfssai.ShowAlways = false;
+          tpplno.ShowAlways = false;
+          tpcompanyname.ShowAlways = false;
+          tpshortname.ShowAlways = false;
+          tppincode.ShowAlways = false;
+          tpcity.ShowAlways = false;
+          tparea.ShowAlways = false;
+          tpstate.ShowAlways = false;
+
+
+
                 if (tcSupplier.SelectedIndex == 1)
                 {
                     txtScheduleName.Focus();
@@ -2905,10 +2983,30 @@ namespace ROMS
                         SupplierUpdate = Convert.ToInt32(pbSupplierid);
                     }
                     objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='"+ SupplierUpdate + "' ", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID");
-                    objDataBind.BindComboBoxListSelected("MR_ProductGroup", "PRGID not in (-1)", "PRG_EName,PRGID", cmbMappingGroup, "", "PRG_EName", "PRGID"); 
-                    objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", " PRSGID not in (-1)  ORDER BY PRSGID,PRSG_EName", "PRSG_EName,PRSGID", cmbMappingSubGroup, "", "PRSG_EName", "PRSGID");
-                    objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + SupplierUpdate + "' ", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
+                     objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + SupplierUpdate + "' ", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
                     objDataBind = null;
+
+
+
+                    DataSet objDT = new DataSet();
+                    SPDataService objdserv = new SPDataService();
+                    int varViewType = 3;
+                    objDT = objdserv.udfnGroupList(varViewType, 0);
+                    objdserv.CloseConnection();
+                    if (objDT != null)
+                    {
+                        if (objDT.Tables.Count > 0)
+                        {
+                            if (objDT.Tables[0].Rows.Count > 0)
+                            {
+                                cmbMappingGroup.ValueMember = "PRGID";
+                                cmbMappingGroup.DisplayMember = "PRG_EName";
+                                cmbMappingGroup.DataSource = objDT.Tables[0];
+                            }
+                        }
+                    }
+                    objdserv.CloseConnection();
+
                 }
                 catch (Exception ex)
                 {
@@ -2916,6 +3014,7 @@ namespace ROMS
                     objError.WriteFile(ex);
                 }
             }
+            grdSupplierList.ClearSelection();
         }
          
 
@@ -2950,7 +3049,7 @@ namespace ROMS
                         grdViewSupplierMapping.Columns["S.No."].Width = 50;
                         grdViewSupplierMapping.Columns["Product Name in Tamil"].Width = 250;
                         grdViewSupplierMapping.Columns["Product Name in English"].Width = 250;
-                        grdSupplierList.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdViewSupplierMapping.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     }
                     else
                     {
@@ -3516,6 +3615,7 @@ namespace ROMS
             try
             {
                 lblNoRecordsFound.Visible = false;
+                chkSelectAll.Checked = false;
                 BeginInvoke(new Action(() => cmbMappingordeDay.Select(int.MaxValue, 0)));
                 grdFinalSupplierMapping.DataSource = null;
                 SPDataService objspservice = new SPDataService();
@@ -3657,10 +3757,25 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbMappingGroup.Select(int.MaxValue, 0)));
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_ProductSubGroup", " PRSGID not in (-1) AND PRSG_PRGID='" + cmbMappingGroup.SelectedValue + "'  OR PRSGID=0 ORDER BY PRSGID,PRSG_EName", "PRSG_EName,PRSGID", cmbMappingSubGroup, "", "PRSG_EName", "PRSGID");
-                objDataBind = null;
+                BeginInvoke(new Action(() => cmbMappingGroup.Select(int.MaxValue, 0))); 
+                DataSet objDT = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                int varViewType = 4;
+                objDT = objdserv.udfnSubGroupList(varViewType, 0, Convert.ToString(cmbMappingGroup.SelectedValue));
+                objdserv.CloseConnection();
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbMappingSubGroup.ValueMember = "PRSGID";
+                            cmbMappingSubGroup.DisplayMember = "PRSG_EName";
+                            cmbMappingSubGroup.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+                objdserv.CloseConnection();
             }
             catch (Exception ex)
             {
@@ -3787,7 +3902,15 @@ namespace ROMS
 
         private void TxtSearchByProduct1_Leave(object sender, EventArgs e)
         {
-
+            try
+            {
+                txtSearchByProduct1.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtSearchByProduct1_KeyDown(object sender, KeyEventArgs e)
@@ -3947,7 +4070,16 @@ namespace ROMS
             try
             {
                 string result = ""; 
-                    if (e.RowIndex != -1)
+                int sceduleidupdate = 0; 
+                if (varOrderid == 0)
+                {
+                    sceduleidupdate = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString());
+                }
+                else
+                {
+                    sceduleidupdate = varOrderid;
+                }
+                if (e.RowIndex != -1)
                     {
                         switch (grdSupplierList.Columns[e.ColumnIndex].Name)
                         {
@@ -3959,7 +4091,7 @@ namespace ROMS
                             {
 
                                 SPDataService objspdservice = new SPDataService();
-                                result = objspdservice.udfnSupplierMaster(5, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", varOrderid, 0, "");
+                                result = objspdservice.udfnSupplierMaster(5, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0,0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "");
                                 string[] varvalue = result.Split('~');
                                 if (varvalue[0] == "3")
                                 {
@@ -3987,7 +4119,10 @@ namespace ROMS
                         case "clmedit":
 
                             if (pbSupplierid != "")
-                            { 
+                            {
+                                tparea.ShowAlways = false;
+                                errCompany.Clear();
+                                txtScheduleName.BackColor = Color.White;
                                 if (e.RowIndex >= 0) 
                                 {
                                     scheduleselectedIndex = e.RowIndex;
@@ -3999,7 +4134,7 @@ namespace ROMS
                                     row.Cells[0].Value = false;
                                 }
                                 DataSet objDS;
-                                objDS = objspservice.udfnSupplierList(3, Convert.ToInt32(pbSupplierid), Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["clmscheduleid"].Value.ToString()), 0,0, "");
+                                objDS = objspservice.udfnSupplierList(3, Convert.ToInt32(pbSupplierid), Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString()), 0,0, "");
                                 objspservice.CloseConnection();
                                 if (objDS != null)
                                 {
@@ -4052,7 +4187,7 @@ namespace ROMS
 
                 if (btnSaveOrderType.Text == "Update")
                 {
-                    result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "");
+                    result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "");
                 }
 
                 string[] varvalue = result.Split('~');
@@ -4074,7 +4209,8 @@ namespace ROMS
             }
             finally
             { 
-                btnSaveOrderType.Enabled = true;
+                btnSaveOrderType.Enabled = true; 
+                btnSaveOrderType.Focus();
             }
         }
 
@@ -4359,7 +4495,7 @@ namespace ROMS
                         Vartype = 8;
                     }
                     result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
-                        0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, "", 0, Convert.ToInt32(cmbMappingordeDay.SelectedValue), 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(lblOrderTypeId.Text), VarproductId);
+                        0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, "", 0, Convert.ToInt32(cmbMappingordeDay.SelectedValue), 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(lblOrderTypeId.Text), VarproductId);
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
                     {
@@ -4369,7 +4505,7 @@ namespace ROMS
                         if (btnMappingsave.Text == "Update")
                         {
                             varupdate = "1";
-                            udfnclose();
+                            //udfnclose();
                         }
 
                         udfnMappingClear();
@@ -4395,6 +4531,7 @@ namespace ROMS
             finally
             {
                 btnMappingsave.Enabled = true;
+                btnMappingsave.Focus();
             }
         }
         public void udfnMappingClear()
@@ -4442,7 +4579,7 @@ namespace ROMS
                 DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    this.Close();
+                    udfnclose();
                 }
             }
             catch (Exception ex)
@@ -4493,13 +4630,17 @@ namespace ROMS
         private void TxtSearchByProduct2_TextChanged(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 (grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct2.Text + "%' OR ([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                lblMappedproductcountlist.Text = Convert.ToString(grdViewSupplierMapping.Rows.Count);
             }
         }
 
@@ -4516,6 +4657,8 @@ namespace ROMS
             }
             finally
             {
+
+                grdSupplierList.ClearSelection();
             }
         }
 
@@ -4567,6 +4710,81 @@ namespace ROMS
             }
         }
 
+        private void TxtContactNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtAContactNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtwhatsapp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtsalesmanwhatsapp_Enter(object sender, EventArgs e)
+        {
+
+            try
+            {
+                txtsalesmanwhatsapp.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSupplierMappingLoad_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                 
+                }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+         
         private void Grddays_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -4824,7 +5042,7 @@ namespace ROMS
 
                         
                         result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "","", 0,
-                            Convert.ToInt32(cmbReturnPolicy.SelectedValue), varrecyclecode, 0, 0, 0, "",MainForm.pbUserID, MainForm.pbIpAddress, varoriginator,
+                            Convert.ToInt32(cmbReturnPolicy.SelectedValue), varrecyclecode, 0, 0, 0, 0, "",MainForm.pbUserID, MainForm.pbIpAddress, varoriginator,
                             0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, txtsalesmanname.Text, txtScheduleName.Text, txtsalesmanmobile.Text,
                             txtsalesmanwhatsapp.Text, Convert.ToInt32(cmbOrderType.SelectedValue), VarTotalDays, sceduleidupdate, 0, "");
 
@@ -4865,8 +5083,7 @@ namespace ROMS
                     {
                         MessageBox.Show("Order Type already exists in Schedule!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
-
+                    txtScheduleName.Focus();
                 }
             }
             catch (Exception ex)
@@ -4877,6 +5094,8 @@ namespace ROMS
             finally
             {
                 btnAdd.Enabled = true;
+                btnAdd.Focus();
+                grdSupplierList.ClearSelection();
             }
         }
 

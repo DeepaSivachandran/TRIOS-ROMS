@@ -1042,7 +1042,7 @@
             this.pnlStatus.Enabled = false;
             this.pnlStatus.Location = new System.Drawing.Point(689, 429);
             this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(153, 27);
+            this.pnlStatus.Size = new System.Drawing.Size(158, 27);
             this.pnlStatus.TabIndex = 35;
             this.pnlStatus.TabStop = true;
             // 
@@ -1442,7 +1442,6 @@
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.TextBox txtDStatus;
         private System.Windows.Forms.Panel pnlStatus;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.TextBox txtdcompany;
@@ -1493,5 +1492,6 @@
         public System.Windows.Forms.ComboBox cmbUnit;
         public System.Windows.Forms.ComboBox cmbBrand;
         public System.Windows.Forms.ComboBox cmbSubGroup;
+        public System.Windows.Forms.Button btnSave;
     }
 }

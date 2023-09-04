@@ -125,7 +125,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************    
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnUnitList(0);
+                objDs = objspservice.udfnUnitList(0,0);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
