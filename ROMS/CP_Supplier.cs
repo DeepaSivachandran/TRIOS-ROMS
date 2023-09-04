@@ -5069,7 +5069,7 @@ namespace ROMS
                                 varOrderid = Convert.ToInt32(varvalue[2]);
                                
                             }
-                            grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, txtScheduleName.Text, txtsalesmanname.Text, txtsalesmanmobile.Text, txtsalesmanwhatsapp.Text, Convert.ToString(cmbOrderType.Text), varOrderid, VarDaysname);
+                            grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, txtScheduleName.Text, txtsalesmanname.Text, txtsalesmanmobile.Text, txtsalesmanwhatsapp.Text, Convert.ToString(cmbOrderType.Text), varOrderid, VarDaysname, varOrderid);
 
                             udfnScheduleClear();
                             btnAdd.Text = "Save";
@@ -5082,8 +5082,14 @@ namespace ROMS
                     else
                     {
                         MessageBox.Show("Order Type already exists in Schedule!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    } 
+                    btnAdd.Enabled = true;
                     txtScheduleName.Focus();
+                }
+                else
+                { 
+                    btnAdd.Enabled = true;
+                    btnAdd.Focus();
                 }
             }
             catch (Exception ex)
@@ -5093,8 +5099,6 @@ namespace ROMS
             }
             finally
             {
-                btnAdd.Enabled = true;
-                btnAdd.Focus();
                 grdSupplierList.ClearSelection();
             }
         }
