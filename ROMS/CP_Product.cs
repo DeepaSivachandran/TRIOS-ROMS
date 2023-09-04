@@ -315,6 +315,12 @@ namespace ROMS
                     tpcompanyname.ShowAlways = true;
                     tpcompanyname.Show("Please select shelflife", cmbPeriod, 5000);
                     blnErrorFlag = true;
+
+                    errItems.SetError(txtSelfLife, "Please enter shelflife");
+                    txtSelfLife.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpplno.ShowAlways = true;
+                    tpplno.Show("Please enter shelflife", txtSelfLife, 5000);
+                    blnErrorFlag = true;
                 }
 
                 if (blnErrorFlag == false)
@@ -3734,7 +3740,8 @@ namespace ROMS
                 MainForm.objCP_Unit.varmastertype = 1;
                 MainForm.objCP_Unit.ShowDialog();
                 udfnDropDownload();
-                cmbUnit.SelectedValue = Convert.ToInt16(varUnitCode); 
+                cmbUnit.SelectedValue = Convert.ToInt16(varUnitCode);
+                cmbBulkUnit.SelectedValue = Convert.ToInt16(-1);
                 cmbUnit.Focus();
             }
             catch (Exception ex)

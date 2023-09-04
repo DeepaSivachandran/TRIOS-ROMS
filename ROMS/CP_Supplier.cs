@@ -470,6 +470,10 @@ namespace ROMS
                         tpcity.Show("Invalid city", txtCity, 5000);
                         blnErrorFlag = true;
                     }
+                    else
+                    {
+                        lblcityid.Text = objDserv.displaydata("SELECT CTYID FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                    }
                 }
                 if (Convert.ToString(txtEmail.Text) != "")
                 {
@@ -4783,8 +4787,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-         
+        } 
+
         private void Grddays_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try

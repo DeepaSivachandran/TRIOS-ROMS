@@ -171,6 +171,7 @@
             this.lblSearchbyProduct1 = new System.Windows.Forms.Label();
             this.BtnaddMove = new System.Windows.Forms.Button();
             this.grdFinalSupplierMapping = new System.Windows.Forms.DataGridView();
+            this.clmMappingRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.grdSupplierMappingLoad = new System.Windows.Forms.DataGridView();
             this.cmbMappingSubGroup = new System.Windows.Forms.ComboBox();
@@ -200,7 +201,6 @@
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.clmMappingRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -329,7 +329,6 @@
             this.grpSupplierDetails.Size = new System.Drawing.Size(1305, 610);
             this.grpSupplierDetails.TabIndex = 71;
             this.grpSupplierDetails.TabStop = false;
-//            this.grpSupplierDetails.Enter += new System.EventHandler(this.GrpSupplierDetails_Enter);
             // 
             // lblcityid
             // 
@@ -1768,6 +1767,7 @@
             this.grbSupplierMapping.Size = new System.Drawing.Size(1308, 495);
             this.grbSupplierMapping.TabIndex = 25;
             this.grbSupplierMapping.TabStop = false;
+//            this.grbSupplierMapping.Enter += new System.EventHandler(this.GrbSupplierMapping_Enter);
             // 
             // lblNoRecordsFound
             // 
@@ -1885,6 +1885,14 @@
             this.grdFinalSupplierMapping.TabIndex = 6;
             this.grdFinalSupplierMapping.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdFinalSupplierMapping_CellContentClick);
             this.grdFinalSupplierMapping.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdFinalSupplierMapping_DataBindingComplete);
+            // 
+            // clmMappingRemove
+            // 
+            this.clmMappingRemove.HeaderText = "Remove";
+            this.clmMappingRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmMappingRemove.Name = "clmMappingRemove";
+            this.clmMappingRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmMappingRemove.Width = 70;
             // 
             // chkSelectAll
             // 
@@ -2316,14 +2324,6 @@
             this.label3.Size = new System.Drawing.Size(94, 20);
             this.label3.TabIndex = 958804;
             this.label3.Text = "No.of Products :";
-            // 
-            // clmMappingRemove
-            // 
-            this.clmMappingRemove.HeaderText = "Remove";
-            this.clmMappingRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmMappingRemove.Name = "clmMappingRemove";
-            this.clmMappingRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmMappingRemove.Width = 70;
             // 
             // CP_Supplier
             // 

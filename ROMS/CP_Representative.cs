@@ -175,9 +175,12 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+
             finally
             {
                 btnSave.Enabled = true;
+                btnSave.Focus();
+                grdRepBrand.ClearSelection();
             }
         }
         public void udfnSave(object sender, EventArgs e)
