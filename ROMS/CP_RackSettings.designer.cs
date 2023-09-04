@@ -265,6 +265,7 @@
             this.chkRackSettings.Size = new System.Drawing.Size(15, 14);
             this.chkRackSettings.TabIndex = 1111167;
             this.chkRackSettings.UseVisualStyleBackColor = true;
+            this.chkRackSettings.CheckedChanged += new System.EventHandler(this.ChkRackSettings_CheckedChanged);
             // 
             // txtSearchByProduct1
             // 

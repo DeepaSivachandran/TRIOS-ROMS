@@ -707,7 +707,6 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId,varSubGroupId, "", "", "", 0);
-                //objDs = objdserv.udfnRackList(varViewType, 0, varStockLocationId, varSRackId, 0);
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[0].Rows.Count != 0)
@@ -838,7 +837,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -853,7 +851,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdSupplierMapping_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -869,7 +866,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void udfnCalculateCheckedCount()
         {
             int varCheckedCount = 0;
@@ -910,6 +906,29 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbSubGroup.Select(int.MaxValue, 0)));
                 varSubGroupId = Convert.ToInt32(cmbSubGroup.SelectedValue);
                 udfnCmbProductSubGroup();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkRackSettings_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (varCheckAllFlag != 1)
+                {
+                    for (int i = 0; i < grdSupplierMapping.Rows.Count; i++)
+                    {
+                        grdSupplierMapping.Rows[i].Cells[0].Value = chkRackSettings.Checked;
+                    }
+                }
+                else
+                {
+                    varCheckAllFlag = 0;
+                }
             }
             catch (Exception ex)
             {
