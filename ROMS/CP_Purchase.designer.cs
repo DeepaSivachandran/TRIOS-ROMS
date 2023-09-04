@@ -44,8 +44,6 @@
             this.tbDetails = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -220,6 +218,8 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label18 = new System.Windows.Forms.Label();
+            this.lblDateTime = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.tsPurchase.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -442,36 +442,16 @@
             // 
             // groupBox11
             // 
-            this.groupBox11.Controls.Add(this.label34);
             this.groupBox11.Controls.Add(this.label33);
+            this.groupBox11.Controls.Add(this.lblDateTime);
             this.groupBox11.Controls.Add(this.label31);
             this.groupBox11.Controls.Add(this.label30);
             this.groupBox11.Location = new System.Drawing.Point(803, -3);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(200, 46);
+            this.groupBox11.Size = new System.Drawing.Size(233, 46);
             this.groupBox11.TabIndex = 1111220;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "GRN";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(72, 28);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(37, 16);
-            this.label34.TabIndex = 1111221;
-            this.label34.Text = "User 2";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(72, 12);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(37, 16);
-            this.label33.TabIndex = 1111220;
-            this.label33.Text = "User 1";
             // 
             // label31
             // 
@@ -479,9 +459,9 @@
             this.label31.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label31.Location = new System.Drawing.Point(6, 28);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(68, 16);
+            this.label31.Size = new System.Drawing.Size(45, 16);
             this.label31.TabIndex = 1111219;
-            this.label31.Text = "Entered by 2 :";
+            this.label31.Text = "Level 2 :";
             // 
             // label30
             // 
@@ -489,9 +469,9 @@
             this.label30.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.Location = new System.Drawing.Point(6, 12);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(68, 16);
+            this.label30.Size = new System.Drawing.Size(45, 16);
             this.label30.TabIndex = 1111218;
-            this.label30.Text = "Entered by 1 :";
+            this.label30.Text = "Level 1 :";
             // 
             // label29
             // 
@@ -2200,6 +2180,26 @@
             this.label18.TabIndex = 37;
             this.label18.Text = "Waiting for Approval";
             // 
+            // lblDateTime
+            // 
+            this.lblDateTime.AutoSize = true;
+            this.lblDateTime.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateTime.Location = new System.Drawing.Point(55, 12);
+            this.lblDateTime.Name = "lblDateTime";
+            this.lblDateTime.Size = new System.Drawing.Size(163, 16);
+            this.lblDateTime.TabIndex = 1111222;
+            this.lblDateTime.Text = "User 1 - 04/09/2023 @ 05.05 PM";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(55, 28);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(163, 16);
+            this.label33.TabIndex = 1111223;
+            this.label33.Text = "User 2 - 04/09/2023 @ 05.05 PM";
+            // 
             // CP_Purchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -2421,8 +2421,6 @@
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label33;
         private System.Windows.Forms.TextBox textBox29;
         private System.Windows.Forms.TextBox textBox30;
         private System.Windows.Forms.TextBox textBox25;
@@ -2445,5 +2443,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label lblDateTime;
     }
 }

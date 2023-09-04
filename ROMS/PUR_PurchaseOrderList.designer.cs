@@ -48,7 +48,19 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbShow = new System.Windows.Forms.ComboBox();
             this.btnViewProducts = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.grdProDetails = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPoNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPoDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSupplierName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmGSTIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpProFilter = new System.Windows.Forms.GroupBox();
             this.grpGroupBy = new System.Windows.Forms.GroupBox();
             this.cbPoNo = new System.Windows.Forms.CheckBox();
@@ -117,21 +129,10 @@
             this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmView = new System.Windows.Forms.DataGridViewImageColumn();
             this.button1 = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPoNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPoDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSupplierName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmGSTIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).BeginInit();
             this.grpProFilter.SuspendLayout();
             this.grpGroupBy.SuspendLayout();
@@ -139,7 +140,6 @@
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseorderlist)).BeginInit();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsBrandList
@@ -276,6 +276,23 @@
             this.btnViewProducts.UseVisualStyleBackColor = true;
             this.btnViewProducts.Click += new System.EventHandler(this.BtnViewProducts_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Location = new System.Drawing.Point(726, 51);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(364, 51);
+            this.groupBox3.TabIndex = 1111175;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Search by P.I Code / Product Name";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(7, 19);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(349, 27);
+            this.textBox1.TabIndex = 0;
+            // 
             // grdProDetails
             // 
             this.grdProDetails.AllowUserToAddRows = false;
@@ -328,6 +345,71 @@
             this.grdProDetails.Size = new System.Drawing.Size(1348, 480);
             this.grdProDetails.TabIndex = 1111173;
             this.grdProDetails.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 75;
+            // 
+            // clmPoNumber
+            // 
+            this.clmPoNumber.HeaderText = "PO No.";
+            this.clmPoNumber.MinimumWidth = 6;
+            this.clmPoNumber.Name = "clmPoNumber";
+            this.clmPoNumber.ReadOnly = true;
+            // 
+            // clmPoDate
+            // 
+            this.clmPoDate.HeaderText = "PO Date";
+            this.clmPoDate.MinimumWidth = 6;
+            this.clmPoDate.Name = "clmPoDate";
+            this.clmPoDate.ReadOnly = true;
+            // 
+            // clmSupplierName
+            // 
+            this.clmSupplierName.HeaderText = "Supplier";
+            this.clmSupplierName.Name = "clmSupplierName";
+            this.clmSupplierName.ReadOnly = true;
+            this.clmSupplierName.Width = 200;
+            // 
+            // clmCity
+            // 
+            this.clmCity.HeaderText = "City";
+            this.clmCity.Name = "clmCity";
+            this.clmCity.ReadOnly = true;
+            // 
+            // clmGSTIN
+            // 
+            this.clmGSTIN.HeaderText = "GSTIN";
+            this.clmGSTIN.Name = "clmGSTIN";
+            this.clmGSTIN.ReadOnly = true;
+            // 
+            // clmpicode
+            // 
+            this.clmpicode.HeaderText = "P.I Code";
+            this.clmpicode.Name = "clmpicode";
+            this.clmpicode.ReadOnly = true;
+            // 
+            // clmProduct
+            // 
+            this.clmProduct.HeaderText = "Product Name";
+            this.clmProduct.Name = "clmProduct";
+            this.clmProduct.ReadOnly = true;
+            // 
+            // clmUnit
+            // 
+            this.clmUnit.HeaderText = "Unit";
+            this.clmUnit.Name = "clmUnit";
+            this.clmUnit.ReadOnly = true;
+            // 
+            // clmQty
+            // 
+            this.clmQty.HeaderText = "Quantity";
+            this.clmQty.Name = "clmQty";
+            this.clmQty.ReadOnly = true;
             // 
             // grpProFilter
             // 
@@ -1038,88 +1120,6 @@
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Location = new System.Drawing.Point(726, 51);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(364, 53);
-            this.groupBox3.TabIndex = 1111175;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Search by P.I Code / Product Name";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(7, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(349, 27);
-            this.textBox1.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 75;
-            // 
-            // clmPoNumber
-            // 
-            this.clmPoNumber.HeaderText = "PO No.";
-            this.clmPoNumber.MinimumWidth = 6;
-            this.clmPoNumber.Name = "clmPoNumber";
-            this.clmPoNumber.ReadOnly = true;
-            // 
-            // clmPoDate
-            // 
-            this.clmPoDate.HeaderText = "PO Date";
-            this.clmPoDate.MinimumWidth = 6;
-            this.clmPoDate.Name = "clmPoDate";
-            this.clmPoDate.ReadOnly = true;
-            // 
-            // clmSupplierName
-            // 
-            this.clmSupplierName.HeaderText = "Supplier";
-            this.clmSupplierName.Name = "clmSupplierName";
-            this.clmSupplierName.ReadOnly = true;
-            this.clmSupplierName.Width = 200;
-            // 
-            // clmCity
-            // 
-            this.clmCity.HeaderText = "City";
-            this.clmCity.Name = "clmCity";
-            this.clmCity.ReadOnly = true;
-            // 
-            // clmGSTIN
-            // 
-            this.clmGSTIN.HeaderText = "GSTIN";
-            this.clmGSTIN.Name = "clmGSTIN";
-            this.clmGSTIN.ReadOnly = true;
-            // 
-            // clmpicode
-            // 
-            this.clmpicode.HeaderText = "P.I Code";
-            this.clmpicode.Name = "clmpicode";
-            this.clmpicode.ReadOnly = true;
-            // 
-            // clmProduct
-            // 
-            this.clmProduct.HeaderText = "Product Name";
-            this.clmProduct.Name = "clmProduct";
-            this.clmProduct.ReadOnly = true;
-            // 
-            // clmUnit
-            // 
-            this.clmUnit.HeaderText = "Unit";
-            this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
-            // 
-            // clmQty
-            // 
-            this.clmQty.HeaderText = "Quantity";
-            this.clmQty.Name = "clmQty";
-            this.clmQty.ReadOnly = true;
-            // 
             // PUR_PurchaseOrderList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1142,6 +1142,8 @@
             this.tsBrandList.PerformLayout();
             this.pnlpurchaseapproval.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).EndInit();
             this.grpProFilter.ResumeLayout(false);
             this.grpProFilter.PerformLayout();
@@ -1153,8 +1155,6 @@
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseorderlist)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

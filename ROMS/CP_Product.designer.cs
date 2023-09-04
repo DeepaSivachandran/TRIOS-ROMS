@@ -40,6 +40,7 @@
             this.txtDSubGroup = new System.Windows.Forms.TextBox();
             this.txtDUnit = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.pbYes = new System.Windows.Forms.PictureBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -124,12 +125,12 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.pbYes = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtRPICode = new System.Windows.Forms.Label();
-            this.txtREnglishName = new System.Windows.Forms.Label();
             this.txtRTamilName = new System.Windows.Forms.Label();
+            this.txtREnglishName = new System.Windows.Forms.Label();
+            this.txtRPICode = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbYes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -140,7 +141,6 @@
             this.grpHsndetail.SuspendLayout();
             this.grbBatchNoDetails.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbYes)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDPICode
@@ -294,6 +294,16 @@
             this.grbform.Size = new System.Drawing.Size(543, 268);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // pbYes
+            // 
+            this.pbYes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.pbYes.Image = global::ROMS.Properties.Resources.down_arrow;
+            this.pbYes.Location = new System.Drawing.Point(499, 45);
+            this.pbYes.Name = "pbYes";
+            this.pbYes.Size = new System.Drawing.Size(24, 25);
+            this.pbYes.TabIndex = 1111136;
+            this.pbYes.TabStop = false;
             // 
             // textBox6
             // 
@@ -1417,34 +1427,16 @@
             this.groupBox3.TabIndex = 94;
             this.groupBox3.TabStop = false;
             // 
-            // pbYes
+            // txtRTamilName
             // 
-            this.pbYes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.pbYes.Image = global::ROMS.Properties.Resources.approve;
-            this.pbYes.Location = new System.Drawing.Point(499, 45);
-            this.pbYes.Name = "pbYes";
-            this.pbYes.Size = new System.Drawing.Size(24, 25);
-            this.pbYes.TabIndex = 1111136;
-            this.pbYes.TabStop = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 21);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 20);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "P.I Code :";
-            // 
-            // txtRPICode
-            // 
-            this.txtRPICode.AutoSize = true;
-            this.txtRPICode.ForeColor = System.Drawing.Color.Red;
-            this.txtRPICode.Location = new System.Drawing.Point(71, 21);
-            this.txtRPICode.Name = "txtRPICode";
-            this.txtRPICode.Size = new System.Drawing.Size(62, 20);
-            this.txtRPICode.TabIndex = 3;
-            this.txtRPICode.Text = "DSMS500";
+            this.txtRTamilName.AutoSize = true;
+            this.txtRTamilName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRTamilName.ForeColor = System.Drawing.Color.Red;
+            this.txtRTamilName.Location = new System.Drawing.Point(7, 74);
+            this.txtRTamilName.Name = "txtRTamilName";
+            this.txtRTamilName.Size = new System.Drawing.Size(252, 20);
+            this.txtRTamilName.TabIndex = 7;
+            this.txtRTamilName.Text = "500கி மாப்பிள்ளை சம்பா அரிசி ";
             // 
             // txtREnglishName
             // 
@@ -1456,16 +1448,24 @@
             this.txtREnglishName.TabIndex = 5;
             this.txtREnglishName.Text = "500g Mapilaisampa Arisi (MapilaiSampa Rice)";
             // 
-            // txtRTamilName
+            // txtRPICode
             // 
-            this.txtRTamilName.AutoSize = true;
-            this.txtRTamilName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRTamilName.ForeColor = System.Drawing.Color.Red;
-            this.txtRTamilName.Location = new System.Drawing.Point(7, 74);
-            this.txtRTamilName.Name = "txtRTamilName";
-            this.txtRTamilName.Size = new System.Drawing.Size(252, 20);
-            this.txtRTamilName.TabIndex = 7;
-            this.txtRTamilName.Text = "500கி மாப்பிள்ளை சம்பா அரிசி ";
+            this.txtRPICode.AutoSize = true;
+            this.txtRPICode.ForeColor = System.Drawing.Color.Red;
+            this.txtRPICode.Location = new System.Drawing.Point(71, 21);
+            this.txtRPICode.Name = "txtRPICode";
+            this.txtRPICode.Size = new System.Drawing.Size(62, 20);
+            this.txtRPICode.TabIndex = 3;
+            this.txtRPICode.Text = "DSMS500";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 20);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "P.I Code :";
             // 
             // CP_Product
             // 
@@ -1499,6 +1499,7 @@
             this.Load += new System.EventHandler(this.CP_Product_Load);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbYes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1518,7 +1519,6 @@
             this.grbBatchNoDetails.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbYes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsSupplierPayment = new System.Windows.Forms.ToolStrip();
             this.pnlinward = new System.Windows.Forms.Panel();
@@ -40,12 +40,10 @@
             this.lblGrandTotal = new System.Windows.Forms.Label();
             this.cmbPaymentmode = new System.Windows.Forms.ComboBox();
             this.txtDPaymentMode = new System.Windows.Forms.TextBox();
-            this.cmbBankName = new System.Windows.Forms.ComboBox();
             this.txtChequeNo = new System.Windows.Forms.TextBox();
             this.dtChequeDate = new System.Windows.Forms.DateTimePicker();
             this.txtChequeDate = new System.Windows.Forms.TextBox();
             this.txtDChequeNo = new System.Windows.Forms.TextBox();
-            this.txtDBankName = new System.Windows.Forms.TextBox();
             this.DGV_inward = new System.Windows.Forms.DataGridView();
             this.clmch = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,8 +76,6 @@
             this.lblSupplier = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
-            this.txtValue = new System.Windows.Forms.TextBox();
-            this.txtDisplay = new System.Windows.Forms.TextBox();
             this.tsSupplierPayment.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_inward)).BeginInit();
@@ -112,20 +108,16 @@
             // pnlinward
             // 
             this.pnlinward.BackColor = System.Drawing.Color.White;
-            this.pnlinward.Controls.Add(this.txtValue);
-            this.pnlinward.Controls.Add(this.txtDisplay);
             this.pnlinward.Controls.Add(this.cmbPaymentType);
             this.pnlinward.Controls.Add(this.txtDPaymentType);
             this.pnlinward.Controls.Add(this.lblRupee);
             this.pnlinward.Controls.Add(this.lblGrandTotal);
             this.pnlinward.Controls.Add(this.cmbPaymentmode);
             this.pnlinward.Controls.Add(this.txtDPaymentMode);
-            this.pnlinward.Controls.Add(this.cmbBankName);
             this.pnlinward.Controls.Add(this.txtChequeNo);
             this.pnlinward.Controls.Add(this.dtChequeDate);
             this.pnlinward.Controls.Add(this.txtChequeDate);
             this.pnlinward.Controls.Add(this.txtDChequeNo);
-            this.pnlinward.Controls.Add(this.txtDBankName);
             this.pnlinward.Controls.Add(this.DGV_inward);
             this.pnlinward.Controls.Add(this.lvSupplier);
             this.pnlinward.Controls.Add(this.cbch);
@@ -214,15 +206,6 @@
             this.txtDPaymentMode.TabStop = false;
             this.txtDPaymentMode.Text = "Payment Mode";
             // 
-            // cmbBankName
-            // 
-            this.cmbBankName.FormattingEnabled = true;
-            this.cmbBankName.Location = new System.Drawing.Point(910, 576);
-            this.cmbBankName.Name = "cmbBankName";
-            this.cmbBankName.Size = new System.Drawing.Size(150, 27);
-            this.cmbBankName.TabIndex = 1111170;
-            this.cmbBankName.Visible = false;
-            // 
             // txtChequeNo
             // 
             this.txtChequeNo.Location = new System.Drawing.Point(910, 549);
@@ -269,20 +252,6 @@
             this.txtDChequeNo.Text = "Cheque No";
             this.txtDChequeNo.Visible = false;
             // 
-            // txtDBankName
-            // 
-            this.txtDBankName.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDBankName.Enabled = false;
-            this.txtDBankName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDBankName.Location = new System.Drawing.Point(771, 576);
-            this.txtDBankName.Name = "txtDBankName";
-            this.txtDBankName.ReadOnly = true;
-            this.txtDBankName.Size = new System.Drawing.Size(139, 27);
-            this.txtDBankName.TabIndex = 1111165;
-            this.txtDBankName.TabStop = false;
-            this.txtDBankName.Text = "Bank Name";
-            this.txtDBankName.Visible = false;
-            // 
             // DGV_inward
             // 
             this.DGV_inward.AllowUserToAddRows = false;
@@ -290,14 +259,14 @@
             this.DGV_inward.AllowUserToResizeRows = false;
             this.DGV_inward.BackgroundColor = System.Drawing.Color.White;
             this.DGV_inward.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_inward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_inward.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.DGV_inward.ColumnHeadersHeight = 30;
             this.DGV_inward.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGV_inward.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -314,22 +283,22 @@
             this.Column1,
             this.Column3,
             this.Column2});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_inward.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_inward.DefaultCellStyle = dataGridViewCellStyle8;
             this.DGV_inward.EnableHeadersVisualStyles = false;
             this.DGV_inward.GridColor = System.Drawing.Color.White;
             this.DGV_inward.Location = new System.Drawing.Point(10, 109);
             this.DGV_inward.Name = "DGV_inward";
             this.DGV_inward.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.DGV_inward.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            this.DGV_inward.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.DGV_inward.RowTemplate.Height = 25;
             this.DGV_inward.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_inward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -587,27 +556,6 @@
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
-            // txtValue
-            // 
-            this.txtValue.Location = new System.Drawing.Point(600, 576);
-            this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(150, 27);
-            this.txtValue.TabIndex = 1111178;
-            this.txtValue.Visible = false;
-            // 
-            // txtDisplay
-            // 
-            this.txtDisplay.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDisplay.Enabled = false;
-            this.txtDisplay.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDisplay.Location = new System.Drawing.Point(461, 576);
-            this.txtDisplay.Name = "txtDisplay";
-            this.txtDisplay.ReadOnly = true;
-            this.txtDisplay.Size = new System.Drawing.Size(139, 27);
-            this.txtDisplay.TabIndex = 1111177;
-            this.txtDisplay.TabStop = false;
-            this.txtDisplay.Visible = false;
-            // 
             // PAY_SupplierPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -662,12 +610,10 @@
         private System.Windows.Forms.ListView lvSupplier;
         private System.Windows.Forms.ComboBox cmbPaymentmode;
         private System.Windows.Forms.TextBox txtDPaymentMode;
-        private System.Windows.Forms.ComboBox cmbBankName;
         private System.Windows.Forms.TextBox txtChequeNo;
         private System.Windows.Forms.DateTimePicker dtChequeDate;
         private System.Windows.Forms.TextBox txtChequeDate;
         private System.Windows.Forms.TextBox txtDChequeNo;
-        private System.Windows.Forms.TextBox txtDBankName;
         private System.Windows.Forms.Label lblRupee;
         private System.Windows.Forms.Label lblGrandTotal;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmch;
@@ -685,7 +631,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.ComboBox cmbPaymentType;
         private System.Windows.Forms.TextBox txtDPaymentType;
-        private System.Windows.Forms.TextBox txtValue;
-        private System.Windows.Forms.TextBox txtDisplay;
     }
 }

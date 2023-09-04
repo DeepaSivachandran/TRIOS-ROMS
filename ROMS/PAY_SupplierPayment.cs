@@ -115,12 +115,9 @@ namespace ROMS
                 txtChequeNo.Visible = false;
                 dtChequeDate.Visible = false;
                 txtDChequeNo.Visible = false;
-                txtDBankName.Visible = false;
-                cmbBankName.Visible = false;
-                txtDisplay.Text = "";
-                txtValue.Text = "";
-                txtDisplay.Visible = false;
-                txtValue.Visible = false;
+                txtDChequeNo.Text = "";
+                txtChequeDate.Text = "";
+                txtChequeNo.Text = "";
             }
             catch (Exception ex)
             {
@@ -140,40 +137,58 @@ namespace ROMS
                     txtChequeNo.Visible = true;
                     dtChequeDate.Visible = true;
                     txtDChequeNo.Visible = true;
-                    txtDBankName.Visible = true;
-                    cmbBankName.Visible = true;
+                    txtDChequeNo.Text = "Cheque No.";
+                    txtChequeDate.Text = "Cheque Date";
                 }
                 if (cmbPaymentType.SelectedItem == "Demand Draft") {
-                    txtDisplay.Visible = true;
-                    txtValue.Visible = true;
-                    txtDisplay.Text = "DD No.";
+                    txtChequeDate.Visible = true;
+                    txtChequeNo.Visible = true;
+                    dtChequeDate.Visible = true;
+                    txtDChequeNo.Visible = true;
+                    txtDChequeNo.Text = "DD No.";
+                    txtChequeDate.Text = "DD Date";
                 }
                 if (cmbPaymentType.SelectedItem == "IMBS" || cmbPaymentType.SelectedItem == "UPI") {
-                    txtDisplay.Visible = true;
-                    txtValue.Visible = true;
-                    txtDisplay.Text = "Ref No.";
+                    txtChequeDate.Visible = true;
+                    txtChequeNo.Visible = true;
+                    dtChequeDate.Visible = true;
+                    txtDChequeNo.Visible = true;
+                    txtDChequeNo.Text = "UTR/Ref No.";
+                    txtChequeDate.Text = "Transaction Date";
                 }
                 if (cmbPaymentType.SelectedItem == "NEFT" && cmbPaymentmode.SelectedItem == "Bank") {
-                    txtDisplay.Visible = true;
-                    txtValue.Visible = true;
-                    txtDisplay.Text = "Cheque No.";
+                    txtChequeDate.Visible = true;
+                    txtChequeNo.Visible = true;
+                    dtChequeDate.Visible = true;
+                    txtDChequeNo.Visible = true;
+                    txtDChequeNo.Text = "Cheque No.";
+                    txtChequeDate.Text = "Cheque Date";
                 }
                 if (cmbPaymentType.SelectedItem == "RTGS" && cmbPaymentmode.SelectedItem == "Bank") {
-                    txtDisplay.Visible = true;
-                    txtValue.Visible = true;
-                    txtDisplay.Text = "Cheque No.";
+                    txtChequeDate.Visible = true;
+                    txtChequeNo.Visible = true;
+                    dtChequeDate.Visible = true;
+                    txtDChequeNo.Visible = true;
+                    txtDChequeNo.Text = "Cheque No.";
+                    txtChequeDate.Text = "Cheque Date";
                 }
                 if (cmbPaymentType.SelectedItem == "NEFT" && cmbPaymentmode.SelectedItem == "Online")
                 {
-                    txtDisplay.Visible = true;
-                    txtValue.Visible = true;
-                    txtDisplay.Text = "Ref No.";
+                    txtChequeDate.Visible = true;
+                    txtChequeNo.Visible = true;
+                    dtChequeDate.Visible = true;
+                    txtDChequeNo.Visible = true;
+                    txtDChequeNo.Text = "UTR/Ref No.";
+                    txtChequeDate.Text = "Transaction Date";
                 }
                 if (cmbPaymentType.SelectedItem == "RTGS" && cmbPaymentmode.SelectedItem == "Online")
                 {
-                    txtDisplay.Visible = true;
-                    txtValue.Visible = true;
-                    txtDisplay.Text = "Ref No.";
+                    txtChequeDate.Visible = true;
+                    txtChequeNo.Visible = true;
+                    dtChequeDate.Visible = true;
+                    txtDChequeNo.Visible = true;
+                    txtDChequeNo.Text = "UTR/Ref No.";
+                    txtChequeDate.Text = "Transaction Date";
                 }
             }
             catch (Exception ex)

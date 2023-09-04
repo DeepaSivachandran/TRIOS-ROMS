@@ -433,7 +433,7 @@ namespace ROMS
                 ListViewItem listitem2 = new ListViewItem(); DataTable dataTable2 = new DataTable();
                 dataTable2.Columns.Add("Type", typeof(string));
                 dataTable2.Rows.Add("Cash");
-                dataTable2.Rows.Add("Cheque");
+                dataTable2.Rows.Add("Bank");
                 dataTable2.Rows.Add("Online");
 
                 for (int i = 0; i < dataTable2.Rows.Count; i++)
