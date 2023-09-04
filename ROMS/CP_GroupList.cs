@@ -167,6 +167,7 @@ namespace ROMS
                 {
                     picLoader.Visible = true;
                     picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_Group = new CP_Group();
                     MainForm.objCP_Group.btnSave.Text = "Update";
                     MainForm.objCP_Group.varId = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value);

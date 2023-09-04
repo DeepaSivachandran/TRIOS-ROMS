@@ -223,6 +223,7 @@ namespace ROMS
                 {
                     picLoader.Visible = true;
                     picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_SubGroup = new CP_SubGroup();
                     MainForm.objCP_SubGroup.btnSave.Text = "Update";
 

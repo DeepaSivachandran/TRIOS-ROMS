@@ -40,6 +40,7 @@ namespace ROMS
                 {
                     picLoader.Visible = true;
                     picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_ProductHSN = new CP_ProductHSN();
                     MainForm.objCP_ProductHSN.btnSave.Text = "Update";
                     MainForm.objCP_ProductHSN.varId = Convert.ToInt32(grdHSNList.SelectedRows[0].Cells["ID"].Value);

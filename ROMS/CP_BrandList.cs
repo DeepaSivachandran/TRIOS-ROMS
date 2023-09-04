@@ -183,6 +183,7 @@ namespace ROMS
                 {
                     picLoader.Visible = true;
                     picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_Brand = new CP_Brand();
                     MainForm.objCP_Brand.MdiParent = ParentForm;
                     MainForm.objCP_Brand.btnSave.Text = "Update";
