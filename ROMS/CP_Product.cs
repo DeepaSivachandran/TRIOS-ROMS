@@ -2234,8 +2234,20 @@ namespace ROMS
 
                 DataService objds = new DataService();
                 SPDataService objdserv = new SPDataService();
-                string varcmbgroupcode = "";
-                varcmbgroupcode = objds.displaydata("select PRSG_PRGID from MR_ProductSubGroup where PRSGID='"+ Convert.ToInt32(cmbSubGroup.SelectedValue) + "' ") ;
+                string varcmbgroupcode = "", varbatchenable = "";
+                varcmbgroupcode = objds.displaydata("select PRSG_PRGID from MR_ProductSubGroup where PRSGID='"+ Convert.ToInt32(cmbSubGroup.SelectedValue) + "' ") ; 
+                varbatchenable = objds.displaydata("select PRSG_BatchNo from MR_ProductSubGroup where PRSGID=='" + Convert.ToInt32(cmbSubGroup.SelectedValue) + "' ") ;
+                objds.CloseConnection();
+
+                if (varbatchenable == "72")
+                {
+                    cmbBatchNoEntry.SelectedValue = 72;
+                }
+                else
+                {
+
+                    cmbBatchNoEntry.SelectedValue = 73;
+                }
 
                 objDT = objdserv.udfnGroupList(varViewType, Convert.ToInt32(varcmbgroupcode));
                 objdserv.CloseConnection();

@@ -12,6 +12,8 @@ namespace ROMS
 {
     public partial class CP_Supplierlist : Form
     {
+        ToolTip tpSupplier = new ToolTip();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public CP_Supplierlist()
@@ -65,9 +67,9 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (-1)", "DY_Name,DYID", cmbDay, "", "DY_Name", "DYID"); 
+                objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (-1)", "DY_Name,DYID", cmbDay, "", "DY_Name", "DYID");
                 objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSCID=0", "SPSC_Name,SPSCID", cmbOrderSchedule, "", "SPSC_Name", "SPSCID");
-
+                this.ActiveControl = txtSupplier;
                 objDataBind = null;
                 cmbDay.SelectedValue = 0;
                 cmbOrderSchedule.SelectedValue = 0;
@@ -77,6 +79,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdSupplierList.ClearSelection();
             }
         }
 
@@ -110,7 +116,7 @@ namespace ROMS
                             vardayide = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["DYID"].Value.ToString());
                         }
                         SPDataService objspdservice = new SPDataService();
-                        result = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["Scheduleid"].Value.ToString()), varordertype, "");
+                        result = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["Scheduleid"].Value.ToString()), varordertype, "");
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         { 
@@ -159,9 +165,11 @@ namespace ROMS
               
             try
             {  
-                //picLoader.Visible = true;
+                picLoader.Visible = true;
+                picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
+                ep_Supplierlist.Clear();
                 grdSupplierList.DataSource = null;
                     DataSet objDs = new DataSet();
                     //**** To call the function from SP ***************
@@ -201,6 +209,7 @@ namespace ROMS
                             grdSupplierList.Columns["STS"].Visible = false;
                             grdSupplierList.Columns["DYID"].Visible = false;
                             grdSupplierList.Columns["ORDERTYPE"].Visible = false;
+                            grdSupplierList.Columns["rownum"].Visible = false;
                         }
                             else
                             {
@@ -249,8 +258,8 @@ namespace ROMS
                 finally
                 {
                 //  grdreplist.ClearSelection();
-                // picLoader.Visible = false; 
-                lblSupplierCode.Text ="0";
+                 picLoader.Visible = false; 
+                picLoader.SendToBack(); 
                 } 
         } 
         private void CP_Supplierlist_KeyDown(object sender, KeyEventArgs e)
@@ -340,6 +349,8 @@ namespace ROMS
             try
             {
                 cmbOrderSchedule.BackColor = Color.LemonChiffon;
+
+                cmbschedulebind();
             }
             catch (Exception ex)
             {
@@ -396,6 +407,8 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbOrderSchedule.Select(int.MaxValue, 0)));
+
+
             }
             catch (Exception ex)
             {
@@ -547,24 +560,7 @@ namespace ROMS
         {
             try
             {
-                txtSupplier.BackColor = Color.White;
-
-                int cmbsuppleirid = 0;
-                if (txtSupplier.Text == "")
-                {
-                    lblSupplierCode.Text = "0";
-                } 
-                    if (lblSupplierCode.Text == "0")
-                    {
-                        cmbsuppleirid = 0;
-                    }
-                    else
-                    {
-                        cmbsuppleirid = Convert.ToInt32(lblSupplierCode.Text);
-                    } 
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + cmbsuppleirid + "'", "SPSC_Name,SPSCID", cmbOrderSchedule, "", "SPSC_Name", "SPSCID");
-                objDataBind = null;
+                txtSupplier.BackColor = Color.White; 
             }
             catch (Exception ex)
             {
@@ -692,12 +688,13 @@ namespace ROMS
 
                 for (int i = 0; i < grdSupplierList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "1")
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "1" && Convert.ToString(grdSupplierList.Rows[i].Cells["STATUS"].Value) != "")
                     {
                         grdSupplierList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdSupplierList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    else
+
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "2" && Convert.ToString(grdSupplierList.Rows[i].Cells["STATUS"].Value) != "")
                     {
                         grdSupplierList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdSupplierList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
@@ -737,7 +734,7 @@ namespace ROMS
             try
             {
                 udfnListViewData();
-                TxtSupplier_Leave(sender, e);
+                //TxtSupplier_Leave(sender, e);
             }
             catch (Exception ex)
             {
@@ -770,6 +767,57 @@ namespace ROMS
             }
         }
 
+        public void cmbschedulebind()
+        {
+            try
+            {
+                int cmbsuppleirid = 0;
+            if (lblSupplierCode.Text == "0")
+            {
+                cmbsuppleirid = 0;
+            }
+            else
+            {
+                cmbsuppleirid = Convert.ToInt32(lblSupplierCode.Text);
+            }
+            if (txtSupplier.Text == "")
+            {
+                lblSupplierCode.Text = "0";
+                    cmbsuppleirid = 0;
+            }
+            if (Convert.ToString(txtSupplier.Text) != "")
+            {
+                string varsuppliername = "0";
+                DataService objDserv = new DataService();
+                varsuppliername = objDserv.displaydata("SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name='" + txtSupplier.Text + "'");
+                if (varsuppliername == "0")
+                {
+                    lblSupplierCode.Text = "0";
+                    ep_Supplierlist.SetError(txtSupplier, "Invalid supplier");
+                    txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpSupplier.ShowAlways = true;
+                    tpSupplier.Show("Invalid supplier", txtSupplier, 5000); 
+                }
+                else
+                {
+                    ep_Supplierlist.Clear();
+                    txtSupplier.BackColor = Color.White;
+                }
+            }
+
+
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + cmbsuppleirid + "' or SPSC_SPID=0", "SPSC_Name,SPSCID", cmbOrderSchedule, "", "SPSC_Name", "SPSCID");
+                objDataBind = null;
+
+            }
+
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void LV_Supplier_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -777,7 +825,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnListViewData();
-                    TxtSupplier_Leave(sender, e);
+                    //TxtSupplier_Leave(sender, e);
                 }
             }
             catch (Exception ex)
@@ -900,6 +948,7 @@ namespace ROMS
             {
                 if ((grdSupplierList.Rows.Count > 0))
                 {
+                    btnExport.Enabled = false;
                     Excel._Application ExcelObj = new Excel.Application();
                     // creating new WorkBook within Excel application  
                     Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
@@ -936,7 +985,7 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex].Interior.Color = Color.LightSlateGray;
                             Excel.Range cell = ExcelSheet.Cells[2, cIndex];
                             cell.Font.Color = Excel.XlRgbColor.rgbWhite;
-                            
+
 
                             foreach (DataGridViewRow rowa in grdSupplierList.Rows)
                             {
@@ -946,7 +995,31 @@ namespace ROMS
                     }
                     ExcelObj.Visible = true;
                 }
+
+                else
+                {
+                    MessageBox.Show("No Records found!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+                btnExport.Focus();
+            }
+        }
+
+        private void GrdDaywiseProduct_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            { 
+                grdDaywiseProduct.ClearSelection(); 
+            }
+
             catch (Exception ex)
             {
                 objError = new DataError();

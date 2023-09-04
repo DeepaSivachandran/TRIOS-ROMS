@@ -1225,7 +1225,7 @@ namespace ROMS
         public string udfnSupplierMaster(int ViewType, int paraSupplierid, string paraSupplierName, string paraAddress1,
             string paraAddress2, int paraCityId, string paraPincode, string paraPhoneNumber, string paraWhatsappNumber, string paraMobileNumber,
               string paraEmail, string paraGstin,int paraPaymentterm, int paraReturnApplicable, int paraReturnCycle,
-              double paraopeningType, int paraSupplierType, int parastateid,string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator
+              double paraopeningType,int paraOpeningBal, int paraSupplierType, int parastateid,string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator
             , int paraDesignation, string paraDesignationName, double paraCreditLimit,int paraDayid,int paramonthid,int paraweekid,int paradaymonthid,
               string paraSalesmanName, string paraSchedulename, string paraSalesmanMobile,string paraSalesmanWhatsapp,int paraSaleOrderType,string ParaOrderDays,
               int ParaSupplierOrderid,int paraordertype, string ParaProductId)
@@ -1253,6 +1253,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraReturnCycle", paraReturnCycle); 
                 varSqlCommand.Parameters.AddWithValue("@parastateid", parastateid);
                 varSqlCommand.Parameters.AddWithValue("@paraopeningType", paraopeningType);
+                varSqlCommand.Parameters.AddWithValue("@paraOpeningBal", paraOpeningBal); 
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierType", paraSupplierType); 
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);

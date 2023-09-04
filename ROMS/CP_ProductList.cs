@@ -156,6 +156,7 @@ namespace ROMS
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdItemList.DataSource = null;
+                
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
@@ -998,7 +999,7 @@ namespace ROMS
             { 
                 DataSet objDT = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                int varViewType = 3;
+                int varViewType = 4;
 
                 objDT = objdserv.udfnSubGroupList(varViewType, 0, "");
                 objdserv.CloseConnection();
@@ -1018,9 +1019,10 @@ namespace ROMS
                 objdserv.CloseConnection();
 
 
+                varViewType = 3;
                 objDT = objdserv.udfnGroupList(varViewType, 0);
                 objdserv.CloseConnection();
-                cmbGroupType.DataSource = null;
+                cmbGroupType.DataSource = null; 
                 if (objDT != null)
                 {
                     if (objDT.Tables.Count > 0)
