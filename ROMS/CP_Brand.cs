@@ -88,7 +88,6 @@ namespace ROMS
                             //grdSubGroup.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["PRGID"]), Convert.ToString(objDS.Tables[1].Rows[i]["PRG_EName"]));
                             //dtSubGroupAdd.Rows.Add(false, grdSubGroup.Rows[i].Cells["Product Group"].Value, grdSubGroup.Rows[i].Cells["Product Subgroup"].Value, grdSubGroup.Rows[i].Cells["Group Id"].Value, grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
 
-
                             dtSubGroupAdd.Rows.Add(false, objDS.Tables[1].Rows[i]["Selected Product Group"], 
                                 objDS.Tables[1].Rows[i]["Selected Product Sub Group"], objDS.Tables[1].Rows[i]["PRGID"],
                                 objDS.Tables[1].Rows[i]["PRSGID"]);
@@ -579,6 +578,7 @@ namespace ROMS
                 grdSubGroupAdd.DataSource = null;
                 chkSubGroup.Checked = false;
                 chkSubGroupAdd.Checked = false;
+                txtEBrandNameInEnglish.Focus();
             }
             catch (Exception ex)
             {
@@ -590,7 +590,7 @@ namespace ROMS
         {
             try
             {
-               
+                btnSave.Enabled = false;
                 string varResult = "";
                 if (rbActive.Checked)
                 {
@@ -601,7 +601,8 @@ namespace ROMS
                     varStatusid = 2;
                 }
                 varSubGroupId = "";
-                for (int i = 0; i < grdSubGroupAdd.RowCount; i++) {
+                for (int i = 0; i < grdSubGroupAdd.RowCount; i++)
+                {
                     if (varSubGroupId == "")
                     {
                         varSubGroupId = Convert.ToString(grdSubGroupAdd.Rows[i].Cells["Sub Group Id"].Value);
@@ -621,6 +622,7 @@ namespace ROMS
                     varResult = objDser.udfnBrand(1, varId, Convert.ToString(txtEBrandNameInEnglish.Text), Convert.ToString(txtEBrandNameInTamil.Text), varStatusid, varSubGroupId, "Brand Updation");
                 }
                 objDser.CloseConnection();
+                btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -639,7 +641,7 @@ namespace ROMS
                         else
                         {
                             // udfnclose(); 
-                                udfnClear();
+                            udfnClear();
                         }
                     }
                     else
@@ -649,11 +651,12 @@ namespace ROMS
                     }
                     MainForm.objCP_BrandList.udfnList();
                 }
-                else 
+                else
                 {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Focus();
                 }
-           
+
             }
             catch (Exception ex)
             {

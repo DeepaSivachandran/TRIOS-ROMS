@@ -49,6 +49,7 @@ namespace ROMS
                 tpConcern.Active = false;
                 tpStockLocation.Active = false;
                 tpRackGroupName.Active = false;
+                tpStaffName.Active = false;
             }
             catch (Exception ex)
             {
@@ -321,6 +322,7 @@ namespace ROMS
         {
             try
             {
+                btnSave.Enabled = false;
                 string varResult = "";
                 if (rbActive.Checked)
                 {
@@ -363,6 +365,7 @@ namespace ROMS
                     varResult = objDser.udfnRackGroup(1, varId, Convert.ToInt16(cmbConcern.SelectedValue), txtRackGroupName.Text, varRackID, varUserID, varStatusid, "Rack Group Updation");
                 }
                 objDser.CloseConnection();
+                btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -380,8 +383,9 @@ namespace ROMS
                 else
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Focus();
                 }
-
+               
             }
             catch (Exception ex)
             {
@@ -399,6 +403,7 @@ namespace ROMS
                 grdSelectedRack.Rows.Clear();
                 grdStaffDetails.Rows.Clear();
                 chkRack.Checked = false;
+                cmbConcern.Focus();
             }
             catch (Exception ex)
             {
@@ -433,23 +438,6 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Please select atleast one rack", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     blnErrorFlag = true;
                 }
-                if (grdStaffDetails.Rows.Count <= 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Please enter atleast one staff name", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    blnErrorFlag = true;
-                }
-                //if (blnErrorFlag == false && grdStaffDetails.Rows.Count <= 0 && grdSelectedRack.Rows.Count <= 0)
-                //{
-                //    if (grdSelectedRack.Rows.Count <= 0)
-                //    {
-                //        DialogResult dialogResult = MessageBox.Show("Please select atleast one rack", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    }
-                //    if (grdStaffDetails.Rows.Count <= 0)
-                //    {
-                //        DialogResult dialogResult = MessageBox.Show("Please enter atleast one staff name", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    }
-
-                //}
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
@@ -752,6 +740,7 @@ namespace ROMS
                 udfncmbShopLocation();
                 grdRack.DataSource = null;
                 grdSelectedRack.Rows.Clear();
+                chkRack.Checked = false;
             }
             catch (Exception ex)
             {
@@ -904,7 +893,7 @@ namespace ROMS
         {
             try
             {
-                btnAdd.BackColor = Color.LemonChiffon;
+                Add.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -926,13 +915,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void Add_Leave(object sender, EventArgs e)
         {
 
             try
             {
-                btnView.BackColor = Color.Transparent;
+                Add.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -1447,6 +1435,22 @@ namespace ROMS
             {
                 if (e.ColumnIndex == 0) {
                     udfnCaculateCheckedCount();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Add_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    Add_Click(sender, e);
                 }
             }
             catch (Exception ex)
