@@ -239,7 +239,25 @@ namespace ROMS
 
                                 grdWeight.Columns["Net Weight-Current"].ReadOnly = true;
                                 grdWeight.Columns["Gross Weight-Current"].ReadOnly = true;
-                              
+                            }
+                            else if(grdBrand.Visible==true)
+                            {
+                                grdBrand.DataSource = objDs.Tables[0];
+                                grdBrand.Columns["S.No."].Width = 50;
+                                grdBrand.Columns["Product Name in Tamil"].Width = 200;
+                                grdBrand.Columns["S.No."].Frozen = true;
+                                grdBrand.Columns["P.I Code"].Frozen = true;
+                                grdBrand.Columns["Product Name in Tamil"].Frozen = true;
+                                grdBrand.Columns["Unit"].Frozen = true;
+                                grdBrand.Columns["S.No."].ReadOnly = true;
+                                grdBrand.Columns["P.I Code"].ReadOnly = true;
+                                grdBrand.Columns["Product Name in Tamil"].ReadOnly = true;
+                                grdBrand.Columns["Unit"].ReadOnly = true;
+
+                                grdBrand.Columns["Group-Current"].ReadOnly = true;
+                                grdBrand.Columns["Sub Group-Current"].ReadOnly = true;
+                                grdBrand.Columns["Brand-Current"].ReadOnly = true;
+
                             }
                         }
                         else
@@ -475,6 +493,7 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
+                    varViewType = 10;
                     grdBrand.Visible = true;
                     tspHeader.Text = "Product Attributes Bulk Update : Group, Subgroup & Brand";
                     tsbBrand.BackColor = Color.SkyBlue;
@@ -1056,10 +1075,14 @@ namespace ROMS
             try
             {
                 if (grdLoction.Visible == true)
-                { (grdLoction.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) or ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
-                else if(grdMSQ.Visible==true)
-                { (grdMSQ.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) or ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
-               
+                { (grdLoction.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtProductName.Text + "%' "; }
+                // or ([P.I Code]) LIKE '% " + txtProductName.Text +
+                else if (grdMSQ.Visible == true)
+                { (grdMSQ.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtProductName.Text + "%'"; }
+                else if (grdStock.Visible == true)
+                { (grdStock.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtProductName.Text + "%'"; }
+                else if (grdWeight.Visible == true)
+                { (grdWeight.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil])  LIKE '%" + txtProductName.Text + "%'"; }
             }
             catch (Exception ex)
             {
