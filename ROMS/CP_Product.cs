@@ -3554,7 +3554,7 @@ namespace ROMS
             {
                 varViewType = 1;
             }
-            objDT = objdserv.udfnSubGroupList(varViewType, varSubGroupId, "",0,0);
+            objDT = objdserv.udfnSubGroupList(varViewType, varSubGroupId, "",0,0,"");
             objdserv.CloseConnection();
             cmbSubGroup.DataSource = null;
             if (objDT != null)
@@ -3673,7 +3673,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
                 lblDPicode.Visible = true;
-                objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

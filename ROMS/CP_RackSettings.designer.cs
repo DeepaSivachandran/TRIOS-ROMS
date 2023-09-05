@@ -166,9 +166,9 @@
             this.txtSearchByProduct2.Name = "txtSearchByProduct2";
             this.txtSearchByProduct2.Size = new System.Drawing.Size(403, 27);
             this.txtSearchByProduct2.TabIndex = 111111;
-            this.txtSearchByProduct2.TextChanged += new System.EventHandler(this.TxtSearchByProduct2_TextChanged);
-            this.txtSearchByProduct2.Enter += new System.EventHandler(this.TxtSearchByProduct2_Enter);
-            this.txtSearchByProduct2.Leave += new System.EventHandler(this.TxtSearchByProduct2_Leave);
+            //this.txtSearchByProduct2.TextChanged += new System.EventHandler(this.TxtSearchByProduct2_TextChanged);
+            //this.txtSearchByProduct2.Enter += new System.EventHandler(this.TxtSearchByProduct2_Enter);
+            //this.txtSearchByProduct2.Leave += new System.EventHandler(this.TxtSearchByProduct2_Leave);
             // 
             // lblSearchByProduct2
             // 
@@ -225,7 +225,7 @@
             this.grdViewSupplierMapping.ShowRowErrors = false;
             this.grdViewSupplierMapping.Size = new System.Drawing.Size(619, 315);
             this.grdViewSupplierMapping.TabIndex = 111111111;
-            this.grdViewSupplierMapping.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdViewSupplierMapping_CellContentClick);
+        //    this.grdViewSupplierMapping.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdViewSupplierMapping_CellContentClick);
             // 
             // chkRackSettings
             // 
@@ -245,9 +245,9 @@
             this.txtSearchByProduct1.Name = "txtSearchByProduct1";
             this.txtSearchByProduct1.Size = new System.Drawing.Size(403, 27);
             this.txtSearchByProduct1.TabIndex = 1111111;
-            this.txtSearchByProduct1.TextChanged += new System.EventHandler(this.TxtSearchByProduct1_TextChanged);
-            this.txtSearchByProduct1.Enter += new System.EventHandler(this.TxtSearchByProduct1_Enter);
-            this.txtSearchByProduct1.Leave += new System.EventHandler(this.TxtSearchByProduct1_Leave);
+            //this.txtSearchByProduct1.TextChanged += new System.EventHandler(this.TxtSearchByProduct1_TextChanged);
+            //this.txtSearchByProduct1.Enter += new System.EventHandler(this.TxtSearchByProduct1_Enter);
+            //this.txtSearchByProduct1.Leave += new System.EventHandler(this.TxtSearchByProduct1_Leave);
             // 
             // lblSearchbyProduct1
             // 
@@ -366,7 +366,7 @@
             this.btnAdd.TabIndex = 111111;
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+       //     this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // grbDestination
             // 
