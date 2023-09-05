@@ -464,22 +464,36 @@ namespace ROMS
                 }
                 if (Convert.ToString(txtCity.Text) != "")
                 {
-                    string VarCity = "0";
-                    DataService objDserv = new DataService();
-                    VarCity = objDserv.displaydata("SELECT COUNT(*) FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
-                    if (VarCity == "0")
+                    if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
                     {
-                        lblcityid.Text = "0";
-                        errCompany.SetError(txtCity, "Invalid city");
-                        txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpcity.ShowAlways = true;
-                        tpcity.Show("Invalid city", txtCity, 5000);
+                        errCompany.SetError(cmbState, "Please Select State Name");
+                        cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpstate.ShowAlways = true;
+                        tpstate.Show("Please Select State Name", cmbState, 5000); 
                         blnErrorFlag = true;
                     }
                     else
                     {
-                        lblcityid.Text = objDserv.displaydata("SELECT CTYID FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                        errCompany.Clear();
+                        cmbState.BackColor = Color.White; 
+                        string VarCity = "0";
+                        DataService objDserv = new DataService();
+                        VarCity = objDserv.displaydata("SELECT COUNT(*) FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                        if (VarCity == "0")
+                        {
+                            lblcityid.Text = "0";
+                            errCompany.SetError(txtCity, "Invalid city");
+                            txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpcity.ShowAlways = true;
+                            tpcity.Show("Invalid city", txtCity, 5000);
+                            blnErrorFlag = true;
+                        }
+                        else
+                        {
+                            lblcityid.Text = objDserv.displaydata("SELECT CTYID FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                        }
                     }
+
                 }
                 if (Convert.ToString(txtEmail.Text) != "")
                 {
@@ -489,6 +503,7 @@ namespace ROMS
                         txtEmail.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpemail.ShowAlways = true;
                         tpemail.Show("Please enter valid email", txtEmail, 5000);
+                        blnErrorFlag = true;
                     }
                 }
                 if (blnErrorFlag == false)
@@ -704,27 +719,6 @@ namespace ROMS
                 foreach (DataGridViewRow row in grddays.Rows)
                 {
                     row.Cells[0].Value = false;
-                    string day = dataTable.Rows[i]["Day"].ToString();
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(grddays);
-                    row.Cells[1].Value = day;
-                    grddays.Rows.Add(row);
-                }
-
-                string[] item2 = new string[30];
-                ListViewItem listitem2 = new ListViewItem(); DataTable dataTable2 = new DataTable();
-                dataTable2.Columns.Add("Type", typeof(string));
-                dataTable2.Rows.Add("Cash");
-                dataTable2.Rows.Add("Bank");
-                dataTable2.Rows.Add("Online");
-
-                for (int i = 0; i < dataTable2.Rows.Count; i++)
-                {
-                    string Type = dataTable2.Rows[i]["Type"].ToString();
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(grdPaymentMode);
-                    row.Cells[1].Value = Type;
-                    grdPaymentMode.Rows.Add(row);
                 }
                 errCompany.Clear();
             }
@@ -902,8 +896,7 @@ namespace ROMS
             try
             {
                 if (pbSupplierid != "")
-                {
-                    txtScheduleName.Text = "";
+                { 
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     objDS = objspservice.udfnSupplierList(2, Convert.ToInt32(pbSupplierid), 0,0,0,"");
@@ -981,13 +974,21 @@ namespace ROMS
                         if (objDS.Tables[1].Rows.Count > 0)
                         {
                             grdSupplierList.DataSource = null;
+                            int varschedulenameflag=0;
                             for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
                             {
                                 grdSupplierList.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[1].Rows[i]["SCHEDULE"]), Convert.ToString(objDS.Tables[1].Rows[i]["SALEMAN"]),
                                 Convert.ToString(objDS.Tables[1].Rows[i]["MOBILE"]), Convert.ToString(objDS.Tables[1].Rows[i]["WHATSAPP"]), Convert.ToString(objDS.Tables[1].Rows[i]["ORDERTYPE"]), varOrderid
                                 , Convert.ToString(objDS.Tables[1].Rows[i]["ORDERDAYS"]), Convert.ToString(objDS.Tables[1].Rows[i]["DAYID"]), Convert.ToString(objDS.Tables[1].Rows[i]["ID"]));
-
-                            } 
+                                if (Convert.ToString(objDS.Tables[1].Rows[i]["SCHEDULE"]) == "Regular") 
+                                {
+                                    varschedulenameflag++;
+                                }
+                            }
+                            if (varschedulenameflag != 0)
+                            {
+                                txtScheduleName.Text = "";
+                            }
                         }
 
                         if (objDS.Tables[2].Rows.Count > 0)
@@ -999,8 +1000,10 @@ namespace ROMS
                                 {
                                     if (Convert.ToInt32(objDS.Tables[2].Rows[i]["SPP_PaymentMode"].ToString()) == Convert.ToInt32(grdPaymentMode.Rows[j].Cells["MSTID"].Value))
                                     {
-                                        grdPaymentMode.Rows[j].Cells["clmpaymentcheck"].Value = true;
-                                        //grdPaymentMode.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                                        bool varpayment =true;
+                                        //=true;
+                                        //grdPaymentMode.CommitEdit(DataGridViewDataErrorContexts.Commit);  
+                                        grdPaymentMode.Rows[j].Cells[0].Value = varpayment;
                                     }
                                 }
                             }
@@ -4560,17 +4563,17 @@ namespace ROMS
                     string VarproductId = "", result = "", varoriginator = "";
                     int Vartype = 0;
                     SPDataService objspdservice = new SPDataService();
-                    for (int i = 0; i < grdSupplierMappingLoad.Rows.Count; i++)
+                    for (int i = 0; i < grdFinalSupplierMapping.Rows.Count; i++)
                     {
-                        if (Convert.ToBoolean(grdSupplierMappingLoad.Rows[i].Cells[0].Value) == true)
+                        if (Convert.ToBoolean(grdFinalSupplierMapping.Rows[i].Cells[0].Value) == true)
                         {
                             if (VarproductId == "")
                             {
-                                VarproductId = Convert.ToString(grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value);
+                                VarproductId = Convert.ToString(grdFinalSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
                             }
                             else
                             {
-                                VarproductId = VarproductId + ',' + Convert.ToString(grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value);
+                                VarproductId = VarproductId + ',' + Convert.ToString(grdFinalSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
                             }
                         }
                     }
@@ -5151,7 +5154,7 @@ namespace ROMS
                                 varOrderid = Convert.ToInt32(varvalue[2]);
                                
                             }
-                            grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, txtScheduleName.Text, txtsalesmanname.Text, txtsalesmanmobile.Text, txtsalesmanwhatsapp.Text, Convert.ToString(cmbOrderType.Text), varOrderid, VarDaysname, varOrderid);
+                            grdSupplierList.Rows.Add(grdSupplierList.Rows.Count + 1, txtScheduleName.Text, txtsalesmanname.Text, txtsalesmanmobile.Text, txtsalesmanwhatsapp.Text, Convert.ToString(cmbOrderType.Text), varOrderid, VarDaysname, VarTotalDays, varOrderid);
 
                             udfnScheduleClear();
                             btnAdd.Text = "Save";
