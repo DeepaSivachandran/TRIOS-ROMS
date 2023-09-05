@@ -2454,6 +2454,10 @@ namespace ROMS
                         tpCity.Show("Invalid city", txtCity, 5000);
                         blnErrorFlag = true;
                     }
+                    else
+                    {
+                        lblcityid.Text= objDserv.displaydata("SELECT CTYID FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                    }
                 }
                 if (blnErrorFlag == false)
                 {

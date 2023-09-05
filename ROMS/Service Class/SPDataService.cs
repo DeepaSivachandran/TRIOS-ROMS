@@ -1297,7 +1297,8 @@ namespace ROMS
               double paraopeningType,int paraOpeningBal, int paraSupplierType, int parastateid,string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator
             , int paraDesignation, string paraDesignationName, double paraCreditLimit,int paraDayid,int paramonthid,int paraweekid,int paradaymonthid,
               string paraSalesmanName, string paraSchedulename, string paraSalesmanMobile,string paraSalesmanWhatsapp,int paraSaleOrderType,string ParaOrderDays,
-              int ParaSupplierOrderid,int paraordertype, string ParaProductId)
+              int ParaSupplierOrderid,int paraordertype, string ParaProductId, string parabankname, string paraBankShortName, string paraBranchName,
+              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment )
         {
             string result = "";
             try
@@ -1345,6 +1346,17 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaSupplierOrderid", ParaSupplierOrderid);
                 varSqlCommand.Parameters.AddWithValue("@paraordertype", paraordertype);
                 varSqlCommand.Parameters.AddWithValue("@ParaProductId", ParaProductId);
+
+                varSqlCommand.Parameters.AddWithValue("@parabankname", parabankname);
+                varSqlCommand.Parameters.AddWithValue("@paraBankShortName", paraBankShortName);
+                varSqlCommand.Parameters.AddWithValue("@paraBranchName", paraBranchName);
+                varSqlCommand.Parameters.AddWithValue("@paraAccNo", paraAccNo);
+                varSqlCommand.Parameters.AddWithValue("@paraIFSC", paraIFSC);
+                varSqlCommand.Parameters.AddWithValue("@paraAccountName", paraAccountName);
+                varSqlCommand.Parameters.AddWithValue("@paraBrand", paraBrand);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierPayment", ParaSupplierPayment);
+
+
 
 
 
