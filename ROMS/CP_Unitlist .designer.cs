@@ -44,7 +44,6 @@
             this.pnlunitlist = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grdUnitList = new System.Windows.Forms.DataGridView();
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsUnitList.SuspendLayout();
@@ -256,11 +255,11 @@
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(139, 215);
+            this.picLoader.Location = new System.Drawing.Point(3, 34);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1201, 455);
+            this.picLoader.Size = new System.Drawing.Size(1348, 636);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
@@ -309,6 +308,6 @@
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdUnitList;
-        private System.Windows.Forms.PictureBox picLoader;
+        public System.Windows.Forms.PictureBox picLoader;
     }
 }

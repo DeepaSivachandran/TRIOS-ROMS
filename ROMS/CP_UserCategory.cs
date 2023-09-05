@@ -31,6 +31,7 @@ namespace ROMS
         public CP_UserCategory()
         {
             InitializeComponent();
+            MainForm.objCP_UserCategoryList.picLoader.Visible = false;
         }
         private void rbActive_KeyDown(object sender, KeyEventArgs e)
         {
@@ -139,12 +140,14 @@ namespace ROMS
                         {
                             varUpdate = 1;
                             udfnclose();
-                        }                        
+                        }
                         udfnclear();
                     }
                     else
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnSave.Enabled = true;
+                        btnSave.Focus();
                     }
             }
             catch (Exception ex)

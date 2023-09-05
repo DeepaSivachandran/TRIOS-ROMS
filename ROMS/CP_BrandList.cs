@@ -181,20 +181,26 @@ namespace ROMS
             {
                 if (grdBrandList.SelectedRows.Count > 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_Brand = new CP_Brand();
                     MainForm.objCP_Brand.MdiParent = ParentForm;
                     MainForm.objCP_Brand.btnSave.Text = "Update";
                     MainForm.objCP_Brand.varId = Convert.ToInt32(grdBrandList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_Brand.varStatusid = Convert.ToInt32(grdBrandList.SelectedRows[0].Cells["Status ID"].Value);
                     MainForm.objCP_Brand.Show();
-               
                 }
-
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
 
         }
@@ -204,6 +210,7 @@ namespace ROMS
             try
             {
                 picLoader.Visible = true;
+                picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdBrandList.DataSource = null;
@@ -262,6 +269,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
 

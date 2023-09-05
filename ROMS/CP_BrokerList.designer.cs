@@ -307,6 +307,6 @@
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdBrokerList;
-        private System.Windows.Forms.PictureBox picLoader;
+        public System.Windows.Forms.PictureBox picLoader;
     }
 }

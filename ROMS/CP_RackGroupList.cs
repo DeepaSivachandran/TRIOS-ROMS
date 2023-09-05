@@ -100,12 +100,17 @@ namespace ROMS
         {
             try
             {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
                 MainForm.objCP_RackGroup = new CP_RackGroup();
                 MainForm.objCP_RackGroup.btnSave.Text = "Update";
                 MainForm.objCP_RackGroup.varId = Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value);
                 MainForm.objCP_RackGroup.varCompanyId = Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["COMID"].Value);
                 MainForm.objCP_RackGroup.varStatusid = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["Status ID"].Value);
                 MainForm.objCP_RackGroup.varStockId = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
+                picLoader.Visible = false;
+                picLoader.SendToBack();
                 MainForm.objCP_RackGroup.ShowDialog();
                
             }
@@ -122,6 +127,7 @@ namespace ROMS
             try
             {
                 picLoader.Visible = true;
+                picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdRackGroupList.DataSource = null;
@@ -183,6 +189,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
 
@@ -447,6 +458,7 @@ namespace ROMS
             finally
             {
                 btnView.Enabled = true;
+                btnView.Focus();
             }
         }
 
@@ -692,6 +704,7 @@ namespace ROMS
             finally
             {
                 btnExport.Enabled = true;
+                btnExport.Focus();
             }
         }
 

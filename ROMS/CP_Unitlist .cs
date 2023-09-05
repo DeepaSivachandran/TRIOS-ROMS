@@ -96,6 +96,9 @@ namespace ROMS
             {
                 if (grdUnitList.SelectedRows.Count > 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_Unit = new CP_Unit();
                     MainForm.objCP_Unit.btnSave.Text = "Update";
                     MainForm.objCP_Unit.varUnitCode = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value);

@@ -27,9 +27,11 @@ namespace ROMS
         public int PbStatus=0;
         public int varUpdate = 0;
         public int varmastertype = 0;
+        public int varflog = 0;
         public CP_City()
         {
             InitializeComponent();
+            MainForm.objCP_Citylist.picLoader.Visible = false;
         }
         private void CP_City_Leave(object sender, EventArgs e)
         {
@@ -52,6 +54,14 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID !=0 Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
+                if (varflog == 0)
+                {
+                    varflog = MainForm.objCP_CP_Broker.varflog;
+                    DataBind objDTBind = new DataBind();
+                    objDTBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID =27", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                    cmbState.Enabled = false;
+                    objDTBind = null;
+                }
                 if (btnSave.Text=="Save")
                 {
                     pnlStatus.Enabled = false;
@@ -133,6 +143,8 @@ namespace ROMS
                 else
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Enabled = true;
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -473,6 +485,19 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }     
+        }
+
+        private void CmbState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

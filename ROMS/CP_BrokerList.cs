@@ -165,12 +165,14 @@ namespace ROMS
             {
                 if (grdBrokerList.SelectedRows.Count > 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_CP_Broker = new CP_Broker();
-                    MainForm.objCP_CP_Broker.MdiParent = this.ParentForm;
                     MainForm.objCP_CP_Broker.btnSave.Text = "Update";
                     MainForm.objCP_CP_Broker.varBrokerid = grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString();
                     MainForm.objCP_CP_Broker.PbConcernID = Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ConcernID"].Value);
-                    MainForm.objCP_CP_Broker.Show();
+                    MainForm.objCP_CP_Broker.ShowDialog();
                 }
             }
             catch (Exception ex)

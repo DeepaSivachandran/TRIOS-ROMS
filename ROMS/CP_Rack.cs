@@ -32,6 +32,7 @@ namespace ROMS
         public CP_Rack()
         {
             InitializeComponent();
+            MainForm.objCP_RackList.picLoader.Visible = false;
         }
         private void CP_Rack_Leave(object sender, EventArgs e)
         {
@@ -146,6 +147,8 @@ namespace ROMS
                 else
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Enabled = true;
+                    btnSave.Focus();
                 }   
             }
             catch (Exception ex)
@@ -225,8 +228,8 @@ namespace ROMS
                 //cmbConcern.SelectedIndex = 0;
                 cmbStockLocation.SelectedIndex = 0;
                 btnSave.Text = "Save";
-                cmbConcern.Focus();
-                this.ActiveControl = cmbConcern;
+                cmbStockLocation.Focus();
+                this.ActiveControl = cmbStockLocation;
             }
             catch (Exception ex)
             {
@@ -723,7 +726,7 @@ namespace ROMS
                 {
                     varparaViewType = 8;
                 }
-                objDS = objsdserv.udfnStockLocationList(varparaViewType,Convert.ToInt32(cmbConcern.SelectedValue),0,0 );
+                objDS = objsdserv.udfnStockLocationList(varparaViewType,Convert.ToInt32(cmbConcern.SelectedValue),PbStockLocationID, 0 );
                 objsdserv.CloseConnection();
                 cmbStockLocation.DataSource = null;
                 if (objDS != null)
@@ -738,7 +741,6 @@ namespace ROMS
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -746,7 +748,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             try

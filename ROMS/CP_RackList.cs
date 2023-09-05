@@ -150,6 +150,7 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                lblGC.Text = Convert.ToString(grdGroupList.Rows.Count);
             }
         }
 
@@ -243,6 +244,9 @@ namespace ROMS
             {
                 if (grdGroupList.SelectedRows.Count > 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_Rack = new CP_Rack();
                     MainForm.objCP_Rack.btnSave.Text = "Update";
                     MainForm.objCP_Rack.varRackcode = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value);

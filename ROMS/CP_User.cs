@@ -44,6 +44,7 @@ namespace ROMS
         public CP_User()
         {
             InitializeComponent();
+            MainForm.objCP_Userlist.picLoader.Visible = false;
         }
         private void CP_User_Leave(object sender, EventArgs e)
         {
@@ -361,6 +362,8 @@ namespace ROMS
                 else
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Enabled = true;
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)

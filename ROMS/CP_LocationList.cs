@@ -163,6 +163,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnView.Enabled = true;
+                btnView.Focus();
             }
         }
         public void udfndelete()
@@ -208,6 +209,9 @@ namespace ROMS
             {
                     if (grdGodownList.SelectedRows.Count > 0)
                     {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
                     {
                         MainForm.objCP_Location = new CP_Location();
@@ -502,6 +506,7 @@ namespace ROMS
             finally
             {
                 btnExport.Enabled = true;
+                btnExport.Focus();
             }
         }
 

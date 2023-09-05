@@ -181,7 +181,7 @@
             this.lblNoOfPrGroup.AutoSize = true;
             this.lblNoOfPrGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblNoOfPrGroup.ForeColor = System.Drawing.Color.Crimson;
-            this.lblNoOfPrGroup.Location = new System.Drawing.Point(544, 30);
+            this.lblNoOfPrGroup.Location = new System.Drawing.Point(581, 32);
             this.lblNoOfPrGroup.Name = "lblNoOfPrGroup";
             this.lblNoOfPrGroup.Size = new System.Drawing.Size(17, 20);
             this.lblNoOfPrGroup.TabIndex = 958796;
@@ -192,7 +192,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(410, 30);
+            this.label1.Location = new System.Drawing.Point(447, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(130, 20);
             this.label1.TabIndex = 958795;
@@ -219,7 +219,7 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(323, 26);
+            this.btnExport.Location = new System.Drawing.Point(348, 26);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
             this.btnExport.TabIndex = 2;
@@ -235,7 +235,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(242, 26);
+            this.btnView.Location = new System.Drawing.Point(261, 26);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 1;
@@ -252,7 +252,7 @@
             this.cmbProductGroup.FormattingEnabled = true;
             this.cmbProductGroup.Location = new System.Drawing.Point(11, 26);
             this.cmbProductGroup.Name = "cmbProductGroup";
-            this.cmbProductGroup.Size = new System.Drawing.Size(225, 27);
+            this.cmbProductGroup.Size = new System.Drawing.Size(239, 27);
             this.cmbProductGroup.TabIndex = 0;
             this.cmbProductGroup.SelectedIndexChanged += new System.EventHandler(this.CmbProductGroup_SelectedIndexChanged);
             this.cmbProductGroup.Enter += new System.EventHandler(this.CmbProductGroup_Enter);

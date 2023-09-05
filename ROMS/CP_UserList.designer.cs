@@ -413,7 +413,6 @@
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdUserList;
-        private System.Windows.Forms.PictureBox picLoader;
         private System.Windows.Forms.GroupBox grbFilterByUser;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnView;
@@ -424,5 +423,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        public System.Windows.Forms.PictureBox picLoader;
     }
 }

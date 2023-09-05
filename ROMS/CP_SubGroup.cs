@@ -270,6 +270,7 @@ namespace ROMS
                 }
                 varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt16(cmbGroupName.SelectedValue), Convert.ToString(txtESubGroupNameEnglish.Text), Convert.ToString(txtESubGroupNameTamil.Text), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt16(cmbStockLocation.SelectedValue), Convert.ToInt16(cmbRack.SelectedValue), varOriginator);
                 objDser.CloseConnection();
+                btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -304,17 +305,13 @@ namespace ROMS
                 else if (varResult.Split('~')[0] == "4")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-                btnSave.Enabled = true;
-                btnSave.Focus();
             }
         }
         private void btnSave_Click(object sender, EventArgs e)

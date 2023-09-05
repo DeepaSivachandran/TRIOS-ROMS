@@ -190,6 +190,9 @@ namespace ROMS
             {
                 if (grdUserList.SelectedRows.Count > 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_User = new CP_User();
                     MainForm.objCP_User.btnSave.Text = "Update";
                     MainForm.objCP_User.varUserID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value);

@@ -33,6 +33,7 @@ namespace ROMS
         public CP_Unit()
         {
             InitializeComponent();
+            MainForm.objCP_Unitlist.picLoader.Visible = false;
         }
         private void CP_Unit_Leave(object sender, EventArgs e)
         {
@@ -138,6 +139,8 @@ namespace ROMS
                 else
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Enabled = true;
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)

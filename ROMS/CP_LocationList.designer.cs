@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsGodownList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
@@ -39,6 +39,7 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlGodownList = new System.Windows.Forms.Panel();
             this.grpSearchByLocationName = new System.Windows.Forms.GroupBox();
+            this.txtSearchbyLocationName = new System.Windows.Forms.TextBox();
             this.grbFilterByConcern = new System.Windows.Forms.GroupBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdGodownList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.txtSearchbyLocationName = new System.Windows.Forms.TextBox();
             this.tsGodownList.SuspendLayout();
             this.pnlGodownList.SuspendLayout();
             this.grpSearchByLocationName.SuspendLayout();
@@ -161,6 +161,18 @@
             this.grpSearchByLocationName.TabStop = false;
             this.grpSearchByLocationName.Text = "Search by Location Name";
             // 
+            // txtSearchbyLocationName
+            // 
+            this.txtSearchbyLocationName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchbyLocationName.Location = new System.Drawing.Point(6, 26);
+            this.txtSearchbyLocationName.MaxLength = 50;
+            this.txtSearchbyLocationName.Name = "txtSearchbyLocationName";
+            this.txtSearchbyLocationName.Size = new System.Drawing.Size(331, 27);
+            this.txtSearchbyLocationName.TabIndex = 3;
+            this.txtSearchbyLocationName.TextChanged += new System.EventHandler(this.TxtSearchbyLocationName_TextChanged);
+            this.txtSearchbyLocationName.Enter += new System.EventHandler(this.TxtSearchbyLocationName_Enter);
+            this.txtSearchbyLocationName.Leave += new System.EventHandler(this.TxtSearchbyLocationName_Leave);
+            // 
             // grbFilterByConcern
             // 
             this.grbFilterByConcern.Controls.Add(this.btnExport);
@@ -237,14 +249,14 @@
             this.grdGodownList.AllowUserToResizeRows = false;
             this.grdGodownList.BackgroundColor = System.Drawing.Color.White;
             this.grdGodownList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGodownList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdGodownList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdGodownList.ColumnHeadersHeight = 30;
             this.grdGodownList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdGodownList.EnableHeadersVisualStyles = false;
@@ -253,9 +265,9 @@
             this.grdGodownList.Name = "grdGodownList";
             this.grdGodownList.ReadOnly = true;
             this.grdGodownList.RowHeadersVisible = false;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGodownList.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGodownList.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.grdGodownList.RowTemplate.Height = 25;
             this.grdGodownList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGodownList.Size = new System.Drawing.Size(1348, 570);
@@ -279,18 +291,6 @@
             this.picLoader.TabIndex = 958790;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
-            // 
-            // txtSearchbyLocationName
-            // 
-            this.txtSearchbyLocationName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchbyLocationName.Location = new System.Drawing.Point(6, 26);
-            this.txtSearchbyLocationName.MaxLength = 50;
-            this.txtSearchbyLocationName.Name = "txtSearchbyLocationName";
-            this.txtSearchbyLocationName.Size = new System.Drawing.Size(331, 27);
-            this.txtSearchbyLocationName.TabIndex = 958791;
-            this.txtSearchbyLocationName.TextChanged += new System.EventHandler(this.TxtSearchbyLocationName_TextChanged);
-            this.txtSearchbyLocationName.Enter += new System.EventHandler(this.TxtSearchbyLocationName_Enter);
-            this.txtSearchbyLocationName.Leave += new System.EventHandler(this.TxtSearchbyLocationName_Leave);
             // 
             // CP_LocationList
             // 
@@ -335,12 +335,12 @@
         private System.Windows.Forms.Panel pnlGodownList;
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdGodownList;
-        private System.Windows.Forms.PictureBox picLoader;
         private System.Windows.Forms.GroupBox grbFilterByConcern;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.GroupBox grpSearchByLocationName;
         private System.Windows.Forms.TextBox txtSearchbyLocationName;
+        public System.Windows.Forms.PictureBox picLoader;
     }
 }
