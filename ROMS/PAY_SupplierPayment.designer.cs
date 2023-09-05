@@ -76,10 +76,17 @@
             this.lblSupplier = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.tsSupplierPayment.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_inward)).BeginInit();
             this.grbgodown.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tspHeader
@@ -108,6 +115,7 @@
             // pnlinward
             // 
             this.pnlinward.BackColor = System.Drawing.Color.White;
+            this.pnlinward.Controls.Add(this.groupBox1);
             this.pnlinward.Controls.Add(this.cmbPaymentType);
             this.pnlinward.Controls.Add(this.txtDPaymentType);
             this.pnlinward.Controls.Add(this.lblRupee);
@@ -140,7 +148,7 @@
             "Cash",
             "Bank",
             "Online"});
-            this.cmbPaymentType.Location = new System.Drawing.Point(600, 549);
+            this.cmbPaymentType.Location = new System.Drawing.Point(719, 549);
             this.cmbPaymentType.Name = "cmbPaymentType";
             this.cmbPaymentType.Size = new System.Drawing.Size(150, 27);
             this.cmbPaymentType.TabIndex = 1111176;
@@ -151,7 +159,7 @@
             this.txtDPaymentType.BackColor = System.Drawing.SystemColors.Control;
             this.txtDPaymentType.Enabled = false;
             this.txtDPaymentType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPaymentType.Location = new System.Drawing.Point(461, 549);
+            this.txtDPaymentType.Location = new System.Drawing.Point(580, 549);
             this.txtDPaymentType.Name = "txtDPaymentType";
             this.txtDPaymentType.ReadOnly = true;
             this.txtDPaymentType.Size = new System.Drawing.Size(139, 27);
@@ -187,7 +195,7 @@
             "Cash",
             "Bank",
             "Online"});
-            this.cmbPaymentmode.Location = new System.Drawing.Point(600, 522);
+            this.cmbPaymentmode.Location = new System.Drawing.Point(719, 522);
             this.cmbPaymentmode.Name = "cmbPaymentmode";
             this.cmbPaymentmode.Size = new System.Drawing.Size(150, 27);
             this.cmbPaymentmode.TabIndex = 1111172;
@@ -198,7 +206,7 @@
             this.txtDPaymentMode.BackColor = System.Drawing.SystemColors.Control;
             this.txtDPaymentMode.Enabled = false;
             this.txtDPaymentMode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPaymentMode.Location = new System.Drawing.Point(461, 522);
+            this.txtDPaymentMode.Location = new System.Drawing.Point(580, 522);
             this.txtDPaymentMode.Name = "txtDPaymentMode";
             this.txtDPaymentMode.ReadOnly = true;
             this.txtDPaymentMode.Size = new System.Drawing.Size(139, 27);
@@ -208,7 +216,7 @@
             // 
             // txtChequeNo
             // 
-            this.txtChequeNo.Location = new System.Drawing.Point(910, 549);
+            this.txtChequeNo.Location = new System.Drawing.Point(1016, 549);
             this.txtChequeNo.Name = "txtChequeNo";
             this.txtChequeNo.Size = new System.Drawing.Size(150, 27);
             this.txtChequeNo.TabIndex = 1111169;
@@ -218,7 +226,7 @@
             // 
             this.dtChequeDate.CustomFormat = "dd/MM/yyyy";
             this.dtChequeDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtChequeDate.Location = new System.Drawing.Point(910, 522);
+            this.dtChequeDate.Location = new System.Drawing.Point(1016, 522);
             this.dtChequeDate.Name = "dtChequeDate";
             this.dtChequeDate.Size = new System.Drawing.Size(150, 27);
             this.dtChequeDate.TabIndex = 1111168;
@@ -229,7 +237,7 @@
             this.txtChequeDate.BackColor = System.Drawing.SystemColors.Control;
             this.txtChequeDate.Enabled = false;
             this.txtChequeDate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtChequeDate.Location = new System.Drawing.Point(771, 522);
+            this.txtChequeDate.Location = new System.Drawing.Point(877, 522);
             this.txtChequeDate.Name = "txtChequeDate";
             this.txtChequeDate.ReadOnly = true;
             this.txtChequeDate.Size = new System.Drawing.Size(139, 27);
@@ -243,7 +251,7 @@
             this.txtDChequeNo.BackColor = System.Drawing.SystemColors.Control;
             this.txtDChequeNo.Enabled = false;
             this.txtDChequeNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDChequeNo.Location = new System.Drawing.Point(771, 549);
+            this.txtDChequeNo.Location = new System.Drawing.Point(877, 549);
             this.txtDChequeNo.Name = "txtDChequeNo";
             this.txtDChequeNo.ReadOnly = true;
             this.txtDChequeNo.Size = new System.Drawing.Size(139, 27);
@@ -418,7 +426,7 @@
             this.txtRemark.Location = new System.Drawing.Point(69, 522);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(386, 97);
+            this.txtRemark.Size = new System.Drawing.Size(272, 97);
             this.txtRemark.TabIndex = 958807;
             // 
             // lblnarration
@@ -556,6 +564,66 @@
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(348, 515);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(225, 106);
+            this.groupBox1.TabIndex = 1111177;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Bank Details";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(131, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Tamilnadu Merchantile Bank";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 16);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Virudhunagar";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 49);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 16);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Account Name";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 65);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 16);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Account No.";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 81);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 16);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "IFS Code";
+            // 
             // PAY_SupplierPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -580,6 +648,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGV_inward)).EndInit();
             this.grbgodown.ResumeLayout(false);
             this.grbgodown.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -631,5 +701,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.ComboBox cmbPaymentType;
         private System.Windows.Forms.TextBox txtDPaymentType;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

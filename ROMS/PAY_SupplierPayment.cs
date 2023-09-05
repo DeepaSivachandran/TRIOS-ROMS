@@ -86,7 +86,7 @@ namespace ROMS
                     cmbPaymentType.Visible = true;
                     cmbPaymentType.Items.Add("RTGS");
                     cmbPaymentType.Items.Add("NEFT");
-                    cmbPaymentType.Items.Add("IMBS");
+                    cmbPaymentType.Items.Add("IMPS");
                     cmbPaymentType.Items.Add("UPI");
                 }
             }
@@ -148,7 +148,7 @@ namespace ROMS
                     txtDChequeNo.Text = "DD No.";
                     txtChequeDate.Text = "DD Date";
                 }
-                if (cmbPaymentType.SelectedItem == "IMBS" || cmbPaymentType.SelectedItem == "UPI") {
+                if (cmbPaymentType.SelectedItem == "IMPS" || cmbPaymentType.SelectedItem == "UPI") {
                     txtChequeDate.Visible = true;
                     txtChequeNo.Visible = true;
                     dtChequeDate.Visible = true;
