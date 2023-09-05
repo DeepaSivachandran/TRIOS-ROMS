@@ -799,8 +799,11 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmbMappingordeDay, "", "DY_Name", "DYID");
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmborderday, "", "DY_Name", "DYID");
                 objDataBind = null;
-                cmbReturnPolicy.SelectedIndex = 0;
-                cmbReturnType.SelectedIndex = 0;
+                if (btnSave.Text == "Save")
+                {
+                    cmbReturnPolicy.SelectedIndex = 0;
+                    cmbReturnType.SelectedIndex = 0;
+                }
                 txtReturnText.Visible = false;
                 cmbPolicyContent.Visible = false;
                 txtNextLevel.Visible = false;
@@ -839,7 +842,8 @@ namespace ROMS
                         {
                             grddays.DataSource = objDs.Tables[0];
                             grddays.Columns["DYID"].Visible = false;
-                            grddays.Columns["DY_Name"].Width = 100;
+                            grddays.Columns["DY_Name"].Width = 100; 
+                            grddays.Columns["DY_Name"].ReadOnly = true;
                         }
                     }
                 }
@@ -855,6 +859,7 @@ namespace ROMS
                             grdPaymentMode.DataSource = objDs.Tables[0];
                             grdPaymentMode.Columns["MSTID"].Visible = false;
                             grdPaymentMode.Columns["MST_DisplayText"].Width = 100;
+                            grdPaymentMode.Columns["MST_DisplayText"].ReadOnly = true;
                         }
                     }
                 }
@@ -906,12 +911,21 @@ namespace ROMS
                             lblcity.Text= objDS.Tables[0].Rows[0]["CTY"].ToString().Replace("''", "'"); 
                             txtcreditlimit.Text = objDS.Tables[0].Rows[0]["CREDIT"].ToString().Replace("''", "'");
                             txtopening.Text = objDS.Tables[0].Rows[0]["OPBALANCE"].ToString().Replace("''", "'");
-                            
+
+                            txtBankname.Text = objDS.Tables[0].Rows[0]["SP_BankName"].ToString().Replace("''", "'");
+                            txtbranchname.Text = objDS.Tables[0].Rows[0]["SP_BranchName"].ToString().Replace("''", "'");
+                            txtAccName.Text = objDS.Tables[0].Rows[0]["SP_AccountName"].ToString().Replace("''", "'");
+                            txtAccno.Text = objDS.Tables[0].Rows[0]["SP_AccNo"].ToString().Replace("''", "'");
+                            txtBankShortName.Text = objDS.Tables[0].Rows[0]["SP_BankShortName"].ToString().Replace("''", "'");
+                            txtIFScode.Text = objDS.Tables[0].Rows[0]["SP_IFSC"].ToString().Replace("''", "'");
+                            txtOtherBrands.Text= objDS.Tables[0].Rows[0]["SP_Brand"].ToString().Replace("''", "'");
+
+                            cmbReturnPolicy.SelectedValue = objDS.Tables[0].Rows[0]["RETURN"].ToString();
+                            cmbReturnType.SelectedValue = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
+
                             cmbSupplierType.SelectedValue = objDS.Tables[0].Rows[0]["SUPPLIERTYPE"].ToString();
                             cmbPaymentTerm.SelectedValue = objDS.Tables[0].Rows[0]["PAYMENT"].ToString(); 
                             cmbfinance.SelectedValue = objDS.Tables[0].Rows[0]["OPTYPE"].ToString(); 
-                            cmbReturnPolicy.SelectedValue = objDS.Tables[0].Rows[0]["RETURN"].ToString();
-                            cmbReturnType.SelectedValue = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
 
                             //RETURN
                             //    DAYID
@@ -954,6 +968,25 @@ namespace ROMS
 
                             } 
                         }
+
+                        if (objDS.Tables[2].Rows.Count > 0)
+                        {
+                            // objdatabrand = objDS.Tables[1];
+                            for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
+                            {
+                                for (int j = 0; j < grdPaymentMode.Rows.Count; j++)
+                                {
+                                    if (Convert.ToInt32(objDS.Tables[2].Rows[i]["SPP_PaymentMode"].ToString()) == Convert.ToInt32(grdPaymentMode.Rows[j].Cells["MSTID"].Value))
+                                    {
+                                        grdPaymentMode.Rows[j].Cells["clmpaymentcheck"].Value = true;
+                                        //grdPaymentMode.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                                    }
+                                }
+                            }
+
+                            //grdPaymentMode.RefreshEdit();
+                        }
+
 
                     }
                 }
@@ -1716,8 +1749,7 @@ namespace ROMS
         private void CmbReturnPolicy_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
-            {
-                BeginInvoke(new Action(() => cmbReturnPolicy.Select(int.MaxValue, 0)));
+            { 
                 if (cmbReturnPolicy.Text == "Yes")
                 {
                     cmbReturnType.Visible = true;
@@ -4226,7 +4258,7 @@ namespace ROMS
 
                 if (btnSaveOrderType.Text == "Update")
                 {
-                    result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "","","","","","","","","");
+                    result = objspdservice.udfnSupplierMaster(7, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "","","","","","","","","");
                 }
 
                 string[] varvalue = result.Split('~');
@@ -5378,37 +5410,64 @@ namespace ROMS
         private void BtnSupplierdeal_Click(object sender, EventArgs e)
         {
             try
-            {
-                //btnSaveOrderType.Enabled = false;
-                //SPDataService objspdservice = new SPDataService();
-                //string result = "", varoriginator = "";
-                //int Vartype = 0;
+            { 
+                SPDataService objspdservice = new SPDataService();
+                string result = "", varoriginator = "";
+                int Vartype = 0;
 
-                //if (btnSaveOrderType.Text == "Update")
-                //{
-                //    result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "");
-                //}
+                if (btnSaveOrderType.Text == "Update")
+                {
+                    result = objspdservice.udfnSupplierMaster(9, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier dealt brand", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", txtOtherBrands.Text,"");
+                }
 
-                //string[] varvalue = result.Split('~');
-                //if (varvalue[0] == "3")
-                //{
-                //    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //    MainForm.objCP_Supplierlist.udfnList();
-                //    cmbReturnPolicy.Focus();
-                //}
-                //else
-                //{
-                //    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //}
+                string[] varvalue = result.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MainForm.objCP_Supplierlist.udfnList();
+                    cmbReturnPolicy.Focus();
+                }
+                else
+                {
+                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            } 
+        }
+
+        private void GrdPaymentMode_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdPaymentMode.IsCurrentCellDirty)
+                {
+                    grdPaymentMode.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
             }
-            finally
-            { 
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
+        }
+
+        private void GrdPaymentMode_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            //if (grdPaymentMode.Columns[e.ColumnIndex].Name == "clmpaymentcheck" && e.RowIndex >= 0)
+            //{
+            //    DataGridViewCheckBoxCell checkBoxCell = grdPaymentMode.Rows[e.RowIndex].Cells["clmpaymentcheck"] as DataGridViewCheckBoxCell;
+            //    if (checkBoxCell != null)
+            //    {
+            //        checkBoxCell.Value = !(bool)(checkBoxCell.Value ?? false);
+            //        grdPaymentMode.EndEdit(); // Commit the change
+            //    }
+            //}
         }
 
         private void Txtbranchname_KeyDown(object sender, KeyEventArgs e)
