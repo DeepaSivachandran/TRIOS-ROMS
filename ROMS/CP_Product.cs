@@ -3520,8 +3520,6 @@ namespace ROMS
                 DataBind objDataBind = new DataBind(); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (6,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbPeriod, "", "MST_DisplayText", "MSTID");
-                 objDataBind.BindComboBoxListSelected("MR_Rack", "RKID=-1 AND RK_STSID=1 ", "RK_ShortName,RKID", cmbPurchaseRack, "", "RK_ShortName", "RKID");
-                objDataBind.BindComboBoxListSelected("MR_Rack", "RKID=-1 AND RK_STSID=1 ", "RK_ShortName,RKID", cmbSalesRack, "", "RK_ShortName", "RKID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (25,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoEntry, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (26,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoGeneration, "", "MST_DisplayText", "MSTID");
                 objDataBind = null; 
@@ -3730,6 +3728,8 @@ namespace ROMS
                             cmbBrand.SelectedValue = objDS.Tables[0].Rows[0]["BRAND"].ToString(); 
                             cmbUnit.SelectedValue = objDS.Tables[0].Rows[0]["UNIT"].ToString();
                             cmbBulkUnit.SelectedValue = objDS.Tables[0].Rows[0]["BULK UNIT"].ToString();
+                            cmbPosition.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION PURCHASE"].ToString());
+                            cmbSalesGodown.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION SALES"].ToString());
                             txtUpp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UPP"].ToString().Replace("''", "'"));
                             cmbPurchaseRack.SelectedValue = objDS.Tables[0].Rows[0]["RACK LOCATION"].ToString();
                             cmbSalesRack.SelectedValue = objDS.Tables[0].Rows[0]["RACK SALES"].ToString();
@@ -3750,11 +3750,7 @@ namespace ROMS
                             txtBarcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["BARCODE"].ToString().Replace("''", "'")); 
                             cmbHSNName.SelectedValue = objDS.Tables[0].Rows[0]["HSN"].ToString();
 
-                            if (btnSave.Text == "Update")
-                            {
-                                cmbPosition.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION PURCHASE"].ToString());
-                                cmbSalesGodown.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION SALES"].ToString()); 
-                            }
+                          
 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cbRMFromProduction.Checked = true; } else { cbRMFromProduction.Checked = false; }

@@ -24,6 +24,7 @@ namespace ROMS
         public int varrepid = 0,varbrandselectflag=0,varbrandidflag=0;
         public string vargroupcode,VARBRANDLOADID = "";
         public String pbFormStatus;
+        public int varCheckAllFlag = 0;
         public CP_Representative()
         {
             InitializeComponent();
@@ -889,18 +890,19 @@ namespace ROMS
 
         private void GrdRepBrand_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //try
-            //{
-            //    if (e.ColumnIndex == 0)
-            //    {
-            //        checkallcheckboxvalue();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    checkallcheckboxvalue();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void GrdRepBrand_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -940,35 +942,43 @@ namespace ROMS
 
         private void GrdRepBrand_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                if (e.ColumnIndex == 0)
-                {
-                    checkallcheckboxvalue();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
         }
         private void checkallcheckboxvalue()
         {
+            //try
+            //{
+            //    bool varallChecked = true; 
+            //        for (int i = 0; i < grdRepBrand.Rows.Count; i++)
+            //        {
+            //            if (Convert.ToBoolean(grdRepBrand.Rows[i].Cells[0].EditedFormattedValue) == false)
+            //            {
+            //                varallChecked = false; 
+            //            }
+            //            varbrandidflag++;
+            //        } 
+            //    //if (varbrandselectflag == 0)
+            //    //{
+            //        chkBrandAll.Checked = varallChecked;
+            //  //  }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+            //finally
+            //{
+            //    varbrandselectflag = 0;
+            //}
+            int varCheckedCount = 0;
             try
             {
-                bool varallChecked = true; 
-                    for (int i = 0; i < grdRepBrand.Rows.Count; i++)
-                    {
-                        if (Convert.ToBoolean(grdRepBrand.Rows[i].Cells[0].EditedFormattedValue) == false)
-                        {
-                            varallChecked = false; 
-                        }
-                        varbrandidflag++;
-                    } 
-                if (varbrandselectflag == 0)
+                for (int i = 0; i < grdRepBrand.Rows.Count; i++)
                 {
-                    chkBrandAll.Checked = varallChecked;
+                    if (Convert.ToBoolean(grdRepBrand.Rows[i].Cells[0].FormattedValue) == true)
+                    {
+                        varCheckedCount++;
+                    }
                 }
             }
             catch (Exception ex)
@@ -978,7 +988,16 @@ namespace ROMS
             }
             finally
             {
-                varbrandselectflag = 0;
+                if (grdRepBrand.Rows.Count == varCheckedCount)
+                {
+                    varCheckAllFlag = 1;
+                    chkBrandAll.Checked = true;
+                }
+                else
+                {
+                    varCheckAllFlag = 1;
+                    chkBrandAll.Checked = false;
+                }
             }
 
         }
@@ -986,13 +1005,24 @@ namespace ROMS
         {
             try
             {
-                if (varbrandidflag == 0)
-                { 
+                //if (varbrandidflag == 0)
+                //{ 
+                //    for (int i = 0; i < grdRepBrand.Rows.Count; i++)
+                //    {
+                //        grdRepBrand.Rows[i].Cells["clmcheckbrand"].Value = chkBrandAll.Checked;
+                //        varbrandselectflag++;
+                //    }
+                //}
+                if (varCheckAllFlag != 1)
+                {
                     for (int i = 0; i < grdRepBrand.Rows.Count; i++)
                     {
-                        grdRepBrand.Rows[i].Cells["clmcheckbrand"].Value = chkBrandAll.Checked;
-                        varbrandselectflag++;
+                        grdRepBrand.Rows[i].Cells[0].Value = chkBrandAll.Checked;
                     }
+                }
+                else
+                {
+                    varCheckAllFlag = 0;
                 }
             }
 
@@ -1003,7 +1033,7 @@ namespace ROMS
             }
             finally
             {
-                varbrandidflag = 0;
+              //  varbrandidflag = 0;
             }
         }
     }

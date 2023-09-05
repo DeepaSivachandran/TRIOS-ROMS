@@ -994,19 +994,24 @@ namespace ROMS
                         if (objDS.Tables[2].Rows.Count > 0)
                         {
                             // objdatabrand = objDS.Tables[1];
-                            for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
-                            {
+                            //for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
+                            //{
                                 for (int j = 0; j < grdPaymentMode.Rows.Count; j++)
                                 {
-                                    if (Convert.ToInt32(objDS.Tables[2].Rows[i]["SPP_PaymentMode"].ToString()) == Convert.ToInt32(grdPaymentMode.Rows[j].Cells["MSTID"].Value))
-                                    {
+                                    //if (Convert.ToInt32(objDS.Tables[2].Rows[i]["SPP_PaymentMode"].ToString()) == Convert.ToInt32(grdPaymentMode.Rows[j].Cells["MSTID"].Value))
+                                    //{
                                         bool varpayment =true;
                                         //=true;
                                         //grdPaymentMode.CommitEdit(DataGridViewDataErrorContexts.Commit);  
-                                        grdPaymentMode.Rows[j].Cells[0].Value = varpayment;
-                                    }
-                                }
+                                        grdPaymentMode.Rows[j].Cells["clmpaymentcheck"].Value = varpayment;
+                                //  }
                             }
+                            for (int j = 0; j < grdPaymentMode.Rows.Count; j++)
+                            {
+                                bool varvalue = Convert.ToBoolean(grdPaymentMode.Rows[j].Cells["clmpaymentcheck"].Value);
+                                //  }
+                            }
+                            //  }
 
                             //grdPaymentMode.RefreshEdit();
                         }
