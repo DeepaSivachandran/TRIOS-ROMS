@@ -160,7 +160,7 @@ namespace ROMS
 
                 txtEUnitName.Text = "";
                 txtSymbol.Text = "";
-                //btnSave.Text = "Save";
+                cmbNoOfDecimals.SelectedIndex = 0;
                 txtEUnitName.Focus();
                 this.ActiveControl = txtEUnitName;
             }
