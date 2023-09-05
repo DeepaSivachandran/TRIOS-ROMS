@@ -124,7 +124,9 @@ namespace ROMS
                             grdBrokerList.Columns["ConcernID"].Visible = false;
                             grdBrokerList.Columns["STSID"].Visible = false;
                             grdBrokerList.Columns["S.No."].Width = 50;
-                            grdBrokerList.Columns["Broker Name"].Width = 150;
+                            grdBrokerList.Columns["GSTIN No."].Width = 150;
+                            grdBrokerList.Columns["Broker Name"].Width = 250;
+                            grdBrokerList.Columns["City"].Width = 200;
                             grdBrokerList.Columns["Status"].Width = 80;
                             grdBrokerList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdBrokerList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

@@ -903,10 +903,12 @@ namespace ROMS
             if (Convert.ToInt32(cmbLocationType.SelectedValue) == 9)
             {
                 pnlGodownType.Enabled = true;
+                rbInside.Checked = true;
             }
             else
             {
                 pnlGodownType.Enabled = false;
+                rbInside.Checked = false;
             }
         }
     }
