@@ -3542,9 +3542,10 @@ namespace ROMS
                 dtSubGroup.Columns.Add("Product SubGroup", typeof(string));
                 dtSubGroup.Columns.Add("GROUPID", typeof(int));
                 dtSubGroup.Columns.Add("SUBGROUPID", typeof(int));
-                dtSubGroup.Columns.Add("PRODUCTID", typeof(int)); 
-
-                objDs = objspservice.udfnproductmasterlist(3, 0, 0,Convert.ToInt32(cmbMappingGroup.SelectedValue), Convert.ToInt32(cmbMappingSubGroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0);
+                dtSubGroup.Columns.Add("PRODUCTID", typeof(int));
+                
+                objDs = objspservice.udfnproductmasterlist(3, 0, 0,Convert.ToInt32(cmbMappingGroup.SelectedValue), Convert.ToInt32(cmbMappingSubGroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue));
+              
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
@@ -3856,7 +3857,11 @@ namespace ROMS
                 DataSet objDT = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 int varViewType = 5;
-                objDT = objdserv.udfnSubGroupList(varViewType, 0,"", Convert.ToInt32(cmbMappingGroup.SelectedValue), 0,"");
+                if (Convert.ToInt32(cmbMappingGroup.SelectedValue) == 0)
+                {
+                    varViewType = 4;
+                }
+                objDT = objdserv.udfnSubGroupList(varViewType, 0,"", Convert.ToInt32(cmbMappingGroup.SelectedValue), 0);
                 objdserv.CloseConnection();
                 if (objDT != null)
                 {

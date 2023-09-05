@@ -26,8 +26,8 @@ namespace ROMS
             try
             {
                 picLoader.Visible = true;
-                Application.DoEvents();
                 picLoader.BringToFront();
+                Application.DoEvents();
                 udfnlistcmbdata();
                 MainForm.objCP_Items = new CP_Product(); 
                 MainForm.objCP_Items.ShowDialog();
@@ -125,8 +125,8 @@ namespace ROMS
             {
 
                 picLoader.Visible = true;
-                Application.DoEvents();
                 picLoader.BringToFront();
+                Application.DoEvents(); 
                 if (grdItemList.SelectedRows.Count > 0)
                 {
                     MainForm.objCP_Items = new CP_Product(); 
@@ -861,7 +861,7 @@ namespace ROMS
         {
             try
             {
-                if ((grdItemList.Rows.Count < 0))
+                if ((grdItemList.Rows.Count > 0))
                 {
                     udfnImport();
                 }

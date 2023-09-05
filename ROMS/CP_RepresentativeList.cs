@@ -26,6 +26,9 @@ namespace ROMS
         {
             try
             {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
                 MainForm.objCP_Representative = new CP_Representative();
                 MainForm.objCP_Representative.ShowDialog();
             }
@@ -34,6 +37,9 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+            finally
+            {
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -96,7 +102,10 @@ namespace ROMS
         {
 
             try
-            {
+            { 
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
                 MainForm.objCP_Representative = new CP_Representative();
                 MainForm.objCP_Representative.btnSave.Text = "Update";
                 MainForm.objCP_Representative.varrepid = Convert.ToInt32(grdreplist.SelectedRows[0].Cells["ID"].Value.ToString());

@@ -311,7 +311,7 @@ namespace ROMS
                 }
                 if (cbExpiry.Checked==true)
                 {
-                    if (Convert.ToInt32(cmbBatchNoEntry.SelectedValue) == -1 )
+                    if (Convert.ToInt32(cmbPeriod.SelectedValue) == -1 )
                     {
                         errItems.SetError(cmbPeriod, "Please select shelflife");
                         cmbPeriod.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
