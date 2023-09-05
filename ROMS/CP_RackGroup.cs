@@ -250,6 +250,11 @@ namespace ROMS
                 grdRack.Columns["Status ID"].Visible = false;
                 grdRack.Columns["StockLocation ID"].Visible = false;
 
+                grdRack.Columns[0].ReadOnly = false;
+                grdRack.Columns["S.No."].ReadOnly = true;
+                grdRack.Columns["Rack"].ReadOnly = true;
+                grdRack.Columns["Description"].ReadOnly = true;
+                grdRack.Columns["Total Products"].ReadOnly = true;
             }
             catch (Exception ex)
             {
@@ -403,6 +408,7 @@ namespace ROMS
                 grdSelectedRack.Rows.Clear();
                 grdStaffDetails.Rows.Clear();
                 chkRack.Checked = false;
+                tpStaffName.Active = false;
                 cmbConcern.Focus();
             }
             catch (Exception ex)
@@ -598,7 +604,6 @@ namespace ROMS
                                 varFlag = 1;
                                 DialogResult dialogResult = MessageBox.Show("Staff name already exists", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             }
-
                         }
                         if (varFlag == 0)
                         {
@@ -609,7 +614,7 @@ namespace ROMS
                     txtStaffName.Text = "";
                     varDesignation = "";
                     varUserId = "";
-                   
+                    tpStaffName.Active = false;
                 }
             }
             catch (Exception ex)
@@ -648,8 +653,14 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_ProductDetails = new CP_ProductDetails();
-                MainForm.objCP_ProductDetails.ShowDialog();
+                if (Convert.ToInt32(grdRack.SelectedRows[0].Cells["Total Products"].Value) != 0)
+                {
+                    MainForm.objCP_ProductDetails = new CP_ProductDetails();
+                    MainForm.objCP_ProductDetails.varRackId = Convert.ToInt32(grdRack.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_ProductDetails.varRackName = Convert.ToString(grdRack.SelectedRows[0].Cells["Rack"].Value);
+                    MainForm.objCP_ProductDetails.varDescription = Convert.ToString(grdRack.SelectedRows[0].Cells["Description"].Value);
+                    MainForm.objCP_ProductDetails.ShowDialog();
+                }
             }
             catch (Exception ex)
             {

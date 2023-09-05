@@ -182,32 +182,27 @@
             // 
             this.columnSNo.HeaderText = "S.No.";
             this.columnSNo.Name = "columnSNo";
-            this.columnSNo.ReadOnly = true;
             this.columnSNo.Width = 80;
             // 
             // clmRack
             // 
             this.clmRack.HeaderText = "Rack";
             this.clmRack.Name = "clmRack";
-            this.clmRack.ReadOnly = true;
             // 
             // clmDescription
             // 
             this.clmDescription.HeaderText = "Description";
             this.clmDescription.Name = "clmDescription";
-            this.clmDescription.ReadOnly = true;
             // 
             // clmTotalProducts
             // 
             this.clmTotalProducts.HeaderText = "Total Products";
             this.clmTotalProducts.Name = "clmTotalProducts";
-            this.clmTotalProducts.ReadOnly = true;
             // 
             // ID
             // 
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
             this.ID.Visible = false;
             // 
             // clmRemoveRack
@@ -309,7 +304,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.grdRack.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdRack.RowTemplate.Height = 25;
-            this.grdRack.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.grdRack.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdRack.ShowRowErrors = false;
             this.grdRack.Size = new System.Drawing.Size(347, 314);
             this.grdRack.TabIndex = 51;
