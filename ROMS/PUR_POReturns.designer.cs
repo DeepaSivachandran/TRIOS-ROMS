@@ -117,13 +117,13 @@
             // 
             // clmInvoiceDate
             // 
-            this.clmInvoiceDate.HeaderText = "DL Date";
+            this.clmInvoiceDate.HeaderText = "DC Date";
             this.clmInvoiceDate.Name = "clmInvoiceDate";
             this.clmInvoiceDate.ReadOnly = true;
             // 
             // clmInvoiceNo
             // 
-            this.clmInvoiceNo.HeaderText = "DL No.";
+            this.clmInvoiceNo.HeaderText = "DC No.";
             this.clmInvoiceNo.Name = "clmInvoiceNo";
             this.clmInvoiceNo.ReadOnly = true;
             // 

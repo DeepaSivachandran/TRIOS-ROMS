@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_BulkAttributeVerify
+    partial class PUR_GRNApprovalVerify
     {
         /// <summary>
         /// Required designer variable.

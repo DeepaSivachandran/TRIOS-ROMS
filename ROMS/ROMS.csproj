@@ -178,11 +178,35 @@
     <Compile Include="CP_RepresentativeList.designer.cs">
       <DependentUpon>CP_RepresentativeList.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_InwardlistQueue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_InwardlistQueue.designer.cs">
+      <DependentUpon>INV_InwardlistQueue.cs</DependentUpon>
+    </Compile>
     <Compile Include="INV_InwardQueueList.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="INV_InwardQueueList.designer.cs">
       <DependentUpon>INV_InwardQueueList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_BulkAttributeVerify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BulkAttributeVerify.designer.cs">
+      <DependentUpon>CP_BulkAttributeVerify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_GRNApprovalVerify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_GRNApprovalVerify.designer.cs">
+      <DependentUpon>PUR_GRNApprovalVerify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PUR_Calculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_Calculator.designer.cs">
+      <DependentUpon>PUR_Calculator.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_PurchaseQueue.cs">
       <SubType>Form</SubType>
@@ -837,8 +861,20 @@
     <EmbeddedResource Include="CP_RepresentativeList.resx">
       <DependentUpon>CP_RepresentativeList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="INV_InwardlistQueue.resx">
+      <DependentUpon>INV_InwardlistQueue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="INV_InwardQueueList.resx">
       <DependentUpon>INV_InwardQueueList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_BulkAttributeVerify.resx">
+      <DependentUpon>CP_BulkAttributeVerify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_GRNApprovalVerify.resx">
+      <DependentUpon>PUR_GRNApprovalVerify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_Calculator.resx">
+      <DependentUpon>PUR_Calculator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseQueue.resx">
       <DependentUpon>PUR_PurchaseQueue.cs</DependentUpon>
