@@ -250,6 +250,11 @@ namespace ROMS
                 grdRack.Columns["Status ID"].Visible = false;
                 grdRack.Columns["StockLocation ID"].Visible = false;
 
+                grdRack.Columns[0].ReadOnly = false;
+                grdRack.Columns["S.No."].ReadOnly = true;
+                grdRack.Columns["Rack"].ReadOnly = true;
+                grdRack.Columns["Description"].ReadOnly = true;
+                grdRack.Columns["Total Products"].ReadOnly = true;
             }
             catch (Exception ex)
             {
@@ -599,7 +604,6 @@ namespace ROMS
                                 varFlag = 1;
                                 DialogResult dialogResult = MessageBox.Show("Staff name already exists", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             }
-
                         }
                         if (varFlag == 0)
                         {
@@ -610,7 +614,7 @@ namespace ROMS
                     txtStaffName.Text = "";
                     varDesignation = "";
                     varUserId = "";
-                   
+                    tpStaffName.Active = false;
                 }
             }
             catch (Exception ex)

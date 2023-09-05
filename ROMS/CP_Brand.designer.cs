@@ -348,7 +348,6 @@
             this.grdSubGroup.GridColor = System.Drawing.Color.White;
             this.grdSubGroup.Location = new System.Drawing.Point(381, 129);
             this.grdSubGroup.Name = "grdSubGroup";
-            this.grdSubGroup.ReadOnly = true;
             this.grdSubGroup.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
@@ -389,7 +388,6 @@
             this.grdGroup.GridColor = System.Drawing.Color.White;
             this.grdGroup.Location = new System.Drawing.Point(8, 129);
             this.grdGroup.Name = "grdGroup";
-            this.grdGroup.ReadOnly = true;
             this.grdGroup.RowHeadersVisible = false;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
@@ -431,7 +429,6 @@
             this.grdSubGroupAdd.GridColor = System.Drawing.Color.White;
             this.grdSubGroupAdd.Location = new System.Drawing.Point(876, 129);
             this.grdSubGroupAdd.Name = "grdSubGroupAdd";
-            this.grdSubGroupAdd.ReadOnly = true;
             this.grdSubGroupAdd.RowHeadersVisible = false;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;

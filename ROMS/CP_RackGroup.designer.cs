@@ -164,7 +164,6 @@
             this.grdSelectedRack.GridColor = System.Drawing.Color.White;
             this.grdSelectedRack.Location = new System.Drawing.Point(405, 149);
             this.grdSelectedRack.Name = "grdSelectedRack";
-            this.grdSelectedRack.ReadOnly = true;
             this.grdSelectedRack.RowHeadersVisible = false;
             this.grdSelectedRack.RowHeadersWidth = 70;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -183,32 +182,27 @@
             // 
             this.columnSNo.HeaderText = "S.No.";
             this.columnSNo.Name = "columnSNo";
-            this.columnSNo.ReadOnly = true;
             this.columnSNo.Width = 80;
             // 
             // clmRack
             // 
             this.clmRack.HeaderText = "Rack";
             this.clmRack.Name = "clmRack";
-            this.clmRack.ReadOnly = true;
             // 
             // clmDescription
             // 
             this.clmDescription.HeaderText = "Description";
             this.clmDescription.Name = "clmDescription";
-            this.clmDescription.ReadOnly = true;
             // 
             // clmTotalProducts
             // 
             this.clmTotalProducts.HeaderText = "Total Products";
             this.clmTotalProducts.Name = "clmTotalProducts";
-            this.clmTotalProducts.ReadOnly = true;
             // 
             // ID
             // 
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
             this.ID.Visible = false;
             // 
             // clmRemoveRack
@@ -216,7 +210,6 @@
             this.clmRemoveRack.HeaderText = "Remove";
             this.clmRemoveRack.Image = global::ROMS.Properties.Resources.remove;
             this.clmRemoveRack.Name = "clmRemoveRack";
-            this.clmRemoveRack.ReadOnly = true;
             this.clmRemoveRack.Width = 50;
             // 
             // btnView
@@ -305,7 +298,6 @@
             this.grdRack.GridColor = System.Drawing.Color.White;
             this.grdRack.Location = new System.Drawing.Point(18, 149);
             this.grdRack.Name = "grdRack";
-            this.grdRack.ReadOnly = true;
             this.grdRack.RowHeadersVisible = false;
             this.grdRack.RowHeadersWidth = 70;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
