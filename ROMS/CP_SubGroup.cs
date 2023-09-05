@@ -242,6 +242,7 @@ namespace ROMS
                 cmbGroupName.Focus();
                 tpShopLocation.Active = false;
                 tpRack.Active = false;
+                epSubGroup.Clear();
                 cmbStockLocation.BackColor = Color.White;
             }
             catch (Exception ex)
