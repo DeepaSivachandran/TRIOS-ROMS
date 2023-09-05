@@ -108,9 +108,36 @@ namespace ROMS
                         }
                     }
                 }
+
+                DataSet objDS = new DataSet();
+                SPDataService objsdserv = new SPDataService();
+                int varviewType = 7;
+                if (btnSave.Text == "Save")
+                {
+                    varviewType = 6;
+                }
+                objDS = objsdserv.udfnStockLocationList(varviewType, 0, 0, 0);
+                objsdserv.CloseConnection();
+                cmbDStockLocation.DataSource = null;
+                if (objDS != null)
+                {
+                    if (objDS.Tables.Count > 0)
+                    {
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            cmbDStockLocation.ValueMember = "SLID";
+                            cmbDStockLocation.DisplayMember = "SL_EName";
+                            cmbDStockLocation.DataSource = objDS.Tables[0];
+                        }
+                    }
+                }
+
+
+
+
                 udfnCmbProductGroup();
                 udfnCmbProductSubGroup();
-                udfnTotalSuppliers();
+                //udfnTotalSuppliers();
 
             }
             catch (Exception ex)
@@ -941,7 +968,7 @@ namespace ROMS
             try
             {
                 udfnViewSupplier();
-                udfnTotalSuppliers();
+                //udfnTotalSuppliers();
             }
             catch (Exception ex)
             {
@@ -1115,8 +1142,7 @@ namespace ROMS
         {
             try
             {
-                (grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%'or ([clmdpicode]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
-                //(grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%'";
+                (grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([clmProductEnglish]) LIKE '%" + txtSearchByProduct2.Text + "%'or ([clmdpicode]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
             }
             catch (Exception ex)
             {
@@ -1124,5 +1150,49 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-    }
+
+        private void CmbDStockLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbSStockLocation.Select(int.MaxValue, 0)));
+                varStockLocationId = Convert.ToInt16(cmbSStockLocation.SelectedValue);
+                udfncmbDRack();
+                grdSupplierMapping.DataSource = null;
+                grdViewSupplierMapping.Rows.Clear();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfncmbDRack()
+        {
+
+
+            DataSet objDS = new DataSet();
+            SPDataService objsdserv = new SPDataService();
+            int varviewType = 4;
+            if (btnSave.Text == "Save")
+            {
+                varviewType = 3;
+            }
+            objDS = objsdserv.udfnRackList(varviewType, 0, 0, varStockLocationId, 0);
+            objsdserv.CloseConnection();
+            cmbDRack.DataSource = null;
+            if (objDS != null)
+            {
+                if (objDS.Tables.Count > 0)
+                {
+                    if (objDS.Tables[0].Rows.Count > 0)
+                    {
+                        cmbDRack.ValueMember = "RKID";
+                        cmbDRack.DisplayMember = "RK_Name";
+                        cmbDRack.DataSource = objDS.Tables[0];
+                    }
+                }
+            }
+        }
+        }
 }
