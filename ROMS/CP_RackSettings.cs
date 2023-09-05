@@ -75,17 +75,15 @@ namespace ROMS
         {
             try
             {
-
+                grbDestination.Visible = false;
                 dtSupplierMapping = new DataTable();
-                //dtSelectedRack = new DataTable();
-
                 dtSupplierMapping.Columns.Add("", typeof(Boolean));
                 dtSupplierMapping.Columns.Add("S.No.", typeof(string));
+                dtSupplierMapping.Columns.Add("PRODUCTID", typeof(int));
                 dtSupplierMapping.Columns.Add("P.I Code", typeof(string));
                 dtSupplierMapping.Columns.Add("Product Name in English", typeof(string));
                 dtSupplierMapping.Columns.Add("Product Name in Tamil", typeof(string));
                 dtSupplierMapping.Columns.Add("Unit", typeof(string));
-
 
 
                 DataSet objDs = new DataSet();
@@ -110,9 +108,9 @@ namespace ROMS
                         }
                     }
                 }
-
                 udfnCmbProductGroup();
                 udfnCmbProductSubGroup();
+                udfnTotalSuppliers();
 
             }
             catch (Exception ex)
@@ -161,7 +159,7 @@ namespace ROMS
                 {
                     varViewType = 4;
                 }
-                objDT = objdserv.udfnSubGroupList(varViewType, 0, "", varGroupId, 0);
+                objDT = objdserv.udfnSubGroupList(varViewType, 0, "",varGroupId, 0);
                 objdserv.CloseConnection();
                 cmbSubGroup.DataSource = null;
                 if (objDT != null)
@@ -674,7 +672,7 @@ namespace ROMS
                         udfnList();
                         for (int j = 0; j < grdSupplierMapping.RowCount; j++)
                         {
-                            if (Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["ID"].Value) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["ID"].Value))
+                            if (Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRODUCTID"].Value) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
                             {
                                 grdSupplierMapping.Rows[j].Cells[0].Value = true;
                             }
@@ -713,7 +711,7 @@ namespace ROMS
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
-                        dtSupplierMapping.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name in English"],
+                        dtSupplierMapping.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["PRODUCTID"], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name in English"],
                            objDs.Tables[0].Rows[i]["Product Name in Tamil"], objDs.Tables[0].Rows[i]["Unit"]);
                     }
                 }
@@ -722,6 +720,7 @@ namespace ROMS
                 grdSupplierMapping.Columns[0].HeaderText = "";
                 grdSupplierMapping.Columns[0].Width = 50;
                 grdSupplierMapping.Columns["S.No."].Width = 50;
+                grdSupplierMapping.Columns["PRODUCTID"].Visible =false;
                 grdSupplierMapping.Columns["P.I Code"].Width = 100;
                 grdSupplierMapping.Columns["Product Name in English"].Width = 200;
                 grdSupplierMapping.Columns["Product Name in Tamil"].Width = 200;
@@ -739,7 +738,7 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbSStockLocation.Select(int.MaxValue, 0)));
                 varStockLocationId = Convert.ToInt16(cmbSStockLocation.SelectedValue);
-                udfncmbStockLocation();
+                udfncmbRack();
                 grdSupplierMapping.DataSource = null;
                 grdViewSupplierMapping.Rows.Clear();
             }
@@ -750,7 +749,7 @@ namespace ROMS
             }
         }
 
-        public void udfncmbStockLocation()
+        public void udfncmbRack()
         {
 
 
@@ -905,7 +904,7 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbSubGroup.Select(int.MaxValue, 0)));
                 varSubGroupId = Convert.ToInt32(cmbSubGroup.SelectedValue);
-                udfnCmbProductSubGroup();
+                //udfnCmbProductSubGroup();
             }
             catch (Exception ex)
             {
@@ -929,6 +928,195 @@ namespace ROMS
                 {
                     varCheckAllFlag = 0;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnViewSupplier();
+                udfnTotalSuppliers();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnViewSupplier()
+        {
+            try
+            {
+                string varRemoveRack = "", varAddRack = "";
+
+                if (grdSupplierMapping.Rows.Count > 0)
+                {
+                    for (int i = 0; i < grdSupplierMapping.Rows.Count; i++)
+                    {
+                        if (Convert.ToBoolean(grdSupplierMapping.Rows[i].Cells[0].Value) == true)
+                        {
+                            int varFlag = 0, varcount = 1; ;
+
+                            for (int j = 0; j < grdViewSupplierMapping.Rows.Count; j++)
+                            {
+                                varAddRack = Convert.ToString(grdSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
+                                if (varAddRack == Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
+                                {
+                                    varFlag = 1;
+                                }
+                                varcount++;
+                            }
+                            if (varFlag == 0)
+                            {
+                                grdViewSupplierMapping.Rows.Add(Convert.ToInt32(grdViewSupplierMapping.Rows.Count) + 1, grdSupplierMapping.Rows[i].Cells["P.I Code"].Value, grdSupplierMapping.Rows[i].Cells["Product Name in English"].Value,
+                                    grdSupplierMapping.Rows[i].Cells["Product Name in Tamil"].Value, grdSupplierMapping.Rows[i].Cells["Unit"].Value);
+                            }
+                        }
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select atleast one row.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnTotalSuppliers()
+        {
+            int varCount = 0;
+            try
+            {
+                if (grdViewSupplierMapping.Rows.Count != 0)
+                {
+                    for (int i = 0; i < grdViewSupplierMapping.RowCount; i++)
+                    {
+                        if (Convert.ToInt32(grdViewSupplierMapping.Rows[i].Cells["clmTotalProducts"].Value) != 0)
+                        {
+                            varCount = varCount + Convert.ToInt32(grdViewSupplierMapping.Rows[i].Cells["clmTotalProducts"].Value);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void GrdViewSupplierMapping_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdViewSupplierMapping.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmRemoveSupplier":
+
+                            grdViewSupplierMapping.Rows.RemoveAt(this.grdViewSupplierMapping.SelectedRows[0].Index);
+                            for (int i = 0; i < grdViewSupplierMapping.RowCount; i++)
+                            {
+                                grdViewSupplierMapping.Rows[i].Cells["columnSNo"].Value = i + 1;
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByProduct1_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchByProduct1.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByProduct1_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchByProduct1.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByProduct1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (grdSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchByProduct1.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%' ";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByProduct2_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchByProduct2.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByProduct2_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchByProduct2.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByProduct2_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%'or ([clmdpicode]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
+                //(grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchByProduct2.Text + "%'";
             }
             catch (Exception ex)
             {

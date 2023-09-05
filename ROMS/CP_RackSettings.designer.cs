@@ -43,11 +43,6 @@
             this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
             this.lblSearchByProduct2 = new System.Windows.Forms.Label();
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
-            this.clmdpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataGridViewButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.chkRackSettings = new System.Windows.Forms.CheckBox();
             this.txtSearchByProduct1 = new System.Windows.Forms.TextBox();
             this.lblSearchbyProduct1 = new System.Windows.Forms.Label();
@@ -57,7 +52,7 @@
             this.lblDESubGroup = new System.Windows.Forms.Label();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
             this.lblDEGroup = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.grbDestination = new System.Windows.Forms.GroupBox();
             this.cmbDStockLocation = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -74,6 +69,12 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.epRackSettings = new System.Windows.Forms.ErrorProvider(this.components);
+            this.PRODUCTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProductEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBox5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemoveSupplier = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsRackSettings.SuspendLayout();
             this.pnlRackSettings.SuspendLayout();
             this.grpRackSettings.SuspendLayout();
@@ -145,7 +146,7 @@
             this.grpRackSettings.Controls.Add(this.lblDESubGroup);
             this.grpRackSettings.Controls.Add(this.cmbGroup);
             this.grpRackSettings.Controls.Add(this.lblDEGroup);
-            this.grpRackSettings.Controls.Add(this.button1);
+            this.grpRackSettings.Controls.Add(this.btnAdd);
             this.grpRackSettings.Controls.Add(this.grbDestination);
             this.grpRackSettings.Controls.Add(this.grpSource);
             this.grpRackSettings.Controls.Add(this.grbProductAddMove);
@@ -165,6 +166,9 @@
             this.txtSearchByProduct2.Name = "txtSearchByProduct2";
             this.txtSearchByProduct2.Size = new System.Drawing.Size(403, 27);
             this.txtSearchByProduct2.TabIndex = 111111;
+            this.txtSearchByProduct2.TextChanged += new System.EventHandler(this.TxtSearchByProduct2_TextChanged);
+            this.txtSearchByProduct2.Enter += new System.EventHandler(this.TxtSearchByProduct2_Enter);
+            this.txtSearchByProduct2.Leave += new System.EventHandler(this.TxtSearchByProduct2_Leave);
             // 
             // lblSearchByProduct2
             // 
@@ -180,7 +184,6 @@
             // 
             this.grdViewSupplierMapping.AllowUserToAddRows = false;
             this.grdViewSupplierMapping.AllowUserToDeleteRows = false;
-            this.grdViewSupplierMapping.AllowUserToResizeColumns = false;
             this.grdViewSupplierMapping.AllowUserToResizeRows = false;
             this.grdViewSupplierMapping.BackgroundColor = System.Drawing.Color.White;
             this.grdViewSupplierMapping.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -195,11 +198,12 @@
             this.grdViewSupplierMapping.ColumnHeadersHeight = 30;
             this.grdViewSupplierMapping.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdViewSupplierMapping.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PRODUCTID,
             this.clmdpicode,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
+            this.clmProductEnglish,
+            this.dataGridViewTextBox5,
             this.dataGridViewTextBoxColumn6,
-            this.DataGridViewButton});
+            this.clmRemoveSupplier});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -212,50 +216,16 @@
             this.grdViewSupplierMapping.GridColor = System.Drawing.Color.White;
             this.grdViewSupplierMapping.Location = new System.Drawing.Point(673, 258);
             this.grdViewSupplierMapping.Name = "grdViewSupplierMapping";
-            this.grdViewSupplierMapping.ReadOnly = true;
             this.grdViewSupplierMapping.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.grdViewSupplierMapping.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdViewSupplierMapping.RowTemplate.Height = 25;
             this.grdViewSupplierMapping.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdViewSupplierMapping.ShowRowErrors = false;
             this.grdViewSupplierMapping.Size = new System.Drawing.Size(619, 315);
             this.grdViewSupplierMapping.TabIndex = 111111111;
-            // 
-            // clmdpicode
-            // 
-            this.clmdpicode.HeaderText = "P.I Code";
-            this.clmdpicode.Name = "clmdpicode";
-            this.clmdpicode.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Product Name in English";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 220;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Product Name in Tamil";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 220;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Unit";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // DataGridViewButton
-            // 
-            this.DataGridViewButton.HeaderText = "Remove";
-            this.DataGridViewButton.Name = "DataGridViewButton";
-            this.DataGridViewButton.ReadOnly = true;
-            this.DataGridViewButton.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewButton.Text = "";
-            this.DataGridViewButton.Width = 70;
+            this.grdViewSupplierMapping.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdViewSupplierMapping_CellContentClick);
             // 
             // chkRackSettings
             // 
@@ -275,6 +245,9 @@
             this.txtSearchByProduct1.Name = "txtSearchByProduct1";
             this.txtSearchByProduct1.Size = new System.Drawing.Size(403, 27);
             this.txtSearchByProduct1.TabIndex = 1111111;
+            this.txtSearchByProduct1.TextChanged += new System.EventHandler(this.TxtSearchByProduct1_TextChanged);
+            this.txtSearchByProduct1.Enter += new System.EventHandler(this.TxtSearchByProduct1_Enter);
+            this.txtSearchByProduct1.Leave += new System.EventHandler(this.TxtSearchByProduct1_Leave);
             // 
             // lblSearchbyProduct1
             // 
@@ -290,7 +263,6 @@
             // 
             this.grdSupplierMapping.AllowUserToAddRows = false;
             this.grdSupplierMapping.AllowUserToDeleteRows = false;
-            this.grdSupplierMapping.AllowUserToResizeColumns = false;
             this.grdSupplierMapping.AllowUserToResizeRows = false;
             this.grdSupplierMapping.BackgroundColor = System.Drawing.Color.White;
             this.grdSupplierMapping.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -316,13 +288,13 @@
             this.grdSupplierMapping.GridColor = System.Drawing.Color.White;
             this.grdSupplierMapping.Location = new System.Drawing.Point(17, 258);
             this.grdSupplierMapping.Name = "grdSupplierMapping";
-            this.grdSupplierMapping.ReadOnly = true;
             this.grdSupplierMapping.RowHeadersVisible = false;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdSupplierMapping.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdSupplierMapping.RowTemplate.Height = 25;
             this.grdSupplierMapping.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdSupplierMapping.ShowRowErrors = false;
             this.grdSupplierMapping.Size = new System.Drawing.Size(603, 315);
             this.grdSupplierMapping.TabIndex = 1111111;
             this.grdSupplierMapping.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierMapping_CellContentClick);
@@ -383,17 +355,18 @@
             this.lblDEGroup.TabIndex = 1111168;
             this.lblDEGroup.Text = "Product Group";
             // 
-            // button1
+            // btnAdd
             // 
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button1.Image = global::ROMS.Properties.Resources.add;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(632, 427);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(29, 29);
-            this.button1.TabIndex = 111111;
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAdd.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnAdd.Image = global::ROMS.Properties.Resources.add;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(632, 427);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(29, 29);
+            this.btnAdd.TabIndex = 111111;
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // grbDestination
             // 
@@ -580,6 +553,42 @@
             // 
             this.epRackSettings.ContainerControl = this;
             // 
+            // PRODUCTID
+            // 
+            this.PRODUCTID.HeaderText = "S.No.";
+            this.PRODUCTID.Name = "PRODUCTID";
+            this.PRODUCTID.Visible = false;
+            // 
+            // clmdpicode
+            // 
+            this.clmdpicode.HeaderText = "P.I Code";
+            this.clmdpicode.Name = "clmdpicode";
+            // 
+            // clmProductEnglish
+            // 
+            this.clmProductEnglish.HeaderText = "Product Name in English";
+            this.clmProductEnglish.Name = "clmProductEnglish";
+            this.clmProductEnglish.Width = 220;
+            // 
+            // dataGridViewTextBox5
+            // 
+            this.dataGridViewTextBox5.HeaderText = "Product Name in Tamil";
+            this.dataGridViewTextBox5.Name = "dataGridViewTextBox5";
+            this.dataGridViewTextBox5.Width = 220;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Unit";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // clmRemoveSupplier
+            // 
+            this.clmRemoveSupplier.HeaderText = "Remove";
+            this.clmRemoveSupplier.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemoveSupplier.Name = "clmRemoveSupplier";
+            this.clmRemoveSupplier.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemoveSupplier.Width = 70;
+            // 
             // CP_RackSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -640,7 +649,7 @@
         private System.Windows.Forms.ComboBox cmbDRack;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox chkRackSettings;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ComboBox cmbSubGroup;
         private System.Windows.Forms.Label lblDESubGroup;
@@ -652,11 +661,12 @@
         private System.Windows.Forms.TextBox txtSearchByProduct2;
         private System.Windows.Forms.Label lblSearchByProduct2;
         public System.Windows.Forms.DataGridView grdViewSupplierMapping;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdpicode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewButtonColumn DataGridViewButton;
         private System.Windows.Forms.ErrorProvider epRackSettings;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRODUCTID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdpicode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmProductEnglish;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBox5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewImageColumn clmRemoveSupplier;
     }
 }
