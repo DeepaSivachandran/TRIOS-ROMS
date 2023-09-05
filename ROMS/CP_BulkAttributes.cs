@@ -198,11 +198,11 @@ namespace ROMS
                                 grdMSQ.Columns["Product Name in Tamil"].ReadOnly = true;
                                 grdMSQ.Columns["Unit"].ReadOnly = true;
 
-                                grdLoction.Columns["R Min Sale Qty-New"].ReadOnly = true;
-                                grdLoction.Columns["R.Rate-New"].ReadOnly = true;
-                                grdLoction.Columns["W.Min Sale Qty-New"].ReadOnly = true;
-                                grdLoction.Columns["W.Sale Rate-New"].ReadOnly = true;
-                                grdLoction.Columns["Barcode-New"].ReadOnly = true;
+                                grdMSQ.Columns["R Min Sale Qty-Current"].ReadOnly = true;
+                                grdMSQ.Columns["R.Rate-Current"].ReadOnly = true;
+                                grdMSQ.Columns["W.Min Sale Qty-Current"].ReadOnly = true;
+                                grdMSQ.Columns["W.Sale Rate-Current"].ReadOnly = true;
+                                grdMSQ.Columns["Barcode-Current"].ReadOnly = true;
 
                             }
                             else if(grdStock.Visible==true)
@@ -219,9 +219,27 @@ namespace ROMS
                                 grdStock.Columns["Product Name in Tamil"].ReadOnly = true;
                                 grdStock.Columns["Unit"].ReadOnly = true;
 
-                                grdLoction.Columns["Min Stock-New"].ReadOnly = true;
-                                grdLoction.Columns["Max Stock-New"].ReadOnly = true;
-                                grdLoction.Columns["Reorder Qty-New"].ReadOnly = true;
+                                grdStock.Columns["Min Stock-Current"].ReadOnly = true;
+                                grdStock.Columns["Max Stock-Current"].ReadOnly = true;
+                                grdStock.Columns["Reorder Qty-Current"].ReadOnly = true;
+                            }
+                            else if(grdWeight.Visible==true)
+                            {
+                                grdWeight.DataSource = objDs.Tables[0];
+                                grdWeight.Columns["S.No."].Width = 50;
+                                grdWeight.Columns["Product Name in Tamil"].Width = 200;
+                                grdWeight.Columns["S.No."].Frozen = true;
+                                grdWeight.Columns["P.I Code"].Frozen = true;
+                                grdWeight.Columns["Product Name in Tamil"].Frozen = true;
+                                grdWeight.Columns["Unit"].Frozen = true;
+                                grdWeight.Columns["S.No."].ReadOnly = true;
+                                grdWeight.Columns["P.I Code"].ReadOnly = true;
+                                grdWeight.Columns["Product Name in Tamil"].ReadOnly = true;
+                                grdWeight.Columns["Unit"].ReadOnly = true;
+
+                                grdWeight.Columns["Net Weight-Current"].ReadOnly = true;
+                                grdWeight.Columns["Gross Weight-Current"].ReadOnly = true;
+                              
                             }
                         }
                         else
@@ -436,6 +454,7 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
+                    varViewType = 9;
                     grdWeight.Visible = true;
                     tspHeader.Text = "Product Attributes Bulk Update : Net & Gross Weight";
                     tsbWeight.BackColor = Color.SkyBlue;
@@ -1036,7 +1055,11 @@ namespace ROMS
         {
             try
             {
-                (grdBulkAttributes.DataSource as DataTable).DefaultView.RowFilter = "([Product Group Name in Tamil]) LIKE '%" + txtSubGroup.Text + "%'";
+                if (grdLoction.Visible == true)
+                { (grdLoction.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) or ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
+                else if(grdMSQ.Visible==true)
+                { (grdMSQ.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) or ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
+               
             }
             catch (Exception ex)
             {
