@@ -50,27 +50,30 @@ namespace ROMS
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID !=0 Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
-                objDataBind = null;
-                this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (varflog == 0)
                 {
-                    varflog = MainForm.objCP_CP_Broker.varflog;
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID !=0 Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                    objDataBind = null;
+                    if (btnSave.Text == "Save")
+                    {
+                        pnlStatus.Enabled = false;
+                    }
+                    else
+                    {
+                        pnlStatus.Enabled = true;
+                        udfnLoad();
+                    }
+                    this.FormBorderStyle = FormBorderStyle.FixedDialog;
+                }
+                else
+                { 
                     DataBind objDTBind = new DataBind();
                     objDTBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID =27", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                     cmbState.Enabled = false;
                     objDTBind = null;
                 }
-                if (btnSave.Text=="Save")
-                {
-                    pnlStatus.Enabled = false;
-                }
-                else
-                {
-                    pnlStatus.Enabled = true;
-                    udfnLoad();
-                }
+                
             }
             catch (Exception ex)
             {
@@ -162,9 +165,8 @@ namespace ROMS
             try
             {
                 txtCityName.Text = "";
-                //btnSave.Text = "Save";
-                cmbState.Focus();
-                this.ActiveControl = cmbState;
+                txtCityName.Focus();
+                this.ActiveControl = txtCityName;
             }
             catch (Exception ex)
             {
