@@ -515,6 +515,7 @@ namespace ROMS
             finally
             {
                 btnSave.Enabled = true;
+                btnSave.Focus();
             }
         }
 
@@ -557,8 +558,11 @@ namespace ROMS
                 txtBarcode.Text = "";
                 txtHSNCode.Text = "";
                 txtGST.Text = "";
-                txtUpp.Text = ""; 
-
+                txtUpp.Text = "";
+                txtREnglishName.Text = "";
+                txtRTamilName.Text = "";
+                lblDPicode.Visible = false;
+                txtRPICode.Text = "";
             }
             catch (Exception ex)
             {
@@ -2592,9 +2596,9 @@ namespace ROMS
                     {
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
-                            cmbPurchaseRack.DataSource = objDS.Tables[0];
                             cmbPurchaseRack.ValueMember = "RKID";
-                            cmbPurchaseRack.DisplayMember = "RK_Name"; 
+                            cmbPurchaseRack.DisplayMember = "RK_Name";
+                            cmbPurchaseRack.DataSource = objDS.Tables[0];
                         }
                     }
                 }
