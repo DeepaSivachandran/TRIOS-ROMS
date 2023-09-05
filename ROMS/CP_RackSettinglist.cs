@@ -78,15 +78,25 @@ namespace ROMS
         {
             try
             {
-                 
-
+                if (grdRackSettingList.SelectedRows.Count > 0)
+                {
+                    MainForm.objCP_RackSettings = new CP_RackSettings();
+                    MainForm.objCP_RackSettings.btnSave.Text = "Update";
+                    MainForm.objCP_RackSettings.varRacksettingID = Convert.ToInt32(grdRackSettingList.SelectedRows[0].Cells["ID"].Value);
+                    MainForm.objCP_RackSettings.PbRKID = Convert.ToInt32(grdRackSettingList.SelectedRows[0].Cells["RKID"].Value);
+                    MainForm.objCP_RackSettings.PbStockLocation = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["Stock Location"].Value);
+                    MainForm.objCP_RackSettings.PbRackName = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["Rack Name"].Value);
+                    MainForm.objCP_RackSettings.PbPICode = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["P.I Code"].Value);
+                    MainForm.objCP_RackSettings.PbProductName = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["Product Name"].Value);
+                    MainForm.objCP_RackSettings.PbUnit = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["Unit"].Value);
+                    MainForm.objCP_RackSettings.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
         public void udfnList()
         {
@@ -224,6 +234,27 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    udfndelete();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_RackSettinglist_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbGroupType.Focus();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_RackGroup", "RKG_STSID=1 and RKGID !=-1 Order by RKGID", "RKG_Name,RKGID", cmbGroupType, "", "RKG_Name", "RKGID");
+                objDataBind = null;
+                udfnList();
             }
             catch (Exception ex)
             {

@@ -25,13 +25,21 @@ namespace ROMS
         public DataTable dtViewSupplierMapping = new DataTable();
 
         public int varId = 0;
-        public int varStockLocationId = 0;
+        public int varSStockLocationId = 0;
         public int varSRackId = 0;
         public int varGroupId = 0;
         public int varSubGroupId = 0;
         public int varCheckAllFlag = 0;
         public string varRackID = "";
         public int varUpdate = 0;
+        public int varRacksettingID = 0;
+        public int PbRKID = 0;
+        public string PbStockLocation = "";
+        public string PbRackName = "";
+        public string PbPICode = "";
+        public string PbProductName = "";
+        public string PbUnit = "";
+
         public CP_RackSettings()
         {
             InitializeComponent();
@@ -665,7 +673,7 @@ namespace ROMS
                         varRackID = varRackID + "," + Convert.ToString(grdViewSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
                     }
                 }
-                varResult = objspservice.udfnRackSettings(varType,0, Convert.ToInt16(cmbSStockLocation.SelectedValue), Convert.ToInt16(cmbSRack.SelectedValue),varRackID,varoriginator);
+                varResult = objspservice.udfnRackSettings(varType,0,varSStockLocationId,varSRackId,varRackID,varoriginator);
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
@@ -820,7 +828,7 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbSStockLocation.Select(int.MaxValue, 0)));
-                varStockLocationId = Convert.ToInt16(cmbSStockLocation.SelectedValue);
+                varSStockLocationId = Convert.ToInt16(cmbSStockLocation.SelectedValue);
                 udfncmbRack();
                 grdSupplierMapping.DataSource = null;
                 grdViewSupplierMapping.Rows.Clear();
@@ -843,7 +851,7 @@ namespace ROMS
             {
                 varviewType = 3;
             }
-            objDS = objsdserv.udfnRackList(varviewType, 0, 0, varStockLocationId, 0);
+            objDS = objsdserv.udfnRackList(varviewType, 0, 0, varSStockLocationId, 0);
             objsdserv.CloseConnection();
             cmbSRack.DataSource = null;
             if (objDS != null)
@@ -1162,7 +1170,7 @@ namespace ROMS
             {
                 varviewType = 3;
             }
-            objDS = objsdserv.udfnRackList(varviewType, 0, 0, varStockLocationId, 0);
+            objDS = objsdserv.udfnRackList(varviewType, 0, 0, varSStockLocationId, 0);
             objsdserv.CloseConnection();
             cmbDRack.DataSource = null;
             if (objDS != null)
@@ -1205,10 +1213,15 @@ namespace ROMS
 
         private void RbAdd_CheckedChanged(object sender, EventArgs e)
         {
-            if(rbAdd.Checked==false)
+            if(rbAdd.Checked==true)
             {
                 varSStockLocationId = Convert.ToInt16(cmbSStockLocation.SelectedValue);
-                varSRackId
+                varSRackId = Convert.ToInt16(cmbSRack.SelectedValue);
+            }
+            else
+            {
+                varSStockLocationId = Convert.ToInt16(cmbDStockLocation.SelectedValue);
+                varSRackId = Convert.ToInt16(cmbDRack.SelectedValue);
             }
         }
 

@@ -645,7 +645,6 @@
         private System.Windows.Forms.Panel pnlRackSettings;
         private System.Windows.Forms.GroupBox grpRackSettings;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.GroupBox grbProductAddMove;
         private System.Windows.Forms.RadioButton rbMove;
         private System.Windows.Forms.RadioButton rbAdd;
@@ -680,5 +679,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn PRODUCTID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemoveSupplier;
+        public System.Windows.Forms.Button btnSave;
     }
 }
