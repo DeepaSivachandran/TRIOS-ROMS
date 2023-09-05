@@ -43,6 +43,13 @@
             this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
             this.lblSearchByProduct2 = new System.Windows.Forms.Label();
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProductEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProductTamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProductUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRODUCTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemoveSupplier = new System.Windows.Forms.DataGridViewImageColumn();
             this.chkRackSettings = new System.Windows.Forms.CheckBox();
             this.txtSearchByProduct1 = new System.Windows.Forms.TextBox();
             this.lblSearchbyProduct1 = new System.Windows.Forms.Label();
@@ -69,13 +76,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.epRackSettings = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProductEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProductTamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProductUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRODUCTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemoveSupplier = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsRackSettings.SuspendLayout();
             this.pnlRackSettings.SuspendLayout();
             this.grpRackSettings.SuspendLayout();
@@ -228,6 +228,47 @@
             this.grdViewSupplierMapping.Size = new System.Drawing.Size(619, 315);
             this.grdViewSupplierMapping.TabIndex = 111111111;
             this.grdViewSupplierMapping.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdViewSupplierMapping_CellContentClick);
+            // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.Visible = false;
+            // 
+            // clmdpicode
+            // 
+            this.clmdpicode.HeaderText = "P.I Code";
+            this.clmdpicode.Name = "clmdpicode";
+            // 
+            // clmProductEnglish
+            // 
+            this.clmProductEnglish.HeaderText = "Product Name in English";
+            this.clmProductEnglish.Name = "clmProductEnglish";
+            this.clmProductEnglish.Width = 220;
+            // 
+            // clmProductTamil
+            // 
+            this.clmProductTamil.HeaderText = "Product Name in Tamil";
+            this.clmProductTamil.Name = "clmProductTamil";
+            this.clmProductTamil.Width = 220;
+            // 
+            // clmProductUnit
+            // 
+            this.clmProductUnit.HeaderText = "Unit";
+            this.clmProductUnit.Name = "clmProductUnit";
+            // 
+            // PRODUCTID
+            // 
+            this.PRODUCTID.HeaderText = "ID";
+            this.PRODUCTID.Name = "PRODUCTID";
+            // 
+            // clmRemoveSupplier
+            // 
+            this.clmRemoveSupplier.HeaderText = "Remove";
+            this.clmRemoveSupplier.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemoveSupplier.Name = "clmRemoveSupplier";
+            this.clmRemoveSupplier.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemoveSupplier.Width = 70;
             // 
             // chkRackSettings
             // 
@@ -414,6 +455,7 @@
             this.cmbDRack.Name = "cmbDRack";
             this.cmbDRack.Size = new System.Drawing.Size(156, 27);
             this.cmbDRack.TabIndex = 6;
+            this.cmbDRack.SelectedIndexChanged += new System.EventHandler(this.CmbDRack_SelectedIndexChanged);
             this.cmbDRack.Enter += new System.EventHandler(this.CmbDRack_Enter);
             this.cmbDRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbDRack_KeyDown);
             this.cmbDRack.Leave += new System.EventHandler(this.CmbDRack_Leave);
@@ -521,6 +563,7 @@
             this.rbAdd.TabStop = true;
             this.rbAdd.Text = "Add Product";
             this.rbAdd.UseVisualStyleBackColor = true;
+            this.rbAdd.CheckedChanged += new System.EventHandler(this.RbAdd_CheckedChanged);
             // 
             // btnClose
             // 
@@ -555,47 +598,6 @@
             // epRackSettings
             // 
             this.epRackSettings.ContainerControl = this;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.Visible = false;
-            // 
-            // clmdpicode
-            // 
-            this.clmdpicode.HeaderText = "P.I Code";
-            this.clmdpicode.Name = "clmdpicode";
-            // 
-            // clmProductEnglish
-            // 
-            this.clmProductEnglish.HeaderText = "Product Name in English";
-            this.clmProductEnglish.Name = "clmProductEnglish";
-            this.clmProductEnglish.Width = 220;
-            // 
-            // clmProductTamil
-            // 
-            this.clmProductTamil.HeaderText = "Product Name in Tamil";
-            this.clmProductTamil.Name = "clmProductTamil";
-            this.clmProductTamil.Width = 220;
-            // 
-            // clmProductUnit
-            // 
-            this.clmProductUnit.HeaderText = "Unit";
-            this.clmProductUnit.Name = "clmProductUnit";
-            // 
-            // PRODUCTID
-            // 
-            this.PRODUCTID.HeaderText = "ID";
-            this.PRODUCTID.Name = "PRODUCTID";
-            // 
-            // clmRemoveSupplier
-            // 
-            this.clmRemoveSupplier.HeaderText = "Remove";
-            this.clmRemoveSupplier.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemoveSupplier.Name = "clmRemoveSupplier";
-            this.clmRemoveSupplier.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemoveSupplier.Width = 70;
             // 
             // CP_RackSettings
             // 

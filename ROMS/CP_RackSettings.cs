@@ -1139,8 +1139,8 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbSStockLocation.Select(int.MaxValue, 0)));
-                varStockLocationId = Convert.ToInt16(cmbSStockLocation.SelectedValue);
+                BeginInvoke(new Action(() => cmbDStockLocation.Select(int.MaxValue, 0)));
+                varSStockLocationId = Convert.ToInt16(cmbDStockLocation.SelectedValue);
                 udfncmbDRack();
                 grdSupplierMapping.DataSource = null;
                 grdViewSupplierMapping.Rows.Clear();
@@ -1195,6 +1195,28 @@ namespace ROMS
                         e.Cancel = true;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbAdd_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbAdd.Checked==false)
+            {
+                varSStockLocationId = Convert.ToInt16(cmbSStockLocation.SelectedValue);
+                varSRackId
+            }
+        }
+
+        private void CmbDRack_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                varSRackId = Convert.ToInt32(cmbDRack.SelectedValue);
             }
             catch (Exception ex)
             {
