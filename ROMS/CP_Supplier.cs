@@ -4570,8 +4570,8 @@ namespace ROMS
                     SPDataService objspdservice = new SPDataService();
                     for (int i = 0; i < grdFinalSupplierMapping.Rows.Count; i++)
                     {
-                        if (Convert.ToBoolean(grdFinalSupplierMapping.Rows[i].Cells[0].Value) == true)
-                        {
+                        //if (Convert.ToBoolean(grdFinalSupplierMapping.Rows[i].Cells[0].Value) == true)
+                        //{
                             if (VarproductId == "")
                             {
                                 VarproductId = Convert.ToString(grdFinalSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
@@ -4580,7 +4580,7 @@ namespace ROMS
                             {
                                 VarproductId = VarproductId + ',' + Convert.ToString(grdFinalSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
                             }
-                        }
+                      //  }
                     }
 
                     if (btnMappingsave.Text == "Save")
