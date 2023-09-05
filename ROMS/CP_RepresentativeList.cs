@@ -237,7 +237,7 @@ namespace ROMS
             {
                 grdreplist.ClearSelection();
                 picLoader.Visible = false;
-                picLoader.SendToBack();
+                picLoader.SendToBack();  
             }
         }
         private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)

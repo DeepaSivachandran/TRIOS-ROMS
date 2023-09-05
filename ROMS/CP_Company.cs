@@ -3301,13 +3301,13 @@ namespace ROMS
         private void CP_Company_Load(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,1) AND MSTID !=0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbTransactionType, "", "MST_DisplayText", "MSTID");
-                objDataBind = null; 
-                DataService objdservice = new DataService();  
-                varstatusid = objdservice.displaydata("select STS_Name as name from DEF_Status where STS_ModuleID=1 AND STSID=1"); 
+                objDataBind = null;
+                DataService objdservice = new DataService();
+                varstatusid = objdservice.displaydata("select STS_Name as name from DEF_Status where STS_ModuleID=1 AND STSID=1");
                 grdContactManager.Rows.Clear();
                 grdBankDetails.Rows.Clear();
                 udfnEdit();
@@ -3457,7 +3457,8 @@ namespace ROMS
             }
             finally
             {
-
+                grdBankDetails.ClearSelection();
+                grdContactManager.ClearSelection();
             }
         }
 

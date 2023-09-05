@@ -47,7 +47,7 @@ namespace ROMS
         {
             try
             { 
-                    this.Close();
+                this.Close();
                 tpphone.ShowAlways = false;
                 tpwhatsapp.ShowAlways = false;
                 tpGroupNameinEnglish.ShowAlways = false;
@@ -57,6 +57,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                MainForm.objCP_RepresentativeList.grdreplist.ClearSelection();
             }
         }
      
@@ -104,6 +108,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                MainForm.objCP_RepresentativeList.grdreplist.ClearSelection();
             }
         }
 
@@ -161,6 +169,7 @@ namespace ROMS
                     tpwhatsapp.Show("Please enter valid whatsapp No.", txtWhatsappno, 5000);
                     blnErrorFlag = true;
                 }
+
                 if (blnErrorFlag == false)
                 {
                     tpphone.ShowAlways = false;
@@ -168,6 +177,11 @@ namespace ROMS
                     tpGroupNameinEnglish.ShowAlways = false;
                     tpGroupNameinTamil.ShowAlways = false;
                     udfnSave(sender, e);
+                }
+                else
+                {
+                    btnSave.Enabled = true;
+                    btnSave.Focus();
                 }
 
             }
@@ -178,9 +192,7 @@ namespace ROMS
             }
 
             finally
-            {
-                btnSave.Enabled = true;
-                btnSave.Focus();
+            { 
                 grdRepBrand.ClearSelection();
             }
         }
@@ -263,7 +275,6 @@ namespace ROMS
             finally
             {
                 btnSave.Enabled = true;
-                btnSave.Focus();
                 grdRepBrand.ClearSelection();
             }
         }
@@ -292,6 +303,7 @@ namespace ROMS
                 txtPhonenumber.Text = "";
                 txtWhatsappno.Text = "";
                 txtCompanyName.Text = "";
+                udfnlist();
                 foreach (DataGridViewRow row in grdRepBrand.Rows)
                 {
                     row.Cells[0].Value = false;
@@ -440,7 +452,7 @@ namespace ROMS
             {
             try
             {
-                int varviewtype = 0, varloadrepid = 0;string varbrandid  = ""; 
+                int varviewtype = 0, varloadrepid = 0; string varbrandid = "";
                 if (btnSave.Text == "Update")
                 {
                     varbrandid = Convert.ToString(VARBRANDLOADID);
@@ -448,19 +460,19 @@ namespace ROMS
                     varloadrepid = Convert.ToInt32(varrepid);
                 }
                 else
-                { 
+                {
                     varviewtype = 3;
                 }
 
 
                 SPDataService objspservice = new SPDataService();
                 DataSet objDS;
-                objDS = objspservice.udfnBrandList(varviewtype, varbrandid,0,0, varloadrepid);
+                objDS = objspservice.udfnBrandList(varviewtype, varbrandid, 0, 0, varloadrepid);
                 objspservice.CloseConnection();
                 if (objDS != null)
                 {
                     if (objDS.Tables[0].Rows.Count > 0)
-                    {  
+                    {
                         grdRepBrand.DataSource = objDS.Tables[0];
                         grdRepBrand.Columns["ID"].Visible = false;
                         grdRepBrand.Columns["Brand Name"].Width = 230;
@@ -516,14 +528,18 @@ namespace ROMS
                             }
                         }
 
-                    } 
-                } 
-                     
+                    }
+                }
+
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdRepBrand.ClearSelection();
             }
         }
 
@@ -885,6 +901,24 @@ namespace ROMS
             //    objError = new DataError();
             //    objError.WriteFile(ex);
             //}
+        }
+
+        private void GrdRepBrand_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+
+            try
+            {
+                grdRepBrand.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdRepBrand.ClearSelection();
+            }
         }
 
         private void TxtWhatsappno_KeyPress(object sender, KeyPressEventArgs e)

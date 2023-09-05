@@ -133,6 +133,7 @@
             this.grdRepBrand.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRepBrand_CellContentClick);
             this.grdRepBrand.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRepBrand_CellValueChanged);
             this.grdRepBrand.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdRepBrand_CurrentCellDirtyStateChanged);
+            this.grdRepBrand.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdRepBrand_DataBindingComplete);
             // 
             // clmcheckbrand
             // 
