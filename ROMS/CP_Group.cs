@@ -313,11 +313,12 @@ namespace ROMS
                     if (btnSave.Text == "Save")
                     {
                         varGroupCode = Convert.ToInt16(varResult.Split('~')[2]);
-                        if (varmastertype == 0 &&  varFormFlag == 1)
+                        if (varmastertype == 0 &&  varFormFlag == 0)
                         {
                             MainForm.objCP_GroupList.udfnList();
                             MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
                             MainForm.objCP_GroupList.cmbProductGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
+                            udfnClear();
                         }
                         if (varFormFlag == 1)
                         {
@@ -333,7 +334,7 @@ namespace ROMS
                             varCloseFlag = 1;
                             udfnclose();
                         }
-                        udfnClear();
+                        
                     }
                     else
                     {
