@@ -287,10 +287,46 @@ namespace ROMS
                                 grdBrand.Columns["Product Name in Tamil"].ReadOnly = true;
                                 grdBrand.Columns["Unit"].ReadOnly = true;
 
-                                grdBrand.Columns["Group-Current"].ReadOnly = true;
-                                grdBrand.Columns["Sub Group-Current"].ReadOnly = true;
-                                grdBrand.Columns["Brand-Current"].ReadOnly = true;
+                                grdBrand.Columns["Product Category-Current"].ReadOnly = true;
+                                grdBrand.Columns["RM Pro-Current"].ReadOnly = true;
+                                grdBrand.Columns["Batch No.-Current"].ReadOnly = true;
+                                grdBrand.Columns["Batch Generation-Current"].ReadOnly = true;
 
+                            }
+                            else if(grdHSN.Visible==true)
+                            {
+                                grdHSN.DataSource = objDs.Tables[0];
+                                grdHSN.Columns["S.No."].Width = 50;
+                                grdHSN.Columns["Product Name in Tamil"].Width = 200;
+                                grdHSN.Columns["S.No."].Frozen = true;
+                                grdHSN.Columns["P.I Code"].Frozen = true;
+                                grdHSN.Columns["Product Name in Tamil"].Frozen = true;
+                                grdHSN.Columns["Unit"].Frozen = true;
+                                grdHSN.Columns["S.No."].ReadOnly = true;
+                                grdHSN.Columns["P.I Code"].ReadOnly = true;
+                                grdHSN.Columns["Product Name in Tamil"].ReadOnly = true;
+                                grdHSN.Columns["Unit"].ReadOnly = true;
+
+                                grdHSN.Columns["HSN Name-Current"].ReadOnly = true;
+                            }
+                            else if (grdBulkAttributes.Visible == true)
+                            {
+                                grdBulkAttributes.DataSource = objDs.Tables[0];
+                                grdBulkAttributes.Columns["S.No."].Width = 50;
+                                grdBulkAttributes.Columns["Product Name in Tamil"].Width = 200;
+                                grdBulkAttributes.Columns["S.No."].Frozen = true;
+                                grdBulkAttributes.Columns["P.I Code"].Frozen = true;
+                                grdBulkAttributes.Columns["Product Name in Tamil"].Frozen = true;
+                                grdBulkAttributes.Columns["Unit"].Frozen = true;
+                                grdBulkAttributes.Columns["S.No."].ReadOnly = true;
+                                grdBulkAttributes.Columns["P.I Code"].ReadOnly = true;
+                                grdBulkAttributes.Columns["Product Name in Tamil"].ReadOnly = true;
+                                grdBulkAttributes.Columns["Unit"].ReadOnly = true;
+
+                                grdBulkAttributes.Columns["Product Code-Current"].ReadOnly = true;
+                                grdBulkAttributes.Columns["Product Name in Tamil-Current"].ReadOnly = true;
+                                grdBulkAttributes.Columns["Product Name in English-Current"].ReadOnly = true;
+                                grdBulkAttributes.Columns["Unit-Current"].ReadOnly = true;
                             }
                         }
                         else
@@ -548,6 +584,7 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
+                    varViewType = 11;
                     grdHSN.Visible = true;
                     tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
                     tsbHsn.BackColor = Color.SkyBlue;
@@ -568,6 +605,7 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
+                    varViewType = 12;
                     grdBulkAttributes.Visible = true;
                     tspHeader.Text = "Product Attributes Bulk Update : Pro. Code, Name & Unit";
                     tsbName.BackColor = Color.SkyBlue;
