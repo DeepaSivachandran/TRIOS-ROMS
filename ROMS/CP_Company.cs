@@ -3461,7 +3461,6 @@ namespace ROMS
         {
             try
             {
-
                 lvCity.Items.Clear();
                 SPDataService objspdservice = new SPDataService(); 
                 DataSet objDs = new DataSet();
