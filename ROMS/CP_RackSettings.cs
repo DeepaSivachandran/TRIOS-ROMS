@@ -30,6 +30,8 @@ namespace ROMS
         public int varGroupId = 0;
         public int varSubGroupId = 0;
         public int varCheckAllFlag = 0;
+        public string varRackID = "";
+        public int varUpdate = 0;
         public CP_RackSettings()
         {
             InitializeComponent();
@@ -593,14 +595,7 @@ namespace ROMS
                     tpStockLocation.Show("Please select Stock Location", cmbSStockLocation, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(cmbDStockLocation.SelectedItem) == "" || Convert.ToString(cmbDStockLocation.SelectedValue) == "-1")
-                {
-                    epRackSettings.SetError(cmbDStockLocation, "Please select Stock Location");
-                    cmbDStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please select Stock Location", cmbDStockLocation, 5000);
-                    blnErrorFlag = true;
-                }
+                
                 if (Convert.ToString(cmbSRack.SelectedValue) == "" || Convert.ToString(cmbSRack.SelectedValue) == "-1")
                 {
                     epRackSettings.SetError(cmbSRack, "Please select Rack");
@@ -609,13 +604,24 @@ namespace ROMS
                     tpRack.Show("Please select Rack", cmbSRack, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(cmbDRack.SelectedItem) == "" || Convert.ToString(cmbDRack.SelectedValue) == "-1")
+                if (rbMove.Checked == true)
                 {
-                    epRackSettings.SetError(cmbDRack, "Please select Rack");
-                    cmbDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpRack.ShowAlways = true;
-                    tpRack.Show("Please select Rack", cmbDRack, 5000);
-                    blnErrorFlag = true;
+                    if (Convert.ToString(cmbDStockLocation.SelectedItem) == "" || Convert.ToString(cmbDStockLocation.SelectedValue) == "-1")
+                    {
+                        epRackSettings.SetError(cmbDStockLocation, "Please select Stock Location");
+                        cmbDStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpStockLocation.ShowAlways = true;
+                        tpStockLocation.Show("Please select Stock Location", cmbDStockLocation, 5000);
+                        blnErrorFlag = true;
+                    }
+                    if (Convert.ToString(cmbDRack.SelectedItem) == "" || Convert.ToString(cmbDRack.SelectedValue) == "-1")
+                    {
+                        epRackSettings.SetError(cmbDRack, "Please select Rack");
+                        cmbDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpRack.ShowAlways = true;
+                        tpRack.Show("Please select Rack", cmbDRack, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
                 if (blnErrorFlag == false)
                 {
@@ -634,13 +640,65 @@ namespace ROMS
         {
             try
             {
-                
+                //if (rbActive.Checked == true) { varstatus = 1; }
+                //else { varstatus = 2; }
+                SPDataService objspservice = new SPDataService();
+                string varResult = "",
+                varoriginator = ""; int varType = 0;
+                if (btnSave.Text == "Save")
+                {
+                    varoriginator = "RackSettings Creation";
+                    varType = 0;
+                }
+                else
+                {
+                    varoriginator = "RackSettings Updation";
+                    varType = 1;
+                }
+                varRackID = ""; 
+                for (int i = 0; i < grdViewSupplierMapping.RowCount; i++)
+                {
+                    if (varRackID == "")
+                    {
+                        varRackID = Convert.ToString(grdViewSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
+                    }
+                    else
+                    {
+                        varRackID = varRackID + "," + Convert.ToString(grdViewSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
+                    }
+                }
+                varResult = objspservice.udfnRackSettings(varType,0, Convert.ToInt16(cmbSStockLocation.SelectedValue), Convert.ToInt16(cmbSRack.SelectedValue),varRackID,varoriginator);
+                string[] varvalue = varResult.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MainForm.objCP_RackSettinglist.udfnList();
+                    if (btnSave.Text == "Update")
+                    {
+                        varUpdate = 1;
+                        udfnclose();
+                    }
+                    udfnclear();
+                }
+                else
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                btnSave.Enabled = true;
+            }
+        }
+
+        public void udfnclear()
+        {
+            
         }
 
         private void BtnSave_Enter(object sender, EventArgs e)
@@ -1060,7 +1118,7 @@ namespace ROMS
                             grdViewSupplierMapping.Rows.RemoveAt(this.grdViewSupplierMapping.SelectedRows[0].Index);
                             for (int i = 0; i < grdViewSupplierMapping.RowCount; i++)
                             {
-                                grdViewSupplierMapping.Rows[i].Cells["columnSNo"].Value = i + 1;
+                                grdViewSupplierMapping.Rows[i].Cells["PRODUCTID"].Value = i + 1;
                             }
                             break;
                     }
@@ -1194,5 +1252,29 @@ namespace ROMS
                 }
             }
         }
+
+        private void CP_RackSettings_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (varUpdate == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
+    }
 }
