@@ -26,8 +26,8 @@ namespace ROMS
             try
             {
                 picLoader.Visible = true;
-                Application.DoEvents();
                 picLoader.BringToFront();
+                Application.DoEvents();
                 udfnlistcmbdata();
                 MainForm.objCP_Items = new CP_Product(); 
                 MainForm.objCP_Items.ShowDialog();
@@ -125,8 +125,8 @@ namespace ROMS
             {
 
                 picLoader.Visible = true;
-                Application.DoEvents();
                 picLoader.BringToFront();
+                Application.DoEvents(); 
                 if (grdItemList.SelectedRows.Count > 0)
                 {
                     MainForm.objCP_Items = new CP_Product(); 
@@ -172,7 +172,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
 
-                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbGroupType.SelectedValue), Convert.ToInt32(cmbsubgroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue));
+                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbGroupType.SelectedValue), Convert.ToInt32(cmbsubgroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue),0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -861,7 +861,7 @@ namespace ROMS
         {
             try
             {
-                if ((grdItemList.Rows.Count < 0))
+                if ((grdItemList.Rows.Count > 0))
                 {
                     udfnImport();
                 }

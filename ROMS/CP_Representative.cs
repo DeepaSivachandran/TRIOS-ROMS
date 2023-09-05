@@ -27,6 +27,7 @@ namespace ROMS
         public CP_Representative()
         {
             InitializeComponent();
+            MainForm.objCP_RepresentativeList.picLoader.Visible = false;
         }
         private void CP_Representative_Leave(object sender, EventArgs e)
         {
@@ -259,6 +260,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
+            finally
+            {
+                btnSave.Enabled = true;
+                btnSave.Focus();
+                grdRepBrand.ClearSelection();
+            }
         }
 
         public void udfntextboxcolor()
@@ -864,6 +871,22 @@ namespace ROMS
 
         }
 
+        private void GrdRepBrand_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //try
+            //{
+            //    if (e.ColumnIndex == 0)
+            //    {
+            //        checkallcheckboxvalue();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+        }
+
         private void TxtWhatsappno_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -900,17 +923,15 @@ namespace ROMS
         {
             try
             {
-                bool varallChecked = true;
-
-                foreach (DataGridViewRow row in grdRepBrand.Rows)
-                {
-                    if (Convert.ToBoolean(row.Cells[0].Value) == false)
+                bool varallChecked = true; 
+                    for (int i = 0; i < grdRepBrand.Rows.Count; i++)
                     {
-                        varallChecked = false;
-                        break;
-                    }
-                    varbrandidflag++;
-                }
+                        if (Convert.ToBoolean(grdRepBrand.Rows[i].Cells[0].EditedFormattedValue) == false)
+                        {
+                            varallChecked = false; 
+                        }
+                        varbrandidflag++;
+                    } 
                 if (varbrandselectflag == 0)
                 {
                     chkBrandAll.Checked = varallChecked;

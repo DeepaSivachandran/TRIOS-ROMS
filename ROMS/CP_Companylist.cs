@@ -24,8 +24,8 @@ namespace ROMS
             try
             {
                 picLoader.Visible = true;
-                Application.DoEvents();
                 picLoader.BringToFront();
+                Application.DoEvents(); 
                 MainForm.objCP_Company = new CP_Company();
                 MainForm.objCP_Company.MdiParent = this.ParentForm;
                 MainForm.objCP_Company.Show();
@@ -131,8 +131,8 @@ namespace ROMS
             {
 
                 picLoader.Visible = true;
-                Application.DoEvents();
                 picLoader.BringToFront();
+                Application.DoEvents();
                 if (grdCompanyList.SelectedRows.Count > 0)
                 {
                     MainForm.objCP_Company = new CP_Company();

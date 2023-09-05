@@ -311,7 +311,7 @@ namespace ROMS
                 }
                 if (cbExpiry.Checked==true)
                 {
-                    if (Convert.ToInt32(cmbBatchNoEntry.SelectedValue) == -1 )
+                    if (Convert.ToInt32(cmbPeriod.SelectedValue) == -1 )
                     {
                         errItems.SetError(cmbPeriod, "Please select shelflife");
                         cmbPeriod.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -3673,7 +3673,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
                 lblDPicode.Visible = true;
-                objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -3709,7 +3709,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS; 
                     DataService objdservice = new DataService();
-                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0,"",MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0,"",MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0);
                     objdserv.CloseConnection();
                     if (objDS != null)
                     {
