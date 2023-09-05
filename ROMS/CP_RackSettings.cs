@@ -81,11 +81,11 @@ namespace ROMS
                 dtSupplierMapping = new DataTable();
                 dtSupplierMapping.Columns.Add("", typeof(Boolean));
                 dtSupplierMapping.Columns.Add("S.No.", typeof(string));
-                dtSupplierMapping.Columns.Add("PRODUCTID", typeof(int));
                 dtSupplierMapping.Columns.Add("P.I Code", typeof(string));
                 dtSupplierMapping.Columns.Add("Product Name in English", typeof(string));
                 dtSupplierMapping.Columns.Add("Product Name in Tamil", typeof(string));
                 dtSupplierMapping.Columns.Add("Unit", typeof(string));
+                dtSupplierMapping.Columns.Add("PRODUCTID", typeof(int));
 
 
                 DataSet objDs = new DataSet();
@@ -133,8 +133,6 @@ namespace ROMS
                         }
                     }
                 }
-
-
 
 
                 udfnCmbProductGroup();
@@ -782,7 +780,7 @@ namespace ROMS
         {
             try
             {
-                int varViewType = 3;
+                int varViewType =13;
                 
                 dtSupplierMapping.Rows.Clear();
                 Application.DoEvents();
@@ -796,8 +794,8 @@ namespace ROMS
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
-                        dtSupplierMapping.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["PRODUCTID"], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name in English"],
-                           objDs.Tables[0].Rows[i]["Product Name in Tamil"], objDs.Tables[0].Rows[i]["Unit"]);
+                        dtSupplierMapping.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name in English"],
+                           objDs.Tables[0].Rows[i]["Product Name in Tamil"], objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["PRODUCTID"]);
                     }
                 }
                 grdSupplierMapping.DataSource = null;
@@ -861,52 +859,6 @@ namespace ROMS
                 }
             }
 
-
-            /*
-            try
-            {
-                SPDataService objdserv = new SPDataService();
-                DataSet objDT = new DataSet();
-                int varRackGroupID = 0;
-                int varViewType = 2;
-                if (btnSave.Text == "Save")
-                {
-                    if (varStockLocationId == -1)
-                    {
-                        varViewType = 3;
-                    }
-                    else { varViewType = 4; }
-                }
-                else
-                {
-                    if (varStockLocationId == -1)
-                    {
-                        varViewType = 3;
-                    }
-                    else { varViewType = 5; varRackGroupID = varId; }
-                }
-                objDT = objdserv.udfnStockLocationList(varViewType, varStockLocationId, varSRackId, varRackGroupID);
-                objdserv.CloseConnection();
-                cmbSRack.DataSource = null;
-                if (objDT != null)
-                {
-                    if (objDT.Tables.Count > 0)
-                    {
-                        if (objDT.Tables[0].Rows.Count > 0)
-                        {
-                            cmbSRack.ValueMember = "RKID";
-                            cmbSRack.DisplayMember = "RK_Name";
-                            cmbSRack.DataSource = objDT.Tables[0];
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            */
         }
 
         private void CmbSRack_SelectedIndexChanged(object sender, EventArgs e)
@@ -1060,7 +1012,7 @@ namespace ROMS
                             if (varFlag == 0)
                             {
                                 grdViewSupplierMapping.Rows.Add(Convert.ToInt32(grdViewSupplierMapping.Rows.Count) + 1, grdSupplierMapping.Rows[i].Cells["P.I Code"].Value, grdSupplierMapping.Rows[i].Cells["Product Name in English"].Value,
-                                    grdSupplierMapping.Rows[i].Cells["Product Name in Tamil"].Value, grdSupplierMapping.Rows[i].Cells["Unit"].Value);
+                                    grdSupplierMapping.Rows[i].Cells["Product Name in Tamil"].Value, grdSupplierMapping.Rows[i].Cells["Unit"].Value ,grdSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
                             }
                         }
 
@@ -1078,33 +1030,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnTotalSuppliers()
-        {
-            int varCount = 0;
-            try
-            {
-                if (grdViewSupplierMapping.Rows.Count != 0)
-                {
-                    for (int i = 0; i < grdViewSupplierMapping.RowCount; i++)
-                    {
-                        if (Convert.ToInt32(grdViewSupplierMapping.Rows[i].Cells["clmTotalProducts"].Value) != 0)
-                        {
-                            varCount = varCount + Convert.ToInt32(grdViewSupplierMapping.Rows[i].Cells["clmTotalProducts"].Value);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
-
+        
         private void GrdViewSupplierMapping_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1118,7 +1044,7 @@ namespace ROMS
                             grdViewSupplierMapping.Rows.RemoveAt(this.grdViewSupplierMapping.SelectedRows[0].Index);
                             for (int i = 0; i < grdViewSupplierMapping.RowCount; i++)
                             {
-                                grdViewSupplierMapping.Rows[i].Cells["PRODUCTID"].Value = i + 1;
+                                grdViewSupplierMapping.Rows[i].Cells["clmsno"].Value = i + 1;
                             }
                             break;
                     }
