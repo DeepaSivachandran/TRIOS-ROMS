@@ -704,6 +704,27 @@ namespace ROMS
                 foreach (DataGridViewRow row in grddays.Rows)
                 {
                     row.Cells[0].Value = false;
+                    string day = dataTable.Rows[i]["Day"].ToString();
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(grddays);
+                    row.Cells[1].Value = day;
+                    grddays.Rows.Add(row);
+                }
+
+                string[] item2 = new string[30];
+                ListViewItem listitem2 = new ListViewItem(); DataTable dataTable2 = new DataTable();
+                dataTable2.Columns.Add("Type", typeof(string));
+                dataTable2.Rows.Add("Cash");
+                dataTable2.Rows.Add("Bank");
+                dataTable2.Rows.Add("Online");
+
+                for (int i = 0; i < dataTable2.Rows.Count; i++)
+                {
+                    string Type = dataTable2.Rows[i]["Type"].ToString();
+                    DataGridViewRow row = new DataGridViewRow();
+                    row.CreateCells(grdPaymentMode);
+                    row.Cells[1].Value = Type;
+                    grdPaymentMode.Rows.Add(row);
                 }
                 errCompany.Clear();
             }

@@ -1,8 +1,0 @@
-1. Supplier -> Supplier brand & Label(proprietor / Manager ) -> Required or not?
-2. Rack Group -> Multiple Incharge / Single Incharge ?
-3. Rack -> Maximum order quantity -> Rack wise or product wise?
-4. Purchase -> Single Invoice -> Raw material purchase only  ?
-5. Product with multiple godown -> Stock Request -> Whether it will go to default location or not?
-6. Purchase Entry -> Stock Location -> Stock applicable flag purchase entry wise?
-7. Damaged Products in Purchase -> Partially paid?
-8. GRN -> Free Product link?
