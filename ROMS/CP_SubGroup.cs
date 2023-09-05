@@ -240,6 +240,9 @@ namespace ROMS
                 cmbStockLocation.SelectedValue = -1;
                 cmbRack.SelectedValue = -1;
                 cmbGroupName.Focus();
+                tpShopLocation.Active = false;
+                tpRack.Active = false;
+                cmbStockLocation.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -960,6 +963,7 @@ namespace ROMS
                 else
                 {
                     cmbStockLocation.BackColor = Color.White;
+                    tpShopLocation.Active = false;
                 }
             }
             catch (Exception ex)

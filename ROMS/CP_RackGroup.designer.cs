@@ -164,6 +164,7 @@
             this.grdSelectedRack.GridColor = System.Drawing.Color.White;
             this.grdSelectedRack.Location = new System.Drawing.Point(405, 149);
             this.grdSelectedRack.Name = "grdSelectedRack";
+            this.grdSelectedRack.ReadOnly = true;
             this.grdSelectedRack.RowHeadersVisible = false;
             this.grdSelectedRack.RowHeadersWidth = 70;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -215,6 +216,7 @@
             this.clmRemoveRack.HeaderText = "Remove";
             this.clmRemoveRack.Image = global::ROMS.Properties.Resources.remove;
             this.clmRemoveRack.Name = "clmRemoveRack";
+            this.clmRemoveRack.ReadOnly = true;
             this.clmRemoveRack.Width = 50;
             // 
             // btnView
@@ -309,7 +311,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.grdRack.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdRack.RowTemplate.Height = 25;
-            this.grdRack.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.grdRack.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdRack.ShowRowErrors = false;
             this.grdRack.Size = new System.Drawing.Size(347, 314);
             this.grdRack.TabIndex = 51;
