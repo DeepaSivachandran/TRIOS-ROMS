@@ -578,6 +578,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
+                    btnSave.Focus();
                     btnSave_Click(sender, e);
                 }
             }
