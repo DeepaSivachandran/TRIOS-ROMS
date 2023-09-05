@@ -1335,6 +1335,7 @@ namespace ROMS
                             {
                                 grdSelectedRack.Rows[i].Cells["columnSNo"].Value = i + 1;
                             }
+                            udfnTotalProducts();
                             break;
                     }
                 }
