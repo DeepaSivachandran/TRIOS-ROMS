@@ -223,6 +223,39 @@ namespace ROMS
                                 grdStock.Columns["Max Stock-Current"].ReadOnly = true;
                                 grdStock.Columns["Reorder Qty-Current"].ReadOnly = true;
                             }
+                            else if(grdShelfLife.Visible==true)
+                            {
+                                grdShelfLife.DataSource = objDs.Tables[0];
+                                grdShelfLife.Columns["S.No."].Width = 50;
+                                grdShelfLife.Columns["Product Name in Tamil"].Width = 200;
+                                grdShelfLife.Columns["S.No."].Frozen = true;
+                                grdShelfLife.Columns["P.I Code"].Frozen = true;
+                                grdShelfLife.Columns["Product Name in Tamil"].Frozen = true;
+                                grdShelfLife.Columns["Unit"].Frozen = true;
+                                grdShelfLife.Columns["S.No."].ReadOnly = true;
+                                grdShelfLife.Columns["P.I Code"].ReadOnly = true;
+                                grdShelfLife.Columns["Product Name in Tamil"].ReadOnly = true;
+                                grdShelfLife.Columns["Unit"].ReadOnly = true;
+
+                                grdShelfLife.Columns["UPP-Current"].ReadOnly = true;
+                                grdShelfLife.Columns["Shelf Life-Current"].ReadOnly = true;
+                                grdShelfLife.Columns["Shelf Life Type-Current"].ReadOnly = true;
+
+                            }
+                            else if(grdBatch.Visible==true)
+                            {
+                                grdBatch.DataSource = objDs.Tables[0];
+                                grdBatch.Columns["S.No."].Width = 50;
+                                grdBatch.Columns["Product Name in Tamil"].Width = 200;
+                                grdBatch.Columns["S.No."].Frozen = true;
+                                grdBatch.Columns["P.I Code"].Frozen = true;
+                                grdBatch.Columns["Product Name in Tamil"].Frozen = true;
+                                grdBatch.Columns["Unit"].Frozen = true;
+                                grdBatch.Columns["S.No."].ReadOnly = true;
+                                grdBatch.Columns["P.I Code"].ReadOnly = true;
+                                grdBatch.Columns["Product Name in Tamil"].ReadOnly = true;
+                                grdBatch.Columns["Unit"].ReadOnly = true;
+                            }
                             else if(grdWeight.Visible==true)
                             {
                                 grdWeight.DataSource = objDs.Tables[0];
@@ -285,8 +318,7 @@ namespace ROMS
             }
             finally
             {
-                //picLoader.Visible = false;
-                //picLoader.SendToBack();
+               
             }
         }
         public void udfnCmbProductGroup()
@@ -432,6 +464,7 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
+                    varViewType = 7;
                     grdShelfLife.Visible = true;
                     tspHeader.Text = "Product Attributes Bulk Update : Bulk Unit, UPP & Shelf Life";
                     tsbShelflife.BackColor = Color.SkyBlue;
@@ -452,6 +485,7 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
+                    varViewType = 8;
                     grdBatch.Visible = true;
                     tspHeader.Text = "Product Attributes Bulk Update : Product Category, RM Flag & Batch";
                     tsbBatch.BackColor = Color.SkyBlue;
