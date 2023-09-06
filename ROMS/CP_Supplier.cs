@@ -875,6 +875,11 @@ namespace ROMS
                             grdPaymentMode.Columns["MSTID"].Visible = false;
                             grdPaymentMode.Columns["MST_DisplayText"].Width = 100;
                             grdPaymentMode.Columns["MST_DisplayText"].ReadOnly = true;
+
+                            grdPay.DataSource = objDs.Tables[0];
+                            grdPay.Columns["MSTID"].Visible = false;
+                            grdPay.Columns["MST_DisplayText"].Width = 100;
+                            grdPay.Columns["MST_DisplayText"].ReadOnly = true;
                         }
                     }
                 }
@@ -1010,6 +1015,10 @@ namespace ROMS
                             {
                                 bool varvalue = Convert.ToBoolean(grdPaymentMode.Rows[j].Cells["clmpaymentcheck"].Value);
                                 //  }
+                            }
+                            for (int j = 0; j < grdPay.Rows.Count; j++)
+                            {  
+                                grdPay.Rows[j].Cells["clmpaymentcheck"].Value = true;
                             }
                             //  }
 
