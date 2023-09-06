@@ -333,6 +333,14 @@ namespace ROMS
                     tpStoctApplicable.Show("Please select stock applicable", cmbStockApplicable, 5000);
                     blnErrorFlag = true;
                 }
+                if (Convert.ToString(txtShortName.Text).Trim() == "")
+                {
+                    epLocation.SetError(txtShortName, "Please enter short name");
+                    txtShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpLocationTypeInTamil.ShowAlways = true;
+                    tpLocationTypeInTamil.Show("Please  enter short name", txtShortName, 5000);
+                    blnErrorFlag = true;
+                }
                 if (blnErrorFlag == false)
                 {
                     btnSave.Enabled = false;
