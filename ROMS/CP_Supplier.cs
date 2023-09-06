@@ -17,6 +17,7 @@ namespace ROMS
         DataError objError;
         DataTable dtSubGroup = new DataTable();
         DataTable dtSubGroupMapping = new DataTable();
+        DataTable dtPaymentMode = new DataTable();
 
         public string varcompanycode;
         public string pbFormStatus;
@@ -587,7 +588,7 @@ namespace ROMS
 
                     for (int i = 0; i < grdPaymentMode.Rows.Count; i++)
                     {
-                        if (Convert.ToBoolean(grdPaymentMode.Rows[i].Cells["clmpaymentcheck"].Value) == true)
+                        if (Convert.ToBoolean(grdPaymentMode.Rows[i].Cells[0].Value) == true)
                         {
                             if (varpaymentmethod == "")
                             {
@@ -797,6 +798,10 @@ namespace ROMS
         {
             try
             {
+                dtPaymentMode = new DataTable();
+                dtPaymentMode.Columns.Add("", typeof(Boolean));
+                dtPaymentMode.Columns.Add("DisplayText", typeof(string));
+                dtPaymentMode.Columns.Add("MSTID", typeof(int));
 
                 this.ActiveControl = txtName;
                 udfnLoadState(); 
@@ -823,11 +828,8 @@ namespace ROMS
                 cmbPolicyContent.Visible = false;
                 txtNextLevel.Visible = false;
                 cmbSecondLevel.Visible = false;
-
-                udfnEdit();
-                
-                BeginInvoke(new Action(() => cmbOrderschedule.Select(int.MaxValue, 0)));
-                
+                udfnEdit();                
+                BeginInvoke(new Action(() => cmbOrderschedule.Select(int.MaxValue, 0)));                
             }
             catch (Exception ex)
             {
@@ -871,15 +873,15 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            grdPaymentMode.DataSource = objDs.Tables[0];
+                            for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                            {
+                                dtPaymentMode.Rows.Add(false, objDs.Tables[0].Rows[i]["MST_DisplayText"], objDs.Tables[0].Rows[i]["MSTID"]);
+                            }
+                            grdPaymentMode.DataSource = dtPaymentMode;
                             grdPaymentMode.Columns["MSTID"].Visible = false;
+                            grdPaymentMode.Columns[0].Width = 30;
                             grdPaymentMode.Columns["MST_DisplayText"].Width = 100;
                             grdPaymentMode.Columns["MST_DisplayText"].ReadOnly = true;
-
-                            grdPay.DataSource = objDs.Tables[0];
-                            grdPay.Columns["MSTID"].Visible = false;
-                            grdPay.Columns["MST_DisplayText"].Width = 100;
-                            grdPay.Columns["MST_DisplayText"].ReadOnly = true;
                         }
                     }
                 }
@@ -998,31 +1000,16 @@ namespace ROMS
 
                         if (objDS.Tables[2].Rows.Count > 0)
                         {
-                            // objdatabrand = objDS.Tables[1];
-                            //for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
-                            //{
+                            for (int i = 0; i < objDS.Tables[2].Rows.Count; i++)
+                            {
                                 for (int j = 0; j < grdPaymentMode.Rows.Count; j++)
                                 {
-                                    //if (Convert.ToInt32(objDS.Tables[2].Rows[i]["SPP_PaymentMode"].ToString()) == Convert.ToInt32(grdPaymentMode.Rows[j].Cells["MSTID"].Value))
-                                    //{
-                                        bool varpayment =true;
-                                        //=true;
-                                        //grdPaymentMode.CommitEdit(DataGridViewDataErrorContexts.Commit);  
-                                        grdPaymentMode.Rows[j].Cells["clmpaymentcheck"].Value = varpayment;
-                                //  }
+                                    if (Convert.ToInt32(objDS.Tables[2].Rows[i]["SPP_PaymentMode"].ToString()) == Convert.ToInt32(grdPaymentMode.Rows[j].Cells["MSTID"].Value))
+                                    {
+                                        grdPaymentMode.Rows[j].Cells[0].Value = true;
+                                    }
+                                }
                             }
-                            for (int j = 0; j < grdPaymentMode.Rows.Count; j++)
-                            {
-                                bool varvalue = Convert.ToBoolean(grdPaymentMode.Rows[j].Cells["clmpaymentcheck"].Value);
-                                //  }
-                            }
-                            for (int j = 0; j < grdPay.Rows.Count; j++)
-                            {  
-                                grdPay.Rows[j].Cells["clmpaymentcheck"].Value = true;
-                            }
-                            //  }
-
-                            //grdPaymentMode.RefreshEdit();
                         }
 
 
@@ -4231,7 +4218,6 @@ namespace ROMS
 
 
                         case "clmedit":
-
                             if (pbSupplierid != "")
                             {
                                 tparea.ShowAlways = false;
@@ -5502,15 +5488,15 @@ namespace ROMS
         private void GrdPaymentMode_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            //if (grdPaymentMode.Columns[e.ColumnIndex].Name == "clmpaymentcheck" && e.RowIndex >= 0)
-            //{
-            //    DataGridViewCheckBoxCell checkBoxCell = grdPaymentMode.Rows[e.RowIndex].Cells["clmpaymentcheck"] as DataGridViewCheckBoxCell;
-            //    if (checkBoxCell != null)
-            //    {
-            //        checkBoxCell.Value = !(bool)(checkBoxCell.Value ?? false);
-            //        grdPaymentMode.EndEdit(); // Commit the change
-            //    }
-            //}
+            if (grdPaymentMode.Columns[e.ColumnIndex].Name == "clmpaymentcheck" && e.RowIndex >= 0)
+            {
+                DataGridViewCheckBoxCell checkBoxCell = grdPaymentMode.Rows[e.RowIndex].Cells["clmpaymentcheck"] as DataGridViewCheckBoxCell;
+                if (checkBoxCell != null)
+                {
+                    checkBoxCell.Value = !(bool)(checkBoxCell.Value ?? false);
+                    grdPaymentMode.EndEdit(); // Commit the change
+                }
+            }
         }
 
         private void Txtbranchname_KeyDown(object sender, KeyEventArgs e)
