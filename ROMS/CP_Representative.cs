@@ -15,6 +15,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable objdatabrand = new DataTable();
+        DataTable dtPaymentMode = new DataTable();
         private ToolTip tpGroupNameinTamil = new ToolTip();
         private ToolTip tpGroupNameinEnglish = new ToolTip();
 
@@ -480,7 +481,7 @@ namespace ROMS
                         grdRepBrand.Columns["Brand Name"].ReadOnly = true;
                         grdRepBrand.Columns["sno"].Visible = false;
                         grdRepBrand.Columns["BD_STSID"].Visible = false;
-
+                        
                         //foreach (DataGridViewRow row in grdRepBrand.Rows)
                         //{
                         //    if (row.Cells["ID"].Value.ToString() == "0" || row.Cells["ID"].Value.ToString() == "-1")
@@ -811,8 +812,6 @@ namespace ROMS
                     epGroup.Clear();
                     txtWhatsappno.BackColor = Color.White;
                 }
-                 
-
             }
             catch (Exception ex)
             {
@@ -1001,6 +1000,7 @@ namespace ROMS
             }
 
         }
+
         private void ChkBrandAll_CheckedChanged(object sender, EventArgs e)
         {
             try
