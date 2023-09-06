@@ -255,6 +255,11 @@ namespace ROMS
                                 grdBatch.Columns["P.I Code"].ReadOnly = true;
                                 grdBatch.Columns["Product Name in Tamil"].ReadOnly = true;
                                 grdBatch.Columns["Unit"].ReadOnly = true;
+
+                                grdBatch.Columns[" Product Category-Current"].ReadOnly = true;
+                                grdBatch.Columns["RM Pro-Current"].ReadOnly = true;
+                                grdBatch.Columns["Batch No.-Current"].ReadOnly = true;
+                                grdBatch.Columns["Batch Generation-Current"].ReadOnly = true;
                             }
                             else if(grdWeight.Visible==true)
                             {
@@ -1147,14 +1152,23 @@ namespace ROMS
             try
             {
                 if (grdLoction.Visible == true)
-                { (grdLoction.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtProductName.Text + "%' "; }
-                // or ([P.I Code]) LIKE '% " + txtProductName.Text +
+                { (grdLoction.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtProductName.Text + "%' "; }  // or ([P.I Code]) LIKE '% " + txtProductName.Text +
                 else if (grdMSQ.Visible == true)
                 { (grdMSQ.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdStock.Visible == true)
                 { (grdStock.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdWeight.Visible == true)
                 { (grdWeight.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil])  LIKE '%" + txtProductName.Text + "%'"; }
+                else if (grdShelfLife.Visible == true)
+                { (grdShelfLife.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil])  LIKE '%" + txtProductName.Text + "%'"; }
+                else if (grdBatch.Visible == true)
+                { (grdBatch.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil])  LIKE '%" + txtProductName.Text + "%'"; }
+                else if (grdBrand.Visible == true)
+                { (grdBrand.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil])  LIKE '%" + txtProductName.Text + "%'"; }
+                else if (grdHSN.Visible == true)
+                { (grdHSN.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil])  LIKE '%" + txtProductName.Text + "%'"; }
+                else if (grdBulkAttributes.Visible == true)
+                { (grdBulkAttributes.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil])  LIKE '%" + txtProductName.Text + "%'"; }
             }
             catch (Exception ex)
             {
@@ -1181,6 +1195,397 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbBrand.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public AutoCompleteStringCollection AutoCompleteHSN()
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            DataSet objds;
+            objds = null;
+            DataService objdservice = new DataService();
+            DataTable objDt = new DataTable();
+
+            objds = objdservice.GetDataset("select  HSNID, HSN_Name from MR_HSN where HSNID NOT IN(-1, 0) ");
+            objdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDt = objds.Tables[0];
+                    }
+                }
+            }
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("HSN_Name") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
+
+        private void GrdHSN_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (grdHSN.CurrentCell.OwningColumn.Name == "HSN Name-New")
+                {
+                    TextBox txtHSNName = e.Control as TextBox;
+                    if (txtHSNName != null)
+                    {
+                        txtHSNName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtHSNName.AutoCompleteCustomSource = AutoCompleteHSN();
+                        txtHSNName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public AutoCompleteStringCollection AutoCompleteLocationName()
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            DataSet objds;
+            objds = null;
+            DataService objdservice = new DataService();
+            DataTable objDt = new DataTable();
+
+            objds = objdservice.GetDataset("SELECT SLID,SL_ShortName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) ");
+            objdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDt = objds.Tables[0];
+                    }
+                }
+            }
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("SL_ShortName") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
+        public AutoCompleteStringCollection AutoCompleteRackName()
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            DataSet objds;
+            objds = null;
+            DataService objdservice = new DataService();
+            DataTable objDt = new DataTable();
+
+            objds = objdservice.GetDataset("SELECT RKID,RK_ShortName FROM MR_Rack WHERE RKID NOT IN (-1,0)");
+            objdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDt = objds.Tables[0];
+                    }
+                }
+            }
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("RK_ShortName") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
+        
+        public AutoCompleteStringCollection AutoCompleteRackMOQ()
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            DataSet objds;
+            objds = null;
+            DataService objdservice = new DataService();
+            DataTable objDt = new DataTable();
+
+            objds = objdservice.GetDataset("SELECT PRID, PR_RackMOQ FROM MR_Product WHERE PRID NOT IN(-1,0)");
+            objdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDt = objds.Tables[0];
+                    }
+                }
+            }
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("PR_RackMOQ") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
+        private void GrdLoction_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (grdLoction.CurrentCell.OwningColumn.Name == "Pur.Stock Location-New")
+                {
+                    TextBox txtPurStockLocation = e.Control as TextBox;
+                    if (txtPurStockLocation != null)
+                    {
+                        txtPurStockLocation.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtPurStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName();
+                        txtPurStockLocation.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+                else if (grdLoction.CurrentCell.OwningColumn.Name == "Pur.Rack_New")
+                {
+                    TextBox txtPurRack = e.Control as TextBox;
+                    if (txtPurRack != null)
+                    {
+                        txtPurRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtPurRack.AutoCompleteCustomSource = AutoCompleteRackName();
+                        txtPurRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+                else if (grdLoction.CurrentCell.OwningColumn.Name == "Sales Location-New")
+                {
+                    TextBox txtSalesStockLocation = e.Control as TextBox;
+                    if (txtSalesStockLocation != null)
+                    {
+                        txtSalesStockLocation.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtSalesStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName();
+                        txtSalesStockLocation.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+                else if (grdLoction.CurrentCell.OwningColumn.Name == "Sales Rack-New")
+                {
+                    TextBox txtSalesRack = e.Control as TextBox;
+                    if (txtSalesRack != null)
+                    {
+                        txtSalesRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtSalesRack.AutoCompleteCustomSource = AutoCompleteRackName();
+                        txtSalesRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+                else if (grdLoction.CurrentCell.OwningColumn.Name == "Rack MSQ-New")
+                {
+                    TextBox txtRackMsq = e.Control as TextBox;
+                    if (txtRackMsq != null)
+                    {
+                        txtRackMsq.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtRackMsq.AutoCompleteCustomSource = AutoCompleteRackMOQ();
+                        txtRackMsq.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdLoction_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                //if (Convert.ToString(grdLoction.SelectedCells[0]))
+                //{
+                //    switch (grdLoction.Columns[].Name)
+                //    {
+                //        case "Rack MSQ-New":
+
+                //            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                //            {
+                //                e.Handled = true;
+                //            }
+                //            break;
+                //    }
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public AutoCompleteStringCollection AutoCompleteShelfLife()
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            DataSet objds;
+            objds = null;
+            DataService objdservice = new DataService();
+            DataTable objDt = new DataTable();
+
+            objds = objdservice.GetDataset("SELECT MSTID,MST_DisplayText from DEF_Master where MST_TransactionID = 6");
+            objdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDt = objds.Tables[0];
+                    }
+                }
+            }
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("MST_DisplayText") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
+        private void GrdShelfLife_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (grdShelfLife.CurrentCell.OwningColumn.Name == "Shelf Life Type-Current")
+                {
+                    TextBox txtShelfLife = e.Control as TextBox;
+                    if (txtShelfLife != null)
+                    {
+                        txtShelfLife.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtShelfLife.AutoCompleteCustomSource = AutoCompleteShelfLife();
+                        txtShelfLife.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public AutoCompleteStringCollection AutoCompleteProductCatergory()
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            DataSet objds;
+            objds = null;
+            DataService objdservice = new DataService();
+            DataTable objDt = new DataTable();
+
+            objds = objdservice.GetDataset("SELECT MSTID,MST_DisplayText from DEF_Master where MST_TransactionID = 5");
+            objdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDt = objds.Tables[0];
+                    }
+                }
+            }
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("MST_DisplayText") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
+        public AutoCompleteStringCollection AutoCompleteBatchNo()
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            DataSet objds;
+            objds = null;
+            DataService objdservice = new DataService();
+            DataTable objDt = new DataTable();
+
+            objds = objdservice.GetDataset("SELECT MSTID,MST_DisplayText from DEF_Master where MST_TransactionID = 25");
+            objdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDt = objds.Tables[0];
+                    }
+                }
+            }
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("MST_DisplayText") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
+        public AutoCompleteStringCollection AutoCompleteBatchGeneration()
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            DataSet objds;
+            objds = null;
+            DataService objdservice = new DataService();
+            DataTable objDt = new DataTable();
+
+            objds = objdservice.GetDataset("SELECT MSTID,MST_DisplayText from DEF_Master where MST_TransactionID = 26");
+            objdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDt = objds.Tables[0];
+                    }
+                }
+            }
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("MST_DisplayText") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
+
+        private void GrdBatch_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                //grdBatch.Columns[" Product Category-Current"].ReadOnly = true;
+                //grdBatch.Columns["RM Pro-Current"].ReadOnly = true;
+                //grdBatch.Columns["Batch No.-Current"].ReadOnly = true;
+                //grdBatch.Columns["Batch Generation-Current"].ReadOnly = true;
+                if (grdBatch.CurrentCell.OwningColumn.Name == "Product Category-Current")
+                {
+                    TextBox txtProductCategory = e.Control as TextBox;
+                    if (txtProductCategory != null)
+                    {
+                        txtProductCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtProductCategory.AutoCompleteCustomSource = AutoCompleteShelfLife();
+                        txtProductCategory.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+                else if (grdBatch.CurrentCell.OwningColumn.Name == "Batch No.-Current")
+                {
+                    TextBox txtBatchNo = e.Control as TextBox;
+                    if (txtBatchNo != null)
+                    {
+                        txtBatchNo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtBatchNo.AutoCompleteCustomSource = AutoCompleteShelfLife();
+                        txtBatchNo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+                else if (grdBatch.CurrentCell.OwningColumn.Name == "Batch Generation-Current")
+                {
+                    TextBox txtBatchGeneration = e.Control as TextBox;
+                    if (txtBatchGeneration != null)
+                    {
+                        txtBatchGeneration.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtBatchGeneration.AutoCompleteCustomSource = AutoCompleteShelfLife();
+                        txtBatchGeneration.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
             }
             catch (Exception ex)
             {

@@ -28,6 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -49,12 +55,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsPurchase = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -78,6 +78,8 @@
             this.lblProductSubGroup = new System.Windows.Forms.Label();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
             this.lblProductgroup = new System.Windows.Forms.Label();
+            this.grdLoction = new System.Windows.Forms.DataGridView();
+            this.grdBulkAttributes = new System.Windows.Forms.DataGridView();
             this.grdHSN = new System.Windows.Forms.DataGridView();
             this.grdBrand = new System.Windows.Forms.DataGridView();
             this.grdWeight = new System.Windows.Forms.DataGridView();
@@ -85,8 +87,6 @@
             this.grdShelfLife = new System.Windows.Forms.DataGridView();
             this.grdStock = new System.Windows.Forms.DataGridView();
             this.grdMSQ = new System.Windows.Forms.DataGridView();
-            this.grdLoction = new System.Windows.Forms.DataGridView();
-            this.grdBulkAttributes = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tssheadingAttendance = new System.Windows.Forms.ToolStripSeparator();
@@ -115,6 +115,8 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.grpFilter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdLoction)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdBulkAttributes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdHSN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdBrand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdWeight)).BeginInit();
@@ -122,8 +124,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdShelfLife)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdMSQ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdLoction)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdBulkAttributes)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -395,6 +395,86 @@
             this.lblProductgroup.TabIndex = 3;
             this.lblProductgroup.Text = "Product Group";
             // 
+            // grdLoction
+            // 
+            this.grdLoction.AllowUserToAddRows = false;
+            this.grdLoction.AllowUserToDeleteRows = false;
+            this.grdLoction.AllowUserToResizeColumns = false;
+            this.grdLoction.AllowUserToResizeRows = false;
+            this.grdLoction.BackgroundColor = System.Drawing.Color.White;
+            this.grdLoction.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdLoction.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.grdLoction.ColumnHeadersHeight = 30;
+            this.grdLoction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdLoction.DefaultCellStyle = dataGridViewCellStyle14;
+            this.grdLoction.EnableHeadersVisualStyles = false;
+            this.grdLoction.GridColor = System.Drawing.Color.White;
+            this.grdLoction.Location = new System.Drawing.Point(6, 98);
+            this.grdLoction.Name = "grdLoction";
+            this.grdLoction.RowHeadersVisible = false;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
+            this.grdLoction.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            this.grdLoction.RowTemplate.Height = 25;
+            this.grdLoction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdLoction.Size = new System.Drawing.Size(1118, 481);
+            this.grdLoction.TabIndex = 958793;
+            this.grdLoction.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdLoction_EditingControlShowing);
+            this.grdLoction.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.GrdLoction_KeyPress);
+            // 
+            // grdBulkAttributes
+            // 
+            this.grdBulkAttributes.AllowUserToAddRows = false;
+            this.grdBulkAttributes.AllowUserToDeleteRows = false;
+            this.grdBulkAttributes.AllowUserToResizeColumns = false;
+            this.grdBulkAttributes.AllowUserToResizeRows = false;
+            this.grdBulkAttributes.BackgroundColor = System.Drawing.Color.White;
+            this.grdBulkAttributes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdBulkAttributes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            this.grdBulkAttributes.ColumnHeadersHeight = 30;
+            this.grdBulkAttributes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdBulkAttributes.DefaultCellStyle = dataGridViewCellStyle17;
+            this.grdBulkAttributes.EnableHeadersVisualStyles = false;
+            this.grdBulkAttributes.GridColor = System.Drawing.Color.White;
+            this.grdBulkAttributes.Location = new System.Drawing.Point(6, 98);
+            this.grdBulkAttributes.Name = "grdBulkAttributes";
+            this.grdBulkAttributes.RowHeadersVisible = false;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
+            this.grdBulkAttributes.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            this.grdBulkAttributes.RowTemplate.Height = 25;
+            this.grdBulkAttributes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdBulkAttributes.Size = new System.Drawing.Size(1124, 481);
+            this.grdBulkAttributes.TabIndex = 958801;
+            // 
             // grdHSN
             // 
             this.grdHSN.AllowUserToAddRows = false;
@@ -433,6 +513,7 @@
             this.grdHSN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdHSN.Size = new System.Drawing.Size(1118, 481);
             this.grdHSN.TabIndex = 958800;
+            this.grdHSN.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdHSN_EditingControlShowing);
             // 
             // grdBrand
             // 
@@ -550,6 +631,7 @@
             this.grdBatch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdBatch.Size = new System.Drawing.Size(1118, 481);
             this.grdBatch.TabIndex = 958797;
+            this.grdBatch.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdBatch_EditingControlShowing);
             // 
             // grdShelfLife
             // 
@@ -589,6 +671,7 @@
             this.grdShelfLife.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdShelfLife.Size = new System.Drawing.Size(1118, 481);
             this.grdShelfLife.TabIndex = 958796;
+            this.grdShelfLife.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdShelfLife_EditingControlShowing);
             // 
             // grdStock
             // 
@@ -667,84 +750,6 @@
             this.grdMSQ.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdMSQ.Size = new System.Drawing.Size(1118, 481);
             this.grdMSQ.TabIndex = 958794;
-            // 
-            // grdLoction
-            // 
-            this.grdLoction.AllowUserToAddRows = false;
-            this.grdLoction.AllowUserToDeleteRows = false;
-            this.grdLoction.AllowUserToResizeColumns = false;
-            this.grdLoction.AllowUserToResizeRows = false;
-            this.grdLoction.BackgroundColor = System.Drawing.Color.White;
-            this.grdLoction.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdLoction.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
-            this.grdLoction.ColumnHeadersHeight = 30;
-            this.grdLoction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdLoction.DefaultCellStyle = dataGridViewCellStyle14;
-            this.grdLoction.EnableHeadersVisualStyles = false;
-            this.grdLoction.GridColor = System.Drawing.Color.White;
-            this.grdLoction.Location = new System.Drawing.Point(6, 98);
-            this.grdLoction.Name = "grdLoction";
-            this.grdLoction.RowHeadersVisible = false;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
-            this.grdLoction.RowsDefaultCellStyle = dataGridViewCellStyle15;
-            this.grdLoction.RowTemplate.Height = 25;
-            this.grdLoction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdLoction.Size = new System.Drawing.Size(1118, 481);
-            this.grdLoction.TabIndex = 958793;
-            // 
-            // grdBulkAttributes
-            // 
-            this.grdBulkAttributes.AllowUserToAddRows = false;
-            this.grdBulkAttributes.AllowUserToDeleteRows = false;
-            this.grdBulkAttributes.AllowUserToResizeColumns = false;
-            this.grdBulkAttributes.AllowUserToResizeRows = false;
-            this.grdBulkAttributes.BackgroundColor = System.Drawing.Color.White;
-            this.grdBulkAttributes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdBulkAttributes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
-            this.grdBulkAttributes.ColumnHeadersHeight = 30;
-            this.grdBulkAttributes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdBulkAttributes.DefaultCellStyle = dataGridViewCellStyle17;
-            this.grdBulkAttributes.EnableHeadersVisualStyles = false;
-            this.grdBulkAttributes.GridColor = System.Drawing.Color.White;
-            this.grdBulkAttributes.Location = new System.Drawing.Point(6, 98);
-            this.grdBulkAttributes.Name = "grdBulkAttributes";
-            this.grdBulkAttributes.RowHeadersVisible = false;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
-            this.grdBulkAttributes.RowsDefaultCellStyle = dataGridViewCellStyle18;
-            this.grdBulkAttributes.RowTemplate.Height = 25;
-            this.grdBulkAttributes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdBulkAttributes.Size = new System.Drawing.Size(1124, 481);
-            this.grdBulkAttributes.TabIndex = 958801;
             // 
             // toolStrip1
             // 
@@ -1001,6 +1006,8 @@
             this.groupBox2.PerformLayout();
             this.grpFilter.ResumeLayout(false);
             this.grpFilter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdLoction)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdBulkAttributes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdHSN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdBrand)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdWeight)).EndInit();
@@ -1008,8 +1015,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdShelfLife)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdMSQ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdLoction)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdBulkAttributes)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
