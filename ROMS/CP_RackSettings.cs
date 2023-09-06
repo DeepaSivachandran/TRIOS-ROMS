@@ -75,17 +75,15 @@ namespace ROMS
         {
             try
             {
-
+                grbDestination.Visible = false;
                 dtSupplierMapping = new DataTable();
-                //dtSelectedRack = new DataTable();
-
                 dtSupplierMapping.Columns.Add("", typeof(Boolean));
                 dtSupplierMapping.Columns.Add("S.No.", typeof(string));
+                dtSupplierMapping.Columns.Add("PRODUCTID", typeof(int));
                 dtSupplierMapping.Columns.Add("P.I Code", typeof(string));
                 dtSupplierMapping.Columns.Add("Product Name in English", typeof(string));
                 dtSupplierMapping.Columns.Add("Product Name in Tamil", typeof(string));
                 dtSupplierMapping.Columns.Add("Unit", typeof(string));
-
 
 
                 DataSet objDs = new DataSet();
@@ -159,7 +157,7 @@ namespace ROMS
                 {
                     varViewType = 4;
                 }
-                objDT = objdserv.udfnSubGroupList(varViewType, 0, "", varGroupId, 0);
+                objDT = objdserv.udfnSubGroupList(varViewType, 0, "", varGroupId, 0,"");
                 objdserv.CloseConnection();
                 cmbSubGroup.DataSource = null;
                 if (objDT != null)
@@ -704,7 +702,7 @@ namespace ROMS
                 grdSupplierMapping.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId,varSubGroupId, "", "", "", 0);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId,varSubGroupId, "", "", "", 0,0,0,0,0);
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[0].Rows.Count != 0)

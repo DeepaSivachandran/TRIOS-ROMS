@@ -1526,6 +1526,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Company_FormClosing);
             this.Load += new System.EventHandler(this.CP_Company_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Company_KeyDown);
+//            this.Leave += new System.EventHandler(this.CP_Company_Leave);
             this.tsBrandList.ResumeLayout(false);
             this.tsBrandList.PerformLayout();
             this.pnlCompany.ResumeLayout(false);

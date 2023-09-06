@@ -25,15 +25,22 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_Supplier = new CP_Supplier();  
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents(); 
+                MainForm.objCP_Supplier = new CP_Supplier();
                 MainForm.objCP_Supplier.MdiParent = this.ParentForm;
-                MainForm.objCP_Supplier.Show(); 
+                MainForm.objCP_Supplier.Show();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+            finally
+            {
+                picLoader.Visible = false; 
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -98,7 +105,7 @@ namespace ROMS
 
                     if (dialogResult == DialogResult.Yes)
                     {
-                        int varordertype = 0,vardayide=0;
+                        int varordertype = 0,vardayide=0,varscheduleid=0;
                         if (Convert.ToString(grdSupplierList.SelectedRows[0].Cells["ORDERTYPE"].Value.ToString()) == "")
                         {
                             varordertype = 0;
@@ -115,18 +122,28 @@ namespace ROMS
                         {
                             vardayide = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["DYID"].Value.ToString());
                         }
+                        if (Convert.ToString(grdSupplierList.SelectedRows[0].Cells["Scheduleid"].Value.ToString()) == "")
+                        {
+                            varscheduleid = 0;
+                        }
+                        else
+                        {
+                            varscheduleid = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["Scheduleid"].Value.ToString());
+                        }
+
                         SPDataService objspdservice = new SPDataService();
-                        result = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["Scheduleid"].Value.ToString()), varordertype, "");
+                        result = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "");
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         { 
+                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
                             MainForm.objCP_Supplierlist.udfnList();
                         }
                         else
                         {
                             MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
-                        objspdservice.CloseConnection(); 
+                        objspdservice.CloseConnection();  
                     }
                 }
             }
@@ -139,15 +156,18 @@ namespace ROMS
         }
 
         private void udfnEdit()
-        { 
+        {
             try
             {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents(); 
                 if (grdSupplierList.SelectedRows.Count > 0)
                 {
 
                     MainForm.objCP_Supplier = new CP_Supplier();
-                    MainForm.objCP_Supplier.MdiParent = this.ParentForm; 
-                    MainForm.objCP_Supplier.btnSave.Text = "Update"; 
+                    MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                    MainForm.objCP_Supplier.btnSave.Text = "Update";
                     MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
                     MainForm.objCP_Supplier.Show();
                 }
@@ -156,7 +176,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
+            }
+            finally
+            {
+                picLoader.Visible = false; 
             }
         }
 

@@ -15,6 +15,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
+        public string varPurchaseRate = "0";
         public CP_Purchase()
         {
             InitializeComponent();
@@ -271,6 +272,50 @@ namespace ROMS
 
             //    if (e.State == DrawItemState.Selected) e.DrawFocusRectangle();
             //}
+        }
+        private void GrdPurchaseList_KeyUp(object sender, KeyEventArgs e)
+        {
+            //try
+            //{
+            //    if (e.KeyCode == Keys.F4)
+            //    {
+            //        int column = grdPurchaseList.CurrentCellAddress.X;
+            //        string columnName = grdPurchaseList.Columns[column].Name;
+            //        if (columnName == "clmPurchaseRate") {
+            //            MainForm.objPUR_Calculator = new PUR_Calculator();
+            //            MainForm.objPUR_Calculator.ShowDialog();
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+        }
+
+        private void GrdPurchaseList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.F4)
+                {
+                    int varColumn = grdPurchaseList.CurrentCellAddress.X;
+                    int varRow = grdPurchaseList.CurrentCellAddress.Y;
+                    string columnName = grdPurchaseList.Columns[varColumn].Name;
+                    if (columnName == "clmPurchaseRate")
+                    {
+                        MainForm.objPUR_Calculator = new PUR_Calculator();
+                        MainForm.objPUR_Calculator.ShowDialog();
+                        grdPurchaseList.Rows[varRow].Cells[varColumn].Value = Convert.ToString(varPurchaseRate);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

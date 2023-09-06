@@ -143,8 +143,6 @@
             // 
             this.pnlgroup.BackColor = System.Drawing.Color.White;
             this.pnlgroup.Controls.Add(this.grpSearch);
-            this.pnlgroup.Controls.Add(this.lblNoOfPrGroup);
-            this.pnlgroup.Controls.Add(this.label1);
             this.pnlgroup.Controls.Add(this.grbFilterBy);
             this.pnlgroup.Controls.Add(this.lblNoRecordsFound);
             this.pnlgroup.Controls.Add(this.grdGroupList);
@@ -203,7 +201,9 @@
             // grbFilterBy
             // 
             this.grbFilterBy.Controls.Add(this.btnExport);
+            this.grbFilterBy.Controls.Add(this.lblNoOfPrGroup);
             this.grbFilterBy.Controls.Add(this.btnView);
+            this.grbFilterBy.Controls.Add(this.label1);
             this.grbFilterBy.Controls.Add(this.cmbProductGroup);
             this.grbFilterBy.Location = new System.Drawing.Point(3, 2);
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -353,6 +353,7 @@
             this.grpSearch.ResumeLayout(false);
             this.grpSearch.PerformLayout();
             this.grbFilterBy.ResumeLayout(false);
+            this.grbFilterBy.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGroupList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);

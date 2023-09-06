@@ -50,16 +50,6 @@
             this.lblDConcern = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.cmbconcern = new System.Windows.Forms.ComboBox();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDCNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPaidAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNarration = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,9 +57,21 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDCNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPaidAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsSupplierPaymentList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupllierPaymentList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
@@ -127,8 +129,9 @@
             this.clmDCNo,
             this.clmDCDate,
             this.clmSupplier,
+            this.Column8,
+            this.Column10,
             this.clmPaidAmount,
-            this.clmNarration,
             this.clmPrint});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -203,9 +206,10 @@
             this.Column4,
             this.Column5,
             this.Column6,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
             this.Column7,
-            this.Column8,
-            this.dataGridViewTextBoxColumn2});
+            this.dataGridViewTextBoxColumn4});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -340,72 +344,6 @@
             this.cmbconcern.Size = new System.Drawing.Size(122, 27);
             this.cmbconcern.TabIndex = 2;
             // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "S.No";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
-            this.clmStatus.Width = 50;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Concern";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            // 
-            // clmTransaction
-            // 
-            this.clmTransaction.HeaderText = "Transaction Date";
-            this.clmTransaction.Name = "clmTransaction";
-            this.clmTransaction.ReadOnly = true;
-            this.clmTransaction.Width = 125;
-            // 
-            // clmTransactionNo
-            // 
-            this.clmTransactionNo.HeaderText = "Transaction No.";
-            this.clmTransactionNo.Name = "clmTransactionNo";
-            this.clmTransactionNo.ReadOnly = true;
-            // 
-            // clmDCNo
-            // 
-            this.clmDCNo.HeaderText = "DC No.";
-            this.clmDCNo.Name = "clmDCNo";
-            this.clmDCNo.ReadOnly = true;
-            // 
-            // clmDCDate
-            // 
-            this.clmDCDate.HeaderText = "DC Date";
-            this.clmDCDate.Name = "clmDCDate";
-            this.clmDCDate.ReadOnly = true;
-            // 
-            // clmSupplier
-            // 
-            this.clmSupplier.HeaderText = "Supplier";
-            this.clmSupplier.Name = "clmSupplier";
-            this.clmSupplier.ReadOnly = true;
-            this.clmSupplier.Width = 200;
-            // 
-            // clmPaidAmount
-            // 
-            this.clmPaidAmount.HeaderText = "Amount";
-            this.clmPaidAmount.Name = "clmPaidAmount";
-            this.clmPaidAmount.ReadOnly = true;
-            // 
-            // clmNarration
-            // 
-            this.clmNarration.HeaderText = "Narration";
-            this.clmNarration.Name = "clmNarration";
-            this.clmNarration.ReadOnly = true;
-            this.clmNarration.Width = 200;
-            // 
-            // clmPrint
-            // 
-            this.clmPrint.HeaderText = "Print";
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.ReadOnly = true;
-            this.clmPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "S.No.";
@@ -451,24 +389,102 @@
             this.Column6.ReadOnly = true;
             this.Column6.Width = 200;
             // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "City";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "GSTIN";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 150;
+            // 
             // Column7
             // 
             this.Column7.HeaderText = "Amount";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Print";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "S.No";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            this.clmStatus.Width = 50;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Concern";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
+            // clmTransaction
+            // 
+            this.clmTransaction.HeaderText = "Transaction Date";
+            this.clmTransaction.Name = "clmTransaction";
+            this.clmTransaction.ReadOnly = true;
+            this.clmTransaction.Width = 125;
+            // 
+            // clmTransactionNo
+            // 
+            this.clmTransactionNo.HeaderText = "Transaction No.";
+            this.clmTransactionNo.Name = "clmTransactionNo";
+            this.clmTransactionNo.ReadOnly = true;
+            // 
+            // clmDCNo
+            // 
+            this.clmDCNo.HeaderText = "DC No.";
+            this.clmDCNo.Name = "clmDCNo";
+            this.clmDCNo.ReadOnly = true;
+            // 
+            // clmDCDate
+            // 
+            this.clmDCDate.HeaderText = "DC Date";
+            this.clmDCDate.Name = "clmDCDate";
+            this.clmDCDate.ReadOnly = true;
+            // 
+            // clmSupplier
+            // 
+            this.clmSupplier.HeaderText = "Supplier";
+            this.clmSupplier.Name = "clmSupplier";
+            this.clmSupplier.ReadOnly = true;
+            this.clmSupplier.Width = 200;
+            // 
             // Column8
             // 
-            this.Column8.HeaderText = "Narration";
+            this.Column8.HeaderText = "City";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
-            this.Column8.Width = 200;
             // 
-            // dataGridViewTextBoxColumn2
+            // Column10
             // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Print";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.Column10.HeaderText = "GSTIN";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Width = 150;
+            // 
+            // clmPaidAmount
+            // 
+            this.clmPaidAmount.HeaderText = "Amount";
+            this.clmPaidAmount.Name = "clmPaidAmount";
+            this.clmPaidAmount.ReadOnly = true;
+            // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Print";
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            this.clmPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // PAY_DebitNoteList
             // 
@@ -525,8 +541,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDCNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDCDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSupplier;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPaidAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmNarration;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -535,8 +552,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }

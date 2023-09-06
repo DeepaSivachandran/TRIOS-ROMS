@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class PUR_GRNEntryVerify
+    partial class PUR_GRNApprovalVerify
     {
         /// <summary>
         /// Required designer variable.

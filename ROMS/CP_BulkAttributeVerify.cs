@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class PUR_POScheduledaywise : Form
+    public partial class CP_BulkAttributeVerify : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -21,33 +21,25 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
-        public PUR_POScheduledaywise()
+        public CP_BulkAttributeVerify()
         {
             InitializeComponent();
         }
 
-        private void PUR_POScheduledaywise_Load(object sender, EventArgs e)
+         
+
+        private void txtPassKey_KeyPress(object sender, KeyPressEventArgs e)
         {
-            try
-            {
 
+        }
 
-                grdPOSchedule.Rows.Add(1, "Monday");
-                grdPOSchedule.Rows.Add(2, "Tuesday");
-                grdPOSchedule.Rows.Add(3, "Wednesday");
-                grdPOSchedule.Rows.Add(4, "Thursday"); 
-                grdPOSchedule.Rows.Add(5, "Friday");
-                grdPOSchedule.Rows.Add(6, "Saturday");
-                grdPOSchedule.Rows.Add(7, "Sunday");
-                grdPOSchedule.Rows.Add("", "Total");
-                grdPOSchedule.Rows[7].DefaultCellStyle.BackColor = Color.SlateGray;
-                grdPOSchedule.Rows[7].DefaultCellStyle.ForeColor = Color.White;
-            }
+        private void btnAuthorise_Click(object sender, EventArgs e)
+        {
+            try { this.Close(); }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
         }
     }

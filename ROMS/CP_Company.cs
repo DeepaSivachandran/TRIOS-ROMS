@@ -56,30 +56,30 @@ namespace ROMS
             try
             {
                 epCompany.Clear();
-                tpCompanyName.RemoveAll();
-                tpCompanyName.ShowAlways = false;
-            tpShortName.ShowAlways = false;
-            tpAddressLine1.ShowAlways = false;
-            tpAddressLine2.ShowAlways = false;
-            tpState.ShowAlways = false;
-            tpCity.ShowAlways = false;
-            tpPincode.ShowAlways = false;
-            tpPhoneNo.ShowAlways = false;
-            tpMobileNo.ShowAlways = false;
-            tpWhatsAppNo.ShowAlways = false;
-            tpEmail.ShowAlways = false;
-            tpWebsite.ShowAlways = false;
-            tpGstin.ShowAlways = false;
-            tpPan.ShowAlways = false;
-            tpEsi.ShowAlways = false;
-            tpEsf.ShowAlways = false;
-            tpFssai.ShowAlways = false;
-            tpPlNo.ShowAlways = false;
-            tpName.ShowAlways = false;
-            tpTransactionType.ShowAlways = false;
-            tpMobileNumber.ShowAlways = false;
-            tpOperator.ShowAlways = false;
-            tpMobileBrand.ShowAlways = false;
+                tpCompanyName.Active = false;
+                tpCompanyName.Active = false; 
+            tpShortName.Active = false; 
+            tpAddressLine1.Active = false; 
+            tpAddressLine2.Active = false; 
+            tpState.Active = false; 
+            tpCity.Active = false; 
+            tpPincode.Active = false; 
+            tpPhoneNo.Active = false; 
+            tpMobileNo.Active = false; 
+            tpWhatsAppNo.Active = false; 
+            tpEmail.Active = false; 
+            tpWebsite.Active = false; 
+            tpGstin.Active = false; 
+            tpPan.Active = false; 
+            tpEsi.Active = false; 
+            tpEsf.Active = false; 
+            tpFssai.Active = false; 
+            tpPlNo.Active = false; 
+            tpName.Active = false; 
+            tpTransactionType.Active = false; 
+            tpMobileNumber.Active = false; 
+            tpOperator.Active = false; 
+            tpMobileBrand.Active = false; 
         }catch (Exception ex)
             {
                 objError = new DataError();
@@ -91,8 +91,7 @@ namespace ROMS
         {
             try
             {
-          this.Close();
-                udfntooltiphide();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -2454,6 +2453,10 @@ namespace ROMS
                         tpCity.Show("Invalid city", txtCity, 5000);
                         blnErrorFlag = true;
                     }
+                    else
+                    {
+                        lblcityid.Text= objDserv.displaydata("SELECT CTYID FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                    }
                 }
                 if (blnErrorFlag == false)
                 {
@@ -3297,13 +3300,13 @@ namespace ROMS
         private void CP_Company_Load(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,1) AND MSTID !=0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbTransactionType, "", "MST_DisplayText", "MSTID");
-                objDataBind = null; 
-                DataService objdservice = new DataService();  
-                varstatusid = objdservice.displaydata("select STS_Name as name from DEF_Status where STS_ModuleID=1 AND STSID=1"); 
+                objDataBind = null;
+                DataService objdservice = new DataService();
+                varstatusid = objdservice.displaydata("select STS_Name as name from DEF_Status where STS_ModuleID=1 AND STSID=1");
                 grdContactManager.Rows.Clear();
                 grdBankDetails.Rows.Clear();
                 udfnEdit();
@@ -3453,7 +3456,8 @@ namespace ROMS
             }
             finally
             {
-
+                grdBankDetails.ClearSelection();
+                grdContactManager.ClearSelection();
             }
         }
 
@@ -3461,7 +3465,6 @@ namespace ROMS
         {
             try
             {
-
                 lvCity.Items.Clear();
                 SPDataService objspdservice = new SPDataService(); 
                 DataSet objDs = new DataSet();
@@ -3754,7 +3757,7 @@ namespace ROMS
             //}
             //finally
             //{ 
-            //   // tpCompanyName.ShowAlways = false;
+            //   // tpCompanyName.Active = false; 
             //}
         }
 
@@ -3771,7 +3774,7 @@ namespace ROMS
             }
             finally
             {
-                // tpCompanyName.ShowAlways = false;
+                // tpCompanyName.Active = false; 
             }
         }
 
@@ -3788,7 +3791,7 @@ namespace ROMS
             }
             finally
             {
-                // tpCompanyName.ShowAlways = false;
+                // tpCompanyName.Active = false; 
             }
         }
 
@@ -3815,7 +3818,20 @@ namespace ROMS
             }
             finally
             {
-                // tpCompanyName.ShowAlways = false;
+                // tpCompanyName.Active = false; 
+            }
+        }
+
+        private void CP_Company_Leave(object sender, EventArgs e)
+        { 
+            try {
+                udfntooltiphide();
+            }
+             
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 

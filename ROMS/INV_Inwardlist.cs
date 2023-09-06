@@ -329,5 +329,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void TsbQue_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objINV_InwardlistQueue = new INV_InwardlistQueue();
+                MainForm.objINV_InwardlistQueue.MdiParent = this.ParentForm;
+                MainForm.objINV_InwardlistQueue.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

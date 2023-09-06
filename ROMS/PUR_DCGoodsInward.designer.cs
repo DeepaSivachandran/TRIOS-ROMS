@@ -68,7 +68,6 @@
             this.clmmrp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmexpirydate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmtransfer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmreceive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmremove = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.epLocation)).BeginInit();
@@ -84,7 +83,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(362, 27);
+            this.label23.Location = new System.Drawing.Point(362, 41);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(17, 20);
             this.label23.TabIndex = 1111184;
@@ -93,7 +92,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(824, 23);
+            this.label1.Location = new System.Drawing.Point(824, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 20);
             this.label1.TabIndex = 958825;
@@ -101,7 +100,7 @@
             // 
             // txtunitrate
             // 
-            this.txtunitrate.Location = new System.Drawing.Point(647, 20);
+            this.txtunitrate.Location = new System.Drawing.Point(647, 34);
             this.txtunitrate.Name = "txtunitrate";
             this.txtunitrate.Size = new System.Drawing.Size(115, 27);
             this.txtunitrate.TabIndex = 958815;
@@ -109,7 +108,7 @@
             // lblbatchno
             // 
             this.lblbatchno.AutoSize = true;
-            this.lblbatchno.Location = new System.Drawing.Point(647, -3);
+            this.lblbatchno.Location = new System.Drawing.Point(647, 11);
             this.lblbatchno.Name = "lblbatchno";
             this.lblbatchno.Size = new System.Drawing.Size(61, 20);
             this.lblbatchno.TabIndex = 958816;
@@ -117,14 +116,14 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.Location = new System.Drawing.Point(6, 20);
+            this.txtProductName.Location = new System.Drawing.Point(6, 34);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(349, 27);
             this.txtProductName.TabIndex = 82;
             // 
             // txtActualQty
             // 
-            this.txtActualQty.Location = new System.Drawing.Point(774, 20);
+            this.txtActualQty.Location = new System.Drawing.Point(774, 34);
             this.txtActualQty.Name = "txtActualQty";
             this.txtActualQty.Size = new System.Drawing.Size(46, 27);
             this.txtActualQty.TabIndex = 81;
@@ -133,7 +132,7 @@
             // lblActualQty
             // 
             this.lblActualQty.AutoSize = true;
-            this.lblActualQty.Location = new System.Drawing.Point(774, -3);
+            this.lblActualQty.Location = new System.Drawing.Point(774, 11);
             this.lblActualQty.Name = "lblActualQty";
             this.lblActualQty.Size = new System.Drawing.Size(28, 20);
             this.lblActualQty.TabIndex = 80;
@@ -142,7 +141,7 @@
             // lblExpiryDate
             // 
             this.lblExpiryDate.AutoSize = true;
-            this.lblExpiryDate.Location = new System.Drawing.Point(464, 23);
+            this.lblExpiryDate.Location = new System.Drawing.Point(464, 37);
             this.lblExpiryDate.Name = "lblExpiryDate";
             this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
             this.lblExpiryDate.TabIndex = 958821;
@@ -150,7 +149,7 @@
             // 
             // txtMrp
             // 
-            this.txtMrp.Location = new System.Drawing.Point(381, 20);
+            this.txtMrp.Location = new System.Drawing.Point(381, 34);
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.Size = new System.Drawing.Size(75, 27);
             this.txtMrp.TabIndex = 74;
@@ -158,7 +157,7 @@
             // lblMrp
             // 
             this.lblMrp.AutoSize = true;
-            this.lblMrp.Location = new System.Drawing.Point(381, -3);
+            this.lblMrp.Location = new System.Drawing.Point(381, 11);
             this.lblMrp.Name = "lblMrp";
             this.lblMrp.Size = new System.Drawing.Size(34, 20);
             this.lblMrp.TabIndex = 77;
@@ -166,7 +165,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(604, 20);
+            this.textBox2.Location = new System.Drawing.Point(604, 34);
             this.textBox2.MaxLength = 2;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(34, 27);
@@ -183,7 +182,7 @@
             // 
             // txtDay
             // 
-            this.txtDay.Location = new System.Drawing.Point(537, 20);
+            this.txtDay.Location = new System.Drawing.Point(537, 34);
             this.txtDay.MaxLength = 2;
             this.txtDay.Name = "txtDay";
             this.txtDay.Size = new System.Drawing.Size(33, 27);
@@ -191,7 +190,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(570, 20);
+            this.textBox1.Location = new System.Drawing.Point(570, 34);
             this.textBox1.MaxLength = 2;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(34, 27);
@@ -201,7 +200,7 @@
             // 
             this.lblYyyy.AutoSize = true;
             this.lblYyyy.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.lblYyyy.Location = new System.Drawing.Point(610, 4);
+            this.lblYyyy.Location = new System.Drawing.Point(610, 18);
             this.lblYyyy.Name = "lblYyyy";
             this.lblYyyy.Size = new System.Drawing.Size(20, 16);
             this.lblYyyy.TabIndex = 958824;
@@ -211,7 +210,7 @@
             // 
             this.lblMM.AutoSize = true;
             this.lblMM.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.lblMM.Location = new System.Drawing.Point(576, 4);
+            this.lblMM.Location = new System.Drawing.Point(576, 18);
             this.lblMM.Name = "lblMM";
             this.lblMM.Size = new System.Drawing.Size(24, 16);
             this.lblMM.TabIndex = 958823;
@@ -221,7 +220,7 @@
             // 
             this.lblDd.AutoSize = true;
             this.lblDd.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
-            this.lblDd.Location = new System.Drawing.Point(543, 4);
+            this.lblDd.Location = new System.Drawing.Point(543, 18);
             this.lblDd.Name = "lblDd";
             this.lblDd.Size = new System.Drawing.Size(20, 16);
             this.lblDd.TabIndex = 958822;
@@ -244,7 +243,7 @@
             // 
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
             this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(865, 23);
+            this.btnAdd.Location = new System.Drawing.Point(865, 37);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(21, 22);
@@ -366,7 +365,6 @@
             this.clmmrp,
             this.clmexpirydate,
             this.Column1,
-            this.clmtransfer,
             this.clmreceive,
             this.clmremove});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -433,15 +431,9 @@
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             // 
-            // clmtransfer
-            // 
-            this.clmtransfer.HeaderText = "Transfered Qty";
-            this.clmtransfer.Name = "clmtransfer";
-            this.clmtransfer.ReadOnly = true;
-            // 
             // clmreceive
             // 
-            this.clmreceive.HeaderText = "Received Qty";
+            this.clmreceive.HeaderText = "Quantity";
             this.clmreceive.Name = "clmreceive";
             this.clmreceive.ReadOnly = true;
             // 
@@ -466,7 +458,7 @@
             this.MinimizeBox = false;
             this.Name = "PUR_DCGoodsInward";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Goods Inward";
+            this.Text = "Product Exchange Details";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PUR_DCGoodsInward_FormClosing);
             this.Load += new System.EventHandler(this.PUR_DCGoodsInward_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_DCGoodsInward_KeyDown);
@@ -491,16 +483,6 @@
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.DataGridView DGV_inward;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmicode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmmrp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmtransfer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmreceive;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmremove;
         private System.Windows.Forms.GroupBox grpproductname;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label1;
@@ -520,5 +502,14 @@
         private System.Windows.Forms.Label lblYyyy;
         private System.Windows.Forms.Label lblMM;
         private System.Windows.Forms.Label lblDd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmicode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmproductname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmunit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmmrp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmexpirydate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmreceive;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmremove;
     }
 }

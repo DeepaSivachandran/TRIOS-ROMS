@@ -10,56 +10,42 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class CP_PurchaseList : Form
+    public partial class INV_InwardlistQueue : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public CP_PurchaseList()
+        
+
+        public INV_InwardlistQueue()
         {
             InitializeComponent();
         }
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
-            {
-                MainForm.objCP_Purchase = new CP_Purchase();
-                MainForm.objCP_Purchase.MdiParent = this.ParentForm;
-                MainForm.objCP_Purchase.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-
-            }
+           
         }
         private void tsbEdit_Click(object sender, EventArgs e)
         {
             try
             {
-                
+
+                MainForm.objINV_Inward = new INV_Inward();
+                MainForm.objINV_Inward.btnSave.Text = "Update";
+
+                MainForm.objINV_Inward.Show();
+                //GroupBox objgrbgodown = new GroupBox();
+                // objgrbgodown.Visible = false;
+
+
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void tsbDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-         
-          
+        } 
+        
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -90,10 +76,10 @@ namespace ROMS
         {
             try
             {
-                if (grdSupplierList.ColumnCount > 0)
+                if (grdInwardList.ColumnCount > 0)
                 {
-                    grdSupplierList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdSupplierList.HorizontalScrollingOffset; 
+                    grdInwardList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdInwardList.HorizontalScrollingOffset; 
                 }
             }
             catch (Exception ex)
@@ -108,9 +94,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdSupplierList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierList);
+                grdInwardList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdInwardList);
                 objDser.CloseConnection();
-                grdSupplierList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdInwardList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -119,10 +105,10 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdSupplierList, DGV_SearchGrid);
+                udfnGridSearchHeading(grdInwardList, DGV_SearchGrid);
                 DGV_SearchGrid.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdSupplierList.Columns)
+                foreach (DataGridViewColumn col in grdInwardList.Columns)
                 {
                     DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                     visibleColumns.Add(col.Index);
@@ -147,7 +133,7 @@ namespace ROMS
                     if (DGV_SearchGrid.ColumnCount > 0)
                     {
                         BindingSource bs = new BindingSource();
-                        bs.DataSource = grdSupplierList.DataSource;
+                        bs.DataSource = grdInwardList.DataSource;
                         string filter = "";
                         for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
                         {
@@ -161,7 +147,7 @@ namespace ROMS
                             }
                         }
                         bs.Filter = filter;
-                        grdSupplierList.DataSource = bs;
+                        grdInwardList.DataSource = bs;
                     }
                 }
             }
@@ -191,12 +177,23 @@ namespace ROMS
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        } 
+        }
+        
+        private void DGV_SearchGrid_Sorted(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DGV_SearchGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
+
      
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdSupplierList.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdSupplierList.SortedColumn;
+            DataGridViewColumn newColumn = grdInwardList.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = grdInwardList.SortedColumn;
             ListSortDirection direction;
 
             // If oldColumn is null, then the DataGridView is not sorted.
@@ -204,7 +201,7 @@ namespace ROMS
             {
                 // Sort the same column again, reversing the SortOrder.
                 if (oldColumn == newColumn &&
-                    grdSupplierList.SortOrder == SortOrder.Ascending)
+                    grdInwardList.SortOrder == SortOrder.Ascending)
                 {
                     direction = ListSortDirection.Descending;
                 }
@@ -219,7 +216,7 @@ namespace ROMS
             {
                 direction = ListSortDirection.Ascending;
             }
-            grdSupplierList.Sort(newColumn, direction);
+            grdInwardList.Sort(newColumn, direction);
             newColumn.HeaderCell.SortGlyphDirection =
                 direction == ListSortDirection.Ascending ?
                 SortOrder.Ascending : SortOrder.Descending;
@@ -227,20 +224,21 @@ namespace ROMS
             DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
             DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-            DGV_SearchGrid.HorizontalScrollingOffset = grdSupplierList.HorizontalScrollingOffset;
+            DGV_SearchGrid.HorizontalScrollingOffset = grdInwardList.HorizontalScrollingOffset;
             DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
 
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try
-            { 
+            {
+
                 int totalWidth = 0;
-                int offSetValue = grdSupplierList.HorizontalScrollingOffset;
+                int offSetValue = grdInwardList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
 
-                if (totalWidth - grdSupplierList.Width > grdSupplierList.HorizontalScrollingOffset && grdSupplierList.HorizontalScrollingOffset > 0)
+                if (totalWidth - grdInwardList.Width > grdInwardList.HorizontalScrollingOffset && grdInwardList.HorizontalScrollingOffset > 0)
                 {
                     //offSetValue = offSetValue ;
                     offSetValue = offSetValue;
@@ -284,24 +282,41 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        } 
+        private void TsbNew_Click_1(object sender, EventArgs e)
+        { 
+            try
+            {
+                MainForm.objINV_Inward = new INV_Inward();
+
+                MainForm.objINV_Inward.MdiParent = this.ParentForm;
+                //MainForm.objINV_Inward.StartPosition = FormStartPosition.Manual;
+                //int dialogX = this.Location.X + (this.Width - MainForm.objINV_Inward.Width) / 2;
+                //int dialogY = this.Location.Y + (this.Height - MainForm.objINV_Inward.Height + 100) / 2;
+                //MainForm.objINV_Inward.Location = new Point(dialogX, dialogY);
+                MainForm.objINV_Inward.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
-        private void CP_PurchaseList_KeyDown(object sender, KeyEventArgs e)
+        private void INV_InwardlistQueue_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
                 {
-                    // tsbNew_Click(sender, e);
+                    tsbNew_Click(sender, e);
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
-                    // tsbEdit_Click(sender, e);
+                    tsbEdit_Click(sender, e);
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm objMainForm = new MainForm();
-                    objMainForm.udfnCloseChildForms();
                     MainForm.objStart = new DEF_Start();
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();
@@ -319,52 +334,14 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_PurchaseQueue = new PUR_PurchaseQueue();
-                MainForm.objPUR_PurchaseQueue.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseQueue.Show();
+                MainForm.objINV_Inwardlist = new INV_Inwardlist();
+                MainForm.objINV_Inwardlist.MdiParent = this.ParentForm;
+                MainForm.objINV_Inwardlist.Show();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-        }
-
-        private void GrdSupplierList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (e.RowIndex != -1)
-                {
-                    switch (grdSupplierList.Columns[e.ColumnIndex].Name)
-                    {
-                        case "clmEdit":
-                            MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
-                            MainForm.objPUR_GRNApprovalVerify.ShowDialog();
-                            break;
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-
-            }
-        }
-
-        private void CP_PurchaseList_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                grdSupplierList.Rows.Add(1, "GNM", "16/08/2023", "PUR001", "9097337", "16/08/2023", "ABCD Suppliers", "Against PO", "10","Pending","10,000","ABCD","16/08/2023 01:50PM");
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-
             }
         }
     }
