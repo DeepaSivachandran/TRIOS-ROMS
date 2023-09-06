@@ -311,7 +311,7 @@ namespace ROMS
                 }
                 if (cbExpiry.Checked==true)
                 {
-                    if (Convert.ToInt32(cmbBatchNoEntry.SelectedValue) == -1 )
+                    if (Convert.ToInt32(cmbPeriod.SelectedValue) == -1 )
                     {
                         errItems.SetError(cmbPeriod, "Please select shelflife");
                         cmbPeriod.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -515,6 +515,7 @@ namespace ROMS
             finally
             {
                 btnSave.Enabled = true;
+                btnSave.Focus();
             }
         }
 
@@ -557,8 +558,11 @@ namespace ROMS
                 txtBarcode.Text = "";
                 txtHSNCode.Text = "";
                 txtGST.Text = "";
-                txtUpp.Text = ""; 
-
+                txtUpp.Text = "";
+                txtREnglishName.Text = "";
+                txtRTamilName.Text = "";
+                lblDPicode.Visible = false;
+                txtRPICode.Text = "";
             }
             catch (Exception ex)
             {
@@ -2594,9 +2598,9 @@ namespace ROMS
                     {
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
-                            cmbPurchaseRack.DataSource = objDS.Tables[0];
                             cmbPurchaseRack.ValueMember = "RKID";
-                            cmbPurchaseRack.DisplayMember = "RK_Name"; 
+                            cmbPurchaseRack.DisplayMember = "RK_Name";
+                            cmbPurchaseRack.DataSource = objDS.Tables[0];
                         }
                     }
                 }
@@ -3518,8 +3522,6 @@ namespace ROMS
                 DataBind objDataBind = new DataBind(); 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (6,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbPeriod, "", "MST_DisplayText", "MSTID");
-                 objDataBind.BindComboBoxListSelected("MR_Rack", "RKID=-1 AND RK_STSID=1 ", "RK_ShortName,RKID", cmbPurchaseRack, "", "RK_ShortName", "RKID");
-                objDataBind.BindComboBoxListSelected("MR_Rack", "RKID=-1 AND RK_STSID=1 ", "RK_ShortName,RKID", cmbSalesRack, "", "RK_ShortName", "RKID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (25,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoEntry, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (26,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoGeneration, "", "MST_DisplayText", "MSTID");
                 objDataBind = null; 
@@ -3675,7 +3677,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
                 lblDPicode.Visible = true;
-                objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0);
+                objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -3711,7 +3713,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS; 
                     DataService objdservice = new DataService();
-                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0,"",MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0);
+                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0,"",MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0,0,0);
                     objdserv.CloseConnection();
                     if (objDS != null)
                     {
@@ -3728,6 +3730,8 @@ namespace ROMS
                             cmbBrand.SelectedValue = objDS.Tables[0].Rows[0]["BRAND"].ToString(); 
                             cmbUnit.SelectedValue = objDS.Tables[0].Rows[0]["UNIT"].ToString();
                             cmbBulkUnit.SelectedValue = objDS.Tables[0].Rows[0]["BULK UNIT"].ToString();
+                            cmbPosition.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION PURCHASE"].ToString());
+                            cmbSalesGodown.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION SALES"].ToString());
                             txtUpp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UPP"].ToString().Replace("''", "'"));
                             cmbPurchaseRack.SelectedValue = objDS.Tables[0].Rows[0]["RACK LOCATION"].ToString();
                             cmbSalesRack.SelectedValue = objDS.Tables[0].Rows[0]["RACK SALES"].ToString();
@@ -3748,11 +3752,7 @@ namespace ROMS
                             txtBarcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["BARCODE"].ToString().Replace("''", "'")); 
                             cmbHSNName.SelectedValue = objDS.Tables[0].Rows[0]["HSN"].ToString();
 
-                            if (btnSave.Text == "Update")
-                            {
-                                cmbPosition.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION PURCHASE"].ToString());
-                                cmbSalesGodown.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION SALES"].ToString()); 
-                            }
+                          
 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cbRMFromProduction.Checked = true; } else { cbRMFromProduction.Checked = false; }
