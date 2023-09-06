@@ -1258,8 +1258,10 @@ namespace ROMS
             {
                 if (txtPICode.Text == "")
                 {
-                    txtPICode.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtPICode, "Please Enter PI Code");
+                    errItems.SetError(txtPICode, "Please enter PICode");
+                    txtPICode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpplno.ShowAlways = true;
+                    tpplno.Show("Please enter PICode", txtPICode, 5000);
                 }
                 else
                 {
@@ -2168,8 +2170,8 @@ namespace ROMS
                 {
                     errItems.SetError(cmbProductCategory, "Please select Product category");
                     cmbProductCategory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select Product category", cmbGroup, 5000);
+                    tpprd.ShowAlways = true;
+                    tpprd.Show("Please select Product category", cmbGroup, 5000);
                 }
                 else
                 {
@@ -2221,8 +2223,8 @@ namespace ROMS
                 {
                     errItems.SetError(cmbSubGroup, "Please select SubGroup");
                     cmbSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select SubGroup", cmbGroup, 5000);
+                    tpprdSG.ShowAlways = true;
+                    tpprdSG.Show("Please select SubGroup", cmbGroup, 5000);
                 }
                 else
                 {
@@ -2330,8 +2332,8 @@ namespace ROMS
             {
                 errItems.SetError(cmbGroup, "Please select Group");
                 cmbGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tpcompanyname.ShowAlways = true;
-                tpcompanyname.Show("Please select Group", cmbGroup, 5000);
+                tpprdG.ShowAlways = true;
+                tpprdG.Show("Please select Group", cmbGroup, 5000);
             }
             else
             {
