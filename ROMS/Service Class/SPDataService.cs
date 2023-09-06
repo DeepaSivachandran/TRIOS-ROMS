@@ -632,7 +632,7 @@ namespace ROMS
             return ds;
         }
         //Created BY:-Sathish  Created On:-02-09-2023
-        public string udfnRackSettings(int paraviewType, int paraRKSID, int paraRKSSLID, int paraRKSRKID,  string paraRKSPRID,string paraOriginator)
+        public string udfnRackSettings(int paraviewType, int paraRKSID, int paraRKSSSLID, int paraRKSSRKID,  string paraRKSPRID, int paraRKSDSLID, int paraRKSDRKID, string paraOriginator)
         {
             string varResult = "";
             try
@@ -642,9 +642,11 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRKSID", paraRKSID);
-                varSqlCommand.Parameters.AddWithValue("@paraRKSSLID", paraRKSSLID);
-                varSqlCommand.Parameters.AddWithValue("@paraRKSRKID", paraRKSRKID);
+                varSqlCommand.Parameters.AddWithValue("@paraRKSSSLID", paraRKSSSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraRKSSRKID", paraRKSSRKID);
                 varSqlCommand.Parameters.AddWithValue("@paraRKSPRID", paraRKSPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraRKSDSLID", paraRKSDSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraRKSDRKID", paraRKSDRKID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);

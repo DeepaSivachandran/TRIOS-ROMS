@@ -100,7 +100,65 @@ namespace ROMS
         }
         public void udfnList()
         {
-
+            try
+            {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdRackSettingList.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnRackSettingsList(0,0,(Convert.ToInt16(cmbGroupType.SelectedValue)));
+                objspservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            grdRackSettingList.DataSource = objDs.Tables[0];
+                            grdRackSettingList.Columns["ID"].Visible = false;
+                            grdRackSettingList.Columns["RKID"].Visible = false;
+                            grdRackSettingList.Columns["S.No."].Width = 50;
+                            grdRackSettingList.Columns["P.I Code"].Width = 100;
+                            grdRackSettingList.Columns["Stock Location"].Width = 200;
+                            grdRackSettingList.Columns["Rack Name"].Width = 150;
+                            grdRackSettingList.Columns["Product Name"].Width = 250;
+                            grdRackSettingList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+            }
         }   
         private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
         {
@@ -141,8 +199,6 @@ namespace ROMS
         {
 
         }
-
-     
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewColumn newColumn = grdRackSettingList.Columns[e.ColumnIndex];

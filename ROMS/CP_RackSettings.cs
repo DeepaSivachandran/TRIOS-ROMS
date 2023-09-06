@@ -27,10 +27,12 @@ namespace ROMS
         public int varId = 0;
         public int varSStockLocationId = 0;
         public int varSRackId = 0;
+        public int varDStockLocationId = 0;
+        public int varDRackId = 0;
         public int varGroupId = 0;
         public int varSubGroupId = 0;
         public int varCheckAllFlag = 0;
-        public string varRackID = "";
+        public string varProductID = "";
         public int varUpdate = 0;
         public int varRacksettingID = 0;
         public int PbRKID = 0;
@@ -55,7 +57,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -336,7 +337,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void RbMove_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -356,7 +356,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbSStockLocation_Enter(object sender, EventArgs e)
         {
             try
@@ -369,7 +368,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbSStockLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -383,7 +381,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbSStockLocation_Leave(object sender, EventArgs e)
         {
             try
@@ -407,7 +404,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbSRack_Enter(object sender, EventArgs e)
         {
             try
@@ -420,7 +416,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbSRack_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -434,7 +429,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbSRack_Leave(object sender, EventArgs e)
         {
             try
@@ -458,7 +452,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbDStockLocation_Enter(object sender, EventArgs e)
         {
             try
@@ -471,7 +464,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbDStockLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -485,7 +477,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbDStockLocation_Leave(object sender, EventArgs e)
         {
             try
@@ -509,7 +500,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbDRack_Enter(object sender, EventArgs e)
         {
             try
@@ -522,7 +512,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbDRack_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -646,34 +635,39 @@ namespace ROMS
         {
             try
             {
-                //if (rbActive.Checked == true) { varstatus = 1; }
-                //else { varstatus = 2; }
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;
                 if (btnSave.Text == "Save")
                 {
                     varoriginator = "RackSettings Creation";
-                    varType = 0;
+                    if (rbAdd.Checked == true)
+                    {
+                        varType = 0;
+                    }
+                    else
+                    {
+                        varType = 3;
+                    }
                 }
                 else
                 {
                     varoriginator = "RackSettings Updation";
                     varType = 1;
                 }
-                varRackID = ""; 
+                varProductID = ""; 
                 for (int i = 0; i < grdViewSupplierMapping.RowCount; i++)
                 {
-                    if (varRackID == "")
+                    if (varProductID == "")
                     {
-                        varRackID = Convert.ToString(grdViewSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
+                        varProductID = Convert.ToString(grdViewSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
                     }
                     else
                     {
-                        varRackID = varRackID + "," + Convert.ToString(grdViewSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
+                        varProductID = varProductID + "," + Convert.ToString(grdViewSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
                     }
                 }
-                varResult = objspservice.udfnRackSettings(varType,0,varSStockLocationId,varSRackId,varRackID,varoriginator);
+                varResult = objspservice.udfnRackSettings(varType,0,varSStockLocationId,varSRackId, varProductID, varDStockLocationId,varDRackId,varoriginator);
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
@@ -1148,7 +1142,7 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbDStockLocation.Select(int.MaxValue, 0)));
-                varSStockLocationId = Convert.ToInt16(cmbDStockLocation.SelectedValue);
+                varDStockLocationId = Convert.ToInt16(cmbDStockLocation.SelectedValue);
                 udfncmbDRack();
                 grdSupplierMapping.DataSource = null;
                 grdViewSupplierMapping.Rows.Clear();
@@ -1170,7 +1164,7 @@ namespace ROMS
             {
                 varviewType = 3;
             }
-            objDS = objsdserv.udfnRackList(varviewType, 0, 0, varSStockLocationId, 0);
+            objDS = objsdserv.udfnRackList(varviewType, 0, 0, varDStockLocationId, 0);
             objsdserv.CloseConnection();
             cmbDRack.DataSource = null;
             if (objDS != null)
@@ -1213,23 +1207,23 @@ namespace ROMS
 
         private void RbAdd_CheckedChanged(object sender, EventArgs e)
         {
-            if(rbAdd.Checked==true)
-            {
-                varSStockLocationId = Convert.ToInt16(cmbSStockLocation.SelectedValue);
-                varSRackId = Convert.ToInt16(cmbSRack.SelectedValue);
-            }
-            else
-            {
-                varSStockLocationId = Convert.ToInt16(cmbDStockLocation.SelectedValue);
-                varSRackId = Convert.ToInt16(cmbDRack.SelectedValue);
-            }
+            //if(rbAdd.Checked==true)
+            //{
+            //    varSStockLocationId = Convert.ToInt16(cmbSStockLocation.SelectedValue);
+            //    varSRackId = Convert.ToInt16(cmbSRack.SelectedValue);
+            //}
+            //else
+            //{
+            //    varSStockLocationId = Convert.ToInt16(cmbDStockLocation.SelectedValue);
+            //    varSRackId = Convert.ToInt16(cmbDRack.SelectedValue);
+            //}
         }
 
         private void CmbDRack_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                varSRackId = Convert.ToInt32(cmbDRack.SelectedValue);
+                varDRackId = Convert.ToInt32(cmbDRack.SelectedValue);
             }
             catch (Exception ex)
             {
