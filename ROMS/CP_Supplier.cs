@@ -3356,7 +3356,10 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 cmborderday.DataSource = null;
-
+                if (Convert.ToInt32(cmbOrderschedule.SelectedValue) == 0)
+                {
+                    txtMappedOrder.Text = "";
+                }
                 objDs = objspservice.udfnSupplierList(0, SupplierUpdate, Convert.ToInt32(cmbOrderschedule.SelectedValue), 0,0, "");
                 if (objDs != null)
                 {
@@ -3364,7 +3367,8 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            txtMappedOrder.Text = objDs.Tables[0].Rows[0]["MST_DisplayText"].ToString().Replace("''", "'");
+                            
+                                txtMappedOrder.Text = objDs.Tables[0].Rows[0]["MST_DisplayText"].ToString().Replace("''", "'"); 
                             lblMappedOrderTypeId.Text = objDs.Tables[0].Rows[0]["MSTID"].ToString().Replace("''", "'");
                         }
                         if (objDs.Tables[2].Rows.Count != 0)
