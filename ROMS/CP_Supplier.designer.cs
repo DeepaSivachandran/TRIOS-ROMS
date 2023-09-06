@@ -421,6 +421,7 @@
             this.txtBankShortName.Name = "txtBankShortName";
             this.txtBankShortName.Size = new System.Drawing.Size(165, 27);
             this.txtBankShortName.TabIndex = 18;
+            this.txtBankShortName.TextChanged += new System.EventHandler(this.TxtBankShortName_TextChanged);
             this.txtBankShortName.Enter += new System.EventHandler(this.TxtBankShortName_Enter);
             this.txtBankShortName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBankShortName_KeyDown);
             this.txtBankShortName.Leave += new System.EventHandler(this.TxtBankShortName_Leave);
@@ -925,6 +926,7 @@
             this.grbform.TabIndex = 71;
             this.grbform.TabStop = false;
             this.grbform.Text = "Concern Contact Details";
+            this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
             // 
             // lvCity
             // 
@@ -934,13 +936,14 @@
             this.columnHeader3});
             this.lvCity.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvCity.HideSelection = false;
-            this.lvCity.Location = new System.Drawing.Point(121, 158);
+            this.lvCity.Location = new System.Drawing.Point(268, 215);
             this.lvCity.Name = "lvCity";
             this.lvCity.Size = new System.Drawing.Size(313, 78);
             this.lvCity.TabIndex = 77;
             this.lvCity.UseCompatibleStateImageBehavior = false;
             this.lvCity.View = System.Windows.Forms.View.Details;
             this.lvCity.Visible = false;
+            this.lvCity.SelectedIndexChanged += new System.EventHandler(this.LvCity_SelectedIndexChanged);
             this.lvCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvCity_KeyDown);
             // 
             // columnHeader1

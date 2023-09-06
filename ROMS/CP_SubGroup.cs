@@ -323,7 +323,7 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                if (Convert.ToString(cmbGroupName.SelectedValue) == "0" || Convert.ToString(cmbGroupName.SelectedValue) == "-1")
+                if ((Convert.ToString(cmbGroupName.SelectedValue)) == "0" || Convert.ToString(cmbGroupName.SelectedValue) == "-1")
                 {
                     epSubGroup.SetError(cmbGroupName, "Please select product group name");
                     cmbGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -331,7 +331,7 @@ namespace ROMS
                     tpGroupName.Show("Please select group name", cmbGroupName, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtESubGroupNameEnglish.Text.Trim() == "")
+                if (Convert.ToString(txtESubGroupNameEnglish.Text.Trim()) == "")
                 {
                     epSubGroup.SetError(txtESubGroupNameEnglish, "Please enter product sub group name in english");
                     txtESubGroupNameEnglish.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -339,7 +339,7 @@ namespace ROMS
                     tpSubGroupNameInEnglish.Show("Please enter product sub group name in english", txtESubGroupNameEnglish, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtESubGroupNameTamil.Text.Trim() == "")
+                if (Convert.ToString(txtESubGroupNameTamil.Text.Trim()) == "")
                 {
                     epSubGroup.SetError(txtESubGroupNameTamil, "Please enter product sub group name in tamil");
                     txtESubGroupNameTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -954,18 +954,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(cmbStockLocation.SelectedValue) == "0" || Convert.ToString(cmbStockLocation.SelectedValue) == "-1")
-                {
-                    epSubGroup.SetError(cmbStockLocation, "Please select shop location");
-                    cmbStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpShopLocation.ShowAlways = true;
-                    tpShopLocation.Show("Please select shop location.", cmbStockLocation, 5000);
-                }
-                else
-                {
-                    cmbStockLocation.BackColor = Color.White;
-                    tpShopLocation.Active = false;
-                }
+                cmbStockLocation.BackColor = Color.White;
             }
             catch (Exception ex)
             {

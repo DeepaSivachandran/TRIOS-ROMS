@@ -113,6 +113,15 @@ namespace ROMS
                                 grdGroup.Rows[j].Cells[0].Value = true;
                                 varGroup = Convert.ToString(grdGroup.Rows[j].Cells["ID"].Value);
                                 udfnSubGroupList();
+                            }
+                        }
+                    }
+                    for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
+                    {
+                        for (int j = 0; j < grdSubGroup.RowCount; j++)
+                        {
+                            if (Convert.ToString(objDS.Tables[1].Rows[i]["PRSGID"]) == Convert.ToString(grdSubGroup.Rows[j].Cells["Sub Group Id"].Value))
+                            {
                                 grdSubGroup.Rows[i].Cells[0].Value = true;
                             }
                         }
@@ -165,6 +174,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdGroup.ClearSelection();
             }
         }
 
@@ -228,6 +241,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdSubGroupAdd.ClearSelection();
             }
         }
         public void udfnSelectedSubGroupRemove()
@@ -323,6 +340,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdSubGroup.ClearSelection();
             }
         }
 

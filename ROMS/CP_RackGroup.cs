@@ -136,6 +136,10 @@ namespace ROMS
                 {
                     varViewType = 4;
                     varConcernId = varCompanyId;
+                    if(varConcernId==0)
+                    {
+                        varViewType = 3;
+                    }
                 }
                 objDT = objdserv.udfnCompanyList(varViewType, varConcernId, MainForm.pbUserID, MainForm.pbIpAddress);
                 objdserv.CloseConnection();
@@ -260,6 +264,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdRack.ClearSelection();
             }
            
         }
@@ -408,7 +416,7 @@ namespace ROMS
                 grdSelectedRack.Rows.Clear();
                 grdStaffDetails.Rows.Clear();
                 chkRack.Checked = false;
-                tpStaffName.Active = false;
+                //tpStaffName.Active = false;
                 cmbConcern.Focus();
             }
             catch (Exception ex)
@@ -437,7 +445,6 @@ namespace ROMS
                     tpRackGroupName.ShowAlways = true;
                     tpRackGroupName.Show("Please enter rack group name", txtRackGroupName, 5000);
                     blnErrorFlag = true;
-
                 }
                 if (grdSelectedRack.Rows.Count <= 0)
                 {
@@ -1277,6 +1284,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                grdSelectedRack.ClearSelection();
+            }
         }
         private void Add_Click(object sender, EventArgs e)
         {
@@ -1324,19 +1335,26 @@ namespace ROMS
         {
             try
             {
-                if (e.RowIndex != -1)
+                if (grdSelectedRack.RowCount > 0)
                 {
-                    switch (grdSelectedRack.Columns[e.ColumnIndex].Name)
+                    if (e.RowIndex != -1)
                     {
-                        case "clmRemoveRack":
+                        switch (grdSelectedRack.Columns[e.ColumnIndex].Name)
+                        {
+                            case "clmRemoveRack":
 
-                            grdSelectedRack.Rows.RemoveAt(this.grdSelectedRack.SelectedRows[0].Index);
-                            for (int i = 0; i < grdSelectedRack.RowCount; i++)
-                            {
-                                grdSelectedRack.Rows[i].Cells["columnSNo"].Value = i + 1;
-                            }
-                            udfnTotalProducts();
-                            break;
+                                DialogResult dialogResult = MessageBox.Show("Do you want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    grdSelectedRack.Rows.RemoveAt(this.grdSelectedRack.SelectedRows[0].Index);
+                                    for (int i = 0; i < grdSelectedRack.RowCount; i++)
+                                    {
+                                        grdSelectedRack.Rows[i].Cells["columnSNo"].Value = i + 1;
+                                    }
+                                    udfnTotalProducts();
+                                }
+                                break;
+                        }
                     }
                 }
             }
