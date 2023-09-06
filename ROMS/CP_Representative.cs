@@ -47,12 +47,12 @@ namespace ROMS
         public void udfnclose()
         {
             try
-            { 
+            {
+                tpphone.Active = false; 
+                tpwhatsapp.Active = false; 
+                tpGroupNameinEnglish.Active = false; 
+                tpGroupNameinTamil.Active = false; 
                 this.Close();
-                tpphone.ShowAlways = false;
-                tpwhatsapp.ShowAlways = false;
-                tpGroupNameinEnglish.ShowAlways = false;
-                tpGroupNameinTamil.ShowAlways = false;
             }
             catch (Exception ex)
             {
@@ -173,10 +173,10 @@ namespace ROMS
 
                 if (blnErrorFlag == false)
                 {
-                    tpphone.ShowAlways = false;
-                    tpwhatsapp.ShowAlways = false;
-                    tpGroupNameinEnglish.ShowAlways = false;
-                    tpGroupNameinTamil.ShowAlways = false;
+                    tpphone.Active = false; 
+                    tpwhatsapp.Active = false; 
+                    tpGroupNameinEnglish.Active = false; 
+                    tpGroupNameinTamil.Active = false; 
                     udfnSave(sender, e);
                 }
                 else

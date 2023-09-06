@@ -666,7 +666,6 @@ namespace ROMS
         {
             try
             {
-                this.Close(); 
                 tpplno.ShowAlways = false;
                 tpcompanyname.ShowAlways = false;
                 tpunit.ShowAlways = false;
@@ -676,8 +675,9 @@ namespace ROMS
                 tpprd.ShowAlways = false;
                 tptamname.ShowAlways = false;
                 tpengname.ShowAlways = false;
+                this.Hide();
 
-        MainForm.objCP_Itemlist.grdItemList.ClearSelection();
+                MainForm.objCP_Itemlist.grdItemList.ClearSelection();
             }
             catch (Exception ex)
             {

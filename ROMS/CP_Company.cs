@@ -56,30 +56,30 @@ namespace ROMS
             try
             {
                 epCompany.Clear();
-                tpCompanyName.RemoveAll();
-                tpCompanyName.ShowAlways = false;
-            tpShortName.ShowAlways = false;
-            tpAddressLine1.ShowAlways = false;
-            tpAddressLine2.ShowAlways = false;
-            tpState.ShowAlways = false;
-            tpCity.ShowAlways = false;
-            tpPincode.ShowAlways = false;
-            tpPhoneNo.ShowAlways = false;
-            tpMobileNo.ShowAlways = false;
-            tpWhatsAppNo.ShowAlways = false;
-            tpEmail.ShowAlways = false;
-            tpWebsite.ShowAlways = false;
-            tpGstin.ShowAlways = false;
-            tpPan.ShowAlways = false;
-            tpEsi.ShowAlways = false;
-            tpEsf.ShowAlways = false;
-            tpFssai.ShowAlways = false;
-            tpPlNo.ShowAlways = false;
-            tpName.ShowAlways = false;
-            tpTransactionType.ShowAlways = false;
-            tpMobileNumber.ShowAlways = false;
-            tpOperator.ShowAlways = false;
-            tpMobileBrand.ShowAlways = false;
+                tpCompanyName.Active = false;
+                tpCompanyName.Active = false; 
+            tpShortName.Active = false; 
+            tpAddressLine1.Active = false; 
+            tpAddressLine2.Active = false; 
+            tpState.Active = false; 
+            tpCity.Active = false; 
+            tpPincode.Active = false; 
+            tpPhoneNo.Active = false; 
+            tpMobileNo.Active = false; 
+            tpWhatsAppNo.Active = false; 
+            tpEmail.Active = false; 
+            tpWebsite.Active = false; 
+            tpGstin.Active = false; 
+            tpPan.Active = false; 
+            tpEsi.Active = false; 
+            tpEsf.Active = false; 
+            tpFssai.Active = false; 
+            tpPlNo.Active = false; 
+            tpName.Active = false; 
+            tpTransactionType.Active = false; 
+            tpMobileNumber.Active = false; 
+            tpOperator.Active = false; 
+            tpMobileBrand.Active = false; 
         }catch (Exception ex)
             {
                 objError = new DataError();
@@ -91,8 +91,7 @@ namespace ROMS
         {
             try
             {
-          this.Close();
-                udfntooltiphide();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -3758,7 +3757,7 @@ namespace ROMS
             //}
             //finally
             //{ 
-            //   // tpCompanyName.ShowAlways = false;
+            //   // tpCompanyName.Active = false; 
             //}
         }
 
@@ -3775,7 +3774,7 @@ namespace ROMS
             }
             finally
             {
-                // tpCompanyName.ShowAlways = false;
+                // tpCompanyName.Active = false; 
             }
         }
 
@@ -3792,7 +3791,7 @@ namespace ROMS
             }
             finally
             {
-                // tpCompanyName.ShowAlways = false;
+                // tpCompanyName.Active = false; 
             }
         }
 
@@ -3819,7 +3818,20 @@ namespace ROMS
             }
             finally
             {
-                // tpCompanyName.ShowAlways = false;
+                // tpCompanyName.Active = false; 
+            }
+        }
+
+        private void CP_Company_Leave(object sender, EventArgs e)
+        { 
+            try {
+                udfntooltiphide();
+            }
+             
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
