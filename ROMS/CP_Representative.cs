@@ -15,6 +15,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable objdatabrand = new DataTable();
+        DataTable dtPaymentMode = new DataTable();
         private ToolTip tpGroupNameinTamil = new ToolTip();
         private ToolTip tpGroupNameinEnglish = new ToolTip();
 
@@ -480,6 +481,24 @@ namespace ROMS
                         grdRepBrand.Columns["Brand Name"].ReadOnly = true;
                         grdRepBrand.Columns["sno"].Visible = false;
                         grdRepBrand.Columns["BD_STSID"].Visible = false;
+                        
+                        dtPaymentMode = new DataTable();
+                        dtPaymentMode.Columns.Add("", typeof(Boolean));
+                        dtPaymentMode.Columns.Add("BD_STSID", typeof(int));
+                        dtPaymentMode.Columns.Add("ID", typeof(int));
+                        dtPaymentMode.Columns.Add("Brand Name", typeof(string));
+                        dtPaymentMode.Columns.Add("sno", typeof(string));
+
+                        for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
+                        {
+                            dtPaymentMode.Rows.Add(false, objDS.Tables[0].Rows[i]["BD_STSID"],objDS.Tables[0].Rows[i]["ID"], objDS.Tables[0].Rows[i]["sno"], objDS.Tables[0].Rows[i]["Brand Name"]);
+                        }
+                        grdtest.DataSource = dtPaymentMode;
+                        grdtest.Columns["ID"].Visible = false;
+                        grdtest.Columns["Brand Name"].Width = 230;
+                        grdtest.Columns["Brand Name"].ReadOnly = true;
+                        grdtest.Columns["sno"].Visible = false;
+                        grdtest.Columns["BD_STSID"].Visible = false;
 
                         //foreach (DataGridViewRow row in grdRepBrand.Rows)
                         //{
@@ -923,6 +942,22 @@ namespace ROMS
             }
         }
 
+        private void Grdtest_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdRepBrand.IsCurrentCellDirty)
+                {
+                    grdtest.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtWhatsappno_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -938,6 +973,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
+        }
+
+        private void Grdtest_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    checkallcheckboxvalue1();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void GrdRepBrand_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -997,6 +1048,40 @@ namespace ROMS
                 {
                     varCheckAllFlag = 1;
                     chkBrandAll.Checked = false;
+                }
+            }
+
+        }
+
+        private void checkallcheckboxvalue1()
+        {
+            int varCheckedCount = 0;
+            try
+            {
+                for (int i = 0; i < grdtest.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(grdtest.Rows[i].Cells[0].FormattedValue) == true)
+                    {
+                        varCheckedCount++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                if (grdRepBrand.Rows.Count == varCheckedCount)
+                {
+                    varCheckAllFlag = 1;
+                    chkall.Checked = true;
+                }
+                else
+                {
+                    varCheckAllFlag = 1;
+                    chkall.Checked = false;
                 }
             }
 
