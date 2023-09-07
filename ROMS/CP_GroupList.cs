@@ -406,18 +406,7 @@ namespace ROMS
         }
         private void CmbProductGroup_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
         public void udfnLoadCmbProductGroup()
         {
@@ -760,6 +749,23 @@ namespace ROMS
             {
                 udfnLvGroup();
                 btnView.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnLvGroup();
+                    btnView.Focus();
+                }
             }
             catch (Exception ex)
             {
