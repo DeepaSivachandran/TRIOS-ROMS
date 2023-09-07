@@ -124,7 +124,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 3;
-                objDT = objdserv.udfnGroupList(varViewType, 0, 0);
+                objDT = objdserv.udfnGroupList(varViewType, 0, 0,"");
                 objdserv.CloseConnection();
                 cmbGroup.DataSource = null;
                 if (objDT != null)

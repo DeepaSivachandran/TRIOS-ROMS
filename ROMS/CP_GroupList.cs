@@ -72,7 +72,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGroupList(0, Convert.ToInt32(cmbProductGroup.SelectedValue),0);
+                objDs = objdserv.udfnGroupList(0, Convert.ToInt32(cmbProductGroup.SelectedValue),0,"");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -426,7 +426,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 3;
-                objDT = objdserv.udfnGroupList(varViewType, 0,0);
+                objDT = objdserv.udfnGroupList(varViewType, 0,0,"");
                 objdserv.CloseConnection();
                 cmbProductGroup.DataSource = null;
                 if (objDT != null)

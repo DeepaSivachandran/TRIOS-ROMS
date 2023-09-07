@@ -31,7 +31,6 @@ namespace ROMS
         public CP_City()
         {
             InitializeComponent();
-            MainForm.objCP_Citylist.picLoader.Visible = false;
         }
         private void CP_City_Leave(object sender, EventArgs e)
         {

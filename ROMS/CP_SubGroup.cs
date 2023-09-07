@@ -85,7 +85,7 @@ namespace ROMS
                 DataSet objDT = new DataSet();
                 int varViewType = 2;
                 if (btnSave.Text == "Save") { varViewType = 1; }
-                objDT = objdserv.udfnGroupList(varViewType, varGroupId,0);
+                objDT = objdserv.udfnGroupList(varViewType, varGroupId,0,"");
                 objdserv.CloseConnection();
                 cmbGroupName.DataSource = null;
                 if (objDT != null) {

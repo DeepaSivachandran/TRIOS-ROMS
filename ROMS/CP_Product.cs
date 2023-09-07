@@ -2285,7 +2285,7 @@ namespace ROMS
                     cmbBatchNoEntry.SelectedValue = 73;
                 }
 
-                objDT = objdserv.udfnGroupList(varViewType, Convert.ToInt32(varcmbgroupcode),0);
+                objDT = objdserv.udfnGroupList(varViewType, Convert.ToInt32(varcmbgroupcode),0,"");
                 objdserv.CloseConnection();
                 cmbGroup.DataSource = null;
                 if (objDT != null)

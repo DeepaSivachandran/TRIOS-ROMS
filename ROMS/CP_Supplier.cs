@@ -3104,7 +3104,7 @@ namespace ROMS
                     DataSet objDT = new DataSet();
                     SPDataService objdserv = new SPDataService();
                     int varViewType = 3;
-                    objDT = objdserv.udfnGroupList(varViewType, 0,0);
+                    objDT = objdserv.udfnGroupList(varViewType, 0,0,"");
                     objdserv.CloseConnection();
                     if (objDT != null)
                     {

@@ -141,7 +141,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGroupList(varviewtype,0, varId);
+                objDs = objdserv.udfnGroupList(varviewtype,0, varId,"");
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[0].Rows.Count != 0)
