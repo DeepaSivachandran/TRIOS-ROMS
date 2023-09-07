@@ -44,7 +44,6 @@ namespace ROMS
         public CP_User()
         {
             InitializeComponent();
-            MainForm.objCP_Userlist.picLoader.Visible = false;
         }
         private void CP_User_Leave(object sender, EventArgs e)
         {
@@ -638,6 +637,12 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+
+                MainForm.objCP_Userlist.picLoader.Visible = false;
+                MainForm.objCP_Userlist.picLoader.SendToBack();
             }
         }
         private void udfnLoad()

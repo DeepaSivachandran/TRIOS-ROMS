@@ -72,6 +72,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                MainForm.objCP_Unitlist.picLoader.Visible = false;
+                MainForm.objCP_Unitlist.picLoader.SendToBack();
+            }
         }
         public void udfnLoad() {
             try {
@@ -577,6 +582,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
+                    btnSave.Focus();
                     btnSave_Click(sender, e);
                 }
             }

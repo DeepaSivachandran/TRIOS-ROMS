@@ -39,7 +39,6 @@ namespace ROMS
         public CP_Location()
         {
             InitializeComponent();
-            MainForm.objCP_LocationList.picLoader.Visible = false;
         }
         private void CP_Location_Leave(object sender, EventArgs e)
         {
@@ -184,6 +183,12 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+
+                MainForm.objCP_LocationList.picLoader.Visible = false;
+                MainForm.objCP_LocationList.picLoader.SendToBack();
             }
         }
         private void udfnLoad()
@@ -331,6 +336,14 @@ namespace ROMS
                     cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpStoctApplicable.ShowAlways = true;
                     tpStoctApplicable.Show("Please select stock applicable", cmbStockApplicable, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtShortName.Text).Trim() == "")
+                {
+                    epLocation.SetError(txtShortName, "Please enter short name");
+                    txtShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpLocationTypeInTamil.ShowAlways = true;
+                    tpLocationTypeInTamil.Show("Please  enter short name", txtShortName, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)

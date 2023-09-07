@@ -284,7 +284,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 if (varGroup != "")
                 {
-                    objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup,0,varId,"");
+                    objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup,0,varId,"","");
                 }
                 objdserv.CloseConnection();
                 if (chkgroup.Checked) { dtSubGroup.Rows.Clear(); dtSubGroup.AcceptChanges(); }
@@ -591,7 +591,13 @@ namespace ROMS
             try
             {
                 btnSave.Enabled = false;
-                string varResult = "";
+                string varResult = ""; string varOriginator = "Brand Creation";
+                int varViewType = 0;
+                if (btnSave.Text == "Update")
+                {
+                    varOriginator = "Brand Updation";
+                    varViewType = 1;
+                }
                 if (rbActive.Checked)
                 {
                     varStatusid = 1;
@@ -613,14 +619,7 @@ namespace ROMS
                     }
                 }
                 SPDataService objDser = new SPDataService();
-                if (btnSave.Text == "Save")
-                {
-                    varResult = objDser.udfnBrand(0, 0, Convert.ToString(txtEBrandNameInEnglish.Text), Convert.ToString(txtEBrandNameInTamil.Text), varStatusid, varSubGroupId, "Brand Creation");
-                }
-                else
-                {
-                    varResult = objDser.udfnBrand(1, varId, Convert.ToString(txtEBrandNameInEnglish.Text), Convert.ToString(txtEBrandNameInTamil.Text), varStatusid, varSubGroupId, "Brand Updation");
-                }
+                varResult = objDser.udfnBrand(varViewType, varId, Convert.ToString(txtEBrandNameInEnglish.Text).Trim(), Convert.ToString(txtEBrandNameInTamil.Text).Trim(), varStatusid, varSubGroupId, varOriginator);
                 objDser.CloseConnection();
                 btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")

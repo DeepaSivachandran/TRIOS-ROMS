@@ -328,7 +328,13 @@ namespace ROMS
             try
             {
                 btnSave.Enabled = false;
-                string varResult = "";
+                string varResult = ""; string varOriginator = "Rack Group Creation";
+                int varViewType = 0;
+                if (btnSave.Text == "Update")
+                {
+                    varOriginator = "Rack Group Updation";
+                    varViewType = 1;
+                }
                 if (rbActive.Checked)
                 {
                     varStatusid = 1;
@@ -361,14 +367,7 @@ namespace ROMS
                     }
                 }
                 SPDataService objDser = new SPDataService();
-                if (btnSave.Text == "Save")
-                {
-                    varResult = objDser.udfnRackGroup(0, 0, Convert.ToInt16(cmbConcern.SelectedValue), txtRackGroupName.Text, varRackID, varUserID, varStatusid, "Rack Group Creation");
-                }
-                else
-                {
-                    varResult = objDser.udfnRackGroup(1, varId, Convert.ToInt16(cmbConcern.SelectedValue), txtRackGroupName.Text, varRackID, varUserID, varStatusid, "Rack Group Updation");
-                }
+                varResult = objDser.udfnRackGroup(varViewType, 0, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToString(txtRackGroupName.Text).Trim(), varRackID, varUserID, varStatusid, varOriginator);
                 objDser.CloseConnection();
                 btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -390,7 +389,6 @@ namespace ROMS
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnSave.Focus();
                 }
-               
             }
             catch (Exception ex)
             {

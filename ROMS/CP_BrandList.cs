@@ -62,7 +62,7 @@ namespace ROMS
                 {
                     varViewType = 4;
                 }
-                objDT = objdserv.udfnSubGroupList(varViewType, 0,"", varGroupId,0,"");
+                objDT = objdserv.udfnSubGroupList(varViewType, 0,"", varGroupId,0,"","");
                 objdserv.CloseConnection();
                 cmbProductSubGroup.DataSource = null;
                 if (objDT != null)
