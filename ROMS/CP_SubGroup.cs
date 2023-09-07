@@ -22,13 +22,11 @@ namespace ROMS
         private ToolTip tpShopLocation = new ToolTip();
         private ToolTip tpRack = new ToolTip();
 
-       // public int varShopLocationId = -1;
         public string varsubgroupcode;
         public String pbFormStatus;
 
         public int varStatusid = 1;
         public int varCloseFlag = 0;
-        //public int varFormFlag = 0;
         public string varSubGroupNameinTamil = "";
         public string varSubGroupNameinEnglish = "";
         public string varGroupName = "";
