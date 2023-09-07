@@ -31,7 +31,6 @@ namespace ROMS
         public CP_UserCategory()
         {
             InitializeComponent();
-            MainForm.objCP_UserCategoryList.picLoader.Visible = false;
         }
         private void rbActive_KeyDown(object sender, KeyEventArgs e)
         {
@@ -337,6 +336,12 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+
+                MainForm.objCP_UserCategoryList.picLoader.Visible = false;
+                MainForm.objCP_UserCategoryList.picLoader.SendToBack();
             }
         }
         private void udfnLoad()

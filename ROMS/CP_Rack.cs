@@ -32,7 +32,6 @@ namespace ROMS
         public CP_Rack()
         {
             InitializeComponent();
-            MainForm.objCP_RackList.picLoader.Visible = false;
         }
         private void CP_Rack_Leave(object sender, EventArgs e)
         {
@@ -93,6 +92,12 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+
+                MainForm.objCP_RackList.picLoader.Visible = false;
+                MainForm.objCP_RackList.picLoader.SendToBack();
             }
         }
         private void udfnLoad()

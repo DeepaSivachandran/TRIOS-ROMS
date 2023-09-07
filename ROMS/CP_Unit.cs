@@ -33,7 +33,6 @@ namespace ROMS
         public CP_Unit()
         {
             InitializeComponent();
-            MainForm.objCP_Unitlist.picLoader.Visible = false;
         }
         private void CP_Unit_Leave(object sender, EventArgs e)
         {
@@ -72,6 +71,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                MainForm.objCP_Unitlist.picLoader.Visible = false;
+                MainForm.objCP_Unitlist.picLoader.SendToBack();
             }
         }
         public void udfnLoad() {

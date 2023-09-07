@@ -1129,11 +1129,6 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductSubGroup.Text.Length > 2)
                 {
-                    //int varViewType = 4;
-
-                    //objDT = objdserv.udfnSubGroupList(varViewType, 0, "", 0, 0, "");
-                    //objdserv.CloseConnection();
-
                     objDs = objspdservice.udfnSubGroupList(9,0,"",0,0,"",txtProductSubGroup.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -1144,8 +1139,9 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    lvSubGroup.Columns[2].Width = 200;
                                     lvSubGroup.Items.Add(objList);
                                 }
                                 lvSubGroup.Visible = true;
@@ -1297,7 +1293,6 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductGroup.Text.Length > 2)
                 {
-
                     objDs = objspdservice.udfnGroupList(7, 0,0,txtProductGroup.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -1308,8 +1303,9 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    lvGroup.Columns[2].Width = 200;
                                     lvGroup.Items.Add(objList);
                                 }
                                 lvGroup.Visible = true;

@@ -40,7 +40,6 @@ namespace ROMS
         public CP_Broker()
         {
             InitializeComponent();
-            MainForm.objCP_CP_BrokerList.picLoader.Visible = false;
         }
         private void udfnEdit()
         {
@@ -419,6 +418,8 @@ namespace ROMS
             finally
             {
                 lvCity.Visible = false;
+                MainForm.objCP_CP_BrokerList.picLoader.Visible = false;
+                MainForm.objCP_CP_BrokerList.picLoader.SendToBack();
             }
         }
         private void CP_Broker_KeyDown(object sender, KeyEventArgs e)

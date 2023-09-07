@@ -39,7 +39,6 @@ namespace ROMS
         public CP_Location()
         {
             InitializeComponent();
-            MainForm.objCP_LocationList.picLoader.Visible = false;
         }
         private void CP_Location_Leave(object sender, EventArgs e)
         {
@@ -184,6 +183,12 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+
+                MainForm.objCP_LocationList.picLoader.Visible = false;
+                MainForm.objCP_LocationList.picLoader.SendToBack();
             }
         }
         private void udfnLoad()
