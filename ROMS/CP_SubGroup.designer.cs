@@ -37,6 +37,7 @@
             this.txtEProductSubGroupNameTamil = new System.Windows.Forms.TextBox();
             this.txtESubGroupNameTamil = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Label();
+            this.cmbGroupName = new System.Windows.Forms.ComboBox();
             this.txtDGroupName = new System.Windows.Forms.TextBox();
             this.txtDStatus = new System.Windows.Forms.TextBox();
             this.pnlStatus = new System.Windows.Forms.Panel();
@@ -51,12 +52,6 @@
             this.cmbRack = new System.Windows.Forms.ComboBox();
             this.cmbStockLocation = new System.Windows.Forms.ComboBox();
             this.epSubGroup = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtProductGroupName = new System.Windows.Forms.TextBox();
-            this.lvGroupName = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblGroupName = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             this.grpPurchaseStockLocation.SuspendLayout();
@@ -65,15 +60,13 @@
             // 
             // grbform
             // 
-            this.grbform.Controls.Add(this.lblGroupName);
-            this.grbform.Controls.Add(this.lvGroupName);
-            this.grbform.Controls.Add(this.txtProductGroupName);
             this.grbform.Controls.Add(this.cmbBatchNo);
             this.grbform.Controls.Add(this.textBox1);
             this.grbform.Controls.Add(this.txtStockLocation);
             this.grbform.Controls.Add(this.txtEProductSubGroupNameTamil);
             this.grbform.Controls.Add(this.txtESubGroupNameTamil);
             this.grbform.Controls.Add(this.btnAdd);
+            this.grbform.Controls.Add(this.cmbGroupName);
             this.grbform.Controls.Add(this.txtDGroupName);
             this.grbform.Controls.Add(this.txtDStatus);
             this.grbform.Controls.Add(this.pnlStatus);
@@ -87,6 +80,7 @@
             this.grbform.Size = new System.Drawing.Size(453, 319);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+          
             // 
             // cmbBatchNo
             // 
@@ -162,6 +156,20 @@
             this.btnAdd.Text = "        ";
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
+            // cmbGroupName
+            // 
+            this.cmbGroupName.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbGroupName.FormattingEnabled = true;
+            this.cmbGroupName.Location = new System.Drawing.Point(224, 20);
+            this.cmbGroupName.Name = "cmbGroupName";
+            this.cmbGroupName.Size = new System.Drawing.Size(200, 27);
+            this.cmbGroupName.TabIndex = 0;
+            this.cmbGroupName.SelectedIndexChanged += new System.EventHandler(this.CmbGroupName_SelectedIndexChanged);
+            this.cmbGroupName.Enter += new System.EventHandler(this.CmbGroupName_Enter);
+            this.cmbGroupName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGroupName_KeyDown);
+            this.cmbGroupName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbGroupName_KeyPress);
+            this.cmbGroupName.Leave += new System.EventHandler(this.CmbGroupName_Leave);
+            // 
             // txtDGroupName
             // 
             this.txtDGroupName.BackColor = System.Drawing.SystemColors.Control;
@@ -209,6 +217,7 @@
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
+           
             this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
             this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
@@ -342,59 +351,6 @@
             // 
             this.epSubGroup.ContainerControl = this;
             // 
-            // txtProductGroupName
-            // 
-            this.txtProductGroupName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtProductGroupName.Location = new System.Drawing.Point(224, 20);
-            this.txtProductGroupName.MaxLength = 100;
-            this.txtProductGroupName.Name = "txtProductGroupName";
-            this.txtProductGroupName.Size = new System.Drawing.Size(200, 27);
-            this.txtProductGroupName.TabIndex = 0;
-            this.txtProductGroupName.TextChanged += new System.EventHandler(this.TxtProductGroupName_TextChanged);
-            this.txtProductGroupName.Enter += new System.EventHandler(this.TxtProductGroupName_Enter);
-            this.txtProductGroupName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductGroupName_KeyDown);
-            this.txtProductGroupName.Leave += new System.EventHandler(this.TxtProductGroupName_Leave);
-            // 
-            // lvGroupName
-            // 
-            this.lvGroupName.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.lvGroupName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvGroupName.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvGroupName.HideSelection = false;
-            this.lvGroupName.Location = new System.Drawing.Point(224, 47);
-            this.lvGroupName.Name = "lvGroupName";
-            this.lvGroupName.Size = new System.Drawing.Size(223, 90);
-            this.lvGroupName.TabIndex = 1111144;
-            this.lvGroupName.UseCompatibleStateImageBehavior = false;
-            this.lvGroupName.View = System.Windows.Forms.View.Details;
-            this.lvGroupName.Visible = false;
-            this.lvGroupName.DoubleClick += new System.EventHandler(this.LvGroupName_DoubleClick);
-            this.lvGroupName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvGroupName_KeyDown);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 180;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 120;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 0;
-            // 
-            // lblGroupName
-            // 
-            this.lblGroupName.AutoSize = true;
-            this.lblGroupName.Location = new System.Drawing.Point(9, 25);
-            this.lblGroupName.Name = "lblGroupName";
-            this.lblGroupName.Size = new System.Drawing.Size(0, 18);
-            this.lblGroupName.TabIndex = 1111145;
-            this.lblGroupName.Visible = false;
-            // 
             // CP_SubGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -438,6 +394,7 @@
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
         internal System.Windows.Forms.Label btnAdd;
+        private System.Windows.Forms.ComboBox cmbGroupName;
         private System.Windows.Forms.TextBox txtDGroupName;
         private System.Windows.Forms.TextBox txtEProductSubGroupNameTamil;
         private System.Windows.Forms.TextBox txtESubGroupNameTamil;
@@ -449,11 +406,5 @@
         private System.Windows.Forms.ComboBox cmbBatchNo;
         private System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox txtProductGroupName;
-        public System.Windows.Forms.ListView lvGroupName;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.Label lblGroupName;
     }
 }
