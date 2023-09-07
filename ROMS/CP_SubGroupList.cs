@@ -23,36 +23,6 @@ namespace ROMS
         {
             InitializeComponent();
         }
-        public void udfnLoadCmbProductSubGroup()
-        {
-            try
-            {
-                SPDataService objdserv = new SPDataService();
-                DataSet objDT = new DataSet();
-                int varViewType = 3;
-                objDT = objdserv.udfnSubGroupList(varViewType, 0,"",0,0,"");
-                objdserv.CloseConnection();
-                //cmbProductSubGroup.DataSource = null;
-                if (objDT != null)
-                {
-                    if (objDT.Tables.Count > 0)
-                    {
-                        if (objDT.Tables[0].Rows.Count > 0)
-                        {
-                            //cmbProductSubGroup.ValueMember = "PRSGID";
-                            //cmbProductSubGroup.DisplayMember = "PRSG_EName";
-                            //cmbProductSubGroup.DataSource = objDT.Tables[0];
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
         private void tsbNew_Click(object sender, EventArgs e)
         {
             try
@@ -95,9 +65,6 @@ namespace ROMS
         {
             try
             {
-                //BeginInvoke(new Action(() => cmbProductSubGroup.Select(int.MaxValue, 0)));
-                //this.ActiveControl = cmbProductSubGroup;
-                udfnLoadCmbProductSubGroup();
                 udfnList();
             }
             catch (Exception ex)
