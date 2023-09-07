@@ -26,7 +26,6 @@ namespace ROMS
         public string varGroupNameinTamil = "";
         public string varGroupNameinEnglish = "";
         public int varGroupCode =0;
-        public string varProductGroupName = "";
         public int varId = 0;
         public int varStatus = 0;
         public int varFormFlag = 0;
@@ -321,13 +320,9 @@ namespace ROMS
                             MainForm.objCP_GroupList.varGroupId= Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
                             udfnClear();
                         }
-
                         if (varFormFlag == 1)
                         {
                             varFormFlag = 0;
-                            varGroupCode = Convert.ToInt16(varResult.Split('~')[2]);
-                            varProductGroupName = Convert.ToString(varResult.Split('~')[2]);
-                            MainForm.objCP_SubGroup.varProductGroupName = txtEGroupNameEnglish.Text;
                             MainForm.objCP_SubGroup.varGroupCode = varGroupCode;
                             varCloseFlag = 1;
                             udfnclose();
@@ -336,10 +331,10 @@ namespace ROMS
                         {
                             varmastertype = 0;
                             MainForm.objCP_Items.varGroupCode = varGroupCode;
-                            MainForm.objCP_Items.varGroupName = txtEGroupNameEnglish.Text.Trim();
                             varCloseFlag = 1;
                             udfnclose();
                         }
+                        
                     }
                     else
                     {
