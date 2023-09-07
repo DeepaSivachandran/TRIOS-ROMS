@@ -331,6 +331,7 @@ namespace ROMS
                         {
                             varmastertype = 0;
                             MainForm.objCP_Items.varGroupCode = varGroupCode;
+                            MainForm.objCP_Items.varGroupName = txtEGroupNameEnglish.Text.Trim();
                             varCloseFlag = 1;
                             udfnclose();
                         }

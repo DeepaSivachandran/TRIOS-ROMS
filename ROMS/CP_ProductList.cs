@@ -1031,7 +1031,7 @@ namespace ROMS
 
 
                 varViewType = 3;
-                objDT = objdserv.udfnGroupList(varViewType, 0,0);
+                objDT = objdserv.udfnGroupList(varViewType, 0,0,"");
                 objdserv.CloseConnection();
                 cmbGroupType.DataSource = null; 
                 if (objDT != null)

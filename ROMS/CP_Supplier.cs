@@ -3098,13 +3098,10 @@ namespace ROMS
 
                     objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + SupplierUpdate + "' OR SPSCID=0", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
                     objDataBind = null;
-
-
-
                     DataSet objDT = new DataSet();
                     SPDataService objdserv = new SPDataService();
                     int varViewType = 3;
-                    objDT = objdserv.udfnGroupList(varViewType, 0,0);
+                    objDT = objdserv.udfnGroupList(varViewType, 0,0,"");
                     objdserv.CloseConnection();
                     if (objDT != null)
                     {
