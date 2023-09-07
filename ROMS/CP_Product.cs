@@ -44,6 +44,7 @@ namespace ROMS
         private ToolTip tpengname = new ToolTip();
 
         public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0, varGroupId=0, varSubGroupId = 0,varHsnId=0, varUnitid=0, varcompanyid=0, varBrandId=0,varBatchCode=0, varPURSLID=0, varPURRKID=0, varSALESLID=0, varSALERKID=0;
+        public string varSubGroupName = "";
         public CP_Product()
         {
             InitializeComponent();
@@ -193,32 +194,32 @@ namespace ROMS
                     blnErrorFlag = true;
                 }
 
-                if (Convert.ToString(cmbSubGroup.SelectedValue) == "" || Convert.ToString(cmbSubGroup.SelectedValue) == "-1")
+                if (Convert.ToString(lblSubGroupCode.Text) == "" || Convert.ToString(lblSubGroupCode.Text) == "0" || Convert.ToString(txtSubGroup.Text) == "")
                 {
-                    errItems.SetError(cmbSubGroup, "Please select SubGroup");
-                    cmbSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtSubGroup, "Please select subgroup");
+                    txtSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpprdSG.ShowAlways = true;
-                    tpprdSG.Show("Please select SubGroup", cmbGroup, 5000);
+                    tpprdSG.Show("Please select subgroup", cmbGroup, 5000);
                     blnErrorFlag = true;
                 }
 
                 if (Convert.ToString(cmbGroup.SelectedValue) == "" || Convert.ToString(cmbGroup.SelectedValue) == "-1")
                 {
-                    errItems.SetError(cmbGroup, "Please select Group");
+                    errItems.SetError(cmbGroup, "Please select group");
                     cmbGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpprdG.ShowAlways = true;
-                    tpprdG.Show("Please select Group", cmbGroup, 5000);
+                    tpprdG.Show("Please select group", cmbGroup, 5000);
                     blnErrorFlag = true;
                 }
 
-                if (Convert.ToString(cmbBrand.SelectedValue) == "" || Convert.ToString(cmbBrand.SelectedValue) == "-1")
-                {
-                    errItems.SetError(cmbBrand, "Please select Brand");
-                    cmbBrand.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpbrand.ShowAlways = true;
-                    tpbrand.Show("Please select Brand", cmbBrand, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (Convert.ToString(cmbBrand.SelectedValue) == "" || Convert.ToString(cmbBrand.SelectedValue) == "-1")
+                //{
+                //    errItems.SetError(cmbBrand, "Please select Brand");
+                //    cmbBrand.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpbrand.ShowAlways = true;
+                //    tpbrand.Show("Please select Brand", cmbBrand, 5000);
+                //    blnErrorFlag = true;
+                //}
 
                 if (Convert.ToString(cmbUnit.SelectedValue) == "" || Convert.ToString(cmbUnit.SelectedValue) == "-1")
                 {
@@ -475,7 +476,7 @@ namespace ROMS
 
                     } 
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text, Convert.ToInt32(cmbConcern.SelectedValue),
-                    Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(cmbGroup.SelectedValue), Convert.ToInt32(cmbSubGroup.SelectedValue), Convert.ToInt32(cmbBrand.SelectedValue),
+                    Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(cmbGroup.SelectedValue), Convert.ToInt32(lblSubGroupCode.Text), Convert.ToInt32(lblBrand.Text),
                     Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(cmbPosition.SelectedValue), Convert.ToInt32(cmbSalesGodown.SelectedValue)
                     , Convert.ToInt32(cmbPurchaseRack.SelectedValue), Convert.ToInt32(cmbSalesRack.SelectedValue), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue)
                     , Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty,
@@ -527,9 +528,11 @@ namespace ROMS
                 txtSelfLife.Text = ""; 
                 cmbConcern.SelectedValue = -1;
                 cmbProductCategory.SelectedValue = -1;
-                cmbSubGroup.SelectedValue = -1;
-                cmbGroup.SelectedValue = -1; 
-                cmbBrand.SelectedValue = -1;
+                txtSubGroup.Text = "";
+                lblSubGroupCode.Text = "0";
+                cmbGroup.SelectedValue = -1;
+                txtBrand.Text = "";
+                lblBrand.Text = "0";
                 cmbUnit.SelectedValue = -1;
                 cmbBulkUnit.SelectedValue = -1;
                 cmbPurchaseRack.SelectedValue = -1;
@@ -579,9 +582,9 @@ namespace ROMS
                 errItems.Clear();
                 cmbConcern.BackColor = Color.White;
                 cmbProductCategory.BackColor = Color.White;
-                cmbSubGroup.BackColor = Color.White;
+                txtSubGroup.BackColor = Color.White;
                 cmbGroup.BackColor = Color.White;
-                cmbBrand.BackColor = Color.White;
+                txtBrand.BackColor = Color.White;
                 cmbUnit.BackColor = Color.White;
                 cmbBulkUnit.BackColor = Color.White;
                 cmbPurchaseRack.BackColor = Color.White;
@@ -783,7 +786,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBrand.Focus();
+                    txtBrand.Focus();
                 }
             }
             catch (Exception ex)
@@ -1326,16 +1329,16 @@ namespace ROMS
         {
             try
             {
-                if (txtRetailRate.Text == "")
-                {
-                    txtRetailRate.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtRetailRate, "Please Enter Retail Rate");
-                }
-                else
-                {
+                //if (txtRetailRate.Text == "")
+                //{
+                //    txtRetailRate.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    errItems.SetError(txtRetailRate, "Please Enter Retail Rate");
+                //}
+                //else
+                //{
                     txtRetailRate.BackColor = Color.White;
                     errItems.Clear();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1348,16 +1351,16 @@ namespace ROMS
         {
             try
             {
-                if (txtWSaleRate.Text == "")
-                {
-                    txtWSaleRate.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtWSaleRate, "Please Enter W Sale Rate");
-                }
-                else
-                {
+                //if (txtWSaleRate.Text == "")
+                //{
+                //    txtWSaleRate.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    errItems.SetError(txtWSaleRate, "Please Enter W Sale Rate");
+                //}
+                //else
+                //{
                     txtWSaleRate.BackColor = Color.White;
                     errItems.Clear();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1370,16 +1373,16 @@ namespace ROMS
         {
             try
             {
-                if (txtWeight.Text == "")
-                {
-                    txtWeight.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtWeight, "Please Enter Weight");
-                }
-                else
-                {
+                //if (txtWeight.Text == "")
+                //{
+                //    txtWeight.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    errItems.SetError(txtWeight, "Please Enter Weight");
+                //}
+                //else
+                //{
                     txtWeight.BackColor = Color.White;
                     errItems.Clear();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1393,16 +1396,16 @@ namespace ROMS
         {
             try
             {
-                if (txtMaxStock.Text == "")
-                {
-                    txtMaxStock.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtMaxStock, "Please Enter Max Stock");
-                }
-                else
-                {
+                //if (txtMaxStock.Text == "")
+                //{
+                //    txtMaxStock.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    errItems.SetError(txtMaxStock, "Please Enter Max Stock");
+                //}
+                //else
+                //{
                     txtMaxStock.BackColor = Color.White;
                     errItems.Clear();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1415,16 +1418,16 @@ namespace ROMS
         {
             try
             {
-                if (txtMinStock.Text == "")
-                {
-                    txtMinStock.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtMinStock, "Please Enter Min Stock");
-                }
-                else
-                {
+                //if (txtMinStock.Text == "")
+                //{
+                //    txtMinStock.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    errItems.SetError(txtMinStock, "Please Enter Min Stock");
+                //}
+                //else
+                //{
                     txtMinStock.BackColor = Color.White;
                     errItems.Clear();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1438,16 +1441,16 @@ namespace ROMS
         {
             try
             {
-                if (txtWMinSaleQty.Text == "")
-                {
-                    txtWMinSaleQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtWMinSaleQty, "Please Enter Min Sale Qty");
-                }
-                else
-                {
+                //if (txtWMinSaleQty.Text == "")
+                //{
+                //    txtWMinSaleQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    errItems.SetError(txtWMinSaleQty, "Please Enter Min Sale Qty");
+                //}
+                //else
+                //{
                     txtWMinSaleQty.BackColor = Color.White;
                     errItems.Clear();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1460,16 +1463,16 @@ namespace ROMS
         {
             try
             {
-                if (txtRMinSaleQty.Text == "")
-                {
-                    txtRMinSaleQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtRMinSaleQty, "Please Enter R Min Sale Qty");
-                }
-                else
-                {
+                //if (txtRMinSaleQty.Text == "")
+                //{
+                //    txtRMinSaleQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    errItems.SetError(txtRMinSaleQty, "Please Enter R Min Sale Qty");
+                //}
+                //else
+                //{
                     txtRMinSaleQty.BackColor = Color.White;
                     errItems.Clear();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1482,16 +1485,16 @@ namespace ROMS
         {
             try
             {
-                if (txtBarcode.Text == "")
-                {
-                    txtBarcode.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtBarcode, "Please Enter BarCode");
-                }
-                else
-                {
+                //if (txtBarcode.Text == "")
+                //{
+                //    txtBarcode.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    errItems.SetError(txtBarcode, "Please Enter BarCode");
+                //}
+                //else
+                //{
                     txtBarcode.BackColor = Color.White;
                     errItems.Clear();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1527,16 +1530,16 @@ namespace ROMS
         {
             try
             {
-                if (txtReOrderQty.Text == "")
-                {
-                    txtReOrderQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtReOrderQty, "Please Enter ReOrder Qty");
-                }
-                else
-                {
+                //if (txtReOrderQty.Text == "")
+                //{
+                //    txtReOrderQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    errItems.SetError(txtReOrderQty, "Please Enter ReOrder Qty");
+                //}
+                //else
+                //{
                     txtReOrderQty.BackColor = Color.White;
                     errItems.Clear();
-                }
+               // }
             }
             catch (Exception ex)
             {
@@ -2080,18 +2083,18 @@ namespace ROMS
         {
             try
             { 
-                if (Convert.ToString(cmbHSNName.SelectedValue) == "" || Convert.ToString(cmbHSNName.SelectedValue) == "-1")
-                {
-                    errItems.SetError(cmbHSNName, "Please select HSN name");
-                    cmbHSNName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select sales HSN name", cmbHSNName, 5000);
-                }
-                else
-                {
+                //if (Convert.ToString(cmbHSNName.SelectedValue) == "" || Convert.ToString(cmbHSNName.SelectedValue) == "-1")
+                //{
+                //    errItems.SetError(cmbHSNName, "Please select HSN name");
+                //    cmbHSNName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpcompanyname.ShowAlways = true;
+                //    tpcompanyname.Show("Please select sales HSN name", cmbHSNName, 5000);
+                //}
+                //else
+                //{
                     errItems.Clear();
                     cmbHSNName.BackColor = Color.White;
-                }
+                //}
 
             }
             catch (Exception ex)
@@ -2137,7 +2140,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbSubGroup.Focus();
+                    txtSubGroup.Focus();
                 }
             }
             catch (Exception ex)
@@ -2214,103 +2217,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void CmbSubGroup_Leave(object sender, EventArgs e)
-        { 
-            try
-            {
-                if (Convert.ToString(cmbSubGroup.SelectedValue) == "" || Convert.ToString(cmbSubGroup.SelectedValue) == "-1")
-                {
-                    errItems.SetError(cmbSubGroup, "Please select SubGroup");
-                    cmbSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpprdSG.ShowAlways = true;
-                    tpprdSG.Show("Please select SubGroup", cmbGroup, 5000);
-                }
-                else
-                {
-                    errItems.Clear();
-                    cmbSubGroup.BackColor = Color.White;
-                }
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbSubGroup_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbSubGroup.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbSubGroup_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbSubGroup.Select(int.MaxValue, 0)));
-
-
-                DataSet objDT = new DataSet();
-                int varViewType = 2;
-                if (btnSave.Text == "Save")
-                {
-                    varViewType = 4;
-                }
-
-                DataService objds = new DataService();
-                SPDataService objdserv = new SPDataService();
-                string varcmbgroupcode = "", varbatchenable = "";
-                varcmbgroupcode = objds.displaydata("select PRSG_PRGID from MR_ProductSubGroup where PRSGID='"+ Convert.ToInt32(cmbSubGroup.SelectedValue) + "' ") ; 
-                varbatchenable = objds.displaydata("select PRSG_BatchNo from MR_ProductSubGroup where PRSGID=='" + Convert.ToInt32(cmbSubGroup.SelectedValue) + "' ") ;
-                objds.CloseConnection();
-
-                if (varbatchenable == "72")
-                {
-                    cmbBatchNoEntry.SelectedValue = 72;
-                }
-                else
-                {
-
-                    cmbBatchNoEntry.SelectedValue = 73;
-                }
-
-                objDT = objdserv.udfnGroupList(varViewType, Convert.ToInt32(varcmbgroupcode),0);
-                objdserv.CloseConnection();
-                cmbGroup.DataSource = null;
-                if (objDT != null)
-                {
-                    if (objDT.Tables.Count > 0)
-                    {
-                        if (objDT.Tables[0].Rows.Count > 0)
-                        {
-                            cmbGroup.ValueMember = "PRGID";
-                            cmbGroup.DisplayMember = "PRG_EName";
-                            cmbGroup.DataSource = objDT.Tables[0];
-                        }
-                    }
-                }
-
-                //cmbGroup.SelectedValue = varcmbgroupcode;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+         
         private void CmbGroup_Enter(object sender, EventArgs e)
         {
             try
@@ -2384,60 +2291,6 @@ namespace ROMS
             }
 
         }
-
-        private void CmbBrand_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Convert.ToString(cmbBrand.SelectedValue) == "" || Convert.ToString(cmbBrand.SelectedValue) == "-1")
-                {
-                    errItems.SetError(cmbBrand, "Please select Brand");
-                    cmbBrand.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select Brand", cmbBrand, 5000);
-                }
-                else
-                {
-                    errItems.Clear();
-                    cmbBrand.BackColor = Color.White;
-                }
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbBrand_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbBrand.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbBrand_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbBrand.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void CmbBulkUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -2619,18 +2472,18 @@ namespace ROMS
         {
             try
             { 
-                if (Convert.ToString(cmbPosition.SelectedValue) == "" || Convert.ToString(cmbPosition.SelectedValue) == "-1")
-                {
-                    errItems.SetError(cmbPosition, "Please select purchase godown");
-                    cmbPosition.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select purchase godown", cmbPosition, 5000);
-                }
-                else
-                {
+                //if (Convert.ToString(cmbPosition.SelectedValue) == "" || Convert.ToString(cmbPosition.SelectedValue) == "-1")
+                //{
+                //    errItems.SetError(cmbPosition, "Please select purchase godown");
+                //    cmbPosition.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpcompanyname.ShowAlways = true;
+                //    tpcompanyname.Show("Please select purchase godown", cmbPosition, 5000);
+                //}
+                //else
+                //{
                     errItems.Clear();
                     cmbPosition.BackColor = Color.White;
-                }
+                //}
 
             }
             catch (Exception ex)
@@ -2748,18 +2601,18 @@ namespace ROMS
         {
             try
             { 
-                if (Convert.ToString(cmbPurchaseRack.SelectedValue) == "" || Convert.ToString(cmbPurchaseRack.SelectedValue) == "-1")
-                {
-                    errItems.SetError(cmbPurchaseRack, "Please select purchase rack");
-                    cmbPurchaseRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select purchase rack", cmbPurchaseRack, 5000);
-                }
-                else
-                {
+                //if (Convert.ToString(cmbPurchaseRack.SelectedValue) == "" || Convert.ToString(cmbPurchaseRack.SelectedValue) == "-1")
+                //{
+                //    errItems.SetError(cmbPurchaseRack, "Please select purchase rack");
+                //    cmbPurchaseRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpcompanyname.ShowAlways = true;
+                //    tpcompanyname.Show("Please select purchase rack", cmbPurchaseRack, 5000);
+                //}
+                //else
+                //{
                     errItems.Clear();
                     cmbPurchaseRack.BackColor = Color.White;
-                }
+                //}
             }
             catch (Exception ex)
 
@@ -2814,18 +2667,18 @@ namespace ROMS
             try
             { 
 
-                if (Convert.ToString(cmbSalesGodown.SelectedValue) == "" || Convert.ToString(cmbSalesGodown.SelectedValue) == "-1")
-                {
-                    errItems.SetError(cmbSalesGodown, "Please select sales godown");
-                    cmbSalesGodown.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select sales godown", cmbSalesGodown, 5000);
-                }
-                else
-                {
+                //if (Convert.ToString(cmbSalesGodown.SelectedValue) == "" || Convert.ToString(cmbSalesGodown.SelectedValue) == "-1")
+                //{
+                //    errItems.SetError(cmbSalesGodown, "Please select sales godown");
+                //    cmbSalesGodown.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpcompanyname.ShowAlways = true;
+                //    tpcompanyname.Show("Please select sales godown", cmbSalesGodown, 5000);
+                //}
+                //else
+                //{
                     errItems.Clear();
                     cmbSalesGodown.BackColor = Color.White;
-                }
+                //}
             }
             catch (Exception ex)
 
@@ -2884,18 +2737,18 @@ namespace ROMS
         {
             try
             {  
-                if (Convert.ToString(cmbSalesRack.SelectedValue) == "" || Convert.ToString(cmbSalesRack.SelectedValue) == "-1")
-                {
-                    errItems.SetError(cmbSalesRack, "Please select sales rack");
-                    cmbSalesRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select sales rack", cmbSalesRack, 5000);
-                }
-                else
-                {
+                //if (Convert.ToString(cmbSalesRack.SelectedValue) == "" || Convert.ToString(cmbSalesRack.SelectedValue) == "-1")
+                //{
+                //    errItems.SetError(cmbSalesRack, "Please select sales rack");
+                //    cmbSalesRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpcompanyname.ShowAlways = true;
+                //    tpcompanyname.Show("Please select sales rack", cmbSalesRack, 5000);
+                //}
+                //else
+                //{
                     errItems.Clear();
                     cmbSalesRack.BackColor = Color.White;
-                }
+                //}
             }
             catch (Exception ex)
 
@@ -3008,17 +2861,17 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(cmbBatchNoEntry.SelectedValue) == "" || Convert.ToString(cmbBatchNoEntry.SelectedValue) == "-1")
-                {
-                    errItems.SetError(cmbBatchNoEntry, "Please select Batch No.");
-                    cmbBatchNoEntry.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select sales Batch No.", cmbBatchNoEntry, 5000);
-                }
-                else {
+                //if (Convert.ToString(cmbBatchNoEntry.SelectedValue) == "" || Convert.ToString(cmbBatchNoEntry.SelectedValue) == "-1")
+                //{
+                //    errItems.SetError(cmbBatchNoEntry, "Please select Batch No.");
+                //    cmbBatchNoEntry.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpcompanyname.ShowAlways = true;
+                //    tpcompanyname.Show("Please select sales Batch No.", cmbBatchNoEntry, 5000);
+                //}
+                //else {
                     errItems.Clear();
                     cmbBatchNoEntry.BackColor = Color.White;
-                }
+               // }
             }
             catch (Exception ex)
 
@@ -3080,18 +2933,18 @@ namespace ROMS
             try
             {
 
-                if (Convert.ToString(cmbBatchNoGeneration.SelectedValue) == "" || Convert.ToString(cmbBatchNoGeneration.SelectedValue) == "-1")
-                {
-                    errItems.SetError(cmbBatchNoGeneration, "Please select Batch No. generation");
-                    cmbBatchNoGeneration.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select sales Batch No. generation", cmbBatchNoGeneration, 5000);
-                }
-                else {
+                //if (Convert.ToString(cmbBatchNoGeneration.SelectedValue) == "" || Convert.ToString(cmbBatchNoGeneration.SelectedValue) == "-1")
+                //{
+                //    errItems.SetError(cmbBatchNoGeneration, "Please select Batch No. generation");
+                //    cmbBatchNoGeneration.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpcompanyname.ShowAlways = true;
+                //    tpcompanyname.Show("Please select sales Batch No. generation", cmbBatchNoGeneration, 5000);
+                //}
+                //else {
 
                     cmbBatchNoGeneration.BackColor = Color.White;
                     errItems.Clear();
-                }
+               // }
             }
             catch (Exception ex)
 
@@ -3278,16 +3131,16 @@ namespace ROMS
         {
             try
             { 
-                if (txtGrossWeight.Text == "")
-                {
-                    txtGrossWeight.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtGrossWeight, "Please enter the gross weight");
-                }
-                else
-                {
+                //if (txtGrossWeight.Text == "")
+                //{
+                //    txtGrossWeight.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    errItems.SetError(txtGrossWeight, "Please enter the gross weight");
+                //}
+                //else
+                //{
                     txtGrossWeight.BackColor = Color.White;
                     errItems.Clear();
-                }
+                //}
             }
             catch (Exception ex)
 
@@ -3314,21 +3167,19 @@ namespace ROMS
         }
 
         private void TxtMaxOrderQty_Leave(object sender, EventArgs e)
-        {
-             
-             
+        {    
             try
             {
-                if (txtRackMOQQty.Text == "")
-                {
-                    txtRackMOQQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtRackMOQQty, "Please enter the rach MOQ");
-                }
-                else
-                {
+                //if (txtRackMOQQty.Text == "")
+                //{
+                //    txtRackMOQQty.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    errItems.SetError(txtRackMOQQty, "Please enter the rach MOQ");
+                //}
+                //else
+                //{
                     txtRackMOQQty.BackColor = Color.White;
                     errItems.Clear();
-                }
+              //  }
             }
             catch (Exception ex)
 
@@ -3551,116 +3402,120 @@ namespace ROMS
         {
             try
             {
-                DataSet objDT = new DataSet();
-            SPDataService objdserv = new SPDataService();
-            int varViewType = 2;
-            if (btnSave.Text == "Save")
-            {
-                varViewType = 1;
-            }
-            objDT = objdserv.udfnSubGroupList(varViewType, varSubGroupId, "",0,0,"");
-            objdserv.CloseConnection();
-            cmbSubGroup.DataSource = null;
-            if (objDT != null)
-            {
-                if (objDT.Tables.Count > 0)
+                    DataSet objDT = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                int varViewType = 2;
+                if (btnSave.Text == "Save")
                 {
-                    if (objDT.Tables[0].Rows.Count > 0)
+                    varViewType = 1;
+                }
+                //objDT = objdserv.udfnSubGroupList(varViewType, varSubGroupId, "",0,0,"");
+                //objdserv.CloseConnection();
+                //cmbSubGroup.DataSource = null;
+                //if (objDT != null)
+                //{
+                //    if (objDT.Tables.Count > 0)
+                //    {
+                //        if (objDT.Tables[0].Rows.Count > 0)
+                //        {
+                //            cmbSubGroup.ValueMember = "PRSGID";
+                //            cmbSubGroup.DisplayMember = "PRSG_EName";
+                //            cmbSubGroup.DataSource = objDT.Tables[0];
+                //        }
+                //    }
+                //}
+                objDT = objdserv.udfnHsnList(varViewType, varHsnId);
+                objdserv.CloseConnection();
+                cmbHSNName.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
                     {
-                        cmbSubGroup.ValueMember = "PRSGID";
-                        cmbSubGroup.DisplayMember = "PRSG_EName";
-                        cmbSubGroup.DataSource = objDT.Tables[0];
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbHSNName.ValueMember = "HSNID";
+                            cmbHSNName.DisplayMember = "HSN_Name";
+                            cmbHSNName.DataSource = objDT.Tables[0];
+                        }
                     }
                 }
-            }
-            objDT = objdserv.udfnHsnList(varViewType, varHsnId);
-            objdserv.CloseConnection();
-            cmbHSNName.DataSource = null;
-            if (objDT != null)
-            {
-                if (objDT.Tables.Count > 0)
-                {
-                    if (objDT.Tables[0].Rows.Count > 0)
-                    {
-                        cmbHSNName.ValueMember = "HSNID";
-                        cmbHSNName.DisplayMember = "HSN_Name";
-                        cmbHSNName.DataSource = objDT.Tables[0];
-                    }
-                }
-            }
 
-            objDT = objdserv.udfnUnitList(varViewType, varUnitid);
-            cmbUnit.DataSource = null;
-            if (objDT != null)
-            {
-                if (objDT.Tables.Count > 0)
-                {
-                    if (objDT.Tables[0].Rows.Count > 0)
-                    {
-                        cmbUnit.ValueMember = "UTID";
-                        cmbUnit.DisplayMember = "UT_Name";
-                        cmbUnit.DataSource = objDT.Tables[0];
-                    }
-                }
-            }
-                objDT = null;
                 objDT = objdserv.udfnUnitList(varViewType, varUnitid);
-                cmbBulkUnit.DataSource = null;
-            if (objDT != null)
-            {
-                if (objDT.Tables.Count > 0)
+                objdserv.CloseConnection();
+                cmbUnit.DataSource = null;
+                if (objDT != null)
                 {
-                    if (objDT.Tables[0].Rows.Count > 0)
+                    if (objDT.Tables.Count > 0)
                     {
-                        cmbBulkUnit.ValueMember = "UTID";
-                        cmbBulkUnit.DisplayMember = "UT_Name";
-                        cmbBulkUnit.DataSource = objDT.Tables[0];
-                    }
-                }
-            }
-            objdserv.CloseConnection();
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbUnit.ValueMember = "UTID";
+                            cmbUnit.DisplayMember = "UT_Name";
+                            cmbUnit.DataSource = objDT.Tables[0];
 
-            int varconcerntype = 4;
-            if (btnSave.Text == "Save")
-            {
-                varconcerntype = 3;
-            }
-            objDT = objdserv.udfnCompanyList(varconcerntype, varcompanyid, MainForm.pbUserID, MainForm.pbIpAddress);
-            objdserv.CloseConnection();
-            cmbConcern.DataSource = null;
-            if (objDT != null)
-            {
-                if (objDT.Tables.Count > 0)
-                {
-                    if (objDT.Tables[0].Rows.Count > 0)
-                    {
-                        cmbConcern.ValueMember = "COMID";
-                        cmbConcern.DisplayMember = "COM_ShortName";
-                        cmbConcern.DataSource = objDT.Tables[0];
+                            cmbBulkUnit.ValueMember = "UTID";
+                            cmbBulkUnit.DisplayMember = "UT_Name";
+                            cmbBulkUnit.DataSource = objDT.Tables[0];
+                        }
                     }
                 }
-            }
+                //    objDT = null;
+                //    objDT = objdserv.udfnUnitList(varViewType, varUnitid);
+                //    cmbBulkUnit.DataSource = null;
+                //if (objDT != null)
+                //{
+                //    if (objDT.Tables.Count > 0)
+                //    {
+                //        if (objDT.Tables[0].Rows.Count > 0)
+                //        {
+                //            cmbBulkUnit.ValueMember = "UTID";
+                //            cmbBulkUnit.DisplayMember = "UT_Name";
+                //            cmbBulkUnit.DataSource = objDT.Tables[0];
+                //        }
+                //    }
+                //}
 
-            int varbrnadViewtype = 4;
-            if (btnSave.Text == "Save")
-            {
-                varbrnadViewtype = 3;
-            }
-            objDT = objdserv.udfnBrandList(varbrnadViewtype, Convert.ToString(varBrandId), 0, 0, 0);
-            objdserv.CloseConnection();
-            cmbBrand.DataSource = null;
-            if (objDT != null)
-            {
-                if (objDT.Tables.Count > 0)
+                int varconcerntype = 4;
+                if (btnSave.Text == "Save")
                 {
-                    if (objDT.Tables[0].Rows.Count > 0)
+                    varconcerntype = 3;
+                }
+                objDT = objdserv.udfnCompanyList(varconcerntype, varcompanyid, MainForm.pbUserID, MainForm.pbIpAddress);
+                objdserv.CloseConnection();
+                cmbConcern.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
                     {
-                        cmbBrand.ValueMember = "ID";
-                        cmbBrand.DisplayMember = "Brand Name";
-                        cmbBrand.DataSource = objDT.Tables[0];
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.DisplayMember = "COM_ShortName";
+                            cmbConcern.DataSource = objDT.Tables[0];
+                        }
                     }
                 }
-            }
+
+                //int varbrnadViewtype = 4;
+                //if (btnSave.Text == "Save")
+                //{
+                //    varbrnadViewtype = 3;
+                //}
+                //objDT = objdserv.udfnBrandList(varbrnadViewtype, Convert.ToString(varBrandId), 0, 0, 0,"");
+                //objdserv.CloseConnection();
+                //cmbBrand.DataSource = null;
+                //if (objDT != null)
+                //{
+                //    if (objDT.Tables.Count > 0)
+                //    {
+                //        if (objDT.Tables[0].Rows.Count > 0)
+                //        {
+                //            cmbBrand.ValueMember = "ID";
+                //            cmbBrand.DisplayMember = "Brand Name";
+                //            cmbBrand.DataSource = objDT.Tables[0];
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -3701,33 +3556,333 @@ namespace ROMS
             }
         }
 
+        private void TxtBrand_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBrand.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBrand_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvBrand.Items.Count == 0 || txtBrand.Text == "")
+                    {
+                        txtBrand.Focus();
+                        lvBrand.Visible = false;
+                    }
+                    else
+                    {
+                        lvBrand.Focus();
+                    }
+                    if (lvBrand.Items.Count > 0)
+                    {
+                        lvBrand.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbUnit.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBrand_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBrand.BackColor = Color.White;
+                errItems.Clear();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBrand_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvBrand.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtBrand.Text.Length > 2)
+                {
+                    objDs = objspdservice.udfnBrandList(6,"0",0,0,0,txtBrand.Text.Trim());
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["BD_EName"].ToString(), objDs.Tables[0].Rows[i]["BD_TName"].ToString(), objDs.Tables[0].Rows[i]["BDID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvBrand.Items.Add(objList);
+                                }
+                                lvBrand.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvBrand.Visible = false;
+                    lvBrand.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+        public void udfnBrandAutocomplete()
+        {
+            try
+            {
+                if (txtBrand.Text != "")
+                {
+                    ListViewItem selectedItem = lvBrand.SelectedItems[0];
+                    txtBrand.Text = selectedItem.SubItems[0].Text;
+                    lblBrand.Text = selectedItem.SubItems[2].Text;
+                    lvBrand.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvBrand.Visible = false;
+            }
+        }
+        public void udfnSubGroupAutocomplete()
+        {
+            try
+            {
+                if (txtSubGroup.Text != "")
+                {
+                    ListViewItem selectedItem = lvSubGroup.SelectedItems[0];
+                    txtSubGroup.Text = selectedItem.SubItems[0].Text;
+                    lblSubGroupCode.Text = selectedItem.SubItems[2].Text;
+                    string varbatchenable = selectedItem.SubItems[3].Text;
+                    lvSubGroup.Visible = false;
+                    if (varbatchenable == "72")
+                    {
+                        cmbBatchNoEntry.SelectedValue = 72;
+                    }
+                    else
+                    {
+                        cmbBatchNoEntry.SelectedValue = 73;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvBrand.Visible = false;
+            }
+        }
+        private void LvBrand_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnBrandAutocomplete();
+                    cmbUnit.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSubGroup_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSubGroup.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSubGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvSubGroup.Items.Count == 0 || txtSubGroup.Text == "")
+                    {
+                        txtSubGroup.Focus();
+                        lvSubGroup.Visible = false;
+                    }
+                    else
+                    {
+                        lvSubGroup.Focus();
+                    }
+                    if (lvSubGroup.Items.Count > 0)
+                    {
+                        lvSubGroup.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbGroup.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSubGroup_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtSubGroup.Text == "")
+                {
+                    txtSubGroup.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtSubGroup, "Please enter sub group");
+                }
+                else
+                {
+                    txtSubGroup.BackColor = Color.White;
+                    errItems.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSubGroup_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvSubGroup.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtSubGroup.Text.Length > 2)
+                {
+                    objDs = objspdservice.udfnSubGroupList(8,0,"",0,0,txtSubGroup.Text.Trim());
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvSubGroup.Items.Add(objList);
+                                }
+                                lvSubGroup.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvSubGroup.Visible = false;
+                    lvSubGroup.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvSubGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnSubGroupAutocomplete();
+                    cmbGroup.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnEdit()
         {
             try
-            {   
+            {
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
                 if (varproductcode != 0)
                 {
                     SPDataService objspservice = new SPDataService();
-                    DataSet objDS; 
+                    DataSet objDS;
                     DataService objdservice = new DataService();
-                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0,"",MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0,0,0);
+                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0);
                     objdserv.CloseConnection();
                     if (objDS != null)
                     {
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
                             cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["COMPANY"].ToString();
-                            txtPICode.Text = Convert.ToString( objDS.Tables[0].Rows[0]["PICODE"].ToString().Replace("''", "'")); 
+                            txtPICode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PICODE"].ToString().Replace("''", "'"));
                             txtItemNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ENAME"].ToString().Replace("''", "'"));
                             txtItemNameTamil.Text = Convert.ToString(objDS.Tables[0].Rows[0]["TNAME"].ToString().Replace("''", "'"));
-                            cmbProductCategory.SelectedValue= objDS.Tables[0].Rows[0]["PRODUCTCATEGORY"].ToString();
-                            cmbSubGroup.SelectedValue = objDS.Tables[0].Rows[0]["SUBGROUP"].ToString();
-                            CmbSubGroup_SelectedIndexChanged(cmbSubGroup, EventArgs.Empty);
+                            cmbProductCategory.SelectedValue = objDS.Tables[0].Rows[0]["PRODUCTCATEGORY"].ToString();
+                            lblSubGroupCode.Text = objDS.Tables[0].Rows[0]["SUBGROUP"].ToString();
+                            txtSubGroup.Text = objDS.Tables[0].Rows[0]["SubGroup Name"].ToString();
+                            //CmbSubGroup_SelectedIndexChanged(cmbSubGroup, EventArgs.Empty);
                             cmbGroup.SelectedValue = objDS.Tables[0].Rows[0]["GROUP"].ToString();
-                            cmbBrand.SelectedValue = objDS.Tables[0].Rows[0]["BRAND"].ToString(); 
+                            lblBrand.Text = objDS.Tables[0].Rows[0]["BRAND"].ToString();
+                            txtBrand.Text = objDS.Tables[0].Rows[0]["BRAND Name"].ToString();
                             cmbUnit.SelectedValue = objDS.Tables[0].Rows[0]["UNIT"].ToString();
                             cmbBulkUnit.SelectedValue = objDS.Tables[0].Rows[0]["BULK UNIT"].ToString();
                             cmbPosition.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION PURCHASE"].ToString());
@@ -3738,7 +3893,7 @@ namespace ROMS
                             txtRackMOQQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["RACK MOQ"].ToString().Replace("''", "'"));
                             cmbBatchNoEntry.SelectedValue = objDS.Tables[0].Rows[0]["BATCHNO"].ToString();
                             cmbBatchNoGeneration.SelectedValue = objDS.Tables[0].Rows[0]["BARCODE GENERATION"].ToString();
-                            cmbPeriod.SelectedValue = objDS.Tables[0].Rows[0]["SHELF LIFE TYPE"].ToString(); 
+                            cmbPeriod.SelectedValue = objDS.Tables[0].Rows[0]["SHELF LIFE TYPE"].ToString();
                             txtSelfLife.Text = Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE VALUE"].ToString().Replace("''", "'"));
                             txtWeight.Text = Convert.ToString(objDS.Tables[0].Rows[0]["NET WEIGHT"].ToString().Replace("''", "'"));
                             txtGrossWeight.Text = Convert.ToString(objDS.Tables[0].Rows[0]["GROSS WEIGHT"].ToString().Replace("''", "'"));
@@ -3749,15 +3904,15 @@ namespace ROMS
                             txtRetailRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["RETAIL RATE"].ToString().Replace("''", "'"));
                             txtWMinSaleQty.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WMINSALE QTY"].ToString().Replace("''", "'"));
                             txtWSaleRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WSALERATE"].ToString().Replace("''", "'"));
-                            txtBarcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["BARCODE"].ToString().Replace("''", "'")); 
+                            txtBarcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["BARCODE"].ToString().Replace("''", "'"));
                             cmbHSNName.SelectedValue = objDS.Tables[0].Rows[0]["HSN"].ToString();
 
-                          
+
 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cbRMFromProduction.Checked = true; } else { cbRMFromProduction.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInActive.Checked = true; }
-                             
+
                             objDS = objdservice.GetDataset("SELECT HSN_Code,GST_Value FROM MR_HSN INNER JOIN DEF_GST ON HSN_GSTID=GSTID WHERE HSNID  IN ('" + Convert.ToInt32(objDS.Tables[0].Rows[0]["HSN"].ToString()) + "') AND GSTID  NOT IN (0,-1)");
                             objdservice.CloseConnection();
                             if (objDS != null)
@@ -3772,19 +3927,22 @@ namespace ROMS
                                 }
                             }
 
-                            btnSave.Text = "Update"; 
+                            btnSave.Text = "Update";
                             pnlStatus.Enabled = true;
                         }
-                       
 
-                    } 
+
+                    }
                 }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
+            }
+            finally { lvBrand.Visible = false;
+                lvSubGroup.Visible = false;
+            }
         }
 
         private void BtnSubgroup_Click(object sender, EventArgs e)
@@ -3796,7 +3954,8 @@ namespace ROMS
                 MainForm.objCP_SubGroup.varmastertype = 1;
                 MainForm.objCP_SubGroup.ShowDialog();
                 udfnDropDownload();
-                cmbSubGroup.SelectedValue = Convert.ToInt16(varSubgroupCode);
+                lblSubGroupCode.Text = Convert.ToString(varSubgroupCode);
+                txtSubGroup.Text = varSubGroupName;
                 if (varBatchCode == 72)
                 {
                     cmbBatchNoEntry.SelectedValue = 72;
@@ -3806,7 +3965,8 @@ namespace ROMS
 
                     cmbBatchNoEntry.SelectedValue = 73;
                 }
-                cmbSubGroup.Focus();
+                txtSubGroup.Focus();
+                lvSubGroup.Visible = false;
             }
             catch (Exception ex)
             {
@@ -3829,7 +3989,7 @@ namespace ROMS
                 cmbGroup.Focus();
                 if (varGroupCode != 0)
                 {
-                    cmbSubGroup.SelectedValue = -1;
+                   // cmbSubGroup.SelectedValue = -1;
                 } 
             }
             catch (Exception ex)

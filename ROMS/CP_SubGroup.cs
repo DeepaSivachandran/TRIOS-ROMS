@@ -285,6 +285,7 @@ namespace ROMS
                         {
                             varmastertype = 0;
                             MainForm.objCP_Items.varSubgroupCode = varSubgroupCode;
+                            MainForm.objCP_Items.varSubGroupName = txtESubGroupNameEnglish.Text;
                             MainForm.objCP_Items.varBatchCode = Convert.ToInt32(cmbBatchNo.SelectedValue); 
                              varCloseFlag = 1;
                             udfnclose();

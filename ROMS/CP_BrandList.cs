@@ -217,7 +217,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnBrandList(0, "", varGroupId, varSubGroupId,0);
+                objDs = objdserv.udfnBrandList(0, "", varGroupId, varSubGroupId,0,"");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
