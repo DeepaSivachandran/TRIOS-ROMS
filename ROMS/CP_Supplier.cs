@@ -5663,6 +5663,7 @@ namespace ROMS
             try
             {
                 txtMappingGroup.BackColor = Color.White;
+                if (txtMappingGroup.Text.Trim() == "") { varGroupId = 0; }
             }
             catch (Exception ex)
             {
@@ -5689,6 +5690,7 @@ namespace ROMS
             try
             {
                 txtMappingSubGroup.BackColor = Color.White;
+                if (txtMappingSubGroup.Text.Trim() == "") { varSubGroupId = 0; }
             }
             catch (Exception ex)
             {
@@ -5700,7 +5702,7 @@ namespace ROMS
         {
             try
             {
-                if (txtMappingGroup.Text != "")
+                if (txtMappingGroup.Text.Trim() != "")
                 {
                     ListViewItem selectedItem = lvMappingGroup.SelectedItems[0];
                     txtMappingGroup.Text = selectedItem.SubItems[0].Text;
@@ -5719,7 +5721,7 @@ namespace ROMS
         {
             try
             {
-                if (txtMappingSubGroup.Text != "")
+                if (txtMappingSubGroup.Text.Trim() != "")
                 {
                     ListViewItem selectedItem = lvMappingSubGroup.SelectedItems[0];
                     txtMappingSubGroup.Text = selectedItem.SubItems[0].Text;
@@ -5760,7 +5762,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtMappingSubGroup.Text.Length > 2)
                 {
-                    objDs = objspdservice.udfnSubGroupList(8, 0,"", varGroupId,0,txtMappingSubGroup.Text);
+                    objDs = objspdservice.udfnSubGroupList(10, 0,"", varGroupId,0,txtMappingSubGroup.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

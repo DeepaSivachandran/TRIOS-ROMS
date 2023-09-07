@@ -2029,7 +2029,7 @@
             this.btnClear.Location = new System.Drawing.Point(1062, 566);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(84, 29);
-            this.btnClear.TabIndex = 11;
+            this.btnClear.TabIndex = 6;
             this.btnClear.Text = "Clear";
             this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClear.UseVisualStyleBackColor = true;
@@ -2138,7 +2138,7 @@
             this.txtMappingSubGroup.MaxLength = 50;
             this.txtMappingSubGroup.Name = "txtMappingSubGroup";
             this.txtMappingSubGroup.Size = new System.Drawing.Size(142, 27);
-            this.txtMappingSubGroup.TabIndex = 6;
+            this.txtMappingSubGroup.TabIndex = 1;
             this.txtMappingSubGroup.TextChanged += new System.EventHandler(this.TxtMappingSubGroup_TextChanged);
             this.txtMappingSubGroup.Enter += new System.EventHandler(this.TxtMappingSubGroup_Enter);
             this.txtMappingSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMappingSubGroup_KeyDown);
@@ -2151,7 +2151,7 @@
             this.txtMappingGroup.MaxLength = 50;
             this.txtMappingGroup.Name = "txtMappingGroup";
             this.txtMappingGroup.Size = new System.Drawing.Size(146, 27);
-            this.txtMappingGroup.TabIndex = 5;
+            this.txtMappingGroup.TabIndex = 0;
             this.txtMappingGroup.TextChanged += new System.EventHandler(this.TxtMappingGroup_TextChanged);
             this.txtMappingGroup.Enter += new System.EventHandler(this.TxtMappingGroup_Enter);
             this.txtMappingGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMappingGroup_KeyDown);
@@ -2177,7 +2177,7 @@
             this.txtmappingproductsearch2.MaxLength = 50;
             this.txtmappingproductsearch2.Name = "txtmappingproductsearch2";
             this.txtmappingproductsearch2.Size = new System.Drawing.Size(403, 27);
-            this.txtmappingproductsearch2.TabIndex = 9;
+            this.txtmappingproductsearch2.TabIndex = 4;
             this.txtmappingproductsearch2.TextChanged += new System.EventHandler(this.Txtmappingproductsearch2_TextChanged);
             this.txtmappingproductsearch2.Enter += new System.EventHandler(this.Txtmappingproductsearch2_Enter);
             this.txtmappingproductsearch2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtmappingproductsearch2_KeyDown);
@@ -2200,7 +2200,7 @@
             this.txtSearchByProduct1.MaxLength = 50;
             this.txtSearchByProduct1.Name = "txtSearchByProduct1";
             this.txtSearchByProduct1.Size = new System.Drawing.Size(251, 27);
-            this.txtSearchByProduct1.TabIndex = 8;
+            this.txtSearchByProduct1.TabIndex = 3;
             this.txtSearchByProduct1.TextChanged += new System.EventHandler(this.TxtSearchByProduct1_TextChanged);
             this.txtSearchByProduct1.Enter += new System.EventHandler(this.TxtSearchByProduct1_Enter);
             this.txtSearchByProduct1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByProduct1_KeyDown);
@@ -2342,7 +2342,7 @@
             this.btnMappingView.Location = new System.Drawing.Point(315, 42);
             this.btnMappingView.Name = "btnMappingView";
             this.btnMappingView.Size = new System.Drawing.Size(33, 29);
-            this.btnMappingView.TabIndex = 7;
+            this.btnMappingView.TabIndex = 2;
             this.btnMappingView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnMappingView.UseVisualStyleBackColor = true;
             this.btnMappingView.Click += new System.EventHandler(this.BtnMappingView_Click);
@@ -2377,7 +2377,7 @@
             this.btnMappingClose.Location = new System.Drawing.Point(1245, 566);
             this.btnMappingClose.Name = "btnMappingClose";
             this.btnMappingClose.Size = new System.Drawing.Size(75, 29);
-            this.btnMappingClose.TabIndex = 12;
+            this.btnMappingClose.TabIndex = 8;
             this.btnMappingClose.Text = "Close";
             this.btnMappingClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnMappingClose.UseVisualStyleBackColor = true;
@@ -2393,7 +2393,7 @@
             this.btnMappingsave.Location = new System.Drawing.Point(1152, 566);
             this.btnMappingsave.Name = "btnMappingsave";
             this.btnMappingsave.Size = new System.Drawing.Size(84, 29);
-            this.btnMappingsave.TabIndex = 10;
+            this.btnMappingsave.TabIndex = 7;
             this.btnMappingsave.Text = "Save";
             this.btnMappingsave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnMappingsave.UseVisualStyleBackColor = true;

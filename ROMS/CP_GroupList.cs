@@ -18,7 +18,7 @@ namespace ROMS
         DataSet objDs = new DataSet();
         DataTable objDtExcel = new DataTable();
         public int varGroupCode = 0;
-
+        public int varGroupId = 0;
         public CP_GroupList()
         {
             InitializeComponent();
@@ -72,7 +72,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGroupList(0, Convert.ToInt32(cmbProductGroup.SelectedValue),0,"");
+                objDs = objdserv.udfnGroupList(0, varGroupId, 0,"");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -126,7 +126,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 lblNoOfPrGroup.Text = Convert.ToString(grdGroupList.Rows.Count);
-                varGroupCode = Convert.ToInt32(cmbProductGroup.SelectedValue);
+                varGroupCode = Convert.ToInt32(txtProductGroup.Text);
             }
         }
         public void udfndelete()
@@ -285,9 +285,9 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbProductGroup.Select(int.MaxValue, 0)));
-                this.ActiveControl = cmbProductGroup;
-                udfnLoadCmbProductGroup();
+                //BeginInvoke(new Action(() => cmbProductGroup.Select(int.MaxValue, 0)));
+                this.ActiveControl = txtProductGroup;
+                //udfnLoadCmbProductGroup();
                 udfnList();
 
             }
@@ -360,7 +360,7 @@ namespace ROMS
         {
             try
             {
-                cmbProductGroup.BackColor = Color.LemonChiffon;
+                //cmbProductGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -372,7 +372,7 @@ namespace ROMS
         {
             try
             {
-                cmbProductGroup.BackColor = Color.White;
+                //cmbProductGroup.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -384,7 +384,7 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbProductGroup.Select(int.MaxValue, 0)));
+                //BeginInvoke(new Action(() => cmbProductGroup.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {
@@ -428,16 +428,16 @@ namespace ROMS
                 int varViewType = 3;
                 objDT = objdserv.udfnGroupList(varViewType, 0,0,"");
                 objdserv.CloseConnection();
-                cmbProductGroup.DataSource = null;
+                //cmbProductGroup.DataSource = null;
                 if (objDT != null)
                 {
                     if (objDT.Tables.Count > 0)
                     {
                         if (objDT.Tables[0].Rows.Count > 0)
                         {
-                            cmbProductGroup.ValueMember = "PRGID";
-                            cmbProductGroup.DisplayMember = "PRG_EName";
-                            cmbProductGroup.DataSource = objDT.Tables[0];
+                            //cmbProductGroup.ValueMember = "PRGID";
+                            //cmbProductGroup.DisplayMember = "PRG_EName";
+                            //cmbProductGroup.DataSource = objDT.Tables[0];
                         }
                     }
                 }
@@ -617,6 +617,166 @@ namespace ROMS
             {
                 txtSearchProduct.BackColor = Color.White;
               
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtProductGroup_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProductGroup.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtProductGroup_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    txtProductGroup.BackColor = Color.White;
+                    if (txtProductGroup.Text.Trim() == "") { varGroupId = 0; }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtProductGroup_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvGroup.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtProductGroup.Text.Length > 2)
+                {
+                    objDs = objspdservice.udfnGroupList(8, 0, 0, txtProductGroup.Text);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), };
+                                    //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvGroup.Items.Add(objList);
+                                }
+                                lvGroup.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvGroup.Visible = false;
+                    lvGroup.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtProductGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvGroup.Items.Count == 0 || txtProductGroup.Text == "")
+                    {
+                        txtProductGroup.Focus();
+                        lvGroup.Visible = false;
+                    }
+                    else
+                    {
+                        lvGroup.Focus();
+                    }
+                    if (lvGroup.Items.Count > 0)
+                    {
+                        lvGroup.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLvGroup()
+        {
+            try
+            {
+                if (txtProductGroup.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvGroup.SelectedItems[0];
+                    txtProductGroup.Text = selectedItem.SubItems[0].Text;
+                    varGroupId = Convert.ToInt32(selectedItem.SubItems[2].Text);
+                    lvGroup.Visible = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void LvGroup_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnLvGroup();
+                btnView.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnLvGroup();
+                    btnView.Focus();
+                }
             }
             catch (Exception ex)
             {
