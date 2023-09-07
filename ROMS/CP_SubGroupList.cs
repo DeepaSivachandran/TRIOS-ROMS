@@ -30,7 +30,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 3;
-                objDT = objdserv.udfnSubGroupList(varViewType, 0,"",0,0,"","");
+                objDT = objdserv.udfnSubGroupList(varViewType, 0,"",0,0,"");
                 objdserv.CloseConnection();
                 //cmbProductSubGroup.DataSource = null;
                 if (objDT != null)
@@ -135,7 +135,7 @@ namespace ROMS
                         varSubGroupId = Convert.ToInt32(lblSubGroupId.Text);
                     }
                 }
-                objDs = objdserv.udfnSubGroupList(0, varSubGroupId, "",0,0,"","");
+                objDs = objdserv.udfnSubGroupList(0, varSubGroupId, "",0,0,"");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -724,7 +724,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductSubGroup.Text.Length > 2)
                 {
-                    objDs = objspdservice.udfnSubGroupList(9, 0, "", 0, 0, "", txtProductSubGroup.Text);
+                    objDs = objspdservice.udfnSubGroupList(9, 0, "", 0, 0, txtProductSubGroup.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
