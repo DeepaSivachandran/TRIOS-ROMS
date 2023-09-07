@@ -33,7 +33,6 @@ namespace ROMS
         public CP_Unit()
         {
             InitializeComponent();
-            MainForm.objCP_Unitlist.picLoader.Visible = false;
         }
         private void CP_Unit_Leave(object sender, EventArgs e)
         {
