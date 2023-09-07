@@ -93,7 +93,7 @@ namespace ROMS
                 {
                     varViewType = 6;
                 }
-                objDs = objdserv.udfnStockLocationList(varViewType,0,0,0);
+                objDs = objdserv.udfnStockLocationList(varViewType,0,0,0,"");
                 objdserv.CloseConnection();
                 cmbSStockLocation.DataSource = null;
                 if (objDs != null)
@@ -757,7 +757,7 @@ namespace ROMS
             {
                 varviewType = 3;
             }
-            objDS = objsdserv.udfnRackList(varviewType, 0, 0, varStockLocationId, 0);
+            objDS = objsdserv.udfnRackList(varviewType, 0, 0, varStockLocationId, 0,"");
             objsdserv.CloseConnection();
             cmbSRack.DataSource = null;
             if (objDS != null)

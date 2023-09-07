@@ -212,13 +212,16 @@ namespace ROMS
                     MainForm.objCP_SubGroup.btnSave.Text = "Update";
 
                     MainForm.objCP_SubGroup.varId = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_SubGroup.varGroupId = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Product Group Id"].Value);
+                    MainForm.objCP_SubGroup.varGroupName = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Product Group Name"].Value);
+                    MainForm.objCP_SubGroup.varGroupCode = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Product Group Id"].Value);
                     MainForm.objCP_SubGroup.varSubGroupNameinEnglish = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Product Sub Group Name in English"].Value);
                     MainForm.objCP_SubGroup.varSubGroupNameinTamil = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Product Sub Group Name in Tamil"].Value);
                     MainForm.objCP_SubGroup.varBatchNo = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Batch No"].Value);
                     MainForm.objCP_SubGroup.varBatchId = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Batch No Id"].Value);
-                    MainForm.objCP_SubGroup.varStockLocation = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
-                    MainForm.objCP_SubGroup.varRack = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Rack ID"].Value);
+                    MainForm.objCP_SubGroup.varStockLocationName = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Stock Location"].Value);
+                    MainForm.objCP_SubGroup.varLocationCode = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
+                    MainForm.objCP_SubGroup.varRackName = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Rack"].Value);
+                    MainForm.objCP_SubGroup.varRackCode = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Rack ID"].Value);
                     MainForm.objCP_SubGroup.varStatus = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Status ID"].Value);
                     picLoader.Visible = false;
                     picLoader.SendToBack();

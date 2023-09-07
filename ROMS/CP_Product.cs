@@ -1883,7 +1883,7 @@ namespace ROMS
                         varlocationpsalesid = Convert.ToInt32(cmbSalesGodown.SelectedValue);
                     }
                 }
-               objDS = objsdserv.udfnStockLocationList(varparaViewType, Convert.ToInt32(cmbConcern.SelectedValue), varlocationpurid, 0);
+               objDS = objsdserv.udfnStockLocationList(varparaViewType, Convert.ToInt32(cmbConcern.SelectedValue), varlocationpurid, 0,"");
                 objsdserv.CloseConnection(); 
                 cmbPosition.DataSource = null;
                 if (objDS != null)
@@ -1899,7 +1899,7 @@ namespace ROMS
                     }
                 }
 
-                objDS = objsdserv.udfnStockLocationList(varparaViewType, Convert.ToInt32(cmbConcern.SelectedValue), varlocationpsalesid, 0);
+                objDS = objsdserv.udfnStockLocationList(varparaViewType, Convert.ToInt32(cmbConcern.SelectedValue), varlocationpsalesid, 0,"");
                 objsdserv.CloseConnection();
                 cmbSalesGodown.DataSource = null;
                 if (objDS != null)
@@ -2589,7 +2589,7 @@ namespace ROMS
                 {
                     varviewType = 5;
                 }
-                objDS = objsdserv.udfnRackList(varviewType, 0, 0, Convert.ToInt32(cmbPosition.SelectedValue), 0);
+                objDS = objsdserv.udfnRackList(varviewType, 0, 0, Convert.ToInt32(cmbPosition.SelectedValue), 0,"");
                 objsdserv.CloseConnection();
                 cmbPurchaseRack.DataSource = null;
                 if (objDS != null)
@@ -2784,7 +2784,7 @@ namespace ROMS
                 {
                     varviewType = 5;
                 }
-                objDS = objsdserv.udfnRackList(varviewType, 0, 0, Convert.ToInt32(cmbSalesGodown.SelectedValue), 0);
+                objDS = objsdserv.udfnRackList(varviewType, 0, 0, Convert.ToInt32(cmbSalesGodown.SelectedValue), 0,"");
                 objsdserv.CloseConnection();
                 cmbSalesRack.DataSource = null;
                 if (objDS != null)
