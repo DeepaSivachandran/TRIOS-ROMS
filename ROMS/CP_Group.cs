@@ -316,8 +316,8 @@ namespace ROMS
                         if (varmastertype == 0 &&  varFormFlag == 0)
                         {
                             MainForm.objCP_GroupList.udfnList();
-                            MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
-                            MainForm.objCP_GroupList.varGroupId= Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
+                            //MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
+                            //MainForm.objCP_GroupList.varGroupId= Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
                             udfnClear();
                         }
                         if (varFormFlag == 1)
