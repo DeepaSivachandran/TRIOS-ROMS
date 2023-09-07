@@ -318,7 +318,7 @@ namespace ROMS
                         {
                             MainForm.objCP_GroupList.udfnList();
                             MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
-                            MainForm.objCP_GroupList.cmbProductGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
+                            MainForm.objCP_GroupList.varGroupId= Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
                             udfnClear();
                         }
 

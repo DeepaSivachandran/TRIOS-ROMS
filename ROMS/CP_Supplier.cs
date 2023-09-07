@@ -23,7 +23,8 @@ namespace ROMS
         public string pbFormStatus;
         public string varstatecode = "", varupdate = "0", vardays = "";
         public int varOrderid = 0, scheduleselectedIndex = -1;
-
+        public int varGroupId = 0;
+        public int varSubGroupId = 0;
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
         private ToolTip tpAltContactNo = new ToolTip();
@@ -91,21 +92,22 @@ namespace ROMS
         {
             try
             {
-                if (txtcontactName.Text == "")
-                {
+                txtcontactName.BackColor = Color.White;
+                //if (txtcontactName.Text == "")
+                //{
 
-                    errCompany.SetError(txtcontactName, "Please enter contact name");
-                    txtcontactName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tparea.ShowAlways = true;
-                    tparea.Show("Please enter contact name.", txtcontactName, 5000);
+                //    errCompany.SetError(txtcontactName, "Please enter contact name");
+                //    txtcontactName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tparea.ShowAlways = true;
+                //    tparea.Show("Please enter contact name.", txtcontactName, 5000);
 
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtcontactName.BackColor = Color.White;
-                    tparea.Hide(txtcontactName);
-                }
+                //}
+                //else
+                //{
+                //    errCompany.Clear();
+                //    txtcontactName.BackColor = Color.White;
+                //    tparea.Hide(txtcontactName);
+                //}
             }
             catch (Exception ex)
             {
@@ -166,21 +168,22 @@ namespace ROMS
 
         private void txtCity_Leave(object sender, EventArgs e)
         {
-            if (txtCity.Text == "")
-            {
+            txtCity.BackColor = Color.White;
+            //if (txtCity.Text == "")
+            //{
 
-                errCompany.SetError(txtCity, "Please enter city name");
-                txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tpcity.ShowAlways = true;
-                tpcity.Show("Please enter city name.", txtCity, 5000);
+            //    errCompany.SetError(txtCity, "Please enter city name");
+            //    txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+            //    tpcity.ShowAlways = true;
+            //    tpcity.Show("Please enter city name.", txtCity, 5000);
 
-            }
-            else
-            {
-                errCompany.Clear();
-                txtCity.BackColor = Color.White;
-                tpcity.Hide(txtCity);
-            }
+            //}
+            //else
+            //{
+            //    errCompany.Clear();
+            //    txtCity.BackColor = Color.White;
+            //    tpcity.Hide(txtCity);
+            //}
         }
 
         private void txtContactNumber_Enter(object sender, EventArgs e)
@@ -236,17 +239,22 @@ namespace ROMS
                     }
                     else if (txtContactNumber.Text == "")
                     {
-                        errCompany.SetError(txtContactNumber, "Please enter phone No.");
-                        txtContactNumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpContactNo.ShowAlways = true;
-                        tpContactNo.Show("Please enter phone No.", txtContactNumber, 5000);
-                    }
-                    else
-                    {
-                        errCompany.Clear();
                         txtContactNumber.BackColor = Color.White;
-                        tpContactNo.Hide(txtContactNumber);
                     }
+                    //else if (txtContactNumber.Text == "")
+                    //{
+                    //    errCompany.SetError(txtContactNumber, "Please enter phone No.");
+                    //    txtContactNumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpContactNo.ShowAlways = true;
+                    //    tpContactNo.Show("Please enter phone No.", txtContactNumber, 5000);
+                    //}
+                    //else
+                    //{
+                    //    errCompany.Clear();
+                    //    txtContactNumber.BackColor = Color.White;
+                    //    tpContactNo.Hide(txtContactNumber);
+                    //}
+
                 }
                 catch (Exception ex)
                 {
@@ -313,18 +321,23 @@ namespace ROMS
                 }
                 else if (txtAContactNumber.Text == "")
                 {
-                    errCompany.SetError(txtAContactNumber, "Please enter mobile No.");
-                    txtAContactNumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpAltContactNo.ShowAlways = true;
-                    tpAltContactNo.Show("Please enter mobile No.", txtAContactNumber, 5000);
-                }
-
-                else
-                {
-                    errCompany.Clear();
                     txtAContactNumber.BackColor = Color.White;
-                    tpAltContactNo.Hide(txtAContactNumber);
                 }
+                //else if (txtAContactNumber.Text == "")
+                //{
+                //    errCompany.SetError(txtAContactNumber, "Please enter mobile No.");
+                //    txtAContactNumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpAltContactNo.ShowAlways = true;
+                //    tpAltContactNo.Show("Please enter mobile No.", txtAContactNumber, 5000);
+                //}
+
+                //else
+                //{
+                //    errCompany.Clear();
+                //    txtAContactNumber.BackColor = Color.White;
+                //    tpAltContactNo.Hide(txtAContactNumber);
+                //}
+
             }
             catch (Exception ex)
             {
@@ -371,10 +384,11 @@ namespace ROMS
 
                 if (Convert.ToString(txtEmail.Text).Trim() == "")
                 {
-                    errCompany.SetError(txtEmail, "Please enter email");
-                    txtEmail.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpemail.ShowAlways = true;
-                    tpemail.Show("Please enter email", txtEmail, 5000);
+                    txtEmail.BackColor = Color.White;
+                    //errCompany.SetError(txtEmail, "Please enter email");
+                    //txtEmail.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //tpemail.ShowAlways = true;
+                    //tpemail.Show("Please enter email", txtEmail, 5000);
                 }
                 else if (objvalidation.FormatEMail(txtEmail.Text) == false)
                 {
@@ -620,10 +634,13 @@ namespace ROMS
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //picLoader.Visible = true;
+                        //picLoader.BringToFront();
+                        //Application.DoEvents();
                         this.ActiveControl = tcSupplier;
                         tcSupplier.SelectedIndex = 1;
                         MainForm.objCP_Supplierlist.udfnList();
-
+                        
                         txtName.Focus();
                         if (btnSave.Text == "Update")
                         {
@@ -853,7 +870,7 @@ namespace ROMS
             }
             finally
             {
-
+               // grdPaymentMode.ClearSelection();
             }
         }
      
@@ -897,6 +914,7 @@ namespace ROMS
                             grdPaymentMode.Columns[0].Width = 30;
                             grdPaymentMode.Columns["MST_DisplayText"].Width = 100;
                             grdPaymentMode.Columns["MST_DisplayText"].ReadOnly = true;
+                            grdPaymentMode.ClearSelection();
                         }
                     }
                 }
@@ -907,7 +925,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
+            finally
+            {
+                
+            }
              
         }
 
@@ -1089,35 +1110,34 @@ namespace ROMS
             }
         }
          
-
         private void txtArea_Leave(object sender, EventArgs e)
         {
             try
             {
                 txtArea.BackColor = Color.White;
-                try
-                {
-                    if (txtArea.Text == "")
-                    {
+                //try
+                //{
+                //    if (txtArea.Text == "")
+                //    {
                        
-                            errCompany.SetError(txtArea, "Please enter area");
-                            txtArea.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tparea.ShowAlways = true;
-                            tparea.Show("Please enter area.", txtArea, 5000); 
+                //            errCompany.SetError(txtArea, "Please enter area");
+                //            txtArea.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //            tparea.ShowAlways = true;
+                //            tparea.Show("Please enter area.", txtArea, 5000); 
                        
-                    }
-                    else
-                    {
-                        errCompany.Clear();
-                        txtArea.BackColor = Color.White;
-                        tparea.Hide(txtArea);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                }
+                //    }
+                //    else
+                //    {
+                //        errCompany.Clear();
+                //        txtArea.BackColor = Color.White;
+                //        tparea.Hide(txtArea);
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    objError = new DataError();
+                //    objError.WriteFile(ex);
+                //}
             }
             catch (Exception ex)
             {
@@ -1181,19 +1201,24 @@ namespace ROMS
                             tppincode.Hide(txtPincode);
                         }
                     }
-                    else if(txtPincode.Text  == "")
+                    else if (txtPincode.Text == "")
                     {
-                        errCompany.SetError(txtPincode, "Please enter pincode");
-                        txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tppincode.ShowAlways = true;
-                        tppincode.Show("Please enter pincode.", txtPincode, 5000); 
-                    }
-                    else
-                    {
-                        errCompany.Clear();
                         txtPincode.BackColor = Color.White;
-                        tppincode.Hide(txtPincode);
                     }
+                    //else if(txtPincode.Text  == "")
+                    //{
+                    //    errCompany.SetError(txtPincode, "Please enter pincode");
+                    //    txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tppincode.ShowAlways = true;
+                    //    tppincode.Show("Please enter pincode.", txtPincode, 5000); 
+                    //}
+                    //else
+                    //{
+                    //    errCompany.Clear();
+                    //    txtPincode.BackColor = Color.White;
+                    //    tppincode.Hide(txtPincode);
+                    //}
+
                 }
                 catch (Exception ex)
                 {
@@ -1285,21 +1310,22 @@ namespace ROMS
 
         private void Txtaddress2_Leave(object sender, EventArgs e)
         {
-            if (txtaddress2.Text  == "")
-            {
+            txtaddress2.BackColor = Color.White;
+            //if (txtaddress2.Text  == "")
+            //{
 
-                errCompany.SetError(txtaddress2, "Please enter address");
-                txtaddress2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tparea.ShowAlways = true;
-                tparea.Show("Please enter address.", txtaddress2, 5000);
+            //    errCompany.SetError(txtaddress2, "Please enter address");
+            //    txtaddress2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+            //    tparea.ShowAlways = true;
+            //    tparea.Show("Please enter address.", txtaddress2, 5000);
 
-            }
-            else
-            {
-                errCompany.Clear();
-                txtaddress2.BackColor = Color.White;
-                tparea.Hide(txtaddress2);
-            }
+            //}
+            //else
+            //{
+            //    errCompany.Clear();
+            //    txtaddress2.BackColor = Color.White;
+            //    tparea.Hide(txtaddress2);
+            //}
         }
 
         private void Txtaddress2_KeyDown(object sender, KeyEventArgs e)
@@ -1352,22 +1378,23 @@ namespace ROMS
         {
             if (txtwhatsapp.Text == "")
             {
-
-                errCompany.SetError(txtwhatsapp, "Please enter whatsapp No.");
-                txtwhatsapp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tpContactNo.ShowAlways = true;
-                tpContactNo.Show("Please enter whatsapp No.", txtwhatsapp, 5000);
+                txtwhatsapp.BackColor = Color.White;
+                //errCompany.SetError(txtwhatsapp, "Please enter whatsapp No.");
+                //txtwhatsapp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //tpContactNo.ShowAlways = true;
+                //tpContactNo.Show("Please enter whatsapp No.", txtwhatsapp, 5000);
 
             }
             else if (txtwhatsapp.Text != "")
             {
-                if (txtwhatsapp.Text.Length < 10 )
+
+                if (txtwhatsapp.Text.Length < 10)
                 {
 
                     errCompany.SetError(txtwhatsapp, "Please enter valid whatsapp No.");
                     txtwhatsapp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpContactNo.ShowAlways = true;
-                    tpContactNo.Show("Please enter valid whatsapp No.", txtwhatsapp, 5000); 
+                    tpContactNo.Show("Please enter valid whatsapp No.", txtwhatsapp, 5000);
                 }
                 else
                 {
@@ -1400,21 +1427,22 @@ namespace ROMS
 
         private void Txtcreditlimit_Leave(object sender, EventArgs e)
         {
-            if (txtcreditlimit.Text == "")
-            {
+            txtcreditlimit.BackColor = Color.White;
+            //if (txtcreditlimit.Text == "")
+            //{
 
-                errCompany.SetError(txtcreditlimit, "Please enter credit limit");
-                txtcreditlimit.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tpcredit.ShowAlways = true;
-                tpcredit.Show("Please enter credit limit.", txtcreditlimit, 5000);
+            //    errCompany.SetError(txtcreditlimit, "Please enter credit limit");
+            //    txtcreditlimit.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+            //    tpcredit.ShowAlways = true;
+            //    tpcredit.Show("Please enter credit limit.", txtcreditlimit, 5000);
 
-            }
-            else
-            {
-                errCompany.Clear();
-                txtwhatsapp.BackColor = Color.White;
-                tpcredit.Hide(txtcreditlimit);
-            }
+            //}
+            //else
+            //{
+            //    errCompany.Clear();
+            //    txtwhatsapp.BackColor = Color.White;
+            //    tpcredit.Hide(txtcreditlimit);
+            //}
         }
 
         private void Txtcreditlimit_KeyDown(object sender, KeyEventArgs e)
@@ -1437,21 +1465,22 @@ namespace ROMS
         {
             try
             {
-                if (txtopening.Text  == "")
-                {
+                txtopening.BackColor = Color.White;
+                //if (txtopening.Text  == "")
+                //{
 
-                    errCompany.SetError(txtopening, "Please enter opening ");
-                    txtopening.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpopening.ShowAlways = true;
-                    tpopening.Show("Please enter opening.", txtopening, 5000);
+                //    errCompany.SetError(txtopening, "Please enter opening ");
+                //    txtopening.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpopening.ShowAlways = true;
+                //    tpopening.Show("Please enter opening.", txtopening, 5000);
 
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtopening.BackColor = Color.White;
-                    tpopening.Hide(txtopening);
-                }
+                //}
+                //else
+                //{
+                //    errCompany.Clear();
+                //    txtopening.BackColor = Color.White;
+                //    tpopening.Hide(txtopening);
+                //}
             }
             catch (Exception ex)
             {
@@ -1629,14 +1658,13 @@ namespace ROMS
         {
             if (txtsalesmanwhatsapp.Text == "")
             {
-
-                errCompany.SetError(txtsalesmanwhatsapp, "Please enter salesman whatsapp No.");
-                txtsalesmanwhatsapp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tpsalemanph.ShowAlways = true;
-                tpsalemanph.Show("Please enter salesman whatsapp No.", txtsalesmanwhatsapp, 5000);
-
+                txtsalesmanwhatsapp.BackColor = Color.White;
+                //errCompany.SetError(txtsalesmanwhatsapp, "Please enter salesman whatsapp No.");
+                //txtsalesmanwhatsapp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //tpsalemanph.ShowAlways = true;
+                //tpsalemanph.Show("Please enter salesman whatsapp No.", txtsalesmanwhatsapp, 5000);
             }
-           else if (txtsalesmanwhatsapp.Text.Length != 10)
+            else if (txtsalesmanwhatsapp.Text.Length != 10)
             {
 
                 errCompany.SetError(txtsalesmanwhatsapp, "Please enter valid whatsapp No.");
@@ -1714,20 +1742,41 @@ namespace ROMS
         {
             try
             {
-                if (txtgstin.Text  == "")
-                {
+                //if (txtgstin.Text  == "")
+                //{
 
-                    errCompany.SetError(txtgstin, "Please enter GSTIN");
-                    txtgstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpgst.ShowAlways = true;
-                    tpgst.Show("Please enter supply GSTIN.", txtgstin, 5000);
+                //    errCompany.SetError(txtgstin, "Please enter GSTIN");
+                //    txtgstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpgst.ShowAlways = true;
+                //    tpgst.Show("Please enter supply GSTIN.", txtgstin, 5000);
 
-                }
-                else
+                //}
+                //else
+                //{
+                //    errCompany.Clear();
+                //    txtgstin.BackColor = Color.White;
+                //    tpgst.Hide(txtgstin);
+                //}
+                if (txtgstin.Text == "")
                 {
-                    errCompany.Clear();
                     txtgstin.BackColor = Color.White;
-                    tpgst.Hide(txtgstin);
+                }
+                else if(txtgstin.Text !="")
+                {
+                    if (txtgstin.Text.Length < 15)
+                    {
+                        errCompany.SetError(txtgstin, "Please enter valid GSTIN");
+                        txtgstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpgst.ShowAlways = true;
+                        tpgst.Show("Please enter supply GSTIN.", txtgstin, 5000);
+
+                    }
+                    else
+                    {
+                        errCompany.Clear();
+                        txtgstin.BackColor = Color.White;
+                        tpgst.Hide(txtgstin);
+                    }
                 }
             }
             catch (Exception ex)
@@ -1921,18 +1970,16 @@ namespace ROMS
             {
                 if (txtName.Text == "")
                 {
-
                     errCompany.SetError(txtName, "Please enter the name");
                     txtName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpname.ShowAlways = true;
                     tpname.Show("Please enter the name.", txtName, 5000);
-
                 }
                 else
                 {
                     errCompany.Clear();
                     txtName.BackColor = Color.White;
-                    tpname.Hide(txtName);
+                   // tpname.Hide(txtName);
                 }
             }
             catch (Exception ex)
@@ -1962,19 +2009,20 @@ namespace ROMS
         private void CmbState_Leave(object sender, EventArgs e)
         {
           try
-            {
-                if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
-                {
-                    errCompany.SetError(cmbState, "Please Select State Name");
-                    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpstate.ShowAlways = true;
-                    tpstate.Show("Please Select State Name", cmbState, 5000);
-                }
-                else
-                {
-                    errCompany.Clear();
-                    cmbState.BackColor = Color.White;
-                }
+           {
+                cmbState.BackColor = Color.White;
+                //if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
+                //{
+                //    errCompany.SetError(cmbState, "Please Select State Name");
+                //    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpstate.ShowAlways = true;
+                //    tpstate.Show("Please Select State Name", cmbState, 5000);
+                //}
+                //else
+                //{
+                //    errCompany.Clear();
+                //    cmbState.BackColor = Color.White;
+                //}
             }
             catch (Exception ex)
             {
@@ -2033,18 +2081,18 @@ namespace ROMS
             try
             {
                 cmbDesignation.BackColor = Color.White;
-                if (Convert.ToString(cmbDesignation.SelectedValue) == "" || Convert.ToString(cmbDesignation.SelectedValue) == "-1")
-                {
-                    errCompany.SetError(cmbDesignation, "Please Select Designation");
-                    cmbDesignation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpstate.ShowAlways = true;
-                    tpstate.Show("Please Select Designation", cmbDesignation, 5000);
-                }
-                else
-                {
-                    errCompany.Clear();
-                    cmbDesignation.BackColor = Color.White;
-                }
+                //if (Convert.ToString(cmbDesignation.SelectedValue) == "" || Convert.ToString(cmbDesignation.SelectedValue) == "-1")
+                //{
+                //    errCompany.SetError(cmbDesignation, "Please Select Designation");
+                //    cmbDesignation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpstate.ShowAlways = true;
+                //    tpstate.Show("Please Select Designation", cmbDesignation, 5000);
+                //}
+                //else
+                //{
+                //    errCompany.Clear();
+                //    cmbDesignation.BackColor = Color.White;
+                //}
             }
             catch (Exception ex)
             {
@@ -2217,18 +2265,18 @@ namespace ROMS
             try
             {
                 cmbPaymentTerm.BackColor = Color.White;
-                if (Convert.ToString(cmbPaymentTerm.SelectedValue) == "" || Convert.ToString(cmbPaymentTerm.SelectedValue) == "-1")
-                {
-                    errCompany.SetError(cmbPaymentTerm, "Please Select Payment Term");
-                    cmbPaymentTerm.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpstate.ShowAlways = true;
-                    tpstate.Show("Please Select Payment Term", cmbPaymentTerm, 5000);
-                }
-                else
-                {
-                    errCompany.Clear();
-                    cmbPaymentTerm.BackColor = Color.White;
-                }
+                //if (Convert.ToString(cmbPaymentTerm.SelectedValue) == "" || Convert.ToString(cmbPaymentTerm.SelectedValue) == "-1")
+                //{
+                //    errCompany.SetError(cmbPaymentTerm, "Please Select Payment Term");
+                //    cmbPaymentTerm.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpstate.ShowAlways = true;
+                //    tpstate.Show("Please Select Payment Term", cmbPaymentTerm, 5000);
+                //}
+                //else
+                //{
+                //    errCompany.Clear();
+                //    cmbPaymentTerm.BackColor = Color.White;
+                //}
             }
             catch (Exception ex)
             {
@@ -2270,18 +2318,18 @@ namespace ROMS
             try
             {
                 cmbSupplierType.BackColor = Color.White;
-                if (Convert.ToString(cmbSupplierType.SelectedValue) == "" || Convert.ToString(cmbSupplierType.SelectedValue) == "-1")
-                {
-                    errCompany.SetError(cmbSupplierType, "Please Select Supplier Type");
-                    cmbSupplierType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpstate.ShowAlways = true;
-                    tpstate.Show("Please Select Payment Supplier Type", cmbSupplierType, 5000);
-                }
-                else
-                {
-                    errCompany.Clear();
-                    cmbSupplierType.BackColor = Color.White;
-                }
+                //if (Convert.ToString(cmbSupplierType.SelectedValue) == "" || Convert.ToString(cmbSupplierType.SelectedValue) == "-1")
+                //{
+                //    errCompany.SetError(cmbSupplierType, "Please Select Supplier Type");
+                //    cmbSupplierType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpstate.ShowAlways = true;
+                //    tpstate.Show("Please Select Payment Supplier Type", cmbSupplierType, 5000);
+                //}
+                //else
+                //{
+                //    errCompany.Clear();
+                //    cmbSupplierType.BackColor = Color.White;
+                //}
             }
             catch (Exception ex)
             {
@@ -2491,7 +2539,7 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbPolicyContent.Select(int.MaxValue, 0)));
                 if ((Convert.ToString(cmbReturnType.SelectedValue) == "27"))
-                    {
+                {
                     vardays = "";
                     vardayMonthID = 0;
                     cmbSecondLevel.DataSource = null;
@@ -3042,6 +3090,7 @@ namespace ROMS
                 }
                 if (tcSupplier.SelectedIndex == 3)
                 {
+
                     cmbOrderschedule.Focus(); 
                     BeginInvoke(new Action(() => cmborderday.Select(int.MaxValue, 0)));
                     cmborderday.SelectedIndex = 0; 
@@ -3050,6 +3099,9 @@ namespace ROMS
                 }
                 if (tcSupplier.SelectedIndex == 2)
                 {
+                    //picLoader.Visible = true;
+                    //picLoader.BringToFront();
+                    //Application.DoEvents();
                     txtSupplier.Focus();
                     cmborderday.SelectedIndex = 0;
                     cmbOrderschedule.SelectedIndex = 0;
@@ -3083,7 +3135,10 @@ namespace ROMS
             if (e.TabPageIndex == 2)
             {
                 try
-                { 
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     this.ActiveControl = cmbOrderschedule; 
                     DataBind objDataBind = new DataBind();
                     if (Convert.ToInt32(varsupplierID) != 0)
@@ -3103,18 +3158,20 @@ namespace ROMS
                     int varViewType = 3;
                     objDT = objdserv.udfnGroupList(varViewType, 0,0,"");
                     objdserv.CloseConnection();
-                    if (objDT != null)
-                    {
-                        if (objDT.Tables.Count > 0)
-                        {
-                            if (objDT.Tables[0].Rows.Count > 0)
-                            {
-                                cmbMappingGroup.ValueMember = "PRGID";
-                                cmbMappingGroup.DisplayMember = "PRG_EName";
-                                cmbMappingGroup.DataSource = objDT.Tables[0];
-                            }
-                        }
-                    }
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                    //if (objDT != null)
+                    //{
+                    //    if (objDT.Tables.Count > 0)
+                    //    {
+                    //        if (objDT.Tables[0].Rows.Count > 0)
+                    //        {
+                    //            cmbMappingGroup.ValueMember = "PRGID";
+                    //            cmbMappingGroup.DisplayMember = "PRG_EName";
+                    //            cmbMappingGroup.DataSource = objDT.Tables[0];
+                    //        }
+                    //    }
+                    //}
                     objdserv.CloseConnection();
 
                 }
@@ -3130,19 +3187,21 @@ namespace ROMS
             {
                 try
                 {
+                   
+                   
                     this.ActiveControl = cmbOrderschedule;
-                    DataBind objDataBind = new DataBind();
-                    if (Convert.ToInt32(varsupplierID) != 0)
-                    {
-                        SupplierUpdate = Convert.ToInt32(varsupplierID);
-                    }
-                    else
-                    {
-                        SupplierUpdate = Convert.ToInt32(pbSupplierid);
-                    } 
-                    objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + SupplierUpdate + "' OR SPSCID=0", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
-                    objDataBind = null;
-                      
+                    //DataBind objDataBind = new DataBind();
+                    //if (Convert.ToInt32(varsupplierID) != 0)
+                    //{
+                    //    SupplierUpdate = Convert.ToInt32(varsupplierID);
+                    //}
+                    //else
+                    //{
+                    //    SupplierUpdate = Convert.ToInt32(pbSupplierid);
+                    //} 
+                    //objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + SupplierUpdate + "' OR SPSCID=0", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
+                    //objDataBind = null;
+                  
                 }
                 catch (Exception ex)
                 {
@@ -3591,8 +3650,8 @@ namespace ROMS
                 dtSubGroup.Columns.Add("SUBGROUPID", typeof(int));
                 dtSubGroup.Columns.Add("PRODUCTID", typeof(int));
                 
-                objDs = objspservice.udfnproductmasterlist(3, 0, 0,Convert.ToInt32(cmbMappingGroup.SelectedValue), Convert.ToInt32(cmbMappingSubGroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue));
-              
+                //objDs = objspservice.udfnproductmasterlist(3, 0, 0,Convert.ToInt32(cmbMappingGroup.SelectedValue), Convert.ToInt32(cmbMappingSubGroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue));
+                objDs = objspservice.udfnproductmasterlist(3, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue));
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
@@ -3725,7 +3784,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbMappingGroup.Focus();
+                    txtMappingGroup.Focus();
                 }
             }
             catch (Exception ex)
@@ -3857,7 +3916,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbMappingSubGroup.Focus();
+                    txtMappingSubGroup.Focus();
                 }
             }
             catch (Exception ex)
@@ -3882,68 +3941,56 @@ namespace ROMS
             }
         }
 
-        private void CmbMappingGroup_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-
-                cmbMappingGroup.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+      
 
         private void CmbMappingGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                BeginInvoke(new Action(() => cmbMappingGroup.Select(int.MaxValue, 0))); 
-                DataSet objDT = new DataSet();
-                SPDataService objdserv = new SPDataService();
-                int varViewType = 5;
-                if (Convert.ToInt32(cmbMappingGroup.SelectedValue) == 0)
-                {
-                    varViewType = 4;
-                }
-                objDT = objdserv.udfnSubGroupList(varViewType, 0,"", Convert.ToInt32(cmbMappingGroup.SelectedValue), 0,"");
-                objdserv.CloseConnection();
-                if (objDT != null)
-                {
-                    if (objDT.Tables.Count > 0)
-                    {
-                        if (objDT.Tables[0].Rows.Count > 0)
-                        {
-                            cmbMappingSubGroup.ValueMember = "PRSGID";
-                            cmbMappingSubGroup.DisplayMember = "PRSG_EName";
-                            cmbMappingSubGroup.DataSource = objDT.Tables[0];
-                        }
-                    }
-                }
-                objdserv.CloseConnection();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    BeginInvoke(new Action(() => cmbMappingGroup.Select(int.MaxValue, 0))); 
+            //    DataSet objDT = new DataSet();
+            //    SPDataService objdserv = new SPDataService();
+            //    int varViewType = 5;
+            //    if (Convert.ToInt32(cmbMappingGroup.SelectedValue) == 0)
+            //    {
+            //        varViewType = 4;
+            //    }
+            //    objDT = objdserv.udfnSubGroupList(varViewType, 0,"", Convert.ToInt32(cmbMappingGroup.SelectedValue), 0,"");
+            //    objdserv.CloseConnection();
+            //    if (objDT != null)
+            //    {
+            //        if (objDT.Tables.Count > 0)
+            //        {
+            //            if (objDT.Tables[0].Rows.Count > 0)
+            //            {
+            //                cmbMappingSubGroup.ValueMember = "PRSGID";
+            //                cmbMappingSubGroup.DisplayMember = "PRSG_EName";
+            //                cmbMappingSubGroup.DataSource = objDT.Tables[0];
+            //            }
+            //        }
+            //    }
+            //    objdserv.CloseConnection();
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void CmbMappingGroup_Leave(object sender, EventArgs e)
         {
 
-            try
-            {
+            //try
+            //{
 
-                cmbMappingGroup.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //    cmbMappingGroup.BackColor = Color.White;
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
 
         }
 
@@ -3982,7 +4029,7 @@ namespace ROMS
             try
             {
 
-                cmbMappingSubGroup.BackColor = Color.White;
+                //cmbMappingSubGroup.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -3994,29 +4041,29 @@ namespace ROMS
         private void CmbMappingSubGroup_Enter(object sender, EventArgs e)
         {
 
-            try
-            {
+            //try
+            //{
 
-                cmbMappingSubGroup.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //    cmbMappingSubGroup.BackColor = Color.LemonChiffon;
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void CmbMappingSubGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                BeginInvoke(new Action(() => cmbMappingSubGroup.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    BeginInvoke(new Action(() => cmbMappingSubGroup.Select(int.MaxValue, 0)));
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void BtnMappingView_Enter(object sender, EventArgs e)
@@ -4684,9 +4731,11 @@ namespace ROMS
         { 
             try
             {  
-                cmbMappingordeDay.SelectedValue = -1; 
-                cmbMappingSubGroup.SelectedValue = 0;
-                cmbMappingGroup.SelectedValue = 0;
+                cmbMappingordeDay.SelectedValue = -1;
+                //cmbMappingSubGroup.SelectedValue = 0;
+                //cmbMappingGroup.SelectedValue = 0;
+                varGroupId = 0;
+                varSubGroupId = 0;
                 txtSearchByProduct1.Text = "";
                 txtmappingproductsearch2.Text = "";
                 foreach (DataGridViewRow row in grdSupplierMappingLoad.Rows)
@@ -5080,8 +5129,8 @@ namespace ROMS
 
                     errCompany.SetError(txtsalesmanname, "Please enter salesman name");
                     txtsalesmanname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpsalemanph.ShowAlways = true;
-                    tpsalemanph.Show("Please enter salesman name", txtsalesmanname, 5000);
+                    tpsalesman.ShowAlways = true;
+                    tpsalesman.Show("Please enter salesman name", txtsalesmanname, 5000);
                     blnErrorFlag = true; 
                 }
                 if (txtsalesmanmobile.Text == "")
@@ -5187,6 +5236,7 @@ namespace ROMS
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             grddays.ClearSelection();
+                            
                             MainForm.objCP_Supplierlist.udfnList();
                             this.ActiveControl = txtScheduleName;
                             if (btnAdd.Text == "Update")
@@ -5308,18 +5358,19 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtBankname.Text).Trim() == "")
-                {
-                    errCompany.SetError(txtBankname, "Please enter bank name");
-                    txtBankname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpBankName.ShowAlways = true;
-                    tpBankName.Show("Please enter bank name", txtBankname, 5000);
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtBankname.BackColor = Color.White;
-                }
+                txtBankname.BackColor = Color.White;
+                //    if (Convert.ToString(txtBankname.Text).Trim() == "")
+                //    {
+                //        errCompany.SetError(txtBankname, "Please enter bank name");
+                //        txtBankname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        tpBankName.ShowAlways = true;
+                //        tpBankName.Show("Please enter bank name", txtBankname, 5000);
+                //    }
+                //    else
+                //    {
+                //        errCompany.Clear();
+                //        txtBankname.BackColor = Color.White;
+                //    }
             }
             catch (Exception ex)
             {
@@ -5361,18 +5412,19 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtBankShortName.Text).Trim() == "")
-                {
-                    errCompany.SetError(txtBankShortName, "Please enter bank short name");
-                    txtBankShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpBankShortName.ShowAlways = true;
-                    tpBankShortName.Show("Please enter bank short name", txtBankShortName, 5000);
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtBankShortName.BackColor = Color.White;
-                }
+                txtBankShortName.BackColor = Color.White;
+                //if (Convert.ToString(txtBankShortName.Text).Trim() == "")
+                //{
+                //    errCompany.SetError(txtBankShortName, "Please enter bank short name");
+                //    txtBankShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpBankShortName.ShowAlways = true;
+                //    tpBankShortName.Show("Please enter bank short name", txtBankShortName, 5000);
+                //}
+                //else
+                //{
+                //    errCompany.Clear();
+                //    txtBankShortName.BackColor = Color.White;
+                //}
             }
             catch (Exception ex)
             {
@@ -5428,18 +5480,19 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtbranchname.Text).Trim() == "")
-                {
-                    errCompany.SetError(txtbranchname, "Please enter branch name");
-                    txtbranchname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpBranchName.ShowAlways = true;
-                    tpBranchName.Show("Please enter branch name", txtbranchname, 5000);
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtbranchname.BackColor = Color.White;
-                }
+                txtbranchname.BackColor = Color.White;
+                //if (Convert.ToString(txtbranchname.Text).Trim() == "")
+                //{
+                //    errCompany.SetError(txtbranchname, "Please enter branch name");
+                //    txtbranchname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpBranchName.ShowAlways = true;
+                //    tpBranchName.Show("Please enter branch name", txtbranchname, 5000);
+                //}
+                //else
+                //{
+                //    errCompany.Clear();
+                //    txtbranchname.BackColor = Color.White;
+                //}
             }
             catch (Exception ex)
             {
@@ -5529,19 +5582,381 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+           
         }
 
         private void GrdPaymentMode_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (grdPaymentMode.Columns[e.ColumnIndex].Name == "clmpaymentcheck" && e.RowIndex >= 0)
+            try
             {
-                DataGridViewCheckBoxCell checkBoxCell = grdPaymentMode.Rows[e.RowIndex].Cells["clmpaymentcheck"] as DataGridViewCheckBoxCell;
-                if (checkBoxCell != null)
+                if (grdPaymentMode.Columns[e.ColumnIndex].Name == "clmpaymentcheck" && e.RowIndex >= 0)
                 {
-                    checkBoxCell.Value = !(bool)(checkBoxCell.Value ?? false);
-                    grdPaymentMode.EndEdit(); // Commit the change
+                    DataGridViewCheckBoxCell checkBoxCell = grdPaymentMode.Rows[e.RowIndex].Cells["clmpaymentcheck"] as DataGridViewCheckBoxCell;
+                    if (checkBoxCell != null)
+                    {
+                        checkBoxCell.Value = !(bool)(checkBoxCell.Value ?? false);
+                        grdPaymentMode.EndEdit(); // Commit the change
+                    }
                 }
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Grbform_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtBankShortName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TcSupplier_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LvCity_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGrdevent();
+                txtPincode.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtMappingGroup_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMappingGroup.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtMappingGroup_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMappingGroup.BackColor = Color.White;
+                if (txtMappingGroup.Text.Trim() == "") { varGroupId = 0; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtMappingSubGroup_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMappingSubGroup.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtMappingSubGroup_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMappingSubGroup.BackColor = Color.White;
+                if (txtMappingSubGroup.Text.Trim() == "") { varSubGroupId = 0; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLvGroup()
+        {
+            try
+            {
+                if (txtMappingGroup.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvMappingGroup.SelectedItems[0];
+                    txtMappingGroup.Text = selectedItem.SubItems[0].Text;
+                    varGroupId =Convert.ToInt32( selectedItem.SubItems[2].Text);
+                    lvMappingGroup.Visible = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLvSubGroup()
+        {
+            try
+            {
+                if (txtMappingSubGroup.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvMappingSubGroup.SelectedItems[0];
+                    txtMappingSubGroup.Text = selectedItem.SubItems[0].Text;
+                    varSubGroupId = Convert.ToInt32(selectedItem.SubItems[2].Text);
+                    lvMappingSubGroup.Visible = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void LvMappingGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnLvGroup();
+                    txtMappingSubGroup.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtMappingSubGroup_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvMappingSubGroup.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtMappingSubGroup.Text.Length > 2)
+                {
+                    objDs = objspdservice.udfnSubGroupList(10, 0,"", varGroupId,0,txtMappingSubGroup.Text);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), };
+                                    //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvMappingSubGroup.Items.Add(objList);
+                                }
+                                lvMappingSubGroup.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvMappingSubGroup.Visible = false;
+                    lvMappingSubGroup.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvMappingGroup_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnLvGroup();
+                txtMappingSubGroup.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvMappingSubGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnLvSubGroup();
+                    btnMappingView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvMappingSubGroup_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                    udfnLvSubGroup();
+                    btnMappingView.Focus();
+                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtMappingGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvMappingGroup.Items.Count == 0 || txtMappingGroup.Text == "")
+                    {
+                        txtMappingGroup.Focus();
+                        lvMappingGroup.Visible = false;
+                    }
+                    else
+                    {
+                        lvMappingGroup.Focus();
+                    }
+                    if (lvMappingGroup.Items.Count > 0)
+                    {
+                        lvMappingGroup.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtMappingSubGroup.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtMappingSubGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvMappingSubGroup.Items.Count == 0 || txtMappingSubGroup.Text == "")
+                    {
+                        txtMappingSubGroup.Focus();
+                        lvMappingSubGroup.Visible = false;
+                    }
+                    else
+                    {
+                        lvMappingSubGroup.Focus();
+                    }
+                    if (lvMappingSubGroup.Items.Count > 0)
+                    {
+                        lvMappingSubGroup.Items[0].Selected = true;
+                    }
+                }
+
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnMappingView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPaymentMode_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdPaymentMode.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtMappingGroup_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvMappingGroup.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtMappingGroup.Text.Length > 2)
+                {
+                    objDs = objspdservice.udfnGroupList(7, 0, 0, txtMappingGroup.Text);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), };
+                                    //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvMappingGroup.Items.Add(objList);
+                                }
+                                lvMappingGroup.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvMappingGroup.Visible = false;
+                    lvMappingGroup.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
@@ -5578,18 +5993,19 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtAccno.Text).Trim() == "")
-                {
-                    errCompany.SetError(txtAccno, "Please enter account number");
-                    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpAccountNo.ShowAlways = true;
-                    tpAccountNo.Show("Please enter account number", txtAccno, 5000);
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtAccno.BackColor = Color.White;
-                }
+                txtAccno.BackColor = Color.White;
+                //if (Convert.ToString(txtAccno.Text).Trim() == "")
+                //{
+                //    errCompany.SetError(txtAccno, "Please enter account number");
+                //    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpAccountNo.ShowAlways = true;
+                //    tpAccountNo.Show("Please enter account number", txtAccno, 5000);
+                //}
+                //else
+                //{
+                //    errCompany.Clear();
+                //    txtAccno.BackColor = Color.White;
+                //}
             }
             catch (Exception ex)
             {
@@ -5643,22 +6059,41 @@ namespace ROMS
             }
 
         }
-
         private void TxtIFScode_Leave(object sender, EventArgs e)
         {
             try
             {
+                //if(Convert.ToString(txtIFScode.Text).Trim() == "")
+                //{
+                //    errCompany.SetError(txtIFScode, "Please enter IFS Code");
+                //    txtIFScode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpIfsCode.ShowAlways = true;
+                //    tpIfsCode.Show("Please enter IFS Code", txtIFScode, 5000);
+                //}
+                //else
+                //{
+                //    errCompany.Clear();
+                //    txtIFScode.BackColor = Color.White;
+                //}
                 if (Convert.ToString(txtIFScode.Text).Trim() == "")
                 {
-                    errCompany.SetError(txtIFScode, "Please enter IFS Code");
-                    txtIFScode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpIfsCode.ShowAlways = true;
-                    tpIfsCode.Show("Please enter IFS Code", txtIFScode, 5000);
-                }
-                else
-                {
-                    errCompany.Clear();
                     txtIFScode.BackColor = Color.White;
+                }
+                 else if (Convert.ToString(txtIFScode.Text).Trim() != "")
+                {
+                    if (txtIFScode.Text.Length < 11)
+                    {
+                        errCompany.SetError(txtIFScode, "Please enter valid IFS Code");
+                        txtIFScode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpIfsCode.ShowAlways = true;
+                        tpIfsCode.Show("Please enter IFS Code", txtIFScode, 5000);
+
+                    }
+                    else
+                    {
+                        errCompany.Clear();
+                        txtIFScode.BackColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)
@@ -5685,19 +6120,20 @@ namespace ROMS
         private void TxtAccName_Leave(object sender, EventArgs e)
         {
             try
-            { 
-                if (Convert.ToString(txtAccName.Text).Trim() == "")
-                {
-                    errCompany.SetError(txtAccName, "Please enter Acc name");
-                    txtAccName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpIfsCode.ShowAlways = true;
-                    tpIfsCode.Show("Please enter acc name", txtAccName, 5000);
-                }
-                else
-                {
-                    errCompany.Clear();
-                    txtAccName.BackColor = Color.White;
-                }
+            {
+                txtAccName.BackColor = Color.White;
+                //if (Convert.ToString(txtAccName.Text).Trim() == "")
+                //{
+                //    errCompany.SetError(txtAccName, "Please enter Acc name");
+                //    txtAccName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpIfsCode.ShowAlways = true;
+                //    tpIfsCode.Show("Please enter acc name", txtAccName, 5000);
+                //}
+                //else
+                //{
+                //    errCompany.Clear();
+                //    txtAccName.BackColor = Color.White;
+                //}
             }
             catch (Exception ex)
             {
