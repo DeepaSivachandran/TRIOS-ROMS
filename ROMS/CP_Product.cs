@@ -3595,7 +3595,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtPurLocation.Text.Length > 2)
                 {
-                    objDs = objspdservice.udfnStockLocationList(10,Convert.ToInt32(cmbConcern.SelectedValue),0,0,txtPurLocation.Text.Trim());
+                    objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtPurLocation.Text.Trim());
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -3624,6 +3624,9 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally {
+                txtPurLocation.Focus();
             }
         }
 
@@ -3939,6 +3942,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally { txtSaleLocation.Focus(); }
         }
 
         private void TxtSaleRack_Enter(object sender, EventArgs e)
