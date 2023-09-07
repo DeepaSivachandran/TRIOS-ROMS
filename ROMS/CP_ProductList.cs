@@ -58,8 +58,6 @@ namespace ROMS
         {
             try
             {
-                //vargroup = Convert.ToInt32(cmbGroupType.SelectedValue);
-                //varsubgroup = Convert.ToInt32(cmbsubgroup.SelectedValue);
                 varconcern = Convert.ToInt32(cmbConcern.SelectedValue);
                 varcategory = Convert.ToInt32(cmbCategory.SelectedValue);
             }
@@ -82,9 +80,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-     
-
         public void udfndelete()
         {
             try
@@ -115,7 +110,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
 
         }
 
@@ -694,158 +688,6 @@ namespace ROMS
 
         }
 
-        private void Cmbsubgroup_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Cmbsubgroup_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    //cmbGroupType.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        private void Cmbsubgroup_Leave(object sender, EventArgs e)
-        {
-
-            try
-            {
-                //cmbsubgroup.BackColor = Color.White;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void Cmbsubgroup_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //BeginInvoke(new Action(() => cmbsubgroup.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        private void Cmbsubgroup_Enter(object sender, EventArgs e)
-        {
-
-            try
-            {
-                //cmbsubgroup.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbGroupType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //BeginInvoke(new Action(() => cmbGroupType.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        private void CmbGroupType_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                //cmbGroupType.BackColor = Color.White;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        private void CmbGroupType_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbGroupType_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
-        private void CmbGroupType_Enter(object sender, EventArgs e)
-        {
-
-            try
-            {
-                //cmbGroupType.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void BtnView_Enter(object sender, EventArgs e)
         {
 
@@ -1043,45 +885,7 @@ namespace ROMS
             { 
                 DataSet objDT = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                int varViewType = 4;
-
-                objDT = objdserv.udfnSubGroupList(varViewType, 0, "",0,0,"");
-                objdserv.CloseConnection();
-                //cmbsubgroup.DataSource = null;
-                if (objDT != null)
-                {
-                    if (objDT.Tables.Count > 0)
-                    {
-                        if (objDT.Tables[0].Rows.Count > 0)
-                        {
-                            //cmbsubgroup.ValueMember = "PRSGID";
-                            //cmbsubgroup.DisplayMember = "PRSG_EName";
-                            //cmbsubgroup.DataSource = objDT.Tables[0];
-                        }
-                    }
-                } 
-                objdserv.CloseConnection();
-
-
-                varViewType = 3;
-                objDT = objdserv.udfnGroupList(varViewType, 0,0,"");
-                objdserv.CloseConnection();
-                //cmbGroupType.DataSource = null; 
-                if (objDT != null)
-                {
-                    if (objDT.Tables.Count > 0)
-                    {
-                        if (objDT.Tables[0].Rows.Count > 0)
-                        {
-                            //cmbGroupType.ValueMember = "PRGID";
-                            //cmbGroupType.DisplayMember = "PRG_EName";
-                            //cmbGroupType.DataSource = objDT.Tables[0];
-                        }
-                    }
-                }
-
-
-
+                
                 int varconcerntype = 2; 
                 objDT = objdserv.udfnCompanyList(varconcerntype, 0, MainForm.pbUserID, MainForm.pbIpAddress);
                 objdserv.CloseConnection();
@@ -1101,13 +905,9 @@ namespace ROMS
 
 
 
-
-
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
-                //cmbGroupType.SelectedValue = vargroup;
-                //cmbsubgroup.SelectedValue = varsubgroup;
                 cmbConcern.SelectedValue = varconcern;
                 cmbCategory.SelectedValue = varcategory;
             }
@@ -1117,7 +917,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void TxtProductSubGroup_TextChanged(object sender, EventArgs e)
