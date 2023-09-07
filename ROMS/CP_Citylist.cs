@@ -107,7 +107,6 @@ namespace ROMS
                     MainForm.objCP_City.PbCityName = Convert.ToString(grdCityList.SelectedRows[0].Cells["City Name"].Value);
                     MainForm.objCP_City.PbStatus = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objCP_City.ShowDialog();
-                    picLoader.Visible = false;
                 }
             }
             catch (Exception ex)

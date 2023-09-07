@@ -66,18 +66,22 @@ namespace ROMS
                     this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 }
                 else
-                { 
+                {
                     DataBind objDTBind = new DataBind();
                     objDTBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID =27", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                     cmbState.Enabled = false;
                     objDTBind = null;
                 }
-                
+
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally {
+                MainForm.objCP_Citylist.picLoader.Visible = false;
+                MainForm.objCP_Citylist.picLoader.SendToBack();
             }
         }
         private void udfnLoad()
