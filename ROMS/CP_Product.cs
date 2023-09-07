@@ -1883,7 +1883,7 @@ namespace ROMS
                         varlocationpsalesid = Convert.ToInt32(cmbSalesGodown.SelectedValue);
                     }
                 }
-               objDS = objsdserv.udfnStockLocationList(varparaViewType, Convert.ToInt32(cmbConcern.SelectedValue), varlocationpurid, 0);
+               objDS = objsdserv.udfnStockLocationList(varparaViewType, Convert.ToInt32(cmbConcern.SelectedValue), varlocationpurid, 0,"");
                 objsdserv.CloseConnection(); 
                 cmbPosition.DataSource = null;
                 if (objDS != null)
@@ -1899,7 +1899,7 @@ namespace ROMS
                     }
                 }
 
-                objDS = objsdserv.udfnStockLocationList(varparaViewType, Convert.ToInt32(cmbConcern.SelectedValue), varlocationpsalesid, 0);
+                objDS = objsdserv.udfnStockLocationList(varparaViewType, Convert.ToInt32(cmbConcern.SelectedValue), varlocationpsalesid, 0,"");
                 objsdserv.CloseConnection();
                 cmbSalesGodown.DataSource = null;
                 if (objDS != null)

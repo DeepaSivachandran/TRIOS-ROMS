@@ -93,7 +93,7 @@ namespace ROMS
                 {
                     varViewType = 6;
                 }
-                objDs = objdserv.udfnStockLocationList(varViewType,0,0,0);
+                objDs = objdserv.udfnStockLocationList(varViewType,0,0,0,"");
                 objdserv.CloseConnection();
                 cmbSStockLocation.DataSource = null;
                 if (objDs != null)
