@@ -943,13 +943,11 @@ namespace ROMS
              
         }
 
-
-
         private void udfnEdit()
         {
             try
             {
-                int varReturnTypeID = 0;
+                string varReturnTypeID = "";
                 int varReturPolicyId = 0;
                 if (pbSupplierid != "")
                 { 
@@ -991,12 +989,12 @@ namespace ROMS
                             txtOtherBrands.Text= objDS.Tables[0].Rows[0]["SP_Brand"].ToString().Replace("''", "'");
 
 
-                            // cmbReturnPolicy.SelectedValue = objDS.Tables[0].Rows[0]["RETURN"].ToString();
-                            varReturPolicyId = Convert.ToInt32(objDS.Tables[0].Rows[0]["RETURN"].ToString());
-                            cmbReturnPolicy.SelectedValue = varReturPolicyId;
+                            //cmbReturnPolicy.SelectedValue = objDS.Tables[0].Rows[0]["RETURN"].ToString();
+                           varReturPolicyId = Convert.ToInt32(objDS.Tables[0].Rows[0]["RETURN"].ToString());
+                            varReturnTypeID = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
+                            cmbReturnPolicy.SelectedValue = varReturnTypeID;
+                            cmbReturnType.SelectedValue = varReturPolicyId;
                             //cmbReturnType.SelectedValue = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
-                            varReturnTypeID = Convert.ToInt32(objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString());
-                            cmbReturnType.SelectedValue = varReturnTypeID;
 
                             cmbSupplierType.SelectedValue = objDS.Tables[0].Rows[0]["SUPPLIERTYPE"].ToString();
                             cmbPaymentTerm.SelectedValue = objDS.Tables[0].Rows[0]["PAYMENT"].ToString(); 
@@ -1084,8 +1082,8 @@ namespace ROMS
             }
             finally
             {
-
                 lvCity.Visible = false;
+                udfnLoadOrderSchedule();
             }
         }
          
@@ -1863,6 +1861,7 @@ namespace ROMS
             try
             { 
                 if (cmbReturnPolicy.Text == "Yes")
+               // if (Convert.ToString(cmbReturnType.SelectedValue) == "22")
                 {
                     cmbReturnType.Visible = true;
                     txtDReturnCycle.Visible = true;
@@ -3138,6 +3137,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnLoadOrderSchedule() {
+            try {
+                if (Convert.ToInt32(varsupplierID) != 0)
+                {
+                    SupplierUpdate = Convert.ToInt32(varsupplierID);
+                }
+                else
+                {
+                    SupplierUpdate = Convert.ToInt32(pbSupplierid);
+                }
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("(SELECT '-ALL-' SPSC_Name, 0 SPSCID, 1 as SNO,0 SPSC_SPID UNION ALL select SPSC_Name, SPSCID, 2, SPSC_SPID from MR_Supplier_Schedule) derv ", " SPSC_SPID='" + SupplierUpdate + "' oR  SPSC_SPID= 0 order by sno, SPSC_Name", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
+                objDataBind = null;
+            }
+            catch (Exception ex) {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void TcSupplier_Selected(object sender, TabControlEventArgs e)
         {
@@ -3162,6 +3180,7 @@ namespace ROMS
 
 
                     this.ActiveControl = cmbOrderschedule;
+                    udfnLoadOrderSchedule();
                     //DataBind objDataBind = new DataBind();
                     //if (Convert.ToInt32(varsupplierID) != 0)
                     //{
