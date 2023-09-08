@@ -897,6 +897,7 @@
             this.txtAlterMobileno.Name = "txtAlterMobileno";
             this.txtAlterMobileno.Size = new System.Drawing.Size(157, 27);
             this.txtAlterMobileno.TabIndex = 10;
+            this.txtAlterMobileno.TextChanged += new System.EventHandler(this.TxtAlterMobileno_TextChanged);
             this.txtAlterMobileno.Enter += new System.EventHandler(this.TxtAlterMobileno_Enter);
             this.txtAlterMobileno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAlterMobileno_KeyDown);
             this.txtAlterMobileno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAlterMobileno_KeyPress);
@@ -1526,7 +1527,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Company_FormClosing);
             this.Load += new System.EventHandler(this.CP_Company_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Company_KeyDown);
-//            this.Leave += new System.EventHandler(this.CP_Company_Leave);
             this.tsBrandList.ResumeLayout(false);
             this.tsBrandList.PerformLayout();
             this.pnlCompany.ResumeLayout(false);
