@@ -2330,6 +2330,7 @@
             this.grdSupplierMappingLoad.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupplierMappingLoad.Size = new System.Drawing.Size(639, 404);
             this.grdSupplierMappingLoad.TabIndex = 4;
+            this.grdSupplierMappingLoad.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierMappingLoad_CellContentClick);
             this.grdSupplierMappingLoad.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupplierMappingLoad_CellValueChanged);
             this.grdSupplierMappingLoad.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdSupplierMappingLoad_CurrentCellDirtyStateChanged);
             this.grdSupplierMappingLoad.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupplierMappingLoad_DataBindingComplete);

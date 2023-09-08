@@ -485,6 +485,17 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
+                if (txtgstin.Text != "")
+                {
+                    if (txtgstin.Text.Length < 15)
+                    {
+                        errCompany.SetError(txtgstin, "Please enter valid supplier GSTIN");
+                        txtgstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpgst.ShowAlways = true;
+                        tpgst.Show("Please enter valid supplier GSTIN.", txtgstin, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
                 if (Convert.ToString(txtCity.Text) != "")
                 {
                     if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
@@ -938,6 +949,8 @@ namespace ROMS
         {
             try
             {
+                int varReturnTypeID = 0;
+                int varReturPolicyId = 0;
                 if (pbSupplierid != "")
                 { 
                     SPDataService objspservice = new SPDataService();
@@ -977,12 +990,17 @@ namespace ROMS
                             txtIFScode.Text = objDS.Tables[0].Rows[0]["SP_IFSC"].ToString().Replace("''", "'");
                             txtOtherBrands.Text= objDS.Tables[0].Rows[0]["SP_Brand"].ToString().Replace("''", "'");
 
-                            cmbReturnPolicy.SelectedValue = objDS.Tables[0].Rows[0]["RETURN"].ToString();
-                            cmbReturnType.SelectedValue = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
+
+                            // cmbReturnPolicy.SelectedValue = objDS.Tables[0].Rows[0]["RETURN"].ToString();
+                            varReturPolicyId = Convert.ToInt32(objDS.Tables[0].Rows[0]["RETURN"].ToString());
+                            cmbReturnPolicy.SelectedValue = varReturPolicyId;
+                            //cmbReturnType.SelectedValue = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
+                            varReturnTypeID = Convert.ToInt32(objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString());
+                            cmbReturnType.SelectedValue = varReturnTypeID;
 
                             cmbSupplierType.SelectedValue = objDS.Tables[0].Rows[0]["SUPPLIERTYPE"].ToString();
                             cmbPaymentTerm.SelectedValue = objDS.Tables[0].Rows[0]["PAYMENT"].ToString(); 
-                            cmbfinance.SelectedValue = objDS.Tables[0].Rows[0]["OPTYPE"].ToString(); 
+                            cmbfinance.SelectedValue = objDS.Tables[0].Rows[0]["OPTYPE"].ToString();
 
                             //RETURN
                             //    DAYID
@@ -990,7 +1008,13 @@ namespace ROMS
                             //    MONTHID
                             //    DAYOFMONTHID
                             //    RETURNCYCLEID
-                            if ((Convert.ToString(cmbReturnType.SelectedValue) == "24"))
+                            
+                            //if ((Convert.ToString(cmbReturnPolicy.SelectedValue) == "22"))
+                            //{
+                            //    cmbPolicyContent.SelectedValue = 0;
+                            //    cmbSecondLevel.SelectedValue = 0;
+                            //}
+                            if ((Convert.ToString(cmbReturnType.SelectedValue) == "23"))
                             {
                                 cmbPolicyContent.SelectedValue = 0;
                                 cmbSecondLevel.SelectedValue = 0;
@@ -1765,10 +1789,10 @@ namespace ROMS
                 {
                     if (txtgstin.Text.Length < 15)
                     {
-                        errCompany.SetError(txtgstin, "Please enter valid GSTIN");
+                        errCompany.SetError(txtgstin, "Please enter valid supplier GSTIN");
                         txtgstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpgst.ShowAlways = true;
-                        tpgst.Show("Please enter supply GSTIN.", txtgstin, 5000);
+                        tpgst.Show("Please enter valid supplier GSTIN.", txtgstin, 5000);
 
                     }
                     else
@@ -3131,7 +3155,32 @@ namespace ROMS
                     objError.WriteFile(ex);
                 } 
             }
+            if (e.TabPageIndex == 3)
+            {
+                try
+                {
 
+
+                    this.ActiveControl = cmbOrderschedule;
+                    //DataBind objDataBind = new DataBind();
+                    //if (Convert.ToInt32(varsupplierID) != 0)
+                    //{
+                    //    SupplierUpdate = Convert.ToInt32(varsupplierID);
+                    //}
+                    //else
+                    //{
+                    //    SupplierUpdate = Convert.ToInt32(pbSupplierid);
+                    //} 
+                    //objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + SupplierUpdate + "' OR SPSCID=0", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
+                    //objDataBind = null;
+
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+            }
             if (e.TabPageIndex == 2)
             {
                 try
@@ -3186,32 +3235,7 @@ namespace ROMS
             }
 
 
-            if (e.TabPageIndex == 3)
-            {
-                try
-                {
-                   
-                   
-                    this.ActiveControl = cmbOrderschedule;
-                    //DataBind objDataBind = new DataBind();
-                    //if (Convert.ToInt32(varsupplierID) != 0)
-                    //{
-                    //    SupplierUpdate = Convert.ToInt32(varsupplierID);
-                    //}
-                    //else
-                    //{
-                    //    SupplierUpdate = Convert.ToInt32(pbSupplierid);
-                    //} 
-                    //objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + SupplierUpdate + "' OR SPSCID=0", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
-                    //objDataBind = null;
-                  
-                }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                }
-            }
+            
 
 
             grdSupplierList.ClearSelection();
@@ -4636,10 +4660,15 @@ namespace ROMS
                     {
                         case "clmMappingRemove":
 
-                            grdFinalSupplierMapping.Rows.RemoveAt(this.grdFinalSupplierMapping.SelectedRows[0].Index);
-                            for (int i = 0; i < grdFinalSupplierMapping.RowCount; i++)
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
                             {
-                                grdFinalSupplierMapping.Rows[i].Cells["S.No."].Value = i + 1;
+                                grdFinalSupplierMapping.Rows.RemoveAt(this.grdFinalSupplierMapping.SelectedRows[0].Index);
+                                for (int i = 0; i < grdFinalSupplierMapping.RowCount; i++)
+                                {
+                                    grdFinalSupplierMapping.Rows[i].Cells["S.No."].Value = i + 1;
+                                }
+                                lblTotalMappingProduct.Text = grdFinalSupplierMapping.Rows.Count.ToString();
                             }
                             break;
                     }
@@ -4739,6 +4768,8 @@ namespace ROMS
                 //cmbMappingGroup.SelectedValue = 0;
                 varGroupId = 0;
                 varSubGroupId = 0;
+                txtMappingGroup.Text = "";
+                txtMappingSubGroup.Text = "";
                 txtSearchByProduct1.Text = "";
                 txtmappingproductsearch2.Text = "";
                 foreach (DataGridViewRow row in grdSupplierMappingLoad.Rows)
@@ -4774,11 +4805,11 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
+                //DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (dialogResult == DialogResult.Yes)
+                //{
                     udfnclose();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -5961,6 +5992,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void GrdSupplierMappingLoad_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
         private void Txtbranchname_KeyDown(object sender, KeyEventArgs e)
