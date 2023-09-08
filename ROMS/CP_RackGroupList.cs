@@ -126,6 +126,7 @@ namespace ROMS
         {
             try
             {
+                //lvStockLocation.Visible = false;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -134,7 +135,23 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnRackGroupList(0,varCompanyId,varStockLocationId,varId);
+                int varLocationId = 0;
+                if (txtStockLocation.Text == "")
+                {
+                    varLocationId = 0;
+                }
+                else
+                {
+                    DataService objDServ = new DataService();
+                    string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_StockLocation WHERE SL_EName ='" + txtStockLocation.Text.Trim() + "'");
+                    objDServ.CloseConnection();
+                    if (varCount == "0") { varLocationId = -1; }
+                    else
+                    {
+                        varLocationId = varStockLocationId;
+                    }
+                }
+                objDs = objdserv.udfnRackGroupList(0,varCompanyId, varLocationId, varId);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -338,76 +355,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void CmbStockLocation_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                //cmbStockLocation.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbStockLocation_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbStockLocation_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbStockLocation_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                //cmbStockLocation.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //varStockLocationId = Convert.ToInt32(cmbStockLocation.SelectedValue);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void BtnView_Click(object sender, EventArgs e)
         {
             try
@@ -892,8 +839,16 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStockLocation.Text.Length > 2)
                 {
-                    objDs = objspdservice.udfnStockLocationList(11,varCompanyId, 0, 0,txtStockLocation.Text);
-                    
+                    int varViewType = 0;
+                    if(cmbConcern.SelectedIndex==0)
+                    {
+                        varViewType = 13;
+                    }
+                    else
+                    {
+                        varViewType = 11;
+                    }
+                    objDs = objspdservice.udfnStockLocationList(varViewType,varCompanyId, 0, 0,txtStockLocation.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
