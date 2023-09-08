@@ -2337,7 +2337,7 @@ namespace ROMS
                 {
                     if (Convert.ToString(txtAlterMobileno.Text).Length != 10)
                     {
-                        epCompany.SetError(txtAlterMobileno, "Please enter valid alter mobile no.");
+                        epCompany.SetError(txtAlterMobileno,  "Please enter valid alter mobile no.");
                         txtAlterMobileno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpPhoneNo.ShowAlways = true;
                         tpPhoneNo.Show("Please enter valid alter mobile no.", txtAlterMobileno, 5000);
