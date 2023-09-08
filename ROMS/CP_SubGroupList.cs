@@ -602,6 +602,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                lblNoOfPrSubGroup.Text = Convert.ToString(grdSubGroupList.Rows.Count);
+            }
         }
 
         private void TxtSearchProduct_Enter(object sender, EventArgs e)
@@ -647,7 +651,7 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
                     if (lvSubGroup.Items.Count == 0 || txtProductSubGroup.Text == "")
                     {

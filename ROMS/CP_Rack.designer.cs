@@ -31,9 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Rack));
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.lblLocation = new System.Windows.Forms.Label();
+            this.lvLocation = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtLocation = new System.Windows.Forms.TextBox();
             this.txtDDescription = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
-            this.cmbStockLocation = new System.Windows.Forms.ComboBox();
             this.txtStockLocation = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtDConcern = new System.Windows.Forms.TextBox();
@@ -55,9 +60,11 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.lblLocation);
+            this.grbform.Controls.Add(this.lvLocation);
+            this.grbform.Controls.Add(this.txtLocation);
             this.grbform.Controls.Add(this.txtDDescription);
             this.grbform.Controls.Add(this.txtDescription);
-            this.grbform.Controls.Add(this.cmbStockLocation);
             this.grbform.Controls.Add(this.txtStockLocation);
             this.grbform.Controls.Add(this.cmbConcern);
             this.grbform.Controls.Add(this.txtDConcern);
@@ -74,6 +81,59 @@
             this.grbform.Size = new System.Drawing.Size(552, 250);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // lblLocation
+            // 
+            this.lblLocation.AutoSize = true;
+            this.lblLocation.Location = new System.Drawing.Point(18, 60);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(0, 20);
+            this.lblLocation.TabIndex = 1111147;
+            this.lblLocation.Visible = false;
+            // 
+            // lvLocation
+            // 
+            this.lvLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.lvLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvLocation.HideSelection = false;
+            this.lvLocation.Location = new System.Drawing.Point(221, 86);
+            this.lvLocation.Name = "lvLocation";
+            this.lvLocation.Size = new System.Drawing.Size(288, 72);
+            this.lvLocation.TabIndex = 1111146;
+            this.lvLocation.UseCompatibleStateImageBehavior = false;
+            this.lvLocation.View = System.Windows.Forms.View.Details;
+            this.lvLocation.Visible = false;
+            this.lvLocation.DoubleClick += new System.EventHandler(this.LvLocation_DoubleClick);
+            this.lvLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvLocation_KeyDown);
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 180;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 120;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Width = 0;
+            // 
+            // txtLocation
+            // 
+            this.txtLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtLocation.Location = new System.Drawing.Point(221, 58);
+            this.txtLocation.MaxLength = 100;
+            this.txtLocation.Name = "txtLocation";
+            this.txtLocation.Size = new System.Drawing.Size(288, 27);
+            this.txtLocation.TabIndex = 1111140;
+            this.txtLocation.TextChanged += new System.EventHandler(this.TxtLocation_TextChanged);
+            this.txtLocation.Enter += new System.EventHandler(this.TxtLocation_Enter);
+            this.txtLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLocation_KeyDown);
+            this.txtLocation.Leave += new System.EventHandler(this.TxtLocation_Leave);
             // 
             // txtDDescription
             // 
@@ -99,19 +159,6 @@
             this.txtDescription.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDescription_KeyDown);
             this.txtDescription.Leave += new System.EventHandler(this.TxtDescription_Leave);
             // 
-            // cmbStockLocation
-            // 
-            this.cmbStockLocation.FormattingEnabled = true;
-            this.cmbStockLocation.Location = new System.Drawing.Point(221, 58);
-            this.cmbStockLocation.Name = "cmbStockLocation";
-            this.cmbStockLocation.Size = new System.Drawing.Size(288, 27);
-            this.cmbStockLocation.TabIndex = 1;
-            this.cmbStockLocation.SelectedIndexChanged += new System.EventHandler(this.CmbStockLocation_SelectedIndexChanged);
-            this.cmbStockLocation.Enter += new System.EventHandler(this.CmbStockLocation_Enter);
-            this.cmbStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStockLocation_KeyDown);
-            this.cmbStockLocation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStockLocation_KeyPress);
-            this.cmbStockLocation.Leave += new System.EventHandler(this.CmbStockLocation_Leave);
-            // 
             // txtStockLocation
             // 
             this.txtStockLocation.BackColor = System.Drawing.SystemColors.Control;
@@ -131,7 +178,6 @@
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(288, 27);
             this.cmbConcern.TabIndex = 0;
-            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
@@ -328,12 +374,17 @@
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.TextBox txtDShortName;
         private System.Windows.Forms.TextBox txtShortName;
-        private System.Windows.Forms.ComboBox cmbStockLocation;
         private System.Windows.Forms.TextBox txtStockLocation;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.TextBox txtDConcern;
         private System.Windows.Forms.TextBox txtDDescription;
         private System.Windows.Forms.TextBox txtDescription;
         public System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TextBox txtLocation;
+        public System.Windows.Forms.ListView lvLocation;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.Label lblLocation;
     }
 }

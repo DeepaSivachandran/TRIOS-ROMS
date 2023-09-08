@@ -44,21 +44,21 @@
             this.pnlSubgroup = new System.Windows.Forms.Panel();
             this.grpSearch = new System.Windows.Forms.GroupBox();
             this.txtSearchProduct = new System.Windows.Forms.TextBox();
+            this.lvSubGroup = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblNoOfPrSubGroup = new System.Windows.Forms.Label();
             this.lblNoPrSubGroup = new System.Windows.Forms.Label();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
+            this.lblSubGroupId = new System.Windows.Forms.Label();
+            this.txtProductSubGroup = new System.Windows.Forms.TextBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdSubGroupList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.grdGroupList = new System.Windows.Forms.DataGridView();
-            this.txtProductSubGroup = new System.Windows.Forms.TextBox();
-            this.lvSubGroup = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblSubGroupId = new System.Windows.Forms.Label();
             this.tsGroupList.SuspendLayout();
             this.pnlSubgroup.SuspendLayout();
             this.grpSearch.SuspendLayout();
@@ -182,10 +182,40 @@
             this.txtSearchProduct.Location = new System.Drawing.Point(13, 26);
             this.txtSearchProduct.Name = "txtSearchProduct";
             this.txtSearchProduct.Size = new System.Drawing.Size(296, 27);
-            this.txtSearchProduct.TabIndex = 0;
+            this.txtSearchProduct.TabIndex = 3;
             this.txtSearchProduct.TextChanged += new System.EventHandler(this.TxtSearchProduct_TextChanged);
             this.txtSearchProduct.Enter += new System.EventHandler(this.TxtSearchProduct_Enter);
             this.txtSearchProduct.Leave += new System.EventHandler(this.TxtSearchProduct_Leave);
+            // 
+            // lvSubGroup
+            // 
+            this.lvSubGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSubGroup.HideSelection = false;
+            this.lvSubGroup.Location = new System.Drawing.Point(11, 52);
+            this.lvSubGroup.Name = "lvSubGroup";
+            this.lvSubGroup.Size = new System.Drawing.Size(397, 99);
+            this.lvSubGroup.TabIndex = 958808;
+            this.lvSubGroup.UseCompatibleStateImageBehavior = false;
+            this.lvSubGroup.View = System.Windows.Forms.View.Details;
+            this.lvSubGroup.Visible = false;
+            this.lvSubGroup.DoubleClick += new System.EventHandler(this.LvSubGroup_DoubleClick);
+            this.lvSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSubGroup_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 10;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
             // 
             // lblNoOfPrSubGroup
             // 
@@ -220,9 +250,31 @@
             this.grbFilterBy.Name = "grbFilterBy";
             this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Size = new System.Drawing.Size(1021, 67);
-            this.grbFilterBy.TabIndex = 958795;
+            this.grbFilterBy.TabIndex = 0;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By Product Sub Group";
+            // 
+            // lblSubGroupId
+            // 
+            this.lblSubGroupId.AutoSize = true;
+            this.lblSubGroupId.Location = new System.Drawing.Point(646, 26);
+            this.lblSubGroupId.Name = "lblSubGroupId";
+            this.lblSubGroupId.Size = new System.Drawing.Size(0, 20);
+            this.lblSubGroupId.TabIndex = 958808;
+            this.lblSubGroupId.Visible = false;
+            // 
+            // txtProductSubGroup
+            // 
+            this.txtProductSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtProductSubGroup.Location = new System.Drawing.Point(11, 23);
+            this.txtProductSubGroup.MaxLength = 30;
+            this.txtProductSubGroup.Name = "txtProductSubGroup";
+            this.txtProductSubGroup.Size = new System.Drawing.Size(257, 27);
+            this.txtProductSubGroup.TabIndex = 0;
+            this.txtProductSubGroup.TextChanged += new System.EventHandler(this.TxtProductSubGroup_TextChanged);
+            this.txtProductSubGroup.Enter += new System.EventHandler(this.TxtProductSubGroup_Enter);
+            this.txtProductSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductSubGroup_KeyDown);
+            this.txtProductSubGroup.Leave += new System.EventHandler(this.TxtProductSubGroup_Leave);
             // 
             // btnExport
             // 
@@ -364,58 +416,6 @@
             this.grdGroupList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGroupList.Size = new System.Drawing.Size(1348, 570);
             this.grdGroupList.TabIndex = 958793;
-            // 
-            // txtProductSubGroup
-            // 
-            this.txtProductSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtProductSubGroup.Location = new System.Drawing.Point(11, 23);
-            this.txtProductSubGroup.MaxLength = 30;
-            this.txtProductSubGroup.Name = "txtProductSubGroup";
-            this.txtProductSubGroup.Size = new System.Drawing.Size(257, 27);
-            this.txtProductSubGroup.TabIndex = 958807;
-            this.txtProductSubGroup.TextChanged += new System.EventHandler(this.TxtProductSubGroup_TextChanged);
-            this.txtProductSubGroup.Enter += new System.EventHandler(this.TxtProductSubGroup_Enter);
-            this.txtProductSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductSubGroup_KeyDown);
-            this.txtProductSubGroup.Leave += new System.EventHandler(this.TxtProductSubGroup_Leave);
-            // 
-            // lvSubGroup
-            // 
-            this.lvSubGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSubGroup.HideSelection = false;
-            this.lvSubGroup.Location = new System.Drawing.Point(11, 60);
-            this.lvSubGroup.Name = "lvSubGroup";
-            this.lvSubGroup.Size = new System.Drawing.Size(397, 99);
-            this.lvSubGroup.TabIndex = 958808;
-            this.lvSubGroup.UseCompatibleStateImageBehavior = false;
-            this.lvSubGroup.View = System.Windows.Forms.View.Details;
-            this.lvSubGroup.Visible = false;
-            this.lvSubGroup.DoubleClick += new System.EventHandler(this.LvSubGroup_DoubleClick);
-            this.lvSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSubGroup_KeyDown);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 180;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 10;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 0;
-            // 
-            // lblSubGroupId
-            // 
-            this.lblSubGroupId.AutoSize = true;
-            this.lblSubGroupId.Location = new System.Drawing.Point(646, 26);
-            this.lblSubGroupId.Name = "lblSubGroupId";
-            this.lblSubGroupId.Size = new System.Drawing.Size(0, 20);
-            this.lblSubGroupId.TabIndex = 958808;
-            this.lblSubGroupId.Visible = false;
             // 
             // CP_SubGroupList
             // 
