@@ -332,7 +332,6 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-
                 if (txtProductGroupName.Text.Trim() == "")
                 {
                     epSubGroup.SetError(txtProductGroupName, "Please enter product group name");
