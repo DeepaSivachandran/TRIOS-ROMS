@@ -508,7 +508,6 @@ namespace ROMS
                 btnExport.Focus();
             }
         }
-
         private void BtnView_Enter(object sender, EventArgs e)
         {
             try
