@@ -58,29 +58,38 @@ namespace ROMS
                 epCompany.Clear();
                 tpCompanyName.Active = false;
                 tpCompanyName.Active = false; 
-            tpShortName.Active = false; 
-            tpAddressLine1.Active = false; 
-            tpAddressLine2.Active = false; 
-            tpState.Active = false; 
-            tpCity.Active = false; 
-            tpPincode.Active = false; 
-            tpPhoneNo.Active = false; 
-            tpMobileNo.Active = false; 
-            tpWhatsAppNo.Active = false; 
-            tpEmail.Active = false; 
-            tpWebsite.Active = false; 
-            tpGstin.Active = false; 
-            tpPan.Active = false; 
-            tpEsi.Active = false; 
-            tpEsf.Active = false; 
-            tpFssai.Active = false; 
-            tpPlNo.Active = false; 
-            tpName.Active = false; 
-            tpTransactionType.Active = false; 
-            tpMobileNumber.Active = false; 
-            tpOperator.Active = false; 
-            tpMobileBrand.Active = false; 
-        }catch (Exception ex)
+                tpShortName.Active = false; 
+                tpAddressLine1.Active = false; 
+                tpAddressLine2.Active = false; 
+                tpState.Active = false; 
+                tpCity.Active = false; 
+                tpPincode.Active = false; 
+                tpPhoneNo.Active = false; 
+                tpMobileNo.Active = false; 
+                tpWhatsAppNo.Active = false; 
+                tpEmail.Active = false; 
+                tpWebsite.Active = false; 
+                tpGstin.Active = false; 
+                tpPan.Active = false; 
+                tpEsi.Active = false; 
+                tpEsf.Active = false; 
+                tpFssai.Active = false; 
+                tpPlNo.Active = false; 
+                tpName.Active = false; 
+                tpTransactionType.Active = false; 
+                tpMobileNumber.Active = false; 
+                tpOperator.Active = false; 
+                tpMobileBrand.Active = false;
+
+                tpBankName.Active = false;
+                tpBankShortName.Active = false;
+                tpBranchName.Active = false;
+                tpAccountNo.Active = false;
+                tpIfsCode.Active = false;
+
+                epCompany.Clear();
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -111,10 +120,12 @@ namespace ROMS
                 {
                     if(tcCompanyDetails.SelectedIndex == 1)
                     {
+                        btnSaveContact.Focus();
                         BtnSaveContact_Click(sender, e);
                     }
                     else
-                    { 
+                    {
+                        btnSave.Focus();
                         BtnSave_Click(sender, e);
                     }
                 }
@@ -941,17 +952,17 @@ namespace ROMS
             {
                 if (txtAlterPhoneno.Text =="" )
                 {
-                    epCompany.SetError(txtAlterPhoneno, "please enter alter Phone no.");
+                    epCompany.SetError(txtAlterPhoneno, "Please enter alter Phone no.");
                     txtAlterPhoneno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpPhoneNo.ShowAlways = true;
-                    tpPhoneNo.Show("please enter  alter mobile no.", txtAlterPhoneno, 5000);
+                    tpPhoneNo.Show("Please enter  alter mobile no.", txtAlterPhoneno, 5000);
                 }
                 else if (txtAlterPhoneno.Text.Length != 10)
                 {
-                    epCompany.SetError(txtAlterPhoneno, "please enter valid alter Phone no.");
+                    epCompany.SetError(txtAlterPhoneno, "Please enter valid alter Phone no.");
                     txtAlterPhoneno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpPhoneNo.ShowAlways = true;
-                    tpPhoneNo.Show("please enter valid alter mobile no.", txtAlterPhoneno, 5000);
+                    tpPhoneNo.Show("Please enter valid alter mobile no.", txtAlterPhoneno, 5000);
                 }
                 else
                 {
@@ -1125,17 +1136,17 @@ namespace ROMS
 
                 if (txtAlterMobileno.Text != "")
                 {
-                    epCompany.SetError(txtAlterMobileno, "please enter alter mobile no.");
+                    epCompany.SetError(txtAlterMobileno, "Please enter alter mobile no.");
                     txtAlterMobileno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpPhoneNo.ShowAlways = true;
-                    tpPhoneNo.Show("please enter alter mobile no.", txtAlterMobileno, 5000);
+                    tpPhoneNo.Show("Please enter alter mobile no.", txtAlterMobileno, 5000);
                 }
                 else if (txtAlterMobileno.Text.Length != 10)
                 {
-                    epCompany.SetError(txtAlterMobileno, "please enter valid alter mobile no.");
+                    epCompany.SetError(txtAlterMobileno, "Please enter valid alter mobile no.");
                     txtAlterMobileno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpPhoneNo.ShowAlways = true;
-                    tpPhoneNo.Show("please enter valid alter mobile no.", txtAlterMobileno, 5000);
+                    tpPhoneNo.Show("Please enter valid alter mobile no.", txtAlterMobileno, 5000);
                 }
                 
                 else
@@ -1937,6 +1948,7 @@ namespace ROMS
         {
             try
             {
+                btnSave.Enabled = false;
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
                 string varStatus = "1";
@@ -2065,6 +2077,7 @@ namespace ROMS
                 }
                 
                 objspdservice.CloseConnection();
+                btnSave.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -2199,7 +2212,7 @@ namespace ROMS
             try
             {
                 udfntextboxcolor();
-                btnSave.Enabled = false;
+                
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtCompanyName.Text).Trim() == "")
                 {
@@ -2252,10 +2265,29 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-
-                if (Convert.ToString(txtmobileNo.Text) != "")
+                if (Convert.ToString(txtEmail.Text) != "")
                 {
-                    if (Convert.ToString(txtPhoneNo.Text) != "")
+                    if (objValidation.FormatEMail(txtEmail.Text) == false)
+                    {
+                        epCompany.SetError(txtEmail, "Please enter valid email");
+                        txtEmail.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpEmail.ShowAlways = true;
+                        tpEmail.Show("Please enter valid email", txtEmail, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                if (Convert.ToString(txtwebsite.Text) != "")
+                {
+                    if (!objValidation.IsValidUrl(txtwebsite.Text))
+                    {
+                        epCompany.SetError(txtwebsite, "Please enter valid website");
+                        txtwebsite.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpWebsite.ShowAlways = true;
+                        tpWebsite.Show("Please enter valid website", txtwebsite, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                if (Convert.ToString(txtPhoneNo.Text) != "")
                     {
                         if (Convert.ToString(txtPhoneNo.Text).Length != 10)
                         {
@@ -2266,7 +2298,7 @@ namespace ROMS
                             blnErrorFlag = true;
                         }
                     }
-                }
+                
                 if (Convert.ToString(txtmobileNo.Text) != "")
                 {
                     if (Convert.ToString(txtmobileNo.Text).Length != 10)
@@ -2293,10 +2325,10 @@ namespace ROMS
                 {
                     if (Convert.ToString(txtAlterPhoneno.Text).Length != 10)
                     {
-                        epCompany.SetError(txtAlterPhoneno, "please enter valid alter Phone no.");
+                        epCompany.SetError(txtAlterPhoneno, "Please enter valid alter Phone no.");
                         txtAlterPhoneno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpPhoneNo.ShowAlways = true;
-                        tpPhoneNo.Show("please enter valid alter mobile no.", txtAlterPhoneno, 5000);
+                        tpPhoneNo.Show("Please enter valid alter mobile no.", txtAlterPhoneno, 5000);
                         blnErrorFlag = true;
                     }
                 }
@@ -2305,10 +2337,10 @@ namespace ROMS
                 {
                     if (Convert.ToString(txtAlterMobileno.Text).Length != 10)
                     {
-                        epCompany.SetError(txtAlterMobileno, "please enter valid alter mobile no.");
+                        epCompany.SetError(txtAlterMobileno, "Please enter valid alter mobile no.");
                         txtAlterMobileno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpPhoneNo.ShowAlways = true;
-                        tpPhoneNo.Show("please enter valid alter mobile no.", txtAlterMobileno, 5000);
+                        tpPhoneNo.Show("Please enter valid alter mobile no.", txtAlterMobileno, 5000);
                         blnErrorFlag = true;
                     }
                 }
@@ -2457,6 +2489,14 @@ namespace ROMS
                     {
                         lblcityid.Text= objDserv.displaydata("SELECT CTYID FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
                     }
+                    if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
+                    {
+                        epCompany.SetError(cmbState, "Please select state");
+                        cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpState.ShowAlways = true;
+                        tpState.Show("Please select state", cmbState, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
                 if (blnErrorFlag == false)
                 {
@@ -2471,7 +2511,7 @@ namespace ROMS
             }
             finally
             { 
-                btnSave.Enabled = true;
+               
             }
         }
 
@@ -3833,6 +3873,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void TxtAlterMobileno_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void CbPrimary_Leave(object sender, EventArgs e)
