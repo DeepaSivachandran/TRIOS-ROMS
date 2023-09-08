@@ -136,10 +136,6 @@ namespace ROMS
                 {
                     varViewType = 4;
                     varConcernId = varCompanyId;
-                    if(varConcernId==0)
-                    {
-                        varViewType = 3;
-                    }
                 }
                 objDT = objdserv.udfnCompanyList(varViewType, varConcernId, MainForm.pbUserID, MainForm.pbIpAddress);
                 objdserv.CloseConnection();
@@ -264,10 +260,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-                grdRack.ClearSelection();
             }
            
         }
@@ -414,7 +406,7 @@ namespace ROMS
                 grdSelectedRack.Rows.Clear();
                 grdStaffDetails.Rows.Clear();
                 chkRack.Checked = false;
-                //tpStaffName.Active = false;
+                tpStaffName.Active = false;
                 cmbConcern.Focus();
             }
             catch (Exception ex)
@@ -443,6 +435,7 @@ namespace ROMS
                     tpRackGroupName.ShowAlways = true;
                     tpRackGroupName.Show("Please enter rack group name", txtRackGroupName, 5000);
                     blnErrorFlag = true;
+
                 }
                 if (grdSelectedRack.Rows.Count <= 0)
                 {
@@ -612,6 +605,15 @@ namespace ROMS
                         }
                         if (varFlag == 0)
                         {
+                            SPDataService objspdservice = new SPDataService();
+                            DataSet objDs = new DataSet();
+                            objDs = objspdservice.udfnUserList(6, txtStaffName.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                            objspdservice.CloseConnection();
+
+                            txtStaffName.Text = objDs.Tables[0].Rows[0]["U_Name"].ToString();
+                            varDesignation = objDs.Tables[0].Rows[0]["Designation"].ToString();
+
+
                             grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, txtStaffName.Text, varDesignation, varUserID);
                         }
                         txtStaffName.Focus();
@@ -634,16 +636,20 @@ namespace ROMS
             {
                 if (e.RowIndex != -1)
                 {
-                    switch (grdStaffDetails.Columns[e.ColumnIndex].Name)
+                    DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        case "clmremove":
+                        switch (grdStaffDetails.Columns[e.ColumnIndex].Name)
+                        {
+                            case "clmremove":
 
-                            grdStaffDetails.Rows.RemoveAt(this.grdStaffDetails.SelectedRows[0].Index);
-                            for (int i = 0; i < grdStaffDetails.RowCount; i++)
-                            {
-                                grdStaffDetails.Rows[i].Cells["clmSno"].Value = i + 1;
-                            }
-                            break;
+                                grdStaffDetails.Rows.RemoveAt(this.grdStaffDetails.SelectedRows[0].Index);
+                                for (int i = 0; i < grdStaffDetails.RowCount; i++)
+                                {
+                                    grdStaffDetails.Rows[i].Cells["clmSno"].Value = i + 1;
+                                }
+                                break;
+                        }
                     }
                 }
                
@@ -964,6 +970,7 @@ namespace ROMS
             try
             {
                 txtStaffName.BackColor = Color.White;
+                //if (txtStaffName.Text.Trim() == "") { lblUserId.Text = "0"; }
             }
             catch (Exception ex)
             {
@@ -1282,10 +1289,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
-            {
-                grdSelectedRack.ClearSelection();
-            }
         }
         private void Add_Click(object sender, EventArgs e)
         {
@@ -1333,24 +1336,21 @@ namespace ROMS
         {
             try
             {
-                if (grdSelectedRack.RowCount > 0)
+                if (e.RowIndex != -1)
                 {
-                    if (e.RowIndex != -1)
+                    DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
                     {
                         switch (grdSelectedRack.Columns[e.ColumnIndex].Name)
                         {
                             case "clmRemoveRack":
 
-                                DialogResult dialogResult = MessageBox.Show("Do you want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (dialogResult == DialogResult.Yes)
+                                grdSelectedRack.Rows.RemoveAt(this.grdSelectedRack.SelectedRows[0].Index);
+                                for (int i = 0; i < grdSelectedRack.RowCount; i++)
                                 {
-                                    grdSelectedRack.Rows.RemoveAt(this.grdSelectedRack.SelectedRows[0].Index);
-                                    for (int i = 0; i < grdSelectedRack.RowCount; i++)
-                                    {
-                                        grdSelectedRack.Rows[i].Cells["columnSNo"].Value = i + 1;
-                                    }
-                                    udfnTotalProducts();
+                                    grdSelectedRack.Rows[i].Cells["columnSNo"].Value = i + 1;
                                 }
+                                udfnTotalProducts();
                                 break;
                         }
                     }
