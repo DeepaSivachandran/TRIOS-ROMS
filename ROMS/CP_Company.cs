@@ -55,7 +55,7 @@ namespace ROMS
         {
             try
             {
-                epCompany.Clear();
+                
                 tpCompanyName.Active = false;
                 tpCompanyName.Active = false; 
                 tpShortName.Active = false; 
@@ -86,8 +86,8 @@ namespace ROMS
                 tpBranchName.Active = false;
                 tpAccountNo.Active = false;
                 tpIfsCode.Active = false;
-
                 epCompany.Clear();
+
             }
             catch (Exception ex)
             {
@@ -952,10 +952,11 @@ namespace ROMS
             {
                 if (txtAlterPhoneno.Text =="" )
                 {
-                    epCompany.SetError(txtAlterPhoneno, "Please enter alter Phone no.");
-                    txtAlterPhoneno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpPhoneNo.ShowAlways = true;
-                    tpPhoneNo.Show("Please enter  alter mobile no.", txtAlterPhoneno, 5000);
+                    txtAlterPhoneno.BackColor = Color.White;
+                    //epCompany.SetError(txtAlterPhoneno, "Please enter alter Phone no.");
+                    //txtAlterPhoneno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //tpPhoneNo.ShowAlways = true;
+                    //tpPhoneNo.Show("Please enter  alter mobile no.", txtAlterPhoneno, 5000);
                 }
                 else if (txtAlterPhoneno.Text.Length != 10)
                 {
@@ -1134,12 +1135,13 @@ namespace ROMS
             try
             {
 
-                if (txtAlterMobileno.Text != "")
+                if (txtAlterMobileno.Text == "")
                 {
-                    epCompany.SetError(txtAlterMobileno, "Please enter alter mobile no.");
-                    txtAlterMobileno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpPhoneNo.ShowAlways = true;
-                    tpPhoneNo.Show("Please enter alter mobile no.", txtAlterMobileno, 5000);
+                    txtAlterMobileno.BackColor = Color.White;
+                    //epCompany.SetError(txtAlterMobileno, "Please enter alter mobile no.");
+                    //txtAlterMobileno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //tpPhoneNo.ShowAlways = true;
+                    //tpPhoneNo.Show("Please enter alter mobile no.", txtAlterMobileno, 5000);
                 }
                 else if (txtAlterMobileno.Text.Length != 10)
                 {
@@ -2212,7 +2214,7 @@ namespace ROMS
             try
             {
                 udfntextboxcolor();
-                
+                epCompany.Clear();
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtCompanyName.Text).Trim() == "")
                 {
