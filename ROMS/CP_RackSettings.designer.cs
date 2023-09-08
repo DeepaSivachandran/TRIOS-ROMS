@@ -43,6 +43,12 @@
             this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
             this.lblSearchByProduct2 = new System.Windows.Forms.Label();
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
+            this.PRODUCTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmdpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProductEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBox5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemoveSupplier = new System.Windows.Forms.DataGridViewImageColumn();
             this.chkRackSettings = new System.Windows.Forms.CheckBox();
             this.txtSearchByProduct1 = new System.Windows.Forms.TextBox();
             this.lblSearchbyProduct1 = new System.Windows.Forms.Label();
@@ -69,12 +75,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.epRackSettings = new System.Windows.Forms.ErrorProvider(this.components);
-            this.PRODUCTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProductEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBox5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemoveSupplier = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsRackSettings.SuspendLayout();
             this.pnlRackSettings.SuspendLayout();
             this.grpRackSettings.SuspendLayout();
@@ -166,9 +166,6 @@
             this.txtSearchByProduct2.Name = "txtSearchByProduct2";
             this.txtSearchByProduct2.Size = new System.Drawing.Size(403, 27);
             this.txtSearchByProduct2.TabIndex = 111111;
-            //this.txtSearchByProduct2.TextChanged += new System.EventHandler(this.TxtSearchByProduct2_TextChanged);
-            //this.txtSearchByProduct2.Enter += new System.EventHandler(this.TxtSearchByProduct2_Enter);
-            //this.txtSearchByProduct2.Leave += new System.EventHandler(this.TxtSearchByProduct2_Leave);
             // 
             // lblSearchByProduct2
             // 
@@ -225,7 +222,42 @@
             this.grdViewSupplierMapping.ShowRowErrors = false;
             this.grdViewSupplierMapping.Size = new System.Drawing.Size(619, 315);
             this.grdViewSupplierMapping.TabIndex = 111111111;
-        //    this.grdViewSupplierMapping.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdViewSupplierMapping_CellContentClick);
+            // 
+            // PRODUCTID
+            // 
+            this.PRODUCTID.HeaderText = "S.No.";
+            this.PRODUCTID.Name = "PRODUCTID";
+            this.PRODUCTID.Visible = false;
+            // 
+            // clmdpicode
+            // 
+            this.clmdpicode.HeaderText = "P.I Code";
+            this.clmdpicode.Name = "clmdpicode";
+            // 
+            // clmProductEnglish
+            // 
+            this.clmProductEnglish.HeaderText = "Product Name in English";
+            this.clmProductEnglish.Name = "clmProductEnglish";
+            this.clmProductEnglish.Width = 220;
+            // 
+            // dataGridViewTextBox5
+            // 
+            this.dataGridViewTextBox5.HeaderText = "Product Name in Tamil";
+            this.dataGridViewTextBox5.Name = "dataGridViewTextBox5";
+            this.dataGridViewTextBox5.Width = 220;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Unit";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // clmRemoveSupplier
+            // 
+            this.clmRemoveSupplier.HeaderText = "Remove";
+            this.clmRemoveSupplier.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemoveSupplier.Name = "clmRemoveSupplier";
+            this.clmRemoveSupplier.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemoveSupplier.Width = 70;
             // 
             // chkRackSettings
             // 
@@ -245,9 +277,6 @@
             this.txtSearchByProduct1.Name = "txtSearchByProduct1";
             this.txtSearchByProduct1.Size = new System.Drawing.Size(403, 27);
             this.txtSearchByProduct1.TabIndex = 1111111;
-            //this.txtSearchByProduct1.TextChanged += new System.EventHandler(this.TxtSearchByProduct1_TextChanged);
-            //this.txtSearchByProduct1.Enter += new System.EventHandler(this.TxtSearchByProduct1_Enter);
-            //this.txtSearchByProduct1.Leave += new System.EventHandler(this.TxtSearchByProduct1_Leave);
             // 
             // lblSearchbyProduct1
             // 
@@ -366,7 +395,6 @@
             this.btnAdd.TabIndex = 111111;
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.UseVisualStyleBackColor = true;
-       //     this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // grbDestination
             // 
@@ -553,42 +581,6 @@
             // 
             this.epRackSettings.ContainerControl = this;
             // 
-            // PRODUCTID
-            // 
-            this.PRODUCTID.HeaderText = "S.No.";
-            this.PRODUCTID.Name = "PRODUCTID";
-            this.PRODUCTID.Visible = false;
-            // 
-            // clmdpicode
-            // 
-            this.clmdpicode.HeaderText = "P.I Code";
-            this.clmdpicode.Name = "clmdpicode";
-            // 
-            // clmProductEnglish
-            // 
-            this.clmProductEnglish.HeaderText = "Product Name in English";
-            this.clmProductEnglish.Name = "clmProductEnglish";
-            this.clmProductEnglish.Width = 220;
-            // 
-            // dataGridViewTextBox5
-            // 
-            this.dataGridViewTextBox5.HeaderText = "Product Name in Tamil";
-            this.dataGridViewTextBox5.Name = "dataGridViewTextBox5";
-            this.dataGridViewTextBox5.Width = 220;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Unit";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // clmRemoveSupplier
-            // 
-            this.clmRemoveSupplier.HeaderText = "Remove";
-            this.clmRemoveSupplier.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemoveSupplier.Name = "clmRemoveSupplier";
-            this.clmRemoveSupplier.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemoveSupplier.Width = 70;
-            // 
             // CP_RackSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -605,7 +597,7 @@
             this.Name = "CP_RackSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Supplier Mapping";
-            this.Load += new System.EventHandler(this.CP_BrandList_Load);
+            this.Load += new System.EventHandler(this.tsbEdit_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrandList_KeyDown);
             this.tsRackSettings.ResumeLayout(false);
             this.tsRackSettings.PerformLayout();

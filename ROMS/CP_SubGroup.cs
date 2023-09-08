@@ -332,6 +332,23 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
+
+                if (txtESubGroupNameEnglish.Text.Trim() != "")
+                {
+                    string VarPSGName = "0";
+                    DataService objDserv = new DataService();
+                    VarPSGName = objDserv.displaydata("SELECT COUNT(*) AS Count FROM MR_ProductGroup WHERE PRG_EName ='" + txtProductGroupName.Text.Trim() + "'");
+                    if (VarPSGName == "0")
+                    {
+                        lblGroupCode.Text = "0";
+                        epSubGroup.SetError(txtProductGroupName, "Invalid Group");
+                        txtProductGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                       //tpCity.ShowAlways = true;
+                        //tpCity.Show("Invalid city", txtCity, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+
                 if (txtESubGroupNameEnglish.Text.Trim() == "")
                 {
                     epSubGroup.SetError(txtESubGroupNameEnglish, "Please enter product sub group name in english");
@@ -701,7 +718,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //cmbStockLocation.Focus();
+                    txtLocation.Focus();
                 }
             }
             catch (Exception ex)
@@ -940,6 +957,18 @@ namespace ROMS
                         lvGroupName.Items[0].Selected = true;
                     }
                 }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    if(lvGroupName.Visible==false)
+                    {
+                        txtESubGroupNameEnglish.Focus();
+                    }
+                    else
+                    {
+                        lvGroupName.Visible = true;
+                        lvGroupName.Focus();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -979,11 +1008,11 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode==Keys.Enter)
                 {
                     if (lvLocation.Items.Count == 0 || txtLocation.Text == "")
                     {
-                        txtLocation.Focus();
+                        txtRack.Focus();
                         lvLocation.Visible = false;
                     }
                     else
@@ -1146,11 +1175,11 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode==Keys.Enter)
                 {
                     if (lvRack.Items.Count == 0 || txtRack.Text == "")
                     {
-                        txtRack.Focus();
+                        pnlStatus.Focus();
                         lvRack.Visible = false;
                     }
                     else

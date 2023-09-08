@@ -61,61 +61,12 @@ namespace ROMS
         }
         private void tsbDelete_Click(object sender, EventArgs e)
         {
-            try
-            { 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
 
         private void CP_BrandList_Load(object sender, EventArgs e)
         {
-            try
-            {
-                grbDestination.Visible = false;
-                dtSupplierMapping = new DataTable();
-                dtSupplierMapping.Columns.Add("", typeof(Boolean));
-                dtSupplierMapping.Columns.Add("S.No.", typeof(string));
-                dtSupplierMapping.Columns.Add("PRODUCTID", typeof(int));
-                dtSupplierMapping.Columns.Add("P.I Code", typeof(string));
-                dtSupplierMapping.Columns.Add("Product Name in English", typeof(string));
-                dtSupplierMapping.Columns.Add("Product Name in Tamil", typeof(string));
-                dtSupplierMapping.Columns.Add("Unit", typeof(string));
 
-
-                DataSet objDs = new DataSet();
-                SPDataService objdserv = new SPDataService();
-                int varViewType = 7;
-                if (btnSave.Text == "Save")
-                {
-                    varViewType = 6;
-                }
-                objDs = objdserv.udfnStockLocationList(varViewType,0,0,0,"");
-                objdserv.CloseConnection();
-                cmbSStockLocation.DataSource = null;
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count > 0)
-                    {
-                        if (objDs.Tables[0].Rows.Count > 0)
-                        {
-                            cmbSStockLocation.ValueMember = "SLID";
-                            cmbSStockLocation.DisplayMember = "SL_EName";
-                            cmbSStockLocation.DataSource = objDs.Tables[0];
-                        }
-                    }
-                }
-                udfnCmbProductGroup();
-                udfnCmbProductSubGroup();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
         }
         public void udfnCmbProductGroup()
         {
