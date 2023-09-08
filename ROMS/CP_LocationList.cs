@@ -62,10 +62,6 @@ namespace ROMS
             try
             {
                 cmbConcern.Focus();
-                tsbNew.Visible = true;
-                tsbEdit.Visible = true;
-                tsbDelete.Visible = true;
-
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 int varViewType = 2;
@@ -299,9 +295,6 @@ namespace ROMS
         private void grdLocationList_SelectionChanged(object sender, EventArgs e)
         {
             try {
-                tsbNew.Visible = true;
-                tsbEdit.Visible = true;
-                tsbDelete.Visible = true;
                 if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1"||Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
                 { tsbDelete.Visible = false; tsbNew.Visible = false; }
                 else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }
@@ -327,14 +320,20 @@ namespace ROMS
                         grdGodownList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdGodownList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    grdGodownList.ClearSelection();
                 }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }            
+            }
+            finally
+            {
+                grdGodownList.ClearSelection();
+                tsbNew.Visible = true;
+                tsbEdit.Visible = true;
+                tsbDelete.Visible = true;
+            }
         }
         private void GrdGodownList_DoubleClick(object sender, EventArgs e)
         {

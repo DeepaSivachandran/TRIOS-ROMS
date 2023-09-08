@@ -251,7 +251,8 @@ namespace ROMS
                     MainForm.objCP_Rack.btnSave.Text = "Update";
                     MainForm.objCP_Rack.varRackcode = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_Rack.PbConcernID = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ConcernID"].Value);
-                    MainForm.objCP_Rack.PbStockLocationID = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["StockLocationID"].Value);
+                    MainForm.objCP_Rack.varLocationCode = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["StockLocationID"].Value);
+                    MainForm.objCP_Rack.PbLocationName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Stock Location"].Value);
                     MainForm.objCP_Rack.PbRackName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Rack Name"].Value);
                     MainForm.objCP_Rack.PbShortName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Short Name"].Value);
                     MainForm.objCP_Rack.PbDescription = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Description"].Value);
