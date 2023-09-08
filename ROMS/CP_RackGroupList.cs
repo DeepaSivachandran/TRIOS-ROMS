@@ -258,45 +258,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfncmbStockLocation()
-        {
-            try
-            {
-                SPDataService objdserv = new SPDataService();
-                DataSet objDT = new DataSet();
-                int varViewType = 2;
-                if(varCompanyId==0)
-                {
-                    varViewType = 1;
-                }
-                objDT = objdserv.udfnStockLocationList(varViewType, varCompanyId,0,0,"");
-                objdserv.CloseConnection();
-                cmbStockLocation.DataSource = null;
-                if (objDT != null)
-                {
-                    if (objDT.Tables.Count > 0)
-                    {
-                        if (objDT.Tables[0].Rows.Count > 0)
-                        {
-                            cmbStockLocation.ValueMember = "SLID";
-                            cmbStockLocation.DisplayMember = "SL_EName";
-                            cmbStockLocation.DataSource = objDT.Tables[0];
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void CP_RackGroupList_Load(object sender, EventArgs e)
         {
             try
             {
                 udfnCmbConcern();
-                udfncmbStockLocation();
                 udfnList();
                 this.ActiveControl = cmbConcern;
             }
@@ -365,7 +331,6 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 varCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                udfncmbStockLocation();
             }
             catch (Exception ex)
             {
