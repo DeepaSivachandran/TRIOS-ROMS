@@ -141,14 +141,14 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MainForm.objCP_CP_BrokerList.udfnList();
-
+                        udfnClear();
                         cmbConcern.Focus();
+                        cmbConcern.SelectedValue = -1;
                         if (btnSave.Text == "Update")
                         {
                             varUpdate = 1;
                             udfnclose();
                         }
-                        udfnClear();
                     }
                     else
                     {

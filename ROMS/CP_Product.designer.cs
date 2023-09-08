@@ -73,7 +73,6 @@
             this.errItems = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.txtrupee = new System.Windows.Forms.TextBox();
             this.txtGrossWeight = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.txtReOrderQty = new System.Windows.Forms.TextBox();
@@ -160,17 +159,18 @@
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvPurRack = new System.Windows.Forms.ListView();
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvSaleRack = new System.Windows.Forms.ListView();
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvSaleLocation = new System.Windows.Forms.ListView();
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cmbNetQty = new System.Windows.Forms.ComboBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -721,8 +721,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbNetQty);
             this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.txtrupee);
             this.groupBox1.Controls.Add(this.txtGrossWeight);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.txtReOrderQty);
@@ -745,24 +745,12 @@
             this.textBox3.BackColor = System.Drawing.SystemColors.Control;
             this.textBox3.Enabled = false;
             this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox3.Location = new System.Drawing.Point(246, 50);
+            this.textBox3.Location = new System.Drawing.Point(222, 50);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(21, 27);
+            this.textBox3.Size = new System.Drawing.Size(45, 27);
             this.textBox3.TabIndex = 115;
             this.textBox3.Text = "Kg";
-            // 
-            // txtrupee
-            // 
-            this.txtrupee.BackColor = System.Drawing.SystemColors.Control;
-            this.txtrupee.Enabled = false;
-            this.txtrupee.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtrupee.Location = new System.Drawing.Point(246, 23);
-            this.txtrupee.Name = "txtrupee";
-            this.txtrupee.ReadOnly = true;
-            this.txtrupee.Size = new System.Drawing.Size(21, 27);
-            this.txtrupee.TabIndex = 114;
-            this.txtrupee.Text = "Kg";
             // 
             // txtGrossWeight
             // 
@@ -770,7 +758,7 @@
             this.txtGrossWeight.Location = new System.Drawing.Point(122, 50);
             this.txtGrossWeight.MaxLength = 5;
             this.txtGrossWeight.Name = "txtGrossWeight";
-            this.txtGrossWeight.Size = new System.Drawing.Size(124, 27);
+            this.txtGrossWeight.Size = new System.Drawing.Size(100, 27);
             this.txtGrossWeight.TabIndex = 23;
             this.txtGrossWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGrossWeight.Enter += new System.EventHandler(this.TxtGrossWeight_Enter);
@@ -878,7 +866,7 @@
             this.txtWeight.Location = new System.Drawing.Point(122, 23);
             this.txtWeight.MaxLength = 5;
             this.txtWeight.Name = "txtWeight";
-            this.txtWeight.Size = new System.Drawing.Size(124, 27);
+            this.txtWeight.Size = new System.Drawing.Size(100, 27);
             this.txtWeight.TabIndex = 22;
             this.txtWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWeight.Enter += new System.EventHandler(this.TxtWeight_Enter);
@@ -897,7 +885,7 @@
             this.txtDNettWeight.Size = new System.Drawing.Size(111, 27);
             this.txtDNettWeight.TabIndex = 18;
             this.txtDNettWeight.TabStop = false;
-            this.txtDNettWeight.Text = "Net Weight";
+            this.txtDNettWeight.Text = "Net Quantity";
             // 
             // txtRackMOQQty
             // 
@@ -1639,11 +1627,11 @@
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Width = 120;
+            this.columnHeader4.Width = 170;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Width = 130;
+            this.columnHeader5.Width = 170;
             // 
             // columnHeader6
             // 
@@ -1701,11 +1689,11 @@
             // 
             // columnHeader11
             // 
-            this.columnHeader11.Width = 120;
+            this.columnHeader11.Width = 170;
             // 
             // columnHeader12
             // 
-            this.columnHeader12.Width = 130;
+            this.columnHeader12.Width = 170;
             // 
             // columnHeader13
             // 
@@ -1768,6 +1756,11 @@
             // 
             this.columnHeader18.Width = 120;
             // 
+            // columnHeader26
+            // 
+            this.columnHeader26.DisplayIndex = 2;
+            this.columnHeader26.Width = 120;
+            // 
             // columnHeader19
             // 
             this.columnHeader19.DisplayIndex = 1;
@@ -1794,6 +1787,11 @@
             // columnHeader20
             // 
             this.columnHeader20.Width = 120;
+            // 
+            // columnHeader27
+            // 
+            this.columnHeader27.DisplayIndex = 2;
+            this.columnHeader27.Width = 120;
             // 
             // columnHeader21
             // 
@@ -1835,15 +1833,14 @@
             // 
             this.columnHeader25.Width = 0;
             // 
-            // columnHeader26
+            // cmbNetQty
             // 
-            this.columnHeader26.DisplayIndex = 2;
-            this.columnHeader26.Width = 120;
-            // 
-            // columnHeader27
-            // 
-            this.columnHeader27.DisplayIndex = 2;
-            this.columnHeader27.Width = 120;
+            this.cmbNetQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbNetQty.FormattingEnabled = true;
+            this.cmbNetQty.Location = new System.Drawing.Point(222, 23);
+            this.cmbNetQty.Name = "cmbNetQty";
+            this.cmbNetQty.Size = new System.Drawing.Size(45, 27);
+            this.cmbNetQty.TabIndex = 116;
             // 
             // CP_Product
             // 
@@ -1972,7 +1969,6 @@
         private System.Windows.Forms.GroupBox grbSalesStockLocation;
         private System.Windows.Forms.TextBox txtDSalesGodown;
         private System.Windows.Forms.TextBox txtDSalesShop;
-        private System.Windows.Forms.TextBox txtrupee;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox txtWMinSaleQty;
         private System.Windows.Forms.TextBox txtDMinSaleQty;
@@ -2054,5 +2050,6 @@
         private System.Windows.Forms.Label lblSaleLocationCode;
         private System.Windows.Forms.ColumnHeader columnHeader26;
         private System.Windows.Forms.ColumnHeader columnHeader27;
+        public System.Windows.Forms.ComboBox cmbNetQty;
     }
 }

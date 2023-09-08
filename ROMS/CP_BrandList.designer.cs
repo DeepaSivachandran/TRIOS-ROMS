@@ -179,7 +179,7 @@
             this.grdBrandList.RowTemplate.Height = 25;
             this.grdBrandList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdBrandList.Size = new System.Drawing.Size(1348, 496);
-            this.grdBrandList.TabIndex = 1;
+            this.grdBrandList.TabIndex = 7;
             this.grdBrandList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
             this.grdBrandList.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.grdBrandList.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
@@ -195,7 +195,7 @@
             this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 350);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
-            this.lblNoRecordsFound.TabIndex = 958763;
+            this.lblNoRecordsFound.TabIndex = 8;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -240,7 +240,7 @@
             this.lvSubGroup.Location = new System.Drawing.Point(253, 77);
             this.lvSubGroup.Name = "lvSubGroup";
             this.lvSubGroup.Size = new System.Drawing.Size(352, 157);
-            this.lvSubGroup.TabIndex = 958804;
+            this.lvSubGroup.TabIndex = 5;
             this.lvSubGroup.UseCompatibleStateImageBehavior = false;
             this.lvSubGroup.View = System.Windows.Forms.View.Details;
             this.lvSubGroup.Visible = false;
@@ -270,7 +270,7 @@
             this.lvGroup.Location = new System.Drawing.Point(9, 77);
             this.lvGroup.Name = "lvGroup";
             this.lvGroup.Size = new System.Drawing.Size(338, 157);
-            this.lvGroup.TabIndex = 958803;
+            this.lvGroup.TabIndex = 4;
             this.lvGroup.UseCompatibleStateImageBehavior = false;
             this.lvGroup.View = System.Windows.Forms.View.Details;
             this.lvGroup.Visible = false;
@@ -353,7 +353,7 @@
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
-            this.DGV_SearchGrid.TabIndex = 958803;
+            this.DGV_SearchGrid.TabIndex = 6;
             this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
@@ -410,7 +410,7 @@
             this.lblProductSubGroup.Location = new System.Drawing.Point(250, 19);
             this.lblProductSubGroup.Name = "lblProductSubGroup";
             this.lblProductSubGroup.Size = new System.Drawing.Size(108, 20);
-            this.lblProductSubGroup.TabIndex = 4;
+            this.lblProductSubGroup.TabIndex = 12;
             this.lblProductSubGroup.Text = "Product Subgroup";
             // 
             // lblProductgroup
@@ -419,7 +419,7 @@
             this.lblProductgroup.Location = new System.Drawing.Point(9, 20);
             this.lblProductgroup.Name = "lblProductgroup";
             this.lblProductgroup.Size = new System.Drawing.Size(88, 20);
-            this.lblProductgroup.TabIndex = 2;
+            this.lblProductgroup.TabIndex = 11;
             this.lblProductgroup.Text = "Product Group";
             this.lblProductgroup.Click += new System.EventHandler(this.LblProductgroup_Click);
             // 

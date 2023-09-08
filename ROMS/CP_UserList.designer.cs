@@ -167,7 +167,7 @@
             this.columnHeader3});
             this.lvUserList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvUserList.HideSelection = false;
-            this.lvUserList.Location = new System.Drawing.Point(21, 62);
+            this.lvUserList.Location = new System.Drawing.Point(21, 56);
             this.lvUserList.Name = "lvUserList";
             this.lvUserList.Size = new System.Drawing.Size(313, 99);
             this.lvUserList.TabIndex = 1;

@@ -91,7 +91,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     { 
                         SPDataService objspdservice = new SPDataService(); 
-                        result = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()),"","","",0,0,0,0,0,0,0,"",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,0,0,0,"","","", "Product Delete");
+                        result = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()),"","","",0,0,0,0,0,0,0,"",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,0,0,0,"","","", "Product Delete",0);
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {

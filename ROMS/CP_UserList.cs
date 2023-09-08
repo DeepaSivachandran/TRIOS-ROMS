@@ -662,7 +662,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtDUserList.Text.Length > 2)
                 {
-                    objDs = objspdservice.udfnUserList(1, txtDUserList.Text, "","",0);
+                    objDs = objspdservice.udfnUserList(5, txtDUserList.Text, "","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

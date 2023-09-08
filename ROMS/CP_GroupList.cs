@@ -126,7 +126,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 lblNoOfPrGroup.Text = Convert.ToString(grdGroupList.Rows.Count);
-                varGroupCode = Convert.ToInt32(txtProductGroup.Text);
+                varGroupCode = Convert.ToInt32(varGroupId);
             }
         }
         public void udfndelete()

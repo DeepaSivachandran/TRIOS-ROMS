@@ -481,13 +481,17 @@ namespace ROMS
                         grdUserCategoryList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdUserCategoryList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    grdUserCategoryList.ClearSelection();
                 }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdUserCategoryList.ClearSelection();
+                tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true;
             }
         }
 
