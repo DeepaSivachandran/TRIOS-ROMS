@@ -2350,7 +2350,7 @@ namespace ROMS
 
                 // if (Convert.ToString(txtEmail.Text).Trim() == "")
                 // {
-                //     epCompany.SetError(txtEmail, "Please enter email");
+                //     epCompany.SetError(txtEmail, "Please enter email"); 
                 //     txtEmail.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                 //     tpEmail.ShowAlways = true;
                 //     tpEmail.Show("Please enter email", txtEmail, 5000);

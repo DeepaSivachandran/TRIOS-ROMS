@@ -375,7 +375,7 @@ namespace ROMS
                 }
                 else
                 {
-                    varResult = objDser.udfnRackGroup(1, varId, Convert.ToInt16(cmbConcern.SelectedValue), txtRackGroupName.Text, varRackID, varUserID, varStatusid, "Rack Group Updation");
+                    varResult = objDser.udfnRackGroup(1, varId, Convert.ToInt16(cmbConcern.SelectedValue),txtRackGroupName.Text.Trim(), varRackID, varUserID, varStatusid, "Rack Group Updation");
                 }
                 objDser.CloseConnection();
                 btnSave.Enabled = true;
