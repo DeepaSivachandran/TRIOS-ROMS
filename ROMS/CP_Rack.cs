@@ -150,31 +150,42 @@ namespace ROMS
                     DataService objDServ = new DataService();
                     string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_StockLocation WHERE SL_EName ='" + txtLocation.Text.Trim() + "'");
                     objDServ.CloseConnection();
-                    if (varCount == "0") { varLocationId = -1; }
+                    if (varCount == "0") { varLocationId = -1;
+                        epRack.SetError(txtLocation, "Invalid location");
+                        txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpStockLocation.ShowAlways = true;
+                        tpStockLocation.Show("Invalid location", txtLocation, 5000);
+                    }
                     else
                     {
                         varLocationId = Convert.ToInt32(lblLocation.Text);
+                        txtLocation.BackColor = Color.White;
+                        tpStockLocation.ShowAlways = false;
                     }
                 }
-                varResult = objspservice.udfnRack(varType,varRackcode, Convert.ToInt16(cmbConcern.SelectedValue),varLocationId, (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, varoriginator);
-                string[] varvalue = varResult.Split('~');
-                if (varvalue[0] == "3")
+                if (varLocationId != -1)
                 {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objCP_RackList.udfnList();
-                    if (btnSave.Text == "Update")
+                    varResult = objspservice.udfnRack(varType, varRackcode, Convert.ToInt16(cmbConcern.SelectedValue), varLocationId, (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, varoriginator);
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
                     {
-                        varUpdate = 1;
-                        udfnclose();
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainForm.objCP_RackList.udfnList();
+                        if (btnSave.Text == "Update")
+                        {
+                            varUpdate = 1;
+                            udfnclose();
+                        }
+                        udfnclear();
+                        txtLocation.Focus();
                     }
-                    udfnclear();
+                    else
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnSave.Enabled = true;
+                        btnSave.Focus();
+                    }
                 }
-                else
-                {
-                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    btnSave.Enabled = true;
-                    btnSave.Focus();
-                }   
             }
             catch (Exception ex)
             {
@@ -183,7 +194,7 @@ namespace ROMS
             }
             finally
             {
-                btnSave.Enabled = true;
+              L:  btnSave.Enabled = true;
             }
         }
         private void btnSave_Click(object sender, EventArgs e)
@@ -197,6 +208,14 @@ namespace ROMS
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
                     tpConcern.Show("Please select concern", cmbConcern, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtLocation.Text == "" || lblLocation.Text == "0")
+                {
+                    epRack.SetError(txtLocation, "Please select stock location");
+                    txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpStockLocation.ShowAlways = true;
+                    tpStockLocation.Show("Please select stock location", txtLocation, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtRackName.Text).Trim() == "")
