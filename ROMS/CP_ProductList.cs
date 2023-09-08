@@ -161,7 +161,7 @@ namespace ROMS
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdItemList.DataSource = null;
-                
+
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
@@ -174,13 +174,14 @@ namespace ROMS
                 else
                 {
                     DataService objDServ = new DataService();
-                    string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_ProductGroup WHERE PRG_EName ='" + txtProductGroup.Text.Trim() + "'");
+                    string varId_Group = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductGroup WHERE PRG_EName = '" + txtProductGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRGID FROM MR_ProductGroup WHERE PRG_EName = '" + txtProductGroup.Text.Trim() + "') END AS PRGID ");
                     objDServ.CloseConnection();
-                    if (varCount == "0") { varGroupId = -1; }
-                    else
-                    {
-                        varGroupId = Convert.ToInt32(lblGroupId.Text);
-                    }
+                    varGroupId = Convert.ToInt32(varId_Group);
+                    //if (varCount == "0") { varGroupId = -1; }
+                    //else
+                    //{
+                    //    varGroupId = Convert.ToInt32(lblGroupId.Text);
+                    //}
                 }
 
                 int varSubGroupId = 0;

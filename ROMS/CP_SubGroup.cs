@@ -333,6 +333,14 @@ namespace ROMS
             {
                 bool blnErrorFlag = false;
 
+                if (txtProductGroupName.Text.Trim() == "")
+                {
+                    epSubGroup.SetError(txtProductGroupName, "Please enter product group name");
+                    txtProductGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpGroupName.ShowAlways = true;
+                    tpGroupName.Show("Please enter product group name", txtProductGroupName, 5000);
+                    blnErrorFlag = true;
+                }
                 if (txtESubGroupNameEnglish.Text.Trim() != "")
                 {
                     string VarPSGName = "0";
@@ -981,8 +989,20 @@ namespace ROMS
         {
             try
             {
-                txtProductGroupName.BackColor = Color.White;
                 if (txtProductGroupName.Text.Trim() == "") { lblGroupCode.Text = "0"; }
+
+                if (txtProductGroupName.Text.Trim() == "")
+                {
+                    epSubGroup.SetError(txtProductGroupName, "Please enter product group name");
+                    txtProductGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpGroupName.ShowAlways = true;
+                    tpGroupName.Show("Please enter product group name", txtProductGroupName, 5000);
+                }
+                else
+                {
+                    txtProductGroupName.BackColor = Color.White;
+                    epSubGroup.Clear();
+                }
             }
             catch (Exception ex)
             {
@@ -990,7 +1010,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtLocation_Enter(object sender, EventArgs e)
         {
             try
