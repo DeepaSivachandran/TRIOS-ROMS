@@ -75,25 +75,28 @@ namespace ROMS
         {
             try
             {
-                if (grdUserCategoryList.SelectedRows.Count > 0)
+                if (Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) != "1" && Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) != "2")
                 {
-                    string varResult = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdUserCategoryList.SelectedRows.Count > 0)
                     {
-
-                        SPDataService objspservice = new SPDataService();
-                        varResult = "";
-                        varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value),"", 0, "UserCategory Delete");
-
-                        if (varResult.Split('~')[0] == "3")
+                        string varResult = "";
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-                        }
-                        else
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                            SPDataService objspservice = new SPDataService();
+                            varResult = "";
+                            varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value), "", 0, "UserCategory Delete");
+
+                            if (varResult.Split('~')[0] == "3")
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnList();
+                            }
+                            else
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }

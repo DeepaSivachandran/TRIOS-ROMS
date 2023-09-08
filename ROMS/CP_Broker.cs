@@ -1274,6 +1274,7 @@ namespace ROMS
         {
             try
             {
+                epBroker.Clear();
                 bool blnErrorFlag = false;
 
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
@@ -1492,22 +1493,20 @@ namespace ROMS
             {
                 if (e.RowIndex != -1)
                 {
-
-                    DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        switch (grdBankDetails.Columns[e.ColumnIndex].Name)
+                    switch (grdBankDetails.Columns[e.ColumnIndex].Name)
                         {
                             case "clmremovebank":
-
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
                                 grdBankDetails.Rows.RemoveAt(this.grdBankDetails.SelectedRows[0].Index);
                                 for (int i = 0; i < grdBankDetails.RowCount; i++)
                                 {
                                     grdBankDetails.Rows[i].Cells["clmsno"].Value = i + 1;
                                 }
-                                break;
-                        }
-                    } 
+                            }
+                            break;
+                       } 
                 }
             }
             catch (Exception ex)
