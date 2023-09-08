@@ -316,6 +316,7 @@ namespace ROMS
                         varGroupCode = Convert.ToInt16(varResult.Split('~')[2]);
                         if (varmastertype == 0 &&  varFormFlag == 0)
                         {
+                            udfnClear();
                             MainForm.objCP_GroupList.udfnList();
                           //  MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
                            // MainForm.objCP_GroupList.varGroupId= Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
