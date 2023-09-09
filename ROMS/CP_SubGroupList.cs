@@ -94,13 +94,15 @@ namespace ROMS
                 else
                 {
                     DataService objDServ = new DataService();
-                    string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_ProductSubGroup WHERE PRSG_EName ='" + txtProductSubGroup.Text.Trim() + "'");
+                    //string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_ProductSubGroup WHERE PRSG_EName ='" + txtProductSubGroup.Text.Trim() + "'");
+                    string varId_SubGroup = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtProductSubGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRSGID FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtProductSubGroup.Text.Trim() + "') END AS PRSGID ");
                     objDServ.CloseConnection();
-                    if (varCount == "0") { varSubGroupId = -1; }
-                    else
-                    {
-                        varSubGroupId = Convert.ToInt32(lblSubGroupId.Text);
-                    }
+                    varSubGroupId = Convert.ToInt32(varId_SubGroup);
+                    //if (varCount == "0") { varSubGroupId = -1; }
+                    //else
+                    //{
+                    //    varSubGroupId = Convert.ToInt32(lblSubGroupId.Text);
+                    //}
                 }
                 objDs = objdserv.udfnSubGroupList(0, varSubGroupId, "",0,0,"");
                 objdserv.CloseConnection();
@@ -295,6 +297,7 @@ namespace ROMS
             try
             {
                 btnView.BackColor = Color.LemonChiffon;
+                lvSubGroup.Visible = false;
             }
             catch (Exception ex)
             {

@@ -197,17 +197,20 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
-                int varLvsupplierID = 0;
-               if (lblSupplierCode.Text == "0"  || txtSupplier.Text == "")
-                {
-                    varLvsupplierID = 0;
-                }
-                else
-                {
-                    varLvsupplierID = Convert.ToInt32(lblSupplierCode.Text); 
-                }
-                
-                    objDs = objdserv.udfnSupplierList(1, varLvsupplierID, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "");
+                    int varSupplierId = 0;
+                    if (txtSupplier.Text == "")
+                    {
+                    varSupplierId = 0;
+                    }
+                    else
+                    {
+                        DataService objDServ = new DataService();
+                        string varId_Supplier = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SPID FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') END AS SPID ");
+                        objDServ.CloseConnection();
+                        varSupplierId = Convert.ToInt32(varId_Supplier);
+                    }
+
+                objDs = objdserv.udfnSupplierList(1, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "");
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -371,6 +374,7 @@ namespace ROMS
         {
             try
             {
+                LV_Supplier.Visible = false;
                 cmbOrderSchedule.BackColor = Color.LemonChiffon;
 
                 cmbschedulebind();
@@ -516,6 +520,7 @@ namespace ROMS
         {
             try
             {
+                LV_Supplier.Visible = false;
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

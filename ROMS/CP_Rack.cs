@@ -277,6 +277,7 @@ namespace ROMS
         {
             try
             {
+                lvLocation.Visible = false;
                 btnSave.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -456,6 +457,7 @@ namespace ROMS
         {
             try
             {
+                lvLocation.Visible = false;
                 txtRackName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -763,6 +765,10 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
+                    if(lvLocation.Visible==false)
+                    {
+                        txtRackName.Focus();
+                    }
                     if (lvLocation.Items.Count == 0 || txtLocation.Text == "")
                     {
                         txtRackName.Focus();

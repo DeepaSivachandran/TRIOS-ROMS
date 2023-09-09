@@ -143,13 +143,9 @@ namespace ROMS
                 else
                 {
                     DataService objDServ = new DataService();
-                    string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_StockLocation WHERE SL_EName ='" + txtStockLocation.Text.Trim() + "'");
+                    string varId_Location = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtStockLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtStockLocation.Text.Trim() + "') END AS SLID ");
                     objDServ.CloseConnection();
-                    if (varCount == "0") { varLocationId = -1; }
-                    else
-                    {
-                        varLocationId = varStockLocationId;
-                    }
+                    varLocationId = Convert.ToInt32(varId_Location);
                 }
                 objDs = objdserv.udfnRackGroupList(0,varCompanyId, varLocationId, varId);
                 objdserv.CloseConnection();
@@ -637,6 +633,7 @@ namespace ROMS
         {
             try
             {
+                lvStockLocation.Visible = false;
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

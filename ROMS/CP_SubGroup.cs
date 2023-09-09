@@ -234,21 +234,17 @@ namespace ROMS
                    varViewType=1; 
                 }
 
-                int varProductGroupId = 0;
+                int varGroupId = 0;
                 if (txtProductGroupName.Text == "")
                 {
-                    varProductGroupId = 0;
+                    varGroupId = 0;
                 }
                 else
                 {
                     DataService objDServ = new DataService();
-                    string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_ProductGroup WHERE PRG_EName ='" + txtProductGroupName.Text.Trim() + "'");
+                    string varId_Group = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductGroup WHERE PRG_EName = '" + txtProductGroupName.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRGID FROM MR_ProductGroup WHERE PRG_EName = '" + txtProductGroupName.Text.Trim() + "') END AS PRGID ");
                     objDServ.CloseConnection();
-                    if (varCount == "0") { varProductGroupId = -1; }
-                    else
-                    {
-                        varProductGroupId = Convert.ToInt32(lblGroupCode.Text);
-                    }
+                    varGroupId = Convert.ToInt32(varId_Group);
                 }
 
                 int varLocationId = 0;
@@ -259,15 +255,10 @@ namespace ROMS
                 else
                 {
                     DataService objDServ = new DataService();
-                    string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_StockLocation WHERE SL_EName ='" + txtLocation.Text.Trim() + "'");
+                    string varId_Location = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtLocation.Text.Trim() + "') END AS SLID ");
                     objDServ.CloseConnection();
-                    if (varCount == "0") { varLocationId = -1; }
-                    else
-                    {
-                        varLocationId = Convert.ToInt32(lblLocation.Text);
-                    }
+                    varLocationId = Convert.ToInt32(varId_Location);
                 }
-
                 int varRackId = 0;
                 if (txtRack.Text == "")
                 {
@@ -276,16 +267,11 @@ namespace ROMS
                 else
                 {
                     DataService objDServ = new DataService();
-                    string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_Rack WHERE RK_Name ='" + txtRack.Text.Trim() + "'");
+                    string varId_Rack = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') END AS RKID ");
                     objDServ.CloseConnection();
-                    if (varCount == "0") { varRackId = -1; }
-                    else
-                    {
-                        varRackId = Convert.ToInt32(lblRack.Text);
-                    }
+                    varRackId = Convert.ToInt32(varId_Rack);
                 }
-
-                varResult = objDser.udfnSubGroup(varViewType, varId, varProductGroupId, Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), varLocationId, varRackId, varOriginator);
+                varResult = objDser.udfnSubGroup(varViewType, varId, varGroupId, Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), varLocationId, varRackId, varOriginator);
                 objDser.CloseConnection();
                 btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -350,8 +336,6 @@ namespace ROMS
                         lblGroupCode.Text = "0";
                         epSubGroup.SetError(txtProductGroupName, "Invalid Group");
                         txtProductGroupName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                       //tpCity.ShowAlways = true;
-                        //tpCity.Show("Invalid city", txtCity, 5000);
                         blnErrorFlag = true;
                     }
                 }
@@ -397,6 +381,9 @@ namespace ROMS
         {
             try
             {
+                lvGroupName.Visible = false;
+                lvLocation.Visible = false;
+                lvRack.Visible = false;
                 btnSave.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -543,7 +530,8 @@ namespace ROMS
         private void txtESubGroupNameEnglish_Enter(object sender, EventArgs e)
         {
             try
-            {  
+            {
+                lvGroupName.Visible = false;
                 txtESubGroupNameEnglish.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -948,11 +936,11 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
                     if (lvGroupName.Items.Count == 0 || txtProductGroupName.Text == "")
                     {
-                        txtProductGroupName.Focus();
+                        txtESubGroupNameEnglish.Focus();
                         lvGroupName.Visible = false;
                     }
                     else
@@ -962,18 +950,6 @@ namespace ROMS
                     if (lvGroupName.Items.Count > 0)
                     {
                         lvGroupName.Items[0].Selected = true;
-                    }
-                }
-                if(e.KeyCode==Keys.Enter)
-                {
-                    if(lvGroupName.Visible==false)
-                    {
-                        txtESubGroupNameEnglish.Focus();
-                    }
-                    else
-                    {
-                        lvGroupName.Visible = true;
-                        lvGroupName.Focus();
                     }
                 }
             }
@@ -989,7 +965,6 @@ namespace ROMS
             try
             {
                 if (txtProductGroupName.Text.Trim() == "") { lblGroupCode.Text = "0"; }
-
                 if (txtProductGroupName.Text.Trim() == "")
                 {
                     epSubGroup.SetError(txtProductGroupName, "Please enter product group name");
@@ -1180,6 +1155,7 @@ namespace ROMS
         {
             try
             {
+                lvLocation.Visible = false;
                 txtRack.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1315,13 +1291,9 @@ namespace ROMS
                     else
                     {
                         DataService objDServ = new DataService();
-                        string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_StockLocation WHERE SL_EName ='" + txtLocation.Text.Trim() + "'");
+                        string varId_Location = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtLocation.Text.Trim() + "') END AS SLID ");
                         objDServ.CloseConnection();
-                        if (varCount == "0") { varLocationId = -1; }
-                        else
-                        {
-                            varLocationId = Convert.ToInt32(lblLocation.Text);
-                        }
+                        varLocationId = Convert.ToInt32(varId_Location);
                     }
 
                     objDs = objspdservice.udfnRackList(7, 0,0 ,varLocationId, 0, txtRack.Text);

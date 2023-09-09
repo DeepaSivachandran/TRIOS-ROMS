@@ -72,6 +72,19 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
+
+                int varGroupId = 0;
+                if (txtProductGroup.Text == "")
+                {
+                    varGroupId = 0;
+                }
+                else
+                {
+                    DataService objDServ = new DataService();
+                    string varId_Group = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductGroup WHERE PRG_EName = '" + txtProductGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRGID FROM MR_ProductGroup WHERE PRG_EName = '" + txtProductGroup.Text.Trim() + "') END AS PRGID ");
+                    objDServ.CloseConnection();
+                    varGroupId = Convert.ToInt32(varId_Group);
+                }
                 objDs = objdserv.udfnGroupList(0, varGroupId, 0,"");
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -189,6 +202,7 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
