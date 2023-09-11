@@ -1358,15 +1358,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraAccountName", paraAccountName);
                 varSqlCommand.Parameters.AddWithValue("@paraBrand", paraBrand);
                 varSqlCommand.Parameters.AddWithValue("@ParaSupplierPayment", ParaSupplierPayment);
-
-
-
-
-
                 varSqlCommand.CommandTimeout = 0;
-
                 result = varSqlCommand.ExecuteScalar().ToString();
-
             }
             catch (Exception ex)
             {
@@ -1395,9 +1388,6 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@pardayid", pardayid);
                 varSqlCommand.Parameters.AddWithValue("@paraOrderId", paraOrderId);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierName", paraSupplierName);
-                
-
-
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -1412,6 +1402,32 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return ds;
+        }
+        /* Added by deepa on 11-09-2023 */
+        public string udfnGetMessages(int paraId)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Messages]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraId", paraId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
         }
     }
 

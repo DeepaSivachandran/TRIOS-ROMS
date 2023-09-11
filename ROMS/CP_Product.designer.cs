@@ -72,6 +72,7 @@
             this.txtDShop = new System.Windows.Forms.TextBox();
             this.errItems = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbNetQty = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.txtGrossWeight = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -170,7 +171,8 @@
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cmbNetQty = new System.Windows.Forms.ComboBox();
+            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -740,6 +742,15 @@
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             // 
+            // cmbNetQty
+            // 
+            this.cmbNetQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbNetQty.FormattingEnabled = true;
+            this.cmbNetQty.Location = new System.Drawing.Point(222, 23);
+            this.cmbNetQty.Name = "cmbNetQty";
+            this.cmbNetQty.Size = new System.Drawing.Size(45, 27);
+            this.cmbNetQty.TabIndex = 116;
+            // 
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.SystemColors.Control;
@@ -891,7 +902,7 @@
             // 
             this.txtRackMOQQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtRackMOQQty.Location = new System.Drawing.Point(135, 113);
-            this.txtRackMOQQty.MaxLength = 50;
+            this.txtRackMOQQty.MaxLength = 8;
             this.txtRackMOQQty.Name = "txtRackMOQQty";
             this.txtRackMOQQty.Size = new System.Drawing.Size(388, 27);
             this.txtRackMOQQty.TabIndex = 27;
@@ -1612,7 +1623,9 @@
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6,
-            this.columnHeader7});
+            this.columnHeader7,
+            this.columnHeader28,
+            this.columnHeader29});
             this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSubGroup.HideSelection = false;
             this.lvSubGroup.Location = new System.Drawing.Point(172, 179);
@@ -1833,14 +1846,13 @@
             // 
             this.columnHeader25.Width = 0;
             // 
-            // cmbNetQty
+            // columnHeader28
             // 
-            this.cmbNetQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbNetQty.FormattingEnabled = true;
-            this.cmbNetQty.Location = new System.Drawing.Point(222, 23);
-            this.cmbNetQty.Name = "cmbNetQty";
-            this.cmbNetQty.Size = new System.Drawing.Size(45, 27);
-            this.cmbNetQty.TabIndex = 116;
+            this.columnHeader28.Width = 0;
+            // 
+            // columnHeader29
+            // 
+            this.columnHeader29.Width = 0;
             // 
             // CP_Product
             // 
@@ -2051,5 +2063,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader26;
         private System.Windows.Forms.ColumnHeader columnHeader27;
         public System.Windows.Forms.ComboBox cmbNetQty;
+        private System.Windows.Forms.ColumnHeader columnHeader28;
+        private System.Windows.Forms.ColumnHeader columnHeader29;
     }
 }

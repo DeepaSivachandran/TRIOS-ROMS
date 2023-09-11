@@ -284,8 +284,19 @@ namespace ROMS
                         {
                             varmastertype = 0;
                             MainForm.objCP_Items.varSubgroupCode = varSubgroupCode;
-                            MainForm.objCP_Items.varBatchCode = Convert.ToInt32(cmbBatchNo.SelectedValue); 
-                             varCloseFlag = 1;
+                            MainForm.objCP_Items.varSubGroupName = txtESubGroupNameEnglish.Text;
+                            MainForm.objCP_Items.varGroupCode = varGroupId;
+                            MainForm.objCP_Items.varGroupName = txtProductGroupName.Text.Trim();
+                            MainForm.objCP_Items.varBatchCode = Convert.ToInt32(cmbBatchNo.SelectedValue);
+                            MainForm.objCP_Items.varPURSLID = Convert.ToInt32(lblLocation.Text);
+                            MainForm.objCP_Items.varSALESLID = Convert.ToInt32(lblLocation.Text);
+                            MainForm.objCP_Items.varPURRKID = Convert.ToInt32(lblRack.Text);
+                            MainForm.objCP_Items.varSALERKID = Convert.ToInt32(lblRack.Text);
+                            MainForm.objCP_Items.varPurchaseLocation =txtLocation.Text.Trim();
+                            MainForm.objCP_Items.varSalesLocation = txtLocation.Text.Trim();
+                            MainForm.objCP_Items.varPurchaseRack = txtRack.Text.Trim();
+                            MainForm.objCP_Items.varSalesRack = txtRack.Text.Trim();
+                            varCloseFlag = 1;
                             udfnclose();
                         }
                         else
