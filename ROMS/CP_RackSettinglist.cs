@@ -404,7 +404,7 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode==Keys.Enter)
                 {
                     if (lvRack.Items.Count == 0 || txtRack.Text == "")
                     {
@@ -431,7 +431,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtRack_Leave(object sender, EventArgs e)
         {
             try
@@ -443,6 +442,59 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void LvRack_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnRackEvent();
+                btnView.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvRack_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnRackEvent();
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnRackEvent()
+        {
+            try
+            {
+                if (txtRack.Text != "")
+                {
+                    ListViewItem selectedItem = lvRack.SelectedItems[0];
+                    txtRack.Text = selectedItem.SubItems[0].Text;
+                    lblRack.Text = selectedItem.SubItems[1].Text;
+                    //    lvCity.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvRack.Visible = false;
             }
         }
     }
