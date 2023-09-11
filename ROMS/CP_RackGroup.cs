@@ -1399,7 +1399,7 @@ namespace ROMS
                 lvStaffName.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtStaffName.Text.Length > 2)
+                if (txtStaffName.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnUserList(1, txtStaffName.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0);
                     objspdservice.CloseConnection();

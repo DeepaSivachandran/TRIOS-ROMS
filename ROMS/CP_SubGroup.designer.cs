@@ -374,7 +374,7 @@
             this.btnClose.Location = new System.Drawing.Point(345, 280);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(79, 29);
-            this.btnClose.TabIndex = 9;
+            this.btnClose.TabIndex = 8;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -391,7 +391,7 @@
             this.btnSave.Location = new System.Drawing.Point(263, 280);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(79, 29);
-            this.btnSave.TabIndex = 8;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -442,7 +442,7 @@
             this.txtLocation.MaxLength = 100;
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(200, 27);
-            this.txtLocation.TabIndex = 1111139;
+            this.txtLocation.TabIndex = 4;
             this.txtLocation.TextChanged += new System.EventHandler(this.TxtLocation_TextChanged);
             this.txtLocation.Enter += new System.EventHandler(this.TxtLocation_Enter);
             this.txtLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLocation_KeyDown);
@@ -467,7 +467,7 @@
             this.txtRack.MaxLength = 100;
             this.txtRack.Name = "txtRack";
             this.txtRack.Size = new System.Drawing.Size(200, 27);
-            this.txtRack.TabIndex = 1111146;
+            this.txtRack.TabIndex = 5;
             this.txtRack.TextChanged += new System.EventHandler(this.TxtRack_TextChanged);
             this.txtRack.Enter += new System.EventHandler(this.TxtRack_Enter);
             this.txtRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRack_KeyDown);

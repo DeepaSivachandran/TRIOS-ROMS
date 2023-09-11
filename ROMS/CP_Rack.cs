@@ -694,7 +694,7 @@ namespace ROMS
                 lvLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtLocation.Text.Length > 2)
+                if (txtLocation.Text.Length > 0)
                 {
 
                     objDs = objspdservice.udfnStockLocationList(10,Convert.ToInt32(cmbConcern.SelectedValue),0,0, txtLocation.Text);
@@ -782,6 +782,10 @@ namespace ROMS
                     {
                         lvLocation.Items[0].Selected = true;
                     }
+                }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    txtRackName.Focus();
                 }
             }
             catch (Exception ex)

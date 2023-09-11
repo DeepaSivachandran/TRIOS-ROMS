@@ -573,7 +573,7 @@ namespace ROMS
             try
             {
                 if (Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
-                { tsbDelete.Visible = false; tsbNew.Visible = false; }
+                { tsbDelete.Visible = false;}
                 else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }
             }
             catch (Exception ex)

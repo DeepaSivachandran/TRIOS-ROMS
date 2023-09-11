@@ -657,7 +657,7 @@ namespace ROMS
                 lvUserList.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtDUserList.Text.Length > 2)
+                if (txtDUserList.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnUserList(5, txtDUserList.Text, "","",0);
                     objspdservice.CloseConnection();
@@ -736,6 +736,10 @@ namespace ROMS
                     {
                         lvUserList.Items[0].Selected = true;
                     }
+                }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)

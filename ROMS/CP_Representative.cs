@@ -938,10 +938,6 @@ namespace ROMS
             }
 
         }
-
-        private void GrdRepBrand_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-        }
         private void checkallcheckboxvalue()
         {
             //try
@@ -1005,14 +1001,6 @@ namespace ROMS
         {
             try
             {
-                //if (varbrandidflag == 0)
-                //{ 
-                //    for (int i = 0; i < grdRepBrand.Rows.Count; i++)
-                //    {
-                //        grdRepBrand.Rows[i].Cells["clmcheckbrand"].Value = chkBrandAll.Checked;
-                //        varbrandselectflag++;
-                //    }
-                //}
                 if (varCheckAllFlag != 1)
                 {
                     for (int i = 0; i < grdRepBrand.Rows.Count; i++)
@@ -1025,15 +1013,10 @@ namespace ROMS
                     varCheckAllFlag = 0;
                 }
             }
-
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-              //  varbrandidflag = 0;
             }
         }
     }

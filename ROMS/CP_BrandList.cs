@@ -203,7 +203,6 @@ namespace ROMS
             }
 
         }
-
         public void udfnList()
         {
             try
@@ -905,7 +904,7 @@ namespace ROMS
                 lvGroup.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtProductGroup.Text.Length > 2)
+                if (txtProductGroup.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnGroupList(8, 0, 0, txtProductGroup.Text);
                     objspdservice.CloseConnection();
@@ -946,7 +945,7 @@ namespace ROMS
                 lvSubGroup.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtProductSubGroup.Text.Length > 2)
+                if (txtProductSubGroup.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnSubGroupList(8, 0, "", varGroupId, 0, txtProductSubGroup.Text);
                     objspdservice.CloseConnection();
@@ -1035,7 +1034,6 @@ namespace ROMS
                         lvSubGroup.Items[0].Selected = true;
                     }
                 }
-
                 if (e.KeyCode == Keys.Enter)
                 {
                     btnView.Focus();
