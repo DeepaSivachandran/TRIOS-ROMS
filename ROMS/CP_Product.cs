@@ -42,9 +42,13 @@ namespace ROMS
         private ToolTip tpprd = new ToolTip();
         private ToolTip tptamname = new ToolTip();
         private ToolTip tpengname = new ToolTip();
+        private ToolTip tppurchaselocation = new ToolTip();
+        private ToolTip tpsaleslocation = new ToolTip();
+        private ToolTip tppurchaserack = new ToolTip();
+        private ToolTip tpsalesrack = new ToolTip();
 
         public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0, varGroupId=0, varSubGroupId = 0,varHsnId=0, varUnitid=0, varcompanyid=0, varBrandId=0,varBatchCode=0, varPURSLID=0, varPURRKID=0, varSALESLID=0, varSALERKID=0;
-        public string varSubGroupName = "", varGroupName = "";
+        public string varSubGroupName = "", varGroupName = "", varPurchaseLocation ="", varSalesLocation="", varPurchaseRack="", varSalesRack="";
         public CP_Product()
         {
             InitializeComponent();
@@ -330,6 +334,113 @@ namespace ROMS
                     }
                 }
 
+                /* Check product sub group is valid or not*/
+                DataService objDServ = new DataService();
+                string varId_SubGroup = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtSubGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRSGID FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtSubGroup.Text.Trim() + "') END AS PRSGID ");
+                objDServ.CloseConnection();
+                lblSubGroupCode.Text = Convert.ToString(varId_SubGroup);
+                if (varId_SubGroup == "0" || varId_SubGroup == "-1")
+                {
+                    errItems.SetError(txtSubGroup, "Please select valid subgroup");
+                    txtSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpprdSG.ShowAlways = true;
+                    tpprdSG.Show("Please select valid subgroup", txtSubGroup, 5000);
+                    blnErrorFlag = true;
+                }
+                /* Check product group is valid or not*/
+                DataService objDServ1 = new DataService();
+                string varId_Group = objDServ1.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductGroup WHERE PRG_EName = '" + txtGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRGID FROM MR_ProductGroup WHERE PRG_EName = '" + txtGroup.Text.Trim() + "') END AS PRGID ");
+                objDServ1.CloseConnection();
+                lblGroupCode.Text = Convert.ToString(varId_Group);
+                if (varId_Group == "0" || varId_Group == "-1")
+                {
+                    errItems.SetError(txtGroup, "Please select valid group");
+                    txtGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpprdG.ShowAlways = true;
+                    tpprdG.Show("Please select valid group", txtGroup, 5000);
+                    blnErrorFlag = true;
+                }
+
+                if (txtBrand.Text != "")
+                {
+                    /* Check product brand is valid or not*/
+                    DataService objDServ2 = new DataService();
+                    string varId_Brand = objDServ2.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Brand WHERE BD_EName = '" + txtBrand.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT BDID FROM MR_Brand WHERE BD_EName = '" + txtBrand.Text.Trim() + "') END AS BDID ");
+                    objDServ2.CloseConnection();
+                    lblBrand.Text = Convert.ToString(varId_Brand);
+                    if (varId_Brand == "0" || varId_Brand == "-1")
+                    {
+                        errItems.SetError(txtBrand, "Please select valid brand");
+                        txtBrand.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpbrand.ShowAlways = true;
+                        tpbrand.Show("Please select valid brand", txtBrand, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                /* Check purchase stock location is valid or not*/
+                if (txtPurLocation.Text != "")
+                {
+                    DataService objDServ3 = new DataService();
+                    string varId_PurLocation = objDServ3.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtPurLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtPurLocation.Text.Trim() + "') END AS SLID ");
+                    objDServ3.CloseConnection();
+                    lblPurLocationCode.Text = Convert.ToString(varId_PurLocation);
+                    if (varId_PurLocation == "0" || varId_PurLocation == "-1")
+                    {
+                        errItems.SetError(txtPurLocation, "Please select valid purchase stock location");
+                        txtPurLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tppurchaselocation.ShowAlways = true;
+                        tppurchaselocation.Show("Please select valid purchase stock location", txtPurLocation, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                /* Check purchase rack is valid or not*/
+                if (txtPurRack.Text != "")
+                {
+                    DataService objDServ4 = new DataService();
+                    string varId_PurRack = objDServ4.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_ShortName = '" + txtPurRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_ShortName = '" + txtPurRack.Text.Trim() + "') END AS RKID ");
+                    objDServ4.CloseConnection();
+                    lblPurRackCode.Text = Convert.ToString(varId_PurRack);
+                    if (varId_PurRack == "0" || varId_PurRack == "-1")
+                    {
+                        errItems.SetError(txtPurRack, "Please select valid purchase rack");
+                        txtPurRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tppurchaserack.ShowAlways = true;
+                        tppurchaserack.Show("Please select valid purchase rack", txtPurRack, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                /* Check SALES stock location is valid or not*/
+                if (txtSaleLocation.Text != "")
+                {
+                    DataService objDServ5 = new DataService();
+                    string varId_SalesLocation = objDServ5.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtSaleLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtSaleLocation.Text.Trim() + "') END AS SLID ");
+                    objDServ5.CloseConnection();
+                    lblSaleLocationCode.Text = Convert.ToString(varId_SalesLocation);
+                    if (varId_SalesLocation == "0" || varId_SalesLocation == "-1")
+                    {
+                        errItems.SetError(txtSaleLocation, "Please select valid sales stock location");
+                        txtSaleLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpsaleslocation.ShowAlways = true;
+                        tpsaleslocation.Show("Please select valid sales stock location", txtSaleLocation, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                /* Check sales rack is valid or not*/
+                if (txtSaleRack.Text != "")
+                {
+                    DataService objDServ6 = new DataService();
+                    string varId_SaleRack = objDServ6.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_ShortName = '" + txtSaleRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_ShortName = '" + txtSaleRack.Text.Trim() + "') END AS RKID ");
+                    objDServ6.CloseConnection();
+                    lblSaleRackCode.Text = Convert.ToString(varId_SaleRack);
+                    if (varId_SaleRack == "0" || varId_SaleRack == "-1")
+                    {
+                        errItems.SetError(txtSaleRack, "Please select valid sales rack");
+                        txtSaleRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpsalesrack.ShowAlways = true;
+                        tpsalesrack.Show("Please select valid sales rack", txtSaleRack, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
                 if (blnErrorFlag == false)
                 {
                     SPDataService objspdservice = new SPDataService();
@@ -490,7 +601,7 @@ namespace ROMS
                         btnSave.Enabled = true;
                         if (btnSave.Text == "Update")
                         {
-                            this.Hide();
+                            this.Close();
                         }
                         MainForm.objCP_Itemlist.udfnDropdownbind();
                         MainForm.objCP_Itemlist.udfnList();
@@ -538,7 +649,7 @@ namespace ROMS
                 lblPurRackCode.Text = "0";
                 txtPurRack.Text = "";
                 lblPurLocationCode.Text = "0";
-                txtDPurchaseLocation.Text = "";
+                txtPurLocation.Text = "";
                 lblSaleRackCode.Text = "0";
                 txtSaleRack.Text = "";
                 lblSaleLocationCode.Text = "0";
@@ -682,6 +793,10 @@ namespace ROMS
                 tpprd.ShowAlways = false;
                 tptamname.ShowAlways = false;
                 tpengname.ShowAlways = false;
+                tppurchaselocation.ShowAlways = false;
+                tpsaleslocation.ShowAlways = false;
+                tppurchaserack.ShowAlways = false;
+                tpsalesrack.ShowAlways = false;
                 this.Close();
                 MainForm.objCP_Itemlist.grdItemList.ClearSelection();
             }
@@ -2721,7 +2836,7 @@ namespace ROMS
                 }
                 else
                 {
-                    txtUPPvalue.Text = cmbUnit.SelectedText;
+                    txtUPPvalue.Text = cmbUnit.Text;
                 }
 
             }
@@ -3136,6 +3251,8 @@ namespace ROMS
                     ListViewItem selectedItem = lvSubGroup.SelectedItems[0];
                     txtSubGroup.Text = selectedItem.SubItems[0].Text;
                     lblSubGroupCode.Text = selectedItem.SubItems[2].Text;
+                    txtGroup.Text = selectedItem.SubItems[4].Text;
+                    lblGroupCode.Text = selectedItem.SubItems[5].Text;
                     string varbatchenable = selectedItem.SubItems[3].Text;
                     lvSubGroup.Visible = false;
                     if (varbatchenable == "72")
@@ -3340,7 +3457,7 @@ namespace ROMS
                 lvSubGroup.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtSubGroup.Text.Length > 2)
+                if (txtSubGroup.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnSubGroupList(8,0,"",0,0,txtSubGroup.Text.Trim());
                     objspdservice.CloseConnection();
@@ -3352,7 +3469,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvSubGroup.Items.Add(objList);
                                 }
@@ -4151,14 +4268,24 @@ namespace ROMS
         private void BtnSubgroup_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 varSubgroupCode = 0;
-                MainForm.objCP_SubGroup = new CP_SubGroup(); 
+                MainForm.objCP_SubGroup = new CP_SubGroup();
                 MainForm.objCP_SubGroup.varmastertype = 1;
                 MainForm.objCP_SubGroup.ShowDialog();
                 //udfnDropDownload();
                 lblSubGroupCode.Text = Convert.ToString(varSubgroupCode);
                 txtSubGroup.Text = varSubGroupName;
+                txtGroup.Text = varGroupName;
+                lblGroupCode.Text = Convert.ToString(varGroupCode);
+                lblPurLocationCode.Text = Convert.ToString(varPURSLID);
+                lblSaleLocationCode.Text = Convert.ToString(varSALESLID);
+                lblPurRackCode.Text = Convert.ToString(varPURRKID);
+                lblSaleRackCode.Text = Convert.ToString(varSALERKID);
+                txtSaleLocation.Text = varSalesLocation;
+                txtPurLocation.Text = varPurchaseLocation;
+                txtSaleRack.Text = varSalesRack;
+                txtPurRack.Text = varPurchaseRack;
                 if (varBatchCode == 72)
                 {
                     cmbBatchNoEntry.SelectedValue = 72;
@@ -4170,11 +4297,21 @@ namespace ROMS
                 }
                 txtSubGroup.Focus();
                 lvSubGroup.Visible = false;
+                lvGroup.Visible = false;
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvSubGroup.Visible = false;
+                lvGroup.Visible = false;
+                lvPurLocation.Visible = false;
+                lvSaleLocation.Visible = false;
+                lvPurRack.Visible = false;
+                lvSaleRack.Visible = false;
             }
         }
 
@@ -4184,24 +4321,24 @@ namespace ROMS
             try
             {
                 varGroupCode = 0;
-                MainForm.objCP_Group = new CP_Group(); 
+                MainForm.objCP_Group = new CP_Group();
                 MainForm.objCP_Group.varmastertype = 1;
                 MainForm.objCP_Group.ShowDialog();
-              //  udfnDropDownload();
+                //  udfnDropDownload();
                 lblGroupCode.Text = Convert.ToString(varGroupCode);
                 txtGroup.Text = varGroupName;
                 txtGroup.Focus();
                 if (varGroupCode != 0)
                 {
-                   // cmbSubGroup.SelectedValue = -1;
-                } 
+                    // cmbSubGroup.SelectedValue = -1;
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
+            finally { lvGroup.Visible = false; }
         }
 
         private void BtnBrand_Click(object sender, EventArgs e)

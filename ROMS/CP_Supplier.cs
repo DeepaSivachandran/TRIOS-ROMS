@@ -4761,7 +4761,10 @@ namespace ROMS
                 }
                 else
                 {
-                    MessageBox.Show("Mapped products not found", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(38);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -5203,9 +5206,13 @@ namespace ROMS
                                 string gridValue1 = row.Cells[5].Value.ToString();
                                 string gridValue2 = row.Cells[1].Value.ToString();
 
-                                if (gridValue1 == Convert.ToString(cmbOrderType.Text) || gridValue2 == txtScheduleName.Text)
+                                if (gridValue1 == Convert.ToString(cmbOrderType.Text) )
                                 {
                                     varflag = 1;
+                                }
+                                if (gridValue2 == txtScheduleName.Text)
+                                {
+                                    varflag = 2;
                                 }
                             }
                         }
@@ -5317,7 +5324,20 @@ namespace ROMS
                     }
                     else
                     {
-                        MessageBox.Show("Order Type already exists in Schedule!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (varflag == 1)
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(40);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        if (varflag == 2)
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(39);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     } 
                     btnAdd.Enabled = true;
                     txtScheduleName.Focus();

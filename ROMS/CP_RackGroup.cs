@@ -439,7 +439,10 @@ namespace ROMS
                 }
                 if (grdSelectedRack.Rows.Count <= 0)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Please select atleast one rack", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(41);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
@@ -600,7 +603,11 @@ namespace ROMS
                             if (varAddStaff == Convert.ToString(grdStaffDetails.Rows[i].Cells["clmUserId"].Value))
                             {
                                 varFlag = 1;
-                                DialogResult dialogResult = MessageBox.Show("Staff name already exists", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(43);
+                                objDServ.CloseConnection();
+                                MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                         if (varFlag == 0)
