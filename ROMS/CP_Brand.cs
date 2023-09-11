@@ -455,7 +455,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtEBrandNameInEnglish_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -471,7 +470,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtEBrandNameInTamil_Enter(object sender, EventArgs e)
         {
             try
@@ -484,7 +482,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtEBrandNameInTamil_Leave(object sender, EventArgs e)
         {
             try

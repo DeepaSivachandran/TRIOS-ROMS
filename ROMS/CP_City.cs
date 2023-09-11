@@ -64,6 +64,8 @@ namespace ROMS
                         udfnLoad();
                     }
                     this.FormBorderStyle = FormBorderStyle.FixedDialog;
+                    MainForm.objCP_Citylist.picLoader.Visible = false;
+                    MainForm.objCP_Citylist.picLoader.SendToBack();
                 }
                 else
                 {
@@ -72,7 +74,6 @@ namespace ROMS
                     cmbState.Enabled = false;
                     objDTBind = null;
                 }
-
             }
             catch (Exception ex)
             {
@@ -80,8 +81,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             finally {
-                MainForm.objCP_Citylist.picLoader.Visible = false;
-                MainForm.objCP_Citylist.picLoader.SendToBack();
             }
         }
         private void udfnLoad()
