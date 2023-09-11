@@ -777,12 +777,11 @@ namespace ROMS
 
         private void TxtSelectedProductSubGroup_KeyDown(object sender, KeyEventArgs e)
         {
-
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnRemove.Focus();
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -1075,12 +1074,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                    udfnSubGroupAdd();
+                udfnSubGroupAdd();
             }
             catch (Exception ex)
             {
