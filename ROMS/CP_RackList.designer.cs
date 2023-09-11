@@ -276,6 +276,7 @@
             this.cmbGroupType.Size = new System.Drawing.Size(137, 27);
             this.cmbGroupType.TabIndex = 0;
             this.cmbGroupType.Enter += new System.EventHandler(this.CmbGroupType_Enter);
+            this.cmbGroupType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGroupType_KeyDown);
             this.cmbGroupType.Leave += new System.EventHandler(this.CmbGroupType_Leave);
             // 
             // lblNoRecordsFound
