@@ -640,7 +640,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //cmbsubgroup.Focus();
+                    txtProductGroup.Focus();
                 }
             }
             catch (Exception ex)
@@ -920,7 +920,7 @@ namespace ROMS
                 lvSubGroup.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtProductSubGroup.Text.Length > 2)
+                if (txtProductSubGroup.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnSubGroupList(9,0,"",0,0,txtProductSubGroup.Text);
                     objspdservice.CloseConnection();
@@ -1056,6 +1056,10 @@ namespace ROMS
                         lvSubGroup.Items[0].Selected = true;
                     }
                 }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    btnView.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1085,7 +1089,7 @@ namespace ROMS
                 lvGroup.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtProductGroup.Text.Length > 2)
+                if (txtProductGroup.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnGroupList(7, 0,0,txtProductGroup.Text);
                     objspdservice.CloseConnection();
@@ -1218,6 +1222,10 @@ namespace ROMS
                     {
                         lvGroup.Items[0].Selected = true;
                     }
+                }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    txtProductSubGroup.Focus();
                 }
             }
             catch (Exception ex)

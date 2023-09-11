@@ -293,6 +293,9 @@ namespace ROMS
                             MainForm.objCP_SubGroupList.udfnList();
                         }
                         udfnClear();
+                        lvGroupName.Visible = false;
+                        lvLocation.Visible = false;
+                        lvRack.Visible = false;
                     }
                     else
                     {
@@ -326,7 +329,7 @@ namespace ROMS
                     tpGroupName.Show("Please enter product group name", txtProductGroupName, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtESubGroupNameEnglish.Text.Trim() != "")
+                if (txtProductGroupName.Text.Trim() != "")
                 {
                     string VarPSGName = "0";
                     DataService objDserv = new DataService();
@@ -339,7 +342,6 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-
                 if (txtESubGroupNameEnglish.Text.Trim() == "")
                 {
                     epSubGroup.SetError(txtESubGroupNameEnglish, "Please enter product sub group name in english");
@@ -364,6 +366,32 @@ namespace ROMS
                     tpBatchNo.ShowAlways = true;
                     tpBatchNo.Show("Please select batch No. status", cmbBatchNo, 5000);
                     blnErrorFlag = true;
+                }
+                if (txtLocation.Text.Trim() != "")
+                {
+                    string varLocation = "0";
+                    DataService objDserv = new DataService();
+                    varLocation = objDserv.displaydata("SELECT COUNT(*) AS Count FROM MR_StockLocation WHERE SL_EName ='" + txtLocation.Text.Trim() + "'");
+                    if (varLocation == "0")
+                    {
+                        lblLocation.Text = "0";
+                        epSubGroup.SetError(txtLocation, "Invalid Location");
+                        txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        blnErrorFlag = true;
+                    }
+                }
+                if (txtRack.Text.Trim() != "")
+                {
+                    string varRack = "0";
+                    DataService objDserv = new DataService();
+                    varRack = objDserv.displaydata("SELECT COUNT(*) AS Count FROM MR_Rack WHERE RK_Name ='" + txtRack.Text.Trim() + "'");
+                    if (varRack == "0")
+                    {
+                        lblRack.Text = "0";
+                        epSubGroup.SetError(txtRack, "Invalid Rack");
+                        txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        blnErrorFlag = true;
+                    }
                 }
                 if (blnErrorFlag == false)
                 {
@@ -815,7 +843,7 @@ namespace ROMS
                 lvGroupName.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtProductGroupName.Text.Length > 2)
+                if (txtProductGroupName.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnGroupList(7,0,0, txtProductGroupName.Text);
                     objspdservice.CloseConnection();
@@ -952,6 +980,10 @@ namespace ROMS
                         lvGroupName.Items[0].Selected = true;
                     }
                 }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    txtESubGroupNameEnglish.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1017,6 +1049,10 @@ namespace ROMS
                         lvLocation.Items[0].Selected = true;
                     }
                 }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    txtRack.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1046,7 +1082,7 @@ namespace ROMS
                 lvLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtLocation.Text.Length > 2)
+                if (txtLocation.Text.Length > 0)
                 {
 
                     objDs = objspdservice.udfnStockLocationList(12, 0, 0,0,txtLocation.Text);
@@ -1185,6 +1221,17 @@ namespace ROMS
                         lvRack.Items[0].Selected = true;
                     }
                 }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    if (pnlStatus.Enabled == false)
+                    {
+                        btnSave.Focus();
+                    }
+                    else
+                    {
+                        pnlStatus.Focus();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1281,7 +1328,7 @@ namespace ROMS
                 lvRack.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtRack.Text.Length > 2)
+                if (txtRack.Text.Length > 0)
                 {
                     int varLocationId = 0;
                     if (txtLocation.Text == "")

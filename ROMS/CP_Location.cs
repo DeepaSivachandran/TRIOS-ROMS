@@ -924,5 +924,13 @@ namespace ROMS
                 rbInside.Checked = false;
             }
         }
+
+        private void CmbStockApplicable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(btnSave.Text=="Save")
+            {
+                cmbStockApplicable.SelectedValue = 11;
+            }
+        }
     }
 }

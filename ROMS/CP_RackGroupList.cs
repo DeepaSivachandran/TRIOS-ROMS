@@ -303,7 +303,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //cmbStockLocation.Focus();
+                    txtStockLocation.Focus();
                 }
             }
             catch (Exception ex)
@@ -834,7 +834,7 @@ namespace ROMS
                 lvStockLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtStockLocation.Text.Length > 2)
+                if (txtStockLocation.Text.Length > 0)
                 {
                     int varViewType = 0;
                     if(cmbConcern.SelectedIndex==0)
