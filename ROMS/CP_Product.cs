@@ -3160,7 +3160,7 @@ namespace ROMS
                 lvBrand.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtBrand.Text.Length > 2)
+                if (txtBrand.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnBrandList(6,"0",0,0,0,txtBrand.Text.Trim());
                     objspdservice.CloseConnection();
@@ -3581,7 +3581,7 @@ namespace ROMS
                 lvGroup.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtGroup.Text.Length > 2)
+                if (txtGroup.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnGroupList(7,0,Convert.ToInt32(lblSubGroupCode.Text),txtGroup.Text.Trim());
                     objspdservice.CloseConnection();
@@ -3707,7 +3707,7 @@ namespace ROMS
                 lvPurLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtPurLocation.Text.Length > 2)
+                if (txtPurLocation.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtPurLocation.Text.Trim());
                     objspdservice.CloseConnection();
@@ -3835,7 +3835,7 @@ namespace ROMS
                 lvPurRack.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtPurRack.Text.Length > 2)
+                if (txtPurRack.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnRackList(7,0,0,Convert.ToInt32(lblPurLocationCode.Text),0,txtPurRack.Text.Trim());
                     objspdservice.CloseConnection();
@@ -3959,7 +3959,7 @@ namespace ROMS
                 lvSaleLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtPurLocation.Text.Length > 2)
+                if (txtPurLocation.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSaleLocation.Text.Trim());
                     objspdservice.CloseConnection();
@@ -4031,7 +4031,7 @@ namespace ROMS
                 lvSaleRack.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtSaleRack.Text.Length > 2)
+                if (txtSaleRack.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnRackList(7, 0, 0, Convert.ToInt32(lblSaleLocationCode.Text), 0, txtSaleRack.Text.Trim());
                     objspdservice.CloseConnection();

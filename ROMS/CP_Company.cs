@@ -46,6 +46,7 @@ namespace ROMS
         private ToolTip tpIfsCode = new ToolTip();
         public string varupdate = "0";
         public string varcompanyid="0",varstatusid ="0", varcontactcompanyid = "0";
+        public static int varCloseFlag = 0;
         public CP_Company()
         {
             InitializeComponent();
@@ -320,6 +321,13 @@ namespace ROMS
                     tpAccountNo.ShowAlways = true;
                     tpAccountNo.Show("Please enter account number", txtAccno, 5000);
                 }
+                else if (txtAccno.Text.Length != 20)
+                {
+                    epCompany.SetError(txtAccno, "Please enter valid account number");
+                    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpAccountNo.ShowAlways = true;
+                    tpAccountNo.Show("Please enter valid account number", txtAccno, 5000);
+                }
                 else
                 {
                     epCompany.Clear();
@@ -389,6 +397,13 @@ namespace ROMS
                     txtIFScode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpIfsCode.ShowAlways = true;
                     tpIfsCode.Show("Please enter IFS Code", txtIFScode, 5000);
+                }
+                else if (txtIFScode.Text.Length != 11)
+                {
+                    epCompany.SetError(txtIFScode, "Please enter valid IFS Code");
+                    txtIFScode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpIfsCode.ShowAlways = true;
+                    tpIfsCode.Show("Please enter valid IFS Code", txtIFScode, 5000);
                 }
                 else
                 {
@@ -468,13 +483,28 @@ namespace ROMS
                     tpAccountNo.Show("Please enter account number", txtAccno, 5000);
                     blnErrorFlag = true;
                 }
-
+                else if (txtAccno.Text.Length != 20)
+                {
+                    epCompany.SetError(txtAccno, "Please enter valid account number");
+                    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpAccountNo.ShowAlways = true;
+                    tpAccountNo.Show("Please enter valid account number", txtAccno, 5000);
+                    blnErrorFlag = true;
+                }
                 if (Convert.ToString(txtIFScode.Text).Trim() == "")
                 {
                     epCompany.SetError(txtIFScode, "Please enter IFS Code");
                     txtIFScode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpIfsCode.ShowAlways = true;
                     tpIfsCode.Show("Please enter IFS Code", txtIFScode, 5000);
+                    blnErrorFlag = true;
+                }
+                else if (txtIFScode.Text.Length != 11)
+                {
+                    epCompany.SetError(txtIFScode, "Please enter valid IFS Code");
+                    txtIFScode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpIfsCode.ShowAlways = true;
+                    tpIfsCode.Show("Please enter valid IFS Code", txtIFScode, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
@@ -1730,19 +1760,21 @@ namespace ROMS
         {
             try
             {
-                if (varupdate == "0")
+                if (MainForm.varCloseFlag==0)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (varupdate == "0")
                     {
-                        e.Cancel = false;
-                    }
-                    else
-                    {
-                        e.Cancel = true;
+                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            e.Cancel = false;
+                        }
+                        else
+                        {
+                            e.Cancel = true;
+                        }
                     }
                 }
-              
             }
             catch (Exception ex)
             {
@@ -1756,7 +1788,6 @@ namespace ROMS
             try
             {
                 udfnclose();
-              
             }
             catch (Exception ex)
             {
@@ -3380,11 +3411,14 @@ namespace ROMS
                     {
 
                         case "clmRemove":
-
-                            grdContactManager.Rows.RemoveAt(this.grdContactManager.SelectedRows[0].Index);
-                            for (int i = 0; i < grdContactManager.RowCount; i++)
-                            { 
-                                grdContactManager.Rows[i].Cells["clmContsno"].Value = i + 1;
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                grdContactManager.Rows.RemoveAt(this.grdContactManager.SelectedRows[0].Index);
+                                for (int i = 0; i < grdContactManager.RowCount; i++)
+                                {
+                                    grdContactManager.Rows[i].Cells["clmContsno"].Value = i + 1;
+                                }
                             }
                             break; 
                     }
@@ -3408,14 +3442,16 @@ namespace ROMS
                     {
 
                         case "clmremovebank":
-
-                            grdBankDetails.Rows.RemoveAt(this.grdBankDetails.SelectedRows[0].Index);
-                            for (int i = 0; i < grdBankDetails.RowCount; i++)
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
                             {
-                                grdBankDetails.Rows[i].Cells["clmsno"].Value = i + 1; 
+                                grdBankDetails.Rows.RemoveAt(this.grdBankDetails.SelectedRows[0].Index);
+                                for (int i = 0; i < grdBankDetails.RowCount; i++)
+                                {
+                                    grdBankDetails.Rows[i].Cells["clmsno"].Value = i + 1;
+                                }
                             }
                             break;
-
                     }
                 }
             }
@@ -3884,12 +3920,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtAlterMobileno_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void CbPrimary_Leave(object sender, EventArgs e)
         {
             try
@@ -3902,7 +3932,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdBankDetails_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try

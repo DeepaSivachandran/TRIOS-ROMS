@@ -20,7 +20,7 @@ namespace ROMS
         private ToolTip tpBrandNameInTamil = new ToolTip();
 
         public int varStatusid = 1;
-        public int varCloseFlag = 0;
+        public int varUpdate = 0;
         public int varFormFlag = 0;
         public int varId = 0;
 
@@ -398,16 +398,19 @@ namespace ROMS
         {
             try
             {
-                if (varCloseFlag == 0)
+                if (MainForm.varCloseFlag == 0)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (varUpdate == 0)
                     {
-                        e.Cancel = false;
-                    }
-                    else
-                    {
-                        e.Cancel = true;
+                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            e.Cancel = false;
+                        }
+                        else
+                        {
+                            e.Cancel = true;
+                        }
                     }
                 }
             }
@@ -417,7 +420,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtEBrandNameInEnglish_Enter(object sender, EventArgs e)
         {
             try
@@ -430,7 +432,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtEBrandNameInEnglish_Leave(object sender, EventArgs e)
         {
             try
@@ -454,7 +455,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtEBrandNameInEnglish_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -470,7 +470,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtEBrandNameInTamil_Enter(object sender, EventArgs e)
         {
             try
@@ -483,7 +482,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtEBrandNameInTamil_Leave(object sender, EventArgs e)
         {
             try
@@ -655,7 +653,7 @@ namespace ROMS
                         {
                             varmastertype = 0;
                             MainForm.objCP_Items.varbrandcode = varbrandcode;
-                            varCloseFlag = 1;
+                            varUpdate = 1;
                             udfnclose();
                         }
                         else
@@ -666,7 +664,7 @@ namespace ROMS
                     }
                     else
                     {
-                        varCloseFlag = 1;
+                        varUpdate = 1;
                         udfnclose();
                     }
                     MainForm.objCP_BrandList.udfnList();

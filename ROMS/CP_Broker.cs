@@ -1717,7 +1717,7 @@ namespace ROMS
                 lvCity.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtCity.Text.Length > 2)
+                if (txtCity.Text.Length > 0)
                 {
                     objDs = objspdservice.udfncitylist(1, txtCity.Text, MainForm.pbUserID, MainForm.pbIpAddress,"");
                     objspdservice.CloseConnection();
