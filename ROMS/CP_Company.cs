@@ -46,6 +46,7 @@ namespace ROMS
         private ToolTip tpIfsCode = new ToolTip();
         public string varupdate = "0";
         public string varcompanyid="0",varstatusid ="0", varcontactcompanyid = "0";
+        public static int varCloseFlag = 0;
         public CP_Company()
         {
             InitializeComponent();
@@ -1730,19 +1731,21 @@ namespace ROMS
         {
             try
             {
-                if (varupdate == "0")
+                if (MainForm.varCloseFlag==0)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (varupdate == "0")
                     {
-                        e.Cancel = false;
-                    }
-                    else
-                    {
-                        e.Cancel = true;
+                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            e.Cancel = false;
+                        }
+                        else
+                        {
+                            e.Cancel = true;
+                        }
                     }
                 }
-              
             }
             catch (Exception ex)
             {
@@ -1756,7 +1759,6 @@ namespace ROMS
             try
             {
                 udfnclose();
-              
             }
             catch (Exception ex)
             {

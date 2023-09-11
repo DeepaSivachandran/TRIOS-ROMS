@@ -4854,16 +4854,21 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                if (MainForm.varCloseFlag == 0)
+                {
+                    if (varupdate == "0")
                     {
-                        e.Cancel = false;
+                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            e.Cancel = false;
+                        }
+                        else
+                        {
+                            e.Cancel = true;
+                        }
                     }
-                    else
-                    {
-                        e.Cancel = true;
-                    } 
-
+                }
             }
             catch (Exception ex)
             {
