@@ -473,8 +473,7 @@ namespace ROMS
                         varorignator = "Product Update";
                         varupdateproductcode = varproductcode;
                         varupdate = "1";
-
-                    } 
+                    }
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text, Convert.ToInt32(cmbConcern.SelectedValue),
                     Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), Convert.ToInt32(lblBrand.Text),
                     Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(lblPurLocationCode.Text), Convert.ToInt32(lblSaleLocationCode.Text)
