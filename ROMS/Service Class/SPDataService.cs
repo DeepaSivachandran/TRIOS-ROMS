@@ -142,7 +142,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_Company", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_Company", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCompanyId", paraCompanyId);
@@ -200,7 +200,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNG_Company", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRG_Company", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCompanyId", paraCompanyId);
@@ -229,7 +229,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNG_City", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRG_City", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCityName", paraCityName);
@@ -260,7 +260,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_HSN", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_HSN", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraHsnId", paraHsnId);
@@ -292,7 +292,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_HSN]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_HSN]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
@@ -319,7 +319,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Unit]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_Unit]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUnitId", paraUnitId);
@@ -351,7 +351,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Unit]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Unit]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
@@ -378,7 +378,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_City]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_City]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCityId", paraCityId);
@@ -409,7 +409,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_City]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_City]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCityName", paraCityName);
@@ -440,7 +440,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Broker]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_Broker]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraBrokerId", paraBrokerId);
@@ -479,7 +479,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Broker]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Broker]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraBrokerId", paraBrokerId);
@@ -507,7 +507,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_StockLocation]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_StockLocation]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@viewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraStockId", paraStockId);
@@ -543,7 +543,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_StockLocation]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_StockLocation]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraConcern", paraConcern);
@@ -573,7 +573,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Rack]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_Rack]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRackId", paraRackId);
@@ -607,7 +607,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Rack]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Rack]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRackGroup", paraRackGroup);
@@ -638,7 +638,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_RackSettings]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_RackSettings]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRKSID", paraRKSID);
@@ -671,7 +671,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_RackSettings]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_RackSettings]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRKSID", @paraRKSID);
@@ -700,7 +700,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_UserCategory]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_UserCategory]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserCategoryId", paraUserCategoryId);
@@ -730,7 +730,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_UserCategory]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_UserCategory]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
@@ -758,7 +758,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_User]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_User]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUId", paraUId);
@@ -794,7 +794,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_ProductGroup", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_ProductGroup", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRGID", paraPRGID);
@@ -825,7 +825,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_ProductGroup]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_ProductGroup]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRGID", paraPRGID);
@@ -855,7 +855,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_ProductSubGroup", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_ProductSubGroup", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
@@ -890,7 +890,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_ProductSubGroup]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_ProductSubGroup]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
@@ -923,7 +923,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_User]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_User]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserName", paraUserName);
@@ -963,7 +963,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_Product", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_Product", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraProductid", paraProductid);
@@ -1032,7 +1032,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNG_Product", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRG_Product", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@ParaProductCode", ParaProductCode);
@@ -1067,7 +1067,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_Brand", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_Brand", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraBDID", @paraBDID);
@@ -1099,7 +1099,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Brand]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Brand]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraBDID", paraBDID);
@@ -1133,7 +1133,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_RackGroup]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_RackGroup]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRKGID", paraRKGID);
@@ -1166,7 +1166,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_RackGroup]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_RackGroup]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCompanyId", paraCompanyId);
@@ -1196,7 +1196,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_ProductDetails]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_ProductDetails]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRackID", paraRackID);
@@ -1226,7 +1226,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_Representative", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_Representative", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRepId", paraRepId);
@@ -1265,7 +1265,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNG_Representative", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRG_Representative", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRepId", paraRepId); 
@@ -1302,7 +1302,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_Supplier", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_Supplier", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierid", paraSupplierid);
@@ -1368,7 +1368,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Supplier]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Supplier]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);

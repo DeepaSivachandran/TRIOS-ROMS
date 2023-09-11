@@ -110,7 +110,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRackSettingsList(0,0,(Convert.ToInt16(cmbGroupType.SelectedValue)));
+                objDs = objspservice.udfnRackSettingsList(0,0,0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -306,11 +306,138 @@ namespace ROMS
         {
             try
             {
-                cmbGroupType.Focus();
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_RackGroup", "RKG_STSID=1 and RKGID !=-1 Order by RKGID", "RKG_Name,RKGID", cmbGroupType, "", "RKG_Name", "RKGID");
-                objDataBind = null;
+                txtRack.Focus();
                 udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRack_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvRack.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtRack.Text.Length > 0)
+                {
+                    int varRackId = 0;
+                    if (txtRack.Text == "")
+                    {
+                        varRackId = 0;
+                    }
+                    else
+                    {
+                        DataService objDServ = new DataService();
+                        string varId_Rack = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') END AS RKID ");
+                        objDServ.CloseConnection();
+                        varRackId = Convert.ToInt32(varId_Rack);
+                    }
+
+                    objDs = objspdservice.udfnRackList(7, 0, 0,0,varRackId);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["RK_Name"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvRack.Columns[1].Width = 0;
+                                    lvRack.Items.Add(objList);
+                                }
+                                lvRack.Visible = true;
+                            }
+                            else
+                            {
+                                lvRack.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lvRack.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvRack.Visible = false;
+                    }
+                }
+                else
+                {
+                    lvRack.Visible = false;
+                    lvRack.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void TxtRack_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRack.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRack_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvRack.Items.Count == 0 || txtRack.Text == "")
+                    {
+                        txtRack.Focus();
+                        lvRack.Visible = false;
+                    }
+                    else
+                    {
+                        lvRack.Focus();
+                    }
+                    if (lvRack.Items.Count > 0)
+                    {
+                        lvRack.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRack_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRack.BackColor = Color.White;
+                btnView.Focus();
             }
             catch (Exception ex)
             {
