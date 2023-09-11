@@ -90,13 +90,9 @@ namespace ROMS
                 else
                 {
                     DataService objDServ = new DataService();
-                    string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_User WHERE U_Name ='"+txtDUserList.Text.Trim()+"'");
+                    string varId_User = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_User WHERE U_Name = '" + txtDUserList.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT UID FROM MR_User WHERE U_Name = '" + txtDUserList.Text.Trim() + "') END AS UID ");
                     objDServ.CloseConnection();
-                    if (varCount == "0") { varUserId = -1; }
-                    else
-                    {
-                        varUserId = Convert.ToInt32(lblUserId.Text);
-                    }
+                    varUserId = Convert.ToInt32(varId_User);
                 }
                 objDs = objspservice.udfnUserList(2,(txtDUserList.Text),"","", varUserId);
                 objspservice.CloseConnection();
@@ -533,6 +529,7 @@ namespace ROMS
         {
             try
             {
+                lvUserList.Visible = false;
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

@@ -161,7 +161,7 @@ namespace ROMS
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdItemList.DataSource = null;
-                
+
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
@@ -174,13 +174,9 @@ namespace ROMS
                 else
                 {
                     DataService objDServ = new DataService();
-                    string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_ProductGroup WHERE PRG_EName ='" + txtProductGroup.Text.Trim() + "'");
+                    string varId_Group = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductGroup WHERE PRG_EName = '" + txtProductGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRGID FROM MR_ProductGroup WHERE PRG_EName = '" + txtProductGroup.Text.Trim() + "') END AS PRGID ");
                     objDServ.CloseConnection();
-                    if (varCount == "0") { varGroupId = -1; }
-                    else
-                    {
-                        varGroupId = Convert.ToInt32(lblGroupId.Text);
-                    }
+                    varGroupId = Convert.ToInt32(varId_Group);
                 }
 
                 int varSubGroupId = 0;
@@ -191,13 +187,9 @@ namespace ROMS
                 else
                 {
                     DataService objDServ = new DataService();
-                    string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_ProductSubGroup WHERE PRSG_EName ='" + txtProductSubGroup.Text.Trim() + "'");
+                    string varId_SubGroup = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtProductSubGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRSGID FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtProductSubGroup.Text.Trim() + "') END AS PRSGID ");
                     objDServ.CloseConnection();
-                    if (varCount == "0") { varSubGroupId = -1; }
-                    else
-                    {
-                        varSubGroupId = Convert.ToInt32(lblSubGroupId.Text);
-                    }
+                    varSubGroupId = Convert.ToInt32(varId_SubGroup);
                 }
                 objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue),varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue),0,0,0,0);
                 objdserv.CloseConnection();
@@ -693,6 +685,8 @@ namespace ROMS
 
             try
             {
+                lvGroup.Visible = false;
+                lvSubGroup.Visible = false;
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1032,6 +1026,7 @@ namespace ROMS
         {
             try
             {
+                lvGroup.Visible = false;
                 txtProductSubGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

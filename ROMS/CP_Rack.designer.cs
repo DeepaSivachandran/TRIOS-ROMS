@@ -129,7 +129,7 @@
             this.txtLocation.MaxLength = 100;
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(288, 27);
-            this.txtLocation.TabIndex = 1111140;
+            this.txtLocation.TabIndex = 1;
             this.txtLocation.TextChanged += new System.EventHandler(this.TxtLocation_TextChanged);
             this.txtLocation.Enter += new System.EventHandler(this.TxtLocation_Enter);
             this.txtLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLocation_KeyDown);
@@ -154,7 +154,7 @@
             this.txtDescription.MaxLength = 100;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(288, 27);
-            this.txtDescription.TabIndex = 5;
+            this.txtDescription.TabIndex = 4;
             this.txtDescription.Enter += new System.EventHandler(this.TxtDescription_Enter);
             this.txtDescription.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDescription_KeyDown);
             this.txtDescription.Leave += new System.EventHandler(this.TxtDescription_Leave);
@@ -214,7 +214,7 @@
             this.txtShortName.MaxLength = 10;
             this.txtShortName.Name = "txtShortName";
             this.txtShortName.Size = new System.Drawing.Size(288, 27);
-            this.txtShortName.TabIndex = 4;
+            this.txtShortName.TabIndex = 3;
             this.txtShortName.Enter += new System.EventHandler(this.TxtShortName_Enter);
             this.txtShortName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtShortName_KeyDown);
             this.txtShortName.Leave += new System.EventHandler(this.TxtShortName_Leave);
@@ -240,7 +240,7 @@
             this.pnlStatus.Location = new System.Drawing.Point(221, 166);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(288, 27);
-            this.pnlStatus.TabIndex = 6;
+            this.pnlStatus.TabIndex = 5;
             // 
             // rbInactive
             // 
@@ -292,7 +292,7 @@
             this.btnClose.Location = new System.Drawing.Point(434, 199);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 9;
+            this.btnClose.TabIndex = 7;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -308,7 +308,7 @@
             this.btnSave.Location = new System.Drawing.Point(344, 199);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 8;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -323,7 +323,7 @@
             this.txtRackName.MaxLength = 50;
             this.txtRackName.Name = "txtRackName";
             this.txtRackName.Size = new System.Drawing.Size(288, 27);
-            this.txtRackName.TabIndex = 3;
+            this.txtRackName.TabIndex = 2;
             this.txtRackName.Enter += new System.EventHandler(this.TxtRackName_Enter);
             this.txtRackName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRackName_KeyDown);
             this.txtRackName.Leave += new System.EventHandler(this.TxtRackName_Leave);
