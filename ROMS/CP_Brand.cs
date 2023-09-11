@@ -122,7 +122,7 @@ namespace ROMS
                         {
                             if (Convert.ToString(objDS.Tables[1].Rows[i]["PRSGID"]) == Convert.ToString(grdSubGroup.Rows[j].Cells["Sub Group Id"].Value))
                             {
-                                grdSubGroup.Rows[i].Cells[0].Value = true;
+                                grdSubGroup.Rows[j].Cells[0].Value = true;
                             }
                         }
                     }
