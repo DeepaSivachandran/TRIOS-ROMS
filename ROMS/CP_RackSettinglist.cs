@@ -338,7 +338,7 @@ namespace ROMS
                         varRackId = Convert.ToInt32(varId_Rack);
                     }
 
-                    objDs = objspdservice.udfnRackList(7, 0, 0,0,varRackId);
+                    objDs = objspdservice.udfnRackList(0, 0, 0,0,0,"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -484,7 +484,6 @@ namespace ROMS
                     ListViewItem selectedItem = lvRack.SelectedItems[0];
                     txtRack.Text = selectedItem.SubItems[0].Text;
                     lblRack.Text = selectedItem.SubItems[1].Text;
-                    //    lvCity.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -496,6 +495,11 @@ namespace ROMS
             {
                 lvRack.Visible = false;
             }
+        }
+
+        private void BtnView_Click(object sender, EventArgs e)
+        {
+            udfnList();
         }
     }
 }

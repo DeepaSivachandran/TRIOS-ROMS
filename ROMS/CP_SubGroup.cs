@@ -114,7 +114,7 @@ namespace ROMS
                 DataSet objDT = new DataSet();
                 int varViewType = 7;
                 if (btnSave.Text == "Save") { varViewType = 6; }
-                objDT = objdserv.udfnStockLocationList(varViewType, 0,varStockLocation,0);
+                objDT = objdserv.udfnStockLocationList(varViewType, 0,varStockLocation,0,"");
                 objdserv.CloseConnection();
                 cmbStockLocation.DataSource = null;
                 if (objDT != null)
@@ -144,7 +144,7 @@ namespace ROMS
                 DataSet objDT = new DataSet();
                 int varViewType = 3;
                 if (btnSave.Text == "Update") { varViewType = 4; }
-                objDT = objdserv.udfnRackList(varViewType, varGroupId,0,Convert.ToInt32(cmbStockLocation.SelectedValue),varRack);
+                objDT = objdserv.udfnRackList(varViewType, varGroupId,0,Convert.ToInt32(cmbStockLocation.SelectedValue),varRack,"");
                 objdserv.CloseConnection();
                 cmbRack.DataSource = null;
                 if (objDT != null)

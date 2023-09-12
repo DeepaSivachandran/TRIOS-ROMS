@@ -181,7 +181,7 @@ namespace ROMS
                     }
                     else { varViewType = 5; varRackGroupID = varId; }
                 }
-                objDT = objdserv.udfnStockLocationList(varViewType, varConcernId,varStockId, varRackGroupID);
+                objDT = objdserv.udfnStockLocationList(varViewType, varConcernId,varStockId, varRackGroupID,"");
                 objdserv.CloseConnection();
                 cmbStockLocation.DataSource = null;
                 if (objDT != null)
@@ -217,7 +217,7 @@ namespace ROMS
                 grdRack.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-               objDs = objdserv.udfnRackList(varViewType, 0,varConcernId, varStockId,0);
+               objDs = objdserv.udfnRackList(varViewType, 0,varConcernId, varStockId,0,"");
                 objdserv.CloseConnection();
                 
                 if (objDs.Tables[0].Rows.Count != 0)

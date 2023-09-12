@@ -537,7 +537,7 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-17/08/2023
-        public DataSet udfnStockLocationList(int paraviewType, int paraConcern,int paraStockLocation,int paraId)
+        public DataSet udfnStockLocationList(int paraviewType, int paraConcern,int paraStockLocation,int paraId,string paraLocationName)
         {
             DataSet ds = new DataSet();
             try
@@ -549,6 +549,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraConcern", paraConcern);
                 varSqlCommand.Parameters.AddWithValue("@paraStockLocation", paraStockLocation);
                 varSqlCommand.Parameters.AddWithValue("@paraId", paraId);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationName", paraLocationName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -601,7 +602,7 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-18/08/2023
-        public DataSet udfnRackList(int paraviewType, int paraRackGroup, int paraConcernId,int paraStockLocationId,int paraRackId)
+        public DataSet udfnRackList(int paraviewType, int paraRackGroup, int paraConcernId,int paraStockLocationId,int paraRackId,string paraRackName)
         {
             DataSet ds = new DataSet();
             try
@@ -614,6 +615,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraConcernId", paraConcernId);
                 varSqlCommand.Parameters.AddWithValue("@paraStockLocationId", paraStockLocationId);
                 varSqlCommand.Parameters.AddWithValue("@paraRackId", paraRackId);
+                varSqlCommand.Parameters.AddWithValue("@paraRackName", paraRackName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
