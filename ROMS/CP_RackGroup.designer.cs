@@ -466,6 +466,10 @@
             this.lvStaffName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvStaffName_KeyDown);
             this.lvStaffName.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LvStaffName_MouseDoubleClick);
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 500;
+            // 
             // columnHeader2
             // 
             this.columnHeader2.Width = 0;

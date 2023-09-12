@@ -88,13 +88,14 @@ namespace ROMS
                             //grdSubGroup.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["PRGID"]), Convert.ToString(objDS.Tables[1].Rows[i]["PRG_EName"]));
                             //dtSubGroupAdd.Rows.Add(false, grdSubGroup.Rows[i].Cells["Product Group"].Value, grdSubGroup.Rows[i].Cells["Product Subgroup"].Value, grdSubGroup.Rows[i].Cells["Group Id"].Value, grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
 
-                            dtSubGroupAdd.Rows.Add(false, objDS.Tables[1].Rows[i]["Selected Product Group"], 
+                            dtSubGroupAdd.Rows.Add( objDS.Tables[1].Rows[i]["Selected Product Group"], 
                                 objDS.Tables[1].Rows[i]["Selected Product Sub Group"], objDS.Tables[1].Rows[i]["PRGID"],
                                 objDS.Tables[1].Rows[i]["PRSGID"]);
                         }
                         grdSubGroupAdd.DataSource = dtSubGroupAdd;
-                       // grdSubGroupAdd.Columns[0].HeaderText = "";
-                      //  grdSubGroupAdd.Columns[0].Width = 80;
+                        grdSubGroupAdd.Columns["clmRemove"].DisplayIndex = 4;
+                        // grdSubGroupAdd.Columns[0].HeaderText = "";
+                        //  grdSubGroupAdd.Columns[0].Width = 80;
                         grdSubGroupAdd.Columns["Selected Product Group"].Width = 150;
                         grdSubGroupAdd.Columns["Selected Product Subgroup"].Width = 200;
                         grdSubGroupAdd.Columns["Group Id"].Visible = false;
@@ -132,8 +133,7 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
-                objError.WriteFile(ex);
-            }
+                objError.WriteFile(ex);            }
         }
         public void udfnList()
         {
@@ -288,6 +288,7 @@ namespace ROMS
                 }
                 grdSubGroupAdd.DataSource = dtSubGroupAdd;
                // grdSubGroupAdd.Columns[0].HeaderText = "";
+
 
             }
             catch (Exception ex)
