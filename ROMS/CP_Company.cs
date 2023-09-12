@@ -526,7 +526,7 @@ namespace ROMS
                     if (varflag == 0)
                     {
 
-                        grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1,( txtBankname.Text).Trim().ToUpper(), (txtBankShortName.Text).Trim(), (txtbranchname.Text).Trim().ToUpper(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(), varstatusid);
+                        grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1,( txtBankname.Text).Trim(), (txtBankShortName.Text).Trim(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(), varstatusid);
                         udfnBankclear();
                         txtBankname.Focus();
                         grdBankDetails.ClearSelection();
