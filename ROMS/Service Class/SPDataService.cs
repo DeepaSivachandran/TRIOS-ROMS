@@ -665,7 +665,7 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-02/09/2023
-        public DataSet udfnRackSettingsList(int paraviewType, int paraRKSID, int paraRack)
+        public DataSet udfnRackSettingsList(int paraviewType, int paraRKSID, int paraRack ,int paraLocationID,int paraRackID)
         {
             DataSet ds = new DataSet();
             try
@@ -676,6 +676,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRKSID", @paraRKSID);
                 varSqlCommand.Parameters.AddWithValue("@paraRack", paraRack);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationID", @paraLocationID);
+                varSqlCommand.Parameters.AddWithValue("@paraRackID", @paraRackID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
