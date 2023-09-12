@@ -60,12 +60,14 @@ namespace ROMS
             try
             {
                 udfnSave();
+
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+             
         }
         public void udfnSave()
         {
@@ -440,7 +442,7 @@ namespace ROMS
                         tpsalesrack.Show("Please select valid sales rack", txtSaleRack, 5000);
                         blnErrorFlag = true;
                     }
-                }
+                } 
                 if (blnErrorFlag == false)
                 {
                     SPDataService objspdservice = new SPDataService();
@@ -604,19 +606,15 @@ namespace ROMS
                         }
                         MainForm.objCP_Itemlist.udfnDropdownbind();
                         MainForm.objCP_Itemlist.udfnList();
-                        cmbConcern.Focus();
                         udfnclear();
                     }
                     else
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         btnSave.Enabled = true;
-                        btnSave.Focus();
                     }
                     objspdservice.CloseConnection();
-                }
-
-
+                }  
             }
             catch (Exception ex)
             {
@@ -626,6 +624,7 @@ namespace ROMS
             finally
             {
                 btnSave.Enabled = true;
+                cmbConcern.Focus();
             }
         }
 

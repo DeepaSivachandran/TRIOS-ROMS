@@ -481,7 +481,7 @@ namespace ROMS
                         grdRepBrand.Columns["Brand Name"].ReadOnly = true;
                         grdRepBrand.Columns["sno"].Visible = false;
                         grdRepBrand.Columns["BD_STSID"].Visible = false;
-                        
+
                         //foreach (DataGridViewRow row in grdRepBrand.Rows)
                         //{
                         //    if (row.Cells["ID"].Value.ToString() == "0" || row.Cells["ID"].Value.ToString() == "-1")
@@ -499,11 +499,11 @@ namespace ROMS
                                 {
                                     if (row.Index == grdRepBrand.Rows.Count - 1 && grdRepBrand.Rows.Count > 1) // If it's the last row and there are other rows
                                     {
-                                        grdRepBrand.CurrentCell = grdRepBrand[0, row.Index - 1]; // Switch to the previous row
+                                        grdRepBrand.Rows.RemoveAt(row.Index);
                                     }
                                     else if (row.Index < grdRepBrand.Rows.Count - 1) // If there are rows below
                                     {
-                                        grdRepBrand.CurrentCell = grdRepBrand[0, row.Index + 1]; // Switch to the next row
+                                        grdRepBrand.Rows.RemoveAt(row.Index);
                                     }
                                     else // If it's the only row
                                     {
@@ -513,8 +513,7 @@ namespace ROMS
 
                                 row.Visible = false;
                             }
-                        }
-
+                        } 
 
                         if (btnSave.Text == "Update")
                         {
