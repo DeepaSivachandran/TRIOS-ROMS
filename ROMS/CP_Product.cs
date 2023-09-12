@@ -2946,6 +2946,7 @@ namespace ROMS
                     varViewType = 1;
                 }
                 DataSet objDT = new DataSet();
+                DataSet objDTBulkUnit = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDT = objdserv.udfnUnitList(varViewType, varUnitid);
                 objdserv.CloseConnection();
@@ -2959,7 +2960,19 @@ namespace ROMS
                             cmbUnit.ValueMember = "UTID";
                             cmbUnit.DisplayMember = "UT_Symbol";
                             cmbUnit.DataSource = objDT.Tables[0];
-
+                        }
+                    }
+                }
+                objDT = null;
+                objDT = objdserv.udfnUnitList(varViewType, varUnitid);
+                objdserv.CloseConnection();
+                cmbBulkUnit.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
                             cmbBulkUnit.ValueMember = "UTID";
                             cmbBulkUnit.DisplayMember = "UT_Symbol";
                             cmbBulkUnit.DataSource = objDT.Tables[0];
@@ -3512,6 +3525,7 @@ namespace ROMS
             try
             {
                 txtGroup.BackColor = Color.LemonChiffon;
+                lvGroup.Visible = false;
             }
             catch (Exception ex)
             {
