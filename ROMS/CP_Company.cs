@@ -516,7 +516,7 @@ namespace ROMS
                             string gridValue1 = row.Cells[1].Value.ToString();
                             string gridValue2 = row.Cells[3].Value.ToString();
 
-                            if (gridValue1 == (txtBankname.Text).Trim() && gridValue2 == (txtbranchname.Text).Trim())
+                            if (gridValue1 == (txtBankname.Text).Trim().ToUpper() && gridValue2 == (txtbranchname.Text).Trim())
                             {
                                 varflag = 1;
                             }
@@ -526,7 +526,7 @@ namespace ROMS
                     if (varflag == 0)
                     {
 
-                        grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1,( txtBankname.Text).Trim(),(txtBankShortName.Text).Trim(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(), varstatusid);
+                        grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1,( txtBankname.Text).Trim().ToUpper(), (txtBankShortName.Text).Trim(), (txtbranchname.Text).Trim().ToUpper(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(), varstatusid);
                         udfnBankclear();
                         txtBankname.Focus();
                         grdBankDetails.ClearSelection();
