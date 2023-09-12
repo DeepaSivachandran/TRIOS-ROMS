@@ -47,10 +47,10 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grdRackSettingList = new System.Windows.Forms.DataGridView();
             this.grpFilterby = new System.Windows.Forms.GroupBox();
+            this.lblRack = new System.Windows.Forms.Label();
             this.txtRack = new System.Windows.Forms.TextBox();
             this.btnView = new System.Windows.Forms.Button();
             this.lblDERack = new System.Windows.Forms.Label();
-            this.lblRack = new System.Windows.Forms.Label();
             this.tshSupplierMappingList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.pnlRackSettingList.SuspendLayout();
@@ -257,10 +257,19 @@
             this.grpFilterby.Controls.Add(this.lblDERack);
             this.grpFilterby.Location = new System.Drawing.Point(3, 2);
             this.grpFilterby.Name = "grpFilterby";
-            this.grpFilterby.Size = new System.Drawing.Size(1317, 67);
+            this.grpFilterby.Size = new System.Drawing.Size(1346, 67);
             this.grpFilterby.TabIndex = 958790;
             this.grpFilterby.TabStop = false;
             this.grpFilterby.Text = "Filter By";
+            // 
+            // lblRack
+            // 
+            this.lblRack.AutoSize = true;
+            this.lblRack.Location = new System.Drawing.Point(555, 26);
+            this.lblRack.Name = "lblRack";
+            this.lblRack.Size = new System.Drawing.Size(0, 20);
+            this.lblRack.TabIndex = 40;
+            this.lblRack.Visible = false;
             // 
             // txtRack
             // 
@@ -297,15 +306,6 @@
             this.lblDERack.Size = new System.Drawing.Size(35, 20);
             this.lblDERack.TabIndex = 35;
             this.lblDERack.Text = "Rack";
-            // 
-            // lblRack
-            // 
-            this.lblRack.AutoSize = true;
-            this.lblRack.Location = new System.Drawing.Point(555, 26);
-            this.lblRack.Name = "lblRack";
-            this.lblRack.Size = new System.Drawing.Size(0, 20);
-            this.lblRack.TabIndex = 40;
-            this.lblRack.Visible = false;
             // 
             // CP_RackSettinglist
             // 
