@@ -242,7 +242,7 @@ namespace ROMS
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(44);
                     objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                    // MessageBox.Show("Please select atleast one row.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                
@@ -315,41 +315,40 @@ namespace ROMS
                 }
                 objdserv.CloseConnection();
                 if (chkgroup.Checked) { dtSubGroup.Rows.Clear(); dtSubGroup.AcceptChanges(); }
-                if (objDs!= null)
-                {
-                    if (objDs.Tables[0].Rows.Count != 0)
-                    {
-                        for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                        {
-                            int varFlag = 0;
-                            for (int j = 0; j < dtSubGroup.Rows.Count; j++)
-                            {
-                                if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Id"]) == Convert.ToInt32(dtSubGroup.Rows[j]["Sub Group Id"]))
-                                {
-                                    varFlag = 1;
-                                }
-                            }
-                            if (varFlag == 0)
-                            {
-                                dtSubGroup.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name"], objDs.Tables[0].Rows[i]["Product Sub Group Name in English"], objDs.Tables[0].Rows[i]["Product Group Id"], objDs.Tables[0].Rows[i]["Id"]);
-                            }
 
+                if (objDs.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    {
+                        int varFlag = 0;
+                        for (int j = 0; j < dtSubGroup.Rows.Count; j++)
+                        {
+                            if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Id"]) == Convert.ToInt32(dtSubGroup.Rows[j]["Sub Group Id"]))
+                            {
+                                varFlag = 1;
+                            }
+                        }
+                        if (varFlag == 0)
+                        {
+                            dtSubGroup.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name"], objDs.Tables[0].Rows[i]["Product Sub Group Name in English"], objDs.Tables[0].Rows[i]["Product Group Id"], objDs.Tables[0].Rows[i]["Id"]);
                         }
 
-                        grdSubGroup.DataSource = dtSubGroup;
-                        grdSubGroup.Columns[0].HeaderText = "";
-                        grdSubGroup.Columns[0].Width = 80;
-                        grdSubGroup.Columns["Product Group"].Width = 150;
-                        grdSubGroup.Columns["Product Subgroup"].Width = 200;
-                        grdSubGroup.Columns["Group Id"].Visible = false;
-                        grdSubGroup.Columns["Sub Group Id"].Visible = false;
-                        grdSubGroup.Columns["Product Group"].ReadOnly = true;
-                        grdSubGroup.Columns["Product Subgroup"].ReadOnly = true;
-                        grdSubGroup.Columns["Group Id"].ReadOnly = true;
-                        grdSubGroup.Columns["Sub Group Id"].ReadOnly = true;
-                        //udfnRefreshSubGroup();
                     }
                 }
+                    grdSubGroup.DataSource = dtSubGroup;
+                    grdSubGroup.Columns[0].HeaderText = "";
+                    grdSubGroup.Columns[0].Width = 80;
+                    grdSubGroup.Columns["Product Group"].Width = 150;
+                    grdSubGroup.Columns["Product Subgroup"].Width = 200;
+                    grdSubGroup.Columns["Group Id"].Visible = false;
+                    grdSubGroup.Columns["Sub Group Id"].Visible = false;
+                    grdSubGroup.Columns["Product Group"].ReadOnly = true;
+                    grdSubGroup.Columns["Product Subgroup"].ReadOnly = true;
+                    grdSubGroup.Columns["Group Id"].ReadOnly = true;
+                    grdSubGroup.Columns["Sub Group Id"].ReadOnly = true;
+                    //udfnRefreshSubGroup();
+                
+                
             }
             catch (Exception ex)
             {

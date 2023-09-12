@@ -442,7 +442,7 @@ namespace ROMS
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(41);
                     objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
@@ -607,7 +607,7 @@ namespace ROMS
                                 SPDataService objDServ = new SPDataService();
                                 string varMessage = objDServ.udfnGetMessages(43);
                                 objDServ.CloseConnection();
-                                MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
                         if (varFlag == 0)
