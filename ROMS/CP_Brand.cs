@@ -185,12 +185,18 @@ namespace ROMS
         {
             try
             {
-                string varRemoveGroup = "", varAddGroup = "";
-               
-                if (grdSubGroup.Rows.Count > 0)
+                string varRemoveGroup = "", varAddGroup = ""; int varCount = 0;
+                for (int i = 0; i < grdSubGroup.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(grdSubGroup.Rows[i].Cells[0].Value) == true)
+                    {
+                        varCount++;
+                    }
+                }
+                if (varCount>0)
                 {
                    for (int i = 0; i < grdSubGroup.Rows.Count; i++)
-                    {
+                   {
                         if (Convert.ToBoolean(grdSubGroup.Rows[i].Cells[0].Value) == true)
                         {
                             int varFlag = 0;
