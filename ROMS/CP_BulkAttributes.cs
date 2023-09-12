@@ -204,6 +204,10 @@ namespace ROMS
                                 grdMSQ.Columns["W.Sale Rate-Current"].ReadOnly = true;
                                 grdMSQ.Columns["Barcode-Current"].ReadOnly = true;
 
+                                grdMSQ.Columns["R Min Sale Qty-Current"].Width = 150;
+                                grdMSQ.Columns["R.Rate-Current"].Width = 120;
+                                grdMSQ.Columns["W.Min Sale Qty-Current"].Width = 150;
+                                grdMSQ.Columns["W.Sale Rate-Current"].Width = 150;
                             }
                             else if(grdStock.Visible==true)
                             {
@@ -222,6 +226,8 @@ namespace ROMS
                                 grdStock.Columns["Min Stock-Current"].ReadOnly = true;
                                 grdStock.Columns["Max Stock-Current"].ReadOnly = true;
                                 grdStock.Columns["Reorder Qty-Current"].ReadOnly = true;
+
+
                             }
                             else if(grdShelfLife.Visible==true)
                             {
@@ -1152,7 +1158,7 @@ namespace ROMS
             try
             {
                 if (grdLoction.Visible == true)
-                { (grdLoction.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtProductName.Text + "%' "; }  // or ([P.I Code]) LIKE '% " + txtProductName.Text +
+                { (grdLoction.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtProductName.Text + "%' " + " ([P.I Code]) LIKE '% " + txtProductName.Text + "%'"; }
                 else if (grdMSQ.Visible == true)
                 { (grdMSQ.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdStock.Visible == true)
