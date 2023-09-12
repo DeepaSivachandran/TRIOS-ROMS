@@ -2946,6 +2946,7 @@ namespace ROMS
                     varViewType = 1;
                 }
                 DataSet objDT = new DataSet();
+                DataSet objDTBulkUnit = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDT = objdserv.udfnUnitList(varViewType, varUnitid);
                 objdserv.CloseConnection();
@@ -2958,7 +2959,7 @@ namespace ROMS
                         {
                             cmbUnit.ValueMember = "UTID";
                             cmbUnit.DisplayMember = "UT_Symbol";
-                            cmbUnit.DataSource = objDT.Tables[0]; 
+                            cmbUnit.DataSource = objDT.Tables[0];
                         }
                     }
                 }
@@ -2971,7 +2972,7 @@ namespace ROMS
                     if (objDT.Tables.Count > 0)
                     {
                         if (objDT.Tables[0].Rows.Count > 0)
-                        { 
+                        {
                             cmbBulkUnit.ValueMember = "UTID";
                             cmbBulkUnit.DisplayMember = "UT_Symbol";
                             cmbBulkUnit.DataSource = objDT.Tables[0];
