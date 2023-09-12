@@ -516,7 +516,7 @@ namespace ROMS
                             string gridValue1 = row.Cells[1].Value.ToString();
                             string gridValue2 = row.Cells[3].Value.ToString();
 
-                            if (gridValue1 == (txtBankname.Text).Trim().ToUpper() && gridValue2 == (txtbranchname.Text).Trim())
+                            if (gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
                             {
                                 varflag = 1;
                             }
@@ -533,7 +533,10 @@ namespace ROMS
                     }
                     else
                     {
-                        MessageBox.Show("Bank details already exists!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(45);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                      
                 }
@@ -2997,11 +3000,17 @@ namespace ROMS
                     {
                         if (varflag1 != 0)
                         {
-                            MessageBox.Show("Mobile Number already exists for this transaction!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(46);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         if (varflag2 != 0)
                         {
-                            MessageBox.Show("Primary already exists for this transaction type!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(47);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
