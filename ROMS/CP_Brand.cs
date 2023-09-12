@@ -1035,15 +1035,19 @@ namespace ROMS
                 }
                 else
                 {
+                    DataTable objDtNew = new DataTable();
+                    int varRowCount = dtSubGroup.Rows.Count;
                     varRemoveGroup = Convert.ToString(grdGroup.SelectedRows[0].Cells["ID"].Value);
-                    for (int i = 0; i < dtSubGroup.Rows.Count; i++)
+                   l: for (int i = 0; i < varRowCount; i++)
                     {
                         if(varRemoveGroup == Convert.ToString(dtSubGroup.Rows[i]["Group ID"]))
                         {
                             dtSubGroup.Rows[i].Delete();
+                            dtSubGroup.AcceptChanges();
+                            varRowCount = dtSubGroup.Rows.Count;
+                            goto l;
                         }
                     }
-                    dtSubGroup.AcceptChanges();
                     grdSubGroup.DataSource = dtSubGroup;
                     grdSubGroup.Columns[0].HeaderText = "";
                        
