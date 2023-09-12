@@ -43,14 +43,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtValue_TextChanged(object sender, EventArgs e)
-        {
+        public void udfnCalculateValue() {
             try
             {
                 if (txtValue.Text != "")
                 {
-                    lbltemptext.Text = txtValue.Text.Replace("%","/100");
+                   // lbltemptext.Text = txtValue.Text.Replace("%", "/100");
+                    lbltemptext.Text = txtValue.Text;
                     varResult = Math.Round(Convert.ToDouble(new DataTable().Compute(lbltemptext.Text, null)), 2, MidpointRounding.AwayFromZero);
                 }
                 else { varResult = 0; }
@@ -61,6 +60,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             finally { lblFinalValue.Text = Convert.ToString(varResult); }
+        }
+        private void TxtValue_TextChanged(object sender, EventArgs e)
+        {
+            udfnCalculateValue();
         }
 
         private void PUR_Calculator_FormClosing(object sender, FormClosingEventArgs e)
