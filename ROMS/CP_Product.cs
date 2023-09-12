@@ -2958,8 +2958,20 @@ namespace ROMS
                         {
                             cmbUnit.ValueMember = "UTID";
                             cmbUnit.DisplayMember = "UT_Symbol";
-                            cmbUnit.DataSource = objDT.Tables[0];
-
+                            cmbUnit.DataSource = objDT.Tables[0]; 
+                        }
+                    }
+                }
+                objDT = null;
+                objDT = objdserv.udfnUnitList(varViewType, varUnitid);
+                objdserv.CloseConnection();
+                cmbBulkUnit.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        { 
                             cmbBulkUnit.ValueMember = "UTID";
                             cmbBulkUnit.DisplayMember = "UT_Symbol";
                             cmbBulkUnit.DataSource = objDT.Tables[0];
@@ -3512,6 +3524,7 @@ namespace ROMS
             try
             {
                 txtGroup.BackColor = Color.LemonChiffon;
+                lvGroup.Visible = false;
             }
             catch (Exception ex)
             {
