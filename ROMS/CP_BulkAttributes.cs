@@ -147,7 +147,7 @@ namespace ROMS
                 grdLoction.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,varStatusId,varBrandId);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,varStatusId,varBrandId,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -375,7 +375,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 3;
-                objDT = objdserv.udfnGroupList(varViewType, 0, 0);
+                objDT = objdserv.udfnGroupList(varViewType, 0, 0,"");
                 objdserv.CloseConnection();
                 cmbGroup.DataSource = null;
                 if (objDT != null)
@@ -409,7 +409,7 @@ namespace ROMS
                      varViewType = 5;
                 }
                 
-                objDT = objdserv.udfnBrandList(varViewType,"", varGroupId,varSubGroupId,0);
+                objDT = objdserv.udfnBrandList(varViewType,"", varGroupId,varSubGroupId,0,"");
                 objdserv.CloseConnection();
                 cmbBrand.DataSource = null;
                 if (objDT != null)
