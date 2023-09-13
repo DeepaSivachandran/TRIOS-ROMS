@@ -159,24 +159,24 @@ namespace ROMS
         {
             try
             {
-                SPDataService objdserv = new SPDataService();
-                DataSet objDT = new DataSet();
-                int varViewType = 3;
-                objDT = objdserv.udfnGroupList(varViewType, 0, 0);
-                objdserv.CloseConnection();
-                cmbGroup.DataSource = null;
-                if (objDT != null)
-                {
-                    if (objDT.Tables.Count > 0)
-                    {
-                        if (objDT.Tables[0].Rows.Count > 0)
-                        {
-                            cmbGroup.ValueMember = "PRGID";
-                            cmbGroup.DisplayMember = "PRG_EName";
-                            cmbGroup.DataSource = objDT.Tables[0];
-                        }
-                    }
-                }
+                //SPDataService objdserv = new SPDataService();
+                //DataSet objDT = new DataSet();
+                //int varViewType = 3;
+                //objDT = objdserv.udfnGroupList(varViewType, 0, 0);
+                //objdserv.CloseConnection();
+                //cmbGroup.DataSource = null;
+                //if (objDT != null)
+                //{
+                //    if (objDT.Tables.Count > 0)
+                //    {
+                //        if (objDT.Tables[0].Rows.Count > 0)
+                //        {
+                //            cmbGroup.ValueMember = "PRGID";
+                //            cmbGroup.DisplayMember = "PRG_EName";
+                //            cmbGroup.DataSource = objDT.Tables[0];
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -188,29 +188,29 @@ namespace ROMS
         {
             try
             {
-                DataSet objDT = new DataSet();
-                SPDataService objdserv = new SPDataService();
-                int varViewType = 5;
-                if (varGroupId == 0)
-                {
-                    varViewType = 4;
-                }
-                objDT = objdserv.udfnSubGroupList(varViewType, 0, "",varGroupId, 0);
-                objdserv.CloseConnection();
-                cmbSubGroup.DataSource = null;
-                if (objDT != null)
-                {
-                    if (objDT.Tables.Count > 0)
-                    {
-                        if (objDT.Tables[0].Rows.Count > 0)
-                        {
-                            cmbSubGroup.ValueMember = "PRSGID";
-                            cmbSubGroup.DisplayMember = "PRSG_EName";
-                            cmbSubGroup.DataSource = objDT.Tables[0];
-                        }
-                    }
-                }
-                objdserv.CloseConnection();
+                //DataSet objDT = new DataSet();
+                //SPDataService objdserv = new SPDataService();
+                //int varViewType = 5;
+                //if (varGroupId == 0)
+                //{
+                //    varViewType = 4;
+                //}
+                //objDT = objdserv.udfnSubGroupList(varViewType, 0, "",varGroupId, 0);
+                //objdserv.CloseConnection();
+                //cmbSubGroup.DataSource = null;
+                //if (objDT != null)
+                //{
+                //    if (objDT.Tables.Count > 0)
+                //    {
+                //        if (objDT.Tables[0].Rows.Count > 0)
+                //        {
+                //            cmbSubGroup.ValueMember = "PRSGID";
+                //            cmbSubGroup.DisplayMember = "PRSG_EName";
+                //            cmbSubGroup.DataSource = objDT.Tables[0];
+                //        }
+                //    }
+                //}
+                //objdserv.CloseConnection();
             }
             catch (Exception ex)
             {
@@ -733,22 +733,22 @@ namespace ROMS
             {
                 bool blnErrorFlag = false;
 
-                if (Convert.ToString(cmbGroup.SelectedValue) == "" || Convert.ToString(cmbGroup.SelectedValue) == "-1")
-                {
-                    epRackSettings.SetError(cmbGroup, "Please select Product Group");
-                    cmbGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpProductGroup.ShowAlways = true;
-                    tpProductGroup.Show("Please select Product Group", cmbGroup, 5000);
-                    blnErrorFlag = true;
-                }
-                if (Convert.ToString(cmbSubGroup.SelectedItem) == "" || Convert.ToString(cmbSubGroup.SelectedValue) == "-1")
-                {
-                    epRackSettings.SetError(cmbSubGroup, "Please select Product SubGroup");
-                    cmbSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpProductSubGroup.ShowAlways = true;
-                    tpProductSubGroup.Show("Please select Product SubGroup", cmbSubGroup, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (Convert.ToString(cmbGroup.SelectedValue) == "" || Convert.ToString(cmbGroup.SelectedValue) == "-1")
+                //{
+                //    epRackSettings.SetError(cmbGroup, "Please select Product Group");
+                //    cmbGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpProductGroup.ShowAlways = true;
+                //    tpProductGroup.Show("Please select Product Group", cmbGroup, 5000);
+                //    blnErrorFlag = true;
+                //}
+                //if (Convert.ToString(cmbSubGroup.SelectedItem) == "" || Convert.ToString(cmbSubGroup.SelectedValue) == "-1")
+                //{
+                //    epRackSettings.SetError(cmbSubGroup, "Please select Product SubGroup");
+                //    cmbSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpProductSubGroup.ShowAlways = true;
+                //    tpProductSubGroup.Show("Please select Product SubGroup", cmbSubGroup, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (blnErrorFlag == false)
                 {
                     //btnSave.Enabled = false;
@@ -879,9 +879,9 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbGroup.Select(int.MaxValue, 0)));
-                varGroupId = Convert.ToInt32(cmbGroup.SelectedValue);
-                udfnCmbProductSubGroup();
+                //BeginInvoke(new Action(() => cmbGroup.Select(int.MaxValue, 0)));
+                //varGroupId = Convert.ToInt32(cmbGroup.SelectedValue);
+                //udfnCmbProductSubGroup();
             }
             catch (Exception ex)
             {
@@ -941,8 +941,8 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbSubGroup.Select(int.MaxValue, 0)));
-                varSubGroupId = Convert.ToInt32(cmbSubGroup.SelectedValue);
+                //BeginInvoke(new Action(() => cmbSubGroup.Select(int.MaxValue, 0)));
+                //varSubGroupId = Convert.ToInt32(cmbSubGroup.SelectedValue);
                 //udfnCmbProductSubGroup();
             }
             catch (Exception ex)
@@ -1239,7 +1239,7 @@ namespace ROMS
                 lvLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtLocation.Text.Length > 2)
+                if (txtLocation.Text.Length > 0)
                 {
 
                     objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtLocation.Text);
@@ -1406,7 +1406,7 @@ namespace ROMS
                 lvRack.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtRack.Text.Length > 2)
+                if (txtRack.Text.Length > 0)
                 {
                     int varLocationId = 0;
                     if (txtLocation.Text == "")
@@ -1600,7 +1600,7 @@ namespace ROMS
                 lvDLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtDLocation.Text.Length > 2)
+                if (txtDLocation.Text.Length > 0)
                 {
 
                     objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtDLocation.Text);
@@ -1714,7 +1714,7 @@ namespace ROMS
                 lvDRack.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtDRack.Text.Length > 2)
+                if (txtDRack.Text.Length > 0)
                 {
                     int varDLocationId = 0;
                     if (txtDLocation.Text == "")
@@ -1724,7 +1724,7 @@ namespace ROMS
                     else
                     {
                         DataService objDServ = new DataService();
-                        string varId_DLocation = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtDLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtLocation.Text.Trim() + "') END AS SLID ");
+                        string varId_DLocation = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtDLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtDLocation.Text.Trim() + "') END AS SLID ");
                         objDServ.CloseConnection();
                         varDLocationId = Convert.ToInt32(varId_DLocation);
                     }
