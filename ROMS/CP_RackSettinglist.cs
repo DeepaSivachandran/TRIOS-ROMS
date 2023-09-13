@@ -338,7 +338,7 @@ namespace ROMS
                         varRackId = Convert.ToInt32(varId_Rack);
                     }
 
-                    objDs = objspdservice.udfnRackList(0, 0, 0,0,0,"");
+                    objDs = objspdservice.udfnRackList(0, 0, 0,0,varRackId,"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

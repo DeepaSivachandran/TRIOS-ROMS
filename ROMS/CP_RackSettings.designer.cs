@@ -818,7 +818,6 @@
             this.rbAdd.TabStop = true;
             this.rbAdd.Text = "Add Product";
             this.rbAdd.UseVisualStyleBackColor = true;
-            this.rbAdd.CheckedChanged += new System.EventHandler(this.RbAdd_CheckedChanged);
             // 
             // btnClose
             // 
