@@ -1164,6 +1164,7 @@ namespace ROMS
         {
             try
             {
+                lvStaffName.Visible = false;
                 btnAdd.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
