@@ -70,16 +70,16 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAdd = new System.Windows.Forms.Button();
             this.grdStaffDetails = new System.Windows.Forms.DataGridView();
-            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtStaffName = new System.Windows.Forms.TextBox();
             this.txtDUserName = new System.Windows.Forms.TextBox();
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSelectedRack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRack)).BeginInit();
@@ -521,7 +521,7 @@
             this.grdStaffDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdStaffDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmSno,
-            this.dataGridViewTextBoxColumn1,
+            this.clmStaffName,
             this.Column2,
             this.clmUserId,
             this.clmremove});
@@ -551,41 +551,6 @@
             this.grdStaffDetails.TabStop = false;
             this.grdStaffDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStaffDetails_CellContentClick);
             this.grdStaffDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvStaffDetails_KeyDown);
-            // 
-            // clmSno
-            // 
-            this.clmSno.HeaderText = "S.No.";
-            this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
-            this.clmSno.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Staff Name";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Designation";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 125;
-            // 
-            // clmUserId
-            // 
-            this.clmUserId.HeaderText = "User ID";
-            this.clmUserId.Name = "clmUserId";
-            // 
-            // clmremove
-            // 
-            this.clmremove.HeaderText = "Remove";
-            this.clmremove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmremove.Name = "clmremove";
-            this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmremove.Width = 50;
             // 
             // txtStaffName
             // 
@@ -663,6 +628,41 @@
             this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
+            // clmSno
+            // 
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Width = 40;
+            // 
+            // clmStaffName
+            // 
+            this.clmStaffName.HeaderText = "Staff Name";
+            this.clmStaffName.MinimumWidth = 6;
+            this.clmStaffName.Name = "clmStaffName";
+            this.clmStaffName.ReadOnly = true;
+            this.clmStaffName.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Designation";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 125;
+            // 
+            // clmUserId
+            // 
+            this.clmUserId.HeaderText = "User ID";
+            this.clmUserId.Name = "clmUserId";
+            // 
+            // clmremove
+            // 
+            this.clmremove.HeaderText = "Remove";
+            this.clmremove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmremove.Name = "clmremove";
+            this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmremove.Width = 50;
+            // 
             // CP_RackGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -731,11 +731,6 @@
         private System.Windows.Forms.TextBox txtDRackGroup;
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmUserId;
-        private System.Windows.Forms.DataGridViewImageColumn clmremove;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnSNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRack;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDescription;
@@ -746,5 +741,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStaffName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUserId;
+        private System.Windows.Forms.DataGridViewImageColumn clmremove;
     }
 }
