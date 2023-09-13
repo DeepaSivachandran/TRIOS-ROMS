@@ -5167,7 +5167,7 @@ namespace ROMS
                     tpstate.Show("Please select order type", cmbOrderType, 5000);
                     errorflag = 1;
                 }
-                if (txtsalesmanmobile.Text == "")
+                if (txtsalesmanmobile.Text.Trim() == "")
                 {
                     errCompany.SetError(txtsalesmanmobile, "Please enter  salesman mobile No.");
                     txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -5184,7 +5184,7 @@ namespace ROMS
                     tpsalemanph.Show("Please enter valid salesman mobile No.", txtsalesmanmobile, 5000);
                     errorflag = 1;
                 }
-                if (txtsalesmanwhatsapp.Text != "")
+                if (txtsalesmanwhatsapp.Text.Trim() != "")
                 {
                     if (txtsalesmanwhatsapp.Text.Length != 10)
                     {
@@ -5196,7 +5196,7 @@ namespace ROMS
                         errorflag = 1;
                     }
                 }
-                if (txtScheduleName.Text == "")
+                if (txtScheduleName.Text.Trim() == "")
                 {
 
                     errCompany.SetError(txtScheduleName, "Please enter the schedule");
@@ -5205,7 +5205,7 @@ namespace ROMS
                     tpschedule.Show("Please enter the schedule", txtScheduleName, 5000);
                     errorflag = 1;
                 }
-                if (txtsalesmanname.Text == "")
+                if (txtsalesmanname.Text.Trim() == "")
                 {
 
                     errCompany.SetError(txtsalesmanname, "Please enter salesman name");
