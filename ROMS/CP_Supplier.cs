@@ -608,20 +608,18 @@ namespace ROMS
                         SupplierUpdate = Convert.ToInt32(pbSupplierid);
                     }
                     string varorginator = "", varpaymentmethod = "";
-                    int varviewtype = 0, varretuencycle = 0, varreturnapplicable;
+                    int varviewtype = 0, varretuencycle = 0, varreturnapplicable=0;
                     if (btnSave.Text == "Save")
                     {
                         varviewtype = 0;
                         varorginator = "Supplier Create";
-                        varretuencycle = 22;
-                        varreturnapplicable = 24;
+                        varretuencycle = 24;
+                        varreturnapplicable = 22;
                     }
                     else
                     {
                         varviewtype = 1;
-                        varorginator = "Supplier Update";
-                        varretuencycle = Convert.ToInt32(cmbReturnType.SelectedValue);
-                        varreturnapplicable = Convert.ToInt32(cmbReturnPolicy.SelectedValue);
+                        varorginator = "Supplier Update"; 
                     }
 
                     for (int i = 0; i < grdPaymentMode.Rows.Count; i++)
@@ -1003,8 +1001,8 @@ namespace ROMS
                             varReturPolicyId = Convert.ToInt32(objDS.Tables[0].Rows[0]["RETURN"].ToString());
                             varReturnTypeID = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
 
-                            cmbReturnPolicy.SelectedValue = Convert.ToInt64(varReturnTypeID);
-                            cmbReturnType.SelectedValue = varReturPolicyId;
+                            cmbReturnPolicy.SelectedValue = Convert.ToInt64(varReturPolicyId);
+                            cmbReturnType.SelectedValue = varReturnTypeID ;
                             //cmbReturnType.SelectedValue = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
 
                             cmbSupplierType.SelectedValue = objDS.Tables[0].Rows[0]["SUPPLIERTYPE"].ToString();
@@ -4596,7 +4594,7 @@ namespace ROMS
         {
             try
             {
-                (grdFinalSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtmappingproductsearch2.Text + "%' OR ([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
+                (grdFinalSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Eng]) LIKE '%" + txtmappingproductsearch2.Text + "%' OR ([P.I Code]) LIKE '%" + txtmappingproductsearch2.Text + "%'";
             }
             catch (Exception ex)
             {
@@ -4717,7 +4715,7 @@ namespace ROMS
                     grdFinalSupplierMapping.Columns["GROUPID"].Visible = false;
                     grdFinalSupplierMapping.Columns["SUBGROUPID"].Visible = false;
                     grdFinalSupplierMapping.Columns["PRODUCTID"].Visible = false;
-                    grdFinalSupplierMapping.Columns["Product Name in English"].Visible = false;
+                    grdFinalSupplierMapping.Columns["Product Name in Eng"].Visible = false;
 
 
                     grdFinalSupplierMapping.Columns["S.No."].ReadOnly = true;
