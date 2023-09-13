@@ -29,7 +29,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 3;
-                objDT = objdserv.udfnGroupList(varViewType, 0,0);
+                objDT = objdserv.udfnGroupList(varViewType, 0,0,"");
                 objdserv.CloseConnection();
                 cmbProductgroup.DataSource = null;
                 if (objDT != null)
@@ -62,7 +62,7 @@ namespace ROMS
                 {
                     varViewType = 4;
                 }
-                objDT = objdserv.udfnSubGroupList(varViewType, 0,"", varGroupId,0);
+                objDT = objdserv.udfnSubGroupList(varViewType, 0,"", varGroupId,0,"");
                 objdserv.CloseConnection();
                 cmbProductSubGroup.DataSource = null;
                 if (objDT != null)
