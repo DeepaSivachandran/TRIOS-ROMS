@@ -423,6 +423,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
@@ -687,6 +691,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             finally
             {
@@ -4366,7 +4374,7 @@ namespace ROMS
                                 else
                                 {
                                     DialogResult dialogResult1 = MessageBox.Show(varvalue[1] + "Do you want to delete ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                    if (dialogResult == DialogResult.Yes)
+                                    if (dialogResult1 == DialogResult.Yes)
                                     {
                                         SPDataService objspdservice1 = new SPDataService();
                                         result = objspdservice1.udfnSupplierMaster(10, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Order Schedule", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", sceduleidupdate, 0, "", "", "", "", "", "", "", "", "");
@@ -4826,6 +4834,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             finally
             {
@@ -4913,7 +4925,7 @@ namespace ROMS
             try
             {
                 if (MainForm.varCloseFlag == 0)
-                {
+                { 
                     DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
@@ -4922,7 +4934,7 @@ namespace ROMS
                     else
                     {
                         e.Cancel = true;
-                    }
+                    } 
                 }
             }
             catch (Exception ex)
@@ -5215,6 +5227,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         public void udfnSupplierOrderSave()
@@ -5419,6 +5435,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             finally
             {
@@ -6165,6 +6185,10 @@ namespace ROMS
             try
             {
                 if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true; // Reject the key
+                }
+                else if (e.KeyChar == '.' && txtopening.Text.IndexOf('.') > -1)
                 {
                     e.Handled = true; // Reject the key
                 }
