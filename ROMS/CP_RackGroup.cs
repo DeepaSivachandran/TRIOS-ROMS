@@ -596,14 +596,10 @@ namespace ROMS
                 else
                 {
                     DataService objDserv = new DataService();
-                    varStaffName =Convert.ToInt32( objDserv.displaydata("SELECT COUNT(*) FROM MR_User INNER JOIN MR_UserCategory ON U_CTID=CTID WHERE U_Name='" + txtStaffName.Text.Trim().ToLower()+ "'AND ISNULL(CT_Default,0) = 1"));
+                    varStaffName = Convert.ToInt32(objDserv.displaydata("SELECT COUNT(*) FROM MR_User INNER JOIN MR_UserCategory ON U_CTID=CTID WHERE U_Name='" + txtStaffName.Text.Trim().ToLower() + "'AND ISNULL(CT_Default,0) = 1"));
                     if (varStaffName == 0)
                     {
                         varUserID = "0";
-                        //epRackGroup.SetError(txtStaffName, "Invalid staff name");
-                        //txtStaffName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        //tpStaffName.ShowAlways = true;
-                        //tpStaffName.Show("Please enter valid staff name", txtStaffName, 5000);
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(49);
                         objDServ.CloseConnection();
@@ -611,19 +607,13 @@ namespace ROMS
                     }
                     else
                     {
+                        varFlag = 0;
                         for (int i = 0; i < grdStaffDetails.Rows.Count; i++)
                         {
-                            varFlag = 0;
-                            
                             varAddStaff = varUserID;
-                            if (varAddStaff == Convert.ToString(grdStaffDetails.Rows[i].Cells["clmUserId"].Value))
+                            if (txtStaffName.Text.Trim().ToUpper() == Convert.ToString(grdStaffDetails.Rows[i].Cells["clmStaffName"].Value).Trim().ToUpper())
                             {
                                 varFlag = 1;
-
-                                SPDataService objDServ = new SPDataService();
-                                string varMessage = objDServ.udfnGetMessages(43);
-                                objDServ.CloseConnection();
-                                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
                         if (varFlag == 0)
@@ -632,15 +622,19 @@ namespace ROMS
                             DataSet objDs = new DataSet();
                             objDs = objspdservice.udfnUserList(6, txtStaffName.Text.Trim(), MainForm.pbUserID, MainForm.pbIpAddress, 0);
                             objspdservice.CloseConnection();
-
                             txtStaffName.Text = objDs.Tables[0].Rows[0]["U_Name"].ToString();
-                            varUserID= objDs.Tables[0].Rows[0]["UID"].ToString();
+                            varUserID = objDs.Tables[0].Rows[0]["UID"].ToString();
                             varDesignation = objDs.Tables[0].Rows[0]["Designation"].ToString();
-
-
                             grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, txtStaffName.Text.Trim(), varDesignation, varUserID);
                         }
-                      
+                        else
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(43);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
                     }
                     txtStaffName.Focus();
                     txtStaffName.Text = "";
