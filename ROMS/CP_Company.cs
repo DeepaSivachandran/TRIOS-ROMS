@@ -101,7 +101,11 @@ namespace ROMS
         {
             try
             {
-                this.Close();
+                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
@@ -1760,30 +1764,7 @@ namespace ROMS
 
      
         private void CP_Company_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                if (MainForm.varCloseFlag==0)
-                {
-                    if (varupdate == "0")
-                    {
-                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            e.Cancel = false;
-                        }
-                        else
-                        {
-                            e.Cancel = true;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+        { 
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
