@@ -101,8 +101,15 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varupdate == "0")
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                    }
+                }
+                else
                 {
                     this.Close();
                 }
@@ -2054,15 +2061,20 @@ namespace ROMS
                         this.ActiveControl = tcCompanyDetails; 
                         tcCompanyDetails.SelectedIndex = 1;
                         MainForm.objCP_Companylist.udfnList();
-                        varcontactcompanyid = varvalue[2];
                         txtCompanyName.Focus();
                         if (btnSave.Text == "Update")
                         {
-                            varupdate = "1";
-                            udfnclose();
-                            udfnClear();
+                            if (tcCompanyDetails.SelectedIndex == 1)
+                            {
+                                varupdate = "1";
+                                udfnClear();
+                                udfnclose();
+                            }
                         }
-
+                        else
+                        { 
+                            varcontactcompanyid = varvalue[2];
+                        }
                         if (tcCompanyDetails.SelectedIndex == 1)
                         { 
                             btnSaveContact.Text = "Update";

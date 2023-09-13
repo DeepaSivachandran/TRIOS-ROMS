@@ -89,31 +89,25 @@ namespace ROMS
 
         private void DgvSupplierScheduleList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            { 
-                MainForm.objCP_Supplier = new CP_Supplier();
-                MainForm.objCP_Supplier.MdiParent = this.ParentForm;
-                MainForm.objCP_Supplier.btnSave.Text = "Update";
-                MainForm.objCP_Supplier.Show(); 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+
         }
 
         private void PUR_SupplierScheduleList_Load(object sender, EventArgs e)
         {
             try
-            { 
-                txtSupplier.Focus(); 
+            {
+                this.ActiveControl=txtSupplier;
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (2) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STID");
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (-1)", "DY_Name,DYID", cmbDay, "", "DY_Name", "DYID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrder, "", "MST_DisplayText", "MSTID");
-                objDataBind = null; 
-
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (2) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID in (13) OR MSTID IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrder, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSCID=0", "SPSC_Name,SPSCID", cmbOrderSchedule, "", "SPSC_Name", "SPSCID");
+                objDataBind = null;
+                cmbDay.SelectedValue = 0;
+                cmbOrder.SelectedValue = 0;
+                cmbStatus.SelectedValue = 0; 
+                cmbOrderSchedule.SelectedValue = 0;
+                udfnList();
             }
             catch (Exception ex)
             {
@@ -121,7 +115,19 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnList()
+        {
 
+            try
+            {
+                udfnSearchGridHead();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtSupplier_Leave(object sender, EventArgs e)
         {
             try
@@ -533,18 +539,16 @@ namespace ROMS
                     }
                 }
 
-
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + cmbsuppleirid + "' or SPSCID=0", "SPSC_Name,SPSCID", cmbOrderSchedule, "", "SPSC_Name", "SPSCID");
                 objDataBind = null;
-
             }
 
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
+            } 
         }
 
         private void CmbOrderSchedule_KeyPress(object sender, KeyPressEventArgs e)
@@ -722,6 +726,43 @@ namespace ROMS
         }
 
 
+        private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewColumn newColumn = dgvSupplierScheduleList.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = dgvSupplierScheduleList.SortedColumn;
+            ListSortDirection direction;
+
+            // If oldColumn is null, then the DataGridView is not sorted.
+            if (oldColumn != null)
+            {
+                // Sort the same column again, reversing the SortOrder.
+                if (oldColumn == newColumn &&
+                    dgvSupplierScheduleList.SortOrder == SortOrder.Ascending)
+                {
+                    direction = ListSortDirection.Descending;
+                }
+                else
+                {
+                    // Sort a new column and remove the old SortGlyph.
+                    direction = ListSortDirection.Ascending;
+                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                }
+            }
+            else
+            {
+                direction = ListSortDirection.Ascending;
+            }
+            dgvSupplierScheduleList.Sort(newColumn, direction);
+            newColumn.HeaderCell.SortGlyphDirection =
+                direction == ListSortDirection.Ascending ?
+                SortOrder.Ascending : SortOrder.Descending;
+
+            DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+
+            DGV_SearchGrid.HorizontalScrollingOffset = dgvSupplierScheduleList.HorizontalScrollingOffset;
+            DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+        }
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
@@ -764,7 +805,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+
+        private void DGV_SearchGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -825,44 +867,6 @@ namespace ROMS
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        }
-
-        private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            DataGridViewColumn newColumn = dgvSupplierScheduleList.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = dgvSupplierScheduleList.SortedColumn;
-            ListSortDirection direction;
-
-            // If oldColumn is null, then the DataGridView is not sorted.
-            if (oldColumn != null)
-            {
-                // Sort the same column again, reversing the SortOrder.
-                if (oldColumn == newColumn &&
-                    dgvSupplierScheduleList.SortOrder == SortOrder.Ascending)
-                {
-                    direction = ListSortDirection.Descending;
-                }
-                else
-                {
-                    // Sort a new column and remove the old SortGlyph.
-                    direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
-                }
-            }
-            else
-            {
-                direction = ListSortDirection.Ascending;
-            }
-            dgvSupplierScheduleList.Sort(newColumn, direction);
-            newColumn.HeaderCell.SortGlyphDirection =
-                direction == ListSortDirection.Ascending ?
-                SortOrder.Ascending : SortOrder.Descending;
-
-            DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-
-            DGV_SearchGrid.HorizontalScrollingOffset = dgvSupplierScheduleList.HorizontalScrollingOffset;
-            DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
 
         private void TxtSupplier_TextChanged(object sender, EventArgs e)
@@ -1055,6 +1059,72 @@ namespace ROMS
                 {
                     udfnListViewnameData();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void DgvSupplierScheduleList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+
+                for (int i = 0; i < dgvSupplierScheduleList.Rows.Count; i++)
+                {
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STS"].Value) == "1" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS"].Value) != "")
+                    {
+                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STS"].Value) == "2" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS"].Value) != "")
+                    {
+                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                dgvSupplierScheduleList.ClearSelection();
+            }
+        }
+
+        private void DgvSupplierScheduleList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void DgvSupplierScheduleList_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DgvSupplierScheduleList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                   // udfnEdit();
+                } 
             }
             catch (Exception ex)
             {
