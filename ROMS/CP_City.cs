@@ -117,6 +117,7 @@ namespace ROMS
                     varType = 1;
                 }
                 varResult = objspservice.udfnCity(varType, varCityCode, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, varoriginator);
+                objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {

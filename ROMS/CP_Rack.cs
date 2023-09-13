@@ -166,6 +166,7 @@ namespace ROMS
                 if (varLocationId != -1)
                 {
                     varResult = objspservice.udfnRack(varType, varRackcode, Convert.ToInt16(cmbConcern.SelectedValue), varLocationId, (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, varoriginator);
+                    objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
                     {

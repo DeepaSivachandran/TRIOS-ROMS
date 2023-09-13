@@ -77,6 +77,7 @@ namespace ROMS
                         objBankTable.Columns.Add("BRB_IFSC", typeof(string));
                         objBankTable.Columns.Add("BRB_STSID", typeof(string));
                         result = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", "", 0, "", "", "",0,"Company delete", objBankTable);
+                        objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
@@ -94,6 +95,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         public void udfnList()

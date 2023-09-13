@@ -114,6 +114,7 @@ namespace ROMS
                     varType = 1;
                 }
                 varResult = objspservice.udfnUnit(varType, varUnitCode, (txtEUnitName.Text).Trim(), txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, varoriginator);
+                objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
