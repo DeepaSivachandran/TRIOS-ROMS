@@ -298,11 +298,10 @@ namespace ROMS
                                 grdBrand.Columns["Product Name in Tamil"].ReadOnly = true;
                                 grdBrand.Columns["Unit"].ReadOnly = true;
 
-                                grdBrand.Columns["Product Category-Current"].ReadOnly = true;
-                                grdBrand.Columns["RM Pro-Current"].ReadOnly = true;
-                                grdBrand.Columns["Batch No.-Current"].ReadOnly = true;
-                                grdBrand.Columns["Batch Generation-Current"].ReadOnly = true;
-
+                                grdBrand.Columns["Group-Current"].ReadOnly = true;
+                                grdBrand.Columns["Sub Group-Current"].ReadOnly = true;
+                                grdBrand.Columns["Brand-Current"].ReadOnly = true;
+                               
                             }
                             else if(grdHSN.Visible==true)
                             {
@@ -1553,15 +1552,91 @@ namespace ROMS
             }
             return varstr;
         }
+        public AutoCompleteStringCollection AutoCompleteGroup()
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            DataSet objds;
+            objds = null;
+            DataService objdservice = new DataService();
+            DataTable objDt = new DataTable();
 
+            objds = objdservice.GetDataset("SELECT PRGID,PRG_EName from  MR_ProductGroup  where PRGID NOT IN(-1,0)");
+            objdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDt = objds.Tables[0];
+                    }
+                }
+            }
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("PRG_EName") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
+        public AutoCompleteStringCollection AutoCompleteSubGroup()
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            DataSet objds;
+            objds = null;
+            DataService objdservice = new DataService();
+            DataTable objDt = new DataTable();
+
+            objds = objdservice.GetDataset("SELECT PRSGID,PRSG_EName from  MR_ProductSubGroup  where PRSGID NOT IN(-1,0)");
+            objdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDt = objds.Tables[0];
+                    }
+                }
+            }
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("PRSG_EName") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
+        public AutoCompleteStringCollection AutoCompleteBrand()
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            DataSet objds;
+            objds = null;
+            DataService objdservice = new DataService();
+            DataTable objDt = new DataTable();
+
+            objds = objdservice.GetDataset("SELECT BDID,BD_EName from  MR_Brand  where BDID NOT IN(-1,0)");
+            objdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDt = objds.Tables[0];
+                    }
+                }
+            }
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("BD_EName") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
         private void GrdBatch_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
             {
-                //grdBatch.Columns[" Product Category-Current"].ReadOnly = true;
-                //grdBatch.Columns["RM Pro-Current"].ReadOnly = true;
-                //grdBatch.Columns["Batch No.-Current"].ReadOnly = true;
-                //grdBatch.Columns["Batch Generation-Current"].ReadOnly = true;
                 if (grdBatch.CurrentCell.OwningColumn.Name == "Product Category-Current")
                 {
                     TextBox txtProductCategory = e.Control as TextBox;
@@ -1578,7 +1653,7 @@ namespace ROMS
                     if (txtBatchNo != null)
                     {
                         txtBatchNo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtBatchNo.AutoCompleteCustomSource = AutoCompleteShelfLife();
+                        txtBatchNo.AutoCompleteCustomSource = AutoCompleteBatchNo();
                         txtBatchNo.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
@@ -1588,8 +1663,50 @@ namespace ROMS
                     if (txtBatchGeneration != null)
                     {
                         txtBatchGeneration.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtBatchGeneration.AutoCompleteCustomSource = AutoCompleteShelfLife();
+                        txtBatchGeneration.AutoCompleteCustomSource = AutoCompleteBatchGeneration();
                         txtBatchGeneration.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdBrand_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (grdBrand.CurrentCell.OwningColumn.Name == "Group-New")
+                {
+                    TextBox txtGroup = e.Control as TextBox;
+                    if (txtGroup != null)
+                    {
+                        txtGroup.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtGroup.AutoCompleteCustomSource = AutoCompleteGroup();
+                        txtGroup.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+                else if (grdBrand.CurrentCell.OwningColumn.Name == "Sub Group-New")
+                {
+                    TextBox SubGroup = e.Control as TextBox;
+                    if (SubGroup != null)
+                    {
+                        SubGroup.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        SubGroup.AutoCompleteCustomSource = AutoCompleteSubGroup();
+                        SubGroup.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+                else if (grdBrand.CurrentCell.OwningColumn.Name == "Brand-New")
+                {
+                    TextBox txtBrand = e.Control as TextBox;
+                    if (txtBrand != null)
+                    {
+                        txtBrand.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtBrand.AutoCompleteCustomSource = AutoCompleteBrand();
+                        txtBrand.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
             }
