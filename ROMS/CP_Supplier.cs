@@ -1002,8 +1002,9 @@ namespace ROMS
                             //cmbReturnPolicy.SelectedValue = objDS.Tables[0].Rows[0]["RETURN"].ToString();
                             varReturPolicyId = Convert.ToInt32(objDS.Tables[0].Rows[0]["RETURN"].ToString());
                             varReturnTypeID = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
-                            cmbReturnPolicy.SelectedValue = Convert.ToInt64(varReturPolicyId);
-                            cmbReturnType.SelectedValue = varReturnTypeID;
+
+                            cmbReturnPolicy.SelectedValue = Convert.ToInt64(varReturnTypeID);
+                            cmbReturnType.SelectedValue = varReturPolicyId;
                             //cmbReturnType.SelectedValue = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
 
                             cmbSupplierType.SelectedValue = objDS.Tables[0].Rows[0]["SUPPLIERTYPE"].ToString();
@@ -1331,7 +1332,7 @@ namespace ROMS
         {
             try
             {
-                txtaddress2.BackColor = Color.White;
+                txtaddress2.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1397,7 +1398,7 @@ namespace ROMS
             try
             {
 
-                txtwhatsapp.BackColor = Color.White;
+                txtwhatsapp.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1677,7 +1678,7 @@ namespace ROMS
         {
             try
             {
-                txtsalesmanmobile.BackColor = Color.White;
+                txtsalesmanmobile.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1743,7 +1744,7 @@ namespace ROMS
                 {
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnSave.Focus();
+                        txtBankname.Focus();
                     }
                 }
             }
@@ -1874,20 +1875,12 @@ namespace ROMS
                 // if (Convert.ToString(cmbReturnType.SelectedValue) == "22")
                 {
                     cmbReturnType.Visible = true;
-                    txtDReturnCycle.Visible = true;
-                    cmbPolicyContent.Visible = true;
-                    cmbSecondLevel.Visible = true;
-                    txtReturnText.Visible = true;
-                    txtNextLevel.Visible = true;
+                    txtDReturnCycle.Visible = true; 
                 }
                 else
                 {
                     cmbReturnType.Visible = false;
-                    txtDReturnCycle.Visible = false;
-                    cmbPolicyContent.Visible = false;
-                    cmbSecondLevel.Visible = false;
-                    txtReturnText.Visible = false;
-                    txtNextLevel.Visible = false;
+                    txtDReturnCycle.Visible = false; 
                 }
             }
             catch (Exception ex)
@@ -1901,7 +1894,21 @@ namespace ROMS
         {
             try
             {
-
+                if (cmbReturnPolicy.Text == "Yes")
+                // if (Convert.ToString(cmbReturnType.SelectedValue) == "22")
+                { 
+                    cmbPolicyContent.Visible = true;
+                    cmbSecondLevel.Visible = true;
+                    txtReturnText.Visible = true;
+                    txtNextLevel.Visible = true;
+                }
+                else
+                { 
+                    cmbPolicyContent.Visible = false;
+                    cmbSecondLevel.Visible = false;
+                    txtReturnText.Visible = false;
+                    txtNextLevel.Visible = false;
+                }
                 BeginInvoke(new Action(() => cmbReturnType.Select(int.MaxValue, 0)));
                 if (Convert.ToString(cmbReturnType.SelectedValue) == "24")
                 {
@@ -4486,7 +4493,15 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 string result = "", varoriginator = "";
                 int Vartype = 0;
-
+                SupplierUpdate = 0;
+                if (Convert.ToInt32(varsupplierID) != 0)
+                {
+                    SupplierUpdate = Convert.ToInt32(varsupplierID);
+                }
+                else
+                {
+                    SupplierUpdate = Convert.ToInt32(pbSupplierid);
+                }
                 if (btnSaveOrderType.Text == "Update")
                 {
                     result = objspdservice.udfnSupplierMaster(6, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, Convert.ToInt32(cmbReturnPolicy.SelectedValue), Convert.ToInt32(cmbReturnType.SelectedValue), 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier order type", 0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", "", "");
@@ -4865,6 +4880,7 @@ namespace ROMS
                 grdFinalSupplierMapping.DataSource = null;
                 lblTotalMappingProduct.Text = "0";
                 errCompany.Clear();
+                udfnMappingGridsLoad();
             }
             catch (Exception ex)
             {
@@ -5080,7 +5096,7 @@ namespace ROMS
 
             try
             {
-                txtsalesmanwhatsapp.BackColor = Color.White;
+                txtsalesmanwhatsapp.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -5720,7 +5736,15 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 string result = "", varoriginator = "";
                 int Vartype = 0;
-
+                SupplierUpdate = 0;
+                if (Convert.ToInt32(varsupplierID) != 0)
+                {
+                    SupplierUpdate = Convert.ToInt32(varsupplierID);
+                }
+                else
+                {
+                    SupplierUpdate = Convert.ToInt32(pbSupplierid);
+                }
                 if (btnSaveOrderType.Text == "Update")
                 {
                     result = objspdservice.udfnSupplierMaster(9, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Update supplier dealt brand", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", 0, 0, "", "", "", "", "", "", "", txtOtherBrands.Text, "");
