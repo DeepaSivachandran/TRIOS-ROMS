@@ -159,35 +159,35 @@ namespace ROMS
             // tsmpurchaseSupplier
             // 
             this.tsmpurchaseSupplier.Name = "tsmpurchaseSupplier";
-            this.tsmpurchaseSupplier.Size = new System.Drawing.Size(148, 22);
+            this.tsmpurchaseSupplier.Size = new System.Drawing.Size(180, 22);
             this.tsmpurchaseSupplier.Text = "PO Schedule";
             this.tsmpurchaseSupplier.Click += new System.EventHandler(this.TsmpurchaseSupplier_Click);
             // 
             // tsmPurchaseOrder
             // 
             this.tsmPurchaseOrder.Name = "tsmPurchaseOrder";
-            this.tsmPurchaseOrder.Size = new System.Drawing.Size(148, 22);
+            this.tsmPurchaseOrder.Size = new System.Drawing.Size(180, 22);
             this.tsmPurchaseOrder.Text = "Purchase Order";
             this.tsmPurchaseOrder.Click += new System.EventHandler(this.TsmPurchaseOrder_Click_1);
             // 
             // tsmGRN
             // 
             this.tsmGRN.Name = "tsmGRN";
-            this.tsmGRN.Size = new System.Drawing.Size(148, 22);
+            this.tsmGRN.Size = new System.Drawing.Size(180, 22);
             this.tsmGRN.Text = "GRN Entry";
             this.tsmGRN.Click += new System.EventHandler(this.TsmGRN_Click);
             // 
             // tsmGRNApproval
             // 
             this.tsmGRNApproval.Name = "tsmGRNApproval";
-            this.tsmGRNApproval.Size = new System.Drawing.Size(148, 22);
+            this.tsmGRNApproval.Size = new System.Drawing.Size(180, 22);
             this.tsmGRNApproval.Text = "GRN Approval";
             this.tsmGRNApproval.Click += new System.EventHandler(this.TsmGRNApproval_Click);
             // 
             // tsmPurchaseDC
             // 
             this.tsmPurchaseDC.Name = "tsmPurchaseDC";
-            this.tsmPurchaseDC.Size = new System.Drawing.Size(148, 22);
+            this.tsmPurchaseDC.Size = new System.Drawing.Size(180, 22);
             this.tsmPurchaseDC.Text = "Purchase DC";
             this.tsmPurchaseDC.Click += new System.EventHandler(this.TsmPurchaseDC_Click);
             // 
