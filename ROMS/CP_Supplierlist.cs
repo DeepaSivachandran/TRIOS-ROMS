@@ -637,7 +637,7 @@ namespace ROMS
                 LV_Supplier.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtSupplier.Text.Length > 2)
+                if (txtSupplier.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnSupplierList(6, 0,0, 0, 0,txtSupplier.Text,0);
                     objspdservice.CloseConnection();
