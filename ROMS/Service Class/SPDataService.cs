@@ -1297,7 +1297,7 @@ namespace ROMS
         public string udfnSupplierMaster(int ViewType, int paraSupplierid, string paraSupplierName, string paraAddress1,
             string paraAddress2, int paraCityId, string paraPincode, string paraPhoneNumber, string paraWhatsappNumber, string paraMobileNumber,
               string paraEmail, string paraGstin,int paraPaymentterm, int paraReturnApplicable, int paraReturnCycle,
-              double paraopeningType,int paraOpeningBal, int paraSupplierType, int parastateid,string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator
+               int paraopeningType, double  paraOpeningBal, int paraSupplierType, int parastateid,string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator
             , int paraDesignation, string paraDesignationName, double paraCreditLimit,int paraDayid,int paramonthid,int paraweekid,int paradaymonthid,
               string paraSalesmanName, string paraSchedulename, string paraSalesmanMobile,string paraSalesmanWhatsapp,int paraSaleOrderType,string ParaOrderDays,
               int ParaSupplierOrderid,int paraordertype, string ParaProductId, string parabankname, string paraBankShortName, string paraBranchName,
@@ -1372,7 +1372,7 @@ namespace ROMS
             }
             return result;
         }
-        public DataSet udfnSupplierList(int ViewType,int paraSupplierid,int paraSupplierScheduleid,int pardayid,int paraOrderId,string @paraSupplierName)
+        public DataSet udfnSupplierList(int ViewType,int paraSupplierid,int paraSupplierScheduleid,int pardayid,int paraOrderId,string @paraSupplierName,int paraordertype)
         {
             DataSet ds = new DataSet();
             try
@@ -1388,6 +1388,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@pardayid", pardayid);
                 varSqlCommand.Parameters.AddWithValue("@paraOrderId", paraOrderId);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierName", paraSupplierName);
+                varSqlCommand.Parameters.AddWithValue("@paraordertype", paraordertype);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

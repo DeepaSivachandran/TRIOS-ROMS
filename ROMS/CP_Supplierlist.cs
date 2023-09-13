@@ -210,7 +210,7 @@ namespace ROMS
                         varSupplierId = Convert.ToInt32(varId_Supplier);
                     }
 
-                objDs = objdserv.udfnSupplierList(1, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "");
+                objDs = objdserv.udfnSupplierList(1, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "",0);
                     objdserv.CloseConnection();
                     if (objDs != null)
                     {
@@ -639,7 +639,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 2)
                 {
-                    objDs = objspdservice.udfnSupplierList(6, 0,0, 0, 0,txtSupplier.Text);
+                    objDs = objspdservice.udfnSupplierList(6, 0,0, 0, 0,txtSupplier.Text,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -835,7 +835,7 @@ namespace ROMS
 
 
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + cmbsuppleirid + "' or SPSC_SPID=0", "SPSC_Name,SPSCID", cmbOrderSchedule, "", "SPSC_Name", "SPSCID");
+                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + cmbsuppleirid + "' or SPSCID=0", "SPSC_Name,SPSCID", cmbOrderSchedule, "", "SPSC_Name", "SPSCID");
                 objDataBind = null;
 
             }
