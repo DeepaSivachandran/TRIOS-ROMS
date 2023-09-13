@@ -191,6 +191,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             finally
@@ -206,18 +210,15 @@ namespace ROMS
                 string result = "";
                 int varStatus = 0;
                 epGroup.Clear();
-                udfntextboxcolor();
-                 
-                    if (rbActive.Checked == true)
-                    {
-                        varStatus = 1;
-                    }
-                    else
-                    {
-                        varStatus =2;
-
-                    }
-
+                udfntextboxcolor();                 
+                if (rbActive.Checked == true)
+                {
+                    varStatus = 1;
+                }
+                else
+                {
+                    varStatus =2;
+                }
                 string Varbrandid = ""; 
                 for (int i = 0; i < grdRepBrand.Rows.Count; i++)
                 {
@@ -234,44 +235,40 @@ namespace ROMS
                     }
 
                 }
-
-
                 if (btnSave.Text == "Save")
-                    {
+                {
                     result = objspdservice.udfnRepMaster(0,0, Convert.ToString(txtRepName.Text).Trim(),txtCompanyName.Text,txtPhonenumber.Text,txtWhatsappno.Text,Varbrandid,varStatus, "representative Create");
-                    }
-                    else
-                    {
+                }
+                else
+                {
                     result = objspdservice.udfnRepMaster(1, Convert.ToInt32(varrepid), Convert.ToString(txtRepName.Text).Trim(), txtCompanyName.Text, txtPhonenumber.Text, txtWhatsappno.Text, Varbrandid, varStatus, "representative Create");
-
-                    }
+                }
                 string[] varvalue = result.Split('~');
-                    if (varvalue[0] == "3")
-                    {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    MainForm.objCP_RepresentativeList.udfnlist(); 
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MainForm.objCP_RepresentativeList.udfnlist();
+                    objspdservice.CloseConnection();
                     txtCompanyName.Focus();
-                        if (btnSave.Text == "Update")
-                        {
-                            varupdate = "1";
-                            udfnclose();
-                        }
-
+                    if (btnSave.Text == "Update")
+                    {
+                        varupdate = "1";
+                        udfnclose();
+                    }
                     udfnClear();
                 }
-                    else
-                    {
-                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    } 
-               
-
-                objspdservice.CloseConnection();
+                else
+                {  MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);  } 
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCompanyName.Focus();
             }
 
             finally
@@ -432,7 +429,15 @@ namespace ROMS
                         }
                         if (objDS.Tables[1].Rows.Count > 0)
                         {
-                            objdatabrand= objDS.Tables[1]; 
+                            for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
+                            {
+                                if (Convert.ToString(objDS.Tables[1].Rows[i]["ID"]) == "0" || Convert.ToString(objDS.Tables[1].Rows[i]["ID"]) == "-1")
+                                {
+                                    objDS.Tables[1].Rows[i].Delete();
+                                    objDS.Tables[1].AcceptChanges();
+                                }
+                            }
+                            objdatabrand = objDS.Tables[1]; 
                         } 
 
 
@@ -475,6 +480,12 @@ namespace ROMS
                 {
                     if (objDS.Tables[0].Rows.Count > 0)
                     {
+                        for (int i = 0; i < objDS.Tables[0].Rows.Count; i++) {
+                            if (Convert.ToString(objDS.Tables[0].Rows[i]["ID"]) == "0" || Convert.ToString(objDS.Tables[0].Rows[i]["ID"]) == "-1") {
+                                objDS.Tables[0].Rows[i].Delete();
+                                objDS.Tables[0].AcceptChanges();
+                            }
+                        }
                         grdRepBrand.DataSource = objDS.Tables[0];
                         grdRepBrand.Columns["ID"].Visible = false;
                         grdRepBrand.Columns["Brand Name"].Width = 230;
@@ -489,31 +500,31 @@ namespace ROMS
                         //        row.Clear();
                         //    }
                         //}
-                        int currentRowIndex = grdRepBrand.CurrentCell?.RowIndex ?? -1;
+                        //int currentRowIndex = grdRepBrand.CurrentCell?.RowIndex ?? -1;
 
-                        foreach (DataGridViewRow row in grdRepBrand.Rows)
-                        {
-                            if (row.Cells["ID"].Value.ToString() == "0" || row.Cells["ID"].Value.ToString() == "-1")
-                            {
-                                if (row.Index == currentRowIndex)
-                                {
-                                    if (row.Index == grdRepBrand.Rows.Count - 1 && grdRepBrand.Rows.Count > 1) // If it's the last row and there are other rows
-                                    {
-                                        grdRepBrand.Rows.RemoveAt(row.Index);
-                                    }
-                                    else if (row.Index < grdRepBrand.Rows.Count - 1) // If there are rows below
-                                    {
-                                        grdRepBrand.Rows.RemoveAt(row.Index);
-                                    }
-                                    else // If it's the only row
-                                    {
-                                        grdRepBrand.CurrentCell = null;
-                                    }
-                                }
+                        //foreach (DataGridViewRow row in grdRepBrand.Rows)
+                        //{
+                        //    if (row.Cells["ID"].Value.ToString() == "0" || row.Cells["ID"].Value.ToString() == "-1")
+                        //    {
+                        //        if (row.Index == currentRowIndex)
+                        //        {
+                        //            if (row.Index == grdRepBrand.Rows.Count - 1 && grdRepBrand.Rows.Count > 1) // If it's the last row and there are other rows
+                        //            {
+                        //                grdRepBrand.Rows.RemoveAt(row.Index);
+                        //            }
+                        //            else if (row.Index < grdRepBrand.Rows.Count - 1) // If there are rows below
+                        //            {
+                        //                grdRepBrand.Rows.RemoveAt(row.Index);
+                        //            }
+                        //            else // If it's the only row
+                        //            {
+                        //                grdRepBrand.CurrentCell = null;
+                        //            }
+                        //        }
 
-                                row.Visible = false;
-                            }
-                        } 
+                        //        row.Visible = false;
+                        //    }
+                        //} 
 
                         if (btnSave.Text == "Update")
                         {
@@ -527,6 +538,12 @@ namespace ROMS
                                     }
                                 }
                             }
+                            if (grdRepBrand.RowCount == objdatabrand.Rows.Count)
+                            {
+                                varCheckAllFlag = 1;
+                                chkBrandAll.Checked = true;
+                            }
+                            else { varCheckAllFlag = 0; }
                         }
 
                     }
