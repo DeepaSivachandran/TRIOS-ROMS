@@ -118,6 +118,7 @@ namespace ROMS
                         varType = 1;
                     }
                     varResult = objspservice.udfnUserCategory(varType, varUserCategoryCode, (txtCategoryName.Text).Trim(), varstatus, varoriginator);
+                    objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
                     {
