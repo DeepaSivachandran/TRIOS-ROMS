@@ -124,11 +124,12 @@ namespace ROMS
                             grdRackSettingList.DataSource = objDs.Tables[0];
                             grdRackSettingList.Columns["ID"].Visible = false;
                             grdRackSettingList.Columns["RKID"].Visible = false;
+                            grdRackSettingList.Columns["sno"].Visible = false;
                             grdRackSettingList.Columns["S.No."].Width = 50;
                             grdRackSettingList.Columns["P.I Code"].Width = 100;
-                            grdRackSettingList.Columns["Stock Location"].Width = 200;
+                            grdRackSettingList.Columns["Stock Location"].Width = 150;
                             grdRackSettingList.Columns["Rack Name"].Width = 150;
-                            grdRackSettingList.Columns["Product Name"].Width = 250;
+                            grdRackSettingList.Columns["Product Name"].Width = 300;
                             grdRackSettingList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else

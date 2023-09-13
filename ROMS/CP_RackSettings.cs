@@ -807,6 +807,10 @@ namespace ROMS
                         lvLocation.Items[0].Selected = true;
                     }
                 }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    txtRack.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -886,12 +890,12 @@ namespace ROMS
         {
             try
             {
+                int varLocationId = 0;
                 lvRack.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtRack.Text.Length > 0)
                 {
-                    int varLocationId = 0;
                     if (txtLocation.Text == "")
                     {
                         varLocationId = 0;
@@ -903,23 +907,29 @@ namespace ROMS
                         objDServ.CloseConnection();
                         varLocationId = Convert.ToInt32(varId_Location);
                     }
-
-                    objDs = objspdservice.udfnRackList(7, 0, 0, varLocationId, 0, txtRack.Text);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
-                    {
-                        if (objDs.Tables.Count != 0)
+                    if (varLocationId == 0)
+                    { 
+                        objDs = objspdservice.udfnRackList(7, 0, 0, varLocationId, 0, txtRack.Text);
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables.Count != 0)
                             {
-                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["RK_Name"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
-                                    ListViewItem objList = new ListViewItem(row);
-                                    lvRack.Columns[1].Width = 0;
-                                    lvRack.Items.Add(objList);
+                                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                    {
+                                        string[] row = { objDs.Tables[0].Rows[i]["RK_Name"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
+                                        ListViewItem objList = new ListViewItem(row);
+                                        lvRack.Columns[1].Width = 0;
+                                        lvRack.Items.Add(objList);
+                                    }
+                                    lvRack.Visible = true;
                                 }
-                                lvRack.Visible = true;
+                                else
+                                {
+                                    lvRack.Visible = false;
+                                }
                             }
                             else
                             {
@@ -933,7 +943,9 @@ namespace ROMS
                     }
                     else
                     {
-                        lvRack.Visible = false;
+                        epRackSettings.SetError(txtLocation, "Invalid Location");
+                        txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        txtRack.Text = "";
                     }
                 }
                 else
@@ -957,8 +969,30 @@ namespace ROMS
         {
             try
             {
-                lvLocation.Visible = false;
-                txtRack.BackColor = Color.LemonChiffon;
+                if (txtLocation.Text.Trim() != "")
+                {
+                    string VarLocation = "0";
+                    DataService objDserv = new DataService();
+                    VarLocation = objDserv.displaydata("SELECT COUNT(*) AS Count FROM MR_StockLocation WHERE SL_EName ='" + txtLocation.Text.Trim() + "'");
+                    if (VarLocation == "0")
+                    {
+                        lblSLocation.Text = "0";
+                        epRackSettings.SetError(txtLocation, "Invalid Location");
+                        txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        txtRack.Text = "";
+                    }
+                    else
+                    {
+                        txtLocation.BackColor = Color.White;
+                        epRackSettings.Clear();
+                    }
+                }
+                 
+                if (lblSLocation.Text.Trim() != "0")
+                {
+                    lvLocation.Visible = false;
+                    txtRack.BackColor = Color.LemonChiffon;
+                }
             }
             catch (Exception ex)
             {
@@ -987,6 +1021,17 @@ namespace ROMS
                         lvRack.Items[0].Selected = true;
                     }
                 }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    if(grbDestination.Enabled==true)
+                    {
+                        txtDLocation.Focus();
+                    }
+                    else
+                    {
+                        txtProductGroup.Focus();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -999,8 +1044,37 @@ namespace ROMS
         {
             try
             {
-                txtRack.BackColor = Color.White;
-                if (txtRack.Text.Trim() == "") { lblSRack.Text = "0"; }
+                if (txtRack.Text.Trim() == "")
+                { lblSRack.Text = "0"; }
+
+                if (txtDRack.Text != "")
+                {
+                    if (lblSRack.Text == lblDRack.Text || txtDRack.Text == txtRack.Text)
+                    {
+                        txtDRack.Text = "";
+                    }
+                }
+
+
+                //if (txtRack.Text.Trim() != "")
+                //{
+                //    //bool blnErrorFlag = false;
+                //    string VarRack = "0";
+                //    DataService objDserv = new DataService();
+                //    VarRack = objDserv.displaydata("SELECT COUNT(*) AS Count FROM MR_Rack WHERE RK_Name ='" + txtRack.Text.Trim() + "'");
+                //    if (VarRack == "0")
+                //    {
+                //        lblSRack.Text = "0";
+                //        epRackSettings.SetError(txtRack, "Invalid Rack");
+                //        txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        //blnErrorFlag = true;
+                //    }
+                //    else
+                //    {
+                //        txtRack.BackColor = Color.White;
+                //        epRackSettings.Clear();
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -1037,14 +1111,14 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnSRackEvent();
-                    //if (pnlStatus.Enabled == false)
-                    //{
-                    //    btnSave.Focus();
-                    //}
-                    //else
-                    //{
-                    //    //pnlStatus.Focus();
-                    //}
+                    if (rbMove.Checked == true)
+                    {
+                        txtDLocation.Focus();
+                    }
+                    else
+                    {
+                        txtProductGroup.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1168,6 +1242,10 @@ namespace ROMS
                         lvDLocation.Items[0].Selected = true;
                     }
                 }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    txtDRack.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1199,63 +1277,58 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtDRack.Text.Length > 0)
                 {
-                    int varDLocationId = 0;
-                    int varLocationId = 0;
-                    int varDRackId = 0;
-                    int varRackId = 0;
-                    if (txtDLocation.Text == "")
+                    if (lblDLocation.Text.Trim() != "0")
                     {
-                        varDLocationId = 0;
-                    }
-                    else
-                    {
-                        DataService objdServ = new DataService();
-                        string varId_Location = objdServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtLocation.Text.Trim() + "') END AS SLID ");
-                        objdServ.CloseConnection();
-                        varLocationId = Convert.ToInt32(varId_Location);
-
-                        DataService objDServ = new DataService();
-                        string varId_DLocation = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtDLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtDLocation.Text.Trim() + "') END AS SLID ");
-                        objDServ.CloseConnection();
-                        varDLocationId = Convert.ToInt32(varId_DLocation);
-
-                        DataService objdserv = new DataService();
-                        string varId_Rack = objdserv.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') END AS RKID ");
-                        objdserv.CloseConnection();
-                        varRackId = Convert.ToInt32(varId_Rack);
-
-                        if (varLocationId == varDLocationId)
+                        int varDLocationId = 0;
+                        int varLocationId = 0;
+                        int varRackId = 0;
+                        if (txtDLocation.Text == "")
                         {
-                            DataService objDserv = new DataService();
-                            string varId_DRack = objDserv.displaydata("SELECT RKID FROM MR_Rack WHERE RKID NOT IN('"+ varRackId + "') ");
-                            objDserv.CloseConnection();
-                            varDRackId = Convert.ToInt32(varId_DRack);
+                            varDLocationId = 0;
                         }
                         else
                         {
-                            DataService objDerv = new DataService();
-                            string varId_DDLocation = objDerv.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtDLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtDLocation.Text.Trim() + "') END AS SLID ");
-                            objDerv.CloseConnection();
-                            varDRackId = Convert.ToInt32(varId_DDLocation);
-                        }
-                    }
-
-                    objDs = objspdservice.udfnRackList(7, 0, 0, varDRackId, 0, txtDRack.Text);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
-                    {
-                        if (objDs.Tables.Count != 0)
-                        {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (lblSLocation.Text.Trim() == lblDLocation.Text.Trim())
                             {
-                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                DataService objdserv = new DataService();
+                                string varId_Rack = objdserv.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') END AS RKID ");
+                                objdserv.CloseConnection();
+                                varRackId = Convert.ToInt32(varId_Rack);
+                            }
+                            else
+                            {
+                                DataService objDerv = new DataService();
+                                string varId_DDLocation = objDerv.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtDLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtDLocation.Text.Trim() + "') END AS SLID ");
+                                objDerv.CloseConnection();
+                                varLocationId = Convert.ToInt32(varId_DDLocation);
+                            }
+                            DataService objDserv = new DataService();
+                            string varId_DLocation = objDserv.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtDLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtDLocation.Text.Trim() + "') END AS SLID ");
+                            objDserv.CloseConnection();
+                            varLocationId = Convert.ToInt32(varId_DLocation);
+                        }
+
+                        objDs = objspdservice.udfnRackList(7, 0, 0, varLocationId, varRackId, txtDRack.Text);
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables.Count != 0)
+                            {
+                                if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["RK_Name"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
-                                    ListViewItem objList = new ListViewItem(row);
-                                    lvDRack.Columns[1].Width = 0;
-                                    lvDRack.Items.Add(objList);
+                                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                    {
+                                        string[] row = { objDs.Tables[0].Rows[i]["RK_Name"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
+                                        ListViewItem objList = new ListViewItem(row);
+                                        lvDRack.Columns[1].Width = 0;
+                                        lvDRack.Items.Add(objList);
+                                    }
+                                    lvDRack.Visible = true;
                                 }
-                                lvDRack.Visible = true;
+                                else
+                                {
+                                    lvDRack.Visible = false;
+                                }
                             }
                             else
                             {
@@ -1269,7 +1342,9 @@ namespace ROMS
                     }
                     else
                     {
-                        lvDRack.Visible = false;
+                        epRackSettings.SetError(txtDLocation, "Invalid Location");
+                        txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        txtDRack.Text = "";
                     }
                 }
                 else
@@ -1293,6 +1368,23 @@ namespace ROMS
         {
             try
             {
+                if (txtDLocation.Text.Trim() != "")
+                {
+                    string VarDLocation = "0";
+                    DataService objDserv = new DataService();
+                    VarDLocation = objDserv.displaydata("SELECT COUNT(*) AS Count FROM MR_StockLocation WHERE SL_EName ='" + txtDLocation.Text.Trim() + "'");
+                    if (VarDLocation == "0")
+                    {
+                        lblDLocation.Text = "0";
+                        epRackSettings.SetError(txtDLocation, "Invalid Location");
+                        txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        txtDRack.Text = "";
+                    }
+                    else
+                    {
+                        epRackSettings.Clear();
+                    }
+                }
                 lvDLocation.Visible = false;
                 txtDRack.BackColor = Color.LemonChiffon;
             }
@@ -1323,6 +1415,10 @@ namespace ROMS
                         lvDRack.Items[0].Selected = true;
                     }
                 }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    txtProductGroup.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1335,8 +1431,26 @@ namespace ROMS
         {
             try
             {
-                txtDRack.BackColor = Color.White;
                 if (txtDRack.Text.Trim() == "") { lblDRack.Text = "0"; }
+
+
+                //if (txtDRack.Text.Trim() != "")
+                //{
+                //    string VarDRack = "0";
+                //    DataService objDserv = new DataService();
+                //    VarDRack = objDserv.displaydata("SELECT COUNT(*) AS Count FROM MR_Rack WHERE RK_Name ='" + txtDRack.Text.Trim() + "'");
+                //    if (VarDRack == "0")
+                //    {
+                //        lblDRack.Text = "0";
+                //        epRackSettings.SetError(txtDRack, "Invalid Rack");
+                //        txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    }
+                //    else
+                //    {
+                //        txtDRack.BackColor = Color.White;
+                //        epRackSettings.Clear();
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -1373,14 +1487,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnDRackEvent();
-                    //if (pnlStatus.Enabled == false)
-                    //{
-                    //    btnSave.Focus();
-                    //}
-                    //else
-                    //{
-                    //    //pnlStatus.Focus();
-                    //}
+                    txtProductGroup.Focus();
                 }
             }
             catch (Exception ex)
@@ -1539,7 +1646,7 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode==Keys.Enter)
                 {
                     if (lvGroup.Items.Count == 0 || txtProductGroup.Text == "")
                     {
@@ -1554,6 +1661,10 @@ namespace ROMS
                     {
                         lvGroup.Items[0].Selected = true;
                     }
+                }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    txtProductSubGroup.Focus();
                 }
             }
             catch (Exception ex)
@@ -1704,7 +1815,7 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode==Keys.Enter)
                 {
                     if (lvSubGroup.Items.Count == 0 || txtProductSubGroup.Text == "")
                     {
@@ -1719,6 +1830,10 @@ namespace ROMS
                     {
                         lvSubGroup.Items[0].Selected = true;
                     }
+                }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
