@@ -60,12 +60,14 @@ namespace ROMS
             try
             {
                 udfnSave();
+
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+             
         }
         public void udfnSave()
         {
@@ -440,7 +442,7 @@ namespace ROMS
                         tpsalesrack.Show("Please select valid sales rack", txtSaleRack, 5000);
                         blnErrorFlag = true;
                     }
-                }
+                } 
                 if (blnErrorFlag == false)
                 {
                     SPDataService objspdservice = new SPDataService();
@@ -604,19 +606,15 @@ namespace ROMS
                         }
                         MainForm.objCP_Itemlist.udfnDropdownbind();
                         MainForm.objCP_Itemlist.udfnList();
-                        cmbConcern.Focus();
                         udfnclear();
                     }
                     else
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         btnSave.Enabled = true;
-                        btnSave.Focus();
                     }
                     objspdservice.CloseConnection();
-                }
-
-
+                }  
             }
             catch (Exception ex)
             {
@@ -626,6 +624,7 @@ namespace ROMS
             finally
             {
                 btnSave.Enabled = true;
+                cmbConcern.Focus();
             }
         }
 
@@ -2946,6 +2945,7 @@ namespace ROMS
                     varViewType = 1;
                 }
                 DataSet objDT = new DataSet();
+                DataSet objDTBulkUnit = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDT = objdserv.udfnUnitList(varViewType, varUnitid);
                 objdserv.CloseConnection();
@@ -2959,7 +2959,19 @@ namespace ROMS
                             cmbUnit.ValueMember = "UTID";
                             cmbUnit.DisplayMember = "UT_Symbol";
                             cmbUnit.DataSource = objDT.Tables[0];
-
+                        }
+                    }
+                }
+                objDT = null;
+                objDT = objdserv.udfnUnitList(varViewType, varUnitid);
+                objdserv.CloseConnection();
+                cmbBulkUnit.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
                             cmbBulkUnit.ValueMember = "UTID";
                             cmbBulkUnit.DisplayMember = "UT_Symbol";
                             cmbBulkUnit.DataSource = objDT.Tables[0];
@@ -3284,6 +3296,9 @@ namespace ROMS
                     txtPurLocation.Text = selectedItem.SubItems[0].Text;
                     lblPurLocationCode.Text = selectedItem.SubItems[2].Text;
                     lvPurLocation.Visible = false;
+                    txtPurRack.Text = "";
+                    lblPurRackCode.Text = "0";
+                    txtRackDescription.Text = "";
                 }
             }
             catch (Exception ex)
@@ -3329,7 +3344,10 @@ namespace ROMS
                     ListViewItem selectedItem = lvSaleLocation.SelectedItems[0];
                     txtSaleLocation.Text = selectedItem.SubItems[0].Text;
                     lblSaleLocationCode.Text = selectedItem.SubItems[2].Text;
-                    lvSaleLocation.Visible = false;
+                    lvSaleLocation.Visible = false; 
+                    txtSaleRack.Text = "";
+                    txtRackDescriptionSales.Text = "";
+                    lblSaleRackCode.Text = "0";
                 }
             }
             catch (Exception ex)
@@ -3512,6 +3530,7 @@ namespace ROMS
             try
             {
                 txtGroup.BackColor = Color.LemonChiffon;
+                lvGroup.Visible = false;
             }
             catch (Exception ex)
             {
@@ -3692,6 +3711,12 @@ namespace ROMS
             {
                 txtPurLocation.BackColor = Color.White;
                 errItems.Clear();
+                if (txtPurLocation.Text=="")
+                {
+                    txtPurRack.Text = "";
+                    lblPurRackCode.Text = "0";
+                    txtRackDescription.Text = "";
+                }
             }
             catch (Exception ex)
             {
@@ -3944,6 +3969,12 @@ namespace ROMS
             {
                 txtSaleLocation.BackColor = Color.White;
                 errItems.Clear();
+                if (txtSaleLocation.Text == "")
+                {
+                    txtSaleRack.Text = "";
+                    txtRackDescriptionSales.Text = "";
+                    lblSaleRackCode.Text = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -3959,7 +3990,7 @@ namespace ROMS
                 lvSaleLocation.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtPurLocation.Text.Length > 0)
+                if (txtSaleLocation.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSaleLocation.Text.Trim());
                     objspdservice.CloseConnection();

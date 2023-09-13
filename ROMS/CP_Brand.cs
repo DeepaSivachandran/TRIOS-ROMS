@@ -14,7 +14,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public int varbrandcode=0;
+        public int varbrandcode = 0;
 
         private ToolTip tpBrandNameInEnglish = new ToolTip();
         private ToolTip tpBrandNameInTamil = new ToolTip();
@@ -47,7 +47,7 @@ namespace ROMS
             {
                 tpBrandNameInEnglish.Active = false;
                 tpBrandNameInTamil.Active = false;
-                
+
             }
             catch (Exception ex)
             {
@@ -58,7 +58,7 @@ namespace ROMS
         public void udfnEdit()
         {
             try
-            { 
+            {
                 string varSubgroupId = "";
                 int varGroupId = 0;
                 varBrandId = Convert.ToString(varId);
@@ -72,7 +72,7 @@ namespace ROMS
                 }
                 DataSet objDS = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDS = objdserv.udfnBrandList(1, varBrandId, 0,0,0,"");
+                objDS = objdserv.udfnBrandList(1, varBrandId, 0, 0, 0, "");
                 objdserv.CloseConnection();
                 if (objDS != null)
                 {
@@ -88,13 +88,14 @@ namespace ROMS
                             //grdSubGroup.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["PRGID"]), Convert.ToString(objDS.Tables[1].Rows[i]["PRG_EName"]));
                             //dtSubGroupAdd.Rows.Add(false, grdSubGroup.Rows[i].Cells["Product Group"].Value, grdSubGroup.Rows[i].Cells["Product Subgroup"].Value, grdSubGroup.Rows[i].Cells["Group Id"].Value, grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
 
-                            dtSubGroupAdd.Rows.Add(false, objDS.Tables[1].Rows[i]["Selected Product Group"], 
+                            dtSubGroupAdd.Rows.Add(objDS.Tables[1].Rows[i]["Selected Product Group"],
                                 objDS.Tables[1].Rows[i]["Selected Product Sub Group"], objDS.Tables[1].Rows[i]["PRGID"],
                                 objDS.Tables[1].Rows[i]["PRSGID"]);
                         }
                         grdSubGroupAdd.DataSource = dtSubGroupAdd;
-                        grdSubGroupAdd.Columns[0].HeaderText = "";
-                        grdSubGroupAdd.Columns[0].Width = 80;
+                        grdSubGroupAdd.Columns["clmRemove"].DisplayIndex = 4;
+                        // grdSubGroupAdd.Columns[0].HeaderText = "";
+                        //  grdSubGroupAdd.Columns[0].Width = 80;
                         grdSubGroupAdd.Columns["Selected Product Group"].Width = 150;
                         grdSubGroupAdd.Columns["Selected Product Subgroup"].Width = 200;
                         grdSubGroupAdd.Columns["Group Id"].Visible = false;
@@ -127,7 +128,7 @@ namespace ROMS
                         }
                     }
                 }
-                       
+
             }
             catch (Exception ex)
             {
@@ -140,7 +141,7 @@ namespace ROMS
             try
             {
                 int varviewtype = 5;
-                if(btnSave.Text=="Update")
+                if (btnSave.Text == "Update")
                 {
                     varviewtype = 6;
                 }
@@ -150,16 +151,16 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGroupList(varviewtype,0, varId,"");
+                objDs = objdserv.udfnGroupList(varviewtype, 0, varId, "");
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
-                             dtGroup.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name in English"], objDs.Tables[0].Rows[i]["ID"]);
+                        dtGroup.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name in English"], objDs.Tables[0].Rows[i]["ID"]);
                     }
-                    
+
                     grdGroup.DataSource = dtGroup;
                     grdGroup.Columns[0].HeaderText = "";
                     grdGroup.Columns[0].Width = 80;
@@ -185,11 +186,17 @@ namespace ROMS
         {
             try
             {
-                string varRemoveGroup = "", varAddGroup = "";
-               
-                if (grdSubGroup.Rows.Count > 0)
+                string varRemoveGroup = "", varAddGroup = ""; int varCount = 0;
+                for (int i = 0; i < grdSubGroup.Rows.Count; i++)
                 {
-                   for (int i = 0; i < grdSubGroup.Rows.Count; i++)
+                    if (Convert.ToBoolean(grdSubGroup.Rows[i].Cells[0].Value) == true)
+                    {
+                        varCount++;
+                    }
+                }
+                if (varCount > 0)
+                {
+                    for (int i = 0; i < grdSubGroup.Rows.Count; i++)
                     {
                         if (Convert.ToBoolean(grdSubGroup.Rows[i].Cells[0].Value) == true)
                         {
@@ -200,8 +207,9 @@ namespace ROMS
                                 if (varAddGroup == Convert.ToString(dtSubGroupAdd.Rows[j]["Sub Group Id"]))
                                 { varFlag = 1; }
                             }
-                            if (varFlag == 0) {
-                                dtSubGroupAdd.Rows.Add(false, grdSubGroup.Rows[i].Cells["Product Group"].Value, grdSubGroup.Rows[i].Cells["Product Subgroup"].Value, grdSubGroup.Rows[i].Cells["Group Id"].Value, grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
+                            if (varFlag == 0)
+                            {
+                                dtSubGroupAdd.Rows.Add(grdSubGroup.Rows[i].Cells["Product Group"].Value, grdSubGroup.Rows[i].Cells["Product Subgroup"].Value, grdSubGroup.Rows[i].Cells["Group Id"].Value, grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
                             }
                         }
                         else
@@ -218,8 +226,10 @@ namespace ROMS
                         }
                     }
                     grdSubGroupAdd.DataSource = dtSubGroupAdd;
-                    grdSubGroupAdd.Columns[0].HeaderText = "";
-                    grdSubGroupAdd.Columns[0].Width = 80;
+                    grdSubGroupAdd.Columns["clmRemove"].DisplayIndex = 4;
+                    // grdSubGroupAdd.Columns[0].HeaderText = "";
+                    // grdSubGroupAdd.Columns[0].Width = 80;
+                    grdSubGroupAdd.Columns["clmRemove"].Width = 80;
                     grdSubGroupAdd.Columns["Selected Product Group"].Width = 150;
                     grdSubGroupAdd.Columns["Selected Product Subgroup"].Width = 200;
                     grdSubGroupAdd.Columns["Group Id"].Visible = false;
@@ -233,9 +243,13 @@ namespace ROMS
                 }
                 else
                 {
-                    MessageBox.Show("Please select atleast one row.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(44);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    // MessageBox.Show("Please select atleast one row.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -252,11 +266,11 @@ namespace ROMS
             try
             {
                 string varRemoveSubGroup = "";
-               
+
                 if (chkSubGroupAdd.Checked == true) { dtSubGroupAdd.Rows.Clear(); dtSubGroupAdd.AcceptChanges(); chkSubGroupAdd.Checked = false; }
                 else
                 {
-                  L:  for (int i = 0; i < grdSubGroupAdd.Rows.Count; i++)
+                L: for (int i = 0; i < grdSubGroupAdd.Rows.Count; i++)
                     {
                         if (Convert.ToBoolean(grdSubGroupAdd.Rows[i].Cells[0].EditedFormattedValue) == true)
                         {
@@ -275,7 +289,8 @@ namespace ROMS
                     }
                 }
                 grdSubGroupAdd.DataSource = dtSubGroupAdd;
-                grdSubGroupAdd.Columns[0].HeaderText = "";
+                // grdSubGroupAdd.Columns[0].HeaderText = "";
+
 
             }
             catch (Exception ex)
@@ -287,9 +302,9 @@ namespace ROMS
         public void udfnSubGroupList()
         {
             try
-           {
+            {
                 int varviewtype = 6;
-                if(btnSave.Text=="Update")
+                if (btnSave.Text == "Update")
                 {
                     varviewtype = 7;
                 }
@@ -301,17 +316,20 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 if (varGroup != "")
                 {
-                    objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup,0,varId,"");
+                    objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup, 0, varId, "");
                 }
                 objdserv.CloseConnection();
-                if (chkgroup.Checked) { dtSubGroup.Rows.Clear(); dtSubGroup.AcceptChanges(); }
-                if(objDs.Tables[0].Rows.Count != 0)
+                // if (chkgroup.Checked) { dtSubGroup.Rows.Clear(); dtSubGroup.AcceptChanges(); }
+
+                if (objDs.Tables[0].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
                         int varFlag = 0;
-                        for (int j = 0; j < dtSubGroup.Rows.Count; j++) {
-                            if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Id"]) ==Convert.ToInt32( dtSubGroup.Rows[j]["Sub Group Id"])) {
+                        for (int j = 0; j < dtSubGroup.Rows.Count; j++)
+                        {
+                            if (Convert.ToInt32(objDs.Tables[0].Rows[i]["Id"]) == Convert.ToInt32(dtSubGroup.Rows[j]["Sub Group Id"]))
+                            {
                                 varFlag = 1;
                             }
                         }
@@ -319,7 +337,7 @@ namespace ROMS
                         {
                             dtSubGroup.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name"], objDs.Tables[0].Rows[i]["Product Sub Group Name in English"], objDs.Tables[0].Rows[i]["Product Group Id"], objDs.Tables[0].Rows[i]["Id"]);
                         }
-                      
+
                     }
                 }
                 grdSubGroup.DataSource = dtSubGroup;
@@ -334,6 +352,7 @@ namespace ROMS
                 grdSubGroup.Columns["Group Id"].ReadOnly = true;
                 grdSubGroup.Columns["Sub Group Id"].ReadOnly = true;
                 //udfnRefreshSubGroup();
+
 
             }
             catch (Exception ex)
@@ -351,7 +370,7 @@ namespace ROMS
         {
             try
             {
-                 this.Close();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -680,6 +699,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnSave.Focus();
             }
         }
         private void BtnSave_Click(object sender, EventArgs e)
@@ -718,12 +742,17 @@ namespace ROMS
                 {
                     udfnSave(sender, e);
                 }
-              
+
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnSave.Focus();
             }
         }
 
@@ -777,12 +806,11 @@ namespace ROMS
 
         private void TxtSelectedProductSubGroup_KeyDown(object sender, KeyEventArgs e)
         {
-
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnRemove.Focus();
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -900,7 +928,7 @@ namespace ROMS
                 dtSubGroup.Columns.Add("Group Id", typeof(int));
                 dtSubGroup.Columns.Add("Sub Group Id", typeof(int));
 
-                dtSubGroupAdd.Columns.Add("", typeof(Boolean));
+                // dtSubGroupAdd.Columns.Add("", typeof(Boolean));
                 dtSubGroupAdd.Columns.Add("Selected Product Group", typeof(string));
                 dtSubGroupAdd.Columns.Add("Selected Product Subgroup", typeof(string));
                 dtSubGroupAdd.Columns.Add("Group Id", typeof(int));
@@ -939,79 +967,79 @@ namespace ROMS
 
         private void Chkgroup_CheckedChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (varCheckAllFlag1 != 1)
-                {
-                    varGroup = "";
-                    for (int i = 0; i < grdGroup.Rows.Count; i++)
-                    {
-                        grdGroup.Rows[i].Cells[0].Value = chkgroup.Checked;
-                        if (varGroup == "")
-                        {
-                            varGroup = Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value);
-                        }
-                        else
-                        {
-                            varGroup = varGroup + "," + Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value);
-                        }
-                    }
-                    udfnSubGroupList();
-                    if (chkgroup.Checked == false)
-                    {
-                        foreach (DataGridViewRow row in grdGroup.Rows)
-                        {
-                            row.Cells[0].Value = false;
-                        }
-                        dtSubGroup.Rows.Clear();
-                        dtSubGroup.AcceptChanges();
-                        grdSubGroup.DataSource = dtSubGroup;
-                    }
-                }
-                else
-                {
-                    varCheckAllFlag1 = 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            ////try
+            ////{
+            ////    if (varCheckAllFlag1 != 1)
+            ////    {
+            ////        varGroup = "";
+            ////        for (int i = 0; i < grdGroup.Rows.Count; i++)
+            ////        {
+            ////            grdGroup.Rows[i].Cells[0].Value = chkgroup.Checked;
+            ////            if (varGroup == "")
+            ////            {
+            ////                varGroup = Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value);
+            ////            }
+            ////            else
+            ////            {
+            ////                varGroup = varGroup + "," + Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value);
+            ////            }
+            ////        }
+            ////        udfnSubGroupList();
+            ////        if (chkgroup.Checked == false)
+            ////        {
+            ////            foreach (DataGridViewRow row in grdGroup.Rows)
+            ////            {
+            ////                row.Cells[0].Value = false;
+            ////            }
+            ////            dtSubGroup.Rows.Clear();
+            ////            dtSubGroup.AcceptChanges();
+            ////            grdSubGroup.DataSource = dtSubGroup;
+            ////        }
+            ////    }
+            ////    else
+            ////    {
+            ////        varCheckAllFlag1 = 0;
+            ////    }
+            ////}
+            ////catch (Exception ex)
+            ////{
+            ////    objError = new DataError();
+            ////    objError.WriteFile(ex);
+            ////}
         }
 
         private void ChkSubGroup_CheckedChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (varCheckAllFlag2 != 1)
-                {
-                    for (int i = 0; i < grdSubGroup.Rows.Count; i++)
-                    {
-                        grdSubGroup.Rows[i].Cells[0].Value = chkSubGroup.Checked;
-                       // grdSubGroup.Rows[i].Cells["clmchkProductSubGroup"].Value = chkSubGroup.Checked;
-                    }
-                    if(chkSubGroup.Checked==false)
-                    {
-                        foreach (DataGridViewRow row in grdSubGroup.Rows)
-                        {
-                            row.Cells[0].Value = false;
-                        }
-                        //dtSubGroupAdd.Rows.Clear();
-                        //dtSubGroupAdd.AcceptChanges();
-                        //grdSubGroupAdd.DataSource = dtSubGroupAdd;
-                    }
-                }
-                else
-                {
-                    varCheckAllFlag2 = 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    if (varCheckAllFlag2 != 1)
+            //    {
+            //        for (int i = 0; i < grdSubGroup.Rows.Count; i++)
+            //        {
+            //            grdSubGroup.Rows[i].Cells[0].Value = chkSubGroup.Checked;
+            //           // grdSubGroup.Rows[i].Cells["clmchkProductSubGroup"].Value = chkSubGroup.Checked;
+            //        }
+            //        if(chkSubGroup.Checked==false)
+            //        {
+            //            foreach (DataGridViewRow row in grdSubGroup.Rows)
+            //            {
+            //                row.Cells[0].Value = false;
+            //            }
+            //            //dtSubGroupAdd.Rows.Clear();
+            //            //dtSubGroupAdd.AcceptChanges();
+            //            //grdSubGroupAdd.DataSource = dtSubGroupAdd;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        varCheckAllFlag2 = 0;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void GrdGroup_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1022,7 +1050,7 @@ namespace ROMS
                 {
                     udfnCaculateCheckedCount_Group();
                 }
-                varGroup = ""; string varRemoveGroup = ""; 
+                varGroup = ""; string varRemoveGroup = "";
                 if (Convert.ToBoolean(grdGroup.SelectedRows[0].Cells[0].EditedFormattedValue) == true)
                 {
                     varGroup = Convert.ToString(grdGroup.SelectedRows[0].Cells["ID"].Value);
@@ -1030,18 +1058,22 @@ namespace ROMS
                 }
                 else
                 {
+                    DataTable objDtNew = new DataTable();
+                    int varRowCount = dtSubGroup.Rows.Count;
                     varRemoveGroup = Convert.ToString(grdGroup.SelectedRows[0].Cells["ID"].Value);
-                    for (int i = 0; i < dtSubGroup.Rows.Count; i++)
+                   l: for (int i = 0; i < varRowCount; i++)
                     {
-                        if(varRemoveGroup == Convert.ToString(dtSubGroup.Rows[i]["Group ID"]))
+                        if (varRemoveGroup == Convert.ToString(dtSubGroup.Rows[i]["Group ID"]))
                         {
                             dtSubGroup.Rows[i].Delete();
+                            dtSubGroup.AcceptChanges();
+                            varRowCount = dtSubGroup.Rows.Count;
+                            goto l;
                         }
                     }
-                    dtSubGroup.AcceptChanges();
                     grdSubGroup.DataSource = dtSubGroup;
                     grdSubGroup.Columns[0].HeaderText = "";
-                       
+
                 }
                 grdSubGroup.Columns["Product Group"].Width = 150;
                 grdSubGroup.Columns["Product Subgroup"].Width = 200;
@@ -1075,12 +1107,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                    udfnSubGroupAdd();
+                udfnSubGroupAdd();
             }
             catch (Exception ex)
             {
@@ -1125,11 +1156,31 @@ namespace ROMS
         //Added by deepa on 01-09-2023
         private void GrdSubGroupAdd_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            //try
+            //{
+            //    if (e.ColumnIndex == 0)
+            //    { udfnCaculateCheckedCount_SubGroupAdd(); }
+            //}
+            //catch (Exception ex)
+            //{
+            //     objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
             try
             {
-                if (e.ColumnIndex == 0)
+                if (e.RowIndex != -1)
                 {
-                    udfnCaculateCheckedCount_SubGroupAdd();
+
+                    switch (grdSubGroupAdd.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmRemove":
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                grdSubGroupAdd.Rows.RemoveAt(this.grdSubGroupAdd.SelectedRows[0].Index);
+                            }
+                            break;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1218,7 +1269,7 @@ namespace ROMS
                 {
                     udfnSelectedSubGroupRemove();
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -1314,7 +1365,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        
+
         //Added by deepa on 01-09-2023
         public void udfnCaculateCheckedCount_Group()
         {
@@ -1414,6 +1465,312 @@ namespace ROMS
                     varCheckAllFlag3 = 1;
                     chkSubGroupAdd.Checked = false;
                 }
+            }
+        }
+
+        private void GrdGroup_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdGroup.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSubGroup_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdSubGroup.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSubGroupAdd_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdSubGroupAdd.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                for (int i = 0; i < grdGroup.Rows.Count; i++)
+                {
+
+                    grdGroup.Rows[i].Cells[0].Value = chkgroup.Checked;
+                    if (varGroup == "")
+                    {
+                        varGroup = Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value);
+                    }
+                    else
+                    {
+                        varGroup = varGroup + "," + Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value);
+                    }
+                }
+                udfnSubGroupList();
+                foreach (DataGridViewRow row in grdGroup.Rows)
+                {
+                    row.Cells[0].Value = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnselectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkgroup.Checked == false)
+                {
+                    foreach (DataGridViewRow row in grdGroup.Rows)
+                    {
+                        row.Cells[0].Value = false;
+                    }
+                    dtSubGroup.Rows.Clear();
+                    dtSubGroup.AcceptChanges();
+                    grdSubGroup.DataSource = dtSubGroup;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnselectAll_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUnselectAll.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnselectAll_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUnselectAll.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSelectAll_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSelectAll.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSelectAll_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSelectAll.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSelectAll_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnSelectAll_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnselectAll_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnUnselectAll_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSubGrupSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdSubGroup.Rows.Count; i++)
+                {
+                    grdSubGroup.Rows[i].Cells[0].Value = chkSubGroup.Checked;
+                    // grdSubGroup.Rows[i].Cells["clmchkProductSubGroup"].Value = chkSubGroup.Checked;
+                }
+
+                foreach (DataGridViewRow row in grdSubGroup.Rows)
+                {
+                    row.Cells[0].Value = true;
+                }
+                //dtSubGroupAdd.Rows.Clear();
+                //dtSubGroupAdd.AcceptChanges();
+                //grdSubGroupAdd.DataSource = dtSubGroupAdd;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSubGrupUnSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                    foreach (DataGridViewRow row in grdSubGroup.Rows)
+                    {
+                        row.Cells[0].Value = false;
+                    }
+                   
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSubGrupSelectAll_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                BtnSubGrupSelectAll.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSubGrupSelectAll_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                BtnSubGrupSelectAll.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSubGrupSelectAll_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnSelectAll_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSubGrupUnSelectAll_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSubGrupUnSelectAll.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSubGrupUnSelectAll_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnUnselectAll_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+           
+        }
+
+        private void BtnSubGrupUnSelectAll_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSubGrupUnSelectAll.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

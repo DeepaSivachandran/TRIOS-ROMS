@@ -400,6 +400,7 @@
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(208, 27);
             this.pnlStatus.TabIndex = 6;
+            this.pnlStatus.Visible = false;
             // 
             // rbActive
             // 
@@ -464,6 +465,10 @@
             this.lvStaffName.Visible = false;
             this.lvStaffName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvStaffName_KeyDown);
             this.lvStaffName.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LvStaffName_MouseDoubleClick);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 500;
             // 
             // columnHeader2
             // 
@@ -610,6 +615,7 @@
             this.txtStatus.Size = new System.Drawing.Size(108, 27);
             this.txtStatus.TabIndex = 6;
             this.txtStatus.Text = "Status";
+            this.txtStatus.Visible = false;
             // 
             // btnSave
             // 
