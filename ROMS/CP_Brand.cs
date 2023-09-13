@@ -370,7 +370,21 @@ namespace ROMS
         {
             try
             {
-                this.Close();
+                try
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                        MainForm.objCP_BrandList.Show();
+                        MainForm.objCP_BrandList.udfnList();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
             catch (Exception ex)
             {
@@ -383,7 +397,7 @@ namespace ROMS
             try
             {
                 udfnclose();
-                MainForm.objCP_BrandList.udfnList();
+               // MainForm.objCP_BrandList.udfnList();
             }
             catch (Exception ex)
             {
@@ -415,29 +429,29 @@ namespace ROMS
 
         private void CP_Brand_FormClosing(object sender, FormClosingEventArgs e)
         {
-            try
-            {
-                if (MainForm.varCloseFlag == 0)
-                {
-                    if (varUpdate == 0)
-                    {
-                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            e.Cancel = false;
-                        }
-                        else
-                        {
-                            e.Cancel = true;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    if (MainForm.varCloseFlag == 0)
+            //    {
+            //        if (varUpdate == 0)
+            //        {
+            //            DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //            if (dialogResult == DialogResult.Yes)
+            //            {
+            //                e.Cancel = false;
+            //            }
+            //            else
+            //            {
+            //                e.Cancel = true;
+            //            }
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
         private void TxtEBrandNameInEnglish_Enter(object sender, EventArgs e)
         {
