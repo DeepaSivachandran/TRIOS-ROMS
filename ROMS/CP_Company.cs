@@ -2007,13 +2007,9 @@ namespace ROMS
                     {
                         varStatus = "2";
 
-                    }
-                     
+                    }                     
                     DataTable objBankTable = new DataTable();
-                    
-
                     DataTable objContactTable = new DataTable();
-
                     objContactTable.TableName = "MR_Company_Contact";
                     objContactTable.Columns.Add("CMCON_Name", typeof(string));
                     objContactTable.Columns.Add("CMCON_TransactionType", typeof(int));
@@ -2022,7 +2018,6 @@ namespace ROMS
                     objContactTable.Columns.Add("CMCON_MobileBrand", typeof(string));
                     objContactTable.Columns.Add("CMCON_Primary", typeof(int));
                     objContactTable.Columns.Add("CMCON_WhatsAppEnabled", typeof(int));
-
                     int cityid = 0;string varpincode="";
                     if (lblcityid.Text=="")
                     {
@@ -2070,7 +2065,7 @@ namespace ROMS
                     , varpincode, txtPhoneNo.Text, txtAlterPhoneno.Text, txtwhatsappNo.Text, txtmobileNo.Text, txtAlterMobileno.Text, txtEmail.Text, txtwebsite.Text
                     , txtGSTTIN.Text, txtPan.Text, txtESI.Text, txtEPF.Text, txtFSSAI.Text, txtPlno.Text, Convert.ToString(cmbState.SelectedValue), varStatus,
                     MainForm.pbUserID, MainForm.pbIpAddress, varorginator, objBankTable, objContactTable);
-
+                    objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
                     {
@@ -2078,7 +2073,6 @@ namespace ROMS
                         this.ActiveControl = tcCompanyDetails; 
                         tcCompanyDetails.SelectedIndex = 1;
                         MainForm.objCP_Companylist.udfnList();
-
                         varcontactcompanyid = varvalue[2];
                         txtCompanyName.Focus();
                         if (btnSave.Text == "Update")
@@ -2119,14 +2113,17 @@ namespace ROMS
                         
                     }
                 }
-                
-                objspdservice.CloseConnection();
                 btnSave.Enabled = true;
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCompanyName.Focus();
             }
         }
         public DataTable udfnBankSave()
@@ -2552,6 +2549,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             finally
             { 
