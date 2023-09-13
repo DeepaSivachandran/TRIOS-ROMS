@@ -640,8 +640,9 @@ namespace ROMS
 
                             grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, txtStaffName.Text.Trim(), varDesignation, varUserID);
                         }
-                        txtStaffName.Focus();
+                      
                     }
+                    txtStaffName.Focus();
                     txtStaffName.Text = "";
                     varDesignation = "";
                     varUserId = "";
@@ -1512,6 +1513,16 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void LvStaffName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LvStaffName11_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
      
