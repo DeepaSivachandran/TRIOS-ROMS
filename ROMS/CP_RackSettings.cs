@@ -434,7 +434,7 @@ namespace ROMS
                     objDServ.CloseConnection();
                     varSubGroupId = Convert.ToInt32(varId_SubGroup);
                 }
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId,varSubGroupId, "", "", "", 0);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId,varSubGroupId, "", "", "",0,0,0,0,0);
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[0].Rows.Count != 0)
@@ -907,7 +907,7 @@ namespace ROMS
                         objDServ.CloseConnection();
                         varLocationId = Convert.ToInt32(varId_Location);
                     }
-                    if (varLocationId == 0)
+                    if (varLocationId != 0)
                     { 
                         objDs = objspdservice.udfnRackList(7, 0, 0, varLocationId, 0, txtRack.Text);
                         objspdservice.CloseConnection();
@@ -1277,8 +1277,6 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtDRack.Text.Length > 0)
                 {
-                    if (lblDLocation.Text.Trim() != "0")
-                    {
                         int varDLocationId = 0;
                         int varLocationId = 0;
                         int varRackId = 0;
@@ -1307,23 +1305,30 @@ namespace ROMS
                             objDserv.CloseConnection();
                             varLocationId = Convert.ToInt32(varId_DLocation);
                         }
-
-                        objDs = objspdservice.udfnRackList(7, 0, 0, varLocationId, varRackId, txtDRack.Text);
-                        objspdservice.CloseConnection();
-                        if (objDs != null)
+                        if (varLocationId != 0)
                         {
-                            if (objDs.Tables.Count != 0)
+
+                            objDs = objspdservice.udfnRackList(7, 0, 0, varLocationId, varRackId, txtDRack.Text);
+                            objspdservice.CloseConnection();
+                            if (objDs != null)
                             {
-                                if (objDs.Tables[0].Rows.Count != 0)
+                                if (objDs.Tables.Count != 0)
                                 {
-                                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                    if (objDs.Tables[0].Rows.Count != 0)
                                     {
-                                        string[] row = { objDs.Tables[0].Rows[i]["RK_Name"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
-                                        ListViewItem objList = new ListViewItem(row);
-                                        lvDRack.Columns[1].Width = 0;
-                                        lvDRack.Items.Add(objList);
+                                        for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                        {
+                                            string[] row = { objDs.Tables[0].Rows[i]["RK_Name"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
+                                            ListViewItem objList = new ListViewItem(row);
+                                            lvDRack.Columns[1].Width = 0;
+                                            lvDRack.Items.Add(objList);
+                                        }
+                                        lvDRack.Visible = true;
                                     }
-                                    lvDRack.Visible = true;
+                                    else
+                                    {
+                                        lvDRack.Visible = false;
+                                    }
                                 }
                                 else
                                 {
@@ -1337,17 +1342,12 @@ namespace ROMS
                         }
                         else
                         {
-                            lvDRack.Visible = false;
+                            epRackSettings.SetError(txtDLocation, "Invalid Location");
+                            txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            txtDRack.Text = "";
                         }
-                    }
-                    else
-                    {
-                        epRackSettings.SetError(txtDLocation, "Invalid Location");
-                        txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        txtDRack.Text = "";
-                    }
                 }
-                else
+                    else
                 {
                     lvDRack.Visible = false;
                     lvDRack.Items.Clear();
