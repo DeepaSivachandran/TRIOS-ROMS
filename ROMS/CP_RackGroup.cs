@@ -584,6 +584,7 @@ namespace ROMS
         {
             try
             {
+                epRackGroup.Clear();
                 string varAddStaff = ""; int varFlag = 0; int varStaffName = 0;
                 if (Convert.ToString(txtStaffName.Text).Trim() == "")
                 {
@@ -599,10 +600,14 @@ namespace ROMS
                     if (varStaffName == 0)
                     {
                         varUserID = "0";
-                        epRackGroup.SetError(txtStaffName, "Invalid staff name");
-                        txtStaffName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpStaffName.ShowAlways = true;
-                        tpStaffName.Show("Please enter valid staff name", txtStaffName, 5000);
+                        //epRackGroup.SetError(txtStaffName, "Invalid staff name");
+                        //txtStaffName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        //tpStaffName.ShowAlways = true;
+                        //tpStaffName.Show("Please enter valid staff name", txtStaffName, 5000);
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(49);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
