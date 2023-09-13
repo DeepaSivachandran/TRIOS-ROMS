@@ -190,9 +190,9 @@
             this.Name = "CP_ProductDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product Details";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_ProductDetails_FormClosing);
             this.Load += new System.EventHandler(this.CP_Company_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Company_KeyDown);
-            this.Leave += new System.EventHandler(this.CP_Company_Leave);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_ProductDetails_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdProductDetails)).EndInit();
             this.grbProductDetails.ResumeLayout(false);

@@ -77,6 +77,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblEdit = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txtInchargeName = new System.Windows.Forms.TextBox();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGrnlist)).BeginInit();
@@ -103,8 +105,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(182, 22);
-            this.tspHeader.Text = "Goods Inward From Purchase";
+            this.tspHeader.Size = new System.Drawing.Size(212, 22);
+            this.tspHeader.Text = "Goods Inward From Purchase & GRN";
             // 
             // pnlinward
             // 
@@ -265,6 +267,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox10);
+            this.groupBox1.Controls.Add(this.txtInchargeName);
             this.groupBox1.Controls.Add(this.textBox9);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.textBox2);
@@ -607,6 +611,28 @@
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
+            // textBox10
+            // 
+            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox10.Enabled = false;
+            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.textBox10.Location = new System.Drawing.Point(3, 71);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(77, 25);
+            this.textBox10.TabIndex = 1111218;
+            this.textBox10.Text = "Incharge Name";
+            // 
+            // txtInchargeName
+            // 
+            this.txtInchargeName.Enabled = false;
+            this.txtInchargeName.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.txtInchargeName.Location = new System.Drawing.Point(80, 71);
+            this.txtInchargeName.Name = "txtInchargeName";
+            this.txtInchargeName.ReadOnly = true;
+            this.txtInchargeName.Size = new System.Drawing.Size(123, 25);
+            this.txtInchargeName.TabIndex = 1111217;
+            // 
             // INV_InwardPurchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -683,5 +709,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmShopQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox txtInchargeName;
     }
 }

@@ -365,8 +365,8 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_GRNEntryVerify = new PUR_GRNEntryVerify();
-                MainForm.objPUR_GRNEntryVerify.ShowDialog();
+                MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
+                MainForm.objPUR_GRNApprovalVerify.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -380,8 +380,8 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_GRNEntryVerify = new PUR_GRNEntryVerify();
-                MainForm.objPUR_GRNEntryVerify.ShowDialog();
+                MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
+                MainForm.objPUR_GRNApprovalVerify.ShowDialog();
             }
             catch (Exception ex)
             {

@@ -65,8 +65,8 @@ namespace ROMS
                 txtShortName.Text = "";
                 cmbLocationType.SelectedIndex = 0;
                 cmbStockApplicable.SelectedIndex = 0;
-                cmbConcern.Focus();
-                this.ActiveControl = cmbConcern;
+                cmbLocationType.Focus();
+                this.ActiveControl = cmbLocationType;
             }
             catch (Exception ex)
             {
@@ -184,6 +184,12 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+
+                MainForm.objCP_LocationList.picLoader.Visible = false;
+                MainForm.objCP_LocationList.picLoader.SendToBack();
+            }
         }
         private void udfnLoad()
         {
@@ -223,8 +229,25 @@ namespace ROMS
             {
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
-                if (rbInside.Checked == true) { varGodownType = 86; }
-                else { varGodownType = 87; }
+
+                if (pnlGodownType.Enabled == false)
+                {
+                    rbInside.Checked = false;
+                    rbOutside.Checked = false;
+                    varGodownType = 0;
+                }
+                else
+                {
+                    if (rbInside.Checked == true)
+                    {
+                        varGodownType = 86;
+                    }
+                    else
+                    {
+                        varGodownType = 87;
+                    }
+                }
+                 
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;
@@ -239,6 +262,7 @@ namespace ROMS
                         varType = 1;
                     }
                     varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator);
+                    objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
                     {
@@ -254,12 +278,19 @@ namespace ROMS
                     else
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnSave.Enabled = true;
+                        btnSave.Focus();
                     }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnSave.Focus();
             }
             finally
             {
@@ -313,6 +344,14 @@ namespace ROMS
                     tpStoctApplicable.Show("Please select stock applicable", cmbStockApplicable, 5000);
                     blnErrorFlag = true;
                 }
+                if (Convert.ToString(txtShortName.Text).Trim() == "")
+                {
+                    epLocation.SetError(txtShortName, "Please enter short name");
+                    txtShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpLocationTypeInTamil.ShowAlways = true;
+                    tpLocationTypeInTamil.Show("Please  enter short name", txtShortName, 5000);
+                    blnErrorFlag = true;
+                }
                 if (blnErrorFlag == false)
                 {
                     btnSave.Enabled = false;
@@ -323,6 +362,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void CP_Location_KeyDown(object sender, KeyEventArgs e)
@@ -883,10 +926,20 @@ namespace ROMS
             if (Convert.ToInt32(cmbLocationType.SelectedValue) == 9)
             {
                 pnlGodownType.Enabled = true;
+                rbInside.Checked = true;
             }
             else
             {
                 pnlGodownType.Enabled = false;
+                rbInside.Checked = false;
+            }
+        }
+
+        private void CmbStockApplicable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(btnSave.Text=="Save")
+            {
+                cmbStockApplicable.SelectedValue = 11;
             }
         }
     }

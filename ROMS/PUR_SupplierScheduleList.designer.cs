@@ -28,16 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsSupplierScheduleList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlSupplierScheduleList = new System.Windows.Forms.Panel();
+            this.LV_Supplier = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label6 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -45,18 +50,18 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSchedulePopup = new System.Windows.Forms.Button();
             this.grpprint = new System.Windows.Forms.GroupBox();
+            this.cmbOrderSchedule = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.cmbDay = new System.Windows.Forms.ComboBox();
-            this.cmbOrder = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnListPrint = new System.Windows.Forms.Button();
             this.pnlLanguage = new System.Windows.Forms.Panel();
             this.rbEnglish = new System.Windows.Forms.RadioButton();
             this.rbTamil = new System.Windows.Forms.RadioButton();
             this.lblPrintLanguage = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtsuppliernameprint = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lvSupplier = new System.Windows.Forms.ListView();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -85,8 +90,14 @@
             this.clmday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.cmbOrderSchedule = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lvSupplerName = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblSupplierCode = new System.Windows.Forms.Label();
+            this.lblSuppliernameprint = new System.Windows.Forms.Label();
+            this.ep_Supplierlist = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cmbOrder = new System.Windows.Forms.ComboBox();
             this.tsSupplierScheduleList.SuspendLayout();
             this.pnlSupplierScheduleList.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -96,6 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupplierScheduleList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ep_Supplierlist)).BeginInit();
             this.SuspendLayout();
             // 
             // tsSupplierScheduleList
@@ -138,13 +150,14 @@
             // pnlSupplierScheduleList
             // 
             this.pnlSupplierScheduleList.BackColor = System.Drawing.Color.White;
+            this.pnlSupplierScheduleList.Controls.Add(this.lvSupplerName);
+            this.pnlSupplierScheduleList.Controls.Add(this.LV_Supplier);
             this.pnlSupplierScheduleList.Controls.Add(this.label6);
             this.pnlSupplierScheduleList.Controls.Add(this.textBox8);
             this.pnlSupplierScheduleList.Controls.Add(this.label7);
             this.pnlSupplierScheduleList.Controls.Add(this.textBox7);
             this.pnlSupplierScheduleList.Controls.Add(this.groupBox1);
             this.pnlSupplierScheduleList.Controls.Add(this.grpprint);
-            this.pnlSupplierScheduleList.Controls.Add(this.lvSupplier);
             this.pnlSupplierScheduleList.Controls.Add(this.grpfilter);
             this.pnlSupplierScheduleList.Controls.Add(this.lblNoRecordsFound);
             this.pnlSupplierScheduleList.Controls.Add(this.dgvSupplierScheduleList);
@@ -154,6 +167,36 @@
             this.pnlSupplierScheduleList.Name = "pnlSupplierScheduleList";
             this.pnlSupplierScheduleList.Size = new System.Drawing.Size(1354, 642);
             this.pnlSupplierScheduleList.TabIndex = 958788;
+            // 
+            // LV_Supplier
+            // 
+            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader8,
+            this.columnHeader9});
+            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.LV_Supplier.HideSelection = false;
+            this.LV_Supplier.Location = new System.Drawing.Point(7, 79);
+            this.LV_Supplier.Name = "LV_Supplier";
+            this.LV_Supplier.Size = new System.Drawing.Size(357, 93);
+            this.LV_Supplier.TabIndex = 1111222;
+            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
+            this.LV_Supplier.View = System.Windows.Forms.View.Details;
+            this.LV_Supplier.Visible = false;
+            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
+            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 180;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 120;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Width = 0;
             // 
             // label6
             // 
@@ -203,7 +246,7 @@
             this.groupBox1.Location = new System.Drawing.Point(1138, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(209, 84);
-            this.groupBox1.TabIndex = 1111174;
+            this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Day Wise Suppliers in PO Schedule";
             // 
@@ -216,62 +259,72 @@
             this.btnSchedulePopup.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSchedulePopup.Name = "btnSchedulePopup";
             this.btnSchedulePopup.Size = new System.Drawing.Size(67, 33);
-            this.btnSchedulePopup.TabIndex = 1111177;
+            this.btnSchedulePopup.TabIndex = 10;
             this.btnSchedulePopup.Text = "View";
             this.btnSchedulePopup.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSchedulePopup.UseVisualStyleBackColor = true;
             this.btnSchedulePopup.Click += new System.EventHandler(this.BtnSchedulePopup_Click);
+            this.btnSchedulePopup.Enter += new System.EventHandler(this.BtnSchedulePopup_Enter);
+            this.btnSchedulePopup.Leave += new System.EventHandler(this.BtnSchedulePopup_Leave);
             // 
             // grpprint
             // 
+            this.grpprint.Controls.Add(this.lblSuppliernameprint);
+            this.grpprint.Controls.Add(this.lblSupplierCode);
             this.grpprint.Controls.Add(this.cmbOrderSchedule);
             this.grpprint.Controls.Add(this.label8);
             this.grpprint.Controls.Add(this.cmbDay);
             this.grpprint.Controls.Add(this.cmbOrder);
             this.grpprint.Controls.Add(this.label4);
-            this.grpprint.Controls.Add(this.button1);
+            this.grpprint.Controls.Add(this.btnListPrint);
             this.grpprint.Controls.Add(this.pnlLanguage);
             this.grpprint.Controls.Add(this.lblPrintLanguage);
             this.grpprint.Controls.Add(this.label3);
-            this.grpprint.Controls.Add(this.textBox2);
+            this.grpprint.Controls.Add(this.txtsuppliernameprint);
             this.grpprint.Controls.Add(this.label1);
             this.grpprint.Location = new System.Drawing.Point(381, 2);
             this.grpprint.Name = "grpprint";
             this.grpprint.Size = new System.Drawing.Size(741, 84);
-            this.grpprint.TabIndex = 1111172;
+            this.grpprint.TabIndex = 3;
             this.grpprint.TabStop = false;
             this.grpprint.Text = "Print By";
             // 
+            // cmbOrderSchedule
+            // 
+            this.cmbOrderSchedule.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbOrderSchedule.FormattingEnabled = true;
+            this.cmbOrderSchedule.Location = new System.Drawing.Point(435, 49);
+            this.cmbOrderSchedule.Name = "cmbOrderSchedule";
+            this.cmbOrderSchedule.Size = new System.Drawing.Size(105, 27);
+            this.cmbOrderSchedule.TabIndex = 6;
+            this.cmbOrderSchedule.SelectedIndexChanged += new System.EventHandler(this.CmbOrderSchedule_SelectedIndexChanged);
+            this.cmbOrderSchedule.Enter += new System.EventHandler(this.CmbOrderSchedule_Enter);
+            this.cmbOrderSchedule.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderSchedule_KeyDown);
+            this.cmbOrderSchedule.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderSchedule_KeyPress);
+            this.cmbOrderSchedule.Leave += new System.EventHandler(this.CmbOrderSchedule_Leave);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(435, 26);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(92, 20);
+            this.label8.TabIndex = 1111179;
+            this.label8.Text = "Order Schedule";
+            // 
             // cmbDay
             // 
-            this.cmbDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDay.FormattingEnabled = true;
-            this.cmbDay.Items.AddRange(new object[] {
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"});
             this.cmbDay.Location = new System.Drawing.Point(5, 49);
             this.cmbDay.Name = "cmbDay";
             this.cmbDay.Size = new System.Drawing.Size(76, 27);
-            this.cmbDay.TabIndex = 1111175;
-            // 
-            // cmbOrder
-            // 
-            this.cmbOrder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbOrder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbOrder.FormattingEnabled = true;
-            this.cmbOrder.Items.AddRange(new object[] {
-            "Phone",
-            "Visit",
-            "Mobile App"});
-            this.cmbOrder.Location = new System.Drawing.Point(86, 49);
-            this.cmbOrder.Name = "cmbOrder";
-            this.cmbOrder.Size = new System.Drawing.Size(76, 27);
-            this.cmbOrder.TabIndex = 1111178;
+            this.cmbDay.TabIndex = 3;
+            this.cmbDay.SelectedIndexChanged += new System.EventHandler(this.CmbDay_SelectedIndexChanged);
+            this.cmbDay.Enter += new System.EventHandler(this.CmbDay_Enter);
+            this.cmbDay.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbDay_KeyDown);
+            this.cmbDay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbDay_KeyPress);
+            this.cmbDay.Leave += new System.EventHandler(this.CmbDay_Leave);
             // 
             // label4
             // 
@@ -283,19 +336,21 @@
             this.label4.TabIndex = 1111177;
             this.label4.Text = "Order Type";
             // 
-            // button1
+            // btnListPrint
             // 
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::ROMS.Properties.Resources.print;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(669, 46);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(67, 33);
-            this.button1.TabIndex = 1111176;
-            this.button1.Text = "Print";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListPrint.Location = new System.Drawing.Point(669, 46);
+            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnListPrint.Name = "btnListPrint";
+            this.btnListPrint.Size = new System.Drawing.Size(67, 33);
+            this.btnListPrint.TabIndex = 9;
+            this.btnListPrint.Text = "Print";
+            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListPrint.UseVisualStyleBackColor = true;
+            this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
+            this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
             // 
             // pnlLanguage
             // 
@@ -315,9 +370,12 @@
             this.rbEnglish.Location = new System.Drawing.Point(56, 1);
             this.rbEnglish.Name = "rbEnglish";
             this.rbEnglish.Size = new System.Drawing.Size(60, 21);
-            this.rbEnglish.TabIndex = 7;
+            this.rbEnglish.TabIndex = 8;
             this.rbEnglish.Text = "English";
             this.rbEnglish.UseVisualStyleBackColor = true;
+            this.rbEnglish.Enter += new System.EventHandler(this.RbEnglish_Enter);
+            this.rbEnglish.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbEnglish_KeyDown);
+            this.rbEnglish.Leave += new System.EventHandler(this.RbEnglish_Leave);
             // 
             // rbTamil
             // 
@@ -327,10 +385,13 @@
             this.rbTamil.Location = new System.Drawing.Point(4, 3);
             this.rbTamil.Name = "rbTamil";
             this.rbTamil.Size = new System.Drawing.Size(51, 19);
-            this.rbTamil.TabIndex = 6;
+            this.rbTamil.TabIndex = 7;
             this.rbTamil.TabStop = true;
             this.rbTamil.Text = "தமிழ்";
             this.rbTamil.UseVisualStyleBackColor = true;
+            this.rbTamil.Enter += new System.EventHandler(this.RbTamil_Enter);
+            this.rbTamil.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbTamil_KeyDown);
+            this.rbTamil.Leave += new System.EventHandler(this.RbTamil_Leave);
             // 
             // lblPrintLanguage
             // 
@@ -352,14 +413,18 @@
             this.label3.TabIndex = 1111173;
             this.label3.Text = "Supplier Name";
             // 
-            // textBox2
+            // txtsuppliernameprint
             // 
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(169, 49);
-            this.textBox2.MaxLength = 50;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(261, 27);
-            this.textBox2.TabIndex = 1111174;
+            this.txtsuppliernameprint.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtsuppliernameprint.Location = new System.Drawing.Point(169, 49);
+            this.txtsuppliernameprint.MaxLength = 50;
+            this.txtsuppliernameprint.Name = "txtsuppliernameprint";
+            this.txtsuppliernameprint.Size = new System.Drawing.Size(261, 27);
+            this.txtsuppliernameprint.TabIndex = 5;
+            this.txtsuppliernameprint.TextChanged += new System.EventHandler(this.Txtsuppliernameprint_TextChanged);
+            this.txtsuppliernameprint.Enter += new System.EventHandler(this.Txtsuppliernameprint_Enter);
+            this.txtsuppliernameprint.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsuppliernameprint_KeyDown);
+            this.txtsuppliernameprint.Leave += new System.EventHandler(this.Txtsuppliernameprint_Leave);
             // 
             // label1
             // 
@@ -370,16 +435,6 @@
             this.label1.Size = new System.Drawing.Size(63, 20);
             this.label1.TabIndex = 1111140;
             this.label1.Text = "Order Day";
-            // 
-            // lvSupplier
-            // 
-            this.lvSupplier.HideSelection = false;
-            this.lvSupplier.Location = new System.Drawing.Point(6, 79);
-            this.lvSupplier.Name = "lvSupplier";
-            this.lvSupplier.Size = new System.Drawing.Size(328, 113);
-            this.lvSupplier.TabIndex = 1111171;
-            this.lvSupplier.UseCompatibleStateImageBehavior = false;
-            this.lvSupplier.Visible = false;
             // 
             // grpfilter
             // 
@@ -397,16 +452,16 @@
             // 
             // cmbStatus
             // 
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Items.AddRange(new object[] {
-            "--All--",
-            "Unscheduled",
-            "Unmapped"});
             this.cmbStatus.Location = new System.Drawing.Point(216, 49);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(81, 27);
-            this.cmbStatus.TabIndex = 1111177;
+            this.cmbStatus.TabIndex = 1;
+            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
+            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
+            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
+            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
+            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
             // 
             // label5
             // 
@@ -427,10 +482,12 @@
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(63, 33);
-            this.btnView.TabIndex = 1111141;
+            this.btnView.TabIndex = 2;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
+            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
             // label2
             // 
@@ -449,7 +506,11 @@
             this.txtSupplier.MaxLength = 50;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(206, 27);
-            this.txtSupplier.TabIndex = 1111172;
+            this.txtSupplier.TabIndex = 0;
+            this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
+            this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
+            this.txtSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplier_KeyDown);
+            this.txtSupplier.Leave += new System.EventHandler(this.TxtSupplier_Leave);
             // 
             // lblNoRecordsFound
             // 
@@ -470,14 +531,14 @@
             this.dgvSupplierScheduleList.AllowUserToResizeRows = false;
             this.dgvSupplierScheduleList.BackgroundColor = System.Drawing.Color.White;
             this.dgvSupplierScheduleList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSupplierScheduleList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSupplierScheduleList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvSupplierScheduleList.ColumnHeadersHeight = 30;
             this.dgvSupplierScheduleList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvSupplierScheduleList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -490,23 +551,23 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn5});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSupplierScheduleList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSupplierScheduleList.DefaultCellStyle = dataGridViewCellStyle14;
             this.dgvSupplierScheduleList.EnableHeadersVisualStyles = false;
             this.dgvSupplierScheduleList.GridColor = System.Drawing.Color.White;
             this.dgvSupplierScheduleList.Location = new System.Drawing.Point(3, 148);
             this.dgvSupplierScheduleList.Name = "dgvSupplierScheduleList";
             this.dgvSupplierScheduleList.ReadOnly = true;
             this.dgvSupplierScheduleList.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.dgvSupplierScheduleList.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.dgvSupplierScheduleList.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvSupplierScheduleList.RowTemplate.Height = 25;
             this.dgvSupplierScheduleList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvSupplierScheduleList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -514,6 +575,7 @@
             this.dgvSupplierScheduleList.Size = new System.Drawing.Size(1348, 461);
             this.dgvSupplierScheduleList.TabIndex = 958802;
             this.dgvSupplierScheduleList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSupplierScheduleList_CellContentClick);
+            this.dgvSupplierScheduleList.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -580,14 +642,14 @@
             this.DGV_SearchGrid.AllowUserToResizeRows = false;
             this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGV_SearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -600,28 +662,31 @@
             this.clmordertype,
             this.clmday,
             this.TotalProducts});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle17;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 92);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 958801;
+            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
+            this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             // 
             // clmdsno
             // 
@@ -691,29 +756,73 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // cmbOrderSchedule
+            // lvSupplerName
             // 
-            this.cmbOrderSchedule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbOrderSchedule.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbOrderSchedule.FormattingEnabled = true;
-            this.cmbOrderSchedule.Items.AddRange(new object[] {
-            "Phone",
-            "Visit",
-            "Mobile App"});
-            this.cmbOrderSchedule.Location = new System.Drawing.Point(435, 49);
-            this.cmbOrderSchedule.Name = "cmbOrderSchedule";
-            this.cmbOrderSchedule.Size = new System.Drawing.Size(105, 27);
-            this.cmbOrderSchedule.TabIndex = 1111180;
+            this.lvSupplerName.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvSupplerName.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSupplerName.HideSelection = false;
+            this.lvSupplerName.Location = new System.Drawing.Point(550, 79);
+            this.lvSupplerName.Name = "lvSupplerName";
+            this.lvSupplerName.Size = new System.Drawing.Size(357, 93);
+            this.lvSupplerName.TabIndex = 1111223;
+            this.lvSupplerName.UseCompatibleStateImageBehavior = false;
+            this.lvSupplerName.View = System.Windows.Forms.View.Details;
+            this.lvSupplerName.Visible = false;
+            this.lvSupplerName.DoubleClick += new System.EventHandler(this.LvSupplerName_DoubleClick);
+            this.lvSupplerName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSupplerName_KeyDown);
             // 
-            // label8
+            // columnHeader1
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(435, 26);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(92, 20);
-            this.label8.TabIndex = 1111179;
-            this.label8.Text = "Order Schedule";
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
+            // 
+            // lblSupplierCode
+            // 
+            this.lblSupplierCode.AutoSize = true;
+            this.lblSupplierCode.Location = new System.Drawing.Point(263, 15);
+            this.lblSupplierCode.Name = "lblSupplierCode";
+            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSupplierCode.TabIndex = 1111180;
+            this.lblSupplierCode.Text = "0";
+            this.lblSupplierCode.Visible = false;
+            // 
+            // lblSuppliernameprint
+            // 
+            this.lblSuppliernameprint.AutoSize = true;
+            this.lblSuppliernameprint.Location = new System.Drawing.Point(362, 32);
+            this.lblSuppliernameprint.Name = "lblSuppliernameprint";
+            this.lblSuppliernameprint.Size = new System.Drawing.Size(16, 20);
+            this.lblSuppliernameprint.TabIndex = 1111181;
+            this.lblSuppliernameprint.Text = "0";
+            this.lblSuppliernameprint.Visible = false;
+            // 
+            // ep_Supplierlist
+            // 
+            this.ep_Supplierlist.ContainerControl = this;
+            // 
+            // cmbOrder
+            // 
+            this.cmbOrder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbOrder.FormattingEnabled = true;
+            this.cmbOrder.Location = new System.Drawing.Point(86, 49);
+            this.cmbOrder.Name = "cmbOrder";
+            this.cmbOrder.Size = new System.Drawing.Size(76, 27);
+            this.cmbOrder.TabIndex = 4;
+            this.cmbOrder.SelectedIndexChanged += new System.EventHandler(this.CmbOrder_SelectedIndexChanged);
+            this.cmbOrder.Enter += new System.EventHandler(this.CmbOrder_Enter);
+            this.cmbOrder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrder_KeyDown);
+            this.cmbOrder.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrder_KeyPress);
+            this.cmbOrder.Leave += new System.EventHandler(this.CmbOrder_Leave);
             // 
             // PUR_SupplierScheduleList
             // 
@@ -746,6 +855,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupplierScheduleList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ep_Supplierlist)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -764,22 +874,20 @@
         private System.Windows.Forms.GroupBox grpfilter;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListView lvSupplier;
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.GroupBox grpprint;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtsuppliernameprint;
         private System.Windows.Forms.Label lblPrintLanguage;
         private System.Windows.Forms.Panel pnlLanguage;
         private System.Windows.Forms.RadioButton rbEnglish;
         private System.Windows.Forms.RadioButton rbTamil;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnListPrint;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnSchedulePopup;
         private System.Windows.Forms.ComboBox cmbDay;
-        private System.Windows.Forms.ComboBox cmbOrder;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
@@ -806,5 +914,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalProducts;
         private System.Windows.Forms.ComboBox cmbOrderSchedule;
         private System.Windows.Forms.Label label8;
+        public System.Windows.Forms.ListView LV_Supplier;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        public System.Windows.Forms.ListView lvSupplerName;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Label lblSupplierCode;
+        private System.Windows.Forms.Label lblSuppliernameprint;
+        private System.Windows.Forms.ErrorProvider ep_Supplierlist;
+        private System.Windows.Forms.ComboBox cmbOrder;
     }
 }

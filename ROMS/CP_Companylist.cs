@@ -23,6 +23,9 @@ namespace ROMS
         {
             try
             {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents(); 
                 MainForm.objCP_Company = new CP_Company();
                 MainForm.objCP_Company.MdiParent = this.ParentForm;
                 MainForm.objCP_Company.Show();
@@ -32,6 +35,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
 
+            }
+            finally
+            {
+                picLoader.Visible = false; 
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -67,12 +74,10 @@ namespace ROMS
             {
                 if (grdCompanyList.SelectedRows.Count > 0)
                 {
-
                     string result = "";
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-
                         SPDataService objspdservice = new SPDataService();
                         DataTable objContactTable = new DataTable();
                         objContactTable.TableName = "MR_Company_Contact";
@@ -83,8 +88,6 @@ namespace ROMS
                         objContactTable.Columns.Add("CMCON_MobileBrand", typeof(string));
                         objContactTable.Columns.Add("CMCON_Primary", typeof(int));
                         objContactTable.Columns.Add("CMCON_WhatsAppEnabled", typeof(int));
-
-
                         DataTable objBankTable = new DataTable();
                         objBankTable.TableName = "MR_Bank";
                         objBankTable.Columns.Add("CMBNK_Name", typeof(string));
@@ -93,15 +96,13 @@ namespace ROMS
                         objBankTable.Columns.Add("CMBNK_AccNo", typeof(string));
                         objBankTable.Columns.Add("CMBNK_IFSC", typeof(string));
                         objBankTable.Columns.Add("CMBNK_STSID", typeof(string));
-
                         result = objspdservice.udfnCompanyMaster(2, Convert.ToInt32(grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", "","", 0, "", "","","", "","", "","", "","","", "", "", "","","","","", "Company delete", objBankTable, objContactTable);
-
+                        objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             udfnList();
-
                         }
                         else
                         {
@@ -114,6 +115,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
@@ -122,11 +127,13 @@ namespace ROMS
         {
             try
             {
-
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
                 if (grdCompanyList.SelectedRows.Count > 0)
-                { 
+                {
                     MainForm.objCP_Company = new CP_Company();
-                    MainForm.objCP_Company.MdiParent = this.ParentForm; 
+                    MainForm.objCP_Company.MdiParent = this.ParentForm;
                     MainForm.objCP_Company.varcompanyid = grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString();
                     MainForm.objCP_Company.Show();
                 }
@@ -137,7 +144,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
+            finally
+            {
+                picLoader.Visible = false; 
+            }
         }
 
         public void udfnList()

@@ -42,10 +42,14 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlRack = new System.Windows.Forms.Panel();
+            this.lvStockLocation = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
-            this.cmbStockLocation = new System.Windows.Forms.ComboBox();
             this.lblDConcern = new System.Windows.Forms.Label();
+            this.txtStockLocation = new System.Windows.Forms.TextBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
@@ -145,6 +149,7 @@
             // pnlRack
             // 
             this.pnlRack.BackColor = System.Drawing.Color.White;
+            this.pnlRack.Controls.Add(this.lvStockLocation);
             this.pnlRack.Controls.Add(this.DGV_SearchGrid);
             this.pnlRack.Controls.Add(this.grbFilterBy);
             this.pnlRack.Controls.Add(this.lblNoRecordsFound);
@@ -154,6 +159,36 @@
             this.pnlRack.Name = "pnlRack";
             this.pnlRack.Size = new System.Drawing.Size(1354, 641);
             this.pnlRack.TabIndex = 36;
+            // 
+            // lvStockLocation
+            // 
+            this.lvStockLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.lvStockLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvStockLocation.HideSelection = false;
+            this.lvStockLocation.Location = new System.Drawing.Point(341, 55);
+            this.lvStockLocation.Name = "lvStockLocation";
+            this.lvStockLocation.Size = new System.Drawing.Size(322, 157);
+            this.lvStockLocation.TabIndex = 958805;
+            this.lvStockLocation.UseCompatibleStateImageBehavior = false;
+            this.lvStockLocation.View = System.Windows.Forms.View.Details;
+            this.lvStockLocation.Visible = false;
+            this.lvStockLocation.DoubleClick += new System.EventHandler(this.LvStockLocation_DoubleClick);
+            this.lvStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvStockLocation_KeyDown);
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 150;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 150;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Width = 0;
             // 
             // DGV_SearchGrid
             // 
@@ -200,8 +235,8 @@
             // 
             // grbFilterBy
             // 
-            this.grbFilterBy.Controls.Add(this.cmbStockLocation);
             this.grbFilterBy.Controls.Add(this.lblDConcern);
+            this.grbFilterBy.Controls.Add(this.txtStockLocation);
             this.grbFilterBy.Controls.Add(this.btnExport);
             this.grbFilterBy.Controls.Add(this.btnView);
             this.grbFilterBy.Controls.Add(this.cmbConcern);
@@ -210,23 +245,10 @@
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
             this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterBy.Size = new System.Drawing.Size(672, 67);
-            this.grbFilterBy.TabIndex = 958800;
+            this.grbFilterBy.Size = new System.Drawing.Size(1348, 67);
+            this.grbFilterBy.TabIndex = 0;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By Rack Group";
-            // 
-            // cmbStockLocation
-            // 
-            this.cmbStockLocation.FormattingEnabled = true;
-            this.cmbStockLocation.Location = new System.Drawing.Point(332, 26);
-            this.cmbStockLocation.Name = "cmbStockLocation";
-            this.cmbStockLocation.Size = new System.Drawing.Size(147, 27);
-            this.cmbStockLocation.TabIndex = 1;
-            this.cmbStockLocation.SelectedIndexChanged += new System.EventHandler(this.CmbStockLocation_SelectedIndexChanged);
-            this.cmbStockLocation.Enter += new System.EventHandler(this.CmbStockLocation_Enter);
-            this.cmbStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStockLocation_KeyDown);
-            this.cmbStockLocation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStockLocation_KeyPress);
-            this.cmbStockLocation.Leave += new System.EventHandler(this.CmbStockLocation_Leave);
             // 
             // lblDConcern
             // 
@@ -237,6 +259,19 @@
             this.lblDConcern.Size = new System.Drawing.Size(54, 20);
             this.lblDConcern.TabIndex = 36;
             this.lblDConcern.Text = "Concern";
+            // 
+            // txtStockLocation
+            // 
+            this.txtStockLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStockLocation.Location = new System.Drawing.Point(338, 26);
+            this.txtStockLocation.MaxLength = 50;
+            this.txtStockLocation.Name = "txtStockLocation";
+            this.txtStockLocation.Size = new System.Drawing.Size(147, 27);
+            this.txtStockLocation.TabIndex = 1;
+            this.txtStockLocation.TextChanged += new System.EventHandler(this.TxtStockLocation_TextChanged);
+            this.txtStockLocation.Enter += new System.EventHandler(this.TxtStockLocation_Enter);
+            this.txtStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtStockLocation_KeyDown);
+            this.txtStockLocation.Leave += new System.EventHandler(this.TxtStockLocation_Leave);
             // 
             // btnExport
             // 
@@ -414,8 +449,12 @@
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.Label lblDShopGodown;
-        private System.Windows.Forms.ComboBox cmbStockLocation;
         private System.Windows.Forms.Label lblDConcern;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
+        private System.Windows.Forms.TextBox txtStockLocation;
+        public System.Windows.Forms.ListView lvStockLocation;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }

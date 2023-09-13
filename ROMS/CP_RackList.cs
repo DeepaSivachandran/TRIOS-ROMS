@@ -79,7 +79,6 @@ namespace ROMS
             }
         }
  
-
         public void udfnList()
         {
             try
@@ -150,6 +149,7 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                lblGC.Text = Convert.ToString(grdGroupList.Rows.Count);
             }
         }
 
@@ -216,7 +216,7 @@ namespace ROMS
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
                         varResult = objspservice.udfnRack(2, Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value), 0, 0, "", "","", 0, "Rack Delete");
-
+                        objspservice.CloseConnection();
 
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -234,6 +234,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
@@ -243,11 +247,15 @@ namespace ROMS
             {
                 if (grdGroupList.SelectedRows.Count > 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_Rack = new CP_Rack();
                     MainForm.objCP_Rack.btnSave.Text = "Update";
                     MainForm.objCP_Rack.varRackcode = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_Rack.PbConcernID = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ConcernID"].Value);
-                    MainForm.objCP_Rack.PbStockLocationID = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["StockLocationID"].Value);
+                    MainForm.objCP_Rack.varLocationCode = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["StockLocationID"].Value);
+                    MainForm.objCP_Rack.PbLocationName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Stock Location"].Value);
                     MainForm.objCP_Rack.PbRackName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Rack Name"].Value);
                     MainForm.objCP_Rack.PbShortName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Short Name"].Value);
                     MainForm.objCP_Rack.PbDescription = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Description"].Value);
@@ -679,6 +687,22 @@ namespace ROMS
             try
             {
                 cmbGroupType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbGroupType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
             }
             catch (Exception ex)
             {
