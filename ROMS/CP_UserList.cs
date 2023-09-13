@@ -90,13 +90,9 @@ namespace ROMS
                 else
                 {
                     DataService objDServ = new DataService();
-                    string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_User WHERE U_Name ='"+txtDUserList.Text.Trim()+"'");
+                    string varId_User = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_User WHERE U_Name = '" + txtDUserList.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT UID FROM MR_User WHERE U_Name = '" + txtDUserList.Text.Trim() + "') END AS UID ");
                     objDServ.CloseConnection();
-                    if (varCount == "0") { varUserId = -1; }
-                    else
-                    {
-                        varUserId = Convert.ToInt32(lblUserId.Text);
-                    }
+                    varUserId = Convert.ToInt32(varId_User);
                 }
                 objDs = objspservice.udfnUserList(2,(txtDUserList.Text),"","", varUserId);
                 objspservice.CloseConnection();
@@ -166,6 +162,7 @@ namespace ROMS
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
                         varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", 0,0,"",0, 0, "User Delete");
+                        objspservice.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
                             MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -182,6 +179,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void udfnEdit()
@@ -190,6 +191,9 @@ namespace ROMS
             {
                 if (grdUserList.SelectedRows.Count > 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_User = new CP_User();
                     MainForm.objCP_User.btnSave.Text = "Update";
                     MainForm.objCP_User.varUserID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value);
@@ -530,6 +534,7 @@ namespace ROMS
         {
             try
             {
+                lvUserList.Visible = false;
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -657,9 +662,9 @@ namespace ROMS
                 lvUserList.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtDUserList.Text.Length > 2)
+                if (txtDUserList.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnUserList(1, txtDUserList.Text, "","",0);
+                    objDs = objspdservice.udfnUserList(5, txtDUserList.Text, "","",0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -736,6 +741,10 @@ namespace ROMS
                     {
                         lvUserList.Items[0].Selected = true;
                     }
+                }
+                if(e.KeyCode==Keys.Enter)
+                {
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)

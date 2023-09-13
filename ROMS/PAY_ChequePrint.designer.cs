@@ -34,9 +34,7 @@
             this.pnlSupplierMapping = new System.Windows.Forms.Panel();
             this.grpSupplierMapping = new System.Windows.Forms.GroupBox();
             this.grbgodown = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.txtamountwords = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnPreview = new System.Windows.Forms.Button();
             this.cmbBank = new System.Windows.Forms.ComboBox();
             this.txtTransactionno = new System.Windows.Forms.TextBox();
             this.lblDAmount = new System.Windows.Forms.Label();
@@ -45,11 +43,20 @@
             this.txtsuppliername = new System.Windows.Forms.TextBox();
             this.lblSupplier = new System.Windows.Forms.Label();
             this.lblChequeDate = new System.Windows.Forms.Label();
-            this.grbSupplierDetails = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tsSupplierMapping.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
             this.grpSupplierMapping.SuspendLayout();
             this.grbgodown.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsSupplierMapping
@@ -100,7 +107,8 @@
             // grpSupplierMapping
             // 
             this.grpSupplierMapping.BackColor = System.Drawing.Color.White;
-            this.grpSupplierMapping.Controls.Add(this.grbSupplierDetails);
+            this.grpSupplierMapping.Controls.Add(this.groupBox1);
+            this.grpSupplierMapping.Controls.Add(this.groupBox2);
             this.grpSupplierMapping.Controls.Add(this.grbgodown);
             this.grpSupplierMapping.Location = new System.Drawing.Point(7, 1);
             this.grpSupplierMapping.Name = "grpSupplierMapping";
@@ -110,9 +118,7 @@
             // 
             // grbgodown
             // 
-            this.grbgodown.Controls.Add(this.button1);
-            this.grbgodown.Controls.Add(this.txtamountwords);
-            this.grbgodown.Controls.Add(this.label1);
+            this.grbgodown.Controls.Add(this.btnPreview);
             this.grbgodown.Controls.Add(this.cmbBank);
             this.grbgodown.Controls.Add(this.txtTransactionno);
             this.grbgodown.Controls.Add(this.lblDAmount);
@@ -125,40 +131,22 @@
             this.grbgodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbgodown.Name = "grbgodown";
             this.grbgodown.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbgodown.Size = new System.Drawing.Size(1094, 73);
+            this.grbgodown.Size = new System.Drawing.Size(718, 72);
             this.grbgodown.TabIndex = 958806;
             this.grbgodown.TabStop = false;
             // 
-            // button1
+            // btnPreview
             // 
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button1.Image = global::ROMS.Properties.Resources.print;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1004, 37);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 29);
-            this.button1.TabIndex = 1111222;
-            this.button1.Text = "Print";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // txtamountwords
-            // 
-            this.txtamountwords.Enabled = false;
-            this.txtamountwords.Location = new System.Drawing.Point(631, 36);
-            this.txtamountwords.Name = "txtamountwords";
-            this.txtamountwords.ReadOnly = true;
-            this.txtamountwords.Size = new System.Drawing.Size(367, 27);
-            this.txtamountwords.TabIndex = 94;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(631, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 20);
-            this.label1.TabIndex = 93;
-            this.label1.Text = "Amount in words";
+            this.btnPreview.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPreview.Image = global::ROMS.Properties.Resources.view;
+            this.btnPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPreview.Location = new System.Drawing.Point(631, 35);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(84, 29);
+            this.btnPreview.TabIndex = 1111222;
+            this.btnPreview.Text = "Preview";
+            this.btnPreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPreview.UseVisualStyleBackColor = true;
             // 
             // cmbBank
             // 
@@ -228,14 +216,116 @@
             this.lblChequeDate.TabIndex = 70;
             this.lblChequeDate.Text = "Cheque Date";
             // 
-            // grbSupplierDetails
+            // groupBox2
             // 
-            this.grbSupplierDetails.Location = new System.Drawing.Point(1105, 13);
-            this.grbSupplierDetails.Name = "grbSupplierDetails";
-            this.grbSupplierDetails.Size = new System.Drawing.Size(227, 97);
-            this.grbSupplierDetails.TabIndex = 958814;
-            this.grbSupplierDetails.TabStop = false;
-            this.grbSupplierDetails.Text = "Supplier Details";
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.label16);
+            this.groupBox2.Controls.Add(this.label18);
+            this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(1037, 13);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(295, 104);
+            this.groupBox2.TabIndex = 1111223;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Supplier Details";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.White;
+            this.label12.Font = new System.Drawing.Font("Oswald Regular", 8F);
+            this.label12.Location = new System.Drawing.Point(73, 87);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(78, 15);
+            this.label12.TabIndex = 1111205;
+            this.label12.Text = "Weekly - Monday";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.White;
+            this.label13.Font = new System.Drawing.Font("Oswald Regular", 8F);
+            this.label13.Location = new System.Drawing.Point(6, 87);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(71, 15);
+            this.label13.TabIndex = 1111206;
+            this.label13.Text = "Return Policy : ";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.White;
+            this.label14.Font = new System.Drawing.Font("Oswald Regular", 8F);
+            this.label14.Location = new System.Drawing.Point(6, 58);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(87, 15);
+            this.label14.TabIndex = 1111203;
+            this.label14.Text = "Himalayas - Mobile";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.White;
+            this.label19.Font = new System.Drawing.Font("Oswald Regular", 8F);
+            this.label19.Location = new System.Drawing.Point(6, 30);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(64, 15);
+            this.label19.TabIndex = 1111204;
+            this.label19.Text = "Virudhunagar";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.White;
+            this.label15.Font = new System.Drawing.Font("Oswald Regular", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(6, 13);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(138, 19);
+            this.label15.TabIndex = 1111200;
+            this.label15.Text = "Shiva Softwares Solutions";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.White;
+            this.label16.Font = new System.Drawing.Font("Oswald Regular", 8F);
+            this.label16.Location = new System.Drawing.Point(6, 45);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(164, 15);
+            this.label16.TabIndex = 1111201;
+            this.label16.Text = "GSTIN 22AAAAA0000A1Z5 - Registered";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.White;
+            this.label18.Font = new System.Drawing.Font("Oswald Regular", 8F);
+            this.label18.Location = new System.Drawing.Point(6, 72);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(162, 15);
+            this.label18.TabIndex = 1111202;
+            this.label18.Text = "Payment Terms - Taxable Amount only";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(735, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(295, 104);
+            this.groupBox1.TabIndex = 1111224;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Amount in words";
             // 
             // PAY_ChequePrint
             // 
@@ -259,6 +349,8 @@
             this.grpSupplierMapping.ResumeLayout(false);
             this.grbgodown.ResumeLayout(false);
             this.grbgodown.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,9 +364,7 @@
         private System.Windows.Forms.Panel pnlSupplierMapping;
         private System.Windows.Forms.GroupBox grpSupplierMapping;
         private System.Windows.Forms.GroupBox grbgodown;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox txtamountwords;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnPreview;
         private System.Windows.Forms.ComboBox cmbBank;
         private System.Windows.Forms.TextBox txtTransactionno;
         private System.Windows.Forms.Label lblDAmount;
@@ -283,6 +373,14 @@
         private System.Windows.Forms.TextBox txtsuppliername;
         private System.Windows.Forms.Label lblSupplier;
         private System.Windows.Forms.Label lblChequeDate;
-        private System.Windows.Forms.GroupBox grbSupplierDetails;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label18;
     }
 }

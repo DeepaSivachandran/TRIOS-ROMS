@@ -74,7 +74,7 @@
             this.grpPOScheduledaywise.Controls.Add(this.grdPOSchedule);
             this.grpPOScheduledaywise.Location = new System.Drawing.Point(2, -4);
             this.grpPOScheduledaywise.Name = "grpPOScheduledaywise";
-            this.grpPOScheduledaywise.Size = new System.Drawing.Size(972, 313);
+            this.grpPOScheduledaywise.Size = new System.Drawing.Size(972, 354);
             this.grpPOScheduledaywise.TabIndex = 0;
             this.grpPOScheduledaywise.TabStop = false;
             // 
@@ -230,7 +230,7 @@
             this.grdPOSchedule.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdPOSchedule.RowTemplate.Height = 25;
             this.grdPOSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdPOSchedule.Size = new System.Drawing.Size(952, 207);
+            this.grdPOSchedule.Size = new System.Drawing.Size(952, 251);
             this.grdPOSchedule.TabIndex = 1111178;
             // 
             // clmsno
@@ -301,7 +301,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(978, 315);
+            this.ClientSize = new System.Drawing.Size(978, 352);
             this.Controls.Add(this.grpPOScheduledaywise);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

@@ -26,6 +26,7 @@ namespace ROMS
         public string varGroupNameinTamil = "";
         public string varGroupNameinEnglish = "";
         public int varGroupCode =0;
+        public string varProductGroupName = "";
         public int varId = 0;
         public int varStatus = 0;
         public int varFormFlag = 0;
@@ -306,21 +307,28 @@ namespace ROMS
                 }
                 varResult = objDser.udfnGroup(varViewType,varId, Convert.ToString(txtEGroupNameEnglish.Text).Trim(), Convert.ToString(txtEGroupNameTamil.Text).Trim(), varStatusid,varOriginator );
                 objDser.CloseConnection();
+                btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (btnSave.Text == "Save")
                     {
                         varGroupCode = Convert.ToInt16(varResult.Split('~')[2]);
-                        if (varmastertype == 0 &&  varFormFlag == 1)
+                        if (varmastertype == 0 &&  varFormFlag == 0)
                         {
+                            udfnClear();
                             MainForm.objCP_GroupList.udfnList();
-                            MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
-                            MainForm.objCP_GroupList.cmbProductGroup.SelectedValue = Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
+                          //  MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
+                           // MainForm.objCP_GroupList.varGroupId= Convert.ToInt16(MainForm.objCP_GroupList.varGroupCode);
+                            udfnClear();
                         }
+
                         if (varFormFlag == 1)
                         {
                             varFormFlag = 0;
+                            varGroupCode = Convert.ToInt16(varResult.Split('~')[2]);
+                            varProductGroupName = Convert.ToString(varResult.Split('~')[2]);
+                            MainForm.objCP_SubGroup.varProductGroupName = txtEGroupNameEnglish.Text;
                             MainForm.objCP_SubGroup.varGroupCode = varGroupCode;
                             varCloseFlag = 1;
                             udfnclose();
@@ -329,10 +337,10 @@ namespace ROMS
                         {
                             varmastertype = 0;
                             MainForm.objCP_Items.varGroupCode = varGroupCode;
+                            MainForm.objCP_Items.varGroupName = txtEGroupNameEnglish.Text.Trim();
                             varCloseFlag = 1;
                             udfnclose();
                         }
-                        udfnClear();
                     }
                     else
                     {
@@ -345,17 +353,17 @@ namespace ROMS
                 else if (varResult.Split('~')[0] == "4")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Focus();
                 }
-               
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-                btnSave.Enabled = true;
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Focus();
             }
         }
@@ -389,6 +397,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnSave.Focus();
             }
         }
 

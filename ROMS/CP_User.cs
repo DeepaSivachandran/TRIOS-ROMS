@@ -346,6 +346,7 @@ namespace ROMS
                     varUserID = "0";
                 }
                 varResult = objspservice.udfnUser(varType,Convert.ToInt32( varUserID), (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, varoriginator);
+                objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
@@ -361,12 +362,19 @@ namespace ROMS
                 else
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Enabled = true;
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnSave.Focus();
             }
             finally
             {
@@ -471,6 +479,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void udfnClear()
@@ -635,6 +647,12 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+
+                MainForm.objCP_Userlist.picLoader.Visible = false;
+                MainForm.objCP_Userlist.picLoader.SendToBack();
             }
         }
         private void udfnLoad()

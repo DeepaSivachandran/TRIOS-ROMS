@@ -99,5 +99,20 @@ namespace ROMS
         {
 
         }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
+                MainForm.objPUR_GRNApprovalVerify.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
     }
 }

@@ -142,7 +142,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_Company", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_Company", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCompanyId", paraCompanyId);
@@ -200,7 +200,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNG_Company", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRG_Company", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCompanyId", paraCompanyId);
@@ -229,7 +229,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNG_City", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRG_City", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCityName", paraCityName);
@@ -260,7 +260,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_HSN", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_HSN", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraHsnId", paraHsnId);
@@ -286,16 +286,17 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 09/08/2023    Description:	HSN list Sp
-        public DataSet udfnHsnList(int ViewType)
+        public DataSet udfnHsnList(int ViewType,int paraHSNID)
         {
             DataSet ds = new DataSet();
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_HSN]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_HSN]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraHSNID", paraHSNID); 
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
@@ -319,7 +320,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Unit]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_Unit]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUnitId", paraUnitId);
@@ -345,15 +346,16 @@ namespace ROMS
             return varResult;
         }
         //Created By:-Sathish
-        public DataSet udfnUnitList(int paraviewType)
+        public DataSet udfnUnitList(int paraviewType,int paraUnitid)
         {
             DataSet ds = new DataSet();
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Unit]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Unit]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitid", paraUnitid);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -378,7 +380,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_City]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_City]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCityId", paraCityId);
@@ -409,7 +411,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_City]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_City]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCityName", paraCityName);
@@ -440,7 +442,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Broker]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_Broker]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraBrokerId", paraBrokerId);
@@ -479,7 +481,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Broker]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Broker]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraBrokerId", paraBrokerId);
@@ -507,7 +509,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_StockLocation]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_StockLocation]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@viewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraStockId", paraStockId);
@@ -537,18 +539,19 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-17/08/2023
-        public DataSet udfnStockLocationList(int paraviewType, int paraConcern,int paraStockLocation,int paraId)
+        public DataSet udfnStockLocationList(int paraviewType, int paraConcern,int paraStockLocation,int paraId, string paraLocationName)
         {
             DataSet ds = new DataSet();
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_StockLocation]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_StockLocation]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraConcern", paraConcern);
                 varSqlCommand.Parameters.AddWithValue("@paraStockLocation", paraStockLocation);
                 varSqlCommand.Parameters.AddWithValue("@paraId", paraId);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationName", paraLocationName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -573,7 +576,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Rack]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_Rack]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRackId", paraRackId);
@@ -601,19 +604,80 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-18/08/2023
-        public DataSet udfnRackList(int paraviewType, int paraRackGroup, int paraConcernId,int paraStockLocationId,int paraRackId)
+        public DataSet udfnRackList(int paraviewType, int paraRackGroup, int paraConcernId,int paraStockLocationId,int paraRackId, string paraRackName)
         {
             DataSet ds = new DataSet();
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Rack]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Rack]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRackGroup", paraRackGroup);
                 varSqlCommand.Parameters.AddWithValue("@paraConcernId", paraConcernId);
                 varSqlCommand.Parameters.AddWithValue("@paraStockLocationId", paraStockLocationId);
                 varSqlCommand.Parameters.AddWithValue("@paraRackId", paraRackId);
+                varSqlCommand.Parameters.AddWithValue("@paraRackName", paraRackName);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+        //Created BY:-Sathish  Created On:-02-09-2023
+        public string udfnRackSettings(int paraviewType, int paraRKSID, int paraRKSSLID, int paraRKSRKID,  int paraRKSPRID,string paraOriginator)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_RackSettings]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraRKSID", paraRKSID);
+                varSqlCommand.Parameters.AddWithValue("@paraRKSSLID", paraRKSSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraRKSRKID", paraRKSRKID);
+                varSqlCommand.Parameters.AddWithValue("@paraRKSPRID", paraRKSPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        //Created By :-Sathish ; Created On :-02/09/2023
+        public DataSet udfnRackSettingsList(int paraviewType, int paraRKSID, int paraRack)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_RackSettings]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraRKSID", @paraRKSID);
+                varSqlCommand.Parameters.AddWithValue("@paraRack", paraRack);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -638,7 +702,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_UserCategory]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_UserCategory]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserCategoryId", paraUserCategoryId);
@@ -668,7 +732,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_UserCategory]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_UserCategory]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
@@ -696,7 +760,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_User]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_User]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUId", paraUId);
@@ -732,7 +796,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_ProductGroup", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_ProductGroup", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRGID", paraPRGID);
@@ -757,17 +821,18 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 11/08/2023    Description:	Group list Sp
-        public DataSet udfnGroupList(int ViewType, int paraPRGID,int paraID)
+        public DataSet udfnGroupList(int ViewType, int paraPRGID,int paraID,string paraGroupName)
         {
             DataSet ds = new DataSet();
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_ProductGroup]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_ProductGroup]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRGID", paraPRGID);
                 varSqlCommand.Parameters.AddWithValue("@paraID", @paraID);
+                varSqlCommand.Parameters.AddWithValue("@paraGroupName", @paraGroupName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -793,7 +858,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_ProductSubGroup", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_ProductSubGroup", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
@@ -828,7 +893,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_ProductSubGroup]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_ProductSubGroup]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRSGID", paraPRSGID);
@@ -862,7 +927,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_User]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_User]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserName", paraUserName);
@@ -893,16 +958,13 @@ namespace ROMS
              string paraUpp, int paraPurStklocation, int paraSaleStklocation, int paraPurRack, int parasaleRack, int paraRkMOQ, int paraBatchNo,
               int paraBatchNoGeneration, int paraShelfLife, double paranetweight, double paraMaxstk, double paraGrossweight, double paraMinstk,
               double paraReorderQty, double paraRetailMinstk, double paraRetailrate, double paraWMinqty, double paraWsaleRate, string paraBarcode, int paraHSNCode
-             , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType
-
-
-            , string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator)
+             , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType , string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator, int paraNetQtyUnit)
         {
             string result = "";
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_Product", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_Product", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraProductid", paraProductid);
@@ -943,6 +1005,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", paraIPAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraNetQtyUnit", paraNetQtyUnit);
 
 
 
@@ -965,13 +1028,13 @@ namespace ROMS
 
         //Product Master List
         //created by Venkat,Created on 16/08/2023
-        public DataSet udfnproductmasterlist(int ViewType, int ParaProductCode, int paraProductCategory, int paraGroup, int paraSubgroup, string paraPicode, string paraUserID, string paraIPAddress, int ParaCompanycode,int paraStatusId,int paraBrandID)
+        public DataSet udfnproductmasterlist(int ViewType, int ParaProductCode, int paraProductCategory, int paraGroup, int paraSubgroup, string paraPicode, string paraUserID, string paraIPAddress, int ParaCompanycode,int paraStatusId,int paraBrandID, int ParaScheduleid, int paraScheduleDay)
         {
             DataSet ds = new DataSet();
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNG_Product", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRG_Product", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@ParaProductCode", ParaProductCode);
@@ -982,6 +1045,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", paraIPAddress);
                 varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", ParaCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@ParaScheduleid", ParaScheduleid);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleDay", paraScheduleDay);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraBrandID", paraBrandID);
 
@@ -1008,7 +1073,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_Brand", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_Brand", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraBDID", @paraBDID);
@@ -1033,13 +1098,13 @@ namespace ROMS
             }
             return varResult;
         }
-        public DataSet udfnBrandList(int ViewType, string paraBDID, int paraGroupId, int paraSubGroupId,int paraREPBRAND)
+        public DataSet udfnBrandList(int ViewType, string paraBDID, int paraGroupId, int paraSubGroupId,int paraREPBRAND,string paraBrandName)
         {
             DataSet ds = new DataSet();
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Brand]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Brand]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraBDID", paraBDID);
@@ -1048,7 +1113,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraREPBRAND", paraREPBRAND);
-                
+                varSqlCommand.Parameters.AddWithValue("@paraBrandName", paraBrandName);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -1072,7 +1137,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNS_RackGroup]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_RackGroup]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRKGID", paraRKGID);
@@ -1105,7 +1170,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_RackGroup]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_RackGroup]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCompanyId", paraCompanyId);
@@ -1135,7 +1200,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_ProductDetails]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_ProductDetails]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRackID", paraRackID);
@@ -1165,7 +1230,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_Representative", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_Representative", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRepId", paraRepId);
@@ -1204,7 +1269,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNG_Representative", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRG_Representative", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRepId", paraRepId); 
@@ -1232,16 +1297,17 @@ namespace ROMS
         public string udfnSupplierMaster(int ViewType, int paraSupplierid, string paraSupplierName, string paraAddress1,
             string paraAddress2, int paraCityId, string paraPincode, string paraPhoneNumber, string paraWhatsappNumber, string paraMobileNumber,
               string paraEmail, string paraGstin,int paraPaymentterm, int paraReturnApplicable, int paraReturnCycle,
-              double paraopeningType, int paraSupplierType, int parastateid,string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator
+               int paraopeningType, double  paraOpeningBal, int paraSupplierType, int parastateid,string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator
             , int paraDesignation, string paraDesignationName, double paraCreditLimit,int paraDayid,int paramonthid,int paraweekid,int paradaymonthid,
               string paraSalesmanName, string paraSchedulename, string paraSalesmanMobile,string paraSalesmanWhatsapp,int paraSaleOrderType,string ParaOrderDays,
-              int ParaSupplierOrderid,int paraordertype, string ParaProductId)
+              int ParaSupplierOrderid,int paraordertype, string ParaProductId, string parabankname, string paraBankShortName, string paraBranchName,
+              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment )
         {
             string result = "";
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("TRNS_Supplier", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_Supplier", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierid", paraSupplierid);
@@ -1260,6 +1326,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraReturnCycle", paraReturnCycle); 
                 varSqlCommand.Parameters.AddWithValue("@parastateid", parastateid);
                 varSqlCommand.Parameters.AddWithValue("@paraopeningType", paraopeningType);
+                varSqlCommand.Parameters.AddWithValue("@paraOpeningBal", paraOpeningBal); 
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierType", paraSupplierType); 
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
@@ -1283,12 +1350,16 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraordertype", paraordertype);
                 varSqlCommand.Parameters.AddWithValue("@ParaProductId", ParaProductId);
 
-
-
+                varSqlCommand.Parameters.AddWithValue("@parabankname", parabankname);
+                varSqlCommand.Parameters.AddWithValue("@paraBankShortName", paraBankShortName);
+                varSqlCommand.Parameters.AddWithValue("@paraBranchName", paraBranchName);
+                varSqlCommand.Parameters.AddWithValue("@paraAccNo", paraAccNo);
+                varSqlCommand.Parameters.AddWithValue("@paraIFSC", paraIFSC);
+                varSqlCommand.Parameters.AddWithValue("@paraAccountName", paraAccountName);
+                varSqlCommand.Parameters.AddWithValue("@paraBrand", paraBrand);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierPayment", ParaSupplierPayment);
                 varSqlCommand.CommandTimeout = 0;
-
                 result = varSqlCommand.ExecuteScalar().ToString();
-
             }
             catch (Exception ex)
             {
@@ -1301,13 +1372,13 @@ namespace ROMS
             }
             return result;
         }
-        public DataSet udfnSupplierList(int ViewType,int paraSupplierid,int paraSupplierScheduleid,int pardayid,int paraOrderId,string @paraSupplierName)
+        public DataSet udfnSupplierList(int ViewType,int paraSupplierid,int paraSupplierScheduleid,int pardayid,int paraOrderId,string @paraSupplierName,int paraordertype)
         {
             DataSet ds = new DataSet();
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Supplier]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Supplier]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
@@ -1317,9 +1388,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@pardayid", pardayid);
                 varSqlCommand.Parameters.AddWithValue("@paraOrderId", paraOrderId);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierName", paraSupplierName);
-                
-
-
+                varSqlCommand.Parameters.AddWithValue("@paraordertype", paraordertype);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -1334,6 +1403,32 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return ds;
+        }
+        /* Added by deepa on 11-09-2023 */
+        public string udfnGetMessages(int paraId)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Messages]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraId", paraId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
         }
     }
 

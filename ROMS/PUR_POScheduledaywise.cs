@@ -39,7 +39,9 @@ namespace ROMS
                 grdPOSchedule.Rows.Add(5, "Friday");
                 grdPOSchedule.Rows.Add(6, "Saturday");
                 grdPOSchedule.Rows.Add(7, "Sunday");
-
+                grdPOSchedule.Rows.Add("", "Total");
+                grdPOSchedule.Rows[7].DefaultCellStyle.BackColor = Color.SlateGray;
+                grdPOSchedule.Rows[7].DefaultCellStyle.ForeColor = Color.White;
             }
             catch (Exception ex)
             {

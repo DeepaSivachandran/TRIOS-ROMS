@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNEntryVerify));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNApprovalVerify));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtDPasskey = new System.Windows.Forms.TextBox();
             this.txtPassKey = new System.Windows.Forms.TextBox();
@@ -80,7 +80,7 @@
             this.btnAuthorise.UseVisualStyleBackColor = true;
             this.btnAuthorise.Click += new System.EventHandler(this.btnAuthorise_Click);
             // 
-            // PUR_GRNEntryVerify
+            // PUR_GRNApprovalVerify
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -96,7 +96,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "PUR_GRNEntryVerify";
+            this.Name = "PUR_GRNApprovalVerify";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Please Enter Passkey to Proceed";
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();

@@ -38,6 +38,9 @@ namespace ROMS
             {
                 if (grdHSNList.SelectedRows.Count != 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_ProductHSN = new CP_ProductHSN();
                     MainForm.objCP_ProductHSN.btnSave.Text = "Update";
                     MainForm.objCP_ProductHSN.varId = Convert.ToInt32(grdHSNList.SelectedRows[0].Cells["ID"].Value);
@@ -45,6 +48,8 @@ namespace ROMS
                     MainForm.objCP_ProductHSN.varHsnCode = Convert.ToString(grdHSNList.SelectedRows[0].Cells["HSN Code"].Value);
                     MainForm.objCP_ProductHSN.varGstId = Convert.ToInt32(grdHSNList.SelectedRows[0].Cells["GST ID"].Value);
                     MainForm.objCP_ProductHSN.varStatusid  = Convert.ToInt32(grdHSNList.SelectedRows[0].Cells["Status ID"].Value);
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
                     MainForm.objCP_ProductHSN.ShowDialog();
                 }
             }
@@ -53,6 +58,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            
         }
         private void tsbEdit_Click(object sender, EventArgs e)
         {
@@ -94,6 +100,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             }
         }
         private void tsbDelete_Click(object sender, EventArgs e)
@@ -263,7 +274,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnHsnList(0);
+                objDs = objdserv.udfnHsnList(0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

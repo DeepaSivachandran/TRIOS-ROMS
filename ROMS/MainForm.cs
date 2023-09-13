@@ -17,7 +17,7 @@ namespace ROMS
         //------- Variable Declaration
         public static int pbCloseForm = 0;
         public static int varCloseFlag = 0;
-        public static string pbVersion = "1.1.2";
+        public static string pbVersion = "1.0.0";
         public static string pbUserID = "";
         public static string pbUserName = "";
         public static string pbUserRoleId;
@@ -107,6 +107,7 @@ namespace ROMS
         public static INV_StockConversionList objINV_StockConversionList;
         public static INV_StockConversion objINV_StockConversion;
         public static INV_InwardQueueList objINV_InwardQueueList;
+        public static INV_InwardlistQueue objINV_InwardlistQueue;
 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;  
@@ -140,7 +141,8 @@ namespace ROMS
         public static PUR_DCDeatils objPUR_DCDeatils;
         public static PUR_PODamagedView objPUR_PODamagedView;
         public static PUR_PurchaseQueue objPUR_PurchaseQueue;
-        
+        public static PUR_GRNApprovalVerify objPUR_GRNApprovalVerify;
+        public static PUR_Calculator objPUR_Calculator;
 
         public static PAY_SupplierPaymentList objPAY_SupplierPaymentList;
         public static PAY_SupplierPayment objPAY_SupplierPayment;

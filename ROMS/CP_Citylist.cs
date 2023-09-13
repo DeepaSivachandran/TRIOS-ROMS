@@ -71,7 +71,7 @@ namespace ROMS
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
                         varResult = objspservice.udfnCity(2, Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete");
-
+                        objspservice.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
                             MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -88,6 +88,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void udfnEdit()
@@ -96,6 +100,9 @@ namespace ROMS
             {
                 if (grdCityList.SelectedRows.Count > 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_City = new CP_City();
                     MainForm.objCP_City.btnSave.Text = "Update";
                     MainForm.objCP_City.varCityCode = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value);
@@ -110,6 +117,9 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
             }
         }
         public void udfnList()

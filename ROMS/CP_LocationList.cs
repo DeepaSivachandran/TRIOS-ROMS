@@ -62,10 +62,6 @@ namespace ROMS
             try
             {
                 cmbConcern.Focus();
-                tsbNew.Visible = true;
-                tsbEdit.Visible = true;
-                tsbDelete.Visible = true;
-
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 int varViewType = 2;
@@ -104,7 +100,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)),0,0);
+                objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)),0,0,"");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -163,6 +159,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnView.Enabled = true;
+                btnView.Focus();
             }
         }
         public void udfndelete()
@@ -181,7 +178,7 @@ namespace ROMS
                             SPDataService objspservice = new SPDataService();
                             varResult = "";
                             varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete");
-
+                            objspservice.CloseConnection();
 
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -200,6 +197,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void udfnEdit()
@@ -208,6 +209,9 @@ namespace ROMS
             {
                     if (grdGodownList.SelectedRows.Count > 0)
                     {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
                     {
                         MainForm.objCP_Location = new CP_Location();
@@ -295,11 +299,8 @@ namespace ROMS
         private void grdLocationList_SelectionChanged(object sender, EventArgs e)
         {
             try {
-                tsbNew.Visible = true;
-                tsbEdit.Visible = true;
-                tsbDelete.Visible = true;
                 if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1"||Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
-                { tsbDelete.Visible = false; tsbNew.Visible = false; }
+                { tsbDelete.Visible = false;}
                 else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }
             }
             catch (Exception ex) {
@@ -323,14 +324,20 @@ namespace ROMS
                         grdGodownList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdGodownList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    grdGodownList.ClearSelection();
                 }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }            
+            }
+            finally
+            {
+                grdGodownList.ClearSelection();
+                tsbNew.Visible = true;
+                tsbEdit.Visible = true;
+                tsbDelete.Visible = true;
+            }
         }
         private void GrdGodownList_DoubleClick(object sender, EventArgs e)
         {
@@ -502,9 +509,9 @@ namespace ROMS
             finally
             {
                 btnExport.Enabled = true;
+                btnExport.Focus();
             }
         }
-
         private void BtnView_Enter(object sender, EventArgs e)
         {
             try

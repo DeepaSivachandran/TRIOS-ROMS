@@ -68,7 +68,6 @@
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,7 +83,6 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdtotalitems = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmdtotalqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -328,7 +326,6 @@
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.clmdtotalitems,
-            this.Column12,
             this.clmdtotalqty,
             this.Column5,
             this.Column13});
@@ -398,7 +395,6 @@
             this.Column15,
             this.Column16,
             this.clmtotalitems,
-            this.Column11,
             this.clmtotalqty,
             this.Column10,
             this.Column14});
@@ -512,12 +508,6 @@
             this.clmtotalitems.ReadOnly = true;
             this.clmtotalitems.Width = 150;
             // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "My Products";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            // 
             // clmtotalqty
             // 
             this.clmtotalqty.HeaderText = "Status";
@@ -604,12 +594,6 @@
             this.clmdtotalitems.Name = "clmdtotalitems";
             this.clmdtotalitems.Width = 150;
             // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "My Products";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
             // clmdtotalqty
             // 
             this.clmdtotalqty.HeaderText = "Status";
@@ -693,7 +677,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdtotalitems;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdtotalqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
@@ -709,7 +692,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalitems;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmtotalqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
