@@ -337,9 +337,21 @@ namespace ROMS
                 }
 
                 /* Check product sub group is valid or not*/
-                DataService objDServ = new DataService();
-                string varId_SubGroup = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtSubGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRSGID FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtSubGroup.Text.Trim() + "') END AS PRSGID ");
-                objDServ.CloseConnection();
+                string varId_SubGroup = "0";
+                DataSet objDssubgroup = new DataSet();
+                SPDataService objDserv = new SPDataService();
+                objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtGroup.Text.Trim());
+                objDserv.CloseConnection();
+                if (objDssubgroup != null)
+                {
+                    if (objDssubgroup.Tables.Count > 0)
+                    {
+                        if (objDssubgroup.Tables[0].Rows.Count > 0)
+                        {
+                            varId_SubGroup = Convert.ToString(objDssubgroup.Tables[0].Rows[0][0]);
+                        }
+                    }
+                }
                 lblSubGroupCode.Text = Convert.ToString(varId_SubGroup);
                 if (varId_SubGroup == "0" || varId_SubGroup == "-1")
                 {
@@ -350,9 +362,21 @@ namespace ROMS
                     blnErrorFlag = true;
                 }
                 /* Check product group is valid or not*/
-                DataService objDServ1 = new DataService();
-                string varId_Group = objDServ1.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductGroup WHERE PRG_EName = '" + txtGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRGID FROM MR_ProductGroup WHERE PRG_EName = '" + txtGroup.Text.Trim() + "') END AS PRGID ");
+                string varId_Group = "0";
+                DataSet objDsGroup = new DataSet();
+                SPDataService objDServ1 = new SPDataService();
+                objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim());
                 objDServ1.CloseConnection();
+                if (objDsGroup != null)
+                {
+                    if (objDsGroup.Tables.Count > 0)
+                    {
+                        if (objDsGroup.Tables[0].Rows.Count > 0)
+                        {
+                            varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                        }
+                    }
+                }
                 lblGroupCode.Text = Convert.ToString(varId_Group);
                 if (varId_Group == "0" || varId_Group == "-1")
                 {
@@ -366,9 +390,21 @@ namespace ROMS
                 if (txtBrand.Text != "")
                 {
                     /* Check product brand is valid or not*/
-                    DataService objDServ2 = new DataService();
-                    string varId_Brand = objDServ2.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Brand WHERE BD_EName = '" + txtBrand.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT BDID FROM MR_Brand WHERE BD_EName = '" + txtBrand.Text.Trim() + "') END AS BDID ");
+                    string varId_Brand = "0";
+                    DataSet objDsBrand = new DataSet();
+                    SPDataService objDServ2 = new SPDataService();
+                    objDsBrand = objDServ2.udfnBrandList(8,"",0,0,0,txtBrand.Text.Trim());
                     objDServ2.CloseConnection();
+                    if (objDsBrand != null)
+                    {
+                        if (objDsBrand.Tables.Count > 0)
+                        {
+                            if (objDsBrand.Tables[0].Rows.Count > 0)
+                            {
+                                varId_Brand = Convert.ToString(objDsBrand.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
                     lblBrand.Text = Convert.ToString(varId_Brand);
                     if (varId_Brand == "0" || varId_Brand == "-1")
                     {
@@ -382,9 +418,21 @@ namespace ROMS
                 /* Check purchase stock location is valid or not*/
                 if (txtPurLocation.Text != "")
                 {
-                    DataService objDServ3 = new DataService();
-                    string varId_PurLocation = objDServ3.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtPurLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtPurLocation.Text.Trim() + "') END AS SLID ");
+                    string varId_PurLocation = "0";
+                    DataSet objDsPurLoc = new DataSet();
+                    SPDataService objDServ3 = new SPDataService();
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtPurLocation.Text.Trim());
                     objDServ3.CloseConnection();
+                    if (objDsPurLoc != null)
+                    {
+                        if (objDsPurLoc.Tables.Count > 0)
+                        {
+                            if (objDsPurLoc.Tables[0].Rows.Count > 0)
+                            {
+                                varId_PurLocation = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
                     lblPurLocationCode.Text = Convert.ToString(varId_PurLocation);
                     if (varId_PurLocation == "0" || varId_PurLocation == "-1")
                     {
@@ -398,9 +446,21 @@ namespace ROMS
                 /* Check purchase rack is valid or not*/
                 if (txtPurRack.Text != "")
                 {
-                    DataService objDServ4 = new DataService();
-                    string varId_PurRack = objDServ4.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_ShortName = '" + txtPurRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_ShortName = '" + txtPurRack.Text.Trim() + "') END AS RKID ");
+                    string varId_PurRack = "0";
+                    DataSet objDsPurRack = new DataSet();
+                    SPDataService objDServ4 = new SPDataService();
+                    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtPurRack.Text.Trim());
                     objDServ4.CloseConnection();
+                    if (objDsPurRack != null)
+                    {
+                        if (objDsPurRack.Tables.Count > 0)
+                        {
+                            if (objDsPurRack.Tables[0].Rows.Count > 0)
+                            {
+                                varId_PurRack = Convert.ToString(objDsPurRack.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
                     lblPurRackCode.Text = Convert.ToString(varId_PurRack);
                     if (varId_PurRack == "0" || varId_PurRack == "-1")
                     {
@@ -414,9 +474,21 @@ namespace ROMS
                 /* Check SALES stock location is valid or not*/
                 if (txtSaleLocation.Text != "")
                 {
-                    DataService objDServ5 = new DataService();
-                    string varId_SalesLocation = objDServ5.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtSaleLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtSaleLocation.Text.Trim() + "') END AS SLID ");
+                    string varId_SalesLocation = "0";
+                    DataSet objDsSalesLoc = new DataSet();
+                    SPDataService objDServ5 = new SPDataService();
+                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, 0, 0, 0, txtSaleLocation.Text.Trim());
                     objDServ5.CloseConnection();
+                    if (objDsSalesLoc != null)
+                    {
+                        if (objDsSalesLoc.Tables.Count > 0)
+                        {
+                            if (objDsSalesLoc.Tables[0].Rows.Count > 0)
+                            {
+                                varId_SalesLocation = Convert.ToString(objDsSalesLoc.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
                     lblSaleLocationCode.Text = Convert.ToString(varId_SalesLocation);
                     if (varId_SalesLocation == "0" || varId_SalesLocation == "-1")
                     {
@@ -430,9 +502,21 @@ namespace ROMS
                 /* Check sales rack is valid or not*/
                 if (txtSaleRack.Text != "")
                 {
-                    DataService objDServ6 = new DataService();
-                    string varId_SaleRack = objDServ6.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_ShortName = '" + txtSaleRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_ShortName = '" + txtSaleRack.Text.Trim() + "') END AS RKID ");
+                    string varId_SaleRack = "0";
+                    DataSet objDsSaleRack = new DataSet();
+                    SPDataService objDServ6 = new SPDataService();
+                    objDsSaleRack = objDServ6.udfnRackList(9, 0, 0, 0, 0, txtSaleRack.Text.Trim());
                     objDServ6.CloseConnection();
+                    if (objDsSaleRack != null)
+                    {
+                        if (objDsSaleRack.Tables.Count > 0)
+                        {
+                            if (objDsSaleRack.Tables[0].Rows.Count > 0)
+                            {
+                                varId_SaleRack = Convert.ToString(objDsSaleRack.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
                     lblSaleRackCode.Text = Convert.ToString(varId_SaleRack);
                     if (varId_SaleRack == "0" || varId_SaleRack == "-1")
                     {
