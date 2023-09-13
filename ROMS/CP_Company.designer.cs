@@ -867,6 +867,7 @@
             // 
             // txtGSTTIN
             // 
+            this.txtGSTTIN.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtGSTTIN.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtGSTTIN.Location = new System.Drawing.Point(71, 27);
             this.txtGSTTIN.MaxLength = 15;

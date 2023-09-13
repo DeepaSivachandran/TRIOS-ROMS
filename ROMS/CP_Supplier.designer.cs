@@ -215,7 +215,6 @@
             this.grpSchedule = new System.Windows.Forms.GroupBox();
             this.lblMappedNoRecords = new System.Windows.Forms.Label();
             this.lblMappedOrderTypeId = new System.Windows.Forms.Label();
-            this.txtMappedOrder = new System.Windows.Forms.TextBox();
             this.txtMappedSupplierName = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbOrderschedule = new System.Windows.Forms.ComboBox();
@@ -231,6 +230,7 @@
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.cmbMappedorderrype = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -335,7 +335,6 @@
             this.tcSupplier.TabIndex = 0;
             this.tcSupplier.SelectedIndexChanged += new System.EventHandler(this.TcSupplier_SelectedIndexChanged);
             this.tcSupplier.Selected += new System.Windows.Forms.TabControlEventHandler(this.TcSupplier_Selected);
-            this.tcSupplier.Enter += new System.EventHandler(this.TcSupplier_Enter);
             // 
             // tbSupplier
             // 
@@ -794,6 +793,7 @@
             // 
             // txtgstin
             // 
+            this.txtgstin.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtgstin.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtgstin.Location = new System.Drawing.Point(383, 52);
             this.txtgstin.MaxLength = 15;
@@ -857,6 +857,7 @@
             this.txtopening.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtopening.Enter += new System.EventHandler(this.Txtopening_Enter);
             this.txtopening.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtopening_KeyDown);
+            this.txtopening.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtopening_KeyPress);
             this.txtopening.Leave += new System.EventHandler(this.Txtopening_Leave);
             // 
             // textBox22
@@ -882,6 +883,7 @@
             this.txtcreditlimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtcreditlimit.Enter += new System.EventHandler(this.Txtcreditlimit_Enter);
             this.txtcreditlimit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtcreditlimit_KeyDown);
+            this.txtcreditlimit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtcreditlimit_KeyPress);
             this.txtcreditlimit.Leave += new System.EventHandler(this.Txtcreditlimit_Leave);
             // 
             // textBox28
@@ -1056,6 +1058,7 @@
             this.txtPincode.TabIndex = 6;
             this.txtPincode.Enter += new System.EventHandler(this.txtPincode_Enter);
             this.txtPincode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPincode_KeyDown);
+            this.txtPincode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPincode_KeyPress);
             this.txtPincode.Leave += new System.EventHandler(this.txtPincode_Leave);
             // 
             // textBox1
@@ -1280,6 +1283,7 @@
             // txtOtherBrands
             // 
             this.txtOtherBrands.Location = new System.Drawing.Point(7, 23);
+            this.txtOtherBrands.MaxLength = 200;
             this.txtOtherBrands.Multiline = true;
             this.txtOtherBrands.Name = "txtOtherBrands";
             this.txtOtherBrands.Size = new System.Drawing.Size(251, 150);
@@ -2431,9 +2435,9 @@
             // 
             // grpSchedule
             // 
+            this.grpSchedule.Controls.Add(this.cmbMappedorderrype);
             this.grpSchedule.Controls.Add(this.lblMappedNoRecords);
             this.grpSchedule.Controls.Add(this.lblMappedOrderTypeId);
-            this.grpSchedule.Controls.Add(this.txtMappedOrder);
             this.grpSchedule.Controls.Add(this.txtMappedSupplierName);
             this.grpSchedule.Controls.Add(this.label10);
             this.grpSchedule.Controls.Add(this.cmbOrderschedule);
@@ -2475,17 +2479,6 @@
             this.lblMappedOrderTypeId.TabIndex = 958823;
             this.lblMappedOrderTypeId.Text = "0";
             this.lblMappedOrderTypeId.Visible = false;
-            // 
-            // txtMappedOrder
-            // 
-            this.txtMappedOrder.Enabled = false;
-            this.txtMappedOrder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMappedOrder.Location = new System.Drawing.Point(469, 37);
-            this.txtMappedOrder.MaxLength = 50;
-            this.txtMappedOrder.Name = "txtMappedOrder";
-            this.txtMappedOrder.ReadOnly = true;
-            this.txtMappedOrder.Size = new System.Drawing.Size(121, 27);
-            this.txtMappedOrder.TabIndex = 958822;
             // 
             // txtMappedSupplierName
             // 
@@ -2546,7 +2539,7 @@
             "Friday",
             "Saturday",
             "Sunday"});
-            this.cmborderday.Location = new System.Drawing.Point(599, 37);
+            this.cmborderday.Location = new System.Drawing.Point(598, 37);
             this.cmborderday.Name = "cmborderday";
             this.cmborderday.Size = new System.Drawing.Size(116, 27);
             this.cmborderday.TabIndex = 2;
@@ -2699,6 +2692,29 @@
             this.label3.Size = new System.Drawing.Size(94, 20);
             this.label3.TabIndex = 958804;
             this.label3.Text = "No.of Products :";
+            // 
+            // cmbMappedorderrype
+            // 
+            this.cmbMappedorderrype.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMappedorderrype.FormattingEnabled = true;
+            this.cmbMappedorderrype.Items.AddRange(new object[] {
+            "--All--",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"});
+            this.cmbMappedorderrype.Location = new System.Drawing.Point(471, 37);
+            this.cmbMappedorderrype.Name = "cmbMappedorderrype";
+            this.cmbMappedorderrype.Size = new System.Drawing.Size(116, 27);
+            this.cmbMappedorderrype.TabIndex = 1;
+            this.cmbMappedorderrype.SelectedIndexChanged += new System.EventHandler(this.CmbMappedorderrype_SelectedIndexChanged);
+            this.cmbMappedorderrype.Enter += new System.EventHandler(this.CmbMappedorderrype_Enter);
+            this.cmbMappedorderrype.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbMappedorderrype_KeyDown);
+            this.cmbMappedorderrype.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbMappedorderrype_KeyPress);
+            this.cmbMappedorderrype.Leave += new System.EventHandler(this.CmbMappedorderrype_Leave);
             // 
             // CP_Supplier
             // 
@@ -2924,7 +2940,6 @@
         private System.Windows.Forms.DataGridViewImageColumn clmDelete;
         private System.Windows.Forms.TextBox txtMappedSupplierName;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtMappedOrder;
         private System.Windows.Forms.Label lblMappedOrderTypeId;
         private System.Windows.Forms.DataGridViewImageColumn clmMappingRemove;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -2957,5 +2972,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ComboBox cmbMappedorderrype;
     }
 }
