@@ -71,7 +71,7 @@ namespace ROMS
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
                         varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "","",0,0, "Unit Delete");
-
+                        objspservice.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
                             MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -88,6 +88,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void udfnEdit()
@@ -96,6 +100,9 @@ namespace ROMS
             {
                 if (grdUnitList.SelectedRows.Count > 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_Unit = new CP_Unit();
                     MainForm.objCP_Unit.btnSave.Text = "Update";
                     MainForm.objCP_Unit.varUnitCode = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value);
@@ -125,7 +132,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************    
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnUnitList(0);
+                objDs = objspservice.udfnUnitList(0,0);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)

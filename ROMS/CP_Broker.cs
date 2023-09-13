@@ -36,6 +36,7 @@ namespace ROMS
         public string varBrokerid="", varstatusid = "0";
         public int varUpdate = 0;
         public String pbFormStatus;
+        public int varflog = 0;
         public CP_Broker()
         {
             InitializeComponent();
@@ -140,18 +141,20 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MainForm.objCP_CP_BrokerList.udfnList();
-
+                        udfnClear();
                         cmbConcern.Focus();
+                        cmbConcern.SelectedValue = -1;
                         if (btnSave.Text == "Update")
                         {
                             varUpdate = 1;
                             udfnclose();
                         }
-                        udfnClear();
                     }
                     else
                     {
                         MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnSave.Enabled = true;
+                        btnSave.Focus();
                     }
                     grdBankDetails.Rows.Clear();
                 }
@@ -177,6 +180,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnSave.Focus();
             }
             finally
             {
@@ -415,6 +423,8 @@ namespace ROMS
             finally
             {
                 lvCity.Visible = false;
+                MainForm.objCP_CP_BrokerList.picLoader.Visible = false;
+                MainForm.objCP_CP_BrokerList.picLoader.SendToBack();
             }
         }
         private void CP_Broker_KeyDown(object sender, KeyEventArgs e)
@@ -541,11 +551,13 @@ namespace ROMS
             {
                 MainForm.objCP_City = new CP_City();
                 MainForm.objCP_City.varmastertype = 1;
+                MainForm.objCP_City.varflog = 1;
                 MainForm.objCP_City.ShowDialog();
                 udfnListView();
                 txtCity.Text = varCityName;
                 lblcityid.Text = Convert.ToString(varCityCode);
-                lvCity.Focus();
+                lvCity.Visible = false;
+                txtPincode.Focus();
             }
             catch (Exception ex)
             {
@@ -570,14 +582,7 @@ namespace ROMS
 
             try
             {
-                if (Convert.ToString(txtGstinNo.Text).Trim() == "")
-                {
-                    epBroker.SetError(txtGstinNo, "Please enter GSTINNo");
-                    txtGstinNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpGstinNo.ShowAlways = true;
-                    tpGstinNo.Show("Please enter GSTTINNo", txtGstinNo, 5000);
-                }
-                else if (txtGstinNo.Text.Length != 15)
+                if (Convert.ToString(txtGstinNo.Text).Trim() != "" && txtGstinNo.Text.Length != 15)
                 {
                     epBroker.SetError(txtGstinNo, "Please enter valid GSTINNo");
                     txtGstinNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -677,14 +682,14 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtMobileNo.Text).Trim() == "")
-                {
-                    epBroker.SetError(txtMobileNo, "Please enter mobile number");
-                    txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpMobileNo.ShowAlways = true;
-                    tpMobileNo.Show("Please enter mobile number", txtMobileNo, 5000);
-                }
-                else if (txtMobileNo.Text.Length != 10)
+                //if (Convert.ToString(txtMobileNo.Text).Trim() == "")
+                //{
+                //    epBroker.SetError(txtMobileNo, "Please enter mobile number");
+                //    txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpMobileNo.ShowAlways = true;
+                //    tpMobileNo.Show("Please enter mobile number", txtMobileNo, 5000);
+                //}
+                 if (Convert.ToString(txtMobileNo.Text).Trim() != "" && txtMobileNo.Text.Length != 10)
                 {
                     epBroker.SetError(txtMobileNo, "Please enter valid mobile number");
                     txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -734,14 +739,14 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtWhatsAppNo.Text).Trim() == "")
-                {
-                    epBroker.SetError(txtWhatsAppNo, "Please enter whatsapp number");
-                    txtWhatsAppNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpWhatsAppNo.ShowAlways = true;
-                    tpWhatsAppNo.Show("Please enter whatsapp number", txtWhatsAppNo, 5000);
-                }
-                else if (txtWhatsAppNo.Text.Length != 10)
+                //if (Convert.ToString(txtWhatsAppNo.Text).Trim() == "")
+                //{
+                //    epBroker.SetError(txtWhatsAppNo, "Please enter whatsapp number");
+                //    txtWhatsAppNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpWhatsAppNo.ShowAlways = true;
+                //    tpWhatsAppNo.Show("Please enter whatsapp number", txtWhatsAppNo, 5000);
+                //}
+                if (Convert.ToString(txtWhatsAppNo.Text).Trim() != "" && txtWhatsAppNo.Text.Length != 10)
                 {
                     epBroker.SetError(txtWhatsAppNo, "Please enter valid whatsapp number");
                     txtWhatsAppNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -807,18 +812,18 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtAddressLine1.Text).Trim() == "")
-                {
-                    epBroker.SetError(txtAddressLine1, "Please enter address line");
-                    txtAddressLine1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpAddressLine1.ShowAlways = true;
-                    tpAddressLine1.Show("Please enter address line", txtAddressLine1, 5000);
-                }
-                else
-                {
-                    epBroker.Clear();
+                //if (Convert.ToString(txtAddressLine1.Text).Trim() == "")
+                //{
+                //    epBroker.SetError(txtAddressLine1, "Please enter address line");
+                //    txtAddressLine1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpAddressLine1.ShowAlways = true;
+                //    tpAddressLine1.Show("Please enter address line", txtAddressLine1, 5000);
+                //}
+                //else
+                //{
+                //    epBroker.Clear();
                     txtAddressLine1.BackColor = Color.White;
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -881,14 +886,14 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtPincode.Text).Trim() == "")
-                {
-                    epBroker.SetError(txtPincode, "Please enter pincode");
-                    txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpPincode.ShowAlways = true;
-                    tpPincode.Show("Please enter pincode", txtPincode, 5000);
-                }
-                else if (txtPincode.TextLength != 6)
+                //if (Convert.ToString(txtPincode.Text).Trim() == "")
+                //{
+                //    epBroker.SetError(txtPincode, "Please enter pincode");
+                //    txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpPincode.ShowAlways = true;
+                //    tpPincode.Show("Please enter pincode", txtPincode, 5000);
+                //}
+                if (Convert.ToString(txtPincode.Text).Trim() != "" && txtPincode.TextLength != 6)
                 {
                     epBroker.SetError(txtPincode, "Please enter valid pincode");
                     txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1255,6 +1260,7 @@ namespace ROMS
             try
             {
                 btnAdd.BackColor = Color.White;
+                //txtBankname.Focus();
             }
             catch (Exception ex)
             {
@@ -1266,6 +1272,7 @@ namespace ROMS
         {
             try
             {
+                epBroker.Clear();
                 bool blnErrorFlag = false;
 
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
@@ -1331,6 +1338,10 @@ namespace ROMS
                         tpCity.Show("Invalid city", txtCity, 5000);
                         blnErrorFlag = true;
                     }
+                    else
+                    {
+                        lblcityid.Text= objDserv.displaydata("SELECT CTYID FROM MR_City WHERE CTY_NAME='" + txtCity.Text + "'");
+                    }
                 }
                 if (blnErrorFlag == false)
                 {
@@ -1343,6 +1354,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void CP_Broker_Leave(object sender, EventArgs e)
@@ -1440,7 +1455,7 @@ namespace ROMS
                             string gridValue1 = row.Cells[1].Value.ToString();
                             string gridValue2 = row.Cells[3].Value.ToString();
 
-                            if (gridValue1 == txtBankname.Text && gridValue2 == txtbranchname.Text)
+                            if (gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
                             {
                                 varflag = 1;
                             }
@@ -1448,14 +1463,17 @@ namespace ROMS
                     }
                     if (varflag == 0)
                     {
-                        grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, txtBankname.Text, txtBankShortName.Text, txtbranchname.Text, txtAccno.Text, txtIFScode.Text, varstatusid);
+                        grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1,(txtBankname.Text).Trim(), (txtBankShortName.Text).Trim(),(txtbranchname.Text).Trim(), (txtAccno.Text).Trim(),(txtIFScode.Text).Trim(), varstatusid);
                         udfnBankclear();
-                        txtBankname.Focus();
+                        this.ActiveControl = txtBankname;
                         grdBankDetails.ClearSelection();
                     }
                     else
                     {
-                        MessageBox.Show("Bank details already exists!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(45);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -1481,16 +1499,19 @@ namespace ROMS
                 if (e.RowIndex != -1)
                 {
                     switch (grdBankDetails.Columns[e.ColumnIndex].Name)
-                    {
-                        case "clmremovebank":
-
-                            grdBankDetails.Rows.RemoveAt(this.grdBankDetails.SelectedRows[0].Index);
-                            for (int i = 0; i < grdBankDetails.RowCount; i++)
+                        {
+                            case "clmremovebank":
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
                             {
-                                grdBankDetails.Rows[i].Cells["clmsno"].Value = i + 1;
+                                grdBankDetails.Rows.RemoveAt(this.grdBankDetails.SelectedRows[0].Index);
+                                for (int i = 0; i < grdBankDetails.RowCount; i++)
+                                {
+                                    grdBankDetails.Rows[i].Cells["clmsno"].Value = i + 1;
+                                }
                             }
                             break;
-                    }
+                       } 
                 }
             }
             catch (Exception ex)
@@ -1563,6 +1584,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     txtPincode.Focus();
+                    lvCity.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -1575,18 +1597,18 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtCity.Text).Trim() == "")
-                {
-                    epBroker.SetError(txtCity, "Please enter city");
-                    txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpCity.ShowAlways = true;
-                    tpCity.Show("Please enter city", txtCity, 5000);
-                }
-                else
-                {
-                    epBroker.Clear();
+                //if (Convert.ToString(txtCity.Text).Trim() == "")
+                //{
+                //    epBroker.SetError(txtCity, "Please enter city");
+                //    txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpCity.ShowAlways = true;
+                //    tpCity.Show("Please enter city", txtCity, 5000);
+                //}
+                //else
+                //{
+                //    epBroker.Clear();
                     txtCity.BackColor = Color.White;
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1700,7 +1722,7 @@ namespace ROMS
                 lvCity.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtCity.Text.Length > 2)
+                if (txtCity.Text.Length > 0)
                 {
                     objDs = objspdservice.udfncitylist(1, txtCity.Text, MainForm.pbUserID, MainForm.pbIpAddress,"");
                     objspdservice.CloseConnection();
@@ -1714,6 +1736,7 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(),objDs.Tables[0].Rows[i]["CTYID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    lvCity.Columns[1].Width = 0;
                                     lvCity.Items.Add(objList);
                                 }
                                 lvCity.Visible = true;

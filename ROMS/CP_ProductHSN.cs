@@ -361,7 +361,6 @@ namespace ROMS
                 string varResult = ""; string varOriginator = "HSN Creation";
                 int varViewType=0; 
                 btnSave.Enabled=false;
-
                if (rbActive.Checked)
                {
                     varStatusid = 1;
@@ -376,8 +375,10 @@ namespace ROMS
                     varViewType=1;
                     varOriginator = "HSN Updation";
                }
-               varResult = objDser.udfnHsn(varViewType, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text).Trim(), Convert.ToString(txtHSNCode.Text).Trim(), varStatusid, varOriginator);
+               varResult= objDser.udfnHsn(varViewType, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text).Trim(), Convert.ToString(txtHSNCode.Text).Trim(), varStatusid, varOriginator);
+              //  varResult = objDser.udfnHsn(varViewType, Convert.ToInt16(varId), Convert.ToInt16(cmbGST.SelectedValue), Convert.ToString(txtHSNName.Text).Trim(), Convert.ToInt32(txtHSNCode.Text), varStatusid, varOriginator);
                objDser.CloseConnection();
+               btnSave.Enabled = true;
                if (varResult.Split('~')[0] == "3")
                {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -395,16 +396,18 @@ namespace ROMS
                else if(varResult.Split('~')[0] == "4")
                {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Focus();
                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-                btnSave.Enabled = true;
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnSave.Focus();
             }
         }
         private void BtnSave_Click(object sender, EventArgs e)
@@ -445,6 +448,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnSave.Focus();
             }
         }
         private void CP_ProductHSN_KeyDown(object sender, KeyEventArgs e)

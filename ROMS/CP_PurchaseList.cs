@@ -339,8 +339,8 @@ namespace ROMS
                     switch (grdSupplierList.Columns[e.ColumnIndex].Name)
                     {
                         case "clmEdit":
-                            MainForm.objPUR_GRNEntryVerify = new PUR_GRNEntryVerify();
-                            MainForm.objPUR_GRNEntryVerify.ShowDialog();
+                            MainForm.objPUR_GRNApprovalVerify = new PUR_GRNApprovalVerify();
+                            MainForm.objPUR_GRNApprovalVerify.ShowDialog();
                             break;
                     }
                 }

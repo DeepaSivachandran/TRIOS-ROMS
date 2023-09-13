@@ -39,14 +39,18 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlgroup = new System.Windows.Forms.Panel();
+            this.lvGroup = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtProductGroup = new System.Windows.Forms.TextBox();
             this.grpSearch = new System.Windows.Forms.GroupBox();
             this.txtSearchProduct = new System.Windows.Forms.TextBox();
-            this.lblNoOfPrGroup = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.btnExport = new System.Windows.Forms.Button();
+            this.lblNoOfPrGroup = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
-            this.cmbProductGroup = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdGroupList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
@@ -142,6 +146,8 @@
             // pnlgroup
             // 
             this.pnlgroup.BackColor = System.Drawing.Color.White;
+            this.pnlgroup.Controls.Add(this.lvGroup);
+            this.pnlgroup.Controls.Add(this.txtProductGroup);
             this.pnlgroup.Controls.Add(this.grpSearch);
             this.pnlgroup.Controls.Add(this.grbFilterBy);
             this.pnlgroup.Controls.Add(this.lblNoRecordsFound);
@@ -153,6 +159,49 @@
             this.pnlgroup.TabIndex = 958792;
             this.pnlgroup.Paint += new System.Windows.Forms.PaintEventHandler(this.Pnlgroup_Paint);
             // 
+            // lvGroup
+            // 
+            this.lvGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvGroup.HideSelection = false;
+            this.lvGroup.Location = new System.Drawing.Point(9, 54);
+            this.lvGroup.Name = "lvGroup";
+            this.lvGroup.Size = new System.Drawing.Size(457, 157);
+            this.lvGroup.TabIndex = 958804;
+            this.lvGroup.UseCompatibleStateImageBehavior = false;
+            this.lvGroup.View = System.Windows.Forms.View.Details;
+            this.lvGroup.Visible = false;
+            this.lvGroup.DoubleClick += new System.EventHandler(this.LvGroup_DoubleClick);
+            this.lvGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvGroup_KeyDown);
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 150;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 150;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Width = 0;
+            // 
+            // txtProductGroup
+            // 
+            this.txtProductGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductGroup.Location = new System.Drawing.Point(9, 27);
+            this.txtProductGroup.MaxLength = 50;
+            this.txtProductGroup.Name = "txtProductGroup";
+            this.txtProductGroup.Size = new System.Drawing.Size(239, 27);
+            this.txtProductGroup.TabIndex = 0;
+            this.txtProductGroup.TextChanged += new System.EventHandler(this.TxtProductGroup_TextChanged);
+            this.txtProductGroup.Enter += new System.EventHandler(this.TxtProductGroup_Enter);
+            this.txtProductGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductGroup_KeyDown);
+            this.txtProductGroup.Leave += new System.EventHandler(this.TxtProductGroup_Leave);
+            // 
             // grpSearch
             // 
             this.grpSearch.Controls.Add(this.txtSearchProduct);
@@ -161,7 +210,7 @@
             this.grpSearch.Name = "grpSearch";
             this.grpSearch.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpSearch.Size = new System.Drawing.Size(321, 67);
-            this.grpSearch.TabIndex = 3;
+            this.grpSearch.TabIndex = 1;
             this.grpSearch.TabStop = false;
             this.grpSearch.Text = "Search By Product Group";
             this.grpSearch.Enter += new System.EventHandler(this.GrpSearch_Enter);
@@ -171,32 +220,10 @@
             this.txtSearchProduct.Location = new System.Drawing.Point(13, 26);
             this.txtSearchProduct.Name = "txtSearchProduct";
             this.txtSearchProduct.Size = new System.Drawing.Size(296, 27);
-            this.txtSearchProduct.TabIndex = 3;
+            this.txtSearchProduct.TabIndex = 0;
             this.txtSearchProduct.TextChanged += new System.EventHandler(this.TxtSearchProduct_TextChanged);
             this.txtSearchProduct.Enter += new System.EventHandler(this.TxtSearchProduct_Enter);
             this.txtSearchProduct.Leave += new System.EventHandler(this.TxtSearchProduct_Leave);
-            // 
-            // lblNoOfPrGroup
-            // 
-            this.lblNoOfPrGroup.AutoSize = true;
-            this.lblNoOfPrGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblNoOfPrGroup.ForeColor = System.Drawing.Color.Crimson;
-            this.lblNoOfPrGroup.Location = new System.Drawing.Point(544, 30);
-            this.lblNoOfPrGroup.Name = "lblNoOfPrGroup";
-            this.lblNoOfPrGroup.Size = new System.Drawing.Size(17, 20);
-            this.lblNoOfPrGroup.TabIndex = 958796;
-            this.lblNoOfPrGroup.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(410, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 20);
-            this.label1.TabIndex = 958795;
-            this.label1.Text = "No.of Product Groups :";
             // 
             // grbFilterBy
             // 
@@ -204,13 +231,12 @@
             this.grbFilterBy.Controls.Add(this.lblNoOfPrGroup);
             this.grbFilterBy.Controls.Add(this.btnView);
             this.grbFilterBy.Controls.Add(this.label1);
-            this.grbFilterBy.Controls.Add(this.cmbProductGroup);
-            this.grbFilterBy.Location = new System.Drawing.Point(3, 2);
+            this.grbFilterBy.Location = new System.Drawing.Point(3, 3);
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
             this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Size = new System.Drawing.Size(1015, 67);
-            this.grbFilterBy.TabIndex = 958794;
+            this.grbFilterBy.TabIndex = 0;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By Product Group";
             this.grbFilterBy.Enter += new System.EventHandler(this.GrbFilterBy_Enter);
@@ -219,7 +245,7 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(323, 26);
+            this.btnExport.Location = new System.Drawing.Point(348, 25);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
             this.btnExport.TabIndex = 2;
@@ -231,11 +257,22 @@
             this.btnExport.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnExport_KeyDown);
             this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
             // 
+            // lblNoOfPrGroup
+            // 
+            this.lblNoOfPrGroup.AutoSize = true;
+            this.lblNoOfPrGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblNoOfPrGroup.ForeColor = System.Drawing.Color.Crimson;
+            this.lblNoOfPrGroup.Location = new System.Drawing.Point(581, 32);
+            this.lblNoOfPrGroup.Name = "lblNoOfPrGroup";
+            this.lblNoOfPrGroup.Size = new System.Drawing.Size(17, 20);
+            this.lblNoOfPrGroup.TabIndex = 958796;
+            this.lblNoOfPrGroup.Text = "0";
+            // 
             // btnView
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(242, 26);
+            this.btnView.Location = new System.Drawing.Point(261, 25);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 1;
@@ -247,18 +284,16 @@
             this.btnView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnView_KeyDown);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
-            // cmbProductGroup
+            // label1
             // 
-            this.cmbProductGroup.FormattingEnabled = true;
-            this.cmbProductGroup.Location = new System.Drawing.Point(11, 26);
-            this.cmbProductGroup.Name = "cmbProductGroup";
-            this.cmbProductGroup.Size = new System.Drawing.Size(225, 27);
-            this.cmbProductGroup.TabIndex = 0;
-            this.cmbProductGroup.SelectedIndexChanged += new System.EventHandler(this.CmbProductGroup_SelectedIndexChanged);
-            this.cmbProductGroup.Enter += new System.EventHandler(this.CmbProductGroup_Enter);
-            this.cmbProductGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProductGroup_KeyDown);
-            this.cmbProductGroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbProductGroup_KeyPress);
-            this.cmbProductGroup.Leave += new System.EventHandler(this.CmbProductGroup_Leave);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(447, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(130, 20);
+            this.label1.TabIndex = 958795;
+            this.label1.Text = "No.of Product Groups :";
             // 
             // lblNoRecordsFound
             // 
@@ -378,9 +413,13 @@
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdGroupList;
-        public System.Windows.Forms.ComboBox cmbProductGroup;
         private System.Windows.Forms.PictureBox picLoader;
         private System.Windows.Forms.GroupBox grpSearch;
         private System.Windows.Forms.TextBox txtSearchProduct;
+        private System.Windows.Forms.TextBox txtProductGroup;
+        public System.Windows.Forms.ListView lvGroup;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }

@@ -24,8 +24,7 @@ namespace ROMS
         public string varbrandcode;
         public int varUnitCode = 0;
         public string pbFormStatus;
-        public int varstatus, varupdate=0;
-        public string PbUnitName="";
+        public int varstatus;        public string PbUnitName="";
         public string PbSymbol="";
         public string PbNoOfDecimals="";
         public int PbStatus=0;
@@ -73,6 +72,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                MainForm.objCP_Unitlist.picLoader.Visible = false;
+                MainForm.objCP_Unitlist.picLoader.SendToBack();
+            }
         }
         public void udfnLoad() {
             try {
@@ -99,6 +103,10 @@ namespace ROMS
                 {
                     varoriginator = "Unit Creation";
                     varType = 0;
+                    if (varmastertype == 1)
+                    {
+                        varUpdate = 1;
+                    }
                 }
                 else
                 {
@@ -106,27 +114,49 @@ namespace ROMS
                     varType = 1;
                 }
                 varResult = objspservice.udfnUnit(varType, varUnitCode, (txtEUnitName.Text).Trim(), txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, varoriginator);
+                objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objCP_Unitlist.udfnList();
+
                     if (btnSave.Text == "Update")
                     {
                         varUpdate = 1;
                         udfnclose();
                     }
+                    else
+                    {
+                        varUnitCodeProduct = Convert.ToInt16(varResult.Split('~')[2]);
+                    }
                     udfnclear();
+                    if (varmastertype == 1)
+                    {
+                        MainForm.objCP_Items.varUnitCode = varUnitCodeProduct;
+                        varmastertype = 0;
+                        udfnclose();
+                    }
+                    else
+                    {
+                        MainForm.objCP_Unitlist.udfnList();
+                    }
                 }
                 else
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Enabled = true;
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnSave.Focus();
             }
             finally
             {
@@ -140,7 +170,7 @@ namespace ROMS
 
                 txtEUnitName.Text = "";
                 txtSymbol.Text = "";
-                //btnSave.Text = "Save";
+                cmbNoOfDecimals.SelectedIndex = 0;
                 txtEUnitName.Focus();
                 this.ActiveControl = txtEUnitName;
             }
@@ -189,6 +219,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void btnSave_Enter(object sender, EventArgs e)
@@ -558,6 +592,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
+                    btnSave.Focus();
                     btnSave_Click(sender, e);
                 }
             }

@@ -419,7 +419,7 @@
             this.lblInvoicedate.Name = "lblInvoicedate";
             this.lblInvoicedate.Size = new System.Drawing.Size(51, 20);
             this.lblInvoicedate.TabIndex = 92;
-            this.lblInvoicedate.Text = "DL Date";
+            this.lblInvoicedate.Text = "DC Date";
             // 
             // btnView
             // 
@@ -449,13 +449,13 @@
             // 
             // clminvoiceDate
             // 
-            this.clminvoiceDate.HeaderText = "DL Date";
+            this.clminvoiceDate.HeaderText = "DC Date";
             this.clminvoiceDate.Name = "clminvoiceDate";
             this.clminvoiceDate.ReadOnly = true;
             // 
             // Column5
             // 
-            this.Column5.HeaderText = "DL No.";
+            this.Column5.HeaderText = "DC No.";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             this.Column5.Width = 110;
@@ -516,12 +516,12 @@
             // 
             // clmDInvoiceDate
             // 
-            this.clmDInvoiceDate.HeaderText = "DL Date";
+            this.clmDInvoiceDate.HeaderText = "DC Date";
             this.clmDInvoiceDate.Name = "clmDInvoiceDate";
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "DL No.";
+            this.Column2.HeaderText = "DC No.";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Width = 110;

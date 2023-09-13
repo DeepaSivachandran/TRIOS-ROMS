@@ -204,10 +204,14 @@ namespace ROMS
                 if (cbSupplier.Checked == true)
                 {
                     clmSupplierName.Visible = true;
+                    clmCity.Visible = true;
+                    clmGSTIN.Visible = true;
                 }
                 else
                 {
                     clmSupplierName.Visible = false;
+                    clmCity.Visible = false;
+                    clmGSTIN.Visible = false;
                 }
             }
             catch (Exception ex)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -45,12 +46,12 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlsupplier = new System.Windows.Forms.Panel();
-            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.lblSupplierCode = new System.Windows.Forms.Label();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
+            this.lblSupplierCode = new System.Windows.Forms.Label();
             this.grbSupplierDetails = new System.Windows.Forms.GroupBox();
             this.grdDaywiseProduct = new System.Windows.Forms.DataGridView();
             this.cmbDay = new System.Windows.Forms.ComboBox();
@@ -64,6 +65,7 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdSupplierList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.ep_Supplierlist = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsSupplierList.SuspendLayout();
             this.pnlsupplier.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -72,6 +74,7 @@
             this.grbFilterBySupplier.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ep_Supplierlist)).BeginInit();
             this.SuspendLayout();
             // 
             // tsSupplierList
@@ -171,6 +174,36 @@
             this.pnlsupplier.Size = new System.Drawing.Size(1354, 641);
             this.pnlsupplier.TabIndex = 36;
             // 
+            // LV_Supplier
+            // 
+            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader8,
+            this.columnHeader9});
+            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.LV_Supplier.HideSelection = false;
+            this.LV_Supplier.Location = new System.Drawing.Point(12, 54);
+            this.LV_Supplier.Name = "LV_Supplier";
+            this.LV_Supplier.Size = new System.Drawing.Size(357, 93);
+            this.LV_Supplier.TabIndex = 958803;
+            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
+            this.LV_Supplier.View = System.Windows.Forms.View.Details;
+            this.LV_Supplier.Visible = false;
+            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
+            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 180;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 120;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Width = 0;
+            // 
             // DGV_SearchGrid
             // 
             this.DGV_SearchGrid.AllowUserToAddRows = false;
@@ -226,36 +259,6 @@
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
             // 
-            // LV_Supplier
-            // 
-            this.LV_Supplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader8,
-            this.columnHeader9});
-            this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(12, 55);
-            this.LV_Supplier.Name = "LV_Supplier";
-            this.LV_Supplier.Size = new System.Drawing.Size(357, 93);
-            this.LV_Supplier.TabIndex = 958803;
-            this.LV_Supplier.UseCompatibleStateImageBehavior = false;
-            this.LV_Supplier.View = System.Windows.Forms.View.Details;
-            this.LV_Supplier.Visible = false;
-            this.LV_Supplier.DoubleClick += new System.EventHandler(this.LV_Supplier_DoubleClick);
-            this.LV_Supplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LV_Supplier_KeyDown);
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Width = 180;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Width = 120;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Width = 0;
-            // 
             // grbSupplierDetails
             // 
             this.grbSupplierDetails.Controls.Add(this.grdDaywiseProduct);
@@ -308,6 +311,7 @@
             this.grdDaywiseProduct.ShowRowErrors = false;
             this.grdDaywiseProduct.Size = new System.Drawing.Size(398, 74);
             this.grdDaywiseProduct.TabIndex = 958802;
+            this.grdDaywiseProduct.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdDaywiseProduct_DataBindingComplete);
             // 
             // cmbDay
             // 
@@ -471,15 +475,19 @@
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.loader;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(686, 281);
+            this.picLoader.Location = new System.Drawing.Point(3, 94);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(655, 347);
+            this.picLoader.Size = new System.Drawing.Size(1347, 545);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
+            // 
+            // ep_Supplierlist
+            // 
+            this.ep_Supplierlist.ContainerControl = this;
             // 
             // CP_Supplierlist
             // 
@@ -510,6 +518,7 @@
             this.grbFilterBySupplier.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupplierList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ep_Supplierlist)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -544,5 +553,6 @@
         private System.Windows.Forms.Label lblSupplierCode;
         public System.Windows.Forms.DataGridView grdSupplierList;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
+        private System.Windows.Forms.ErrorProvider ep_Supplierlist;
     }
 }

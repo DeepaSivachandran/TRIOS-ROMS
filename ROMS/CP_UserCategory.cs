@@ -118,6 +118,7 @@ namespace ROMS
                         varType = 1;
                     }
                     varResult = objspservice.udfnUserCategory(varType, varUserCategoryCode, (txtCategoryName.Text).Trim(), varstatus, varoriginator);
+                    objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
                     {
@@ -139,18 +140,25 @@ namespace ROMS
                         {
                             varUpdate = 1;
                             udfnclose();
-                        }                        
+                        }
                         udfnclear();
                     }
                     else
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnSave.Enabled = true;
+                        btnSave.Focus();
                     }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnSave.Focus();
             }
             finally
             {
@@ -196,6 +204,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void btnSave_Enter(object sender, EventArgs e)
@@ -334,6 +346,12 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+
+                MainForm.objCP_UserCategoryList.picLoader.Visible = false;
+                MainForm.objCP_UserCategoryList.picLoader.SendToBack();
             }
         }
         private void udfnLoad()

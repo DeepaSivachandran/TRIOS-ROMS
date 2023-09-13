@@ -867,6 +867,7 @@
             // 
             // txtGSTTIN
             // 
+            this.txtGSTTIN.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtGSTTIN.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtGSTTIN.Location = new System.Drawing.Point(71, 27);
             this.txtGSTTIN.MaxLength = 15;
@@ -1348,7 +1349,7 @@
             // 
             this.txtName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtName.Location = new System.Drawing.Point(13, 39);
-            this.txtName.MaxLength = 500;
+            this.txtName.MaxLength = 50;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(189, 27);
             this.txtName.TabIndex = 0;

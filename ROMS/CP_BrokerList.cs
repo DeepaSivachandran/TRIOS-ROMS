@@ -77,6 +77,7 @@ namespace ROMS
                         objBankTable.Columns.Add("BRB_IFSC", typeof(string));
                         objBankTable.Columns.Add("BRB_STSID", typeof(string));
                         result = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", "", 0, "", "", "",0,"Company delete", objBankTable);
+                        objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
@@ -94,6 +95,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         public void udfnList()
@@ -124,7 +129,9 @@ namespace ROMS
                             grdBrokerList.Columns["ConcernID"].Visible = false;
                             grdBrokerList.Columns["STSID"].Visible = false;
                             grdBrokerList.Columns["S.No."].Width = 50;
-                            grdBrokerList.Columns["Broker Name"].Width = 150;
+                            grdBrokerList.Columns["GSTIN No."].Width = 150;
+                            grdBrokerList.Columns["Broker Name"].Width = 250;
+                            grdBrokerList.Columns["City"].Width = 200;
                             grdBrokerList.Columns["Status"].Width = 80;
                             grdBrokerList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdBrokerList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -165,12 +172,14 @@ namespace ROMS
             {
                 if (grdBrokerList.SelectedRows.Count > 0)
                 {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
                     MainForm.objCP_CP_Broker = new CP_Broker();
-                    MainForm.objCP_CP_Broker.MdiParent = this.ParentForm;
                     MainForm.objCP_CP_Broker.btnSave.Text = "Update";
                     MainForm.objCP_CP_Broker.varBrokerid = grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString();
                     MainForm.objCP_CP_Broker.PbConcernID = Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ConcernID"].Value);
-                    MainForm.objCP_CP_Broker.Show();
+                    MainForm.objCP_CP_Broker.ShowDialog();
                 }
             }
             catch (Exception ex)

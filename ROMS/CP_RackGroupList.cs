@@ -92,6 +92,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             }
 
         }
@@ -100,12 +105,17 @@ namespace ROMS
         {
             try
             {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
                 MainForm.objCP_RackGroup = new CP_RackGroup();
                 MainForm.objCP_RackGroup.btnSave.Text = "Update";
                 MainForm.objCP_RackGroup.varId = Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value);
                 MainForm.objCP_RackGroup.varCompanyId = Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["COMID"].Value);
                 MainForm.objCP_RackGroup.varStatusid = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["Status ID"].Value);
                 MainForm.objCP_RackGroup.varStockId = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
+                picLoader.Visible = false;
+                picLoader.SendToBack();
                 MainForm.objCP_RackGroup.ShowDialog();
                
             }
@@ -121,14 +131,28 @@ namespace ROMS
         {
             try
             {
+                //lvStockLocation.Visible = false;
                 picLoader.Visible = true;
+                picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdRackGroupList.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnRackGroupList(0,varCompanyId,varStockLocationId,varId);
+                int varLocationId = 0;
+                if (txtStockLocation.Text == "")
+                {
+                    varLocationId = 0;
+                }
+                else
+                {
+                    DataService objDServ = new DataService();
+                    string varId_Location = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtStockLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtStockLocation.Text.Trim() + "') END AS SLID ");
+                    objDServ.CloseConnection();
+                    varLocationId = Convert.ToInt32(varId_Location);
+                }
+                objDs = objdserv.udfnRackGroupList(0,varCompanyId, varLocationId, varId);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -183,6 +207,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
 
@@ -247,45 +276,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfncmbStockLocation()
-        {
-            try
-            {
-                SPDataService objdserv = new SPDataService();
-                DataSet objDT = new DataSet();
-                int varViewType = 2;
-                if(varCompanyId==0)
-                {
-                    varViewType = 1;
-                }
-                objDT = objdserv.udfnStockLocationList(varViewType, varCompanyId,0,0);
-                objdserv.CloseConnection();
-                cmbStockLocation.DataSource = null;
-                if (objDT != null)
-                {
-                    if (objDT.Tables.Count > 0)
-                    {
-                        if (objDT.Tables[0].Rows.Count > 0)
-                        {
-                            cmbStockLocation.ValueMember = "SLID";
-                            cmbStockLocation.DisplayMember = "SL_EName";
-                            cmbStockLocation.DataSource = objDT.Tables[0];
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void CP_RackGroupList_Load(object sender, EventArgs e)
         {
             try
             {
                 udfnCmbConcern();
-                udfncmbStockLocation();
                 udfnList();
                 this.ActiveControl = cmbConcern;
             }
@@ -313,7 +308,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStockLocation.Focus();
+                    txtStockLocation.Focus();
                 }
             }
             catch (Exception ex)
@@ -354,7 +349,6 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 varCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                udfncmbStockLocation();
             }
             catch (Exception ex)
             {
@@ -362,76 +356,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void CmbStockLocation_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbStockLocation.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbStockLocation_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbStockLocation_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbStockLocation_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbStockLocation.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                varStockLocationId = Convert.ToInt32(cmbStockLocation.SelectedValue);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void BtnView_Click(object sender, EventArgs e)
         {
             try
@@ -447,6 +371,7 @@ namespace ROMS
             finally
             {
                 btnView.Enabled = true;
+                btnView.Focus();
             }
         }
 
@@ -692,6 +617,7 @@ namespace ROMS
             finally
             {
                 btnExport.Enabled = true;
+                btnExport.Focus();
             }
         }
 
@@ -712,6 +638,7 @@ namespace ROMS
         {
             try
             {
+                lvStockLocation.Visible = false;
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -843,5 +770,166 @@ namespace ROMS
             }
         }
 
+        private void TxtStockLocation_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtStockLocation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtStockLocation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvStockLocation.Items.Count == 0 || txtStockLocation.Text == "")
+                    {
+                        txtStockLocation.Focus();
+                        lvStockLocation.Visible = false;
+                    }
+                    else
+                    {
+                        lvStockLocation.Focus();
+                    }
+                    if (lvStockLocation.Items.Count > 0)
+                    {
+                        lvStockLocation.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            
+            }
+        }
+
+        private void TxtStockLocation_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtStockLocation.BackColor = Color.White;
+                if (txtStockLocation.Text.Trim() == "") { varStockLocationId = 0; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+        private void TxtStockLocation_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvStockLocation.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtStockLocation.Text.Length > 0)
+                {
+                    int varViewType = 0;
+                    if(cmbConcern.SelectedIndex==0)
+                    {
+                        varViewType = 13;
+                    }
+                    else
+                    {
+                        varViewType = 11;
+                    }
+                    objDs = objspdservice.udfnStockLocationList(varViewType,varCompanyId, 0, 0,txtStockLocation.Text);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["SL_TName"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(), };
+                                    //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvStockLocation.Items.Add(objList);
+                                }
+                                lvStockLocation.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvStockLocation.Visible = false;
+                    lvStockLocation.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvStockLocation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnLvStockLocation();
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvStockLocation_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnLvStockLocation();
+                btnView.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLvStockLocation()
+        {
+            try
+            {
+                if (txtStockLocation.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvStockLocation.SelectedItems[0];
+                    txtStockLocation.Text = selectedItem.SubItems[0].Text;
+                    varStockLocationId = Convert.ToInt32(selectedItem.SubItems[2].Text);
+                    lvStockLocation.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
