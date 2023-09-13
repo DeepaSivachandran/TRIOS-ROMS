@@ -213,6 +213,7 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.tbSchedule = new System.Windows.Forms.TabPage();
             this.grpSchedule = new System.Windows.Forms.GroupBox();
+            this.cmbMappedorderrype = new System.Windows.Forms.ComboBox();
             this.lblMappedNoRecords = new System.Windows.Forms.Label();
             this.lblMappedOrderTypeId = new System.Windows.Forms.Label();
             this.txtMappedSupplierName = new System.Windows.Forms.TextBox();
@@ -230,7 +231,6 @@
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmbMappedorderrype = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -2457,6 +2457,29 @@
             this.grpSchedule.TabIndex = 958809;
             this.grpSchedule.TabStop = false;
             // 
+            // cmbMappedorderrype
+            // 
+            this.cmbMappedorderrype.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMappedorderrype.FormattingEnabled = true;
+            this.cmbMappedorderrype.Items.AddRange(new object[] {
+            "--All--",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"});
+            this.cmbMappedorderrype.Location = new System.Drawing.Point(471, 37);
+            this.cmbMappedorderrype.Name = "cmbMappedorderrype";
+            this.cmbMappedorderrype.Size = new System.Drawing.Size(116, 27);
+            this.cmbMappedorderrype.TabIndex = 1;
+            this.cmbMappedorderrype.SelectedIndexChanged += new System.EventHandler(this.CmbMappedorderrype_SelectedIndexChanged);
+            this.cmbMappedorderrype.Enter += new System.EventHandler(this.CmbMappedorderrype_Enter);
+            this.cmbMappedorderrype.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbMappedorderrype_KeyDown);
+            this.cmbMappedorderrype.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbMappedorderrype_KeyPress);
+            this.cmbMappedorderrype.Leave += new System.EventHandler(this.CmbMappedorderrype_Leave);
+            // 
             // lblMappedNoRecords
             // 
             this.lblMappedNoRecords.AutoSize = true;
@@ -2693,29 +2716,6 @@
             this.label3.TabIndex = 958804;
             this.label3.Text = "No.of Products :";
             // 
-            // cmbMappedorderrype
-            // 
-            this.cmbMappedorderrype.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbMappedorderrype.FormattingEnabled = true;
-            this.cmbMappedorderrype.Items.AddRange(new object[] {
-            "--All--",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"});
-            this.cmbMappedorderrype.Location = new System.Drawing.Point(471, 37);
-            this.cmbMappedorderrype.Name = "cmbMappedorderrype";
-            this.cmbMappedorderrype.Size = new System.Drawing.Size(116, 27);
-            this.cmbMappedorderrype.TabIndex = 1;
-            this.cmbMappedorderrype.SelectedIndexChanged += new System.EventHandler(this.CmbMappedorderrype_SelectedIndexChanged);
-            this.cmbMappedorderrype.Enter += new System.EventHandler(this.CmbMappedorderrype_Enter);
-            this.cmbMappedorderrype.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbMappedorderrype_KeyDown);
-            this.cmbMappedorderrype.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbMappedorderrype_KeyPress);
-            this.cmbMappedorderrype.Leave += new System.EventHandler(this.CmbMappedorderrype_Leave);
-            // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -2735,7 +2735,6 @@
             this.Name = "CP_Supplier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Supplier Details";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Supplier_FormClosing);
             this.Load += new System.EventHandler(this.CP_Supplier_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Supplier_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Supplier_Leave);
