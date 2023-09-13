@@ -4378,7 +4378,7 @@ namespace ROMS
                                 }
                                 else
                                 {
-                                    DialogResult dialogResult1 = MessageBox.Show(varvalue[1] + "Do you want to delete ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    DialogResult dialogResult1 = MessageBox.Show(varvalue[1] + " Are you sure want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                     if (dialogResult1 == DialogResult.Yes)
                                     {
                                         SPDataService objspdservice1 = new SPDataService();

@@ -71,7 +71,7 @@ namespace ROMS
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
                         varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "","",0,0, "Unit Delete");
-
+                        objspservice.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
                             MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -88,6 +88,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void udfnEdit()

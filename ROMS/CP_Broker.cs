@@ -582,13 +582,6 @@ namespace ROMS
 
             try
             {
-                //if (Convert.ToString(txtGstinNo.Text).Trim() == "")
-                //{
-                //    epBroker.SetError(txtGstinNo, "Please enter GSTINNo");
-                //    txtGstinNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpGstinNo.ShowAlways = true;
-                //    tpGstinNo.Show("Please enter GSTTINNo", txtGstinNo, 5000);
-                //}
                 if (Convert.ToString(txtGstinNo.Text).Trim() != "" && txtGstinNo.Text.Length != 15)
                 {
                     epBroker.SetError(txtGstinNo, "Please enter valid GSTINNo");
