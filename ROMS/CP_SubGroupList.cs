@@ -93,10 +93,21 @@ namespace ROMS
                 }
                 else
                 {
-                    DataService objDServ = new DataService();
-                    //string varCount = objDServ.displaydata("SELECT COUNT(*) AS Count FROM MR_ProductSubGroup WHERE PRSG_EName ='" + txtProductSubGroup.Text.Trim() + "'");
-                    string varId_SubGroup = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtProductSubGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRSGID FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtProductSubGroup.Text.Trim() + "') END AS PRSGID ");
-                    objDServ.CloseConnection();
+                    string varId_SubGroup = "0";
+                    DataSet objDssubgroup = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtProductSubGroup.Text.Trim());
+                    objDserv.CloseConnection();
+                    if (objDssubgroup != null)
+                    {
+                        if (objDssubgroup.Tables.Count > 0)
+                        {
+                            if (objDssubgroup.Tables[0].Rows.Count > 0)
+                            {
+                                varId_SubGroup = Convert.ToString(objDssubgroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
                     varSubGroupId = Convert.ToInt32(varId_SubGroup);
                     //if (varCount == "0") { varSubGroupId = -1; }
                     //else
