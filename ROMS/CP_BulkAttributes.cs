@@ -228,6 +228,7 @@ namespace ROMS
                                 grdLoction.Columns["Pur.Rack-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdLoction.Columns["Sales Rack-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdLoction.Columns["Rack MSQ-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                grdLoction.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                             }
                             else if(grdMSQ.Visible==true)
                             {
