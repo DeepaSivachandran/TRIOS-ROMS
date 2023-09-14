@@ -59,6 +59,7 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.lvBrand = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -170,6 +171,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblNoRecordsFound);
             this.groupBox1.Controls.Add(this.lvBrand);
             this.groupBox1.Controls.Add(this.lvSubGroup);
             this.groupBox1.Controls.Add(this.lvGroup);
@@ -191,6 +193,18 @@
             this.groupBox1.Size = new System.Drawing.Size(1136, 630);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
+            // 
+            // lblNoRecordsFound
+            // 
+            this.lblNoRecordsFound.AutoSize = true;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(515, 328);
+            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.TabIndex = 958804;
+            this.lblNoRecordsFound.Text = "No Records Found";
+            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lvBrand
             // 
@@ -216,7 +230,7 @@
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Width = 150;
+            this.columnHeader8.Width = 180;
             // 
             // columnHeader9
             // 
@@ -246,7 +260,7 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Width = 120;
+            this.columnHeader2.Width = 180;
             // 
             // columnHeader3
             // 
@@ -276,7 +290,7 @@
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Width = 120;
+            this.columnHeader5.Width = 180;
             // 
             // columnHeader6
             // 
@@ -543,6 +557,7 @@
             this.grdWeight.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdWeight.Size = new System.Drawing.Size(1118, 481);
             this.grdWeight.TabIndex = 958798;
+            this.grdWeight.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdWeight_EditingControlShowing);
             // 
             // grdBatch
             // 
@@ -662,6 +677,7 @@
             this.grdStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdStock.Size = new System.Drawing.Size(1118, 481);
             this.grdStock.TabIndex = 958795;
+            this.grdStock.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdStock_EditingControlShowing);
             // 
             // grdMSQ
             // 
@@ -701,6 +717,7 @@
             this.grdMSQ.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdMSQ.Size = new System.Drawing.Size(1118, 481);
             this.grdMSQ.TabIndex = 958794;
+            this.grdMSQ.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdMSQ_EditingControlShowing);
             // 
             // grdLoction
             // 
@@ -741,7 +758,6 @@
             this.grdLoction.Size = new System.Drawing.Size(1118, 481);
             this.grdLoction.TabIndex = 958793;
             this.grdLoction.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdLoction_EditingControlShowing);
-            this.grdLoction.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.GrdLoction_KeyPress);
             // 
             // grdBulkAttributes
             // 
@@ -1073,6 +1089,7 @@
             this.tsPurchase.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdBrand)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -1158,5 +1175,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.Label lblNoRecordsFound;
     }
 }
