@@ -110,7 +110,13 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRackSettingsList(0,0,0,0,0);
+                DataService objDServ = new DataService();
+                int varRackId = 0;
+                string varId_Rack = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') END AS RKID ");
+                objDServ.CloseConnection();
+                varRackId = Convert.ToInt32(varId_Rack);
+
+                objDs = objspservice.udfnRackSettingsList(0,0, varRackId, 0,0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
