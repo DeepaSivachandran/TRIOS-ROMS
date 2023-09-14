@@ -30,25 +30,77 @@ namespace ROMS
         {
             try
             {
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex); 
+            }
+        }
 
+        public void udfnList()
+        {
 
-                grdPOSchedule.Rows.Add(1, "Monday");
-                grdPOSchedule.Rows.Add(2, "Tuesday");
-                grdPOSchedule.Rows.Add(3, "Wednesday");
-                grdPOSchedule.Rows.Add(4, "Thursday"); 
-                grdPOSchedule.Rows.Add(5, "Friday");
-                grdPOSchedule.Rows.Add(6, "Saturday");
-                grdPOSchedule.Rows.Add(7, "Sunday");
-                grdPOSchedule.Rows.Add("", "Total");
-                grdPOSchedule.Rows[7].DefaultCellStyle.BackColor = Color.SlateGray;
-                grdPOSchedule.Rows[7].DefaultCellStyle.ForeColor = Color.White;
+            try
+            { 
+                grdHeaderview.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService(); 
+                objDs = objdserv.udfnSupplierList(9, 0, 0, 0, 0, "", 0,0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    { 
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        { 
+                            grdHeaderview.DataSource = objDs.Tables[0];
+                            foreach (DataGridViewColumn column in grdHeaderview.Columns)
+                            {
+                                if (column.Index > 1)  
+                                {
+                                    column.Width = 200;
+                                }
+                            }
+
+                        }
+                    }
+                } 
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            } 
+        }
 
+        private void BtnPrintdaywise_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrintdaywise.BackColor = Color.LemonChiffon;
             }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPrintdaywise_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrintdaywise.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
     }
 }

@@ -54,7 +54,7 @@ namespace ROMS
             }
             finally
             {
-                //picLoader.Visible = false;
+                picLoader.Visible = false;
             }
         }
 
@@ -86,11 +86,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void DgvSupplierScheduleList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+         
 
         private void PUR_SupplierScheduleList_Load(object sender, EventArgs e)
         {
@@ -120,12 +116,79 @@ namespace ROMS
 
             try
             {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                ep_Supplierlist.Clear();
+                dgvSupplierScheduleList.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                int varSupplierId = 0;
+                if (txtSupplier.Text == "")
+                {
+                    varSupplierId = 0;
+                }
+                else
+                {
+                    DataService objDServ = new DataService();
+                    string varId_Supplier = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SPID FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') END AS SPID ");
+                    objDServ.CloseConnection();
+                    varSupplierId = Convert.ToInt32(varId_Supplier);
+                } 
+                objDs = objdserv.udfnSupplierList(8, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "", 0,Convert.ToInt32(cmbStatus.SelectedValue));
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            dgvSupplierScheduleList.DataSource = objDs.Tables[0];
+                            //grdSupplierList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            //grdSupplierList.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            //grdSupplierList.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                            dgvSupplierScheduleList.Columns["S.No."].Width = 50;
+                            dgvSupplierScheduleList.Columns["Supplier"].Width = 200;
+                            dgvSupplierScheduleList.Columns["Schedule Name"].Width = 150;
+                            dgvSupplierScheduleList.Columns["Status"].Width = 80;
+                            dgvSupplierScheduleList.Columns["Scheduleid"].Visible = false;
+                            dgvSupplierScheduleList.Columns["SupplierID"].Visible = false;
+                            dgvSupplierScheduleList.Columns["STS"].Visible = false;
+                            dgvSupplierScheduleList.Columns["DYID"].Visible = false;
+                            dgvSupplierScheduleList.Columns["ORDERTYPE"].Visible = false; 
+                            dgvSupplierScheduleList.Columns["STATUS CODE"].Visible = false; 
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
+                    } 
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
+
                 udfnSearchGridHead();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                //  grdreplist.ClearSelection();
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
         private void TxtSupplier_Leave(object sender, EventArgs e)
@@ -144,12 +207,27 @@ namespace ROMS
 
         private void TxtSupplier_KeyDown(object sender, KeyEventArgs e)
         {
-
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
                     cmbStatus.Focus();
+                }
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (LV_Supplier.Items.Count == 0 || txtSupplier.Text == "")
+                    {
+                        txtSupplier.Focus();
+                        LV_Supplier.Visible = false;
+                    }
+                    else
+                    {
+                        LV_Supplier.Focus();
+                    }
+                    if (LV_Supplier.Items.Count > 0)
+                    {
+                        LV_Supplier.Items[0].Selected = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -419,6 +497,22 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     cmbOrderSchedule.Focus();
+                }
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (LV_Supplier.Items.Count == 0 || txtsuppliernameprint.Text == "")
+                    {
+                        txtsuppliernameprint.Focus();
+                        LV_Supplier.Visible = false;
+                    }
+                    else
+                    {
+                        LV_Supplier.Focus();
+                    }
+                    if (LV_Supplier.Items.Count > 0)
+                    {
+                        LV_Supplier.Items[0].Selected = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -878,7 +972,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtSupplier.Text, 0);
+                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtSupplier.Text, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1000,7 +1094,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtSupplier.Text, 0);
+                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtSupplier.Text, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1075,17 +1169,22 @@ namespace ROMS
 
                 for (int i = 0; i < dgvSupplierScheduleList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STS"].Value) == "1" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS"].Value) != "")
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS CODE"].Value) == "3" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS"].Value) != "")
                     {
-                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.BackColor = Color.DarkGoldenrod;
                         dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
 
-                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STS"].Value) == "2" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS"].Value) != "")
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS CODE"].Value) == "4" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS"].Value) != "")
                     {
-                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.BackColor = Color.DarkViolet;
                         dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
+                    if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS CODE"].Value) == "5" && Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["STATUS"].Value) != "")
+                    {
+                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    } 
                 }
             }
             catch (Exception ex)
@@ -1132,6 +1231,23 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
+        }
+
+        private void BtnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                dgvSupplierScheduleList.ClearSelection();
+            }
         }
     }
 }

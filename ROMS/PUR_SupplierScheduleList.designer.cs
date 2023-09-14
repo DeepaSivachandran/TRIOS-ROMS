@@ -29,20 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsSupplierScheduleList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlSupplierScheduleList = new System.Windows.Forms.Panel();
+            this.lvSupplerName = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -50,9 +55,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSchedulePopup = new System.Windows.Forms.Button();
             this.grpprint = new System.Windows.Forms.GroupBox();
+            this.lblSuppliernameprint = new System.Windows.Forms.Label();
+            this.lblSupplierCode = new System.Windows.Forms.Label();
             this.cmbOrderSchedule = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cmbDay = new System.Windows.Forms.ComboBox();
+            this.cmbOrder = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnListPrint = new System.Windows.Forms.Button();
             this.pnlLanguage = new System.Windows.Forms.Panel();
@@ -70,27 +78,13 @@
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.dgvSupplierScheduleList = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.lvSupplerName = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblSupplierCode = new System.Windows.Forms.Label();
-            this.lblSuppliernameprint = new System.Windows.Forms.Label();
             this.ep_Supplierlist = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cmbOrder = new System.Windows.Forms.ComboBox();
-            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tsSupplierScheduleList.SuspendLayout();
             this.pnlSupplierScheduleList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grpprint.SuspendLayout();
             this.pnlLanguage.SuspendLayout();
@@ -98,7 +92,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupplierScheduleList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ep_Supplierlist)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // tsSupplierScheduleList
@@ -141,6 +134,8 @@
             // pnlSupplierScheduleList
             // 
             this.pnlSupplierScheduleList.BackColor = System.Drawing.Color.White;
+            this.pnlSupplierScheduleList.Controls.Add(this.label9);
+            this.pnlSupplierScheduleList.Controls.Add(this.textBox1);
             this.pnlSupplierScheduleList.Controls.Add(this.lvSupplerName);
             this.pnlSupplierScheduleList.Controls.Add(this.LV_Supplier);
             this.pnlSupplierScheduleList.Controls.Add(this.DGV_SearchGrid);
@@ -158,6 +153,36 @@
             this.pnlSupplierScheduleList.Name = "pnlSupplierScheduleList";
             this.pnlSupplierScheduleList.Size = new System.Drawing.Size(1354, 642);
             this.pnlSupplierScheduleList.TabIndex = 958788;
+            // 
+            // lvSupplerName
+            // 
+            this.lvSupplerName.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvSupplerName.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSupplerName.HideSelection = false;
+            this.lvSupplerName.Location = new System.Drawing.Point(550, 79);
+            this.lvSupplerName.Name = "lvSupplerName";
+            this.lvSupplerName.Size = new System.Drawing.Size(357, 93);
+            this.lvSupplerName.TabIndex = 1111223;
+            this.lvSupplerName.UseCompatibleStateImageBehavior = false;
+            this.lvSupplerName.View = System.Windows.Forms.View.Details;
+            this.lvSupplerName.Visible = false;
+            this.lvSupplerName.DoubleClick += new System.EventHandler(this.LvSupplerName_DoubleClick);
+            this.lvSupplerName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSupplerName_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
             // 
             // LV_Supplier
             // 
@@ -188,6 +213,50 @@
             // columnHeader9
             // 
             this.columnHeader9.Width = 0;
+            // 
+            // DGV_SearchGrid
+            // 
+            this.DGV_SearchGrid.AllowUserToAddRows = false;
+            this.DGV_SearchGrid.AllowUserToDeleteRows = false;
+            this.DGV_SearchGrid.AllowUserToResizeRows = false;
+            this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGV_SearchGrid.ColumnHeadersHeight = 30;
+            this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
+            this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 93);
+            this.DGV_SearchGrid.Name = "DGV_SearchGrid";
+            this.DGV_SearchGrid.RowHeadersVisible = false;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.DGV_SearchGrid.RowTemplate.Height = 25;
+            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DGV_SearchGrid.ShowRowErrors = false;
+            this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
+            this.DGV_SearchGrid.TabIndex = 1111224;
+            this.DGV_SearchGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellContentClick);
+            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
+            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
+            this.DGV_SearchGrid.ColumnMinimumWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             // 
             // label6
             // 
@@ -280,6 +349,26 @@
             this.grpprint.TabStop = false;
             this.grpprint.Text = "Print By";
             // 
+            // lblSuppliernameprint
+            // 
+            this.lblSuppliernameprint.AutoSize = true;
+            this.lblSuppliernameprint.Location = new System.Drawing.Point(323, 23);
+            this.lblSuppliernameprint.Name = "lblSuppliernameprint";
+            this.lblSuppliernameprint.Size = new System.Drawing.Size(16, 20);
+            this.lblSuppliernameprint.TabIndex = 1111181;
+            this.lblSuppliernameprint.Text = "0";
+            this.lblSuppliernameprint.Visible = false;
+            // 
+            // lblSupplierCode
+            // 
+            this.lblSupplierCode.AutoSize = true;
+            this.lblSupplierCode.Location = new System.Drawing.Point(263, 15);
+            this.lblSupplierCode.Name = "lblSupplierCode";
+            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSupplierCode.TabIndex = 1111180;
+            this.lblSupplierCode.Text = "0";
+            this.lblSupplierCode.Visible = false;
+            // 
             // cmbOrderSchedule
             // 
             this.cmbOrderSchedule.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -316,6 +405,20 @@
             this.cmbDay.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbDay_KeyDown);
             this.cmbDay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbDay_KeyPress);
             this.cmbDay.Leave += new System.EventHandler(this.CmbDay_Leave);
+            // 
+            // cmbOrder
+            // 
+            this.cmbOrder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbOrder.FormattingEnabled = true;
+            this.cmbOrder.Location = new System.Drawing.Point(86, 49);
+            this.cmbOrder.Name = "cmbOrder";
+            this.cmbOrder.Size = new System.Drawing.Size(76, 27);
+            this.cmbOrder.TabIndex = 4;
+            this.cmbOrder.SelectedIndexChanged += new System.EventHandler(this.CmbOrder_SelectedIndexChanged);
+            this.cmbOrder.Enter += new System.EventHandler(this.CmbOrder_Enter);
+            this.cmbOrder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrder_KeyDown);
+            this.cmbOrder.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrder_KeyPress);
+            this.cmbOrder.Leave += new System.EventHandler(this.CmbOrder_Leave);
             // 
             // label4
             // 
@@ -477,6 +580,7 @@
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
@@ -532,16 +636,6 @@
             this.dgvSupplierScheduleList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvSupplierScheduleList.ColumnHeadersHeight = 30;
             this.dgvSupplierScheduleList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvSupplierScheduleList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn4,
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn5});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -570,64 +664,6 @@
             this.dgvSupplierScheduleList.DoubleClick += new System.EventHandler(this.DgvSupplierScheduleList_DoubleClick);
             this.dgvSupplierScheduleList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvSupplierScheduleList_KeyDown);
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Supplier";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 250;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "City";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "GSTIN";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Order Schedule Name";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 150;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Status";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Order Type";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Order Day";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Total Products";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 150;
-            // 
             // picLoader
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -643,117 +679,30 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // lvSupplerName
-            // 
-            this.lvSupplerName.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.lvSupplerName.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSupplerName.HideSelection = false;
-            this.lvSupplerName.Location = new System.Drawing.Point(550, 79);
-            this.lvSupplerName.Name = "lvSupplerName";
-            this.lvSupplerName.Size = new System.Drawing.Size(357, 93);
-            this.lvSupplerName.TabIndex = 1111223;
-            this.lvSupplerName.UseCompatibleStateImageBehavior = false;
-            this.lvSupplerName.View = System.Windows.Forms.View.Details;
-            this.lvSupplerName.Visible = false;
-            this.lvSupplerName.DoubleClick += new System.EventHandler(this.LvSupplerName_DoubleClick);
-            this.lvSupplerName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSupplerName_KeyDown);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 180;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 120;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 0;
-            // 
-            // lblSupplierCode
-            // 
-            this.lblSupplierCode.AutoSize = true;
-            this.lblSupplierCode.Location = new System.Drawing.Point(263, 15);
-            this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
-            this.lblSupplierCode.TabIndex = 1111180;
-            this.lblSupplierCode.Text = "0";
-            this.lblSupplierCode.Visible = false;
-            // 
-            // lblSuppliernameprint
-            // 
-            this.lblSuppliernameprint.AutoSize = true;
-            this.lblSuppliernameprint.Location = new System.Drawing.Point(323, 23);
-            this.lblSuppliernameprint.Name = "lblSuppliernameprint";
-            this.lblSuppliernameprint.Size = new System.Drawing.Size(16, 20);
-            this.lblSuppliernameprint.TabIndex = 1111181;
-            this.lblSuppliernameprint.Text = "0";
-            this.lblSuppliernameprint.Visible = false;
-            // 
             // ep_Supplierlist
             // 
             this.ep_Supplierlist.ContainerControl = this;
             // 
-            // cmbOrder
+            // label9
             // 
-            this.cmbOrder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbOrder.FormattingEnabled = true;
-            this.cmbOrder.Location = new System.Drawing.Point(86, 49);
-            this.cmbOrder.Name = "cmbOrder";
-            this.cmbOrder.Size = new System.Drawing.Size(76, 27);
-            this.cmbOrder.TabIndex = 4;
-            this.cmbOrder.SelectedIndexChanged += new System.EventHandler(this.CmbOrder_SelectedIndexChanged);
-            this.cmbOrder.Enter += new System.EventHandler(this.CmbOrder_Enter);
-            this.cmbOrder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrder_KeyDown);
-            this.cmbOrder.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrder_KeyPress);
-            this.cmbOrder.Leave += new System.EventHandler(this.CmbOrder_Leave);
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(256, 615);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 20);
+            this.label9.TabIndex = 1111226;
+            this.label9.Text = "Mapped";
             // 
-            // DGV_SearchGrid
+            // textBox1
             // 
-            this.DGV_SearchGrid.AllowUserToAddRows = false;
-            this.DGV_SearchGrid.AllowUserToDeleteRows = false;
-            this.DGV_SearchGrid.AllowUserToResizeRows = false;
-            this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.DGV_SearchGrid.ColumnHeadersHeight = 30;
-            this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
-            this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
-            this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 93);
-            this.DGV_SearchGrid.Name = "DGV_SearchGrid";
-            this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.DGV_SearchGrid.RowTemplate.Height = 25;
-            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DGV_SearchGrid.ShowRowErrors = false;
-            this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
-            this.DGV_SearchGrid.TabIndex = 1111224;
-            this.DGV_SearchGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellContentClick);
-            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
-            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
-            this.DGV_SearchGrid.ColumnMinimumWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
+            this.textBox1.BackColor = System.Drawing.Color.LimeGreen;
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(229, 617);
+            this.textBox1.MaxLength = 50;
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(27, 16);
+            this.textBox1.TabIndex = 1111225;
             // 
             // PUR_SupplierScheduleList
             // 
@@ -776,6 +725,7 @@
             this.tsSupplierScheduleList.PerformLayout();
             this.pnlSupplierScheduleList.ResumeLayout(false);
             this.pnlSupplierScheduleList.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.grpprint.ResumeLayout(false);
             this.grpprint.PerformLayout();
@@ -786,7 +736,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSupplierScheduleList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ep_Supplierlist)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -824,15 +773,6 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.ComboBox cmbOrderSchedule;
         private System.Windows.Forms.Label label8;
         public System.Windows.Forms.ListView LV_Supplier;
@@ -848,5 +788,7 @@
         private System.Windows.Forms.ErrorProvider ep_Supplierlist;
         private System.Windows.Forms.ComboBox cmbOrder;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
