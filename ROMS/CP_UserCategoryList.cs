@@ -137,7 +137,7 @@ namespace ROMS
                     }
                     MainForm.objCP_UserCategory.btnSave.Text = "Update";
                     MainForm.objCP_UserCategory.varUserCategoryCode = Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_UserCategory.PbUserCategoryName = Convert.ToString(grdUserCategoryList.SelectedRows[0].Cells["Category Name"].Value);
+                    MainForm.objCP_UserCategory.PbUserCategoryName = Convert.ToString(grdUserCategoryList.SelectedRows[0].Cells["Designation"].Value);
                     MainForm.objCP_UserCategory.PbStatus = Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objCP_UserCategory.ShowDialog();
                 }
@@ -178,7 +178,7 @@ namespace ROMS
                             grdUserCategoryList.Columns["StatusID"].Visible = false;
                             grdUserCategoryList.Columns["DefaultID"].Visible = false;
                             grdUserCategoryList.Columns["S.No."].Width = 50;
-                            grdUserCategoryList.Columns["Category Name"].Width = 200;
+                            grdUserCategoryList.Columns["Designation"].Width = 200;
                             grdUserCategoryList.Columns["Status"].Width = 80;
                             grdUserCategoryList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserCategoryList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

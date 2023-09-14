@@ -155,7 +155,7 @@
             this.txtDCategoryName.ReadOnly = true;
             this.txtDCategoryName.Size = new System.Drawing.Size(181, 27);
             this.txtDCategoryName.TabIndex = 19;
-            this.txtDCategoryName.Text = "Category Name";
+            this.txtDCategoryName.Text = "Designation";
             // 
             // txtCategoryName
             // 
@@ -189,7 +189,7 @@
             this.MinimizeBox = false;
             this.Name = "CP_UserCategory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User Category";
+            this.Text = "Designation";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_UserCategory_FormClosing);
             this.Load += new System.EventHandler(this.CP_UserCategory_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_UserCategory_KeyDown);

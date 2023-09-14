@@ -506,7 +506,7 @@ namespace ROMS
             // 
             this.tsmCategory.Name = "tsmCategory";
             this.tsmCategory.Size = new System.Drawing.Size(225, 22);
-            this.tsmCategory.Text = "User Category";
+            this.tsmCategory.Text = "Designation";
             this.tsmCategory.Click += new System.EventHandler(this.TsmuserCategory_Click);
             // 
             // tsmUser

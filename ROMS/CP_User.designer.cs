@@ -323,7 +323,7 @@
             this.txtDUserCategory.ReadOnly = true;
             this.txtDUserCategory.Size = new System.Drawing.Size(181, 27);
             this.txtDUserCategory.TabIndex = 22;
-            this.txtDUserCategory.Text = "User Category";
+            this.txtDUserCategory.Text = "Designation";
             // 
             // cmbUserRole
             // 

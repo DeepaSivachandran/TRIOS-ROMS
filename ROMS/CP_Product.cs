@@ -340,7 +340,7 @@ namespace ROMS
                 string varId_SubGroup = "0";
                 DataSet objDssubgroup = new DataSet();
                 SPDataService objDserv = new SPDataService();
-                objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtGroup.Text.Trim());
+                objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim());
                 objDserv.CloseConnection();
                 if (objDssubgroup != null)
                 {

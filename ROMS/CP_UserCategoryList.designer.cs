@@ -78,7 +78,7 @@
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
             this.tspHeader.Size = new System.Drawing.Size(102, 24);
-            this.tspHeader.Text = "User Category";
+            this.tspHeader.Text = "Designation";
             // 
             // tsbDelete
             // 

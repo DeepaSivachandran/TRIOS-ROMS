@@ -113,7 +113,7 @@ namespace ROMS
                             grdUserList.Columns["StatusID"].Visible = false;
                             grdUserList.Columns["S.No."].Width = 50;
                             grdUserList.Columns["Name of the User"].Width = 150;
-                            grdUserList.Columns["User Category"].Width = 150;
+                            grdUserList.Columns["Designation"].Width = 150;
                             grdUserList.Columns["Status"].Width = 80;
                             grdUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -202,7 +202,7 @@ namespace ROMS
                     MainForm.objCP_User.PbPasskeyID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["PassKeyID"].Value);
                     MainForm.objCP_User.PbNameoftheUser = Convert.ToString(grdUserList.SelectedRows[0].Cells["Name of the User"].Value);
                     MainForm.objCP_User.PbLoginid = Convert.ToString(grdUserList.SelectedRows[0].Cells["Login ID"].Value);
-                    MainForm.objCP_User.PbUserCategory = Convert.ToString(grdUserList.SelectedRows[0].Cells["User Category"].Value);
+                    MainForm.objCP_User.PbUserCategory = Convert.ToString(grdUserList.SelectedRows[0].Cells["Designation"].Value);
                     MainForm.objCP_User.PbUserRole = Convert.ToString(grdUserList.SelectedRows[0].Cells["User Role"].Value);
                     MainForm.objCP_User.PbPasskey = Convert.ToString(grdUserList.SelectedRows[0].Cells["Pass Key"].Value);
                     MainForm.objCP_User.PbStatus = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["StatusID"].Value);
