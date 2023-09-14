@@ -58,22 +58,18 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         public void udfndelete()
         {
             try
             {
                 DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void udfnEdit()
         {
             try
