@@ -349,9 +349,11 @@ namespace ROMS
             }
             finally
             {
-
-                MainForm.objCP_UserCategoryList.picLoader.Visible = false;
-                MainForm.objCP_UserCategoryList.picLoader.SendToBack();
+                if (varmastertype == 0)
+                {
+                    MainForm.objCP_UserCategoryList.picLoader.Visible = false;
+                    MainForm.objCP_UserCategoryList.picLoader.SendToBack();
+                }
             }
         }
         private void udfnLoad()
