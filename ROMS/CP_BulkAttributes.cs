@@ -181,6 +181,15 @@ namespace ROMS
                                 grdLoction.Columns["Sales Location-New"].Width = 120;
                                 grdLoction.Columns["Sales Rack -Current"].Width = 120;
                                 grdLoction.Columns["Rack MSQ-Current"].Width = 150;
+                                grdLoction.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
+                                grdLoction.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                                grdLoction.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                                grdLoction.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                                grdLoction.Columns["Pur.Stock Location-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                grdLoction.Columns["Sales Location-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                grdLoction.Columns["Pur.Rack-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                grdLoction.Columns["Sales Rack -New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                grdLoction.Columns["Rack MSQ-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
                             }
                             else if(grdMSQ.Visible==true)
                             {
@@ -479,6 +488,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+      
         private void TsbWeight_Click(object sender, EventArgs e)
         {
             try
@@ -614,7 +624,6 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -677,22 +686,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        
-        private void CmbBrand_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cmbStatus.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+       
         
         private void CmbStatus_Enter(object sender, EventArgs e)
         {
@@ -1059,6 +1053,283 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void CmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbStatus.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtProductGroup_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProductGroup.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtProductGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvGroup.Items.Count == 0 || txtProductGroup.Text == "")
+                    {
+                        txtProductGroup.Focus();
+                        lvGroup.Visible = false;
+                    }
+                    else
+                    {
+                        lvGroup.Focus();
+                    }
+                    if (lvGroup.Items.Count > 0)
+                    {
+                        lvGroup.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtSubGroup.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtProductGroup_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProductGroup.BackColor = Color.White;
+                if (txtProductGroup.Text.Trim() == "") { varGroupId = 0; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLvGroup()
+        {
+            try
+            {
+                if (txtProductGroup.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvGroup.SelectedItems[0];
+                    txtProductGroup.Text = selectedItem.SubItems[0].Text;
+                    varGroupId = Convert.ToInt32(selectedItem.SubItems[2].Text);
+                    lvGroup.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void LvGroup_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnLvGroup();
+                txtSubGroup.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnLvGroup();
+                    txtSubGroup.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdBrand_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void GroupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtBrand_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvBrand.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtBrand.Text.Length > 0)
+                {
+                    objDs = objspdservice.udfnBrandList(7, "", varGroupId, varSubGroupId, 0, txtBrand.Text);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["BD_EName"].ToString(), objDs.Tables[0].Rows[i]["BD_TName"].ToString(), objDs.Tables[0].Rows[i]["BDID"].ToString(), };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvBrand.Items.Add(objList);
+                                }
+                                lvBrand.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvBrand.Visible = false;
+                    lvBrand.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBrand_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvSubGroup.Visible = false;
+                txtBrand.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBrand_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBrand.BackColor = Color.White;
+                if (txtBrand.Text.Trim() == "") { varBrandId = 0; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtBrand_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvBrand.Items.Count == 0 || lvBrand.Text == "")
+                    {
+                        txtBrand.Focus();
+                        lvBrand.Visible = false;
+                    }
+                    else
+                    {
+                        lvBrand.Focus();
+                    }
+                    if (lvBrand.Items.Count > 0)
+                    {
+                        lvBrand.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtBrand.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLvBrand()
+        {
+            try
+            {
+                if (txtBrand.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvBrand.SelectedItems[0];
+                    txtBrand.Text = selectedItem.SubItems[0].Text;
+                    varBrandId = Convert.ToInt32(selectedItem.SubItems[2].Text);
+                    lvBrand.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void LvBrand_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnLvBrand();
+                    cmbStatus.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvBrand_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnLvBrand();
+                cmbStatus.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtProductName_TextChanged(object sender, EventArgs e)
         {
             try
@@ -1089,19 +1360,6 @@ namespace ROMS
             }
         }
 
-        private void CmbStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbStatus.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        
         public AutoCompleteStringCollection AutoCompleteHSN()
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
@@ -1130,27 +1388,6 @@ namespace ROMS
             return varstr;
         }
 
-        private void GrdHSN_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            try
-            {
-                if (grdHSN.CurrentCell.OwningColumn.Name == "HSN Name-New")
-                {
-                    TextBox txtHSNName = e.Control as TextBox;
-                    if (txtHSNName != null)
-                    {
-                        txtHSNName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtHSNName.AutoCompleteCustomSource = AutoCompleteHSN();
-                        txtHSNName.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         public AutoCompleteStringCollection AutoCompleteLocationName()
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
@@ -1233,91 +1470,7 @@ namespace ROMS
             }
             return varstr;
         }
-        private void GrdLoction_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            try
-            {
-                if (grdLoction.CurrentCell.OwningColumn.Name == "Pur.Stock Location-New")
-                {
-                    TextBox txtPurStockLocation = e.Control as TextBox;
-                    if (txtPurStockLocation != null)
-                    {
-                        txtPurStockLocation.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtPurStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName();
-                        txtPurStockLocation.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                    }
-                }
-                else if (grdLoction.CurrentCell.OwningColumn.Name == "Pur.Rack_New")
-                {
-                    TextBox txtPurRack = e.Control as TextBox;
-                    if (txtPurRack != null)
-                    {
-                        txtPurRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtPurRack.AutoCompleteCustomSource = AutoCompleteRackName();
-                        txtPurRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                    }
-                }
-                else if (grdLoction.CurrentCell.OwningColumn.Name == "Sales Location-New")
-                {
-                    TextBox txtSalesStockLocation = e.Control as TextBox;
-                    if (txtSalesStockLocation != null)
-                    {
-                        txtSalesStockLocation.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtSalesStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName();
-                        txtSalesStockLocation.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                    }
-                }
-                else if (grdLoction.CurrentCell.OwningColumn.Name == "Sales Rack-New")
-                {
-                    TextBox txtSalesRack = e.Control as TextBox;
-                    if (txtSalesRack != null)
-                    {
-                        txtSalesRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtSalesRack.AutoCompleteCustomSource = AutoCompleteRackName();
-                        txtSalesRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                    }
-                }
-                else if (grdLoction.CurrentCell.OwningColumn.Name == "Rack MSQ-New")
-                {
-                    TextBox txtRackMsq = e.Control as TextBox;
-                    if (txtRackMsq != null)
-                    {
-                        txtRackMsq.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtRackMsq.AutoCompleteCustomSource = AutoCompleteRackMOQ();
-                        txtRackMsq.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void GrdLoction_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                //if (Convert.ToString(grdLoction.SelectedCells[0]))
-                //{
-                //    switch (grdLoction.Columns[].Name)
-                //    {
-                //        case "Rack MSQ-New":
-
-                //            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                //            {
-                //                e.Handled = true;
-                //            }
-                //            break;
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+      
         public AutoCompleteStringCollection AutoCompleteShelfLife()
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
@@ -1345,27 +1498,7 @@ namespace ROMS
             }
             return varstr;
         }
-        private void GrdShelfLife_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            try
-            {
-                if (grdShelfLife.CurrentCell.OwningColumn.Name == "Shelf Life Type-Current")
-                {
-                    TextBox txtShelfLife = e.Control as TextBox;
-                    if (txtShelfLife != null)
-                    {
-                        txtShelfLife.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtShelfLife.AutoCompleteCustomSource = AutoCompleteShelfLife();
-                        txtShelfLife.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+      
         public AutoCompleteStringCollection AutoCompleteProductCatergory()
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
@@ -1528,6 +1661,133 @@ namespace ROMS
             }
             return varstr;
         }
+        private void GrdHSN_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (grdHSN.CurrentCell.OwningColumn.Name == "HSN Name-New")
+                {
+                    TextBox txtHSNName = e.Control as TextBox;
+                    if (txtHSNName != null)
+                    {
+                        txtHSNName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtHSNName.AutoCompleteCustomSource = AutoCompleteHSN();
+                        txtHSNName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdLoction_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (grdLoction.CurrentCell.OwningColumn.Name == "Pur.Stock Location-New")
+                {
+                    TextBox txtPurStockLocation = e.Control as TextBox;
+                    if (txtPurStockLocation != null)
+                    {
+                        txtPurStockLocation.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtPurStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName();
+                        txtPurStockLocation.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+                else if (grdLoction.CurrentCell.OwningColumn.Name == "Pur.Rack_New")
+                {
+                    TextBox txtPurRack = e.Control as TextBox;
+                    if (txtPurRack != null)
+                    {
+                        txtPurRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtPurRack.AutoCompleteCustomSource = AutoCompleteRackName();
+                        txtPurRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+                else if (grdLoction.CurrentCell.OwningColumn.Name == "Sales Location-New")
+                {
+                    TextBox txtSalesStockLocation = e.Control as TextBox;
+                    if (txtSalesStockLocation != null)
+                    {
+                        txtSalesStockLocation.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtSalesStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName();
+                        txtSalesStockLocation.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+                else if (grdLoction.CurrentCell.OwningColumn.Name == "Sales Rack-New")
+                {
+                    TextBox txtSalesRack = e.Control as TextBox;
+                    if (txtSalesRack != null)
+                    {
+                        txtSalesRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtSalesRack.AutoCompleteCustomSource = AutoCompleteRackName();
+                        txtSalesRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+                else if (grdLoction.CurrentCell.OwningColumn.Name == "Rack MSQ-New")
+                {
+                    TextBox txtRackMsq = e.Control as TextBox;
+                    if (txtRackMsq != null)
+                    {
+                        txtRackMsq.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtRackMsq.AutoCompleteCustomSource = AutoCompleteRackMOQ();
+                        txtRackMsq.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdLoction_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                //if (Convert.ToString(grdLoction.SelectedCells[0]))
+                //{
+                //    switch (grdLoction.Columns[].Name)
+                //    {
+                //        case "Rack MSQ-New":
+
+                //            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                //            {
+                //                e.Handled = true;
+                //            }
+                //            break;
+                //    }
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdShelfLife_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (grdShelfLife.CurrentCell.OwningColumn.Name == "Shelf Life Type-Current")
+                {
+                    TextBox txtShelfLife = e.Control as TextBox;
+                    if (txtShelfLife != null)
+                    {
+                        txtShelfLife.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtShelfLife.AutoCompleteCustomSource = AutoCompleteShelfLife();
+                        txtShelfLife.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void GrdBatch_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -1538,7 +1798,7 @@ namespace ROMS
                     if (txtProductCategory != null)
                     {
                         txtProductCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtProductCategory.AutoCompleteCustomSource = AutoCompleteShelfLife();
+                        txtProductCategory.AutoCompleteCustomSource = AutoCompleteProductCatergory();
                         txtProductCategory.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
@@ -1604,272 +1864,6 @@ namespace ROMS
                         txtBrand.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtProductGroup_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtProductGroup.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtProductGroup_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
-                {
-                    if (lvGroup.Items.Count == 0 || txtProductGroup.Text == "")
-                    {
-                        txtProductGroup.Focus();
-                        lvGroup.Visible = false;
-                    }
-                    else
-                    {
-                        lvGroup.Focus();
-                    }
-                    if (lvGroup.Items.Count > 0)
-                    {
-                        lvGroup.Items[0].Selected = true;
-                    }
-                }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtSubGroup.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtProductGroup_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtProductGroup.BackColor = Color.White;
-                if (txtProductGroup.Text.Trim() == "") { varGroupId = 0; }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfnLvGroup()
-        {
-            try
-            {
-                if (txtProductGroup.Text.Trim() != "")
-                {
-                    ListViewItem selectedItem = lvGroup.SelectedItems[0];
-                    txtProductGroup.Text = selectedItem.SubItems[0].Text;
-                    varGroupId = Convert.ToInt32(selectedItem.SubItems[2].Text);
-                    lvGroup.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void LvGroup_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnLvGroup();
-                txtSubGroup.Focus();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void LvGroup_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    udfnLvGroup();
-                    txtSubGroup.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void GrdBrand_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void GroupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxtBrand_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                lvBrand.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
-                if (txtBrand.Text.Length > 0)
-                {
-                    objDs = objspdservice.udfnBrandList(7, "", varGroupId, varSubGroupId,0, txtBrand.Text);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
-                    {
-                        if (objDs.Tables.Count != 0)
-                        {
-                            if (objDs.Tables[0].Rows.Count != 0)
-                            {
-                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                {
-                                    string[] row = { objDs.Tables[0].Rows[i]["BD_EName"].ToString(), objDs.Tables[0].Rows[i]["BD_TName"].ToString(), objDs.Tables[0].Rows[i]["BDID"].ToString(), };
-                                    ListViewItem objList = new ListViewItem(row);
-                                    lvBrand.Items.Add(objList);
-                                }
-                                lvBrand.Visible = true;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    lvBrand.Visible = false;
-                    lvBrand.Items.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtBrand_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                lvSubGroup.Visible = false;
-                txtBrand.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtBrand_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtBrand.BackColor = Color.White;
-                if (txtBrand.Text.Trim() == "") { varBrandId = 0; }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtBrand_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
-                {
-                    if (lvBrand.Items.Count == 0 || lvBrand.Text == "")
-                    {
-                        txtBrand.Focus();
-                        lvBrand.Visible = false;
-                    }
-                    else
-                    {
-                        lvBrand.Focus();
-                    }
-                    if (lvBrand.Items.Count > 0)
-                    {
-                        lvBrand.Items[0].Selected = true;
-                    }
-                }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtBrand.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfnLvBrand()
-        {
-            try
-            {
-                if (txtBrand.Text.Trim() != "")
-                {
-                    ListViewItem selectedItem = lvBrand.SelectedItems[0];
-                    txtBrand.Text = selectedItem.SubItems[0].Text;
-                    varBrandId = Convert.ToInt32(selectedItem.SubItems[2].Text);
-                    lvBrand.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void LvBrand_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    udfnLvBrand();
-                    cmbStatus.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void LvBrand_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnLvBrand();
-                cmbStatus.Focus();
             }
             catch (Exception ex)
             {
