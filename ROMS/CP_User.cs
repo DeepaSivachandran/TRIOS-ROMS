@@ -404,10 +404,10 @@ namespace ROMS
                 }
                 if (Convert.ToString(cmbUserCategory.SelectedValue) == "" || Convert.ToString(cmbUserCategory.SelectedValue) == "-1")
                 {
-                    epUser.SetError(cmbUserCategory, "Please select designation");
+                    epUser.SetError(cmbUserCategory, "Please select employee category");
                     cmbUserCategory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpUserCategory.ShowAlways = true;
-                    tpUserCategory.Show("Please select designation", cmbUserCategory, 5000);
+                    tpUserCategory.Show("Please select employee category", cmbUserCategory, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(cmbUserRole.SelectedValue) == "" || Convert.ToString(cmbUserRole.SelectedValue) == "-1")
@@ -765,10 +765,10 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbUserCategory.SelectedValue) == "" || Convert.ToString(cmbUserCategory.SelectedValue) == "-1")
                 {
-                    epUser.SetError(cmbUserCategory, "Please select designation");
+                    epUser.SetError(cmbUserCategory, "Please select employee category");
                     cmbUserCategory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpUserCategory.ShowAlways = true;
-                    tpUserCategory.Show("Please select designation", cmbUserCategory, 5000);
+                    tpUserCategory.Show("Please select employee category", cmbUserCategory, 5000);
                 }
                 else
                 {

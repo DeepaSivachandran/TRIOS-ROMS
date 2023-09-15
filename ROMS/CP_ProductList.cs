@@ -195,7 +195,7 @@ namespace ROMS
                     objDServ.CloseConnection();
                     varSubGroupId = Convert.ToInt32(varId_SubGroup);
                 }
-                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue),varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue),0,0,0,0);
+                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue),varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue),0,0,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -236,7 +236,8 @@ namespace ROMS
                             grdItemList.Columns["PR_SALE_RKID"].Visible = false; 
                             grdItemList.Columns["PR_SALE_SLID"].Visible = false; 
                             grdItemList.Columns["PR_PUR_RKID"].Visible = false; 
-                            grdItemList.Columns["PR_PUR_SLID"].Visible = false; 
+                            grdItemList.Columns["PR_PUR_SLID"].Visible = false;
+                            grdItemList.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                         }
                         else
                         {

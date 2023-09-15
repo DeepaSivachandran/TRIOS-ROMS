@@ -147,6 +147,7 @@ namespace ROMS
                             grdSubGroupList.Columns["StockLocation ID"].Visible = false;
                             grdSubGroupList.Columns["Rack ID"].Visible = false;
                             grdSubGroupList.Columns["Product Group Id"].Visible = false;
+                            grdSubGroupList.Columns["Product Sub Group Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                         }
                         else
                         {

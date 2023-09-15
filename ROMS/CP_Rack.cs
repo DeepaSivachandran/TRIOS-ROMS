@@ -30,6 +30,7 @@ namespace ROMS
         public int varLocationCode = 0;
         public int PbStatus = 0;
         public int varUpdate = 0;
+        public int varFormFlag = 0;
         public CP_Rack()
         {
             InitializeComponent();
@@ -88,6 +89,10 @@ namespace ROMS
                     pnlStatus.Enabled = true;
                     udfnLoad();
                 }
+                if (varFormFlag != 0) {
+                    MainForm.objCP_RackList.picLoader.Visible = false;
+                    MainForm.objCP_RackList.picLoader.SendToBack();
+                }
             }
             catch (Exception ex)
             {
@@ -96,9 +101,6 @@ namespace ROMS
             }
             finally
             {
-
-                MainForm.objCP_RackList.picLoader.Visible = false;
-                MainForm.objCP_RackList.picLoader.SendToBack();
             }
         }
         private void udfnLoad()
@@ -171,7 +173,22 @@ namespace ROMS
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        MainForm.objCP_RackList.udfnList();
+                        /*modified by deepa on 15-09-2023*/
+                        if (varFormFlag == 1)
+                        {
+                            varFormFlag = 0;
+                            MainForm.objCP_SubGroup.varStockLocationName = txtLocation.Text.Trim();
+                            MainForm.objCP_SubGroup.varLocationCode = Convert.ToInt16(lblLocation.Text);
+                            MainForm.objCP_SubGroup.varRackName = txtRackName.Text.Trim();
+                            MainForm.objCP_SubGroup.varRackCode = Convert.ToInt16(varResult.Split('~')[2]);
+
+                            varUpdate = 1;
+                            udfnclose();
+                        }
+                        else
+                        {
+                            MainForm.objCP_RackList.udfnList();
+                        }
                         if (btnSave.Text == "Update")
                         {
                             varUpdate = 1;

@@ -40,7 +40,6 @@ namespace ROMS
         public int varStatus = 0;
         public int varGroupCode = 0, varmastertype=0,varSubgroupCode=0;
         public int varLocationCode = 0, varRackCode = 0;
-        
 
         public CP_SubGroup()
         {
@@ -1295,6 +1294,47 @@ namespace ROMS
                 {
                     pnlStatus.Focus();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        /*added by deepa on 15-09-2023*/
+        private void Btnewlocation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_Location = new CP_Location();
+                MainForm.objCP_Location.varFormFlag = 1;
+                MainForm.objCP_Location.ShowDialog();
+                //udfnListView();
+                txtLocation.Text = varStockLocationName;
+                lblLocation.Text = Convert.ToString(varLocationCode);
+                lvLocation.Visible = false;
+                txtRack.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        /*added by deepa on 15-09-2023*/
+        private void BtnNewRack_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_Rack = new CP_Rack();
+                MainForm.objCP_Rack.varFormFlag = 1;
+                MainForm.objCP_Rack.ShowDialog();
+                txtLocation.Text = varStockLocationName;
+                lblLocation.Text = Convert.ToString(varLocationCode);
+                txtRack.Text = varRackName;
+                lblRack.Text = Convert.ToString(varRackCode);
+                lvRack.Visible = false;
+                btnSave.Focus();
             }
             catch (Exception ex)
             {

@@ -67,6 +67,8 @@
             this.txtRack = new System.Windows.Forms.TextBox();
             this.epSubGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblLocation = new System.Windows.Forms.Label();
+            this.btnewlocation = new System.Windows.Forms.Label();
+            this.btnNewRack = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             this.grpPurchaseStockLocation.SuspendLayout();
@@ -204,7 +206,7 @@
             // 
             // txtProductGroupName
             // 
-            this.txtProductGroupName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtProductGroupName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProductGroupName.Location = new System.Drawing.Point(224, 20);
             this.txtProductGroupName.MaxLength = 100;
             this.txtProductGroupName.Name = "txtProductGroupName";
@@ -267,7 +269,7 @@
             // 
             // txtESubGroupNameTamil
             // 
-            this.txtESubGroupNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtESubGroupNameTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtESubGroupNameTamil.Location = new System.Drawing.Point(224, 74);
             this.txtESubGroupNameTamil.MaxLength = 100;
             this.txtESubGroupNameTamil.Name = "txtESubGroupNameTamil";
@@ -414,6 +416,8 @@
             // 
             // grpPurchaseStockLocation
             // 
+            this.grpPurchaseStockLocation.Controls.Add(this.btnNewRack);
+            this.grpPurchaseStockLocation.Controls.Add(this.btnewlocation);
             this.grpPurchaseStockLocation.Controls.Add(this.lblRack);
             this.grpPurchaseStockLocation.Controls.Add(this.txtLocation);
             this.grpPurchaseStockLocation.Controls.Add(this.txtDRack);
@@ -485,6 +489,30 @@
             this.lblLocation.Size = new System.Drawing.Size(0, 18);
             this.lblLocation.TabIndex = 1;
             this.lblLocation.Visible = false;
+            // 
+            // btnewlocation
+            // 
+            this.btnewlocation.Image = global::ROMS.Properties.Resources.New;
+            this.btnewlocation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnewlocation.Location = new System.Drawing.Point(418, 32);
+            this.btnewlocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnewlocation.Name = "btnewlocation";
+            this.btnewlocation.Size = new System.Drawing.Size(21, 22);
+            this.btnewlocation.TabIndex = 1111149;
+            this.btnewlocation.Text = "        ";
+            this.btnewlocation.Click += new System.EventHandler(this.Btnewlocation_Click);
+            // 
+            // btnNewRack
+            // 
+            this.btnNewRack.Image = global::ROMS.Properties.Resources.New;
+            this.btnNewRack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNewRack.Location = new System.Drawing.Point(418, 59);
+            this.btnNewRack.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnNewRack.Name = "btnNewRack";
+            this.btnNewRack.Size = new System.Drawing.Size(21, 22);
+            this.btnNewRack.TabIndex = 1111150;
+            this.btnNewRack.Text = "        ";
+            this.btnNewRack.Click += new System.EventHandler(this.BtnNewRack_Click);
             // 
             // CP_SubGroup
             // 
@@ -558,5 +586,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.Label lblRack;
+        internal System.Windows.Forms.Label btnewlocation;
+        internal System.Windows.Forms.Label btnNewRack;
     }
 }

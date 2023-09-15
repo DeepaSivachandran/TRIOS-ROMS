@@ -33,7 +33,7 @@ namespace ROMS
         public int varstatus;
         public string vargroupcode;
         public string varBrokerCode = "0";
-        public string varBrokerid="", varstatusid = "0";
+        public string varBrokerid="", varstatusid = "0", varSlNo="0";
         public int varUpdate = 0;
         public String pbFormStatus;
         public int varflog = 0;
@@ -1448,25 +1448,47 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
-                    foreach (DataGridViewRow row in grdBankDetails.Rows)
+                    if (varSlNo != "0") { varflag = 0; }
+                    else
                     {
-                        if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                        foreach (DataGridViewRow row in grdBankDetails.Rows)
                         {
-                            string gridValue1 = row.Cells[1].Value.ToString();
-                            string gridValue2 = row.Cells[3].Value.ToString();
-
-                            if (gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
+                            if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                             {
-                                varflag = 1;
+                                string gridValue1 = row.Cells[1].Value.ToString();
+                                string gridValue2 = row.Cells[3].Value.ToString();
+
+                                if (gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
+                                {
+                                    varflag = 1;
+                                }
                             }
                         }
                     }
                     if (varflag == 0)
                     {
-                        grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1,(txtBankname.Text).Trim(), (txtBankShortName.Text).Trim(),(txtbranchname.Text).Trim(), (txtAccno.Text).Trim(),(txtIFScode.Text).Trim(), varstatusid);
+                        if (varSlNo == "0")
+                        {
+                            grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(), varstatusid);
+                        }
+                        else
+                        {
+                            for (int i = 0; i < grdBankDetails.RowCount; i++)
+                            {
+                                if (Convert.ToString(grdBankDetails.Rows[i].Cells["clmsno"].Value) == varSlNo)
+                                {
+                                    grdBankDetails.Rows[i].Cells["clmbankname"].Value = txtBankname.Text;
+                                    grdBankDetails.Rows[i].Cells["clmBankShortName"].Value = txtBankShortName.Text;
+                                    grdBankDetails.Rows[i].Cells["clmbranch"].Value = txtbranchname.Text;
+                                    grdBankDetails.Rows[i].Cells["clmaccno"].Value = txtAccno.Text;
+                                    grdBankDetails.Rows[i].Cells["clmifscode"].Value = txtIFScode.Text;
+                                }
+                            }
+                        }
                         udfnBankclear();
                         this.ActiveControl = txtBankname;
                         grdBankDetails.ClearSelection();
+                        btnAdd.Image = ROMS.Properties.Resources.plus;
                     }
                     else
                     {
@@ -1511,7 +1533,20 @@ namespace ROMS
                                 }
                             }
                             break;
-                       } 
+                        case "clmEdit":
+                            txtBankname.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmbankname"].Value);
+                            txtBankShortName.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmBankShortName"].Value);
+                            txtbranchname.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmbranch"].Value);
+                            txtAccno.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmaccno"].Value);
+                            txtIFScode.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmifscode"].Value);
+                            varSlNo = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmsno"].Value);
+                            btnAdd.Image = ROMS.Properties.Resources.save16x16;
+                            txtBankname.BackColor = Color.White;
+                            tpBankName.Active = false;
+                            epBroker.Clear();
+                            txtBankname.Focus();
+                            break;
+                    } 
                 }
             }
             catch (Exception ex)

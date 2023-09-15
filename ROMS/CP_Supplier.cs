@@ -3326,6 +3326,7 @@ namespace ROMS
                     grdViewSupplierMapping.Columns["Product Name in English"].Width = 250;
                     grdViewSupplierMapping.Columns["Rep Name"].Width = 200;
                     grdViewSupplierMapping.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdViewSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                 }
                 else
                 {
@@ -3727,7 +3728,7 @@ namespace ROMS
                 dtSubGroup.Columns.Add("Product Name in English", typeof(string));
 
                 //objDs = objspservice.udfnproductmasterlist(3, 0, 0,Convert.ToInt32(cmbMappingGroup.SelectedValue), Convert.ToInt32(cmbMappingSubGroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue));
-                objDs = objspservice.udfnproductmasterlist(3, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue));
+                objDs = objspservice.udfnproductmasterlist(3, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue),0);
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
@@ -3755,6 +3756,7 @@ namespace ROMS
                     grdSupplierMappingLoad.Columns["Product Name in Tamil"].ReadOnly = true;
                     grdSupplierMappingLoad.Columns["Unit"].ReadOnly = true;
                     grdSupplierMappingLoad.Columns["Product SubGroup"].ReadOnly = true;
+                    grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                 }
                 else
                 {
@@ -3956,6 +3958,7 @@ namespace ROMS
                     grdFinalSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["Unit"].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["Product SubGroup"].ReadOnly = true;
+                    grdFinalSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
 
                     for (int i = 0; i < grdSupplierMappingLoad.Rows.Count; i++)
                     {
@@ -4648,13 +4651,14 @@ namespace ROMS
             {
                 if (Convert.ToInt32(cmbMappingordeDay.SelectedValue) != -1)
                 {
-
-
                     udfnSubGroupAdd();
                 }
                 else
                 {
-                    MessageBox.Show("Please select order day", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(54);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)

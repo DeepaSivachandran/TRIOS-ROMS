@@ -28,14 +28,12 @@ namespace ROMS
         {
             try
             {
-
                 Application.DoEvents();
-
                 grdProductDetails.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnProductDetailsList(0, varRackId);
+                objDs = objdserv.udfnproductmasterlist(15,0,0,0,0,"",MainForm.pbUserID,MainForm.pbIpAddress,0,0,0,0,0,varRackId);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

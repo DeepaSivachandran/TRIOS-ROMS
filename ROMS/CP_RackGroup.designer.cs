@@ -645,7 +645,7 @@
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "Designation";
+            this.Column2.HeaderText = "Employee Category";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Width = 125;

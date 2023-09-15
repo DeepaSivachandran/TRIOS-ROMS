@@ -62,7 +62,6 @@
             this.grbform.Size = new System.Drawing.Size(552, 160);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
-           
             // 
             // txtDProductGroupNameTamil
             // 
@@ -78,7 +77,7 @@
             // 
             // txtEGroupNameTamil
             // 
-            this.txtEGroupNameTamil.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEGroupNameTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEGroupNameTamil.Location = new System.Drawing.Point(221, 53);
             this.txtEGroupNameTamil.MaxLength = 100;
             this.txtEGroupNameTamil.Name = "txtEGroupNameTamil";

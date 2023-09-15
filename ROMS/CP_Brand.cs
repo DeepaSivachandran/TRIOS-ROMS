@@ -92,6 +92,8 @@ namespace ROMS
                                 objDS.Tables[1].Rows[i]["Selected Product Sub Group"], objDS.Tables[1].Rows[i]["PRGID"],
                                 objDS.Tables[1].Rows[i]["PRSGID"]);
                         }
+                        grdSubGroupAdd.Columns.Remove("clmSelGroup");
+                        grdSubGroupAdd.Columns.Remove("clmSelSubGroup");
                         grdSubGroupAdd.DataSource = dtSubGroupAdd;
                         grdSubGroupAdd.Columns["clmRemove"].DisplayIndex = 4;
                         // grdSubGroupAdd.Columns[0].HeaderText = "";
@@ -310,6 +312,9 @@ namespace ROMS
                 }
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
+                grdSubGroup.Columns.Remove("clmChk");
+                grdSubGroup.Columns.Remove("clmProductGroup");
+                grdSubGroup.Columns.Remove("clmSubGroup");
                 grdSubGroup.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
@@ -716,7 +721,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Focus();
             }
         }
@@ -743,14 +748,17 @@ namespace ROMS
                     tpBrandNameInTamil.Show("Please enter brand name in tamil", txtEBrandNameInTamil, 5000);
                     blnErrorFlag = true;
                 }
-                //if (blnErrorFlag == false && grdSubGroupAdd.Rows.Count <= 0)
-                //{
-                //    if (grdSubGroupAdd.Rows.Count <= 0)
-                //    {
-                //        DialogResult dialogResult = MessageBox.Show("Please select atleast one product sub group", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //    }
-
-                //}
+                if (blnErrorFlag == false && grdSubGroupAdd.Rows.Count <= 0)
+                {
+                    if (grdSubGroupAdd.Rows.Count <= 0)
+                    {
+                        blnErrorFlag = true;
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(52);
+                        objDServ.CloseConnection();
+                        DialogResult dialogResult = MessageBox.Show(varMessage, "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
 
                 if (blnErrorFlag == false)
                 {
@@ -765,7 +773,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Focus();
             }
         }

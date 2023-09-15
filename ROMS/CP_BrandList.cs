@@ -272,6 +272,7 @@ namespace ROMS
 
                             grdBrandList.Columns["ID"].Visible = false;
                             grdBrandList.Columns["Status ID"].Visible = false;
+                            grdBrandList.Columns["Brand Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                         }
                         else
                         {
