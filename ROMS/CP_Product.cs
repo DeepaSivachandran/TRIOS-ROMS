@@ -362,7 +362,6 @@ namespace ROMS
                     tpprdG.Show("Please select valid group", txtGroup, 5000);
                     blnErrorFlag = true;
                 }
-
                 if (txtBrand.Text != "")
                 {
                     /* Check product brand is valid or not*/

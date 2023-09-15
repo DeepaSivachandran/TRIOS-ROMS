@@ -129,7 +129,30 @@ namespace ROMS
         {
             try
             {
-                btnUpdate.Enabled = false;
+                int varHsnId = 0;
+                SPDataService objspdservice = new SPDataService();
+                DataTable objBulkUpdate = new DataTable();
+                objBulkUpdate.TableName = "[MR_Product_BulkUpdate]";
+                objBulkUpdate.Columns.Add("HSN Name-New", typeof(string));
+                objBulkUpdate.Columns.Add("HSN ID", typeof(int));
+                DataSet objDs = new DataSet();
+                SPDataService objDServ = new SPDataService();
+                objDs = objDServ.udfnHsnList(0,0);
+                objDServ.CloseConnection();
+                
+                for (int j = 0; j < grdHSN.Rows.Count; j++)
+                {
+                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    {
+                        if (Convert.ToString(objDs.Tables[0].Rows[i]["HSN Name"])== (Convert.ToString(grdHSN.Rows[j].Cells["HSN Name-New"].Value)))
+                        {
+                            varHsnId = Convert.ToInt32(objDs.Tables[0].Rows[i]["ID"]);
+                            objBulkUpdate.Rows.Add(Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value), varHsnId);
+                        }
+                       
+                    }
+                }
+            
             }
             catch (Exception ex)
             {
@@ -146,19 +169,53 @@ namespace ROMS
         {
             try
             {
-                if (grdLoction.CurrentCell.OwningColumn.Name == "Rack MSQ-New")
+               
+                if (grdLoction.Visible == true)
                 {
-                    if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.' || (e.KeyChar == (char)Keys.Back)))
+                    if (grdLoction.CurrentCell.OwningColumn.Name == "Rack MSQ-New")
+                    { 
+                        if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
+                        {
+                            e.Handled = true;
+                        }
+                        //if ((sender as TextBox).Text.Length >7)
+                        //{
+                        //    e.Handled = true;
+                        //}
+                        //if ((e.KeyChar == (char)Keys.Back)) {
+                        //    e.Handled = false;
+                        //}
+                    }
+                }
+                else if (grdMSQ.Visible == true)
+                {
+                    if (grdMSQ.CurrentCell.OwningColumn.Name == "R Min Sale Qty-New" || grdMSQ.CurrentCell.OwningColumn.Name == "W.Min Sale Qty-New" || grdMSQ.CurrentCell.OwningColumn.Name == "Barcode-New")
+                    {
+                        if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.' || (e.KeyChar == (char)Keys.Back)))
+                        {
+                            e.Handled = true;
+                        }
+                        //only allow one decimal point
+                        if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                }
+                else if (grdStock.Visible == true)
+                {
+                    if (grdStock.CurrentCell.OwningColumn.Name == "Min Stock-New" || grdStock.CurrentCell.OwningColumn.Name == "Max Stock-New" || grdStock.CurrentCell.OwningColumn.Name == "Reorder Qty-New")
+                    {
+                        if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)  || (e.KeyChar == (char)Keys.Back)))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    if ((sender as TextBox).Text.Length > 4)
                     {
                         e.Handled = true;
                     }
                 }
-                //// only allow one decimal point
-                //if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-                //{
-                //    e.Handled = true;
-                //}
-                //// }
             }
             catch (Exception ex)
             {
@@ -187,14 +244,21 @@ namespace ROMS
                             {
                                 grdLoction.DataSource = objDs.Tables[0];
                                 grdLoction.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                ((DataGridViewTextBoxColumn)grdLoction.Columns["Rack MSQ-New"]).MaxInputLength = 8;
+                                ((DataGridViewTextBoxColumn)grdLoction.Columns["Pur.Stock Location-New"]).MaxInputLength = 50;
+                                ((DataGridViewTextBoxColumn)grdLoction.Columns["Sales Location-New"]).MaxInputLength = 50;
+                                ((DataGridViewTextBoxColumn)grdLoction.Columns["Pur.Rack-New"]).MaxInputLength = 50;
+                                ((DataGridViewTextBoxColumn)grdLoction.Columns["Sales Rack-New"]).MaxInputLength = 50;
+                               
                                 grdLoction.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdLoction.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdLoction.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdLoction.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                                grdLoction.Columns["S.No."].Width = 80;
-                                grdLoction.Columns["Product Name in Tamil"].Width = 300;
-                                grdLoction.Columns["P.I Code"].Width = 130;
-                                grdLoction.Columns["Unit"].Width = 100;
+                                grdLoction.Columns["Product Name in English"].Visible = false;
+                                grdLoction.Columns["S.No."].Width = 50;
+                                grdLoction.Columns["Product Name in Tamil"].Width = 270;
+                                grdLoction.Columns["P.I Code"].Width = 80;
+                                grdLoction.Columns["Unit"].Width = 80;
                                 grdLoction.Columns["S.No."].Frozen = true;
                                 grdLoction.Columns["P.I Code"].Frozen = true;
                                 grdLoction.Columns["Product Name in Tamil"].Frozen = true;
@@ -218,8 +282,8 @@ namespace ROMS
                                 grdLoction.Columns["Sales Location-New"].Width = 120;
                                 grdLoction.Columns["Sales Rack -Current"].Width = 120;
                                 grdLoction.Columns["Sales Rack-New"].Width = 120;
-                                grdLoction.Columns["Rack MSQ-Current"].Width = 150;
-                                grdLoction.Columns["Rack MSQ-New"].Width = 150;
+                                grdLoction.Columns["Rack MSQ-Current"].Width = 120;
+                                grdLoction.Columns["Rack MSQ-New"].Width = 120;
 
                                 grdLoction.Columns["Rack MSQ-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdLoction.Columns["Rack MSQ-Current"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -228,21 +292,24 @@ namespace ROMS
                                 grdLoction.Columns["Pur.Rack-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdLoction.Columns["Sales Rack-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdLoction.Columns["Rack MSQ-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                                grdLoction.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                             }
                             else if(grdMSQ.Visible==true)
                             {
                                 grdMSQ.DataSource = objDs.Tables[0];
-                                grdMSQ.DataSource = objDs.Tables[0];
                                 grdMSQ.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["R Min Sale Qty-New"]).MaxInputLength = 5;
+                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["W.Min Sale Qty-New"]).MaxInputLength = 5;
+                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["Barcode-New"]).MaxInputLength = 20;
+                               
                                 grdMSQ.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdMSQ.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdMSQ.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdMSQ.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                                grdMSQ.Columns["S.No."].Width = 80;
-                                grdMSQ.Columns["Product Name in Tamil"].Width = 300;
-                                grdMSQ.Columns["P.I Code"].Width = 130;
-                                grdMSQ.Columns["Unit"].Width = 100;
+                                grdMSQ.Columns["Product Name in English"].Visible = false;
+                                grdMSQ.Columns["S.No."].Width = 50;
+                                grdMSQ.Columns["Product Name in Tamil"].Width = 270;
+                                grdMSQ.Columns["P.I Code"].Width = 80;
+                                grdMSQ.Columns["Unit"].Width = 80;
                                 grdMSQ.Columns["S.No."].Frozen = true;
                                 grdMSQ.Columns["P.I Code"].Frozen = true;
                                 grdMSQ.Columns["Product Name in Tamil"].Frozen = true;
@@ -259,7 +326,7 @@ namespace ROMS
                                 grdMSQ.Columns["Barcode-Current"].ReadOnly = true;
 
                                 grdMSQ.Columns["R Min Sale Qty-Current"].Width = 150;
-                                grdMSQ.Columns["R Min Sale Qty-New"].Width = 150;
+                                grdMSQ.Columns["R Min Sale Qty-New"].Width = 120;
                                 grdMSQ.Columns["R.Rate"].Width = 100; 
                                 grdMSQ.Columns["W.Min Sale Qty-Current"].Width = 150;
                                 grdMSQ.Columns["W.Min Sale Qty-New"].Width = 150;
@@ -270,19 +337,27 @@ namespace ROMS
                                 grdMSQ.Columns["R Min Sale Qty-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdMSQ.Columns["W.Min Sale Qty-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdMSQ.Columns["Barcode-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                grdMSQ.Columns["R Min Sale Qty-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdMSQ.Columns["W.Min Sale Qty-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdMSQ.Columns["Barcode-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
                             else if(grdStock.Visible==true)
                             {
                                 grdStock.DataSource = objDs.Tables[0];
                                 grdStock.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                ((DataGridViewTextBoxColumn)grdStock.Columns["Min Stock-New"]).MaxInputLength = 5;
+                                ((DataGridViewTextBoxColumn)grdStock.Columns["Max Stock-New"]).MaxInputLength = 5;
+                                ((DataGridViewTextBoxColumn)grdStock.Columns["Reorder Qty-New"]).MaxInputLength = 5;
+
                                 grdStock.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdStock.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdStock.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdStock.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                                grdStock.Columns["S.No."].Width = 80;
-                                grdStock.Columns["Product Name in Tamil"].Width = 300;
-                                grdStock.Columns["P.I Code"].Width = 130;
-                                grdStock.Columns["Unit"].Width = 100;
+                                grdStock.Columns["Product Name in English"].Visible = false;
+                                grdStock.Columns["S.No."].Width = 50;
+                                grdStock.Columns["Product Name in Tamil"].Width = 270;
+                                grdStock.Columns["P.I Code"].Width = 80;
+                                grdStock.Columns["Unit"].Width = 80;
                                 grdStock.Columns["S.No."].Frozen = true;
                                 grdStock.Columns["P.I Code"].Frozen = true;
                                 grdStock.Columns["Product Name in Tamil"].Frozen = true;
@@ -306,19 +381,27 @@ namespace ROMS
                                 grdStock.Columns["Min Stock-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdStock.Columns["Max Stock-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdStock.Columns["Reorder Qty-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                grdStock.Columns["Min Stock-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdStock.Columns["Max Stock-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdStock.Columns["Reorder Qty-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
                             else if(grdShelfLife.Visible==true)
                             {
                                 grdShelfLife.DataSource = objDs.Tables[0];
                                 grdShelfLife.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                ((DataGridViewTextBoxColumn)grdShelfLife.Columns["UPP-New"]).MaxInputLength = 5;
+                                ((DataGridViewTextBoxColumn)grdShelfLife.Columns["Shelf Life-New"]).MaxInputLength = 50;
+                                ((DataGridViewTextBoxColumn)grdShelfLife.Columns["Shelf Life Type-New"]).MaxInputLength = 50;
+
                                 grdShelfLife.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdShelfLife.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdShelfLife.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdShelfLife.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                                grdShelfLife.Columns["S.No."].Width = 80;
-                                grdShelfLife.Columns["Product Name in Tamil"].Width = 300;
-                                grdShelfLife.Columns["P.I Code"].Width = 130;
-                                grdShelfLife.Columns["Unit"].Width = 100;
+                                grdShelfLife.Columns["Product Name in English"].Visible = false;
+                                grdShelfLife.Columns["S.No."].Width = 50;
+                                grdShelfLife.Columns["Product Name in Tamil"].Width = 270;
+                                grdShelfLife.Columns["P.I Code"].Width = 80;
+                                grdShelfLife.Columns["Unit"].Width = 80;
                                 grdShelfLife.Columns["S.No."].Frozen = true;
                                 grdShelfLife.Columns["P.I Code"].Frozen = true;
                                 grdShelfLife.Columns["Product Name in Tamil"].Frozen = true;
@@ -348,14 +431,20 @@ namespace ROMS
                             {
                                 grdBatch.DataSource = objDs.Tables[0];
                                 grdBatch.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                ((DataGridViewTextBoxColumn)grdBatch.Columns["Product Category-New"]).MaxInputLength = 20;
+                                ((DataGridViewTextBoxColumn)grdBatch.Columns["RM Pro-New"]).MaxInputLength = 20;
+                                ((DataGridViewTextBoxColumn)grdBatch.Columns["Batch No.-New"]).MaxInputLength = 20;
+                                ((DataGridViewTextBoxColumn)grdBatch.Columns["Batch Generation-New"]).MaxInputLength = 20;
+
                                 grdBatch.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdBatch.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdBatch.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdBatch.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                                grdBatch.Columns["S.No."].Width = 80;
-                                grdBatch.Columns["Product Name in Tamil"].Width = 300;
-                                grdBatch.Columns["P.I Code"].Width = 130;
-                                grdBatch.Columns["Unit"].Width = 100;
+                                grdBatch.Columns["Product Name in English"].Visible = false;
+                                grdBatch.Columns["S.No."].Width = 50;
+                                grdBatch.Columns["Product Name in Tamil"].Width = 270;
+                                grdBatch.Columns["P.I Code"].Width = 80;
+                                grdBatch.Columns["Unit"].Width = 80;
                                 grdBatch.Columns["S.No."].Frozen = true;
                                 grdBatch.Columns["P.I Code"].Frozen = true;
                                 grdBatch.Columns["Product Name in Tamil"].Frozen = true;
@@ -392,10 +481,11 @@ namespace ROMS
                                 grdWeight.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdWeight.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdWeight.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                                grdWeight.Columns["S.No."].Width = 80;
-                                grdWeight.Columns["Product Name in Tamil"].Width = 300;
-                                grdWeight.Columns["P.I Code"].Width = 130;
-                                grdWeight.Columns["Unit"].Width = 100;
+                                grdWeight.Columns["Product Name in English"].Visible = false;
+                                grdWeight.Columns["S.No."].Width = 50;
+                                grdWeight.Columns["Product Name in Tamil"].Width = 270;
+                                grdWeight.Columns["P.I Code"].Width = 80;
+                                grdWeight.Columns["Unit"].Width = 80;
                                 grdWeight.Columns["S.No."].Frozen = true;
                                 grdWeight.Columns["P.I Code"].Frozen = true;
                                 grdWeight.Columns["Product Name in Tamil"].Frozen = true;
@@ -426,14 +516,19 @@ namespace ROMS
                             {
                                 grdBrand.DataSource = objDs.Tables[0];
                                 grdBrand.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                ((DataGridViewTextBoxColumn)grdBrand.Columns["Group-New"]).MaxInputLength = 100;
+                                ((DataGridViewTextBoxColumn)grdBrand.Columns["Sub Group-New"]).MaxInputLength = 100;
+                                ((DataGridViewTextBoxColumn)grdBrand.Columns["Brand-New"]).MaxInputLength = 20;
+
                                 grdBrand.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdBrand.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdBrand.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdBrand.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                                grdBrand.Columns["S.No."].Width = 80;
-                                grdBrand.Columns["Product Name in Tamil"].Width = 300;
-                                grdBrand.Columns["P.I Code"].Width = 130;
-                                grdBrand.Columns["Unit"].Width = 100;
+                                grdBrand.Columns["Product Name in English"].Visible = false;
+                                grdBrand.Columns["S.No."].Width = 50;
+                                grdBrand.Columns["Product Name in Tamil"].Width = 270;
+                                grdBrand.Columns["P.I Code"].Width = 80;
+                                grdBrand.Columns["Unit"].Width = 80;
                                 grdBrand.Columns["S.No."].Frozen = true;
                                 grdBrand.Columns["P.I Code"].Frozen = true;
                                 grdBrand.Columns["Product Name in Tamil"].Frozen = true;
@@ -462,14 +557,16 @@ namespace ROMS
                             {
                                 grdHSN.DataSource = objDs.Tables[0];
                                 grdHSN.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                ((DataGridViewTextBoxColumn)grdHSN.Columns["HSN Name-New"]).MaxInputLength = 20;
+
                                 grdHSN.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdHSN.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                                grdHSN.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdHSN.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                                grdHSN.Columns["S.No."].Width = 80;
-                                grdHSN.Columns["Product Name in Tamil"].Width = 300;
-                                grdHSN.Columns["P.I Code"].Width = 130;
-                                grdHSN.Columns["Unit"].Width = 100;
+                                grdHSN.Columns["Product Name in English"].Visible = false;
+                                grdHSN.Columns["S.No."].Width = 50;
+                                grdHSN.Columns["Product Name in Tamil"].Width = 270;
+                                grdHSN.Columns["P.I Code"].Width = 80;
+                                grdHSN.Columns["Unit"].Width = 80;
                                 grdHSN.Columns["S.No."].Frozen = true;
                                 grdHSN.Columns["P.I Code"].Frozen = true;
                                 grdHSN.Columns["Product Name in Tamil"].Frozen = true;
@@ -492,14 +589,21 @@ namespace ROMS
                             {
                                 grdBulkAttributes.DataSource = objDs.Tables[0];
                                 grdBulkAttributes.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                grdBulkAttributes.Columns["Product Name in Tamil-Current"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                grdBulkAttributes.Columns["Product Name in Tamil-New"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                ((DataGridViewTextBoxColumn)grdBulkAttributes.Columns["Product Code-New"]).MaxInputLength = 15;
+                                ((DataGridViewTextBoxColumn)grdBulkAttributes.Columns["Product Name in Tamil-New"]).MaxInputLength = 100;
+                                ((DataGridViewTextBoxColumn)grdBulkAttributes.Columns["Product Name in English-New"]).MaxInputLength = 100;
+                                
                                 grdBulkAttributes.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdBulkAttributes.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdBulkAttributes.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdBulkAttributes.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                                grdBulkAttributes.Columns["S.No."].Width = 80;
-                                grdBulkAttributes.Columns["Product Name in Tamil"].Width = 300;
-                                grdBulkAttributes.Columns["P.I Code"].Width = 130;
-                                grdBulkAttributes.Columns["Unit"].Width = 100;
+                                grdBulkAttributes.Columns["Product Name in English"].Visible = false;
+                                grdBulkAttributes.Columns["S.No."].Width = 50;
+                                grdBulkAttributes.Columns["Product Name in Tamil"].Width = 270;
+                                grdBulkAttributes.Columns["P.I Code"].Width = 80;
+                                grdBulkAttributes.Columns["Unit"].Width = 80;
                                 grdBulkAttributes.Columns["S.No."].Frozen = true;
                                 grdBulkAttributes.Columns["P.I Code"].Frozen = true;
                                 grdBulkAttributes.Columns["Product Name in Tamil"].Frozen = true;
@@ -571,6 +675,7 @@ namespace ROMS
                     {
                         udfnFilterLoad();
                         udfnLoadLocation();
+                        udfnList();
                     }
                 }
                 else
@@ -597,8 +702,9 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
-                    varViewType = 5;
                     grdMSQ.Visible = true;
+                     varViewType = 5;
+                    udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : Minsales Qty & Barcode";
                     tsbMSQ.BackColor = Color.SkyBlue;
                 }
@@ -618,8 +724,9 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
-                    varViewType = 6;
                     grdStock.Visible = true;
+                    varViewType = 6;
+                    udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : Min, Max stock & Reorder Qty";
                     tsbStock.BackColor = Color.SkyBlue;
                 }
@@ -639,8 +746,9 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
-                    varViewType = 7;
                     grdShelfLife.Visible = true;
+                    varViewType = 7;
+                    udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : Bulk Unit, UPP & Shelf Life";
                     tsbShelflife.BackColor = Color.SkyBlue;
                 }
@@ -660,8 +768,9 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
-                    varViewType = 8;
                     grdBatch.Visible = true;
+                    varViewType = 8;
+                    udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : Product Category, RM Flag & Batch";
                     tsbBatch.BackColor = Color.SkyBlue;
                 }
@@ -682,8 +791,9 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
-                    varViewType = 9;
                     grdWeight.Visible = true;
+                    varViewType = 9;
+                    udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : Net & Gross Weight";
                     tsbWeight.BackColor = Color.SkyBlue;
                 }
@@ -703,8 +813,9 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
-                    varViewType = 10;
                     grdBrand.Visible = true;
+                    varViewType = 10;
+                    udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : Group, Subgroup & Brand";
                     tsbBrand.BackColor = Color.SkyBlue;
                 }
@@ -724,8 +835,9 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
-                    varViewType = 11;
                     grdHSN.Visible = true;
+                    varViewType = 11;
+                    udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
                     tsbHsn.BackColor = Color.SkyBlue;
                 }
@@ -745,8 +857,9 @@ namespace ROMS
                 {
                     udfnFilterLoad();
                     udfnHideGrids();
-                    varViewType = 12;
                     grdBulkAttributes.Visible = true;
+                    varViewType = 12;
+                    udfnList();
                     tspHeader.Text = "Product Attributes Bulk Update : Pro. Code, Name & Unit";
                     tsbName.BackColor = Color.SkyBlue;
                 }
@@ -764,6 +877,8 @@ namespace ROMS
                 varFormFlag = 1;
                 TsbLocation_Click(sender,e);
                 udfnFilterLoad();
+                varViewType = 4;
+                udfnList();
             }
             catch (Exception ex)
             {
@@ -861,7 +976,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSubGroup.Focus();
+                    txtBrand.Focus();
                 }
             }
             catch (Exception ex)
@@ -934,7 +1049,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnGroupList(8, 0, 0, txtProductGroup.Text);
+                    objDs = objspdservice.udfnGroupList(8, 0, 0, txtProductGroup.Text.Trim());
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1010,6 +1125,57 @@ namespace ROMS
             try
             {
                 btnView.Enabled = false;
+                if (txtProductGroup.Text != "")
+                {
+                    DataSet objDgroup = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDgroup = objDserv.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim());
+                    objDserv.CloseConnection();
+                    if (objDgroup != null)
+                    {
+                        if (objDgroup.Tables.Count > 0)
+                        {
+                            if (objDgroup.Tables[0].Rows.Count > 0)
+                            {
+                                varGroupId = Convert.ToInt32(objDgroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                }
+                if (txtSubGroup.Text != "" )
+                {
+                    DataSet objDssubgroup = new DataSet();
+                    SPDataService objDServ = new SPDataService();
+                    objDssubgroup = objDServ.udfnSubGroupList(11, 0, "", varGroupId, 0, txtSubGroup.Text.Trim());
+                    objDServ.CloseConnection();
+                    if (objDssubgroup != null)
+                    {
+                        if (objDssubgroup.Tables.Count > 0)
+                        {
+                            if (objDssubgroup.Tables[0].Rows.Count > 0)
+                            {
+                                varSubGroupId = Convert.ToInt32(objDssubgroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                }
+                if (txtBrand.Text != "")
+                {
+                    DataSet objDsBrand = new DataSet();
+                    SPDataService objDS = new SPDataService();
+                    objDsBrand = objDS.udfnBrandList(8, "", varGroupId, varSubGroupId, 0, txtBrand.Text.Trim());
+                    objDS.CloseConnection();
+                    if (objDsBrand != null)
+                    {
+                        if (objDsBrand.Tables.Count > 0)
+                        {
+                            if (objDsBrand.Tables[0].Rows.Count > 0)
+                            {
+                                varBrandId = Convert.ToInt32(objDsBrand.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                }
                 udfnList();
             }
             catch (Exception ex)
@@ -1076,8 +1242,6 @@ namespace ROMS
             try
             {
                 udfnClose();
-                
-                //this.Close();
             }
             catch (Exception ex)
             {
@@ -1156,7 +1320,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSubGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(8, 0, "", varGroupId, 0, txtSubGroup.Text);
+                    objDs = objspdservice.udfnSubGroupList(8, 0, "", varGroupId, 0, txtSubGroup.Text.Trim());
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1374,7 +1538,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtBrand.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnBrandList(7, "", varGroupId, varSubGroupId, 0, txtBrand.Text);
+                    objDs = objspdservice.udfnBrandList(7, "", varGroupId, varSubGroupId, 0, txtBrand.Text.Trim());
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1392,6 +1556,7 @@ namespace ROMS
                             }
                         }
                     }
+                   
                 }
                 else
                 {
@@ -1456,7 +1621,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtBrand.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -1517,24 +1682,25 @@ namespace ROMS
         {
             try
             {
+                //(grdSupplierMappingLoad.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchByProduct1.Text + "%' OR ([P.I Code]) LIKE '%" + txtSearchByProduct1.Text + "%'";
                 if (grdLoction.Visible == true)
-                { (grdLoction.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtProductName.Text + "%' " + " ([P.I Code]) LIKE '% " + txtProductName.Text + "%'"; }
+                { (grdLoction.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdMSQ.Visible == true)
-                { (grdMSQ.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdMSQ.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdStock.Visible == true)
-                { (grdStock.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil]) LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdStock.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdWeight.Visible == true)
-                { (grdWeight.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil])  LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdWeight.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdShelfLife.Visible == true)
-                { (grdShelfLife.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil])  LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdShelfLife.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdBatch.Visible == true)
-                { (grdBatch.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil])  LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdBatch.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdBrand.Visible == true)
-                { (grdBrand.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil])  LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdBrand.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdHSN.Visible == true)
-                { (grdHSN.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil])  LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdHSN.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
                 else if (grdBulkAttributes.Visible == true)
-                { (grdBulkAttributes.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in Tamil])  LIKE '%" + txtProductName.Text + "%'"; }
+                { (grdBulkAttributes.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtProductName.Text + "%' OR ([P.I Code]) LIKE '%" + txtProductName.Text + "%'"; }
             }
             catch (Exception ex)
             {
@@ -1564,11 +1730,12 @@ namespace ROMS
                 }
             }
             var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("HSN_Name") into g select g.Key;
+            //var varValueID = from r in objDt.AsEnumerable() group r by r.Field<string>("HSNID") into g select g.Key;
             for (int i = 0; i < varValue.Count(); i++)
             {
                 varstr.Add(varValue.ToList()[i].ToString());
             }
-            return varstr;
+             return varstr;
         }
 
         public AutoCompleteStringCollection AutoCompleteLocationName()
@@ -1579,7 +1746,7 @@ namespace ROMS
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
 
-            objds = objdservice.GetDataset("SELECT SLID,SL_ShortName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) ");
+            objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) ");
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -1591,7 +1758,7 @@ namespace ROMS
                     }
                 }
             }
-            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("SL_ShortName") into g select g.Key;
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("SL_EName") into g select g.Key;
             for (int i = 0; i < varValue.Count(); i++)
             {
                 varstr.Add(varValue.ToList()[i].ToString());
@@ -1606,7 +1773,7 @@ namespace ROMS
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
 
-            objds = objdservice.GetDataset("SELECT RKID,RK_ShortName FROM MR_Rack WHERE RKID NOT IN (-1,0)");
+            objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0)");
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -1618,7 +1785,7 @@ namespace ROMS
                     }
                 }
             }
-            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("RK_ShortName") into g select g.Key;
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("RK_Name") into g select g.Key;
             for (int i = 0; i < varValue.Count(); i++)
             {
                 varstr.Add(varValue.ToList()[i].ToString());
@@ -1938,8 +2105,12 @@ namespace ROMS
                 }
                 else if (grdLoction.CurrentCell.OwningColumn.Name == "Rack MSQ-New")
                 {
-                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
-                    return;
+                   
+                    
+                    
+                        e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                        return;
+                    
                     //TextBox txtRackMsq = e.Control as TextBox;
                     //if (txtRackMsq != null)
                     //{
