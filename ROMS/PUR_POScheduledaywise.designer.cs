@@ -40,19 +40,9 @@
             this.grpPOScheduledaywise = new System.Windows.Forms.GroupBox();
             this.btnPrintdaywise = new System.Windows.Forms.Button();
             this.grdHeaderview = new System.Windows.Forms.DataGridView();
-            this.grdPOSchedule = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdPOSchedule = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.grpPOScheduledaywise.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdHeaderview)).BeginInit();
@@ -87,6 +77,7 @@
             this.btnPrintdaywise.Text = "Print";
             this.btnPrintdaywise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPrintdaywise.UseVisualStyleBackColor = true;
+            this.btnPrintdaywise.Click += new System.EventHandler(this.BtnPrintdaywise_Click);
             this.btnPrintdaywise.Enter += new System.EventHandler(this.BtnPrintdaywise_Enter);
             this.btnPrintdaywise.Leave += new System.EventHandler(this.BtnPrintdaywise_Leave);
             // 
@@ -133,6 +124,21 @@
             this.grdHeaderview.Size = new System.Drawing.Size(952, 29);
             this.grdHeaderview.TabIndex = 1111179;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
             // grdPOSchedule
             // 
             this.grdPOSchedule.AllowUserToAddRows = false;
@@ -151,17 +157,6 @@
             this.grdPOSchedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdPOSchedule.ColumnHeadersHeight = 30;
             this.grdPOSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdPOSchedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmsno,
-            this.clmday,
-            this.Column1,
-            this.clmTotalitem,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column7,
-            this.Column6});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -184,84 +179,6 @@
             this.grdPOSchedule.Size = new System.Drawing.Size(952, 251);
             this.grdPOSchedule.TabIndex = 1111178;
             // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmsno.Width = 50;
-            // 
-            // clmday
-            // 
-            this.clmday.HeaderText = "Order Day";
-            this.clmday.Name = "clmday";
-            this.clmday.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "T.Supplier";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // clmTotalitem
-            // 
-            this.clmTotalitem.HeaderText = "T.Products";
-            this.clmTotalitem.Name = "clmTotalitem";
-            this.clmTotalitem.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "T.Supplier";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "T.Products";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "T.Supplier";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "T.Products";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "T.Supplier";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "T.Products";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
             // PUR_POScheduledaywise
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -280,6 +197,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Day Wise Suppliers in PO Schedule";
             this.Load += new System.EventHandler(this.PUR_POScheduledaywise_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_POScheduledaywise_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             this.grpPOScheduledaywise.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdHeaderview)).EndInit();
@@ -294,16 +212,6 @@
         private System.Windows.Forms.Button btnPrintdaywise;
         public System.Windows.Forms.DataGridView grdHeaderview;
         public System.Windows.Forms.DataGridView grdPOSchedule;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalitem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }

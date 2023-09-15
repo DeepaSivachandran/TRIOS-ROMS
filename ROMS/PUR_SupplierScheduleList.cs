@@ -1080,7 +1080,7 @@ namespace ROMS
             }
             finally
             {
-                txtsuppliernameprint.Visible = false;
+                lvSupplerName.Visible = false;
             }
         }
 
@@ -1092,9 +1092,9 @@ namespace ROMS
                 lvSupplerName.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtSupplier.Text.Length > 0)
+                if (txtsuppliernameprint.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtSupplier.Text, 0,0);
+                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtsuppliernameprint.Text, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
