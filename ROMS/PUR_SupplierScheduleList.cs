@@ -1249,5 +1249,39 @@ namespace ROMS
                 dgvSupplierScheduleList.ClearSelection();
             }
         }
+
+        private void BtnListPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                RPTViewer.Visible = true;
+                RPTViewer.ReuseParameterValuesOnRefresh = true; 
+                RPTViewer.RefreshReport();
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PROD_UnitwiseProductionGroupSummary.rpt");
+              //  objBillreport.SetParameterValue("paraFromDateDisplay", dpFromDate.Text);
+               // objBillreport.SetParameterValue("paraToDateDisplay", dpToDate.Text);
+               // objBillreport.SetParameterValue("paraCompanyName", varCompany);
+                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                //objBillreport.SetParameterValue("paragroupcode", vargroupselectvalue);
+                objValidation.CrySqlConnection(objBillreport);
+                RPTViewer.ReportSource = objBillreport;
+                RPTViewer.Refresh();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                dgvSupplierScheduleList.ClearSelection();
+            }
+        }
     }
 }
