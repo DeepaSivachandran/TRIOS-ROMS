@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,7 +47,10 @@ namespace ROMS
         private ToolTip tpIfsCode = new ToolTip();
         public string varupdate = "0";
         public string varcompanyid="0",varstatusid ="0", varcontactcompanyid = "0", varSlNo = "0", varCMSlNo = "0";
-        public static int varCloseFlag = 0;
+        public static int varCloseFlag = 0, varflag = 0;
+        string varNewfile = ""; string varFile = "";
+        OpenFileDialog objfilelogo = new OpenFileDialog();
+        public string pbLogoPath = "", pbCompanypath = "";
         public CP_Company()
         {
             InitializeComponent();
@@ -2066,11 +2070,27 @@ namespace ROMS
                         varviewtype = 1;
                         varorginator = "Company Update";
                         varcompanycode = Convert.ToInt32(companyupdate);  
-                    } 
+                    }
+                    if (varflag == 1 && varNewfile != "")
+                    {
+                        //*********** copy file name & file path **************
+                        File.Copy(objfilelogo.FileName, varNewfile, true);
+                    }
+                    else
+                    {
+                        //************ Remove Image from Folder *******
+                        if (File.Exists(varFile))
+                        {
+                            File.Delete(varFile);
+                        }
+                        lblCompanyLogoPath.Text = "";
+                        lblCompanyLogoFilename.Text = "";
+                    }
+
                     result = objspdservice.udfnCompanyMaster(varviewtype, varcompanycode, Convert.ToString(txtCompanyName.Text).Trim(), Convert.ToString(txtShortName.Text).Trim(), txtAddressLine1.Text, txtAddressLine2.Text, cityid
                     , varpincode, txtPhoneNo.Text, txtAlterPhoneno.Text, txtwhatsappNo.Text, txtmobileNo.Text, txtAlterMobileno.Text, txtEmail.Text, txtwebsite.Text
                     , txtGSTTIN.Text, txtPan.Text, txtESI.Text, txtEPF.Text, txtFSSAI.Text, txtPlno.Text, Convert.ToString(cmbState.SelectedValue), varStatus,
-                    MainForm.pbUserID, MainForm.pbIpAddress, varorginator, objBankTable, objContactTable);
+                    MainForm.pbUserID, MainForm.pbIpAddress, varorginator, objBankTable, objContactTable, lblCompanyLogoFilename.Text);
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -3175,11 +3195,11 @@ namespace ROMS
 
                 if (btnSave.Text == "Save")
                 {
-                    result = objspdservice.udfnCompanyMaster(3, Convert.ToInt32(varcontactcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Create", objBankTable, objContactTable);
+                    result = objspdservice.udfnCompanyMaster(3, Convert.ToInt32(varcontactcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Create", objBankTable, objContactTable,"");
                 }
                 else
                 {
-                    result = objspdservice.udfnCompanyMaster(4, Convert.ToInt32(contactupdate), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Update", objBankTable, objContactTable);
+                    result = objspdservice.udfnCompanyMaster(4, Convert.ToInt32(contactupdate), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Update", objBankTable, objContactTable,"");
                     varupdate = "1";
                 }
                 string[] varvalue = result.Split('~');
@@ -3582,10 +3602,18 @@ namespace ROMS
                             txtAlterMobileno.Text = objDS.Tables[0].Rows[0]["MobileAlt"].ToString();
                             txtAlterPhoneno.Text = objDS.Tables[0].Rows[0]["PhoneAlt"].ToString(); 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+                            lblCompanyLogoFilename.Text = objDS.Tables[0].Rows[0]["COM_LogoName"].ToString();
 
+                            //********** College Logo load from database *************
+                            SPDataService objservice = new SPDataService();
+                            pbLogoPath = objservice.udfnGetPath(0);
+                            objservice.CloseConnection();
+                            pbCompanypath = pbLogoPath + lblCompanyLogoFilename.Text;
+                            lblCompanyLogoPath.Text = pbCompanypath;
                             btnSave.Text = "Update";
                             btnSaveContact.Text = "Update"; ;
                             pnlStatus.Enabled = true;
+                            udfnButtontext();
                         }
                         if (objDS.Tables[1].Rows.Count > 0)
                         {
@@ -3630,6 +3658,53 @@ namespace ROMS
             }
         }
 
+        public void udfnButtontext()
+        {
+            try
+            {
+                if (btnSave.Text == "Update")
+                {
+                    if (lblCompanyLogoFilename.Text == "")
+                    {
+                        picCompanyLogo.BackgroundImage = ROMS.Properties.Resources.picture;
+                        picCompanyLogo.Image = ROMS.Properties.Resources.picture;
+                        lblCompanyLogoFilename.Text = "";
+                        lblCompanyLogoPath.Text = "";
+                    }
+                    else
+                    {
+                        //**************set college logo to picturebox******************
+                        picCompanyLogo.BackgroundImage = null;
+                        picCompanyLogo.Image = null;
+                        Image objTmpImage = Image.FromFile(pbCompanypath);
+                        Image varcurrentimg = new Bitmap(objTmpImage);
+                        objTmpImage.Dispose();
+                        picCompanyLogo.BackgroundImage = varcurrentimg;
+                        picCompanyLogo.Image = new Bitmap(varcurrentimg);
+                        picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
+                    {
+                        btncollegeLogoUpload.Text = "Browse";
+                        btncollegeLogoUpload.Image = ROMS.Properties.Resources.browse1;
+                    }
+                    else
+                    {
+                        btncollegeLogoUpload.Text = "Remove";
+                        btncollegeLogoUpload.Image = ROMS.Properties.Resources.remove;
+                    }
+                }
+                else
+                {
+                    cmbState.SelectedValue = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtCity_TextChanged(object sender, EventArgs e)
         {
             try
@@ -3961,6 +4036,96 @@ namespace ROMS
             finally
             {
                 // tpCompanyName.Active = false; 
+            }
+        }
+
+        private void BtncollegeLogoUpload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //***********  Upload College Logo *********
+
+                if (btncollegeLogoUpload.Text == "Browse")
+                {
+                    string varFolderPath = "";
+
+                    objfilelogo.Filter = "JPEG files (*.jpg)|*.jpg|GIF files (*.gif)|*.gif|PNG files (*.png)|*.png";
+                    objfilelogo.FilterIndex = 1;
+                    objfilelogo.Multiselect = false;
+                    objfilelogo.ShowDialog();
+                    //************ find filename & filepath **************
+                    string varNewPath = Path.GetFullPath(objfilelogo.FileName);
+                    string varCompanyLogoFileName = System.IO.Path.GetFileNameWithoutExtension(varNewPath);
+                    varCompanyLogoFileName = "CompanyLogo";
+                    SPDataService objservice = new SPDataService();
+                    varFolderPath = objservice.udfnGetPath(0);
+                    objservice.CloseConnection();
+                    string varCustomPath = varFolderPath;
+                    string varExtension = System.IO.Path.GetExtension(objfilelogo.FileName);
+                    // ************** image size validation *************
+                    //if (ValidFile(objfilelogo.FileName, 102400, 100, 100))
+                    //{
+                    int varCount = 1;
+                    varNewfile = varCustomPath + varCompanyLogoFileName.ToString() + varExtension;
+                    while (File.Exists(varNewfile))
+                    {
+                        string varTempFileName = string.Format("{0}({1})", varCompanyLogoFileName.ToString(), varCount++);
+                        varNewfile = Path.Combine(varCustomPath, varTempFileName + varExtension);
+                    }
+                    lblCompanyLogoFilename.Text = varCompanyLogoFileName + varExtension;
+                    lblCompanyLogoPath.Text = varNewfile;
+                    picCompanyLogo.BackgroundImage = null;
+                    picCompanyLogo.Image = null;
+                    picCompanyLogo.Image = new Bitmap(objfilelogo.FileName);
+                    picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+                    if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
+                    {
+                        btncollegeLogoUpload.Text = "Browse";
+                        btncollegeLogoUpload.Image = ROMS.Properties.Resources.browse1;
+                    }
+                    else
+                    {
+                        btncollegeLogoUpload.Text = "Remove";
+                        btncollegeLogoUpload.Image = ROMS.Properties.Resources.remove;
+                    }
+                    varflag = 1;
+                    //  }
+                    //else
+                    //{
+                    //    MessageBox.Show("Please select 100*100 size file", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //}
+                }
+                // ******* Remove  Company Logo ********
+                else
+                {
+                    DialogResult objDialogResult = MessageBox.Show("Do you want to remove logo ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (objDialogResult == DialogResult.Yes)
+                    {
+
+                        varFile = lblCompanyLogoPath.Text;
+                        lblCompanyLogoPath.Text = "";
+                        lblCompanyLogoFilename.Text = "";
+                        //*********** remove image from picturebox and set default image *********
+                        picCompanyLogo.BackgroundImage = ROMS.Properties.Resources.picture;
+                        picCompanyLogo.Image = ROMS.Properties.Resources.picture;
+                        if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
+                        {
+                            btncollegeLogoUpload.Text = "Browse";
+                            btncollegeLogoUpload.Image = ROMS.Properties.Resources.browse1;
+                        }
+                        else
+                        {
+                            btncollegeLogoUpload.Text = "Remove";
+                            btncollegeLogoUpload.Image = ROMS.Properties.Resources.remove;
+                        }
+                    }
+                    varflag = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
