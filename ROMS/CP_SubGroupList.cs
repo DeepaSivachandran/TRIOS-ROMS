@@ -109,11 +109,6 @@ namespace ROMS
                         }
                     }
                     varSubGroupId = Convert.ToInt32(varId_SubGroup);
-                    //if (varCount == "0") { varSubGroupId = -1; }
-                    //else
-                    //{
-                    //    varSubGroupId = Convert.ToInt32(lblSubGroupId.Text);
-                    //}
                 }
                 objDs = objdserv.udfnSubGroupList(0, varSubGroupId, "",0,0,"");
                 objdserv.CloseConnection();
@@ -213,7 +208,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             }
         }

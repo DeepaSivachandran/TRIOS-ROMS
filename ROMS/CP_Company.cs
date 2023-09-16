@@ -4103,11 +4103,11 @@ namespace ROMS
                     {
 
                         varFile = lblCompanyLogoPath.Text;
-                        lblCompanyLogoPath.Text = "";
-                        lblCompanyLogoFilename.Text = "";
                         //*********** remove image from picturebox and set default image *********
                         picCompanyLogo.BackgroundImage = ROMS.Properties.Resources.picture;
                         picCompanyLogo.Image = ROMS.Properties.Resources.picture;
+                        lblCompanyLogoPath.Text = "";
+                        lblCompanyLogoFilename.Text = "";
                         if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
                         {
                             btncollegeLogoUpload.Text = "Browse";

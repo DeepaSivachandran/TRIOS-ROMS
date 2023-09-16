@@ -327,7 +327,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Focus();
             }
         }
@@ -347,9 +347,22 @@ namespace ROMS
                 if (txtProductGroupName.Text.Trim() != "")
                 {
                     string VarPSGName = "0";
-                    DataService objDserv = new DataService();
-                    VarPSGName = objDserv.displaydata("SELECT COUNT(*) AS Count FROM MR_ProductGroup WHERE PRG_EName ='" + txtProductGroupName.Text.Trim() + "'");
-                    if (VarPSGName == "0")
+                    DataSet objDsGroup = new DataSet();
+                    SPDataService objDServ1 = new SPDataService();
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroupName.Text.Trim());
+                    objDServ1.CloseConnection();
+                    if (objDsGroup != null)
+                    {
+                        if (objDsGroup.Tables.Count > 0)
+                        {
+                            if (objDsGroup.Tables[0].Rows.Count > 0)
+                            {
+                                VarPSGName = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    lblGroupCode.Text = Convert.ToString(VarPSGName);
+                    if (VarPSGName == "0" || VarPSGName == "-1")
                     {
                         lblGroupCode.Text = "0";
                         epSubGroup.SetError(txtProductGroupName, "Invalid Group");
@@ -385,9 +398,22 @@ namespace ROMS
                 if (txtLocation.Text.Trim() != "")
                 {
                     string varLocation = "0";
-                    DataService objDserv = new DataService();
-                    varLocation = objDserv.displaydata("SELECT COUNT(*) AS Count FROM MR_StockLocation WHERE SL_EName ='" + txtLocation.Text.Trim() + "'");
-                    if (varLocation == "0")
+                    DataSet objDsPurLoc = new DataSet();
+                    SPDataService objDServ3 = new SPDataService();
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim());
+                    objDServ3.CloseConnection();
+                    if (objDsPurLoc != null)
+                    {
+                        if (objDsPurLoc.Tables.Count > 0)
+                        {
+                            if (objDsPurLoc.Tables[0].Rows.Count > 0)
+                            {
+                                varLocation = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    lblLocation.Text = Convert.ToString(varLocation);
+                    if (varLocation == "0" || varLocation == "-1")
                     {
                         lblLocation.Text = "0";
                         epSubGroup.SetError(txtLocation, "Invalid Location");
@@ -398,9 +424,22 @@ namespace ROMS
                 if (txtRack.Text.Trim() != "")
                 {
                     string varRack = "0";
-                    DataService objDserv = new DataService();
-                    varRack = objDserv.displaydata("SELECT COUNT(*) AS Count FROM MR_Rack WHERE RK_Name ='" + txtRack.Text.Trim() + "'");
-                    if (varRack == "0")
+                    DataSet objDsPurRack = new DataSet();
+                    SPDataService objDServ4 = new SPDataService();
+                    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtRack.Text.Trim());
+                    objDServ4.CloseConnection();
+                    if (objDsPurRack != null)
+                    {
+                        if (objDsPurRack.Tables.Count > 0)
+                        {
+                            if (objDsPurRack.Tables[0].Rows.Count > 0)
+                            {
+                                varRack = Convert.ToString(objDsPurRack.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    lblRack.Text = Convert.ToString(varRack);
+                    if (varRack == "0" || varRack == "-1")
                     {
                         lblRack.Text = "0";
                         epSubGroup.SetError(txtRack, "Invalid Rack");
@@ -420,7 +459,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Focus();
             }
         }
@@ -1410,7 +1449,6 @@ namespace ROMS
                         objDServ.CloseConnection();
                         varLocationId = Convert.ToInt32(varId_Location);
                     }
-
                     objDs = objspdservice.udfnRackList(7, 0,0 ,varLocationId, 0, txtRack.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)

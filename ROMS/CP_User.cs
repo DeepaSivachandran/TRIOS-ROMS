@@ -453,6 +453,7 @@ namespace ROMS
                     tpPassKey.Show("Please select pass key", cmbPasskey, 5000);
                     blnErrorFlag = true;
                 }
+
                 if (oldpassword != null && oldpassword != "")
                 {
                     if (oldpassword.Trim() == txtPassword.Text.Trim())

@@ -515,9 +515,23 @@ namespace ROMS
                         errCompany.Clear();
                         cmbState.BackColor = Color.White;
                         string VarCity = "0";
-                        DataService objDserv = new DataService();
-                        VarCity = objDserv.displaydata("SELECT COUNT(*) FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
-                        if (VarCity == "0")
+                        //DataService objDserv = new DataService();
+                        //VarCity = objDserv.displaydata("SELECT COUNT(*) FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                        DataSet objDsCity = new DataSet();
+                        SPDataService objDserv = new SPDataService();
+                        objDsCity = objDserv.udfnCityList(2, txtCity.Text.Trim(), 0);
+                        objDserv.CloseConnection();
+                        if (objDsCity != null)
+                        {
+                            if (objDsCity.Tables.Count > 0)
+                            {
+                                if (objDsCity.Tables[0].Rows.Count > 0)
+                                {
+                                    VarCity = Convert.ToString(objDsCity.Tables[0].Rows[0][0]);
+                                }
+                            }
+                        }
+                        if (VarCity == "0" || VarCity == "-1")
                         {
                             lblcityid.Text = "0";
                             errCompany.SetError(txtCity, "Invalid city");
@@ -528,7 +542,7 @@ namespace ROMS
                         }
                         else
                         {
-                            lblcityid.Text = objDserv.displaydata("SELECT CTYID FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                            lblcityid.Text = VarCity;
                         }
                     }
 

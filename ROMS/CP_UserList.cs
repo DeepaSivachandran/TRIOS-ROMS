@@ -89,10 +89,20 @@ namespace ROMS
                 }
                 else
                 {
-                    DataService objDServ = new DataService();
-                    string varId_User = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_User WHERE U_Name = '" + txtDUserList.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT UID FROM MR_User WHERE U_Name = '" + txtDUserList.Text.Trim() + "') END AS UID ");
-                    objDServ.CloseConnection();
-                    varUserId = Convert.ToInt32(varId_User);
+                    DataSet objDsUser = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsUser = objDserv.udfnUserList(7, txtDUserList.Text.Trim(),"","",0);
+                    objDserv.CloseConnection();
+                    if (objDsUser != null)
+                    {
+                        if (objDsUser.Tables.Count > 0)
+                        {
+                            if (objDsUser.Tables[0].Rows.Count > 0)
+                            {
+                                varUserId = Convert.ToInt32(objDsUser.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
                 }
                 objDs = objspservice.udfnUserList(2,(txtDUserList.Text),"","", varUserId);
                 objspservice.CloseConnection();

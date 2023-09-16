@@ -398,7 +398,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Focus();
             }
         }
@@ -464,7 +464,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Focus();
             }
         }
@@ -595,9 +595,22 @@ namespace ROMS
                 }
                 else
                 {
-                    DataService objDserv = new DataService();
-                    varStaffName = Convert.ToInt32(objDserv.displaydata("SELECT COUNT(*) FROM MR_User INNER JOIN MR_UserCategory ON U_CTID=CTID WHERE U_Name='" + txtStaffName.Text.Trim().ToLower() + "'AND ISNULL(CT_Default,0) = 1"));
-                    if (varStaffName == 0)
+                    DataSet objDsUser = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsUser = objDserv.udfnUserList(8, txtStaffName.Text.Trim(), "", "", 0);
+                    objDserv.CloseConnection();
+                    if (objDsUser != null)
+                    {
+                        if (objDsUser.Tables.Count > 0)
+                        {
+                            if (objDsUser.Tables[0].Rows.Count > 0)
+                            {
+                                varStaffName = Convert.ToInt32(objDsUser.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    varUserID = Convert.ToString(varStaffName) ;
+                    if (varStaffName == 0 || varStaffName == -1)
                     {
                         varUserID = "0";
                         SPDataService objDServ = new SPDataService();
