@@ -24,7 +24,9 @@ namespace ROMS
         public int varViewType = 0;
         public int varStatusId = 0;
 
-       
+        DataSet objDSHSN = new DataSet();
+        DataSet objDSGroup = new DataSet();
+
         public CP_BulkAttributes()
         {
             InitializeComponent();
@@ -125,39 +127,70 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnDefalutDSLoad()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                objDSHSN = objDServ.udfnHsnList(0, 0);
+                objDSGroup = objDServ.udfnproductmasterlist(0, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0);
+                objDServ.CloseConnection();
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnUpdate()
         {
             try
             {
-                int varHsnId = 0;
+                int varHsnId = 0; int varUpdateViewType = 0;
                 SPDataService objspdservice = new SPDataService();
                 DataTable objBulkUpdate = new DataTable();
                 objBulkUpdate.TableName = "[MR_Product_BulkUpdate]";
                 objBulkUpdate.Columns.Add("HSN Name-New", typeof(string));
-                objBulkUpdate.Columns.Add("HSN ID", typeof(int));
-                DataSet objDs = new DataSet();
-                SPDataService objDServ = new SPDataService();
-                objDs = objDServ.udfnHsnList(0,0);
-                objDServ.CloseConnection();
-                
-                for (int j = 0; j < grdHSN.Rows.Count; j++)
+                objBulkUpdate.Columns.Add("HSNIDOLD", typeof(int));
+                objBulkUpdate.Columns.Add("HSNIDNEW", typeof(int));
+                objBulkUpdate.Columns.Add("PRID", typeof(int));
+               
+                if (grdHSN.Visible == true)
                 {
-                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    varUpdateViewType = 3;
+                    for (int j = 0; j < grdHSN.Rows.Count; j++)
                     {
-                        if (Convert.ToString(objDs.Tables[0].Rows[i]["HSN Name"])== (Convert.ToString(grdHSN.Rows[j].Cells["HSN Name-New"].Value)))
-                        {
-                            varHsnId = Convert.ToInt32(objDs.Tables[0].Rows[i]["ID"]);
-                            objBulkUpdate.Rows.Add(Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value), varHsnId);
-                        }
-                       
+                        varHsnId = 0;
+                        var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").Equals(grdHSN.Rows[j].Cells["HSN Name-New"].Value)) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varValue.Count() > 0) { varHsnId = Convert.ToInt32(varValue.ToList()[0]); }
+                        objBulkUpdate.Rows.Add(Convert.ToString(grdHSN.Rows[j].Cells["HSN Name-New"].Value), 0, varHsnId, grdHSN.Rows[j].Cells["PRID"].Value);
                     }
                 }
-            
+                string result = "";
+                SPDataService objDSer = new SPDataService();
+                result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", "", "", "Product Bulk Update", 0, objBulkUpdate);
+                objDSer.CloseConnection();
+                string[] varvalue = result.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //udfnList();
+                }
+                else
+                {
+                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                 udfnList();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnUpdate.Focus();
             }
             finally
             {
@@ -879,6 +912,7 @@ namespace ROMS
                 udfnFilterLoad();
                 varViewType = 4;
                 udfnList();
+                udfnDefalutDSLoad();
             }
             catch (Exception ex)
             {

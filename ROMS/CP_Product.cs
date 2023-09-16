@@ -592,7 +592,7 @@ namespace ROMS
                     , Convert.ToInt32(lblPurRackCode.Text), Convert.ToInt32(lblSaleRackCode.Text), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue)
                     , Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty,
                     wsalesrate, txtBarcode.Text, Convert.ToInt32(cmbHSNName.SelectedValue), varrmproduction, shelflife,
-                    Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue));
+                    Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue),null);
 
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
