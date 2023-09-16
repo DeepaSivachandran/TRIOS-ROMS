@@ -36,6 +36,7 @@ namespace ROMS
         public int varRacksettingID = 0;
         public int PbRKID = 0;
         public string PbStockLocation = "";
+        public int PbLocationCode = 0;
         public string PbRackName = "";
         public string PbPICode = "";
         public string PbProductName = "";
@@ -85,6 +86,7 @@ namespace ROMS
         {
             try
             {
+                txtLocation.Focus();
                 //grbDestination.Visible = false;
                 dtSupplierMapping = new DataTable();
                 dtSupplierMapping.Columns.Add("", typeof(Boolean));
@@ -96,6 +98,17 @@ namespace ROMS
                 dtSupplierMapping.Columns.Add("PRODUCTID", typeof(int));
 
 
+                dtViewSupplierMapping = new DataTable();
+                dtViewSupplierMapping.Columns.Add("", typeof(Boolean));
+                dtViewSupplierMapping.Columns.Add("S.No.", typeof(string));
+                dtViewSupplierMapping.Columns.Add("P.I Code", typeof(string));
+                dtViewSupplierMapping.Columns.Add("Product Name in English", typeof(string));
+                dtViewSupplierMapping.Columns.Add("Product Name in Tamil", typeof(string));
+                dtViewSupplierMapping.Columns.Add("Unit", typeof(string));
+                dtViewSupplierMapping.Columns.Add("PRODUCTID", typeof(int));
+
+
+
                 dtViewProduct = new DataTable();
                 dtViewProduct.Columns.Add("", typeof(Boolean));
                 dtViewProduct.Columns.Add("S.No.", typeof(string));
@@ -105,12 +118,78 @@ namespace ROMS
                 dtViewProduct.Columns.Add("Unit", typeof(string));
                 dtViewProduct.Columns.Add("PRODUCTID", typeof(int));
 
+                if (btnSave.Text == "Update")
+                {
+                    udfnEditLoad();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        private void udfnEditLoad()
+        {
+            try
+            {
+                txtLocation.Text = PbStockLocation;
+                lblSLocation.Text = Convert.ToString(PbLocationCode);
+                lvLocation.Visible = false;
+                txtRack.Text = PbRackName;
+                lblSRack.Text = Convert.ToString(PbRKID);
+                lvRack.Visible = false;
+                udfnList();
+                //udfnViewSupplier();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            /*
+            try
+            {
+                string varSubgroupId = "";
+                int varGroupId = 0;
+                int varRackId = 0;
+                varRackId = PbRKID;
+                DataSet objDS = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDS = objdserv.udfnRackSettingsList(1,varRackId,0,0,0);
+                objdserv.CloseConnection();
+                if (objDS != null)
+                {
+                    if (objDS.Tables[0].Rows.Count > 0)
+                    {
+                        txtLocation.Text = objDS.Tables[0].Rows[0]["Stock Location"].ToString().Replace("''", "'");
+                        txtRack.Text = objDS.Tables[0].Rows[0]["RK_ShortName"].ToString().Replace("''", "'");
+                    }
+
+                    if (objDS.Tables[1].Rows.Count != 0)
+                    {
+                        for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
+                        {
+                            dtSupplierMapping.Rows.Add(false, objDS.Tables[0].Rows[i]["S.No."], objDS.Tables[0].Rows[i]["P.I Code"], objDS.Tables[0].Rows[i]["Product Name in English"],
+                               objDS.Tables[0].Rows[i]["Product Name in Tamil"], objDS.Tables[0].Rows[i]["Unit"], objDS.Tables[0].Rows[i]["PRODUCTID"]);
+                        }
+                        grdSupplierMapping.DataSource = null;
+                        grdSupplierMapping.DataSource = dtSupplierMapping;
+                        grdSupplierMapping.Columns[0].HeaderText = "";
+                        grdSupplierMapping.Columns[0].Width = 50;
+                        grdSupplierMapping.Columns["S.No."].Width = 50;
+                        grdSupplierMapping.Columns["PRODUCTID"].Visible = false;
+                        grdSupplierMapping.Columns["P.I Code"].Width = 100;
+                        grdSupplierMapping.Columns["Product Name in English"].Width = 200;
+                        grdSupplierMapping.Columns["Product Name in Tamil"].Width = 200;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }*/
         }
         private void CP_BrandList_KeyDown(object sender, KeyEventArgs e)
         {
@@ -449,8 +528,17 @@ namespace ROMS
         {
             try
             {
-                int varViewType = 13;
-
+                int varViewType = 0;
+                int varRackId = 0;
+                if(btnSave.Text=="Save")
+                {
+                    varViewType = 13;
+                }
+                else
+                {
+                    varViewType = 14;
+                    varRackId = PbRKID;
+                }
                 dtSupplierMapping.Rows.Clear();
                 Application.DoEvents();
                 grdSupplierMapping.DataSource = null;
@@ -528,7 +616,7 @@ namespace ROMS
                         epRackSettings.Clear();
                     }
                 }
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0,Convert.ToInt32(varGroupId),Convert.ToInt32(varSubGroupId), "", "", "", 0, 0, 0, 0, 0,0);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0,Convert.ToInt32(varGroupId),Convert.ToInt32(varSubGroupId), "", "", "", 0, 0, 0, 0, 0,varRackId);
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[0].Rows.Count != 0)
@@ -548,6 +636,36 @@ namespace ROMS
                 grdSupplierMapping.Columns["P.I Code"].Width = 100;
                 grdSupplierMapping.Columns["Product Name in English"].Width = 200;
                 grdSupplierMapping.Columns["Product Name in Tamil"].Width = 200;
+
+
+                if (objDs.Tables[1].Rows.Count != 0)
+                {
+                    for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
+                    {
+                        dtViewSupplierMapping.Rows.Add( objDs.Tables[1].Rows[i]["S.No."], objDs.Tables[1].Rows[i]["P.I Code"], objDs.Tables[1].Rows[i]["Product Name in English"],
+                           objDs.Tables[1].Rows[i]["Product Name in Tamil"], objDs.Tables[1].Rows[i]["Unit"], objDs.Tables[1].Rows[i]["PRODUCTID"]);
+                    }
+                }
+                grdViewSupplierMapping.DataSource = null;
+                grdViewSupplierMapping.DataSource = dtViewSupplierMapping;
+                grdViewSupplierMapping.Columns[0].HeaderText = "";
+                grdViewSupplierMapping.Columns[0].Width = 50;
+                grdViewSupplierMapping.Columns["S.No."].Width = 50;
+                grdViewSupplierMapping.Columns["S.No."].Visible = false;
+                grdViewSupplierMapping.Columns["PRODUCTID"].Visible = false;
+                grdViewSupplierMapping.Columns["P.I Code"].Width = 100;
+                grdViewSupplierMapping.Columns["Product Name in English"].Width = 200;
+                grdViewSupplierMapping.Columns["Product Name in Tamil"].Width = 200;
+
+
+                //for (int j = 0; j < grdSupplierMapping.RowCount; j++)
+                //{
+                //    if (Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRODUCTID"].Value) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
+                //    {
+                //        grdSupplierMapping.Rows[j].Cells[0].Value = true;
+                //    }
+                //}
+
             }
             catch (Exception ex)
             {
@@ -663,7 +781,7 @@ namespace ROMS
                             }
                             if (varFlag == 0)
                             {
-                                grdViewSupplierMapping.Rows.Add(Convert.ToInt32(grdViewSupplierMapping.Rows.Count) + 1, grdSupplierMapping.Rows[i].Cells["P.I Code"].Value, grdSupplierMapping.Rows[i].Cells["Product Name in English"].Value,
+                                grdViewSupplierMapping.Rows.Add(false,Convert.ToInt32(grdViewSupplierMapping.Rows.Count) + 1, grdSupplierMapping.Rows[i].Cells["P.I Code"].Value, grdSupplierMapping.Rows[i].Cells["Product Name in English"].Value,
                                     grdSupplierMapping.Rows[i].Cells["Product Name in Tamil"].Value, grdSupplierMapping.Rows[i].Cells["Unit"].Value, grdSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
                             }
                         }
@@ -3996,6 +4114,36 @@ namespace ROMS
                             }
                             break;
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkMove_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (varCheckAll != 1)
+                {
+                    for (int i = 0; i < grdViewSupplierMapping.Rows.Count; i++)
+                    {
+                        grdViewSupplierMapping.Rows[i].Cells[0].Value = chkMove.Checked;
+                    }
+                    if (chkMove.Checked == false)
+                    {
+                        foreach (DataGridViewRow row in grdViewSupplierMapping.Rows)
+                        {
+                            row.Cells[0].Value = false;
+                        }
+                    }
+                }
+                else
+                {
+                    varCheckAll = 0;
                 }
             }
             catch (Exception ex)

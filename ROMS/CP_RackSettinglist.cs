@@ -63,6 +63,22 @@ namespace ROMS
             try
             {
                 DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    SPDataService objDser = new SPDataService();
+
+                    string varResult = objDser.udfnRackSettings(2, 0, 0 ,Convert.ToInt16(grdRackSettingList.SelectedRows[0].Cells["RKID"].Value.ToString()), "",0, 0, "RackSettings Delete");
+                    objDser.CloseConnection();
+                    if (varResult.Split('~')[0] == "3")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnList();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -81,6 +97,7 @@ namespace ROMS
                     MainForm.objCP_RackSettings.varRacksettingID = Convert.ToInt32(grdRackSettingList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_RackSettings.PbRKID = Convert.ToInt32(grdRackSettingList.SelectedRows[0].Cells["RKID"].Value);
                     MainForm.objCP_RackSettings.PbStockLocation = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["Stock Location"].Value);
+                    MainForm.objCP_RackSettings.PbLocationCode = Convert.ToInt32(grdRackSettingList.SelectedRows[0].Cells["LocationID"].Value);
                     MainForm.objCP_RackSettings.PbRackName = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["Rack Name"].Value);
                     MainForm.objCP_RackSettings.PbPICode = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["P.I Code"].Value);
                     MainForm.objCP_RackSettings.PbProductName = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["Product Name"].Value);
@@ -126,6 +143,7 @@ namespace ROMS
                             grdRackSettingList.DataSource = objDs.Tables[0];
                             grdRackSettingList.Columns["ID"].Visible = false;
                             grdRackSettingList.Columns["RKID"].Visible = false;
+                            grdRackSettingList.Columns["LocationID"].Visible = false;
                             grdRackSettingList.Columns["sno"].Visible = false;
                             grdRackSettingList.Columns["S.No."].Width = 50;
                             grdRackSettingList.Columns["P.I Code"].Width = 100;
@@ -503,6 +521,56 @@ namespace ROMS
         private void BtnView_Click(object sender, EventArgs e)
         {
             udfnList();
+        }
+
+        private void GrdRackSettingList_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRackSettingList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnEdit();
+                }
+                if (e.KeyCode == Keys.Delete)
+                {
+                    udfndelete();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRackSettingList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                grdRackSettingList.ClearSelection();
+            }
         }
     }
 }

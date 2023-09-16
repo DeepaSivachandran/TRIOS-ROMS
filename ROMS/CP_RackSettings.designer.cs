@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle211 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle212 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle213 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle214 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle215 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle216 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle205 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle206 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle207 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle208 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle209 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle210 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsRackSettings = new System.Windows.Forms.ToolStrip();
             this.tspRackSettings = new System.Windows.Forms.ToolStripLabel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
@@ -92,40 +92,17 @@
             this.grbMove = new System.Windows.Forms.GroupBox();
             this.lblMoveRack = new System.Windows.Forms.Label();
             this.lblMoveLocation = new System.Windows.Forms.Label();
-            this.lvMoveRack = new System.Windows.Forms.ListView();
-            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvMoveLocation = new System.Windows.Forms.ListView();
-            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.txtMoveRack = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtMoveLocation = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnMoveView = new System.Windows.Forms.Button();
             this.lblProductSubGroupId = new System.Windows.Forms.Label();
             this.lblProductGroupId = new System.Windows.Forms.Label();
-            this.lblDRack = new System.Windows.Forms.Label();
-            this.lblDLocation = new System.Windows.Forms.Label();
             this.lvDRack = new System.Windows.Forms.ListView();
             this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvDLocation = new System.Windows.Forms.ListView();
-            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.txtDRack = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtDLocation = new System.Windows.Forms.TextBox();
             this.lvProductSubGroup = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label10 = new System.Windows.Forms.Label();
             this.lvProductGroup = new System.Windows.Forms.ListView();
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -136,6 +113,13 @@
             this.txtSearchProductName2 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.grdMoveProduct = new System.Windows.Forms.DataGridView();
+            this.sno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productenglishname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.producttamilname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productmoveid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemoveProduct = new System.Windows.Forms.DataGridViewImageColumn();
             this.checkAll = new System.Windows.Forms.CheckBox();
             this.txtSearchProductName1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -147,22 +131,35 @@
             this.btnMoveClose = new System.Windows.Forms.Button();
             this.btnMoveSave = new System.Windows.Forms.Button();
             this.txtSubGroup = new System.Windows.Forms.TextBox();
-            this.btnDesignationView = new System.Windows.Forms.Button();
             this.epRackSettings = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdpicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProductEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProductTamil = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProductUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRODUCTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblDRack = new System.Windows.Forms.Label();
+            this.lblDLocation = new System.Windows.Forms.Label();
+            this.lvDLocation = new System.Windows.Forms.ListView();
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtDRack = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtDLocation = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnDesignationView = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lvMoveRack = new System.Windows.Forms.ListView();
+            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtMoveRack = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtMoveLocation = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnMoveView = new System.Windows.Forms.Button();
+            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvMoveLocation = new System.Windows.Forms.ListView();
+            this.chkMove = new System.Windows.Forms.CheckBox();
             this.clmRemoveSupplier = new System.Windows.Forms.DataGridViewImageColumn();
-            this.sno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.picode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productenglishname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.producttamilname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productmoveid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemoveProduct = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsRackSettings.SuspendLayout();
             this.pnlRackSettings.SuspendLayout();
             this.tcAddProduct.SuspendLayout();
@@ -175,6 +172,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdMoveProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epRackSettings)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsRackSettings
@@ -246,6 +245,7 @@
             // grbAdd
             // 
             this.grbAdd.BackColor = System.Drawing.Color.White;
+            this.grbAdd.Controls.Add(this.chkMove);
             this.grbAdd.Controls.Add(this.lblSRack);
             this.grbAdd.Controls.Add(this.lblSLocation);
             this.grbAdd.Controls.Add(this.lvLocation);
@@ -529,40 +529,34 @@
             this.grdViewSupplierMapping.AllowUserToResizeRows = false;
             this.grdViewSupplierMapping.BackgroundColor = System.Drawing.Color.White;
             this.grdViewSupplierMapping.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle211.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle211.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle211.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle211.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle211.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle211.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle211.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdViewSupplierMapping.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle211;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdViewSupplierMapping.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdViewSupplierMapping.ColumnHeadersHeight = 30;
             this.grdViewSupplierMapping.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdViewSupplierMapping.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmsno,
-            this.clmdpicode,
-            this.clmProductEnglish,
-            this.clmProductTamil,
-            this.clmProductUnit,
-            this.PRODUCTID,
             this.clmRemoveSupplier});
-            dataGridViewCellStyle212.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle212.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle212.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle212.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle212.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle212.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle212.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdViewSupplierMapping.DefaultCellStyle = dataGridViewCellStyle212;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdViewSupplierMapping.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdViewSupplierMapping.EnableHeadersVisualStyles = false;
             this.grdViewSupplierMapping.GridColor = System.Drawing.Color.White;
             this.grdViewSupplierMapping.Location = new System.Drawing.Point(673, 161);
             this.grdViewSupplierMapping.Name = "grdViewSupplierMapping";
             this.grdViewSupplierMapping.RowHeadersVisible = false;
-            dataGridViewCellStyle213.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle213.SelectionForeColor = System.Drawing.Color.White;
-            this.grdViewSupplierMapping.RowsDefaultCellStyle = dataGridViewCellStyle213;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdViewSupplierMapping.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdViewSupplierMapping.RowTemplate.Height = 25;
             this.grdViewSupplierMapping.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdViewSupplierMapping.ShowRowErrors = false;
@@ -609,32 +603,32 @@
             this.grdSupplierMapping.AllowUserToResizeRows = false;
             this.grdSupplierMapping.BackgroundColor = System.Drawing.Color.White;
             this.grdSupplierMapping.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle214.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle214.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle214.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle214.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle214.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle214.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle214.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSupplierMapping.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle214;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdSupplierMapping.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdSupplierMapping.ColumnHeadersHeight = 30;
             this.grdSupplierMapping.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle215.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle215.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle215.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle215.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle215.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle215.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle215.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdSupplierMapping.DefaultCellStyle = dataGridViewCellStyle215;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdSupplierMapping.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdSupplierMapping.EnableHeadersVisualStyles = false;
             this.grdSupplierMapping.GridColor = System.Drawing.Color.White;
             this.grdSupplierMapping.Location = new System.Drawing.Point(21, 161);
             this.grdSupplierMapping.Name = "grdSupplierMapping";
             this.grdSupplierMapping.RowHeadersVisible = false;
-            dataGridViewCellStyle216.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle216.SelectionForeColor = System.Drawing.Color.White;
-            this.grdSupplierMapping.RowsDefaultCellStyle = dataGridViewCellStyle216;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdSupplierMapping.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdSupplierMapping.RowTemplate.Height = 25;
             this.grdSupplierMapping.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupplierMapping.ShowRowErrors = false;
@@ -759,27 +753,17 @@
             // grbMove
             // 
             this.grbMove.BackColor = System.Drawing.Color.White;
-            this.grbMove.Controls.Add(this.lblMoveRack);
-            this.grbMove.Controls.Add(this.lblMoveLocation);
             this.grbMove.Controls.Add(this.lvMoveRack);
             this.grbMove.Controls.Add(this.lvMoveLocation);
-            this.grbMove.Controls.Add(this.txtMoveRack);
-            this.grbMove.Controls.Add(this.label1);
-            this.grbMove.Controls.Add(this.txtMoveLocation);
-            this.grbMove.Controls.Add(this.label4);
-            this.grbMove.Controls.Add(this.btnMoveView);
+            this.grbMove.Controls.Add(this.groupBox2);
+            this.grbMove.Controls.Add(this.lvDLocation);
+            this.grbMove.Controls.Add(this.lblMoveRack);
+            this.grbMove.Controls.Add(this.lblMoveLocation);
             this.grbMove.Controls.Add(this.lblProductSubGroupId);
             this.grbMove.Controls.Add(this.lblProductGroupId);
-            this.grbMove.Controls.Add(this.lblDRack);
-            this.grbMove.Controls.Add(this.lblDLocation);
             this.grbMove.Controls.Add(this.lvDRack);
-            this.grbMove.Controls.Add(this.lvDLocation);
-            this.grbMove.Controls.Add(this.txtDRack);
             this.grbMove.Controls.Add(this.label2);
-            this.grbMove.Controls.Add(this.label11);
-            this.grbMove.Controls.Add(this.txtDLocation);
             this.grbMove.Controls.Add(this.lvProductSubGroup);
-            this.grbMove.Controls.Add(this.label10);
             this.grbMove.Controls.Add(this.lvProductGroup);
             this.grbMove.Controls.Add(this.txtGroup);
             this.grbMove.Controls.Add(this.label3);
@@ -798,7 +782,7 @@
             this.grbMove.Controls.Add(this.btnMoveClose);
             this.grbMove.Controls.Add(this.btnMoveSave);
             this.grbMove.Controls.Add(this.txtSubGroup);
-            this.grbMove.Controls.Add(this.btnDesignationView);
+            this.grbMove.Controls.Add(this.groupBox1);
             this.grbMove.Location = new System.Drawing.Point(3, 3);
             this.grbMove.Name = "grbMove";
             this.grbMove.Size = new System.Drawing.Size(1311, 588);
@@ -823,128 +807,6 @@
             this.lblMoveLocation.TabIndex = 111111134;
             this.lblMoveLocation.Visible = false;
             // 
-            // lvMoveRack
-            // 
-            this.lvMoveRack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader19,
-            this.columnHeader20,
-            this.columnHeader21});
-            this.lvMoveRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvMoveRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvMoveRack.HideSelection = false;
-            this.lvMoveRack.Location = new System.Drawing.Point(762, 83);
-            this.lvMoveRack.Name = "lvMoveRack";
-            this.lvMoveRack.Size = new System.Drawing.Size(223, 65);
-            this.lvMoveRack.TabIndex = 111111131;
-            this.lvMoveRack.UseCompatibleStateImageBehavior = false;
-            this.lvMoveRack.View = System.Windows.Forms.View.Details;
-            this.lvMoveRack.Visible = false;
-            this.lvMoveRack.DoubleClick += new System.EventHandler(this.LvMoveRack_DoubleClick);
-            this.lvMoveRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvMoveRack_KeyDown);
-            // 
-            // columnHeader19
-            // 
-            this.columnHeader19.Width = 180;
-            // 
-            // columnHeader20
-            // 
-            this.columnHeader20.Width = 120;
-            // 
-            // columnHeader21
-            // 
-            this.columnHeader21.Width = 0;
-            // 
-            // lvMoveLocation
-            // 
-            this.lvMoveLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader28,
-            this.columnHeader29,
-            this.columnHeader30});
-            this.lvMoveLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvMoveLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvMoveLocation.HideSelection = false;
-            this.lvMoveLocation.Location = new System.Drawing.Point(762, 51);
-            this.lvMoveLocation.Name = "lvMoveLocation";
-            this.lvMoveLocation.Size = new System.Drawing.Size(223, 65);
-            this.lvMoveLocation.TabIndex = 111111132;
-            this.lvMoveLocation.UseCompatibleStateImageBehavior = false;
-            this.lvMoveLocation.View = System.Windows.Forms.View.Details;
-            this.lvMoveLocation.Visible = false;
-            this.lvMoveLocation.DoubleClick += new System.EventHandler(this.LvMoveLocation_DoubleClick);
-            this.lvMoveLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvMoveLocation_KeyDown);
-            // 
-            // columnHeader28
-            // 
-            this.columnHeader28.Width = 180;
-            // 
-            // columnHeader29
-            // 
-            this.columnHeader29.Width = 120;
-            // 
-            // columnHeader30
-            // 
-            this.columnHeader30.Width = 0;
-            // 
-            // txtMoveRack
-            // 
-            this.txtMoveRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMoveRack.Location = new System.Drawing.Point(762, 56);
-            this.txtMoveRack.MaxLength = 100;
-            this.txtMoveRack.Name = "txtMoveRack";
-            this.txtMoveRack.Size = new System.Drawing.Size(156, 27);
-            this.txtMoveRack.TabIndex = 13;
-            this.txtMoveRack.TextChanged += new System.EventHandler(this.TxtMoveRack_TextChanged);
-            this.txtMoveRack.Enter += new System.EventHandler(this.TxtMoveRack_Enter);
-            this.txtMoveRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMoveRack_KeyDown);
-            this.txtMoveRack.Leave += new System.EventHandler(this.TxtMoveRack_Leave);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(669, 59);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 20);
-            this.label1.TabIndex = 111111129;
-            this.label1.Text = "Rack";
-            // 
-            // txtMoveLocation
-            // 
-            this.txtMoveLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMoveLocation.Location = new System.Drawing.Point(762, 24);
-            this.txtMoveLocation.MaxLength = 100;
-            this.txtMoveLocation.Name = "txtMoveLocation";
-            this.txtMoveLocation.Size = new System.Drawing.Size(156, 27);
-            this.txtMoveLocation.TabIndex = 12;
-            this.txtMoveLocation.TextChanged += new System.EventHandler(this.TxtMoveLocation_TextChanged);
-            this.txtMoveLocation.Enter += new System.EventHandler(this.TxtMoveLocation_Enter);
-            this.txtMoveLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMoveLocation_KeyDown);
-            this.txtMoveLocation.Leave += new System.EventHandler(this.TxtMoveLocation_Leave);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(669, 27);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 20);
-            this.label4.TabIndex = 111111130;
-            this.label4.Text = "Stock Location";
-            // 
-            // btnMoveView
-            // 
-            this.btnMoveView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMoveView.Image = global::ROMS.Properties.Resources.view;
-            this.btnMoveView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMoveView.Location = new System.Drawing.Point(928, 55);
-            this.btnMoveView.Name = "btnMoveView";
-            this.btnMoveView.Size = new System.Drawing.Size(75, 29);
-            this.btnMoveView.TabIndex = 14;
-            this.btnMoveView.Text = "View";
-            this.btnMoveView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMoveView.UseVisualStyleBackColor = true;
-            this.btnMoveView.Visible = false;
-            // 
             // lblProductSubGroupId
             // 
             this.lblProductSubGroupId.AutoSize = true;
@@ -963,24 +825,6 @@
             this.lblProductGroupId.TabIndex = 111111125;
             this.lblProductGroupId.Visible = false;
             // 
-            // lblDRack
-            // 
-            this.lblDRack.AutoSize = true;
-            this.lblDRack.Location = new System.Drawing.Point(372, 64);
-            this.lblDRack.Name = "lblDRack";
-            this.lblDRack.Size = new System.Drawing.Size(0, 20);
-            this.lblDRack.TabIndex = 111111124;
-            this.lblDRack.Visible = false;
-            // 
-            // lblDLocation
-            // 
-            this.lblDLocation.AutoSize = true;
-            this.lblDLocation.Location = new System.Drawing.Point(372, 32);
-            this.lblDLocation.Name = "lblDLocation";
-            this.lblDLocation.Size = new System.Drawing.Size(0, 20);
-            this.lblDLocation.TabIndex = 111111123;
-            this.lblDLocation.Visible = false;
-            // 
             // lvDRack
             // 
             this.lvDRack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -990,7 +834,7 @@
             this.lvDRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvDRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvDRack.HideSelection = false;
-            this.lvDRack.Location = new System.Drawing.Point(110, 84);
+            this.lvDRack.Location = new System.Drawing.Point(138, 91);
             this.lvDRack.Name = "lvDRack";
             this.lvDRack.Size = new System.Drawing.Size(223, 65);
             this.lvDRack.TabIndex = 111111114;
@@ -1012,50 +856,6 @@
             // 
             this.columnHeader27.Width = 0;
             // 
-            // lvDLocation
-            // 
-            this.lvDLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader22,
-            this.columnHeader23,
-            this.columnHeader24});
-            this.lvDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvDLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvDLocation.HideSelection = false;
-            this.lvDLocation.Location = new System.Drawing.Point(110, 52);
-            this.lvDLocation.Name = "lvDLocation";
-            this.lvDLocation.Size = new System.Drawing.Size(223, 65);
-            this.lvDLocation.TabIndex = 111111114;
-            this.lvDLocation.UseCompatibleStateImageBehavior = false;
-            this.lvDLocation.View = System.Windows.Forms.View.Details;
-            this.lvDLocation.Visible = false;
-            this.lvDLocation.DoubleClick += new System.EventHandler(this.LvDLocation_DoubleClick);
-            this.lvDLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvDLocation_KeyDown);
-            // 
-            // columnHeader22
-            // 
-            this.columnHeader22.Width = 180;
-            // 
-            // columnHeader23
-            // 
-            this.columnHeader23.Width = 120;
-            // 
-            // columnHeader24
-            // 
-            this.columnHeader24.Width = 0;
-            // 
-            // txtDRack
-            // 
-            this.txtDRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDRack.Location = new System.Drawing.Point(110, 57);
-            this.txtDRack.MaxLength = 100;
-            this.txtDRack.Name = "txtDRack";
-            this.txtDRack.Size = new System.Drawing.Size(156, 27);
-            this.txtDRack.TabIndex = 10;
-            this.txtDRack.TextChanged += new System.EventHandler(this.TxtDRack_TextChanged);
-            this.txtDRack.Enter += new System.EventHandler(this.TxtDRack_Enter);
-            this.txtDRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDRack_KeyDown);
-            this.txtDRack.Leave += new System.EventHandler(this.TxtDRack_Leave);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -1064,29 +864,6 @@
             this.label2.Size = new System.Drawing.Size(0, 20);
             this.label2.TabIndex = 111111121;
             this.label2.Visible = false;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(17, 60);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(35, 20);
-            this.label11.TabIndex = 1111149;
-            this.label11.Text = "Rack";
-            // 
-            // txtDLocation
-            // 
-            this.txtDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDLocation.Location = new System.Drawing.Point(110, 25);
-            this.txtDLocation.MaxLength = 100;
-            this.txtDLocation.Name = "txtDLocation";
-            this.txtDLocation.Size = new System.Drawing.Size(156, 27);
-            this.txtDLocation.TabIndex = 9;
-            this.txtDLocation.TextChanged += new System.EventHandler(this.TxtDLocation_TextChanged);
-            this.txtDLocation.Enter += new System.EventHandler(this.TxtDLocation_Enter);
-            this.txtDLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDLocation_KeyDown);
-            this.txtDLocation.Leave += new System.EventHandler(this.TxtDLocation_Leave);
             // 
             // lvProductSubGroup
             // 
@@ -1117,16 +894,6 @@
             // columnHeader3
             // 
             this.columnHeader3.Width = 0;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(17, 28);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(87, 20);
-            this.label10.TabIndex = 1111151;
-            this.label10.Text = "Stock Location";
             // 
             // lvProductGroup
             // 
@@ -1218,14 +985,14 @@
             this.grdMoveProduct.AllowUserToResizeRows = false;
             this.grdMoveProduct.BackgroundColor = System.Drawing.Color.White;
             this.grdMoveProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle205.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle205.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle205.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle205.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle205.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle205.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle205.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdMoveProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle205;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdMoveProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.grdMoveProduct.ColumnHeadersHeight = 30;
             this.grdMoveProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdMoveProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1236,28 +1003,70 @@
             this.unit,
             this.productmoveid,
             this.clmRemoveProduct});
-            dataGridViewCellStyle206.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle206.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle206.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle206.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle206.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle206.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle206.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdMoveProduct.DefaultCellStyle = dataGridViewCellStyle206;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdMoveProduct.DefaultCellStyle = dataGridViewCellStyle8;
             this.grdMoveProduct.EnableHeadersVisualStyles = false;
             this.grdMoveProduct.GridColor = System.Drawing.Color.White;
             this.grdMoveProduct.Location = new System.Drawing.Point(673, 161);
             this.grdMoveProduct.Name = "grdMoveProduct";
             this.grdMoveProduct.RowHeadersVisible = false;
-            dataGridViewCellStyle207.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle207.SelectionForeColor = System.Drawing.Color.White;
-            this.grdMoveProduct.RowsDefaultCellStyle = dataGridViewCellStyle207;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            this.grdMoveProduct.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.grdMoveProduct.RowTemplate.Height = 25;
             this.grdMoveProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdMoveProduct.ShowRowErrors = false;
             this.grdMoveProduct.Size = new System.Drawing.Size(619, 389);
             this.grdMoveProduct.TabIndex = 111111111;
             this.grdMoveProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdMoveProduct_CellContentClick);
+            // 
+            // sno
+            // 
+            this.sno.HeaderText = "S.No.";
+            this.sno.Name = "sno";
+            this.sno.Visible = false;
+            // 
+            // picode
+            // 
+            this.picode.HeaderText = "P.I Code";
+            this.picode.Name = "picode";
+            // 
+            // productenglishname
+            // 
+            this.productenglishname.HeaderText = "Product Name in English";
+            this.productenglishname.Name = "productenglishname";
+            this.productenglishname.Width = 220;
+            // 
+            // producttamilname
+            // 
+            this.producttamilname.HeaderText = "Product Name in Tamil";
+            this.producttamilname.Name = "producttamilname";
+            this.producttamilname.Width = 220;
+            // 
+            // unit
+            // 
+            this.unit.HeaderText = "Unit";
+            this.unit.Name = "unit";
+            // 
+            // productmoveid
+            // 
+            this.productmoveid.HeaderText = "ID";
+            this.productmoveid.Name = "productmoveid";
+            this.productmoveid.Visible = false;
+            // 
+            // clmRemoveProduct
+            // 
+            this.clmRemoveProduct.HeaderText = "Remove";
+            this.clmRemoveProduct.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemoveProduct.Name = "clmRemoveProduct";
+            this.clmRemoveProduct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemoveProduct.Width = 70;
             // 
             // checkAll
             // 
@@ -1298,32 +1107,32 @@
             this.grdViewProduct.AllowUserToResizeRows = false;
             this.grdViewProduct.BackgroundColor = System.Drawing.Color.White;
             this.grdViewProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle208.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle208.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle208.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle208.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle208.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle208.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle208.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdViewProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle208;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdViewProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.grdViewProduct.ColumnHeadersHeight = 30;
             this.grdViewProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle209.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle209.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle209.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle209.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle209.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle209.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle209.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdViewProduct.DefaultCellStyle = dataGridViewCellStyle209;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdViewProduct.DefaultCellStyle = dataGridViewCellStyle11;
             this.grdViewProduct.EnableHeadersVisualStyles = false;
             this.grdViewProduct.GridColor = System.Drawing.Color.White;
             this.grdViewProduct.Location = new System.Drawing.Point(21, 161);
             this.grdViewProduct.Name = "grdViewProduct";
             this.grdViewProduct.RowHeadersVisible = false;
-            dataGridViewCellStyle210.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle210.SelectionForeColor = System.Drawing.Color.White;
-            this.grdViewProduct.RowsDefaultCellStyle = dataGridViewCellStyle210;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            this.grdViewProduct.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.grdViewProduct.RowTemplate.Height = 25;
             this.grdViewProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdViewProduct.ShowRowErrors = false;
@@ -1422,15 +1231,130 @@
             this.txtSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSubGroup_KeyDown);
             this.txtSubGroup.Leave += new System.EventHandler(this.TxtSubGroup_Leave);
             // 
+            // epRackSettings
+            // 
+            this.epRackSettings.ContainerControl = this;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblDRack);
+            this.groupBox1.Controls.Add(this.lblDLocation);
+            this.groupBox1.Controls.Add(this.txtDRack);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.txtDLocation);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.btnDesignationView);
+            this.groupBox1.Location = new System.Drawing.Point(30, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(362, 89);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Source";
+            // 
+            // lblDRack
+            // 
+            this.lblDRack.AutoSize = true;
+            this.lblDRack.Location = new System.Drawing.Point(370, 59);
+            this.lblDRack.Name = "lblDRack";
+            this.lblDRack.Size = new System.Drawing.Size(0, 20);
+            this.lblDRack.TabIndex = 111111132;
+            this.lblDRack.Visible = false;
+            // 
+            // lblDLocation
+            // 
+            this.lblDLocation.AutoSize = true;
+            this.lblDLocation.Location = new System.Drawing.Point(370, 27);
+            this.lblDLocation.Name = "lblDLocation";
+            this.lblDLocation.Size = new System.Drawing.Size(0, 20);
+            this.lblDLocation.TabIndex = 111111131;
+            this.lblDLocation.Visible = false;
+            // 
+            // lvDLocation
+            // 
+            this.lvDLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader22,
+            this.columnHeader23,
+            this.columnHeader24});
+            this.lvDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvDLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvDLocation.HideSelection = false;
+            this.lvDLocation.Location = new System.Drawing.Point(138, 59);
+            this.lvDLocation.Name = "lvDLocation";
+            this.lvDLocation.Size = new System.Drawing.Size(223, 65);
+            this.lvDLocation.TabIndex = 111111130;
+            this.lvDLocation.UseCompatibleStateImageBehavior = false;
+            this.lvDLocation.View = System.Windows.Forms.View.Details;
+            this.lvDLocation.Visible = false;
+            this.lvDLocation.DoubleClick += new System.EventHandler(this.LvDLocation_DoubleClick);
+            this.lvDLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvDLocation_KeyDown);
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Width = 180;
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Width = 120;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Width = 0;
+            // 
+            // txtDRack
+            // 
+            this.txtDRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDRack.Location = new System.Drawing.Point(108, 52);
+            this.txtDRack.MaxLength = 100;
+            this.txtDRack.Name = "txtDRack";
+            this.txtDRack.Size = new System.Drawing.Size(156, 27);
+            this.txtDRack.TabIndex = 111111126;
+            this.txtDRack.TextChanged += new System.EventHandler(this.TxtDRack_TextChanged);
+            this.txtDRack.Enter += new System.EventHandler(this.TxtDRack_Enter);
+            this.txtDRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDRack_KeyDown);
+            this.txtDRack.Leave += new System.EventHandler(this.TxtDRack_Leave);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(15, 55);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(35, 20);
+            this.label11.TabIndex = 111111128;
+            this.label11.Text = "Rack";
+            // 
+            // txtDLocation
+            // 
+            this.txtDLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDLocation.Location = new System.Drawing.Point(108, 20);
+            this.txtDLocation.MaxLength = 100;
+            this.txtDLocation.Name = "txtDLocation";
+            this.txtDLocation.Size = new System.Drawing.Size(156, 27);
+            this.txtDLocation.TabIndex = 111111125;
+            this.txtDLocation.TextChanged += new System.EventHandler(this.TxtDLocation_TextChanged);
+            this.txtDLocation.Enter += new System.EventHandler(this.TxtDLocation_Enter);
+            this.txtDLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDLocation_KeyDown);
+            this.txtDLocation.Leave += new System.EventHandler(this.TxtDLocation_Leave);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(15, 23);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(87, 20);
+            this.label10.TabIndex = 111111129;
+            this.label10.Text = "Stock Location";
+            // 
             // btnDesignationView
             // 
             this.btnDesignationView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDesignationView.Image = global::ROMS.Properties.Resources.view;
             this.btnDesignationView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDesignationView.Location = new System.Drawing.Point(276, 56);
+            this.btnDesignationView.Location = new System.Drawing.Point(274, 51);
             this.btnDesignationView.Name = "btnDesignationView";
             this.btnDesignationView.Size = new System.Drawing.Size(75, 29);
-            this.btnDesignationView.TabIndex = 11;
+            this.btnDesignationView.TabIndex = 111111127;
             this.btnDesignationView.Text = "View";
             this.btnDesignationView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDesignationView.UseVisualStyleBackColor = true;
@@ -1438,43 +1362,152 @@
             this.btnDesignationView.Enter += new System.EventHandler(this.BtnDesignationView_Enter);
             this.btnDesignationView.Leave += new System.EventHandler(this.BtnDesignationView_Leave);
             // 
-            // epRackSettings
+            // groupBox2
             // 
-            this.epRackSettings.ContainerControl = this;
+            this.groupBox2.Controls.Add(this.txtMoveRack);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.txtMoveLocation);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.btnMoveView);
+            this.groupBox2.Location = new System.Drawing.Point(406, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(372, 89);
+            this.groupBox2.TabIndex = 111111136;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Designation";
             // 
-            // clmsno
+            // lvMoveRack
             // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.Visible = false;
+            this.lvMoveRack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader19,
+            this.columnHeader20,
+            this.columnHeader21});
+            this.lvMoveRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvMoveRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvMoveRack.HideSelection = false;
+            this.lvMoveRack.Location = new System.Drawing.Point(522, 88);
+            this.lvMoveRack.Name = "lvMoveRack";
+            this.lvMoveRack.Size = new System.Drawing.Size(223, 65);
+            this.lvMoveRack.TabIndex = 111111138;
+            this.lvMoveRack.UseCompatibleStateImageBehavior = false;
+            this.lvMoveRack.View = System.Windows.Forms.View.Details;
+            this.lvMoveRack.Visible = false;
+            this.lvMoveRack.DoubleClick += new System.EventHandler(this.LvMoveRack_DoubleClick);
+            this.lvMoveRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvMoveRack_KeyDown);
             // 
-            // clmdpicode
+            // columnHeader19
             // 
-            this.clmdpicode.HeaderText = "P.I Code";
-            this.clmdpicode.Name = "clmdpicode";
+            this.columnHeader19.Width = 180;
             // 
-            // clmProductEnglish
+            // columnHeader20
             // 
-            this.clmProductEnglish.HeaderText = "Product Name in English";
-            this.clmProductEnglish.Name = "clmProductEnglish";
-            this.clmProductEnglish.Width = 220;
+            this.columnHeader20.Width = 120;
             // 
-            // clmProductTamil
+            // columnHeader21
             // 
-            this.clmProductTamil.HeaderText = "Product Name in Tamil";
-            this.clmProductTamil.Name = "clmProductTamil";
-            this.clmProductTamil.Width = 220;
+            this.columnHeader21.Width = 0;
             // 
-            // clmProductUnit
+            // txtMoveRack
             // 
-            this.clmProductUnit.HeaderText = "Unit";
-            this.clmProductUnit.Name = "clmProductUnit";
+            this.txtMoveRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtMoveRack.Location = new System.Drawing.Point(115, 49);
+            this.txtMoveRack.MaxLength = 100;
+            this.txtMoveRack.Name = "txtMoveRack";
+            this.txtMoveRack.Size = new System.Drawing.Size(156, 27);
+            this.txtMoveRack.TabIndex = 111111134;
+            this.txtMoveRack.TextChanged += new System.EventHandler(this.TxtMoveRack_TextChanged);
+            this.txtMoveRack.Enter += new System.EventHandler(this.TxtMoveRack_Enter);
+            this.txtMoveRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMoveRack_KeyDown);
+            this.txtMoveRack.Leave += new System.EventHandler(this.TxtMoveRack_Leave);
             // 
-            // PRODUCTID
+            // label1
             // 
-            this.PRODUCTID.HeaderText = "ID";
-            this.PRODUCTID.Name = "PRODUCTID";
-            this.PRODUCTID.Visible = false;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(22, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 20);
+            this.label1.TabIndex = 111111136;
+            this.label1.Text = "Rack";
+            // 
+            // txtMoveLocation
+            // 
+            this.txtMoveLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtMoveLocation.Location = new System.Drawing.Point(115, 17);
+            this.txtMoveLocation.MaxLength = 100;
+            this.txtMoveLocation.Name = "txtMoveLocation";
+            this.txtMoveLocation.Size = new System.Drawing.Size(156, 27);
+            this.txtMoveLocation.TabIndex = 111111133;
+            this.txtMoveLocation.TextChanged += new System.EventHandler(this.TxtMoveLocation_TextChanged);
+            this.txtMoveLocation.Enter += new System.EventHandler(this.TxtMoveLocation_Enter);
+            this.txtMoveLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMoveLocation_KeyDown);
+            this.txtMoveLocation.Leave += new System.EventHandler(this.TxtMoveLocation_Leave);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(22, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 20);
+            this.label4.TabIndex = 111111137;
+            this.label4.Text = "Stock Location";
+            // 
+            // btnMoveView
+            // 
+            this.btnMoveView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoveView.Image = global::ROMS.Properties.Resources.view;
+            this.btnMoveView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMoveView.Location = new System.Drawing.Point(281, 48);
+            this.btnMoveView.Name = "btnMoveView";
+            this.btnMoveView.Size = new System.Drawing.Size(75, 29);
+            this.btnMoveView.TabIndex = 111111135;
+            this.btnMoveView.Text = "View";
+            this.btnMoveView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMoveView.UseVisualStyleBackColor = true;
+            this.btnMoveView.Visible = false;
+            // 
+            // columnHeader28
+            // 
+            this.columnHeader28.Width = 180;
+            // 
+            // columnHeader29
+            // 
+            this.columnHeader29.Width = 120;
+            // 
+            // columnHeader30
+            // 
+            this.columnHeader30.Width = 0;
+            // 
+            // lvMoveLocation
+            // 
+            this.lvMoveLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader28,
+            this.columnHeader29,
+            this.columnHeader30});
+            this.lvMoveLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvMoveLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvMoveLocation.HideSelection = false;
+            this.lvMoveLocation.Location = new System.Drawing.Point(521, 56);
+            this.lvMoveLocation.Name = "lvMoveLocation";
+            this.lvMoveLocation.Size = new System.Drawing.Size(223, 65);
+            this.lvMoveLocation.TabIndex = 111111139;
+            this.lvMoveLocation.UseCompatibleStateImageBehavior = false;
+            this.lvMoveLocation.View = System.Windows.Forms.View.Details;
+            this.lvMoveLocation.Visible = false;
+            this.lvMoveLocation.DoubleClick += new System.EventHandler(this.LvMoveLocation_DoubleClick);
+            this.lvMoveLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvMoveLocation_KeyDown);
+            // 
+            // chkMove
+            // 
+            this.chkMove.AutoSize = true;
+            this.chkMove.Location = new System.Drawing.Point(689, 169);
+            this.chkMove.Name = "chkMove";
+            this.chkMove.Size = new System.Drawing.Size(15, 14);
+            this.chkMove.TabIndex = 111111125;
+            this.chkMove.UseVisualStyleBackColor = true;
+            this.chkMove.Visible = false;
+            this.chkMove.CheckedChanged += new System.EventHandler(this.ChkMove_CheckedChanged);
             // 
             // clmRemoveSupplier
             // 
@@ -1483,48 +1516,6 @@
             this.clmRemoveSupplier.Name = "clmRemoveSupplier";
             this.clmRemoveSupplier.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmRemoveSupplier.Width = 70;
-            // 
-            // sno
-            // 
-            this.sno.HeaderText = "S.No.";
-            this.sno.Name = "sno";
-            this.sno.Visible = false;
-            // 
-            // picode
-            // 
-            this.picode.HeaderText = "P.I Code";
-            this.picode.Name = "picode";
-            // 
-            // productenglishname
-            // 
-            this.productenglishname.HeaderText = "Product Name in English";
-            this.productenglishname.Name = "productenglishname";
-            this.productenglishname.Width = 220;
-            // 
-            // producttamilname
-            // 
-            this.producttamilname.HeaderText = "Product Name in Tamil";
-            this.producttamilname.Name = "producttamilname";
-            this.producttamilname.Width = 220;
-            // 
-            // unit
-            // 
-            this.unit.HeaderText = "Unit";
-            this.unit.Name = "unit";
-            // 
-            // productmoveid
-            // 
-            this.productmoveid.HeaderText = "ID";
-            this.productmoveid.Name = "productmoveid";
-            this.productmoveid.Visible = false;
-            // 
-            // clmRemoveProduct
-            // 
-            this.clmRemoveProduct.HeaderText = "Remove";
-            this.clmRemoveProduct.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemoveProduct.Name = "clmRemoveProduct";
-            this.clmRemoveProduct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemoveProduct.Width = 70;
             // 
             // CP_RackSettings
             // 
@@ -1560,6 +1551,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdMoveProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epRackSettings)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1625,10 +1620,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.TextBox txtGroup;
-        public System.Windows.Forms.ListView lvDLocation;
-        private System.Windows.Forms.ColumnHeader columnHeader22;
-        private System.Windows.Forms.ColumnHeader columnHeader23;
-        private System.Windows.Forms.ColumnHeader columnHeader24;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.ListView lvDRack;
@@ -1646,42 +1637,15 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnAddgrid;
-        private System.Windows.Forms.TextBox txtDRack;
-        private System.Windows.Forms.TextBox txtDLocation;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnMoveClose;
         public System.Windows.Forms.Button btnMoveSave;
         private System.Windows.Forms.TextBox txtSubGroup;
-        private System.Windows.Forms.Button btnDesignationView;
         private System.Windows.Forms.Label lblSRack;
         private System.Windows.Forms.Label lblSLocation;
-        private System.Windows.Forms.Label lblDRack;
-        private System.Windows.Forms.Label lblDLocation;
         private System.Windows.Forms.Label lblProductSubGroupId;
         private System.Windows.Forms.Label lblProductGroupId;
-        public System.Windows.Forms.ListView lvMoveRack;
-        private System.Windows.Forms.ColumnHeader columnHeader19;
-        private System.Windows.Forms.ColumnHeader columnHeader20;
-        private System.Windows.Forms.ColumnHeader columnHeader21;
-        public System.Windows.Forms.ListView lvMoveLocation;
-        private System.Windows.Forms.ColumnHeader columnHeader28;
-        private System.Windows.Forms.ColumnHeader columnHeader29;
-        private System.Windows.Forms.ColumnHeader columnHeader30;
-        private System.Windows.Forms.TextBox txtMoveRack;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtMoveLocation;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnMoveView;
         private System.Windows.Forms.Label lblMoveLocation;
         private System.Windows.Forms.Label lblMoveRack;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdpicode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmProductEnglish;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmProductTamil;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmProductUnit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRODUCTID;
-        private System.Windows.Forms.DataGridViewImageColumn clmRemoveSupplier;
         private System.Windows.Forms.DataGridViewTextBoxColumn sno;
         private System.Windows.Forms.DataGridViewTextBoxColumn picode;
         private System.Windows.Forms.DataGridViewTextBoxColumn productenglishname;
@@ -1689,5 +1653,33 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn unit;
         private System.Windows.Forms.DataGridViewTextBoxColumn productmoveid;
         private System.Windows.Forms.DataGridViewImageColumn clmRemoveProduct;
+        public System.Windows.Forms.ListView lvDLocation;
+        private System.Windows.Forms.ColumnHeader columnHeader22;
+        private System.Windows.Forms.ColumnHeader columnHeader23;
+        private System.Windows.Forms.ColumnHeader columnHeader24;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblDRack;
+        private System.Windows.Forms.Label lblDLocation;
+        private System.Windows.Forms.TextBox txtDRack;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtDLocation;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnDesignationView;
+        public System.Windows.Forms.ListView lvMoveRack;
+        private System.Windows.Forms.ColumnHeader columnHeader19;
+        private System.Windows.Forms.ColumnHeader columnHeader20;
+        private System.Windows.Forms.ColumnHeader columnHeader21;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox txtMoveRack;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtMoveLocation;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnMoveView;
+        public System.Windows.Forms.ListView lvMoveLocation;
+        private System.Windows.Forms.ColumnHeader columnHeader28;
+        private System.Windows.Forms.ColumnHeader columnHeader29;
+        private System.Windows.Forms.ColumnHeader columnHeader30;
+        private System.Windows.Forms.CheckBox chkMove;
+        private System.Windows.Forms.DataGridViewImageColumn clmRemoveSupplier;
     }
 }
