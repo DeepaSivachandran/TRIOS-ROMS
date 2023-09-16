@@ -180,6 +180,12 @@
     <Compile Include="CP_RepresentativeList.designer.cs">
       <DependentUpon>CP_RepresentativeList.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportLoad.designer.cs">
+      <DependentUpon>ReportLoad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_SupplierScheduleProduct.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1187,6 +1193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_SupplierScheduleList.resx">
       <DependentUpon>PUR_SupplierScheduleList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportLoad.resx">
+      <DependentUpon>ReportLoad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ServerSettings.resx">
       <DependentUpon>ServerSettings.cs</DependentUpon>

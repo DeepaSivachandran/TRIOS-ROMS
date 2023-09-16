@@ -132,7 +132,30 @@ namespace ROMS
         private void BtnPrintdaywise_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                try
+                { 
+                    string varHeader = "";
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument(); 
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleProduct.rpt"); 
+                    varHeader = "Day Wise Supplier List";
+                    objBillreport.SetParameterValue("@paracompanycode", Convert.ToInt32(MainForm.objPUR_SupplierScheduleList.cmbConcern.SelectedValue)); 
+                    objValidation.CrySqlConnection(objBillreport);
+
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    MainForm.objReportLoad.Text = varHeader;
+                    MainForm.objReportLoad.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                { 
+                }
             }
             catch (Exception ex)
             {
