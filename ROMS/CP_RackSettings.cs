@@ -100,12 +100,12 @@ namespace ROMS
 
                 dtViewSupplierMapping = new DataTable();
                 dtViewSupplierMapping.Columns.Add("", typeof(Boolean));
-                dtViewSupplierMapping.Columns.Add("S.No.", typeof(string));
+                //dtViewSupplierMapping.Columns.Add("S.No.", typeof(string));
                 dtViewSupplierMapping.Columns.Add("P.I Code", typeof(string));
                 dtViewSupplierMapping.Columns.Add("Product Name in English", typeof(string));
                 dtViewSupplierMapping.Columns.Add("Product Name in Tamil", typeof(string));
                 dtViewSupplierMapping.Columns.Add("Unit", typeof(string));
-                dtViewSupplierMapping.Columns.Add("PRODUCTID", typeof(int));
+                dtViewSupplierMapping.Columns.Add("PRID", typeof(int));
 
 
 
@@ -210,6 +210,15 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    btnSave.Focus();
+                    BtnSave_Click(sender, e);
+                }
             }
             catch (Exception ex)
             {
@@ -287,15 +296,15 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                //int varLocationId = 0, varRackId = 0;
-                //if (Convert.ToString(txtLocation.Text).Trim() == "")
-                //{
-                //    epRackSettings.SetError(txtLocation, "Please enter Location");
-                //    txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpStockLocation.ShowAlways = true;
-                //    tpStockLocation.Show("Please enter Location", txtLocation, 5000);
-                //    blnErrorFlag = true;
-                //}
+                int varLocationId = 0, varRackId = 0;
+                if (Convert.ToString(txtLocation.Text).Trim() == "")
+                {
+                    epRackSettings.SetError(txtLocation, "Please enter Location");
+                    txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpStockLocation.ShowAlways = true;
+                    tpStockLocation.Show("Please enter Location", txtLocation, 5000);
+                    blnErrorFlag = true;
+                }
                 //else
                 //{
                 //    DataService objDServ = new DataService();
@@ -311,14 +320,14 @@ namespace ROMS
                 //        blnErrorFlag = true;
                 //    }
                 //}
-                //if (Convert.ToString(txtRack.Text).Trim() == "")
-                //{
-                //    epRackSettings.SetError(txtRack, "Please enter Rack");
-                //    txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpRack.ShowAlways = true;
-                //    tpRack.Show("Please enter Rack", txtRack, 5000);
-                //    blnErrorFlag = true;
-                //}
+                if (Convert.ToString(txtRack.Text).Trim() == "")
+                {
+                    epRackSettings.SetError(txtRack, "Please enter Rack");
+                    txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpRack.ShowAlways = true;
+                    tpRack.Show("Please enter Rack", txtRack, 5000);
+                    blnErrorFlag = true;
+                }
                 //else
                 //{
                 //    DataService objDServ = new DataService();
@@ -462,7 +471,12 @@ namespace ROMS
 
         public void udfnclear()
         {
-
+            txtLocation.Text = "";
+            txtRack.Text = "";
+            txtDLocation.Text = "";
+            txtDRack.Text = "";
+            txtMoveLocation.Text = "";
+            txtMoveRack.Text = "";
         }
 
         private void BtnSave_Enter(object sender, EventArgs e)
@@ -619,6 +633,7 @@ namespace ROMS
                 objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0,Convert.ToInt32(varGroupId),Convert.ToInt32(varSubGroupId), "", "", "", 0, 0, 0, 0, 0,varRackId);
                 objdserv.CloseConnection();
 
+
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
@@ -642,29 +657,29 @@ namespace ROMS
                 {
                     for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                     {
-                        dtViewSupplierMapping.Rows.Add( objDs.Tables[1].Rows[i]["S.No."], objDs.Tables[1].Rows[i]["P.I Code"], objDs.Tables[1].Rows[i]["Product Name in English"],
-                           objDs.Tables[1].Rows[i]["Product Name in Tamil"], objDs.Tables[1].Rows[i]["Unit"], objDs.Tables[1].Rows[i]["PRODUCTID"]);
+                        dtViewSupplierMapping.Rows.Add(false,objDs.Tables[1].Rows[i]["P.I Code"], objDs.Tables[1].Rows[i]["Product Name in English"],
+                           objDs.Tables[1].Rows[i]["Product Name in Tamil"], objDs.Tables[1].Rows[i]["Unit"], objDs.Tables[1].Rows[i]["PRID"]);
                     }
                 }
                 grdViewSupplierMapping.DataSource = null;
                 grdViewSupplierMapping.DataSource = dtViewSupplierMapping;
+                grdViewSupplierMapping.Columns["clmRemoveSupplier"].DisplayIndex =6;
                 grdViewSupplierMapping.Columns[0].HeaderText = "";
                 grdViewSupplierMapping.Columns[0].Width = 50;
-                grdViewSupplierMapping.Columns["S.No."].Width = 50;
-                grdViewSupplierMapping.Columns["S.No."].Visible = false;
-                grdViewSupplierMapping.Columns["PRODUCTID"].Visible = false;
+                grdViewSupplierMapping.Columns[1].Visible = false;
+                grdViewSupplierMapping.Columns["PRID"].Visible = false;
                 grdViewSupplierMapping.Columns["P.I Code"].Width = 100;
                 grdViewSupplierMapping.Columns["Product Name in English"].Width = 200;
                 grdViewSupplierMapping.Columns["Product Name in Tamil"].Width = 200;
 
 
-                //for (int j = 0; j < grdSupplierMapping.RowCount; j++)
-                //{
-                //    if (Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRODUCTID"].Value) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
-                //    {
-                //        grdSupplierMapping.Rows[j].Cells[0].Value = true;
-                //    }
-                //}
+                for (int j = 0; j < grdSupplierMapping.RowCount; j++)
+                {
+                    if (Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRID"].Value) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
+                    {
+                        grdSupplierMapping.Rows[j].Cells[0].Value = true;
+                    }
+                }
 
             }
             catch (Exception ex)
@@ -773,7 +788,7 @@ namespace ROMS
                             for (int j = 0; j < grdViewSupplierMapping.Rows.Count; j++)
                             {
                                 varAddRack = Convert.ToString(grdSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
-                                if (varAddRack == Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
+                                if (varAddRack == Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRID"].Value))
                                 {
                                     varFlag = 1;
                                 }
@@ -781,11 +796,10 @@ namespace ROMS
                             }
                             if (varFlag == 0)
                             {
-                                grdViewSupplierMapping.Rows.Add(false,Convert.ToInt32(grdViewSupplierMapping.Rows.Count) + 1, grdSupplierMapping.Rows[i].Cells["P.I Code"].Value, grdSupplierMapping.Rows[i].Cells["Product Name in English"].Value,
+                                grdViewSupplierMapping.Rows.Add(Convert.ToInt32(grdViewSupplierMapping.Rows.Count) + 1, grdSupplierMapping.Rows[i].Cells["P.I Code"].Value, grdSupplierMapping.Rows[i].Cells["Product Name in English"].Value,
                                     grdSupplierMapping.Rows[i].Cells["Product Name in Tamil"].Value, grdSupplierMapping.Rows[i].Cells["Unit"].Value, grdSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
                             }
                         }
-
                     }
                 }
                 else
@@ -813,11 +827,14 @@ namespace ROMS
                     switch (grdViewSupplierMapping.Columns[e.ColumnIndex].Name)
                     {
                         case "clmRemoveSupplier":
-
-                            grdViewSupplierMapping.Rows.RemoveAt(this.grdViewSupplierMapping.SelectedRows[0].Index);
-                            for (int i = 0; i < grdViewSupplierMapping.RowCount; i++)
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
                             {
-                                grdViewSupplierMapping.Rows[i].Cells["clmsno"].Value = i + 1;
+                                grdViewSupplierMapping.Rows.RemoveAt(this.grdViewSupplierMapping.SelectedRows[0].Index);
+                                for (int i = 0; i < grdViewSupplierMapping.RowCount; i++)
+                                {
+                                    grdViewSupplierMapping.Rows[i].Cells["clmsno"].Value = i + 1;
+                                }
                             }
                             break;
                     }
@@ -1203,10 +1220,16 @@ namespace ROMS
                         tpStockLocation.Show("Please select valid stock location", txtLocation, 5000);
                         txtRack.Text = "";
                         txtLocation.Focus();
+                        txtRack.BackColor = Color.White;
                     }
                     else
                     {
                         epRackSettings.Clear();
+                        txtLocation.BackColor = Color.White;
+                        //epRackSettings.Clear();
+
+                        lvLocation.Visible = false;
+                        txtRack.BackColor = Color.LemonChiffon;
                     }
                 }
 
@@ -1237,11 +1260,7 @@ namespace ROMS
                     }
                     else
                     {*/
-                        txtLocation.BackColor = Color.White;
-                        //epRackSettings.Clear();
-
-                        lvLocation.Visible = false;
-                        txtRack.BackColor = Color.LemonChiffon;
+                        
                         //lblSLocation.Text = Convert.ToString( VarLocation);
                         //varLocationId = Convert.ToInt32(lblSLocation.Text);
                    // }
@@ -2162,6 +2181,14 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
+                if (Convert.ToString(txtLocation.Text).Trim() == "")
+                {
+                    epRackSettings.SetError(txtLocation, "Please enter Location");
+                    txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpStockLocation.ShowAlways = true;
+                    tpStockLocation.Show("Please enter Location", txtLocation, 5000);
+                    blnErrorFlag = true;
+                }
                 /* Check purchase stock location is valid or not*/
                 if (txtLocation.Text != "")
                 {
@@ -2193,6 +2220,14 @@ namespace ROMS
                     {
                         epRackSettings.Clear();
                     }
+                }
+                if (Convert.ToString(txtRack.Text).Trim() == "")
+                {
+                    epRackSettings.SetError(txtRack, "Please enter Rack");
+                    txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpRack.ShowAlways = true;
+                    tpRack.Show("Please enter Rack", txtRack, 5000);
+                    blnErrorFlag = true;
                 }
                 /* Check purchase rack is valid or not*/
                 if (txtRack.Text != "")
@@ -2600,12 +2635,12 @@ namespace ROMS
                 objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0,Convert.ToInt32(varGroupId),Convert.ToInt32(varSubGroupId), "", "", "", 0, 0, 0, 0, 0,Convert.ToInt32(varRackId));
                 objdserv.CloseConnection();
 
-                if (objDs.Tables[0].Rows.Count != 0)
+                if (objDs.Tables[1].Rows.Count != 0)
                 {
-                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                     {
-                        dtViewProduct.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name in English"],
-                           objDs.Tables[0].Rows[i]["Product Name in Tamil"], objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["PRODUCTID"]);
+                        dtViewProduct.Rows.Add(false, objDs.Tables[1].Rows[i]["S.No."], objDs.Tables[1].Rows[i]["P.I Code"], objDs.Tables[1].Rows[i]["Product Name in English"],
+                           objDs.Tables[1].Rows[i]["Product Name in Tamil"], objDs.Tables[1].Rows[i]["Unit"], objDs.Tables[1].Rows[i]["PRODUCTID"]);
                     }
                 }
                 grdViewProduct.DataSource = null;
@@ -4123,34 +4158,34 @@ namespace ROMS
             }
         }
 
-        private void ChkMove_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (varCheckAll != 1)
-                {
-                    for (int i = 0; i < grdViewSupplierMapping.Rows.Count; i++)
-                    {
-                        grdViewSupplierMapping.Rows[i].Cells[0].Value = chkMove.Checked;
-                    }
-                    if (chkMove.Checked == false)
-                    {
-                        foreach (DataGridViewRow row in grdViewSupplierMapping.Rows)
-                        {
-                            row.Cells[0].Value = false;
-                        }
-                    }
-                }
-                else
-                {
-                    varCheckAll = 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        //private void ChkMove_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (varCheckAll != 1)
+        //        {
+        //            for (int i = 0; i < grdViewSupplierMapping.Rows.Count; i++)
+        //            {
+        //                grdViewSupplierMapping.Rows[i].Cells[0].Value = chkMove.Checked;
+        //            }
+        //            if (chkMove.Checked == false)
+        //            {
+        //                foreach (DataGridViewRow row in grdViewSupplierMapping.Rows)
+        //                {
+        //                    row.Cells[0].Value = false;
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            varCheckAll = 0;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
     }
 }

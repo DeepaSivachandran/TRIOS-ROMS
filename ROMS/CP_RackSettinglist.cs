@@ -125,11 +125,29 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 DataService objDServ = new DataService();
                 int varRackId = 0;
-                string varId_Rack = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') END AS RKID ");
-                objDServ.CloseConnection();
-                varRackId = Convert.ToInt32(varId_Rack);
-
-                objDs = objspservice.udfnRackSettingsList(0,0, varRackId, 0,0);
+                if (txtRack.Text != "")
+                {
+                    string varId_PurRack = "0";
+                    DataSet objDsPurRack = new DataSet();
+                    SPDataService objDServ4 = new SPDataService();
+                    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtRack.Text.Trim());
+                    objDServ4.CloseConnection();
+                    if (objDsPurRack != null)
+                    {
+                        if (objDsPurRack.Tables.Count > 0)
+                        {
+                            if (objDsPurRack.Tables[0].Rows.Count > 0)
+                            {
+                                varId_PurRack = Convert.ToString(objDsPurRack.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    //string varId_Rack = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') END AS RKID ");
+                    //objDServ.CloseConnection();
+                    //varRackId = Convert.ToInt32(varId_PurRack);
+                    varRackId = Convert.ToInt32(varId_PurRack);
+                }
+                objDs = objspservice.udfnRackSettingsList(0,0,0, 0,varRackId);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -148,6 +166,7 @@ namespace ROMS
                             grdRackSettingList.Columns["S.No."].Width = 50;
                             grdRackSettingList.Columns["P.I Code"].Width = 100;
                             grdRackSettingList.Columns["Stock Location"].Width = 150;
+                            grdRackSettingList.Columns["Rack ShortName"].Width = 150;
                             grdRackSettingList.Columns["Rack Name"].Width = 150;
                             grdRackSettingList.Columns["Product Name"].Width = 300;
                             grdRackSettingList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -341,40 +360,40 @@ namespace ROMS
         {
             try
             {
-                lvRack.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
-                if (txtRack.Text.Length > 0)
+                int varRackId = 0;
+                if (txtRack.Text == "")
                 {
-                    int varRackId = 0;
-                    if (txtRack.Text == "")
+                    varRackId = 0;
+                    lvRack.Visible = false;
+                }
+                else
+                {
+                    lvRack.Items.Clear();
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    if (txtRack.Text.Length > 0)
                     {
-                        varRackId = 0;
-                    }
-                    else
-                    {
-                        DataService objDServ = new DataService();
-                        string varId_Rack = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') END AS RKID ");
-                        objDServ.CloseConnection();
-                        varRackId = Convert.ToInt32(varId_Rack);
-                    }
-
-                    objDs = objspdservice.udfnRackList(0, 0, 0,0,varRackId,"");
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
-                    {
-                        if (objDs.Tables.Count != 0)
+                        objDs = objspdservice.udfnRackList(8, 0, 0, 0, 0, txtRack.Text);
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables.Count != 0)
                             {
-                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["RK_Name"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
-                                    ListViewItem objList = new ListViewItem(row);
-                                    lvRack.Columns[1].Width = 0;
-                                    lvRack.Items.Add(objList);
+                                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                    {
+                                        string[] row = { objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
+                                        ListViewItem objList = new ListViewItem(row);
+                                        lvRack.Columns[1].Width = 0;
+                                        lvRack.Items.Add(objList);
+                                    }
+                                    lvRack.Visible = true;
                                 }
-                                lvRack.Visible = true;
+                                else
+                                {
+                                    lvRack.Visible = false;
+                                }
                             }
                             else
                             {
@@ -389,12 +408,8 @@ namespace ROMS
                     else
                     {
                         lvRack.Visible = false;
+                        lvRack.Items.Clear();
                     }
-                }
-                else
-                {
-                    lvRack.Visible = false;
-                    lvRack.Items.Clear();
                 }
             }
             catch (Exception ex)
@@ -457,7 +472,7 @@ namespace ROMS
             try
             {
                 txtRack.BackColor = Color.White;
-                btnView.Focus();
+                //btnView.Focus();
             }
             catch (Exception ex)
             {
@@ -556,20 +571,30 @@ namespace ROMS
             }
         }
 
-        private void GrdRackSettingList_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void BtnView_Enter(object sender, EventArgs e)
         {
             try
             {
-                udfnEdit();
+                btnView.BackColor = Color.LemonChiffon;
+                lvRack.Visible = false;
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
+        }
+
+        private void BtnView_Leave(object sender, EventArgs e)
+        {
+            try
             {
-                grdRackSettingList.ClearSelection();
+                btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }
