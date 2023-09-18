@@ -130,6 +130,7 @@ namespace ROMS
                             grdSubGroupList.Columns["Product Group Name"].Width = 200;
                             grdSubGroupList.Columns["Product Sub Group Name in English"].Width = 250;
                             grdSubGroupList.Columns["Product Sub Group Name in Tamil"].Width = 250;
+                            grdSubGroupList.Columns["Product Sub Group Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                             grdSubGroupList.Columns["Stock Location"].Width = 150;
                             grdSubGroupList.Columns["Rack"].Width = 100;
                             grdSubGroupList.Columns["Batch No"].Width = 100;
@@ -142,7 +143,6 @@ namespace ROMS
                             grdSubGroupList.Columns["StockLocation ID"].Visible = false;
                             grdSubGroupList.Columns["Rack ID"].Visible = false;
                             grdSubGroupList.Columns["Product Group Id"].Visible = false;
-                            grdSubGroupList.Columns["Product Sub Group Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                         }
                         else
                         {

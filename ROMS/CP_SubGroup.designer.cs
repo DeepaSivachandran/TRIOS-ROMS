@@ -61,14 +61,14 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtESubGroupNameEnglish = new System.Windows.Forms.TextBox();
             this.grpPurchaseStockLocation = new System.Windows.Forms.GroupBox();
+            this.btnNewRack = new System.Windows.Forms.Label();
+            this.btnewlocation = new System.Windows.Forms.Label();
             this.lblRack = new System.Windows.Forms.Label();
             this.txtLocation = new System.Windows.Forms.TextBox();
             this.txtDRack = new System.Windows.Forms.TextBox();
             this.txtRack = new System.Windows.Forms.TextBox();
             this.epSubGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblLocation = new System.Windows.Forms.Label();
-            this.btnewlocation = new System.Windows.Forms.Label();
-            this.btnNewRack = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             this.grpPurchaseStockLocation.SuspendLayout();
@@ -206,11 +206,11 @@
             // 
             // txtProductGroupName
             // 
-            this.txtProductGroupName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductGroupName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProductGroupName.Location = new System.Drawing.Point(224, 20);
             this.txtProductGroupName.MaxLength = 100;
             this.txtProductGroupName.Name = "txtProductGroupName";
-            this.txtProductGroupName.Size = new System.Drawing.Size(200, 27);
+            this.txtProductGroupName.Size = new System.Drawing.Size(200, 28);
             this.txtProductGroupName.TabIndex = 0;
             this.txtProductGroupName.TextChanged += new System.EventHandler(this.TxtProductGroupName_TextChanged);
             this.txtProductGroupName.Enter += new System.EventHandler(this.TxtProductGroupName_Enter);
@@ -430,6 +430,30 @@
             this.grpPurchaseStockLocation.TabStop = false;
             this.grpPurchaseStockLocation.Text = "Default Stock Location for Purchase";
             // 
+            // btnNewRack
+            // 
+            this.btnNewRack.Image = global::ROMS.Properties.Resources.New;
+            this.btnNewRack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNewRack.Location = new System.Drawing.Point(418, 59);
+            this.btnNewRack.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnNewRack.Name = "btnNewRack";
+            this.btnNewRack.Size = new System.Drawing.Size(21, 22);
+            this.btnNewRack.TabIndex = 1111150;
+            this.btnNewRack.Text = "        ";
+            this.btnNewRack.Click += new System.EventHandler(this.BtnNewRack_Click);
+            // 
+            // btnewlocation
+            // 
+            this.btnewlocation.Image = global::ROMS.Properties.Resources.New;
+            this.btnewlocation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnewlocation.Location = new System.Drawing.Point(418, 32);
+            this.btnewlocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnewlocation.Name = "btnewlocation";
+            this.btnewlocation.Size = new System.Drawing.Size(21, 22);
+            this.btnewlocation.TabIndex = 1111149;
+            this.btnewlocation.Text = "        ";
+            this.btnewlocation.Click += new System.EventHandler(this.Btnewlocation_Click);
+            // 
             // lblRack
             // 
             this.lblRack.AutoSize = true;
@@ -489,30 +513,6 @@
             this.lblLocation.Size = new System.Drawing.Size(0, 18);
             this.lblLocation.TabIndex = 1;
             this.lblLocation.Visible = false;
-            // 
-            // btnewlocation
-            // 
-            this.btnewlocation.Image = global::ROMS.Properties.Resources.New;
-            this.btnewlocation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnewlocation.Location = new System.Drawing.Point(418, 32);
-            this.btnewlocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnewlocation.Name = "btnewlocation";
-            this.btnewlocation.Size = new System.Drawing.Size(21, 22);
-            this.btnewlocation.TabIndex = 1111149;
-            this.btnewlocation.Text = "        ";
-            this.btnewlocation.Click += new System.EventHandler(this.Btnewlocation_Click);
-            // 
-            // btnNewRack
-            // 
-            this.btnNewRack.Image = global::ROMS.Properties.Resources.New;
-            this.btnNewRack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNewRack.Location = new System.Drawing.Point(418, 59);
-            this.btnNewRack.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnNewRack.Name = "btnNewRack";
-            this.btnNewRack.Size = new System.Drawing.Size(21, 22);
-            this.btnNewRack.TabIndex = 1111150;
-            this.btnNewRack.Text = "        ";
-            this.btnNewRack.Click += new System.EventHandler(this.BtnNewRack_Click);
             // 
             // CP_SubGroup
             // 

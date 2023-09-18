@@ -2071,6 +2071,10 @@ namespace ROMS
                         varorginator = "Company Update";
                         varcompanycode = Convert.ToInt32(companyupdate);  
                     }
+                    if (File.Exists(varNewfile))
+                    {
+                        File.Delete(varNewfile);
+                    }
                     if (varflag == 1 && varNewfile != "")
                     {
                         //*********** copy file name & file path **************
@@ -2079,10 +2083,6 @@ namespace ROMS
                     else
                     {
                         //************ Remove Image from Folder *******
-                        if (File.Exists(varFile))
-                        {
-                            File.Delete(varFile);
-                        }
                         lblCompanyLogoPath.Text = "";
                         lblCompanyLogoFilename.Text = "";
                     }
@@ -4067,11 +4067,11 @@ namespace ROMS
                     //{
                     int varCount = 1;
                     varNewfile = varCustomPath + varCompanyLogoFileName.ToString() + varExtension;
-                    while (File.Exists(varNewfile))
-                    {
-                        string varTempFileName = string.Format("{0}({1})", varCompanyLogoFileName.ToString(), varCount++);
-                        varNewfile = Path.Combine(varCustomPath, varTempFileName + varExtension);
-                    }
+                    //while (File.Exists(varNewfile))
+                    //{
+                    //    string varTempFileName = string.Format("{0}({1})", varCompanyLogoFileName.ToString(), varCount++);
+                    //    varNewfile = Path.Combine(varCustomPath, varTempFileName + varExtension);
+                    //}
                     lblCompanyLogoFilename.Text = varCompanyLogoFileName + varExtension;
                     lblCompanyLogoPath.Text = varNewfile;
                     picCompanyLogo.BackgroundImage = null;
