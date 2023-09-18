@@ -555,7 +555,7 @@ namespace ROMS
                 }
                 dtSupplierMapping.Rows.Clear();
                 Application.DoEvents();
-                grdSupplierMapping.DataSource = null;
+                //grdSupplierMapping.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
@@ -642,6 +642,7 @@ namespace ROMS
                            objDs.Tables[0].Rows[i]["Product Name in Tamil"], objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["PRODUCTID"]);
                     }
                 }
+
                 grdSupplierMapping.DataSource = null;
                 grdSupplierMapping.DataSource = dtSupplierMapping;
                 grdSupplierMapping.Columns[0].HeaderText = "";
@@ -657,13 +658,13 @@ namespace ROMS
                 {
                     for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                     {
-                        dtViewSupplierMapping.Rows.Add(false,objDs.Tables[1].Rows[i]["P.I Code"], objDs.Tables[1].Rows[i]["Product Name in English"],
+                        dtViewSupplierMapping.Rows.Add(false, objDs.Tables[1].Rows[i]["P.I Code"], objDs.Tables[1].Rows[i]["Product Name in English"],
                            objDs.Tables[1].Rows[i]["Product Name in Tamil"], objDs.Tables[1].Rows[i]["Unit"], objDs.Tables[1].Rows[i]["PRID"]);
                     }
                 }
                 grdViewSupplierMapping.DataSource = null;
                 grdViewSupplierMapping.DataSource = dtViewSupplierMapping;
-                grdViewSupplierMapping.Columns["clmRemoveSupplier"].DisplayIndex =6;
+                grdViewSupplierMapping.Columns["clmRemoveSupplier"].DisplayIndex = 6;
                 grdViewSupplierMapping.Columns[0].HeaderText = "";
                 grdViewSupplierMapping.Columns[0].Width = 50;
                 grdViewSupplierMapping.Columns[1].Visible = false;
@@ -673,13 +674,41 @@ namespace ROMS
                 grdViewSupplierMapping.Columns["Product Name in Tamil"].Width = 200;
 
 
-                for (int j = 0; j < grdSupplierMapping.RowCount; j++)
+                string varRemoveRack = "", varAddRack = "";
+                if (grdSupplierMapping.Rows.Count > 0)
                 {
-                    if (Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRID"].Value) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
+                    for (int i = 0; i < grdSupplierMapping.Rows.Count; i++)
                     {
-                        grdSupplierMapping.Rows[j].Cells[0].Value = true;
+                        if (Convert.ToBoolean(grdSupplierMapping.Rows[i].Cells[0].Value) == true)
+                        {
+                            int varFlag = 0, varcount = 1; ;
+
+                            for (int j = 0; j < grdViewSupplierMapping.Rows.Count; j++)
+                            {
+                                varAddRack = Convert.ToString(grdSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
+                                if (varAddRack == Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRID"].Value))
+                                {
+                                    varFlag = 1;
+                                }
+                                varcount++;
+                            }
+                            if (varFlag == 0)
+                            {
+                                grdViewSupplierMapping.Rows.Add(Convert.ToInt32(grdViewSupplierMapping.Rows.Count) + 1, grdSupplierMapping.Rows[i].Cells["P.I Code"].Value, grdSupplierMapping.Rows[i].Cells["Product Name in English"].Value,
+                                    grdSupplierMapping.Rows[i].Cells["Product Name in Tamil"].Value, grdSupplierMapping.Rows[i].Cells["Unit"].Value, grdSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
+                            }
+                        }
                     }
                 }
+
+
+                //for (int j = 0; j < grdSupplierMapping.RowCount; j++)
+                //{
+                //    if (Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRID"].Value) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
+                //    {
+                //        grdSupplierMapping.Rows[j].Cells[0].Value = true;
+                //    }
+                //}
 
             }
             catch (Exception ex)
