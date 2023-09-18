@@ -171,7 +171,7 @@ namespace ROMS
                     for (int i = 0; i < grdHSN.Rows.Count; i++)
                     {
                         varHsnId = 0;
-                        var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").Equals(grdHSN.Rows[i].Cells["HSN Name-New"].Value)) group r by r.Field<int>("ID") into g select g.Key;
+                        var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").ToUpper().Equals(Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value).ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varValue.Count() > 0) { varHsnId = Convert.ToInt32(varValue.ToList()[0]); }
                         objBulkUpdate.Rows.Add(Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value), 0, varHsnId, grdHSN.Rows[i].Cells["PRID"].Value);
                     }
