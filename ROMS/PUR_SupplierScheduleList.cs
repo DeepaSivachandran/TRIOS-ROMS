@@ -41,10 +41,10 @@ namespace ROMS
         {
             try
             {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                MainForm.objPUR_POScheduledaywise = new PUR_POScheduledaywise();
-                MainForm.objPUR_POScheduledaywise.ShowDialog();
+                //picLoader.Visible = true;
+                //picLoader.BringToFront();
+                //MainForm.objPUR_POScheduledaywise = new PUR_POScheduledaywise();
+                //MainForm.objPUR_POScheduledaywise.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -1344,24 +1344,24 @@ namespace ROMS
         {
             try
             {
-                RPTViewer.Visible = true;
-                RPTViewer.ReuseParameterValuesOnRefresh = true;
-                RPTViewer.RefreshReport();
-                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                //RPTViewer.Visible = true;
+                //RPTViewer.ReuseParameterValuesOnRefresh = true;
+                //RPTViewer.RefreshReport();
+                //CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
-                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleProduct.rpt");
-                //  objBillreport.SetParameterValue("paraFromDateDisplay", dpFromDate.Text);
-                // objBillreport.SetParameterValue("paraToDateDisplay", dpToDate.Text);
-                // objBillreport.SetParameterValue("paraCompanyName", varCompany);
-                //objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                //objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                //objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                //objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                //objBillreport.SetParameterValue("paragroupcode", vargroupselectvalue);
-                objValidation.CrySqlConnection(objBillreport);
-                RPTViewer.ReportSource = objBillreport;
-                RPTViewer.Refresh();
+                //objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                //objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleProduct.rpt");
+                ////  objBillreport.SetParameterValue("paraFromDateDisplay", dpFromDate.Text);
+                //// objBillreport.SetParameterValue("paraToDateDisplay", dpToDate.Text);
+                //// objBillreport.SetParameterValue("paraCompanyName", varCompany);
+                ////objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                ////objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                ////objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                ////objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                ////objBillreport.SetParameterValue("paragroupcode", vargroupselectvalue);
+                //objValidation.CrySqlConnection(objBillreport);
+                //RPTViewer.ReportSource = objBillreport;
+                //RPTViewer.Refresh();
             }
             catch (Exception ex)
             {
