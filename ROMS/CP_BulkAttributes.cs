@@ -159,9 +159,12 @@ namespace ROMS
 
                 objBulkUpdate.Columns.Add("UTID-OLD", typeof(int));
                 objBulkUpdate.Columns.Add("UTID-NEW", typeof(int));
+                objBulkUpdate.Columns.Add("PR_EName-Current", typeof(string));
+                objBulkUpdate.Columns.Add("PR_TName-Current", typeof(string));
                 objBulkUpdate.Columns.Add("PR_EName-New", typeof(string));
                 objBulkUpdate.Columns.Add("PR_TName-New", typeof(string));
-                objBulkUpdate.Columns.Add("PR_PICode", typeof(string));
+                objBulkUpdate.Columns.Add("PR_PICode-Current", typeof(string));
+                objBulkUpdate.Columns.Add("PR_PICode-New", typeof(string));
                 if (grdHSN.Visible == true)
                 {
                     varUpdateViewType = 3;
@@ -181,7 +184,7 @@ namespace ROMS
                         varUnitId = 0;
                         var varValue = from r in objDSUnit.Tables[0].AsEnumerable() where (r.Field<string>("Symbol").Equals(grdBulkAttributes.Rows[i].Cells["Unit-New"].Value)) group r by r.Field<int>("ID") into g select g.Key;
                         if (varValue.Count() > 0) { varUnitId = Convert.ToInt32(varValue.ToList()[0]); }
-                        objBulkUpdate.Rows.Add("", 0, 0, grdBulkAttributes.Rows[i].Cells["PRID"].Value,0,varUnitId,Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English-New"].Value), grdBulkAttributes.Rows[i].Cells["Product Name in Tamil-New"].Value, grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value);
+                        objBulkUpdate.Rows.Add("", 0, 0, grdBulkAttributes.Rows[i].Cells["PRID"].Value,Convert.ToInt16(grdBulkAttributes.Rows[i].Cells["UTID-OLD"].Value),varUnitId,Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English-Current"].Value), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in Tamil-Current"].Value), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English-New"].Value) ,grdBulkAttributes.Rows[i].Cells["Product Name in Tamil-New"].Value,Convert.ToString(grdBulkAttributes.Rows[i].Cells["P.I Code"].Value), grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value);
                     }
                 }
                 string result = "";
