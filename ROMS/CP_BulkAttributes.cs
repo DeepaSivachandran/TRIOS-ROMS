@@ -26,6 +26,7 @@ namespace ROMS
 
         DataSet objDSHSN = new DataSet();
         DataSet objDSGroup = new DataSet();
+        DataSet objDSUnit = new DataSet();
 
         public CP_BulkAttributes()
         {
@@ -134,6 +135,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 objDSHSN = objDServ.udfnHsnList(0, 0);
                 objDSGroup = objDServ.udfnproductmasterlist(0, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0);
+                objDSUnit = objDServ.udfnUnitList(0,0);
                 objDServ.CloseConnection();
             }
             catch(Exception ex)
@@ -146,7 +148,7 @@ namespace ROMS
         {
             try
             {
-                int varHsnId = 0; int varUpdateViewType = 0;
+                int varHsnId = 0,varUnitId=0; int varUpdateViewType = 0;
                 SPDataService objspdservice = new SPDataService();
                 DataTable objBulkUpdate = new DataTable();
                 objBulkUpdate.TableName = "[MR_Product_BulkUpdate]";
@@ -154,16 +156,32 @@ namespace ROMS
                 objBulkUpdate.Columns.Add("HSNIDOLD", typeof(int));
                 objBulkUpdate.Columns.Add("HSNIDNEW", typeof(int));
                 objBulkUpdate.Columns.Add("PRID", typeof(int));
-               
+
+                objBulkUpdate.Columns.Add("UTID-OLD", typeof(int));
+                objBulkUpdate.Columns.Add("UTID-NEW", typeof(int));
+                objBulkUpdate.Columns.Add("PR_EName-New", typeof(string));
+                objBulkUpdate.Columns.Add("PR_TName-New", typeof(string));
+                objBulkUpdate.Columns.Add("PR_PICode", typeof(string));
                 if (grdHSN.Visible == true)
                 {
                     varUpdateViewType = 3;
-                    for (int j = 0; j < grdHSN.Rows.Count; j++)
+                    for (int i = 0; i < grdHSN.Rows.Count; i++)
                     {
                         varHsnId = 0;
-                        var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").Equals(grdHSN.Rows[j].Cells["HSN Name-New"].Value)) group r by r.Field<int>("ID") into g select g.Key;
+                        var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").Equals(grdHSN.Rows[i].Cells["HSN Name-New"].Value)) group r by r.Field<int>("ID") into g select g.Key;
                         if (varValue.Count() > 0) { varHsnId = Convert.ToInt32(varValue.ToList()[0]); }
-                        objBulkUpdate.Rows.Add(Convert.ToString(grdHSN.Rows[j].Cells["HSN Name-New"].Value), 0, varHsnId, grdHSN.Rows[j].Cells["PRID"].Value);
+                        objBulkUpdate.Rows.Add(Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value), 0, varHsnId, grdHSN.Rows[i].Cells["PRID"].Value);
+                    }
+                }
+                else if(grdBulkAttributes.Visible==true)
+                {
+                    varUpdateViewType = 4;
+                    for (int i = 0; i < grdBulkAttributes.Rows.Count; i++)
+                    {
+                        varUnitId = 0;
+                        var varValue = from r in objDSUnit.Tables[0].AsEnumerable() where (r.Field<string>("Symbol").Equals(grdBulkAttributes.Rows[i].Cells["Unit-New"].Value)) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varValue.Count() > 0) { varUnitId = Convert.ToInt32(varValue.ToList()[0]); }
+                        objBulkUpdate.Rows.Add("", 0, 0, grdBulkAttributes.Rows[i].Cells["PRID"].Value,0,varUnitId,Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English-New"].Value), grdBulkAttributes.Rows[i].Cells["Product Name in Tamil-New"].Value, grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value);
                     }
                 }
                 string result = "";
@@ -180,7 +198,7 @@ namespace ROMS
                 {
                     MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                 udfnList();
+                 //udfnList();
             }
             catch (Exception ex)
             {
@@ -202,7 +220,6 @@ namespace ROMS
         {
             try
             {
-               
                 if (grdLoction.Visible == true)
                 {
                     if (grdLoction.CurrentCell.OwningColumn.Name == "Rack MSQ-New")
@@ -2356,6 +2373,25 @@ namespace ROMS
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdBulkAttributes_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                TextBox txtUnit = e.Control as TextBox;
+                if (txtUnit != null)
+                {
+                    txtUnit.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtUnit.AutoCompleteCustomSource = AutoCompleteUnitSymbol();
+                    txtUnit.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 }
             }
             catch (Exception ex)
