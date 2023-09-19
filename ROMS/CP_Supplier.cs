@@ -5183,7 +5183,7 @@ namespace ROMS
                     tpstate.Show("Please select order type", cmbOrderType, 5000);
                     errorflag = 1;
                 }
-                if (cmborderday.SelectedValue.ToString() == "35")
+                if (cmbOrderType.SelectedValue.ToString() == "35")
                 {
                     if (txtsalesmanname.Text.Trim() == "")
                     {

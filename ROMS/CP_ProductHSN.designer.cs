@@ -89,12 +89,13 @@
             // 
             this.txtHSNCode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtHSNCode.Location = new System.Drawing.Point(124, 50);
-            this.txtHSNCode.MaxLength = 20;
+            this.txtHSNCode.MaxLength = 8;
             this.txtHSNCode.Name = "txtHSNCode";
             this.txtHSNCode.Size = new System.Drawing.Size(200, 27);
             this.txtHSNCode.TabIndex = 1;
             this.txtHSNCode.Enter += new System.EventHandler(this.TxtHSNCode_Enter);
             this.txtHSNCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtHSNCode_KeyDown);
+            this.txtHSNCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtHSNCode_KeyPress);
             this.txtHSNCode.Leave += new System.EventHandler(this.TxtHSNCode_Leave);
             // 
             // txtDSGT

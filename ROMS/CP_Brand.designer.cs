@@ -62,8 +62,14 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.grdSubGroup = new System.Windows.Forms.DataGridView();
+            this.clmChk = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProductGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSubGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdGroup = new System.Windows.Forms.DataGridView();
             this.grdSubGroupAdd = new System.Windows.Forms.DataGridView();
+            this.clmSelGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSelSubGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtDEBrandNameInTamil = new System.Windows.Forms.TextBox();
             this.txtEBrandNameInTamil = new System.Windows.Forms.TextBox();
             this.txtDBrandNameInEnglish = new System.Windows.Forms.TextBox();
@@ -71,12 +77,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtEBrandNameInEnglish = new System.Windows.Forms.TextBox();
             this.epBrand = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmChk = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProductGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSubGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSelGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSelSubGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.grbform.SuspendLayout();
@@ -445,6 +445,24 @@
             this.grdSubGroup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSubGroup_CellContentClick);
             this.grdSubGroup.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSubGroup_DataBindingComplete);
             // 
+            // clmChk
+            // 
+            this.clmChk.HeaderText = "";
+            this.clmChk.Name = "clmChk";
+            this.clmChk.Width = 80;
+            // 
+            // clmProductGroup
+            // 
+            this.clmProductGroup.HeaderText = "Product Group";
+            this.clmProductGroup.Name = "clmProductGroup";
+            this.clmProductGroup.Width = 150;
+            // 
+            // clmSubGroup
+            // 
+            this.clmSubGroup.HeaderText = "Product Subgroup";
+            this.clmSubGroup.Name = "clmSubGroup";
+            this.clmSubGroup.Width = 200;
+            // 
             // grdGroup
             // 
             this.grdGroup.AllowUserToAddRows = false;
@@ -532,6 +550,26 @@
             this.grdSubGroupAdd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSubGroupAdd_CellContentClick);
             this.grdSubGroupAdd.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSubGroupAdd_DataBindingComplete);
             // 
+            // clmSelGroup
+            // 
+            this.clmSelGroup.HeaderText = "Selected Product Group";
+            this.clmSelGroup.Name = "clmSelGroup";
+            this.clmSelGroup.Width = 150;
+            // 
+            // clmSelSubGroup
+            // 
+            this.clmSelSubGroup.HeaderText = "Selected Product Subgroup";
+            this.clmSelSubGroup.Name = "clmSelSubGroup";
+            this.clmSelSubGroup.Width = 200;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemove.Width = 80;
+            // 
             // txtDEBrandNameInTamil
             // 
             this.txtDEBrandNameInTamil.BackColor = System.Drawing.SystemColors.Control;
@@ -548,7 +586,7 @@
             // 
             this.txtEBrandNameInTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEBrandNameInTamil.Location = new System.Drawing.Point(189, 48);
-            this.txtEBrandNameInTamil.MaxLength = 20;
+            this.txtEBrandNameInTamil.MaxLength = 50;
             this.txtEBrandNameInTamil.Name = "txtEBrandNameInTamil";
             this.txtEBrandNameInTamil.Size = new System.Drawing.Size(287, 27);
             this.txtEBrandNameInTamil.TabIndex = 1;
@@ -606,7 +644,7 @@
             // 
             this.txtEBrandNameInEnglish.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEBrandNameInEnglish.Location = new System.Drawing.Point(189, 21);
-            this.txtEBrandNameInEnglish.MaxLength = 20;
+            this.txtEBrandNameInEnglish.MaxLength = 50;
             this.txtEBrandNameInEnglish.Name = "txtEBrandNameInEnglish";
             this.txtEBrandNameInEnglish.Size = new System.Drawing.Size(287, 27);
             this.txtEBrandNameInEnglish.TabIndex = 0;
@@ -617,44 +655,6 @@
             // epBrand
             // 
             this.epBrand.ContainerControl = this;
-            // 
-            // clmChk
-            // 
-            this.clmChk.HeaderText = "";
-            this.clmChk.Name = "clmChk";
-            this.clmChk.Width = 80;
-            // 
-            // clmProductGroup
-            // 
-            this.clmProductGroup.HeaderText = "Product Group";
-            this.clmProductGroup.Name = "clmProductGroup";
-            this.clmProductGroup.Width = 150;
-            // 
-            // clmSubGroup
-            // 
-            this.clmSubGroup.HeaderText = "Product Subgroup";
-            this.clmSubGroup.Name = "clmSubGroup";
-            this.clmSubGroup.Width = 200;
-            // 
-            // clmSelGroup
-            // 
-            this.clmSelGroup.HeaderText = "Selected Product Group";
-            this.clmSelGroup.Name = "clmSelGroup";
-            this.clmSelGroup.Width = 150;
-            // 
-            // clmSelSubGroup
-            // 
-            this.clmSelSubGroup.HeaderText = "Selected Product Subgroup";
-            this.clmSelSubGroup.Name = "clmSelSubGroup";
-            this.clmSelSubGroup.Width = 200;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemove.Width = 80;
             // 
             // CP_Brand
             // 

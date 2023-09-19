@@ -194,6 +194,18 @@
     <Compile Include="CP_RepresentativeList.designer.cs">
       <DependentUpon>CP_RepresentativeList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_EmployeeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_EmployeeList.designer.cs">
+      <DependentUpon>CP_EmployeeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Employee.designer.cs">
+      <DependentUpon>CP_Employee.cs</DependentUpon>
+    </Compile>
     <Compile Include="INV_InwardlistQueue.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -870,6 +882,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_RepresentativeList.resx">
       <DependentUpon>CP_RepresentativeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_EmployeeList.resx">
+      <DependentUpon>CP_EmployeeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Employee.resx">
+      <DependentUpon>CP_Employee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_InwardlistQueue.resx">
       <DependentUpon>INV_InwardlistQueue.cs</DependentUpon>
