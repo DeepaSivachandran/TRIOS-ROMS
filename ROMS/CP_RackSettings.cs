@@ -1548,38 +1548,34 @@ namespace ROMS
         {
             try
             {
+                lvDRack.Items.Clear();
                 int varDLocationId = 0;
                 if (lblDLocation.Text == "" || lblDLocation.Text == "-1" || lblDLocation.Text == "0")
                 {
                     varDLocationId = 0;
                 }
                 else { varDLocationId = Convert.ToInt32(lblDLocation.Text); }
-                lvRack.Items.Clear();
+                
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtDRack.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnRackList(7, 0, 0, varDLocationId, 0, txtDRack.Text);
-                        objspdservice.CloseConnection();
-                        if (objDs != null)
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
                         {
-                            if (objDs.Tables.Count != 0)
+                            if (objDs.Tables[0].Rows.Count != 0)
                             {
-                                if (objDs.Tables[0].Rows.Count != 0)
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                    {
-                                        string[] row = { objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
-                                        ListViewItem objList = new ListViewItem(row);
-                                        lvDRack.Columns[1].Width = 0;
-                                        lvDRack.Items.Add(objList);
-                                    }
-                                    lvDRack.Visible = true;
+                                    string[] row = { objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvDRack.Columns[1].Width = 0;
+                                    lvDRack.Items.Add(objList);
                                 }
-                                else
-                                {
-                                    lvDRack.Visible = false;
-                                }
+                                lvDRack.Visible = true;
                             }
                             else
                             {
@@ -1590,13 +1586,11 @@ namespace ROMS
                         {
                             lvDRack.Visible = false;
                         }
-                    //}
-                    //else
-                    //{
-                    //    epRackSettings.SetError(txtDLocation, "Invalid Location");
-                    //    txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //    txtDRack.Text = "";
-                    //}
+                    }
+                    else
+                    {
+                        lvDRack.Visible = false;
+                    }
                 }
                 else
                 {
