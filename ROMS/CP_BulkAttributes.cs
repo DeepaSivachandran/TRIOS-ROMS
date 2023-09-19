@@ -25,8 +25,12 @@ namespace ROMS
         public int varStatusId = 0;
 
         DataSet objDSHSN = new DataSet();
+        DataSet objDSSubGroup = new DataSet();
         DataSet objDSGroup = new DataSet();
+        DataSet objDSBrand = new DataSet();
         DataSet objDSUnit = new DataSet();
+        DataSet objDSLocation = new DataSet();
+        DataSet objDSRack = new DataSet();
 
         public CP_BulkAttributes()
         {
@@ -134,8 +138,12 @@ namespace ROMS
             {
                 SPDataService objDServ = new SPDataService();
                 objDSHSN = objDServ.udfnHsnList(0, 0);
-                objDSGroup = objDServ.udfnproductmasterlist(0, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0);
                 objDSUnit = objDServ.udfnUnitList(0,0);
+                objDSGroup = objDServ.udfnGroupList(0, 0, 0, "");
+                objDSSubGroup = objDServ.udfnSubGroupList(0,0,"",0,0,"");
+                objDSBrand = objDServ.udfnBrandList(0,"",0,0,0,"");
+                objDSLocation = objDServ.udfnStockLocationList(0,0,0,0,"");
+                objDSRack = objDServ.udfnRackList(0,0,0,0,0,"");
                 objDServ.CloseConnection();
             }
             catch(Exception ex)
@@ -149,9 +157,13 @@ namespace ROMS
             try
             {
                 int varHsnId = 0,varUnitId=0; int varUpdateViewType = 0;
+                int varGroupId=0, varSubGroupId =0, varBrandId = 0;
+                int varPurSLID = 0, varSalesSLID = 0, varPurRKID = 0, varSalesRKID = 0;
+                decimal varRMinSaleQty = 0, varWMinSaleQty = 0;
                 SPDataService objspdservice = new SPDataService();
                 DataTable objBulkUpdate = new DataTable();
                 objBulkUpdate.TableName = "[MR_Product_BulkUpdate]";
+
                 objBulkUpdate.Columns.Add("HSN Name-New", typeof(string));
                 objBulkUpdate.Columns.Add("HSNIDOLD", typeof(int));
                 objBulkUpdate.Columns.Add("HSNIDNEW", typeof(int));
@@ -165,26 +177,127 @@ namespace ROMS
                 objBulkUpdate.Columns.Add("PR_TName-New", typeof(string));
                 objBulkUpdate.Columns.Add("PR_PICode-Current", typeof(string));
                 objBulkUpdate.Columns.Add("PR_PICode-New", typeof(string));
+                
+                objBulkUpdate.Columns.Add("PRGID-Old", typeof(int));
+                objBulkUpdate.Columns.Add("PRGID-New", typeof(int));
+                objBulkUpdate.Columns.Add("PRSGID-Old", typeof(int));
+                objBulkUpdate.Columns.Add("PRSGID-New", typeof(int));
+                objBulkUpdate.Columns.Add("BDID-Old", typeof(int));
+                objBulkUpdate.Columns.Add("BDID-New", typeof(int));
+
+                objBulkUpdate.Columns.Add("Pur_SLID-Old", typeof(int));
+                objBulkUpdate.Columns.Add("Pur_SLID-NEW", typeof(int));
+                objBulkUpdate.Columns.Add("Sales_SLID-Old", typeof(int));
+                objBulkUpdate.Columns.Add("Sales_SLID-NEW", typeof(int));
+                objBulkUpdate.Columns.Add("Pur_RKID-Old", typeof(int));
+                objBulkUpdate.Columns.Add("Pur_RKID-New", typeof(int));
+                objBulkUpdate.Columns.Add("Sales_RKID-Old", typeof(int));
+                objBulkUpdate.Columns.Add("Sales_RKID-New", typeof(int));
+                objBulkUpdate.Columns.Add("RackMOQ-Current", typeof(int));
+                objBulkUpdate.Columns.Add("RackMOQ-New", typeof(string));
+               
+                 objBulkUpdate.Columns.Add("RMinSaleQty-Old", typeof(decimal));
+                 objBulkUpdate.Columns.Add("RMinSaleQty-New", typeof(string));
+                 objBulkUpdate.Columns.Add("WMinSaleQty-Old", typeof(decimal));
+                 objBulkUpdate.Columns.Add("WMinSaleQty-New", typeof(string));
+                 objBulkUpdate.Columns.Add("Barcode-Old", typeof(string));
+                 objBulkUpdate.Columns.Add("Barcode-New", typeof(string));
                 if (grdHSN.Visible == true)
                 {
                     varUpdateViewType = 3;
                     for (int i = 0; i < grdHSN.Rows.Count; i++)
                     {
                         varHsnId = 0;
-                        var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").ToUpper().Equals(Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value).ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").ToUpper().Equals(Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varValue.Count() > 0) { varHsnId = Convert.ToInt32(varValue.ToList()[0]); }
-                        objBulkUpdate.Rows.Add(Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value), 0, varHsnId, grdHSN.Rows[i].Cells["PRID"].Value);
+                        objBulkUpdate.Rows.Add(Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value).Trim(), 0, varHsnId, grdHSN.Rows[i].Cells["PRID"].Value,
+                            0,0,"","","","","","",
+                            0,0,0,0,0,0,
+                            0,0,0,0,0,0,0,0,0,"");
                     }
                 }
-                else if(grdBulkAttributes.Visible==true)
+                else if (grdBulkAttributes.Visible == true)
                 {
                     varUpdateViewType = 4;
                     for (int i = 0; i < grdBulkAttributes.Rows.Count; i++)
                     {
                         varUnitId = 0;
-                        var varValue = from r in objDSUnit.Tables[0].AsEnumerable() where (r.Field<string>("Symbol").Equals(grdBulkAttributes.Rows[i].Cells["Unit-New"].Value)) group r by r.Field<int>("ID") into g select g.Key;
+                        var varValue = from r in objDSUnit.Tables[0].AsEnumerable() where (r.Field<string>("Unit").ToUpper().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Unit-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varValue.Count() > 0) { varUnitId = Convert.ToInt32(varValue.ToList()[0]); }
-                        objBulkUpdate.Rows.Add("", 0, 0, grdBulkAttributes.Rows[i].Cells["PRID"].Value,Convert.ToInt16(grdBulkAttributes.Rows[i].Cells["UTID-OLD"].Value),varUnitId,Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English"].Value), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in Tamil"].Value), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English-New"].Value) ,grdBulkAttributes.Rows[i].Cells["Product Name in Tamil-New"].Value,Convert.ToString(grdBulkAttributes.Rows[i].Cells["P.I Code"].Value).Trim(), grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value);
+                        objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdBulkAttributes.Rows[i].Cells["PRID"].Value), Convert.ToInt16(grdBulkAttributes.Rows[i].Cells["UTID-OLD"].Value), varUnitId, Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in Tamil"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English-New"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in Tamil-New"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["P.I Code"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value).Trim(),
+                            0, 0, 0, 0, 0, 0,
+                            0, 0, 0, 0, 0, 0, 0, 0, 0, "");
+                    }
+                }
+                else if (grdBrand.Visible == true)
+                {
+                    varUpdateViewType = 5;
+                    for (int i = 0; i < grdBrand.Rows.Count; i++)
+                    {
+                        varGroupId = 0; varSubGroupId = 0; varBrandId = 0;
+                        var varGroup = from r in objDSGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Group Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varGroup.Count() > 0)
+                        { varGroupId = Convert.ToInt32(varGroup.ToList()[0]); }
+                        var varSubGroup = from r in objDSSubGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Sub Group Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varSubGroup.Count() > 0)
+                        { varSubGroupId = Convert.ToInt32(varSubGroup.ToList()[0]); }
+                        var varBrand = from r in objDSBrand.Tables[0].AsEnumerable() where (r.Field<string>("Brand Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varBrand.Count() > 0)
+                        { varBrandId = Convert.ToInt32(varBrand.ToList()[0]); }
+                        objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdBrand.Rows[i].Cells["PRID"].Value),0, 0, "", "", "", "", "", "",
+                            Convert.ToInt32(grdBrand.Rows[i].Cells["PRGID-Old"].Value), varGroupId,
+                            Convert.ToInt32(grdBrand.Rows[i].Cells["PRSGID-Old"].Value), varSubGroupId,
+                            Convert.ToInt32(grdBrand.Rows[i].Cells["BDID-Old"].Value), varBrandId,0,0,0,0,0,0,0,0,0,"");
+                    }
+                }
+                else if (grdLoction.Visible == true)
+                {
+                    varUpdateViewType = 6;
+                    for (int i = 0; i < grdLoction.Rows.Count; i++)
+                    {
+                        varPurSLID = 0; varSalesSLID = 0; varPurRKID = 0; varSalesRKID = 0;
+                        var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varPurStockLocation.Count() > 0)
+                        { varPurSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); }
+                        var varSalesStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varSalesStockLocation.Count() > 0)
+                        { varSalesSLID = Convert.ToInt32(varSalesStockLocation.ToList()[0]); }
+                        var varPurRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varPurRack.Count() > 0)
+                        { varPurRKID = Convert.ToInt32(varPurRack.ToList()[0]); }
+                        var varSalesRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varSalesRack.Count() > 0)
+                        { varSalesRKID = Convert.ToInt32(varSalesRack.ToList()[0]); }
+                        objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdLoction.Rows[i].Cells["PRID"].Value),
+                                               0, 0, "", "", "", "", "", "",
+                                               0, 0, 0, 0, 0, 0,
+                                               Convert.ToInt32(grdLoction.Rows[i].Cells["Pur_SLID-Old"].Value), varPurSLID,
+                                               Convert.ToInt32(grdLoction.Rows[i].Cells["Sales_SLID-Old"].Value), varSalesSLID,
+                                               Convert.ToInt32(grdLoction.Rows[i].Cells["Pur_RKID-Old"].Value), varPurRKID,
+                                               Convert.ToInt32(grdLoction.Rows[i].Cells["Sales_RKID-Old"].Value), varSalesRKID,
+                                               Convert.ToInt32(grdLoction.Rows[i].Cells["Rack MSQ-Current"].Value), Convert.ToString(grdLoction.Rows[i].Cells["Rack MSQ-New"].Value).Trim());
+                    }
+                }
+                else if (grdMSQ.Visible == true)
+                {
+                    varUpdateViewType = 7;
+                    for (int i = 0; i < grdMSQ.Rows.Count; i++)
+                    {
+                        varRMinSaleQty = 0;  varWMinSaleQty = 0;
+                        if(Convert.ToString(grdMSQ.Rows[i].Cells["R Min Sale Qty-Current"].Value)=="")
+                        { varRMinSaleQty = 0; }
+                        else { varRMinSaleQty = Convert.ToDecimal(grdMSQ.Rows[i].Cells["R Min Sale Qty-Current"].Value); }
+                        if(Convert.ToString(grdMSQ.Rows[i].Cells["W.Min Sale Qty-Current"].Value)=="")
+                        { varWMinSaleQty = 0; }
+                        else { varWMinSaleQty = Convert.ToDecimal(grdMSQ.Rows[i].Cells["W.Min Sale Qty-Current"].Value); }
+                        objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdMSQ.Rows[i].Cells["PRID"].Value),
+                                               0, 0, "", "", "", "", "", "",
+                                               0, 0, 0, 0, 0, 0,
+                                              0, 0, 0, 0, 0, 0, 0, 0, 0, "",
+                                              varRMinSaleQty, Convert.ToString(grdMSQ.Rows[i].Cells["R Min Sale Qty-New"].Value).Trim(),
+                                               varWMinSaleQty, Convert.ToString(grdMSQ.Rows[i].Cells["W.Min Sale Qty-New"].Value).Trim(), 
+                                               Convert.ToString(grdMSQ.Rows[i].Cells["Barcode-Current"].Value).Trim(), Convert.ToString(grdMSQ.Rows[i].Cells["Barcode-New"].Value).Trim());
+                                             
                     }
                 }
                 string result = "";
@@ -210,7 +323,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+               MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnUpdate.Focus();
             }
             finally
