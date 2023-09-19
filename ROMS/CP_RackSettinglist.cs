@@ -93,6 +93,7 @@ namespace ROMS
                 if (grdRackSettingList.SelectedRows.Count > 0)
                 {
                     MainForm.objCP_RackSettings = new CP_RackSettings();
+                    MainForm.objCP_RackSettings.MdiParent = ParentForm;
                     MainForm.objCP_RackSettings.btnSave.Text = "Update";
                     MainForm.objCP_RackSettings.varRacksettingID = Convert.ToInt32(grdRackSettingList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_RackSettings.PbRKID = Convert.ToInt32(grdRackSettingList.SelectedRows[0].Cells["RKID"].Value);
@@ -102,7 +103,7 @@ namespace ROMS
                     MainForm.objCP_RackSettings.PbPICode = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["P.I Code"].Value);
                     MainForm.objCP_RackSettings.PbProductName = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["Product Name"].Value);
                     MainForm.objCP_RackSettings.PbUnit = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["Unit"].Value);
-                    MainForm.objCP_RackSettings.ShowDialog();
+                    MainForm.objCP_RackSettings.Show();
                 }
             }
             catch (Exception ex)
@@ -323,16 +324,20 @@ namespace ROMS
                 {
                     tsbEdit_Click(sender, e);
                 }
+                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                {
+                    tsbDelete_Click(sender, e);
+                }
+                if ((e.KeyCode == Keys.Delete))
+                {
+                    tsbDelete_Click(sender, e);
+                }
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm.objStart = new DEF_Start();
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();
                     this.Close();
-                }
-                if (e.KeyCode == Keys.Delete)
-                {
-                    udfndelete();
                 }
             }
             catch (Exception ex)
@@ -341,7 +346,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_RackSettinglist_Load(object sender, EventArgs e)
         {
             try
@@ -558,10 +562,6 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnEdit();
-                }
-                if (e.KeyCode == Keys.Delete)
-                {
-                    udfndelete();
                 }
             }
             catch (Exception ex)

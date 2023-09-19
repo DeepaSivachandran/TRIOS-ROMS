@@ -237,6 +237,8 @@
             this.tcRackSettings.SelectedIndex = 0;
             this.tcRackSettings.Size = new System.Drawing.Size(1330, 630);
             this.tcRackSettings.TabIndex = 0;
+            this.tcRackSettings.SelectedIndexChanged += new System.EventHandler(this.TcRackSettings_SelectedIndexChanged);
+            this.tcRackSettings.Selected += new System.Windows.Forms.TabControlEventHandler(this.TcRackSettings_Selected);
             // 
             // AddProduct
             // 
@@ -1524,6 +1526,7 @@
             this.clmSNo.HeaderText = "S.No.";
             this.clmSNo.Name = "clmSNo";
             this.clmSNo.ReadOnly = true;
+            this.clmSNo.Visible = false;
             // 
             // clmPICode
             // 
@@ -1536,12 +1539,14 @@
             this.clmPEName.HeaderText = "Product Name in English";
             this.clmPEName.Name = "clmPEName";
             this.clmPEName.ReadOnly = true;
+            this.clmPEName.Width = 250;
             // 
             // clmPTName
             // 
             this.clmPTName.HeaderText = "Product Name in Tamil";
             this.clmPTName.Name = "clmPTName";
             this.clmPTName.ReadOnly = true;
+            this.clmPTName.Width = 250;
             // 
             // clmUnit
             // 

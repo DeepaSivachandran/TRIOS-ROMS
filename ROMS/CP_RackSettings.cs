@@ -87,6 +87,7 @@ namespace ROMS
             try
             {
                 txtLocation.Focus();
+                this.ActiveControl = txtLocation;
                 //grbDestination.Visible = false;
                 dtSupplierMapping = new DataTable();
                 dtSupplierMapping.Columns.Add("", typeof(Boolean));
@@ -210,10 +211,10 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    udfnclose();
-                }
+                //if (e.KeyCode == Keys.Escape)
+                //{
+                //   udfnclose();
+                //}
                 if (e.KeyCode == Keys.F5)
                 {
                     btnSave.Focus();
@@ -464,6 +465,7 @@ namespace ROMS
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                grdViewSupplierMapping.Rows.Clear();
             }
             catch (Exception ex)
             {
@@ -656,9 +658,10 @@ namespace ROMS
                 grdSupplierMapping.Columns["S.No."].Width = 50;
                 grdSupplierMapping.Columns["PRODUCTID"].Visible = false;
                 grdSupplierMapping.Columns["P.I Code"].Width = 100;
-                grdSupplierMapping.Columns["Product Name in English"].Width = 200;
-                grdSupplierMapping.Columns["Product Name in Tamil"].Width = 200;
+                grdSupplierMapping.Columns["Product Name in English"].Width = 250;
+                grdSupplierMapping.Columns["Product Name in Tamil"].Width = 250;
                 grdSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                grdViewSupplierMapping.Columns["clmPTName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
 
                 
                 if (objDs.Tables[1].Rows.Count != 0)
@@ -919,7 +922,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtSearchByProduct1_TextChanged(object sender, EventArgs e)
         {
             try
@@ -932,7 +934,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtSearchByProduct2_Enter(object sender, EventArgs e)
         {
             try
@@ -2677,6 +2678,7 @@ namespace ROMS
                 grdViewProduct.Columns["Product Name in English"].Width = 200;
                 grdViewProduct.Columns["Product Name in Tamil"].Width = 200;
                 grdViewProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                grdMoveProduct.Columns["producttamilname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
             }
             catch (Exception ex)
             {
@@ -3633,6 +3635,7 @@ namespace ROMS
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                grdMoveProduct.Rows.Clear();
             }
             catch (Exception ex)
             {
@@ -4179,6 +4182,52 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void TcRackSettings_Selected(object sender, TabControlEventArgs e)
+        {
+            if (e.TabPageIndex == 1)
+            {
+                try
+                {
+                    this.ActiveControl = txtLocation;
+
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+            }
+            if (e.TabPageIndex == 2)
+            {
+                try
+                {
+                    this.ActiveControl = txtDLocation;
+
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+            }
+        }
+
+        private void TcRackSettings_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tcRackSettings.SelectedIndex == 0)
+            {
+                txtLocation.Focus();
+                this.ActiveControl = txtLocation;
+                txtLocation.SelectionStart = txtLocation.Text.Length;
+            }
+            else
+            {
+                txtDLocation.Focus();
+                this.ActiveControl = txtDLocation;
+                txtDLocation.SelectionStart = txtDLocation.Text.Length;
             }
         }
 
