@@ -15,6 +15,7 @@ namespace ROMS
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         public PUR_SupplierScheduleList()
         {
             InitializeComponent();
@@ -118,10 +119,26 @@ namespace ROMS
                         }
                     }
                 }
+                objDT = objdserv.udfnCompanyList(varconcerntype, 0, MainForm.pbUserID, MainForm.pbIpAddress);
+                objdserv.CloseConnection();
+                cmbConcernPrint.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcernPrint.ValueMember = "COMID";
+                            cmbConcernPrint.DisplayMember = "COM_ShortName";
+                            cmbConcernPrint.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
                 cmbDay.SelectedValue = 0;
                 cmbOrder.SelectedValue = 0;
                 cmbStatus.SelectedValue = 0;
                 cmbOrderSchedule.SelectedValue = 0;
+                cmbConcernPrint.SelectedValue = 0;
                 udfnList();
             }
             catch (Exception ex)
@@ -519,18 +536,18 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
-                    if (LV_Supplier.Items.Count == 0 || txtsuppliernameprint.Text == "")
+                    if (lvSupplerName.Items.Count == 0 || txtsuppliernameprint.Text == "")
                     {
                         txtsuppliernameprint.Focus();
-                        LV_Supplier.Visible = false;
+                        lvSupplerName.Visible = false;
                     }
                     else
                     {
-                        LV_Supplier.Focus();
+                        lvSupplerName.Focus();
                     }
-                    if (LV_Supplier.Items.Count > 0)
+                    if (lvSupplerName.Items.Count > 0)
                     {
-                        LV_Supplier.Items[0].Selected = true;
+                        lvSupplerName.Items[0].Selected = true;
                     }
                 }
             }
@@ -641,7 +658,7 @@ namespace ROMS
                     {
                         lblSuppliernameprint.Text = "0";
                         ep_Supplierlist.SetError(txtsuppliernameprint, "Invalid supplier");
-                        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        txtsuppliernameprint.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpSupplier.ShowAlways = true;
                         tpSupplier.Show("Invalid supplier", txtsuppliernameprint, 5000);
                     }
@@ -1257,6 +1274,8 @@ namespace ROMS
             try
             {
                 udfnList();
+                RPTViewer.Visible = false; 
+                RPTViewer.SendToBack();
             }
             catch (Exception ex)
             {
@@ -1265,7 +1284,7 @@ namespace ROMS
             }
             finally
             {
-                dgvSupplierScheduleList.ClearSelection();
+                dgvSupplierScheduleList.ClearSelection(); 
             }
         }
 
@@ -1344,24 +1363,34 @@ namespace ROMS
         {
             try
             {
-                //RPTViewer.Visible = true;
-                //RPTViewer.ReuseParameterValuesOnRefresh = true;
-                //RPTViewer.RefreshReport();
-                //CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
-                //objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                //objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleProduct.rpt");
-                ////  objBillreport.SetParameterValue("paraFromDateDisplay", dpFromDate.Text);
-                //// objBillreport.SetParameterValue("paraToDateDisplay", dpToDate.Text);
-                //// objBillreport.SetParameterValue("paraCompanyName", varCompany);
-                ////objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                ////objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                ////objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                ////objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                ////objBillreport.SetParameterValue("paragroupcode", vargroupselectvalue);
-                //objValidation.CrySqlConnection(objBillreport);
-                //RPTViewer.ReportSource = objBillreport;
-                //RPTViewer.Refresh();
+                btnListPrint.Enabled = false;
+                RPTViewer.Visible = true;
+                RPTViewer.BringToFront();
+                RPTViewer.ReuseParameterValuesOnRefresh = true;
+                RPTViewer.RefreshReport();
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                int varlanguage = 0;
+                if (rbEnglish.Checked == true)
+                {
+                    varlanguage = 1;
+                }
+                else { varlanguage = 2; }
+
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierProductList.rpt");
+                objBillreport.SetParameterValue("@paracompanycode",Convert.ToInt32(cmbConcernPrint.SelectedValue));
+                objBillreport.SetParameterValue("@paraOrderID", Convert.ToInt32(cmbOrder.SelectedValue));
+                objBillreport.SetParameterValue("@parascheduleid", Convert.ToInt32(cmbOrderSchedule.SelectedValue)); 
+                objBillreport.SetParameterValue("@parasupplierid", lblSuppliernameprint.Text);
+                objBillreport.SetParameterValue("@paraProductType", varlanguage); 
+                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                objValidation.CrySqlConnection(objBillreport);
+                RPTViewer.ReportSource = objBillreport;
+                RPTViewer.Refresh();
             }
             catch (Exception ex)
             {
@@ -1371,7 +1400,107 @@ namespace ROMS
             finally
             {
                 dgvSupplierScheduleList.ClearSelection();
+                btnListPrint.Enabled = true;
+                GC.Collect();
             }
+        }
+
+        private void PUR_SupplierScheduleList_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            { 
+                if (this.RPTViewer != null)
+                {
+                    RPTViewer.ReportSource = null;
+                    this.RPTViewer.Dispose();
+                    objBillreport.Close();
+                    objBillreport.Dispose();
+                    objBillreport = null;
+                    GC.Collect();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                GC.Collect(); 
+            }
+        }
+
+        private void CmbConcernPrint_Leave(object sender, EventArgs e)
+        { 
+            try
+            {
+                cmbConcernPrint.BackColor = Color.White;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcernPrint_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbConcernPrint.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcernPrint_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbDay.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcernPrint_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcernPrint_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcernPrint.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
     }
 }

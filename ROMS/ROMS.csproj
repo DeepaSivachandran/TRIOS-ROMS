@@ -205,10 +205,17 @@
     <Compile Include="ReportLoad.designer.cs">
       <DependentUpon>ReportLoad.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\RPT_PUR_SupplierScheduleProduct.cs">
+    <Compile Include="Reports\RPT_PUR_SupplierProductList.cs">
+      <DependentUpon>RPT_PUR_SupplierProductList.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_PUR_SupplierScheduleProductDayWise.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RPT_PUR_SupplierScheduleProduct.rpt</DependentUpon>
+      <DependentUpon>RPT_PUR_SupplierScheduleProductDayWise.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -889,9 +896,9 @@
     <EmbeddedResource Include="CP_RepresentativeList.resx">
       <DependentUpon>CP_RepresentativeList.cs</DependentUpon>
     </EmbeddedResource>
-    <Content Include="Reports\RPT_PUR_SupplierScheduleProduct.rpt">
+    <Content Include="Reports\RPT_PUR_SupplierScheduleProductDayWise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_PUR_SupplierScheduleProduct.cs</LastGenOutput>
+      <LastGenOutput>RPT_PUR_SupplierScheduleProductDayWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="INV_InwardlistQueue.resx">
@@ -1216,6 +1223,11 @@
     <EmbeddedResource Include="ReportLoad.resx">
       <DependentUpon>ReportLoad.cs</DependentUpon>
     </EmbeddedResource>
+    <Content Include="Reports\RPT_PUR_SupplierProductList.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_SupplierProductList.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="ServerSettings.resx">
       <DependentUpon>ServerSettings.cs</DependentUpon>
     </EmbeddedResource>
