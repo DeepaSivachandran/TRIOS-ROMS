@@ -398,11 +398,11 @@ namespace ROMS
                 {
                     if (varProductID == "")
                     {
-                        varProductID = Convert.ToString(grdViewSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
+                        varProductID = Convert.ToString(grdViewSupplierMapping.Rows[i].Cells["clmPRID"].Value);
                     }
                     else
                     {
-                        varProductID = varProductID + "," + Convert.ToString(grdViewSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
+                        varProductID = varProductID + "," + Convert.ToString(grdViewSupplierMapping.Rows[i].Cells["clmPRID"].Value);
                     }
                 }
 
@@ -649,7 +649,6 @@ namespace ROMS
                            objDs.Tables[0].Rows[i]["Product Name in Tamil"], objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["PRODUCTID"]);
                     }
                 }
-
                 grdSupplierMapping.DataSource = null;
                 grdSupplierMapping.DataSource = dtSupplierMapping;
                 grdSupplierMapping.Columns[0].HeaderText = "";
@@ -673,16 +672,16 @@ namespace ROMS
                     }
                 }
                 //grdViewSupplierMapping.DataSource = null;
-                grdViewSupplierMapping.DataSource = dtViewSupplierMapping;
-                grdViewSupplierMapping.Columns["clmRemoveSupplier"].DisplayIndex = 6;
-                grdViewSupplierMapping.Columns[0].HeaderText = "";
-                grdViewSupplierMapping.Columns[0].Width = 50;
-                grdViewSupplierMapping.Columns[1].Visible = false;
-                grdViewSupplierMapping.Columns["PRID"].Visible = false;
-                grdViewSupplierMapping.Columns["P.I Code"].Width = 100;
-                grdViewSupplierMapping.Columns["Product Name in English"].Width = 200;
-                grdViewSupplierMapping.Columns["Product Name in Tamil"].Width = 200;
-                grdViewSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                //grdViewSupplierMapping.DataSource = dtViewSupplierMapping;
+               // grdViewSupplierMapping.Columns["clmRemoveSupplier"].DisplayIndex = 6;
+                //grdViewSupplierMapping.Columns[0].HeaderText = "";
+                //grdViewSupplierMapping.Columns[0].Width = 50;
+                //grdViewSupplierMapping.Columns[1].Visible = false;
+                //grdViewSupplierMapping.Columns["PRID"].Visible = false;
+                //grdViewSupplierMapping.Columns["P.I Code"].Width = 100;
+                //grdViewSupplierMapping.Columns["Product Name in English"].Width = 200;
+                //grdViewSupplierMapping.Columns["Product Name in Tamil"].Width = 200;
+                //grdViewSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
 
                 
                 string varAddRack = "";
@@ -836,7 +835,7 @@ namespace ROMS
                             for (int j = 0; j < grdViewSupplierMapping.Rows.Count; j++)
                             {
                                 varAddRack = Convert.ToString(grdSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
-                                if (varAddRack == Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRID"].Value))
+                                if (varAddRack == Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["clmPRID"].Value))
                                 {
                                     varFlag = 1;
                                 }
@@ -964,7 +963,7 @@ namespace ROMS
         {
             try
             {
-                (grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([clmProductEnglish]) LIKE '%" + txtSearchByProduct2.Text + "%'or ([clmdpicode]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
+                (grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([clmPEName]) LIKE '%" + txtSearchByProduct2.Text + "%'or ([clmPICode]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
             }
             catch (Exception ex)
             {
