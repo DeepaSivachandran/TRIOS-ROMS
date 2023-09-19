@@ -42,10 +42,10 @@ namespace ROMS
         {
             try
             {
-                //picLoader.Visible = true;
-                //picLoader.BringToFront();
-                //MainForm.objPUR_POScheduledaywise = new PUR_POScheduledaywise();
-                //MainForm.objPUR_POScheduledaywise.ShowDialog();
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                MainForm.objPUR_POScheduledaywise = new PUR_POScheduledaywise();
+                MainForm.objPUR_POScheduledaywise.ShowDialog();
             }
             catch (Exception ex)
             {
