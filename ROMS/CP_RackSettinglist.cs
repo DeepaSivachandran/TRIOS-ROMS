@@ -31,7 +31,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -143,9 +142,6 @@ namespace ROMS
                             }
                         }
                     }
-                    //string varId_Rack = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_Name = '" + txtRack.Text.Trim() + "') END AS RKID ");
-                    //objDServ.CloseConnection();
-                    //varRackId = Convert.ToInt32(varId_PurRack);
                     varRackId = Convert.ToInt32(varId_PurRack);
                 }
                 objDs = objspservice.udfnRackSettingsList(0,0,0, 0,varRackId);
@@ -200,118 +196,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
             }
-        }   
-        private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
-        {
-            try
-            {
-                //dgv2.DataSource = null;
-                dgv2.Columns.Clear();
-                List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in dgv1.Columns)
-                {
-                    if (col.Visible)
-                    {
-                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
-                        visibleColumns.Add(col.Index);
-                    }
-                }
-                int rowIndex = 0;
-                dgv2.Rows.Clear();
-                dgv2.Rows.Add();
-                for (int i = 0; i < visibleColumns.Count; i++)
-                {
-                    dgv2.Rows[rowIndex].Cells[i].Value = "";
-                }
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-        private void grdBrandList_Scroll(object sender, ScrollEventArgs e)
-        {
-             
-        }
-
-        private void DGV_SearchGrid_Sorted(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DGV_SearchGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-
-        }
-        private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            DataGridViewColumn newColumn = grdRackSettingList.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdRackSettingList.SortedColumn;
-            ListSortDirection direction;
-
-            // If oldColumn is null, then the DataGridView is not sorted.
-            if (oldColumn != null)
-            {
-                // Sort the same column again, reversing the SortOrder.
-                if (oldColumn == newColumn &&
-                    grdRackSettingList.SortOrder == SortOrder.Ascending)
-                {
-                    direction = ListSortDirection.Descending;
-                }
-                else
-                {
-                    // Sort a new column and remove the old SortGlyph.
-                    direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
-                }
-            }
-            else
-            {
-                direction = ListSortDirection.Ascending;
-            }
-            //grdSupplierMappingList.Sort(newColumn, direction);
-            //newColumn.HeaderCell.SortGlyphDirection =
-            //    direction == ListSortDirection.Ascending ?
-            //    SortOrder.Ascending : SortOrder.Descending;
-
-            //DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-            //DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-
-            //DGV_SearchGrid.HorizontalScrollingOffset = grdSupplierMappingList.HorizontalScrollingOffset;
-            //DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
-        }
-
-        private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
-        { 
-        }
-        public void udfnscrollVisible(DataGridView DGV,DataGridView grdGroupList)
-        {
-             
-        }
-
-        private void GrdSupplierList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void BtnClose_Click(object sender, EventArgs e)
-        {
-            udfnclose();
-        }
-        public void udfnclose()
-        {
-            try
-            {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void CP_RackSettinglist_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -358,8 +243,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                grdRackSettingList.ClearSelection();
+            }
         }
-
         private void TxtRack_TextChanged(object sender, EventArgs e)
         {
             try
@@ -426,7 +314,6 @@ namespace ROMS
 
             }
         }
-
         private void TxtRack_Enter(object sender, EventArgs e)
         {
             try
@@ -439,7 +326,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtRack_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -476,7 +362,6 @@ namespace ROMS
             try
             {
                 txtRack.BackColor = Color.White;
-                //btnView.Focus();
             }
             catch (Exception ex)
             {
@@ -498,7 +383,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvRack_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -536,12 +420,10 @@ namespace ROMS
                 lvRack.Visible = false;
             }
         }
-
         private void BtnView_Click(object sender, EventArgs e)
         {
             udfnList();
         }
-
         private void GrdRackSettingList_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -554,7 +436,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdRackSettingList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -570,7 +451,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnView_Enter(object sender, EventArgs e)
         {
             try
@@ -584,7 +464,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnView_Leave(object sender, EventArgs e)
         {
             try
