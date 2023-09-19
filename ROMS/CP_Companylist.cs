@@ -180,7 +180,7 @@ namespace ROMS
                             grdCompanyList.Columns["Company Name"].Width = 200;
                             grdCompanyList.Columns["City - Pincode"].Width = 150;
                             grdCompanyList.Columns["GSTIN"].Width = 150;
-                            grdCompanyList.Columns["Status"].Width = 80;
+                            grdCompanyList.Columns["Status"].Visible = false;
                             grdCompanyList.Columns["ID"].Visible = false;
                             grdCompanyList.Columns["STSID"].Visible = false;
                         }

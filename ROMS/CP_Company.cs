@@ -336,13 +336,13 @@ namespace ROMS
                     tpAccountNo.ShowAlways = true;
                     tpAccountNo.Show("Please enter account number", txtAccno, 5000);
                 }
-                else if (txtAccno.Text.Length != 20)
-                {
-                    epCompany.SetError(txtAccno, "Please enter valid account number");
-                    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpAccountNo.ShowAlways = true;
-                    tpAccountNo.Show("Please enter valid account number", txtAccno, 5000);
-                }
+                //else if (txtAccno.Text.Length != 20)
+                //{
+                //    epCompany.SetError(txtAccno, "Please enter valid account number");
+                //    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpAccountNo.ShowAlways = true;
+                //    tpAccountNo.Show("Please enter valid account number", txtAccno, 5000);
+                //}
                 else
                 {
                     epCompany.Clear();
@@ -498,14 +498,14 @@ namespace ROMS
                     tpAccountNo.Show("Please enter account number", txtAccno, 5000);
                     blnErrorFlag = true;
                 }
-                else if (txtAccno.Text.Length != 20)
-                {
-                    epCompany.SetError(txtAccno, "Please enter valid account number");
-                    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpAccountNo.ShowAlways = true;
-                    tpAccountNo.Show("Please enter valid account number", txtAccno, 5000);
-                    blnErrorFlag = true;
-                }
+                //else if (txtAccno.Text.Length != 20)
+                //{
+                //    epCompany.SetError(txtAccno, "Please enter valid account number");
+                //    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpAccountNo.ShowAlways = true;
+                //    tpAccountNo.Show("Please enter valid account number", txtAccno, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (Convert.ToString(txtIFScode.Text).Trim() == "")
                 {
                     epCompany.SetError(txtIFScode, "Please enter IFS Code");

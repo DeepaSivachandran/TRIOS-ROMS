@@ -212,7 +212,7 @@
             this.grpSearch.Size = new System.Drawing.Size(321, 67);
             this.grpSearch.TabIndex = 1;
             this.grpSearch.TabStop = false;
-            this.grpSearch.Text = "Search By Product Group";
+            this.grpSearch.Text = "Search By Product Group Name";
             this.grpSearch.Enter += new System.EventHandler(this.GrpSearch_Enter);
             // 
             // txtSearchProduct
