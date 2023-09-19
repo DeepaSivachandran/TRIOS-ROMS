@@ -234,10 +234,17 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varUpdate == 0)
                 {
-                    this.Close();
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -652,17 +659,20 @@ namespace ROMS
                 grdSupplierMapping.Columns["P.I Code"].Width = 100;
                 grdSupplierMapping.Columns["Product Name in English"].Width = 200;
                 grdSupplierMapping.Columns["Product Name in Tamil"].Width = 200;
+                grdSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
 
-
+                
                 if (objDs.Tables[1].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                     {
-                        dtViewSupplierMapping.Rows.Add(false, objDs.Tables[1].Rows[i]["P.I Code"], objDs.Tables[1].Rows[i]["Product Name in English"],
-                           objDs.Tables[1].Rows[i]["Product Name in Tamil"], objDs.Tables[1].Rows[i]["Unit"], objDs.Tables[1].Rows[i]["PRID"]);
+                        //dtViewSupplierMapping.Rows.Add(objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name in English"],
+                        //      objDs.Tables[0].Rows[i]["Product Name in Tamil"], objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["PRID"]);
+                        grdViewSupplierMapping.Rows.Add(Convert.ToInt32(grdViewSupplierMapping.Rows.Count) + 1, grdSupplierMapping.Rows[i].Cells["P.I Code"].Value, grdSupplierMapping.Rows[i].Cells["Product Name in English"].Value,
+                                    grdSupplierMapping.Rows[i].Cells["Product Name in Tamil"].Value, grdSupplierMapping.Rows[i].Cells["Unit"].Value, grdSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
                     }
                 }
-                grdViewSupplierMapping.DataSource = null;
+                //grdViewSupplierMapping.DataSource = null;
                 grdViewSupplierMapping.DataSource = dtViewSupplierMapping;
                 grdViewSupplierMapping.Columns["clmRemoveSupplier"].DisplayIndex = 6;
                 grdViewSupplierMapping.Columns[0].HeaderText = "";
@@ -672,9 +682,10 @@ namespace ROMS
                 grdViewSupplierMapping.Columns["P.I Code"].Width = 100;
                 grdViewSupplierMapping.Columns["Product Name in English"].Width = 200;
                 grdViewSupplierMapping.Columns["Product Name in Tamil"].Width = 200;
+                grdViewSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
 
-
-                string varRemoveRack = "", varAddRack = "";
+                
+                string varAddRack = "";
                 if (grdSupplierMapping.Rows.Count > 0)
                 {
                     for (int i = 0; i < grdSupplierMapping.Rows.Count; i++)
@@ -700,8 +711,16 @@ namespace ROMS
                         }
                     }
                 }
-
-
+                for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
+                {
+                    for (int j = 0; j < grdSupplierMapping.RowCount; j++)
+                    {
+                        if (Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
+                        {
+                            grdSupplierMapping.Rows[j].Cells[0].Value = true;
+                        }
+                    }
+                }
                 //for (int j = 0; j < grdSupplierMapping.RowCount; j++)
                 //{
                 //    if (Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRID"].Value) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
@@ -946,29 +965,6 @@ namespace ROMS
             try
             {
                 (grdViewSupplierMapping.DataSource as DataTable).DefaultView.RowFilter = "([clmProductEnglish]) LIKE '%" + txtSearchByProduct2.Text + "%'or ([clmdpicode]) LIKE '%" + txtSearchByProduct2.Text + "%' ";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CP_RackSettings_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                if (varUpdate == 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        e.Cancel = false;
-                    }
-                    else
-                    {
-                        e.Cancel = true;
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -2669,7 +2665,7 @@ namespace ROMS
                     for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                     {
                         dtViewProduct.Rows.Add(false, objDs.Tables[1].Rows[i]["S.No."], objDs.Tables[1].Rows[i]["P.I Code"], objDs.Tables[1].Rows[i]["Product Name in English"],
-                           objDs.Tables[1].Rows[i]["Product Name in Tamil"], objDs.Tables[1].Rows[i]["Unit"], objDs.Tables[1].Rows[i]["PRODUCTID"]);
+                           objDs.Tables[1].Rows[i]["Product Name in Tamil"], objDs.Tables[1].Rows[i]["Unit"], objDs.Tables[1].Rows[i]["PRID"]);
                     }
                 }
                 grdViewProduct.DataSource = null;
@@ -2681,6 +2677,7 @@ namespace ROMS
                 grdViewProduct.Columns["P.I Code"].Width = 100;
                 grdViewProduct.Columns["Product Name in English"].Width = 200;
                 grdViewProduct.Columns["Product Name in Tamil"].Width = 200;
+                grdViewProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
             }
             catch (Exception ex)
             {
@@ -3185,7 +3182,7 @@ namespace ROMS
         {
             try
             {
-                (grdMoveProduct.DataSource as DataTable).DefaultView.RowFilter = "([clmProductEnglish]) LIKE '%" + txtSearchProductName2.Text + "%'or ([clmdpicode]) LIKE '%" + txtSearchProductName2.Text + "%' ";
+                (grdMoveProduct.DataSource as DataTable).DefaultView.RowFilter = "([productenglishname]) LIKE '%" + txtSearchProductName2.Text + "%'or ([picode]) LIKE '%" + txtSearchProductName2.Text + "%' ";
             }
             catch (Exception ex)
             {
@@ -3307,7 +3304,6 @@ namespace ROMS
                                     grdViewProduct.Rows[i].Cells["Product Name in Tamil"].Value, grdViewProduct.Rows[i].Cells["Unit"].Value, grdViewProduct.Rows[i].Cells["PRODUCTID"].Value);
                             }
                         }
-
                     }
                 }
                 else
@@ -3522,7 +3518,7 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;
-                if (btnMoveSave.Text == "Save")
+                if (btnMoveSave.Text == "Move")
                 {
                     varoriginator = "RackSettings-Move Product";
                     varType = 3;
