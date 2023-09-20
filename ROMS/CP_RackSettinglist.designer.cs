@@ -188,7 +188,7 @@
             this.lvRack.HideSelection = false;
             this.lvRack.Location = new System.Drawing.Point(70, 52);
             this.lvRack.Name = "lvRack";
-            this.lvRack.Size = new System.Drawing.Size(351, 90);
+            this.lvRack.Size = new System.Drawing.Size(294, 90);
             this.lvRack.TabIndex = 40;
             this.lvRack.UseCompatibleStateImageBehavior = false;
             this.lvRack.View = System.Windows.Forms.View.Details;

@@ -81,7 +81,6 @@ namespace ROMS
                 txtLocation.Focus();
                 MainForm.objCP_RackSettinglist.grdRackSettingList.ClearSelection();
                 this.ActiveControl = txtLocation;
-                //grbDestination.Visible = false;
                 dtSupplierMapping = new DataTable();
                 dtSupplierMapping.Columns.Add("", typeof(Boolean));
                 dtSupplierMapping.Columns.Add("S.No.", typeof(string));
@@ -92,7 +91,6 @@ namespace ROMS
                 dtSupplierMapping.Columns.Add("PRODUCTID", typeof(int));
 
                 dtViewSupplierMapping = new DataTable();
-                //dtViewSupplierMapping.Columns.Add("S.No.", typeof(string));
                 dtViewSupplierMapping.Columns.Add("P.I Code", typeof(string));
                 dtViewSupplierMapping.Columns.Add("Product Name in English", typeof(string));
                 dtViewSupplierMapping.Columns.Add("Product Name in Tamil", typeof(string));
@@ -109,7 +107,6 @@ namespace ROMS
                 dtViewProduct.Columns.Add("PRODUCTID", typeof(int));
 
                 dtMoveProduct = new DataTable();
-                //dtViewSupplierMapping.Columns.Add("S.No.", typeof(string));
                 dtMoveProduct.Columns.Add("P.I Code", typeof(string));
                 dtMoveProduct.Columns.Add("Product Name in English", typeof(string));
                 dtMoveProduct.Columns.Add("Product Name in Tamil", typeof(string));
@@ -131,16 +128,13 @@ namespace ROMS
         {
             try
             {
-                //txtLocation.Text = PbStockLocation;
                 lblSLocation.Text = Convert.ToString(PbLocationCode);
                 
-                //txtRack.Text = PbRackName;
                 lblSRack.Text = Convert.ToString(PbRKID);
                 
                 udfnList();
                 lvLocation.Visible = false;
                 lvRack.Visible = false;
-                //udfnViewSupplier();
             }
             catch (Exception ex)
             {
@@ -339,7 +333,8 @@ namespace ROMS
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MainForm.objCP_RackSettinglist.udfnList();
-                    txtLocation.Focus();  
+                    txtLocation.Focus();
+                    //udfnColorChange();
                     if (btnSave.Text == "Update")
                     {
                         varUpdate = 1; 
@@ -460,15 +455,6 @@ namespace ROMS
             {
                 int varViewType = 1;
                 int varRackId = 0;
-                //if (btnSave.Text == "Save")
-                //{
-                //    varViewType = 13;
-                //}
-                //else
-                //{
-                //    varViewType = 1;
-                //    varRackId = PbRKID;
-                //}
                 dtSupplierMapping.Rows.Clear();
                 Application.DoEvents();
                 //grdSupplierMapping.DataSource = null;
@@ -547,7 +533,6 @@ namespace ROMS
                     }
                 }
                 objDs = objdserv.udfnRackSettingsList(varViewType, 0, 0,PbLocationCode,PbRKID);
-                //objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, Convert.ToInt32(varGroupId), Convert.ToInt32(varSubGroupId), "", "", "", 0, 0, 0, 0, 0, varRackId);
                 objdserv.CloseConnection();
 
 
@@ -569,54 +554,7 @@ namespace ROMS
                 grdSupplierMapping.Columns["Product Name in English"].Width = 250;
                 grdSupplierMapping.Columns["Product Name in Tamil"].Width = 250;
                 grdSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
-                /*
-                if (objDs.Tables[1].Rows.Count != 0)
-                {
-                    for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
-                    {
-                        grdViewSupplierMapping.Rows.Add(Convert.ToInt32(grdViewSupplierMapping.Rows.Count) + 1, grdSupplierMapping.Rows[i].Cells["P.I Code"].Value, grdSupplierMapping.Rows[i].Cells["Product Name in English"].Value,
-                        grdSupplierMapping.Rows[i].Cells["Product Name in Tamil"].Value, grdSupplierMapping.Rows[i].Cells["Unit"].Value, grdSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
-                    }
-                }
-
-                string varAddRack = "";
-                if (grdSupplierMapping.Rows.Count > 0)
-                {
-                    for (int i = 0; i < grdSupplierMapping.Rows.Count; i++)
-                    {
-                        if (Convert.ToBoolean(grdSupplierMapping.Rows[i].Cells[0].Value) == true)
-                        {
-                            int varFlag = 0, varcount = 1; ;
-
-                            for (int j = 0; j < grdViewSupplierMapping.Rows.Count; j++)
-                            {
-                                varAddRack = Convert.ToString(grdSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
-                                if (varAddRack == Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRID"].Value))
-                                {
-                                    varFlag = 1;
-                                }
-                                varcount++;
-                            }
-                            if (varFlag == 0)
-                            {
-                                grdViewSupplierMapping.Rows.Add(Convert.ToInt32(grdViewSupplierMapping.Rows.Count) + 1, grdSupplierMapping.Rows[i].Cells["P.I Code"].Value, grdSupplierMapping.Rows[i].Cells["Product Name in English"].Value,
-                                    grdSupplierMapping.Rows[i].Cells["Product Name in Tamil"].Value, grdSupplierMapping.Rows[i].Cells["Unit"].Value, grdSupplierMapping.Rows[i].Cells["PRODUCTID"].Value);
-                            }
-                        }
-                    }
-                }
-                for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
-                {
-                    for (int j = 0; j < grdSupplierMapping.RowCount; j++)
-                    {
-                        if (Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
-                        {
-                            grdSupplierMapping.Rows[j].Cells[0].Value = true;
-                        }
-                    }
-                }*/
-
-
+                
                 if (objDs.Tables[1].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
@@ -629,10 +567,6 @@ namespace ROMS
                 grdViewSupplierMapping.DataSource = null;
                 grdViewSupplierMapping.DataSource = dtViewSupplierMapping;
                 grdViewSupplierMapping.Columns["clmRemoveSupplier"].DisplayIndex = 5;
-                //grdViewSupplierMapping.Columns[0].HeaderText = "";
-                //grdViewSupplierMapping.Columns[0].Width = 50;
-                //grdViewSupplierMapping.Columns["S.No."].Width = 50;
-
                 grdViewSupplierMapping.Columns["PRID"].Visible = false;
                 grdViewSupplierMapping.Columns["P.I Code"].Width = 100;
                 grdViewSupplierMapping.Columns["Product Name in English"].Width = 250;
@@ -684,31 +618,6 @@ namespace ROMS
                 {
                     udfnCalculateCheckedCount();
                 }
-                //varProductID = ""; string varRemoverRack = "";
-                //if (Convert.ToBoolean(grdSupplierMapping.SelectedRows[0].Cells[0].EditedFormattedValue) == true)
-                //{
-                //    varProductID = Convert.ToString(grdSupplierMapping.SelectedRows[0].Cells["PRODUCTID"].Value);
-                //    udfnList();
-                //}
-                //else
-                //{
-                //    DataTable objDtNew = new DataTable();
-                //    int varRowCount = dtSupplierMapping.Rows.Count;
-                //    varRemoverRack = Convert.ToString(grdSupplierMapping.SelectedRows[0].Cells["PRODUCTID"].Value);
-                //l: for (int i = 0; i < varRowCount; i++)
-                //    {
-                //        if (varRemoverRack == Convert.ToString(dtSupplierMapping.Rows[i]["PRODUCTID"]))
-                //        {
-                //            dtSupplierMapping.Rows[i].Delete();
-                //            dtSupplierMapping.AcceptChanges();
-                //            varRowCount = dtSupplierMapping.Rows.Count;
-                //            goto l;
-                //        }
-                //    }
-                //    grdSupplierMapping.DataSource = dtSupplierMapping;
-                //    grdSupplierMapping.Columns[0].HeaderText = "";
-
-                //}
             }
             catch (Exception ex)
             {
@@ -749,43 +658,7 @@ namespace ROMS
             }
         }
         private void ChkRackSettings_CheckedChanged(object sender, EventArgs e)
-        {   /*
-            try
-            {
-                //for (int i = 0; i < grdSupplierMapping.Rows.Count; i++)
-                //{
-                //    grdSupplierMapping.Rows[i].Cells[0].Value = chkRackSettings.Checked;
-                //}
-
-                foreach (DataGridViewRow row in grdSupplierMapping.Rows)
-                {
-                    row.Cells[0].Value = chkRackSettings.Checked;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            try
-            {
-                if (varCheckAllFlag != 1)
-                {
-                    for (int i = 0; i < grdSupplierMapping.Rows.Count; i++)
-                    {
-                        grdSupplierMapping.Rows[i].Cells[0].Value = chkRackSettings.Checked;
-                    }
-                }
-                else
-                {
-                    varCheckAllFlag = 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }*/
+        {
         }
         private void BtnAdd_Click(object sender, EventArgs e)
         {
@@ -844,10 +717,6 @@ namespace ROMS
                     grdViewSupplierMapping.DataSource = null;
                     grdViewSupplierMapping.DataSource = dtViewSupplierMapping;
                     grdViewSupplierMapping.Columns["clmRemoveSupplier"].DisplayIndex = 5;
-                    //grdViewSupplierMapping.Columns[0].HeaderText = "";
-                    //grdViewSupplierMapping.Columns[0].Width = 50;
-                    //grdViewSupplierMapping.Columns["S.No."].Width = 50;
-
                     grdViewSupplierMapping.Columns["PRID"].Visible = false;
                     grdViewSupplierMapping.Columns["P.I Code"].Width = 100;
                     grdViewSupplierMapping.Columns["Product Name in English"].Width = 250;
@@ -1346,8 +1215,6 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvRack.SelectedItems[0];
                     txtRack.Text = selectedItem.SubItems[0].Text;
-                    //lblSRack.Text = selectedItem.SubItems[1].Text;
-                    //    lvCity.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -1583,7 +1450,6 @@ namespace ROMS
                     else
                     {
                         epRackSettings.Clear();
-                        //txtDLocation.BackColor = Color.White;
                     }
                 }
                 lvDLocation.Visible = false;
@@ -2195,10 +2061,6 @@ namespace ROMS
                 int varViewType = 0;
                 int varStatusId = 1;
                 int varRackId = 0;
-                //if (btnSave.Text == "Save")
-                //{
-                //    varStatusId = 1;
-                //}
                 dtSupplierMapping.Rows.Clear();
                 Application.DoEvents();
                 //grdSupplierMapping.DataSource = null;
@@ -2276,7 +2138,6 @@ namespace ROMS
                         epRackSettings.Clear();
                     }
                 }
-                //objDs = objdserv.udfnRackSettingsList(varViewType, 0, 0, PbLocationCode, PbRKID);
                 objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, Convert.ToInt32(varGroupId), Convert.ToInt32(varSubGroupId), "", "", "", 0,varStatusId, 0, 0, 0, 0);
                 objdserv.CloseConnection();
 
@@ -2297,7 +2158,6 @@ namespace ROMS
                 grdSupplierMapping.Columns["P.I Code"].Width = 100;
                 grdSupplierMapping.Columns["Product Name in English"].Width = 250;
                 grdSupplierMapping.Columns["Product Name in Tamil"].Width = 250;
-
 
             }
             catch (Exception ex)
@@ -2548,7 +2408,6 @@ namespace ROMS
                         txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tppRack.ShowAlways = true;
                         tppRack.Show("Please select valid rack", txtDRack, 5000);
-                        //blnErrorFlag = true;
                     }
                 }
                 objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0,Convert.ToInt32(varGroupId),Convert.ToInt32(varSubGroupId), "", "", "", 0, 0, 0, 0, 0,Convert.ToInt32(varRackId));
@@ -3108,32 +2967,12 @@ namespace ROMS
         }
         private void CheckAll_CheckedChanged(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (varCheckAll != 1)
-            //    {
-            //        for (int i = 0; i < grdViewProduct.Rows.Count; i++)
-            //        {
-            //            grdViewProduct.Rows[i].Cells[0].Value = checkAll.Checked;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        varCheckAll = 0;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
         }
         private void BtnAddgrid_Click(object sender, EventArgs e)
         {
             try
             {
                 udfnMoveProduct();
-                //udfnTotalSuppliers();
             }
             catch (Exception ex)
             {
@@ -3186,10 +3025,6 @@ namespace ROMS
                     grdMoveProduct.DataSource = null;
                     grdMoveProduct.DataSource = dtMoveProduct;
                     grdMoveProduct.Columns["clmRemoveProduct"].DisplayIndex = 5;
-                    //grdViewSupplierMapping.Columns[0].HeaderText = "";
-                    //grdViewSupplierMapping.Columns[0].Width = 50;
-                    //grdViewSupplierMapping.Columns["S.No."].Width = 50;
-
                     grdMoveProduct.Columns["PRID"].Visible = false;
                     grdMoveProduct.Columns["P.I Code"].Width = 100;
                     grdMoveProduct.Columns["Product Name in English"].Width = 250;
@@ -3431,58 +3266,6 @@ namespace ROMS
                         varProductID = varProductID + "," + Convert.ToString(grdMoveProduct.Rows[i].Cells["PRID"].Value);
                     }
                 }
-
-                /*
-                int varLocationId = 0;
-                if (txtDLocation.Text == "")
-                {
-                    varLocationId = 0;
-                }
-                else
-                {
-                    DataService objDServ = new DataService();
-                    string varId_Location = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtDLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtDLocation.Text.Trim() + "') END AS SLID ");
-                    objDServ.CloseConnection();
-                    varLocationId = Convert.ToInt32(varId_Location);
-                }
-                int varRackId = 0;
-                if (txtDRack.Text == "")
-                {
-                    varRackId = 0;
-                }
-                else
-                {
-                    DataService objDServ = new DataService();
-                    string varId_Rack = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_Name = '" + txtDRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_Name = '" + txtDRack.Text.Trim() + "') END AS RKID ");
-                    objDServ.CloseConnection();
-                    varRackId = Convert.ToInt32(varId_Rack);
-                }
-
-                int varDLocationId = 0;
-                if (txtMoveLocation.Text == "")
-                {
-                    varDLocationId = 0;
-                }
-                else
-                {
-                    DataService objDServ = new DataService();
-                    string varId_DLocation = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtMoveLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtMoveLocation.Text.Trim() + "') END AS SLID ");
-                    objDServ.CloseConnection();
-                    varDLocationId = Convert.ToInt32(varId_DLocation);
-                }
-                int varDRackId = 0;
-                if (txtMoveRack.Text == "")
-                {
-                    varDRackId = 0;
-                }
-                else
-                {
-                    DataService objDServ = new DataService();
-                    string varId_DRack = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_Name = '" + txtMoveRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_Name = '" + txtMoveRack.Text.Trim() + "') END AS RKID ");
-                    objDServ.CloseConnection();
-                    varDRackId = Convert.ToInt32(varId_DRack);
-                }*/
-
                 int varDLocationId = 0;
                 if (lblDLocation.Text == "" || lblDLocation.Text == "-1" || lblDLocation.Text == "0")
                 {
@@ -3508,8 +3291,6 @@ namespace ROMS
                     varMoveRackId = 0;
                 }
                 else { varMoveRackId = Convert.ToInt32(lblMoveRack.Text); }
-
-
 
                 varResult = objspservice.udfnRackSettings(varType, 0, varDLocationId, varDRackId, varProductID, varMoveLocationId, varMoveRackId, varoriginator);
                 objspservice.CloseConnection();
@@ -3586,7 +3367,6 @@ namespace ROMS
             {
                 txtMoveLocation.BackColor = Color.LemonChiffon;
                 epRackSettings.Clear();
-                //txtDRack.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -3744,8 +3524,6 @@ namespace ROMS
                         epRackSettings.Clear();
                     }
                 }
-                //txtMoveLocation.BackColor = Color.White;
-                //epRackSettings.Clear();
                 lvMoveLocation.Visible = false;
                 txtMoveRack.BackColor = Color.LemonChiffon;
             }
@@ -3818,40 +3596,6 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtMoveRack.Text.Length > 0)
                 {
-
-                    
-                    /*
-                    int varDLocationId = 0;
-                    int varLocationId = 0;
-                    int varRackId = 0;
-                    if (txtMoveLocation.Text == "")
-                    {
-                        varDLocationId = 0;
-                    }
-                    else
-                    {
-                        if (lblMoveLocation.Text.Trim() == lblDLocation.Text.Trim())
-                        {
-                            DataService objdserv = new DataService();
-                            string varId_Rack = objdserv.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Rack WHERE RK_Name = '" + txtDRack.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT RKID FROM MR_Rack WHERE RK_Name = '" + txtDRack.Text.Trim() + "') END AS RKID ");
-                            objdserv.CloseConnection();
-                            varRackId = Convert.ToInt32(varId_Rack);
-                        }
-                        else
-                        {
-                            DataService objDerv = new DataService();
-                            string varId_DDLocation = objDerv.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtMoveLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtMoveLocation.Text.Trim() + "') END AS SLID ");
-                            objDerv.CloseConnection();
-                            varLocationId = Convert.ToInt32(varId_DDLocation);
-                        }
-                        DataService objDserv = new DataService();
-                        string varId_DLocation = objDserv.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_StockLocation WHERE SL_EName = '" + txtMoveLocation.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SLID FROM MR_StockLocation WHERE SL_EName = '" + txtMoveLocation.Text.Trim() + "') END AS SLID ");
-                        objDserv.CloseConnection();
-                        varLocationId = Convert.ToInt32(varId_DLocation);
-                    }
-                    //if (varLocationId != 0)
-                    //{
-                    */
                     int varMoveLocationId = 0;
                     if (lblMoveLocation.Text == "" || lblMoveLocation.Text == "-1" || lblMoveLocation.Text == "0")
                     {
@@ -3952,7 +3696,6 @@ namespace ROMS
                     ListViewItem selectedItem = lvMoveLocation.SelectedItems[0];
                     txtMoveLocation.Text = selectedItem.SubItems[0].Text;
                     lblMoveLocation.Text = selectedItem.SubItems[1].Text;
-                    //    lvCity.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -4004,7 +3747,6 @@ namespace ROMS
                     ListViewItem selectedItem = lvMoveRack.SelectedItems[0];
                     txtMoveRack.Text = selectedItem.SubItems[0].Text;
                     lblMoveRack.Text = selectedItem.SubItems[1].Text;
-                    //    lvCity.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -4210,17 +3952,12 @@ namespace ROMS
                 for (int i = 0; i < grdSupplierMapping.Rows.Count; i++)
                 {
                     grdSupplierMapping.Rows[i].Cells[0].Value = chkRackSettings.Checked;
-                    // grdSubGroup.Rows[i].Cells["clmchkProductSubGroup"].Value = chkSubGroup.Checked;
                 }
 
                 foreach (DataGridViewRow row in grdSupplierMapping.Rows)
                 {
                     row.Cells[0].Value = true;
                 }
-                //dtSubGroupAdd.Rows.Clear();
-                //dtSubGroupAdd.AcceptChanges();
-                //grdSubGroupAdd.DataSource = dtSubGroupAdd;
-
             }
             catch (Exception ex)
             {
@@ -4241,7 +3978,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnSelectAll_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -4270,7 +4006,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnSubGrupUnSelectAll_Click(object sender, EventArgs e)
         {
             try
@@ -4338,17 +4073,12 @@ namespace ROMS
                 for (int i = 0; i < grdViewProduct.Rows.Count; i++)
                 {
                     grdViewProduct.Rows[i].Cells[0].Value = checkAll.Checked;
-                    // grdSubGroup.Rows[i].Cells["clmchkProductSubGroup"].Value = chkSubGroup.Checked;
                 }
 
                 foreach (DataGridViewRow row in grdViewProduct.Rows)
                 {
                     row.Cells[0].Value = true;
                 }
-                //dtSubGroupAdd.Rows.Clear();
-                //dtSubGroupAdd.AcceptChanges();
-                //grdSubGroupAdd.DataSource = dtSubGroupAdd;
-
             }
             catch (Exception ex)
             {
