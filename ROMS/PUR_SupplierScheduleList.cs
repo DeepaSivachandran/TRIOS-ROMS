@@ -1409,15 +1409,15 @@ namespace ROMS
         {
             try
             { 
-                if (this.RPTViewer != null)
-                {
-                    RPTViewer.ReportSource = null;
-                    this.RPTViewer.Dispose();
-                    objBillreport.Close();
-                    objBillreport.Dispose();
-                    objBillreport = null;
-                    GC.Collect();
-                }
+                //if (this.RPTViewer != null)
+                //{
+                //    RPTViewer.ReportSource = null;
+                //    this.RPTViewer.Dispose();
+                //    objBillreport.Close();
+                //    objBillreport.Dispose();
+                //    objBillreport = null;
+                //    GC.Collect();
+                //}
             }
             catch (Exception ex)
             {
@@ -1495,12 +1495,32 @@ namespace ROMS
                 cmbConcernPrint.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
 
+        }
+
+        private void PUR_SupplierScheduleList_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.RPTViewer != null)
+                {
+                    RPTViewer.ReportSource = null;
+                    this.RPTViewer.Dispose();
+                    objBillreport.Close();
+                    objBillreport.Dispose();
+                    objBillreport = null;
+                    GC.Collect();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }
