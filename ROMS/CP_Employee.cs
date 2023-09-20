@@ -520,7 +520,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    rbActive.Focus();
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
