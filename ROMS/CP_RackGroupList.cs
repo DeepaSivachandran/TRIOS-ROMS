@@ -184,7 +184,7 @@ namespace ROMS
                             grdRackGroupList.Columns["Rack"].Width = 150;
                             grdRackGroupList.Columns["Short Name"].Width = 150;
                             grdRackGroupList.Columns["Description"].Width = 150;
-                            grdRackGroupList.Columns["Staff Name"].Width = 150;
+                            grdRackGroupList.Columns["Employee Name"].Width = 150;
                             grdRackGroupList.Columns["TotalProducts"].Width = 150;
                             grdRackGroupList.Columns["Status"].Width = 80;
 
