@@ -104,6 +104,7 @@
             this.tsSupplierScheduleList.BackColor = System.Drawing.Color.White;
             this.tsSupplierScheduleList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsSupplierScheduleList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsSupplierScheduleList.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsSupplierScheduleList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbNew});
@@ -259,7 +260,7 @@
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 1111224;
-            this.DGV_SearchGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellContentClick);
+            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.DGV_SearchGrid.ColumnMinimumWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
@@ -356,7 +357,7 @@
             this.cmbConcern.Location = new System.Drawing.Point(5, 49);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(131, 27);
-            this.cmbConcern.TabIndex = 958789;
+            this.cmbConcern.TabIndex = 10;
             this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
@@ -372,7 +373,7 @@
             this.btnSchedulePopup.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSchedulePopup.Name = "btnSchedulePopup";
             this.btnSchedulePopup.Size = new System.Drawing.Size(67, 33);
-            this.btnSchedulePopup.TabIndex = 10;
+            this.btnSchedulePopup.TabIndex = 11;
             this.btnSchedulePopup.Text = "View";
             this.btnSchedulePopup.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSchedulePopup.UseVisualStyleBackColor = true;
@@ -400,7 +401,7 @@
             this.grpprint.Location = new System.Drawing.Point(338, 2);
             this.grpprint.Name = "grpprint";
             this.grpprint.Size = new System.Drawing.Size(796, 84);
-            this.grpprint.TabIndex = 3;
+            this.grpprint.TabIndex = 1;
             this.grpprint.TabStop = false;
             this.grpprint.Text = "Print By";
             // 
@@ -619,7 +620,7 @@
             this.grpfilter.Location = new System.Drawing.Point(3, 2);
             this.grpfilter.Name = "grpfilter";
             this.grpfilter.Size = new System.Drawing.Size(332, 84);
-            this.grpfilter.TabIndex = 958803;
+            this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
@@ -762,14 +763,9 @@
             this.RPTViewer.ActiveViewIndex = -1;
             this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.EnableDrillDown = false;
             this.RPTViewer.Location = new System.Drawing.Point(3, 93);
             this.RPTViewer.Name = "RPTViewer";
-            this.RPTViewer.ShowCloseButton = false;
-            this.RPTViewer.ShowCopyButton = false;
-            this.RPTViewer.ShowGroupTreeButton = false;
-            this.RPTViewer.ShowParameterPanelButton = false;
-            this.RPTViewer.ShowRefreshButton = false;
+            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
             this.RPTViewer.Size = new System.Drawing.Size(1348, 516);
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
@@ -797,7 +793,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PUR_SupplierScheduleList_FormClosing);
             this.Load += new System.EventHandler(this.PUR_SupplierScheduleList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_SupplierScheduleList_KeyDown);
-            this.Leave += new System.EventHandler(this.PUR_SupplierScheduleList_Leave);
             this.tsSupplierScheduleList.ResumeLayout(false);
             this.tsSupplierScheduleList.PerformLayout();
             this.pnlSupplierScheduleList.ResumeLayout(false);

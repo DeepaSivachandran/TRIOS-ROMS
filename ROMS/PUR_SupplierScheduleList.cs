@@ -938,16 +938,6 @@ namespace ROMS
 
         private void DGV_SearchGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                //udfnGridSearchFilter();
-                DataService objDser = new DataService();
-                dgvSupplierScheduleList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, dgvSupplierScheduleList);
-                objDser.CloseConnection();
-                dgvSupplierScheduleList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //DGV_SearchGrid_CellPainting(sender,e);
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
         private void udfnSearchGridHead()
         {
@@ -1024,6 +1014,7 @@ namespace ROMS
                                 }
                                 LV_Supplier.Visible = true;
                                 LV_Supplier.Columns[1].Width = 0;
+                                LV_Supplier.BringToFront();
                             }
                         }
                     }
@@ -1145,6 +1136,7 @@ namespace ROMS
                                     lvSupplerName.Items.Add(objList);
                                 }
                                 lvSupplerName.Visible = true;
+                                lvSupplerName.BringToFront();
                                 lvSupplerName.Columns[1].Width = 0;
                             }
                         }
@@ -1370,19 +1362,27 @@ namespace ROMS
                 RPTViewer.ReuseParameterValuesOnRefresh = true;
                 RPTViewer.RefreshReport();
                 CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                int varlanguage = 0;
+                int varlanguage = 0;string varlblsupplierprint = "0";
                 if (rbEnglish.Checked == true)
                 {
                     varlanguage = 1;
                 }
                 else { varlanguage = 2; }
 
+                if (txtsuppliernameprint.Text != "")
+                {
+                    varlblsupplierprint = lblSuppliernameprint.Text;
+                }
+                else
+                {
+                    varlblsupplierprint = "0";
+                }
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierProductList.rpt");
                 objBillreport.SetParameterValue("@paracompanycode",Convert.ToInt32(cmbConcernPrint.SelectedValue));
                 objBillreport.SetParameterValue("@paraOrderID", Convert.ToInt32(cmbOrder.SelectedValue));
                 objBillreport.SetParameterValue("@parascheduleid", Convert.ToInt32(cmbOrderSchedule.SelectedValue)); 
-                objBillreport.SetParameterValue("@parasupplierid", lblSuppliernameprint.Text);
+                objBillreport.SetParameterValue("@parasupplierid", varlblsupplierprint);
                 objBillreport.SetParameterValue("@paraProductType", varlanguage); 
                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                 objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
@@ -1522,6 +1522,21 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                dgvSupplierScheduleList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, dgvSupplierScheduleList);
+                objDser.CloseConnection();
+                dgvSupplierScheduleList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
     }
 }
