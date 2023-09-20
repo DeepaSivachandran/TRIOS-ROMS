@@ -167,6 +167,7 @@ namespace ROMS
                             grdRackSettingList.Columns["Rack Name"].Width = 150;
                             grdRackSettingList.Columns["Product Name"].Width = 300;
                             grdRackSettingList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdRackSettingList.ClearSelection();
                         }
                         else
                         {
@@ -469,6 +470,19 @@ namespace ROMS
             try
             {
                 btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRackSettingList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdRackSettingList.ClearSelection();
             }
             catch (Exception ex)
             {

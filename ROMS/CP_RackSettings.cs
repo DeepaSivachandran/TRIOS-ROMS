@@ -17,9 +17,13 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private ToolTip tpStockLocation = new ToolTip();
+        private ToolTip tppStockLocation = new ToolTip();
         private ToolTip tpRack = new ToolTip();
+        private ToolTip tppRack = new ToolTip();
         private ToolTip tpProductGroup = new ToolTip();
+        private ToolTip tppProductGroup = new ToolTip();
         private ToolTip tpProductSubGroup = new ToolTip();
+        private ToolTip tppProductSubGroup = new ToolTip();
 
         public DataTable dtSupplierMapping = new DataTable();
         public DataTable dtViewProduct = new DataTable();
@@ -75,6 +79,7 @@ namespace ROMS
             try
             {
                 txtLocation.Focus();
+                MainForm.objCP_RackSettinglist.grdRackSettingList.ClearSelection();
                 this.ActiveControl = txtLocation;
                 //grbDestination.Visible = false;
                 dtSupplierMapping = new DataTable();
@@ -103,6 +108,14 @@ namespace ROMS
                 dtViewProduct.Columns.Add("Unit", typeof(string));
                 dtViewProduct.Columns.Add("PRODUCTID", typeof(int));
 
+                dtMoveProduct = new DataTable();
+                //dtViewSupplierMapping.Columns.Add("S.No.", typeof(string));
+                dtMoveProduct.Columns.Add("P.I Code", typeof(string));
+                dtMoveProduct.Columns.Add("Product Name in English", typeof(string));
+                dtMoveProduct.Columns.Add("Product Name in Tamil", typeof(string));
+                dtMoveProduct.Columns.Add("Unit", typeof(string));
+                dtMoveProduct.Columns.Add("PRID", typeof(int));
+
                 if (btnSave.Text == "Update")
                 {
                     udfnEditLoad();
@@ -118,13 +131,15 @@ namespace ROMS
         {
             try
             {
-                txtLocation.Text = PbStockLocation;
+                //txtLocation.Text = PbStockLocation;
                 lblSLocation.Text = Convert.ToString(PbLocationCode);
-                lvLocation.Visible = false;
-                txtRack.Text = PbRackName;
+                
+                //txtRack.Text = PbRackName;
                 lblSRack.Text = Convert.ToString(PbRKID);
-                lvRack.Visible = false;
+                
                 udfnList();
+                lvLocation.Visible = false;
+                lvRack.Visible = false;
                 //udfnViewSupplier();
             }
             catch (Exception ex)
@@ -145,12 +160,20 @@ namespace ROMS
                 {
                     tsbEdit_Click(sender, e);
                 }
+                //if (e.KeyCode == Keys.Escape)
+                //{
+                //    MainForm.objStart = new DEF_Start();
+                //    MainForm.objStart.MdiParent = this.ParentForm;
+                //    MainForm.objStart.Show();
+                //    this.Close();
+                //}
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    udfnclose();
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    BtnSave_Click(sender, e);
                 }
                 if (e.KeyCode == Keys.F5)
                 {
@@ -176,10 +199,6 @@ namespace ROMS
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
-                    {
-                        this.Close();
-                    }
-                    else
                     {
                         this.Close();
                     }
@@ -226,18 +245,18 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtLocation.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtLocation, "Please enter Location");
+                    epRackSettings.SetError(txtLocation, "Please enter location");
                     txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please enter Location", txtLocation, 5000);
+                    tpStockLocation.Show("Please enter location", txtLocation, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtRack.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtRack, "Please enter Rack");
+                    epRackSettings.SetError(txtRack, "Please enter rack");
                     txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRack.ShowAlways = true;
-                    tpRack.Show("Please enter Rack", txtRack, 5000);
+                    tpRack.Show("Please enter rack", txtRack, 5000);
                     blnErrorFlag = true;
                 }
                 if (grdViewSupplierMapping.Rows.Count > 0)
@@ -329,7 +348,7 @@ namespace ROMS
                     }
                     else
                     {
-                        grdViewSupplierMapping.Rows.Clear();
+                        grdViewSupplierMapping.DataSource = null;
                     }
                     udfnclear();
                 }
@@ -395,25 +414,25 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtLocation.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtLocation, "Please enter Location");
+                    epRackSettings.SetError(txtLocation, "Please enter location");
                     txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please enter Location", txtLocation, 5000);
+                    tpStockLocation.Show("Please enter location", txtLocation, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(txtRack.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtRack, "Please enter Rack");
+                    epRackSettings.SetError(txtRack, "Please enter rack");
                     txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRack.ShowAlways = true;
-                    tpRack.Show("Please enter Rack", txtRack, 5000);
+                    tpRack.Show("Please enter rack", txtRack, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
                 {
                     try
                     {
-                        udfnList();
+                        udfnProductList();
                         for (int j = 0; j < grdSupplierMapping.RowCount; j++)
                         {
                             if (Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRODUCTID"].Value) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
@@ -439,17 +458,17 @@ namespace ROMS
         {
             try
             {
-                int varViewType = 0;
+                int varViewType = 1;
                 int varRackId = 0;
-                if (btnSave.Text == "Save")
-                {
-                    varViewType = 13;
-                }
-                else
-                {
-                    varViewType = 14;
-                    varRackId = PbRKID;
-                }
+                //if (btnSave.Text == "Save")
+                //{
+                //    varViewType = 13;
+                //}
+                //else
+                //{
+                //    varViewType = 1;
+                //    varRackId = PbRKID;
+                //}
                 dtSupplierMapping.Rows.Clear();
                 Application.DoEvents();
                 //grdSupplierMapping.DataSource = null;
@@ -483,8 +502,8 @@ namespace ROMS
                     {
                         epRackSettings.SetError(txtProductGroup, "Please select valid group");
                         txtProductGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpProductSubGroup.ShowAlways = true;
-                        tpProductSubGroup.Show("Please select valid group", txtProductGroup, 5000);
+                        tpProductGroup.ShowAlways = true;
+                        tpProductGroup.Show("Please select valid group", txtProductGroup, 5000);
                     }
                     else
                     {
@@ -527,7 +546,8 @@ namespace ROMS
                         epRackSettings.Clear();
                     }
                 }
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, Convert.ToInt32(varGroupId), Convert.ToInt32(varSubGroupId), "", "", "", 0, 0, 0, 0, 0, varRackId);
+                objDs = objdserv.udfnRackSettingsList(varViewType, 0, 0,PbLocationCode,PbRKID);
+                //objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, Convert.ToInt32(varGroupId), Convert.ToInt32(varSubGroupId), "", "", "", 0, 0, 0, 0, 0, varRackId);
                 objdserv.CloseConnection();
 
 
@@ -630,18 +650,28 @@ namespace ROMS
                     }
                 }
 
+                if (objDs.Tables[2].Rows.Count > 0)
+                {
+                    txtLocation.Text = objDs.Tables[2].Rows[0]["SL_EName"].ToString().Replace("''", "'");
+                    txtRack.Text = objDs.Tables[2].Rows[0]["RK_ShortName"].ToString().Replace("''", "'");
+                }
+
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally {
-                foreach (TabPage page in tcRackSettings.TabPages)
+            finally
+            {
+                if (btnSave.Text == "Update")
                 {
-                    if (page.Name == "MoveProduct")
+                    foreach (TabPage page in tcRackSettings.TabPages)
                     {
-                        tcRackSettings.TabPages.Remove(page);
+                        if (page.Name == "MoveProduct")
+                        {
+                            tcRackSettings.TabPages.Remove(page);
+                        }
                     }
                 }
             }
@@ -650,9 +680,34 @@ namespace ROMS
         {
             try
             {
-                //if (e.ColumnIndex == 0)
+                if (e.ColumnIndex == 0)
+                {
+                    udfnCalculateCheckedCount();
+                }
+                //varProductID = ""; string varRemoverRack = "";
+                //if (Convert.ToBoolean(grdSupplierMapping.SelectedRows[0].Cells[0].EditedFormattedValue) == true)
                 //{
-                //    udfnCalculateCheckedCount();
+                //    varProductID = Convert.ToString(grdSupplierMapping.SelectedRows[0].Cells["PRODUCTID"].Value);
+                //    udfnList();
+                //}
+                //else
+                //{
+                //    DataTable objDtNew = new DataTable();
+                //    int varRowCount = dtSupplierMapping.Rows.Count;
+                //    varRemoverRack = Convert.ToString(grdSupplierMapping.SelectedRows[0].Cells["PRODUCTID"].Value);
+                //l: for (int i = 0; i < varRowCount; i++)
+                //    {
+                //        if (varRemoverRack == Convert.ToString(dtSupplierMapping.Rows[i]["PRODUCTID"]))
+                //        {
+                //            dtSupplierMapping.Rows[i].Delete();
+                //            dtSupplierMapping.AcceptChanges();
+                //            varRowCount = dtSupplierMapping.Rows.Count;
+                //            goto l;
+                //        }
+                //    }
+                //    grdSupplierMapping.DataSource = dtSupplierMapping;
+                //    grdSupplierMapping.Columns[0].HeaderText = "";
+
                 //}
             }
             catch (Exception ex)
@@ -694,20 +749,24 @@ namespace ROMS
             }
         }
         private void ChkRackSettings_CheckedChanged(object sender, EventArgs e)
-        {
+        {   /*
             try
             {
+                //for (int i = 0; i < grdSupplierMapping.Rows.Count; i++)
+                //{
+                //    grdSupplierMapping.Rows[i].Cells[0].Value = chkRackSettings.Checked;
+                //}
+
                 foreach (DataGridViewRow row in grdSupplierMapping.Rows)
                 {
                     row.Cells[0].Value = chkRackSettings.Checked;
                 }
             }
-
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }/*
+            }
             try
             {
                 if (varCheckAllFlag != 1)
@@ -1017,10 +1076,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtLocation.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtLocation, "Please enter Location");
+                    epRackSettings.SetError(txtLocation, "Please enter location");
                     txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please enter Location", txtLocation, 5000);
+                    tpStockLocation.Show("Please enter location", txtLocation, 5000);
                 }
                 else
                 {
@@ -1232,10 +1291,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtRack.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtRack, "Please enter Rack");
+                    epRackSettings.SetError(txtRack, "Please enter rack");
                     txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRack.ShowAlways = true;
-                    tpRack.Show("Please enter Rack", txtRack, 5000);
+                    tpRack.Show("Please enter rack", txtRack, 5000);
                 }
                 else
                 {
@@ -1408,10 +1467,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtDLocation.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtDLocation, "Please enter Location");
+                    epRackSettings.SetError(txtDLocation, "Please enter location");
                     txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please enter Location", txtDLocation, 5000);
+                    tppStockLocation.ShowAlways = true;
+                    tppStockLocation.Show("Please enter location", txtDLocation, 5000);
                     lblDLocation.Text = "0";
                 }
                 else
@@ -1516,17 +1575,17 @@ namespace ROMS
                     {
                         epRackSettings.SetError(txtDLocation, "Please select valid stock location");
                         txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpStockLocation.ShowAlways = true;
-                        tpStockLocation.Show("Please select valid stock location", txtDLocation, 5000);
+                        tppStockLocation.ShowAlways = true;
+                        tppStockLocation.Show("Please select valid stock location", txtDLocation, 5000);
                         txtDRack.Text = "";
                         txtDLocation.Focus();
                     }
                     else
                     {
                         epRackSettings.Clear();
+                        //txtDLocation.BackColor = Color.White;
                     }
                 }
-                txtDLocation.BackColor = Color.White;
                 lvDLocation.Visible = false;
                 txtDRack.BackColor = Color.LemonChiffon;
             }
@@ -1572,10 +1631,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtDRack.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtDRack, "Please enter Rack");
+                    epRackSettings.SetError(txtDRack, "Please enter rack");
                     txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpRack.ShowAlways = true;
-                    tpRack.Show("Please enter Rack", txtDRack, 5000);
+                    tppRack.ShowAlways = true;
+                    tppRack.Show("Please enter rack", txtDRack, 5000);
                     lblDRack.Text = "0";
                 }
                 else
@@ -2023,10 +2082,10 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtLocation.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtLocation, "Please enter Location");
+                    epRackSettings.SetError(txtLocation, "Please enter location");
                     txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please enter Location", txtLocation, 5000);
+                    tpStockLocation.Show("Please enter location", txtLocation, 5000);
                     blnErrorFlag = true;
                 }
                 /* Check purchase stock location is valid or not*/
@@ -2063,10 +2122,10 @@ namespace ROMS
                 }
                 if (Convert.ToString(txtRack.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtRack, "Please enter Rack");
+                    epRackSettings.SetError(txtRack, "Please enter rack");
                     txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRack.ShowAlways = true;
-                    tpRack.Show("Please enter Rack", txtRack, 5000);
+                    tpRack.Show("Please enter rack", txtRack, 5000);
                     blnErrorFlag = true;
                 }
                 /* Check purchase rack is valid or not*/
@@ -2106,7 +2165,7 @@ namespace ROMS
                 {
                     try
                     {
-                        udfnList();
+                        udfnProductList();
                         for (int j = 0; j < grdSupplierMapping.RowCount; j++)
                         {
                             if (Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRODUCTID"].Value) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
@@ -2127,6 +2186,137 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+        private void udfnProductList()
+        {
+            try
+            {
+                int varViewType = 0;
+                int varStatusId = 1;
+                int varRackId = 0;
+                //if (btnSave.Text == "Save")
+                //{
+                //    varStatusId = 1;
+                //}
+                dtSupplierMapping.Rows.Clear();
+                Application.DoEvents();
+                //grdSupplierMapping.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                string varGroupId = "0";
+                if (txtProductGroup.Text == "")
+                {
+                    varGroupId = "0";
+                }
+                else
+                {
+                    /* Check product group is valid or not*/
+                    DataSet objDsGroup = new DataSet();
+                    SPDataService objDServ1 = new SPDataService();
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim());
+                    objDServ1.CloseConnection();
+                    if (objDsGroup != null)
+                    {
+                        if (objDsGroup.Tables.Count > 0)
+                        {
+                            if (objDsGroup.Tables[0].Rows.Count > 0)
+                            {
+                                varGroupId = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    lblGroupId.Text = Convert.ToString(varGroupId);
+                    if (lblGroupId.Text == "-1")
+                    {
+                        epRackSettings.SetError(txtProductGroup, "Please select valid group");
+                        txtProductGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpProductGroup.ShowAlways = true;
+                        tpProductGroup.Show("Please select valid group", txtProductGroup, 5000);
+                    }
+                    else
+                    {
+                        epRackSettings.Clear();
+                    }
+                }
+
+                string varSubGroupId = "0";
+                if (txtProductSubGroup.Text == "")
+                {
+                    varSubGroupId = "0";
+                }
+                else
+                {
+                    /* Check product sub group is valid or not*/
+                    DataSet objDssubgroup = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtProductSubGroup.Text.Trim());
+                    objDserv.CloseConnection();
+                    if (objDssubgroup != null)
+                    {
+                        if (objDssubgroup.Tables.Count > 0)
+                        {
+                            if (objDssubgroup.Tables[0].Rows.Count > 0)
+                            {
+                                varSubGroupId = Convert.ToString(objDssubgroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    lblSubGroupId.Text = Convert.ToString(varSubGroupId);
+                    if (lblSubGroupId.Text == "-1")
+                    {
+                        epRackSettings.SetError(txtProductSubGroup, "Please select valid subgroup");
+                        txtProductSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpProductSubGroup.ShowAlways = true;
+                        tpProductSubGroup.Show("Please select valid subgroup", txtProductSubGroup, 5000);
+                    }
+                    else
+                    {
+                        epRackSettings.Clear();
+                    }
+                }
+                //objDs = objdserv.udfnRackSettingsList(varViewType, 0, 0, PbLocationCode, PbRKID);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, Convert.ToInt32(varGroupId), Convert.ToInt32(varSubGroupId), "", "", "", 0,varStatusId, 0, 0, 0, 0);
+                objdserv.CloseConnection();
+
+                if (objDs.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    {
+                        dtSupplierMapping.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name in English"],
+                           objDs.Tables[0].Rows[i]["Product Name in Tamil"], objDs.Tables[0].Rows[i]["Unit"], objDs.Tables[0].Rows[i]["ID"]);
+                    }
+                }
+                grdSupplierMapping.DataSource = null;
+                grdSupplierMapping.DataSource = dtSupplierMapping;
+                grdSupplierMapping.Columns[0].HeaderText = "";
+                grdSupplierMapping.Columns[0].Width = 50;
+                grdSupplierMapping.Columns["S.No."].Width = 50;
+                grdSupplierMapping.Columns["PRODUCTID"].Visible = false;
+                grdSupplierMapping.Columns["P.I Code"].Width = 100;
+                grdSupplierMapping.Columns["Product Name in English"].Width = 250;
+                grdSupplierMapping.Columns["Product Name in Tamil"].Width = 250;
+
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                if (btnSave.Text == "Update")
+                {
+                    foreach (TabPage page in tcRackSettings.TabPages)
+                    {
+                        if (page.Name == "MoveProduct")
+                        {
+                            tcRackSettings.TabPages.Remove(page);
+                        }
+                    }
+                }
             }
         }
         private void BtnSourceView_Enter(object sender, EventArgs e)
@@ -2184,8 +2374,8 @@ namespace ROMS
                     {
                         epRackSettings.SetError(txtDLocation, "Please select valid stock location");
                         txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpStockLocation.ShowAlways = true;
-                        tpStockLocation.Show("Please select valid stock location", txtDLocation, 5000);
+                        tppStockLocation.ShowAlways = true;
+                        tppStockLocation.Show("Please select valid stock location", txtDLocation, 5000);
                         blnErrorFlag = true;
                     }
                 }
@@ -2212,8 +2402,8 @@ namespace ROMS
                     {
                         epRackSettings.SetError(txtDRack, "Please select valid rack");
                         txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpRack.ShowAlways = true;
-                        tpRack.Show("Please select valid rack", txtDRack, 5000);
+                        tppRack.ShowAlways = true;
+                        tppRack.Show("Please select valid rack", txtDRack, 5000);
                         blnErrorFlag = true;
                     }
                 }
@@ -2282,8 +2472,8 @@ namespace ROMS
                     {
                         epRackSettings.SetError(txtGroup, "Please select valid group");
                         txtGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpProductSubGroup.ShowAlways = true;
-                        tpProductSubGroup.Show("Please select valid group", txtGroup, 5000);
+                        tppProductGroup.ShowAlways = true;
+                        tppProductGroup.Show("Please select valid group", txtGroup, 5000);
                     }
                 }
 
@@ -2314,8 +2504,8 @@ namespace ROMS
                     {
                         epRackSettings.SetError(txtSubGroup, "Please select valid subgroup");
                         txtSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpProductSubGroup.ShowAlways = true;
-                        tpProductSubGroup.Show("Please select valid subgroup", txtSubGroup, 5000);
+                        tppProductSubGroup.ShowAlways = true;
+                        tppProductSubGroup.Show("Please select valid subgroup", txtSubGroup, 5000);
                     }
                 }
 
@@ -2329,10 +2519,10 @@ namespace ROMS
 
                 if (Convert.ToString(txtDRack.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtDRack, "Please enter Rack");
+                    epRackSettings.SetError(txtDRack, "Please enter rack");
                     txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpRack.ShowAlways = true;
-                    tpRack.Show("Please enter Rack", txtDRack, 5000);
+                    tppRack.ShowAlways = true;
+                    tppRack.Show("Please enter rack", txtDRack, 5000);
                 }
                 else
                 {
@@ -2356,8 +2546,8 @@ namespace ROMS
                     {
                         epRackSettings.SetError(txtDRack, "Please select valid rack");
                         txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpRack.ShowAlways = true;
-                        tpRack.Show("Please select valid rack", txtDRack, 5000);
+                        tppRack.ShowAlways = true;
+                        tppRack.Show("Please select valid rack", txtDRack, 5000);
                         //blnErrorFlag = true;
                     }
                 }
@@ -2861,7 +3051,7 @@ namespace ROMS
         {
             try
             {
-                (grdMoveProduct.DataSource as DataTable).DefaultView.RowFilter = "([productenglishname]) LIKE '%" + txtSearchProductName2.Text + "%'or ([picode]) LIKE '%" + txtSearchProductName2.Text + "%' ";
+                (grdMoveProduct.DataSource as DataTable).DefaultView.RowFilter = "([Product Name in English]) LIKE '%" + txtSearchProductName2.Text + "%'or ([P.I Code]) LIKE '%" + txtSearchProductName2.Text + "%' ";
             }
             catch (Exception ex)
             {
@@ -2918,25 +3108,25 @@ namespace ROMS
         }
         private void CheckAll_CheckedChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (varCheckAll != 1)
-                {
-                    for (int i = 0; i < grdViewProduct.Rows.Count; i++)
-                    {
-                        grdViewProduct.Rows[i].Cells[0].Value = checkAll.Checked;
-                    }
-                }
-                else
-                {
-                    varCheckAll = 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    if (varCheckAll != 1)
+            //    {
+            //        for (int i = 0; i < grdViewProduct.Rows.Count; i++)
+            //        {
+            //            grdViewProduct.Rows[i].Cells[0].Value = checkAll.Checked;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        varCheckAll = 0;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
         private void BtnAddgrid_Click(object sender, EventArgs e)
         {
@@ -2965,10 +3155,10 @@ namespace ROMS
                         {
                             int varFlag = 0, varcount = 1; ;
 
-                            for (int j = 0; j < grdMoveProduct.Rows.Count; j++)
+                            for (int j = 0; j < dtMoveProduct.Rows.Count; j++)
                             {
                                 varAddRack = Convert.ToString(grdViewProduct.Rows[i].Cells["PRODUCTID"].Value);
-                                if (varAddRack == Convert.ToString(grdMoveProduct.Rows[j].Cells["productmoveid"].Value))
+                                if (varAddRack == Convert.ToString(dtMoveProduct.Rows[j]["PRID"]))
                                 {
                                     varFlag = 1;
                                 }
@@ -2976,11 +3166,35 @@ namespace ROMS
                             }
                             if (varFlag == 0)
                             {
-                                grdMoveProduct.Rows.Add(Convert.ToInt32(grdMoveProduct.Rows.Count) + 1, grdViewProduct.Rows[i].Cells["P.I Code"].Value, grdViewProduct.Rows[i].Cells["Product Name in English"].Value,
+                                dtMoveProduct.Rows.Add(grdViewProduct.Rows[i].Cells["P.I Code"].Value, grdViewProduct.Rows[i].Cells["Product Name in English"].Value,
                                     grdViewProduct.Rows[i].Cells["Product Name in Tamil"].Value, grdViewProduct.Rows[i].Cells["Unit"].Value, grdViewProduct.Rows[i].Cells["PRODUCTID"].Value);
                             }
                         }
+                        else
+                        {
+                            for (int j = 0; j < dtMoveProduct.Rows.Count; j++)
+                            {
+                                varRemoveRack = Convert.ToString(grdViewProduct.Rows[i].Cells["PRODUCTID"].Value);
+                                if (varRemoveRack == Convert.ToString(dtMoveProduct.Rows[j]["PRID"]))
+                                {
+                                    dtMoveProduct.Rows[j].Delete();
+                                    dtMoveProduct.AcceptChanges();
+                                }
+                            }
+                        }
                     }
+                    grdMoveProduct.DataSource = null;
+                    grdMoveProduct.DataSource = dtMoveProduct;
+                    grdMoveProduct.Columns["clmRemoveProduct"].DisplayIndex = 5;
+                    //grdViewSupplierMapping.Columns[0].HeaderText = "";
+                    //grdViewSupplierMapping.Columns[0].Width = 50;
+                    //grdViewSupplierMapping.Columns["S.No."].Width = 50;
+
+                    grdMoveProduct.Columns["PRID"].Visible = false;
+                    grdMoveProduct.Columns["P.I Code"].Width = 100;
+                    grdMoveProduct.Columns["Product Name in English"].Width = 250;
+                    grdMoveProduct.Columns["Product Name in Tamil"].Width = 250;
+                    grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                 }
                 else
                 {
@@ -3005,10 +3219,10 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtDLocation.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtDLocation, "Please enter Location");
+                    epRackSettings.SetError(txtDLocation, "Please enter location");
                     txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please enter Location", txtDLocation, 5000);
+                    tppStockLocation.ShowAlways = true;
+                    tppStockLocation.Show("Please enter location", txtDLocation, 5000);
                     blnErrorFlag = true;
                 }
                 else
@@ -3035,18 +3249,18 @@ namespace ROMS
                         {
                             epRackSettings.SetError(txtDLocation, "Please select valid stock location");
                             txtDLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpStockLocation.ShowAlways = true;
-                            tpStockLocation.Show("Please select valid stock location", txtDLocation, 5000);
+                            tppStockLocation.ShowAlways = true;
+                            tppStockLocation.Show("Please select valid stock location", txtDLocation, 5000);
                             blnErrorFlag = true;
                         }
                     }
                 }
                 if (Convert.ToString(txtDRack.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtDRack, "Please enter Rack");
+                    epRackSettings.SetError(txtDRack, "Please enter rack");
                     txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpRack.ShowAlways = true;
-                    tpRack.Show("Please enter Rack", txtDRack, 5000);
+                    tppRack.ShowAlways = true;
+                    tppRack.Show("Please enter rack", txtDRack, 5000);
                     blnErrorFlag = true;
                 }
                 else
@@ -3073,18 +3287,18 @@ namespace ROMS
                         {
                             epRackSettings.SetError(txtDRack, "Please select valid rack");
                             txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpRack.ShowAlways = true;
-                            tpRack.Show("Please select valid rack", txtDRack, 5000);
+                            tppRack.ShowAlways = true;
+                            tppRack.Show("Please select valid rack", txtDRack, 5000);
                             blnErrorFlag = true;
                         }
                     }
                 }
                 if (Convert.ToString(txtMoveLocation.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtMoveLocation, "Please enter Location");
+                    epRackSettings.SetError(txtMoveLocation, "Please enter location");
                     txtMoveLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please enter Location", txtMoveLocation, 5000);
+                    tppStockLocation.ShowAlways = true;
+                    tppStockLocation.Show("Please enter location", txtMoveLocation, 5000);
                     blnErrorFlag = true;
                 }
                 else
@@ -3111,18 +3325,18 @@ namespace ROMS
                         {
                             epRackSettings.SetError(txtMoveLocation, "Please select valid stock location");
                             txtMoveLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpStockLocation.ShowAlways = true;
-                            tpStockLocation.Show("Please select valid stock location", txtMoveLocation, 5000);
+                            tppStockLocation.ShowAlways = true;
+                            tppStockLocation.Show("Please select valid stock location", txtMoveLocation, 5000);
                             blnErrorFlag = true;
                         }
                     }
                 }
                 if (Convert.ToString(txtMoveRack.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtMoveRack, "Please enter Rack");
+                    epRackSettings.SetError(txtMoveRack, "Please enter rack");
                     txtMoveRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpRack.ShowAlways = true;
-                    tpRack.Show("Please enter Rack", txtMoveRack, 5000);
+                    tppRack.ShowAlways = true;
+                    tppRack.Show("Please enter rack", txtMoveRack, 5000);
                     blnErrorFlag = true;
                 }
                 else
@@ -3149,15 +3363,18 @@ namespace ROMS
                         {
                             epRackSettings.SetError(txtMoveRack, "Please select valid rack");
                             txtMoveRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpRack.ShowAlways = true;
-                            tpRack.Show("Please select valid rack", txtMoveRack, 5000);
+                            tppRack.ShowAlways = true;
+                            tppRack.Show("Please select valid rack", txtMoveRack, 5000);
                             blnErrorFlag = true;
                         }
                     }
                 }
                 if (grdMoveProduct.Rows.Count > 0)
                 {
-                    blnErrorFlag = false;
+                    if (Convert.ToString(txtMoveLocation.Text).Trim() == "" && Convert.ToString(txtMoveRack.Text).Trim() == "")
+                    {
+                        blnErrorFlag = true;
+                    }
                 }
                 else
                 {
@@ -3175,7 +3392,7 @@ namespace ROMS
 
                 if (blnErrorFlag == false)
                 {
-                    btnSave.Enabled = false;
+                    btnMoveSave.Enabled = false;
                     udfnMoveSave(sender, e);
                 }
             }
@@ -3207,11 +3424,11 @@ namespace ROMS
                 {
                     if (varProductID == "")
                     {
-                        varProductID = Convert.ToString(grdMoveProduct.Rows[i].Cells["productmoveid"].Value);
+                        varProductID = Convert.ToString(grdMoveProduct.Rows[i].Cells["PRID"].Value);
                     }
                     else
                     {
-                        varProductID = varProductID + "," + Convert.ToString(grdMoveProduct.Rows[i].Cells["productmoveid"].Value);
+                        varProductID = varProductID + "," + Convert.ToString(grdMoveProduct.Rows[i].Cells["PRID"].Value);
                     }
                 }
 
@@ -3305,7 +3522,12 @@ namespace ROMS
                     if (btnSave.Text == "Update")
                     {
                         varUpdate = 1;
+                        grdMoveProduct.DataSource = null;
                         udfnclose();
+                    }
+                    else
+                    {
+                        grdMoveProduct.DataSource = null;
                     }
                     udfnclear();
                 }
@@ -3314,7 +3536,6 @@ namespace ROMS
                     MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnMoveSave.Enabled = true;
                 }
-                grdMoveProduct.Rows.Clear();
             }
             catch (Exception ex)
             {
@@ -3365,7 +3586,7 @@ namespace ROMS
             {
                 txtMoveLocation.BackColor = Color.LemonChiffon;
                 epRackSettings.Clear();
-                txtDRack.BackColor = Color.White;
+                //txtDRack.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -3411,10 +3632,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtMoveLocation.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtMoveLocation, "Please enter Location");
+                    epRackSettings.SetError(txtMoveLocation, "Please enter location");
                     txtMoveLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please enter Location", txtMoveLocation, 5000);
+                    tppStockLocation.ShowAlways = true;
+                    tppStockLocation.Show("Please enter location", txtMoveLocation, 5000);
                     lblMoveLocation.Text = "0";
                 }
                 else
@@ -3513,8 +3734,8 @@ namespace ROMS
                     {
                         epRackSettings.SetError(txtMoveLocation, "Please select valid stock location");
                         txtMoveLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpStockLocation.ShowAlways = true;
-                        tpStockLocation.Show("Please select valid stock location", txtMoveLocation, 5000);
+                        tppStockLocation.ShowAlways = true;
+                        tppStockLocation.Show("Please select valid stock location", txtMoveLocation, 5000);
                         txtMoveRack.Text = "";
                         txtMoveLocation.Focus();
                     }
@@ -3523,7 +3744,7 @@ namespace ROMS
                         epRackSettings.Clear();
                     }
                 }
-                txtMoveLocation.BackColor = Color.White;
+                //txtMoveLocation.BackColor = Color.White;
                 //epRackSettings.Clear();
                 lvMoveLocation.Visible = false;
                 txtMoveRack.BackColor = Color.LemonChiffon;
@@ -3570,10 +3791,10 @@ namespace ROMS
             {
                 if (Convert.ToString(txtMoveRack.Text).Trim() == "")
                 {
-                    epRackSettings.SetError(txtMoveRack, "Please enter Rack");
+                    epRackSettings.SetError(txtMoveRack, "Please enter rack");
                     txtMoveRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpRack.ShowAlways = true;
-                    tpRack.Show("Please enter Rack", txtMoveRack, 5000);
+                    tppRack.ShowAlways = true;
+                    tppRack.Show("Please enter rack", txtMoveRack, 5000);
                     lblMoveRack.Text = "0";
                 }
                 else
@@ -3805,13 +4026,16 @@ namespace ROMS
                     switch (grdMoveProduct.Columns[e.ColumnIndex].Name)
                     {
                         case "clmRemoveProduct":
-
-                            grdMoveProduct.Rows.RemoveAt(this.grdMoveProduct.SelectedRows[0].Index);
-                            for (int i = 0; i < grdMoveProduct.RowCount; i++)
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
                             {
-                                grdMoveProduct.Rows[i].Cells["sno"].Value = i + 1;
+                                grdMoveProduct.Rows.RemoveAt(this.grdMoveProduct.SelectedRows[0].Index);
+                                for (int i = 0; i < grdMoveProduct.RowCount; i++)
+                                {
+                                    grdMoveProduct.Rows[i].Cells["sno"].Value = i + 1;
+                                }
                             }
-                            break;
+                        break;
                     }
                 }
             }
@@ -3828,7 +4052,10 @@ namespace ROMS
                 try
                 {
                     this.ActiveControl = txtLocation;
-
+                    tppStockLocation.Active = false;
+                    tppRack.Active = false;
+                    tppProductGroup.Active = false;
+                    tppProductSubGroup.Active = false;
                 }
                 catch (Exception ex)
                 {
@@ -3841,7 +4068,10 @@ namespace ROMS
                 try
                 {
                     this.ActiveControl = txtDLocation;
-
+                    tpStockLocation.Active = false;
+                    tpRack.Active = false;
+                    tpProductGroup.Active = false;
+                    tpProductSubGroup.Active = false;
                 }
                 catch (Exception ex)
                 {
@@ -3852,6 +4082,8 @@ namespace ROMS
         }
         private void TcRackSettings_SelectedIndexChanged(object sender, EventArgs e)
         {
+            epRackSettings.Clear();
+            udfnColorChange();
             if (btnSave.Text == "Update")
             {
                 MoveProduct.Hide();
@@ -3860,12 +4092,20 @@ namespace ROMS
             {
                 txtLocation.Focus();
                 this.ActiveControl = txtLocation;
+                tppStockLocation.Active = false;
+                tppRack.Active = false;
+                tppProductGroup.Active = false;
+                tppProductSubGroup.Active = false;
                 txtLocation.SelectionStart = txtLocation.Text.Length;
             }
             else
             {
                 txtDLocation.Focus();
                 this.ActiveControl = txtDLocation;
+                tpStockLocation.Active = false;
+                tpRack.Active = false;
+                tpProductGroup.Active = false;
+                tpProductSubGroup.Active = false;
                 txtDLocation.SelectionStart = txtDLocation.Text.Length;
             }
         }
@@ -3884,6 +4124,292 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void CP_RackSettings_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tpStockLocation.Active = false;
+                tppStockLocation.Active = false;
+                tpRack.Active = false;
+                tppRack.Active = false;
+                tpProductGroup.Active = false;
+                tppProductGroup.Active = false;
+                tpProductSubGroup.Active = false;
+                tppProductSubGroup.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnselectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in grdSupplierMapping.Rows)
+                {
+                    row.Cells[0].Value = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnUnselectAll_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUnselectAll.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnselectAll_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnUnselectAll_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUnselectAll_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUnselectAll.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdSupplierMapping.Rows.Count; i++)
+                {
+                    grdSupplierMapping.Rows[i].Cells[0].Value = chkRackSettings.Checked;
+                    // grdSubGroup.Rows[i].Cells["clmchkProductSubGroup"].Value = chkSubGroup.Checked;
+                }
+
+                foreach (DataGridViewRow row in grdSupplierMapping.Rows)
+                {
+                    row.Cells[0].Value = true;
+                }
+                //dtSubGroupAdd.Rows.Clear();
+                //dtSubGroupAdd.AcceptChanges();
+                //grdSubGroupAdd.DataSource = dtSubGroupAdd;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSelectAll_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSelectAll.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSelectAll_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnSelectAll_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSelectAll_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSelectAll.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSubGrupUnSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                foreach (DataGridViewRow row in grdViewProduct.Rows)
+                {
+                    row.Cells[0].Value = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSubGrupUnSelectAll_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSubGrupUnSelectAll.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSubGrupUnSelectAll_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnUnselectAll_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnSubGrupUnSelectAll_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSubGrupUnSelectAll.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnProductSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdViewProduct.Rows.Count; i++)
+                {
+                    grdViewProduct.Rows[i].Cells[0].Value = checkAll.Checked;
+                    // grdSubGroup.Rows[i].Cells["clmchkProductSubGroup"].Value = chkSubGroup.Checked;
+                }
+
+                foreach (DataGridViewRow row in grdViewProduct.Rows)
+                {
+                    row.Cells[0].Value = true;
+                }
+                //dtSubGroupAdd.Rows.Clear();
+                //dtSubGroupAdd.AcceptChanges();
+                //grdSubGroupAdd.DataSource = dtSubGroupAdd;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnProductSelectAll_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                BtnProductSelectAll.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnProductSelectAll_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnProductSelectAll_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnProductSelectAll_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                BtnProductSelectAll.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnColorChange()
+        {
+            txtLocation.BackColor = Color.White;
+            txtRack.BackColor = Color.White;
+            txtDLocation.BackColor = Color.White;
+            txtDRack.BackColor = Color.White;
+            txtMoveLocation.BackColor = Color.White;
+            txtMoveRack.BackColor = Color.White;
+            txtProductGroup.BackColor = Color.White;
+            txtProductSubGroup.BackColor = Color.White;
+            txtGroup.BackColor = Color.White;
+            txtSubGroup.BackColor = Color.White;
         }
     }
 }
