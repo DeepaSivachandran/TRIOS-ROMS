@@ -52,7 +52,7 @@ namespace ROMS
         private ToolTip tpBranchName = new ToolTip();
         private ToolTip tpAccountNo = new ToolTip();
         private ToolTip tpIfsCode = new ToolTip();
-        public int SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0;
+        public int SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0;
         public string pbSupplierid = "0", varstatusid = "0", varsupplierID = "0";
         public CP_Supplier()
         {
@@ -93,21 +93,7 @@ namespace ROMS
             try
             {
                 txtcontactName.BackColor = Color.White;
-                //if (txtcontactName.Text == "")
-                //{
-
-                //    errCompany.SetError(txtcontactName, "Please enter contact name");
-                //    txtcontactName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tparea.ShowAlways = true;
-                //    tparea.Show("Please enter contact name.", txtcontactName, 5000);
-
-                //}
-                //else
-                //{
-                //    errCompany.Clear();
-                //    txtcontactName.BackColor = Color.White;
-                //    tparea.Hide(txtcontactName);
-                //}
+                
             }
             catch (Exception ex)
             {
@@ -825,7 +811,14 @@ namespace ROMS
             }
             finally
             {
-                MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
+                if (varMasterid == 0)
+                {
+                    MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
+                }
+                else
+                {
+                    MainForm.objPUR_SupplierScheduleList.dgvSupplierScheduleList.ClearSelection(); 
+                }
             }
         }
         private void btnClose_Click(object sender, EventArgs e)
@@ -842,7 +835,14 @@ namespace ROMS
 
             finally
             {
-                MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
+                if (varMasterid == 0)
+                {
+                    MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
+                }
+                else
+                {
+                    MainForm.objPUR_SupplierScheduleList.dgvSupplierScheduleList.ClearSelection();
+                }
             }
         }
 
@@ -3117,9 +3117,10 @@ namespace ROMS
             {
 
                 errCompany.Clear();
-                udfntphide();
-
-
+                udfntphide(); 
+                udfncolorchange();
+                udfnSchedulecolorchange();
+                    
                 if (tcSupplier.SelectedIndex == 1)
                 {
                     txtScheduleName.Focus();

@@ -734,11 +734,10 @@
             this.dgvSupplierScheduleList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvSupplierScheduleList.RowTemplate.Height = 25;
             this.dgvSupplierScheduleList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvSupplierScheduleList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvSupplierScheduleList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSupplierScheduleList.ShowRowErrors = false;
             this.dgvSupplierScheduleList.Size = new System.Drawing.Size(1348, 461);
             this.dgvSupplierScheduleList.TabIndex = 958802;
-            this.dgvSupplierScheduleList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSupplierScheduleList_CellDoubleClick);
             this.dgvSupplierScheduleList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DgvSupplierScheduleList_DataBindingComplete);
             this.dgvSupplierScheduleList.DoubleClick += new System.EventHandler(this.DgvSupplierScheduleList_DoubleClick);
             this.dgvSupplierScheduleList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvSupplierScheduleList_KeyDown);

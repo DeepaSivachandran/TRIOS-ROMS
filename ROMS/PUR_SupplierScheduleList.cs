@@ -1226,16 +1226,39 @@ namespace ROMS
             }
         }
 
-        private void DgvSupplierScheduleList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void udfnEdit()
         {
+            try
+            {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                if (dgvSupplierScheduleList.SelectedRows.Count > 0)
+                {
 
+                    MainForm.objCP_Supplier = new CP_Supplier();
+                    MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                    MainForm.objCP_Supplier.btnSave.Text = "Update";
+                    MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(dgvSupplierScheduleList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
+                    MainForm.objCP_Supplier.varMasterid = 1; 
+                    MainForm.objCP_Supplier.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+            }
         }
-
         private void DgvSupplierScheduleList_DoubleClick(object sender, EventArgs e)
         {
             try
             {
-                //udfnEdit();
+                udfnEdit();
             }
             catch (Exception ex)
             {
@@ -1250,7 +1273,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    // udfnEdit();
+                    udfnEdit();
                 }
             }
             catch (Exception ex)
