@@ -441,7 +441,7 @@ namespace ROMS
             {
                 int varViewType = 0;
                 int varRackId = 0;
-                if(btnSave.Text=="Save")
+                if (btnSave.Text == "Save")
                 {
                     varViewType = 13;
                 }
@@ -492,7 +492,7 @@ namespace ROMS
                     }
                 }
 
-                string varSubGroupId ="0";
+                string varSubGroupId = "0";
                 if (txtProductSubGroup.Text == "")
                 {
                     varSubGroupId = "0";
@@ -527,7 +527,7 @@ namespace ROMS
                         epRackSettings.Clear();
                     }
                 }
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0,Convert.ToInt32(varGroupId),Convert.ToInt32(varSubGroupId), "", "", "", 0, 0, 0, 0, 0,varRackId);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, Convert.ToInt32(varGroupId), Convert.ToInt32(varSubGroupId), "", "", "", 0, 0, 0, 0, 0, varRackId);
                 objdserv.CloseConnection();
 
 
@@ -601,7 +601,7 @@ namespace ROMS
                 {
                     for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                     {
-                        dtViewSupplierMapping.Rows.Add( objDs.Tables[1].Rows[i]["P.I Code"], objDs.Tables[1].Rows[i]["Product Name in English"],
+                        dtViewSupplierMapping.Rows.Add(objDs.Tables[1].Rows[i]["P.I Code"], objDs.Tables[1].Rows[i]["Product Name in English"],
                            objDs.Tables[1].Rows[i]["Product Name in Tamil"], objDs.Tables[1].Rows[i]["Unit"], objDs.Tables[1].Rows[i]["PRID"]);
                     }
                 }
@@ -635,6 +635,15 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally {
+                foreach (TabPage page in tcRackSettings.TabPages)
+                {
+                    if (page.Name == "MoveProduct")
+                    {
+                        tcRackSettings.TabPages.Remove(page);
+                    }
+                }
             }
         }
         private void GrdSupplierMapping_CellContentClick(object sender, DataGridViewCellEventArgs e)
