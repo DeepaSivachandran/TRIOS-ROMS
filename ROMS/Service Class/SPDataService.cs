@@ -1372,7 +1372,7 @@ namespace ROMS
             }
             return result;
         }
-        public DataSet udfnSupplierList(int ViewType,int paraSupplierid,int paraSupplierScheduleid,int pardayid,int paraOrderId,string @paraSupplierName,int paraordertype,int paraStatusId)
+        public DataSet udfnSupplierList(int ViewType,int paraSupplierid,int paraSupplierScheduleid,int pardayid,int paraOrderId,string @paraSupplierName,int paraordertype,int paraStatusId,int paraCompanycode)
         {
             DataSet ds = new DataSet();
             try
@@ -1390,6 +1390,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierName", paraSupplierName);
                 varSqlCommand.Parameters.AddWithValue("@paraordertype", paraordertype);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanycode", paraCompanycode);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
