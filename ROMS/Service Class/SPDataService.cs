@@ -884,7 +884,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 14/08/2023    Description:Sub Group list Sp
-        public DataSet udfnSubGroupList(int ViewType, int paraPRSGID, string paraPRGIDs,int paraPRGID,int paraID,string paraPRSG_EName)
+        public DataSet udfnSubGroupList(int ViewType, int paraPRSGID, string paraPRGIDs,int paraPRGID,int paraID,string paraPRSG_EName,int paraStatusID, int paraBatchNo, int paraSLId, int paraRKId)
         {
             DataSet ds = new DataSet();
             try
@@ -898,6 +898,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraID", paraID);
                 varSqlCommand.Parameters.AddWithValue("@paraPRGIDs", paraPRGIDs);
                 varSqlCommand.Parameters.AddWithValue("@paraPRSG_EName", paraPRSG_EName);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusID", paraStatusID);
+                varSqlCommand.Parameters.AddWithValue("@paraBatchNo", paraBatchNo);
+                varSqlCommand.Parameters.AddWithValue("@paraSLId", paraSLId);
+                varSqlCommand.Parameters.AddWithValue("@paraRKId", paraRKId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
