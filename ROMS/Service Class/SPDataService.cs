@@ -1488,7 +1488,7 @@ namespace ROMS
             return varResult;
         }
         /*Added by deepa on 19-09-2023*/
-        public DataSet udfnEmployeeList(int paraViewType, string paraEmpName)
+        public DataSet udfnEmployeeList(int paraViewType, string paraEmpName, int paraEmpID, string paraEmpCode)
         {
             DataSet ds = new DataSet();
             try
@@ -1498,6 +1498,8 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraEmpName", paraEmpName);
+                varSqlCommand.Parameters.AddWithValue("@paraEmpID", paraEmpID);
+                varSqlCommand.Parameters.AddWithValue("@paraEmpCode", paraEmpCode);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

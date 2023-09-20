@@ -117,13 +117,11 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdUserList.DataSource = objDs.Tables[0];
                             grdUserList.Columns["ID"].Visible = false;
-                            grdUserList.Columns["CategoryID"].Visible = false;
                             grdUserList.Columns["UserRoleID"].Visible = false;
                             grdUserList.Columns["PassKeyID"].Visible = false;
                             grdUserList.Columns["StatusID"].Visible = false;
                             grdUserList.Columns["S.No."].Width = 50;
                             grdUserList.Columns["Name of the User"].Width = 150;
-                            grdUserList.Columns["Employee Category"].Width = 150;
                             grdUserList.Columns["Status"].Width = 80;
                             grdUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -207,12 +205,10 @@ namespace ROMS
                     MainForm.objCP_User = new CP_User();
                     MainForm.objCP_User.btnSave.Text = "Update";
                     MainForm.objCP_User.varUserID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_User.PbUserCategoryID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["CategoryID"].Value);
                     MainForm.objCP_User.PbUserRoleID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value);
                     MainForm.objCP_User.PbPasskeyID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["PassKeyID"].Value);
                     MainForm.objCP_User.PbNameoftheUser = Convert.ToString(grdUserList.SelectedRows[0].Cells["Name of the User"].Value);
                     MainForm.objCP_User.PbLoginid = Convert.ToString(grdUserList.SelectedRows[0].Cells["Login ID"].Value);
-                    MainForm.objCP_User.PbUserCategory = Convert.ToString(grdUserList.SelectedRows[0].Cells["Employee Category"].Value);
                     MainForm.objCP_User.PbUserRole = Convert.ToString(grdUserList.SelectedRows[0].Cells["User Role"].Value);
                     MainForm.objCP_User.PbPasskey = Convert.ToString(grdUserList.SelectedRows[0].Cells["Pass Key"].Value);
                     MainForm.objCP_User.PbStatus = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["StatusID"].Value);
