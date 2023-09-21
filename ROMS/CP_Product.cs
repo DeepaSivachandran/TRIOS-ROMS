@@ -4405,12 +4405,12 @@ namespace ROMS
                 lblGroupCode.Text = Convert.ToString(varGroupCode);
                 lblPurLocationCode.Text = Convert.ToString(varPURSLID);
                 lblSaleLocationCode.Text = Convert.ToString(varSALESLID);
-                lblPurRackCode.Text = Convert.ToString(varPURRKID);
-                lblSaleRackCode.Text = Convert.ToString(varSALERKID);
+               // lblPurRackCode.Text = Convert.ToString(varPURRKID);
+               // lblSaleRackCode.Text = Convert.ToString(varSALERKID);
                 txtSaleLocation.Text = varSalesLocation;
                 txtPurLocation.Text = varPurchaseLocation;
-                txtSaleRack.Text = varSalesRack;
-                txtPurRack.Text = varPurchaseRack;
+               // txtSaleRack.Text = varSalesRack;
+               // txtPurRack.Text = varPurchaseRack;
                 if (varBatchCode == 72)
                 {
                     cmbBatchNoEntry.SelectedValue = 72;

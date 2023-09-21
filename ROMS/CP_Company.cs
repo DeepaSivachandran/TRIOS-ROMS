@@ -3467,6 +3467,22 @@ namespace ROMS
                 udfnEdit();
                 this.ActiveControl = txtCompanyName;
                 objdservice.CloseConnection();
+                DataSet objDS = new DataSet();
+                SPDataService objDserv = new SPDataService();
+                objDS = objDserv.udfnCompanyList(6,Convert.ToInt32(varcompanyid),MainForm.pbUserID,MainForm.pbIpAddress);
+                objDserv.CloseConnection();
+                if (objDS != null) {
+                    if (objDS.Tables.Count > 0) {
+                        if (objDS.Tables[0].Rows.Count > 0) {
+                            int varcount = Convert.ToInt32(objDS.Tables[0].Rows[0][0]);
+                            if (varcount == 0)
+                            {
+                                chkDefaultConcern.Visible = true;
+                            }
+                            else { chkDefaultConcern.Visible = false; }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

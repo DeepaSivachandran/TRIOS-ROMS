@@ -79,7 +79,7 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (25,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbBatchNoEntry, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID<>-1", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID=0 OR STS_ModuleID = 1", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
             }
             catch (Exception ex)
