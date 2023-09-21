@@ -277,6 +277,7 @@
             this.lblNoofproducts.Size = new System.Drawing.Size(93, 20);
             this.lblNoofproducts.TabIndex = 1111136;
             this.lblNoofproducts.Text = "Total Products :";
+            this.lblNoofproducts.Click += new System.EventHandler(this.LblNoofproducts_Click);
             // 
             // grdRack
             // 

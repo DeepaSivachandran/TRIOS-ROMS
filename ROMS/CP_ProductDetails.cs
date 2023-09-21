@@ -82,11 +82,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
+            
         }
 
 
-
+        
 
         private void TxtRetailRate_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -135,12 +135,18 @@ namespace ROMS
                 {
                     udfnclose();
                 }
+                
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void CP_ProductDetails_Leave(object sender, EventArgs e)
+        {
+
         }
 
         private void CP_ProductDetails_FormClosing(object sender, FormClosingEventArgs e)
@@ -166,7 +172,6 @@ namespace ROMS
         }
     }
 }
-
 
 
 

@@ -609,7 +609,7 @@ namespace ROMS
                     {
                         varFlag = 0;
                         for (int i = 0; i < grdStaffDetails.Rows.Count; i++)
-                        {
+                        {                       
                             varAddStaff = varUserID;
                             if (txtStaffName.Text.Trim().ToUpper() == Convert.ToString(grdStaffDetails.Rows[i].Cells["clmStaffName"].Value).Trim().ToUpper())
                             {
@@ -634,7 +634,7 @@ namespace ROMS
                             objDServ.CloseConnection();
                             MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
-
+                      
                     }
                     txtStaffName.Focus();
                     txtStaffName.Text = "";
@@ -1164,6 +1164,7 @@ namespace ROMS
         {
             try
             {
+                lvStaffName.Visible = false;
                 btnAdd.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1515,6 +1516,11 @@ namespace ROMS
         }
 
         private void LvStaffName11_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LblNoofproducts_Click(object sender, EventArgs e)
         {
 
         }
