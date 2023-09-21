@@ -543,6 +543,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8E05A5DF9DAB44D392CE0F4D3081A1B0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8FEF6C2E764F2E2C98255FF367C427CC"
         "OwnerKey" = "8:_EF575E4CFB363654D08E1316BA1F43F9"
         "MsmSig" = "8:_UNDEFINED"
@@ -1019,6 +1025,12 @@
         {
         "MsmKey" = "8:_FC9E438C31B171DCC2E0F61DDB67A479"
         "OwnerKey" = "8:_D7D25F1F1575DB3C2A50083F3993AD03"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FDB6A1B4DEFB4254991FA430F3900086"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -4113,6 +4125,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8E05A5DF9DAB44D392CE0F4D3081A1B0"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_SupplierProductList.rpt"
+            "TargetName" = "8:RPT_PUR_SupplierProductList.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_5E917370213246879EB488B7A69AB14B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8FEF6C2E764F2E2C98255FF367C427CC"
             {
             "AssemblyRegister" = "3:1"
@@ -6135,6 +6167,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FDB6A1B4DEFB4254991FA430F3900086"
+            {
+            "SourcePath" = "8:..\\ROMS\\Reports\\RPT_PUR_SupplierScheduleProductDayWise.rpt"
+            "TargetName" = "8:RPT_PUR_SupplierScheduleProductDayWise.rpt"
+            "Tag" = "8:"
+            "Folder" = "8:_5E917370213246879EB488B7A69AB14B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FF13474933DEFCD4CA1FCAF0810E445A"
             {
             "AssemblyRegister" = "3:1"
@@ -6182,6 +6234,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_5E917370213246879EB488B7A69AB14B"
+                    {
+                    "Name" = "8:Reports"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_F11B1CB3F6254402804C1DF9A5DFA55C"
+                        "Folders"
+                        {
+                        }
+                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_681AD2C19273449AA0E41A2AAC73A960"
                     {
                     "Name" = "8:LogFiles"
@@ -6245,7 +6308,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ROMS"
         "ProductCode" = "8:{912C9C28-D836-4D4A-9194-7248DA6FE097}"
-        "PackageCode" = "8:{3ABAC2FA-3975-4BC0-858B-1C5F2EFF4A8F}"
+        "PackageCode" = "8:{6FE0A597-A661-48CB-B758-94011E6088F9}"
         "UpgradeCode" = "8:{66E251FD-23D6-4823-B6A2-4E2FF6F322F4}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
