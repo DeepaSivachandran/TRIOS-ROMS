@@ -197,6 +197,7 @@ namespace ROMS
         {
             try
             {
+                
                 int varHsnId = 0,varUnitId=0; int varUpdateViewType = 0;
                 int varGroupId=0, varSubGroupId =0, varBrandId = 0;
                 int varPurSLID = 0, varSalesSLID = 0, varPurRKID = 0, varSalesRKID = 0;
@@ -277,10 +278,12 @@ namespace ROMS
                 objBulkUpdate.Columns.Add("PR_BatchNoID-New", typeof(int));
                 objBulkUpdate.Columns.Add("PR_BatchNoGenerationID-Current", typeof(int));
                 objBulkUpdate.Columns.Add("PR_BatchNoGenerationID-New", typeof(int));
+
+                objBulkUpdate.Columns.Add("ErrorFlag", typeof(int));
                 
                 if (grdHSN.Visible == true)
                 {
-                    varUpdateViewType = 3; varViewType = 11;
+                    varUpdateViewType = 3; varViewType = 11; 
                     for (int i = 0; i < grdHSN.Rows.Count; i++)
                     {
                         varHsnId = 0;
@@ -294,7 +297,8 @@ namespace ROMS
                             0, "", 0, "", 0, "",
                             0, "", 0, "", 0, 0,
                             0, "", 0, "", 0, 0,
-                            0, 0, 0, 0, 0, 0, 0, 0);
+                            0, 0, 0, 0, 0, 0, 0, 0,
+                            0);
                     }
                 }
                 else if (grdBulkAttributes.Visible == true)
@@ -313,7 +317,8 @@ namespace ROMS
                             0, "", 0, "", 0, "",
                             0, "", 0, "", 0, 0,
                             0, "", 0, "", 0, 0,
-                            0, 0, 0, 0, 0, 0, 0, 0);
+                            0, 0, 0, 0, 0, 0, 0, 0,
+                            0);
                     }
                 }
                 else if (grdBrand.Visible == true)
@@ -339,7 +344,8 @@ namespace ROMS
                             0, "", 0, "", 0, "",
                             0, "", 0, "", 0, 0,
                             0, "", 0, "", 0, 0,
-                            0, 0, 0, 0, 0, 0, 0, 0);
+                            0, 0, 0, 0, 0, 0, 0, 0,
+                            0);
                     }
                 }
                 else if (grdLoction.Visible == true)
@@ -370,7 +376,8 @@ namespace ROMS
                                                0, "", 0, "", 0, "",
                                                0, "", 0, "", 0, 0,
                                                0, "", 0, "", 0, 0,
-                                               0, 0, 0, 0, 0, 0, 0, 0);
+                                               0, 0, 0, 0, 0, 0, 0, 0,
+                                               0);
                     }
                 }
                 else if (grdMSQ.Visible == true)
@@ -394,7 +401,8 @@ namespace ROMS
                                                 0, "", 0, "", 0, "",
                                                0, "", 0, "", 0, 0,
                                                0, "", 0, "", 0, 0,
-                                               0, 0, 0, 0, 0, 0, 0, 0);
+                                               0, 0, 0, 0, 0, 0, 0, 0,
+                                               0);
 
                     }
                 }
@@ -421,7 +429,8 @@ namespace ROMS
                                                varReOrderQty, Convert.ToString(grdStock.Rows[i].Cells["Reorder Qty-New"].Value).Trim(),
                                                0, "", 0, "", 0, 0,
                                                0, "", 0, "", 0, 0,
-                                               0, 0, 0, 0, 0, 0, 0, 0);
+                                               0, 0, 0, 0, 0, 0, 0, 0,
+                                               0);
                     }
                 }
                 else if(grdShelfLife.Visible==true)
@@ -446,7 +455,8 @@ namespace ROMS
                                               varUpp, Convert.ToString(grdShelfLife.Rows[i].Cells["UPP-New"].Value).Trim(), varShelfLifeValue, Convert.ToString(grdShelfLife.Rows[i].Cells["Shelf Life-New"].Value).Trim(),
                                                Convert.ToInt32(grdShelfLife.Rows[i].Cells["Shelf Life Type ID-OLD"].Value),varShelfLifeTypeID,
                                                0, "", 0, "", 0, 0,
-                                               0, 0, 0, 0, 0, 0, 0, 0);
+                                               0, 0, 0, 0, 0, 0, 0, 0,
+                                               0);
                     }
                 }
                 else if(grdWeight.Visible==true)
@@ -472,7 +482,8 @@ namespace ROMS
                                             varNetQuantity, Convert.ToString(grdWeight.Rows[i].Cells["Net Quantity-New"].Value).Trim(),
                                             varGrossWeight, Convert.ToString(grdWeight.Rows[i].Cells["Gross Weight-New"].Value).Trim(),
                                             Convert.ToInt32(grdWeight.Rows[i].Cells["PR_QUTID-Old"].Value), varUnitQtyId,
-                                            0, 0, 0, 0, 0, 0, 0, 0);
+                                            0, 0, 0, 0, 0, 0, 0, 0,
+                                            0);
                     }
                 }
                 else if (grdBatch.Visible == true)
@@ -499,7 +510,8 @@ namespace ROMS
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_PRCTID-Current"].Value), varPR_PRCTID, 
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_RMForProductionID-Current"].Value), PR_RMForProductionID,
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoID-Current"].Value), PR_BatchNoID,
-                                               Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoGenerationID-Current"].Value), PR_BatchNoGenerationID);
+                                               Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoGenerationID-Current"].Value), PR_BatchNoGenerationID,
+                                               0);
                     }
                 }
                 string result = "";
@@ -546,13 +558,16 @@ namespace ROMS
                         {
                             e.Handled = true;
                         }
-                        //if ((sender as TextBox).Text.Length >7)
-                        //{
-                        //    e.Handled = true;
-                        //}
-                        //if ((e.KeyChar == (char)Keys.Back)) {
-                        //    e.Handled = false;
-                        //}
+                    }
+                }
+                else if(grdShelfLife.VirtualMode==true)
+                {
+                    if (grdShelfLife.CurrentCell.OwningColumn.Name == "Shelf Life-New"  || grdShelfLife.CurrentCell.OwningColumn.Name == "UPP-New")
+                    {
+                        if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
+                        {
+                            e.Handled = true;
+                        }
                     }
                 }
                 else if (grdMSQ.Visible == true)
@@ -2576,6 +2591,16 @@ namespace ROMS
                         txtShelfLife.AutoCompleteCustomSource = AutoCompleteShelfLife();
                         txtShelfLife.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
+                }
+                else if (grdShelfLife.CurrentCell.OwningColumn.Name == "UPP-New")
+                {
+                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                    return;
+                }
+                else if (grdShelfLife.CurrentCell.OwningColumn.Name == "Shelf Life-New")
+                {
+                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                    return;
                 }
             }
             catch (Exception ex)
