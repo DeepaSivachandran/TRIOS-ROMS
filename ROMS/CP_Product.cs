@@ -4472,13 +4472,19 @@ namespace ROMS
             try
             {
 
-                MainForm.objCP_Brand = new CP_Brand(); 
+                MainForm.objCP_Brand = new CP_Brand();
+                MainForm.objCP_Brand.MinimizeBox = false;
+                MainForm.objCP_Brand.MaximizeBox = false;
+                if (MainForm.objCP_Brand.FormBorderStyle == FormBorderStyle.None)
+                {
+                    MainForm.objCP_Brand.FormBorderStyle = FormBorderStyle.FixedSingle;
+                } 
                 MainForm.objCP_Brand.varmastertype = 1;
-                MainForm.objCP_Brand.ShowDialog();
+                MainForm.objCP_Brand.ShowDialog(); 
                 lblBrand.Text = Convert.ToString(varbrandcode);
                 txtBrand.Text = varBrandName;
                 txtGroup.Focus();
-                 
+                lvBrand.Visible = false;
             }
             catch (Exception ex)
             {
