@@ -22,7 +22,7 @@ namespace ROMS
         public int varSubGroupId = 0;
         public int varBrandId = 0;
         public int varViewType = 0;
-        public int varStatusId = 0;
+        public int varStatusId = 0, varErrorflag=0,Varupdateflag=0;
 
         DataSet objDSHSN = new DataSet();
         DataSet objDSSubGroup = new DataSet();
@@ -196,8 +196,8 @@ namespace ROMS
         public void udfnUpdate()
         {
             try
-            {
-                
+            { 
+                Varupdateflag = 0;
                 int varHsnId = 0,varUnitId=0; int varUpdateViewType = 0;
                 int varGroupId=0, varSubGroupId =0, varBrandId = 0;
                 int varPurSLID = 0, varSalesSLID = 0, varPurRKID = 0, varSalesRKID = 0;
@@ -306,9 +306,17 @@ namespace ROMS
                     varUpdateViewType = 4; varViewType = 12;
                     for (int i = 0; i < grdBulkAttributes.Rows.Count; i++)
                     {
-                        varUnitId = 0;
+                        varUnitId = 0; varErrorflag=0;
                         var varValue = from r in objDSUnit.Tables[0].AsEnumerable() where (r.Field<string>("Unit").ToUpper().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Unit-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varValue.Count() > 0) { varUnitId = Convert.ToInt32(varValue.ToList()[0]); }
+                        if (Convert.ToString(grdBulkAttributes.Rows[i].Cells["Unit-New"].Value).Trim().ToUpper()!="")
+                        {
+                            if (varUnitId==0)
+                            {
+                                varErrorflag = 1;
+                            } 
+                        }
+
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdBulkAttributes.Rows[i].Cells["PRID"].Value), 
                             Convert.ToInt16(grdBulkAttributes.Rows[i].Cells["UTID-OLD"].Value), varUnitId, Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in Tamil"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English-New"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in Tamil-New"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["P.I Code"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value).Trim(),
                              0, 0, 0, 0, 0, 0,
@@ -318,7 +326,7 @@ namespace ROMS
                             0, "", 0, "", 0, 0,
                             0, "", 0, "", 0, 0,
                             0, 0, 0, 0, 0, 0, 0, 0,
-                            0);
+                            varErrorflag);
                     }
                 }
                 else if (grdBrand.Visible == true)
@@ -438,7 +446,7 @@ namespace ROMS
                     varUpdateViewType = 9; varViewType = 7;
                     for (int i = 0; i < grdShelfLife.Rows.Count; i++)
                     {
-                        varUpp = 0; varShelfLifeValue = 0; varShelfLifeTypeID = 0;
+                        varUpp = 0; varShelfLifeValue = 0; varShelfLifeTypeID = 0; varErrorflag = 0 ;
                         var varValue = from r in objDSShelfLifeType.Tables[0].AsEnumerable() where (r.Field<string>("MST_DisplayText").ToUpper().Equals(Convert.ToString(grdShelfLife.Rows[i].Cells["Shelf Life Type-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
                         if (varValue.Count() > 0) { varShelfLifeTypeID = Convert.ToInt32(varValue.ToList()[0]); }
                         if (Convert.ToString(grdShelfLife.Rows[i].Cells["UPP-Current"].Value) == "")
@@ -447,6 +455,13 @@ namespace ROMS
                         if (Convert.ToString(grdShelfLife.Rows[i].Cells["Shelf Life-Current"].Value) == "")
                         { varShelfLifeValue = 0; }
                         else { varShelfLifeValue = Convert.ToInt32(grdShelfLife.Rows[i].Cells["Shelf Life-Current"].Value); }
+                        if (Convert.ToString(grdShelfLife.Rows[i].Cells["Shelf Life Type-New"].Value) != "")
+                        {
+                            if (varShelfLifeTypeID == 0)
+                            {
+                                varErrorflag = 1;
+                            }
+                        }
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdShelfLife.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
@@ -456,7 +471,7 @@ namespace ROMS
                                                Convert.ToInt32(grdShelfLife.Rows[i].Cells["Shelf Life Type ID-OLD"].Value),varShelfLifeTypeID,
                                                0, "", 0, "", 0, 0,
                                                0, 0, 0, 0, 0, 0, 0, 0,
-                                               0);
+                                               varErrorflag);
                     }
                 }
                 else if(grdWeight.Visible==true)
@@ -514,21 +529,38 @@ namespace ROMS
                                                0);
                     }
                 }
-                string result = "";
-                SPDataService objDSer = new SPDataService();
-                result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", "", "", "Product Bulk Update", 0, objBulkUpdate);
-                objDSer.CloseConnection();
-                string[] varvalue = result.Split('~');
-                if (varvalue[0] == "3")
+
+                for (int i = 0; i < objBulkUpdate.Rows.Count; i++)
                 {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //udfnList();
+                    //DataRow dataRow = objBulkUpdate.Rows[i]; 
+                    if (Convert.ToInt32(objBulkUpdate.Rows[i]["ErrorFlag"]) != 0)
+                    {
+                        grdShelfLife.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                        Varupdateflag = 1;
+                    }
+                    else
+                    {
+                        grdShelfLife.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                    }
                 }
-                else
+                if (Varupdateflag==0)
                 {
-                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    string result = "";
+                    SPDataService objDSer = new SPDataService();
+                    result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", "", "", "Product Bulk Update", 0, objBulkUpdate);
+                    objDSer.CloseConnection();
+                    string[] varvalue = result.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //udfnList();
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    udfnList();
                 }
-                 udfnList();
             }
             catch (Exception ex)
             {
