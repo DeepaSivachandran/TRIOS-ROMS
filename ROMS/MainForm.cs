@@ -17,7 +17,7 @@ namespace ROMS
         //------- Variable Declaration
         public static int pbCloseForm = 0;
         public static int varCloseFlag = 0;
-        public static string pbVersion = "1.0.0";
+        public static string pbVersion = "1.0.1";
         public static string pbUserID = "";
         public static string pbUserName = "";
         public static string pbUserRoleId;
@@ -86,7 +86,8 @@ namespace ROMS
         public static CP_BulkAttributeVerify objCP_BulkAttributeVerify;
         public static CP_RepresentativeList objCP_RepresentativeList;
         public static CP_Representative objCP_Representative;
-
+        public static CP_EmployeeList objCP_EmployeeList;
+        public static CP_Employee objCP_Employee;
 
         public static INV_SalesInvoiceList objINV_SalesInvoiceList;
         public static INV_SalesInvoice objINV_SalesInvoice;
@@ -1204,6 +1205,23 @@ namespace ROMS
                 MainForm.objCP_RepresentativeList = new CP_RepresentativeList();
                 MainForm.objCP_RepresentativeList.MdiParent = this;
                 MainForm.objCP_RepresentativeList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmEmployee_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_EmployeeList = new CP_EmployeeList();
+                MainForm.objCP_EmployeeList.MdiParent = this;
+                MainForm.objCP_EmployeeList.Show();
             }
             catch (Exception ex)
             {

@@ -10,13 +10,13 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
-{   //Created By:-Sathish
-    //Created On:-22/08/2023
-    public partial class CP_UserList : Form
+{   //Created By:-Deepa
+    //Created On:-19-09-2023
+    public partial class CP_EmployeeList : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public CP_UserList()
+        public CP_EmployeeList()
         {
             InitializeComponent();
         }
@@ -24,8 +24,8 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_User = new CP_User();
-                MainForm.objCP_User.ShowDialog();
+                MainForm.objCP_Employee = new CP_Employee();
+                MainForm.objCP_Employee.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -57,11 +57,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CP_UserList_Load(object sender, EventArgs e)
+        private void CP_EmployeeList_Load(object sender, EventArgs e)
         {
             try
             {
-                txtDUserList.Focus();
                 udfnList();
             }
             catch (Exception ex)
@@ -78,12 +77,11 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdUserList.DataSource = null;
+                grdEmployeeList.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
-                SPDataService objspservice = new SPDataService();
                 int varUserId = 0;
-                if (txtDUserList.Text == "")
+                if (txtEmployee.Text == "")
                 {
                     varUserId = 0;
                 }
@@ -91,7 +89,7 @@ namespace ROMS
                 {
                     DataSet objDsUser = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsUser = objDserv.udfnUserList(7, txtDUserList.Text.Trim(),"","",0);
+                    objDsUser = objDserv.udfnEmployeeList(3, txtEmployee.Text.Trim(), 0, lblEmpCode.Text.Trim(),0,0);
                     objDserv.CloseConnection();
                     if (objDsUser != null)
                     {
@@ -104,7 +102,9 @@ namespace ROMS
                         }
                     }
                 }
-                objDs = objspservice.udfnUserList(2,(txtDUserList.Text),"","", varUserId);
+
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnEmployeeList(0, "",Convert.ToInt32(varUserId),"",0,0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -115,16 +115,16 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdUserList.DataSource = objDs.Tables[0];
-                            grdUserList.Columns["ID"].Visible = false;
-                            grdUserList.Columns["UserRoleID"].Visible = false;
-                            grdUserList.Columns["PassKeyID"].Visible = false;
-                            grdUserList.Columns["StatusID"].Visible = false;
-                            grdUserList.Columns["S.No."].Width = 50;
-                            grdUserList.Columns["Name of the User"].Width = 150;
-                            grdUserList.Columns["Status"].Width = 80;
-                            grdUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdEmployeeList.DataSource = objDs.Tables[0];
+                            grdEmployeeList.Columns["EMPID"].Visible = false;
+                            grdEmployeeList.Columns["CategoryID"].Visible = false;
+                            grdEmployeeList.Columns["StatusID"].Visible = false;
+                            grdEmployeeList.Columns["S.No."].Width = 50;
+                            grdEmployeeList.Columns["Name of the Employee"].Width = 150;
+                            grdEmployeeList.Columns["Employee Category"].Width = 150;
+                            grdEmployeeList.Columns["Status"].Width = 80;
+                            grdEmployeeList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdEmployeeList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
                         {
@@ -160,7 +160,7 @@ namespace ROMS
         {
             try
             {
-                if (grdUserList.SelectedRows.Count > 0)
+                if (grdEmployeeList.SelectedRows.Count > 0)
                 {
                     string varResult = "";
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -169,7 +169,7 @@ namespace ROMS
 
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
-                        varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", 0,0,"",0, 0, "User Delete");
+                        varResult = objspservice.udfnEmployee(2, Convert.ToInt32(grdEmployeeList.SelectedRows[0].Cells["EMPID"].Value.ToString()),"", "",0,0,"Employee Deletion");
                         objspservice.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -197,22 +197,20 @@ namespace ROMS
         {
             try
             {
-                if (grdUserList.SelectedRows.Count > 0)
+                if (grdEmployeeList.SelectedRows.Count > 0)
                 {
                     picLoader.Visible = true;
                     picLoader.BringToFront();
                     Application.DoEvents();
-                    MainForm.objCP_User = new CP_User();
-                    MainForm.objCP_User.btnSave.Text = "Update";
-                    MainForm.objCP_User.varUserID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_User.PbUserRoleID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value);
-                    MainForm.objCP_User.PbPasskeyID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["PassKeyID"].Value);
-                    MainForm.objCP_User.PbNameoftheUser = Convert.ToString(grdUserList.SelectedRows[0].Cells["Name of the User"].Value);
-                    MainForm.objCP_User.PbLoginid = Convert.ToString(grdUserList.SelectedRows[0].Cells["Login ID"].Value);
-                    MainForm.objCP_User.PbUserRole = Convert.ToString(grdUserList.SelectedRows[0].Cells["User Role"].Value);
-                    MainForm.objCP_User.PbPasskey = Convert.ToString(grdUserList.SelectedRows[0].Cells["Pass Key"].Value);
-                    MainForm.objCP_User.PbStatus = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["StatusID"].Value);
-                    MainForm.objCP_User.ShowDialog();
+                    MainForm.objCP_Employee = new CP_Employee();
+                    MainForm.objCP_Employee.btnSave.Text = "Update";
+                    MainForm.objCP_Employee.varEmpID = Convert.ToString(grdEmployeeList.SelectedRows[0].Cells["EMPID"].Value);
+                    MainForm.objCP_Employee.PbUserCategoryID = Convert.ToInt32(grdEmployeeList.SelectedRows[0].Cells["CategoryID"].Value);
+                    MainForm.objCP_Employee.PbNameoftheUser = Convert.ToString(grdEmployeeList.SelectedRows[0].Cells["Name of the Employee"].Value);
+                    MainForm.objCP_Employee.PbEmpCode = Convert.ToString(grdEmployeeList.SelectedRows[0].Cells["Employee code"].Value);
+                    MainForm.objCP_Employee.PbUserCategory = Convert.ToString(grdEmployeeList.SelectedRows[0].Cells["Employee Category"].Value);
+                    MainForm.objCP_Employee.PbStatus = Convert.ToInt32(grdEmployeeList.SelectedRows[0].Cells["StatusID"].Value);
+                    MainForm.objCP_Employee.ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -221,7 +219,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CP_UserList_KeyDown(object sender, KeyEventArgs e)
+        private void CP_EmployeeList_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -285,9 +283,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdUserList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUserList);
+                grdEmployeeList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdEmployeeList);
                 objDser.CloseConnection();
-                grdUserList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdEmployeeList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -296,10 +294,10 @@ namespace ROMS
         {
             try
             {
-                udfnGridSearchHeading(grdUserList, DGV_SearchGrid);
+                udfnGridSearchHeading(grdEmployeeList, DGV_SearchGrid);
                 DGV_SearchGrid.Columns.Clear();
                 List<int> visibleColumns = new List<int>();
-                foreach (DataGridViewColumn col in grdUserList.Columns)
+                foreach (DataGridViewColumn col in grdEmployeeList.Columns)
                 {
                     DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                     visibleColumns.Add(col.Index);
@@ -324,7 +322,7 @@ namespace ROMS
                     if (DGV_SearchGrid.ColumnCount > 0)
                     {
                         BindingSource bs = new BindingSource();
-                        bs.DataSource = grdUserList.DataSource;
+                        bs.DataSource = grdEmployeeList.DataSource;
                         string filter = "";
                         for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
                         {
@@ -335,7 +333,7 @@ namespace ROMS
                             }
                         }
                         bs.Filter = filter;
-                        grdUserList.DataSource = bs;
+                        grdEmployeeList.DataSource = bs;
                     }
                 }
             }
@@ -370,16 +368,16 @@ namespace ROMS
             try
             {
                 int totalWidth = 0;
-                int offSetValue = grdUserList.HorizontalScrollingOffset;
+                int offSetValue = grdEmployeeList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
-                if (totalWidth - grdUserList.Width > grdUserList.HorizontalScrollingOffset && grdUserList.HorizontalScrollingOffset > 0)
+                if (totalWidth - grdEmployeeList.Width > grdEmployeeList.HorizontalScrollingOffset && grdEmployeeList.HorizontalScrollingOffset > 0)
                 {
                     offSetValue = offSetValue;
                 }
                 DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGrid.Invalidate();
-                udfnscrollVisible(DGV_SearchGrid, grdUserList);
+                udfnscrollVisible(DGV_SearchGrid, grdEmployeeList);
             }
             catch (Exception ex)
             {
@@ -389,14 +387,14 @@ namespace ROMS
         }
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = grdUserList.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = grdUserList.SortedColumn;
+            DataGridViewColumn newColumn = grdEmployeeList.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = grdEmployeeList.SortedColumn;
             ListSortDirection direction;
             // If oldColumn is null, then the DataGridView is not sorted.
             if (oldColumn != null)
             {// Sort the same column again, reversing the SortOrder.
                 if (oldColumn == newColumn &&
-                    grdUserList.SortOrder == SortOrder.Ascending)
+                    grdEmployeeList.SortOrder == SortOrder.Ascending)
                 {
                     direction = ListSortDirection.Descending;
                 }
@@ -410,13 +408,13 @@ namespace ROMS
             {
                 direction = ListSortDirection.Ascending;
             }
-            grdUserList.Sort(newColumn, direction);
+            grdEmployeeList.Sort(newColumn, direction);
             newColumn.HeaderCell.SortGlyphDirection =
                 direction == ListSortDirection.Ascending ?
                 SortOrder.Ascending : SortOrder.Descending;
             DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
             DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-            DGV_SearchGrid.HorizontalScrollingOffset = grdUserList.HorizontalScrollingOffset;
+            DGV_SearchGrid.HorizontalScrollingOffset = grdEmployeeList.HorizontalScrollingOffset;
             DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
         public void udfnscrollVisible(DataGridView DGV, DataGridView grdGroupList)
@@ -454,19 +452,19 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdUserList.Rows.Count; i++)
+                for (int i = 0; i < grdEmployeeList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdUserList.Rows[i].Cells["StatusID"].Value) == "1")
+                    if (Convert.ToString(grdEmployeeList.Rows[i].Cells["StatusID"].Value) == "1")
                     {
-                        grdUserList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdUserList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdEmployeeList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdEmployeeList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                     else
                     {
-                        grdUserList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdUserList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdEmployeeList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdEmployeeList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    grdUserList.ClearSelection();
+                    grdEmployeeList.ClearSelection();
                 }
             }
             catch (Exception ex)
@@ -507,10 +505,10 @@ namespace ROMS
             try
             {
                 int totalWidth = 0;
-                int offSetValue = grdUserList.HorizontalScrollingOffset;
+                int offSetValue = grdEmployeeList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
-                if (totalWidth - grdUserList.Width > grdUserList.HorizontalScrollingOffset && grdUserList.HorizontalScrollingOffset > 0)
+                if (totalWidth - grdEmployeeList.Width > grdEmployeeList.HorizontalScrollingOffset && grdEmployeeList.HorizontalScrollingOffset > 0)
                 {
                     offSetValue = offSetValue;
                 }
@@ -523,112 +521,43 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnView_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                lvUserList.Visible = false;
-                udfnList();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void BtnView_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                lvUserList.Visible = false;
-                btnView.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void BtnView_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                btnView.BackColor = Color.Transparent;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void BtnExport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if ((grdUserList.Rows.Count > 0))
-                {
-                    Excel._Application ExcelObj = new Excel.Application();
-                    // creating new WorkBook within Excel application  
-                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
-                    // creating new Excelsheet in workbook  
-                    Excel._Worksheet ExcelSheet = null;
-                    // see the excel sheet behind the program  
-                    ExcelObj.Visible = true;
-                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
-                    ExcelSheet = ExcelBook.ActiveSheet;
-                    // changing the name of active sheet  
-                    ExcelSheet.Name = "User List";
-                    int cIndex = 0;
-                    int count = 0;
-                    foreach (DataGridViewColumn col in grdUserList.Columns)
-                    {
-                        if (col.Visible)
-                        {
-                            count += 1;
-                        }
-                    }
-                    //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
-                    //er.EntireColumn.ColumnWidth = 35;
-                    ExcelSheet.Cells[1, 1].Value = "User List";
-                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
-                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
-                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
-                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
-                    foreach (DataGridViewColumn col in grdUserList.Columns)
-                    {
-                        if (col.Visible)
-                        {
-                            cIndex += 1;
-                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
-                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
-                            ExcelSheet.Cells[2, cIndex].Interior.Color = Color.LightSlateGray;
-                            Excel.Range cell = ExcelSheet.Cells[2, cIndex];
-                            cell.Font.Color = Excel.XlRgbColor.rgbWhite;
-                            if (cIndex == 1)
-                            {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 8;
-                            }
-                            else
-                            {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
-                            }
-                            if (cIndex == 1 || cIndex == 7 )
-                            {
-                                ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
-                            }
-                            if (cIndex == 2)
-                            {
-                                ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
-                            }
 
-                            foreach (DataGridViewRow rowa in grdUserList.Rows)
-                            {
-                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
-                            }
-                        }
+        private void TxtEmployee_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtEmployee.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtEmployee_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvUserList.Items.Count == 0 || txtEmployee.Text == "")
+                    {
+                        txtEmployee.Focus();
+                        lvUserList.Visible = false;
                     }
-                    //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
-                    ExcelObj.Visible = true;
+                    else
+                    {
+                        lvUserList.Focus();
+                    }
+                    if (lvUserList.Items.Count > 0)
+                    {
+                        lvUserList.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
@@ -637,11 +566,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnExport_Enter(object sender, EventArgs e)
+
+        private void TxtEmployee_Leave(object sender, EventArgs e)
         {
             try
             {
-                btnExport.BackColor = Color.LemonChiffon;
+                txtEmployee.BackColor = Color.White;
+                if (txtEmployee.Text.Trim() == "") { lblUserId.Text = "0"; lblEmpCode.Text = "0"; }
             }
             catch (Exception ex)
             {
@@ -649,28 +580,17 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnExport_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                btnExport.BackColor = Color.Transparent;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TxtDUserList_TextChanged(object sender, EventArgs e)
+
+        private void TxtEmployee_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 lvUserList.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtDUserList.Text.Length > 0)
+                if (txtEmployee.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnUserList(5, txtDUserList.Text, "","",0);
+                    objDs = objspdservice.udfnEmployeeList(2, txtEmployee.Text.Trim(), 0, "",0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -680,7 +600,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["U_Name"].ToString(),objDs.Tables[0].Rows[i]["UID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["EMP_Name"].ToString(), objDs.Tables[0].Rows[i]["EMP_Code"].ToString(), objDs.Tables[0].Rows[i]["EMPID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvUserList.Items.Add(objList);
                                 }
@@ -712,15 +632,14 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
-            {
-            }
         }
-        private void TxtDUserList_Enter(object sender, EventArgs e)
+
+        private void BtnView_Click(object sender, EventArgs e)
         {
             try
             {
-                txtDUserList.BackColor = Color.LemonChiffon;
+                lvUserList.Visible = false;
+                udfnList();
             }
             catch (Exception ex)
             {
@@ -728,28 +647,90 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TxtDUserList_KeyDown(object sender, KeyEventArgs e)
+
+        private void BtnExport_Click(object sender, EventArgs e)
         {
             try
             {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                if ((grdEmployeeList.Rows.Count > 0))
                 {
-                    if (lvUserList.Items.Count == 0 || txtDUserList.Text == "")
+                    Excel._Application ExcelObj = new Excel.Application();
+                    // creating new WorkBook within Excel application  
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    // creating new Excelsheet in workbook  
+                    Excel._Worksheet ExcelSheet = null;
+                    // see the excel sheet behind the program  
+                    ExcelObj.Visible = true;
+                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
+                    ExcelSheet = ExcelBook.ActiveSheet;
+                    // changing the name of active sheet  
+                    ExcelSheet.Name = "Employee List";
+                    int cIndex = 0;
+                    int count = 0;
+                    foreach (DataGridViewColumn col in grdEmployeeList.Columns)
                     {
-                        txtDUserList.Focus();
-                        lvUserList.Visible = false;
+                        if (col.Visible)
+                        {
+                            count += 1;
+                        }
                     }
-                    else
+                    //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
+                    //er.EntireColumn.ColumnWidth = 35;
+                    ExcelSheet.Cells[1, 1].Value = "Employee List";
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
+                    foreach (DataGridViewColumn col in grdEmployeeList.Columns)
                     {
-                        lvUserList.Focus();
+                        if (col.Visible)
+                        {
+                            cIndex += 1;
+                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+                            ExcelSheet.Cells[2, cIndex].Interior.Color = Color.LightSlateGray;
+                            Excel.Range cell = ExcelSheet.Cells[2, cIndex];
+                            cell.Font.Color = Excel.XlRgbColor.rgbWhite;
+                            if (cIndex == 1)
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 8;
+                            }
+                            else
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                            }
+                            if (cIndex == 1 || cIndex == 7)
+                            {
+                                ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                            }
+                            if (cIndex == 2)
+                            {
+                                ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            }
+
+                            foreach (DataGridViewRow rowa in grdEmployeeList.Rows)
+                            {
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                            }
+                        }
                     }
-                    if (lvUserList.Items.Count > 0)
-                    {
-                        lvUserList.Items[0].Selected = true;
-                    }
+                    ExcelObj.Visible = true;
                 }
-                if(e.KeyCode==Keys.Enter)
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvUserList_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
                 {
+                    udfnSearchList();
                     btnView.Focus();
                 }
             }
@@ -759,24 +740,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TxtDUserList_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtDUserList.BackColor = Color.White;
-                if (txtDUserList.Text.Trim() == "") { lblUserId.Text = "0"; }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+
         private void LvUserList_DoubleClick(object sender, EventArgs e)
         {
             try
             {
-                udfnGrdevent();
+                udfnSearchList();
                 btnView.Focus();
             }
             catch (Exception ex)
@@ -785,31 +754,17 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void LvUserList_KeyDown(object sender, KeyEventArgs e)
+
+        public void udfnSearchList()
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    udfnGrdevent();
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfnGrdevent()
-        {
-            try
-            {
-                if (txtDUserList.Text != "")
+                if (txtEmployee.Text != "")
                 {
                     ListViewItem selectedItem = lvUserList.SelectedItems[0];
-                    lblUserId.Text = selectedItem.SubItems[1].Text;
-                    txtDUserList.Text = selectedItem.SubItems[0].Text;
+                    lblEmpCode.Text = selectedItem.SubItems[1].Text;
+                    lblUserId.Text = selectedItem.SubItems[2].Text;
+                    txtEmployee.Text = selectedItem.SubItems[0].Text;
                 }
             }
             catch (Exception ex)
@@ -820,6 +775,59 @@ namespace ROMS
             finally
             {
                 lvUserList.Visible = false;
+            }
+        }
+
+        private void BtnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvUserList.Visible = false;
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnView_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

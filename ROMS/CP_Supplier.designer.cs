@@ -939,7 +939,7 @@
             this.grbform.Size = new System.Drawing.Size(538, 276);
             this.grbform.TabIndex = 71;
             this.grbform.TabStop = false;
-            this.grbform.Text = "Concern Contact Details";
+            this.grbform.Text = "Concern Details";
             this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
             // 
             // lvCity
@@ -1113,7 +1113,7 @@
             // 
             this.txtName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtName.Location = new System.Drawing.Point(121, 23);
-            this.txtName.MaxLength = 20;
+            this.txtName.MaxLength = 150;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(397, 27);
             this.txtName.TabIndex = 0;
@@ -1256,7 +1256,6 @@
             // 
             this.tbOrder.Controls.Add(this.groupBox1);
             this.tbOrder.Controls.Add(this.groupBox3);
-            this.tbOrder.Controls.Add(this.btnAdd);
             this.tbOrder.Controls.Add(this.grdSupplierList);
             this.tbOrder.Controls.Add(this.btn_close);
             this.tbOrder.Controls.Add(this.gpSupplier);
@@ -1273,7 +1272,7 @@
             // 
             this.groupBox1.Controls.Add(this.txtOtherBrands);
             this.groupBox1.Controls.Add(this.btnSupplierdeal);
-            this.groupBox1.Location = new System.Drawing.Point(1054, 9);
+            this.groupBox1.Location = new System.Drawing.Point(985, 9);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(264, 238);
             this.groupBox1.TabIndex = 1111182;
@@ -1315,7 +1314,7 @@
             this.groupBox3.Controls.Add(this.txtDReturnCycle);
             this.groupBox3.Controls.Add(this.cmbReturnPolicy);
             this.groupBox3.Controls.Add(this.textBox9);
-            this.groupBox3.Location = new System.Drawing.Point(767, 9);
+            this.groupBox3.Location = new System.Drawing.Point(698, 9);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(281, 238);
             this.groupBox3.TabIndex = 1111181;
@@ -1443,7 +1442,7 @@
             this.btnAdd.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(685, 248);
+            this.btnAdd.Location = new System.Drawing.Point(586, 248);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(76, 29);
             this.btnAdd.TabIndex = 13;
@@ -1617,13 +1616,14 @@
             // 
             this.gpSupplier.Controls.Add(this.txtScheduleName);
             this.gpSupplier.Controls.Add(this.label1);
+            this.gpSupplier.Controls.Add(this.btnAdd);
             this.gpSupplier.Controls.Add(this.txtSupplier);
             this.gpSupplier.Controls.Add(this.label2);
             this.gpSupplier.Controls.Add(this.groupBox2);
             this.gpSupplier.Controls.Add(this.groupBox6);
             this.gpSupplier.Location = new System.Drawing.Point(8, -5);
             this.gpSupplier.Name = "gpSupplier";
-            this.gpSupplier.Size = new System.Drawing.Size(753, 253);
+            this.gpSupplier.Size = new System.Drawing.Size(684, 282);
             this.gpSupplier.TabIndex = 958801;
             this.gpSupplier.TabStop = false;
             // 
@@ -1656,9 +1656,10 @@
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSupplier.Location = new System.Drawing.Point(154, 24);
             this.txtSupplier.MaxLength = 50;
+            this.txtSupplier.Multiline = true;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.ReadOnly = true;
-            this.txtSupplier.Size = new System.Drawing.Size(204, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(204, 43);
             this.txtSupplier.TabIndex = 1;
             // 
             // label2
@@ -1770,7 +1771,7 @@
             this.groupBox6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.Location = new System.Drawing.Point(387, 14);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(358, 235);
+            this.groupBox6.Size = new System.Drawing.Size(283, 235);
             this.groupBox6.TabIndex = 11;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Order Details";
@@ -1836,7 +1837,7 @@
             "Mobile App"});
             this.cmbOrderType.Location = new System.Drawing.Point(142, 27);
             this.cmbOrderType.Name = "cmbOrderType";
-            this.cmbOrderType.Size = new System.Drawing.Size(204, 27);
+            this.cmbOrderType.Size = new System.Drawing.Size(132, 27);
             this.cmbOrderType.TabIndex = 11;
             this.cmbOrderType.SelectedIndexChanged += new System.EventHandler(this.CmbOrderType_SelectedIndexChanged);
             this.cmbOrderType.Enter += new System.EventHandler(this.CmbOrderType_Enter);

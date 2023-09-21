@@ -36,6 +36,7 @@ namespace ROMS
         public int PbStatus = 0;
         public int PbGodownTypeStatus = 0;
         public int varUpdate = 0;
+        public int varFormFlag = 0;
         public CP_Location()
         {
             InitializeComponent();
@@ -178,6 +179,11 @@ namespace ROMS
                     }
                     udfnLoad();
                 }
+                if (varFormFlag != 0)
+                {
+                    MainForm.objCP_LocationList.picLoader.Visible = false;
+                    MainForm.objCP_LocationList.picLoader.SendToBack();
+                }
             }
             catch (Exception ex)
             {
@@ -186,9 +192,7 @@ namespace ROMS
             }
             finally
             {
-
-                MainForm.objCP_LocationList.picLoader.Visible = false;
-                MainForm.objCP_LocationList.picLoader.SendToBack();
+               
             }
         }
         private void udfnLoad()
@@ -251,36 +255,48 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;
-                    if (btnSave.Text == "Save")
+                if (btnSave.Text == "Save")
+                {
+                    varoriginator = "Stock Creation";
+                    varType = 0;
+                }
+                else
+                {
+                    varoriginator = "Stock Updation";
+                    varType = 1;
+                }
+                varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator);
+                objspservice.CloseConnection();
+                string[] varvalue = varResult.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    /*modified by deepa on 15-09-2023*/
+                    if (varFormFlag == 1)
                     {
-                        varoriginator = "Stock Creation";
-                        varType = 0;
+                        varFormFlag = 0;
+                        MainForm.objCP_SubGroup.varStockLocationName = txtLocationNameInEnglish.Text;
+                        MainForm.objCP_SubGroup.varLocationCode = Convert.ToInt16(varResult.Split('~')[2]);
+                        varUpdate = 1;
+                        udfnclose();
                     }
                     else
                     {
-                        varoriginator = "Stock Updation";
-                        varType = 1;
-                    }
-                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator);
-                    objspservice.CloseConnection();
-                    string[] varvalue = varResult.Split('~');
-                    if (varvalue[0] == "3")
-                    {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MainForm.objCP_LocationList.udfnList();
-                        if (btnSave.Text == "Update")
-                        {
-                            varUpdate = 1;
-                            udfnclose();
-                        }
-                        udfnclear();
                     }
-                    else
+                    if (btnSave.Text == "Update")
                     {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        btnSave.Enabled = true;
-                        btnSave.Focus();
+                        varUpdate = 1;
+                        udfnclose();
                     }
+                    udfnclear();
+                }
+                else
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Enabled = true;
+                    btnSave.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -939,7 +955,7 @@ namespace ROMS
         {
             if(btnSave.Text=="Save")
             {
-                cmbStockApplicable.SelectedValue = 11;
+               // cmbStockApplicable.SelectedValue = 11;
             }
         }
     }

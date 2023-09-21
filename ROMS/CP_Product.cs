@@ -48,7 +48,7 @@ namespace ROMS
         private ToolTip tpsalesrack = new ToolTip();
 
         public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0, varGroupId=0, varSubGroupId = 0,varHsnId=0, varUnitid=0, varcompanyid=0, varBrandId=0,varBatchCode=0, varPURSLID=0, varPURRKID=0, varSALESLID=0, varSALERKID=0;
-        public string varSubGroupName = "", varGroupName = "", varPurchaseLocation ="", varSalesLocation="", varPurchaseRack="", varSalesRack="";
+        public string varSubGroupName = "", varGroupName = "", varPurchaseLocation ="", varSalesLocation="", varPurchaseRack="", varSalesRack="",varBrandName="";
         public CP_Product()
         {
             InitializeComponent();
@@ -340,7 +340,7 @@ namespace ROMS
                 string varId_SubGroup = "0";
                 DataSet objDssubgroup = new DataSet();
                 SPDataService objDserv = new SPDataService();
-                objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim());
+                objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
                 objDserv.CloseConnection();
                 if (objDssubgroup != null)
                 {
@@ -655,8 +655,16 @@ namespace ROMS
                         shelflife = Convert.ToInt32(txtSelfLife.Text);
                     }
                     int varviewtype = 0,varupdateproductcode=0;
-                    string varorignator = "";
-                     
+                    string varorignator = "",varbrandid="0";
+
+                    if (txtBrand.Text=="")
+                    {
+                        varbrandid = "0";
+                    }
+                    else
+                    {
+                        varbrandid = lblBrand.Text;
+                    }
                     if (btnSave.Text == "Save")
                     {
                         varviewtype = 0;
@@ -671,7 +679,7 @@ namespace ROMS
                         varupdate = "1";
                     }
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text, Convert.ToInt32(cmbConcern.SelectedValue),
-                    Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), Convert.ToInt32(lblBrand.Text),
+                    Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), Convert.ToInt32(varbrandid),
                     Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(lblPurLocationCode.Text), Convert.ToInt32(lblSaleLocationCode.Text)
                     , Convert.ToInt32(lblPurRackCode.Text), Convert.ToInt32(lblSaleRackCode.Text), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue)
                     , Convert.ToInt32(cmbBatchNoGeneration.SelectedValue), varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty,
@@ -3169,7 +3177,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
                 lblDPicode.Visible = true;
-                objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0,0,0);
+                objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -3563,7 +3571,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSubGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(8,0,"",0,0,txtSubGroup.Text.Trim());
+                    objDs = objspdservice.udfnSubGroupList(8,0,"",0,0,txtSubGroup.Text.Trim(), 0, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -4292,7 +4300,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     DataService objdservice = new DataService();
-                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0);
+                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0,0);
                     objdserv.CloseConnection();
                     if (objDS != null)
                     {
@@ -4463,15 +4471,13 @@ namespace ROMS
             try
             {
 
-               // MainForm.objCP_Brand = new CP_Brand();
-               //// MainForm.objCP_Brand.MdiParent = ParentForm;
-               // MainForm.objCP_Brand.varmastertype = 1;
-               // MainForm.objCP_Brand.ShowDialog();
-
-               // DataBind objDataBind = new DataBind();
-               // objDataBind.BindComboBoxListSelected("MR_BRAND", "BDID <> 0 AND BD_STSID=1", "BD_EName,BDID", cmbBrand, "", "BD_EName", "BDID"); 
-               // cmbBrand.SelectedValue = Convert.ToInt16(varbrandcode);
-               // objDataBind = null;
+                MainForm.objCP_Brand = new CP_Brand(); 
+                MainForm.objCP_Brand.varmastertype = 1;
+                MainForm.objCP_Brand.ShowDialog();
+                lblBrand.Text = Convert.ToString(varbrandcode);
+                txtBrand.Text = varBrandName;
+                txtGroup.Focus();
+                 
             }
             catch (Exception ex)
             {

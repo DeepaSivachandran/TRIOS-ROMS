@@ -70,7 +70,7 @@ namespace ROMS
 
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
-                        varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "","",0,0, "Unit Delete");
+                        varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "","",0,0, "Unit Delete","");
                         objspservice.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -108,9 +108,10 @@ namespace ROMS
                     MainForm.objCP_Unit.varUnitCode = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_Unit.pbDecimalId = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["decimalID"].Value);
                     MainForm.objCP_Unit.PbUnitName = Convert.ToString(grdUnitList.SelectedRows[0].Cells["Unit Name"].Value);
-                    MainForm.objCP_Unit.PbSymbol = Convert.ToString(grdUnitList.SelectedRows[0].Cells["Symbol"].Value);
+                    MainForm.objCP_Unit.PbSymbol = Convert.ToString(grdUnitList.SelectedRows[0].Cells["Unit"].Value);
                     MainForm.objCP_Unit.PbNoOfDecimals = Convert.ToString(grdUnitList.SelectedRows[0].Cells["No.of Decimals"].Value);
                     MainForm.objCP_Unit.PbStatus = Convert.ToInt32( grdUnitList.SelectedRows[0].Cells["StatusID"].Value);
+                    MainForm.objCP_Unit.pbInvoiceUnit = Convert.ToString(grdUnitList.SelectedRows[0].Cells["E-Invoice Unit"].Value);
                     MainForm.objCP_Unit.ShowDialog();
                 }
             }

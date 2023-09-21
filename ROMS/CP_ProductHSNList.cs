@@ -103,7 +103,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             }
         }
@@ -291,8 +291,8 @@ namespace ROMS
                             grdHSNList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdHSNList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdHSNList.Columns["S.No."].Width = 50;
-                            grdHSNList.Columns["HSN Name"].Width = 200;
-                            grdHSNList.Columns["HSN Code"].Width = 100;
+                            grdHSNList.Columns["HSN Name"].Width = 250;
+                            grdHSNList.Columns["HSN Code"].Width = 200;
                             grdHSNList.Columns["GST%"].Width = 80;
                             grdHSNList.Columns["Total Products"].Width = 100;
                             grdHSNList.Columns["Status"].Width = 80;

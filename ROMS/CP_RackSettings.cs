@@ -108,7 +108,7 @@ namespace ROMS
                 {
                     varViewType = 4;
                 }
-                objDT = objdserv.udfnSubGroupList(varViewType, 0, "", varGroupId, 0,"");
+                objDT = objdserv.udfnSubGroupList(varViewType, 0, "", varGroupId, 0,"",0,0,0,0);
                 objdserv.CloseConnection();
                 cmbSubGroup.DataSource = null;
                 if (objDT != null)
@@ -653,7 +653,7 @@ namespace ROMS
                 grdSupplierMapping.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId,varSubGroupId, "", "", "", 0,0,0,0,0);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId,varSubGroupId, "", "", "", 0,0,0,0,0,0);
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[0].Rows.Count != 0)

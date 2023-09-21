@@ -194,87 +194,96 @@ namespace ROMS
                 //********** To display a data in a grid  ******************
                 ep_Supplierlist.Clear();
                 grdSupplierList.DataSource = null;
-                    DataSet objDs = new DataSet();
-                    //**** To call the function from SP ***************
-                    SPDataService objdserv = new SPDataService();
-                    int varSupplierId = 0;
-                    if (txtSupplier.Text == "")
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                int varSupplierId = 0;
+                if (txtSupplier.Text == "")
+                {
+                varSupplierId = 0;
+                }
+                else
+                {
+                    DataSet objDsSupplierId = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsSupplierId = objDserv.udfnSupplierList(11,0,0,0,0,txtSupplier.Text.Trim(),0,0);
+                    objDserv.CloseConnection();
+                    if (objDsSupplierId != null)
                     {
-                    varSupplierId = 0;
-                    }
-                    else
-                    {
-                        DataService objDServ = new DataService();
-                        string varId_Supplier = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SPID FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') END AS SPID ");
-                        objDServ.CloseConnection();
-                        varSupplierId = Convert.ToInt32(varId_Supplier);
-                    }
-
-                objDs = objdserv.udfnSupplierList(1, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "",0,0,0);
-                    objdserv.CloseConnection();
-                    if (objDs != null)
-                    {
-                        if (objDs.Tables.Count != 0)
+                        if (objDsSupplierId.Tables.Count > 0)
                         {
-                            lblNoRecordsFound.Visible = false;
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDsSupplierId.Tables[0].Rows.Count > 0)
                             {
-                                lblNoRecordsFound.Visible = false;
-                                lblNoRecordsFound.SendToBack();
-                                grdSupplierList.DataSource = objDs.Tables[0];
-                            grdSupplierList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdSupplierList.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdSupplierList.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
- 
-                            grdSupplierList.Columns["S.No."].Width = 50;
-                            grdSupplierList.Columns["Supplier"].Width = 200;
-                            grdSupplierList.Columns["Schedule Name"].Width = 150;
-                            grdSupplierList.Columns["Status"].Width = 80;
-                            grdSupplierList.Columns["Scheduleid"].Visible = false;
-                            grdSupplierList.Columns["SupplierID"].Visible = false;
-                            grdSupplierList.Columns["STS"].Visible = false;
-                            grdSupplierList.Columns["DYID"].Visible = false;
-                            grdSupplierList.Columns["ORDERTYPE"].Visible = false;
-                            grdSupplierList.Columns["rownum"].Visible = false;
-                        }
-                            else
-                            {
-                                lblNoRecordsFound.Visible = true;
-                                lblNoRecordsFound.BringToFront();
+                                varSupplierId = Convert.ToInt32(objDsSupplierId.Tables[0].Rows[0][0]);
                             }
                         }
-                    if (objDs.Tables[1].Rows.Count > 0)
-                    {
-                        grdDaywiseProduct.DataSource = null;
-                        for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
-                        {
-                            grdDaywiseProduct.DataSource = objDs.Tables[1];
-
-                            grdDaywiseProduct.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdDaywiseProduct.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdDaywiseProduct.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdDaywiseProduct.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdDaywiseProduct.Columns["Total Suppliers"].Width = 100;
-                            grdDaywiseProduct.Columns["Mobile App"].Width = 100;
-                            grdDaywiseProduct.Columns["Phone"].Width = 100;
-                            grdDaywiseProduct.Columns["Visit"].Width = 80;
-
-                        }
                     }
-
-                    else
+                }
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnSupplierList(1, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "",0,0);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            grdSupplierList.DataSource = objDs.Tables[0];
+                        grdSupplierList.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        grdSupplierList.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdSupplierList.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+ 
+                        grdSupplierList.Columns["S.No."].Width = 50;
+                        grdSupplierList.Columns["Supplier"].Width = 200;
+                        grdSupplierList.Columns["Schedule Name"].Width = 150;
+                        grdSupplierList.Columns["Status"].Width = 80;
+                        grdSupplierList.Columns["Scheduleid"].Visible = false;
+                        grdSupplierList.Columns["SupplierID"].Visible = false;
+                        grdSupplierList.Columns["STS"].Visible = false;
+                        grdSupplierList.Columns["DYID"].Visible = false;
+                        grdSupplierList.Columns["ORDERTYPE"].Visible = false;
+                        grdSupplierList.Columns["rownum"].Visible = false;
+                    }
+                        else
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
                     }
-                    else
+                if (objDs.Tables[1].Rows.Count > 0)
+                {
+                    grdDaywiseProduct.DataSource = null;
+                    for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
+                    {
+                        grdDaywiseProduct.DataSource = objDs.Tables[1];
+
+                        grdDaywiseProduct.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdDaywiseProduct.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdDaywiseProduct.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdDaywiseProduct.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdDaywiseProduct.Columns["Total Suppliers"].Width = 100;
+                        grdDaywiseProduct.Columns["Mobile App"].Width = 100;
+                        grdDaywiseProduct.Columns["Phone"].Width = 100;
+                        grdDaywiseProduct.Columns["Visit"].Width = 80;
+
+                    }
+                }
+
+                else
                     {
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
 
-                    udfnSearchGridHead();
+                udfnSearchGridHead();
                 }
                 catch (Exception ex)
                 {

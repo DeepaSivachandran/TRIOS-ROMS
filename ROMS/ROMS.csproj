@@ -13,7 +13,6 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,10 +23,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
-    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -130,6 +129,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -198,6 +198,18 @@
     </Compile>
     <Compile Include="CP_RepresentativeList.designer.cs">
       <DependentUpon>CP_RepresentativeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_EmployeeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_EmployeeList.designer.cs">
+      <DependentUpon>CP_EmployeeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Employee.designer.cs">
+      <DependentUpon>CP_Employee.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportLoad.cs">
       <SubType>Form</SubType>
@@ -896,6 +908,12 @@
     <EmbeddedResource Include="CP_RepresentativeList.resx">
       <DependentUpon>CP_RepresentativeList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_EmployeeList.resx">
+      <DependentUpon>CP_EmployeeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Employee.resx">
+      <DependentUpon>CP_Employee.cs</DependentUpon>
+    </EmbeddedResource>
     <Content Include="Reports\RPT_PUR_SupplierScheduleProductDayWise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_SupplierScheduleProductDayWise.cs</LastGenOutput>
@@ -1399,6 +1417,7 @@
     <None Include="Resources\returns.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\picture.png" />
     <None Include="Resources\Iphone-spinner-2.gif" />
     <None Include="Resources\list.png" />
     <None Include="Resources\pending.png" />
@@ -1412,6 +1431,7 @@
     <None Include="Resources\save16x16.png" />
     <None Include="Resources\print16x16.png" />
     <None Include="Resources\clear.png" />
+    <None Include="Resources\browse1.jpg" />
     <Content Include="Resources\close-eye.png" />
     <None Include="Resources\exclude1.jpg" />
   </ItemGroup>

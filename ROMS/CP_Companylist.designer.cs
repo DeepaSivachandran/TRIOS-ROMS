@@ -290,6 +290,7 @@
             this.grdCompanyList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdCompanyList.ColumnHeadersHeight = 30;
             this.grdCompanyList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdCompanyList.ColumnHeadersVisible = false;
             this.grdCompanyList.EnableHeadersVisualStyles = false;
             this.grdCompanyList.GridColor = System.Drawing.Color.White;
             this.grdCompanyList.Location = new System.Drawing.Point(3, 58);
