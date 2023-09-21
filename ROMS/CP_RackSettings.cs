@@ -132,7 +132,7 @@ namespace ROMS
                 
                 lblSRack.Text = Convert.ToString(PbRKID);
                 
-                udfnList();
+                udfnList(PbLocationCode, PbRKID);
                 lvLocation.Visible = false;
                 lvRack.Visible = false;
             }
@@ -339,11 +339,13 @@ namespace ROMS
                     {
                         varUpdate = 1; 
                         grdViewSupplierMapping.DataSource=null;
+                        grdSupplierMapping.DataSource = null;
                         udfnclose();
                     }
                     else
                     {
                         grdViewSupplierMapping.DataSource = null;
+                        grdSupplierMapping.DataSource = null;
                     }
                     udfnclear();
                 }
@@ -449,93 +451,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void udfnList()
+        private void udfnList(int locationcode, int rackcode)
         {
             try
             {
                 int varViewType = 1;
-                int varRackId = 0;
                 dtSupplierMapping.Rows.Clear();
                 Application.DoEvents();
                 //grdSupplierMapping.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                string varGroupId = "0";
-                if (txtProductGroup.Text == "")
-                {
-                    varGroupId = "0";
-                }
-                else
-                {
-                    /* Check product group is valid or not*/
-                    DataSet objDsGroup = new DataSet();
-                    SPDataService objDServ1 = new SPDataService();
-                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim());
-                    objDServ1.CloseConnection();
-                    if (objDsGroup != null)
-                    {
-                        if (objDsGroup.Tables.Count > 0)
-                        {
-                            if (objDsGroup.Tables[0].Rows.Count > 0)
-                            {
-                                varGroupId = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
-                            }
-                        }
-                    }
-                    lblGroupId.Text = Convert.ToString(varGroupId);
-                    if (lblGroupId.Text == "-1")
-                    {
-                        epRackSettings.SetError(txtProductGroup, "Please select valid group");
-                        txtProductGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpProductGroup.ShowAlways = true;
-                        tpProductGroup.Show("Please select valid group", txtProductGroup, 5000);
-                    }
-                    else
-                    {
-                        epRackSettings.Clear();
-                    }
-                }
-
-                string varSubGroupId = "0";
-                if (txtProductSubGroup.Text == "")
-                {
-                    varSubGroupId = "0";
-                }
-                else
-                {
-                    /* Check product sub group is valid or not*/
-                    DataSet objDssubgroup = new DataSet();
-                    SPDataService objDserv = new SPDataService();
-                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtProductSubGroup.Text.Trim());
-                    objDserv.CloseConnection();
-                    if (objDssubgroup != null)
-                    {
-                        if (objDssubgroup.Tables.Count > 0)
-                        {
-                            if (objDssubgroup.Tables[0].Rows.Count > 0)
-                            {
-                                varSubGroupId = Convert.ToString(objDssubgroup.Tables[0].Rows[0][0]);
-                            }
-                        }
-                    }
-                    lblSubGroupId.Text = Convert.ToString(varSubGroupId);
-                    if (lblSubGroupId.Text == "-1")
-                    {
-                        epRackSettings.SetError(txtProductSubGroup, "Please select valid subgroup");
-                        txtProductSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpProductSubGroup.ShowAlways = true;
-                        tpProductSubGroup.Show("Please select valid subgroup", txtProductSubGroup, 5000);
-                    }
-                    else
-                    {
-                        epRackSettings.Clear();
-                    }
-                }
-                objDs = objdserv.udfnRackSettingsList(varViewType, 0, 0,PbLocationCode,PbRKID);
+                
+                objDs = objdserv.udfnRackSettingsList(varViewType, 0, 0, locationcode, rackcode);
                 objdserv.CloseConnection();
-
-
+                btnSave.Text = "Update";
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
@@ -2031,15 +1961,38 @@ namespace ROMS
                 {
                     try
                     {
-                        udfnProductList();
-                        for (int j = 0; j < grdSupplierMapping.RowCount; j++)
+                        int varRackCount = 0;
+                        //grdSupplierMapping.DataSource = null;
+                        DataSet objDs = new DataSet();
+                        //**** To call the function from SP ***************
+                        SPDataService objdserv = new SPDataService();
+                        objDs = objdserv.udfnRackSettingsList(2, 0, 0, 0, Convert.ToInt32(lblSRack.Text));
+                        objdserv.CloseConnection();
+                        if (objDs != null)
                         {
-                            if (Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRODUCTID"].Value) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
+                            if (objDs.Tables.Count > 0)
                             {
-                                grdSupplierMapping.Rows[j].Cells[0].Value = true;
+                                if (objDs.Tables[0].Rows.Count > 0)
+                                {
+                                    varRackCount = Convert.ToInt32(objDs.Tables[0].Rows[0][0]);
+                                }
                             }
                         }
-
+                        if (varRackCount != 0) {
+                            udfnList(Convert.ToInt32(lblSLocation.Text), Convert.ToInt32(lblSRack.Text));
+                        }
+                        else {
+                            grdViewSupplierMapping.DataSource = null;
+                            btnSave.Text = "Save";
+                            udfnProductList();
+                            //for (int j = 0; j < grdSupplierMapping.RowCount; j++)
+                            //{
+                            //    if (Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRODUCTID"].Value) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
+                            //    {
+                            //        grdSupplierMapping.Rows[j].Cells[0].Value = true;
+                            //    }
+                            //}
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -3304,11 +3257,13 @@ namespace ROMS
                     {
                         varUpdate = 1;
                         grdMoveProduct.DataSource = null;
+                        grdViewProduct.DataSource = null;
                         udfnclose();
                     }
                     else
                     {
                         grdMoveProduct.DataSource = null;
+                        grdViewProduct.DataSource = null;
                     }
                     udfnclear();
                 }

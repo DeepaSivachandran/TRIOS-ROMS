@@ -14,6 +14,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        public int PbRKID = 0;
         public CP_RackSettinglist()
         {
             InitializeComponent();
@@ -48,8 +49,10 @@ namespace ROMS
         private void tsbDelete_Click(object sender, EventArgs e)
         {
             try
-            {
-                udfndelete();
+            {   if (grdRackSettingList.SelectedRows.Count==1)
+                {
+                    udfndelete();
+                }
             }
             catch (Exception ex)
             {
@@ -100,7 +103,7 @@ namespace ROMS
                     MainForm.objCP_RackSettings.PbLocationCode = Convert.ToInt32(grdRackSettingList.SelectedRows[0].Cells["LocationID"].Value);
                     MainForm.objCP_RackSettings.PbRackName = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["Rack Name"].Value);
                     MainForm.objCP_RackSettings.PbPICode = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["P.I Code"].Value);
-                    MainForm.objCP_RackSettings.PbProductName = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["Product Name"].Value);
+                    MainForm.objCP_RackSettings.PbProductName = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["Product Name in English"].Value);
                     MainForm.objCP_RackSettings.PbUnit = Convert.ToString(grdRackSettingList.SelectedRows[0].Cells["Unit"].Value);
                     MainForm.objCP_RackSettings.Show();
                 }
@@ -115,6 +118,7 @@ namespace ROMS
         {
             try
             {
+                txtRack.Focus();
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -163,9 +167,10 @@ namespace ROMS
                             grdRackSettingList.Columns["S.No."].Width = 50;
                             grdRackSettingList.Columns["P.I Code"].Width = 100;
                             grdRackSettingList.Columns["Stock Location"].Width = 150;
-                            grdRackSettingList.Columns["Rack ShortName"].Width = 150;
+                            grdRackSettingList.Columns["Rack ShortName"].Width = 120;
                             grdRackSettingList.Columns["Rack Name"].Width = 150;
-                            grdRackSettingList.Columns["Product Name"].Width = 300;
+                            grdRackSettingList.Columns["Product Name in English"].Width = 250;
+                            grdRackSettingList.Columns["Product Name in Tamil"].Width = 250;
                             grdRackSettingList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdRackSettingList.ClearSelection();
                         }

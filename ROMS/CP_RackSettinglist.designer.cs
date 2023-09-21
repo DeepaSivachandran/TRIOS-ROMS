@@ -153,6 +153,7 @@
             // 
             // picLoader
             // 
+            this.picLoader.BackColor = System.Drawing.Color.White;
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
