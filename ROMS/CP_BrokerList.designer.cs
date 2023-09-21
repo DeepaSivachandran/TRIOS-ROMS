@@ -212,6 +212,7 @@
             this.grdBrokerList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdBrokerList.ColumnHeadersHeight = 30;
             this.grdBrokerList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdBrokerList.ColumnHeadersVisible = false;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);

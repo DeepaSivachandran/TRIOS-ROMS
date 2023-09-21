@@ -357,18 +357,6 @@ namespace ROMS
                 grdGroupList.ClearSelection();
             }
         }
-        private void GrdGroupList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void GrdGroupList_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -808,6 +796,24 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+         
+
+        private void GrdGroupList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex == -1)
+                {
+                    return;
+                }
+                udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
         }
     }
 }

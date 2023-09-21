@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsUserList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
@@ -42,26 +42,26 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnluser = new System.Windows.Forms.Panel();
-            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdEmployeeList = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.grbFilterByUser = new System.Windows.Forms.GroupBox();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.txtEmployee = new System.Windows.Forms.TextBox();
-            this.btnView = new System.Windows.Forms.Button();
             this.lvUserList = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblUserId = new System.Windows.Forms.Label();
+            this.grbFilterByUser = new System.Windows.Forms.GroupBox();
             this.lblEmpCode = new System.Windows.Forms.Label();
+            this.lblUserId = new System.Windows.Forms.Label();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.txtEmployee = new System.Windows.Forms.TextBox();
+            this.btnView = new System.Windows.Forms.Button();
+            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.grdEmployeeList = new System.Windows.Forms.DataGridView();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsUserList.SuspendLayout();
             this.pnluser.SuspendLayout();
+            this.grbFilterByUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdEmployeeList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
-            this.grbFilterByUser.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsUserList
@@ -159,119 +159,35 @@
             this.pnluser.Size = new System.Drawing.Size(1354, 641);
             this.pnluser.TabIndex = 36;
             // 
-            // DGV_SearchGrid
+            // lvUserList
             // 
-            this.DGV_SearchGrid.AllowUserToAddRows = false;
-            this.DGV_SearchGrid.AllowUserToDeleteRows = false;
-            this.DGV_SearchGrid.AllowUserToResizeRows = false;
-            this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle43.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle43.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle43.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle43;
-            this.DGV_SearchGrid.ColumnHeadersHeight = 30;
-            this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle44.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle44.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle44;
-            this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
-            this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
-            this.DGV_SearchGrid.Name = "DGV_SearchGrid";
-            this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle45;
-            this.DGV_SearchGrid.RowTemplate.Height = 25;
-            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DGV_SearchGrid.ShowRowErrors = false;
-            this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
-            this.DGV_SearchGrid.TabIndex = 958800;
-            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
-            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
-            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
-            this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
+            this.lvUserList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvUserList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvUserList.HideSelection = false;
+            this.lvUserList.Location = new System.Drawing.Point(21, 56);
+            this.lvUserList.Name = "lvUserList";
+            this.lvUserList.Size = new System.Drawing.Size(313, 99);
+            this.lvUserList.TabIndex = 958802;
+            this.lvUserList.UseCompatibleStateImageBehavior = false;
+            this.lvUserList.View = System.Windows.Forms.View.Details;
+            this.lvUserList.Visible = false;
+            this.lvUserList.DoubleClick += new System.EventHandler(this.LvUserList_DoubleClick);
+            this.lvUserList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvUserList_KeyDown);
             // 
-            // lblNoRecordsFound
+            // columnHeader1
             // 
-            this.lblNoRecordsFound.AutoSize = true;
-            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
-            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 375);
-            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
-            this.lblNoRecordsFound.TabIndex = 958798;
-            this.lblNoRecordsFound.Text = "No Records Found";
-            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.columnHeader1.Width = 180;
             // 
-            // grdEmployeeList
+            // columnHeader2
             // 
-            this.grdEmployeeList.AllowUserToAddRows = false;
-            this.grdEmployeeList.AllowUserToDeleteRows = false;
-            this.grdEmployeeList.AllowUserToResizeColumns = false;
-            this.grdEmployeeList.AllowUserToResizeRows = false;
-            this.grdEmployeeList.BackgroundColor = System.Drawing.Color.White;
-            this.grdEmployeeList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle46.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle46.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle46.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdEmployeeList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle46;
-            this.grdEmployeeList.ColumnHeadersHeight = 30;
-            this.grdEmployeeList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle47.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle47.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle47.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdEmployeeList.DefaultCellStyle = dataGridViewCellStyle47;
-            this.grdEmployeeList.EnableHeadersVisualStyles = false;
-            this.grdEmployeeList.GridColor = System.Drawing.Color.White;
-            this.grdEmployeeList.Location = new System.Drawing.Point(3, 130);
-            this.grdEmployeeList.Name = "grdEmployeeList";
-            this.grdEmployeeList.ReadOnly = true;
-            this.grdEmployeeList.RowHeadersVisible = false;
-            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.Color.White;
-            this.grdEmployeeList.RowsDefaultCellStyle = dataGridViewCellStyle48;
-            this.grdEmployeeList.RowTemplate.Height = 25;
-            this.grdEmployeeList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdEmployeeList.Size = new System.Drawing.Size(1348, 510);
-            this.grdEmployeeList.TabIndex = 4;
-            this.grdEmployeeList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUserList_DataBindingComplete);
-            this.grdEmployeeList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.grdUserList_Scroll);
-            this.grdEmployeeList.DoubleClick += new System.EventHandler(this.GrdUserList_DoubleClick);
-            this.grdEmployeeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUserList_KeyDown);
+            this.columnHeader2.Width = 100;
             // 
-            // picLoader
+            // columnHeader3
             // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 74);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1348, 564);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
+            this.columnHeader3.Width = 0;
             // 
             // grbFilterByUser
             // 
@@ -288,6 +204,26 @@
             this.grbFilterByUser.TabIndex = 0;
             this.grbFilterByUser.TabStop = false;
             this.grbFilterByUser.Text = "Filter By Employee";
+            // 
+            // lblEmpCode
+            // 
+            this.lblEmpCode.AutoSize = true;
+            this.lblEmpCode.Location = new System.Drawing.Point(666, 23);
+            this.lblEmpCode.Name = "lblEmpCode";
+            this.lblEmpCode.Size = new System.Drawing.Size(16, 20);
+            this.lblEmpCode.TabIndex = 5;
+            this.lblEmpCode.Text = "0";
+            this.lblEmpCode.Visible = false;
+            // 
+            // lblUserId
+            // 
+            this.lblUserId.AutoSize = true;
+            this.lblUserId.Location = new System.Drawing.Point(529, 41);
+            this.lblUserId.Name = "lblUserId";
+            this.lblUserId.Size = new System.Drawing.Size(16, 20);
+            this.lblUserId.TabIndex = 4;
+            this.lblUserId.Text = "0";
+            this.lblUserId.Visible = false;
             // 
             // btnExport
             // 
@@ -332,55 +268,120 @@
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
-            // lvUserList
+            // DGV_SearchGrid
             // 
-            this.lvUserList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.lvUserList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvUserList.HideSelection = false;
-            this.lvUserList.Location = new System.Drawing.Point(21, 56);
-            this.lvUserList.Name = "lvUserList";
-            this.lvUserList.Size = new System.Drawing.Size(313, 99);
-            this.lvUserList.TabIndex = 958802;
-            this.lvUserList.UseCompatibleStateImageBehavior = false;
-            this.lvUserList.View = System.Windows.Forms.View.Details;
-            this.lvUserList.Visible = false;
-            this.lvUserList.DoubleClick += new System.EventHandler(this.LvUserList_DoubleClick);
-            this.lvUserList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvUserList_KeyDown);
+            this.DGV_SearchGrid.AllowUserToAddRows = false;
+            this.DGV_SearchGrid.AllowUserToDeleteRows = false;
+            this.DGV_SearchGrid.AllowUserToResizeRows = false;
+            this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGV_SearchGrid.ColumnHeadersHeight = 30;
+            this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
+            this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
+            this.DGV_SearchGrid.Name = "DGV_SearchGrid";
+            this.DGV_SearchGrid.RowHeadersVisible = false;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.DGV_SearchGrid.RowTemplate.Height = 25;
+            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DGV_SearchGrid.ShowRowErrors = false;
+            this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
+            this.DGV_SearchGrid.TabIndex = 958800;
+            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
+            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
+            this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
-            // columnHeader1
+            // lblNoRecordsFound
             // 
-            this.columnHeader1.Width = 180;
+            this.lblNoRecordsFound.AutoSize = true;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 375);
+            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.TabIndex = 958798;
+            this.lblNoRecordsFound.Text = "No Records Found";
+            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // columnHeader2
+            // grdEmployeeList
             // 
-            this.columnHeader2.Width = 100;
+            this.grdEmployeeList.AllowUserToAddRows = false;
+            this.grdEmployeeList.AllowUserToDeleteRows = false;
+            this.grdEmployeeList.AllowUserToResizeColumns = false;
+            this.grdEmployeeList.AllowUserToResizeRows = false;
+            this.grdEmployeeList.BackgroundColor = System.Drawing.Color.White;
+            this.grdEmployeeList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdEmployeeList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdEmployeeList.ColumnHeadersHeight = 30;
+            this.grdEmployeeList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdEmployeeList.ColumnHeadersVisible = false;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdEmployeeList.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdEmployeeList.EnableHeadersVisualStyles = false;
+            this.grdEmployeeList.GridColor = System.Drawing.Color.White;
+            this.grdEmployeeList.Location = new System.Drawing.Point(3, 130);
+            this.grdEmployeeList.Name = "grdEmployeeList";
+            this.grdEmployeeList.ReadOnly = true;
+            this.grdEmployeeList.RowHeadersVisible = false;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdEmployeeList.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdEmployeeList.RowTemplate.Height = 25;
+            this.grdEmployeeList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdEmployeeList.Size = new System.Drawing.Size(1348, 510);
+            this.grdEmployeeList.TabIndex = 4;
+            this.grdEmployeeList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUserList_DataBindingComplete);
+            this.grdEmployeeList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.grdUserList_Scroll);
+            this.grdEmployeeList.DoubleClick += new System.EventHandler(this.GrdUserList_DoubleClick);
+            this.grdEmployeeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUserList_KeyDown);
             // 
-            // columnHeader3
+            // picLoader
             // 
-            this.columnHeader3.Width = 0;
-            // 
-            // lblUserId
-            // 
-            this.lblUserId.AutoSize = true;
-            this.lblUserId.Location = new System.Drawing.Point(529, 41);
-            this.lblUserId.Name = "lblUserId";
-            this.lblUserId.Size = new System.Drawing.Size(16, 20);
-            this.lblUserId.TabIndex = 4;
-            this.lblUserId.Text = "0";
-            this.lblUserId.Visible = false;
-            // 
-            // lblEmpCode
-            // 
-            this.lblEmpCode.AutoSize = true;
-            this.lblEmpCode.Location = new System.Drawing.Point(666, 23);
-            this.lblEmpCode.Name = "lblEmpCode";
-            this.lblEmpCode.Size = new System.Drawing.Size(16, 20);
-            this.lblEmpCode.TabIndex = 5;
-            this.lblEmpCode.Text = "0";
-            this.lblEmpCode.Visible = false;
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(3, 74);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1348, 564);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // CP_EmployeeList
             // 
@@ -403,11 +404,11 @@
             this.tsUserList.PerformLayout();
             this.pnluser.ResumeLayout(false);
             this.pnluser.PerformLayout();
+            this.grbFilterByUser.ResumeLayout(false);
+            this.grbFilterByUser.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdEmployeeList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
-            this.grbFilterByUser.ResumeLayout(false);
-            this.grbFilterByUser.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -77,7 +77,7 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(102, 24);
+            this.tspHeader.Size = new System.Drawing.Size(127, 24);
             this.tspHeader.Text = "Employee Category";
             // 
             // tsbDelete
@@ -220,6 +220,7 @@
             this.grdUserCategoryList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdUserCategoryList.ColumnHeadersHeight = 30;
             this.grdUserCategoryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdUserCategoryList.ColumnHeadersVisible = false;
             this.grdUserCategoryList.EnableHeadersVisualStyles = false;
             this.grdUserCategoryList.GridColor = System.Drawing.Color.White;
             this.grdUserCategoryList.Location = new System.Drawing.Point(3, 58);
