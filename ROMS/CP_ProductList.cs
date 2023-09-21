@@ -239,7 +239,7 @@ namespace ROMS
                             grdItemList.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdItemList.Columns["S.No."].Frozen = true;
                             grdItemList.Columns["Product Name in Tamil"].Frozen = true;
-
+                            grdItemList.Columns["P.I Code"].Frozen = true; 
                             grdItemList.Columns["S.No."].Width = 50;
                             grdItemList.Columns["Product Name in English"].Width = 300;
                             grdItemList.Columns["P.I Code"].Width = 100; 

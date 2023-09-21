@@ -391,7 +391,7 @@ namespace ROMS
             try
             {
                 try
-                {
+                { 
                     DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
@@ -708,11 +708,13 @@ namespace ROMS
                             MainForm.objCP_Items.varbrandcode = varbrandcode; 
                            // MainForm.objCP_Items.varBrandName = txtEBrandNameInEnglish.Text; 
                             varUpdate = 1;
-                            udfnclose();
+                            this.Close();
                         }
                         else
                         {
                             // udfnclose(); 
+
+                            MainForm.objCP_BrandList.udfnList();
                             udfnClear();
                         }
                     }
@@ -721,7 +723,6 @@ namespace ROMS
                         varUpdate = 1;
                         udfnclose();
                     }
-                    MainForm.objCP_BrandList.udfnList();
                 }
                 else
                 {

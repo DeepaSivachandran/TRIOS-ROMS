@@ -1810,11 +1810,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
-                    {
-                        rbActive.Focus();
-                    }
-                    else { btnSave.Focus(); }
+                    chkDefaultConcern.Focus();
                 }
             }
             catch (Exception ex)
@@ -2081,11 +2077,20 @@ namespace ROMS
                         lblCompanyLogoPath.Text = "";
                         lblCompanyLogoFilename.Text = "";
                     }
+                    int varDefaultconcern = 0;
+                    if (chkDefaultConcern.Checked==true)
+                    {
+                        varDefaultconcern = 1;
+                    }
+                    else
+                    {
+                        varDefaultconcern = 0;
+                    }
 
                     result = objspdservice.udfnCompanyMaster(varviewtype, varcompanycode, Convert.ToString(txtCompanyName.Text).Trim(), Convert.ToString(txtShortName.Text).Trim(), txtAddressLine1.Text, txtAddressLine2.Text, cityid
                     , varpincode, txtPhoneNo.Text, txtAlterPhoneno.Text, txtwhatsappNo.Text, txtmobileNo.Text, txtAlterMobileno.Text, txtEmail.Text, txtwebsite.Text
                     , txtGSTTIN.Text, txtPan.Text, txtESI.Text, txtEPF.Text, txtFSSAI.Text, txtPlno.Text, Convert.ToString(cmbState.SelectedValue), varStatus,
-                    MainForm.pbUserID, MainForm.pbIpAddress, varorginator, objBankTable, objContactTable, lblCompanyLogoFilename.Text);
+                    MainForm.pbUserID, MainForm.pbIpAddress, varorginator, objBankTable, objContactTable, lblCompanyLogoFilename.Text, varDefaultconcern);
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -3190,11 +3195,11 @@ namespace ROMS
 
                 if (btnSave.Text == "Save")
                 {
-                    result = objspdservice.udfnCompanyMaster(3, Convert.ToInt32(varcontactcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Create", objBankTable, objContactTable,"");
+                    result = objspdservice.udfnCompanyMaster(3, Convert.ToInt32(varcontactcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Create", objBankTable, objContactTable,"",0);
                 }
                 else
                 {
-                    result = objspdservice.udfnCompanyMaster(4, Convert.ToInt32(contactupdate), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Update", objBankTable, objContactTable,"");
+                    result = objspdservice.udfnCompanyMaster(4, Convert.ToInt32(contactupdate), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Update", objBankTable, objContactTable,"",0);
                     varupdate = "1";
                 }
                 string[] varvalue = result.Split('~');
@@ -3576,6 +3581,15 @@ namespace ROMS
                     {
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
+                            
+                            if (objDS.Tables[0].Rows[0]["DEFAULTID"].ToString()=="1")
+                            {
+                                chkDefaultConcern.Checked = true;
+                            }
+                            else
+                            {
+                                chkDefaultConcern.Checked = false;
+                            }
                             txtCompanyName.Text = objDS.Tables[0].Rows[0]["Name"].ToString().Replace("''", "'");
                             txtShortName.Text = objDS.Tables[0].Rows[0]["Shortname"].ToString().Replace("''", "'");
                             txtCity.Text = objDS.Tables[0].Rows[0]["city"].ToString().Replace("''", "'");
@@ -4015,6 +4029,42 @@ namespace ROMS
             {
                 // tpCompanyName.Active = false; 
             }
+        }
+
+        private void ChkDefaultConcern_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkDefaultConcern.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkDefaultConcern_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkDefaultConcern.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void ChkDefaultConcern_KeyDown(object sender, KeyEventArgs e)
+        { 
+            if (pnlStatus.Enabled)
+            {
+                rbActive.Focus();
+            }
+            else { btnSave.Focus(); }
         }
 
         private void Grpform2_Leave(object sender, EventArgs e)
