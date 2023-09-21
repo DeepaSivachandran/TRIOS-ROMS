@@ -706,7 +706,7 @@ namespace ROMS
                         {
                             varmastertype = 0;
                             MainForm.objCP_Items.varbrandcode = varbrandcode; 
-                            MainForm.objCP_Items.varBrandName = txtEBrandNameInEnglish.Text; 
+                           // MainForm.objCP_Items.varBrandName = txtEBrandNameInEnglish.Text; 
                             varUpdate = 1;
                             udfnclose();
                         }

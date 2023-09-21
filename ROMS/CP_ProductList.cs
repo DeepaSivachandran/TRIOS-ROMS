@@ -242,7 +242,7 @@ namespace ROMS
 
                             grdItemList.Columns["S.No."].Width = 50;
                             grdItemList.Columns["Product Name in English"].Width = 300;
-                            grdItemList.Columns["P.I Code"].Width = 300; 
+                            grdItemList.Columns["P.I Code"].Width = 100; 
                             grdItemList.Columns["Product Name in Tamil"].Width = 300;
                             grdItemList.Columns["Product Subgroup"].Width = 150;
                             grdItemList.Columns["Product Group"].Width = 150;

@@ -23,7 +23,9 @@ namespace ROMS
         private ToolTip tpRack = new ToolTip();
 
         public string varsubgroupcode;
-        public String pbFormStatus;
+        public string pbFormStatus;
+        DataSet objRackList = new DataSet();
+        DataTable dtRackList = new DataTable();
 
         public int varStatusid = 1;
         public int varCloseFlag = 0;
@@ -40,6 +42,7 @@ namespace ROMS
         public int varStatus = 0;
         public int varGroupCode = 0, varmastertype=0,varSubgroupCode=0;
         public int varLocationCode = 0, varRackCode = 0;
+        public string varRackCodes = "";
 
         public CP_SubGroup()
         {
@@ -81,6 +84,10 @@ namespace ROMS
         {
             try
             {
+                dtRackList = new DataTable();
+                dtRackList.Columns.Add("", typeof(Boolean));
+                dtRackList.Columns.Add("Rack Name", typeof(string));
+                dtRackList.Columns.Add("RKID", typeof(int));
                 udfnLoadCmbBatchNo();
                 if (btnSave.Text == "Save")
                 {
@@ -96,6 +103,9 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally { grdRackList.ColumnHeadersVisible = false;
+              //  udfnSearchGridHead();
             }
         }
         public void udfnListView()
@@ -166,8 +176,17 @@ namespace ROMS
                 cmbBatchNo.SelectedValue = varBatchId;
                 txtLocation.Text = varStockLocationName;
                 lblLocation.Text=Convert.ToString(varLocationCode);
-               // txtRack.Text = varRackName;
-                lblRack.Text = Convert.ToString(varRackCode);
+                udfnLoadRackList();
+                // txtRack.Text = varRackName;
+                // lblRack.Text = Convert.ToString(varRackCode);
+                string[] varRkIds = varRackCodes.Split(',');
+                for (int i = 0; i < grdRackList.RowCount; i++) {
+                    for (int j = 0; j < varRkIds.Length; j++) {
+                        if (varRkIds[j] == Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value)) {
+                            grdRackList.Rows[i].Cells["clmcheckRack"].Value = true;
+                        }
+                    }
+                }
                 varStatusid = varStatus;
                 if(varStatusid==1)
                 {
@@ -235,60 +254,72 @@ namespace ROMS
                 string varRackId = "";
                 for (int i = 0; i < grdRackList.Rows.Count; i++)
                 {
-                    if (Convert.ToBoolean(grdRackList.Rows[i].Cells["clmcheckRack"].Value) == true)
+                    if (Convert.ToBoolean(grdRackList.Rows[i].Cells[0].Value) == true)
                     {
                         if (varRackId == "") { varRackId = Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value); }
                         else  {  varRackId = varRackId + ',' + Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value); }
                     }
                 }
-                varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId);
-                objDser.CloseConnection();
-                btnSave.Enabled = true;
-                if (varResult.Split('~')[0] == "3")
+                if (varRackId == "")
                 {
-                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (btnSave.Text == "Save")
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(60);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Enabled = true;
+                    grdRackList.Focus();
+                }
+                else
+                {
+                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId);
+                    objDser.CloseConnection();
+                    btnSave.Enabled = true;
+                    if (varResult.Split('~')[0] == "3")
                     {
-                        varSubgroupCode = Convert.ToInt16(varResult.Split('~')[2]);
-                        if (varmastertype == 1)
+                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (btnSave.Text == "Save")
                         {
-                            varmastertype = 0;
-                            MainForm.objCP_Items.varSubgroupCode = varSubgroupCode;
-                            MainForm.objCP_Items.varSubGroupName = txtESubGroupNameEnglish.Text;
-                            MainForm.objCP_Items.varGroupCode = Convert.ToInt32(lblGroupCode.Text);
-                            MainForm.objCP_Items.varGroupName = txtProductGroupName.Text.Trim();
-                            MainForm.objCP_Items.varBatchCode = Convert.ToInt32(cmbBatchNo.SelectedValue);
-                            MainForm.objCP_Items.varPURSLID = Convert.ToInt32(lblLocation.Text);
-                            MainForm.objCP_Items.varSALESLID = Convert.ToInt32(lblLocation.Text);
-                            MainForm.objCP_Items.varPURRKID = Convert.ToInt32(lblRack.Text);
-                            MainForm.objCP_Items.varSALERKID = Convert.ToInt32(lblRack.Text);
-                            MainForm.objCP_Items.varPurchaseLocation =txtLocation.Text.Trim();
-                            MainForm.objCP_Items.varSalesLocation = txtLocation.Text.Trim();
-                            //MainForm.objCP_Items.varPurchaseRack = txtRack.Text.Trim();
-                            //MainForm.objCP_Items.varSalesRack = txtRack.Text.Trim();
-                            varCloseFlag = 1;
-                            udfnclose();
+                            varSubgroupCode = Convert.ToInt16(varResult.Split('~')[2]);
+                            if (varmastertype == 1)
+                            {
+                                varmastertype = 0;
+                                MainForm.objCP_Items.varSubgroupCode = varSubgroupCode;
+                                MainForm.objCP_Items.varSubGroupName = txtESubGroupNameEnglish.Text;
+                                MainForm.objCP_Items.varGroupCode = Convert.ToInt32(lblGroupCode.Text);
+                                MainForm.objCP_Items.varGroupName = txtProductGroupName.Text.Trim();
+                                MainForm.objCP_Items.varBatchCode = Convert.ToInt32(cmbBatchNo.SelectedValue);
+                                MainForm.objCP_Items.varPURSLID = Convert.ToInt32(lblLocation.Text);
+                                MainForm.objCP_Items.varSALESLID = Convert.ToInt32(lblLocation.Text);
+                                MainForm.objCP_Items.varPURRKID = Convert.ToInt32(lblRack.Text);
+                                MainForm.objCP_Items.varSALERKID = Convert.ToInt32(lblRack.Text);
+                                MainForm.objCP_Items.varPurchaseLocation = txtLocation.Text.Trim();
+                                MainForm.objCP_Items.varSalesLocation = txtLocation.Text.Trim();
+                                //MainForm.objCP_Items.varPurchaseRack = txtRack.Text.Trim();
+                                //MainForm.objCP_Items.varSalesRack = txtRack.Text.Trim();
+                                varCloseFlag = 1;
+                                udfnclose();
+                            }
+                            else
+                            {
+                                MainForm.objCP_SubGroupList.udfnList();
+                            }
+                            udfnClear();
+                            lvGroupName.Visible = false;
+                            lvLocation.Visible = false;
+                            //   lvRack.Visible = false;
                         }
                         else
                         {
-                            MainForm.objCP_SubGroupList.udfnList();
+                            varCloseFlag = 1;
+                            udfnclose();
                         }
-                        udfnClear();
-                        lvGroupName.Visible = false;
-                        lvLocation.Visible = false;
-                     //   lvRack.Visible = false;
+                        MainForm.objCP_SubGroupList.udfnList();
                     }
-                    else
+                    else if (varResult.Split('~')[0] == "4")
                     {
-                        varCloseFlag = 1;
-                        udfnclose();
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnSave.Focus();
                     }
-                    MainForm.objCP_SubGroupList.udfnList();
-                }
-                else if (varResult.Split('~')[0] == "4")
-                {
-                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -391,6 +422,13 @@ namespace ROMS
                         txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         blnErrorFlag = true;
                     }
+                }
+                else
+                {
+                    lblLocation.Text = "0";
+                    epSubGroup.SetError(txtLocation, "Please select stock location");
+                    txtLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
                 {
@@ -1040,7 +1078,7 @@ namespace ROMS
                 {
                     if (lvLocation.Items.Count == 0 || txtLocation.Text == "")
                     {
-                        grdRackList.Focus();
+                        txtRack.Focus();
                         lvLocation.Visible = false;
                     }
                     else
@@ -1054,7 +1092,7 @@ namespace ROMS
                 }
                 if(e.KeyCode==Keys.Enter)
                 {
-                    grdRackList.Focus();
+                    txtRack.Focus();
                 }
             }
             catch (Exception ex)
@@ -1173,21 +1211,22 @@ namespace ROMS
             {
                 if (txtLocation.Text != "")
                 {
-                    DataSet objDS = new DataSet();
                     SPDataService objService = new SPDataService();
-                    objDS = objService.udfnRackList(11, 0, 0, Convert.ToInt32(lblLocation.Text), 0, "");
+                    objRackList = objService.udfnRackList(11, 0, 0, Convert.ToInt32(lblLocation.Text), 0, "");
                     objService.CloseConnection();
-                    if (objDS != null)
+                    if (objRackList != null)
                     {
-                        if (objDS.Tables.Count > 0)
+                        if (objRackList.Tables.Count > 0)
                         {
-                            if (objDS.Tables[0].Rows.Count > 0)
+                            if (objRackList.Tables[0].Rows.Count > 0)
                             {
-                                grdRackList.DataSource = objDS.Tables[0];
+                                for (int i = 0; i < objRackList.Tables[0].Rows.Count; i++) {
+                                    dtRackList.Rows.Add(false,Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Name"]),Convert.ToInt32(objRackList.Tables[0].Rows[i]["RKID"]));
+                                }
+                                grdRackList.DataSource = dtRackList;
                                 grdRackList.Columns["RKID"].Visible = false;
-                                grdRackList.Columns["RK_Name"].Visible = false;
-                                grdRackList.Columns["RK_ShortName"].Width = 150;
-                                grdRackList.Columns["RK_ShortName"].HeaderText = "Rack Name";
+                                grdRackList.Columns["Rack Name"].Width = 150;
+                                grdRackList.Columns[0].Width = 30;
                             }
                         }
                     }
@@ -1222,6 +1261,82 @@ namespace ROMS
                 lvLocation.Visible = false;
             }
         }
+
+        private void TxtRack_TextChanged(object sender, EventArgs e)
+        {
+            try {// (grdRackList.DataSource as DataTable).DefaultView.RowFilter = "([RK_Name]) LIKE '%" + txtRack.Text + "%'";
+                dtRackList.DefaultView.RowFilter = "([Rack Name]) LIKE '%" + txtRack.Text.Trim() + "%'";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRack_Layout(object sender, LayoutEventArgs e)
+        {
+           
+        }
+
+        private void TxtRack_KeyDown(object sender, KeyEventArgs e)
+        {
+            try {
+                if (e.KeyCode == Keys.Enter) {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtRack_Leave(object sender, EventArgs e)
+        {
+            try { txtRack.BackColor = Color.White; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRackList_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdRackList.IsCurrentCellDirty)
+                {
+                    grdRackList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRackList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdRackList.RowCount; i++) {
+                    if (Convert.ToBoolean(grdRackList.Rows[i].Cells[0].EditedFormattedValue) == true) { dtRackList.Rows[i][0] = true; }
+                    else { dtRackList.Rows[i][0] = false; }
+                }
+                //grdRackList.DataSource = null;
+                //grdRackList.DataSource = dtRackList;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         /*added by deepa on 15-09-2023*/
         private void Btnewlocation_Click(object sender, EventArgs e)
         {
@@ -1265,5 +1380,16 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void TxtRack_Enter(object sender, EventArgs e)
+        {
+            try { txtRack.BackColor = Color.LemonChiffon; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
     }
 }

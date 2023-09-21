@@ -597,7 +597,7 @@ namespace ROMS
                 {
                     DataSet objDsUser = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsUser = objDserv.udfnEmployeeList(3, txtStaffName.Text.Trim(), 0, varEmpCode, 0);
+                    objDsUser = objDserv.udfnEmployeeList(3, txtStaffName.Text.Trim(), 0, varEmpCode, 0,0);
                     objDserv.CloseConnection();
                     if (objDsUser != null)
                     {
@@ -634,7 +634,7 @@ namespace ROMS
                         {
                             SPDataService objspdservice = new SPDataService();
                             DataSet objDs = new DataSet();
-                            objDs = objspdservice.udfnEmployeeList(4, txtStaffName.Text.Trim(),0,"",0);
+                            objDs = objspdservice.udfnEmployeeList(4, txtStaffName.Text.Trim(),0,"",0,0);
                             objspdservice.CloseConnection();
                             txtStaffName.Text = objDs.Tables[0].Rows[0]["EMP_Name"].ToString();
                             varUserID = objDs.Tables[0].Rows[0]["EMPID"].ToString();
@@ -1432,7 +1432,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStaffName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnEmployeeList(1, txtStaffName.Text.Trim(),0,"",1);
+                    objDs = objspdservice.udfnEmployeeList(5, txtStaffName.Text.Trim(),0,"",1, varId);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

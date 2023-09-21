@@ -298,7 +298,7 @@ namespace ROMS
                     MainForm.objCP_SubGroup.varStockLocationName = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Stock Location"].Value);
                     MainForm.objCP_SubGroup.varLocationCode = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
                     MainForm.objCP_SubGroup.varRackName = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Rack"].Value);
-                    MainForm.objCP_SubGroup.varRackCode = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Rack ID"].Value);
+                    MainForm.objCP_SubGroup.varRackCodes = Convert.ToString(grdSubGroupList.SelectedRows[0].Cells["Rack ID"].Value);
                     MainForm.objCP_SubGroup.varStatus = Convert.ToInt32(grdSubGroupList.SelectedRows[0].Cells["Status ID"].Value);
                     picLoader.Visible = false;
                     picLoader.SendToBack();
