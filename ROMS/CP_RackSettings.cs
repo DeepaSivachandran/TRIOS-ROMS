@@ -2393,7 +2393,7 @@ namespace ROMS
                     {
                         DataSet objDsRack = new DataSet();
                         SPDataService objDserv4 = new SPDataService();
-                        objDsRack = objDserv4.udfnRackList(7, 0, 0, Convert.ToInt32(lblDLocation.Text), 0, "");
+                        objDsRack = objDserv4.udfnRackList(7, 0, 0, Convert.ToInt32(lblDLocation.Text), 0, txtDRack.Text);
                         objDserv4.CloseConnection();
                         if (objDsRack != null)
                         {
@@ -3271,23 +3271,23 @@ namespace ROMS
                 {
                     if (txtDRack.Text != "")
                     {
-                        string varId_PurRack = "0";
-                        DataSet objDsPurRack = new DataSet();
+                        string varIdRack = "0";
+                        DataSet objDSRack = new DataSet();
                         SPDataService objDServ4 = new SPDataService();
-                        objDsPurRack = objDServ4.udfnRackList(9, 0, 0, Convert.ToInt32(lblDLocation.Text), 0, txtDRack.Text.Trim());
+                        objDSRack = objDServ4.udfnRackList(9, 0, 0, Convert.ToInt32(lblDLocation.Text), 0, txtDRack.Text.Trim());
                         objDServ4.CloseConnection();
-                        if (objDsPurRack != null)
+                        if (objDSRack != null)
                         {
-                            if (objDsPurRack.Tables.Count > 0)
+                            if (objDSRack.Tables.Count > 0)
                             {
-                                if (objDsPurRack.Tables[0].Rows.Count > 0)
+                                if (objDSRack.Tables[0].Rows.Count > 0)
                                 {
-                                    varId_PurRack = Convert.ToString(objDsPurRack.Tables[0].Rows[0][0]);
+                                    varIdRack = Convert.ToString(objDSRack.Tables[0].Rows[0][0]);
                                 }
                             }
                         }
-                        lblDRack.Text = Convert.ToString(varId_PurRack);
-                        if (varId_PurRack == "0" || varId_PurRack == "-1")
+                        lblDRack.Text = Convert.ToString(varIdRack);
+                        if (varIdRack == "0" || varIdRack == "-1")
                         {
                             epRackSettings.SetError(txtDRack, "Please select valid rack");
                             txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -3343,42 +3343,42 @@ namespace ROMS
                     tppRack.Show("Please enter rack", txtMoveRack, 5000);
                     blnErrorFlag = true;
                 }
-                else
+                string varId_PurRack = "0";
+                string varId_Rack = "0";
+                if (txtMoveRack.Text != "")
                 {
-                    string varId_PurRack = "0";
-                    string varId_Rack = "0";
-                    if (txtMoveRack.Text != "")
+                    DataSet objDsPurRack = new DataSet();
+                    SPDataService objDServ4 = new SPDataService();
+                    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, Convert.ToInt32(lblMoveLocation.Text), 0, txtMoveRack.Text.Trim());
+                    objDServ4.CloseConnection();
+                    if (objDsPurRack != null)
                     {
-                        
-                        DataSet objDsPurRack = new DataSet();
-                        SPDataService objDServ4 = new SPDataService();
-                        objDsPurRack = objDServ4.udfnRackList(9, 0, 0, Convert.ToInt32(lblMoveLocation.Text), 0, txtMoveRack.Text.Trim());
-                        objDServ4.CloseConnection();
-                        if (objDsPurRack != null)
+                        if (objDsPurRack.Tables.Count > 0)
                         {
-                            if (objDsPurRack.Tables.Count > 0)
+                            if (objDsPurRack.Tables[0].Rows.Count > 0)
                             {
-                                if (objDsPurRack.Tables[0].Rows.Count > 0)
-                                {
-                                    varId_PurRack = Convert.ToString(objDsPurRack.Tables[0].Rows[0][0]);
-                                }
+                                varId_PurRack = Convert.ToString(objDsPurRack.Tables[0].Rows[0][0]);
                             }
                         }
-                        lblMoveRack.Text = Convert.ToString(varId_PurRack);
-                        if (varId_PurRack == "0" || varId_PurRack == "-1")
-                        {
-                            epRackSettings.SetError(txtMoveRack, "Please select valid rack");
-                            txtMoveRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tppRack.ShowAlways = true;
-                            tppRack.Show("Please select valid rack", txtMoveRack, 5000);
-                            blnErrorFlag = true;
-                        }
                     }
+                    lblMoveRack.Text = Convert.ToString(varId_PurRack);
+                    if (varId_PurRack == "0" || varId_PurRack == "-1")
+                    {
+                        epRackSettings.SetError(txtMoveRack, "Please select valid rack");
+                        txtMoveRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tppRack.ShowAlways = true;
+                        tppRack.Show("Please select valid rack", txtMoveRack, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+
+                if(varId_PurRack!="0" && varId_PurRack!="-1")
+                {
                     if (txtMoveLocation.Text != "")
                     {
                         DataSet objDsRack = new DataSet();
                         SPDataService objDserv4 = new SPDataService();
-                        objDsRack = objDserv4.udfnRackList(7, 0, 0, Convert.ToInt32(lblMoveLocation.Text), 0, "");
+                        objDsRack = objDserv4.udfnRackList(7, 0, 0, Convert.ToInt32(lblMoveLocation.Text), 0, txtMoveRack.Text);
                         objDserv4.CloseConnection();
                         if (objDsRack != null)
                         {
@@ -3406,7 +3406,7 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                
+
                 if (grdMoveProduct.Rows.Count > 0)
                 {
                     if (Convert.ToString(txtMoveLocation.Text).Trim() == "" && Convert.ToString(txtMoveRack.Text).Trim() == "")
