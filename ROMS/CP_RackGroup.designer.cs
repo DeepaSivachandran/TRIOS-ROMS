@@ -75,9 +75,7 @@
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.lblEmpCode = new System.Windows.Forms.Label();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmEmpCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -279,6 +277,7 @@
             this.lblNoofproducts.Size = new System.Drawing.Size(93, 20);
             this.lblNoofproducts.TabIndex = 1111136;
             this.lblNoofproducts.Text = "Total Products :";
+            this.lblNoofproducts.Click += new System.EventHandler(this.LblNoofproducts_Click);
             // 
             // grdRack
             // 
@@ -524,7 +523,6 @@
             this.grdStaffDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdStaffDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmSno,
-            this.clmEmpCode,
             this.clmStaffName,
             this.Column2,
             this.clmUserId,
@@ -632,58 +630,6 @@
             this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
-            // lblEmpCode
-            // 
-            this.lblEmpCode.AutoSize = true;
-            this.lblEmpCode.Location = new System.Drawing.Point(232, 106);
-            this.lblEmpCode.Name = "lblEmpCode";
-            this.lblEmpCode.Size = new System.Drawing.Size(16, 20);
-            this.lblEmpCode.TabIndex = 1111137;
-            this.lblEmpCode.Text = "0";
-            this.lblEmpCode.Visible = false;
-            // 
-            // clmSno
-            // 
-            this.clmSno.HeaderText = "S.No.";
-            this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
-            this.clmSno.Width = 40;
-            // 
-            // clmEmpCode
-            // 
-            this.clmEmpCode.HeaderText = "Employee Code";
-            this.clmEmpCode.Name = "clmEmpCode";
-            this.clmEmpCode.ReadOnly = true;
-            // 
-            // clmStaffName
-            // 
-            this.clmStaffName.HeaderText = "Employee Name";
-            this.clmStaffName.MinimumWidth = 6;
-            this.clmStaffName.Name = "clmStaffName";
-            this.clmStaffName.ReadOnly = true;
-            this.clmStaffName.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Employee Category";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 125;
-            // 
-            // clmUserId
-            // 
-            this.clmUserId.HeaderText = "User ID";
-            this.clmUserId.Name = "clmUserId";
-            this.clmUserId.Visible = false;
-            // 
-            // clmremove
-            // 
-            this.clmremove.HeaderText = "Remove";
-            this.clmremove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmremove.Name = "clmremove";
-            this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmremove.Width = 50;
-            // 
             // CP_RackGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -762,9 +708,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.Label lblEmpCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmEmpCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStaffName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUserId;

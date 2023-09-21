@@ -623,7 +623,7 @@ namespace ROMS
                     {
                         varFlag = 0;
                         for (int i = 0; i < grdStaffDetails.Rows.Count; i++)
-                        {
+                        {                       
                             varAddStaff = varUserID;
                             if (txtStaffName.Text.Trim().ToUpper() == Convert.ToString(grdStaffDetails.Rows[i].Cells["clmStaffName"].Value).Trim().ToUpper())
                             {
@@ -636,11 +636,10 @@ namespace ROMS
                             DataSet objDs = new DataSet();
                             objDs = objspdservice.udfnEmployeeList(4, txtStaffName.Text.Trim(),0,"",0);
                             objspdservice.CloseConnection();
-                            txtStaffName.Text = objDs.Tables[0].Rows[0]["EMP_Name"].ToString();
-                            varUserID = objDs.Tables[0].Rows[0]["EMPID"].ToString();
-                            varDesignation = objDs.Tables[0].Rows[0]["CT_Name"].ToString();
-                            varEmpCode = objDs.Tables[0].Rows[0]["EMP_Code"].ToString();
-                            grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, varEmpCode, txtStaffName.Text.Trim(), varDesignation, varUserID);
+                            txtStaffName.Text = objDs.Tables[0].Rows[0]["U_Name"].ToString();
+                            varUserID = objDs.Tables[0].Rows[0]["UID"].ToString();
+                            varDesignation = objDs.Tables[0].Rows[0]["Designation"].ToString();
+                            grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, txtStaffName.Text.Trim(), varDesignation, varUserID);
                         }
                         else
                         {
@@ -649,7 +648,7 @@ namespace ROMS
                             objDServ.CloseConnection();
                             MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
-
+                      
                     }
                     txtStaffName.Focus();
                     txtStaffName.Text = "";
@@ -1180,6 +1179,7 @@ namespace ROMS
         {
             try
             {
+                lvStaffName.Visible = false;
                 btnAdd.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1532,6 +1532,11 @@ namespace ROMS
         }
 
         private void LvStaffName11_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LblNoofproducts_Click(object sender, EventArgs e)
         {
 
         }

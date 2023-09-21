@@ -193,6 +193,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_ProductDetails_FormClosing);
             this.Load += new System.EventHandler(this.CP_Company_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_ProductDetails_KeyDown);
+            this.Leave += new System.EventHandler(this.CP_ProductDetails_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdProductDetails)).EndInit();
             this.grbProductDetails.ResumeLayout(false);
