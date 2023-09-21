@@ -402,6 +402,34 @@ namespace ROMS
                         var varSalesRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varSalesRack.Count() > 0)
                         { varSalesRKID = Convert.ToInt32(varSalesRack.ToList()[0]); }
+
+                        if (Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim().ToUpper() != "")
+                        {
+                            if (varPurSLID == 0)
+                            {
+                                varErrorflag = 1;
+                            }
+                        }
+                        else if (Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim().ToUpper() != "")
+                        {
+                            if (varSalesSLID == 0)
+                            {
+                                varErrorflag = 2;
+                            }
+                        }
+                        else if (Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-New"].Value).Trim().ToUpper() != "")
+                        {
+                            if (varPurRKID == 0)
+                            {
+                                varErrorflag = 3;
+                            }
+                        }else if (Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper() != "")
+                        {
+                            if (varSalesRKID == 0)
+                            {
+                                varErrorflag = 4;
+                            }
+                        }
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdLoction.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
@@ -597,15 +625,74 @@ namespace ROMS
 
                 for (int i = 0; i < objBulkUpdate.Rows.Count; i++)
                 {
-                    //DataRow dataRow = objBulkUpdate.Rows[i]; 
                     if (Convert.ToInt32(objBulkUpdate.Rows[i]["ErrorFlag"]) != 0)
                     {
-                        grdShelfLife.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
-                        Varupdateflag = 1;
+                        if (grdShelfLife.Visible == true)
+                        {
+                            grdShelfLife.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                            Varupdateflag = 1;
+                        }
+                        else if(grdWeight.Visible==true)
+                        {
+                            grdWeight.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                            Varupdateflag = 1;
+                        }
+                        else if (grdHSN.Visible == true)
+                        {
+                            grdHSN.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                            Varupdateflag = 1;
+                        }
+                        else if (grdBulkAttributes.Visible == true)
+                        {
+                            grdBulkAttributes.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                            Varupdateflag = 1;
+                        }
+                        else if (grdBatch.Visible == true)
+                        {
+                            grdBatch.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                            Varupdateflag = 1;
+                        }
+                        else if (grdBrand.Visible == true)
+                        {
+                            grdBrand.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                            Varupdateflag = 1;
+                        }
+                        else if (grdLoction.Visible == true)
+                        {
+                            grdLoction.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                            Varupdateflag = 1;
+                        }
                     }
                     else
                     {
-                        grdShelfLife.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                        if (grdShelfLife.Visible == true)
+                        {
+                            grdShelfLife.Rows[i].DefaultCellStyle.BackColor = Color.White; 
+                        }
+                        else if (grdWeight.Visible == true)
+                        {
+                            grdWeight.Rows[i].DefaultCellStyle.BackColor = Color.White; 
+                        }
+                        else if (grdHSN.Visible == true)
+                        {
+                            grdHSN.Rows[i].DefaultCellStyle.BackColor = Color.White; 
+                        }
+                        else if (grdBulkAttributes.Visible == true)
+                        {
+                            grdBulkAttributes.Rows[i].DefaultCellStyle.BackColor = Color.White; 
+                        }
+                        else if (grdBatch.Visible == true)
+                        {
+                            grdBatch.Rows[i].DefaultCellStyle.BackColor = Color.White; 
+                        }
+                        else if (grdBrand.Visible == true)
+                        {
+                            grdBrand.Rows[i].DefaultCellStyle.BackColor = Color.White; 
+                        }
+                        else if (grdLoction.Visible == true)
+                        {
+                            grdLoction.Rows[i].DefaultCellStyle.BackColor = Color.White; 
+                        }
                     }
                 }
                 if (Varupdateflag==0)
