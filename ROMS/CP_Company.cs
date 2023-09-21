@@ -1768,12 +1768,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-     
-        private void CP_Company_FormClosing(object sender, FormClosingEventArgs e)
-        { 
-        }
-
+         
         private void BtnClose_Click(object sender, EventArgs e)
         {
             try

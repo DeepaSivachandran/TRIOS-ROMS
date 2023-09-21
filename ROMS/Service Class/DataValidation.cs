@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Net;
 using System.Configuration;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 namespace ROMS
 {
@@ -861,6 +863,53 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
                 return false;
+            }
+        }
+
+        //Created by Venkat
+        //created on 15/08/2023; reason crystal report connection
+        public void CrySqlConnection(ReportDocument objBillReport)
+        {
+            try
+            {
+                SPCall tmpspcall = new SPCall();
+                SqlConnection objConn = new SqlConnection(); 
+                string connectstring = tmpspcall.connectionstring();
+                objConn = new System.Data.SqlClient.SqlConnection(connectstring);
+
+                TableLogOnInfos crtableLogoninfos = new TableLogOnInfos();
+                TableLogOnInfo crtableLogoninfo = new TableLogOnInfo();
+                ConnectionInfo crConnectionInfo = new ConnectionInfo();
+                Tables CrTables = default(Tables);
+                crConnectionInfo.ServerName = objConn.DataSource;
+                crConnectionInfo.DatabaseName = objConn.Database;
+                string path = Application.StartupPath + "\\Server Settings\\serversettings.txt";
+                _security = new SecurityController();
+                if (File.Exists(path))
+                {
+                    string lines = File.ReadAllText(path);
+                    if (lines != null & lines != "")
+                    {
+                        string[] words = lines.Split(',');
+                        crConnectionInfo.UserID = words[2];
+                        // string pwd = Decrypt(words[3], "sblw-3hn8-sqoy19");
+                        string pwd = _security.Decrypt(words[2], words[3]);
+                        crConnectionInfo.Password = pwd;
+                    }
+                }
+                // crConnectionInfo.Password = System.Configuration.ConfigurationManager.AppSettings["SqlPassword"];
+                CrTables = objBillReport.Database.Tables;
+                foreach (CrystalDecisions.CrystalReports.Engine.Table CrTable in CrTables)
+                {
+                    crtableLogoninfo = CrTable.LogOnInfo;
+                    crtableLogoninfo.ConnectionInfo = crConnectionInfo;
+                    CrTable.ApplyLogOnInfo(crtableLogoninfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 

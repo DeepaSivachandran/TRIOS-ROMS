@@ -492,5 +492,33 @@ namespace ROMS
             DGV_SearchGrid.HorizontalScrollingOffset = grdCityList.HorizontalScrollingOffset;
             DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
+
+        private void DGV_SearchGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (grdCityList.IsCurrentCellDirty)
+            {
+                // Commit the changes immediately
+                grdCityList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdCityList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCityList);
+                objDser.CloseConnection();
+                grdCityList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
     }
 }

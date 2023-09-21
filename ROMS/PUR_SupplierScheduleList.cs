@@ -15,6 +15,7 @@ namespace ROMS
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         public PUR_SupplierScheduleList()
         {
             InitializeComponent();
@@ -36,7 +37,7 @@ namespace ROMS
 
             }
         }
-      
+
         private void BtnSchedulePopup_Click(object sender, EventArgs e)
         {
             try
@@ -69,7 +70,7 @@ namespace ROMS
                 }
                 if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
                 {
-                   // tsbEdit_Click(sender, e);
+                    // tsbEdit_Click(sender, e);
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -86,23 +87,58 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
 
         private void PUR_SupplierScheduleList_Load(object sender, EventArgs e)
         {
             try
             {
-                this.ActiveControl=txtSupplier;
+                this.ActiveControl = txtSupplier;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (-1)", "DY_Name,DYID", cmbDay, "", "DY_Name", "DYID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (2) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID in (13) OR MSTID IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrder, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSCID=0", "SPSC_Name,SPSCID", cmbOrderSchedule, "", "SPSC_Name", "SPSCID");
                 objDataBind = null;
+                DataSet objDT = new DataSet();
+                SPDataService objdserv = new SPDataService();
+
+                int varconcerntype = 2;
+                objDT = objdserv.udfnCompanyList(varconcerntype, 0, MainForm.pbUserID, MainForm.pbIpAddress);
+                objdserv.CloseConnection();
+                cmbConcern.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.DisplayMember = "COM_ShortName";
+                            cmbConcern.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+                objDT = objdserv.udfnCompanyList(varconcerntype, 0, MainForm.pbUserID, MainForm.pbIpAddress);
+                objdserv.CloseConnection();
+                cmbConcernPrint.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcernPrint.ValueMember = "COMID";
+                            cmbConcernPrint.DisplayMember = "COM_ShortName";
+                            cmbConcernPrint.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
                 cmbDay.SelectedValue = 0;
                 cmbOrder.SelectedValue = 0;
-                cmbStatus.SelectedValue = 0; 
+                cmbStatus.SelectedValue = 0;
                 cmbOrderSchedule.SelectedValue = 0;
+                cmbConcernPrint.SelectedValue = 0;
                 udfnList();
             }
             catch (Exception ex)
@@ -136,8 +172,8 @@ namespace ROMS
                     string varId_Supplier = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT SPID FROM MR_Supplier WHERE SP_Name = '" + txtSupplier.Text.Trim() + "') END AS SPID ");
                     objDServ.CloseConnection();
                     varSupplierId = Convert.ToInt32(varId_Supplier);
-                } 
-                objDs = objdserv.udfnSupplierList(8, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "", 0,Convert.ToInt32(cmbStatus.SelectedValue));
+                }
+                objDs = objdserv.udfnSupplierList(8, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "", 0, Convert.ToInt32(cmbStatus.SelectedValue),0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -161,15 +197,15 @@ namespace ROMS
                             dgvSupplierScheduleList.Columns["SupplierID"].Visible = false;
                             dgvSupplierScheduleList.Columns["STS"].Visible = false;
                             dgvSupplierScheduleList.Columns["DYID"].Visible = false;
-                            dgvSupplierScheduleList.Columns["ORDERTYPE"].Visible = false; 
-                            dgvSupplierScheduleList.Columns["STATUS CODE"].Visible = false; 
+                            dgvSupplierScheduleList.Columns["ORDERTYPE"].Visible = false;
+                            dgvSupplierScheduleList.Columns["STATUS CODE"].Visible = false;
                         }
                         else
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
-                    } 
+                    }
                 }
                 else
                 {
@@ -252,7 +288,7 @@ namespace ROMS
         }
 
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
-        { 
+        {
             try
             {
                 if (e.KeyCode == Keys.Enter)
@@ -362,7 +398,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
+            }
         }
 
         private void CmbDay_KeyPress(object sender, KeyPressEventArgs e)
@@ -376,11 +412,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
+            }
         }
 
         private void CmbDay_Leave(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 cmbDay.BackColor = Color.White;
@@ -393,7 +429,7 @@ namespace ROMS
         }
 
         private void CmbDay_Enter(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 cmbDay.BackColor = Color.LemonChiffon;
@@ -433,7 +469,7 @@ namespace ROMS
         }
 
         private void CmbOrder_Leave(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 cmbOrder.BackColor = Color.White;
@@ -487,7 +523,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
+            }
         }
 
         private void Txtsuppliernameprint_KeyDown(object sender, KeyEventArgs e)
@@ -500,18 +536,18 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
-                    if (LV_Supplier.Items.Count == 0 || txtsuppliernameprint.Text == "")
+                    if (lvSupplerName.Items.Count == 0 || txtsuppliernameprint.Text == "")
                     {
                         txtsuppliernameprint.Focus();
-                        LV_Supplier.Visible = false;
+                        lvSupplerName.Visible = false;
                     }
                     else
                     {
-                        LV_Supplier.Focus();
+                        lvSupplerName.Focus();
                     }
-                    if (LV_Supplier.Items.Count > 0)
+                    if (lvSupplerName.Items.Count > 0)
                     {
-                        LV_Supplier.Items[0].Selected = true;
+                        lvSupplerName.Items[0].Selected = true;
                     }
                 }
             }
@@ -546,7 +582,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
+            }
         }
 
         private void CmbOrderSchedule_KeyDown(object sender, KeyEventArgs e)
@@ -622,7 +658,7 @@ namespace ROMS
                     {
                         lblSuppliernameprint.Text = "0";
                         ep_Supplierlist.SetError(txtsuppliernameprint, "Invalid supplier");
-                        txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        txtsuppliernameprint.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpSupplier.ShowAlways = true;
                         tpSupplier.Show("Invalid supplier", txtsuppliernameprint, 5000);
                     }
@@ -642,7 +678,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            } 
+            }
         }
 
         private void CmbOrderSchedule_KeyPress(object sender, KeyPressEventArgs e)
@@ -781,7 +817,7 @@ namespace ROMS
         }
 
         private void BtnListPrint_Leave(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 btnListPrint.BackColor = Color.Transparent;
@@ -794,7 +830,7 @@ namespace ROMS
         }
 
         private void BtnSchedulePopup_Leave(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 btnSchedulePopup.BackColor = Color.Transparent;
@@ -807,7 +843,7 @@ namespace ROMS
         }
 
         private void BtnSchedulePopup_Enter(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 btnSchedulePopup.BackColor = Color.LemonChiffon;
@@ -902,16 +938,6 @@ namespace ROMS
 
         private void DGV_SearchGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                //udfnGridSearchFilter();
-                DataService objDser = new DataService();
-                dgvSupplierScheduleList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, dgvSupplierScheduleList);
-                objDser.CloseConnection();
-                dgvSupplierScheduleList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //DGV_SearchGrid_CellPainting(sender,e);
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
         private void udfnSearchGridHead()
         {
@@ -964,7 +990,7 @@ namespace ROMS
         }
 
         private void TxtSupplier_TextChanged(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 LV_Supplier.Items.Clear();
@@ -972,7 +998,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtSupplier.Text, 0,0);
+                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtSupplier.Text, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -988,6 +1014,7 @@ namespace ROMS
                                 }
                                 LV_Supplier.Visible = true;
                                 LV_Supplier.Columns[1].Width = 0;
+                                LV_Supplier.BringToFront();
                             }
                         }
                     }
@@ -1006,7 +1033,7 @@ namespace ROMS
             }
             finally
             {
-            } 
+            }
 
         }
 
@@ -1016,7 +1043,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    udfnListViewData(); 
+                    udfnListViewData();
                 }
             }
             catch (Exception ex)
@@ -1024,19 +1051,19 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
         private void LV_Supplier_DoubleClick(object sender, EventArgs e)
         {
             try
             {
-                udfnListViewData(); 
+                udfnListViewData();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
         public void udfnListViewData()
         {
             try
@@ -1080,7 +1107,7 @@ namespace ROMS
             }
             finally
             {
-                txtsuppliernameprint.Visible = false;
+                lvSupplerName.Visible = false;
             }
         }
 
@@ -1092,9 +1119,9 @@ namespace ROMS
                 lvSupplerName.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtSupplier.Text.Length > 0)
+                if (txtsuppliernameprint.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtSupplier.Text, 0,0);
+                    objDs = objspdservice.udfnSupplierList(6, 0, 0, 0, 0, txtsuppliernameprint.Text, 0, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1109,6 +1136,7 @@ namespace ROMS
                                     lvSupplerName.Items.Add(objList);
                                 }
                                 lvSupplerName.Visible = true;
+                                lvSupplerName.BringToFront();
                                 lvSupplerName.Columns[1].Width = 0;
                             }
                         }
@@ -1128,7 +1156,7 @@ namespace ROMS
             }
             finally
             {
-            } 
+            }
         }
 
         private void LvSupplerName_DoubleClick(object sender, EventArgs e)
@@ -1184,7 +1212,7 @@ namespace ROMS
                     {
                         dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         dgvSupplierScheduleList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    } 
+                    }
                 }
             }
             catch (Exception ex)
@@ -1198,16 +1226,39 @@ namespace ROMS
             }
         }
 
-        private void DgvSupplierScheduleList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void udfnEdit()
         {
+            try
+            {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                if (dgvSupplierScheduleList.SelectedRows.Count > 0)
+                {
 
+                    MainForm.objCP_Supplier = new CP_Supplier();
+                    MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                    MainForm.objCP_Supplier.btnSave.Text = "Update";
+                    MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(dgvSupplierScheduleList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
+                    MainForm.objCP_Supplier.varMasterid = 1; 
+                    MainForm.objCP_Supplier.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+            }
         }
-
         private void DgvSupplierScheduleList_DoubleClick(object sender, EventArgs e)
         {
             try
             {
-                //udfnEdit();
+                udfnEdit();
             }
             catch (Exception ex)
             {
@@ -1222,8 +1273,8 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                   // udfnEdit();
-                } 
+                    udfnEdit();
+                }
             }
             catch (Exception ex)
             {
@@ -1238,6 +1289,132 @@ namespace ROMS
             try
             {
                 udfnList();
+                RPTViewer.Visible = false; 
+                RPTViewer.SendToBack();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                dgvSupplierScheduleList.ClearSelection(); 
+            }
+        }
+
+        private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSchedulePopup.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.BackColor = Color.White;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnListPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                btnListPrint.Enabled = false;
+                RPTViewer.Visible = true;
+                RPTViewer.BringToFront();
+                RPTViewer.ReuseParameterValuesOnRefresh = true;
+                RPTViewer.RefreshReport();
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                int varlanguage = 0;string varlblsupplierprint = "0";
+                if (rbEnglish.Checked == true)
+                {
+                    varlanguage = 1;
+                }
+                else { varlanguage = 2; }
+
+                if (txtsuppliernameprint.Text != "")
+                {
+                    varlblsupplierprint = lblSuppliernameprint.Text;
+                }
+                else
+                {
+                    varlblsupplierprint = "0";
+                }
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierProductList.rpt");
+                objBillreport.SetParameterValue("@paracompanycode",Convert.ToInt32(cmbConcernPrint.SelectedValue));
+                objBillreport.SetParameterValue("@paraOrderID", Convert.ToInt32(cmbOrder.SelectedValue));
+                objBillreport.SetParameterValue("@parascheduleid", Convert.ToInt32(cmbOrderSchedule.SelectedValue)); 
+                objBillreport.SetParameterValue("@parasupplierid", varlblsupplierprint);
+                objBillreport.SetParameterValue("@paraProductType", varlanguage); 
+                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                objBillreport.SetParameterValue("pardayid", Convert.ToInt32(cmbDay.SelectedValue));
+                objValidation.CrySqlConnection(objBillreport);
+                RPTViewer.ReportSource = objBillreport;
+                RPTViewer.Refresh();
             }
             catch (Exception ex)
             {
@@ -1247,7 +1424,142 @@ namespace ROMS
             finally
             {
                 dgvSupplierScheduleList.ClearSelection();
+                btnListPrint.Enabled = true;
+                GC.Collect();
             }
+        }
+
+        private void PUR_SupplierScheduleList_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            { 
+                //if (this.RPTViewer != null)
+                //{
+                //    RPTViewer.ReportSource = null;
+                //    this.RPTViewer.Dispose();
+                //    objBillreport.Close();
+                //    objBillreport.Dispose();
+                //    objBillreport = null;
+                //    GC.Collect();
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                GC.Collect(); 
+            }
+        }
+
+        private void CmbConcernPrint_Leave(object sender, EventArgs e)
+        { 
+            try
+            {
+                cmbConcernPrint.BackColor = Color.White;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcernPrint_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbConcernPrint.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcernPrint_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbDay.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcernPrint_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcernPrint_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcernPrint.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void PUR_SupplierScheduleList_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.RPTViewer != null)
+                {
+                    RPTViewer.ReportSource = null;
+                    this.RPTViewer.Dispose();
+                    objBillreport.Close();
+                    objBillreport.Dispose();
+                    objBillreport = null;
+                    GC.Collect();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                dgvSupplierScheduleList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, dgvSupplierScheduleList);
+                objDser.CloseConnection();
+                dgvSupplierScheduleList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
     }
 }

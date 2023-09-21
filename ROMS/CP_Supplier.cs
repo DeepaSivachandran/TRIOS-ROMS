@@ -52,7 +52,7 @@ namespace ROMS
         private ToolTip tpBranchName = new ToolTip();
         private ToolTip tpAccountNo = new ToolTip();
         private ToolTip tpIfsCode = new ToolTip();
-        public int SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0;
+        public int SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0;
         public string pbSupplierid = "0", varstatusid = "0", varsupplierID = "0";
         public CP_Supplier()
         {
@@ -93,21 +93,7 @@ namespace ROMS
             try
             {
                 txtcontactName.BackColor = Color.White;
-                //if (txtcontactName.Text == "")
-                //{
-
-                //    errCompany.SetError(txtcontactName, "Please enter contact name");
-                //    txtcontactName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tparea.ShowAlways = true;
-                //    tparea.Show("Please enter contact name.", txtcontactName, 5000);
-
-                //}
-                //else
-                //{
-                //    errCompany.Clear();
-                //    txtcontactName.BackColor = Color.White;
-                //    tparea.Hide(txtcontactName);
-                //}
+                
             }
             catch (Exception ex)
             {
@@ -608,7 +594,7 @@ namespace ROMS
                         SupplierUpdate = Convert.ToInt32(pbSupplierid);
                     }
                     string varorginator = "", varpaymentmethod = "";
-                    int varviewtype = 0, varretuencycle = 0, varreturnapplicable=0;
+                    int varviewtype = 0, varretuencycle = 0, varreturnapplicable = 0;
                     if (btnSave.Text == "Save")
                     {
                         varviewtype = 0;
@@ -619,7 +605,7 @@ namespace ROMS
                     else
                     {
                         varviewtype = 1;
-                        varorginator = "Supplier Update"; 
+                        varorginator = "Supplier Update";
                     }
 
                     for (int i = 0; i < grdPaymentMode.Rows.Count; i++)
@@ -811,12 +797,12 @@ namespace ROMS
         public void udfnclose()
         {
             try
-            {  
+            {
                 DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
-                { 
+                {
                     this.Close();
-                }  
+                }
             }
             catch (Exception ex)
             {
@@ -825,7 +811,14 @@ namespace ROMS
             }
             finally
             {
-                MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
+                if (varMasterid == 0)
+                {
+                    MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
+                }
+                else
+                {
+                    MainForm.objPUR_SupplierScheduleList.dgvSupplierScheduleList.ClearSelection(); 
+                }
             }
         }
         private void btnClose_Click(object sender, EventArgs e)
@@ -842,7 +835,14 @@ namespace ROMS
 
             finally
             {
-                MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
+                if (varMasterid == 0)
+                {
+                    MainForm.objCP_Supplierlist.grdSupplierList.ClearSelection();
+                }
+                else
+                {
+                    MainForm.objPUR_SupplierScheduleList.dgvSupplierScheduleList.ClearSelection();
+                }
             }
         }
 
@@ -963,7 +963,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnSupplierList(2, Convert.ToInt32(pbSupplierid), 0, 0, 0, "", 0,0);
+                    objDS = objspservice.udfnSupplierList(2, Convert.ToInt32(pbSupplierid), 0, 0, 0, "", 0, 0,0);
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -1004,7 +1004,7 @@ namespace ROMS
                             varReturnTypeID = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
 
                             cmbReturnPolicy.SelectedValue = Convert.ToInt64(varReturPolicyId);
-                            cmbReturnType.SelectedValue = varReturnTypeID ;
+                            cmbReturnType.SelectedValue = varReturnTypeID;
                             //cmbReturnType.SelectedValue = objDS.Tables[0].Rows[0]["RETURNCYCLEID"].ToString();
 
                             cmbSupplierType.SelectedValue = objDS.Tables[0].Rows[0]["SUPPLIERTYPE"].ToString();
@@ -1875,12 +1875,12 @@ namespace ROMS
                 // if (Convert.ToString(cmbReturnType.SelectedValue) == "22")
                 {
                     cmbReturnType.Visible = true;
-                    txtDReturnCycle.Visible = true; 
+                    txtDReturnCycle.Visible = true;
                 }
                 else
                 {
                     cmbReturnType.Visible = false;
-                    txtDReturnCycle.Visible = false; 
+                    txtDReturnCycle.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -1896,14 +1896,14 @@ namespace ROMS
             {
                 if (cmbReturnPolicy.Text == "Yes")
                 // if (Convert.ToString(cmbReturnType.SelectedValue) == "22")
-                { 
+                {
                     cmbPolicyContent.Visible = true;
                     cmbSecondLevel.Visible = true;
                     txtReturnText.Visible = true;
                     txtNextLevel.Visible = true;
                 }
                 else
-                { 
+                {
                     cmbPolicyContent.Visible = false;
                     cmbSecondLevel.Visible = false;
                     txtReturnText.Visible = false;
@@ -3117,9 +3117,10 @@ namespace ROMS
             {
 
                 errCompany.Clear();
-                udfntphide();
-
-
+                udfntphide(); 
+                udfncolorchange();
+                udfnSchedulecolorchange();
+                    
                 if (tcSupplier.SelectedIndex == 1)
                 {
                     txtScheduleName.Focus();
@@ -3315,7 +3316,7 @@ namespace ROMS
                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                 }
 
-                objDs = objspservice.udfnSupplierList(5, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(cmbOrderschedule.SelectedValue), Convert.ToInt32(cmborderday.SelectedValue), 0, "", Convert.ToInt32(cmbMappedorderrype.SelectedValue),0);
+                objDs = objspservice.udfnSupplierList(5, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(cmbOrderschedule.SelectedValue), Convert.ToInt32(cmborderday.SelectedValue), 0, "", Convert.ToInt32(cmbMappedorderrype.SelectedValue), 0,0);
 
                 if (objDs.Tables[0].Rows.Count > 0)
                 {
@@ -3483,7 +3484,7 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 cmborderday.DataSource = null;
-                objDs = objspservice.udfnSupplierList(0, SupplierUpdate, Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, 0, "", 0,0);
+                objDs = objspservice.udfnSupplierList(0, SupplierUpdate, Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, 0, "", 0, 0,0);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -3783,7 +3784,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 cmbMappingordeDay.DataSource = null;
 
-                objDs = objspservice.udfnSupplierList(0, SupplierUpdate, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), 0, 0, "", 0,0);
+                objDs = objspservice.udfnSupplierList(0, SupplierUpdate, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), 0, 0, "", 0, 0,0);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -3913,7 +3914,7 @@ namespace ROMS
                 {
                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                 }
-                objDs = objspservice.udfnSupplierList(4, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue), 0, "", 0,0);
+                objDs = objspservice.udfnSupplierList(4, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue), 0, "", 0, 0,0);
 
                 dtSubGroupMapping = new DataTable();
                 dtSubGroupMapping.Columns.Add("S.No.", typeof(string));
@@ -4443,7 +4444,7 @@ namespace ROMS
                                 {
                                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                                 }
-                                objDS = objspservice.udfnSupplierList(varview, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", 0,0);
+                                objDS = objspservice.udfnSupplierList(varview, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", 0, 0,0);
                                 objspservice.CloseConnection();
                                 if (objDS != null)
                                 {
@@ -4938,7 +4939,7 @@ namespace ROMS
 
         private void CP_Supplier_FormClosing(object sender, FormClosingEventArgs e)
         {
-           
+
         }
 
         private void TxtSearchByProduct2_TextChanged(object sender, EventArgs e)
@@ -5447,7 +5448,7 @@ namespace ROMS
 
             SPDataService objspservice = new SPDataService();
             DataSet objDS;
-            objDS = objspservice.udfnSupplierList(7, Convert.ToInt32(SupplierUpdate), 0, 0, 0, "", 0,0);
+            objDS = objspservice.udfnSupplierList(7, Convert.ToInt32(SupplierUpdate), 0, 0, 0, "", 0, 0,0);
             objspservice.CloseConnection();
             if (objDS.Tables[0].Rows.Count > 0)
             {
