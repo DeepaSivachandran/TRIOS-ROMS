@@ -197,7 +197,7 @@ namespace ROMS
         {
             try
             {
-                
+                int varErrorflag = 0;
                 int varHsnId = 0,varUnitId=0; int varUpdateViewType = 0;
                 int varGroupId=0, varSubGroupId =0, varBrandId = 0;
                 int varPurSLID = 0, varSalesSLID = 0, varPurRKID = 0, varSalesRKID = 0;
@@ -283,12 +283,19 @@ namespace ROMS
                 
                 if (grdHSN.Visible == true)
                 {
-                    varUpdateViewType = 3; varViewType = 11; 
+                    varUpdateViewType = 3; varViewType = 11; varErrorflag = 0;
                     for (int i = 0; i < grdHSN.Rows.Count; i++)
                     {
                         varHsnId = 0;
                         var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").ToUpper().Equals(Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varValue.Count() > 0) { varHsnId = Convert.ToInt32(varValue.ToList()[0]); }
+                        if (Convert.ToString(grdWeight.Rows[i].Cells["HSN Name-New"].Value).Trim() != "")
+                        {
+                            if (varHsnId == 0)
+                            {
+                                varErrorflag = 1;
+                            }
+                        }
                         objBulkUpdate.Rows.Add(Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value).Trim(), Convert.ToInt32(grdHSN.Rows[i].Cells["HSNOLDID"].Value), varHsnId, grdHSN.Rows[i].Cells["PRID"].Value,
                             0, 0, "", "", "", "", "", "",
                             0, 0, 0, 0, 0, 0,
@@ -298,7 +305,7 @@ namespace ROMS
                             0, "", 0, "", 0, 0,
                             0, "", 0, "", 0, 0,
                             0, 0, 0, 0, 0, 0, 0, 0,
-                            0);
+                            varErrorflag);
                     }
                 }
                 else if (grdBulkAttributes.Visible == true)
@@ -318,7 +325,7 @@ namespace ROMS
                             0, "", 0, "", 0, 0,
                             0, "", 0, "", 0, 0,
                             0, 0, 0, 0, 0, 0, 0, 0,
-                            0);
+                            varErrorflag);
                     }
                 }
                 else if (grdBrand.Visible == true)
@@ -326,7 +333,7 @@ namespace ROMS
                     varUpdateViewType = 5; varViewType = 10;
                     for (int i = 0; i < grdBrand.Rows.Count; i++)
                     {
-                        varGroupId = 0; varSubGroupId = 0; varBrandId = 0;
+                        varGroupId = 0; varSubGroupId = 0; varBrandId = 0; varErrorflag = 0;
                         var varGroup = from r in objDSGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Group Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varGroup.Count() > 0)
                         { varGroupId = Convert.ToInt32(varGroup.ToList()[0]); }
@@ -336,6 +343,27 @@ namespace ROMS
                         var varBrand = from r in objDSBrand.Tables[0].AsEnumerable() where (r.Field<string>("Brand Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varBrand.Count() > 0)
                         { varBrandId = Convert.ToInt32(varBrand.ToList()[0]); }
+                        if (Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim() != "")
+                        {
+                            if (varGroupId == 0)
+                            {
+                                varErrorflag = 1;
+                            }
+                        }
+                        else if (Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim() != "")
+                        {
+                            if (varSubGroupId == 0)
+                            {
+                                varErrorflag = 2;
+                            }
+                        }
+                        else if (Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim() != "")
+                        {
+                            if (varBrandId == 0)
+                            {
+                                varErrorflag = 3;
+                            }
+                        }
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdBrand.Rows[i].Cells["PRID"].Value),
                             0, 0, "", "", "", "", "", "",
                             Convert.ToInt32(grdBrand.Rows[i].Cells["PRGID-Old"].Value), varGroupId, Convert.ToInt32(grdBrand.Rows[i].Cells["PRSGID-Old"].Value), varSubGroupId, Convert.ToInt32(grdBrand.Rows[i].Cells["BDID-Old"].Value), varBrandId,
@@ -345,7 +373,7 @@ namespace ROMS
                             0, "", 0, "", 0, 0,
                             0, "", 0, "", 0, 0,
                             0, 0, 0, 0, 0, 0, 0, 0,
-                            0);
+                            varErrorflag);
                     }
                 }
                 else if (grdLoction.Visible == true)
@@ -377,7 +405,7 @@ namespace ROMS
                                                0, "", 0, "", 0, 0,
                                                0, "", 0, "", 0, 0,
                                                0, 0, 0, 0, 0, 0, 0, 0,
-                                               0);
+                                               varErrorflag);
                     }
                 }
                 else if (grdMSQ.Visible == true)
@@ -402,7 +430,7 @@ namespace ROMS
                                                0, "", 0, "", 0, 0,
                                                0, "", 0, "", 0, 0,
                                                0, 0, 0, 0, 0, 0, 0, 0,
-                                               0);
+                                               varErrorflag);
 
                     }
                 }
@@ -430,23 +458,31 @@ namespace ROMS
                                                0, "", 0, "", 0, 0,
                                                0, "", 0, "", 0, 0,
                                                0, 0, 0, 0, 0, 0, 0, 0,
-                                               0);
+                                               varErrorflag);
                     }
                 }
                 else if(grdShelfLife.Visible==true)
                 {
-                    varUpdateViewType = 9; varViewType = 7;
+                    varUpdateViewType = 9; varViewType = 7; 
                     for (int i = 0; i < grdShelfLife.Rows.Count; i++)
                     {
-                        varUpp = 0; varShelfLifeValue = 0; varShelfLifeTypeID = 0;
+                        varUpp = 0; varShelfLifeValue = 0; varShelfLifeTypeID = 0; varErrorflag = 0;
                         var varValue = from r in objDSShelfLifeType.Tables[0].AsEnumerable() where (r.Field<string>("MST_DisplayText").ToUpper().Equals(Convert.ToString(grdShelfLife.Rows[i].Cells["Shelf Life Type-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
                         if (varValue.Count() > 0) { varShelfLifeTypeID = Convert.ToInt32(varValue.ToList()[0]); }
                         if (Convert.ToString(grdShelfLife.Rows[i].Cells["UPP-Current"].Value) == "")
                         { varUpp = 0; }
                         else { varUpp = Convert.ToInt32(grdShelfLife.Rows[i].Cells["UPP-Current"].Value); }
+
                         if (Convert.ToString(grdShelfLife.Rows[i].Cells["Shelf Life-Current"].Value) == "")
                         { varShelfLifeValue = 0; }
                         else { varShelfLifeValue = Convert.ToInt32(grdShelfLife.Rows[i].Cells["Shelf Life-Current"].Value); }
+                        if (Convert.ToString(grdShelfLife.Rows[i].Cells["Shelf Life Type-New"].Value).Trim() != "")
+                        {
+                            if (varShelfLifeTypeID == 0)
+                            {
+                                varErrorflag = 1;
+                            }
+                        }
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdShelfLife.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
@@ -456,7 +492,7 @@ namespace ROMS
                                                Convert.ToInt32(grdShelfLife.Rows[i].Cells["Shelf Life Type ID-OLD"].Value),varShelfLifeTypeID,
                                                0, "", 0, "", 0, 0,
                                                0, 0, 0, 0, 0, 0, 0, 0,
-                                               0);
+                                               varErrorflag);
                     }
                 }
                 else if(grdWeight.Visible==true)
@@ -464,7 +500,7 @@ namespace ROMS
                     varUpdateViewType = 10; varViewType = 9;
                     for (int i = 0; i < grdWeight.Rows.Count; i++)
                     {
-                        varNetQuantity = 0;varGrossWeight = 0; varUnitQtyId = 0;
+                        varNetQuantity = 0;varGrossWeight = 0; varUnitQtyId = 0; varErrorflag = 0;
                         var varValue = from r in objDSQTYUnit.Tables[0].AsEnumerable() where (r.Field<string>("QUT_Symbol").ToUpper().Equals(Convert.ToString(grdWeight.Rows[i].Cells["Net Weight-Unit-New"].Value).Trim().ToUpper())) group r by r.Field<int>("QUTID") into g select g.Key;
                         if (varValue.Count() > 0) { varUnitQtyId = Convert.ToInt32(varValue.ToList()[0]); }
                         if (Convert.ToString(grdWeight.Rows[i].Cells["Net Quantity-Current"].Value) == "")
@@ -473,6 +509,14 @@ namespace ROMS
                         if (Convert.ToString(grdWeight.Rows[i].Cells["Gross Weight-Current"].Value) == "")
                         { varGrossWeight = 0; }
                         else { varGrossWeight = Convert.ToDecimal(grdWeight.Rows[i].Cells["Gross Weight-Current"].Value); }
+
+                        if (Convert.ToString(grdWeight.Rows[i].Cells["Net Weight-Unit-New"].Value).Trim() != "")
+                        {
+                            if (varUnitQtyId == 0)
+                            {
+                                varErrorflag = 1;
+                            }
+                        }
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdWeight.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
@@ -483,15 +527,15 @@ namespace ROMS
                                             varGrossWeight, Convert.ToString(grdWeight.Rows[i].Cells["Gross Weight-New"].Value).Trim(),
                                             Convert.ToInt32(grdWeight.Rows[i].Cells["PR_QUTID-Old"].Value), varUnitQtyId,
                                             0, 0, 0, 0, 0, 0, 0, 0,
-                                            0);
+                                            varErrorflag);
                     }
                 }
                 else if (grdBatch.Visible == true)
                 {
-                    varUpdateViewType = 11; varViewType = 8;
+                    varUpdateViewType = 11; varViewType = 8;  
                     for (int i = 0; i < grdBatch.Rows.Count; i++)
                     {
-                        varPR_PRCTID = 0; PR_RMForProductionID = 0; PR_BatchNoID = 0; PR_BatchNoGenerationID = 0;
+                        varPR_PRCTID = 0; PR_RMForProductionID = 0; PR_BatchNoID = 0; PR_BatchNoGenerationID = 0;  varErrorflag = 0;
                         var varPR_PRCTValue = from r in objDSProductCategory.Tables[0].AsEnumerable() where (r.Field<string>("MST_DisplayText").ToUpper().Equals(Convert.ToString(grdBatch.Rows[i].Cells["Product Category-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
                         if (varPR_PRCTValue.Count() > 0) { varPR_PRCTID = Convert.ToInt32(varPR_PRCTValue.ToList()[0]); }
                         var varRMForProductionValue = from r in objDSRMPRO.Tables[0].AsEnumerable() where (r.Field<string>("DisplayText").ToUpper().Equals(Convert.ToString(grdBatch.Rows[i].Cells["RM Pro-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
@@ -500,6 +544,34 @@ namespace ROMS
                         if (varBatchNoValue.Count() > 0) { PR_BatchNoID = Convert.ToInt32(varBatchNoValue.ToList()[0]); }
                         var varBatchNoGenerationValue = from r in objDSBatchNoGeneration.Tables[0].AsEnumerable() where (r.Field<string>("MST_DisplayText").ToUpper().Equals(Convert.ToString(grdBatch.Rows[i].Cells["Batch Generation-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
                         if (varBatchNoGenerationValue.Count() > 0) { PR_BatchNoGenerationID = Convert.ToInt32(varBatchNoGenerationValue.ToList()[0]); }
+                        if (Convert.ToString(grdBatch.Rows[i].Cells["Product Category-New"].Value).Trim() != "")
+                        {
+                            if (varPR_PRCTID == 0)
+                            {
+                                varErrorflag = 1;
+                            }
+                        }
+                        else if (Convert.ToString(grdBatch.Rows[i].Cells["RM Pro-New"].Value).Trim() != "")
+                        {
+                            if (PR_RMForProductionID == 0)
+                            {
+                                varErrorflag = 2;
+                            }
+                        }
+                        else if (Convert.ToString(grdBatch.Rows[i].Cells["Batch No.-New"].Value).Trim() != "")
+                        {
+                            if (PR_BatchNoID == 0)
+                            {
+                                varErrorflag = 3;
+                            }
+                        }
+                        else if (Convert.ToString(grdBatch.Rows[i].Cells["Batch Generation-New"].Value).Trim() != "")
+                        {
+                            if (PR_BatchNoGenerationID == 0)
+                            {
+                                varErrorflag = 4;
+                            }
+                        }
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdBatch.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
@@ -511,7 +583,7 @@ namespace ROMS
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_RMForProductionID-Current"].Value), PR_RMForProductionID,
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoID-Current"].Value), PR_BatchNoID,
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoGenerationID-Current"].Value), PR_BatchNoGenerationID,
-                                               0);
+                                               varErrorflag);
                     }
                 }
                 string result = "";
