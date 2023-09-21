@@ -848,7 +848,7 @@ namespace ROMS
             return ds;
         }
         // Sivabharathi    Create date: 14/08/2023    Description:Sub Group  Sp
-        public string udfnSubGroup(int ViewType, int paraPRSGID, int paraPRSG_PRGID, string paraPRSG_EName, string paraPRSG_TName, int paraStatusId, int paraSG_BatchNo, int paraPRSG_SLID, int paraPRSG_RKID, string paraOriginator)
+        public string udfnSubGroup(int ViewType, int paraPRSGID, int paraPRSG_PRGID, string paraPRSG_EName, string paraPRSG_TName, int paraStatusId, int paraSG_BatchNo, int paraPRSG_SLID, int paraPRSG_RKID, string paraOriginator, string varRackId)
         {
 
             string varResult = "";
@@ -866,6 +866,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSG_BatchNo", paraSG_BatchNo);
                 varSqlCommand.Parameters.AddWithValue("@paraPRSG_SLID", paraPRSG_SLID);
                 varSqlCommand.Parameters.AddWithValue("@paraPRSG_RKID", paraPRSG_RKID);
+                varSqlCommand.Parameters.AddWithValue("@paraRKIds", varRackId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
