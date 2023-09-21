@@ -3406,7 +3406,6 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-
                 if (grdMoveProduct.Rows.Count > 0)
                 {
                     if (Convert.ToString(txtMoveLocation.Text).Trim() == "" && Convert.ToString(txtMoveRack.Text).Trim() == "")

@@ -432,15 +432,7 @@ namespace ROMS
         }
         private void GrdRackSettingList_DoubleClick(object sender, EventArgs e)
         {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
         private void GrdRackSettingList_KeyDown(object sender, KeyEventArgs e)
         {
@@ -488,6 +480,23 @@ namespace ROMS
             try
             {
                 grdRackSettingList.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRackSettingList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex == -1)
+                {
+                    return; // Exit the event handler
+                }
+                udfnEdit();
             }
             catch (Exception ex)
             {
