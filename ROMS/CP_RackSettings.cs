@@ -128,6 +128,7 @@ namespace ROMS
         {
             try
             {
+                txtLocation.Focus();
                 lblSLocation.Text = Convert.ToString(PbLocationCode);
                 
                 lblSRack.Text = Convert.ToString(PbRKID);
@@ -457,6 +458,7 @@ namespace ROMS
             {
                 int varViewType = 1;
                 dtSupplierMapping.Rows.Clear();
+                dtViewSupplierMapping.Rows.Clear();
                 Application.DoEvents();
                 //grdSupplierMapping.DataSource = null;
                 DataSet objDs = new DataSet();
@@ -483,6 +485,11 @@ namespace ROMS
                 grdSupplierMapping.Columns["P.I Code"].Width = 100;
                 grdSupplierMapping.Columns["Product Name in English"].Width = 250;
                 grdSupplierMapping.Columns["Product Name in Tamil"].Width = 250;
+                grdSupplierMapping.Columns["S.No."].ReadOnly = true;
+                grdSupplierMapping.Columns["P.I Code"].ReadOnly = true;
+                grdSupplierMapping.Columns["Product Name in English"].ReadOnly = true;
+                grdSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
+                grdSupplierMapping.Columns["Unit"].ReadOnly = true;
                 grdSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                 
                 if (objDs.Tables[1].Rows.Count != 0)
@@ -501,6 +508,10 @@ namespace ROMS
                 grdViewSupplierMapping.Columns["P.I Code"].Width = 100;
                 grdViewSupplierMapping.Columns["Product Name in English"].Width = 250;
                 grdViewSupplierMapping.Columns["Product Name in Tamil"].Width = 250;
+                grdViewSupplierMapping.Columns["P.I Code"].ReadOnly = true;
+                grdViewSupplierMapping.Columns["Product Name in English"].ReadOnly = true;
+                grdViewSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
+                grdViewSupplierMapping.Columns["Unit"].ReadOnly = true;
                 grdViewSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
 
                 for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
@@ -651,6 +662,10 @@ namespace ROMS
                     grdViewSupplierMapping.Columns["P.I Code"].Width = 100;
                     grdViewSupplierMapping.Columns["Product Name in English"].Width = 250;
                     grdViewSupplierMapping.Columns["Product Name in Tamil"].Width = 250;
+                    grdViewSupplierMapping.Columns["P.I Code"].ReadOnly = true;
+                    grdViewSupplierMapping.Columns["Product Name in English"].ReadOnly = true;
+                    grdViewSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
+                    grdViewSupplierMapping.Columns["Unit"].ReadOnly = true;
                     grdViewSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
 
 
@@ -847,6 +862,7 @@ namespace ROMS
                     if (lvLocation.Items.Count == 0 || txtLocation.Text == "")
                     {
                         txtRack.Focus();
+                        txtRack.Text = "";
                         lvLocation.Visible = false;
                     }
                     else
@@ -898,6 +914,7 @@ namespace ROMS
             {
                 udfnSLocationEvent();
                 txtRack.Focus();
+                txtRack.Text = "";
             }
             catch (Exception ex)
             {
@@ -913,6 +930,7 @@ namespace ROMS
                 {
                     udfnSLocationEvent();
                     txtRack.Focus();
+                    txtRack.Text = "";
                 }
             }
             catch (Exception ex)
@@ -1236,6 +1254,7 @@ namespace ROMS
                     if (lvDLocation.Items.Count == 0 || txtDLocation.Text == "")
                     {
                         txtDRack.Focus();
+                        txtDRack.Text = "";
                         lvDLocation.Visible = false;
                     }
                     else
@@ -1250,6 +1269,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     txtDRack.Focus();
+                    txtDRack.Text = "";
                 }
             }
             catch (Exception ex)
@@ -1501,6 +1521,7 @@ namespace ROMS
             {
                 udfnDLocationEvent();
                 txtDRack.Focus();
+                txtDRack.Text="";
             }
             catch (Exception ex)
             {
@@ -1517,6 +1538,7 @@ namespace ROMS
                 {
                     udfnDLocationEvent();
                     txtDRack.Focus();
+                    txtDRack.Text = "";
                 }
             }
             catch (Exception ex)
@@ -1928,6 +1950,7 @@ namespace ROMS
                 if (txtRack.Text != "")
                 {
                     string varId_PurRack = "0";
+                    string varId_Rack = "0";
                     DataSet objDsPurRack = new DataSet();
                     SPDataService objDServ4 = new SPDataService();
                     objDsPurRack = objDServ4.udfnRackList(9, 0, 0, Convert.ToInt32(lblSLocation.Text), 0, txtRack.Text.Trim());
@@ -1954,6 +1977,37 @@ namespace ROMS
                     else
                     {
                         epRackSettings.Clear();
+                    }
+                    if (txtLocation.Text != "")
+                    {
+                        DataSet objDsRack = new DataSet();
+                        SPDataService objDserv4 = new SPDataService();
+                        objDsRack = objDserv4.udfnRackList(7, 0, 0, Convert.ToInt32(lblSLocation.Text), 0, "");
+                        objDserv4.CloseConnection();
+                        if (objDsRack != null)
+                        {
+                            if (objDsRack.Tables.Count > 0)
+                            {
+                                if (objDsRack.Tables[0].Rows.Count > 0)
+                                {
+                                    varId_Rack = Convert.ToString(objDsRack.Tables[0].Rows[0][0]);
+                                }
+                            }
+                        }
+                    }
+                    if(varId_PurRack==varId_Rack)
+                    {
+                        lblSRack.Text = Convert.ToString(varId_PurRack);
+                    }
+                    else
+                    {
+                        epRackSettings.SetError(txtRack, "Please select valid rack");
+                        txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpRack.ShowAlways = true;
+                        tpRack.Show("Please select valid rack", txtRack, 5000);
+                        txtRack.Text = "";
+                        grdViewSupplierMapping.DataSource = null;
+                        blnErrorFlag = true;
                     }
                 }
 
@@ -2111,6 +2165,11 @@ namespace ROMS
                 grdSupplierMapping.Columns["P.I Code"].Width = 100;
                 grdSupplierMapping.Columns["Product Name in English"].Width = 250;
                 grdSupplierMapping.Columns["Product Name in Tamil"].Width = 250;
+                grdSupplierMapping.Columns["S.No."].ReadOnly = true;
+                grdSupplierMapping.Columns["P.I Code"].ReadOnly = true;
+                grdSupplierMapping.Columns["Product Name in English"].ReadOnly = true;
+                grdSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
+                grdSupplierMapping.Columns["Unit"].ReadOnly = true;
 
             }
             catch (Exception ex)
@@ -2196,6 +2255,7 @@ namespace ROMS
                 if (txtDRack.Text != "")
                 {
                     string varId_PurRack = "0";
+                    string varId_Rack = "0";
                     DataSet objDsPurRack = new DataSet();
                     SPDataService objDServ4 = new SPDataService();
                     objDsPurRack = objDServ4.udfnRackList(9, 0, 0, Convert.ToInt32(lblDLocation.Text), 0, txtDRack.Text.Trim());
@@ -2217,6 +2277,37 @@ namespace ROMS
                         txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tppRack.ShowAlways = true;
                         tppRack.Show("Please select valid rack", txtDRack, 5000);
+                        blnErrorFlag = true;
+                    }
+                    if (txtDLocation.Text != "")
+                    {
+                        DataSet objDsRack = new DataSet();
+                        SPDataService objDserv4 = new SPDataService();
+                        objDsRack = objDserv4.udfnRackList(7, 0, 0, Convert.ToInt32(lblDLocation.Text), 0, "");
+                        objDserv4.CloseConnection();
+                        if (objDsRack != null)
+                        {
+                            if (objDsRack.Tables.Count > 0)
+                            {
+                                if (objDsRack.Tables[0].Rows.Count > 0)
+                                {
+                                    varId_Rack = Convert.ToString(objDsRack.Tables[0].Rows[0][0]);
+                                }
+                            }
+                        }
+                    }
+                    if (varId_PurRack == varId_Rack)
+                    {
+                        lblDRack.Text = Convert.ToString(varId_PurRack);
+                    }
+                    else
+                    {
+                        epRackSettings.SetError(txtDRack, "Please select valid rack");
+                        txtDRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tppRack.ShowAlways = true;
+                        tppRack.Show("Please select valid rack", txtDRack, 5000);
+                        txtDRack.Text = "";
+                        grdViewProduct.DataSource = null;
                         blnErrorFlag = true;
                     }
                 }
@@ -2383,6 +2474,11 @@ namespace ROMS
                 grdViewProduct.Columns["P.I Code"].Width = 100;
                 grdViewProduct.Columns["Product Name in English"].Width = 250;
                 grdViewProduct.Columns["Product Name in Tamil"].Width = 250;
+                grdViewProduct.Columns["S.No."].ReadOnly = true;
+                grdViewProduct.Columns["P.I Code"].ReadOnly = true;
+                grdViewProduct.Columns["Product Name in English"].ReadOnly = true;
+                grdViewProduct.Columns["Product Name in Tamil"].ReadOnly = true;
+                grdViewProduct.Columns["Unit"].ReadOnly = true;
                 grdViewProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                 grdMoveProduct.Columns["producttamilname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
             }
@@ -2982,6 +3078,10 @@ namespace ROMS
                     grdMoveProduct.Columns["P.I Code"].Width = 100;
                     grdMoveProduct.Columns["Product Name in English"].Width = 250;
                     grdMoveProduct.Columns["Product Name in Tamil"].Width = 250;
+                    grdMoveProduct.Columns["P.I Code"].ReadOnly = true;
+                    grdMoveProduct.Columns["Product Name in English"].ReadOnly = true;
+                    grdMoveProduct.Columns["Product Name in Tamil"].ReadOnly = true;
+                    grdMoveProduct.Columns["Unit"].ReadOnly = true;
                     grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                 }
                 else
@@ -3129,9 +3229,11 @@ namespace ROMS
                 }
                 else
                 {
+                    string varId_PurRack = "0";
+                    string varId_Rack = "0";
                     if (txtMoveRack.Text != "")
                     {
-                        string varId_PurRack = "0";
+                        
                         DataSet objDsPurRack = new DataSet();
                         SPDataService objDServ4 = new SPDataService();
                         objDsPurRack = objDServ4.udfnRackList(9, 0, 0, Convert.ToInt32(lblMoveLocation.Text), 0, txtMoveRack.Text.Trim());
@@ -3156,7 +3258,39 @@ namespace ROMS
                             blnErrorFlag = true;
                         }
                     }
+                    if (txtMoveLocation.Text != "")
+                    {
+                        DataSet objDsRack = new DataSet();
+                        SPDataService objDserv4 = new SPDataService();
+                        objDsRack = objDserv4.udfnRackList(7, 0, 0, Convert.ToInt32(lblMoveLocation.Text), 0, "");
+                        objDserv4.CloseConnection();
+                        if (objDsRack != null)
+                        {
+                            if (objDsRack.Tables.Count > 0)
+                            {
+                                if (objDsRack.Tables[0].Rows.Count > 0)
+                                {
+                                    varId_Rack = Convert.ToString(objDsRack.Tables[0].Rows[0][0]);
+                                }
+                            }
+                        }
+                    }
+                    if (varId_PurRack == varId_Rack)
+                    {
+                        lblMoveRack.Text = Convert.ToString(varId_PurRack);
+                    }
+                    else
+                    {
+                        epRackSettings.SetError(txtMoveRack, "Please select valid rack");
+                        txtMoveRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tppRack.ShowAlways = true;
+                        tppRack.Show("Please select valid rack", txtMoveRack, 5000);
+                        txtMoveRack.Text = "";
+                        grdMoveProduct.DataSource = null;
+                        blnErrorFlag = true;
+                    }
                 }
+                
                 if (grdMoveProduct.Rows.Count > 0)
                 {
                     if (Convert.ToString(txtMoveLocation.Text).Trim() == "" && Convert.ToString(txtMoveRack.Text).Trim() == "")
@@ -3339,6 +3473,7 @@ namespace ROMS
                     if (lvMoveLocation.Items.Count == 0 || txtMoveLocation.Text == "")
                     {
                         txtMoveRack.Focus();
+                        txtMoveRack.Text = "";
                         lvMoveLocation.Visible = false;
                     }
                     else
@@ -3353,6 +3488,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     txtMoveRack.Focus();
+                    txtMoveRack.Text = "";
                 }
             }
             catch (Exception ex)
