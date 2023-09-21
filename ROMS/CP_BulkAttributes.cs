@@ -146,7 +146,7 @@ namespace ROMS
                 objDSHSN = objDServ.udfnHsnList(0, 0);
                 objDSUnit = objDServ.udfnUnitList(0,0);
                 objDSGroup = objDServ.udfnGroupList(0, 0, 0, "");
-                objDSSubGroup = objDServ.udfnSubGroupList(0,0,"",0,0,"");
+                objDSSubGroup = objDServ.udfnSubGroupList(0,0,"",0,0,"",0,0,0,0);
                 objDSBrand = objDServ.udfnBrandList(0,"",0,0,0,"");
                 objDSLocation = objDServ.udfnStockLocationList(0,0,0,0,"");
                 objDSRack = objDServ.udfnRackList(0,0,0,0,0,"");
@@ -616,7 +616,7 @@ namespace ROMS
                 grdLoction.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,0,0);
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -1570,7 +1570,7 @@ namespace ROMS
                 {
                     DataSet objDssubgroup = new DataSet();
                     SPDataService objDServ = new SPDataService();
-                    objDssubgroup = objDServ.udfnSubGroupList(11, 0, "", varGroupId, 0, txtSubGroup.Text.Trim());
+                    objDssubgroup = objDServ.udfnSubGroupList(11, 0, "", varGroupId, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
                     objDServ.CloseConnection();
                     if (objDssubgroup != null)
                     {
@@ -1744,7 +1744,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSubGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(8, 0, "", varGroupId, 0, txtSubGroup.Text.Trim());
+                    objDs = objspdservice.udfnSubGroupList(8, 0, "", varGroupId, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

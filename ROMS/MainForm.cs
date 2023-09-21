@@ -17,7 +17,7 @@ namespace ROMS
         //------- Variable Declaration
         public static int pbCloseForm = 0;
         public static int varCloseFlag = 0;
-        public static string pbVersion = "1.0.1";
+        public static string pbVersion = "1.0.2";
         public static string pbUserID = "";
         public static string pbUserName = "";
         public static string pbUserRoleId;
