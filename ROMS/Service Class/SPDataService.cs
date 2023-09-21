@@ -566,7 +566,7 @@ namespace ROMS
         }
         //Created By :-Sathish ; Created On :-17/08/2023
         public DataSet udfnStockLocationList(int paraviewType, int paraConcern,int paraStockLocation,int paraId, string paraLocationName)
-        {
+         {
             DataSet ds = new DataSet();
             try
             {
@@ -630,8 +630,8 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-18/08/2023
-        public DataSet udfnRackList(int paraviewType, int paraRackGroup, int paraConcernId,int paraStockLocationId,int paraRackId, string paraRackName)
-        {
+          public DataSet udfnRackList(int paraviewType, int paraRackGroup, int paraConcernId,int paraStockLocationId,int paraRackId,string paraRackName)
+ {
             DataSet ds = new DataSet();
             try
             {
@@ -662,7 +662,7 @@ namespace ROMS
             return ds;
         }
         //Created BY:-Sathish  Created On:-02-09-2023
-        public string udfnRackSettings(int paraviewType, int paraRKSID, int paraRKSSLID, int paraRKSRKID,  int paraRKSPRID,string paraOriginator)
+        public string udfnRackSettings(int paraviewType, int paraRKSID, int paraRKSSSLID, int paraRKSSRKID,  string paraRKSPRID, int paraRKSDSLID, int paraRKSDRKID, string paraOriginator)
         {
             string varResult = "";
             try
@@ -672,9 +672,11 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRKSID", paraRKSID);
-                varSqlCommand.Parameters.AddWithValue("@paraRKSSLID", paraRKSSLID);
-                varSqlCommand.Parameters.AddWithValue("@paraRKSRKID", paraRKSRKID);
+                varSqlCommand.Parameters.AddWithValue("@paraRKSSSLID", paraRKSSSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraRKSSRKID", paraRKSSRKID);
                 varSqlCommand.Parameters.AddWithValue("@paraRKSPRID", paraRKSPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraRKSDSLID", paraRKSDSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraRKSDRKID", paraRKSDRKID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
@@ -693,7 +695,7 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-02/09/2023
-        public DataSet udfnRackSettingsList(int paraviewType, int paraRKSID, int paraRack)
+        public DataSet udfnRackSettingsList(int paraviewType, int paraRKSID, int paraRack ,int paraLocationID,int paraRackID)
         {
             DataSet ds = new DataSet();
             try
@@ -704,6 +706,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraRKSID", @paraRKSID);
                 varSqlCommand.Parameters.AddWithValue("@paraRack", paraRack);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationID", @paraLocationID);
+                varSqlCommand.Parameters.AddWithValue("@paraRackID", @paraRackID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -857,8 +861,8 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraPRGID", paraPRGID);
-                varSqlCommand.Parameters.AddWithValue("@paraID", @paraID);
-                varSqlCommand.Parameters.AddWithValue("@paraGroupName", @paraGroupName);
+                varSqlCommand.Parameters.AddWithValue("@paraID", paraID);
+                varSqlCommand.Parameters.AddWithValue("@paraGroupName", paraGroupName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

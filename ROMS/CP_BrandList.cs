@@ -25,7 +25,7 @@ namespace ROMS
         public void udfnCmbProductGroup()
         {
             try
-            {
+            { 
               ///  SPDataService objdserv = new SPDataService();
               //  DataSet objDT = new DataSet();
               //  int varViewType = 3;
@@ -54,7 +54,7 @@ namespace ROMS
         public void udfnCmbProductSubGroup()
         {
             try
-            {
+            { 
                // DataSet objDT = new DataSet();
                // SPDataService objdserv = new SPDataService();
                // int varViewType =5 ;
@@ -77,7 +77,7 @@ namespace ROMS
                //         }
                //     }
                // }
-               // objdserv.CloseConnection();
+               // objdserv.CloseConnection(); 
             }
             catch (Exception ex)
             {
