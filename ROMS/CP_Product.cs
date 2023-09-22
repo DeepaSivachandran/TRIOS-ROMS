@@ -3313,7 +3313,6 @@ namespace ROMS
                     ListViewItem selectedItem = lvBrand.SelectedItems[0];
                     txtBrand.Text = selectedItem.SubItems[0].Text;
                     lblBrand.Text = selectedItem.SubItems[2].Text;
-                    lvBrand.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -3323,6 +3322,7 @@ namespace ROMS
             }
             finally
             {
+                txtBrand.Focus();
                 lvBrand.Visible = false;
             }
         }

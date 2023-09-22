@@ -151,6 +151,8 @@ namespace ROMS
         public static PAY_ChequePrint objPAY_ChequePrint;
         public static PAY_DebitNoteList objPAY_DebitNoteList;
 
+        public static REPORT_CP_City objREPORT_CP_City;
+
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
@@ -1222,6 +1224,23 @@ namespace ROMS
                 MainForm.objCP_EmployeeList = new CP_EmployeeList();
                 MainForm.objCP_EmployeeList.MdiParent = this;
                 MainForm.objCP_EmployeeList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_City = new REPORT_CP_City();
+                MainForm.objREPORT_CP_City.MdiParent = this;
+                MainForm.objREPORT_CP_City.Show();
             }
             catch (Exception ex)
             {
