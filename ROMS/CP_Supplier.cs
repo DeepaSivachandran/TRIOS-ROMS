@@ -154,22 +154,21 @@ namespace ROMS
 
         private void txtCity_Leave(object sender, EventArgs e)
         {
-            txtCity.BackColor = Color.White;
-            //if (txtCity.Text == "")
-            //{
+            if (txtCity.Text == "")
+            {
 
-            //    errCompany.SetError(txtCity, "Please enter city name");
-            //    txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-            //    tpcity.ShowAlways = true;
-            //    tpcity.Show("Please enter city name.", txtCity, 5000);
+                errCompany.SetError(txtCity, "Please enter city name");
+                txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tpcity.ShowAlways = true;
+                tpcity.Show("Please enter city name.", txtCity, 5000);
 
-            //}
-            //else
-            //{
-            //    errCompany.Clear();
-            //    txtCity.BackColor = Color.White;
-            //    tpcity.Hide(txtCity);
-            //}
+            }
+            else
+            {
+                errCompany.Clear();
+                txtCity.BackColor = Color.White;
+                tpcity.Hide(txtCity);
+            }
         }
 
         private void txtContactNumber_Enter(object sender, EventArgs e)
@@ -1146,31 +1145,28 @@ namespace ROMS
         private void txtArea_Leave(object sender, EventArgs e)
         {
             try
-            {
-                txtArea.BackColor = Color.White;
-                //try
-                //{
-                //    if (txtArea.Text == "")
-                //    {
-
-                //            errCompany.SetError(txtArea, "Please enter area");
-                //            txtArea.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //            tparea.ShowAlways = true;
-                //            tparea.Show("Please enter area.", txtArea, 5000); 
-
-                //    }
-                //    else
-                //    {
-                //        errCompany.Clear();
-                //        txtArea.BackColor = Color.White;
-                //        tparea.Hide(txtArea);
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-                //    objError = new DataError();
-                //    objError.WriteFile(ex);
-                //}
+            { 
+                try
+                {
+                    if (txtArea.Text == "")
+                    { 
+                        errCompany.SetError(txtArea, "Please enter Address");
+                        txtArea.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tparea.ShowAlways = true;
+                        tparea.Show("Please enter Address.", txtArea, 5000); 
+                    }
+                    else
+                    {
+                        errCompany.Clear();
+                        txtArea.BackColor = Color.White;
+                        tparea.Hide(txtArea);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
             catch (Exception ex)
             {
@@ -1238,19 +1234,19 @@ namespace ROMS
                     {
                         txtPincode.BackColor = Color.White;
                     }
-                    //else if(txtPincode.Text  == "")
-                    //{
-                    //    errCompany.SetError(txtPincode, "Please enter pincode");
-                    //    txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //    tppincode.ShowAlways = true;
-                    //    tppincode.Show("Please enter pincode.", txtPincode, 5000); 
-                    //}
-                    //else
-                    //{
-                    //    errCompany.Clear();
-                    //    txtPincode.BackColor = Color.White;
-                    //    tppincode.Hide(txtPincode);
-                    //}
+                    else if (txtPincode.Text == "")
+                    {
+                        errCompany.SetError(txtPincode, "Please enter pincode");
+                        txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tppincode.ShowAlways = true;
+                        tppincode.Show("Please enter pincode.", txtPincode, 5000);
+                    }
+                    else
+                    {
+                        errCompany.Clear();
+                        txtPincode.BackColor = Color.White;
+                        tppincode.Hide(txtPincode);
+                    }
 
                 }
                 catch (Exception ex)
@@ -2050,20 +2046,19 @@ namespace ROMS
         private void CmbState_Leave(object sender, EventArgs e)
         {
             try
-            {
-                cmbState.BackColor = Color.White;
-                //if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
-                //{
-                //    errCompany.SetError(cmbState, "Please Select State Name");
-                //    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpstate.ShowAlways = true;
-                //    tpstate.Show("Please Select State Name", cmbState, 5000);
-                //}
-                //else
-                //{
-                //    errCompany.Clear();
-                //    cmbState.BackColor = Color.White;
-                //}
+            { 
+                if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
+                {
+                    errCompany.SetError(cmbState, "Please Select State Name");
+                    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpstate.ShowAlways = true;
+                    tpstate.Show("Please Select State Name", cmbState, 5000);
+                }
+                else
+                {
+                    errCompany.Clear();
+                    cmbState.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {

@@ -411,7 +411,7 @@
             this.cmbConcernPrint.FormattingEnabled = true;
             this.cmbConcernPrint.Location = new System.Drawing.Point(6, 49);
             this.cmbConcernPrint.Name = "cmbConcernPrint";
-            this.cmbConcernPrint.Size = new System.Drawing.Size(101, 27);
+            this.cmbConcernPrint.Size = new System.Drawing.Size(79, 27);
             this.cmbConcernPrint.TabIndex = 2;
             this.cmbConcernPrint.SelectedIndexChanged += new System.EventHandler(this.CmbConcernPrint_SelectedIndexChanged);
             this.cmbConcernPrint.Enter += new System.EventHandler(this.CmbConcernPrint_Enter);
@@ -476,9 +476,9 @@
             // cmbDay
             // 
             this.cmbDay.FormattingEnabled = true;
-            this.cmbDay.Location = new System.Drawing.Point(109, 49);
+            this.cmbDay.Location = new System.Drawing.Point(87, 49);
             this.cmbDay.Name = "cmbDay";
-            this.cmbDay.Size = new System.Drawing.Size(76, 27);
+            this.cmbDay.Size = new System.Drawing.Size(89, 27);
             this.cmbDay.TabIndex = 3;
             this.cmbDay.SelectedIndexChanged += new System.EventHandler(this.CmbDay_SelectedIndexChanged);
             this.cmbDay.Enter += new System.EventHandler(this.CmbDay_Enter);
@@ -490,9 +490,9 @@
             // 
             this.cmbOrder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbOrder.FormattingEnabled = true;
-            this.cmbOrder.Location = new System.Drawing.Point(187, 49);
+            this.cmbOrder.Location = new System.Drawing.Point(178, 49);
             this.cmbOrder.Name = "cmbOrder";
-            this.cmbOrder.Size = new System.Drawing.Size(76, 27);
+            this.cmbOrder.Size = new System.Drawing.Size(85, 27);
             this.cmbOrder.TabIndex = 4;
             this.cmbOrder.SelectedIndexChanged += new System.EventHandler(this.CmbOrder_SelectedIndexChanged);
             this.cmbOrder.Enter += new System.EventHandler(this.CmbOrder_Enter);
@@ -504,7 +504,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(187, 26);
+            this.label4.Location = new System.Drawing.Point(178, 26);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 20);
             this.label4.TabIndex = 1111177;
@@ -604,7 +604,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(109, 26);
+            this.label1.Location = new System.Drawing.Point(87, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 20);
             this.label1.TabIndex = 1111140;
@@ -715,6 +715,7 @@
             this.dgvSupplierScheduleList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvSupplierScheduleList.ColumnHeadersHeight = 30;
             this.dgvSupplierScheduleList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvSupplierScheduleList.ColumnHeadersVisible = false;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
