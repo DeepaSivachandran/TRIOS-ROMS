@@ -721,21 +721,26 @@ namespace ROMS
                 }
                 if (Varupdateflag==0)
                 {
+                    MainForm.objCP_BulkAttributeVerify = new CP_BulkAttributeVerify();
+                    MainForm.objCP_BulkAttributeVerify.ShowDialog();
                     string result = "";
-                    SPDataService objDSer = new SPDataService();
-                    result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", "", "", "Product Bulk Update", 0, objBulkUpdate);
-                    objDSer.CloseConnection();
-                    string[] varvalue = result.Split('~');
-                    if (varvalue[0] == "3")
+                    if (MainForm.objCP_BulkAttributeVerify.flag == 1)
                     {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //udfnList();
+                        SPDataService objDSer = new SPDataService();
+                        result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", "", "", "Product Bulk Update", 0, objBulkUpdate);
+                        objDSer.CloseConnection();
+                        string[] varvalue = result.Split('~');
+                        if (varvalue[0] == "3")
+                        {
+                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //udfnList();
+                        }
+                        else
+                        {
+                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        udfnList();
                     }
-                    else
-                    {
-                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    udfnList();
                 }
             }
             catch (Exception ex)
@@ -860,6 +865,7 @@ namespace ROMS
                             {
                                 grdLoction.DataSource = objDs.Tables[0];
                                 grdLoction.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                grdLoction.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 ((DataGridViewTextBoxColumn)grdLoction.Columns["Rack MSQ-New"]).MaxInputLength = 8;
                                 ((DataGridViewTextBoxColumn)grdLoction.Columns["Pur.Stock Location-New"]).MaxInputLength = 50;
                                 ((DataGridViewTextBoxColumn)grdLoction.Columns["Sales Location-New"]).MaxInputLength = 50;
@@ -919,6 +925,7 @@ namespace ROMS
                             {
                                 grdMSQ.DataSource = objDs.Tables[0];
                                 grdMSQ.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                grdMSQ.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 ((DataGridViewTextBoxColumn)grdMSQ.Columns["R Min Sale Qty-New"]).MaxInputLength = 5;
                                 ((DataGridViewTextBoxColumn)grdMSQ.Columns["W.Min Sale Qty-New"]).MaxInputLength = 5;
                                 ((DataGridViewTextBoxColumn)grdMSQ.Columns["Barcode-New"]).MaxInputLength = 20;
@@ -973,6 +980,7 @@ namespace ROMS
                             {
                                 grdStock.DataSource = objDs.Tables[0];
                                 grdStock.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                grdStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 ((DataGridViewTextBoxColumn)grdStock.Columns["Min Stock-New"]).MaxInputLength = 5;
                                 ((DataGridViewTextBoxColumn)grdStock.Columns["Max Stock-New"]).MaxInputLength = 5;
                                 ((DataGridViewTextBoxColumn)grdStock.Columns["Reorder Qty-New"]).MaxInputLength = 5;
@@ -1021,6 +1029,7 @@ namespace ROMS
                             {
                                 grdShelfLife.DataSource = objDs.Tables[0];
                                 grdShelfLife.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                grdShelfLife.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 ((DataGridViewTextBoxColumn)grdShelfLife.Columns["UPP-New"]).MaxInputLength = 5;
                                 ((DataGridViewTextBoxColumn)grdShelfLife.Columns["Shelf Life-New"]).MaxInputLength = 3;
                                 ((DataGridViewTextBoxColumn)grdShelfLife.Columns["Shelf Life Type-New"]).MaxInputLength = 50;
@@ -1070,6 +1079,7 @@ namespace ROMS
                             {
                                 grdBatch.DataSource = objDs.Tables[0];
                                 grdBatch.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                grdBatch.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 ((DataGridViewTextBoxColumn)grdBatch.Columns["Product Category-New"]).MaxInputLength = 20;
                                 ((DataGridViewTextBoxColumn)grdBatch.Columns["RM Pro-New"]).MaxInputLength = 20;
                                 ((DataGridViewTextBoxColumn)grdBatch.Columns["Batch No.-New"]).MaxInputLength = 20;
@@ -1123,6 +1133,7 @@ namespace ROMS
                             {
                                 grdWeight.DataSource = objDs.Tables[0];
                                 grdWeight.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                grdWeight.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 ((DataGridViewTextBoxColumn)grdWeight.Columns["Net Quantity-New"]).MaxInputLength = 5;
                                 ((DataGridViewTextBoxColumn)grdWeight.Columns["Gross Weight-New"]).MaxInputLength = 5;
                                 ((DataGridViewTextBoxColumn)grdWeight.Columns["Net Weight-Unit-New"]).MaxInputLength = 10;
@@ -1172,6 +1183,7 @@ namespace ROMS
                             {
                                 grdBrand.DataSource = objDs.Tables[0];
                                 grdBrand.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                grdBrand.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 ((DataGridViewTextBoxColumn)grdBrand.Columns["Group-New"]).MaxInputLength = 100;
                                 ((DataGridViewTextBoxColumn)grdBrand.Columns["Sub Group-New"]).MaxInputLength = 100;
                                 ((DataGridViewTextBoxColumn)grdBrand.Columns["Brand-New"]).MaxInputLength = 50;
@@ -1218,6 +1230,7 @@ namespace ROMS
                             {
                                 grdHSN.DataSource = objDs.Tables[0];
                                 grdHSN.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                grdHSN.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 ((DataGridViewTextBoxColumn)grdHSN.Columns["HSN Name-New"]).MaxInputLength = 20;
 
                                 grdHSN.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
@@ -1256,6 +1269,7 @@ namespace ROMS
                             {
                                 grdBulkAttributes.DataSource = objDs.Tables[0];
                                 grdBulkAttributes.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                                grdBulkAttributes.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdBulkAttributes.Columns["Product Name in Tamil-New"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                                 ((DataGridViewTextBoxColumn)grdBulkAttributes.Columns["Product Code-New"]).MaxInputLength = 10;
                                 ((DataGridViewTextBoxColumn)grdBulkAttributes.Columns["Product Name in Tamil-New"]).MaxInputLength = 100;
@@ -1596,6 +1610,7 @@ namespace ROMS
             try
             {
                 lvGroup.Visible = false;
+                lvBrand.Visible = false;
                 txtSubGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2079,6 +2094,8 @@ namespace ROMS
         {
             try
             {
+                lvSubGroup.Visible = false;
+                lvBrand.Visible = false;
                 txtProductGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2225,6 +2242,7 @@ namespace ROMS
             try
             {
                 lvSubGroup.Visible = false;
+                lvGroup.Visible = false;
                 txtBrand.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2606,15 +2624,20 @@ namespace ROMS
             }
             return varstr;
         }
-        public AutoCompleteStringCollection AutoCompleteSubGroup()
+        public AutoCompleteStringCollection AutoCompleteSubGroup(int varSubGroupId)
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
             DataSet objds;
             objds = null;
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
-
-            objds = objdservice.GetDataset("SELECT PRSGID,PRSG_EName from  MR_ProductSubGroup  where PRSGID NOT IN(-1,0)");
+            if (varSubGroupId == 0)
+            {
+                objds = objdservice.GetDataset("SELECT PRSGID,PRSG_EName from  MR_ProductSubGroup  where PRSGID NOT IN(-1,0)");
+            } else
+            {
+                objds = objdservice.GetDataset("SELECT PRSGID,PRSG_EName from  MR_ProductSubGroup  where PRSGID NOT IN(-1,0) aNd PRSG_PRGID = "+varSubGroupId+" ");
+            }
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -2865,8 +2888,15 @@ namespace ROMS
                     TextBox SubGroup = e.Control as TextBox;
                     if (SubGroup != null)
                     {
+                        int varGRID = 0;
+                        string varGroupName = "";
+                        if (Convert.ToString(grdBrand.CurrentRow.Cells["Group-New"].Value) == "")  {   varGroupName = Convert.ToString(grdBrand.CurrentRow.Cells["Group-Current"].Value);  }
+                        else {  varGroupName = Convert.ToString(grdBrand.CurrentRow.Cells["Group-New"].Value);  }
+                        var varGroup = from r in objDSGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Group Name in English").ToUpper().Equals(varGroupName.Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varGroup.Count() > 0)
+                        { varGRID = Convert.ToInt32(varGroup.ToList()[0]); }
                         SubGroup.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        SubGroup.AutoCompleteCustomSource = AutoCompleteSubGroup();
+                        SubGroup.AutoCompleteCustomSource = AutoCompleteSubGroup(varGRID);
                         SubGroup.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }

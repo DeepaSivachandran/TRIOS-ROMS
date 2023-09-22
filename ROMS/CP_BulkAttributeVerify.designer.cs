@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_GRNEntryVerify));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_BulkAttributeVerify));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtDPasskey = new System.Windows.Forms.TextBox();
             this.txtPassKey = new System.Windows.Forms.TextBox();
@@ -63,7 +63,9 @@
             this.txtPassKey.Name = "txtPassKey";
             this.txtPassKey.Size = new System.Drawing.Size(174, 28);
             this.txtPassKey.TabIndex = 8;
-            this.txtPassKey.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassKey_KeyPress);
+            this.txtPassKey.Enter += new System.EventHandler(this.TxtPassKey_Enter);
+            this.txtPassKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPassKey_KeyDown);
+            this.txtPassKey.Leave += new System.EventHandler(this.TxtPassKey_Leave);
             // 
             // btnAuthorise
             // 
@@ -79,8 +81,11 @@
             this.btnAuthorise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAuthorise.UseVisualStyleBackColor = true;
             this.btnAuthorise.Click += new System.EventHandler(this.btnAuthorise_Click);
+            this.btnAuthorise.Enter += new System.EventHandler(this.BtnAuthorise_Enter);
+            this.btnAuthorise.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAuthorise_KeyDown);
+            this.btnAuthorise.Leave += new System.EventHandler(this.BtnAuthorise_Leave);
             // 
-            // PUR_GRNEntryVerify
+            // CP_BulkAttributeVerify
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -96,7 +101,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "PUR_GRNEntryVerify";
+            this.Name = "CP_BulkAttributeVerify";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Please Enter Passkey to Proceed";
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
