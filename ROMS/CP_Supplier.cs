@@ -421,12 +421,70 @@ namespace ROMS
             {
                 btnSave.Enabled = false;
                 bool blnErrorFlag = false;
+                if (txtContactNumber.Text == "" && txtAContactNumber.Text == "" && txtwhatsapp.Text=="")
+                {
+                    errCompany.SetError(txtContactNumber, "Please enter phone No.");
+                    txtContactNumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpContactNo.ShowAlways = true;
+                    tpContactNo.Show("Please enter phone No.", txtContactNumber, 5000);
+                    blnErrorFlag = true;
+                }
                 if (txtName.Text == "")
                 {
                     errCompany.SetError(txtName, "Please enter the name");
                     txtName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpname.ShowAlways = true;
                     tpname.Show("Please enter the name.", txtName, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtArea.Text == "")
+                {
+                    errCompany.SetError(txtArea, "Please enter Address");
+                    txtArea.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tparea.ShowAlways = true;
+                    tparea.Show("Please enter Address.", txtArea, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtCity.Text == "")
+                {
+
+                    errCompany.SetError(txtCity, "Please enter city name");
+                    txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpcity.ShowAlways = true;
+                    tpcity.Show("Please enter city name.", txtCity, 5000);
+                    blnErrorFlag = true;
+
+                }
+                if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
+                {
+                    errCompany.SetError(cmbState, "Please Select State Name");
+                    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpstate.ShowAlways = true;
+                    tpstate.Show("Please Select State Name", cmbState, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtPincode.Text == "")
+                {
+                    errCompany.SetError(txtPincode, "Please enter pincode");
+                    txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tppincode.ShowAlways = true;
+                    tppincode.Show("Please enter pincode.", txtPincode, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(cmbSupplierType.SelectedValue) == "" || Convert.ToString(cmbSupplierType.SelectedValue) == "-1")
+                {
+                    errCompany.SetError(cmbSupplierType, "Please Select Supplier Type");
+                    cmbSupplierType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpstate.ShowAlways = true;
+                    tpstate.Show("Please Select Payment Supplier Type", cmbSupplierType, 5000);
+                    blnErrorFlag = true;
+                }
+                if (txtgstin.Text == "" && txtgstin.Enabled == true)
+                {
+                    errCompany.SetError(txtgstin, "Please enter supplier GSTIN");
+                    txtgstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpgst.ShowAlways = true;
+                    tpgst.Show("Please enter supplier GSTIN.", txtgstin, 5000);
                     blnErrorFlag = true;
                 }
                 if (txtContactNumber.Text != "")
@@ -437,7 +495,7 @@ namespace ROMS
                         txtContactNumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpContactNo.ShowAlways = true;
                         tpContactNo.Show("Please enter valid phone No.", txtContactNumber, 5000);
-                        blnErrorFlag = true;
+                        blnErrorFlag = true; 
                     }
                 }
                 if (txtPincode.Text != "")
@@ -1243,11 +1301,7 @@ namespace ROMS
                             txtPincode.BackColor = Color.White;
                             tppincode.Hide(txtPincode);
                         }
-                    }
-                    else if (txtPincode.Text == "")
-                    {
-                        txtPincode.BackColor = Color.White;
-                    }
+                    } 
                     else if (txtPincode.Text == "")
                     {
                         errCompany.SetError(txtPincode, "Please enter pincode");
@@ -1798,9 +1852,12 @@ namespace ROMS
                 //    txtgstin.BackColor = Color.White;
                 //    tpgst.Hide(txtgstin);
                 //}
-                if (txtgstin.Text == "")
-                {
-                    txtgstin.BackColor = Color.White;
+                if (txtgstin.Text == "" && txtgstin.Enabled==true)
+                { 
+                    errCompany.SetError(txtgstin, "Please enter GSTIN");
+                    txtgstin.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpgst.ShowAlways = true;
+                    tpgst.Show("Please enter supply GSTIN.", txtgstin, 5000);
                 }
                 else if (txtgstin.Text != "")
                 {
@@ -2367,18 +2424,18 @@ namespace ROMS
             try
             {
                 cmbSupplierType.BackColor = Color.White;
-                //if (Convert.ToString(cmbSupplierType.SelectedValue) == "" || Convert.ToString(cmbSupplierType.SelectedValue) == "-1")
-                //{
-                //    errCompany.SetError(cmbSupplierType, "Please Select Supplier Type");
-                //    cmbSupplierType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpstate.ShowAlways = true;
-                //    tpstate.Show("Please Select Payment Supplier Type", cmbSupplierType, 5000);
-                //}
-                //else
-                //{
-                //    errCompany.Clear();
-                //    cmbSupplierType.BackColor = Color.White;
-                //}
+                if (Convert.ToString(cmbSupplierType.SelectedValue) == "" || Convert.ToString(cmbSupplierType.SelectedValue) == "-1")
+                {
+                    errCompany.SetError(cmbSupplierType, "Please Select Supplier Type");
+                    cmbSupplierType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpstate.ShowAlways = true;
+                    tpstate.Show("Please Select Payment Supplier Type", cmbSupplierType, 5000);
+                }
+                else
+                {
+                    errCompany.Clear();
+                    cmbSupplierType.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
