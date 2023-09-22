@@ -28,6 +28,7 @@ namespace ROMS
         DataSet objDSSubGroup = new DataSet();
         DataSet objDSGroup = new DataSet();
         DataSet objDSBrand = new DataSet();
+        DataSet objDSSubgroupBrand = new DataSet();
         DataSet objDSUnit = new DataSet();
         DataSet objDSLocation = new DataSet();
         DataSet objDSRack = new DataSet();
@@ -157,6 +158,7 @@ namespace ROMS
                 objDSRMPRO = objDServ.udfnMaster(1, 0);
                 objDSBatchNo = objDServ.udfnMaster(0, 25);
                 objDSBatchNoGeneration = objDServ.udfnMaster(0, 26);
+                objDSSubgroupBrand = objDServ.udfnBrandList(9, "", 0, 0, 0, "");
                 objDServ.CloseConnection();
             }
             catch(Exception ex)
@@ -2636,7 +2638,7 @@ namespace ROMS
                 objds = objdservice.GetDataset("SELECT PRSGID,PRSG_EName from  MR_ProductSubGroup  where PRSGID NOT IN(-1,0)");
             } else
             {
-                objds = objdservice.GetDataset("SELECT PRSGID,PRSG_EName from  MR_ProductSubGroup  where PRSGID NOT IN(-1,0) aNd PRSG_PRGID = "+varSubGroupId+" ");
+                objds = objdservice.GetDataset("SELECT PRSGID,PRSG_EName from  MR_ProductSubGroup  where PRSGID NOT IN(-1,0) AND PRSG_PRGID = "+varSubGroupId+" ");
             }
             objdservice.CloseConnection();
             if (objds != null)
@@ -2656,15 +2658,21 @@ namespace ROMS
             }
             return varstr;
         }
-        public AutoCompleteStringCollection AutoCompleteBrand()
+        public AutoCompleteStringCollection AutoCompleteBrand(int varBrandId)
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
             DataSet objds;
             objds = null;
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
-
-            objds = objdservice.GetDataset("SELECT BDID,BD_EName from  MR_Brand  where BDID NOT IN(-1,0)");
+            if (varBrandId == 0)
+            {
+                objds = objdservice.GetDataset("SELECT BDID,BD_EName from  MR_Brand  where BDID NOT IN(-1,0)");
+            }
+            else
+            {
+                objds = objdservice.GetDataset("SELECT BDID,BD_EName  FROM MR_Brand INNER JOIN MR_Brand_SubGroup ON BDS_BDID=BDID WHERE BDID NOT IN(-1, 0) AND BDS_PRSGID= " + varBrandId + " ");
+            }
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -2905,8 +2913,14 @@ namespace ROMS
                     TextBox txtBrand = e.Control as TextBox;
                     if (txtBrand != null)
                     {
+                        int varSGRID = 0;
+                        string varSubGroupName = "";
+                        if (Convert.ToString(grdBrand.CurrentRow.Cells["Sub Group-New"].Value) == "")  { varSubGroupName = Convert.ToString(grdBrand.CurrentRow.Cells["Sub Group-Current"].Value);  }
+                        var varSubGroup = from r in objDSSubgroupBrand.Tables[0].AsEnumerable() where (r.Field<string>("Sub Group Name in English").ToUpper().Equals(varSubGroupName.Trim().ToUpper())) group r by r.Field<int>("BDID") into g select g.Key;
+                        if (varSubGroup.Count() > 0)
+                        { varSGRID = Convert.ToInt32(varSubGroup.ToList()[0]); }
                         txtBrand.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtBrand.AutoCompleteCustomSource = AutoCompleteBrand();
+                        txtBrand.AutoCompleteCustomSource = AutoCompleteBrand(varSGRID);
                         txtBrand.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
