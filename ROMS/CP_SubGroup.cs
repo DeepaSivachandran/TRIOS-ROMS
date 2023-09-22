@@ -183,7 +183,7 @@ namespace ROMS
                 for (int i = 0; i < grdRackList.RowCount; i++) {
                     for (int j = 0; j < varRkIds.Length; j++) {
                         if (varRkIds[j] == Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value)) {
-                            grdRackList.Rows[i].Cells["clmcheckRack"].Value = true;
+                            grdRackList.Rows[i].Cells[0].Value = true;
                         }
                     }
                 }
