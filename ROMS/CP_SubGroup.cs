@@ -260,7 +260,7 @@ namespace ROMS
                         else  {  varRackId = varRackId + ',' + Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value); }
                     }
                 }
-                if (varRackId == "")
+                if (grdRackList.Rows.Count>0 && varRackId == "")
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(60);
@@ -1248,6 +1248,7 @@ namespace ROMS
                     txtLocation.Text = selectedItem.SubItems[0].Text;
                     lblLocation.Text = selectedItem.SubItems[1].Text;
                     grdRackList.DataSource = null;
+                    dtRackList.Rows.Clear();
                     udfnLoadRackList();
                 }
             }
