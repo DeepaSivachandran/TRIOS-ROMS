@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,8 +46,11 @@ namespace ROMS
         private ToolTip tpAccountNo = new ToolTip();
         private ToolTip tpIfsCode = new ToolTip();
         public string varupdate = "0";
-        public string varcompanyid="0",varstatusid ="0", varcontactcompanyid = "0";
-        public static int varCloseFlag = 0;
+        public string varcompanyid="0",varstatusid ="0", varcontactcompanyid = "0", varSlNo = "0", varCMSlNo = "0";
+        public static int varCloseFlag = 0, varflag = 0;
+        string varNewfile = ""; string varFile = "";
+        OpenFileDialog objfilelogo = new OpenFileDialog();
+        public string pbLogoPath = "", pbCompanypath = "";
         public CP_Company()
         {
             InitializeComponent();
@@ -332,13 +336,13 @@ namespace ROMS
                     tpAccountNo.ShowAlways = true;
                     tpAccountNo.Show("Please enter account number", txtAccno, 5000);
                 }
-                else if (txtAccno.Text.Length != 20)
-                {
-                    epCompany.SetError(txtAccno, "Please enter valid account number");
-                    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpAccountNo.ShowAlways = true;
-                    tpAccountNo.Show("Please enter valid account number", txtAccno, 5000);
-                }
+                //else if (txtAccno.Text.Length != 20)
+                //{
+                //    epCompany.SetError(txtAccno, "Please enter valid account number");
+                //    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpAccountNo.ShowAlways = true;
+                //    tpAccountNo.Show("Please enter valid account number", txtAccno, 5000);
+                //}
                 else
                 {
                     epCompany.Clear();
@@ -494,14 +498,14 @@ namespace ROMS
                     tpAccountNo.Show("Please enter account number", txtAccno, 5000);
                     blnErrorFlag = true;
                 }
-                else if (txtAccno.Text.Length != 20)
-                {
-                    epCompany.SetError(txtAccno, "Please enter valid account number");
-                    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpAccountNo.ShowAlways = true;
-                    tpAccountNo.Show("Please enter valid account number", txtAccno, 5000);
-                    blnErrorFlag = true;
-                }
+                //else if (txtAccno.Text.Length != 20)
+                //{
+                //    epCompany.SetError(txtAccno, "Please enter valid account number");
+                //    txtAccno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpAccountNo.ShowAlways = true;
+                //    tpAccountNo.Show("Please enter valid account number", txtAccno, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (Convert.ToString(txtIFScode.Text).Trim() == "")
                 {
                     epCompany.SetError(txtIFScode, "Please enter IFS Code");
@@ -520,27 +524,44 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
-                    foreach (DataGridViewRow row in grdBankDetails.Rows)
+                    if (varSlNo != "0") { varflag = 0; }
+                    else
                     {
-                        if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                        foreach (DataGridViewRow row in grdBankDetails.Rows)
                         {
-                            string gridValue1 = row.Cells[1].Value.ToString();
-                            string gridValue2 = row.Cells[3].Value.ToString();
-
-                            if (gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
+                            if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                             {
-                                varflag = 1;
-                            }
-                        } 
-                    }
+                                string gridValue1 = row.Cells[1].Value.ToString();
+                                string gridValue2 = row.Cells[3].Value.ToString();
 
+                                if (gridValue1.ToUpper() == (txtBankname.Text).Trim().ToUpper() && gridValue2.ToUpper() == (txtbranchname.Text).Trim().ToUpper())
+                                {
+                                    varflag = 1;
+                                }
+                            }
+                        }
+                    }
                     if (varflag == 0)
                     {
-
-                        grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1,( txtBankname.Text).Trim(), (txtBankShortName.Text).Trim(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(), varstatusid);
+                        if (varSlNo == "0")
+                        {
+                            grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(), varstatusid);
+                        }
+                        else {
+                            for (int i = 0; i < grdBankDetails.RowCount; i++) {
+                                if (Convert.ToString(grdBankDetails.Rows[i].Cells["clmsno"].Value) == varSlNo){
+                                    grdBankDetails.Rows[i].Cells["clmbankname"].Value = txtBankname.Text;
+                                    grdBankDetails.Rows[i].Cells["clmBankShortName"].Value = txtBankShortName.Text;
+                                    grdBankDetails.Rows[i].Cells["clmbranch"].Value = txtbranchname.Text;
+                                    grdBankDetails.Rows[i].Cells["clmaccno"].Value = txtAccno.Text;
+                                    grdBankDetails.Rows[i].Cells["clmifscode"].Value = txtIFScode.Text;
+                                }
+                            }
+                        }
                         udfnBankclear();
                         txtBankname.Focus();
                         grdBankDetails.ClearSelection();
+                        btnAdd.Image = ROMS.Properties.Resources.plus;
                     }
                     else
                     {
@@ -1380,18 +1401,19 @@ namespace ROMS
                 //    tpWebsite.ShowAlways = true;
                 //    tpWebsite.Show("Please enter website", txtwebsite, 5000);
                 //}
-                if (Convert.ToString(txtwebsite.Text).Trim() != "" && !objValidation.IsValidUrl(txtwebsite.Text))
-                {
-                    epCompany.SetError(txtwebsite, "Please enter valid website");
-                    txtwebsite.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpWebsite.ShowAlways = true;
-                    tpWebsite.Show("Please enter valid website", txtwebsite, 5000);
-                }
-                else
-                {
+                //if (Convert.ToString(txtwebsite.Text).Trim() != "" //&& !objValidation.IsValidUrl(txtwebsite.Text)
+                //    )
+                //{
+                //    epCompany.SetError(txtwebsite, "Please enter valid website");
+                //    txtwebsite.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpWebsite.ShowAlways = true;
+                //    tpWebsite.Show("Please enter valid website", txtwebsite, 5000);
+                //}
+                //else
+                //{
                     epCompany.Clear();
                     txtwebsite.BackColor = Color.White;
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1619,7 +1641,7 @@ namespace ROMS
                 //    tpEsf.ShowAlways = true;
                 //    tpEsf.Show("Please enter EPF", txtEPF, 5000);
                 //}
-                if (Convert.ToString(txtEPF.Text).Trim() != "" && txtEPF.Text.Length != 22)
+                if (Convert.ToString(txtEPF.Text).Trim() != "" && txtEPF.Text.Length != 12)
                 {
                     epCompany.SetError(txtEPF, "Please enter valid EPF");
                     txtEPF.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1788,11 +1810,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled)
-                    {
-                        rbActive.Focus();
-                    }
-                    else { btnSave.Focus(); }
+                    chkDefaultConcern.Focus();
                 }
             }
             catch (Exception ex)
@@ -2043,18 +2061,42 @@ namespace ROMS
                         varviewtype = 1;
                         varorginator = "Company Update";
                         varcompanycode = Convert.ToInt32(companyupdate);  
-                    } 
+                    }
+                    if (File.Exists(varNewfile))
+                    {
+                        File.Delete(varNewfile);
+                    }
+                    if (varflag == 1 && varNewfile != "")
+                    {
+                        //*********** copy file name & file path **************
+                        File.Copy(objfilelogo.FileName, varNewfile, true);
+                    }
+                    else
+                    {
+                        //************ Remove Image from Folder *******
+                        lblCompanyLogoPath.Text = "";
+                        lblCompanyLogoFilename.Text = "";
+                    }
+                    int varDefaultconcern = 0;
+                    if (chkDefaultConcern.Checked==true)
+                    {
+                        varDefaultconcern = 1;
+                    }
+                    else
+                    {
+                        varDefaultconcern = 0;
+                    }
+
                     result = objspdservice.udfnCompanyMaster(varviewtype, varcompanycode, Convert.ToString(txtCompanyName.Text).Trim(), Convert.ToString(txtShortName.Text).Trim(), txtAddressLine1.Text, txtAddressLine2.Text, cityid
                     , varpincode, txtPhoneNo.Text, txtAlterPhoneno.Text, txtwhatsappNo.Text, txtmobileNo.Text, txtAlterMobileno.Text, txtEmail.Text, txtwebsite.Text
                     , txtGSTTIN.Text, txtPan.Text, txtESI.Text, txtEPF.Text, txtFSSAI.Text, txtPlno.Text, Convert.ToString(cmbState.SelectedValue), varStatus,
-                    MainForm.pbUserID, MainForm.pbIpAddress, varorginator, objBankTable, objContactTable);
+                    MainForm.pbUserID, MainForm.pbIpAddress, varorginator, objBankTable, objContactTable, lblCompanyLogoFilename.Text, varDefaultconcern);
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.ActiveControl = tcCompanyDetails; 
-                        tcCompanyDetails.SelectedIndex = 1;
                         MainForm.objCP_Companylist.udfnList();
                         txtCompanyName.Focus();
                         if (btnSave.Text == "Update")
@@ -2064,6 +2106,10 @@ namespace ROMS
                                 varupdate = "1";
                                 udfnClear();
                                 udfnclose();
+                            }
+                            else
+                            {
+                                tcCompanyDetails.SelectedIndex = 1;
                             }
                         }
                         else
@@ -2234,7 +2280,7 @@ namespace ROMS
             txtbranchname.Text = "";
             txtAccno.Text = "";
             txtIFScode.Text = "";
-
+            varSlNo = "0";
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {
@@ -2305,17 +2351,17 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                if (Convert.ToString(txtwebsite.Text) != "")
-                {
-                    if (!objValidation.IsValidUrl(txtwebsite.Text))
-                    {
-                        epCompany.SetError(txtwebsite, "Please enter valid website");
-                        txtwebsite.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpWebsite.ShowAlways = true;
-                        tpWebsite.Show("Please enter valid website", txtwebsite, 5000);
-                        blnErrorFlag = true;
-                    }
-                }
+                //if (Convert.ToString(txtwebsite.Text) != "")
+                //{
+                //    if (!objValidation.IsValidUrl(txtwebsite.Text))
+                //    {
+                //        epCompany.SetError(txtwebsite, "Please enter valid website");
+                //        txtwebsite.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        tpWebsite.ShowAlways = true;
+                //        tpWebsite.Show("Please enter valid website", txtwebsite, 5000);
+                //        blnErrorFlag = true;
+                //    }
+                //}
                 if (Convert.ToString(txtPhoneNo.Text) != "")
                     {
                         if (Convert.ToString(txtPhoneNo.Text).Length != 10)
@@ -2455,7 +2501,7 @@ namespace ROMS
 
                 if (Convert.ToString(txtEPF.Text) != "")
                 {
-                    if (txtEPF.Text.Length != 22)
+                    if (txtEPF.Text.Length != 12)
                     {
                         epCompany.SetError(txtEPF, "Please enter valid EPF");
                         txtEPF.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -2503,9 +2549,18 @@ namespace ROMS
                 if (Convert.ToString(txtCity.Text) != "")
                 {
                     string VarCity = "0";
-                    DataService objDserv = new DataService();
-                    VarCity = objDserv.displaydata("SELECT COUNT(*) FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
-                    if (VarCity == "0")
+                    DataSet objDsCity = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsCity = objDserv.udfnCityList(2, txtCity.Text.Trim(), 0);
+                    objDserv.CloseConnection();
+                    if (objDsCity != null) {
+                        if (objDsCity.Tables.Count > 0) {
+                            if (objDsCity.Tables[0].Rows.Count > 0) {
+                                VarCity = Convert.ToString(objDsCity.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    if (VarCity == "0" || VarCity == "-1")
                     {
                         lblcityid.Text = "0";
                         epCompany.SetError(txtCity, "Invalid city");
@@ -2516,7 +2571,7 @@ namespace ROMS
                     }
                     else
                     {
-                        lblcityid.Text= objDserv.displaydata("SELECT CTYID FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                        lblcityid.Text= VarCity;
                     }
                     if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
                     {
@@ -2930,15 +2985,15 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
-                    var varcheckedvalue= "";  
+                    var varcheckedvalue = "";
                     var varwhatsapp = "";
                     if (cbPrimary.Checked == true)
                     {
-                        varcheckedvalue ="Yes";
+                        varcheckedvalue = "Yes";
                     }
                     else
                     {
-                        varcheckedvalue = "No"; 
+                        varcheckedvalue = "No";
                     }
                     if (cbWhatsApp.Checked == true)
                     {
@@ -2949,26 +3004,27 @@ namespace ROMS
                         varwhatsapp = "No";
                     }
 
-                   
-                   
-                    foreach (DataGridViewRow row in grdContactManager.Rows)
-                    {
-                        if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                    if (varCMSlNo != "0") { varflag = 0; }
+                    else { 
+                        foreach (DataGridViewRow row in grdContactManager.Rows)
                         {
-                            string gridValue1 = row.Cells[8].Value.ToString();
-                            string gridValue2 = row.Cells[5].Value.ToString(); 
-                            string gridValue4 = row.Cells[3].Value.ToString();
-
-                            if (gridValue1 == Convert.ToString(cmbTransactionType.SelectedValue) && gridValue4 == txtMobilenumber.Text)
+                            if (row.Cells[0].Value != null && row.Cells[1].Value != null)
                             {
-                                varflag1 = 1;
-                            }
-                            if (gridValue1 == Convert.ToString(cmbTransactionType.SelectedValue) && gridValue2 == varcheckedvalue)
-                            { 
-                                varflag = 1;
-                                if (varflag == 1 && cbPrimary.Checked==true)
+                                string gridValue1 = row.Cells[8].Value.ToString();
+                                string gridValue2 = row.Cells[5].Value.ToString();
+                                string gridValue4 = row.Cells[3].Value.ToString();
+
+                                if (gridValue1 == Convert.ToString(cmbTransactionType.SelectedValue) && gridValue4 == txtMobilenumber.Text)
                                 {
-                                    varflag2 = 1;
+                                    varflag1 = 1;
+                                }
+                                if (gridValue1 == Convert.ToString(cmbTransactionType.SelectedValue) && gridValue2 == varcheckedvalue)
+                                {
+                                    varflag = 1;
+                                    if (varflag == 1 && cbPrimary.Checked == true)
+                                    {
+                                        varflag2 = 1;
+                                    }
                                 }
                             }
                         }
@@ -2979,11 +3035,31 @@ namespace ROMS
 
 
                     if (varflag1==0 && varflag2 ==0)
-                    { 
-                        grdContactManager.Rows.Add(grdContactManager.Rows.Count + 1, txtName.Text, varvalue, txtMobilenumber.Text, varwhatsapp, varcheckedvalue, txtOperator.Text, txtMobileBrand.Text, Convert.ToString(cmbTransactionType.SelectedValue));
+                    {
+                        if (varCMSlNo == "0")
+                        {
+                            grdContactManager.Rows.Add(grdContactManager.Rows.Count + 1, txtName.Text, varvalue, txtMobilenumber.Text, varwhatsapp, varcheckedvalue, txtOperator.Text, txtMobileBrand.Text, Convert.ToString(cmbTransactionType.SelectedValue));
+                        }
+                        else {
+                            for (int i = 0; i < grdContactManager.RowCount; i++)
+                            {
+                                if (Convert.ToString(grdContactManager.Rows[i].Cells["clmContsno"].Value) == varCMSlNo)
+                                {
+                                    grdContactManager.Rows[i].Cells["clmName"].Value = txtName.Text;
+                                    grdContactManager.Rows[i].Cells["clmTransaction"].Value = varvalue;
+                                    grdContactManager.Rows[i].Cells["clmmobile"].Value = txtMobilenumber.Text;
+                                    grdContactManager.Rows[i].Cells["clmWhatsAppNo"].Value = varwhatsapp;
+                                    grdContactManager.Rows[i].Cells["clmPrimary"].Value = varcheckedvalue;
+                                    grdContactManager.Rows[i].Cells["clmOperator"].Value = txtOperator.Text;
+                                    grdContactManager.Rows[i].Cells["clmMobileBrand"].Value = txtMobileBrand.Text;
+                                    grdContactManager.Rows[i].Cells["clmid"].Value = Convert.ToString(cmbTransactionType.SelectedValue);
+                                }
+                            }
+                        }
                         udfnContactClear();
                         txtName.Focus();
                         grdContactManager.ClearSelection();
+                        btnAddContact.Image = ROMS.Properties.Resources.plus;
                     }
                     else
                     {
@@ -3119,11 +3195,11 @@ namespace ROMS
 
                 if (btnSave.Text == "Save")
                 {
-                    result = objspdservice.udfnCompanyMaster(3, Convert.ToInt32(varcontactcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Create", objBankTable, objContactTable);
+                    result = objspdservice.udfnCompanyMaster(3, Convert.ToInt32(varcontactcompanyid), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Create", objBankTable, objContactTable,"",0);
                 }
                 else
                 {
-                    result = objspdservice.udfnCompanyMaster(4, Convert.ToInt32(contactupdate), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Update", objBankTable, objContactTable);
+                    result = objspdservice.udfnCompanyMaster(4, Convert.ToInt32(contactupdate), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", MainForm.pbUserID, MainForm.pbIpAddress, "contact manager Update", objBankTable, objContactTable,"",0);
                     varupdate = "1";
                 }
                 string[] varvalue = result.Split('~');
@@ -3391,6 +3467,22 @@ namespace ROMS
                 udfnEdit();
                 this.ActiveControl = txtCompanyName;
                 objdservice.CloseConnection();
+                DataSet objDS = new DataSet();
+                SPDataService objDserv = new SPDataService();
+                objDS = objDserv.udfnCompanyList(6,Convert.ToInt32(varcompanyid),MainForm.pbUserID,MainForm.pbIpAddress);
+                objDserv.CloseConnection();
+                if (objDS != null) {
+                    if (objDS.Tables.Count > 0) {
+                        if (objDS.Tables[0].Rows.Count > 0) {
+                            int varcount = Convert.ToInt32(objDS.Tables[0].Rows[0][0]);
+                            if (varcount == 0)
+                            {
+                                chkDefaultConcern.Visible = true;
+                            }
+                            else { chkDefaultConcern.Visible = false; }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -3418,7 +3510,22 @@ namespace ROMS
                                     grdContactManager.Rows[i].Cells["clmContsno"].Value = i + 1;
                                 }
                             }
-                            break; 
+                            break;
+                        case "clmCMEdit":
+                            txtName.Text = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmName"].Value);
+                            cmbTransactionType.SelectedValue = Convert.ToInt32(grdContactManager.Rows[e.RowIndex].Cells["clmid"].Value);
+                            txtMobilenumber.Text = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmmobile"].Value);
+                            if (Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmWhatsAppNo"].Value) == "Yes") { cbWhatsApp.Checked = true; }
+                            if (Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmPrimary"].Value) == "Yes") { cbPrimary.Checked = true; }
+                            txtOperator.Text = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmOperator"].Value);
+                            txtMobileBrand.Text = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmMobileBrand"].Value);
+                            varCMSlNo = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmContsno"].Value);
+                            btnAddContact.Image = ROMS.Properties.Resources.save16x16;
+                            txtName.BackColor = Color.White;
+                            tpName.Active = false;
+                            epCompany.Clear();
+                            txtName.Focus();
+                            break;
                     }
                 }
             }
@@ -3450,6 +3557,20 @@ namespace ROMS
                                 }
                             }
                             break;
+                        case "clmEdit":
+                            txtBankname.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmbankname"].Value);
+                            txtBankShortName.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmBankShortName"].Value);
+                            txtbranchname.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmbranch"].Value);
+                            txtAccno.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmaccno"].Value);
+                            txtIFScode.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmifscode"].Value);
+                            varSlNo = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmsno"].Value);
+                            btnAdd.Image = ROMS.Properties.Resources.save16x16;
+                            txtBankname.BackColor = Color.White;
+                            tpBankName.Active = false;
+                            epCompany.Clear();
+                            txtBankname.Focus();
+                            break;
+
                     }
                 }
             }
@@ -3476,6 +3597,15 @@ namespace ROMS
                     {
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
+                            
+                            if (objDS.Tables[0].Rows[0]["DEFAULTID"].ToString()=="1")
+                            {
+                                chkDefaultConcern.Checked = true;
+                            }
+                            else
+                            {
+                                chkDefaultConcern.Checked = false;
+                            }
                             txtCompanyName.Text = objDS.Tables[0].Rows[0]["Name"].ToString().Replace("''", "'");
                             txtShortName.Text = objDS.Tables[0].Rows[0]["Shortname"].ToString().Replace("''", "'");
                             txtCity.Text = objDS.Tables[0].Rows[0]["city"].ToString().Replace("''", "'");
@@ -3497,10 +3627,18 @@ namespace ROMS
                             txtAlterMobileno.Text = objDS.Tables[0].Rows[0]["MobileAlt"].ToString();
                             txtAlterPhoneno.Text = objDS.Tables[0].Rows[0]["PhoneAlt"].ToString(); 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1") { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+                            lblCompanyLogoFilename.Text = objDS.Tables[0].Rows[0]["COM_LogoName"].ToString();
 
+                            //********** College Logo load from database *************
+                            SPDataService objservice = new SPDataService();
+                            pbLogoPath = objservice.udfnGetPath(0);
+                            objservice.CloseConnection();
+                            pbCompanypath = pbLogoPath + lblCompanyLogoFilename.Text;
+                            lblCompanyLogoPath.Text = pbCompanypath;
                             btnSave.Text = "Update";
                             btnSaveContact.Text = "Update"; ;
                             pnlStatus.Enabled = true;
+                            udfnButtontext();
                         }
                         if (objDS.Tables[1].Rows.Count > 0)
                         {
@@ -3545,6 +3683,53 @@ namespace ROMS
             }
         }
 
+        public void udfnButtontext()
+        {
+            try
+            {
+                if (btnSave.Text == "Update")
+                {
+                    if (lblCompanyLogoFilename.Text == "")
+                    {
+                        picCompanyLogo.BackgroundImage = ROMS.Properties.Resources.picture;
+                        picCompanyLogo.Image = ROMS.Properties.Resources.picture;
+                        lblCompanyLogoFilename.Text = "";
+                        lblCompanyLogoPath.Text = "";
+                    }
+                    else
+                    {
+                        //**************set college logo to picturebox******************
+                        picCompanyLogo.BackgroundImage = null;
+                        picCompanyLogo.Image = null;
+                        Image objTmpImage = Image.FromFile(pbCompanypath);
+                        Image varcurrentimg = new Bitmap(objTmpImage);
+                        objTmpImage.Dispose();
+                        picCompanyLogo.BackgroundImage = varcurrentimg;
+                        picCompanyLogo.Image = new Bitmap(varcurrentimg);
+                        picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
+                    {
+                        btncollegeLogoUpload.Text = "Browse";
+                        btncollegeLogoUpload.Image = ROMS.Properties.Resources.browse1;
+                    }
+                    else
+                    {
+                        btncollegeLogoUpload.Text = "Remove";
+                        btncollegeLogoUpload.Image = ROMS.Properties.Resources.remove;
+                    }
+                }
+                else
+                {
+                    cmbState.SelectedValue = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtCity_TextChanged(object sender, EventArgs e)
         {
             try
@@ -3862,6 +4047,42 @@ namespace ROMS
             }
         }
 
+        private void ChkDefaultConcern_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkDefaultConcern.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkDefaultConcern_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkDefaultConcern.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void ChkDefaultConcern_KeyDown(object sender, KeyEventArgs e)
+        { 
+            if (pnlStatus.Enabled)
+            {
+                rbActive.Focus();
+            }
+            else { btnSave.Focus(); }
+        }
+
         private void Grpform2_Leave(object sender, EventArgs e)
         {
             try
@@ -3876,6 +4097,96 @@ namespace ROMS
             finally
             {
                 // tpCompanyName.Active = false; 
+            }
+        }
+
+        private void BtncollegeLogoUpload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //***********  Upload College Logo *********
+
+                if (btncollegeLogoUpload.Text == "Browse")
+                {
+                    string varFolderPath = "";
+
+                    objfilelogo.Filter = "JPEG files (*.jpg)|*.jpg|GIF files (*.gif)|*.gif|PNG files (*.png)|*.png";
+                    objfilelogo.FilterIndex = 1;
+                    objfilelogo.Multiselect = false;
+                    objfilelogo.ShowDialog();
+                    //************ find filename & filepath **************
+                    string varNewPath = Path.GetFullPath(objfilelogo.FileName);
+                    string varCompanyLogoFileName = System.IO.Path.GetFileNameWithoutExtension(varNewPath);
+                    varCompanyLogoFileName = "CompanyLogo";
+                    SPDataService objservice = new SPDataService();
+                    varFolderPath = objservice.udfnGetPath(0);
+                    objservice.CloseConnection();
+                    string varCustomPath = varFolderPath;
+                    string varExtension = System.IO.Path.GetExtension(objfilelogo.FileName);
+                    // ************** image size validation *************
+                    //if (ValidFile(objfilelogo.FileName, 102400, 100, 100))
+                    //{
+                    int varCount = 1;
+                    varNewfile = varCustomPath + varCompanyLogoFileName.ToString() + varExtension;
+                    //while (File.Exists(varNewfile))
+                    //{
+                    //    string varTempFileName = string.Format("{0}({1})", varCompanyLogoFileName.ToString(), varCount++);
+                    //    varNewfile = Path.Combine(varCustomPath, varTempFileName + varExtension);
+                    //}
+                    lblCompanyLogoFilename.Text = varCompanyLogoFileName + varExtension;
+                    lblCompanyLogoPath.Text = varNewfile;
+                    picCompanyLogo.BackgroundImage = null;
+                    picCompanyLogo.Image = null;
+                    picCompanyLogo.Image = new Bitmap(objfilelogo.FileName);
+                    picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+                    if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
+                    {
+                        btncollegeLogoUpload.Text = "Browse";
+                        btncollegeLogoUpload.Image = ROMS.Properties.Resources.browse1;
+                    }
+                    else
+                    {
+                        btncollegeLogoUpload.Text = "Remove";
+                        btncollegeLogoUpload.Image = ROMS.Properties.Resources.remove;
+                    }
+                    varflag = 1;
+                    //  }
+                    //else
+                    //{
+                    //    MessageBox.Show("Please select 100*100 size file", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //}
+                }
+                // ******* Remove  Company Logo ********
+                else
+                {
+                    DialogResult objDialogResult = MessageBox.Show("Do you want to remove logo ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (objDialogResult == DialogResult.Yes)
+                    {
+
+                        varFile = lblCompanyLogoPath.Text;
+                        //*********** remove image from picturebox and set default image *********
+                        picCompanyLogo.BackgroundImage = ROMS.Properties.Resources.picture;
+                        picCompanyLogo.Image = ROMS.Properties.Resources.picture;
+                        lblCompanyLogoPath.Text = "";
+                        lblCompanyLogoFilename.Text = "";
+                        if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
+                        {
+                            btncollegeLogoUpload.Text = "Browse";
+                            btncollegeLogoUpload.Image = ROMS.Properties.Resources.browse1;
+                        }
+                        else
+                        {
+                            btncollegeLogoUpload.Text = "Remove";
+                            btncollegeLogoUpload.Image = ROMS.Properties.Resources.remove;
+                        }
+                    }
+                    varflag = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 

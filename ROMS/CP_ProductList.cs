@@ -91,7 +91,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     { 
                         SPDataService objspdservice = new SPDataService(); 
-                        result = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()),"","","",0,0,0,0,0,0,0,"",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,0,0,0,"","","", "Product Delete",0);
+                        result = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()),"","","",0,0,0,0,0,0,0,"",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"",0,0,0,0,"","","", "Product Delete",0,null);
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
@@ -177,10 +177,20 @@ namespace ROMS
                 }
                 else
                 {
-                    DataService objDServ = new DataService();
-                    string varId_Group = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductGroup WHERE PRG_EName = '" + txtProductGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRGID FROM MR_ProductGroup WHERE PRG_EName = '" + txtProductGroup.Text.Trim() + "') END AS PRGID ");
-                    objDServ.CloseConnection();
-                    varGroupId = Convert.ToInt32(varId_Group);
+                    DataSet objDsGroup = new DataSet();
+                    SPDataService objDServ1 = new SPDataService();
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim());
+                    objDServ1.CloseConnection();
+                    if (objDsGroup != null)
+                    {
+                        if (objDsGroup.Tables.Count > 0)
+                        {
+                            if (objDsGroup.Tables[0].Rows.Count > 0)
+                            {
+                                varGroupId = Convert.ToInt32(objDsGroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
                 }
 
                 int varSubGroupId = 0;
@@ -190,12 +200,22 @@ namespace ROMS
                 }
                 else
                 {
-                    DataService objDServ = new DataService();
-                    string varId_SubGroup = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtProductSubGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRSGID FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtProductSubGroup.Text.Trim() + "') END AS PRSGID ");
-                    objDServ.CloseConnection();
-                    varSubGroupId = Convert.ToInt32(varId_SubGroup);
+                    DataSet objDssubgroup = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtProductSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDserv.CloseConnection();
+                    if (objDssubgroup != null)
+                    {
+                        if (objDssubgroup.Tables.Count > 0)
+                        {
+                            if (objDssubgroup.Tables[0].Rows.Count > 0)
+                            {
+                                varSubGroupId = Convert.ToInt32(objDssubgroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
                 }
-                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue),varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue),0,0,0,0);
+                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue),varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue),0,0,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -217,10 +237,12 @@ namespace ROMS
                             grdItemList.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdItemList.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdItemList.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-
+                            grdItemList.Columns["S.No."].Frozen = true;
+                            grdItemList.Columns["Product Name in Tamil"].Frozen = true;
+                            grdItemList.Columns["P.I Code"].Frozen = true; 
                             grdItemList.Columns["S.No."].Width = 50;
                             grdItemList.Columns["Product Name in English"].Width = 300;
+                            grdItemList.Columns["P.I Code"].Width = 100; 
                             grdItemList.Columns["Product Name in Tamil"].Width = 300;
                             grdItemList.Columns["Product Subgroup"].Width = 150;
                             grdItemList.Columns["Product Group"].Width = 150;
@@ -236,7 +258,8 @@ namespace ROMS
                             grdItemList.Columns["PR_SALE_RKID"].Visible = false; 
                             grdItemList.Columns["PR_SALE_SLID"].Visible = false; 
                             grdItemList.Columns["PR_PUR_RKID"].Visible = false; 
-                            grdItemList.Columns["PR_PUR_SLID"].Visible = false; 
+                            grdItemList.Columns["PR_PUR_SLID"].Visible = false;
+                            grdItemList.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                         }
                         else
                         {
@@ -926,7 +949,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductSubGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(9,0,"",Convert.ToInt32(lblGroupId.Text),0,txtProductSubGroup.Text);
+                    objDs = objspdservice.udfnSubGroupList(9,0,"",Convert.ToInt32(lblGroupId.Text),0,txtProductSubGroup.Text, 0, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

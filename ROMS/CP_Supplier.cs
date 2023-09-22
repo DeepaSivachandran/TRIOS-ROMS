@@ -500,9 +500,23 @@ namespace ROMS
                         errCompany.Clear();
                         cmbState.BackColor = Color.White;
                         string VarCity = "0";
-                        DataService objDserv = new DataService();
-                        VarCity = objDserv.displaydata("SELECT COUNT(*) FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
-                        if (VarCity == "0")
+                        //DataService objDserv = new DataService();
+                        //VarCity = objDserv.displaydata("SELECT COUNT(*) FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                        DataSet objDsCity = new DataSet();
+                        SPDataService objDserv = new SPDataService();
+                        objDsCity = objDserv.udfnCityList(2, txtCity.Text.Trim(), 0);
+                        objDserv.CloseConnection();
+                        if (objDsCity != null)
+                        {
+                            if (objDsCity.Tables.Count > 0)
+                            {
+                                if (objDsCity.Tables[0].Rows.Count > 0)
+                                {
+                                    VarCity = Convert.ToString(objDsCity.Tables[0].Rows[0][0]);
+                                }
+                            }
+                        }
+                        if (VarCity == "0" || VarCity == "-1")
                         {
                             lblcityid.Text = "0";
                             errCompany.SetError(txtCity, "Invalid city");
@@ -513,7 +527,7 @@ namespace ROMS
                         }
                         else
                         {
-                            lblcityid.Text = objDserv.displaydata("SELECT CTYID FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
+                            lblcityid.Text = VarCity;
                         }
                     }
 
@@ -1569,21 +1583,21 @@ namespace ROMS
         {
             try
             {
-                if (txtsalesmanname.Text == "")
-                {
+                //if (txtsalesmanname.Text == "")
+                //{
 
-                    errCompany.SetError(txtsalesmanname, "Please enter salesman name");
-                    txtsalesmanname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpsalesman.ShowAlways = true;
-                    tpsalesman.Show("Please enter salesman name", txtsalesmanname, 5000);
+                //    errCompany.SetError(txtsalesmanname, "Please enter salesman name");
+                //    txtsalesmanname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpsalesman.ShowAlways = true;
+                //    tpsalesman.Show("Please enter salesman name", txtsalesmanname, 5000);
 
-                }
-                else
-                {
+                //}
+                //else
+                //{
                     errCompany.Clear();
                     txtsalesmanname.BackColor = Color.White;
                     tpsalesman.Hide(txtsalesmanname);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1644,23 +1658,21 @@ namespace ROMS
         private void Txtsalesmanmobile_Leave(object sender, EventArgs e)
         {
 
-            if (txtsalesmanmobile.Text == "")
-            {
+            //if (txtsalesmanmobile.Text == "")
+            //{
 
-                errCompany.SetError(txtsalesmanmobile, "Please enter salesman mobile No.");
-                txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tpsalemanph.ShowAlways = true;
-                tpsalemanph.Show("Please enter salesman mobile No.", txtsalesmanmobile, 5000);
-
-            }
-
-            else if (txtsalesmanmobile.Text.Length != 10)
+            //    errCompany.SetError(txtsalesmanmobile, "Please enter salesman mobile No.");
+            //    txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+            //    tpsalemanph.ShowAlways = true;
+            //    tpsalemanph.Show("Please enter salesman mobile No.", txtsalesmanmobile, 5000);
+            //}
+           // else 
+            if (txtsalesmanmobile.Text != "" && txtsalesmanmobile.Text.Length != 10)
             {
                 errCompany.SetError(txtsalesmanmobile, "Please enter valid mobile No.");
                 txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                 tpsalemanph.ShowAlways = true;
                 tpsalemanph.Show("Please enter valid mobile No.", txtsalesmanmobile, 5000);
-
             }
             else
             {
@@ -3322,6 +3334,7 @@ namespace ROMS
                     grdViewSupplierMapping.Columns["Product Name in English"].Width = 250;
                     grdViewSupplierMapping.Columns["Rep Name"].Width = 200;
                     grdViewSupplierMapping.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdViewSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                 }
                 else
                 {
@@ -3723,7 +3736,7 @@ namespace ROMS
                 dtSubGroup.Columns.Add("Product Name in English", typeof(string));
 
                 //objDs = objspservice.udfnproductmasterlist(3, 0, 0,Convert.ToInt32(cmbMappingGroup.SelectedValue), Convert.ToInt32(cmbMappingSubGroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue));
-                objDs = objspservice.udfnproductmasterlist(3, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue));
+                objDs = objspservice.udfnproductmasterlist(3, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue),0);
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
@@ -3751,6 +3764,7 @@ namespace ROMS
                     grdSupplierMappingLoad.Columns["Product Name in Tamil"].ReadOnly = true;
                     grdSupplierMappingLoad.Columns["Unit"].ReadOnly = true;
                     grdSupplierMappingLoad.Columns["Product SubGroup"].ReadOnly = true;
+                    grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                 }
                 else
                 {
@@ -3952,6 +3966,7 @@ namespace ROMS
                     grdFinalSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["Unit"].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["Product SubGroup"].ReadOnly = true;
+                    grdFinalSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
 
                     for (int i = 0; i < grdSupplierMappingLoad.Rows.Count; i++)
                     {
@@ -4644,13 +4659,14 @@ namespace ROMS
             {
                 if (Convert.ToInt32(cmbMappingordeDay.SelectedValue) != -1)
                 {
-
-
                     udfnSubGroupAdd();
                 }
                 else
                 {
-                    MessageBox.Show("Please select order day", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(54);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -5163,17 +5179,35 @@ namespace ROMS
                     tpstate.Show("Please select order type", cmbOrderType, 5000);
                     errorflag = 1;
                 }
-                if (txtsalesmanmobile.Text.Trim() == "")
+                if (cmbOrderType.SelectedValue.ToString() == "35")
                 {
-                    errCompany.SetError(txtsalesmanmobile, "Please enter  salesman mobile No.");
-                    txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpsalemanph.ShowAlways = true;
-                    tpsalemanph.Show("Please enter  salesman mobile No.", txtsalesmanmobile, 5000);
-                    errorflag = 1;
+                    if (txtsalesmanname.Text.Trim() == "")
+                    {
+                        errCompany.SetError(txtsalesmanname, "Please enter salesman name");
+                        txtsalesmanname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpschedule.ShowAlways = true;
+                        tpschedule.Show("Please enter salesman name", txtsalesmanname, 5000);
+                        errorflag = 1;
+                    }
+                    if (txtsalesmanmobile.Text.Trim() == "")
+                    {
+                        errCompany.SetError(txtsalesmanmobile, "Please enter  salesman mobile No.");
+                        txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpsalemanph.ShowAlways = true;
+                        tpsalemanph.Show("Please enter  salesman mobile No.", txtsalesmanmobile, 5000);
+                        errorflag = 1;
+                    }
+                    if (txtsalesmanmobile.Text == "")
+                    {
+                        errCompany.SetError(txtsalesmanmobile, "Please enter salesman mobile No.");
+                        txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpsalemanph.ShowAlways = true;
+                        tpsalemanph.Show("Please enter salesman mobile No.", txtsalesmanmobile, 5000);
+                        errorflag = 1;
+                    }
                 }
                 if (txtsalesmanmobile.Text.Length != 10 && txtsalesmanmobile.Text != "")
                 {
-
                     errCompany.SetError(txtsalesmanmobile, "Please enter valid salesman mobile No.");
                     txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpsalemanph.ShowAlways = true;
@@ -5184,7 +5218,6 @@ namespace ROMS
                 {
                     if (txtsalesmanwhatsapp.Text.Length != 10)
                     {
-
                         errCompany.SetError(txtsalesmanwhatsapp, "Please enter valid salesman whatsapp No.");
                         txtsalesmanwhatsapp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpsalemanph.ShowAlways = true;
@@ -5194,26 +5227,16 @@ namespace ROMS
                 }
                 if (txtScheduleName.Text.Trim() == "")
                 {
-
                     errCompany.SetError(txtScheduleName, "Please enter the schedule");
                     txtScheduleName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpschedule.ShowAlways = true;
                     tpschedule.Show("Please enter the schedule", txtScheduleName, 5000);
                     errorflag = 1;
                 }
-                if (txtsalesmanname.Text.Trim() == "")
-                {
-
-                    errCompany.SetError(txtsalesmanname, "Please enter salesman name");
-                    txtsalesmanname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpschedule.ShowAlways = true;
-                    tpschedule.Show("Please enter salesman name", txtsalesmanname, 5000);
-                    errorflag = 1;
-                }
                 if (errorflag == 0)
                 {
-                    udfntphide();
                     udfnSupplierOrderSave();
+                    udfntphide();
                 }
             }
             catch (Exception ex)
@@ -5235,32 +5258,30 @@ namespace ROMS
                 int varflag = 0;
                 errCompany.Clear();
                 udfnSchedulecolorchange();
-                if (txtScheduleName.Text == "")
-                {
-                    errCompany.SetError(txtScheduleName, "Please enter the schedule");
-                    txtScheduleName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpschedule.ShowAlways = true;
-                    tpschedule.Show("Please enter the schedule", txtScheduleName, 5000);
-                    blnErrorFlag = true;
-                }
-                if (txtsalesmanname.Text == "")
-                {
-
-                    errCompany.SetError(txtsalesmanname, "Please enter salesman name");
-                    txtsalesmanname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpsalesman.ShowAlways = true;
-                    tpsalesman.Show("Please enter salesman name", txtsalesmanname, 5000);
-                    blnErrorFlag = true;
-                }
-                if (txtsalesmanmobile.Text == "")
-                {
-
-                    errCompany.SetError(txtsalesmanmobile, "Please enter salesman mobile No.");
-                    txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpsalemanph.ShowAlways = true;
-                    tpsalemanph.Show("Please enter salesman mobile No.", txtsalesmanmobile, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (txtScheduleName.Text == "")
+                //{
+                //    errCompany.SetError(txtScheduleName, "Please enter the schedule");
+                //    txtScheduleName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpschedule.ShowAlways = true;
+                //    tpschedule.Show("Please enter the schedule", txtScheduleName, 5000);
+                //    blnErrorFlag = true;
+                //}
+                //if (txtsalesmanname.Text == "")
+                //{
+                //    errCompany.SetError(txtsalesmanname, "Please enter salesman name");
+                //    txtsalesmanname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpsalesman.ShowAlways = true;
+                //    tpsalesman.Show("Please enter salesman name", txtsalesmanname, 5000);
+                //    blnErrorFlag = true;
+                //}
+                //if (txtsalesmanmobile.Text == "")
+                //{
+                //    errCompany.SetError(txtsalesmanmobile, "Please enter salesman mobile No.");
+                //    txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpsalemanph.ShowAlways = true;
+                //    tpsalemanph.Show("Please enter salesman mobile No.", txtsalesmanmobile, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (blnErrorFlag == false)
                 {
                     if (btnAdd.Text == "Save")
@@ -5283,13 +5304,9 @@ namespace ROMS
                             }
                         }
                     }
-
                     if (varflag == 0)
                     {
-
-
                         string VarTotalDays = "", VarDaysname = "";
-
                         for (int i = 0; i < grddays.Rows.Count; i++)
                         {
                             if (Convert.ToBoolean(grddays.Rows[i].Cells["clmcheck"].Value) == true)
@@ -5313,88 +5330,93 @@ namespace ROMS
                                 }
                             }
                         }
-                        SupplierUpdate = 0;
-                        if (Convert.ToInt32(varsupplierID) != 0)
+                        if (VarTotalDays != "")
                         {
-                            SupplierUpdate = Convert.ToInt32(varsupplierID);
-                        }
-                        else
-                        {
-                            SupplierUpdate = Convert.ToInt32(pbSupplierid);
-                        }
-
-                        SPDataService objspdservice = new SPDataService();
-                        string result = "", varoriginator = "";
-                        int Vartype = 0, count = 0;
-
-                        if (btnAdd.Text == "Save")
-                        {
-                            count = grdSupplierList.Rows.Count + 1;
-                        }
-                        else
-                        {
-                            count = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["clmsno"].Value.ToString());
-                        }
-                        int sceduleidupdate = 0;
-                        if (btnAdd.Text == "Save")
-                        {
-                            varoriginator = "Supplier Order Create";
-                            Vartype = 3;
-                            sceduleidupdate = varOrderid;
-                        }
-                        else
-                        {
-                            if (varOrderid == 0)
+                            SupplierUpdate = 0;
+                            if (Convert.ToInt32(varsupplierID) != 0)
                             {
-                                sceduleidupdate = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                SupplierUpdate = Convert.ToInt32(varsupplierID);
                             }
                             else
                             {
+                                SupplierUpdate = Convert.ToInt32(pbSupplierid);
+                            }
+
+                            SPDataService objspdservice = new SPDataService();
+                            string result = "", varoriginator = "";
+                            int Vartype = 0, count = 0;
+
+                            if (btnAdd.Text == "Save")
+                            {
+                                count = grdSupplierList.Rows.Count + 1;
+                            }
+                            else
+                            {
+                                count = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["clmsno"].Value.ToString());
+                            }
+                            int sceduleidupdate = 0;
+                            if (btnAdd.Text == "Save")
+                            {
+                                varoriginator = "Supplier Order Create";
+                                Vartype = 3;
                                 sceduleidupdate = varOrderid;
                             }
-                            varoriginator = "Supplier Order Update";
-                            Vartype = 4;
-                        }
-
-
-                        result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
-                            Convert.ToInt32(cmbReturnPolicy.SelectedValue), varrecyclecode, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator,
-                            0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, txtsalesmanname.Text, txtScheduleName.Text, txtsalesmanmobile.Text,
-                            txtsalesmanwhatsapp.Text, Convert.ToInt32(cmbOrderType.SelectedValue), VarTotalDays, sceduleidupdate, 0, "", "", "", "", "", "", "", "", "");
-
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            grddays.ClearSelection();
-
-                            MainForm.objCP_Supplierlist.udfnList();
-                            this.ActiveControl = txtScheduleName;
-                            if (btnAdd.Text == "Update")
+                            else
                             {
-                                varupdate = "1";
-                                //grdSupplierList.Rows.Clear ();
-                                //udfnEdit();
-                                if (scheduleselectedIndex >= 0 && scheduleselectedIndex < grdSupplierList.Rows.Count)
+                                if (varOrderid == 0)
                                 {
-                                    grdSupplierList.Rows.RemoveAt(scheduleselectedIndex);
-                                    scheduleselectedIndex = -1;  // Reset the index after deletion.
+                                    sceduleidupdate = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ID"].Value.ToString());
                                 }
+                                else
+                                {
+                                    sceduleidupdate = varOrderid;
+                                }
+                                varoriginator = "Supplier Order Update";
+                                Vartype = 4;
+                            }
+                            result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
+                                Convert.ToInt32(cmbReturnPolicy.SelectedValue), varrecyclecode, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator,
+                                0, "", 0, vardayID, varMonthID, varWeekID, vardayMonthID, txtsalesmanname.Text, txtScheduleName.Text, txtsalesmanmobile.Text,
+                                txtsalesmanwhatsapp.Text, Convert.ToInt32(cmbOrderType.SelectedValue), VarTotalDays, sceduleidupdate, 0, "", "", "", "", "", "", "", "", "");
+
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "3")
+                            {
+                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                grddays.ClearSelection();
+                                MainForm.objCP_Supplierlist.udfnList();
+                                this.ActiveControl = txtScheduleName;
+                                if (btnAdd.Text == "Update")
+                                {
+                                    varupdate = "1";
+                                    //grdSupplierList.Rows.Clear ();
+                                    //udfnEdit();
+                                    if (scheduleselectedIndex >= 0 && scheduleselectedIndex < grdSupplierList.Rows.Count)
+                                    {
+                                        grdSupplierList.Rows.RemoveAt(scheduleselectedIndex);
+                                        scheduleselectedIndex = -1;  // Reset the index after deletion.
+                                    }
+                                }
+                                else
+                                {
+                                    varOrderid = Convert.ToInt32(varvalue[2]);
+                                }
+                                //grdSupplierList.Rows.Add(count, txtScheduleName.Text, txtsalesmanname.Text, txtsalesmanmobile.Text, txtsalesmanwhatsapp.Text, Convert.ToString(cmbOrderType.Text), varOrderid, VarDaysname, VarTotalDays, varOrderid);
+                                udfnSaveGrdAdd();
+                                udfnScheduleClear();
+                                btnAdd.Text = "Save";
                             }
                             else
                             {
-                                varOrderid = Convert.ToInt32(varvalue[2]);
-
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
-
-                            //grdSupplierList.Rows.Add(count, txtScheduleName.Text, txtsalesmanname.Text, txtsalesmanmobile.Text, txtsalesmanwhatsapp.Text, Convert.ToString(cmbOrderType.Text), varOrderid, VarDaysname, VarTotalDays, varOrderid);
-                            udfnSaveGrdAdd();
-                            udfnScheduleClear();
-                            btnAdd.Text = "Save";
                         }
                         else
                         {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(56);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     else
@@ -5938,7 +5960,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtMappingSubGroup.Text.Length > 2)
                 {
-                    objDs = objspdservice.udfnSubGroupList(10, 0, "", varGroupId, 0, txtMappingSubGroup.Text);
+                    objDs = objspdservice.udfnSubGroupList(10, 0, "", varGroupId, 0, txtMappingSubGroup.Text,0,0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

@@ -129,7 +129,7 @@ namespace ROMS
                             varmastertype = 0;
                             varUpdate = 1;
                             varCategoryCode = Convert.ToInt16(varResult.Split('~')[2]);
-                            MainForm.objCP_User.varCategoryCode = varCategoryCode;
+                            MainForm.objCP_Employee.varCategoryCode = varCategoryCode;
                             udfnclose();
                         }
                         else
@@ -349,9 +349,11 @@ namespace ROMS
             }
             finally
             {
-
-                MainForm.objCP_UserCategoryList.picLoader.Visible = false;
-                MainForm.objCP_UserCategoryList.picLoader.SendToBack();
+                if (varmastertype == 0)
+                {
+                    MainForm.objCP_UserCategoryList.picLoader.Visible = false;
+                    MainForm.objCP_UserCategoryList.picLoader.SendToBack();
+                }
             }
         }
         private void udfnLoad()

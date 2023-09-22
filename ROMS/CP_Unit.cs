@@ -20,13 +20,14 @@ namespace ROMS
         private ToolTip tpSymbol = new ToolTip();
         private ToolTip tpNoOfDecimals = new ToolTip();
         private ToolTip tpEInvoiceUnitName = new ToolTip();
+        private ToolTip tpInvoiceUnit = new ToolTip();
         public int varmastertype = 0, varUnitCodeProduct=0;
         public string varbrandcode;
         public int varUnitCode = 0;
         public string pbFormStatus;
         public int varstatus;        public string PbUnitName="";
         public string PbSymbol="";
-        public string PbNoOfDecimals="";
+        public string PbNoOfDecimals="",pbInvoiceUnit ="";
         public int PbStatus=0;
         public int pbDecimalId = 0;
         public int varUpdate = 0;
@@ -42,6 +43,7 @@ namespace ROMS
                 tpSymbol.Active = false;
                 tpNoOfDecimals.Active = false;
                 tpEInvoiceUnitName.Active = false;
+                tpInvoiceUnit.Active = false;
             }
             catch (Exception ex)
             {
@@ -82,6 +84,7 @@ namespace ROMS
             try {
                 txtEUnitName.Text = PbUnitName;
                 txtSymbol.Text = PbSymbol;
+                txtInvoiceUnit.Text = pbInvoiceUnit;
                 cmbNoOfDecimals.SelectedValue = pbDecimalId;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInActive.Checked = true; }
             }
@@ -113,7 +116,7 @@ namespace ROMS
                     varoriginator = "Unit Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnUnit(varType, varUnitCode, (txtEUnitName.Text).Trim(), txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, varoriginator);
+                varResult = objspservice.udfnUnit(varType, varUnitCode, (txtEUnitName.Text).Trim(), txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, varoriginator, (txtInvoiceUnit.Text).Trim());
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -170,6 +173,7 @@ namespace ROMS
 
                 txtEUnitName.Text = "";
                 txtSymbol.Text = "";
+                txtInvoiceUnit.Text = "";
                 cmbNoOfDecimals.SelectedIndex = 0;
                 txtEUnitName.Focus();
                 this.ActiveControl = txtEUnitName;
@@ -199,6 +203,14 @@ namespace ROMS
                     txtSymbol.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpSymbol.ShowAlways = true;
                     tpSymbol.Show("Please enter symbol", txtSymbol, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtInvoiceUnit.Text).Trim() == "")
+                {
+                    epUnit.SetError(txtInvoiceUnit, "Please enter E-Invoice unit");
+                    txtInvoiceUnit.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpInvoiceUnit.ShowAlways = true;
+                    tpInvoiceUnit.Show("Please enter E-Invoice unit", txtInvoiceUnit, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(cmbNoOfDecimals.SelectedValue) == "" || Convert.ToString(cmbNoOfDecimals.SelectedValue) == "-1")
@@ -435,7 +447,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbNoOfDecimals.Focus();
+                    txtInvoiceUnit.Focus();
                 }
             }
             catch (Exception ex)
@@ -582,6 +594,60 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void TxtInvoiceUnit_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtInvoiceUnit.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtInvoiceUnit_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(txtInvoiceUnit.Text).Trim() == "")
+                {
+                    epUnit.SetError(txtInvoiceUnit, "Please enter E-Invoice unit");
+                    txtInvoiceUnit.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpInvoiceUnit.ShowAlways = true;
+                    tpInvoiceUnit.Show("Please enter E-Invoice unit", txtInvoiceUnit, 5000);
+                }
+                else
+                {
+                    epUnit.Clear();
+                    txtInvoiceUnit.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtInvoiceUnit_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbNoOfDecimals.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CP_Unit_KeyDown(object sender, KeyEventArgs e)
         {
             try

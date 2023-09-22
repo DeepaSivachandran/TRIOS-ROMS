@@ -105,7 +105,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbUserCategory.Focus();
+                    cmbUserRole.Focus();
                 }
             }
             catch (Exception ex)
@@ -345,7 +345,7 @@ namespace ROMS
                 {
                     varUserID = "0";
                 }
-                varResult = objspservice.udfnUser(varType,Convert.ToInt32( varUserID), (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, varoriginator);
+                varResult = objspservice.udfnUser(varType,Convert.ToInt32( varUserID), (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), 0, Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, varoriginator);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -402,14 +402,6 @@ namespace ROMS
                     tploginid.Show("Please enter login id", txtLoginID, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(cmbUserCategory.SelectedValue) == "" || Convert.ToString(cmbUserCategory.SelectedValue) == "-1")
-                {
-                    epUser.SetError(cmbUserCategory, "Please select user Category");
-                    cmbUserCategory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpUserCategory.ShowAlways = true;
-                    tpUserCategory.Show("Please select user Category", cmbUserCategory, 5000);
-                    blnErrorFlag = true;
-                }
                 if (Convert.ToString(cmbUserRole.SelectedValue) == "" || Convert.ToString(cmbUserRole.SelectedValue) == "-1")
                 {
                     epUser.SetError(cmbUserRole, "Please select user role");
@@ -453,6 +445,7 @@ namespace ROMS
                     tpPassKey.Show("Please select pass key", cmbPasskey, 5000);
                     blnErrorFlag = true;
                 }
+
                 if (oldpassword != null && oldpassword != "")
                 {
                     if (oldpassword.Trim() == txtPassword.Text.Trim())
@@ -491,7 +484,6 @@ namespace ROMS
             txtLoginID.Text = "";
             txtPassword.Text = "";
             txtCPassword.Text = "";
-            cmbUserCategory.SelectedIndex = 0;
             cmbUserRole.SelectedIndex = 0;
             cmbPasskey.SelectedIndex = 0;
             rbActive.Checked = true;
@@ -602,28 +594,6 @@ namespace ROMS
             {
                 txtUserName.Focus();
                 this.ActiveControl = txtUserName;
-                DataSet objDs = new DataSet();
-                SPDataService objdserv = new SPDataService();
-                int varViewType = 3;
-                if (btnSave.Text == "Save")
-                {
-                    varViewType = 2;
-                }
-                objDs = objdserv.udfnUserCategoryList(varViewType,PbUserCategoryID);
-                objdserv.CloseConnection();
-                cmbUserCategory.DataSource = null;
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count > 0)
-                    {
-                        if (objDs.Tables[0].Rows.Count > 0)
-                        {
-                            cmbUserCategory.ValueMember = "CTID";
-                            cmbUserCategory.DisplayMember = "CT_Name";
-                            cmbUserCategory.DataSource = objDs.Tables[0];
-                        }
-                    }
-                }
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_UserRole", "UR_STSID=1 and URID !=0 Order by URID", "UR_Name,URID", cmbUserRole, "", "UR_Name", "URID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,7) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbPasskey, "", "MST_DisplayText", "MSTID");
@@ -661,7 +631,6 @@ namespace ROMS
             {   
                 txtUserName.Text = PbNameoftheUser;
                 txtLoginID.Text = PbLoginid;
-                cmbUserCategory.SelectedValue = PbUserCategoryID;
                 cmbUserRole.SelectedValue = PbUserRoleID;
                 cmbPasskey.SelectedValue = PbPasskeyID;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
@@ -712,81 +681,6 @@ namespace ROMS
                 {
                     txtLoginID.Focus();   
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbUserCategory_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbUserCategory.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbUserCategory_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cmbUserRole.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbUserCategory_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbUserCategory_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Convert.ToString(cmbUserCategory.SelectedValue) == "" || Convert.ToString(cmbUserCategory.SelectedValue) == "-1")
-                {
-                    epUser.SetError(cmbUserCategory, "Please select user Category");
-                    cmbUserCategory.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpUserCategory.ShowAlways = true;
-                    tpUserCategory.Show("Please select user Category", cmbUserCategory, 5000);
-                }
-                else
-                {
-                    epUser.Clear();
-                    cmbUserCategory.BackColor = Color.White;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbUserCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BeginInvoke(new Action(() => cmbUserCategory.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {
@@ -946,26 +840,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-        }
-        private void BtnNew_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                MainForm.objCP_UserCategory = new CP_UserCategory();
-                MainForm.objCP_UserCategory.varmastertype = 1;
-                MainForm.objCP_UserCategory.ShowDialog();
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_UserCategory", " CT_STSID=1 and CTID !=0 Order by CTID", "CT_Name,CTID", cmbUserCategory, "", "CT_Name", "CTID");
-          
-                objDataBind = null;
-                cmbUserCategory.SelectedValue = Convert.ToInt16(varCategoryCode);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-
             }
         }
         private void CP_User_FormClosing(object sender, FormClosingEventArgs e)

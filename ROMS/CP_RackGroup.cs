@@ -25,7 +25,7 @@ namespace ROMS
         public String varDesignation="";
         public String varUserID = "";
         public String varRackID = "";
-        public String varUserId = "";
+        public String varUserId = "", varEmpCode = "";
         public int varStockId = 0;
         public int varStatusid = 1;
         public int varConcernId = 0;
@@ -294,7 +294,7 @@ namespace ROMS
                     {
                         for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
                         {
-                            grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, Convert.ToString(objDS.Tables[1].Rows[i]["U_Name"]), Convert.ToString(objDS.Tables[1].Rows[i]["CT_Name"]), Convert.ToInt16(objDS.Tables[1].Rows[i]["RKGU_UID"]));
+                            grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, Convert.ToString(objDS.Tables[1].Rows[i]["EMP_Code"]), Convert.ToString(objDS.Tables[1].Rows[i]["U_Name"]), Convert.ToString(objDS.Tables[1].Rows[i]["CT_Name"]), Convert.ToInt16(objDS.Tables[1].Rows[i]["RKGU_UID"]));
                         }
                     }
                     if (objDS.Tables[2].Rows.Count > 0)
@@ -398,7 +398,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Focus();
             }
         }
@@ -464,7 +464,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Focus();
             }
         }
@@ -595,15 +595,25 @@ namespace ROMS
                 }
                 else
                 {
-                    DataService objDserv = new DataService();
-                    varStaffName =Convert.ToInt32( objDserv.displaydata("SELECT COUNT(*) FROM MR_User INNER JOIN MR_UserCategory ON U_CTID=CTID WHERE U_Name='" + txtStaffName.Text.Trim().ToLower()+ "'AND ISNULL(CT_Default,0) = 1"));
-                    if (varStaffName == 0)
+                    DataSet objDsUser = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDsUser = objDserv.udfnEmployeeList(3, txtStaffName.Text.Trim(), 0, varEmpCode, 0,0);
+                    objDserv.CloseConnection();
+                    if (objDsUser != null)
+                    {
+                        if (objDsUser.Tables.Count > 0)
+                        {
+                            if (objDsUser.Tables[0].Rows.Count > 0)
+                            {
+                                varStaffName = Convert.ToInt32(objDsUser.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    varUserID = Convert.ToString(varStaffName) ;
+                    if (varStaffName == 0 || varStaffName == -1)
                     {
                         varUserID = "0";
-                        //epRackGroup.SetError(txtStaffName, "Invalid staff name");
-                        //txtStaffName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        //tpStaffName.ShowAlways = true;
-                        //tpStaffName.Show("Please enter valid staff name", txtStaffName, 5000);
+                        varEmpCode = "0";
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(49);
                         objDServ.CloseConnection();
@@ -611,34 +621,33 @@ namespace ROMS
                     }
                     else
                     {
+                        varFlag = 0;
                         for (int i = 0; i < grdStaffDetails.Rows.Count; i++)
-                        {
-                            varFlag = 0;
-                            
+                        {                       
                             varAddStaff = varUserID;
-                            if (varAddStaff == Convert.ToString(grdStaffDetails.Rows[i].Cells["clmUserId"].Value))
+                            if (txtStaffName.Text.Trim().ToUpper() == Convert.ToString(grdStaffDetails.Rows[i].Cells["clmStaffName"].Value).Trim().ToUpper())
                             {
                                 varFlag = 1;
-
-                                SPDataService objDServ = new SPDataService();
-                                string varMessage = objDServ.udfnGetMessages(43);
-                                objDServ.CloseConnection();
-                                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
                         if (varFlag == 0)
                         {
                             SPDataService objspdservice = new SPDataService();
                             DataSet objDs = new DataSet();
-                            objDs = objspdservice.udfnUserList(6, txtStaffName.Text.Trim(), MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                            objDs = objspdservice.udfnEmployeeList(4, txtStaffName.Text.Trim(),0,"",0,0);
                             objspdservice.CloseConnection();
-
-                            txtStaffName.Text = objDs.Tables[0].Rows[0]["U_Name"].ToString();
-                            varUserID= objDs.Tables[0].Rows[0]["UID"].ToString();
-                            varDesignation = objDs.Tables[0].Rows[0]["Designation"].ToString();
-
-
-                            grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, txtStaffName.Text.Trim(), varDesignation, varUserID);
+                            txtStaffName.Text = objDs.Tables[0].Rows[0]["EMP_Name"].ToString();
+                            varUserID = objDs.Tables[0].Rows[0]["EMPID"].ToString();
+                            varDesignation = objDs.Tables[0].Rows[0]["CT_Name"].ToString();
+                            varEmpCode = objDs.Tables[0].Rows[0]["EMP_Code"].ToString();
+                            grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, varEmpCode, txtStaffName.Text.Trim(), varDesignation, varUserID);
+                        }
+                        else
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(43);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                       
                     }
@@ -646,6 +655,7 @@ namespace ROMS
                     txtStaffName.Text = "";
                     varDesignation = "";
                     varUserId = "";
+                    varEmpCode = "";
                     tpStaffName.Active = false;
                 }
             }
@@ -1170,6 +1180,7 @@ namespace ROMS
         {
             try
             {
+                lvStaffName.Visible = false;
                 btnAdd.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1399,6 +1410,7 @@ namespace ROMS
                     txtStaffName.Text = selectedItem.SubItems[0].Text;
                     varDesignation = selectedItem.SubItems[1].Text;
                     varUserID = selectedItem.SubItems[2].Text;
+                    varEmpCode = selectedItem.SubItems[3].Text;
                 }
             }
             catch (Exception ex)
@@ -1421,7 +1433,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStaffName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnUserList(1, txtStaffName.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                    objDs = objspdservice.udfnEmployeeList(5, txtStaffName.Text.Trim(),0,"",1, varId);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1431,7 +1443,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                   string[] row = { objDs.Tables[0].Rows[i]["U_Name"].ToString(), objDs.Tables[0].Rows[i]["Designation"].ToString(), objDs.Tables[0].Rows[i]["UID"].ToString()};
+                                   string[] row = { objDs.Tables[0].Rows[i]["EMP_Name"].ToString(), objDs.Tables[0].Rows[i]["CT_Name"].ToString(), objDs.Tables[0].Rows[i]["EMPID"].ToString(), objDs.Tables[0].Rows[i]["EMP_Code"].ToString(),};
                                    
                                     ListViewItem objList = new ListViewItem(row);
                                     lvStaffName.Items.Add(objList);
@@ -1521,6 +1533,11 @@ namespace ROMS
         }
 
         private void LvStaffName11_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LblNoofproducts_Click(object sender, EventArgs e)
         {
 
         }

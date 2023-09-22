@@ -25,7 +25,7 @@ namespace ROMS
         public void udfnCmbProductGroup()
         {
             try
-            {
+            { 
               ///  SPDataService objdserv = new SPDataService();
               //  DataSet objDT = new DataSet();
               //  int varViewType = 3;
@@ -54,7 +54,7 @@ namespace ROMS
         public void udfnCmbProductSubGroup()
         {
             try
-            {
+            { 
                // DataSet objDT = new DataSet();
                // SPDataService objdserv = new SPDataService();
                // int varViewType =5 ;
@@ -77,7 +77,7 @@ namespace ROMS
                //         }
                //     }
                // }
-               // objdserv.CloseConnection();
+               // objdserv.CloseConnection(); 
             }
             catch (Exception ex)
             {
@@ -173,7 +173,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); MessageBox.Show("Something went wrong,Please try again", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             }
 
@@ -227,10 +227,20 @@ namespace ROMS
                 }
                 else
                 {
-                    DataService objDServ = new DataService();
-                    string varId_Group = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductGroup WHERE PRG_EName = '" + txtProductGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRGID FROM MR_ProductGroup WHERE PRG_EName = '" + txtProductGroup.Text.Trim() + "') END AS PRGID ");
-                    objDServ.CloseConnection();
-                    varGroupId = Convert.ToInt32(varId_Group);
+                    DataSet objDsGroup = new DataSet();
+                    SPDataService objDServ1 = new SPDataService();
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim());
+                    objDServ1.CloseConnection();
+                    if (objDsGroup != null)
+                    {
+                        if (objDsGroup.Tables.Count > 0)
+                        {
+                            if (objDsGroup.Tables[0].Rows.Count > 0)
+                            {
+                                varGroupId = Convert.ToInt32(objDsGroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
                 }
 
                 int varSubGroupId = 0;
@@ -240,10 +250,23 @@ namespace ROMS
                 }
                 else
                 {
-                    DataService objDServ = new DataService();
-                    string varId_SubGroup = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtProductSubGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRSGID FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtProductSubGroup.Text.Trim() + "') END AS PRSGID ");
-                    objDServ.CloseConnection();
-                    varSubGroupId = Convert.ToInt32(varId_SubGroup);
+                    //DataService objDServ = new DataService();
+                    //string varId_SubGroup = objDServ.displaydata("SELECT CASE WHEN (SELECT COUNT(*) FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtProductSubGroup.Text.Trim() + "') = 0 THEN -1 ELSE(SELECT PRSGID FROM MR_ProductSubGroup WHERE PRSG_EName = '" + txtProductSubGroup.Text.Trim() + "') END AS PRSGID ");
+                    //objDServ.CloseConnection();
+                    DataSet objDssubgroup = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtProductSubGroup.Text.Trim(),0,0,0,0);
+                    objDserv.CloseConnection();
+                    if (objDssubgroup != null)
+                    {
+                        if (objDssubgroup.Tables.Count > 0)
+                        {
+                            if (objDssubgroup.Tables[0].Rows.Count > 0)
+                            {
+                                varSubGroupId = Convert.ToInt16(objDssubgroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
                 }
                 objDs = objdserv.udfnBrandList(0, "", varGroupId, varSubGroupId,0,"");
                 objdserv.CloseConnection();
@@ -272,6 +295,7 @@ namespace ROMS
 
                             grdBrandList.Columns["ID"].Visible = false;
                             grdBrandList.Columns["Status ID"].Visible = false;
+                            grdBrandList.Columns["Brand Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                         }
                         else
                         {
@@ -952,7 +976,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductSubGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(8, 0, "", varGroupId, 0, txtProductSubGroup.Text);
+                    objDs = objspdservice.udfnSubGroupList(8, 0, "", varGroupId, 0, txtProductSubGroup.Text,0,0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

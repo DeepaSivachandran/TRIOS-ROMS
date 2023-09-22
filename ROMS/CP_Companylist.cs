@@ -96,7 +96,7 @@ namespace ROMS
                         objBankTable.Columns.Add("CMBNK_AccNo", typeof(string));
                         objBankTable.Columns.Add("CMBNK_IFSC", typeof(string));
                         objBankTable.Columns.Add("CMBNK_STSID", typeof(string));
-                        result = objspdservice.udfnCompanyMaster(2, Convert.ToInt32(grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", "","", 0, "", "","","", "","", "","", "","","", "", "", "","","","","", "Company delete", objBankTable, objContactTable);
+                        result = objspdservice.udfnCompanyMaster(2, Convert.ToInt32(grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", "","", 0, "", "","","", "","", "","", "","","", "", "", "","","","","", "Company delete", objBankTable, objContactTable,"",0);
                         objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
@@ -180,7 +180,7 @@ namespace ROMS
                             grdCompanyList.Columns["Company Name"].Width = 200;
                             grdCompanyList.Columns["City - Pincode"].Width = 150;
                             grdCompanyList.Columns["GSTIN"].Width = 150;
-                            grdCompanyList.Columns["Status"].Width = 80;
+                            grdCompanyList.Columns["Status"].Visible = false;
                             grdCompanyList.Columns["ID"].Visible = false;
                             grdCompanyList.Columns["STSID"].Visible = false;
                         }

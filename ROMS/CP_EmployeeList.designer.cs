@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_RackList
+    partial class CP_EmployeeList
     {
         /// <summary>
         /// Required designer variable.
@@ -34,49 +34,53 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsGroupList = new System.Windows.Forms.ToolStrip();
+            this.tsUserList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
-            this.pnlRack = new System.Windows.Forms.Panel();
-            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.grbFilterBy = new System.Windows.Forms.GroupBox();
+            this.pnluser = new System.Windows.Forms.Panel();
+            this.lvUserList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.grbFilterByUser = new System.Windows.Forms.GroupBox();
+            this.lblEmpCode = new System.Windows.Forms.Label();
+            this.lblUserId = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
-            this.lblGC = new System.Windows.Forms.Label();
+            this.txtEmployee = new System.Windows.Forms.TextBox();
             this.btnView = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbGroupType = new System.Windows.Forms.ComboBox();
+            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdGroupList = new System.Windows.Forms.DataGridView();
+            this.grdEmployeeList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.tsGroupList.SuspendLayout();
-            this.pnlRack.SuspendLayout();
+            this.tsUserList.SuspendLayout();
+            this.pnluser.SuspendLayout();
+            this.grbFilterByUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
-            this.grbFilterBy.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdGroupList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdEmployeeList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsGroupList
+            // tsUserList
             // 
-            this.tsGroupList.BackColor = System.Drawing.Color.White;
-            this.tsGroupList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsGroupList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsGroupList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsUserList.BackColor = System.Drawing.Color.White;
+            this.tsUserList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsUserList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsUserList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
             this.tsbNew});
-            this.tsGroupList.Location = new System.Drawing.Point(0, 0);
-            this.tsGroupList.Name = "tsGroupList";
-            this.tsGroupList.Size = new System.Drawing.Size(1354, 27);
-            this.tsGroupList.TabIndex = 35;
-            this.tsGroupList.Text = "Group";
+            this.tsUserList.Location = new System.Drawing.Point(0, 0);
+            this.tsUserList.Name = "tsUserList";
+            this.tsUserList.Size = new System.Drawing.Size(1354, 27);
+            this.tsUserList.TabIndex = 35;
+            this.tsUserList.Text = "User";
             // 
             // tspHeader
             // 
@@ -85,8 +89,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(51, 24);
-            this.tspHeader.Text = "Rack";
+            this.tspHeader.Size = new System.Drawing.Size(75, 24);
+            this.tspHeader.Text = "Employee";
             // 
             // tsbDelete
             // 
@@ -141,18 +145,128 @@
             this.tsbNew.Text = "&New";
             this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
-            // pnlRack
+            // pnluser
             // 
-            this.pnlRack.BackColor = System.Drawing.Color.White;
-            this.pnlRack.Controls.Add(this.DGV_SearchGrid);
-            this.pnlRack.Controls.Add(this.grbFilterBy);
-            this.pnlRack.Controls.Add(this.lblNoRecordsFound);
-            this.pnlRack.Controls.Add(this.grdGroupList);
-            this.pnlRack.Controls.Add(this.picLoader);
-            this.pnlRack.Location = new System.Drawing.Point(0, 31);
-            this.pnlRack.Name = "pnlRack";
-            this.pnlRack.Size = new System.Drawing.Size(1354, 641);
-            this.pnlRack.TabIndex = 36;
+            this.pnluser.BackColor = System.Drawing.Color.White;
+            this.pnluser.Controls.Add(this.lvUserList);
+            this.pnluser.Controls.Add(this.grbFilterByUser);
+            this.pnluser.Controls.Add(this.DGV_SearchGrid);
+            this.pnluser.Controls.Add(this.lblNoRecordsFound);
+            this.pnluser.Controls.Add(this.grdEmployeeList);
+            this.pnluser.Controls.Add(this.picLoader);
+            this.pnluser.Location = new System.Drawing.Point(0, 31);
+            this.pnluser.Name = "pnluser";
+            this.pnluser.Size = new System.Drawing.Size(1354, 641);
+            this.pnluser.TabIndex = 36;
+            // 
+            // lvUserList
+            // 
+            this.lvUserList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvUserList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvUserList.HideSelection = false;
+            this.lvUserList.Location = new System.Drawing.Point(21, 56);
+            this.lvUserList.Name = "lvUserList";
+            this.lvUserList.Size = new System.Drawing.Size(313, 99);
+            this.lvUserList.TabIndex = 958802;
+            this.lvUserList.UseCompatibleStateImageBehavior = false;
+            this.lvUserList.View = System.Windows.Forms.View.Details;
+            this.lvUserList.Visible = false;
+            this.lvUserList.DoubleClick += new System.EventHandler(this.LvUserList_DoubleClick);
+            this.lvUserList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvUserList_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 100;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
+            // 
+            // grbFilterByUser
+            // 
+            this.grbFilterByUser.Controls.Add(this.lblEmpCode);
+            this.grbFilterByUser.Controls.Add(this.lblUserId);
+            this.grbFilterByUser.Controls.Add(this.btnExport);
+            this.grbFilterByUser.Controls.Add(this.txtEmployee);
+            this.grbFilterByUser.Controls.Add(this.btnView);
+            this.grbFilterByUser.Location = new System.Drawing.Point(3, 2);
+            this.grbFilterByUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grbFilterByUser.Name = "grbFilterByUser";
+            this.grbFilterByUser.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grbFilterByUser.Size = new System.Drawing.Size(1348, 67);
+            this.grbFilterByUser.TabIndex = 0;
+            this.grbFilterByUser.TabStop = false;
+            this.grbFilterByUser.Text = "Filter By Employee";
+            // 
+            // lblEmpCode
+            // 
+            this.lblEmpCode.AutoSize = true;
+            this.lblEmpCode.Location = new System.Drawing.Point(666, 23);
+            this.lblEmpCode.Name = "lblEmpCode";
+            this.lblEmpCode.Size = new System.Drawing.Size(16, 20);
+            this.lblEmpCode.TabIndex = 5;
+            this.lblEmpCode.Text = "0";
+            this.lblEmpCode.Visible = false;
+            // 
+            // lblUserId
+            // 
+            this.lblUserId.AutoSize = true;
+            this.lblUserId.Location = new System.Drawing.Point(529, 41);
+            this.lblUserId.Name = "lblUserId";
+            this.lblUserId.Size = new System.Drawing.Size(16, 20);
+            this.lblUserId.TabIndex = 4;
+            this.lblUserId.Text = "0";
+            this.lblUserId.Visible = false;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
+            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport.Location = new System.Drawing.Point(418, 26);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(79, 29);
+            this.btnExport.TabIndex = 3;
+            this.btnExport.Text = "Export";
+            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
+            this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
+            // 
+            // txtEmployee
+            // 
+            this.txtEmployee.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtEmployee.Location = new System.Drawing.Point(18, 27);
+            this.txtEmployee.MaxLength = 30;
+            this.txtEmployee.Name = "txtEmployee";
+            this.txtEmployee.Size = new System.Drawing.Size(313, 27);
+            this.txtEmployee.TabIndex = 0;
+            this.txtEmployee.TextChanged += new System.EventHandler(this.TxtEmployee_TextChanged);
+            this.txtEmployee.Enter += new System.EventHandler(this.TxtEmployee_Enter);
+            this.txtEmployee.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEmployee_KeyDown);
+            this.txtEmployee.Leave += new System.EventHandler(this.TxtEmployee_Leave);
+            // 
+            // btnView
+            // 
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(337, 26);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 29);
+            this.btnView.TabIndex = 2;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
+            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
+            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
             // DGV_SearchGrid
             // 
@@ -165,7 +279,7 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
@@ -184,7 +298,6 @@
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
-            this.DGV_SearchGrid.RowHeadersWidth = 70;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
@@ -193,112 +306,32 @@
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
-            this.DGV_SearchGrid.TabIndex = 958804;
+            this.DGV_SearchGrid.TabIndex = 958800;
             this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
-            this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
             this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
-            // 
-            // grbFilterBy
-            // 
-            this.grbFilterBy.Controls.Add(this.btnExport);
-            this.grbFilterBy.Controls.Add(this.lblGC);
-            this.grbFilterBy.Controls.Add(this.btnView);
-            this.grbFilterBy.Controls.Add(this.label1);
-            this.grbFilterBy.Controls.Add(this.cmbGroupType);
-            this.grbFilterBy.Location = new System.Drawing.Point(3, 2);
-            this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterBy.Name = "grbFilterBy";
-            this.grbFilterBy.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbFilterBy.Size = new System.Drawing.Size(1348, 67);
-            this.grbFilterBy.TabIndex = 0;
-            this.grbFilterBy.TabStop = false;
-            this.grbFilterBy.Text = "Filter By Rack Group";
-            // 
-            // btnExport
-            // 
-            this.btnExport.Image = global::ROMS.Properties.Resources.excel;
-            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(233, 25);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(79, 29);
-            this.btnExport.TabIndex = 2;
-            this.btnExport.Text = "Export";
-            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
-            this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
-            this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
-            // 
-            // lblGC
-            // 
-            this.lblGC.AutoSize = true;
-            this.lblGC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblGC.ForeColor = System.Drawing.Color.Crimson;
-            this.lblGC.Location = new System.Drawing.Point(401, 29);
-            this.lblGC.Name = "lblGC";
-            this.lblGC.Size = new System.Drawing.Size(17, 20);
-            this.lblGC.TabIndex = 958803;
-            this.lblGC.Text = "0";
-            // 
-            // btnView
-            // 
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(152, 25);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 1;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
-            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
-            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(318, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 20);
-            this.label1.TabIndex = 958802;
-            this.label1.Text = "No.of Racks :";
-            // 
-            // cmbGroupType
-            // 
-            this.cmbGroupType.FormattingEnabled = true;
-            this.cmbGroupType.Location = new System.Drawing.Point(9, 26);
-            this.cmbGroupType.Name = "cmbGroupType";
-            this.cmbGroupType.Size = new System.Drawing.Size(137, 27);
-            this.cmbGroupType.TabIndex = 0;
-            this.cmbGroupType.Enter += new System.EventHandler(this.CmbGroupType_Enter);
-            this.cmbGroupType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGroupType_KeyDown);
-            this.cmbGroupType.Leave += new System.EventHandler(this.CmbGroupType_Leave);
             // 
             // lblNoRecordsFound
             // 
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 364);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 375);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
-            this.lblNoRecordsFound.TabIndex = 958799;
+            this.lblNoRecordsFound.TabIndex = 958798;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // grdGroupList
+            // grdEmployeeList
             // 
-            this.grdGroupList.AllowUserToAddRows = false;
-            this.grdGroupList.AllowUserToDeleteRows = false;
-            this.grdGroupList.AllowUserToResizeColumns = false;
-            this.grdGroupList.AllowUserToResizeRows = false;
-            this.grdGroupList.BackgroundColor = System.Drawing.Color.White;
-            this.grdGroupList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdEmployeeList.AllowUserToAddRows = false;
+            this.grdEmployeeList.AllowUserToDeleteRows = false;
+            this.grdEmployeeList.AllowUserToResizeColumns = false;
+            this.grdEmployeeList.AllowUserToResizeRows = false;
+            this.grdEmployeeList.BackgroundColor = System.Drawing.Color.White;
+            this.grdEmployeeList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -306,35 +339,35 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGroupList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grdGroupList.ColumnHeadersHeight = 30;
-            this.grdGroupList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdGroupList.ColumnHeadersVisible = false;
+            this.grdEmployeeList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdEmployeeList.ColumnHeadersHeight = 30;
+            this.grdEmployeeList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdEmployeeList.ColumnHeadersVisible = false;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGroupList.DefaultCellStyle = dataGridViewCellStyle5;
-            this.grdGroupList.EnableHeadersVisualStyles = false;
-            this.grdGroupList.GridColor = System.Drawing.Color.White;
-            this.grdGroupList.Location = new System.Drawing.Point(3, 130);
-            this.grdGroupList.Name = "grdGroupList";
-            this.grdGroupList.ReadOnly = true;
-            this.grdGroupList.RowHeadersVisible = false;
+            this.grdEmployeeList.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdEmployeeList.EnableHeadersVisualStyles = false;
+            this.grdEmployeeList.GridColor = System.Drawing.Color.White;
+            this.grdEmployeeList.Location = new System.Drawing.Point(3, 130);
+            this.grdEmployeeList.Name = "grdEmployeeList";
+            this.grdEmployeeList.ReadOnly = true;
+            this.grdEmployeeList.RowHeadersVisible = false;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGroupList.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.grdGroupList.RowTemplate.Height = 25;
-            this.grdGroupList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdGroupList.Size = new System.Drawing.Size(1348, 510);
-            this.grdGroupList.TabIndex = 3;
-            this.grdGroupList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGroupList_DataBindingComplete);
-            this.grdGroupList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdGroupList_Scroll);
-            this.grdGroupList.DoubleClick += new System.EventHandler(this.GrdGroupList_DoubleClick);
-            this.grdGroupList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdGroupList_KeyDown);
+            this.grdEmployeeList.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdEmployeeList.RowTemplate.Height = 25;
+            this.grdEmployeeList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdEmployeeList.Size = new System.Drawing.Size(1348, 510);
+            this.grdEmployeeList.TabIndex = 4;
+            this.grdEmployeeList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUserList_DataBindingComplete);
+            this.grdEmployeeList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.grdUserList_Scroll);
+            this.grdEmployeeList.DoubleClick += new System.EventHandler(this.GrdUserList_DoubleClick);
+            this.grdEmployeeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUserList_KeyDown);
             // 
             // picLoader
             // 
@@ -342,39 +375,39 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 76);
+            this.picLoader.Location = new System.Drawing.Point(3, 74);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1348, 562);
+            this.picLoader.Size = new System.Drawing.Size(1348, 564);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958800;
+            this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // CP_RackList
+            // CP_EmployeeList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
-            this.Controls.Add(this.pnlRack);
-            this.Controls.Add(this.tsGroupList);
+            this.Controls.Add(this.pnluser);
+            this.Controls.Add(this.tsUserList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "CP_RackList";
+            this.Name = "CP_EmployeeList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Group";
-            this.Load += new System.EventHandler(this.CP_RackList_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_RackList_KeyDown);
-            this.tsGroupList.ResumeLayout(false);
-            this.tsGroupList.PerformLayout();
-            this.pnlRack.ResumeLayout(false);
-            this.pnlRack.PerformLayout();
+            this.Text = "User";
+            this.Load += new System.EventHandler(this.CP_EmployeeList_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_EmployeeList_KeyDown);
+            this.tsUserList.ResumeLayout(false);
+            this.tsUserList.PerformLayout();
+            this.pnluser.ResumeLayout(false);
+            this.pnluser.PerformLayout();
+            this.grbFilterByUser.ResumeLayout(false);
+            this.grbFilterByUser.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
-            this.grbFilterBy.ResumeLayout(false);
-            this.grbFilterBy.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdGroupList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdEmployeeList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -383,23 +416,28 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsGroupList;
+        private System.Windows.Forms.ToolStrip tsUserList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ToolStripSeparator tssEdit;
         public System.Windows.Forms.ToolStripButton tsbEdit;
         public System.Windows.Forms.ToolStripSeparator tssNew;
         public System.Windows.Forms.ToolStripButton tsbNew;
-        private System.Windows.Forms.Panel pnlRack;
+        private System.Windows.Forms.Panel pnluser;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
-        private System.Windows.Forms.Label lblGC;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox grbFilterBy;
-        private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.ComboBox cmbGroupType;
         private System.Windows.Forms.Label lblNoRecordsFound;
-        public System.Windows.Forms.DataGridView grdGroupList;
+        public System.Windows.Forms.DataGridView grdEmployeeList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUserCategory;
         public System.Windows.Forms.PictureBox picLoader;
+        private System.Windows.Forms.GroupBox grbFilterByUser;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.TextBox txtEmployee;
+        private System.Windows.Forms.Button btnView;
+        public System.Windows.Forms.ListView lvUserList;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Label lblUserId;
+        private System.Windows.Forms.Label lblEmpCode;
     }
 }

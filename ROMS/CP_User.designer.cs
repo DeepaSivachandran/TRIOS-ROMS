@@ -45,10 +45,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grbForm = new System.Windows.Forms.GroupBox();
-            this.btnNew = new System.Windows.Forms.Label();
             this.cmbPasskey = new System.Windows.Forms.ComboBox();
-            this.cmbUserCategory = new System.Windows.Forms.ComboBox();
-            this.txtDUserCategory = new System.Windows.Forms.TextBox();
             this.cmbUserRole = new System.Windows.Forms.ComboBox();
             this.txtDUserRole = new System.Windows.Forms.TextBox();
             this.txtDPassKey = new System.Windows.Forms.TextBox();
@@ -111,7 +108,7 @@
             this.txtDPassword.BackColor = System.Drawing.SystemColors.Control;
             this.txtDPassword.Enabled = false;
             this.txtDPassword.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDPassword.Location = new System.Drawing.Point(24, 131);
+            this.txtDPassword.Location = new System.Drawing.Point(24, 105);
             this.txtDPassword.Name = "txtDPassword";
             this.txtDPassword.ReadOnly = true;
             this.txtDPassword.Size = new System.Drawing.Size(181, 27);
@@ -121,7 +118,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(204, 131);
+            this.txtPassword.Location = new System.Drawing.Point(204, 105);
             this.txtPassword.MaxLength = 50;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -136,7 +133,7 @@
             this.txtDCPassword.BackColor = System.Drawing.SystemColors.Control;
             this.txtDCPassword.Enabled = false;
             this.txtDCPassword.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDCPassword.Location = new System.Drawing.Point(24, 158);
+            this.txtDCPassword.Location = new System.Drawing.Point(24, 132);
             this.txtDCPassword.Name = "txtDCPassword";
             this.txtDCPassword.ReadOnly = true;
             this.txtDCPassword.Size = new System.Drawing.Size(181, 27);
@@ -146,7 +143,7 @@
             // txtCPassword
             // 
             this.txtCPassword.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCPassword.Location = new System.Drawing.Point(204, 158);
+            this.txtCPassword.Location = new System.Drawing.Point(204, 132);
             this.txtCPassword.MaxLength = 50;
             this.txtCPassword.Name = "txtCPassword";
             this.txtCPassword.PasswordChar = '*';
@@ -162,7 +159,7 @@
             this.pnlStatus.Controls.Add(this.rbInactive);
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlStatus.Location = new System.Drawing.Point(204, 212);
+            this.pnlStatus.Location = new System.Drawing.Point(204, 186);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(288, 27);
             this.pnlStatus.TabIndex = 7;
@@ -202,7 +199,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(24, 212);
+            this.txtDStatus.Location = new System.Drawing.Point(24, 186);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(181, 27);
@@ -214,7 +211,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(327, 251);
+            this.btnSave.Location = new System.Drawing.Point(327, 223);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 9;
@@ -231,7 +228,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(417, 251);
+            this.btnClose.Location = new System.Drawing.Point(417, 223);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 10;
@@ -245,10 +242,7 @@
             // 
             // grbForm
             // 
-            this.grbForm.Controls.Add(this.btnNew);
             this.grbForm.Controls.Add(this.cmbPasskey);
-            this.grbForm.Controls.Add(this.cmbUserCategory);
-            this.grbForm.Controls.Add(this.txtDUserCategory);
             this.grbForm.Controls.Add(this.cmbUserRole);
             this.grbForm.Controls.Add(this.txtDUserRole);
             this.grbForm.Controls.Add(this.txtDPassKey);
@@ -266,21 +260,9 @@
             this.grbForm.Controls.Add(this.txtUserName);
             this.grbForm.Location = new System.Drawing.Point(17, 4);
             this.grbForm.Name = "grbForm";
-            this.grbForm.Size = new System.Drawing.Size(525, 295);
+            this.grbForm.Size = new System.Drawing.Size(525, 261);
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
-            // 
-            // btnNew
-            // 
-            this.btnNew.Image = global::ROMS.Properties.Resources.New;
-            this.btnNew.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNew.Location = new System.Drawing.Point(497, 79);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(21, 22);
-            this.btnNew.TabIndex = 23;
-            this.btnNew.Text = "        ";
-            this.btnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // cmbPasskey
             // 
@@ -289,7 +271,7 @@
             this.cmbPasskey.Items.AddRange(new object[] {
             "Required",
             "Not  Required"});
-            this.cmbPasskey.Location = new System.Drawing.Point(204, 185);
+            this.cmbPasskey.Location = new System.Drawing.Point(204, 159);
             this.cmbPasskey.Name = "cmbPasskey";
             this.cmbPasskey.Size = new System.Drawing.Size(288, 27);
             this.cmbPasskey.TabIndex = 6;
@@ -299,37 +281,11 @@
             this.cmbPasskey.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPasskey_KeyPress);
             this.cmbPasskey.Leave += new System.EventHandler(this.CmbPasskey_Leave);
             // 
-            // cmbUserCategory
-            // 
-            this.cmbUserCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbUserCategory.FormattingEnabled = true;
-            this.cmbUserCategory.Location = new System.Drawing.Point(204, 77);
-            this.cmbUserCategory.Name = "cmbUserCategory";
-            this.cmbUserCategory.Size = new System.Drawing.Size(288, 27);
-            this.cmbUserCategory.TabIndex = 2;
-            this.cmbUserCategory.SelectedIndexChanged += new System.EventHandler(this.CmbUserCategory_SelectedIndexChanged);
-            this.cmbUserCategory.Enter += new System.EventHandler(this.CmbUserCategory_Enter);
-            this.cmbUserCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUserCategory_KeyDown);
-            this.cmbUserCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbUserCategory_KeyPress);
-            this.cmbUserCategory.Leave += new System.EventHandler(this.CmbUserCategory_Leave);
-            // 
-            // txtDUserCategory
-            // 
-            this.txtDUserCategory.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDUserCategory.Enabled = false;
-            this.txtDUserCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDUserCategory.Location = new System.Drawing.Point(24, 77);
-            this.txtDUserCategory.Name = "txtDUserCategory";
-            this.txtDUserCategory.ReadOnly = true;
-            this.txtDUserCategory.Size = new System.Drawing.Size(181, 27);
-            this.txtDUserCategory.TabIndex = 22;
-            this.txtDUserCategory.Text = "User Category";
-            // 
             // cmbUserRole
             // 
             this.cmbUserRole.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUserRole.FormattingEnabled = true;
-            this.cmbUserRole.Location = new System.Drawing.Point(204, 104);
+            this.cmbUserRole.Location = new System.Drawing.Point(204, 78);
             this.cmbUserRole.Name = "cmbUserRole";
             this.cmbUserRole.Size = new System.Drawing.Size(288, 27);
             this.cmbUserRole.TabIndex = 3;
@@ -344,7 +300,7 @@
             this.txtDUserRole.BackColor = System.Drawing.SystemColors.Control;
             this.txtDUserRole.Enabled = false;
             this.txtDUserRole.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDUserRole.Location = new System.Drawing.Point(24, 104);
+            this.txtDUserRole.Location = new System.Drawing.Point(24, 78);
             this.txtDUserRole.Name = "txtDUserRole";
             this.txtDUserRole.ReadOnly = true;
             this.txtDUserRole.Size = new System.Drawing.Size(181, 27);
@@ -356,7 +312,7 @@
             this.txtDPassKey.BackColor = System.Drawing.SystemColors.Control;
             this.txtDPassKey.Enabled = false;
             this.txtDPassKey.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDPassKey.Location = new System.Drawing.Point(24, 185);
+            this.txtDPassKey.Location = new System.Drawing.Point(24, 159);
             this.txtDPassKey.Name = "txtDPassKey";
             this.txtDPassKey.ReadOnly = true;
             this.txtDPassKey.Size = new System.Drawing.Size(181, 27);
@@ -372,7 +328,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(566, 313);
+            this.ClientSize = new System.Drawing.Size(566, 269);
             this.Controls.Add(this.grbForm);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -416,11 +372,8 @@
         private System.Windows.Forms.TextBox txtDPassKey;
         private System.Windows.Forms.TextBox txtDUserRole;
         private System.Windows.Forms.ComboBox cmbUserRole;
-        private System.Windows.Forms.ComboBox cmbUserCategory;
-        private System.Windows.Forms.TextBox txtDUserCategory;
         private System.Windows.Forms.ComboBox cmbPasskey;
         public System.Windows.Forms.Button btnSave;
-        internal System.Windows.Forms.Label btnNew;
         public System.Windows.Forms.TextBox txtUserName;
     }
 }
