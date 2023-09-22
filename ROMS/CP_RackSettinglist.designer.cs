@@ -221,8 +221,8 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdRackSettingList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdRackSettingList.ColumnHeadersHeight = 30;
@@ -248,6 +248,7 @@
             this.grdRackSettingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdRackSettingList.Size = new System.Drawing.Size(1348, 570);
             this.grdRackSettingList.TabIndex = 958789;
+            this.grdRackSettingList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRackSettingList_CellDoubleClick);
             this.grdRackSettingList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdRackSettingList_DataBindingComplete);
             this.grdRackSettingList.DoubleClick += new System.EventHandler(this.GrdRackSettingList_DoubleClick);
             this.grdRackSettingList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdRackSettingList_KeyDown);
