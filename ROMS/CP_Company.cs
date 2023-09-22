@@ -4127,13 +4127,14 @@ namespace ROMS
                     //if (ValidFile(objfilelogo.FileName, 102400, 100, 100))
                     //{
                     int varCount = 1;
+                    string varTempFileName = varCompanyLogoFileName;
                     varNewfile = varCustomPath + varCompanyLogoFileName.ToString() + varExtension;
-                    //while (File.Exists(varNewfile))
-                    //{
-                    //    string varTempFileName = string.Format("{0}({1})", varCompanyLogoFileName.ToString(), varCount++);
-                    //    varNewfile = Path.Combine(varCustomPath, varTempFileName + varExtension);
-                    //}
-                    lblCompanyLogoFilename.Text = varCompanyLogoFileName + varExtension;
+                    while (File.Exists(varNewfile))
+                    {
+                        varTempFileName = string.Format("{0}({1})", varCompanyLogoFileName.ToString(), varCount++);
+                        varNewfile = Path.Combine(varCustomPath, varTempFileName + varExtension);
+                    }
+                    lblCompanyLogoFilename.Text = varTempFileName + varExtension;
                     lblCompanyLogoPath.Text = varNewfile;
                     picCompanyLogo.BackgroundImage = null;
                     picCompanyLogo.Image = null;
