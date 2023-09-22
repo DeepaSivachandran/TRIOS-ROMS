@@ -352,7 +352,9 @@ namespace ROMS
                         var varSubGroup = from r in objDSSubGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Sub Group Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim().ToUpper()) && r.Field<string>("Product Group Name").ToUpper().Equals(varGroupName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varSubGroup.Count() > 0)
                         { varSubGroupId = Convert.ToInt32(varSubGroup.ToList()[0]); }
-                        var varBrand = from r in objDSBrand.Tables[0].AsEnumerable() where (r.Field<string>("Brand Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        string varSubGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim();
+                        if (varSubGroupName == "") { varGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-Current"].Value).Trim(); }
+                        var varBrand = from r in objDSSubgroupBrand.Tables[0].AsEnumerable() where (r.Field<string>("BD_EName").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim().ToUpper()) && r.Field<string>("Sub Group Name in English").ToUpper().Equals(varSubGroupName.ToUpper())) group r by r.Field<int>("BDID") into g select g.Key;
                         if (varBrand.Count() > 0)
                         { varBrandId = Convert.ToInt32(varBrand.ToList()[0]); }
                         if (Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim() != "")
@@ -2436,15 +2438,21 @@ namespace ROMS
             }
             return varstr;
         }
-        public AutoCompleteStringCollection AutoCompleteRackName()
+        public AutoCompleteStringCollection AutoCompleteRackName(int varRackId)
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
             DataSet objds;
             objds = null;
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
-
-            objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0)");
+            if (varRackId == 0)
+            {
+                objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0)");
+            }
+            else
+            {
+                objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0) AND RK_SLID = " + varRackId + " ");
+            }
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -2760,8 +2768,15 @@ namespace ROMS
                     TextBox txtPurRack = e.Control as TextBox;
                     if (txtPurRack != null)
                     {
+                        int varSLID = 0;
+                        string varSLName = "";
+                        if (Convert.ToString(grdLoction.CurrentRow.Cells["Pur.Stock Location-New"].Value) == "")
+                        { varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Pur.Stock Location-Current"].Value); }
+                        var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(varSLName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varPurStockLocation.Count() > 0)
+                        { varSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); }
                         txtPurRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtPurRack.AutoCompleteCustomSource = AutoCompleteRackName();
+                        txtPurRack.AutoCompleteCustomSource = AutoCompleteRackName(varSLID);
                         txtPurRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
@@ -2780,8 +2795,16 @@ namespace ROMS
                     TextBox txtSalesRack = e.Control as TextBox;
                     if (txtSalesRack != null)
                     {
+                        int varSLID = 0;
+                        string varSLName = "";
+                       
+                        if (Convert.ToString(grdLoction.CurrentRow.Cells["Sales Location-New"].Value) == "")
+                        { varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Sales Location-Current"].Value); }
+                        var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(varSLName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varPurStockLocation.Count() > 0)
+                        { varSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); }
                         txtSalesRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtSalesRack.AutoCompleteCustomSource = AutoCompleteRackName();
+                        txtSalesRack.AutoCompleteCustomSource = AutoCompleteRackName(varSLID);
                         txtSalesRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
