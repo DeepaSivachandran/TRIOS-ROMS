@@ -536,14 +536,23 @@ namespace ROMS
                 {
                     try
                     {
-                        udfnProductList();
-                        for (int j = 0; j < grdSupplierMapping.RowCount; j++)
-                        {
-                            if (Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRODUCTID"].Value) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
+                        //if (btnSave.Text == "Update")
+                        //{
+                        //    PbLocationCode = Convert.ToInt32(lblSLocation.Text);
+                        //    PbRKID = Convert.ToInt32(lblSRack.Text);
+                        //    udfnList(PbLocationCode, PbRKID);
+                        //}
+                        //else
+                        //{
+                            udfnProductList();
+                            for (int j = 0; j < grdSupplierMapping.RowCount; j++)
                             {
-                                grdSupplierMapping.Rows[j].Cells[0].Value = true;
+                                if (Convert.ToString(grdViewSupplierMapping.Rows[j].Cells["PRODUCTID"].Value) == Convert.ToString(grdSupplierMapping.Rows[j].Cells["PRODUCTID"].Value))
+                                {
+                                    grdSupplierMapping.Rows[j].Cells[0].Value = true;
+                                }
                             }
-                        }
+                        //}
                     }
                     catch (Exception ex)
                     {
@@ -1091,9 +1100,9 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["RK_Name"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
-                                    lvRack.Columns[1].Width = 0;
+                                    lvRack.Columns[0].Width = 100;
                                     lvRack.Items.Add(objList);
                                 }
                                 lvRack.Visible = true;
@@ -1434,9 +1443,9 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["RK_Name"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
-                                    lvDRack.Columns[1].Width = 0;
+                                    lvDRack.Columns[0].Width = 100;
                                     lvDRack.Items.Add(objList);
                                 }
                                 lvDRack.Visible = true;
@@ -1845,7 +1854,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductSubGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(9, 0, "", 0, 0, txtProductSubGroup.Text,0,0,0,0);
+                    objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupId.Text), 0, txtProductSubGroup.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -2226,7 +2235,7 @@ namespace ROMS
                     /* Check product sub group is valid or not*/
                     DataSet objDssubgroup = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtProductSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtProductSubGroup.Text.Trim());
                     objDserv.CloseConnection();
                     if (objDssubgroup != null)
                     {
@@ -2502,7 +2511,7 @@ namespace ROMS
                     /* Check product sub group is valid or not*/
                     DataSet objDssubgroup = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim());
                     objDserv.CloseConnection();
                     if (objDssubgroup != null)
                     {
@@ -2591,7 +2600,7 @@ namespace ROMS
                 grdViewProduct.Columns["Product Name in Tamil"].ReadOnly = true;
                 grdViewProduct.Columns["Unit"].ReadOnly = true;
                 grdViewProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
-                grdMoveProduct.Columns["producttamilname"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+                //grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
             }
             catch (Exception ex)
             {
@@ -2808,7 +2817,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSubGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(9, 0, "", 0, 0, txtSubGroup.Text, 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblProductGroupId.Text), 0, txtSubGroup.Text);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -3826,9 +3835,9 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["RK_Name"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
-                                    lvMoveRack.Columns[1].Width = 0;
+                                    lvMoveRack.Columns[1].Width = 100;
                                     lvMoveRack.Items.Add(objList);
                                 }
                                 lvMoveRack.Visible = true;
@@ -3954,8 +3963,41 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvMoveRack.SelectedItems[0];
                     txtMoveRack.Text = selectedItem.SubItems[0].Text;
-                    lblMoveRack.Text = selectedItem.SubItems[1].Text;
+                    lblMoveRack.Text = selectedItem.SubItems[2].Text;
                 }
+
+                int varRackCount = 0;
+                //grdMoveProduct.DataSource = null;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnRackSettingsList(2, 0, 0, 0, Convert.ToInt32(lblMoveRack.Text));
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            varRackCount = Convert.ToInt32(objDs.Tables[0].Rows[0][0]);
+                        }
+                    }
+                }
+                //lblMoveRack.Text = Convert.ToString(varRackCount);
+
+                if (varRackCount != 0)
+                {
+                    grdMoveProduct.DataSource = null;
+                    dtMoveProduct.Rows.Clear();
+                    udfnMove(Convert.ToInt32(lblMoveLocation.Text), Convert.ToInt32(lblMoveRack.Text));
+                }
+                else
+                {
+                    grdMoveProduct.DataSource = null;
+                    dtMoveProduct.Rows.Clear();
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -3965,6 +4007,51 @@ namespace ROMS
             finally
             {
                 lvMoveRack.Visible = false;
+            }
+        }
+        private void udfnMove(int locationcode, int rackcode)
+        {
+            try
+            {
+                int varViewType = 1;
+                //dtSupplierMapping.Rows.Clear();
+                grdMoveProduct.DataSource = null;
+                dtMoveProduct.Rows.Clear();
+                Application.DoEvents();
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+
+                objDs = objdserv.udfnRackSettingsList(varViewType, 0, 0, locationcode, rackcode);
+                objdserv.CloseConnection();
+                
+                if (objDs.Tables[1].Rows.Count != 0)
+                {
+                    for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
+                    {
+                        dtMoveProduct.Rows.Add(objDs.Tables[1].Rows[i]["P.I Code"], objDs.Tables[1].Rows[i]["Product Name in English"],
+                           objDs.Tables[1].Rows[i]["Product Name in Tamil"], objDs.Tables[1].Rows[i]["Unit"], objDs.Tables[1].Rows[i]["PRID"]);
+                    }
+                }
+
+                grdMoveProduct.DataSource = null;
+                grdMoveProduct.DataSource = dtMoveProduct;
+                grdMoveProduct.Columns["clmRemoveProduct"].DisplayIndex = 5;
+                grdMoveProduct.Columns["PRID"].Visible = false;
+                grdMoveProduct.Columns["P.I Code"].Width = 100;
+                grdMoveProduct.Columns["Product Name in English"].Width = 250;
+                grdMoveProduct.Columns["Product Name in Tamil"].Width = 250;
+                grdMoveProduct.Columns["P.I Code"].ReadOnly = true;
+                grdMoveProduct.Columns["Product Name in English"].ReadOnly = true;
+                grdMoveProduct.Columns["Product Name in Tamil"].ReadOnly = true;
+                grdMoveProduct.Columns["Unit"].ReadOnly = true;
+                grdMoveProduct.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void GrdMoveProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
