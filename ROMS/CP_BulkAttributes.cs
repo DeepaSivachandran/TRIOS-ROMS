@@ -347,7 +347,9 @@ namespace ROMS
                         var varGroup = from r in objDSGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Group Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varGroup.Count() > 0)
                         { varGroupId = Convert.ToInt32(varGroup.ToList()[0]); }
-                        var varSubGroup = from r in objDSSubGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Sub Group Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        string varGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim();
+                        if (varGroupName == "") { varGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Group-Current"].Value).Trim(); }
+                        var varSubGroup = from r in objDSSubGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Sub Group Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim().ToUpper()) && r.Field<string>("Product Group Name").ToUpper().Equals(varGroupName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varSubGroup.Count() > 0)
                         { varSubGroupId = Convert.ToInt32(varSubGroup.ToList()[0]); }
                         var varBrand = from r in objDSBrand.Tables[0].AsEnumerable() where (r.Field<string>("Brand Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
