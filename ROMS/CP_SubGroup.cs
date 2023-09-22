@@ -1350,6 +1350,8 @@ namespace ROMS
                 txtLocation.Text = varStockLocationName;
                 lblLocation.Text = Convert.ToString(varLocationCode);
                 lvLocation.Visible = false;
+                grdRackList.DataSource = null;
+                dtRackList.Rows.Clear();
                 udfnLoadRackList();
                 grdRackList.Focus();
             }
