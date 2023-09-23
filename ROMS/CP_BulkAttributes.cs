@@ -2411,15 +2411,20 @@ namespace ROMS
              return varstr;
         }
 
-        public AutoCompleteStringCollection AutoCompleteLocationName()
+        public AutoCompleteStringCollection AutoCompleteLocationName(int varPRID)
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
             DataSet objds;
             objds = null;
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
-
-            objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) ");
+            if (varPRID == 0)
+            {
+                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) ");
+            } else
+            {
+                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) AND SLID IN (SELECT DISTINCT RK_SLID FROM MR_Rack WHERE RKID IN (SELECT DISTINCT PRSGRK_RKID FROM MR_ProductSubGroup_Rack WHERE PRSGRK_PRSGID =(SELECT PR_PRSGID FROM MR_Product WHERE PRID ="+varPRID+")))");
+            }
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -2438,20 +2443,20 @@ namespace ROMS
             }
             return varstr;
         }
-        public AutoCompleteStringCollection AutoCompleteRackName(int varRackId)
+        public AutoCompleteStringCollection AutoCompleteRackName(int varSLID,int varPRID)
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
             DataSet objds;
             objds = null;
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
-            if (varRackId == 0)
+            if (varSLID == 0)
             {
                 objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0)");
             }
             else
             {
-                objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0) AND RK_SLID = " + varRackId + " ");
+                objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0) AND RK_SLID = " + varSLID + "  AND RKID IN ((SELECT DISTINCT PRSGRK_RKID FROM MR_ProductSubGroup_Rack WHERE PRSGRK_PRSGID =(SELECT PR_PRSGID FROM MR_Product WHERE PRID ="+varPRID+")))");
             }
             objdservice.CloseConnection();
             if (objds != null)
@@ -2758,8 +2763,9 @@ namespace ROMS
                     TextBox txtPurStockLocation = e.Control as TextBox;
                     if (txtPurStockLocation != null)
                     {
+                        int varPRID = Convert.ToInt16(grdLoction.CurrentRow.Cells["PRID"].Value);
                         txtPurStockLocation.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtPurStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName();
+                        txtPurStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName(varPRID);
                         txtPurStockLocation.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
@@ -2770,13 +2776,14 @@ namespace ROMS
                     {
                         int varSLID = 0;
                         string varSLName = "";
+                        int varPRID = Convert.ToInt16(grdLoction.CurrentRow.Cells["PRID"].Value);
                         if (Convert.ToString(grdLoction.CurrentRow.Cells["Pur.Stock Location-New"].Value) == "")
                         { varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Pur.Stock Location-Current"].Value); }
                         var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(varSLName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varPurStockLocation.Count() > 0)
                         { varSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); }
                         txtPurRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtPurRack.AutoCompleteCustomSource = AutoCompleteRackName(varSLID);
+                        txtPurRack.AutoCompleteCustomSource = AutoCompleteRackName(varSLID, varPRID);
                         txtPurRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
@@ -2785,8 +2792,9 @@ namespace ROMS
                     TextBox txtSalesStockLocation = e.Control as TextBox;
                     if (txtSalesStockLocation != null)
                     {
+                        int varPRID = Convert.ToInt16(grdLoction.CurrentRow.Cells["PRID"].Value);
                         txtSalesStockLocation.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtSalesStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName();
+                        txtSalesStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName(varPRID);
                         txtSalesStockLocation.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
@@ -2797,14 +2805,14 @@ namespace ROMS
                     {
                         int varSLID = 0;
                         string varSLName = "";
-                       
+                        int varPRID = Convert.ToInt16(grdLoction.CurrentRow.Cells["PRID"].Value);
                         if (Convert.ToString(grdLoction.CurrentRow.Cells["Sales Location-New"].Value) == "")
                         { varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Sales Location-Current"].Value); }
                         var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(varSLName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varPurStockLocation.Count() > 0)
                         { varSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); }
                         txtSalesRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtSalesRack.AutoCompleteCustomSource = AutoCompleteRackName(varSLID);
+                        txtSalesRack.AutoCompleteCustomSource = AutoCompleteRackName(varSLID, varPRID);
                         txtSalesRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
