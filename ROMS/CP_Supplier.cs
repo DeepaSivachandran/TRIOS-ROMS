@@ -6015,7 +6015,7 @@ namespace ROMS
                 lvMappingSubGroup.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtMappingSubGroup.Text.Length > 2)
+                if (txtMappingSubGroup.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnSubGroupList(10, 0, "", varGroupId, 0, txtMappingSubGroup.Text,0,0,0,0);
                     objspdservice.CloseConnection();
@@ -6183,7 +6183,7 @@ namespace ROMS
                 lvMappingGroup.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtMappingGroup.Text.Length > 2)
+                if (txtMappingGroup.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnGroupList(7, 0, 0, txtMappingGroup.Text);
                     objspdservice.CloseConnection();
