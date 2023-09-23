@@ -52,7 +52,7 @@
             this.txtDPasskey.ReadOnly = true;
             this.txtDPasskey.Size = new System.Drawing.Size(62, 28);
             this.txtDPasskey.TabIndex = 11;
-            this.txtDPasskey.Text = "Pass Key";
+            this.txtDPasskey.Text = "Password";
             // 
             // txtPassKey
             // 
@@ -61,6 +61,7 @@
             this.txtPassKey.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtPassKey.MaxLength = 50;
             this.txtPassKey.Name = "txtPassKey";
+            this.txtPassKey.PasswordChar = '*';
             this.txtPassKey.Size = new System.Drawing.Size(174, 28);
             this.txtPassKey.TabIndex = 8;
             this.txtPassKey.Enter += new System.EventHandler(this.TxtPassKey_Enter);
@@ -103,7 +104,7 @@
             this.MinimizeBox = false;
             this.Name = "CP_BulkAttributeVerify";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Please Enter Passkey to Proceed";
+            this.Text = "Please Enter Password to Proceed";
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

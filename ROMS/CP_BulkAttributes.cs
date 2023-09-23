@@ -28,6 +28,7 @@ namespace ROMS
         DataSet objDSSubGroup = new DataSet();
         DataSet objDSGroup = new DataSet();
         DataSet objDSBrand = new DataSet();
+        DataSet objDSSubgroupBrand = new DataSet();
         DataSet objDSUnit = new DataSet();
         DataSet objDSLocation = new DataSet();
         DataSet objDSRack = new DataSet();
@@ -157,6 +158,7 @@ namespace ROMS
                 objDSRMPRO = objDServ.udfnMaster(1, 0);
                 objDSBatchNo = objDServ.udfnMaster(0, 25);
                 objDSBatchNoGeneration = objDServ.udfnMaster(0, 26);
+                objDSSubgroupBrand = objDServ.udfnBrandList(9, "", 0, 0, 0, "");
                 objDServ.CloseConnection();
             }
             catch(Exception ex)
@@ -350,7 +352,9 @@ namespace ROMS
                         var varSubGroup = from r in objDSSubGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Sub Group Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim().ToUpper()) && r.Field<string>("Product Group Name").ToUpper().Equals(varGroupName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varSubGroup.Count() > 0)
                         { varSubGroupId = Convert.ToInt32(varSubGroup.ToList()[0]); }
-                        var varBrand = from r in objDSBrand.Tables[0].AsEnumerable() where (r.Field<string>("Brand Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        string varSubGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim();
+                        if (varSubGroupName == "") { varGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-Current"].Value).Trim(); }
+                        var varBrand = from r in objDSSubgroupBrand.Tables[0].AsEnumerable() where (r.Field<string>("BD_EName").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim().ToUpper()) && r.Field<string>("Sub Group Name in English").ToUpper().Equals(varSubGroupName.ToUpper())) group r by r.Field<int>("BDID") into g select g.Key;
                         if (varBrand.Count() > 0)
                         { varBrandId = Convert.ToInt32(varBrand.ToList()[0]); }
                         if (Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim() != "")
@@ -360,14 +364,14 @@ namespace ROMS
                                 varErrorflag = 1;
                             }
                         }
-                        else if (Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim() != "")
+                        if (Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim() != "")
                         {
                             if (varSubGroupId == 0)
                             {
                                 varErrorflag = 2;
                             }
                         }
-                        else if (Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim() != "")
+                        if (Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim() != "")
                         {
                             if (varBrandId == 0)
                             {
@@ -398,10 +402,14 @@ namespace ROMS
                         var varSalesStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varSalesStockLocation.Count() > 0)
                         { varSalesSLID = Convert.ToInt32(varSalesStockLocation.ToList()[0]); }
-                        var varPurRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        string varPurLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim();
+                        if (varPurLocationName == "") { varPurLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-Current"].Value).Trim(); }
+                        var varPurRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-New"].Value).Trim().ToUpper()) && r.Field<string>("Stock Location").ToUpper().Equals(varPurLocationName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varPurRack.Count() > 0)
                         { varPurRKID = Convert.ToInt32(varPurRack.ToList()[0]); }
-                        var varSalesRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        string varSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim();
+                        if (varSalesLocationName == "") { varSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-Current"].Value).Trim(); }
+                        var varSalesRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper()) && r.Field<string>("Stock Location").ToUpper().Equals(varSalesLocationName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varSalesRack.Count() > 0)
                         { varSalesRKID = Convert.ToInt32(varSalesRack.ToList()[0]); }
 
@@ -412,20 +420,21 @@ namespace ROMS
                                 varErrorflag = 1;
                             }
                         }
-                        else if (Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim().ToUpper() != "")
+                        if (Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim().ToUpper() != "")
                         {
                             if (varSalesSLID == 0)
                             {
                                 varErrorflag = 2;
                             }
                         }
-                        else if (Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-New"].Value).Trim().ToUpper() != "")
+                        if (Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-New"].Value).Trim().ToUpper() != "")
                         {
                             if (varPurRKID == 0)
                             {
                                 varErrorflag = 3;
                             }
-                        }else if (Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper() != "")
+                        }
+                        if (Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper() != "")
                         {
                             if (varSalesRKID == 0)
                             {
@@ -589,21 +598,21 @@ namespace ROMS
                                 varErrorflag = 1;
                             }
                         }
-                        else if (Convert.ToString(grdBatch.Rows[i].Cells["RM Pro-New"].Value).Trim() != "")
+                        if (Convert.ToString(grdBatch.Rows[i].Cells["RM Pro-New"].Value).Trim() != "")
                         {
                             if (PR_RMForProductionID == 0)
                             {
                                 varErrorflag = 2;
                             }
                         }
-                        else if (Convert.ToString(grdBatch.Rows[i].Cells["Batch No.-New"].Value).Trim() != "")
+                        if (Convert.ToString(grdBatch.Rows[i].Cells["Batch No.-New"].Value).Trim() != "")
                         {
                             if (PR_BatchNoID == 0)
                             {
                                 varErrorflag = 3;
                             }
                         }
-                        else if (Convert.ToString(grdBatch.Rows[i].Cells["Batch Generation-New"].Value).Trim() != "")
+                        if (Convert.ToString(grdBatch.Rows[i].Cells["Batch Generation-New"].Value).Trim() != "")
                         {
                             if (PR_BatchNoGenerationID == 0)
                             {
@@ -2407,15 +2416,20 @@ namespace ROMS
              return varstr;
         }
 
-        public AutoCompleteStringCollection AutoCompleteLocationName()
+        public AutoCompleteStringCollection AutoCompleteLocationName(int varPRID)
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
             DataSet objds;
             objds = null;
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
-
-            objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) ");
+            if (varPRID == 0)
+            {
+                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) ");
+            } else
+            {
+                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) AND SLID IN (SELECT DISTINCT RK_SLID FROM MR_Rack WHERE RKID IN (SELECT DISTINCT PRSGRK_RKID FROM MR_ProductSubGroup_Rack WHERE PRSGRK_PRSGID =(SELECT PR_PRSGID FROM MR_Product WHERE PRID ="+varPRID+")))");
+            }
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -2434,15 +2448,21 @@ namespace ROMS
             }
             return varstr;
         }
-        public AutoCompleteStringCollection AutoCompleteRackName()
+        public AutoCompleteStringCollection AutoCompleteRackName(int varSLID,int varPRID)
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
             DataSet objds;
             objds = null;
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
-
-            objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0)");
+            if (varSLID == 0)
+            {
+                objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0)");
+            }
+            else
+            {
+                objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0) AND RK_SLID = " + varSLID + "  AND RKID IN ((SELECT DISTINCT PRSGRK_RKID FROM MR_ProductSubGroup_Rack WHERE PRSGRK_PRSGID =(SELECT PR_PRSGID FROM MR_Product WHERE PRID ="+varPRID+")))");
+            }
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -2638,7 +2658,7 @@ namespace ROMS
                 objds = objdservice.GetDataset("SELECT PRSGID,PRSG_EName from  MR_ProductSubGroup  where PRSGID NOT IN(-1,0)");
             } else
             {
-                objds = objdservice.GetDataset("SELECT PRSGID,PRSG_EName from  MR_ProductSubGroup  where PRSGID NOT IN(-1,0) aNd PRSG_PRGID = "+varSubGroupId+" ");
+                objds = objdservice.GetDataset("SELECT PRSGID,PRSG_EName from  MR_ProductSubGroup  where PRSGID NOT IN(-1,0) AND PRSG_PRGID = "+varSubGroupId+" ");
             }
             objdservice.CloseConnection();
             if (objds != null)
@@ -2658,15 +2678,21 @@ namespace ROMS
             }
             return varstr;
         }
-        public AutoCompleteStringCollection AutoCompleteBrand()
+        public AutoCompleteStringCollection AutoCompleteBrand(int varBrandId)
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
             DataSet objds;
             objds = null;
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
-
-            objds = objdservice.GetDataset("SELECT BDID,BD_EName from  MR_Brand  where BDID NOT IN(-1,0)");
+            if (varBrandId == 0)
+            {
+                objds = objdservice.GetDataset("SELECT BDID,BD_EName from  MR_Brand  where BDID NOT IN(-1,0)");
+            }
+            else
+            {
+                objds = objdservice.GetDataset("SELECT BDID,BD_EName  FROM MR_Brand INNER JOIN MR_Brand_SubGroup ON BDS_BDID=BDID WHERE BDID NOT IN(-1, 0) AND BDS_PRSGID= " + varBrandId + " ");
+            }
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -2742,8 +2768,9 @@ namespace ROMS
                     TextBox txtPurStockLocation = e.Control as TextBox;
                     if (txtPurStockLocation != null)
                     {
+                        int varPRID = Convert.ToInt16(grdLoction.CurrentRow.Cells["PRID"].Value);
                         txtPurStockLocation.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtPurStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName();
+                        txtPurStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName(varPRID);
                         txtPurStockLocation.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
@@ -2752,8 +2779,16 @@ namespace ROMS
                     TextBox txtPurRack = e.Control as TextBox;
                     if (txtPurRack != null)
                     {
+                        int varSLID = 0;
+                        string varSLName = "";
+                        int varPRID = Convert.ToInt16(grdLoction.CurrentRow.Cells["PRID"].Value);
+                        varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Pur.Stock Location-New"].Value);
+                        if (varSLName == ""){ varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Pur.Stock Location-Current"].Value); }
+                        var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(varSLName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varPurStockLocation.Count() > 0)
+                        { varSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); }
                         txtPurRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtPurRack.AutoCompleteCustomSource = AutoCompleteRackName();
+                        txtPurRack.AutoCompleteCustomSource = AutoCompleteRackName(varSLID, varPRID);
                         txtPurRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
@@ -2762,8 +2797,9 @@ namespace ROMS
                     TextBox txtSalesStockLocation = e.Control as TextBox;
                     if (txtSalesStockLocation != null)
                     {
+                        int varPRID = Convert.ToInt16(grdLoction.CurrentRow.Cells["PRID"].Value);
                         txtSalesStockLocation.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtSalesStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName();
+                        txtSalesStockLocation.AutoCompleteCustomSource = AutoCompleteLocationName(varPRID);
                         txtSalesStockLocation.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
@@ -2772,8 +2808,16 @@ namespace ROMS
                     TextBox txtSalesRack = e.Control as TextBox;
                     if (txtSalesRack != null)
                     {
+                        int varSLID = 0;
+                        string varSLName = "";
+                        varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Sales Location-New"].Value);
+                        int varPRID = Convert.ToInt16(grdLoction.CurrentRow.Cells["PRID"].Value);
+                        if (varSLName == ""){ varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Sales Location-Current"].Value); }
+                        var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(varSLName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varPurStockLocation.Count() > 0)
+                        { varSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); }
                         txtSalesRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtSalesRack.AutoCompleteCustomSource = AutoCompleteRackName();
+                        txtSalesRack.AutoCompleteCustomSource = AutoCompleteRackName(varSLID, varPRID);
                         txtSalesRack.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
@@ -2907,8 +2951,14 @@ namespace ROMS
                     TextBox txtBrand = e.Control as TextBox;
                     if (txtBrand != null)
                     {
+                        int varSGRID = 0;
+                        string varSubGroupName = "";
+                        if (Convert.ToString(grdBrand.CurrentRow.Cells["Sub Group-New"].Value) == "")  { varSubGroupName = Convert.ToString(grdBrand.CurrentRow.Cells["Sub Group-Current"].Value);  }
+                        var varSubGroup = from r in objDSSubgroupBrand.Tables[0].AsEnumerable() where (r.Field<string>("Sub Group Name in English").ToUpper().Equals(varSubGroupName.Trim().ToUpper())) group r by r.Field<int>("BDID") into g select g.Key;
+                        if (varSubGroup.Count() > 0)
+                        { varSGRID = Convert.ToInt32(varSubGroup.ToList()[0]); }
                         txtBrand.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtBrand.AutoCompleteCustomSource = AutoCompleteBrand();
+                        txtBrand.AutoCompleteCustomSource = AutoCompleteBrand(varSGRID);
                         txtBrand.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
