@@ -54,7 +54,12 @@ namespace ROMS
                             }
                             else if (count == 0)
                             {
-                                DialogResult response = MessageBox.Show(Convert.ToString(objDs.Tables[1].Rows[0]["MessageText"]), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                                //DialogResult response = MessageBox.Show(Convert.ToString(objDs.Tables[1].Rows[0]["MessageText"]), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(62);
+                                objDServ.CloseConnection();
+                                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                              
                             }
                         }
                     }

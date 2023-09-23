@@ -364,14 +364,14 @@ namespace ROMS
                                 varErrorflag = 1;
                             }
                         }
-                        else if (Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim() != "")
+                        if (Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim() != "")
                         {
                             if (varSubGroupId == 0)
                             {
                                 varErrorflag = 2;
                             }
                         }
-                        else if (Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim() != "")
+                        if (Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim() != "")
                         {
                             if (varBrandId == 0)
                             {
@@ -598,21 +598,21 @@ namespace ROMS
                                 varErrorflag = 1;
                             }
                         }
-                        else if (Convert.ToString(grdBatch.Rows[i].Cells["RM Pro-New"].Value).Trim() != "")
+                        if (Convert.ToString(grdBatch.Rows[i].Cells["RM Pro-New"].Value).Trim() != "")
                         {
                             if (PR_RMForProductionID == 0)
                             {
                                 varErrorflag = 2;
                             }
                         }
-                        else if (Convert.ToString(grdBatch.Rows[i].Cells["Batch No.-New"].Value).Trim() != "")
+                        if (Convert.ToString(grdBatch.Rows[i].Cells["Batch No.-New"].Value).Trim() != "")
                         {
                             if (PR_BatchNoID == 0)
                             {
                                 varErrorflag = 3;
                             }
                         }
-                        else if (Convert.ToString(grdBatch.Rows[i].Cells["Batch Generation-New"].Value).Trim() != "")
+                        if (Convert.ToString(grdBatch.Rows[i].Cells["Batch Generation-New"].Value).Trim() != "")
                         {
                             if (PR_BatchNoGenerationID == 0)
                             {
