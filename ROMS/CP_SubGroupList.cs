@@ -1373,7 +1373,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSaleRack.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnRackList(8, 0, 0, Convert.ToInt32(lblSLCode.Text), 0, txtSaleRack.Text.Trim());
+                    objDs = objspdservice.udfnRackList(8, 0, 0, Convert.ToInt32(lblSLCode.Text), 0, txtSaleRack.Text.Trim(), 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

@@ -64,24 +64,24 @@
             this.rbInactive = new System.Windows.Forms.RadioButton();
             this.epRackGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpUserList = new System.Windows.Forms.GroupBox();
+            this.lblEmpCode = new System.Windows.Forms.Label();
             this.lvStaffName = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAdd = new System.Windows.Forms.Button();
             this.grdStaffDetails = new System.Windows.Forms.DataGridView();
-            this.txtStaffName = new System.Windows.Forms.TextBox();
-            this.txtDUserName = new System.Windows.Forms.TextBox();
-            this.txtStatus = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.lblEmpCode = new System.Windows.Forms.Label();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmEmpCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.txtStaffName = new System.Windows.Forms.TextBox();
+            this.txtDUserName = new System.Windows.Forms.TextBox();
+            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSelectedRack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRack)).BeginInit();
@@ -141,7 +141,7 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdSelectedRack.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
@@ -292,7 +292,7 @@
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdRack.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
@@ -459,6 +459,16 @@
             this.grpUserList.TabStop = false;
             this.grpUserList.Text = "Employee Details";
             // 
+            // lblEmpCode
+            // 
+            this.lblEmpCode.AutoSize = true;
+            this.lblEmpCode.Location = new System.Drawing.Point(232, 106);
+            this.lblEmpCode.Name = "lblEmpCode";
+            this.lblEmpCode.Size = new System.Drawing.Size(16, 20);
+            this.lblEmpCode.TabIndex = 1111137;
+            this.lblEmpCode.Text = "0";
+            this.lblEmpCode.Visible = false;
+            // 
             // lvStaffName
             // 
             this.lvStaffName.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -517,7 +527,7 @@
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdStaffDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
@@ -556,6 +566,48 @@
             this.grdStaffDetails.TabStop = false;
             this.grdStaffDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStaffDetails_CellContentClick);
             this.grdStaffDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvStaffDetails_KeyDown);
+            // 
+            // clmSno
+            // 
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Width = 40;
+            // 
+            // clmEmpCode
+            // 
+            this.clmEmpCode.HeaderText = "Employee Code";
+            this.clmEmpCode.Name = "clmEmpCode";
+            this.clmEmpCode.ReadOnly = true;
+            // 
+            // clmStaffName
+            // 
+            this.clmStaffName.HeaderText = "Employee Name";
+            this.clmStaffName.MinimumWidth = 6;
+            this.clmStaffName.Name = "clmStaffName";
+            this.clmStaffName.ReadOnly = true;
+            this.clmStaffName.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Employee Category";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 125;
+            // 
+            // clmUserId
+            // 
+            this.clmUserId.HeaderText = "User ID";
+            this.clmUserId.Name = "clmUserId";
+            this.clmUserId.Visible = false;
+            // 
+            // clmremove
+            // 
+            this.clmremove.HeaderText = "Remove";
+            this.clmremove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmremove.Name = "clmremove";
+            this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmremove.Width = 50;
             // 
             // txtStaffName
             // 
@@ -632,58 +684,6 @@
             this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
             this.btnClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnClose_KeyDown);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
-            // 
-            // lblEmpCode
-            // 
-            this.lblEmpCode.AutoSize = true;
-            this.lblEmpCode.Location = new System.Drawing.Point(232, 106);
-            this.lblEmpCode.Name = "lblEmpCode";
-            this.lblEmpCode.Size = new System.Drawing.Size(16, 20);
-            this.lblEmpCode.TabIndex = 1111137;
-            this.lblEmpCode.Text = "0";
-            this.lblEmpCode.Visible = false;
-            // 
-            // clmSno
-            // 
-            this.clmSno.HeaderText = "S.No.";
-            this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
-            this.clmSno.Width = 40;
-            // 
-            // clmEmpCode
-            // 
-            this.clmEmpCode.HeaderText = "Employee Code";
-            this.clmEmpCode.Name = "clmEmpCode";
-            this.clmEmpCode.ReadOnly = true;
-            // 
-            // clmStaffName
-            // 
-            this.clmStaffName.HeaderText = "Employee Name";
-            this.clmStaffName.MinimumWidth = 6;
-            this.clmStaffName.Name = "clmStaffName";
-            this.clmStaffName.ReadOnly = true;
-            this.clmStaffName.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Employee Category";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 125;
-            // 
-            // clmUserId
-            // 
-            this.clmUserId.HeaderText = "User ID";
-            this.clmUserId.Name = "clmUserId";
-            this.clmUserId.Visible = false;
-            // 
-            // clmremove
-            // 
-            this.clmremove.HeaderText = "Remove";
-            this.clmremove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmremove.Name = "clmremove";
-            this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmremove.Width = 50;
             // 
             // CP_RackGroup
             // 

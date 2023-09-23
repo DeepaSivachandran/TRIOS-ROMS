@@ -134,7 +134,7 @@ namespace ROMS
                     string varId_PurRack = "0";
                     DataSet objDsPurRack = new DataSet();
                     SPDataService objDServ4 = new SPDataService();
-                    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtRack.Text.Trim());
+                    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtRack.Text.Trim(), 0);
                     objDServ4.CloseConnection();
                     if (objDsPurRack != null)
                     {
@@ -271,7 +271,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtRack.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnRackList(8, 0, 0, 0, 0, txtRack.Text);
+                        objDs = objspdservice.udfnRackList(8, 0, 0, 0, 0, txtRack.Text, 0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
