@@ -290,8 +290,8 @@ namespace ROMS
                                 MainForm.objCP_Items.varBatchCode = Convert.ToInt32(cmbBatchNo.SelectedValue);
                                 MainForm.objCP_Items.varPURSLID = Convert.ToInt32(lblLocation.Text);
                                 MainForm.objCP_Items.varSALESLID = Convert.ToInt32(lblLocation.Text);
-                                MainForm.objCP_Items.varPURRKID = Convert.ToInt32(lblRack.Text);
-                                MainForm.objCP_Items.varSALERKID = Convert.ToInt32(lblRack.Text);
+                                //MainForm.objCP_Items.varPURRKID = Convert.ToInt32(lblRack.Text);
+                                //MainForm.objCP_Items.varSALERKID = Convert.ToInt32(lblRack.Text);
                                 MainForm.objCP_Items.varPurchaseLocation = txtLocation.Text.Trim();
                                 MainForm.objCP_Items.varSalesLocation = txtLocation.Text.Trim();
                                 //MainForm.objCP_Items.varPurchaseRack = txtRack.Text.Trim();
@@ -312,8 +312,7 @@ namespace ROMS
                         {
                             varCloseFlag = 1;
                             udfnclose();
-                        }
-                        MainForm.objCP_SubGroupList.udfnList();
+                        } 
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
