@@ -62,7 +62,7 @@
             this.ReportCity.Name = "ReportCity";
             this.ReportCity.Size = new System.Drawing.Size(1354, 27);
             this.ReportCity.TabIndex = 35;
-            this.ReportCity.Text = "Supplier Schedule List";
+            this.ReportCity.Text = "City Report";
             // 
             // tspHeader
             // 
@@ -181,7 +181,7 @@
             this.RPTViewer.Location = new System.Drawing.Point(3, 93);
             this.RPTViewer.Name = "RPTViewer";
             this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1348, 516);
+            this.RPTViewer.Size = new System.Drawing.Size(1348, 546);
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;

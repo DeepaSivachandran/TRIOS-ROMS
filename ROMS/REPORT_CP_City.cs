@@ -20,30 +20,6 @@ namespace ROMS
         {
             InitializeComponent();
         }
-        public void udfnList()
-        {
-
-            try
-            {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                //********** To display a data in a grid  ******************
-                ep_City.Clear();
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                //  grdreplist.ClearSelection();
-                picLoader.Visible = false;
-                picLoader.SendToBack();
-            }
-        }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -143,18 +119,21 @@ namespace ROMS
         {
             try
             {
-
-                btnListPrint.Enabled = false;
+                //btnListPrint.Enabled = false;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 RPTViewer.ReuseParameterValuesOnRefresh = true;
                 RPTViewer.RefreshReport();
                 CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                int varlanguage = 0;string varlblsupplierprint = "0";
+                //int varlanguage = 0;string varlblsupplierprint = "0";
                 
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_City.rpt");
-                objBillreport.SetParameterValue("@paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
+                objBillreport.SetParameterValue("paraStatus ", Convert.ToInt32(cmbStatus.SelectedValue));
+                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                 objValidation.CrySqlConnection(objBillreport);
                 RPTViewer.ReportSource = objBillreport;
                 RPTViewer.Refresh();
@@ -171,13 +150,11 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (2) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
-                DataSet objDT = new DataSet();
-                SPDataService objdserv = new SPDataService();
-
+                //DataSet objDT = new DataSet();
+                //SPDataService objdserv = new SPDataService();
                 cmbStatus.SelectedValue = 0;
-                udfnList();
             }
             catch (Exception ex)
             {
