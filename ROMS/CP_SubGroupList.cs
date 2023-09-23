@@ -1276,7 +1276,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStockLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(13, 0, 0, 0, txtStockLocation.Text.Trim());
+                    objDs = objspdservice.udfnStockLocationList(13, 0, 0, 0, txtStockLocation.Text.Trim(), 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

@@ -182,7 +182,7 @@ namespace ROMS
                     }
                     else { varViewType = 5; varRackGroupID = varId; }
                 }
-                objDT = objdserv.udfnStockLocationList(varViewType, varConcernId,varStockId, varRackGroupID,"");
+                objDT = objdserv.udfnStockLocationList(varViewType, varConcernId,varStockId, varRackGroupID,"",0);
                 objdserv.CloseConnection();
                 cmbStockLocation.DataSource = null;
                 if (objDT != null)

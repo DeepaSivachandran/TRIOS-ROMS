@@ -190,9 +190,10 @@ namespace ROMS
                             //grdSupplierList.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                             dgvSupplierScheduleList.Columns["S.No."].Width = 50;
-                            dgvSupplierScheduleList.Columns["Supplier"].Width = 200;
-                            dgvSupplierScheduleList.Columns["Schedule Name"].Width = 150;
-                            dgvSupplierScheduleList.Columns["Status"].Width = 80;
+                            dgvSupplierScheduleList.Columns["Supplier"].Width = 300;
+                            dgvSupplierScheduleList.Columns["Schedule Name"].Width = 100;
+                            dgvSupplierScheduleList.Columns["GSTIN"].Width =120; 
+                            dgvSupplierScheduleList.Columns["Status"].Width = 100;
                             dgvSupplierScheduleList.Columns["Scheduleid"].Visible = false;
                             dgvSupplierScheduleList.Columns["SupplierID"].Visible = false;
                             dgvSupplierScheduleList.Columns["STS"].Visible = false;
