@@ -402,10 +402,14 @@ namespace ROMS
                         var varSalesStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varSalesStockLocation.Count() > 0)
                         { varSalesSLID = Convert.ToInt32(varSalesStockLocation.ToList()[0]); }
-                        var varPurRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        string varPurLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim();
+                        if (varPurLocationName == "") { varPurLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-Current"].Value).Trim(); }
+                        var varPurRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-New"].Value).Trim().ToUpper()) && r.Field<string>("Stock Location").ToUpper().Equals(varPurLocationName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varPurRack.Count() > 0)
                         { varPurRKID = Convert.ToInt32(varPurRack.ToList()[0]); }
-                        var varSalesRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        string varSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim();
+                        if (varSalesLocationName == "") { varSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-Current"].Value).Trim(); }
+                        var varSalesRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper()) && r.Field<string>("Stock Location").ToUpper().Equals(varSalesLocationName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varSalesRack.Count() > 0)
                         { varSalesRKID = Convert.ToInt32(varSalesRack.ToList()[0]); }
 
@@ -416,20 +420,21 @@ namespace ROMS
                                 varErrorflag = 1;
                             }
                         }
-                        else if (Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim().ToUpper() != "")
+                        if (Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim().ToUpper() != "")
                         {
                             if (varSalesSLID == 0)
                             {
                                 varErrorflag = 2;
                             }
                         }
-                        else if (Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-New"].Value).Trim().ToUpper() != "")
+                        if (Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-New"].Value).Trim().ToUpper() != "")
                         {
                             if (varPurRKID == 0)
                             {
                                 varErrorflag = 3;
                             }
-                        }else if (Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper() != "")
+                        }
+                        if (Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper() != "")
                         {
                             if (varSalesRKID == 0)
                             {
@@ -2777,8 +2782,8 @@ namespace ROMS
                         int varSLID = 0;
                         string varSLName = "";
                         int varPRID = Convert.ToInt16(grdLoction.CurrentRow.Cells["PRID"].Value);
-                        if (Convert.ToString(grdLoction.CurrentRow.Cells["Pur.Stock Location-New"].Value) == "")
-                        { varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Pur.Stock Location-Current"].Value); }
+                        varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Pur.Stock Location-New"].Value);
+                        if (varSLName == ""){ varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Pur.Stock Location-Current"].Value); }
                         var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(varSLName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varPurStockLocation.Count() > 0)
                         { varSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); }
@@ -2805,9 +2810,9 @@ namespace ROMS
                     {
                         int varSLID = 0;
                         string varSLName = "";
+                        varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Sales Location-New"].Value);
                         int varPRID = Convert.ToInt16(grdLoction.CurrentRow.Cells["PRID"].Value);
-                        if (Convert.ToString(grdLoction.CurrentRow.Cells["Sales Location-New"].Value) == "")
-                        { varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Sales Location-Current"].Value); }
+                        if (varSLName == ""){ varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Sales Location-Current"].Value); }
                         var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(varSLName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varPurStockLocation.Count() > 0)
                         { varSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); }
