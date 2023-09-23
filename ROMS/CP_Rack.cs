@@ -90,8 +90,8 @@ namespace ROMS
                     udfnLoad();
                 }
                 if (varFormFlag != 0) {
-                    MainForm.objCP_RackList.picLoader.Visible = false;
-                    MainForm.objCP_RackList.picLoader.SendToBack();
+                    //MainForm.objCP_RackList.picLoader.Visible = false;
+                    //MainForm.objCP_RackList.picLoader.SendToBack();
                 }
             }
             catch (Exception ex)
