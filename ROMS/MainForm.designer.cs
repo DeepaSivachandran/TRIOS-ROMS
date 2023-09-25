@@ -96,6 +96,7 @@ namespace ROMS
             this.mastersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -644,7 +645,8 @@ namespace ROMS
             // 
             this.mastersToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cityToolStripMenuItem,
-            this.stateToolStripMenuItem});
+            this.stateToolStripMenuItem,
+            this.companyToolStripMenuItem});
             this.mastersToolStripMenuItem1.Name = "mastersToolStripMenuItem1";
             this.mastersToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
             this.mastersToolStripMenuItem1.Text = "Masters";
@@ -662,6 +664,13 @@ namespace ROMS
             this.stateToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.stateToolStripMenuItem.Text = "State";
             this.stateToolStripMenuItem.Click += new System.EventHandler(this.StateToolStripMenuItem_Click_1);
+            // 
+            // companyToolStripMenuItem
+            // 
+            this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
+            this.companyToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.companyToolStripMenuItem.Text = "Company";
+            this.companyToolStripMenuItem.Click += new System.EventHandler(this.CompanyToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -757,5 +766,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem mastersToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem cityToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem companyToolStripMenuItem;
     }
 }

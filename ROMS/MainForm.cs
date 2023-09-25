@@ -153,6 +153,7 @@ namespace ROMS
 
         public static REPORT_CP_City objREPORT_CP_City;
         public static REPORT_CP_State objREPORT_CP_State;
+        public static REPORT_CP_Company objREPORT_CP_Companny;
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -1259,6 +1260,23 @@ namespace ROMS
                 MainForm.objREPORT_CP_State = new REPORT_CP_State();
                 MainForm.objREPORT_CP_State.MdiParent = this;
                 MainForm.objREPORT_CP_State.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CompanyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_Companny = new REPORT_CP_Company();
+                MainForm.objREPORT_CP_Companny.MdiParent = this;
+                MainForm.objREPORT_CP_Companny.Show();
             }
             catch (Exception ex)
             {
