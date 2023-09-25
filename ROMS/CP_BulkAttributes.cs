@@ -38,6 +38,7 @@ namespace ROMS
         DataSet objDSRMPRO = new DataSet();
         DataSet objDSBatchNo = new DataSet();
         DataSet objDSBatchNoGeneration = new DataSet();
+        DataSet objDSProduct = new DataSet();
 
         public CP_BulkAttributes()
         {
@@ -159,6 +160,7 @@ namespace ROMS
                 objDSBatchNo = objDServ.udfnMaster(0, 25);
                 objDSBatchNoGeneration = objDServ.udfnMaster(0, 26);
                 objDSSubgroupBrand = objDServ.udfnBrandList(9, "", 0, 0, 0, "");
+                objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0);
                 objDServ.CloseConnection();
             }
             catch(Exception ex)
@@ -313,21 +315,34 @@ namespace ROMS
                 }
                 else if (grdBulkAttributes.Visible == true)
                 {
-                    varUpdateViewType = 4; varViewType = 12;
+                    varUpdateViewType = 4; varViewType = 12; string varProductEname = "", varProductTname = "", varPIcode = ""; int varID =0;
                     for (int i = 0; i < grdBulkAttributes.Rows.Count; i++)
                     {
                         varUnitId = 0; varErrorflag=0;
+                        varID = Convert.ToInt32(grdBulkAttributes.Rows[i].Cells["PRID"].Value);
+                        var varPREname = from r in objDSProduct.Tables[0].AsEnumerable() where (r.Field<string>("Product Name in English").ToUpper().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English-New"].Value).Trim().ToUpper()) && r.Field<int>("ID") != ( varID)) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varPREname.Count() == 0)
+                        { varProductEname = Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English-New"].Value).Trim(); }
+                        else { varErrorflag = 1; }
+                        var varPRTname = from r in objDSProduct.Tables[0].AsEnumerable() where (r.Field<string>("Product Name in Tamil").ToUpper().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in Tamil-New"].Value).Trim().ToUpper()) && r.Field<int>("ID") != (varID)) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varPRTname.Count() == 0)
+                        { varProductTname = Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in Tamil-New"].Value).Trim(); }
+                        else { varErrorflag = 2; }
+                        var varPCode = from r in objDSProduct.Tables[0].AsEnumerable() where (r.Field<string>("P.I Code").ToUpper().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value).Trim().ToUpper()) && r.Field<int>("ID") != (varID)) group r by r.Field<int>("ID") into g select g.Key;
+                        if (varPCode.Count() == 0)
+                        { varPIcode = Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value).Trim(); }
+                        else { varErrorflag = 3; }
                         var varValue = from r in objDSUnit.Tables[0].AsEnumerable() where (r.Field<string>("Unit").ToUpper().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Unit-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varValue.Count() > 0) { varUnitId = Convert.ToInt32(varValue.ToList()[0]); }
                         if (Convert.ToString(grdBulkAttributes.Rows[i].Cells["Unit-New"].Value).Trim().ToUpper()!="")
                         {
                             if (varUnitId==0)
                             {
-                                varErrorflag = 1;
+                                varErrorflag = 4;
                             } 
                         }
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdBulkAttributes.Rows[i].Cells["PRID"].Value), 
-                            Convert.ToInt16(grdBulkAttributes.Rows[i].Cells["UTID-OLD"].Value), varUnitId, Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in Tamil"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English-New"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in Tamil-New"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["P.I Code"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value).Trim(),
+                            Convert.ToInt16(grdBulkAttributes.Rows[i].Cells["UTID-OLD"].Value), varUnitId, Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English"].Value).Trim(), Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in Tamil"].Value).Trim(), varProductEname, varProductTname, Convert.ToString(grdBulkAttributes.Rows[i].Cells["P.I Code"].Value).Trim(), varPIcode.Trim(),
                              0, 0, 0, 0, 0, 0,
                             0, 0, 0, 0, 0, 0, 0, 0, 0, "",
                             0, "", 0, "", "", "",
@@ -937,8 +952,8 @@ namespace ROMS
                                 grdMSQ.DataSource = objDs.Tables[0];
                                 grdMSQ.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                                 grdMSQ.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["R Min Sale Qty-New"]).MaxInputLength = 5;
-                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["W.Min Sale Qty-New"]).MaxInputLength = 5;
+                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["R Min Sale Qty-New"]).MaxInputLength = 10;
+                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["W.Min Sale Qty-New"]).MaxInputLength = 10;
                                 ((DataGridViewTextBoxColumn)grdMSQ.Columns["Barcode-New"]).MaxInputLength = 20;
                                
                                 grdMSQ.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
@@ -992,9 +1007,9 @@ namespace ROMS
                                 grdStock.DataSource = objDs.Tables[0];
                                 grdStock.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                                 grdStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                ((DataGridViewTextBoxColumn)grdStock.Columns["Min Stock-New"]).MaxInputLength = 5;
-                                ((DataGridViewTextBoxColumn)grdStock.Columns["Max Stock-New"]).MaxInputLength = 5;
-                                ((DataGridViewTextBoxColumn)grdStock.Columns["Reorder Qty-New"]).MaxInputLength = 5;
+                                ((DataGridViewTextBoxColumn)grdStock.Columns["Min Stock-New"]).MaxInputLength = 10;
+                                ((DataGridViewTextBoxColumn)grdStock.Columns["Max Stock-New"]).MaxInputLength = 10;
+                                ((DataGridViewTextBoxColumn)grdStock.Columns["Reorder Qty-New"]).MaxInputLength = 10;
 
                                 grdStock.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdStock.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
@@ -1041,7 +1056,7 @@ namespace ROMS
                                 grdShelfLife.DataSource = objDs.Tables[0];
                                 grdShelfLife.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                                 grdShelfLife.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                ((DataGridViewTextBoxColumn)grdShelfLife.Columns["UPP-New"]).MaxInputLength = 5;
+                                ((DataGridViewTextBoxColumn)grdShelfLife.Columns["UPP-New"]).MaxInputLength = 10;
                                 ((DataGridViewTextBoxColumn)grdShelfLife.Columns["Shelf Life-New"]).MaxInputLength = 3;
                                 ((DataGridViewTextBoxColumn)grdShelfLife.Columns["Shelf Life Type-New"]).MaxInputLength = 50;
 
@@ -1145,8 +1160,8 @@ namespace ROMS
                                 grdWeight.DataSource = objDs.Tables[0];
                                 grdWeight.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                                 grdWeight.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                ((DataGridViewTextBoxColumn)grdWeight.Columns["Net Quantity-New"]).MaxInputLength = 5;
-                                ((DataGridViewTextBoxColumn)grdWeight.Columns["Gross Weight-New"]).MaxInputLength = 5;
+                                ((DataGridViewTextBoxColumn)grdWeight.Columns["Net Quantity-New"]).MaxInputLength = 10;
+                                ((DataGridViewTextBoxColumn)grdWeight.Columns["Gross Weight-New"]).MaxInputLength = 10;
                                 ((DataGridViewTextBoxColumn)grdWeight.Columns["Net Weight-Unit-New"]).MaxInputLength = 10;
                                 grdWeight.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdWeight.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;

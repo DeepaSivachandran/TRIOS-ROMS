@@ -313,7 +313,7 @@ namespace ROMS
                             varCloseFlag = 1;
                             udfnclose();
                         }
-                        MainForm.objCP_SubGroupList.udfnList();
+                        //MainForm.objCP_SubGroupList.udfnList();
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
