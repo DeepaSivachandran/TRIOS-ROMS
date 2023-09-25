@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class REPORT_CP_City : Form
+    public partial class REPORT_CP_Company : Form
     {
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-        public REPORT_CP_City()
+        public REPORT_CP_Company()
         {
             InitializeComponent();
         }
@@ -128,8 +128,8 @@ namespace ROMS
                 
                 
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_City.rpt");
-                objBillreport.SetParameterValue("paraStatus ", Convert.ToInt32(cmbStatus.SelectedValue));
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_State.rpt");
+                objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
                 objBillreport.SetParameterValue("status", Convert.ToString(cmbStatus.Text));
                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                 objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);

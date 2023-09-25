@@ -95,6 +95,7 @@ namespace ROMS
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mastersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -164,35 +165,35 @@ namespace ROMS
             // tsmpurchaseSupplier
             // 
             this.tsmpurchaseSupplier.Name = "tsmpurchaseSupplier";
-            this.tsmpurchaseSupplier.Size = new System.Drawing.Size(180, 22);
+            this.tsmpurchaseSupplier.Size = new System.Drawing.Size(148, 22);
             this.tsmpurchaseSupplier.Text = "PO Schedule";
             this.tsmpurchaseSupplier.Click += new System.EventHandler(this.TsmpurchaseSupplier_Click);
             // 
             // tsmPurchaseOrder
             // 
             this.tsmPurchaseOrder.Name = "tsmPurchaseOrder";
-            this.tsmPurchaseOrder.Size = new System.Drawing.Size(180, 22);
+            this.tsmPurchaseOrder.Size = new System.Drawing.Size(148, 22);
             this.tsmPurchaseOrder.Text = "Purchase Order";
             this.tsmPurchaseOrder.Click += new System.EventHandler(this.TsmPurchaseOrder_Click_1);
             // 
             // tsmGRN
             // 
             this.tsmGRN.Name = "tsmGRN";
-            this.tsmGRN.Size = new System.Drawing.Size(180, 22);
+            this.tsmGRN.Size = new System.Drawing.Size(148, 22);
             this.tsmGRN.Text = "GRN Entry";
             this.tsmGRN.Click += new System.EventHandler(this.TsmGRN_Click);
             // 
             // tsmGRNApproval
             // 
             this.tsmGRNApproval.Name = "tsmGRNApproval";
-            this.tsmGRNApproval.Size = new System.Drawing.Size(180, 22);
+            this.tsmGRNApproval.Size = new System.Drawing.Size(148, 22);
             this.tsmGRNApproval.Text = "GRN Approval";
             this.tsmGRNApproval.Click += new System.EventHandler(this.TsmGRNApproval_Click);
             // 
             // tsmPurchaseDC
             // 
             this.tsmPurchaseDC.Name = "tsmPurchaseDC";
-            this.tsmPurchaseDC.Size = new System.Drawing.Size(180, 22);
+            this.tsmPurchaseDC.Size = new System.Drawing.Size(148, 22);
             this.tsmPurchaseDC.Text = "Purchase DC";
             this.tsmPurchaseDC.Click += new System.EventHandler(this.TsmPurchaseDC_Click);
             // 
@@ -642,7 +643,8 @@ namespace ROMS
             // mastersToolStripMenuItem1
             // 
             this.mastersToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cityToolStripMenuItem});
+            this.cityToolStripMenuItem,
+            this.stateToolStripMenuItem});
             this.mastersToolStripMenuItem1.Name = "mastersToolStripMenuItem1";
             this.mastersToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
             this.mastersToolStripMenuItem1.Text = "Masters";
@@ -653,6 +655,13 @@ namespace ROMS
             this.cityToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.cityToolStripMenuItem.Text = "City";
             this.cityToolStripMenuItem.Click += new System.EventHandler(this.CityToolStripMenuItem_Click);
+            // 
+            // stateToolStripMenuItem
+            // 
+            this.stateToolStripMenuItem.Name = "stateToolStripMenuItem";
+            this.stateToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.stateToolStripMenuItem.Text = "State";
+            this.stateToolStripMenuItem.Click += new System.EventHandler(this.StateToolStripMenuItem_Click_1);
             // 
             // MainForm
             // 
@@ -747,5 +756,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mastersToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem cityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stateToolStripMenuItem;
     }
 }
