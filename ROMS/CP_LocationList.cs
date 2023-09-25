@@ -100,7 +100,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)),0,0,"");
+                objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)),0,0,"",0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -252,6 +252,8 @@ namespace ROMS
                     MainForm.objCP_Location.PbStockApplicable = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Stock Applicable"].Value);
                     MainForm.objCP_Location.PbStatus = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objCP_Location.PbGodownTypeStatus = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["GodownTypeID"].Value);
+                    picLoader.SendToBack();
+                    picLoader.Visible = false;
                     MainForm.objCP_Location.ShowDialog();
                 }
             }

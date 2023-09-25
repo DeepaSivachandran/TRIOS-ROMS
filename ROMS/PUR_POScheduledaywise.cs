@@ -92,6 +92,18 @@ namespace ROMS
                                 grdPOSchedule.Rows[grdPOSchedule.Rows.Count - 1].Cells[1].Value = null;
                             }
                         }
+                        if (objDs.Tables[2].Rows.Count != 0)
+                        {
+                            
+                            if (grdPOSchedule.Rows.Count > 0 && grdPOSchedule.Columns.Count >= 2)
+                            { 
+                                DataGridViewRow lastRow = grdPOSchedule.Rows[grdPOSchedule.Rows.Count - 1]; 
+                                DataGridViewCell beforeLastCell = lastRow.Cells[lastRow.Cells.Count - 2];
+                                beforeLastCell.Value = Convert.ToString(objDs.Tables[2].Rows[0]["SuppCount"].ToString().Replace("''", "'")); ; 
+                                DataGridViewCell lastCell = lastRow.Cells[lastRow.Cells.Count - 1];
+                                lastCell.Value = Convert.ToString(objDs.Tables[2].Rows[0]["ProCount"].ToString().Replace("''", "'")); ;
+                            } 
+                        }
                     }
                 } 
             }

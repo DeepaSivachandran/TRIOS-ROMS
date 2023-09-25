@@ -260,7 +260,7 @@ namespace ROMS
                         else  {  varRackId = varRackId + ',' + Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value); }
                     }
                 }
-                if (varRackId == "")
+                if (grdRackList.Rows.Count>0 && varRackId == "")
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(60);
@@ -290,8 +290,8 @@ namespace ROMS
                                 MainForm.objCP_Items.varBatchCode = Convert.ToInt32(cmbBatchNo.SelectedValue);
                                 MainForm.objCP_Items.varPURSLID = Convert.ToInt32(lblLocation.Text);
                                 MainForm.objCP_Items.varSALESLID = Convert.ToInt32(lblLocation.Text);
-                                MainForm.objCP_Items.varPURRKID = Convert.ToInt32(lblRack.Text);
-                                MainForm.objCP_Items.varSALERKID = Convert.ToInt32(lblRack.Text);
+                                //MainForm.objCP_Items.varPURRKID = Convert.ToInt32(lblRack.Text);
+                                //MainForm.objCP_Items.varSALERKID = Convert.ToInt32(lblRack.Text);
                                 MainForm.objCP_Items.varPurchaseLocation = txtLocation.Text.Trim();
                                 MainForm.objCP_Items.varSalesLocation = txtLocation.Text.Trim();
                                 //MainForm.objCP_Items.varPurchaseRack = txtRack.Text.Trim();
@@ -312,8 +312,7 @@ namespace ROMS
                         {
                             varCloseFlag = 1;
                             udfnclose();
-                        }
-                        MainForm.objCP_SubGroupList.udfnList();
+                        } 
                     }
                     else if (varResult.Split('~')[0] == "4")
                     {
@@ -402,7 +401,7 @@ namespace ROMS
                     string varLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim());
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -1126,7 +1125,7 @@ namespace ROMS
                 if (txtLocation.Text.Length > 0)
                 {
 
-                    objDs = objspdservice.udfnStockLocationList(12, 0, 0,0,txtLocation.Text);
+                    objDs = objspdservice.udfnStockLocationList(12, 0, 0,0,txtLocation.Text, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1212,7 +1211,7 @@ namespace ROMS
                 if (txtLocation.Text != "")
                 {
                     SPDataService objService = new SPDataService();
-                    objRackList = objService.udfnRackList(11, 0, 0, Convert.ToInt32(lblLocation.Text), 0, "");
+                    objRackList = objService.udfnRackList(11, 0, 0, Convert.ToInt32(lblLocation.Text), 0, "", 0);
                     objService.CloseConnection();
                     if (objRackList != null)
                     {
@@ -1248,6 +1247,7 @@ namespace ROMS
                     txtLocation.Text = selectedItem.SubItems[0].Text;
                     lblLocation.Text = selectedItem.SubItems[1].Text;
                     grdRackList.DataSource = null;
+                    dtRackList.Rows.Clear();
                     udfnLoadRackList();
                 }
             }
@@ -1349,6 +1349,8 @@ namespace ROMS
                 txtLocation.Text = varStockLocationName;
                 lblLocation.Text = Convert.ToString(varLocationCode);
                 lvLocation.Visible = false;
+                grdRackList.DataSource = null;
+                dtRackList.Rows.Clear();
                 udfnLoadRackList();
                 grdRackList.Focus();
             }

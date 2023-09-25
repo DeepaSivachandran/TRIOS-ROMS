@@ -181,8 +181,8 @@ namespace ROMS
                 }
                 if (varFormFlag != 0)
                 {
-                    MainForm.objCP_LocationList.picLoader.Visible = false;
-                    MainForm.objCP_LocationList.picLoader.SendToBack();
+                    //MainForm.objCP_LocationList.picLoader.Visible = false;
+                    //MainForm.objCP_LocationList.picLoader.SendToBack();
                 }
             }
             catch (Exception ex)

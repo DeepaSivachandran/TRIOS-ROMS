@@ -68,7 +68,7 @@
             this.tsbNew});
             this.tsBroker.Location = new System.Drawing.Point(0, 0);
             this.tsBroker.Name = "tsBroker";
-            this.tsBroker.Size = new System.Drawing.Size(1352, 27);
+            this.tsBroker.Size = new System.Drawing.Size(1354, 27);
             this.tsBroker.TabIndex = 35;
             this.tsBroker.Text = "Broker";
             // 
@@ -271,7 +271,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(1352, 675);
+            this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.lblNoRecordsFound);
             this.Controls.Add(this.pnlunitlist);
             this.Controls.Add(this.tsBroker);

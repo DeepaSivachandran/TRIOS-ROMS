@@ -142,38 +142,38 @@ namespace ROMS
                     tpGroupNameinTamil.Show("Please enter company name", txtCompanyName, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtPhonenumber.Text.Trim() == "")
-                {
-                    epGroup.SetError(txtPhonenumber, "Please enter phone No.");
-                    txtPhonenumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpphone.ShowAlways = true;
-                    tpphone.Show("Please enter phone No.", txtPhonenumber, 5000);
-                    blnErrorFlag = true;
-                }
-                if (txtPhonenumber.Text.Length != 10)
-                {
-                    epGroup.SetError(txtPhonenumber, "Please enter valid phone No.");
-                    txtPhonenumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpphone.ShowAlways = true;
-                    tpphone.Show("Please enter valid phone No.", txtPhonenumber, 5000);
-                    blnErrorFlag = true;
-                }
-                if (txtWhatsappno.Text.Trim() == "")
-                {
-                    epGroup.SetError(txtWhatsappno, "Please enter whatsapp No.");
-                    txtWhatsappno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpwhatsapp.ShowAlways = true;
-                    tpwhatsapp.Show("Please enter phone No.", txtWhatsappno, 5000);
-                    blnErrorFlag = true;
-                }
-                if (txtWhatsappno.Text.Length != 10)
-                {
-                    epGroup.SetError(txtWhatsappno, "Please enter valid whatsapp No.");
-                    txtWhatsappno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpwhatsapp.ShowAlways = true;
-                    tpwhatsapp.Show("Please enter valid whatsapp No.", txtWhatsappno, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (txtPhonenumber.Text.Trim() == "")
+                //{
+                //    epGroup.SetError(txtPhonenumber, "Please enter phone No.");
+                //    txtPhonenumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpphone.ShowAlways = true;
+                //    tpphone.Show("Please enter phone No.", txtPhonenumber, 5000);
+                //    blnErrorFlag = true;
+                //}
+                //if (txtPhonenumber.Text.Length != 10)
+                //{
+                //    epGroup.SetError(txtPhonenumber, "Please enter valid phone No.");
+                //    txtPhonenumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpphone.ShowAlways = true;
+                //    tpphone.Show("Please enter valid phone No.", txtPhonenumber, 5000);
+                //    blnErrorFlag = true;
+                //}
+                //if (txtWhatsappno.Text.Trim() == "")
+                //{
+                //    epGroup.SetError(txtWhatsappno, "Please enter whatsapp No.");
+                //    txtWhatsappno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpwhatsapp.ShowAlways = true;
+                //    tpwhatsapp.Show("Please enter phone No.", txtWhatsappno, 5000);
+                //    blnErrorFlag = true;
+                //}
+                //if (txtWhatsappno.Text.Length != 10)
+                //{
+                //    epGroup.SetError(txtWhatsappno, "Please enter valid whatsapp No.");
+                //    txtWhatsappno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpwhatsapp.ShowAlways = true;
+                //    tpwhatsapp.Show("Please enter valid whatsapp No.", txtWhatsappno, 5000);
+                //    blnErrorFlag = true;
+                //}
 
                 if (blnErrorFlag == false)
                 {
@@ -238,30 +238,40 @@ namespace ROMS
                     }
 
                 }
-                if (btnSave.Text == "Save")
+                if (Varbrandid != "")
                 {
-                    result = objspdservice.udfnRepMaster(0,0, Convert.ToString(txtRepName.Text).Trim(),txtCompanyName.Text,txtPhonenumber.Text,txtWhatsappno.Text,Varbrandid,varStatus, "representative Create");
-                }
-                else
-                {
-                    result = objspdservice.udfnRepMaster(1, Convert.ToInt32(varrepid), Convert.ToString(txtRepName.Text).Trim(), txtCompanyName.Text, txtPhonenumber.Text, txtWhatsappno.Text, Varbrandid, varStatus, "representative Create");
-                }
-                string[] varvalue = result.Split('~');
-                if (varvalue[0] == "3")
-                {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objCP_RepresentativeList.udfnlist();
-                    objspdservice.CloseConnection();
-                    txtCompanyName.Focus();
-                    if (btnSave.Text == "Update")
+                    if (btnSave.Text == "Save")
                     {
-                        varupdate = "1";
-                        udfnclose();
+                        result = objspdservice.udfnRepMaster(0, 0, Convert.ToString(txtRepName.Text).Trim(), txtCompanyName.Text, txtPhonenumber.Text, txtWhatsappno.Text, Varbrandid, varStatus, "representative Create");
                     }
-                    udfnClear();
+                    else
+                    {
+                        result = objspdservice.udfnRepMaster(1, Convert.ToInt32(varrepid), Convert.ToString(txtRepName.Text).Trim(), txtCompanyName.Text, txtPhonenumber.Text, txtWhatsappno.Text, Varbrandid, varStatus, "representative Create");
+                    }
+                    string[] varvalue = result.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainForm.objCP_RepresentativeList.udfnlist();
+                        objspdservice.CloseConnection();
+                        txtCompanyName.Focus();
+                        if (btnSave.Text == "Update")
+                        {
+                            varupdate = "1";
+                            udfnclose();
+                        }
+                        udfnClear();
+                    }
+                    else
+                    { MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                 }
                 else
-                {  MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);  } 
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(61);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
             {
@@ -780,18 +790,18 @@ namespace ROMS
                     }
                 }
 
-               else if (txtPhonenumber.Text.Trim() == "")
-                {
-                    epGroup.SetError(txtPhonenumber, "Please enter rep phone No.");
-                    txtPhonenumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpGroupNameinEnglish.ShowAlways = true;
-                    tpGroupNameinEnglish.Show("Please enter rep phone No.", txtPhonenumber, 5000);
-                }
-                else
-                {
-                    epGroup.Clear();
-                    txtPhonenumber.BackColor = Color.White;
-                }
+               //else if (txtPhonenumber.Text.Trim() == "")
+               // {
+               //     epGroup.SetError(txtPhonenumber, "Please enter rep phone No.");
+               //     txtPhonenumber.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+               //     tpGroupNameinEnglish.ShowAlways = true;
+               //     tpGroupNameinEnglish.Show("Please enter rep phone No.", txtPhonenumber, 5000);
+               // }
+               // else
+               // {
+               //     epGroup.Clear();
+               //     txtPhonenumber.BackColor = Color.White;
+               // }
             }
             catch (Exception ex)
             {
@@ -819,18 +829,18 @@ namespace ROMS
                         txtWhatsappno.BackColor = Color.White;
                     }
                 }
-                else if (txtWhatsappno.Text.Trim() == "")
-                {
-                    epGroup.SetError(txtWhatsappno, "Please enter rep whatsapp No.");
-                    txtWhatsappno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpGroupNameinEnglish.ShowAlways = true;
-                    tpGroupNameinEnglish.Show("Please enter rep whatsapp No.", txtWhatsappno, 5000);
-                }
-                else
-                {
-                    epGroup.Clear();
-                    txtWhatsappno.BackColor = Color.White;
-                }
+                //else if (txtWhatsappno.Text.Trim() == "")
+                //{
+                //    epGroup.SetError(txtWhatsappno, "Please enter rep whatsapp No.");
+                //    txtWhatsappno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpGroupNameinEnglish.ShowAlways = true;
+                //    tpGroupNameinEnglish.Show("Please enter rep whatsapp No.", txtWhatsappno, 5000);
+                //}
+                //else
+                //{
+                //    epGroup.Clear();
+                //    txtWhatsappno.BackColor = Color.White;
+                //}
             }
             catch (Exception ex)
             {

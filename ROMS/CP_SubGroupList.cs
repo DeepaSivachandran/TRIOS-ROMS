@@ -141,38 +141,46 @@ namespace ROMS
                     }
                 }
                 lblGroupCode.Text = Convert.ToString(varId_Group);
-                string varId_PurLocation = "0";
-                DataSet objDsPurLoc = new DataSet();
-                SPDataService objDServ3 = new SPDataService();
-                objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim());
-                objDServ3.CloseConnection();
-                if (objDsPurLoc != null)
+                if (txtStockLocation.Text.Trim() == "") { lblSLCode.Text = "0"; }
+                else
                 {
-                    if (objDsPurLoc.Tables.Count > 0)
+                    string varId_PurLocation = "0";
+                    DataSet objDsPurLoc = new DataSet();
+                    SPDataService objDServ3 = new SPDataService();
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(),0);
+                    objDServ3.CloseConnection();
+                    if (objDsPurLoc != null)
                     {
-                        if (objDsPurLoc.Tables[0].Rows.Count > 0)
+                        if (objDsPurLoc.Tables.Count > 0)
                         {
-                            varId_PurLocation = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
+                            if (objDsPurLoc.Tables[0].Rows.Count > 0)
+                            {
+                                varId_PurLocation = Convert.ToString(objDsPurLoc.Tables[0].Rows[0][0]);
+                            }
                         }
                     }
+                    lblSLCode.Text = Convert.ToString(varId_PurLocation);
                 }
-                lblSLCode.Text = Convert.ToString(varId_PurLocation);
-                string varId_PurRack = "0";
-                DataSet objDsPurRack = new DataSet();
-                SPDataService objDServ4 = new SPDataService();
-                objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtSaleRack.Text.Trim());
-                objDServ4.CloseConnection();
-                if (objDsPurRack != null)
+                if (txtSaleRack.Text.Trim() == "") { lblRkCode.Text = "0"; }
+                else
                 {
-                    if (objDsPurRack.Tables.Count > 0)
+                    string varId_PurRack = "0";
+                    DataSet objDsPurRack = new DataSet();
+                    SPDataService objDServ4 = new SPDataService();
+                    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtSaleRack.Text.Trim(),0);
+                    objDServ4.CloseConnection();
+                    if (objDsPurRack != null)
                     {
-                        if (objDsPurRack.Tables[0].Rows.Count > 0)
+                        if (objDsPurRack.Tables.Count > 0)
                         {
-                            varId_PurRack = Convert.ToString(objDsPurRack.Tables[0].Rows[0][0]);
+                            if (objDsPurRack.Tables[0].Rows.Count > 0)
+                            {
+                                varId_PurRack = Convert.ToString(objDsPurRack.Tables[0].Rows[0][0]);
+                            }
                         }
                     }
+                    lblRkCode.Text = Convert.ToString(varId_PurRack);
                 }
-                lblRkCode.Text = Convert.ToString(varId_PurRack);
                 objDs = objdserv.udfnSubGroupList(0, varSubGroupId,"",Convert.ToInt32(lblGroupCode.Text),0,"",Convert.ToInt32(cmbStatus.SelectedValue),Convert.ToInt32(cmbBatchNoEntry.SelectedValue),Convert.ToInt32(lblSLCode.Text),Convert.ToInt32(lblRkCode.Text));
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -1268,7 +1276,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStockLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(13, 0, 0, 0, txtStockLocation.Text.Trim());
+                    objDs = objspdservice.udfnStockLocationList(13, 0, 0, 0, txtStockLocation.Text.Trim(), 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1365,7 +1373,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSaleRack.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnRackList(8, 0, 0, Convert.ToInt32(lblSLCode.Text), 0, txtSaleRack.Text.Trim());
+                    objDs = objspdservice.udfnRackList(8, 0, 0, Convert.ToInt32(lblSLCode.Text), 0, txtSaleRack.Text.Trim(), 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
