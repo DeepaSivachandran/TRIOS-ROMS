@@ -102,7 +102,7 @@
             this.grpfilter.Controls.Add(this.lblStatus);
             this.grpfilter.Location = new System.Drawing.Point(12, 2);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(193, 84);
+            this.grpfilter.Size = new System.Drawing.Size(269, 58);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
@@ -112,11 +112,12 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.print;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(141, 42);
+            this.btnListPrint.Location = new System.Drawing.Point(192, 16);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
-            this.btnListPrint.Size = new System.Drawing.Size(33, 33);
+            this.btnListPrint.Size = new System.Drawing.Size(70, 33);
             this.btnListPrint.TabIndex = 1111177;
+            this.btnListPrint.Text = "Print";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
             this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
@@ -126,7 +127,7 @@
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(9, 45);
+            this.cmbStatus.Location = new System.Drawing.Point(60, 19);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(126, 27);
             this.cmbStatus.TabIndex = 1;
@@ -165,9 +166,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 93);
+            this.picLoader.Location = new System.Drawing.Point(3, 66);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1351, 549);
+            this.picLoader.Size = new System.Drawing.Size(1351, 576);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958790;
             this.picLoader.TabStop = false;
@@ -178,10 +179,10 @@
             this.RPTViewer.ActiveViewIndex = -1;
             this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(3, 93);
+            this.RPTViewer.Location = new System.Drawing.Point(3, 66);
             this.RPTViewer.Name = "RPTViewer";
             this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1348, 546);
+            this.RPTViewer.Size = new System.Drawing.Size(1348, 573);
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
