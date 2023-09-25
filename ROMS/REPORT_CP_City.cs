@@ -125,11 +125,12 @@ namespace ROMS
                 RPTViewer.ReuseParameterValuesOnRefresh = true;
                 RPTViewer.RefreshReport();
                 CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                //int varlanguage = 0;string varlblsupplierprint = "0";
+                
                 
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_City.rpt");
                 objBillreport.SetParameterValue("paraStatus ", Convert.ToInt32(cmbStatus.SelectedValue));
+                objBillreport.SetParameterValue("status", Convert.ToString(cmbStatus.SelectedText));
                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                 objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
