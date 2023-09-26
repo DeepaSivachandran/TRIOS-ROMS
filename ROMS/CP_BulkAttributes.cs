@@ -152,7 +152,7 @@ namespace ROMS
                 objDSSubGroup = objDServ.udfnSubGroupList(0,0,"",0,0,"",0,0,0,0);
                 objDSBrand = objDServ.udfnBrandList(0,"",0,0,0,"");
                 objDSLocation = objDServ.udfnStockLocationList(17,0,0,0,"",0);
-                objDSRack = objDServ.udfnRackList(0,0,0,0,0,"");
+                objDSRack = objDServ.udfnRackList(0,0,0,0,0,"",0);
 
                 objDSShelfLifeType = objDServ.udfnMaster(0, 6);
                 objDSQTYUnit = objDServ.udfnMaster(2, 0);
@@ -940,6 +940,7 @@ namespace ROMS
                                 grdLoction.Columns["Sales_SLID-Old"].Visible = false;
                                 grdLoction.Columns["Pur_RKID-Old"].Visible = false;
                                 grdLoction.Columns["Sales_RKID-Old"].Visible = false;
+                                grdLoction.Columns["PRSGID"].Visible = false;
 
                                 grdLoction.Columns["S.No."].Width = 50;
                                 grdLoction.Columns["Product Name in Tamil"].Width = 270;
