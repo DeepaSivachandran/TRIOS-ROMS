@@ -3354,7 +3354,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtBrand.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnBrandList(6,"0",0,0,0,txtBrand.Text.Trim());
+                    objDs = objspdservice.udfnBrandList(6,"0",0,Convert.ToInt32(lblSubGroupCode.Text),0,txtBrand.Text.Trim());
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
