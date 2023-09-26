@@ -35,6 +35,8 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.pnlReportCompany = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.btnListPrint = new System.Windows.Forms.Button();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblCompany = new System.Windows.Forms.Label();
@@ -42,8 +44,6 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.ep_Company = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.lblStatus = new System.Windows.Forms.Label();
             this.ReportCompany.SuspendLayout();
             this.pnlReportCompany.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -110,6 +110,29 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(257, 19);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(126, 27);
+            this.cmbStatus.TabIndex = 1111178;
+            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
+            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
+            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
+            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
+            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(206, 22);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(45, 20);
+            this.lblStatus.TabIndex = 1111179;
+            this.lblStatus.Text = "Status";
             // 
             // btnListPrint
             // 
@@ -194,24 +217,6 @@
             // ep_Company
             // 
             this.ep_Company.ContainerControl = this;
-            // 
-            // cmbStatus
-            // 
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(257, 19);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(126, 27);
-            this.cmbStatus.TabIndex = 1111178;
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(206, 22);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(45, 20);
-            this.lblStatus.TabIndex = 1111179;
-            this.lblStatus.Text = "Status";
             // 
             // REPORT_CP_Company
             // 
