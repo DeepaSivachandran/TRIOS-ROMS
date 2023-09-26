@@ -97,6 +97,7 @@ namespace ROMS
             this.cityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hSNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -135,7 +136,7 @@ namespace ROMS
             this.ms.Location = new System.Drawing.Point(0, 0);
             this.ms.Name = "ms";
             this.ms.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.ms.Size = new System.Drawing.Size(1275, 28);
+            this.ms.Size = new System.Drawing.Size(1275, 25);
             this.ms.TabIndex = 112;
             this.ms.Text = "ms";
             // 
@@ -146,7 +147,7 @@ namespace ROMS
             this.tsbLogo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbLogo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbLogo.Name = "tsbLogo";
-            this.tsbLogo.Size = new System.Drawing.Size(12, 24);
+            this.tsbLogo.Size = new System.Drawing.Size(12, 21);
             this.tsbLogo.Text = "Logo";
             // 
             // tsmpurchase
@@ -160,7 +161,7 @@ namespace ROMS
             this.tsmpurchase.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmpurchase.Name = "tsmpurchase";
             this.tsmpurchase.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
-            this.tsmpurchase.Size = new System.Drawing.Size(63, 24);
+            this.tsmpurchase.Size = new System.Drawing.Size(63, 21);
             this.tsmpurchase.Text = "&Purchase";
             // 
             // tsmpurchaseSupplier
@@ -206,7 +207,7 @@ namespace ROMS
             this.tsmpurchaseApprove});
             this.tsmAccounts.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmAccounts.Name = "tsmAccounts";
-            this.tsmAccounts.Size = new System.Drawing.Size(63, 24);
+            this.tsmAccounts.Size = new System.Drawing.Size(63, 21);
             this.tsmAccounts.Text = "Accounts";
             // 
             // tsmPurchaseEntry1
@@ -247,7 +248,7 @@ namespace ROMS
             this.inventoryToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
             this.inventoryToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.I)));
-            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
             this.inventoryToolStripMenuItem.Text = "&Inventory";
             // 
             // tsmrackSettings
@@ -333,7 +334,7 @@ namespace ROMS
             this.paymentToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
             this.paymentToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
-            this.paymentToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
+            this.paymentToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
             this.paymentToolStripMenuItem.Text = "&Finance";
             // 
             // supplierPaymentToolStripMenuItem
@@ -366,7 +367,7 @@ namespace ROMS
             this.lblDb.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblDb.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
             this.lblDb.ShowShortcutKeys = false;
-            this.lblDb.Size = new System.Drawing.Size(12, 24);
+            this.lblDb.Size = new System.Drawing.Size(12, 21);
             this.lblDb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblDb.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -378,7 +379,7 @@ namespace ROMS
             this.tsDLogo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsDLogo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsDLogo.Name = "tsDLogo";
-            this.tsDLogo.Size = new System.Drawing.Size(12, 24);
+            this.tsDLogo.Size = new System.Drawing.Size(12, 21);
             this.tsDLogo.Text = "Logo";
             // 
             // lblTimeValue
@@ -389,7 +390,7 @@ namespace ROMS
             this.lblTimeValue.Name = "lblTimeValue";
             this.lblTimeValue.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
             this.lblTimeValue.ShowShortcutKeys = false;
-            this.lblTimeValue.Size = new System.Drawing.Size(12, 24);
+            this.lblTimeValue.Size = new System.Drawing.Size(12, 21);
             this.lblTimeValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblTimeValue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -402,7 +403,7 @@ namespace ROMS
             this.lblTime.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblTime.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
             this.lblTime.ShowShortcutKeys = false;
-            this.lblTime.Size = new System.Drawing.Size(12, 24);
+            this.lblTime.Size = new System.Drawing.Size(12, 21);
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblTime.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -430,7 +431,7 @@ namespace ROMS
             this.mastersToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mastersToolStripMenuItem.Name = "mastersToolStripMenuItem";
             this.mastersToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
-            this.mastersToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
+            this.mastersToolStripMenuItem.Size = new System.Drawing.Size(58, 21);
             this.mastersToolStripMenuItem.Text = "Ma&sters";
             // 
             // tsmCity
@@ -571,7 +572,7 @@ namespace ROMS
             this.tsmControlPanel.Name = "tsmControlPanel";
             this.tsmControlPanel.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.C)));
             this.tsmControlPanel.ShowShortcutKeys = false;
-            this.tsmControlPanel.Size = new System.Drawing.Size(85, 24);
+            this.tsmControlPanel.Size = new System.Drawing.Size(85, 21);
             this.tsmControlPanel.Text = "&Control Panel";
             this.tsmControlPanel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -614,7 +615,7 @@ namespace ROMS
             this.tsmMyProfile.Name = "tsmMyProfile";
             this.tsmMyProfile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
             this.tsmMyProfile.ShowShortcutKeys = false;
-            this.tsmMyProfile.Size = new System.Drawing.Size(68, 24);
+            this.tsmMyProfile.Size = new System.Drawing.Size(68, 21);
             this.tsmMyProfile.Text = "&My Profile";
             this.tsmMyProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsmMyProfile.Click += new System.EventHandler(this.tsbLogout_Click);
@@ -622,14 +623,14 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
@@ -637,8 +638,9 @@ namespace ROMS
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mastersToolStripMenuItem1});
+            this.reportToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(52, 21);
             this.reportToolStripMenuItem.Text = "Report";
             // 
             // mastersToolStripMenuItem1
@@ -646,31 +648,39 @@ namespace ROMS
             this.mastersToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cityToolStripMenuItem,
             this.stateToolStripMenuItem,
-            this.companyToolStripMenuItem});
+            this.companyToolStripMenuItem,
+            this.hSNToolStripMenuItem});
             this.mastersToolStripMenuItem1.Name = "mastersToolStripMenuItem1";
-            this.mastersToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.mastersToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.mastersToolStripMenuItem1.Text = "Masters";
             // 
             // cityToolStripMenuItem
             // 
             this.cityToolStripMenuItem.Name = "cityToolStripMenuItem";
-            this.cityToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.cityToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cityToolStripMenuItem.Text = "City";
             this.cityToolStripMenuItem.Click += new System.EventHandler(this.CityToolStripMenuItem_Click);
             // 
             // stateToolStripMenuItem
             // 
             this.stateToolStripMenuItem.Name = "stateToolStripMenuItem";
-            this.stateToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.stateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.stateToolStripMenuItem.Text = "State";
             this.stateToolStripMenuItem.Click += new System.EventHandler(this.StateToolStripMenuItem_Click_1);
             // 
             // companyToolStripMenuItem
             // 
             this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
-            this.companyToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.companyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.companyToolStripMenuItem.Text = "Company";
             this.companyToolStripMenuItem.Click += new System.EventHandler(this.CompanyToolStripMenuItem_Click);
+            // 
+            // hSNToolStripMenuItem
+            // 
+            this.hSNToolStripMenuItem.Name = "hSNToolStripMenuItem";
+            this.hSNToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hSNToolStripMenuItem.Text = "HSN";
+            this.hSNToolStripMenuItem.Click += new System.EventHandler(this.HSNToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -767,5 +777,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem cityToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem companyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hSNToolStripMenuItem;
     }
 }

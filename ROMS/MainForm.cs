@@ -153,7 +153,8 @@ namespace ROMS
 
         public static REPORT_CP_City objREPORT_CP_City;
         public static REPORT_CP_State objREPORT_CP_State;
-        public static REPORT_CP_Company objREPORT_CP_Companny;
+        public static REPORT_CP_Company objREPORT_CP_Company;
+        public static REPORT_CP_HSN objREPORT_CP_HSN;
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -1274,9 +1275,26 @@ namespace ROMS
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objREPORT_CP_Companny = new REPORT_CP_Company();
-                MainForm.objREPORT_CP_Companny.MdiParent = this;
-                MainForm.objREPORT_CP_Companny.Show();
+                MainForm.objREPORT_CP_Company = new REPORT_CP_Company();
+                MainForm.objREPORT_CP_Company.MdiParent = this;
+                MainForm.objREPORT_CP_Company.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void HSNToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_HSN = new REPORT_CP_HSN();
+                MainForm.objREPORT_CP_HSN.MdiParent = this;
+                MainForm.objREPORT_CP_HSN.Show();
             }
             catch (Exception ex)
             {

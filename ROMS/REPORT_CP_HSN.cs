@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class REPORT_CP_State : Form
+    public partial class REPORT_CP_HSN : Form
     {
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-        public REPORT_CP_State()
+        public REPORT_CP_HSN()
         {
             InitializeComponent();
         }
@@ -55,7 +55,7 @@ namespace ROMS
         {
             try
             {
-                cmbStatus.BackColor = Color.White;
+                cmbReportType.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -69,7 +69,7 @@ namespace ROMS
         {
             try
             {
-                cmbStatus.BackColor = Color.LemonChiffon;
+                cmbReportType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -83,7 +83,7 @@ namespace ROMS
         {
             try
             {
-                BeginInvoke(new Action(() => cmbStatus.Select(int.MaxValue, 0)));
+                BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
             }
             catch (Exception ex)
             {
@@ -128,9 +128,9 @@ namespace ROMS
                 
                 
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_State.rpt");
-                objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
-                objBillreport.SetParameterValue("status", Convert.ToString(cmbStatus.Text));
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Master.rpt");
+                objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbReportType.SelectedValue));
+                objBillreport.SetParameterValue("status", Convert.ToString(cmbReportType.Text));
                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                 objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -151,9 +151,9 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,35) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
-                cmbStatus.SelectedValue = 0;
+                cmbReportType.SelectedValue = -1;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
