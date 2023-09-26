@@ -3447,10 +3447,13 @@ namespace ROMS
                     lblGroupCode.Text = selectedItem.SubItems[5].Text;
                     txtPurLocation.Text = selectedItem.SubItems[7].Text;
                     lblPurLocationCode.Text = selectedItem.SubItems[6].Text;
+                    lblPurRackCode.Text = selectedItem.SubItems[8].Text;
+                    txtPurRack.Text = selectedItem.SubItems[9].Text;
                     string varbatchenable = selectedItem.SubItems[3].Text;
                     txtGroup.Focus();
                     lvSubGroup.Visible = false;
                     lvPurLocation.Visible = false;
+                    lvPurRack.Visible = false;
                     if (varbatchenable == "72")
                     {
                         cmbBatchNoEntry.SelectedValue = 72;
@@ -3671,7 +3674,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_EName"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString(), objDs.Tables[0].Rows[i]["RackName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvSubGroup.Items.Add(objList);
                                 }
@@ -4016,7 +4019,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSaleLocation.Focus();
+                    cmbBatchNoEntry.Focus();
                 }
             }
             catch (Exception ex)
