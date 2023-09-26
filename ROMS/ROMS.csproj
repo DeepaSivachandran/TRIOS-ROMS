@@ -211,6 +211,45 @@
     <Compile Include="CP_Employee.designer.cs">
       <DependentUpon>CP_Employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Company.cs">
+      <DependentUpon>RPT_CP_Company.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_State.cs">
+      <DependentUpon>RPT_CP_State.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_City.cs">
+      <DependentUpon>RPT_CP_City.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="REPORT_CP_Company.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_CP_Company.designer.cs">
+      <DependentUpon>REPORT_CP_Company.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_CP_State.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_CP_State.designer.cs">
+      <DependentUpon>REPORT_CP_State.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_CP_City.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_CP_City.designer.cs">
+      <DependentUpon>REPORT_CP_City.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportLoad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1234,6 +1273,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseOrder.resx">
       <DependentUpon>PUR_PurchaseOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Reports\RPT_CP_City.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_City.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_State.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_State.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Company.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Company.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="REPORT_CP_Company.resx">
+      <DependentUpon>REPORT_CP_Company.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_CP_State.resx">
+      <DependentUpon>REPORT_CP_State.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_CP_City.resx">
+      <DependentUpon>REPORT_CP_City.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_SupplierScheduleList.resx">
       <DependentUpon>PUR_SupplierScheduleList.cs</DependentUpon>

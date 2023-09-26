@@ -299,6 +299,7 @@ namespace ROMS
                         tpRack.ShowAlways = true;
                         tpRack.Show("Please select valid rack", txtRack, 5000);
                         grdViewSupplierMapping.DataSource = null;
+                        dtViewSupplierMapping.Rows.Clear();
                         txtRack.Focus();
                         blnErrorFlag = true;
                     }
@@ -334,6 +335,8 @@ namespace ROMS
                     {
                         grdSupplierMapping.DataSource = null;
                         grdViewSupplierMapping.DataSource = null;
+                        dtViewSupplierMapping.Rows.Clear();
+                        dtSupplierMapping.Rows.Clear();
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(59);
                         objDServ.CloseConnection();
@@ -447,12 +450,16 @@ namespace ROMS
                         varUpdate = 1; 
                         grdViewSupplierMapping.DataSource=null;
                         grdSupplierMapping.DataSource = null;
+                        dtSupplierMapping.Rows.Clear();
+                        dtViewSupplierMapping.Rows.Clear();
                         udfnclose();
                     }
                     else
                     {
                         grdViewSupplierMapping.DataSource = null;
                         grdSupplierMapping.DataSource = null;
+                        dtSupplierMapping.Rows.Clear();
+                        dtViewSupplierMapping.Rows.Clear();
                     }
                     udfnclear();
                 }
@@ -2089,6 +2096,7 @@ namespace ROMS
                         tpRack.ShowAlways = true;
                         tpRack.Show("Please select valid rack", txtRack, 5000);
                         grdViewSupplierMapping.DataSource = null;
+                        dtViewSupplierMapping.Rows.Clear();
                         txtRack.Focus();
                         blnErrorFlag = true;
                     }
@@ -2124,6 +2132,8 @@ namespace ROMS
                     {
                         grdSupplierMapping.DataSource = null;
                         grdViewSupplierMapping.DataSource = null;
+                        dtSupplierMapping.Rows.Clear();
+                        dtViewSupplierMapping.Rows.Clear();
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(59);
                         objDServ.CloseConnection();
@@ -2393,6 +2403,7 @@ namespace ROMS
                         tppRack.ShowAlways = true;
                         tppRack.Show("Please select valid rack", txtDRack, 5000);
                         grdViewProduct.DataSource = null;
+                        //dtViewProduct.Rows.Clear();
                         blnErrorFlag = true;
                     }
                 }
@@ -2422,6 +2433,7 @@ namespace ROMS
                     else
                     {
                         grdViewProduct.DataSource = null;
+                        //dtViewProduct.Rows.Clear();
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(59);
                         objDServ.CloseConnection();
@@ -3516,12 +3528,16 @@ namespace ROMS
                         varUpdate = 1;
                         grdMoveProduct.DataSource = null;
                         grdViewProduct.DataSource = null;
+                        //dtMoveProduct.Rows.Clear();
+                        //dtViewProduct.Rows.Clear();
                         udfnclose();
                     }
                     else
                     {
                         grdMoveProduct.DataSource = null;
                         grdViewProduct.DataSource = null;
+                        //dtMoveProduct.Rows.Clear();
+                        //dtViewProduct.Rows.Clear();
                     }
                     udfnclear();
                 }
@@ -3988,13 +4004,13 @@ namespace ROMS
                 if (varRackCount != 0)
                 {
                     grdMoveProduct.DataSource = null;
-                    dtMoveProduct.Rows.Clear();
+                    //dtMoveProduct.Rows.Clear();
                     udfnMove(Convert.ToInt32(lblMoveLocation.Text), Convert.ToInt32(lblMoveRack.Text));
                 }
                 else
                 {
                     grdMoveProduct.DataSource = null;
-                    dtMoveProduct.Rows.Clear();
+                    //dtMoveProduct.Rows.Clear();
                 }
 
 
