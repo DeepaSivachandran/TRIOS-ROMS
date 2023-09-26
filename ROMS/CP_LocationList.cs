@@ -252,6 +252,8 @@ namespace ROMS
                     MainForm.objCP_Location.PbStockApplicable = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Stock Applicable"].Value);
                     MainForm.objCP_Location.PbStatus = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objCP_Location.PbGodownTypeStatus = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["GodownTypeID"].Value);
+                    picLoader.SendToBack();
+                    picLoader.Visible = false;
                     MainForm.objCP_Location.ShowDialog();
                 }
             }

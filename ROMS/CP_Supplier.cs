@@ -5339,6 +5339,7 @@ namespace ROMS
                 //    tpsalemanph.Show("Please enter salesman mobile No.", txtsalesmanmobile, 5000);
                 //    blnErrorFlag = true;
                 //}
+                //grdSupplierList.SelectedRows[0].Cells["clmsno"].Value.ToString()
                 if (blnErrorFlag == false)
                 {
                     if (btnAdd.Text == "Save")
@@ -5346,6 +5347,25 @@ namespace ROMS
                         foreach (DataGridViewRow row in grdSupplierList.Rows)
                         {
                             if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                            {
+                                string gridValue1 = row.Cells[5].Value.ToString();
+                                string gridValue2 = row.Cells[1].Value.ToString();
+
+                                if (gridValue1 == Convert.ToString(cmbOrderType.Text))
+                                {
+                                    varflag = 1;
+                                }
+                                if (gridValue2 == txtScheduleName.Text)
+                                {
+                                    varflag = 2;
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        foreach (DataGridViewRow row in grdSupplierList.Rows)
+                        {
+                            if (row.Cells[0].Value != null && Convert.ToString(row.Cells[0].Value) != Convert.ToString(grdSupplierList.SelectedRows[0].Cells["clmsno"].Value) && row.Cells[1].Value != null)
                             {
                                 string gridValue1 = row.Cells[5].Value.ToString();
                                 string gridValue2 = row.Cells[1].Value.ToString();

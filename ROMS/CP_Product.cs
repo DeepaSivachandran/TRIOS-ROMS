@@ -493,7 +493,7 @@ namespace ROMS
                     string varId_PurRack = "0";
                     DataSet objDsPurRack = new DataSet();
                     SPDataService objDServ4 = new SPDataService();
-                    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtPurRack.Text.Trim());
+                    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtPurRack.Text.Trim(), 0);
                     objDServ4.CloseConnection();
                     if (objDsPurRack != null)
                     {
@@ -549,7 +549,7 @@ namespace ROMS
                     string varId_SaleRack = "0";
                     DataSet objDsSaleRack = new DataSet();
                     SPDataService objDServ6 = new SPDataService();
-                    objDsSaleRack = objDServ6.udfnRackList(9, 0, 0, 0, 0, txtSaleRack.Text.Trim());
+                    objDsSaleRack = objDServ6.udfnRackList(9, 0, 0, 0, 0, txtSaleRack.Text.Trim(), 0);
                     objDServ6.CloseConnection();
                     if (objDsSaleRack != null)
                     {
@@ -577,7 +577,7 @@ namespace ROMS
                     string varId_PurchaseRack = "0";
                     DataSet objDsPurchaseRack = new DataSet();
                     SPDataService objDServ6 = new SPDataService();
-                    objDsPurchaseRack = objDServ6.udfnRackList(12, 0, 0, Convert.ToInt32(lblPurLocationCode.Text), 0, txtPurRack.Text.Trim());
+                    objDsPurchaseRack = objDServ6.udfnRackList(12, 0, 0, Convert.ToInt32(lblPurLocationCode.Text), 0, txtPurRack.Text.Trim(), Convert.ToInt32(lblSubGroupCode.Text));
                     objDServ6.CloseConnection();
                     if (objDsPurchaseRack != null)
                     {
@@ -589,7 +589,7 @@ namespace ROMS
                             }
                         }
                     } 
-                    if (varId_PurchaseRack != "0" && lblPurRackCode.Text=="0")
+                    if (varId_PurchaseRack != "0" && txtPurRack.Text=="")
                     {
                         errItems.SetError(txtPurRack, "Please select Purchase rack");
                         txtPurRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -3354,7 +3354,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtBrand.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnBrandList(6,"0",0,0,0,txtBrand.Text.Trim());
+                    objDs = objspdservice.udfnBrandList(6,"0",0,Convert.ToInt32(lblSubGroupCode.Text),0,txtBrand.Text.Trim());
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -4052,7 +4052,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtPurRack.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnRackList(7,0,0,Convert.ToInt32(lblPurLocationCode.Text),0,txtPurRack.Text.Trim());
+                    objDs = objspdservice.udfnRackList(13,0,0,Convert.ToInt32(lblPurLocationCode.Text),0,txtPurRack.Text.Trim(),Convert.ToInt32(lblSubGroupCode.Text));
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -4259,7 +4259,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSaleRack.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnRackList(7, 0, 0, Convert.ToInt32(lblSaleLocationCode.Text), 0, txtSaleRack.Text.Trim());
+                    objDs = objspdservice.udfnRackList(7, 0, 0, Convert.ToInt32(lblSaleLocationCode.Text), 0, txtSaleRack.Text.Trim(), 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

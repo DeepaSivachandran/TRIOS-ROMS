@@ -91,7 +91,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRackList(0, (Convert.ToInt16(cmbGroupType.SelectedValue)),0,0,0,"");
+                objDs = objspservice.udfnRackList(0, (Convert.ToInt16(cmbGroupType.SelectedValue)),0,0,0,"", 0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -262,6 +262,8 @@ namespace ROMS
                     MainForm.objCP_Rack.PbConcern = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Concern"].Value);
                     MainForm.objCP_Rack.PbStockLocation = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Stock Location"].Value);
                     MainForm.objCP_Rack.PbStatus = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["StatusID"].Value);
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
                     MainForm.objCP_Rack.ShowDialog();
                 }
             }
