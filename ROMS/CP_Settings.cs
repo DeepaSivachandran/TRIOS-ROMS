@@ -631,7 +631,7 @@ namespace ROMS
                 else
                 {
                     SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(65);
+                    string varMessage = objDServ.udfnGetMessages(63);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -681,9 +681,64 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnSave()
+        {
+            try
+            {
+                string result = "";
+                SPDataService objspdservice = new SPDataService();
+                DataTable objSettings = new DataTable();
+                objSettings.TableName = "[MR_VoucherSettings]";
+                objSettings.Columns.Add("STG_COMID", typeof(int));
+                objSettings.Columns.Add("STG_TransactionType", typeof(int));
+                objSettings.Columns.Add("STG_Prefix", typeof(string));
+                objSettings.Columns.Add("STG_Sufix", typeof(string));
+                objSettings.Columns.Add("STG_StartingNo", typeof(int));
+                objSettings.Columns.Add("STG_NoOfDigit", typeof(int));
+                objSettings.Columns.Add("STG_ResetOn", typeof(int));
+
+                for (int i = 0; i < grdSettings.Rows.Count; i++)
+                {
+                    // objSettings.Rows.Add(grdSettings.Rows[i].Cells["HSN Name-New"].Value).Trim(), cmbTransactionType.SelectedValue, txtPrefix.Text, txtSuffix.Text, txtStartingNo.Text, txtNoOfDegits.Text, cmbResetOn.SelectedValue);
+                    objSettings.Rows.Add(Convert.ToInt32(grdSettings.Rows[i].Cells["clmConcern"].Value), Convert.ToInt32(grdSettings.Rows[i].Cells["clmTransactionType"].Value), Convert.ToString(grdSettings.Rows[i].Cells["clmPrefix"].Value).Trim(), 
+                        Convert.ToString(grdSettings.Rows[i].Cells["clmSuffix"].Value).Trim(), Convert.ToInt32(grdSettings.Rows[i].Cells["clmStartingNo"].Value), Convert.ToInt32(grdSettings.Rows[i].Cells["clmNoofdigits"].Value),
+                         Convert.ToInt32(grdSettings.Rows[i].Cells["clmResetOn"].Value)); 
+                }
+                SPDataService objDSer = new SPDataService();
+                result = objDSer.udfnVoucherSettings(0, objSettings);
+                objDSer.CloseConnection();
+                string[] varvalue = result.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnSave_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                udfnSave();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnSave.Focus();
+            }
         }
         private void BtnClose_Enter(object sender, EventArgs e)
         {

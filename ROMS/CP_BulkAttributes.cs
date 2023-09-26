@@ -151,7 +151,7 @@ namespace ROMS
                 objDSGroup = objDServ.udfnGroupList(0, 0, 0, "");
                 objDSSubGroup = objDServ.udfnSubGroupList(0,0,"",0,0,"",0,0,0,0);
                 objDSBrand = objDServ.udfnBrandList(0,"",0,0,0,"");
-                objDSLocation = objDServ.udfnStockLocationList(0,0,0,0,"",0);
+                objDSLocation = objDServ.udfnStockLocationList(17,0,0,0,"",0);
                 objDSRack = objDServ.udfnRackList(0,0,0,0,0,"");
                 objDSShelfLifeType = objDServ.udfnMaster(0, 6);
                 objDSQTYUnit = objDServ.udfnMaster(2, 0);
@@ -410,11 +410,16 @@ namespace ROMS
                     varUpdateViewType = 6; varViewType = 4;
                     for (int i = 0; i < grdLoction.Rows.Count; i++)
                     {
-                        varPurSLID = 0; varSalesSLID = 0; varPurRKID = 0; varSalesRKID = 0; varErrorflag = 0;
-                        var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        varPurSLID = 0; varSalesSLID = 0; varPurRKID = 0; varSalesRKID = 0; varErrorflag = 0;  string varPurStockLocationName = ""; string varPurSalesLocationName = "";
+                        varPurStockLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim();
+                        if (varPurStockLocationName == "") { varPurStockLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-Current"].Value).Trim(); }
+                        var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("SL_EName").ToUpper().Equals(varPurStockLocationName.Trim().ToUpper()) && r.Field<int>("PRSGID").Equals(Convert.ToInt32(grdLoction.Rows[i].Cells["PRSGID"].Value))) group r by r.Field<int>("SLID") into g select g.Key;
                         if (varPurStockLocation.Count() > 0)
                         { varPurSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); }
-                        var varSalesStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+
+                        varPurSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim();
+                        if (varPurSalesLocationName == "") { varPurSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-Current"].Value).Trim(); }
+                        var varSalesStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("SL_EName").ToUpper().Equals(varPurSalesLocationName.Trim().ToUpper()) && r.Field<int>("PRSGID").Equals(Convert.ToInt32(grdLoction.Rows[i].Cells["PRSGID"].Value))) group r by r.Field<int>("SLID") into g select g.Key;
                         if (varSalesStockLocation.Count() > 0)
                         { varSalesSLID = Convert.ToInt32(varSalesStockLocation.ToList()[0]); }
                         string varPurLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim();
@@ -597,7 +602,7 @@ namespace ROMS
                     varUpdateViewType = 11; varViewType = 8;  
                     for (int i = 0; i < grdBatch.Rows.Count; i++)
                     {
-                        varPR_PRCTID = 0; PR_RMForProductionID = 0; PR_BatchNoID = 0; PR_BatchNoGenerationID = 0;  varErrorflag = 0; int varBatchNoCurrent = 0;
+                        varPR_PRCTID = 0; PR_RMForProductionID = 0; PR_BatchNoID = 0; PR_BatchNoGenerationID = 0;  varErrorflag = 0; 
                        
                          var varPR_PRCTValue = from r in objDSProductCategory.Tables[0].AsEnumerable() where (r.Field<string>("MST_DisplayText").ToUpper().Equals(Convert.ToString(grdBatch.Rows[i].Cells["Product Category-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
                         if (varPR_PRCTValue.Count() > 0) { varPR_PRCTID = Convert.ToInt32(varPR_PRCTValue.ToList()[0]); }
@@ -607,6 +612,7 @@ namespace ROMS
                         if (varBatchNoValue.Count() > 0) { PR_BatchNoID = Convert.ToInt32(varBatchNoValue.ToList()[0]); }
                         var varBatchNoGenerationValue = from r in objDSBatchNoGeneration.Tables[0].AsEnumerable() where (r.Field<string>("MST_DisplayText").ToUpper().Equals(Convert.ToString(grdBatch.Rows[i].Cells["Batch Generation-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
                         if (varBatchNoGenerationValue.Count() > 0) { PR_BatchNoGenerationID = Convert.ToInt32(varBatchNoGenerationValue.ToList()[0]); }
+
                         if (Convert.ToString(grdBatch.Rows[i].Cells["Product Category-New"].Value).Trim() != "")
                         {
                             if (varPR_PRCTID == 0)
@@ -646,7 +652,7 @@ namespace ROMS
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_PRCTID-Current"].Value), varPR_PRCTID, 
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_RMForProductionID-Current"].Value), PR_RMForProductionID,
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoID-Current"].Value), PR_BatchNoID,
-                                               varBatchNoCurrent, PR_BatchNoGenerationID,
+                                               Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoGenerationID-Current"].Value), PR_BatchNoGenerationID,
                                                varErrorflag);
                     }
                 }
@@ -778,7 +784,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+               MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnUpdate.Focus();
             }
             finally
