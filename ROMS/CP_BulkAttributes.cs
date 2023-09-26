@@ -597,8 +597,9 @@ namespace ROMS
                     varUpdateViewType = 11; varViewType = 8;  
                     for (int i = 0; i < grdBatch.Rows.Count; i++)
                     {
-                        varPR_PRCTID = 0; PR_RMForProductionID = 0; PR_BatchNoID = 0; PR_BatchNoGenerationID = 0;  varErrorflag = 0;
-                        var varPR_PRCTValue = from r in objDSProductCategory.Tables[0].AsEnumerable() where (r.Field<string>("MST_DisplayText").ToUpper().Equals(Convert.ToString(grdBatch.Rows[i].Cells["Product Category-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
+                        varPR_PRCTID = 0; PR_RMForProductionID = 0; PR_BatchNoID = 0; PR_BatchNoGenerationID = 0;  varErrorflag = 0; int varBatchNoCurrent = 0;
+                       
+                         var varPR_PRCTValue = from r in objDSProductCategory.Tables[0].AsEnumerable() where (r.Field<string>("MST_DisplayText").ToUpper().Equals(Convert.ToString(grdBatch.Rows[i].Cells["Product Category-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
                         if (varPR_PRCTValue.Count() > 0) { varPR_PRCTID = Convert.ToInt32(varPR_PRCTValue.ToList()[0]); }
                         var varRMForProductionValue = from r in objDSRMPRO.Tables[0].AsEnumerable() where (r.Field<string>("DisplayText").ToUpper().Equals(Convert.ToString(grdBatch.Rows[i].Cells["RM Pro-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
                         if (varRMForProductionValue.Count() > 0) { PR_RMForProductionID = Convert.ToInt32(varRMForProductionValue.ToList()[0]); }
@@ -633,6 +634,7 @@ namespace ROMS
                             {
                                 varErrorflag = 4;
                             }
+                           
                         }
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdBatch.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
@@ -644,7 +646,7 @@ namespace ROMS
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_PRCTID-Current"].Value), varPR_PRCTID, 
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_RMForProductionID-Current"].Value), PR_RMForProductionID,
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoID-Current"].Value), PR_BatchNoID,
-                                               Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoGenerationID-Current"].Value), PR_BatchNoGenerationID,
+                                               varBatchNoCurrent, PR_BatchNoGenerationID,
                                                varErrorflag);
                     }
                 }
@@ -776,7 +778,7 @@ namespace ROMS
                 SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
-               MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnUpdate.Focus();
             }
             finally
@@ -785,6 +787,29 @@ namespace ROMS
                 btnUpdate.Focus();
             }
         }
+        private void GrdBatch_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int PR_BatchNoID = 0;
+                var varBatchNoValue = from r in objDSBatchNo.Tables[0].AsEnumerable() where (r.Field<string>("MST_DisplayText").ToUpper().Equals(Convert.ToString(grdBatch.CurrentRow.Cells["Batch No.-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
+                if (varBatchNoValue.Count() > 0) { PR_BatchNoID = Convert.ToInt32(varBatchNoValue.ToList()[0]); }
+                if (PR_BatchNoID == 72)
+                {
+                    grdBatch.CurrentRow.Cells["Batch Generation-New"].ReadOnly = false;
+                }
+                else
+                {
+                    grdBatch.CurrentRow.Cells["Batch Generation-New"].ReadOnly = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void allowonlynumber(object sender, KeyPressEventArgs e)
         {
             try
@@ -2607,15 +2632,22 @@ namespace ROMS
             }
             return varstr;
         }
-        public AutoCompleteStringCollection AutoCompleteBatchGeneration()
+        public AutoCompleteStringCollection AutoCompleteBatchGeneration(int batchNo)
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
             DataSet objds;
             objds = null;
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
-
-            objds = objdservice.GetDataset("SELECT MSTID,MST_DisplayText from DEF_Master where MST_TransactionID = 26");
+            if(batchNo==72)
+            {
+               // grdBatch.CurrentRow.Cells["Batch Generation-New"].ReadOnly = false;
+                objds = objdservice.GetDataset("SELECT MSTID,MST_DisplayText from DEF_Master where MST_TransactionID = 26");
+            }
+            else
+            {
+                grdBatch.CurrentRow.Cells["Batch Generation-New"].ReadOnly = true;
+            }
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -2908,8 +2940,13 @@ namespace ROMS
                     TextBox txtBatchGeneration = e.Control as TextBox;
                     if (txtBatchGeneration != null)
                     {
+                        int varBatchNoID = 0;
+                        string varBatchNo = Convert.ToString(grdBatch.CurrentRow.Cells["Batch No.-New"].Value);
+                        if (varBatchNo == "") { varBatchNo = Convert.ToString(grdBatch.CurrentRow.Cells["Batch No.-Current"].Value); }
+                        var varBatchNoValue = from r in objDSBatchNo.Tables[0].AsEnumerable() where (r.Field<string>("MST_DisplayText").ToUpper().Equals(Convert.ToString(varBatchNo).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
+                        if (varBatchNoValue.Count() > 0) { varBatchNoID = Convert.ToInt32(varBatchNoValue.ToList()[0]); }
                         txtBatchGeneration.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtBatchGeneration.AutoCompleteCustomSource = AutoCompleteBatchGeneration();
+                        txtBatchGeneration.AutoCompleteCustomSource = AutoCompleteBatchGeneration(varBatchNoID);
                         txtBatchGeneration.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
@@ -3041,6 +3078,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         private void GrdStock_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
