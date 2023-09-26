@@ -20,7 +20,7 @@ namespace ROMS
         public string varcompanycode;
         public string pbFormStatus;
         public string varstatecode = "";
-
+        public string varSubgroupId = "";
         public string varupdate = "0";
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
@@ -4573,14 +4573,40 @@ namespace ROMS
         {
             try
             {
-
+                
                 MainForm.objCP_Brand = new CP_Brand();
                 MainForm.objCP_Brand.MinimizeBox = false;
                 MainForm.objCP_Brand.MaximizeBox = false;
                 if (MainForm.objCP_Brand.FormBorderStyle == FormBorderStyle.None)
                 {
                     MainForm.objCP_Brand.FormBorderStyle = FormBorderStyle.FixedSingle;
-                } 
+                }
+                /* Check product sub group is valid or not*/
+                string varId_SubGroup = "0";
+                DataSet objDssubgroup = new DataSet();
+                SPDataService objDserv = new SPDataService();
+                objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
+                objDserv.CloseConnection();
+                if (objDssubgroup != null)
+                {
+                    if (objDssubgroup.Tables.Count > 0)
+                    {
+                        if (objDssubgroup.Tables[0].Rows.Count > 0)
+                        {
+                            varId_SubGroup = Convert.ToString(objDssubgroup.Tables[0].Rows[0][0]);
+                        } 
+                    }
+                }
+                if (varId_SubGroup == "-1")
+                {
+                    varSubgroupId = "0";
+                }
+                else
+                {
+                    varSubgroupId = varId_SubGroup;
+                }
+
+               // varSubgroupId = lblSubGroupCode.Text;
                 MainForm.objCP_Brand.varmastertype = 1;
                 MainForm.objCP_Brand.ShowDialog(); 
                 lblBrand.Text = Convert.ToString(varbrandcode);
@@ -4593,6 +4619,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            { varSubgroupId = ""; }
         }
 
         private void BtnUnit_Click(object sender, EventArgs e)

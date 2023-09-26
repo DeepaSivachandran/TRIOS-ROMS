@@ -338,6 +338,10 @@ namespace ROMS
                 {
                     objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup, 0, varId, "",0,0,0,0);
                 }
+                if(varmastertype==1)
+                {
+                    objDs = objdserv.udfnSubGroupList(varviewtype,Convert.ToInt32( varSubGroupId),"", 0, 0, "", 0, 0, 0, 0);
+                }
                 objdserv.CloseConnection();
                 // if (chkgroup.Checked) { dtSubGroup.Rows.Clear(); dtSubGroup.AcceptChanges(); }
 
@@ -373,6 +377,18 @@ namespace ROMS
                 grdSubGroup.Columns["Group Id"].ReadOnly = true;
                 grdSubGroup.Columns["Sub Group Id"].ReadOnly = true;
                 grdSubGroup.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                if(varmastertype==1)
+                {
+                    for (int j = 0; j < grdSubGroup.RowCount; j++)
+                    {
+                        if (Convert.ToString(varSubGroupId) == Convert.ToString(grdSubGroup.Rows[j].Cells["Sub Group Id"].Value))
+                        {
+                            grdSubGroup.Rows[j].Cells[0].Value = true;
+                        }
+                    }
+                    udfnSubGroupAdd();
+                }
                 //udfnRefreshSubGroup();
             }
             catch (Exception ex)
@@ -986,6 +1002,14 @@ namespace ROMS
                     pnlStatus.Enabled = true;
                     udfnEdit();
                 }
+                if(varmastertype==1)
+                {
+                    varSubGroupId = MainForm.objCP_Items.varSubgroupId;
+                    if(varSubGroupId!="0")
+                    {
+                        udfnSubGroupList();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1368,7 +1392,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    udfnSubGroupAdd();
+                    udfnSubGroupList();
                 }
             }
             catch (Exception ex)
