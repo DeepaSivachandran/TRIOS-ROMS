@@ -310,6 +310,7 @@ namespace ROMS
                         }
                         else
                         {
+                            MainForm.objCP_SubGroupList.udfnList();
                             varCloseFlag = 1;
                             udfnclose();
                         } 

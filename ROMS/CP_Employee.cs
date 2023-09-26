@@ -444,8 +444,8 @@ namespace ROMS
         {
             try
             {   
-                txtEmpCode.Text = PbNameoftheUser;
-                txtEmpName.Text = PbEmpCode;
+                txtEmpCode.Text = PbEmpCode;
+                txtEmpName.Text = PbNameoftheUser;
                 cmbUserCategory.SelectedValue = PbUserCategoryID;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
             }

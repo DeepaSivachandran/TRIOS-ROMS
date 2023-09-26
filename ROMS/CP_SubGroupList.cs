@@ -863,6 +863,7 @@ namespace ROMS
                     ListViewItem selectedItem = lvSubGroup.SelectedItems[0];
                     lblSubGroupId.Text = selectedItem.SubItems[1].Text;
                     txtProductSubGroup.Text = selectedItem.SubItems[0].Text;
+                    txtStockLocation.Focus();
                 }
             }
             catch (Exception ex)
