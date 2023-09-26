@@ -272,19 +272,26 @@ namespace ROMS
         }
         private void CmbGST_Leave(object sender, EventArgs e)
         {
-            if (Convert.ToString(cmbGST.SelectedValue) == "0" || Convert.ToString(cmbGST.SelectedValue) == "-1")
+            try
             {
-                epHsn.SetError(cmbGST, "Please select GST.");
-                cmbGST.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                tpGst.ShowAlways = true;
-                tpGst.Show("Please select GST.", cmbGST, 5000);
+                if (Convert.ToString(cmbGST.SelectedValue) == "0" || Convert.ToString(cmbGST.SelectedValue) == "-1")
+                {
+                    epHsn.SetError(cmbGST, "Please select GST.");
+                    cmbGST.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpGst.ShowAlways = true;
+                    tpGst.Show("Please select GST.", cmbGST, 5000);
+                }
+                else
+                {
+                    epHsn.Clear();
+                    cmbGST.BackColor = Color.White;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                epHsn.Clear();
-                cmbGST.BackColor = Color.White;
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
-           
         }
         public void udfnclose()
         {
