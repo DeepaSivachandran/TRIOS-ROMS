@@ -35,6 +35,12 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.pnlReportHSN = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.cmbGST = new System.Windows.Forms.ComboBox();
+            this.lblGST = new System.Windows.Forms.Label();
+            this.cmbHSN = new System.Windows.Forms.ComboBox();
+            this.lblHSN = new System.Windows.Forms.Label();
             this.btnListPrint = new System.Windows.Forms.Button();
             this.cmbReportType = new System.Windows.Forms.ComboBox();
             this.lblReportType = new System.Windows.Forms.Label();
@@ -97,26 +103,98 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.cmbStatus);
+            this.grpfilter.Controls.Add(this.lblStatus);
+            this.grpfilter.Controls.Add(this.cmbGST);
+            this.grpfilter.Controls.Add(this.lblGST);
+            this.grpfilter.Controls.Add(this.cmbHSN);
+            this.grpfilter.Controls.Add(this.lblHSN);
             this.grpfilter.Controls.Add(this.btnListPrint);
             this.grpfilter.Controls.Add(this.cmbReportType);
             this.grpfilter.Controls.Add(this.lblReportType);
             this.grpfilter.Location = new System.Drawing.Point(12, 2);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(321, 58);
+            this.grpfilter.Size = new System.Drawing.Size(1339, 58);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(718, 19);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(143, 27);
+            this.cmbStatus.TabIndex = 3;
+            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
+            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
+            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
+            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(667, 22);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(45, 20);
+            this.lblStatus.TabIndex = 1111182;
+            this.lblStatus.Text = "Status";
+            // 
+            // cmbGST
+            // 
+            this.cmbGST.FormattingEnabled = true;
+            this.cmbGST.Location = new System.Drawing.Point(518, 19);
+            this.cmbGST.Name = "cmbGST";
+            this.cmbGST.Size = new System.Drawing.Size(143, 27);
+            this.cmbGST.TabIndex = 2;
+            this.cmbGST.Enter += new System.EventHandler(this.CmbGST_Enter);
+            this.cmbGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGST_KeyDown);
+            this.cmbGST.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbGST_KeyPress);
+            this.cmbGST.Leave += new System.EventHandler(this.CmbGST_Leave);
+            // 
+            // lblGST
+            // 
+            this.lblGST.AutoSize = true;
+            this.lblGST.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGST.Location = new System.Drawing.Point(482, 22);
+            this.lblGST.Name = "lblGST";
+            this.lblGST.Size = new System.Drawing.Size(30, 20);
+            this.lblGST.TabIndex = 1111180;
+            this.lblGST.Text = "GST";
+            // 
+            // cmbHSN
+            // 
+            this.cmbHSN.FormattingEnabled = true;
+            this.cmbHSN.Location = new System.Drawing.Point(333, 19);
+            this.cmbHSN.Name = "cmbHSN";
+            this.cmbHSN.Size = new System.Drawing.Size(143, 27);
+            this.cmbHSN.TabIndex = 1;
+            this.cmbHSN.Enter += new System.EventHandler(this.CmbHSN_Enter);
+            this.cmbHSN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbHSN_KeyDown);
+            this.cmbHSN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbHSN_KeyPress);
+            this.cmbHSN.Leave += new System.EventHandler(this.CmbHSN_Leave);
+            // 
+            // lblHSN
+            // 
+            this.lblHSN.AutoSize = true;
+            this.lblHSN.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHSN.Location = new System.Drawing.Point(295, 22);
+            this.lblHSN.Name = "lblHSN";
+            this.lblHSN.Size = new System.Drawing.Size(32, 20);
+            this.lblHSN.TabIndex = 1111178;
+            this.lblHSN.Text = "HSN";
             // 
             // btnListPrint
             // 
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.print;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(237, 16);
+            this.btnListPrint.Location = new System.Drawing.Point(867, 16);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(70, 33);
-            this.btnListPrint.TabIndex = 1111177;
+            this.btnListPrint.TabIndex = 4;
             this.btnListPrint.Text = "Print";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
@@ -129,13 +207,13 @@
             this.cmbReportType.FormattingEnabled = true;
             this.cmbReportType.Location = new System.Drawing.Point(88, 19);
             this.cmbReportType.Name = "cmbReportType";
-            this.cmbReportType.Size = new System.Drawing.Size(143, 27);
-            this.cmbReportType.TabIndex = 1;
-            this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
-            this.cmbReportType.Enter += new System.EventHandler(this.CmbStatus_Enter);
-            this.cmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
-            this.cmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
-            this.cmbReportType.Leave += new System.EventHandler(this.CmbStatus_Leave);
+            this.cmbReportType.Size = new System.Drawing.Size(201, 27);
+            this.cmbReportType.TabIndex = 0;
+            this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.CmbReportType_SelectedIndexChanged);
+            this.cmbReportType.Enter += new System.EventHandler(this.CmbReportType_Enter);
+            this.cmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReportType_KeyDown);
+            this.cmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReportType_KeyPress);
+            this.cmbReportType.Leave += new System.EventHandler(this.CmbReportType_Leave);
             // 
             // lblReportType
             // 
@@ -205,8 +283,8 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "REPORT_CP_HSN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "City Report";
-            this.Load += new System.EventHandler(this.REPORT_CP_City_Load);
+            this.Text = "HSN Report";
+            this.Load += new System.EventHandler(this.REPORT_CP_HSN_Load);
             this.ReportHSN.ResumeLayout(false);
             this.ReportHSN.PerformLayout();
             this.pnlReportHSN.ResumeLayout(false);
@@ -234,5 +312,11 @@
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Button btnListPrint;
+        private System.Windows.Forms.Label lblHSN;
+        private System.Windows.Forms.ComboBox cmbHSN;
+        private System.Windows.Forms.Label lblGST;
+        private System.Windows.Forms.ComboBox cmbGST;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.ComboBox cmbStatus;
     }
 }
