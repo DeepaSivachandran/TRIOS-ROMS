@@ -1249,6 +1249,7 @@ namespace ROMS
                                 grdBrand.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 ((DataGridViewTextBoxColumn)grdBrand.Columns["Group-New"]).MaxInputLength = 100;
                                 ((DataGridViewTextBoxColumn)grdBrand.Columns["Sub Group-New"]).MaxInputLength = 100;
+                                ((DataGridViewTextBoxColumn)grdBrand.Columns["Sub Group-Current"]).MaxInputLength = 100;
                                 ((DataGridViewTextBoxColumn)grdBrand.Columns["Brand-New"]).MaxInputLength = 50;
 
                                 grdBrand.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
@@ -2872,7 +2873,7 @@ namespace ROMS
                         varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Sales Location-New"].Value);
                         int varPRID = Convert.ToInt16(grdLoction.CurrentRow.Cells["PRID"].Value);
                         if (varSLName == ""){ varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Sales Location-Current"].Value); }
-                        var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(varSLName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("SL_EName").ToUpper().Equals(varSLName.ToUpper())) group r by r.Field<int>("SLID") into g select g.Key;
                         if (varPurStockLocation.Count() > 0)
                         { varSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); }
                         txtSalesRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -3018,7 +3019,7 @@ namespace ROMS
                         int varSGRID = 0;
                         string varSubGroupName = "";
                         if (Convert.ToString(grdBrand.CurrentRow.Cells["Sub Group-New"].Value) == "")  { varSubGroupName = Convert.ToString(grdBrand.CurrentRow.Cells["Sub Group-Current"].Value);  }
-                        var varSubGroup = from r in objDSSubgroupBrand.Tables[0].AsEnumerable() where (r.Field<string>("Sub Group Name in English").ToUpper().Equals(varSubGroupName.Trim().ToUpper())) group r by r.Field<int>("BDID") into g select g.Key;
+                        var varSubGroup = from r in objDSSubgroupBrand.Tables[0].AsEnumerable() where (r.Field<string>("Sub Group Name in English").ToUpper().Equals(varSubGroupName.Trim().ToUpper())) group r by r.Field<int>("BDS_PRSGID") into g select g.Key;
                         if (varSubGroup.Count() > 0)
                         { varSGRID = Convert.ToInt32(varSubGroup.ToList()[0]); }
                         txtBrand.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
