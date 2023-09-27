@@ -47,6 +47,7 @@ namespace ROMS
         private ToolTip tpsaleslocation = new ToolTip();
         private ToolTip tppurchaserack = new ToolTip();
         private ToolTip tpsalesrack = new ToolTip();
+        private ToolTip tpshelflifevalue = new ToolTip();
 
         public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0, varGroupId=0, varSubGroupId = 0,varHsnId=0, varUnitid=0, varcompanyid=0, varBrandId=0,varBatchCode=0, varPURSLID=0, varPURRKID=0, varSALESLID=0, varSALERKID=0;
         public string varSubGroupName = "", varGroupName = "", varPurchaseLocation ="", varSalesLocation="", varPurchaseRack="", varSalesRack="",varBrandName="";
@@ -363,7 +364,7 @@ namespace ROMS
                         tpcompanyname.Show("Please select shelflife", cmbPeriod, 5000);
                         blnErrorFlag = true;
                     }
-                    if (txtSelfLife.Text=="")
+                    if (txtSelfLife.Text == "")
                     {
                         errItems.SetError(txtSelfLife, "Please enter shelflife");
                         txtSelfLife.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -371,18 +372,45 @@ namespace ROMS
                         tpplno.Show("Please enter shelflife", txtSelfLife, 5000);
                         blnErrorFlag = true;
                     }
+                    else {
+                        if (Convert.ToInt32(txtSelfLife.Text) == 0)
+                        {
+                            errItems.SetError(txtSelfLife, "Please enter valid shelflife");
+                            txtSelfLife.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpshelflifevalue.ShowAlways = true;
+                            tpshelflifevalue.Show("Please enter valid shelflife", txtSelfLife, 5000);
+                            blnErrorFlag = true; 
+                        }
+                    }
                 }
                 if (txtWeight.Text == "")
                 {
                     txtWeight.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    errItems.SetError(txtWeight, "Please Enter Weight");
+                    errItems.SetError(txtWeight, "Please enter weight");
                     blnErrorFlag = true;
+                }
+                else {
+                    if (Convert.ToDouble(txtWeight.Text) == 0)
+                    {
+                        txtWeight.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                        errItems.SetError(txtWeight, "Please enter valid weight");
+                        blnErrorFlag = true;
+                    }
                 }
                 if (txtGrossWeight.Text == "")
                 {
                     txtGrossWeight.BackColor = ColorTranslator.FromHtml("#fabdbd");
                     errItems.SetError(txtGrossWeight, "Please enter the gross weight");
                     blnErrorFlag = true;
+                }
+                else
+                {
+                    if (Convert.ToDouble(txtGrossWeight.Text) == 0)
+                    {
+                        txtGrossWeight.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                        errItems.SetError(txtGrossWeight, "Please enter valid gross weight");
+                        blnErrorFlag = true;
+                    }
                 }
                 /* Check product sub group is valid or not*/
                 string varId_SubGroup = "0";
@@ -4753,7 +4781,24 @@ namespace ROMS
         {
             try
             {
-                txtSelfLife.BackColor = Color.White;
+                if (txtSelfLife.Text == "")
+                {
+                    txtSelfLife.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtSelfLife, "Please enter shelf life");
+                }
+                else
+                {
+                    if (Convert.ToInt32(txtSelfLife.Text) == 0)
+                    {
+                        txtSelfLife.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                        errItems.SetError(txtSelfLife, "Please enter valid shelf life");
+                    }
+                    else
+                    {
+                        txtSelfLife.BackColor = Color.White;
+                        errItems.Clear();
+                    }
+                }
             }
             catch (Exception ex)
 
