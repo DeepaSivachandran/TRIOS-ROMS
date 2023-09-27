@@ -304,14 +304,16 @@ namespace ROMS
                     tpcompanyname.Show("Please select sales Batch No.", cmbBatchNoEntry, 5000);
                     blnErrorFlag = true;
                 }
-
-                if (Convert.ToString(cmbBatchNoGeneration.SelectedValue) == "" || Convert.ToString(cmbBatchNoGeneration.SelectedValue) == "-1")
+                if (Convert.ToInt32(cmbBatchNoEntry.SelectedValue) == 72)
                 {
-                    errItems.SetError(cmbBatchNoGeneration, "Please select Batch No. generation");
-                    cmbBatchNoGeneration.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please select sales Batch No. generation", cmbBatchNoGeneration, 5000);
-                    blnErrorFlag = true;
+                    if (Convert.ToString(cmbBatchNoGeneration.SelectedValue) == "" || Convert.ToString(cmbBatchNoGeneration.SelectedValue) == "-1")
+                    {
+                        errItems.SetError(cmbBatchNoGeneration, "Please select Batch No. generation");
+                        cmbBatchNoGeneration.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpcompanyname.ShowAlways = true;
+                        tpcompanyname.Show("Please select sales Batch No. generation", cmbBatchNoGeneration, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
 
                 if (Convert.ToString(cmbPeriod.SelectedValue) == "" || Convert.ToString(cmbPeriod.SelectedValue) == "-1")
@@ -4635,7 +4637,7 @@ namespace ROMS
                 MainForm.objCP_Brand.ShowDialog(); 
                 lblBrand.Text = Convert.ToString(varbrandcode);
                 txtBrand.Text = varBrandName;
-                txtGroup.Focus();
+                txtBrand.Focus();
                 lvBrand.Visible = false;
             }
             catch (Exception ex)

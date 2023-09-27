@@ -347,8 +347,9 @@ namespace ROMS
                         varCloseFlag = 1;
                         udfnclose();
                         MainForm.objCP_GroupList.udfnLoadCmbProductGroup();
+                        MainForm.objCP_GroupList.udfnList();
                     }
-                    MainForm.objCP_GroupList.udfnList();
+                    
                 }
                 else if (varResult.Split('~')[0] == "4")
                 {

@@ -162,20 +162,19 @@ namespace ROMS
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     {
-                        dtGroup.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name in English"], objDs.Tables[0].Rows[i]["Total Products"], objDs.Tables[0].Rows[i]["ID"]);
+                        dtGroup.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name in English"], objDs.Tables[0].Rows[i]["Total Sub Groups"], objDs.Tables[0].Rows[i]["ID"]);
                     }
                     grdGroup.DataSource = dtGroup;
                     grdGroup.Columns[0].HeaderText = "";
                     grdGroup.Columns[0].Width = 30;
                     grdGroup.Columns["Product Group Name in English"].Width = 190;
-                    grdGroup.Columns["Total Products"].Width = 100;
+                    grdGroup.Columns["Total Sub Groups"].Width = 130;
                     grdGroup.Columns["ID"].Visible = false;
                     grdGroup.Columns["Product Group Name in English"].ReadOnly = true;
-                    grdGroup.Columns["Total Products"].ReadOnly = true;
-                    grdGroup.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdGroup.Columns["Total Sub Groups"].ReadOnly = true;
+                    grdGroup.Columns["Total Sub Groups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdGroup.Columns["ID"].ReadOnly = true;
                 }
-
             }
             catch (Exception ex)
             {
@@ -992,7 +991,7 @@ namespace ROMS
                 dtGroup = new DataTable();
                 dtGroup.Columns.Add("", typeof(Boolean));
                 dtGroup.Columns.Add("Product Group Name in English", typeof(string));
-                dtGroup.Columns.Add("Total Products", typeof(string));
+                dtGroup.Columns.Add("Total Sub Groups", typeof(string));
                 dtGroup.Columns.Add("ID", typeof(int));
 
                 dtSubGroup = new DataTable();

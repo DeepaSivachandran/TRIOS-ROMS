@@ -321,19 +321,19 @@ namespace ROMS
                     {
                         varUnitId = 0; varErrorflag=0;
                         varID = Convert.ToInt32(grdBulkAttributes.Rows[i].Cells["PRID"].Value);
-                        var varPREname = from r in objDSProduct.Tables[0].AsEnumerable() where (r.Field<string>("Product Name in English").ToUpper().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English-New"].Value).Trim().ToUpper()) && r.Field<int>("ID") != ( varID)) group r by r.Field<int>("ID") into g select g.Key;
+                        var varPREname = from r in objDSProduct.Tables[0].AsEnumerable() where (r.Field<string>("Product Name in English").Trim().ToUpper().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English-New"].Value).Trim().ToUpper()) && r.Field<int>("ID") != ( varID)) group r by r.Field<int>("ID") into g select g.Key;
                         if (varPREname.Count() == 0)
                         { varProductEname = Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in English-New"].Value).Trim(); }
                         else { varErrorflag = 1; }
-                        var varPRTname = from r in objDSProduct.Tables[0].AsEnumerable() where (r.Field<string>("Product Name in Tamil").ToUpper().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in Tamil-New"].Value).Trim().ToUpper()) && r.Field<int>("ID") != (varID)) group r by r.Field<int>("ID") into g select g.Key;
+                        var varPRTname = from r in objDSProduct.Tables[0].AsEnumerable() where (r.Field<string>("Product Name in Tamil").Trim().ToUpper().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in Tamil-New"].Value).Trim().ToUpper()) && r.Field<int>("ID") != (varID)) group r by r.Field<int>("ID") into g select g.Key;
                         if (varPRTname.Count() == 0)
                         { varProductTname = Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Name in Tamil-New"].Value).Trim(); }
                         else { varErrorflag = 2; }
-                        var varPCode = from r in objDSProduct.Tables[0].AsEnumerable() where (r.Field<string>("P.I Code").ToUpper().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value).Trim().ToUpper()) && r.Field<int>("ID") != (varID)) group r by r.Field<int>("ID") into g select g.Key;
+                        var varPCode = from r in objDSProduct.Tables[0].AsEnumerable() where (r.Field<string>("P.I Code").Trim().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value).Trim().ToUpper()) && r.Field<int>("ID") != (varID)) group r by r.Field<int>("ID") into g select g.Key;
                         if (varPCode.Count() == 0)
                         { varPIcode = Convert.ToString(grdBulkAttributes.Rows[i].Cells["Product Code-New"].Value).Trim(); }
                         else { varErrorflag = 3; }
-                        var varValue = from r in objDSUnit.Tables[0].AsEnumerable() where (r.Field<string>("Unit").ToUpper().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Unit-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        var varValue = from r in objDSUnit.Tables[0].AsEnumerable() where (r.Field<string>("Unit").Trim().ToUpper().Equals(Convert.ToString(grdBulkAttributes.Rows[i].Cells["Unit-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varValue.Count() > 0) { varUnitId = Convert.ToInt32(varValue.ToList()[0]); }
                         if (Convert.ToString(grdBulkAttributes.Rows[i].Cells["Unit-New"].Value).Trim().ToUpper()!="")
                         {
@@ -941,6 +941,10 @@ namespace ROMS
                                 grdLoction.Columns["Pur_RKID-Old"].Visible = false;
                                 grdLoction.Columns["Sales_RKID-Old"].Visible = false;
                                 grdLoction.Columns["PRSGID"].Visible = false;
+                                grdLoction.Columns["Sales Rack -Current"].Visible = false;
+                                grdLoction.Columns["Sales Rack-New"].Visible = false;
+                                grdLoction.Columns["Sales Location-Current"].Visible = false;
+                                grdLoction.Columns["Sales Location-New"].Visible = false;
 
                                 grdLoction.Columns["S.No."].Width = 50;
                                 grdLoction.Columns["Product Name in Tamil"].Width = 270;
