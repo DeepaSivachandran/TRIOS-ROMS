@@ -21,6 +21,7 @@ namespace ROMS
         public string pbFormStatus;
         public string varstatecode = "";
         public string varSubgroupId = "";
+        public string vargroupId = "";
         public string varupdate = "0";
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
@@ -4577,6 +4578,30 @@ namespace ROMS
                 if (MainForm.objCP_Brand.FormBorderStyle == FormBorderStyle.None)
                 {
                     MainForm.objCP_Brand.FormBorderStyle = FormBorderStyle.FixedSingle;
+                }
+                /* Check product group is valid or not*/
+                string varId_Group = "0";
+                DataSet objDsGroup = new DataSet();
+                SPDataService objDServ1 = new SPDataService();
+                objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim());
+                objDServ1.CloseConnection();
+                if (objDsGroup != null)
+                {
+                    if (objDsGroup.Tables.Count > 0)
+                    {
+                        if (objDsGroup.Tables[0].Rows.Count > 0)
+                        {
+                            varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                        }
+                    }
+                }
+                if (varId_Group == "-1")
+                {
+                    vargroupId = "0";
+                }
+                else
+                {
+                    vargroupId = varId_Group;
                 }
                 /* Check product sub group is valid or not*/
                 string varId_SubGroup = "0";

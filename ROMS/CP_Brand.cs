@@ -340,7 +340,7 @@ namespace ROMS
                 }
                 if(varmastertype==1)
                 {
-                    objDs = objdserv.udfnSubGroupList(varviewtype,Convert.ToInt32( varSubGroupId),"", 0, 0, "", 0, 0, 0, 0);
+                    objDs = objdserv.udfnSubGroupList(varviewtype,0, varGroupId,0, 0, "", 0, 0, 0, 0);
                 }
                 objdserv.CloseConnection();
                 // if (chkgroup.Checked) { dtSubGroup.Rows.Clear(); dtSubGroup.AcceptChanges(); }
@@ -380,14 +380,27 @@ namespace ROMS
 
                 if(varmastertype==1)
                 {
+                   
                     for (int j = 0; j < grdSubGroup.RowCount; j++)
                     {
                         if (Convert.ToString(varSubGroupId) == Convert.ToString(grdSubGroup.Rows[j].Cells["Sub Group Id"].Value))
                         {
                             grdSubGroup.Rows[j].Cells[0].Value = true;
+                            
+                            for (int i = 0; i < grdGroup.RowCount; i++)
+                            {
+                                if (Convert.ToString(grdSubGroup.Rows[j].Cells["Group Id"].Value) == Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value))
+                                {
+                                    grdGroup.Rows[j].Cells[0].Value = true;
+                                    //varGroup = Convert.ToString(grdGroup.Rows[j].Cells["ID"].Value);
+                                    
+                                }
+                               
+                            }
+                            //udfnSubGroupList();
+                            udfnSubGroupAdd();
                         }
                     }
-                    udfnSubGroupAdd();
                 }
                 //udfnRefreshSubGroup();
             }
@@ -1005,7 +1018,8 @@ namespace ROMS
                 if(varmastertype==1)
                 {
                     varSubGroupId = MainForm.objCP_Items.varSubgroupId;
-                    if(varSubGroupId!="0")
+                    varGroupId= MainForm.objCP_Items.vargroupId;
+                    if (varSubGroupId!="0")
                     {
                         udfnSubGroupList();
                     }
