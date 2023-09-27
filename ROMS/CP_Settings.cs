@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
+    //Sivabharathi  Created On :25/09/2023
     public partial class CP_Settings : Form
     {
         DataValidation objValidation = new DataValidation();
@@ -681,6 +682,24 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnClear()
+        {
+            try
+            {
+                cmbConcern.SelectedValue = -1;
+                cmbTransactionType.SelectedValue = -1;
+                txtPrefix.Text = "";
+                txtSuffix.Text = "";
+                txtStartingNo.Text = "";
+                txtNoOfDegits.Text = "";
+                cmbResetOn.SelectedValue = -1;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnSave()
         {
             try
@@ -711,6 +730,7 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    udfnClear();
                 }
                 else
                 {
@@ -779,7 +799,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdSettings_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -835,7 +854,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtNoOfDegits_Leave(object sender, EventArgs e)
         {
             try
