@@ -2839,7 +2839,7 @@ namespace ROMS
                         int varPRID = Convert.ToInt16(grdLoction.CurrentRow.Cells["PRID"].Value);
                         varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Pur.Stock Location-New"].Value);
                         if (varSLName == ""){ varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Pur.Stock Location-Current"].Value); }
-                        var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("Location Name in English").ToUpper().Equals(varSLName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("SL_EName").ToUpper().Equals(varSLName.ToUpper())) group r by r.Field<int>("SLID") into g select g.Key;
                         if (varPurStockLocation.Count() > 0)
                         { varSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); }
                         txtPurRack.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
