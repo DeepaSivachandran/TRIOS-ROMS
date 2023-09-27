@@ -169,6 +169,8 @@
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -381,7 +383,9 @@
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader28,
-            this.columnHeader29});
+            this.columnHeader29,
+            this.columnHeader8,
+            this.columnHeader9});
             this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSubGroup.HideSelection = false;
             this.lvSubGroup.Location = new System.Drawing.Point(159, 185);
@@ -1002,10 +1006,12 @@
             // 
             // txtRackMOQQty
             // 
+            this.txtRackMOQQty.Enabled = false;
             this.txtRackMOQQty.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtRackMOQQty.Location = new System.Drawing.Point(135, 113);
             this.txtRackMOQQty.MaxLength = 8;
             this.txtRackMOQQty.Name = "txtRackMOQQty";
+            this.txtRackMOQQty.ReadOnly = true;
             this.txtRackMOQQty.Size = new System.Drawing.Size(388, 27);
             this.txtRackMOQQty.TabIndex = 27;
             this.txtRackMOQQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1425,10 +1431,12 @@
             // 
             // txtSaleRack
             // 
+            this.txtSaleRack.Enabled = false;
             this.txtSaleRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtSaleRack.Location = new System.Drawing.Point(135, 59);
             this.txtSaleRack.MaxLength = 100;
             this.txtSaleRack.Name = "txtSaleRack";
+            this.txtSaleRack.ReadOnly = true;
             this.txtSaleRack.Size = new System.Drawing.Size(388, 27);
             this.txtSaleRack.TabIndex = 16;
             this.txtSaleRack.TextChanged += new System.EventHandler(this.TxtSaleRack_TextChanged);
@@ -1438,10 +1446,12 @@
             // 
             // txtSaleLocation
             // 
+            this.txtSaleLocation.Enabled = false;
             this.txtSaleLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtSaleLocation.Location = new System.Drawing.Point(135, 32);
             this.txtSaleLocation.MaxLength = 100;
             this.txtSaleLocation.Name = "txtSaleLocation";
+            this.txtSaleLocation.ReadOnly = true;
             this.txtSaleLocation.Size = new System.Drawing.Size(388, 27);
             this.txtSaleLocation.TabIndex = 15;
             this.txtSaleLocation.TextChanged += new System.EventHandler(this.TxtSaleLocation_TextChanged);
@@ -1823,6 +1833,14 @@
             // 
             this.columnHeader25.Width = 0;
             // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 0;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Width = 0;
+            // 
             // CP_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -2027,5 +2045,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader28;
         private System.Windows.Forms.ColumnHeader columnHeader29;
         public System.Windows.Forms.Label lblBrand;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
     }
 }
