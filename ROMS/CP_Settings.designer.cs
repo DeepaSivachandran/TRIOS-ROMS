@@ -37,16 +37,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdSettings = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTransactionType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPrefix = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSuffix = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStartingNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNoofdigits = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmResetOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSampleTransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grpVoucherSettings = new System.Windows.Forms.GroupBox();
             this.txtNoOfDegits = new System.Windows.Forms.TextBox();
             this.lblNoOfDigits = new System.Windows.Forms.Label();
@@ -67,6 +57,19 @@
             this.epSettings = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsSettings = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTransactionType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPrefix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSuffix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStartingNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNoofdigits = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmResetOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSampleTransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConcernId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTransactionTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmResetOnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.pnlSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSettings)).BeginInit();
             this.grpVoucherSettings.SuspendLayout();
@@ -165,6 +168,9 @@
             this.clmNoofdigits,
             this.clmResetOn,
             this.clmSampleTransactionNo,
+            this.clmConcernId,
+            this.clmTransactionTypeID,
+            this.clmResetOnId,
             this.clmRemove});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -188,72 +194,6 @@
             this.grdSettings.Size = new System.Drawing.Size(1348, 534);
             this.grdSettings.TabIndex = 958789;
             this.grdSettings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSettings_CellContentClick);
-            // 
-            // clmsno
-            // 
-            this.clmsno.FillWeight = 80F;
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 80;
-            // 
-            // clmConcern
-            // 
-            this.clmConcern.HeaderText = "Concern";
-            this.clmConcern.Name = "clmConcern";
-            this.clmConcern.ReadOnly = true;
-            // 
-            // clmTransactionType
-            // 
-            this.clmTransactionType.HeaderText = "Transaction Type";
-            this.clmTransactionType.Name = "clmTransactionType";
-            this.clmTransactionType.ReadOnly = true;
-            this.clmTransactionType.Width = 200;
-            // 
-            // clmPrefix
-            // 
-            this.clmPrefix.HeaderText = "Prefix";
-            this.clmPrefix.Name = "clmPrefix";
-            this.clmPrefix.ReadOnly = true;
-            // 
-            // clmSuffix
-            // 
-            this.clmSuffix.HeaderText = "Suffix";
-            this.clmSuffix.Name = "clmSuffix";
-            this.clmSuffix.ReadOnly = true;
-            // 
-            // clmStartingNo
-            // 
-            this.clmStartingNo.HeaderText = "Starting No";
-            this.clmStartingNo.Name = "clmStartingNo";
-            this.clmStartingNo.ReadOnly = true;
-            // 
-            // clmNoofdigits
-            // 
-            this.clmNoofdigits.HeaderText = "No.of Digits";
-            this.clmNoofdigits.Name = "clmNoofdigits";
-            this.clmNoofdigits.ReadOnly = true;
-            // 
-            // clmResetOn
-            // 
-            this.clmResetOn.HeaderText = "Reset On";
-            this.clmResetOn.Name = "clmResetOn";
-            this.clmResetOn.ReadOnly = true;
-            // 
-            // clmSampleTransactionNo
-            // 
-            this.clmSampleTransactionNo.HeaderText = "Sample Transaction No";
-            this.clmSampleTransactionNo.Name = "clmSampleTransactionNo";
-            this.clmSampleTransactionNo.ReadOnly = true;
-            this.clmSampleTransactionNo.Width = 150;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // grpVoucherSettings
             // 
@@ -496,6 +436,90 @@
             this.tspHeader.Size = new System.Drawing.Size(119, 22);
             this.tspHeader.Text = "Voucher Settings";
             // 
+            // clmsno
+            // 
+            this.clmsno.FillWeight = 80F;
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 80;
+            // 
+            // clmConcern
+            // 
+            this.clmConcern.HeaderText = "Concern";
+            this.clmConcern.Name = "clmConcern";
+            this.clmConcern.ReadOnly = true;
+            // 
+            // clmTransactionType
+            // 
+            this.clmTransactionType.HeaderText = "Transaction Type";
+            this.clmTransactionType.Name = "clmTransactionType";
+            this.clmTransactionType.ReadOnly = true;
+            this.clmTransactionType.Width = 200;
+            // 
+            // clmPrefix
+            // 
+            this.clmPrefix.HeaderText = "Prefix";
+            this.clmPrefix.Name = "clmPrefix";
+            this.clmPrefix.ReadOnly = true;
+            // 
+            // clmSuffix
+            // 
+            this.clmSuffix.HeaderText = "Suffix";
+            this.clmSuffix.Name = "clmSuffix";
+            this.clmSuffix.ReadOnly = true;
+            // 
+            // clmStartingNo
+            // 
+            this.clmStartingNo.HeaderText = "Starting No";
+            this.clmStartingNo.Name = "clmStartingNo";
+            this.clmStartingNo.ReadOnly = true;
+            // 
+            // clmNoofdigits
+            // 
+            this.clmNoofdigits.HeaderText = "No.of Digits";
+            this.clmNoofdigits.Name = "clmNoofdigits";
+            this.clmNoofdigits.ReadOnly = true;
+            // 
+            // clmResetOn
+            // 
+            this.clmResetOn.HeaderText = "Reset On";
+            this.clmResetOn.Name = "clmResetOn";
+            this.clmResetOn.ReadOnly = true;
+            // 
+            // clmSampleTransactionNo
+            // 
+            this.clmSampleTransactionNo.HeaderText = "Sample Transaction No";
+            this.clmSampleTransactionNo.Name = "clmSampleTransactionNo";
+            this.clmSampleTransactionNo.ReadOnly = true;
+            this.clmSampleTransactionNo.Width = 150;
+            // 
+            // clmConcernId
+            // 
+            this.clmConcernId.HeaderText = "Concern ID";
+            this.clmConcernId.Name = "clmConcernId";
+            this.clmConcernId.ReadOnly = true;
+            // 
+            // clmTransactionTypeID
+            // 
+            this.clmTransactionTypeID.HeaderText = "Transaction Type ID";
+            this.clmTransactionTypeID.Name = "clmTransactionTypeID";
+            this.clmTransactionTypeID.ReadOnly = true;
+            // 
+            // clmResetOnId
+            // 
+            this.clmResetOnId.HeaderText = "Reset On ID";
+            this.clmResetOnId.Name = "clmResetOnId";
+            this.clmResetOnId.ReadOnly = true;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
             // CP_Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -564,6 +588,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNoofdigits;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmResetOn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSampleTransactionNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmConcernId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTransactionTypeID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmResetOnId;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }

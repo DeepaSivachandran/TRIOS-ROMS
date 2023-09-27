@@ -175,10 +175,10 @@ namespace ROMS
             try
             {
                 int varHsnId = 0;
-                for (int i = 0; i < grdHSN.Rows.Count; i++)
-                {
+               
                     varHsnId = 0;
-                    var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").ToUpper().Equals(Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                    var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").ToUpper().Equals(Convert.ToString(grdHSN.CurrentRow.Cells["HSN Name-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                    
                     if (varValue.Count() > 0)
                     {
                         varHsnId = Convert.ToInt32(varValue.ToList()[0]);
@@ -186,12 +186,14 @@ namespace ROMS
                         {
                             for (int k = 0; k < objDSHSN.Tables[0].Rows.Count; k++)
                             {
-                                grdHSN.Rows[i].Cells["HSN_Code-New"].Value = objDSHSN.Tables[0].Rows[k]["HSN Code"];
-                                grdHSN.Rows[i].Cells["GST%-New"].Value = objDSHSN.Tables[0].Rows[k]["GST%"];
+                                if (varHsnId == Convert.ToInt32(objDSHSN.Tables[0].Rows[k]["ID"]))
+                                {
+                                    grdHSN.CurrentRow.Cells["HSN_Code-New"].Value = objDSHSN.Tables[0].Rows[k]["HSN Code"];
+                                    grdHSN.CurrentRow.Cells["GST%-New"].Value = objDSHSN.Tables[0].Rows[k]["GST%"];
+                                }
                             }
                         }
                     }
-                }
             }
             catch (Exception ex)
             {
@@ -2481,7 +2483,7 @@ namespace ROMS
                 objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) ");
             } else
             {
-                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) AND SLID IN (SELECT DISTINCT RK_SLID FROM MR_Rack WHERE RKID IN (SELECT DISTINCT PRSGRK_RKID FROM MR_ProductSubGroup_Rack WHERE PRSGRK_PRSGID =(SELECT PR_PRSGID FROM MR_Product WHERE PRID ="+varPRID+")))");
+                objds = objdservice.GetDataset("SELECT SLID,SL_EName FROM MR_StockLocation WHERE SLID NOT IN (-1,0) AND SLID IN ((SELECT DISTINCT PRSG_SLID FROM MR_ProductSubGroup WHERE PRSGID =(SELECT PR_PRSGID FROM MR_Product WHERE PRID =" + varPRID+")))");
             }
             objdservice.CloseConnection();
             if (objds != null)
