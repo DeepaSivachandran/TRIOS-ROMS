@@ -16,6 +16,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
+        public string varSampleTransation = "";
         //tool tip
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpTransactionType = new ToolTip();
@@ -112,10 +113,12 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    udfnclose();
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    btnSave.Focus();
+                    BtnSave_Click(sender, e);
                 }
             }
             catch (Exception ex)
@@ -627,7 +630,9 @@ namespace ROMS
                 }
                 if (varFlag == 0)
                 {
-                    grdSettings.Rows.Add(grdSettings.Rows.Count+1, cmbConcern.SelectedValue, cmbTransactionType.SelectedValue, txtPrefix.Text, txtSuffix.Text, txtStartingNo.Text, txtNoOfDegits.Text, cmbResetOn.SelectedValue,"");
+                    //varSampleTransation = Convert.ToString(grdSettings.Rows[i].Cells["clmPrefix"].Value).Trim() + Convert.ToString(grdSettings.Rows[i].Cells["clmSuffix"].Value).Trim();
+                    varSampleTransation = Convert.ToString(txtPrefix.Text.Trim()) + Convert.ToString(txtSuffix.Text.Trim());
+                    grdSettings.Rows.Add(grdSettings.Rows.Count+1, cmbConcern.SelectedValue, cmbTransactionType.SelectedValue, txtPrefix.Text, txtSuffix.Text, txtStartingNo.Text, txtNoOfDegits.Text, cmbResetOn.SelectedValue,varSampleTransation);
                 }
                 else
                 {
@@ -704,7 +709,7 @@ namespace ROMS
         {
             try
             {
-                string result = "";
+                string result = ""; 
                 SPDataService objspdservice = new SPDataService();
                 DataTable objSettings = new DataTable();
                 objSettings.TableName = "[MR_VoucherSettings]";
@@ -715,7 +720,6 @@ namespace ROMS
                 objSettings.Columns.Add("STG_StartingNo", typeof(int));
                 objSettings.Columns.Add("STG_NoOfDigit", typeof(int));
                 objSettings.Columns.Add("STG_ResetOn", typeof(int));
-
                 for (int i = 0; i < grdSettings.Rows.Count; i++)
                 {
                     // objSettings.Rows.Add(grdSettings.Rows[i].Cells["HSN Name-New"].Value).Trim(), cmbTransactionType.SelectedValue, txtPrefix.Text, txtSuffix.Text, txtStartingNo.Text, txtNoOfDegits.Text, cmbResetOn.SelectedValue);
