@@ -4039,7 +4039,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnPurRackAutocomplete();
-                    txtSaleLocation.Focus();
+                    cmbBatchNoEntry.Focus();
                 }
             }
             catch (Exception ex)
