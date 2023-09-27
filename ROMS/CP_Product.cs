@@ -4571,7 +4571,6 @@ namespace ROMS
         {
             try
             {
-                
                 MainForm.objCP_Brand = new CP_Brand();
                 MainForm.objCP_Brand.MinimizeBox = false;
                 MainForm.objCP_Brand.MaximizeBox = false;

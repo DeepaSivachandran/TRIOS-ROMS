@@ -28,6 +28,7 @@ namespace ROMS
         public string varGroupId = "";
         public string varSubGroupId = "";
         public int varmastertype = 0;
+        public int varmasterBrandtype = 0;
         public string varGroup = "";
         // Added by deepa on 01-09-2023
         public int varCheckAllFlag1 = 0;
@@ -338,7 +339,7 @@ namespace ROMS
                 {
                     objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup, 0, varId, "",0,0,0,0);
                 }
-                if(varmastertype==1)
+                if(varmasterBrandtype == 1)
                 {
                     objDs = objdserv.udfnSubGroupList(varviewtype,0, varGroupId,0, 0, "", 0, 0, 0, 0);
                 }
@@ -378,29 +379,26 @@ namespace ROMS
                 grdSubGroup.Columns["Sub Group Id"].ReadOnly = true;
                 grdSubGroup.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                if(varmastertype==1)
+                if(varmasterBrandtype == 1)
                 {
-                   
                     for (int j = 0; j < grdSubGroup.RowCount; j++)
                     {
                         if (Convert.ToString(varSubGroupId) == Convert.ToString(grdSubGroup.Rows[j].Cells["Sub Group Id"].Value))
                         {
                             grdSubGroup.Rows[j].Cells[0].Value = true;
-                            
                             for (int i = 0; i < grdGroup.RowCount; i++)
                             {
-                                if (Convert.ToString(grdSubGroup.Rows[j].Cells["Group Id"].Value) == Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value))
+                                if (varGroupId == Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value))
                                 {
-                                    grdGroup.Rows[j].Cells[0].Value = true;
+                                    grdGroup.Rows[i].Cells[0].Value = true;
                                     //varGroup = Convert.ToString(grdGroup.Rows[j].Cells["ID"].Value);
-                                    
                                 }
-                               
                             }
                             //udfnSubGroupList();
                             udfnSubGroupAdd();
                         }
                     }
+                    varmasterBrandtype = 0;
                 }
                 //udfnRefreshSubGroup();
             }
@@ -420,14 +418,18 @@ namespace ROMS
             try
             {
                 try
-                { 
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                {
+                    if (varUpdate == 0)
                     {
-                        this.Close();
-                        MainForm.objCP_BrandList.Show();
-                        MainForm.objCP_BrandList.udfnList();
+                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            this.Close();
+                            MainForm.objCP_BrandList.Show();
+                            MainForm.objCP_BrandList.udfnList();
+                        }
                     }
+                    else { this.Close(); }
                 }
                 catch (Exception ex)
                 {
@@ -671,6 +673,9 @@ namespace ROMS
             {
                 txtEBrandNameInEnglish.Text = "";
                 txtEBrandNameInTamil.Text = "";
+                txtProductGroup.Text = "";
+                txtProductSubGroup.Text = "";
+                txtSelectedProductSubGroup.Text = "";
                 foreach (DataGridViewRow row in grdGroup.Rows)
                 {
                     row.Cells[0].Value = false;
@@ -1021,6 +1026,7 @@ namespace ROMS
                     varGroupId= MainForm.objCP_Items.vargroupId;
                     if (varSubGroupId!="0")
                     {
+                        varmasterBrandtype = 1;
                         udfnSubGroupList();
                     }
                 }
