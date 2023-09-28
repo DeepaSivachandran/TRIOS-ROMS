@@ -826,8 +826,9 @@ namespace ROMS
                 {
                     grdBatch.CurrentRow.Cells["Batch Generation-New"].ReadOnly = false;
                 }
-                if (PR_BatchNoID == 72)
-                { 
+                if (PR_BatchNoID == 73)
+                {
+                    grdBatch.CurrentRow.Cells["Batch Generation-New"].Value = "";
                     grdBatch.CurrentRow.Cells["Batch Generation-New"].ReadOnly = true;
                 }
             }
