@@ -212,16 +212,11 @@
       <DependentUpon>CP_Employee.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\RPT_CP_Broker_Address.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_Broker_Address.rpt</DependentUpon>
       <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Reports\RPT_CP_Broker_Address1.cs">
-      <DependentUpon>RPT_CP_Broker_Address.rpt</DependentUpon>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_CP_Broker_Contact.cs">
       <DependentUpon>RPT_CP_Broker_Contact.rpt</DependentUpon>
@@ -1030,10 +1025,6 @@
     <EmbeddedResource Include="CP_Employee.resx">
       <DependentUpon>CP_Employee.cs</DependentUpon>
     </EmbeddedResource>
-    <Content Include="Reports\RPT_CP_Broker_Address.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_CP_Broker_Address1.cs</LastGenOutput>
-    </Content>
     <Content Include="Reports\RPT_PUR_SupplierScheduleProductDayWise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_SupplierScheduleProductDayWise.cs</LastGenOutput>
@@ -1380,6 +1371,11 @@
       <LastGenOutput>RPT_CP_Broker_Contact.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_CP_Broker_Address.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Broker_Address.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_Company.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Company.cs</LastGenOutput>
