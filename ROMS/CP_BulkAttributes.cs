@@ -3040,7 +3040,6 @@ namespace ROMS
                         SubGroup.AutoCompleteCustomSource = AutoCompleteSubGroup(varGRID);
                         SubGroup.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
-                    grdBrand.CurrentRow.Cells["Brand-New"].Value = "";
                 }
                 else if (grdBrand.CurrentCell.OwningColumn.Name == "Brand-New")
                 {
@@ -3132,12 +3131,12 @@ namespace ROMS
                 {
                     grdBrand.CurrentRow.Cells["Sub Group-New"].Value = "";
                     grdBrand.CurrentRow.Cells["Brand-New"].Value = "";
-
                 }
-               if (grdBrand.CurrentCell.OwningColumn.Name == "Sub Group-New")
-               {
+                if (grdBrand.CurrentCell.OwningColumn.Name == "Sub Group-New")
+                {
                     grdBrand.CurrentRow.Cells["Brand-New"].Value = "";
-               }
+                }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
