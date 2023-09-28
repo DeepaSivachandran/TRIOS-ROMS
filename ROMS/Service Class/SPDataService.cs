@@ -455,7 +455,7 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-11/08/2023 Modified by:- 28/09/2023 two places repeated use this Citylist so clear one
-        public DataSet udfnCitylist(int ViewType, string paraCityName, int paraStateId, string paraUserID, string paraIPAddress, int paraStatus)
+        public DataSet udfnCitylist(int ViewType, string paraCityName, int paraStateId, int paraStatus)
         {
             DataSet ds = new DataSet();
             try
@@ -466,8 +466,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCityName", paraCityName);
                 varSqlCommand.Parameters.AddWithValue("@paraStateId", paraStateId);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
 
                 varSqlCommand.CommandTimeout = 0;

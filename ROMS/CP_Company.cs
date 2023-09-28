@@ -2551,7 +2551,7 @@ namespace ROMS
                     string VarCity = "0";
                     DataSet objDsCity = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsCity = objDserv.udfnCitylist(2, txtCity.Text.Trim(), 0,"","",0);
+                    objDsCity = objDserv.udfnCitylist(2, txtCity.Text.Trim(), 0,0);
                     objDserv.CloseConnection();
                     if (objDsCity != null) {
                         if (objDsCity.Tables.Count > 0) {
@@ -3739,7 +3739,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtCity.Text.Length > 2)
                 {
-                    objDs = objspdservice.udfnCityList(1, txtCity.Text,Convert.ToInt32(cmbState.SelectedValue));
+                    objDs = objspdservice.udfnCitylist(1, txtCity.Text,Convert.ToInt32(cmbState.SelectedValue),0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
