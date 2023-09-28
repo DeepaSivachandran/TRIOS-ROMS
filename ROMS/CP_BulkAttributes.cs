@@ -3134,10 +3134,11 @@ namespace ROMS
                     grdBrand.CurrentRow.Cells["Brand-New"].Value = "";
 
                 }
-               if (grdBrand.CurrentCell.OwningColumn.Name == "Sub Group-New")
-               {
+                if (grdBrand.CurrentCell.OwningColumn.Name == "Sub Group-New")
+                {
                     grdBrand.CurrentRow.Cells["Brand-New"].Value = "";
-               }
+                }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
