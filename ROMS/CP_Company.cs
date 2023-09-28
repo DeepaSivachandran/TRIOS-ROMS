@@ -3739,7 +3739,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtCity.Text.Length > 2)
                 {
-                    objDs = objspdservice.udfncitylist(1, txtCity.Text, MainForm.pbUserID, MainForm.pbIpAddress,Convert.ToString(cmbState.SelectedValue));
+                    objDs = objspdservice.udfnCityList(1, txtCity.Text,Convert.ToInt32(cmbState.SelectedValue));
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

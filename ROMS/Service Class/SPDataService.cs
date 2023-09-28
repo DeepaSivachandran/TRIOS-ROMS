@@ -302,38 +302,6 @@ namespace ROMS
             }
             return ds;
         }
-        //City Master List
-        //created by Venkat,Created on 09/08/2023
-        public DataSet udfncitylist(int ViewType, string paraCityName, string paraUserID, string paraIPAddress, string paraStateId)
-        {
-            DataSet ds = new DataSet();
-            try
-            {
-                tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("MRG_City", tmpspcall.objConn);
-                varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@paraViewType", ViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraCityName", paraCityName);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", paraIPAddress);
-                varSqlCommand.Parameters.AddWithValue("@paraStateId", paraStateId);
-
-                varSqlCommand.CommandTimeout = 0;
-                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
-                sa.Fill(ds);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                tmpspcall.CloseConnection();
-            }
-            return ds;
-        }
-
         // Sivabharathi    Create date: 09/08/2023    Description:	HSN Sp
         public string udfnHsn(int ViewType, int paraHsnId, int paraGstId, string paraHsnName, string paraHsnCode, int paraStatusId, string paraOriginator)
         {
