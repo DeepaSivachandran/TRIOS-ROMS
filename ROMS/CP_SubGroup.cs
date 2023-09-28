@@ -251,13 +251,17 @@ namespace ROMS
                    varOriginator = "Product Sub Group Updation";
                    varViewType=1; 
                 }
-                string varRackId = "";
+                string varRackId = "", varRackName = ""; ;
+                int varcheckedcount = 0;
                 for (int i = 0; i < grdRackList.Rows.Count; i++)
                 {
                     if (Convert.ToBoolean(grdRackList.Rows[i].Cells[0].Value) == true)
                     {
+                        varcheckedcount++;
                         if (varRackId == "") { varRackId = Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value); }
                         else  {  varRackId = varRackId + ',' + Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value); }
+                        if (varRackName == "") { varRackName = Convert.ToString(grdRackList.Rows[i].Cells["Rack Name"].Value); }
+                        else { varRackName = varRackName + ',' + Convert.ToString(grdRackList.Rows[i].Cells["Rack Name"].Value); }
                     }
                 }
                 if (grdRackList.Rows.Count>0 && varRackId == "")
@@ -294,6 +298,14 @@ namespace ROMS
                                 //MainForm.objCP_Items.varSALERKID = Convert.ToInt32(lblRack.Text);
                                 MainForm.objCP_Items.varPurchaseLocation = txtLocation.Text.Trim();
                                 MainForm.objCP_Items.varSalesLocation = txtLocation.Text.Trim();
+                                if (varcheckedcount > 1) {
+                                    MainForm.objCP_Items.varPURRKID = Convert.ToInt32(varRackId);
+                                    MainForm.objCP_Items.varPurchaseRack = varRackName; }
+                                else
+                                {
+                                    MainForm.objCP_Items.varPURRKID = 0;
+                                    MainForm.objCP_Items.varPurchaseRack = "";
+                                }
                                 //MainForm.objCP_Items.varPurchaseRack = txtRack.Text.Trim();
                                 //MainForm.objCP_Items.varSalesRack = txtRack.Text.Trim();
                                 varCloseFlag = 1;

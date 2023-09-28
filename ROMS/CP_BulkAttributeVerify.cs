@@ -59,7 +59,8 @@ namespace ROMS
                                 string varMessage = objDServ.udfnGetMessages(62);
                                 objDServ.CloseConnection();
                                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                              
+                                txtPassKey.Text = "";
+                                txtPassKey.Focus();
                             }
                         }
                     }

@@ -175,26 +175,32 @@ namespace ROMS
             try
             {
                 int varHsnId = 0;
-               
-                    varHsnId = 0;
-                    var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").ToUpper().Equals(Convert.ToString(grdHSN.CurrentRow.Cells["HSN Name-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
-                    
-                    if (varValue.Count() > 0)
+
+                varHsnId = 0;
+                var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").ToUpper().Equals(Convert.ToString(grdHSN.CurrentRow.Cells["HSN Name-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+
+                if (varValue.Count() > 0)
+                {
+                    varHsnId = Convert.ToInt32(varValue.ToList()[0]);
+                    if (varHsnId != 0)
                     {
-                        varHsnId = Convert.ToInt32(varValue.ToList()[0]);
-                        if (varHsnId!=0)
+                        for (int k = 0; k < objDSHSN.Tables[0].Rows.Count; k++)
                         {
-                            for (int k = 0; k < objDSHSN.Tables[0].Rows.Count; k++)
+                            if (varHsnId == Convert.ToInt32(objDSHSN.Tables[0].Rows[k]["ID"]))
                             {
-                                if (varHsnId == Convert.ToInt32(objDSHSN.Tables[0].Rows[k]["ID"]))
-                                {
-                                    grdHSN.CurrentRow.Cells["HSN_Code-New"].Value = objDSHSN.Tables[0].Rows[k]["HSN Code"];
-                                    grdHSN.CurrentRow.Cells["GST%-New"].Value = objDSHSN.Tables[0].Rows[k]["GST%"];
-                                }
+                                grdHSN.CurrentRow.Cells["HSN_Code-New"].Value = objDSHSN.Tables[0].Rows[k]["HSN Code"];
+                                grdHSN.CurrentRow.Cells["GST%-New"].Value = objDSHSN.Tables[0].Rows[k]["GST%"];
                             }
                         }
                     }
+                }
+                if (Convert.ToString(grdHSN.CurrentRow.Cells["HSN Name-New"].Value).Trim() == "")
+                {
+                    grdHSN.CurrentRow.Cells["HSN_Code-New"].Value = "";
+                    grdHSN.CurrentRow.Cells["GST%-New"].Value = "";
+                }
             }
+            
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -3040,7 +3046,6 @@ namespace ROMS
                         SubGroup.AutoCompleteCustomSource = AutoCompleteSubGroup(varGRID);
                         SubGroup.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
-                    grdBrand.CurrentRow.Cells["Brand-New"].Value = "";
                 }
                 else if (grdBrand.CurrentCell.OwningColumn.Name == "Brand-New")
                 {
@@ -3132,7 +3137,6 @@ namespace ROMS
                 {
                     grdBrand.CurrentRow.Cells["Sub Group-New"].Value = "";
                     grdBrand.CurrentRow.Cells["Brand-New"].Value = "";
-
                 }
                 if (grdBrand.CurrentCell.OwningColumn.Name == "Sub Group-New")
                 {

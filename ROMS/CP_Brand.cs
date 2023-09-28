@@ -1023,7 +1023,7 @@ namespace ROMS
                 {
                     varSubGroupId = MainForm.objCP_Items.varSubgroupId;
                     varGroupId= MainForm.objCP_Items.vargroupId;
-                    if (varSubGroupId!="0")
+                    if (varSubGroupId!="0" && varGroupId!="0")
                     {
                         varmasterBrandtype = 1;
                         udfnSubGroupList();
