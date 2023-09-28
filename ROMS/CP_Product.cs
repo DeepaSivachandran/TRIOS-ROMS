@@ -441,7 +441,7 @@ namespace ROMS
                 string varId_Group = "0";
                 DataSet objDsGroup = new DataSet();
                 SPDataService objDServ1 = new SPDataService();
-                objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim());
+                objDsGroup = objDServ1.udfnGroupList(9, 0, Convert.ToInt32(varId_SubGroup), txtGroup.Text.Trim());
                 objDServ1.CloseConnection();
                 if (objDsGroup != null)
                 {
@@ -3861,7 +3861,7 @@ namespace ROMS
         {
             try
             {
-                if (txtSubGroup.Text.Trim() != "") { 
+                if (txtGroup.Text.Trim() != "") { 
                 lvGroup.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -3906,6 +3906,7 @@ namespace ROMS
                     lvGroup.Items.Clear();
                     lvGroup.Visible = false;
                     txtGroup.Text = "";
+                    txtSubGroup.Text = "";
                     lblGroupCode.Text = "0";
                 }
             }
@@ -4729,8 +4730,19 @@ namespace ROMS
                     // varSubgroupId = lblSubGroupCode.Text;
                     MainForm.objCP_Brand.varmastertype = 1;
                     MainForm.objCP_Brand.ShowDialog();
-                    lblBrand.Text = Convert.ToString(varbrandcode);
-                    txtBrand.Text = varBrandName;
+                    if (btnSave.Text == "Save")
+                    {
+                        lblBrand.Text = Convert.ToString(varbrandcode);
+                        txtBrand.Text = varBrandName;
+                    }
+                    else
+                    {
+                        if (varbrandcode != 0)
+                        {
+                            lblBrand.Text = Convert.ToString(varbrandcode);
+                            txtBrand.Text = varBrandName;
+                        }
+                    }
                     txtBrand.Focus();
                     lvBrand.Visible = false;
                 }

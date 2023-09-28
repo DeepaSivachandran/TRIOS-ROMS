@@ -76,8 +76,6 @@ namespace ROMS
             }
             finally
             {
-                MainForm.objCP_Unitlist.picLoader.Visible = false;
-                MainForm.objCP_Unitlist.picLoader.SendToBack();
             }
         }
         public void udfnLoad() {
@@ -87,6 +85,8 @@ namespace ROMS
                 txtInvoiceUnit.Text = pbInvoiceUnit;
                 cmbNoOfDecimals.SelectedValue = pbDecimalId;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInActive.Checked = true; }
+                MainForm.objCP_Unitlist.picLoader.Visible = false;
+                MainForm.objCP_Unitlist.picLoader.SendToBack();
             }
             catch (Exception ex) {
                 objError = new DataError();

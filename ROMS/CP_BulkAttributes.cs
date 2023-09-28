@@ -568,6 +568,8 @@ namespace ROMS
                                 varErrorflag = 1;
                             }
                         }
+                        //if (Convert.ToInt32(grdShelfLife.Rows[i].Cells["Shelf Life Type-New"].Value) <= 0)
+                        //{ varErrorflag = 2; }
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdShelfLife.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
@@ -824,8 +826,9 @@ namespace ROMS
                 {
                     grdBatch.CurrentRow.Cells["Batch Generation-New"].ReadOnly = false;
                 }
-                else
+                if (PR_BatchNoID == 73)
                 {
+                    grdBatch.CurrentRow.Cells["Batch Generation-New"].Value = "";
                     grdBatch.CurrentRow.Cells["Batch Generation-New"].ReadOnly = true;
                 }
             }
@@ -2676,8 +2679,8 @@ namespace ROMS
                // grdBatch.CurrentRow.Cells["Batch Generation-New"].ReadOnly = false;
                 objds = objdservice.GetDataset("SELECT MSTID,MST_DisplayText from DEF_Master where MST_TransactionID = 26");
             }
-            else
-            {
+            if (batchNo == 73)
+            { 
                 grdBatch.CurrentRow.Cells["Batch Generation-New"].ReadOnly = true;
             }
             objdservice.CloseConnection();
