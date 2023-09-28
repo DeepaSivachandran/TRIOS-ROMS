@@ -3709,6 +3709,10 @@ namespace ROMS
                 {
                     txtSubGroup.BackColor = ColorTranslator.FromHtml("#fabdbd");
                     errItems.SetError(txtSubGroup, "Please select subgroup");
+                    txtGroup.Text = "";
+                    lblGroupCode.Text = "0";
+                    txtBrand.Text = "";
+                    lblBrand.Text = "0";
                 }
                 else
                 {
@@ -3835,6 +3839,10 @@ namespace ROMS
                 {
                     txtGroup.BackColor = ColorTranslator.FromHtml("#fabdbd");
                     errItems.SetError(txtGroup, "Please select group");
+                    txtSubGroup.Text = "";
+                    lblSubGroupCode.Text = "0";
+                    txtBrand.Text = "";
+                    lblBrand.Text = "0";
                 }
                 else
                 {
