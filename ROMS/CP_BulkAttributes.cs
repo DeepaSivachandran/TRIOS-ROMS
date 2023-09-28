@@ -367,12 +367,12 @@ namespace ROMS
                         { varGroupId = Convert.ToInt32(varGroup.ToList()[0]); }
                         string varGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim();
                         if (varGroupName == "") { varGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Group-Current"].Value).Trim(); }
-                        var varSubGroup = from r in objDSSubGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Sub Group Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim().ToUpper()) && r.Field<string>("Product Group Name").ToUpper().Equals(varGroupName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        string varSubGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim();
+                        if (varSubGroupName == "") { varSubGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-Current"].Value).Trim(); }
+                        var varSubGroup = from r in objDSSubGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Sub Group Name in English").ToUpper().Equals(Convert.ToString(varSubGroupName).Trim().ToUpper()) && r.Field<string>("Product Group Name").ToUpper().Equals(varGroupName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varSubGroup.Count() > 0)
                         { varSubGroupId = Convert.ToInt32(varSubGroup.ToList()[0]); }
-                        string varSubGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim();
-                        if (varSubGroupName == "") { varGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-Current"].Value).Trim(); }
-                        var varBrand = from r in objDSSubgroupBrand.Tables[0].AsEnumerable() where (r.Field<string>("BD_EName").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim().ToUpper()) && r.Field<string>("Sub Group Name in English").ToUpper().Equals(varSubGroupName.ToUpper())) group r by r.Field<int>("BDID") into g select g.Key;
+                        var varBrand = from r in objDSSubgroupBrand.Tables[0].AsEnumerable() where (r.Field<string>("BD_EName").Trim().ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim().ToUpper()) && r.Field<string>("Sub Group Name in English").Trim().ToUpper().Equals(varSubGroupName.Trim().ToUpper())) group r by r.Field<int>("BDID") into g select g.Key;
                         if (varBrand.Count() > 0)
                         { varBrandId = Convert.ToInt32(varBrand.ToList()[0]); }
                         if (Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim() != "")
@@ -777,6 +777,7 @@ namespace ROMS
                             MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         udfnList();
+                        udfnDefalutDSLoad();
                     }
                 }
             }
@@ -2510,14 +2511,14 @@ namespace ROMS
             objds = null;
             DataService objdservice = new DataService();
             DataTable objDt = new DataTable();
-            if (varSLID == 0)
-            {
-                objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0)");
-            }
-            else
-            {
-                objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0) AND RK_SLID = " + varSLID + "  AND RKID IN ((SELECT DISTINCT PRSGRK_RKID FROM MR_ProductSubGroup_Rack WHERE PRSGRK_PRSGID =(SELECT PR_PRSGID FROM MR_Product WHERE PRID ="+varPRID+")))");
-            }
+            //if (varSLID == 0)
+            //{
+            //    objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0)");
+            //}
+            //else
+            //{
+            objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0) AND RK_SLID = " + varSLID + "  AND RKID IN ((SELECT DISTINCT PRSGRK_RKID FROM MR_ProductSubGroup_Rack WHERE PRSGRK_PRSGID =(SELECT PR_PRSGID FROM MR_Product WHERE PRID ="+varPRID+")))");
+            
             objdservice.CloseConnection();
             if (objds != null)
             {
@@ -2773,7 +2774,7 @@ namespace ROMS
             }
             return varstr;
         }
-        public AutoCompleteStringCollection AutoCompleteUnitSymbol()
+        public AutoCompleteStringCollection AutoCompleteUnitQtySymbol()
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
             DataSet objds;
@@ -2794,6 +2795,33 @@ namespace ROMS
                 }
             }
             var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("QUT_Symbol") into g select g.Key;
+            for (int i = 0; i < varValue.Count(); i++)
+            {
+                varstr.Add(varValue.ToList()[i].ToString());
+            }
+            return varstr;
+        }
+        public AutoCompleteStringCollection AutoCompleteUnit()
+        {
+            AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
+            DataSet objds;
+            objds = null;
+            DataService objdservice = new DataService();
+            DataTable objDt = new DataTable();
+
+            objds = objdservice.GetDataset("SELECT  UTID,UT_Symbol,* from MR_Unit WHERE UTID NOT IN (-1,0)");
+            objdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        objDt = objds.Tables[0];
+                    }
+                }
+            }
+            var varValue = from r in objDt.AsEnumerable() group r by r.Field<string>("UT_Symbol") into g select g.Key;
             for (int i = 0; i < varValue.Count(); i++)
             {
                 varstr.Add(varValue.ToList()[i].ToString());
@@ -2995,6 +3023,9 @@ namespace ROMS
                         txtGroup.AutoCompleteCustomSource = AutoCompleteGroup();
                         txtGroup.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
+                    grdBrand.CurrentRow.Cells["Sub Group-New"].Value = "";
+                    grdBrand.CurrentRow.Cells["Brand-New"].Value = "";
+
                 }
                 else if (grdBrand.CurrentCell.OwningColumn.Name == "Sub Group-New")
                 {
@@ -3012,6 +3043,7 @@ namespace ROMS
                         SubGroup.AutoCompleteCustomSource = AutoCompleteSubGroup(varGRID);
                         SubGroup.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
+                    grdBrand.CurrentRow.Cells["Brand-New"].Value = "";
                 }
                 else if (grdBrand.CurrentCell.OwningColumn.Name == "Brand-New")
                 {
@@ -3020,8 +3052,9 @@ namespace ROMS
                     {
                         int varSGRID = 0;
                         string varSubGroupName = "";
-                        if (Convert.ToString(grdBrand.CurrentRow.Cells["Sub Group-New"].Value) == "")  { varSubGroupName = Convert.ToString(grdBrand.CurrentRow.Cells["Sub Group-Current"].Value);  }
-                        var varSubGroup = from r in objDSSubgroupBrand.Tables[0].AsEnumerable() where (r.Field<string>("Sub Group Name in English").ToUpper().Equals(varSubGroupName.Trim().ToUpper())) group r by r.Field<int>("BDS_PRSGID") into g select g.Key;
+                        if (Convert.ToString(grdBrand.CurrentRow.Cells["Sub Group-New"].Value) == "")  { varSubGroupName = Convert.ToString(grdBrand.CurrentRow.Cells["Sub Group-Current"].Value).Trim();  }
+                        else { varSubGroupName = Convert.ToString(grdBrand.CurrentRow.Cells["Sub Group-New"].Value).Trim(); }
+                        var varSubGroup = from r in objDSSubgroupBrand.Tables[0].AsEnumerable() where (r.Field<string>("Sub Group Name in English").Trim().ToUpper().Equals(varSubGroupName.Trim().ToUpper())) group r by r.Field<int>("BDS_PRSGID") into g select g.Key;
                         if (varSubGroup.Count() > 0)
                         { varSGRID = Convert.ToInt32(varSubGroup.ToList()[0]); }
                         txtBrand.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -3046,7 +3079,7 @@ namespace ROMS
                     if (txtUnit != null)
                     {
                         txtUnit.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        txtUnit.AutoCompleteCustomSource = AutoCompleteUnitSymbol();
+                        txtUnit.AutoCompleteCustomSource = AutoCompleteUnitQtySymbol();
                         txtUnit.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     }
                 }
@@ -3094,6 +3127,24 @@ namespace ROMS
             }
         }
 
+        private void GrdBrand_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (grdBrand.CurrentCell.OwningColumn.Name == "Group-New")
+                {
+                    grdBrand.CurrentRow.Cells["Sub Group-New"].Value = "";
+                    grdBrand.CurrentRow.Cells["Brand-New"].Value = "";
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdStock_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -3124,12 +3175,15 @@ namespace ROMS
         {
             try
             {
-                TextBox txtUnit = e.Control as TextBox;
-                if (txtUnit != null)
+                if (grdBulkAttributes.CurrentCell.OwningColumn.Name == "Unit-New")
                 {
-                    txtUnit.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    txtUnit.AutoCompleteCustomSource = AutoCompleteUnitSymbol();
-                    txtUnit.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    TextBox txtUnit = e.Control as TextBox;
+                    if (txtUnit != null)
+                    {
+                        txtUnit.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtUnit.AutoCompleteCustomSource = AutoCompleteUnit();
+                        txtUnit.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
                 }
             }
             catch (Exception ex)
