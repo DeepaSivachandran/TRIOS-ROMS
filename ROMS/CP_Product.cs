@@ -3853,7 +3853,7 @@ namespace ROMS
         {
             try
             {
-                if (txtSubGroup.Text.Trim() != "") { 
+                if (txtGroup.Text.Trim() != "") { 
                 lvGroup.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -3898,6 +3898,7 @@ namespace ROMS
                     lvGroup.Items.Clear();
                     lvGroup.Visible = false;
                     txtGroup.Text = "";
+                    txtSubGroup.Text = "";
                     lblGroupCode.Text = "0";
                 }
             }
