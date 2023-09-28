@@ -155,6 +155,8 @@ namespace ROMS
         public static REPORT_CP_State objREPORT_CP_State;
         public static REPORT_CP_Company objREPORT_CP_Company;
         public static REPORT_CP_HSN objREPORT_CP_HSN;
+        public static REPORT_CP_Product_Group objREPORT_CP_Product_Group;
+        public static REPORT_CP_Broker objREPORT_CP_Broker;
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -1295,6 +1297,40 @@ namespace ROMS
                 MainForm.objREPORT_CP_HSN = new REPORT_CP_HSN();
                 MainForm.objREPORT_CP_HSN.MdiParent = this;
                 MainForm.objREPORT_CP_HSN.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ProductGroupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_Product_Group = new REPORT_CP_Product_Group();
+                MainForm.objREPORT_CP_Product_Group.MdiParent = this;
+                MainForm.objREPORT_CP_Product_Group.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BrokerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_Broker = new REPORT_CP_Broker();
+                MainForm.objREPORT_CP_Broker.MdiParent = this;
+                MainForm.objREPORT_CP_Broker.Show();
             }
             catch (Exception ex)
             {
