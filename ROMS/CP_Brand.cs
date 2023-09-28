@@ -746,7 +746,6 @@ namespace ROMS
                         else
                         {
                             // udfnclose(); 
-
                             MainForm.objCP_BrandList.udfnList();
                             udfnClear();
                         }
@@ -755,6 +754,7 @@ namespace ROMS
                     {
                         varUpdate = 1;
                         udfnclose();
+                        MainForm.objCP_BrandList.udfnList();
                     }
                 }
                 else
