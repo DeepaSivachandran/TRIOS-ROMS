@@ -10,14 +10,13 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class REPORT_CP_Broker : Form
+    public partial class REPORT_CP_Brand : Form
     {
         ToolTip tpSupplier = new ToolTip();
-        private ToolTip tpCity = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-        public REPORT_CP_Broker()
+        public REPORT_CP_Brand()
         {
             InitializeComponent();
         }
@@ -66,7 +65,6 @@ namespace ROMS
         {
             try
             {
-                lvCity.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -103,112 +101,47 @@ namespace ROMS
         {
             try
             {
-                bool blnErrorFlag = false;
-                if (Convert.ToString(txtCity.Text) != "")
+                if (cmbReportType.SelectedIndex == 0)
                 {
-                    string VarCity = "0";
-                    DataSet objDsCity = new DataSet();
-                    SPDataService objDserv = new SPDataService();
-                    objDsCity = objDserv.udfnCitylist(2, txtCity.Text.Trim(), 0,"","",0);
-                    objDserv.CloseConnection();
-                    if (objDsCity != null)
-                    {
-                        if (objDsCity.Tables.Count > 0)
-                        {
-                            if (objDsCity.Tables[0].Rows.Count > 0)
-                            {
-                                VarCity = Convert.ToString(objDsCity.Tables[0].Rows[0][0]);
-                            }
-                        }
-                    }
-                    if (VarCity == "0" || VarCity == "-1")
-                    {
-                        lblcityid.Text = "0";
-                        ep_Broker.SetError(txtCity, "Invalid city");
-                        txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpCity.ShowAlways = true;
-                        tpCity.Show("Invalid city", txtCity, 5000);
-                        blnErrorFlag = true;
-                    }
-                    else
-                    {
-                        lblcityid.Text = VarCity;
-                    }
-                }
-                if (blnErrorFlag == false)
-                {
-
-                    if (cmbReportType.SelectedIndex == 0)
-                    {
-                        cmbReportType.Focus();
-                    }
-                    else
-                    {
-                        //btnListPrint.Enabled = false;
-                        RPTViewer.Visible = true;
-                        RPTViewer.BringToFront();
-                        RPTViewer.ReuseParameterValuesOnRefresh = true;
-                        RPTViewer.RefreshReport();
-                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-
-                        if (cmbReportType.SelectedIndex == 1)
-                        {
-                            udfnContact();
-                        }
-                        if (cmbReportType.SelectedIndex == 2)
-                        {
-                            udfnAddress();
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfnContact()
-        {
-            try
-            {
-                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Broker_Contact.rpt");
-                objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
-                objBillreport.SetParameterValue("status", Convert.ToString(cmbStatus.Text));
-                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                objValidation.CrySqlConnection(objBillreport);
-                RPTViewer.ReportSource = objBillreport;
-                RPTViewer.Refresh();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfnAddress()
-        {
-            try
-            {
-                int varcityid = 0;
-                if(lblcityid.Text=="")
-                {
-                    varcityid = 0;
+                    cmbReportType.Focus();
                 }
                 else
                 {
-                    varcityid = Convert.ToInt32(lblcityid.Text.Trim());
+                    //btnListPrint.Enabled = false;
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    if (cmbReportType.SelectedIndex == 1)
+                    {
+                        udfnHSN();
+                    }
+                    if (cmbReportType.SelectedIndex == 2)
+                    {
+                        udfnHSNProduct();
+                    }
+                    if (cmbReportType.SelectedIndex == 3)
+                    {
+                        udfnHSNSubgroup();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnHSN()
+        {
+            try
+            {
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Broker_Address.rpt");
-                objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
-                objBillreport.SetParameterValue("paracityid", varcityid);
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Master.rpt");
+                objBillreport.SetParameterValue("parastatusid", Convert.ToString(cmbStatus.SelectedValue));
                 objBillreport.SetParameterValue("status", Convert.ToString(cmbStatus.Text));
-                objBillreport.SetParameterValue("city", txtCity.Text.Trim());
                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                 objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -216,6 +149,82 @@ namespace ROMS
                 objValidation.CrySqlConnection(objBillreport);
                 RPTViewer.ReportSource = objBillreport;
                 RPTViewer.Refresh();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnHSNProduct()
+        {
+            try
+            {
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Product.rpt");
+                objBillreport.SetParameterValue("paraHSNID", Convert.ToString(cmbHSN.SelectedValue));
+                objBillreport.SetParameterValue("paraGSTID", Convert.ToString(cmbGST.SelectedValue));
+                objBillreport.SetParameterValue("paraStatusID", Convert.ToString(cmbStatus.SelectedValue));
+                objBillreport.SetParameterValue("paraHSNName", Convert.ToString(cmbHSN.Text));
+                objBillreport.SetParameterValue("paraGST", Convert.ToString(cmbGST.Text));
+                objBillreport.SetParameterValue("status", Convert.ToString(cmbStatus.Text));
+                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                objValidation.CrySqlConnection(objBillreport);
+                RPTViewer.ReportSource = objBillreport;
+                RPTViewer.Refresh();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnHSNSubgroup()
+        {
+            try
+            {
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Subgroup.rpt");
+                objBillreport.SetParameterValue("paraHSNID", Convert.ToString(cmbHSN.SelectedValue));
+                objBillreport.SetParameterValue("paraGSTID", Convert.ToString(cmbGST.SelectedValue));
+                objBillreport.SetParameterValue("paraHSNName", Convert.ToString(cmbHSN.Text));
+                objBillreport.SetParameterValue("paraGST", Convert.ToString(cmbGST.Text));
+                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                objValidation.CrySqlConnection(objBillreport);
+                RPTViewer.ReportSource = objBillreport;
+                RPTViewer.Refresh();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void REPORT_CP_HSN_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,35) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("MR_HSN", "HSNID NOT IN (-1)", "HSN_Name,HSNID", cmbHSN, "", "HSN_Name", "HSNID");
+                objDataBind.BindComboBoxListSelected("DEF_GST", " GSTID  NOT IN (-1)", "GST_Text,GSTID", cmbGST, "", "GST_Text", "GSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind = null;
+                cmbReportType.SelectedValue = -1;
+                cmbHSN.SelectedValue = 0;
+                cmbGST.SelectedValue = 0;
+                cmbStatus.SelectedValue = 0;
+                //btnListPrint.Enabled = true;
+                RPTViewer.Visible = true;
+                RPTViewer.BringToFront();
+                lblNoRecordsFound.Visible = true;
+                lblNoRecordsFound.BringToFront();
             }
             catch (Exception ex)
             {
@@ -228,15 +237,23 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
-                if (cmbReportType.SelectedIndex == 1)
+                if(cmbReportType.SelectedIndex==1)
                 {
-                    txtCity.Enabled = false;
+                    cmbHSN.Enabled = false;
+                    cmbGST.Enabled = false;
                     cmbStatus.Enabled = true;
                 }
-                if (cmbReportType.SelectedIndex == 2)
+                if(cmbReportType.SelectedIndex==2)
                 {
-                    txtCity.Enabled = true;
+                    cmbHSN.Enabled = true;
+                    cmbGST.Enabled = true;
                     cmbStatus.Enabled = true;
+                }
+                if(cmbReportType.SelectedIndex==3)
+                {
+                    cmbHSN.Enabled = true;
+                    cmbGST.Enabled = true;
+                    cmbStatus.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -251,9 +268,9 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if(txtCity.Enabled==true)
+                    if (cmbHSN.Enabled == true)
                     {
-                        txtCity.Focus();
+                        cmbHSN.Focus();
                     }
                     else
                     {
@@ -304,11 +321,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TxtCity_Enter(object sender, EventArgs e)
+        private void CmbHSN_Enter(object sender, EventArgs e)
         {
             try
             {
-                txtCity.BackColor = Color.LemonChiffon;
+                cmbHSN.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -316,30 +333,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TxtCity_KeyDown(object sender, KeyEventArgs e)
+        private void CmbHSN_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
-                {
-                    if (lvCity.Items.Count == 0 || txtCity.Text == "")
-                    {
-                        txtCity.Focus();
-                        lvCity.Visible = false;
-                    }
-                    else
-                    {
-                        lvCity.Focus();
-                    }
-                    if (lvCity.Items.Count > 0)
-                    {
-                        lvCity.Items[0].Selected = true;
-                    }
-                }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStatus.Focus();
-                    lvCity.Visible = false;
+                    cmbGST.Focus();
                 }
             }
             catch (Exception ex)
@@ -348,76 +348,57 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TxtCity_Leave(object sender, EventArgs e)
-        {
-            txtCity.BackColor = Color.White;
-        }
-        private void TxtCity_TextChanged(object sender, EventArgs e)
+        private void CmbHSN_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
-                lvCity.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
-                if (txtCity.Text.Length > 0)
-                {
-                    objDs = objspdservice.udfnCitylist(1, txtCity.Text,0, MainForm.pbUserID, MainForm.pbIpAddress,0);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
-                    {
-                        if (objDs.Tables.Count != 0)
-                        {
-                            if (objDs.Tables[0].Rows.Count != 0)
-                            {
-                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                {
-                                    string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["CTYID"].ToString() };
-                                    ListViewItem objList = new ListViewItem(row);
-                                    lvCity.Columns[1].Width = 0;
-                                    lvCity.Items.Add(objList);
-                                }
-                                lvCity.Visible = true;
-                                lvCity.BringToFront();
-                            }
-                            else
-                            {
-                                lvCity.Visible = false;
-                            }
-                        }
-                        else
-                        {
-                            lvCity.Visible = false;
-                        }
-                    }
-                    else
-                    {
-                        lvCity.Visible = false;
-                    }
-                }
-                else
-                {
-                    lvCity.Visible = false;
-                    lvCity.Items.Clear();
-                }
+                e.Handled = true;
             }
             catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
-        private void LvCity_KeyDown(object sender, KeyEventArgs e)
+        private void CmbHSN_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbHSN.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbGST_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbGST.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbGST_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    udfnGrdevent();
-                    cmbStatus.Focus();
+                    if (cmbStatus.Enabled == true)
+                    {
+                        cmbStatus.Focus();
+                    }
+                    else
+                    {
+                        btnListPrint.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -426,55 +407,24 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void LvCity_DoubleClick(object sender, EventArgs e)
+        private void CmbGST_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
-                udfnGrdevent();
-                cmbStatus.Focus();
+                e.Handled = true;
             }
             catch (Exception ex)
+
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
-        public void udfnGrdevent()
+        private void CmbGST_Leave(object sender, EventArgs e)
         {
             try
             {
-                if (txtCity.Text != "")
-                {
-                    ListViewItem selectedItem = lvCity.SelectedItems[0];
-                    txtCity.Text = selectedItem.SubItems[0].Text;
-                    lblcityid.Text = selectedItem.SubItems[1].Text;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                lvCity.Visible = false;
-            }
-        }
-        private void REPORT_CP_Broker_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,36) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
-                objDataBind = null;
-                cmbReportType.SelectedValue = -1;
-                cmbStatus.SelectedValue = 0;
-                //btnListPrint.Enabled = true;
-                RPTViewer.Visible = true;
-                RPTViewer.BringToFront();
-                lblNoRecordsFound.Visible = true;
-                lblNoRecordsFound.BringToFront();
+                cmbGST.BackColor = Color.White;
             }
             catch (Exception ex)
             {
