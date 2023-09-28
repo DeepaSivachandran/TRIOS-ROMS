@@ -211,8 +211,50 @@
     <Compile Include="CP_Employee.designer.cs">
       <DependentUpon>CP_Employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Broker_Address.cs">
+      <DependentUpon>RPT_CP_Broker_Address.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_Broker_Contact.cs">
+      <DependentUpon>RPT_CP_Broker_Contact.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_Product_Group.cs">
+      <DependentUpon>RPT_CP_Product_Group.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_CP_Company.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_Company.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_HSN_Subgroup.cs">
+      <DependentUpon>RPT_CP_HSN_Subgroup.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_HSN_Product.cs">
+      <DependentUpon>RPT_CP_HSN_Product.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_HSN_Master.cs">
+      <DependentUpon>RPT_CP_HSN_Master.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -232,11 +274,35 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_SupplierProductList.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_PUR_SupplierProductList.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="REPORT_CP_Broker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_CP_Broker.designer.cs">
+      <DependentUpon>REPORT_CP_Broker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_CP_Product_Group.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_CP_Product_Group.designer.cs">
+      <DependentUpon>REPORT_CP_Product_Group.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_CP_Company.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="REPORT_CP_Company.designer.cs">
       <DependentUpon>REPORT_CP_Company.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_CP_HSN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_CP_HSN.designer.cs">
+      <DependentUpon>REPORT_CP_HSN.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_CP_State.cs">
       <SubType>Form</SubType>
@@ -256,7 +322,7 @@
     <Compile Include="ReportLoad.designer.cs">
       <DependentUpon>ReportLoad.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\RPT_PUR_SupplierProductList.cs">
+    <Compile Include="Resources\RPT_PUR_SupplierProductList.cs">
       <DependentUpon>RPT_PUR_SupplierProductList.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
@@ -1284,13 +1350,56 @@
       <LastGenOutput>RPT_CP_State.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Reports\RPT_CP_Company.rpt">
+    <Content Include="Reports\RPT_CP_HSN_Master.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_HSN_Master.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Product_Group.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Product_Group.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Broker_Contact.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Broker_Contact.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Broker_Address.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Broker_Address.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Reports\RPT_CP_Company.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Company.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="Reports\RPT_CP_HSN_Product.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_HSN_Product.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_CP_HSN_Subgroup.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_HSN_Subgroup.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Reports\RPT_PUR_SupplierProductList.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_SupplierProductList.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_CP_Broker.resx">
+      <DependentUpon>REPORT_CP_Broker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_CP_Product_Group.resx">
+      <DependentUpon>REPORT_CP_Product_Group.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_Company.resx">
       <DependentUpon>REPORT_CP_Company.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_CP_HSN.resx">
+      <DependentUpon>REPORT_CP_HSN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_State.resx">
       <DependentUpon>REPORT_CP_State.cs</DependentUpon>
@@ -1304,7 +1413,7 @@
     <EmbeddedResource Include="ReportLoad.resx">
       <DependentUpon>ReportLoad.cs</DependentUpon>
     </EmbeddedResource>
-    <Content Include="Reports\RPT_PUR_SupplierProductList.rpt">
+    <Content Include="Resources\RPT_PUR_SupplierProductList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_SupplierProductList.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

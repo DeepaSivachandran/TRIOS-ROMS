@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class REPORT_CP_City
+    partial class REPORT_CP_Product_Group
     {
         /// <summary>
         /// Required designer variable.
@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_City));
-            this.ReportCity = new System.Windows.Forms.ToolStrip();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Product_Group));
+            this.ReportProductGroup = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.pnlReportCity = new System.Windows.Forms.Panel();
+            this.pnlReportProductGroup = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.btnListPrint = new System.Windows.Forms.Button();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
@@ -41,28 +41,28 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.ep_City = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ReportCity.SuspendLayout();
-            this.pnlReportCity.SuspendLayout();
+            this.ep_ProductGroup = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ReportProductGroup.SuspendLayout();
+            this.pnlReportProductGroup.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ep_City)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ep_ProductGroup)).BeginInit();
             this.SuspendLayout();
             // 
-            // ReportCity
+            // ReportProductGroup
             // 
-            this.ReportCity.BackColor = System.Drawing.Color.White;
-            this.ReportCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportCity.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ReportCity.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ReportCity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ReportProductGroup.BackColor = System.Drawing.Color.White;
+            this.ReportProductGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReportProductGroup.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.ReportProductGroup.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ReportProductGroup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.toolStripButton1});
-            this.ReportCity.Location = new System.Drawing.Point(0, 0);
-            this.ReportCity.Name = "ReportCity";
-            this.ReportCity.Size = new System.Drawing.Size(1354, 27);
-            this.ReportCity.TabIndex = 35;
-            this.ReportCity.Text = "City Report";
+            this.ReportProductGroup.Location = new System.Drawing.Point(0, 0);
+            this.ReportProductGroup.Name = "ReportProductGroup";
+            this.ReportProductGroup.Size = new System.Drawing.Size(1354, 27);
+            this.ReportProductGroup.TabIndex = 35;
+            this.ReportProductGroup.Text = "Product Group Report";
             // 
             // tspHeader
             // 
@@ -71,8 +71,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(87, 24);
-            this.tspHeader.Text = "City Report";
+            this.tspHeader.Size = new System.Drawing.Size(144, 24);
+            this.tspHeader.Text = "Product Group Report";
             // 
             // toolStripButton1
             // 
@@ -83,17 +83,17 @@
             this.toolStripButton1.Size = new System.Drawing.Size(24, 24);
             this.toolStripButton1.Text = "toolStripButton1";
             // 
-            // pnlReportCity
+            // pnlReportProductGroup
             // 
-            this.pnlReportCity.BackColor = System.Drawing.Color.White;
-            this.pnlReportCity.Controls.Add(this.grpfilter);
-            this.pnlReportCity.Controls.Add(this.lblNoRecordsFound);
-            this.pnlReportCity.Controls.Add(this.picLoader);
-            this.pnlReportCity.Controls.Add(this.RPTViewer);
-            this.pnlReportCity.Location = new System.Drawing.Point(0, 31);
-            this.pnlReportCity.Name = "pnlReportCity";
-            this.pnlReportCity.Size = new System.Drawing.Size(1354, 642);
-            this.pnlReportCity.TabIndex = 958788;
+            this.pnlReportProductGroup.BackColor = System.Drawing.Color.White;
+            this.pnlReportProductGroup.Controls.Add(this.grpfilter);
+            this.pnlReportProductGroup.Controls.Add(this.lblNoRecordsFound);
+            this.pnlReportProductGroup.Controls.Add(this.picLoader);
+            this.pnlReportProductGroup.Controls.Add(this.RPTViewer);
+            this.pnlReportProductGroup.Location = new System.Drawing.Point(0, 31);
+            this.pnlReportProductGroup.Name = "pnlReportProductGroup";
+            this.pnlReportProductGroup.Size = new System.Drawing.Size(1354, 642);
+            this.pnlReportProductGroup.TabIndex = 958788;
             // 
             // grpfilter
             // 
@@ -187,34 +187,34 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // ep_City
+            // ep_ProductGroup
             // 
-            this.ep_City.ContainerControl = this;
+            this.ep_ProductGroup.ContainerControl = this;
             // 
-            // REPORT_CP_City
+            // REPORT_CP_Product_Group
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
-            this.Controls.Add(this.pnlReportCity);
-            this.Controls.Add(this.ReportCity);
+            this.Controls.Add(this.pnlReportProductGroup);
+            this.Controls.Add(this.ReportProductGroup);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "REPORT_CP_City";
+            this.Name = "REPORT_CP_Product_Group";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "City Report";
-            this.Load += new System.EventHandler(this.REPORT_CP_City_Load);
-            this.ReportCity.ResumeLayout(false);
-            this.ReportCity.PerformLayout();
-            this.pnlReportCity.ResumeLayout(false);
-            this.pnlReportCity.PerformLayout();
+            this.Text = "Product Group Report";
+            this.Load += new System.EventHandler(this.REPORT_CP_Product_Group_Load);
+            this.ReportProductGroup.ResumeLayout(false);
+            this.ReportProductGroup.PerformLayout();
+            this.pnlReportProductGroup.ResumeLayout(false);
+            this.pnlReportProductGroup.PerformLayout();
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ep_City)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ep_ProductGroup)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,14 +222,14 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip ReportCity;
+        private System.Windows.Forms.ToolStrip ReportProductGroup;
         private System.Windows.Forms.ToolStripLabel tspHeader;
-        private System.Windows.Forms.Panel pnlReportCity;
+        private System.Windows.Forms.Panel pnlReportProductGroup;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.ErrorProvider ep_City;
+        private System.Windows.Forms.ErrorProvider ep_ProductGroup;
         public System.Windows.Forms.PictureBox picLoader;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.ToolStripButton toolStripButton1;

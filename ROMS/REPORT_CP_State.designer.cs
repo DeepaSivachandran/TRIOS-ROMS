@@ -102,7 +102,7 @@
             this.grpfilter.Controls.Add(this.lblState);
             this.grpfilter.Location = new System.Drawing.Point(12, 2);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(265, 58);
+            this.grpfilter.Size = new System.Drawing.Size(1339, 58);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";

@@ -298,8 +298,8 @@ namespace ROMS
                         txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpRack.ShowAlways = true;
                         tpRack.Show("Please select valid rack", txtRack, 5000);
-                        grdViewSupplierMapping.DataSource = null;
-                        dtViewSupplierMapping.Rows.Clear();
+                        //grdViewSupplierMapping.DataSource = null;
+                        //dtViewSupplierMapping.Rows.Clear();
                         txtRack.Focus();
                         blnErrorFlag = true;
                     }

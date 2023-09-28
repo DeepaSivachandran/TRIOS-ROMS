@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class REPORT_CP_State : Form
+    public partial class REPORT_CP_Product_Group : Form
     {
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-        public REPORT_CP_State()
+        public REPORT_CP_Product_Group()
         {
             InitializeComponent();
         }
@@ -35,7 +35,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -48,9 +47,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void CmbStatus_Leave(object sender, EventArgs e)
         {
             try
@@ -62,9 +59,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void CmbStatus_Enter(object sender, EventArgs e)
         {
             try
@@ -76,9 +71,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
-
         private void CmbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -126,10 +119,9 @@ namespace ROMS
                 RPTViewer.RefreshReport();
                 CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 
-                
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_State.rpt");
-                objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Group.rpt");
+                objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
                 objBillreport.SetParameterValue("status", Convert.ToString(cmbStatus.Text));
                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                 objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
@@ -145,8 +137,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void REPORT_CP_City_Load(object sender, EventArgs e)
+        private void REPORT_CP_Product_Group_Load(object sender, EventArgs e)
         {
             try
             {

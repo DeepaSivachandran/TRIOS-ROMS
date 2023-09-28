@@ -454,20 +454,22 @@ namespace ROMS
             }
             return varResult;
         }
-        //Created By :-Sathish ; Created On :-11/08/2023
-        public DataSet udfnCityList(int paraviewType, string paraCityName, int paraStateId)
+        //Created By :-Sathish ; Created On :-11/08/2023 Modified by:- 28/09/2023 two places repeated use this Citylist so clear one
+        public DataSet udfnCitylist(int ViewType, string paraCityName, int paraStateId, string paraUserID, string paraIPAddress, int paraStatus)
         {
             DataSet ds = new DataSet();
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[MRG_City]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRG_City", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCityName", paraCityName);
                 varSqlCommand.Parameters.AddWithValue("@paraStateId", paraStateId);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
+
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
