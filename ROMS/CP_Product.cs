@@ -468,7 +468,7 @@ namespace ROMS
                     string varId_Brand = "0";
                     DataSet objDsBrand = new DataSet();
                     SPDataService objDServ2 = new SPDataService();
-                    objDsBrand = objDServ2.udfnBrandList(8,"",0,0,0,txtBrand.Text.Trim());
+                    objDsBrand = objDServ2.udfnBrandList(9,"",0,Convert.ToInt32(lblSubGroupCode.Text),0,txtBrand.Text.Trim());
                     objDServ2.CloseConnection();
                     if (objDsBrand != null)
                     {
@@ -3416,8 +3416,14 @@ namespace ROMS
                 {
                     if (txtGroup.Text == "")
                     {
+                        lvGroup.Items.Clear();
+                        lvGroup.Visible = false;
+                        txtGroup.Text = "";
+                        lblGroupCode.Text = "0";
                         txtGroup.BackColor = ColorTranslator.FromHtml("#fabdbd");
                         errItems.SetError(txtSubGroup, "Please select subgroup");
+                        txtBrand.Text = "";
+                        lblBrand.Text = "0";
                     }
                     //else
                     //{
@@ -3428,6 +3434,12 @@ namespace ROMS
                     {
                         txtSubGroup.BackColor = ColorTranslator.FromHtml("#fabdbd");
                         errItems.SetError(txtSubGroup, "Please select subgroup");
+                        lvSubGroup.Items.Clear();
+                        lvSubGroup.Visible = false;
+                        txtSubGroup.Text = "";
+                        lblSubGroupCode.Text = "0";
+                        txtBrand.Text = "";
+                        lblBrand.Text = "0";
                     }
                     //else
                     //{
@@ -3842,39 +3854,52 @@ namespace ROMS
         {
             try
             {
+                if (txtSubGroup.Text.Trim() != "") { 
                 lvGroup.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtGroup.Text.Length > 0)
-                {
-                    objDs = objspdservice.udfnGroupList(7,0,Convert.ToInt32(lblSubGroupCode.Text),txtGroup.Text.Trim());
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
+                    if (txtGroup.Text.Length > 0)
                     {
-                        if (objDs.Tables.Count != 0)
+                        objDs = objspdservice.udfnGroupList(7, 0, Convert.ToInt32(lblSubGroupCode.Text), txtGroup.Text.Trim());
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables.Count != 0)
                             {
-                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString()};
-                                    ListViewItem objList = new ListViewItem(row);
-                                    lvGroup.Items.Add(objList);
+                                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                    {
+                                        string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString() };
+                                        ListViewItem objList = new ListViewItem(row);
+                                        lvGroup.Items.Add(objList);
+                                    }
+                                    lvGroup.Visible = true;
                                 }
-                                lvGroup.Visible = true;
                             }
                         }
                     }
-                    if(txtSubGroup.Text!="")
+                    else
                     {
-                        txtSubGroup.Text = "";
-                        lblSubGroupCode.Text = "0";
+                        lvGroup.Items.Clear();
+                        lvGroup.Visible = false;
                     }
+                    //if (txtSubGroup.Text != "")
+                    //{
+                    //    txtSubGroup.Text = "";
+                    //    lblSubGroupCode.Text = "0";
+                    //    txtBrand.Text = "";
+                    //    lblBrand.Text = "0";
+                    //}
                 }
                 else
                 {
-                    lvGroup.Visible = false;
+                    txtSubGroup.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    errItems.SetError(txtSubGroup, "Please select subgroup");
                     lvGroup.Items.Clear();
+                    lvGroup.Visible = false;
+                    txtGroup.Text = "";
+                    lblGroupCode.Text = "0";
                 }
             }
             catch (Exception ex)
@@ -4570,12 +4595,13 @@ namespace ROMS
                 lblGroupCode.Text = Convert.ToString(varGroupCode);
                 lblPurLocationCode.Text = Convert.ToString(varPURSLID);
                 lblSaleLocationCode.Text = Convert.ToString(varSALESLID);
-               // lblPurRackCode.Text = Convert.ToString(varPURRKID);
-               // lblSaleRackCode.Text = Convert.ToString(varSALERKID);
-                txtSaleLocation.Text = varSalesLocation;
+                lblPurRackCode.Text = Convert.ToString(varPURRKID);
+                // lblPurRackCode.Text = Convert.ToString(varPURRKID);
+                 lblSaleRackCode.Text = Convert.ToString("0");
+                txtSaleLocation.Text = "";
                 txtPurLocation.Text = varPurchaseLocation;
                // txtSaleRack.Text = varSalesRack;
-               // txtPurRack.Text = varPurchaseRack;
+                txtPurRack.Text = varPurchaseRack;
                 if (varBatchCode == 72)
                 {
                     cmbBatchNoEntry.SelectedValue = 72;
