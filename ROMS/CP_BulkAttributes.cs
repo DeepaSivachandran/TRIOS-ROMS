@@ -651,6 +651,7 @@ namespace ROMS
                             }
                            
                         }
+                        if (PR_BatchNoID == 72 && Convert.ToString(grdBatch.Rows[i].Cells["Batch Generation-New"].Value).Trim() =="") { varErrorflag = 5; }
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdBatch.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
