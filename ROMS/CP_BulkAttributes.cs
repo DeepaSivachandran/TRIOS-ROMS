@@ -568,8 +568,13 @@ namespace ROMS
                                 varErrorflag = 1;
                             }
                         }
-                        //if (Convert.ToInt32(grdShelfLife.Rows[i].Cells["Shelf Life Type-New"].Value) <= 0)
-                        //{ varErrorflag = 2; }
+                        if (Convert.ToString(grdShelfLife.Rows[i].Cells["Shelf Life-New"].Value) != "")
+                        {
+                            if (Convert.ToInt32(grdShelfLife.Rows[i].Cells["Shelf Life-New"].Value) <= 0)
+                            {
+                                varErrorflag = 2;
+                            }
+                        }
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdShelfLife.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
