@@ -831,7 +831,6 @@ namespace ROMS
         {
             try
             {
-
                 txtSelfLife.Text = ""; 
                 cmbConcern.SelectedValue = -1;
                 cmbProductCategory.SelectedValue = -1;

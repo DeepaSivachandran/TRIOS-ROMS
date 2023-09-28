@@ -152,7 +152,7 @@ namespace ROMS
                 objDSSubGroup = objDServ.udfnSubGroupList(0,0,"",0,0,"",0,0,0,0);
                 objDSBrand = objDServ.udfnBrandList(0,"",0,0,0,"");
                 objDSLocation = objDServ.udfnStockLocationList(17,0,0,0,"",0);
-                objDSRack = objDServ.udfnRackList(0,0,0,0,0,"",0);
+                objDSRack = objDServ.udfnRackList(14,0,0,0,0,"",0);
 
                 objDSShelfLifeType = objDServ.udfnMaster(0, 6);
                 objDSQTYUnit = objDServ.udfnMaster(2, 0);
@@ -368,19 +368,23 @@ namespace ROMS
                     for (int i = 0; i < grdBrand.Rows.Count; i++)
                     {
                         varGroupId = 0; varSubGroupId = 0; varBrandId = 0; varErrorflag = 0;
-                        var varGroup = from r in objDSGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Group Name in English").ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
-                        if (varGroup.Count() > 0)
-                        { varGroupId = Convert.ToInt32(varGroup.ToList()[0]); }
-                        string varGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim();
-                        if (varGroupName == "") { varGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Group-Current"].Value).Trim(); }
                         string varSubGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim();
                         if (varSubGroupName == "") { varSubGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-Current"].Value).Trim(); }
+                        string varGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim();
+                        if (varGroupName == "") { varGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Group-Current"].Value).Trim(); }
+                        
+                        var varGroup = from r in objDSSubGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Group Name").ToUpper().Equals(Convert.ToString(varGroupName).Trim().ToUpper()) && r.Field<string>("Product Sub Group Name in English").ToUpper().Equals(varSubGroupName.ToUpper())) group r by r.Field<int>("Product Group Id") into g select g.Key;
+                        if (varGroup.Count() > 0)
+                        { varGroupId = Convert.ToInt32(varGroup.ToList()[0]); }
+                       
                         var varSubGroup = from r in objDSSubGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Sub Group Name in English").ToUpper().Equals(Convert.ToString(varSubGroupName).Trim().ToUpper()) && r.Field<string>("Product Group Name").ToUpper().Equals(varGroupName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
                         if (varSubGroup.Count() > 0)
                         { varSubGroupId = Convert.ToInt32(varSubGroup.ToList()[0]); }
+
                         var varBrand = from r in objDSSubgroupBrand.Tables[0].AsEnumerable() where (r.Field<string>("BD_EName").Trim().ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim().ToUpper()) && r.Field<string>("Sub Group Name in English").Trim().ToUpper().Equals(varSubGroupName.Trim().ToUpper())) group r by r.Field<int>("BDID") into g select g.Key;
                         if (varBrand.Count() > 0)
                         { varBrandId = Convert.ToInt32(varBrand.ToList()[0]); }
+
                         if (Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim() != "")
                         {
                             if (varGroupId == 0)
@@ -402,6 +406,11 @@ namespace ROMS
                                 varErrorflag = 3;
                             }
                         }
+                       if (Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim() != "" && Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim() != ""&& varBrandId == 0)
+                       {      varErrorflag = 4;
+                       }
+                       if(varSubGroupId==0 && Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim() != "")
+                       { varErrorflag = 5; }
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdBrand.Rows[i].Cells["PRID"].Value),
                             0, 0, "", "", "", "", "", "",
                             Convert.ToInt32(grdBrand.Rows[i].Cells["PRGID-Old"].Value), varGroupId, Convert.ToInt32(grdBrand.Rows[i].Cells["PRSGID-Old"].Value), varSubGroupId, Convert.ToInt32(grdBrand.Rows[i].Cells["BDID-Old"].Value), varBrandId,
@@ -426,21 +435,21 @@ namespace ROMS
                         if (varPurStockLocation.Count() > 0)
                         { varPurSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); }
 
-                        varPurSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim();
-                        if (varPurSalesLocationName == "") { varPurSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-Current"].Value).Trim(); }
-                        var varSalesStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("SL_EName").ToUpper().Equals(varPurSalesLocationName.Trim().ToUpper()) && r.Field<int>("PRSGID").Equals(Convert.ToInt32(grdLoction.Rows[i].Cells["PRSGID"].Value))) group r by r.Field<int>("SLID") into g select g.Key;
-                        if (varSalesStockLocation.Count() > 0)
-                        { varSalesSLID = Convert.ToInt32(varSalesStockLocation.ToList()[0]); }
+                        //varPurSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim();
+                        //if (varPurSalesLocationName == "") { varPurSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-Current"].Value).Trim(); }
+                        //var varSalesStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("SL_EName").ToUpper().Equals(varPurSalesLocationName.Trim().ToUpper()) && r.Field<int>("PRSGID").Equals(Convert.ToInt32(grdLoction.Rows[i].Cells["PRSGID"].Value))) group r by r.Field<int>("SLID") into g select g.Key;
+                        //if (varSalesStockLocation.Count() > 0)
+                        //{ varSalesSLID = Convert.ToInt32(varSalesStockLocation.ToList()[0]); }
                         string varPurLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim();
                         if (varPurLocationName == "") { varPurLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-Current"].Value).Trim(); }
-                        var varPurRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-New"].Value).Trim().ToUpper()) && r.Field<string>("Stock Location").ToUpper().Equals(varPurLocationName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        var varPurRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("RK_Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Pur.Rack-New"].Value).Trim().ToUpper()) && r.Field<int>("RK_SLID").Equals(varPurSLID)) group r by r.Field<int>("RKID") into g select g.Key;
                         if (varPurRack.Count() > 0)
                         { varPurRKID = Convert.ToInt32(varPurRack.ToList()[0]); }
-                        string varSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim();
-                        if (varSalesLocationName == "") { varSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-Current"].Value).Trim(); }
-                        var varSalesRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper()) && r.Field<string>("Stock Location").ToUpper().Equals(varSalesLocationName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
-                        if (varSalesRack.Count() > 0)
-                        { varSalesRKID = Convert.ToInt32(varSalesRack.ToList()[0]); }
+                        //string varSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-New"].Value).Trim();
+                        //if (varSalesLocationName == "") { varSalesLocationName = Convert.ToString(grdLoction.Rows[i].Cells["Sales Location-Current"].Value).Trim(); }
+                        //var varSalesRack = from r in objDSRack.Tables[0].AsEnumerable() where (r.Field<string>("Rack Name").ToUpper().Equals(Convert.ToString(grdLoction.Rows[i].Cells["Sales Rack-New"].Value).Trim().ToUpper()) && r.Field<string>("Stock Location").ToUpper().Equals(varSalesLocationName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+                        //if (varSalesRack.Count() > 0)
+                        //{ varSalesRKID = Convert.ToInt32(varSalesRack.ToList()[0]); }
 
                         if (Convert.ToString(grdLoction.Rows[i].Cells["Pur.Stock Location-New"].Value).Trim().ToUpper() != "")
                         {
@@ -651,6 +660,7 @@ namespace ROMS
                             }
                            
                         }
+                        if (PR_BatchNoID == 72 && Convert.ToString(grdBatch.Rows[i].Cells["Batch Generation-New"].Value).Trim() =="") { varErrorflag = 5; }
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdBatch.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
