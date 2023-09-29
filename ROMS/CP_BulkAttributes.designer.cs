@@ -757,6 +757,7 @@
             this.grdLoction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdLoction.Size = new System.Drawing.Size(1118, 481);
             this.grdLoction.TabIndex = 958793;
+            this.grdLoction.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdLoction_CellEndEdit);
             this.grdLoction.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdLoction_EditingControlShowing);
             // 
             // grdBulkAttributes

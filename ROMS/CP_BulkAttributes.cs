@@ -752,6 +752,11 @@ namespace ROMS
                             grdShelfLife.Rows[i].Cells["UPP-New"].Style.BackColor = Color.PaleGreen;
                             grdShelfLife.Rows[i].Cells["Shelf Life-New"].Style.BackColor = Color.PaleGreen;
                             grdShelfLife.Rows[i].Cells["Shelf Life Type-New"].Style.BackColor = Color.PaleGreen;
+                            grdShelfLife.Rows[i].Cells["S.No."].Style.BackColor = Color.AliceBlue;
+                            grdShelfLife.Rows[i].Cells["Product Name in Tamil"].Style.BackColor = Color.AliceBlue;
+                            grdShelfLife.Rows[i].Cells["Unit"].Style.BackColor = Color.AliceBlue;
+                            grdShelfLife.Rows[i].Cells["P.I Code"].Style.BackColor = Color.AliceBlue;
+
                         }
                         else if (grdWeight.Visible == true)
                         {
@@ -759,12 +764,19 @@ namespace ROMS
                             grdWeight.Rows[i].Cells["Net Quantity-New"].Style.BackColor = Color.PaleGreen;
                             grdWeight.Rows[i].Cells["Gross Weight-New"].Style.BackColor = Color.PaleGreen;
                             grdWeight.Rows[i].Cells["Net Weight-Unit-New"].Style.BackColor = Color.PaleGreen;
-
+                            grdWeight.Rows[i].Cells["S.No."].Style.BackColor = Color.AliceBlue;
+                            grdWeight.Rows[i].Cells["Product Name in Tamil"].Style.BackColor = Color.AliceBlue;
+                            grdWeight.Rows[i].Cells["Unit"].Style.BackColor = Color.AliceBlue;
+                            grdWeight.Rows[i].Cells["P.I Code"].Style.BackColor = Color.AliceBlue;
                         }
                         else if (grdHSN.Visible == true)
                         {
                             grdHSN.Rows[i].DefaultCellStyle.BackColor = Color.White;
                             grdHSN.Rows[i].Cells["HSN Name-New"].Style.BackColor = Color.PaleGreen;
+                            grdHSN.Rows[i].Cells["S.No."].Style.BackColor = Color.AliceBlue;
+                            grdHSN.Rows[i].Cells["Product Name in Tamil"].Style.BackColor = Color.AliceBlue;
+                            grdHSN.Rows[i].Cells["Unit"].Style.BackColor = Color.AliceBlue;
+                            grdHSN.Rows[i].Cells["P.I Code"].Style.BackColor = Color.AliceBlue;
                         }
                         else if (grdBulkAttributes.Visible == true)
                         {
@@ -773,6 +785,10 @@ namespace ROMS
                             grdBulkAttributes.Rows[i].Cells["Product Name in Tamil-New"].Style.BackColor = Color.PaleGreen;
                             grdBulkAttributes.Rows[i].Cells["Product Name in English-New"].Style.BackColor = Color.PaleGreen;
                             grdBulkAttributes.Rows[i].Cells["Unit-New"].Style.BackColor = Color.PaleGreen;
+                            grdBulkAttributes.Rows[i].Cells["S.No."].Style.BackColor = Color.AliceBlue;
+                            grdBulkAttributes.Rows[i].Cells["Product Name in Tamil"].Style.BackColor = Color.AliceBlue;
+                            grdBulkAttributes.Rows[i].Cells["Unit"].Style.BackColor = Color.AliceBlue;
+                            grdBulkAttributes.Rows[i].Cells["P.I Code"].Style.BackColor = Color.AliceBlue;
                         }
                         else if (grdBatch.Visible == true)
                         {
@@ -781,6 +797,10 @@ namespace ROMS
                             grdBatch.Rows[i].Cells["RM Pro-New"].Style.BackColor = Color.PaleGreen;
                             grdBatch.Rows[i].Cells["Batch No.-New"].Style.BackColor = Color.PaleGreen;
                             grdBatch.Rows[i].Cells["Batch Generation-New"].Style.BackColor = Color.PaleGreen;
+                            grdBatch.Rows[i].Cells["S.No."].Style.BackColor = Color.AliceBlue;
+                            grdBatch.Rows[i].Cells["Product Name in Tamil"].Style.BackColor = Color.AliceBlue;
+                            grdBatch.Rows[i].Cells["Unit"].Style.BackColor = Color.AliceBlue;
+                            grdBatch.Rows[i].Cells["P.I Code"].Style.BackColor = Color.AliceBlue;
                         }
                         else if (grdBrand.Visible == true)
                         {
@@ -788,6 +808,10 @@ namespace ROMS
                             grdBrand.Rows[i].Cells["Group-New"].Style.BackColor = Color.PaleGreen;
                             grdBrand.Rows[i].Cells["Sub Group-New"].Style.BackColor = Color.PaleGreen;
                             grdBrand.Rows[i].Cells["Brand-New"].Style.BackColor = Color.PaleGreen;
+                            grdBrand.Rows[i].Cells["S.No."].Style.BackColor = Color.AliceBlue;
+                            grdBrand.Rows[i].Cells["Product Name in Tamil"].Style.BackColor = Color.AliceBlue;
+                            grdBrand.Rows[i].Cells["Unit"].Style.BackColor = Color.AliceBlue;
+                            grdBrand.Rows[i].Cells["P.I Code"].Style.BackColor = Color.AliceBlue;
                         }
                         else if (grdLoction.Visible == true)
                         {
@@ -797,6 +821,10 @@ namespace ROMS
                             grdLoction.Rows[i].Cells["Pur.Rack-New"].Style.BackColor = Color.PaleGreen;
                             grdLoction.Rows[i].Cells["Sales Rack-New"].Style.BackColor = Color.PaleGreen;
                             grdLoction.Rows[i].Cells["Rack MSQ-New"].Style.BackColor = Color.PaleGreen;
+                            grdLoction.Rows[i].Cells["S.No."].Style.BackColor = Color.AliceBlue;
+                            grdLoction.Rows[i].Cells["Product Name in Tamil"].Style.BackColor = Color.AliceBlue;
+                            grdLoction.Rows[i].Cells["Unit"].Style.BackColor = Color.AliceBlue;
+                            grdLoction.Rows[i].Cells["P.I Code"].Style.BackColor = Color.AliceBlue;
                         }
                     }
                 }
@@ -1348,6 +1376,7 @@ namespace ROMS
                                 grdHSN.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdHSN.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdHSN.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                                grdHSN.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdHSN.Columns["Product Name in English"].Visible = false;
                                 grdHSN.Columns["PRID"].Visible = false;
                                 grdHSN.Columns["HSNOLDID"].Visible = false;
@@ -3180,6 +3209,22 @@ namespace ROMS
                 if (grdBrand.CurrentCell.OwningColumn.Name == "Sub Group-New")
                 {
                     grdBrand.CurrentRow.Cells["Brand-New"].Value = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdLoction_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (grdLoction.CurrentCell.OwningColumn.Name == "Pur.Stock Location-New")
+                {
+                    grdLoction.CurrentRow.Cells["Pur.Rack-New"].Value = "";
                 }
             }
             catch (Exception ex)
