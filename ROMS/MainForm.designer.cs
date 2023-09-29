@@ -100,6 +100,7 @@ namespace ROMS
             this.hSNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.brokerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -653,7 +654,8 @@ namespace ROMS
             this.companyToolStripMenuItem,
             this.hSNToolStripMenuItem,
             this.productGroupToolStripMenuItem,
-            this.brokerToolStripMenuItem});
+            this.brokerToolStripMenuItem,
+            this.brandToolStripMenuItem});
             this.mastersToolStripMenuItem1.Name = "mastersToolStripMenuItem1";
             this.mastersToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.mastersToolStripMenuItem1.Text = "Masters";
@@ -699,6 +701,13 @@ namespace ROMS
             this.brokerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.brokerToolStripMenuItem.Text = "Broker";
             this.brokerToolStripMenuItem.Click += new System.EventHandler(this.BrokerToolStripMenuItem_Click);
+            // 
+            // brandToolStripMenuItem
+            // 
+            this.brandToolStripMenuItem.Name = "brandToolStripMenuItem";
+            this.brandToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.brandToolStripMenuItem.Text = "Brand";
+            this.brandToolStripMenuItem.Click += new System.EventHandler(this.BrandToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -798,5 +807,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem hSNToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productGroupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brokerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem brandToolStripMenuItem;
     }
 }

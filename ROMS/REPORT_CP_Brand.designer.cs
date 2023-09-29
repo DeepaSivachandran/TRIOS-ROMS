@@ -35,12 +35,14 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.pnlReportBrand = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.txtGroup = new System.Windows.Forms.TextBox();
+            this.txtSubGroup = new System.Windows.Forms.TextBox();
+            this.txtBrand = new System.Windows.Forms.TextBox();
+            this.lblGroup = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.cmbGST = new System.Windows.Forms.ComboBox();
-            this.lblGST = new System.Windows.Forms.Label();
-            this.cmbHSN = new System.Windows.Forms.ComboBox();
-            this.lblHSN = new System.Windows.Forms.Label();
+            this.lblSubgroup = new System.Windows.Forms.Label();
+            this.lblBrand = new System.Windows.Forms.Label();
             this.btnListPrint = new System.Windows.Forms.Button();
             this.cmbReportType = new System.Windows.Forms.ComboBox();
             this.lblReportType = new System.Windows.Forms.Label();
@@ -48,6 +50,24 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.ep_Brand = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lvBrand = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvSubGroup = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvGroup = new System.Windows.Forms.ListView();
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblSubGroupCode = new System.Windows.Forms.Label();
+            this.lblGroupCode = new System.Windows.Forms.Label();
+            this.lblBrandCode = new System.Windows.Forms.Label();
             this.ReportBrand.SuspendLayout();
             this.pnlReportBrand.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -92,6 +112,9 @@
             // pnlReportBrand
             // 
             this.pnlReportBrand.BackColor = System.Drawing.Color.White;
+            this.pnlReportBrand.Controls.Add(this.lvGroup);
+            this.pnlReportBrand.Controls.Add(this.lvSubGroup);
+            this.pnlReportBrand.Controls.Add(this.lvBrand);
             this.pnlReportBrand.Controls.Add(this.grpfilter);
             this.pnlReportBrand.Controls.Add(this.lblNoRecordsFound);
             this.pnlReportBrand.Controls.Add(this.picLoader);
@@ -103,12 +126,17 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.lblBrandCode);
+            this.grpfilter.Controls.Add(this.lblGroupCode);
+            this.grpfilter.Controls.Add(this.lblSubGroupCode);
+            this.grpfilter.Controls.Add(this.txtGroup);
+            this.grpfilter.Controls.Add(this.txtSubGroup);
+            this.grpfilter.Controls.Add(this.txtBrand);
+            this.grpfilter.Controls.Add(this.lblGroup);
             this.grpfilter.Controls.Add(this.cmbStatus);
             this.grpfilter.Controls.Add(this.lblStatus);
-            this.grpfilter.Controls.Add(this.cmbGST);
-            this.grpfilter.Controls.Add(this.lblGST);
-            this.grpfilter.Controls.Add(this.cmbHSN);
-            this.grpfilter.Controls.Add(this.lblHSN);
+            this.grpfilter.Controls.Add(this.lblSubgroup);
+            this.grpfilter.Controls.Add(this.lblBrand);
             this.grpfilter.Controls.Add(this.btnListPrint);
             this.grpfilter.Controls.Add(this.cmbReportType);
             this.grpfilter.Controls.Add(this.lblReportType);
@@ -119,10 +147,59 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // txtGroup
+            // 
+            this.txtGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtGroup.Location = new System.Drawing.Point(868, 19);
+            this.txtGroup.MaxLength = 100;
+            this.txtGroup.Name = "txtGroup";
+            this.txtGroup.Size = new System.Drawing.Size(186, 27);
+            this.txtGroup.TabIndex = 1111229;
+            this.txtGroup.TextChanged += new System.EventHandler(this.TxtGroup_TextChanged);
+            this.txtGroup.Enter += new System.EventHandler(this.TxtGroup_Enter);
+            this.txtGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGroup_KeyDown);
+            this.txtGroup.Leave += new System.EventHandler(this.TxtGroup_Leave);
+            // 
+            // txtSubGroup
+            // 
+            this.txtSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSubGroup.Location = new System.Drawing.Point(628, 19);
+            this.txtSubGroup.MaxLength = 100;
+            this.txtSubGroup.Name = "txtSubGroup";
+            this.txtSubGroup.Size = new System.Drawing.Size(186, 27);
+            this.txtSubGroup.TabIndex = 1111228;
+            this.txtSubGroup.TextChanged += new System.EventHandler(this.TxtSubGroup_TextChanged);
+            this.txtSubGroup.Enter += new System.EventHandler(this.TxtSubGroup_Enter);
+            this.txtSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSubGroup_KeyDown);
+            this.txtSubGroup.Leave += new System.EventHandler(this.TxtSubGroup_Leave);
+            // 
+            // txtBrand
+            // 
+            this.txtBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtBrand.Location = new System.Drawing.Point(368, 19);
+            this.txtBrand.MaxLength = 100;
+            this.txtBrand.Name = "txtBrand";
+            this.txtBrand.Size = new System.Drawing.Size(186, 27);
+            this.txtBrand.TabIndex = 1111183;
+            this.txtBrand.TextChanged += new System.EventHandler(this.TxtBrand_TextChanged);
+            this.txtBrand.Enter += new System.EventHandler(this.TxtBrand_Enter);
+            this.txtBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBrand_KeyDown);
+            this.txtBrand.Leave += new System.EventHandler(this.TxtBrand_Leave);
+            // 
+            // lblGroup
+            // 
+            this.lblGroup.AutoSize = true;
+            this.lblGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGroup.Location = new System.Drawing.Point(820, 22);
+            this.lblGroup.Name = "lblGroup";
+            this.lblGroup.Size = new System.Drawing.Size(42, 20);
+            this.lblGroup.TabIndex = 1111181;
+            this.lblGroup.Text = "Group";
+            // 
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(718, 19);
+            this.cmbStatus.Location = new System.Drawing.Point(1111, 19);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(143, 27);
             this.cmbStatus.TabIndex = 3;
@@ -135,62 +212,38 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(667, 22);
+            this.lblStatus.Location = new System.Drawing.Point(1060, 22);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(45, 20);
             this.lblStatus.TabIndex = 1111182;
             this.lblStatus.Text = "Status";
             // 
-            // cmbGST
+            // lblSubgroup
             // 
-            this.cmbGST.FormattingEnabled = true;
-            this.cmbGST.Location = new System.Drawing.Point(518, 19);
-            this.cmbGST.Name = "cmbGST";
-            this.cmbGST.Size = new System.Drawing.Size(143, 27);
-            this.cmbGST.TabIndex = 2;
-            this.cmbGST.Enter += new System.EventHandler(this.CmbGST_Enter);
-            this.cmbGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGST_KeyDown);
-            this.cmbGST.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbGST_KeyPress);
-            this.cmbGST.Leave += new System.EventHandler(this.CmbGST_Leave);
+            this.lblSubgroup.AutoSize = true;
+            this.lblSubgroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubgroup.Location = new System.Drawing.Point(560, 22);
+            this.lblSubgroup.Name = "lblSubgroup";
+            this.lblSubgroup.Size = new System.Drawing.Size(62, 20);
+            this.lblSubgroup.TabIndex = 1111180;
+            this.lblSubgroup.Text = "Subgroup";
             // 
-            // lblGST
+            // lblBrand
             // 
-            this.lblGST.AutoSize = true;
-            this.lblGST.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGST.Location = new System.Drawing.Point(482, 22);
-            this.lblGST.Name = "lblGST";
-            this.lblGST.Size = new System.Drawing.Size(30, 20);
-            this.lblGST.TabIndex = 1111180;
-            this.lblGST.Text = "GST";
-            // 
-            // cmbHSN
-            // 
-            this.cmbHSN.FormattingEnabled = true;
-            this.cmbHSN.Location = new System.Drawing.Point(333, 19);
-            this.cmbHSN.Name = "cmbHSN";
-            this.cmbHSN.Size = new System.Drawing.Size(143, 27);
-            this.cmbHSN.TabIndex = 1;
-            this.cmbHSN.Enter += new System.EventHandler(this.CmbHSN_Enter);
-            this.cmbHSN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbHSN_KeyDown);
-            this.cmbHSN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbHSN_KeyPress);
-            this.cmbHSN.Leave += new System.EventHandler(this.CmbHSN_Leave);
-            // 
-            // lblHSN
-            // 
-            this.lblHSN.AutoSize = true;
-            this.lblHSN.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHSN.Location = new System.Drawing.Point(295, 22);
-            this.lblHSN.Name = "lblHSN";
-            this.lblHSN.Size = new System.Drawing.Size(32, 20);
-            this.lblHSN.TabIndex = 1111178;
-            this.lblHSN.Text = "HSN";
+            this.lblBrand.AutoSize = true;
+            this.lblBrand.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBrand.Location = new System.Drawing.Point(320, 22);
+            this.lblBrand.Name = "lblBrand";
+            this.lblBrand.Size = new System.Drawing.Size(42, 20);
+            this.lblBrand.TabIndex = 1111178;
+            this.lblBrand.Text = "Brand";
             // 
             // btnListPrint
             // 
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.print;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(867, 16);
+            this.btnListPrint.Location = new System.Drawing.Point(1260, 16);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(70, 33);
@@ -207,7 +260,7 @@
             this.cmbReportType.FormattingEnabled = true;
             this.cmbReportType.Location = new System.Drawing.Point(88, 19);
             this.cmbReportType.Name = "cmbReportType";
-            this.cmbReportType.Size = new System.Drawing.Size(201, 27);
+            this.cmbReportType.Size = new System.Drawing.Size(226, 27);
             this.cmbReportType.TabIndex = 0;
             this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.CmbReportType_SelectedIndexChanged);
             this.cmbReportType.Enter += new System.EventHandler(this.CmbReportType_Enter);
@@ -269,6 +322,141 @@
             // 
             this.ep_Brand.ContainerControl = this;
             // 
+            // lvBrand
+            // 
+            this.lvBrand.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvBrand.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvBrand.HideSelection = false;
+            this.lvBrand.Location = new System.Drawing.Point(380, 48);
+            this.lvBrand.Name = "lvBrand";
+            this.lvBrand.Size = new System.Drawing.Size(254, 78);
+            this.lvBrand.TabIndex = 1111228;
+            this.lvBrand.UseCompatibleStateImageBehavior = false;
+            this.lvBrand.View = System.Windows.Forms.View.Details;
+            this.lvBrand.Visible = false;
+            this.lvBrand.DoubleClick += new System.EventHandler(this.LvBrand_DoubleClick);
+            this.lvBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvBrand_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 120;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 130;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
+            // 
+            // lvSubGroup
+            // 
+            this.lvSubGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader28,
+            this.columnHeader29});
+            this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSubGroup.HideSelection = false;
+            this.lvSubGroup.Location = new System.Drawing.Point(640, 48);
+            this.lvSubGroup.Name = "lvSubGroup";
+            this.lvSubGroup.Size = new System.Drawing.Size(234, 78);
+            this.lvSubGroup.TabIndex = 1111229;
+            this.lvSubGroup.UseCompatibleStateImageBehavior = false;
+            this.lvSubGroup.View = System.Windows.Forms.View.Details;
+            this.lvSubGroup.Visible = false;
+            this.lvSubGroup.DoubleClick += new System.EventHandler(this.LvSubGroup_DoubleClick);
+            this.lvSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSubGroup_KeyDown);
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 170;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 170;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Width = 0;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Width = 0;
+            // 
+            // columnHeader28
+            // 
+            this.columnHeader28.Width = 0;
+            // 
+            // columnHeader29
+            // 
+            this.columnHeader29.Width = 0;
+            // 
+            // lvGroup
+            // 
+            this.lvGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13});
+            this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvGroup.HideSelection = false;
+            this.lvGroup.Location = new System.Drawing.Point(880, 48);
+            this.lvGroup.Name = "lvGroup";
+            this.lvGroup.Size = new System.Drawing.Size(237, 78);
+            this.lvGroup.TabIndex = 1111230;
+            this.lvGroup.UseCompatibleStateImageBehavior = false;
+            this.lvGroup.View = System.Windows.Forms.View.Details;
+            this.lvGroup.Visible = false;
+            this.lvGroup.DoubleClick += new System.EventHandler(this.LvGroup_DoubleClick);
+            this.lvGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvGroup_KeyDown);
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Width = 170;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Width = 170;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Width = 0;
+            // 
+            // lblSubGroupCode
+            // 
+            this.lblSubGroupCode.AutoSize = true;
+            this.lblSubGroupCode.Location = new System.Drawing.Point(585, 2);
+            this.lblSubGroupCode.Name = "lblSubGroupCode";
+            this.lblSubGroupCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSubGroupCode.TabIndex = 1111231;
+            this.lblSubGroupCode.Text = "0";
+            this.lblSubGroupCode.Visible = false;
+            // 
+            // lblGroupCode
+            // 
+            this.lblGroupCode.AutoSize = true;
+            this.lblGroupCode.Location = new System.Drawing.Point(831, 2);
+            this.lblGroupCode.Name = "lblGroupCode";
+            this.lblGroupCode.Size = new System.Drawing.Size(16, 20);
+            this.lblGroupCode.TabIndex = 1111231;
+            this.lblGroupCode.Text = "0";
+            this.lblGroupCode.Visible = false;
+            // 
+            // lblBrandCode
+            // 
+            this.lblBrandCode.AutoSize = true;
+            this.lblBrandCode.Location = new System.Drawing.Point(331, 2);
+            this.lblBrandCode.Name = "lblBrandCode";
+            this.lblBrandCode.Size = new System.Drawing.Size(16, 20);
+            this.lblBrandCode.TabIndex = 1111231;
+            this.lblBrandCode.Text = "0";
+            this.lblBrandCode.Visible = false;
+            // 
             // REPORT_CP_Brand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -284,7 +472,7 @@
             this.Name = "REPORT_CP_Brand";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HSN Report";
-            this.Load += new System.EventHandler(this.REPORT_CP_HSN_Load);
+            this.Load += new System.EventHandler(this.REPORT_CP_Brand_Load);
             this.ReportBrand.ResumeLayout(false);
             this.ReportBrand.PerformLayout();
             this.pnlReportBrand.ResumeLayout(false);
@@ -312,11 +500,31 @@
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Button btnListPrint;
-        private System.Windows.Forms.Label lblHSN;
-        private System.Windows.Forms.ComboBox cmbHSN;
-        private System.Windows.Forms.Label lblGST;
-        private System.Windows.Forms.ComboBox cmbGST;
+        private System.Windows.Forms.Label lblBrand;
+        private System.Windows.Forms.Label lblSubgroup;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.Label lblGroup;
+        private System.Windows.Forms.TextBox txtBrand;
+        private System.Windows.Forms.TextBox txtSubGroup;
+        private System.Windows.Forms.TextBox txtGroup;
+        public System.Windows.Forms.ListView lvBrand;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        public System.Windows.Forms.ListView lvSubGroup;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader28;
+        private System.Windows.Forms.ColumnHeader columnHeader29;
+        public System.Windows.Forms.ListView lvGroup;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.Label lblSubGroupCode;
+        private System.Windows.Forms.Label lblGroupCode;
+        public System.Windows.Forms.Label lblBrandCode;
     }
 }

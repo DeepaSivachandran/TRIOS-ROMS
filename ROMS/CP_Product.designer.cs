@@ -40,6 +40,21 @@
             this.txtDSubGroup = new System.Windows.Forms.TextBox();
             this.txtDUnit = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.lvBrand = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvSubGroup = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvGroup = new System.Windows.Forms.ListView();
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblSaleRackCode = new System.Windows.Forms.Label();
             this.lblSaleLocationCode = new System.Windows.Forms.Label();
             this.lblPurRackCode = new System.Windows.Forms.Label();
@@ -136,21 +151,6 @@
             this.txtREnglishName = new System.Windows.Forms.Label();
             this.txtRPICode = new System.Windows.Forms.Label();
             this.lblDPicode = new System.Windows.Forms.Label();
-            this.lvBrand = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvSubGroup = new System.Windows.Forms.ListView();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvGroup = new System.Windows.Forms.ListView();
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvPurLocation = new System.Windows.Forms.ListView();
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -343,6 +343,111 @@
             this.grbform.Size = new System.Drawing.Size(543, 278);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // lvBrand
+            // 
+            this.lvBrand.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvBrand.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvBrand.HideSelection = false;
+            this.lvBrand.Location = new System.Drawing.Point(159, 239);
+            this.lvBrand.Name = "lvBrand";
+            this.lvBrand.Size = new System.Drawing.Size(363, 78);
+            this.lvBrand.TabIndex = 121;
+            this.lvBrand.UseCompatibleStateImageBehavior = false;
+            this.lvBrand.View = System.Windows.Forms.View.Details;
+            this.lvBrand.Visible = false;
+            this.lvBrand.DoubleClick += new System.EventHandler(this.LvBrand_DoubleClick);
+            this.lvBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvBrand_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 120;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 130;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
+            // 
+            // lvSubGroup
+            // 
+            this.lvSubGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader28,
+            this.columnHeader29});
+            this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSubGroup.HideSelection = false;
+            this.lvSubGroup.Location = new System.Drawing.Point(159, 185);
+            this.lvSubGroup.Name = "lvSubGroup";
+            this.lvSubGroup.Size = new System.Drawing.Size(363, 78);
+            this.lvSubGroup.TabIndex = 122;
+            this.lvSubGroup.UseCompatibleStateImageBehavior = false;
+            this.lvSubGroup.View = System.Windows.Forms.View.Details;
+            this.lvSubGroup.Visible = false;
+            this.lvSubGroup.DoubleClick += new System.EventHandler(this.LvSubGroup_DoubleClick);
+            this.lvSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSubGroup_KeyDown);
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 170;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 170;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Width = 0;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Width = 0;
+            // 
+            // columnHeader28
+            // 
+            this.columnHeader28.Width = 0;
+            // 
+            // columnHeader29
+            // 
+            this.columnHeader29.Width = 0;
+            // 
+            // lvGroup
+            // 
+            this.lvGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13});
+            this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvGroup.HideSelection = false;
+            this.lvGroup.Location = new System.Drawing.Point(160, 212);
+            this.lvGroup.Name = "lvGroup";
+            this.lvGroup.Size = new System.Drawing.Size(363, 78);
+            this.lvGroup.TabIndex = 123;
+            this.lvGroup.UseCompatibleStateImageBehavior = false;
+            this.lvGroup.View = System.Windows.Forms.View.Details;
+            this.lvGroup.Visible = false;
+            this.lvGroup.DoubleClick += new System.EventHandler(this.LvGroup_DoubleClick);
+            this.lvGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvGroup_KeyDown);
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Width = 170;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Width = 170;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Width = 0;
             // 
             // lblSaleRackCode
             // 
@@ -1584,111 +1689,6 @@
             this.lblDPicode.TabIndex = 1;
             this.lblDPicode.Text = "P.I Code :";
             this.lblDPicode.Visible = false;
-            // 
-            // lvBrand
-            // 
-            this.lvBrand.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.lvBrand.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvBrand.HideSelection = false;
-            this.lvBrand.Location = new System.Drawing.Point(159, 239);
-            this.lvBrand.Name = "lvBrand";
-            this.lvBrand.Size = new System.Drawing.Size(363, 78);
-            this.lvBrand.TabIndex = 121;
-            this.lvBrand.UseCompatibleStateImageBehavior = false;
-            this.lvBrand.View = System.Windows.Forms.View.Details;
-            this.lvBrand.Visible = false;
-            this.lvBrand.DoubleClick += new System.EventHandler(this.LvBrand_DoubleClick);
-            this.lvBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvBrand_KeyDown);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 120;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 130;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 0;
-            // 
-            // lvSubGroup
-            // 
-            this.lvSubGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader28,
-            this.columnHeader29});
-            this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSubGroup.HideSelection = false;
-            this.lvSubGroup.Location = new System.Drawing.Point(159, 185);
-            this.lvSubGroup.Name = "lvSubGroup";
-            this.lvSubGroup.Size = new System.Drawing.Size(363, 78);
-            this.lvSubGroup.TabIndex = 122;
-            this.lvSubGroup.UseCompatibleStateImageBehavior = false;
-            this.lvSubGroup.View = System.Windows.Forms.View.Details;
-            this.lvSubGroup.Visible = false;
-            this.lvSubGroup.DoubleClick += new System.EventHandler(this.LvSubGroup_DoubleClick);
-            this.lvSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSubGroup_KeyDown);
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Width = 170;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Width = 170;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Width = 0;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Width = 0;
-            // 
-            // columnHeader28
-            // 
-            this.columnHeader28.Width = 0;
-            // 
-            // columnHeader29
-            // 
-            this.columnHeader29.Width = 0;
-            // 
-            // lvGroup
-            // 
-            this.lvGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader13});
-            this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvGroup.HideSelection = false;
-            this.lvGroup.Location = new System.Drawing.Point(160, 212);
-            this.lvGroup.Name = "lvGroup";
-            this.lvGroup.Size = new System.Drawing.Size(363, 78);
-            this.lvGroup.TabIndex = 123;
-            this.lvGroup.UseCompatibleStateImageBehavior = false;
-            this.lvGroup.View = System.Windows.Forms.View.Details;
-            this.lvGroup.Visible = false;
-            this.lvGroup.DoubleClick += new System.EventHandler(this.LvGroup_DoubleClick);
-            this.lvGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvGroup_KeyDown);
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Width = 170;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Width = 170;
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Width = 0;
             // 
             // lvPurLocation
             // 
