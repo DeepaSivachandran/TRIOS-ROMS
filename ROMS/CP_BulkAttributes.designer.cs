@@ -334,7 +334,10 @@
             this.grdBrand.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdBrand.Size = new System.Drawing.Size(1124, 481);
             this.grdBrand.TabIndex = 958799;
+<<<<<<< Updated upstream
             this.grdBrand.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBrand_CellEndEdit);
+=======
+>>>>>>> Stashed changes
             this.grdBrand.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdBrand_EditingControlShowing);
             // 
             // btnClose

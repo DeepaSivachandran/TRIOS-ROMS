@@ -3222,10 +3222,14 @@ namespace ROMS
         {
             try
             {
+<<<<<<< Updated upstream
                 if (grdLoction.CurrentCell.OwningColumn.Name == "Pur.Stock Location-New")
                 {
                     grdLoction.CurrentRow.Cells["Pur.Rack-New"].Value = "";
                 }
+=======
+
+>>>>>>> Stashed changes
             }
             catch (Exception ex)
             {
