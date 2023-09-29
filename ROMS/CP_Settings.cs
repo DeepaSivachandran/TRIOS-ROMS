@@ -99,19 +99,47 @@ namespace ROMS
         {
             try
             {
+                grdSettings.Columns["clmConcernId"].Visible = false;
+                grdSettings.Columns["clmTransactionTypeID"].Visible = false;
+                grdSettings.Columns["clmResetOnId"].Visible = false;
+                grdSettings.Columns["clmStartingNo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdSettings.Columns["clmNoofdigits"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 DataSet objDS = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDS = objdserv.udfnVoucherSettingList(0);
                 objdserv.CloseConnection();
-                for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
+                txtFyyear.Text = Convert.ToString(objDS.Tables[1].Rows[0]["FY_financialYear"]);
+                if (objDS != null)
                 {
-                    grdSettings.Rows.Add(objDS.Tables[0].Rows[i]["S.No."], objDS.Tables[0].Rows[i]["Concern"], objDS.Tables[0].Rows[i]["TransactionType"], objDS.Tables[0].Rows[i]["Prefix"], objDS.Tables[0].Rows[i]["Suffix"],
-                        objDS.Tables[0].Rows[i]["Strating No."], objDS.Tables[0].Rows[i]["No.of Digits"], objDS.Tables[0].Rows[i]["Reset On"], objDS.Tables[0].Rows[i]["Sample Transaction No."],
-                         objDS.Tables[0].Rows[i]["Concern-ID"], objDS.Tables[0].Rows[i]["Transaction Type-ID"], objDS.Tables[0].Rows[i]["Reset On-ID"]);
+                    if (objDS.Tables.Count != 0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDS.Tables[0].Rows.Count != 0)
+                        {
+                            for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
+                            {
+                                grdSettings.Rows.Add(objDS.Tables[0].Rows[i]["S.No."], objDS.Tables[0].Rows[i]["Concern"], objDS.Tables[0].Rows[i]["TransactionType"], objDS.Tables[0].Rows[i]["Prefix"], objDS.Tables[0].Rows[i]["Suffix"],
+                                    objDS.Tables[0].Rows[i]["Strating No."], objDS.Tables[0].Rows[i]["No.of Digits"], objDS.Tables[0].Rows[i]["Reset On"], objDS.Tables[0].Rows[i]["Sample Transaction No."],
+                                     objDS.Tables[0].Rows[i]["Concern-ID"], objDS.Tables[0].Rows[i]["Transaction Type-ID"], objDS.Tables[0].Rows[i]["Reset On-ID"]);
+                            }
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
                 }
-                grdSettings.Columns["clmConcernId"].Visible = false;
-                grdSettings.Columns["clmTransactionTypeID"].Visible = false;
-                grdSettings.Columns["clmResetOnId"].Visible = false;
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
             }
             catch (Exception ex)
             {
@@ -125,6 +153,7 @@ namespace ROMS
             {
                 udfnCmbLoad();
                 udfnList();
+                this.ActiveControl = cmbConcern;
             }
             catch (Exception ex)
             {
@@ -368,14 +397,6 @@ namespace ROMS
             {
                 if (txtSuffix.Text.Trim() == "")
                 {
-                    epSettings.SetError(txtSuffix, "Please enter suffix.");
-                    txtSuffix.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSuffix.ShowAlways = true;
-                    tpSuffix.Show("Please enter suffix.", txtSuffix, 5000);
-                }
-                else
-                {
-                    epSettings.Clear();
                     txtSuffix.BackColor = Color.White;
                 }
             }
@@ -592,14 +613,6 @@ namespace ROMS
                     tpPrefix.Show("Please enter prefix.", txtPrefix, 5000);
                     blnErrorFlag = true;
                 }
-                if (txtSuffix.Text.Trim() == "")
-                {
-                    epSettings.SetError(txtSuffix, "Please enter suffix.");
-                    txtSuffix.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSuffix.ShowAlways = true;
-                    tpSuffix.Show("Please enter suffix.", txtSuffix, 5000);
-                    blnErrorFlag = true;
-                }
                 if (txtStartingNo.Text.Trim() == "")
                 {
                     epSettings.SetError(txtStartingNo, "Please enter starting no.");
@@ -639,7 +652,7 @@ namespace ROMS
         {
             try
             {
-                int varFlag = 0; int varConcern = 0; int varTransactionType = 0;
+                int varFlag = 0; int varConcern = 0; int varTransactionType = 0; string varStartingNum = "";
                 varConcern = Convert.ToInt32(cmbConcern.SelectedValue);
                 varTransactionType = Convert.ToInt32(cmbTransactionType.SelectedValue);
                 for (int i = 0; i < grdSettings.Rows.Count; i++)
@@ -655,9 +668,10 @@ namespace ROMS
                 }
                 if (varFlag == 0)
                 {
-                    //varSampleTransation = Convert.ToString(grdSettings.Rows[i].Cells["clmPrefix"].Value).Trim() + Convert.ToString(grdSettings.Rows[i].Cells["clmSuffix"].Value).Trim();
-                    varSampleTransation = Convert.ToString(txtPrefix.Text.Trim()) + Convert.ToString(txtSuffix.Text.Trim());
-                    grdSettings.Rows.Add(grdSettings.Rows.Count+1, cmbConcern.Text, cmbTransactionType.Text, txtPrefix.Text, txtSuffix.Text, txtStartingNo.Text, txtNoOfDegits.Text, cmbResetOn.Text,varSampleTransation,cmbConcern.SelectedValue,cmbTransactionType.SelectedValue,cmbResetOn.SelectedValue);
+                    DataService objdservice = new DataService();
+                    varStartingNum = objdservice.displaydata("SELECT RIGHT('00000000'+ CONVERT(nvarchar,"+ txtStartingNo.Text.Trim()+ "),"+txtNoOfDegits.Text.Trim()+") AS sampleTransactionno FROM MR_VoucherSettings");
+                    varSampleTransation = Convert.ToString(txtPrefix.Text.Trim()) + varStartingNum+Convert.ToString(txtSuffix.Text.Trim());
+                    grdSettings.Rows.Add(grdSettings.Rows.Count+1, cmbConcern.Text.Trim(), cmbTransactionType.Text.Trim(), txtPrefix.Text.Trim(), txtSuffix.Text.Trim(), txtStartingNo.Text.Trim(), txtNoOfDegits.Text.Trim(), cmbResetOn.Text.Trim(),varSampleTransation,cmbConcern.SelectedValue,cmbTransactionType.SelectedValue,cmbResetOn.SelectedValue);
                 }
                 else
                 {
@@ -717,14 +731,14 @@ namespace ROMS
         {
             try
             {
-                cmbConcern.SelectedValue = -1;
+                epSettings.Clear();
                 cmbTransactionType.SelectedValue = -1;
                 txtPrefix.Text = "";
                 txtSuffix.Text = "";
                 txtStartingNo.Text = "";
                 txtNoOfDegits.Text = "";
                 cmbResetOn.SelectedValue = -1;
-            }
+                cmbTransactionType.Focus();            }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -737,7 +751,6 @@ namespace ROMS
             {
                 if (grdSettings.Rows.Count != 0)
                 {
-                    btnUpdate.Enabled = false;
                     string result = ""; string varOriginator = "VoucherSettings Creation";
                     SPDataService objspdservice = new SPDataService();
                     DataTable objSettings = new DataTable();
@@ -747,15 +760,17 @@ namespace ROMS
                     objSettings.Columns.Add("STG_Prefix", typeof(string));
                     objSettings.Columns.Add("STG_Sufix", typeof(string));
                     objSettings.Columns.Add("STG_StartingNo", typeof(int));
+                    objSettings.Columns.Add("STG_SampleTransNo", typeof(string));
                     objSettings.Columns.Add("STG_NoOfDigit", typeof(int));
                     objSettings.Columns.Add("STG_ResetOn", typeof(int));
                     for (int i = 0; i < grdSettings.Rows.Count; i++)
                     {
                         // objSettings.Rows.Add(grdSettings.Rows[i].Cells["HSN Name-New"].Value).Trim(), cmbTransactionType.SelectedValue, txtPrefix.Text, txtSuffix.Text, txtStartingNo.Text, txtNoOfDegits.Text, cmbResetOn.SelectedValue);
                         objSettings.Rows.Add(Convert.ToInt32(grdSettings.Rows[i].Cells["clmConcernId"].Value), Convert.ToInt32(grdSettings.Rows[i].Cells["clmTransactionTypeID"].Value), Convert.ToString(grdSettings.Rows[i].Cells["clmPrefix"].Value).Trim(),
-                            Convert.ToString(grdSettings.Rows[i].Cells["clmSuffix"].Value).Trim(), Convert.ToInt32(grdSettings.Rows[i].Cells["clmStartingNo"].Value), Convert.ToInt32(grdSettings.Rows[i].Cells["clmNoofdigits"].Value),
+                            Convert.ToString(grdSettings.Rows[i].Cells["clmSuffix"].Value).Trim(), Convert.ToInt32(grdSettings.Rows[i].Cells["clmStartingNo"].Value), Convert.ToString(grdSettings.Rows[i].Cells["clmSampleTransactionNo"].Value).Trim(), Convert.ToInt32(grdSettings.Rows[i].Cells["clmNoofdigits"].Value),
                              Convert.ToInt32(grdSettings.Rows[i].Cells["clmResetOnId"].Value));
                     }
+                    btnUpdate.Enabled = false;
                     SPDataService objDSer = new SPDataService();
                     result = objDSer.udfnVoucherSettings(0, objSettings, varOriginator);
                     objDSer.CloseConnection();
@@ -949,6 +964,17 @@ namespace ROMS
                     e.Handled = true;
                 }
             }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSettings_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            { grdSettings.ClearSelection(); }
             catch (Exception ex)
             {
                 objError = new DataError();

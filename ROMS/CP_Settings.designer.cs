@@ -51,7 +51,7 @@
             this.clmResetOnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grpVoucherSettings = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtFyyear = new System.Windows.Forms.TextBox();
             this.lblFyyr = new System.Windows.Forms.Label();
             this.txtNoOfDegits = new System.Windows.Forms.TextBox();
             this.lblNoOfDigits = new System.Windows.Forms.Label();
@@ -140,7 +140,6 @@
             this.lblNoRecordsFound.TabIndex = 958791;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblNoRecordsFound.Visible = false;
             // 
             // grdSettings
             // 
@@ -196,6 +195,7 @@
             this.grdSettings.Size = new System.Drawing.Size(1348, 516);
             this.grdSettings.TabIndex = 958789;
             this.grdSettings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSettings_CellContentClick);
+            this.grdSettings.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSettings_DataBindingComplete);
             // 
             // clmsno
             // 
@@ -284,7 +284,7 @@
             // grpVoucherSettings
             // 
             this.grpVoucherSettings.BackColor = System.Drawing.Color.White;
-            this.grpVoucherSettings.Controls.Add(this.textBox1);
+            this.grpVoucherSettings.Controls.Add(this.txtFyyear);
             this.grpVoucherSettings.Controls.Add(this.lblFyyr);
             this.grpVoucherSettings.Controls.Add(this.txtNoOfDegits);
             this.grpVoucherSettings.Controls.Add(this.lblNoOfDigits);
@@ -308,15 +308,15 @@
             this.grpVoucherSettings.TabStop = false;
             this.grpVoucherSettings.Text = "Voucher Settings";
             // 
-            // textBox1
+            // txtFyyear
             // 
-            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(17, 46);
-            this.textBox1.MaxLength = 5;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(89, 27);
-            this.textBox1.TabIndex = 0;
+            this.txtFyyear.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFyyear.Location = new System.Drawing.Point(17, 46);
+            this.txtFyyear.MaxLength = 5;
+            this.txtFyyear.Name = "txtFyyear";
+            this.txtFyyear.ReadOnly = true;
+            this.txtFyyear.Size = new System.Drawing.Size(89, 27);
+            this.txtFyyear.TabIndex = 0;
             // 
             // lblFyyr
             // 
@@ -332,7 +332,7 @@
             // 
             this.txtNoOfDegits.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNoOfDegits.Location = new System.Drawing.Point(680, 46);
-            this.txtNoOfDegits.MaxLength = 5;
+            this.txtNoOfDegits.MaxLength = 1;
             this.txtNoOfDegits.Name = "txtNoOfDegits";
             this.txtNoOfDegits.Size = new System.Drawing.Size(89, 27);
             this.txtNoOfDegits.TabIndex = 6;
@@ -421,7 +421,7 @@
             // 
             this.txtSuffix.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSuffix.Location = new System.Drawing.Point(468, 46);
-            this.txtSuffix.MaxLength = 5;
+            this.txtSuffix.MaxLength = 10;
             this.txtSuffix.Name = "txtSuffix";
             this.txtSuffix.Size = new System.Drawing.Size(89, 27);
             this.txtSuffix.TabIndex = 4;
@@ -443,7 +443,7 @@
             // 
             this.txtPrefix.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrefix.Location = new System.Drawing.Point(364, 46);
-            this.txtPrefix.MaxLength = 5;
+            this.txtPrefix.MaxLength = 10;
             this.txtPrefix.Name = "txtPrefix";
             this.txtPrefix.Size = new System.Drawing.Size(89, 27);
             this.txtPrefix.TabIndex = 3;
@@ -621,7 +621,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTransactionTypeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmResetOnId;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtFyyear;
         private System.Windows.Forms.Label lblFyyr;
     }
 }
