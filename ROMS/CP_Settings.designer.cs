@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlSettings = new System.Windows.Forms.Panel();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdSettings = new System.Windows.Forms.DataGridView();
@@ -51,6 +51,8 @@
             this.clmResetOnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grpVoucherSettings = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblFyyr = new System.Windows.Forms.Label();
             this.txtNoOfDegits = new System.Windows.Forms.TextBox();
             this.lblNoOfDigits = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -82,7 +84,7 @@
             // 
             this.pnlSettings.BackColor = System.Drawing.Color.White;
             this.pnlSettings.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlSettings.Controls.Add(this.btnSave);
+            this.pnlSettings.Controls.Add(this.btnUpdate);
             this.pnlSettings.Controls.Add(this.btnClose);
             this.pnlSettings.Controls.Add(this.lblNoRecordsFound);
             this.pnlSettings.Controls.Add(this.grdSettings);
@@ -92,23 +94,23 @@
             this.pnlSettings.Size = new System.Drawing.Size(1354, 646);
             this.pnlSettings.TabIndex = 958788;
             // 
-            // btnSave
+            // btnUpdate
             // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1192, 611);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 29);
-            this.btnSave.TabIndex = 958790;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
-            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnSave_KeyDown);
-            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
+            this.btnUpdate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnUpdate.Image = global::ROMS.Properties.Resources.save;
+            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdate.Location = new System.Drawing.Point(1182, 611);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(85, 29);
+            this.btnUpdate.TabIndex = 9;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnUpdate.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnUpdate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnSave_KeyDown);
+            this.btnUpdate.Leave += new System.EventHandler(this.BtnSave_Leave);
             // 
             // btnClose
             // 
@@ -118,7 +120,7 @@
             this.btnClose.Location = new System.Drawing.Point(1272, 611);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 8;
+            this.btnClose.TabIndex = 10;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -148,14 +150,14 @@
             this.grdSettings.AllowUserToResizeRows = false;
             this.grdSettings.BackgroundColor = System.Drawing.Color.White;
             this.grdSettings.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSettings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdSettings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdSettings.ColumnHeadersHeight = 30;
             this.grdSettings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdSettings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -172,26 +174,26 @@
             this.clmTransactionTypeID,
             this.clmResetOnId,
             this.clmRemove});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdSettings.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdSettings.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdSettings.EnableHeadersVisualStyles = false;
             this.grdSettings.GridColor = System.Drawing.Color.White;
-            this.grdSettings.Location = new System.Drawing.Point(3, 71);
+            this.grdSettings.Location = new System.Drawing.Point(3, 89);
             this.grdSettings.Name = "grdSettings";
             this.grdSettings.ReadOnly = true;
             this.grdSettings.RowHeadersVisible = false;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            this.grdSettings.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdSettings.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdSettings.RowTemplate.Height = 25;
             this.grdSettings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSettings.Size = new System.Drawing.Size(1348, 534);
+            this.grdSettings.Size = new System.Drawing.Size(1348, 516);
             this.grdSettings.TabIndex = 958789;
             this.grdSettings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSettings_CellContentClick);
             // 
@@ -282,6 +284,8 @@
             // grpVoucherSettings
             // 
             this.grpVoucherSettings.BackColor = System.Drawing.Color.White;
+            this.grpVoucherSettings.Controls.Add(this.textBox1);
+            this.grpVoucherSettings.Controls.Add(this.lblFyyr);
             this.grpVoucherSettings.Controls.Add(this.txtNoOfDegits);
             this.grpVoucherSettings.Controls.Add(this.lblNoOfDigits);
             this.grpVoucherSettings.Controls.Add(this.btnAdd);
@@ -299,19 +303,39 @@
             this.grpVoucherSettings.Controls.Add(this.lblDEConcern);
             this.grpVoucherSettings.Location = new System.Drawing.Point(3, 2);
             this.grpVoucherSettings.Name = "grpVoucherSettings";
-            this.grpVoucherSettings.Size = new System.Drawing.Size(1346, 67);
+            this.grpVoucherSettings.Size = new System.Drawing.Size(1346, 81);
             this.grpVoucherSettings.TabIndex = 0;
             this.grpVoucherSettings.TabStop = false;
             this.grpVoucherSettings.Text = "Voucher Settings";
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(17, 46);
+            this.textBox1.MaxLength = 5;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(89, 27);
+            this.textBox1.TabIndex = 0;
+            // 
+            // lblFyyr
+            // 
+            this.lblFyyr.AutoSize = true;
+            this.lblFyyr.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFyyr.Location = new System.Drawing.Point(17, 23);
+            this.lblFyyr.Name = "lblFyyr";
+            this.lblFyyr.Size = new System.Drawing.Size(83, 20);
+            this.lblFyyr.TabIndex = 1111173;
+            this.lblFyyr.Text = "Financial Year";
+            // 
             // txtNoOfDegits
             // 
             this.txtNoOfDegits.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoOfDegits.Location = new System.Drawing.Point(917, 23);
+            this.txtNoOfDegits.Location = new System.Drawing.Point(680, 46);
             this.txtNoOfDegits.MaxLength = 5;
             this.txtNoOfDegits.Name = "txtNoOfDegits";
             this.txtNoOfDegits.Size = new System.Drawing.Size(89, 27);
-            this.txtNoOfDegits.TabIndex = 5;
+            this.txtNoOfDegits.TabIndex = 6;
             this.txtNoOfDegits.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNoOfDegits.Enter += new System.EventHandler(this.TxtNoOfDegits_Enter);
             this.txtNoOfDegits.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtNoOfDegits_KeyDown);
@@ -322,7 +346,7 @@
             // 
             this.lblNoOfDigits.AutoSize = true;
             this.lblNoOfDigits.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoOfDigits.Location = new System.Drawing.Point(843, 27);
+            this.lblNoOfDigits.Location = new System.Drawing.Point(680, 23);
             this.lblNoOfDigits.Name = "lblNoOfDigits";
             this.lblNoOfDigits.Size = new System.Drawing.Size(71, 20);
             this.lblNoOfDigits.TabIndex = 1111171;
@@ -333,11 +357,11 @@
             this.btnAdd.BackColor = System.Drawing.Color.White;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(1175, 23);
+            this.btnAdd.Location = new System.Drawing.Point(888, 46);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 27);
-            this.btnAdd.TabIndex = 1111169;
+            this.btnAdd.TabIndex = 8;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
@@ -349,10 +373,10 @@
             this.cmbResetOn.FormattingEnabled = true;
             this.cmbResetOn.Items.AddRange(new object[] {
             "Continuous"});
-            this.cmbResetOn.Location = new System.Drawing.Point(1078, 23);
+            this.cmbResetOn.Location = new System.Drawing.Point(785, 46);
             this.cmbResetOn.Name = "cmbResetOn";
             this.cmbResetOn.Size = new System.Drawing.Size(89, 27);
-            this.cmbResetOn.TabIndex = 6;
+            this.cmbResetOn.TabIndex = 7;
             this.cmbResetOn.SelectedIndexChanged += new System.EventHandler(this.CmbResetOn_SelectedIndexChanged);
             this.cmbResetOn.Enter += new System.EventHandler(this.CmbResetOn_Enter);
             this.cmbResetOn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbResetOn_KeyDown);
@@ -363,7 +387,7 @@
             // 
             this.lblResetOn.AutoSize = true;
             this.lblResetOn.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResetOn.Location = new System.Drawing.Point(1018, 27);
+            this.lblResetOn.Location = new System.Drawing.Point(785, 23);
             this.lblResetOn.Name = "lblResetOn";
             this.lblResetOn.Size = new System.Drawing.Size(58, 20);
             this.lblResetOn.TabIndex = 1111168;
@@ -372,11 +396,11 @@
             // txtStartingNo
             // 
             this.txtStartingNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStartingNo.Location = new System.Drawing.Point(740, 23);
+            this.txtStartingNo.Location = new System.Drawing.Point(572, 46);
             this.txtStartingNo.MaxLength = 5;
             this.txtStartingNo.Name = "txtStartingNo";
             this.txtStartingNo.Size = new System.Drawing.Size(89, 27);
-            this.txtStartingNo.TabIndex = 4;
+            this.txtStartingNo.TabIndex = 5;
             this.txtStartingNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtStartingNo.Enter += new System.EventHandler(this.TxtStartingNo_Enter);
             this.txtStartingNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtStartingNo_KeyDown);
@@ -387,7 +411,7 @@
             // 
             this.lblStartingNo.AutoSize = true;
             this.lblStartingNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartingNo.Location = new System.Drawing.Point(666, 27);
+            this.lblStartingNo.Location = new System.Drawing.Point(572, 23);
             this.lblStartingNo.Name = "lblStartingNo";
             this.lblStartingNo.Size = new System.Drawing.Size(71, 20);
             this.lblStartingNo.TabIndex = 48;
@@ -396,11 +420,11 @@
             // txtSuffix
             // 
             this.txtSuffix.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSuffix.Location = new System.Drawing.Point(568, 23);
+            this.txtSuffix.Location = new System.Drawing.Point(468, 46);
             this.txtSuffix.MaxLength = 5;
             this.txtSuffix.Name = "txtSuffix";
             this.txtSuffix.Size = new System.Drawing.Size(89, 27);
-            this.txtSuffix.TabIndex = 3;
+            this.txtSuffix.TabIndex = 4;
             this.txtSuffix.Enter += new System.EventHandler(this.TxtSuffix_Enter);
             this.txtSuffix.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSuffix_KeyDown);
             this.txtSuffix.Leave += new System.EventHandler(this.TxtSuffix_Leave);
@@ -409,7 +433,7 @@
             // 
             this.lblSuffix.AutoSize = true;
             this.lblSuffix.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSuffix.Location = new System.Drawing.Point(526, 27);
+            this.lblSuffix.Location = new System.Drawing.Point(468, 23);
             this.lblSuffix.Name = "lblSuffix";
             this.lblSuffix.Size = new System.Drawing.Size(40, 20);
             this.lblSuffix.TabIndex = 44;
@@ -418,11 +442,11 @@
             // txtPrefix
             // 
             this.txtPrefix.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrefix.Location = new System.Drawing.Point(430, 23);
+            this.txtPrefix.Location = new System.Drawing.Point(364, 46);
             this.txtPrefix.MaxLength = 5;
             this.txtPrefix.Name = "txtPrefix";
             this.txtPrefix.Size = new System.Drawing.Size(89, 27);
-            this.txtPrefix.TabIndex = 2;
+            this.txtPrefix.TabIndex = 3;
             this.txtPrefix.Enter += new System.EventHandler(this.TxtPrefix_Enter);
             this.txtPrefix.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPrefix_KeyDown);
             this.txtPrefix.Leave += new System.EventHandler(this.TxtPrefix_Leave);
@@ -431,7 +455,7 @@
             // 
             this.lblPrefix.AutoSize = true;
             this.lblPrefix.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrefix.Location = new System.Drawing.Point(387, 27);
+            this.lblPrefix.Location = new System.Drawing.Point(364, 23);
             this.lblPrefix.Name = "lblPrefix";
             this.lblPrefix.Size = new System.Drawing.Size(40, 20);
             this.lblPrefix.TabIndex = 42;
@@ -440,10 +464,10 @@
             // cmbTransactionType
             // 
             this.cmbTransactionType.FormattingEnabled = true;
-            this.cmbTransactionType.Location = new System.Drawing.Point(250, 23);
+            this.cmbTransactionType.Location = new System.Drawing.Point(217, 46);
             this.cmbTransactionType.Name = "cmbTransactionType";
             this.cmbTransactionType.Size = new System.Drawing.Size(131, 27);
-            this.cmbTransactionType.TabIndex = 1;
+            this.cmbTransactionType.TabIndex = 2;
             this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.CmbTransactionType_SelectedIndexChanged);
             this.cmbTransactionType.Enter += new System.EventHandler(this.CmbTransactionType_Enter);
             this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
@@ -454,7 +478,7 @@
             // 
             this.lblTransactionType.AutoSize = true;
             this.lblTransactionType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTransactionType.Location = new System.Drawing.Point(147, 26);
+            this.lblTransactionType.Location = new System.Drawing.Point(217, 23);
             this.lblTransactionType.Name = "lblTransactionType";
             this.lblTransactionType.Size = new System.Drawing.Size(100, 20);
             this.lblTransactionType.TabIndex = 40;
@@ -463,7 +487,8 @@
             // cmbConcern
             // 
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(59, 23);
+            this.epSettings.SetIconPadding(this.cmbConcern, 1);
+            this.cmbConcern.Location = new System.Drawing.Point(117, 46);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(83, 27);
             this.cmbConcern.TabIndex = 0;
@@ -477,7 +502,7 @@
             // 
             this.lblDEConcern.AutoSize = true;
             this.lblDEConcern.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDEConcern.Location = new System.Drawing.Point(4, 26);
+            this.lblDEConcern.Location = new System.Drawing.Point(117, 23);
             this.lblDEConcern.Name = "lblDEConcern";
             this.lblDEConcern.Size = new System.Drawing.Size(54, 20);
             this.lblDEConcern.TabIndex = 35;
@@ -582,7 +607,7 @@
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.TextBox txtNoOfDegits;
         private System.Windows.Forms.Label lblNoOfDigits;
-        public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmConcern;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTransactionType;
@@ -596,5 +621,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTransactionTypeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmResetOnId;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lblFyyr;
     }
 }
