@@ -146,6 +146,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            { grdSettings.ClearSelection(); }
         }
         private void CP_Settings_Load(object sender, EventArgs e)
         {
