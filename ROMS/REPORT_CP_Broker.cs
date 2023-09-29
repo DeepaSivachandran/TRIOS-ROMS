@@ -109,7 +109,7 @@ namespace ROMS
                     string VarCity = "0";
                     DataSet objDsCity = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsCity = objDserv.udfnCitylist(2, txtCity.Text.Trim(), 0,"","",0);
+                    objDsCity = objDserv.udfnCitylist(2, txtCity.Text.Trim(), 0,0);
                     objDserv.CloseConnection();
                     if (objDsCity != null)
                     {
@@ -388,7 +388,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtCity.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnCitylist(1, txtCity.Text,0, MainForm.pbUserID, MainForm.pbIpAddress,0);
+                    objDs = objspdservice.udfnCitylist(1, txtCity.Text,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
