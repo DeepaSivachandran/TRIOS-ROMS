@@ -105,9 +105,13 @@ namespace ROMS
                 objdserv.CloseConnection();
                 for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
                 {
-                    grdSettings.Rows.Add(objDS.Tables[0].Rows[i]["S.No."], objDS.Tables[0].Rows[i]["STG_COMID"], objDS.Tables[0].Rows[i]["STG_TransactionType"], objDS.Tables[0].Rows[i]["STG_Prefix"], objDS.Tables[0].Rows[i]["STG_Sufix"],
-                        objDS.Tables[0].Rows[i]["STG_StartingNo"], objDS.Tables[0].Rows[i]["STG_NoOfDigit"], objDS.Tables[0].Rows[i]["STG_PeriodCode"], objDS.Tables[0].Rows[i]["Sample Transaction No."]);
+                    grdSettings.Rows.Add(objDS.Tables[0].Rows[i]["S.No."], objDS.Tables[0].Rows[i]["Concern"], objDS.Tables[0].Rows[i]["TransactionType"], objDS.Tables[0].Rows[i]["Prefix"], objDS.Tables[0].Rows[i]["Suffix"],
+                        objDS.Tables[0].Rows[i]["Strating No."], objDS.Tables[0].Rows[i]["No.of Digits"], objDS.Tables[0].Rows[i]["Reset On"], objDS.Tables[0].Rows[i]["Sample Transaction No."],
+                         objDS.Tables[0].Rows[i]["Concern-ID"], objDS.Tables[0].Rows[i]["Transaction Type-ID"], objDS.Tables[0].Rows[i]["Reset On-ID"]);
                 }
+                grdSettings.Columns["clmConcernId"].Visible = false;
+                grdSettings.Columns["clmTransactionTypeID"].Visible = false;
+                grdSettings.Columns["clmResetOnId"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -636,15 +640,15 @@ namespace ROMS
             try
             {
                 int varFlag = 0; int varConcern = 0; int varTransactionType = 0;
+                varConcern = Convert.ToInt32(cmbConcern.SelectedValue);
+                varTransactionType = Convert.ToInt32(cmbTransactionType.SelectedValue);
                 for (int i = 0; i < grdSettings.Rows.Count; i++)
                 {
-                    varConcern = Convert.ToInt32(cmbConcern.SelectedValue);
-                    if (varConcern == Convert.ToInt32(grdSettings.Rows[i].Cells["clmConcern"].Value))
+                    if (varConcern == Convert.ToInt32(grdSettings.Rows[i].Cells["clmConcernId"].Value))
                     {
-                        varTransactionType = Convert.ToInt32(cmbTransactionType.SelectedValue);
                         for (int j = 0; j < grdSettings.Rows.Count; j++)
                         {
-                            if (varTransactionType == Convert.ToInt32(grdSettings.Rows[j].Cells["clmTransactionType"].Value))
+                            if (varTransactionType == Convert.ToInt32(grdSettings.Rows[j].Cells["clmTransactionTypeID"].Value))
                             { varFlag = 1; }
                         }
                     }
@@ -731,6 +735,7 @@ namespace ROMS
         {
             try
             {
+                btnSave.Enabled = false;
                 string result = ""; string varOriginator = "VoucherSettings Creation";
                 SPDataService objspdservice = new SPDataService();
                 DataTable objSettings = new DataTable();
@@ -752,12 +757,13 @@ namespace ROMS
                 SPDataService objDSer = new SPDataService();
                 result = objDSer.udfnVoucherSettings(0, objSettings, varOriginator);
                 objDSer.CloseConnection();
+                btnSave.Enabled = true;
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     udfnClear();
-                    udfnList();
+                    //udfnList();
                 }
                 else
                 {
@@ -768,6 +774,11 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnSave.Focus();
             }
         }
         private void BtnSave_Click(object sender, EventArgs e)
@@ -896,6 +907,36 @@ namespace ROMS
                 {
                     epSettings.Clear();
                     txtNoOfDegits.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtStartingNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar)  && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtNoOfDegits_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
                 }
             }
             catch (Exception ex)
