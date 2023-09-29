@@ -154,7 +154,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_status {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraStatusName {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -178,7 +178,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_city {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraCityName {
             get {
                 return this.DataDefinition.ParameterFields[7];
             }

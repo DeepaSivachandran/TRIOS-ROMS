@@ -122,7 +122,7 @@ namespace ROMS
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Group.rpt");
                 objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
-                objBillreport.SetParameterValue("status", Convert.ToString(cmbStatus.Text));
+                objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                 objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
