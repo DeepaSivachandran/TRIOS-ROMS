@@ -76,7 +76,7 @@
             this.grbform.Controls.Add(this.txtRepName);
             this.grbform.Location = new System.Drawing.Point(16, 10);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(491, 447);
+            this.grbform.Size = new System.Drawing.Size(629, 447);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
@@ -128,7 +128,7 @@
             this.grdRepBrand.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdRepBrand.RowTemplate.Height = 25;
             this.grdRepBrand.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdRepBrand.Size = new System.Drawing.Size(288, 280);
+            this.grdRepBrand.Size = new System.Drawing.Size(432, 280);
             this.grdRepBrand.TabIndex = 5;
             this.grdRepBrand.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRepBrand_CellContentClick);
             this.grdRepBrand.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdRepBrand_CurrentCellDirtyStateChanged);
@@ -164,7 +164,7 @@
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(181, 27);
             this.textBox3.TabIndex = 23;
-            this.textBox3.Text = "Whastapp No.";
+            this.textBox3.Text = "WhastApp No.";
             // 
             // txtWhatsappno
             // 
@@ -345,7 +345,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(524, 506);
+            this.ClientSize = new System.Drawing.Size(657, 506);
             this.Controls.Add(this.grbform);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);

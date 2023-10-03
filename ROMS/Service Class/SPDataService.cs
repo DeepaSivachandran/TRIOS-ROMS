@@ -335,7 +335,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 09/08/2023    Description:	HSN list Sp
-        public DataSet udfnHsnList(int ViewType,int paraHSNID)
+        public DataSet udfnHsnList(int ViewType,int paraHSNID,int paraGstId,string paraHSN_Name)
         {
             DataSet ds = new DataSet();
             try
@@ -346,6 +346,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraHSNID", paraHSNID); 
+                varSqlCommand.Parameters.AddWithValue("@paraGstId", paraGstId); 
+                varSqlCommand.Parameters.AddWithValue("@paraHSN_Name", paraHSN_Name); 
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
