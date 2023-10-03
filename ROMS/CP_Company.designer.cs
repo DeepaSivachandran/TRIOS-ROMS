@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
@@ -44,6 +44,7 @@
             this.grbform = new System.Windows.Forms.GroupBox();
             this.chkDefaultConcern = new System.Windows.Forms.CheckBox();
             this.grpLogo = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblCompanyLogoPath = new System.Windows.Forms.Label();
             this.lblCompanyLogoFilename = new System.Windows.Forms.Label();
             this.btncollegeLogoUpload = new System.Windows.Forms.Button();
@@ -61,6 +62,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtDStatus = new System.Windows.Forms.TextBox();
             this.LV_Group = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -71,16 +73,6 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.txtbranchname = new System.Windows.Forms.TextBox();
             this.grdBankDetails = new System.Windows.Forms.DataGridView();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBankShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtIFScode = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
@@ -157,7 +149,21 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.label1 = new System.Windows.Forms.Label();
+            this.rbBankInActive = new System.Windows.Forms.RadioButton();
+            this.rbBankActive = new System.Windows.Forms.RadioButton();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBankShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
+            this.pnlBStatus = new System.Windows.Forms.Panel();
+            this.lblStaffName = new System.Windows.Forms.Label();
+            this.txtStaffName = new System.Windows.Forms.TextBox();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.tcCompanyDetails.SuspendLayout();
@@ -172,6 +178,7 @@
             this.grpform2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContactManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCompany)).BeginInit();
+            this.pnlBStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsBrandList
@@ -312,6 +319,16 @@
             this.grpLogo.TabStop = false;
             this.grpLogo.Text = "Logo Details";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(4, 186);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(174, 16);
+            this.label1.TabIndex = 251;
+            this.label1.Text = "Upload JPG, PNG files (100X100) only";
+            // 
             // lblCompanyLogoPath
             // 
             this.lblCompanyLogoPath.AutoSize = true;
@@ -393,7 +410,7 @@
             this.pnlStatus.Location = new System.Drawing.Point(976, 563);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(153, 27);
-            this.pnlStatus.TabIndex = 27;
+            this.pnlStatus.TabIndex = 28;
             this.pnlStatus.Visible = false;
             // 
             // rbInactive
@@ -403,7 +420,7 @@
             this.rbInactive.Location = new System.Drawing.Point(80, 1);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
-            this.rbInactive.TabIndex = 28;
+            this.rbInactive.TabIndex = 29;
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
             this.rbInactive.Enter += new System.EventHandler(this.RbInActive_Enter);
@@ -418,7 +435,7 @@
             this.rbActive.Location = new System.Drawing.Point(14, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(54, 21);
-            this.rbActive.TabIndex = 27;
+            this.rbActive.TabIndex = 28;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -472,7 +489,7 @@
             this.btnSave.Location = new System.Drawing.Point(1142, 562);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 29;
+            this.btnSave.TabIndex = 30;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -489,7 +506,7 @@
             this.btnClose.Location = new System.Drawing.Point(1230, 562);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 30;
+            this.btnClose.TabIndex = 31;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -500,6 +517,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.pnlBStatus);
+            this.groupBox2.Controls.Add(this.txtDStatus);
             this.groupBox2.Controls.Add(this.LV_Group);
             this.groupBox2.Controls.Add(this.btnAdd);
             this.groupBox2.Controls.Add(this.textBox5);
@@ -520,6 +539,18 @@
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bank Details";
+            // 
+            // txtDStatus
+            // 
+            this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDStatus.Enabled = false;
+            this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDStatus.Location = new System.Drawing.Point(548, 54);
+            this.txtDStatus.Name = "txtDStatus";
+            this.txtDStatus.ReadOnly = true;
+            this.txtDStatus.Size = new System.Drawing.Size(100, 27);
+            this.txtDStatus.TabIndex = 1111141;
+            this.txtDStatus.Text = "Status";
             // 
             // LV_Group
             // 
@@ -554,11 +585,11 @@
             this.btnAdd.BackColor = System.Drawing.Color.White;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAdd.Location = new System.Drawing.Point(1260, 27);
+            this.btnAdd.Location = new System.Drawing.Point(804, 54);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 27);
-            this.btnAdd.TabIndex = 25;
+            this.btnAdd.TabIndex = 27;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
@@ -570,7 +601,7 @@
             this.textBox5.BackColor = System.Drawing.SystemColors.Control;
             this.textBox5.Enabled = false;
             this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox5.Location = new System.Drawing.Point(271, 27);
+            this.textBox5.Location = new System.Drawing.Point(6, 54);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(100, 27);
@@ -580,10 +611,10 @@
             // txtBankShortName
             // 
             this.txtBankShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtBankShortName.Location = new System.Drawing.Point(371, 27);
+            this.txtBankShortName.Location = new System.Drawing.Point(106, 54);
             this.txtBankShortName.MaxLength = 20;
             this.txtBankShortName.Name = "txtBankShortName";
-            this.txtBankShortName.Size = new System.Drawing.Size(147, 27);
+            this.txtBankShortName.Size = new System.Drawing.Size(165, 27);
             this.txtBankShortName.TabIndex = 21;
             this.txtBankShortName.Enter += new System.EventHandler(this.TxtBankShortName_Enter);
             this.txtBankShortName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBankShortName_KeyDown);
@@ -594,7 +625,7 @@
             this.textBox8.BackColor = System.Drawing.SystemColors.Control;
             this.textBox8.Enabled = false;
             this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox8.Location = new System.Drawing.Point(518, 27);
+            this.textBox8.Location = new System.Drawing.Point(277, 27);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(100, 27);
@@ -604,10 +635,10 @@
             // txtbranchname
             // 
             this.txtbranchname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtbranchname.Location = new System.Drawing.Point(618, 27);
+            this.txtbranchname.Location = new System.Drawing.Point(377, 27);
             this.txtbranchname.MaxLength = 50;
             this.txtbranchname.Name = "txtbranchname";
-            this.txtbranchname.Size = new System.Drawing.Size(147, 27);
+            this.txtbranchname.Size = new System.Drawing.Size(165, 27);
             this.txtbranchname.TabIndex = 22;
             this.txtbranchname.Enter += new System.EventHandler(this.Txtbranchname_Enter);
             this.txtbranchname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtbranchname_KeyDown);
@@ -621,14 +652,14 @@
             this.grdBankDetails.AllowUserToResizeRows = false;
             this.grdBankDetails.BackgroundColor = System.Drawing.Color.White;
             this.grdBankDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle31.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdBankDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle40.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle40.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle40.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdBankDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle40;
             this.grdBankDetails.ColumnHeadersHeight = 30;
             this.grdBankDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdBankDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -642,106 +673,36 @@
             this.clmsts,
             this.clmEdit,
             this.clmremovebank});
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdBankDetails.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle41.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle41.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle41.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle41.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdBankDetails.DefaultCellStyle = dataGridViewCellStyle41;
             this.grdBankDetails.EnableHeadersVisualStyles = false;
             this.grdBankDetails.GridColor = System.Drawing.Color.White;
-            this.grdBankDetails.Location = new System.Drawing.Point(6, 60);
+            this.grdBankDetails.Location = new System.Drawing.Point(6, 87);
             this.grdBankDetails.Name = "grdBankDetails";
             this.grdBankDetails.RowHeadersVisible = false;
-            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.Color.White;
-            this.grdBankDetails.RowsDefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.Color.White;
+            this.grdBankDetails.RowsDefaultCellStyle = dataGridViewCellStyle42;
             this.grdBankDetails.RowTemplate.Height = 25;
             this.grdBankDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdBankDetails.Size = new System.Drawing.Size(1277, 162);
+            this.grdBankDetails.Size = new System.Drawing.Size(1277, 135);
             this.grdBankDetails.TabIndex = 1111136;
             this.grdBankDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBankDetails_CellContentClick);
             this.grdBankDetails.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdBankDetails_DataBindingComplete);
             this.grdBankDetails.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdBankDetails_EditingControlShowing);
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 50;
-            // 
-            // clmbankname
-            // 
-            this.clmbankname.HeaderText = "Bank Name";
-            this.clmbankname.Name = "clmbankname";
-            this.clmbankname.ReadOnly = true;
-            this.clmbankname.Width = 200;
-            // 
-            // clmBankShortName
-            // 
-            this.clmBankShortName.HeaderText = "Bank Short Name";
-            this.clmBankShortName.Name = "clmBankShortName";
-            this.clmBankShortName.ReadOnly = true;
-            this.clmBankShortName.Width = 150;
-            // 
-            // clmbranch
-            // 
-            this.clmbranch.HeaderText = "Branch Name";
-            this.clmbranch.Name = "clmbranch";
-            this.clmbranch.ReadOnly = true;
-            this.clmbranch.Width = 175;
-            // 
-            // clmaccno
-            // 
-            this.clmaccno.HeaderText = "Account No.";
-            this.clmaccno.Name = "clmaccno";
-            this.clmaccno.ReadOnly = true;
-            this.clmaccno.Width = 200;
-            // 
-            // clmifscode
-            // 
-            this.clmifscode.HeaderText = "IFS Code";
-            this.clmifscode.Name = "clmifscode";
-            this.clmifscode.ReadOnly = true;
-            this.clmifscode.Width = 175;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // clmsts
-            // 
-            this.clmsts.HeaderText = "sts";
-            this.clmsts.Name = "clmsts";
-            this.clmsts.Visible = false;
-            // 
-            // clmEdit
-            // 
-            this.clmEdit.HeaderText = "Edit";
-            this.clmEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.clmEdit.Name = "clmEdit";
-            this.clmEdit.ReadOnly = true;
-            this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // clmremovebank
-            // 
-            this.clmremovebank.HeaderText = "Remove";
-            this.clmremovebank.Image = global::ROMS.Properties.Resources.remove;
-            this.clmremovebank.Name = "clmremovebank";
-            this.clmremovebank.Width = 80;
             // 
             // textBox15
             // 
             this.textBox15.BackColor = System.Drawing.SystemColors.Control;
             this.textBox15.Enabled = false;
             this.textBox15.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox15.Location = new System.Drawing.Point(1012, 27);
+            this.textBox15.Location = new System.Drawing.Point(548, 27);
             this.textBox15.Name = "textBox15";
             this.textBox15.ReadOnly = true;
             this.textBox15.Size = new System.Drawing.Size(100, 27);
@@ -751,10 +712,10 @@
             // txtIFScode
             // 
             this.txtIFScode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtIFScode.Location = new System.Drawing.Point(1112, 27);
+            this.txtIFScode.Location = new System.Drawing.Point(648, 27);
             this.txtIFScode.MaxLength = 11;
             this.txtIFScode.Name = "txtIFScode";
-            this.txtIFScode.Size = new System.Drawing.Size(147, 27);
+            this.txtIFScode.Size = new System.Drawing.Size(153, 27);
             this.txtIFScode.TabIndex = 24;
             this.txtIFScode.Enter += new System.EventHandler(this.TxtIFScode_Enter);
             this.txtIFScode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtIFScode_KeyDown);
@@ -766,7 +727,7 @@
             this.textBox17.BackColor = System.Drawing.SystemColors.Control;
             this.textBox17.Enabled = false;
             this.textBox17.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox17.Location = new System.Drawing.Point(765, 27);
+            this.textBox17.Location = new System.Drawing.Point(277, 54);
             this.textBox17.Name = "textBox17";
             this.textBox17.ReadOnly = true;
             this.textBox17.Size = new System.Drawing.Size(100, 27);
@@ -776,10 +737,10 @@
             // txtAccno
             // 
             this.txtAccno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtAccno.Location = new System.Drawing.Point(865, 27);
+            this.txtAccno.Location = new System.Drawing.Point(377, 54);
             this.txtAccno.MaxLength = 20;
             this.txtAccno.Name = "txtAccno";
-            this.txtAccno.Size = new System.Drawing.Size(147, 27);
+            this.txtAccno.Size = new System.Drawing.Size(165, 27);
             this.txtAccno.TabIndex = 23;
             this.txtAccno.Enter += new System.EventHandler(this.TxtAccno_Enter);
             this.txtAccno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAccno_KeyDown);
@@ -1275,6 +1236,8 @@
             // 
             // grpform2
             // 
+            this.grpform2.Controls.Add(this.txtStaffName);
+            this.grpform2.Controls.Add(this.lblStaffName);
             this.grpform2.Controls.Add(this.btnAddContact);
             this.grpform2.Controls.Add(this.label2);
             this.grpform2.Controls.Add(this.lblOperator);
@@ -1305,7 +1268,7 @@
             this.btnAddContact.BackColor = System.Drawing.Color.White;
             this.btnAddContact.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAddContact.Image = global::ROMS.Properties.Resources.plus;
-            this.btnAddContact.Location = new System.Drawing.Point(1169, 39);
+            this.btnAddContact.Location = new System.Drawing.Point(1293, 39);
             this.btnAddContact.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddContact.Name = "btnAddContact";
             this.btnAddContact.Size = new System.Drawing.Size(23, 27);
@@ -1318,7 +1281,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(971, 12);
+            this.label2.Location = new System.Drawing.Point(911, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 20);
             this.label2.TabIndex = 1111174;
@@ -1327,7 +1290,7 @@
             // lblOperator
             // 
             this.lblOperator.AutoSize = true;
-            this.lblOperator.Location = new System.Drawing.Point(770, 12);
+            this.lblOperator.Location = new System.Drawing.Point(710, 12);
             this.lblOperator.Name = "lblOperator";
             this.lblOperator.Size = new System.Drawing.Size(57, 20);
             this.lblOperator.TabIndex = 1111173;
@@ -1336,7 +1299,7 @@
             // cbPrimary
             // 
             this.cbPrimary.AutoSize = true;
-            this.cbPrimary.Location = new System.Drawing.Point(694, 40);
+            this.cbPrimary.Location = new System.Drawing.Point(634, 40);
             this.cbPrimary.Name = "cbPrimary";
             this.cbPrimary.Size = new System.Drawing.Size(70, 24);
             this.cbPrimary.TabIndex = 4;
@@ -1349,7 +1312,7 @@
             // cbWhatsApp
             // 
             this.cbWhatsApp.AutoSize = true;
-            this.cbWhatsApp.Location = new System.Drawing.Point(604, 40);
+            this.cbWhatsApp.Location = new System.Drawing.Point(544, 40);
             this.cbWhatsApp.Name = "cbWhatsApp";
             this.cbWhatsApp.Size = new System.Drawing.Size(84, 24);
             this.cbWhatsApp.TabIndex = 3;
@@ -1362,7 +1325,7 @@
             // lblMobileNo
             // 
             this.lblMobileNo.AutoSize = true;
-            this.lblMobileNo.Location = new System.Drawing.Point(403, 12);
+            this.lblMobileNo.Location = new System.Drawing.Point(384, 12);
             this.lblMobileNo.Name = "lblMobileNo";
             this.lblMobileNo.Size = new System.Drawing.Size(64, 20);
             this.lblMobileNo.TabIndex = 1111170;
@@ -1371,7 +1334,7 @@
             // lblTransactionType
             // 
             this.lblTransactionType.AutoSize = true;
-            this.lblTransactionType.Location = new System.Drawing.Point(208, 12);
+            this.lblTransactionType.Location = new System.Drawing.Point(13, 12);
             this.lblTransactionType.Name = "lblTransactionType";
             this.lblTransactionType.Size = new System.Drawing.Size(100, 20);
             this.lblTransactionType.TabIndex = 1111169;
@@ -1380,7 +1343,7 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(13, 12);
+            this.lblName.Location = new System.Drawing.Point(208, 10);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(39, 20);
             this.lblName.TabIndex = 1111168;
@@ -1389,7 +1352,7 @@
             // txtMobileBrand
             // 
             this.txtMobileBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMobileBrand.Location = new System.Drawing.Point(971, 39);
+            this.txtMobileBrand.Location = new System.Drawing.Point(911, 39);
             this.txtMobileBrand.MaxLength = 20;
             this.txtMobileBrand.Name = "txtMobileBrand";
             this.txtMobileBrand.Size = new System.Drawing.Size(195, 27);
@@ -1401,7 +1364,7 @@
             // txtOperator
             // 
             this.txtOperator.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtOperator.Location = new System.Drawing.Point(770, 39);
+            this.txtOperator.Location = new System.Drawing.Point(710, 39);
             this.txtOperator.MaxLength = 20;
             this.txtOperator.Name = "txtOperator";
             this.txtOperator.Size = new System.Drawing.Size(195, 27);
@@ -1413,11 +1376,11 @@
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtName.Location = new System.Drawing.Point(13, 39);
+            this.txtName.Location = new System.Drawing.Point(208, 39);
             this.txtName.MaxLength = 50;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(189, 27);
-            this.txtName.TabIndex = 0;
+            this.txtName.Size = new System.Drawing.Size(170, 27);
+            this.txtName.TabIndex = 1;
             this.txtName.Enter += new System.EventHandler(this.TxtName_Enter);
             this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtName_KeyDown);
             this.txtName.Leave += new System.EventHandler(this.TxtName_Leave);
@@ -1430,14 +1393,14 @@
             this.grdContactManager.AllowUserToResizeRows = false;
             this.grdContactManager.BackgroundColor = System.Drawing.Color.White;
             this.grdContactManager.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle34.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle34.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle34.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdContactManager.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle37.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle37.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle37.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdContactManager.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
             this.grdContactManager.ColumnHeadersHeight = 30;
             this.grdContactManager.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdContactManager.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1452,23 +1415,23 @@
             this.clmid,
             this.clmCMEdit,
             this.clmRemove});
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle35.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdContactManager.DefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle38.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdContactManager.DefaultCellStyle = dataGridViewCellStyle38;
             this.grdContactManager.EnableHeadersVisualStyles = false;
             this.grdContactManager.GridColor = System.Drawing.Color.White;
             this.grdContactManager.Location = new System.Drawing.Point(13, 72);
             this.grdContactManager.Name = "grdContactManager";
             this.grdContactManager.ReadOnly = true;
             this.grdContactManager.RowHeadersVisible = false;
-            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.Color.White;
-            this.grdContactManager.RowsDefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.White;
+            this.grdContactManager.RowsDefaultCellStyle = dataGridViewCellStyle39;
             this.grdContactManager.RowTemplate.Height = 25;
             this.grdContactManager.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdContactManager.Size = new System.Drawing.Size(1303, 472);
@@ -1556,10 +1519,10 @@
             // txtMobilenumber
             // 
             this.txtMobilenumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMobilenumber.Location = new System.Drawing.Point(403, 39);
+            this.txtMobilenumber.Location = new System.Drawing.Point(384, 39);
             this.txtMobilenumber.MaxLength = 10;
             this.txtMobilenumber.Name = "txtMobilenumber";
-            this.txtMobilenumber.Size = new System.Drawing.Size(195, 27);
+            this.txtMobilenumber.Size = new System.Drawing.Size(154, 27);
             this.txtMobilenumber.TabIndex = 2;
             this.txtMobilenumber.Enter += new System.EventHandler(this.TxtMobilenumber_Enter);
             this.txtMobilenumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMobilenumber_KeyDown);
@@ -1570,10 +1533,10 @@
             // 
             this.cmbTransactionType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTransactionType.FormattingEnabled = true;
-            this.cmbTransactionType.Location = new System.Drawing.Point(208, 39);
+            this.cmbTransactionType.Location = new System.Drawing.Point(13, 39);
             this.cmbTransactionType.Name = "cmbTransactionType";
             this.cmbTransactionType.Size = new System.Drawing.Size(189, 27);
-            this.cmbTransactionType.TabIndex = 1;
+            this.cmbTransactionType.TabIndex = 0;
             this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.CmbTransactionType_SelectedIndexChanged);
             this.cmbTransactionType.Enter += new System.EventHandler(this.CmbTransactionType_Enter);
             this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
@@ -1647,15 +1610,135 @@
             this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
             this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // label1
+            // rbBankInActive
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 186);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(174, 16);
-            this.label1.TabIndex = 251;
-            this.label1.Text = "Upload JPG, PNG files (100X100) only";
+            this.rbBankInActive.AutoSize = true;
+            this.rbBankInActive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.rbBankInActive.Location = new System.Drawing.Point(71, 2);
+            this.rbBankInActive.Name = "rbBankInActive";
+            this.rbBankInActive.Size = new System.Drawing.Size(63, 21);
+            this.rbBankInActive.TabIndex = 26;
+            this.rbBankInActive.Text = "Inactive";
+            this.rbBankInActive.UseVisualStyleBackColor = true;
+            this.rbBankInActive.Enter += new System.EventHandler(this.RbBankInActive_Enter);
+            this.rbBankInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbBankInActive_KeyDown);
+            this.rbBankInActive.Leave += new System.EventHandler(this.RbBankInActive_Leave);
+            // 
+            // rbBankActive
+            // 
+            this.rbBankActive.AutoSize = true;
+            this.rbBankActive.Checked = true;
+            this.rbBankActive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.rbBankActive.Location = new System.Drawing.Point(5, 2);
+            this.rbBankActive.Name = "rbBankActive";
+            this.rbBankActive.Size = new System.Drawing.Size(54, 21);
+            this.rbBankActive.TabIndex = 25;
+            this.rbBankActive.TabStop = true;
+            this.rbBankActive.Text = "Active";
+            this.rbBankActive.UseVisualStyleBackColor = true;
+            this.rbBankActive.Enter += new System.EventHandler(this.RbBankActive_Enter);
+            this.rbBankActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbBankActive_KeyDown);
+            this.rbBankActive.Leave += new System.EventHandler(this.RbBankActive_Leave);
+            // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
+            // 
+            // clmbankname
+            // 
+            this.clmbankname.HeaderText = "Bank Name";
+            this.clmbankname.Name = "clmbankname";
+            this.clmbankname.ReadOnly = true;
+            this.clmbankname.Width = 200;
+            // 
+            // clmBankShortName
+            // 
+            this.clmBankShortName.HeaderText = "Bank Short Name";
+            this.clmBankShortName.Name = "clmBankShortName";
+            this.clmBankShortName.ReadOnly = true;
+            this.clmBankShortName.Width = 150;
+            // 
+            // clmbranch
+            // 
+            this.clmbranch.HeaderText = "Branch Name";
+            this.clmbranch.Name = "clmbranch";
+            this.clmbranch.ReadOnly = true;
+            this.clmbranch.Width = 175;
+            // 
+            // clmaccno
+            // 
+            this.clmaccno.HeaderText = "Account No.";
+            this.clmaccno.Name = "clmaccno";
+            this.clmaccno.ReadOnly = true;
+            this.clmaccno.Width = 200;
+            // 
+            // clmifscode
+            // 
+            this.clmifscode.HeaderText = "IFS Code";
+            this.clmifscode.Name = "clmifscode";
+            this.clmifscode.ReadOnly = true;
+            this.clmifscode.Width = 175;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            this.clmStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // clmsts
+            // 
+            this.clmsts.HeaderText = "sts";
+            this.clmsts.Name = "clmsts";
+            this.clmsts.ReadOnly = true;
+            this.clmsts.Visible = false;
+            // 
+            // clmEdit
+            // 
+            this.clmEdit.HeaderText = "Edit";
+            this.clmEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.clmEdit.Name = "clmEdit";
+            this.clmEdit.ReadOnly = true;
+            this.clmEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // clmremovebank
+            // 
+            this.clmremovebank.HeaderText = "Remove";
+            this.clmremovebank.Image = global::ROMS.Properties.Resources.remove;
+            this.clmremovebank.Name = "clmremovebank";
+            this.clmremovebank.Width = 80;
+            // 
+            // pnlBStatus
+            // 
+            this.pnlBStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBStatus.Controls.Add(this.rbBankInActive);
+            this.pnlBStatus.Controls.Add(this.rbBankActive);
+            this.pnlBStatus.Location = new System.Drawing.Point(648, 54);
+            this.pnlBStatus.Name = "pnlBStatus";
+            this.pnlBStatus.Size = new System.Drawing.Size(153, 27);
+            this.pnlBStatus.TabIndex = 1111142;
+            // 
+            // lblStaffName
+            // 
+            this.lblStaffName.AutoSize = true;
+            this.lblStaffName.Location = new System.Drawing.Point(1112, 12);
+            this.lblStaffName.Name = "lblStaffName";
+            this.lblStaffName.Size = new System.Drawing.Size(68, 20);
+            this.lblStaffName.TabIndex = 1111175;
+            this.lblStaffName.Text = "Staff Name";
+            // 
+            // txtStaffName
+            // 
+            this.txtStaffName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtStaffName.Location = new System.Drawing.Point(1112, 39);
+            this.txtStaffName.MaxLength = 50;
+            this.txtStaffName.Name = "txtStaffName";
+            this.txtStaffName.Size = new System.Drawing.Size(178, 27);
+            this.txtStaffName.TabIndex = 1111176;
             // 
             // CP_Company
             // 
@@ -1696,6 +1779,8 @@
             this.grpform2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContactManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCompany)).EndInit();
+            this.pnlBStatus.ResumeLayout(false);
+            this.pnlBStatus.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1794,16 +1879,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmbankname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmBankShortName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmbranch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmaccno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmifscode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsts;
-        private System.Windows.Forms.DataGridViewImageColumn clmEdit;
-        private System.Windows.Forms.DataGridViewImageColumn clmremovebank;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmContsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTransaction;
@@ -1826,5 +1901,21 @@
         public System.Windows.Forms.Label lblCompanyLogoPath;
         private System.Windows.Forms.CheckBox chkDefaultConcern;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtDStatus;
+        private System.Windows.Forms.RadioButton rbBankInActive;
+        private System.Windows.Forms.RadioButton rbBankActive;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmbankname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmBankShortName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmbranch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmaccno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmifscode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmsts;
+        private System.Windows.Forms.DataGridViewImageColumn clmEdit;
+        private System.Windows.Forms.DataGridViewImageColumn clmremovebank;
+        private System.Windows.Forms.Panel pnlBStatus;
+        private System.Windows.Forms.TextBox txtStaffName;
+        private System.Windows.Forms.Label lblStaffName;
     }
 }

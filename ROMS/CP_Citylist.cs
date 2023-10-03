@@ -148,6 +148,7 @@ namespace ROMS
                             grdCityList.Columns["ID"].Visible = false;
                             grdCityList.Columns["StateId"].Visible = false;
                             grdCityList.Columns["StatusID"].Visible = false;
+                            grdCityList.Columns["Status"].Visible = false;
                             grdCityList.Columns["S.No."].Width = 50;
                             grdCityList.Columns["State Name"].Width = 120;
                             grdCityList.Columns["City Name"].Width = 200;

@@ -163,6 +163,12 @@
     <Compile Include="CP_BatchNoConfigurationList.designer.cs">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_SL_Verify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SL_Verify.designer.cs">
+      <DependentUpon>CP_SL_Verify.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_BulkAttributeVerify.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -994,6 +1000,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_BatchNoConfigurationList.resx">
       <DependentUpon>CP_BatchNoConfigurationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_SL_Verify.resx">
+      <DependentUpon>CP_SL_Verify.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_BulkAttributeVerify.resx">
       <DependentUpon>CP_BulkAttributeVerify.cs</DependentUpon>

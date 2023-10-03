@@ -265,37 +265,51 @@ namespace ROMS
                     varoriginator = "Stock Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator);
-                objspservice.CloseConnection();
-                string[] varvalue = varResult.Split('~');
-                if (varvalue[0] == "3")
+                int varVerify = 0;
+                if(cmbStockApplicable.SelectedIndex==1)
                 {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    /*modified by deepa on 15-09-2023*/
-                    if (varFormFlag == 1)
-                    {
-                        varFormFlag = 0;
-                        MainForm.objCP_SubGroup.varStockLocationName = txtLocationNameInEnglish.Text;
-                        MainForm.objCP_SubGroup.varLocationCode = Convert.ToInt16(varResult.Split('~')[2]);
-                        varUpdate = 1;
-                        udfnclose();
-                    }
-                    else
-                    {
-                        MainForm.objCP_LocationList.udfnList();
-                    }
-                    if (btnSave.Text == "Update")
-                    {
-                        varUpdate = 1;
-                        udfnclose();
-                    }
-                    udfnclear();
+                    MainForm.objCP_SL_Verify = new CP_SL_Verify();
+                    MainForm.objCP_SL_Verify.ShowDialog();
+                    varVerify = MainForm.objCP_SL_Verify.flag;
                 }
                 else
                 {
-                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    btnSave.Enabled = true;
-                    btnSave.Focus();
+                    varVerify = 1;
+                }
+                if (varVerify == 1)
+                {
+                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator);
+                    objspservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        /*modified by deepa on 15-09-2023*/
+                        if (varFormFlag == 1)
+                        {
+                            varFormFlag = 0;
+                            MainForm.objCP_SubGroup.varStockLocationName = txtLocationNameInEnglish.Text;
+                            MainForm.objCP_SubGroup.varLocationCode = Convert.ToInt16(varResult.Split('~')[2]);
+                            varUpdate = 1;
+                            udfnclose();
+                        }
+                        else
+                        {
+                            MainForm.objCP_LocationList.udfnList();
+                        }
+                        if (btnSave.Text == "Update")
+                        {
+                            varUpdate = 1;
+                            udfnclose();
+                        }
+                        udfnclear();
+                    }
+                    else
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnSave.Enabled = true;
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -352,14 +366,14 @@ namespace ROMS
                     tpLocationTypeInTamil.Show("Please enter location name in tamil", txtLocationNameInTamil, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(cmbStockApplicable.SelectedItem) == "" || Convert.ToString(cmbStockApplicable.SelectedValue) == "-1")
-                {
-                    epLocation.SetError(cmbStockApplicable, "Please select stock applicable");
-                    cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpStoctApplicable.ShowAlways = true;
-                    tpStoctApplicable.Show("Please select stock applicable", cmbStockApplicable, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (Convert.ToString(cmbStockApplicable.SelectedItem) == "" || Convert.ToString(cmbStockApplicable.SelectedValue) == "-1")
+                //{
+                //    epLocation.SetError(cmbStockApplicable, "Please select stock applicable");
+                //    cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpStoctApplicable.ShowAlways = true;
+                //    tpStoctApplicable.Show("Please select stock applicable", cmbStockApplicable, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (Convert.ToString(txtShortName.Text).Trim() == "")
                 {
                     epLocation.SetError(txtShortName, "Please enter short name");
@@ -773,18 +787,18 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(cmbStockApplicable.SelectedItem) == "" || Convert.ToString(cmbStockApplicable.SelectedValue) == "-1")
-                {
-                    epLocation.SetError(cmbStockApplicable, "Please select stock applicable");
-                    cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpLocationType.ShowAlways = true;
-                    tpLocationType.Show("Please select stock applicable", cmbStockApplicable, 5000);
-                }
-                else
-                {
-                    epLocation.Clear();
+                //if (Convert.ToString(cmbStockApplicable.SelectedItem) == "" || Convert.ToString(cmbStockApplicable.SelectedValue) == "-1")
+                //{
+                //    epLocation.SetError(cmbStockApplicable, "Please select stock applicable");
+                //    cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpLocationType.ShowAlways = true;
+                //    tpLocationType.Show("Please select stock applicable", cmbStockApplicable, 5000);
+                //}
+                //else
+                //{
+                //    epLocation.Clear();
                     cmbStockApplicable.BackColor = Color.White;
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -939,24 +953,24 @@ namespace ROMS
 
         private void CmbLocationType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(cmbLocationType.SelectedValue) == 9)
-            {
-                pnlGodownType.Enabled = true;
-                rbInside.Checked = true;
-            }
-            else
-            {
-                pnlGodownType.Enabled = false;
-                rbInside.Checked = false;
-            }
+            //if (Convert.ToInt32(cmbLocationType.SelectedValue) == 9)
+            //{
+            //    pnlGodownType.Enabled = true;
+            //    rbInside.Checked = true;
+            //}
+            //else
+            //{
+            //    pnlGodownType.Enabled = false;
+            //    rbInside.Checked = false;
+            //}
         }
 
         private void CmbStockApplicable_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(btnSave.Text=="Save")
-            {
-               // cmbStockApplicable.SelectedValue = 11;
-            }
+            //if(cmbStockApplicable.SelectedIndex==11)
+            //{
+
+            //}
         }
     }
 }

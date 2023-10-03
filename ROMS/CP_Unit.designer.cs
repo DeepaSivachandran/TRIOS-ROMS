@@ -33,6 +33,8 @@
             this.txtDUnitName = new System.Windows.Forms.TextBox();
             this.txtEUnitName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtInvoiceUnit = new System.Windows.Forms.TextBox();
             this.cmbNoOfDecimals = new System.Windows.Forms.ComboBox();
             this.txtDNoOfDecimals = new System.Windows.Forms.TextBox();
             this.txtDSymbol = new System.Windows.Forms.TextBox();
@@ -44,8 +46,6 @@
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.epUnit = new System.Windows.Forms.ErrorProvider(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtInvoiceUnit = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUnit)).BeginInit();
@@ -98,6 +98,32 @@
             this.grbform.Size = new System.Drawing.Size(558, 218);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(37, 80);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(122, 28);
+            this.textBox1.TabIndex = 14;
+            this.textBox1.Text = "E-Invoice Unit";
+            // 
+            // txtInvoiceUnit
+            // 
+            this.txtInvoiceUnit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInvoiceUnit.Location = new System.Drawing.Point(159, 80);
+            this.txtInvoiceUnit.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtInvoiceUnit.MaxLength = 10;
+            this.txtInvoiceUnit.Name = "txtInvoiceUnit";
+            this.txtInvoiceUnit.Size = new System.Drawing.Size(361, 28);
+            this.txtInvoiceUnit.TabIndex = 2;
+            this.txtInvoiceUnit.Enter += new System.EventHandler(this.TxtInvoiceUnit_Enter);
+            this.txtInvoiceUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtInvoiceUnit_KeyDown);
+            this.txtInvoiceUnit.Leave += new System.EventHandler(this.TxtInvoiceUnit_Leave);
             // 
             // cmbNoOfDecimals
             // 
@@ -219,6 +245,7 @@
             this.rbInActive.TabIndex = 4;
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
+            this.rbInActive.CheckedChanged += new System.EventHandler(this.RbInActive_CheckedChanged);
             this.rbInActive.Enter += new System.EventHandler(this.RbInActive_Enter);
             this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInActive_KeyDown);
             this.rbInActive.Leave += new System.EventHandler(this.RbInActive_Leave);
@@ -242,32 +269,6 @@
             // epUnit
             // 
             this.epUnit.ContainerControl = this;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(37, 80);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(122, 28);
-            this.textBox1.TabIndex = 14;
-            this.textBox1.Text = "E-Invoice Unit";
-            // 
-            // txtInvoiceUnit
-            // 
-            this.txtInvoiceUnit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInvoiceUnit.Location = new System.Drawing.Point(159, 80);
-            this.txtInvoiceUnit.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtInvoiceUnit.MaxLength = 10;
-            this.txtInvoiceUnit.Name = "txtInvoiceUnit";
-            this.txtInvoiceUnit.Size = new System.Drawing.Size(361, 28);
-            this.txtInvoiceUnit.TabIndex = 2;
-            this.txtInvoiceUnit.Enter += new System.EventHandler(this.TxtInvoiceUnit_Enter);
-            this.txtInvoiceUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtInvoiceUnit_KeyDown);
-            this.txtInvoiceUnit.Leave += new System.EventHandler(this.TxtInvoiceUnit_Leave);
             // 
             // CP_Unit
             // 

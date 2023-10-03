@@ -543,9 +543,17 @@ namespace ROMS
                     }
                     if (varflag == 0)
                     {
+                        if (rbBankActive.Checked == true)
+                        {
+                            varstatusid = "Active";
+                        }
+                        else
+                        {
+                            varstatusid = "Inactive";
+                        }
                         if (varSlNo == "0")
                         {
-                            grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(), varstatusid);
+                            grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(),varstatusid);
                         }
                         else {
                             for (int i = 0; i < grdBankDetails.RowCount; i++) {
@@ -555,6 +563,7 @@ namespace ROMS
                                     grdBankDetails.Rows[i].Cells["clmbranch"].Value = txtbranchname.Text;
                                     grdBankDetails.Rows[i].Cells["clmaccno"].Value = txtAccno.Text;
                                     grdBankDetails.Rows[i].Cells["clmifscode"].Value = txtIFScode.Text;
+                                    grdBankDetails.Rows[i].Cells["clmStatus"].Value = varstatusid;
                                 }
                             }
                         }
@@ -2019,6 +2028,7 @@ namespace ROMS
                     objContactTable.Columns.Add("CMCON_MobileBrand", typeof(string));
                     objContactTable.Columns.Add("CMCON_Primary", typeof(int));
                     objContactTable.Columns.Add("CMCON_WhatsAppEnabled", typeof(int));
+                    objContactTable.Columns.Add("CMCON_StaffName", typeof(string));
                     int cityid = 0;string varpincode="";
                     if (lblcityid.Text=="")
                     {
@@ -2099,6 +2109,7 @@ namespace ROMS
                         this.ActiveControl = tcCompanyDetails; 
                         MainForm.objCP_Companylist.udfnList();
                         txtCompanyName.Focus();
+                        pnlBStatus.Enabled = false;
                         if (btnSave.Text == "Update")
                         {
                             if (tcCompanyDetails.SelectedIndex == 1)
@@ -2175,8 +2186,19 @@ namespace ROMS
                 objBankTable.Columns.Add("CMBNK_STSID", typeof(string));
                 for (int i = 0; i < grdBankDetails.Rows.Count; i++)
                 {
+                    DataService objDser = new DataService();
+                    string varvalue = "";
+                    if(rbBankActive.Checked==true)
+                    {
+                        varstatusid = "1";
+                    }
+                    else
+                    {
+                        varstatusid = "2";
+                    }
+                    varvalue = objDser.displaydata("SELECT STS_Name FROM  DEF_Status where STS_ModuleID = '" + varstatusid + "'");
                     string varStatus = "1";
-                    if (Convert.ToString(grdBankDetails.Rows[i].Cells["clmStatus"].Value) == "ACTIVE")
+                    if (Convert.ToString(grdBankDetails.Rows[i].Cells["clmStatus"].Value) == varvalue)
                     {
                         varStatus = "1";
                     }
@@ -2646,7 +2668,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbTransactionType.Focus();
+                    txtMobilenumber.Focus();
                 }
             }
             catch (Exception ex)
@@ -2739,7 +2761,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtMobilenumber.Focus();
+                    txtName.Focus();
                 }
             }
             catch (Exception ex)
@@ -3057,7 +3079,8 @@ namespace ROMS
                             }
                         }
                         udfnContactClear();
-                        txtName.Focus();
+                        //txtName.Focus();
+                        cmbTransactionType.Focus();
                         grdContactManager.ClearSelection();
                         btnAddContact.Image = ROMS.Properties.Resources.plus;
                     }
@@ -3148,6 +3171,7 @@ namespace ROMS
                 objContactTable.Columns.Add("CMCON_MobileBrand", typeof(string));
                 objContactTable.Columns.Add("CMCON_Primary", typeof(int));
                 objContactTable.Columns.Add("CMCON_WhatsAppEnabled", typeof(int));
+                objContactTable.Columns.Add("CMCON_StaffName", typeof(string));
 
 
                 DataTable objBankTable = new DataTable();
@@ -3461,6 +3485,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,1) AND MSTID !=0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbTransactionType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 DataService objdservice = new DataService();
+                pnlBStatus.Enabled = false;
                 varstatusid = objdservice.displaydata("select STS_Name as name from DEF_Status where STS_ModuleID=1 AND STSID=1");
                 grdContactManager.Rows.Clear();
                 grdBankDetails.Rows.Clear();
@@ -3490,7 +3515,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void GrdContactManager_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -3524,7 +3548,8 @@ namespace ROMS
                             txtName.BackColor = Color.White;
                             tpName.Active = false;
                             epCompany.Clear();
-                            txtName.Focus();
+                            //txtName.Focus();
+                            cmbTransactionType.Focus();
                             break;
                     }
                 }
@@ -3539,8 +3564,7 @@ namespace ROMS
         private void GrdBankDetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
-            { 
-
+            {
                 if (e.RowIndex != -1)
                 {
                     switch (grdBankDetails.Columns[e.ColumnIndex].Name)
@@ -3564,6 +3588,16 @@ namespace ROMS
                             txtAccno.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmaccno"].Value);
                             txtIFScode.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmifscode"].Value);
                             varSlNo = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmsno"].Value);
+                            varstatusid = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmStatus"].Value);
+                            pnlBStatus.Enabled = true;
+                            if (varstatusid=="Active")
+                            {
+                                rbBankActive.Checked = true;
+                            }
+                            else
+                            {
+                                rbBankInActive.Checked = true;
+                            }
                             btnAdd.Image = ROMS.Properties.Resources.save16x16;
                             txtBankname.BackColor = Color.White;
                             tpBankName.Active = false;
@@ -3647,9 +3681,7 @@ namespace ROMS
                                 grdContactManager.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[1].Rows[i]["NAME"]), Convert.ToString(objDS.Tables[1].Rows[i]["TRANSACTIONNAME"]),
                                 Convert.ToString(objDS.Tables[1].Rows[i]["MOBILE"]), Convert.ToString(objDS.Tables[1].Rows[i]["WHATSAPP"]), Convert.ToString(objDS.Tables[1].Rows[i]["PRIMAY"])
                                 , Convert.ToString(objDS.Tables[1].Rows[i]["OPERATOR"]), Convert.ToString(objDS.Tables[1].Rows[i]["BRAND"]), Convert.ToString(objDS.Tables[1].Rows[i]["id"]));
-                                
                             }
-
                         }
                         if (objDS.Tables[2].Rows.Count > 0)
                         {
@@ -3658,9 +3690,7 @@ namespace ROMS
                                 grdBankDetails.Rows.Add(Convert.ToString(objDS.Tables[2].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[2].Rows[i]["NAME"]), Convert.ToString(objDS.Tables[2].Rows[i]["SHORTNAME"]),
                                 Convert.ToString(objDS.Tables[2].Rows[i]["BRANCH"]), Convert.ToString(objDS.Tables[2].Rows[i]["ACCOUNT"]), Convert.ToString(objDS.Tables[2].Rows[i]["IFSC"])
                                 , Convert.ToString(objDS.Tables[2].Rows[i]["STATUS"]),  Convert.ToString(objDS.Tables[2].Rows[i]["sts"]));
-                                
                             }
-
                             btnSave.Text = "Update";
                             btnSaveContact.Text = "Update"; ;
 
@@ -4083,6 +4113,90 @@ namespace ROMS
             else { btnSave.Focus(); }
         }
 
+        private void RbBankActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbBankActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnAdd.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbBankActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankInActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbBankInActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankInActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnAdd.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbBankInActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbBankInActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void Grpform2_Leave(object sender, EventArgs e)
         {
             try
@@ -4204,7 +4318,8 @@ namespace ROMS
                 {
                     //udfnClear();
                     udfntextboxcolor();
-                    this.ActiveControl = txtName;
+                    //this.ActiveControl = txtName;
+                    this.ActiveControl = cmbTransactionType;
                 }
             }
             catch (Exception ex)

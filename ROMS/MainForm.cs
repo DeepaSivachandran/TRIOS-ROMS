@@ -55,6 +55,7 @@ namespace ROMS
         public static CP_SubGroup objCP_SubGroup;
         public static CP_LocationList objCP_LocationList;
         public static CP_Location objCP_Location;
+        public static CP_SL_Verify objCP_SL_Verify;
         public static CP_Rack objCP_Rack;
         public static CP_RackList objCP_RackList;
         public static CP_UserList objCP_Userlist;

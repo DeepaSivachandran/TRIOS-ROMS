@@ -87,6 +87,7 @@ namespace ROMS
                 dtRackList = new DataTable();
                 dtRackList.Columns.Add("", typeof(Boolean));
                 dtRackList.Columns.Add("Rack Name", typeof(string));
+                dtRackList.Columns.Add("RK_Description", typeof(string));
                 dtRackList.Columns.Add("RKID", typeof(int));
                 udfnLoadCmbBatchNo();
                 if (btnSave.Text == "Save")
@@ -414,7 +415,7 @@ namespace ROMS
                     string varLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0,0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -1138,7 +1139,7 @@ namespace ROMS
                 if (txtLocation.Text.Length > 0)
                 {
 
-                    objDs = objspdservice.udfnStockLocationList(12, 0, 0,0,txtLocation.Text, 0);
+                    objDs = objspdservice.udfnStockLocationList(12, 0, 0,0,txtLocation.Text, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1233,11 +1234,12 @@ namespace ROMS
                             if (objRackList.Tables[0].Rows.Count > 0)
                             {
                                 for (int i = 0; i < objRackList.Tables[0].Rows.Count; i++) {
-                                    dtRackList.Rows.Add(false,Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Name"]),Convert.ToInt32(objRackList.Tables[0].Rows[i]["RKID"]));
+                                    dtRackList.Rows.Add(false,Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Name"]),Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Description"]), Convert.ToInt32(objRackList.Tables[0].Rows[i]["RKID"]));
                                 }
                                 grdRackList.DataSource = dtRackList;
                                 grdRackList.Columns["RKID"].Visible = false;
                                 grdRackList.Columns["Rack Name"].Width = 150;
+                                grdRackList.Columns["RK_Description"].Width = 200;
                                 grdRackList.Columns[0].Width = 30;
                             }
                         }
