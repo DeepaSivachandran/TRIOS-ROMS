@@ -99,6 +99,7 @@ namespace ROMS
             this.hSNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.brokerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmEmployeee = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -422,6 +423,7 @@ namespace ROMS
             this.tsmRackGroup,
             this.tsmProduct,
             this.tsmCategory,
+            this.tsmEmployeee,
             this.tsmUser,
             this.tsmSupplier,
             this.tsmBroker,
@@ -615,14 +617,14 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
@@ -689,6 +691,13 @@ namespace ROMS
             this.brokerToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.brokerToolStripMenuItem.Text = "Broker";
             this.brokerToolStripMenuItem.Click += new System.EventHandler(this.BrokerToolStripMenuItem_Click);
+            // 
+            // tsmEmployeee
+            // 
+            this.tsmEmployeee.Name = "tsmEmployeee";
+            this.tsmEmployeee.Size = new System.Drawing.Size(225, 22);
+            this.tsmEmployeee.Text = "Employee";
+            this.tsmEmployeee.Click += new System.EventHandler(this.TsmEmployee_Click);
             // 
             // MainForm
             // 
@@ -788,5 +797,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem hSNToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productGroupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brokerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmEmployeee;
     }
 }
