@@ -481,7 +481,7 @@ namespace ROMS
                 }
                 else
                 {
-                    varviewtype = 3;
+                    varviewtype = 12;
                 }
 
 
@@ -502,9 +502,16 @@ namespace ROMS
                         grdRepBrand.DataSource = objDS.Tables[0];
                         grdRepBrand.Columns["ID"].Visible = false;
                         grdRepBrand.Columns["Brand Name"].Width = 230;
+                        grdRepBrand.Columns["Sub Group"].Width = 150;
+                        grdRepBrand.Columns["Group"].Width = 150;
                         grdRepBrand.Columns["Brand Name"].ReadOnly = true;
-                        grdRepBrand.Columns["sno"].Visible = false;
+                        grdRepBrand.Columns["Sub Group"].ReadOnly = true;
+                        grdRepBrand.Columns["Group"].ReadOnly = true;
+                        //grdRepBrand.Columns["sno"].Visible = false;
                         grdRepBrand.Columns["BD_STSID"].Visible = false;
+                        grdRepBrand.Columns["BDS_PRSGID"].Visible = false;
+                        grdRepBrand.Columns["PRSGID"].Visible = false;
+                        grdRepBrand.Columns["PRGID"].Visible = false;
 
                         //foreach (DataGridViewRow row in grdRepBrand.Rows)
                         //{
