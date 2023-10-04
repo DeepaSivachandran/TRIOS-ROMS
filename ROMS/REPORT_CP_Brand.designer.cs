@@ -473,6 +473,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HSN Report";
             this.Load += new System.EventHandler(this.REPORT_CP_Brand_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Brand_KeyDown);
             this.ReportBrand.ResumeLayout(false);
             this.ReportBrand.PerformLayout();
             this.pnlReportBrand.ResumeLayout(false);
