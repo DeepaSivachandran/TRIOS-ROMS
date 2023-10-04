@@ -185,28 +185,36 @@ namespace ROMS
                         }
                     }
                     //lblBrandCode.Text = Convert.ToString(varId_Brand);
-                    if (varId_Brand == "0" || varId_Brand == "-1")
-                    {
-                        ep_Brand.SetError(txtBrand, "Please select valid brand");
-                        txtBrand.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        txtBrand.Focus();
-                    }
+                    //if (varId_Brand == "0" || varId_Brand == "-1")
+                    //{
+                    //    lblNoRecordsFound.Visible = true;
+                    //    RPTViewer.SendToBack();
+                    //}
                 }
-                lblBrandCode.Text = Convert.ToString(varId_Brand);
+                if (varId_Brand == "-1")
+                {
+                    RPTViewer.Refresh();
+                    lblNoRecordsFound.Visible = true;
+                    RPTViewer.SendToBack();
+                 }
+                else
+                {
+                    lblBrandCode.Text = Convert.ToString(varId_Brand);
 
-                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand_Subgroup.rpt");
-                objBillreport.SetParameterValue("paraBrandID", Convert.ToString(lblBrandCode.Text));
-                objBillreport.SetParameterValue("paraBrandName", Convert.ToString(txtBrand.Text));
-                objBillreport.SetParameterValue("paraStatusId", Convert.ToString(cmbStatus.SelectedValue));
-                objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                objValidation.CrySqlConnection(objBillreport);
-                RPTViewer.ReportSource = objBillreport;
-                RPTViewer.Refresh();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand_Subgroup.rpt");
+                    objBillreport.SetParameterValue("paraBrandID", Convert.ToString(lblBrandCode.Text));
+                    objBillreport.SetParameterValue("paraBrandName", Convert.ToString(txtBrand.Text));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToString(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
             }
             catch (Exception ex)
             {
@@ -243,12 +251,18 @@ namespace ROMS
                         }
                     }
                     //lblSubGroupCode.Text = Convert.ToString(varId_SubGroup);
-                    if (varId_SubGroup == "0" || varId_SubGroup == "-1")
-                    {
-                        ep_Brand.SetError(txtSubGroup, "Please select valid subgroup");
-                        txtSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        //blnErrorFlag = true;
-                    }
+                    //if (varId_SubGroup == "0" || varId_SubGroup == "-1")
+                    //{
+                    //    ep_Brand.SetError(txtSubGroup, "Please select valid subgroup");
+                    //    txtSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    //blnErrorFlag = true;
+                    //}
+                }
+                if (varId_SubGroup == "-1")
+                {
+                    RPTViewer.Refresh();
+                    lblNoRecordsFound.Visible = true;
+                    RPTViewer.SendToBack();
                 }
                 lblSubGroupCode.Text = Convert.ToString(varId_SubGroup);
 
@@ -278,12 +292,18 @@ namespace ROMS
                         }
                     }
                     //lblGroupCode.Text = Convert.ToString(varId_Group);
-                    if (varId_Group == "0" || varId_Group == "-1")
-                    {
-                        ep_Brand.SetError(txtGroup, "Please select valid group");
-                        txtGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        //blnErrorFlag = true;
-                    }
+                    //if (varId_Group == "0" || varId_Group == "-1")
+                    //{
+                    //    ep_Brand.SetError(txtGroup, "Please select valid group");
+                    //    txtGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    //blnErrorFlag = true;
+                    //}
+                }
+                if (varId_Group == "-1")
+                {
+                    RPTViewer.Refresh();
+                    lblNoRecordsFound.Visible = true;
+                    RPTViewer.SendToBack();
                 }
                 lblGroupCode.Text = Convert.ToString(varId_Group);
 
@@ -312,17 +332,20 @@ namespace ROMS
                         }
                     }
                     //lblBrandCode.Text = Convert.ToString(varId_Brand);
-                    if (varId_Brand == "0" || varId_Brand == "-1")
-                    {
-                        ep_Brand.SetError(txtBrand, "Please select valid brand");
-                        txtBrand.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        //blnErrorFlag = true;
-                    }
+                    //if (varId_Brand == "0" || varId_Brand == "-1")
+                    //{
+                    //    ep_Brand.SetError(txtBrand, "Please select valid brand");
+                    //    txtBrand.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    //blnErrorFlag = true;
+                    //}
+                }
+                if (varId_Brand == "-1")
+                {
+                    RPTViewer.Refresh();
+                    lblNoRecordsFound.Visible = true;
+                    RPTViewer.SendToBack();
                 }
                 lblBrandCode.Text = Convert.ToString(varId_Brand);
-
-
-
 
 
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -357,8 +380,8 @@ namespace ROMS
                 if(cmbReportType.SelectedIndex==1)
                 {
                     txtBrand.Enabled = true;
-                    txtGroup.Enabled = false;
-                    txtSubGroup.Enabled = false;
+                    txtGroup.Enabled = false;txtGroup.Text = "";
+                    txtSubGroup.Enabled = false;txtSubGroup.Text = "";
                 }
                 if(cmbReportType.SelectedIndex==2)
                 {
@@ -368,9 +391,9 @@ namespace ROMS
                 }
                 if(cmbReportType.SelectedIndex==3)
                 {
-                    txtBrand.Enabled = false;
-                    txtGroup.Enabled = false;
-                    txtSubGroup.Enabled = false;
+                    txtBrand.Enabled = false;txtBrand.Text = "";
+                    txtGroup.Enabled = false;txtGroup.Text = "";
+                    txtSubGroup.Enabled = false;txtSubGroup.Text = "";
                 }
             }
             catch (Exception ex)

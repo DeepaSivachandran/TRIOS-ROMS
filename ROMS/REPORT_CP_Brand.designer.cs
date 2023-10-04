@@ -134,7 +134,7 @@
             this.lvGroup.HideSelection = false;
             this.lvGroup.Location = new System.Drawing.Point(880, 48);
             this.lvGroup.Name = "lvGroup";
-            this.lvGroup.Size = new System.Drawing.Size(237, 78);
+            this.lvGroup.Size = new System.Drawing.Size(457, 157);
             this.lvGroup.TabIndex = 1111230;
             this.lvGroup.UseCompatibleStateImageBehavior = false;
             this.lvGroup.View = System.Windows.Forms.View.Details;
@@ -167,7 +167,7 @@
             this.lvSubGroup.HideSelection = false;
             this.lvSubGroup.Location = new System.Drawing.Point(640, 48);
             this.lvSubGroup.Name = "lvSubGroup";
-            this.lvSubGroup.Size = new System.Drawing.Size(234, 78);
+            this.lvSubGroup.Size = new System.Drawing.Size(457, 157);
             this.lvSubGroup.TabIndex = 1111229;
             this.lvSubGroup.UseCompatibleStateImageBehavior = false;
             this.lvSubGroup.View = System.Windows.Forms.View.Details;
@@ -209,7 +209,7 @@
             this.lvBrand.HideSelection = false;
             this.lvBrand.Location = new System.Drawing.Point(380, 48);
             this.lvBrand.Name = "lvBrand";
-            this.lvBrand.Size = new System.Drawing.Size(254, 78);
+            this.lvBrand.Size = new System.Drawing.Size(457, 157);
             this.lvBrand.TabIndex = 1111228;
             this.lvBrand.UseCompatibleStateImageBehavior = false;
             this.lvBrand.View = System.Windows.Forms.View.Details;
