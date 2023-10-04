@@ -253,12 +253,29 @@ namespace ROMS
                     tpunit.Show("Please select unit", cmbUnit, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(lblHsnName.Text) == "" || Convert.ToString(lblHsnName.Text) == "0" || Convert.ToString(txtHsnName.Text) == "")
+                /* Check product HSN is valid or not*/
+                string varId_HSN = "0";
+                DataSet objDsHSN = new DataSet();
+                SPDataService objDs = new SPDataService();
+                objDsHSN = objDs.udfnHsnList(7, 0, 0, txtHsnName.Text.Trim());
+                objDs.CloseConnection();
+                if (objDsHSN != null)
                 {
-                    errItems.SetError(txtHsnName, "Please enter HSN name");
+                    if (objDsHSN.Tables.Count > 0)
+                    {
+                        if (objDsHSN.Tables[0].Rows.Count > 0)
+                        {
+                            varId_HSN = Convert.ToString(objDsHSN.Tables[0].Rows[0][0]);
+                        }
+                    }
+                }
+                lblHsnName.Text = Convert.ToString(varId_HSN);
+                if (Convert.ToString(lblHsnName.Text) == "" || Convert.ToString(lblHsnName.Text) == "0" || Convert.ToString(lblHsnName.Text) == "-1")
+                {
+                    errItems.SetError(txtHsnName, "Please enter valid HSN name");
                     txtHsnName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpHsnName.ShowAlways = true;
-                    tpHsnName.Show("Please enter HSN name", txtHsnName, 5000);
+                    tpHsnName.Show("Please enter valid HSN name", txtHsnName, 5000);
                     blnErrorFlag = true;
                 }
                 if (Convert.ToString(cmbGst.SelectedValue) == "" || Convert.ToString(cmbGst.SelectedValue) == "-1")
@@ -485,7 +502,7 @@ namespace ROMS
                     string varId_Brand = "0";
                     DataSet objDsBrand = new DataSet();
                     SPDataService objDServ2 = new SPDataService();
-                    objDsBrand = objDServ2.udfnBrandList(9,"",0,Convert.ToInt32(lblSubGroupCode.Text),0,txtBrand.Text.Trim());
+                    objDsBrand = objDServ2.udfnBrandList(9,"",0,Convert.ToInt32(lblSubGroupCode.Text),0,txtBrand.Text.Trim(),0);
                     objDServ2.CloseConnection();
                     if (objDsBrand != null)
                     {
@@ -3404,7 +3421,7 @@ namespace ROMS
                 {
                     if (txtBrand.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnBrandList(6, "0", 0, Convert.ToInt32(lblSubGroupCode.Text), 0, txtBrand.Text.Trim());
+                        objDs = objspdservice.udfnBrandList(6, "0", 0, Convert.ToInt32(lblSubGroupCode.Text), 0, txtBrand.Text.Trim(),0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -3416,6 +3433,8 @@ namespace ROMS
                                     {
                                         string[] row = { objDs.Tables[0].Rows[i]["BD_EName"].ToString(), objDs.Tables[0].Rows[i]["BD_TName"].ToString(), objDs.Tables[0].Rows[i]["BDID"].ToString() };
                                         ListViewItem objList = new ListViewItem(row);
+                                        objList.UseItemStyleForSubItems = false;
+                                        objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
                                         lvBrand.Items.Add(objList);
                                     }
                                     lvBrand.Visible = true;
@@ -3766,6 +3785,8 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString(), objDs.Tables[0].Rows[i]["RackName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
                                     lvSubGroup.Items.Add(objList);
                                 }
                                 lvSubGroup.Visible = true;
@@ -3897,6 +3918,8 @@ namespace ROMS
                                     {
                                         string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString() };
                                         ListViewItem objList = new ListViewItem(row);
+                                        objList.UseItemStyleForSubItems = false;
+                                        objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
                                         lvGroup.Items.Add(objList);
                                     }
                                     lvGroup.Visible = true;
