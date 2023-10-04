@@ -123,7 +123,7 @@ namespace ROMS
                     }
                     if (cmbReportType.SelectedIndex == 2)
                     {
-                        //udfnHSNProduct();
+                       udfnProduct();
                     }
                     if (cmbReportType.SelectedIndex == 3)
                     {
@@ -212,13 +212,14 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnHSNSubgroup()
+        public void udfnProduct()
         {
             try
             {
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Subgroup.rpt");
-                
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand_Product.rpt");
+                objBillreport.SetParameterValue("parastatusid", Convert.ToString(cmbStatus.SelectedValue));
+                objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                 objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -439,6 +440,7 @@ namespace ROMS
                                     lvSubGroup.Items.Add(objList);
                                 }
                                 lvSubGroup.Visible = true;
+                                lvSubGroup.BringToFront();
                             }
                         }
                     }
@@ -603,6 +605,7 @@ namespace ROMS
                                     lvGroup.Items.Add(objList);
                                 }
                                 lvGroup.Visible = true;
+                                lvGroup.BringToFront();
                             }
                         }
                     }
