@@ -1357,6 +1357,7 @@ namespace ROMS
 
         //Supplier Master 
         //created by Venkat,Created on 22/08/2023
+        //modified by venkat for product mapping in each schedule
         public string udfnSupplierMaster(int ViewType, int paraSupplierid, string paraSupplierName, string paraAddress1,
             string paraAddress2, int paraCityId, string paraPincode, string paraPhoneNumber, string paraWhatsappNumber, string paraMobileNumber,
               string paraEmail, string paraGstin,int paraPaymentterm, int paraReturnApplicable, int paraReturnCycle,
