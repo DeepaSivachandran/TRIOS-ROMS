@@ -207,6 +207,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "City Report";
             this.Load += new System.EventHandler(this.REPORT_CP_City_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_State_KeyDown);
             this.ReportState.ResumeLayout(false);
             this.ReportState.PerformLayout();
             this.pnlReportState.ResumeLayout(false);

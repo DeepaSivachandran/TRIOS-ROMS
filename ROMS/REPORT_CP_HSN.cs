@@ -239,8 +239,8 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 if(cmbReportType.SelectedIndex==1)
                 {
-                    cmbHSN.Enabled = false;
-                    cmbGST.Enabled = false;
+                    cmbHSN.Enabled = false;cmbHSN.SelectedValue = 0;
+                    cmbGST.Enabled = false;cmbGST.SelectedValue = 0;
                     cmbStatus.Enabled = true;
                 }
                 if(cmbReportType.SelectedIndex==2)
@@ -253,7 +253,7 @@ namespace ROMS
                 {
                     cmbHSN.Enabled = true;
                     cmbGST.Enabled = true;
-                    cmbStatus.Enabled = false;
+                    cmbStatus.Enabled = false;cmbStatus.SelectedValue = 0;
                 }
             }
             catch (Exception ex)
@@ -425,6 +425,25 @@ namespace ROMS
             try
             {
                 cmbGST.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void REPORT_CP_HSN_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {

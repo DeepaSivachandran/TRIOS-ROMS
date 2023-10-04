@@ -167,6 +167,7 @@ namespace ROMS
                 if (txtBrand.Text == "")
                 {
                     varId_Brand = "0";
+                    txtBrand.Text = "-All-";
                 }
                 else
                 {
@@ -214,6 +215,7 @@ namespace ROMS
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
+                    txtBrand.Text = "";
                 }
             }
             catch (Exception ex)
@@ -232,6 +234,7 @@ namespace ROMS
                 if (txtSubGroup.Text == "")
                 {
                     varId_SubGroup = "0";
+                    txtSubGroup.Text = "-All-";
                 }
                 else
                 //if (txtSubGroup.Text != "")
@@ -273,6 +276,7 @@ namespace ROMS
                 if (txtGroup.Text == "")
                 {
                     varId_Group = "0";
+                    txtGroup.Text = "-All-";
                 }
                 else
                 //if (txtGroup.Text != "")
@@ -313,6 +317,7 @@ namespace ROMS
                 if (txtBrand.Text == "")
                 {
                     varId_Brand = "0";
+                    txtBrand.Text = "-All-";
                 }
                 else
                 //if (txtBrand.Text != "")
@@ -365,6 +370,9 @@ namespace ROMS
                 objValidation.CrySqlConnection(objBillreport);
                 RPTViewer.ReportSource = objBillreport;
                 RPTViewer.Refresh();
+                txtGroup.Text = "";
+                txtSubGroup.Text = "";
+                txtBrand.Text = "";
             }
             catch (Exception ex)
             {
@@ -536,16 +544,7 @@ namespace ROMS
         {
             try
             {
-                if (txtSubGroup.Text == "")
-                {
-                    txtSubGroup.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    ep_Brand.SetError(txtSubGroup, "Please select subgroup");
-                }
-                else
-                {
                     txtSubGroup.BackColor = Color.White;
-                    ep_Brand.Clear();
-                }
             }
             catch (Exception ex)
             {
@@ -703,16 +702,7 @@ namespace ROMS
         {
             try
             {
-                if (txtGroup.Text == "")
-                {
-                    txtGroup.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    ep_Brand.SetError(txtGroup, "Please select group");
-                }
-                else
-                {
                     txtGroup.BackColor = Color.White;
-                    ep_Brand.Clear();
-                }
             }
             catch (Exception ex)
             {
@@ -866,7 +856,6 @@ namespace ROMS
             try
             {
                 txtBrand.BackColor = Color.White;
-                ep_Brand.Clear();
             }
             catch (Exception ex)
             {

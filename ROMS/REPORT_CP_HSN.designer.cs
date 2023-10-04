@@ -285,6 +285,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HSN Report";
             this.Load += new System.EventHandler(this.REPORT_CP_HSN_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_HSN_KeyDown);
             this.ReportHSN.ResumeLayout(false);
             this.ReportHSN.PerformLayout();
             this.pnlReportHSN.ResumeLayout(false);
