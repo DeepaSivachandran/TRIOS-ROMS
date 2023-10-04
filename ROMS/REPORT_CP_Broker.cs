@@ -151,7 +151,6 @@ namespace ROMS
                         RPTViewer.RefreshReport();
                         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
-
                         if (cmbReportType.SelectedIndex == 1)
                         {
                             udfnContact();
@@ -176,7 +175,7 @@ namespace ROMS
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Broker_Contact.rpt");
                 objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
-                objBillreport.SetParameterValue("status", Convert.ToString(cmbStatus.Text));
+                objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                 objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -208,8 +207,8 @@ namespace ROMS
                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Broker_Address.rpt");
                 objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
                 objBillreport.SetParameterValue("paracityid", varcityid);
-                objBillreport.SetParameterValue("status", Convert.ToString(cmbStatus.Text));
-                objBillreport.SetParameterValue("city", txtCity.Text.Trim());
+                objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                objBillreport.SetParameterValue("paraCityName", txtCity.Text.Trim());
                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                 objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -217,28 +216,6 @@ namespace ROMS
                 objValidation.CrySqlConnection(objBillreport);
                 RPTViewer.ReportSource = objBillreport;
                 RPTViewer.Refresh();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void REPORT_CP_HSN_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,36) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
-                objDataBind = null;
-                cmbReportType.SelectedValue = -1;
-                cmbStatus.SelectedValue = 0;
-                //btnListPrint.Enabled = true;
-                RPTViewer.Visible = true;
-                RPTViewer.BringToFront();
-                lblNoRecordsFound.Visible = true;
-                lblNoRecordsFound.BringToFront();
             }
             catch (Exception ex)
             {
@@ -327,7 +304,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtCity_Enter(object sender, EventArgs e)
         {
             try
@@ -340,7 +316,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtCity_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -373,12 +348,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void TxtCity_Leave(object sender, EventArgs e)
         {
             txtCity.BackColor = Color.White;
         }
-
         private void TxtCity_TextChanged(object sender, EventArgs e)
         {
             try
@@ -437,7 +410,6 @@ namespace ROMS
 
             }
         }
-
         private void LvCity_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -454,7 +426,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void LvCity_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -487,6 +458,28 @@ namespace ROMS
             finally
             {
                 lvCity.Visible = false;
+            }
+        }
+        private void REPORT_CP_Broker_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,36) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind = null;
+                cmbReportType.SelectedValue = -1;
+                cmbStatus.SelectedValue = 0;
+                //btnListPrint.Enabled = true;
+                RPTViewer.Visible = true;
+                RPTViewer.BringToFront();
+                lblNoRecordsFound.Visible = true;
+                lblNoRecordsFound.BringToFront();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

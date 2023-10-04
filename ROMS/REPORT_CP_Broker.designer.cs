@@ -306,7 +306,7 @@
             this.Name = "REPORT_CP_Broker";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HSN Report";
-            this.Load += new System.EventHandler(this.REPORT_CP_HSN_Load);
+            this.Load += new System.EventHandler(this.REPORT_CP_Broker_Load);
             this.ReportBroker.ResumeLayout(false);
             this.ReportBroker.PerformLayout();
             this.pnlReportBroker.ResumeLayout(false);

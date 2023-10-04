@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_CP_Broker_Contact : ReportClass {
+    public class RPT_CP_Brand_Subgroup : ReportClass {
         
-        public RPT_CP_Broker_Contact() {
+        public RPT_CP_Brand_Subgroup() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_CP_Broker_Contact.rpt";
+                return "RPT_CP_Brand_Subgroup.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_CP_Broker_Contact.rpt";
+                return "ROMS.Reports.RPT_CP_Brand_Subgroup.rpt";
             }
             set {
                 // Do nothing
@@ -146,17 +146,41 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_parastatusid {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraHSNName {
             get {
                 return this.DataDefinition.ParameterFields[5];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_paraBrandName {
+            get {
+                return this.DataDefinition.ParameterFields[6];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_paraBrandID {
+            get {
+                return this.DataDefinition.ParameterFields[7];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_paraStatusId {
+            get {
+                return this.DataDefinition.ParameterFields[8];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_CP_Broker_Contact : Component, ICachedReport {
+    public class CachedRPT_CP_Brand_Subgroup : Component, ICachedReport {
         
-        public CachedRPT_CP_Broker_Contact() {
+        public CachedRPT_CP_Brand_Subgroup() {
         }
         
         [Browsable(false)]
@@ -193,7 +217,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_CP_Broker_Contact rpt = new RPT_CP_Broker_Contact();
+            RPT_CP_Brand_Subgroup rpt = new RPT_CP_Brand_Subgroup();
             rpt.Site = this.Site;
             return rpt;
         }

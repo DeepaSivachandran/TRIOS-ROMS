@@ -141,7 +141,7 @@ namespace ROMS
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Master.rpt");
                 objBillreport.SetParameterValue("parastatusid", Convert.ToString(cmbStatus.SelectedValue));
-                objBillreport.SetParameterValue("status", Convert.ToString(cmbStatus.Text));
+                objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                 objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -166,8 +166,8 @@ namespace ROMS
                 objBillreport.SetParameterValue("paraGSTID", Convert.ToString(cmbGST.SelectedValue));
                 objBillreport.SetParameterValue("paraStatusID", Convert.ToString(cmbStatus.SelectedValue));
                 objBillreport.SetParameterValue("paraHSNName", Convert.ToString(cmbHSN.Text));
-                objBillreport.SetParameterValue("paraGST", Convert.ToString(cmbGST.Text));
-                objBillreport.SetParameterValue("status", Convert.ToString(cmbStatus.Text));
+                objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
+                objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                 objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -191,7 +191,7 @@ namespace ROMS
                 objBillreport.SetParameterValue("paraHSNID", Convert.ToString(cmbHSN.SelectedValue));
                 objBillreport.SetParameterValue("paraGSTID", Convert.ToString(cmbGST.SelectedValue));
                 objBillreport.SetParameterValue("paraHSNName", Convert.ToString(cmbHSN.Text));
-                objBillreport.SetParameterValue("paraGST", Convert.ToString(cmbGST.Text));
+                objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
                 objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                 objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
