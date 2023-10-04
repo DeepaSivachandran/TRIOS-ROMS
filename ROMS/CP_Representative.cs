@@ -486,7 +486,7 @@ namespace ROMS
 
                 SPDataService objspservice = new SPDataService();
                 DataSet objDS;
-                objDS = objspservice.udfnBrandList(varviewtype, varbrandid, 0, 0, varloadrepid,"", varloadrepid);
+                objDS = objspservice.udfnBrandList(varviewtype, varbrandid, 0, 0, varloadrepid,"");
                 objspservice.CloseConnection();
                 if (objDS != null)
                 {
@@ -573,7 +573,7 @@ namespace ROMS
             finally
             {
                 grdRepBrand.ClearSelection();
-                this.grdRepBrand.Sort(this.grdRepBrand.Columns[0], ListSortDirection.Descending)
+                this.grdRepBrand.Sort(this.grdRepBrand.Columns[0], ListSortDirection.Descending);
             }
         }
 
