@@ -6216,17 +6216,12 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), };
                                     //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
                                     lvMappingGroup.Items.Add(objList);
                                 }
                                 lvMappingGroup.Visible = true;
                             }
-                        }
-                    }
-                    foreach (ListViewItem item in lvMappingGroup.Items)
-                    {
-                        if (item.SubItems.Count > 1) // Ensure the item has a subitem in the second column
-                        {
-                            item.SubItems[0].Font = new Font("Uni Ila.Sundaram-03", 10);
                         }
                     }
                 }
