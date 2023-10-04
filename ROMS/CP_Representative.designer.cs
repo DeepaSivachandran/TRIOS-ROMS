@@ -164,7 +164,7 @@
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(181, 27);
             this.textBox3.TabIndex = 23;
-            this.textBox3.Text = "WhastApp No.";
+            this.textBox3.Text = "WhatsApp No.";
             // 
             // txtWhatsappno
             // 
