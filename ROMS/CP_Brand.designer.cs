@@ -69,6 +69,10 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.grdSubGroup = new System.Windows.Forms.DataGridView();
+            this.clmChk = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmProductGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSubGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTotProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdSubGroupAdd = new System.Windows.Forms.DataGridView();
             this.txtDEBrandNameInTamil = new System.Windows.Forms.TextBox();
             this.txtEBrandNameInTamil = new System.Windows.Forms.TextBox();
@@ -77,10 +81,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtEBrandNameInEnglish = new System.Windows.Forms.TextBox();
             this.epBrand = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmChk = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProductGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSubGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTotProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSelGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSelSubGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotProductss = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -560,6 +560,31 @@
             this.grdSubGroup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSubGroup_CellContentClick);
             this.grdSubGroup.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSubGroup_DataBindingComplete);
             // 
+            // clmChk
+            // 
+            this.clmChk.HeaderText = "";
+            this.clmChk.Name = "clmChk";
+            this.clmChk.Width = 30;
+            // 
+            // clmProductGroup
+            // 
+            this.clmProductGroup.HeaderText = "Product Group";
+            this.clmProductGroup.Name = "clmProductGroup";
+            this.clmProductGroup.Width = 150;
+            // 
+            // clmSubGroup
+            // 
+            this.clmSubGroup.HeaderText = "Product Subgroup";
+            this.clmSubGroup.Name = "clmSubGroup";
+            this.clmSubGroup.Width = 200;
+            // 
+            // clmTotProducts
+            // 
+            this.clmTotProducts.HeaderText = "T.Pro";
+            this.clmTotProducts.Name = "clmTotProducts";
+            this.clmTotProducts.ReadOnly = true;
+            this.clmTotProducts.Width = 60;
+            // 
             // grdSubGroupAdd
             // 
             this.grdSubGroupAdd.AllowUserToAddRows = false;
@@ -692,31 +717,6 @@
             // 
             this.epBrand.ContainerControl = this;
             // 
-            // clmChk
-            // 
-            this.clmChk.HeaderText = "";
-            this.clmChk.Name = "clmChk";
-            this.clmChk.Width = 30;
-            // 
-            // clmProductGroup
-            // 
-            this.clmProductGroup.HeaderText = "Product Group";
-            this.clmProductGroup.Name = "clmProductGroup";
-            this.clmProductGroup.Width = 150;
-            // 
-            // clmSubGroup
-            // 
-            this.clmSubGroup.HeaderText = "Product Subgroup";
-            this.clmSubGroup.Name = "clmSubGroup";
-            this.clmSubGroup.Width = 200;
-            // 
-            // clmTotProducts
-            // 
-            this.clmTotProducts.HeaderText = "T.Pro";
-            this.clmTotProducts.Name = "clmTotProducts";
-            this.clmTotProducts.ReadOnly = true;
-            this.clmTotProducts.Width = 60;
-            // 
             // clmSelGroup
             // 
             this.clmSelGroup.HeaderText = "Selected Product Group";
@@ -734,7 +734,7 @@
             this.clmTotProductss.HeaderText = "T.Pro";
             this.clmTotProductss.Name = "clmTotProductss";
             this.clmTotProductss.ReadOnly = true;
-            this.clmTotProductss.Width = 60;
+            this.clmTotProductss.Width = 40;
             // 
             // clmRemove
             // 
@@ -742,7 +742,7 @@
             this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
             this.clmRemove.Name = "clmRemove";
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemove.Width = 80;
+            this.clmRemove.Width = 50;
             // 
             // CP_Brand
             // 
