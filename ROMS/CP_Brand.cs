@@ -1042,19 +1042,30 @@ namespace ROMS
             int varCount = 0; int varSubgroup = 0; int varGroup = 0; int varGroupid = 0;
             try
             {
-                if (grdSubGroupAdd.Rows.Count != 0)
-                {
+                //if (grdSubGroupAdd.Rows.Count != 0)
+                //{
+                //    varSubgroup = Convert.ToInt32(grdSubGroupAdd.Rows.Count);
+                //    for (int i = 0; i < grdSubGroupAdd.RowCount; i++)
+                //    {
+                //        if (Convert.ToInt32(grdSubGroupAdd.Rows[i].Cells["T.Pro"].Value) != 0)
+                //        {
+                //            varCount = varCount + Convert.ToInt32(grdSubGroupAdd.Rows[i].Cells["T.Pro"].Value);
+                //        }
+                //        varGroupid = Convert.ToInt32(grdSubGroupAdd.Rows[i].Cells["Group Id"].Value);
+                //        if (varGroupid == Convert.ToInt32(grdSubGroupAdd.Rows[i].Cells["Group Id"].Value))
+                //        {
+                //            varGroup++;
+                //        }
+                //    }
+                //}
+                if (dtSubGroupAdd.Rows.Count > 0) {
+                    varGroup = dtSubGroupAdd.DefaultView.ToTable(true, "Group Id").Rows.Count;
                     varSubgroup = Convert.ToInt32(grdSubGroupAdd.Rows.Count);
                     for (int i = 0; i < grdSubGroupAdd.RowCount; i++)
                     {
                         if (Convert.ToInt32(grdSubGroupAdd.Rows[i].Cells["T.Pro"].Value) != 0)
                         {
                             varCount = varCount + Convert.ToInt32(grdSubGroupAdd.Rows[i].Cells["T.Pro"].Value);
-                        }
-                        varGroupid = Convert.ToInt32(grdSubGroupAdd.Rows[i].Cells["Group Id"].Value);
-                        if (varGroupid == Convert.ToInt32(grdSubGroupAdd.Rows[i].Cells["Group Id"].Value))
-                        {
-                            varGroup++;
                         }
                     }
                 }
