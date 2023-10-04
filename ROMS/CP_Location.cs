@@ -953,16 +953,23 @@ namespace ROMS
 
         private void CmbLocationType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (Convert.ToInt32(cmbLocationType.SelectedValue) == 9)
-            //{
-            //    pnlGodownType.Enabled = true;
-            //    rbInside.Checked = true;
-            //}
-            //else
-            //{
-            //    pnlGodownType.Enabled = false;
-            //    rbInside.Checked = false;
-            //}
+            if (Convert.ToInt32(cmbLocationType.SelectedValue) == 9)
+            {
+                pnlGodownType.Enabled = true;
+                rbInside.Checked = true;
+            }
+            else
+            {
+                if (btnSave.Text == "Save")
+                {
+                    pnlGodownType.Enabled = false;
+                    rbInside.Checked = true;
+                }
+                else
+                {
+                    pnlGodownType.Enabled = true;
+                }
+            }
         }
 
         private void CmbStockApplicable_SelectedIndexChanged(object sender, EventArgs e)
