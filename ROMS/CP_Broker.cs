@@ -145,6 +145,7 @@ namespace ROMS
                         cmbConcern.Focus();
                         cmbConcern.SelectedValue = -1;
                         pnlBStatus.Enabled = false;
+                        rbBankActive.Checked = true;
                         if (btnSave.Text == "Update")
                         {
                             varUpdate = 1;
@@ -403,6 +404,7 @@ namespace ROMS
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
                 pnlBStatus.Enabled = false;
+                rbBankActive.Checked = true;
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count > 0)
@@ -1505,6 +1507,7 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
+                    pnlBStatus.Enabled = false;
                     if (varSlNo != "0") { varflag = 0; }
                     else
                     {
@@ -1552,6 +1555,7 @@ namespace ROMS
                             }
                         }
                         udfnBankclear();
+                        rbBankActive.Checked = true;
                         this.ActiveControl = txtBankname;
                         grdBankDetails.ClearSelection();
                         btnAdd.Image = ROMS.Properties.Resources.plus;
