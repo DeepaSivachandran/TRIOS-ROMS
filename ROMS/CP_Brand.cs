@@ -139,6 +139,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending);
+            }
         }
         public void udfnList()
         {
