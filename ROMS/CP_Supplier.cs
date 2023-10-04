@@ -6222,6 +6222,13 @@ namespace ROMS
                             }
                         }
                     }
+                    foreach (ListViewItem item in lvMappingGroup.Items)
+                    {
+                        if (item.SubItems.Count > 1) // Ensure the item has a subitem in the second column
+                        {
+                            item.SubItems[0].Font = new Font("Uni Ila.Sundaram-03", 10);
+                        }
+                    }
                 }
                 else
                 {
