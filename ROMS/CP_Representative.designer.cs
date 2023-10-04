@@ -76,14 +76,14 @@
             this.grbform.Controls.Add(this.txtRepName);
             this.grbform.Location = new System.Drawing.Point(16, 10);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(629, 447);
+            this.grbform.Size = new System.Drawing.Size(963, 447);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
             // chkBrandAll
             // 
             this.chkBrandAll.AutoSize = true;
-            this.chkBrandAll.Location = new System.Drawing.Point(200, 137);
+            this.chkBrandAll.Location = new System.Drawing.Point(199, 83);
             this.chkBrandAll.Name = "chkBrandAll";
             this.chkBrandAll.Size = new System.Drawing.Size(15, 14);
             this.chkBrandAll.TabIndex = 958794;
@@ -120,7 +120,7 @@
             this.grdRepBrand.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdRepBrand.EnableHeadersVisualStyles = false;
             this.grdRepBrand.GridColor = System.Drawing.Color.White;
-            this.grdRepBrand.Location = new System.Drawing.Point(191, 130);
+            this.grdRepBrand.Location = new System.Drawing.Point(191, 76);
             this.grdRepBrand.Name = "grdRepBrand";
             this.grdRepBrand.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -128,7 +128,7 @@
             this.grdRepBrand.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdRepBrand.RowTemplate.Height = 25;
             this.grdRepBrand.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdRepBrand.Size = new System.Drawing.Size(432, 280);
+            this.grdRepBrand.Size = new System.Drawing.Size(757, 334);
             this.grdRepBrand.TabIndex = 5;
             this.grdRepBrand.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRepBrand_CellContentClick);
             this.grdRepBrand.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdRepBrand_CurrentCellDirtyStateChanged);
@@ -147,7 +147,7 @@
             this.textBox5.BackColor = System.Drawing.SystemColors.Control;
             this.textBox5.Enabled = false;
             this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(10, 130);
+            this.textBox5.Location = new System.Drawing.Point(10, 76);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(181, 27);
@@ -159,7 +159,7 @@
             this.textBox3.BackColor = System.Drawing.SystemColors.Control;
             this.textBox3.Enabled = false;
             this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(10, 103);
+            this.textBox3.Location = new System.Drawing.Point(479, 49);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(181, 27);
@@ -169,7 +169,7 @@
             // txtWhatsappno
             // 
             this.txtWhatsappno.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWhatsappno.Location = new System.Drawing.Point(191, 103);
+            this.txtWhatsappno.Location = new System.Drawing.Point(660, 49);
             this.txtWhatsappno.MaxLength = 10;
             this.txtWhatsappno.Name = "txtWhatsappno";
             this.txtWhatsappno.Size = new System.Drawing.Size(288, 27);
@@ -184,7 +184,7 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(10, 76);
+            this.textBox1.Location = new System.Drawing.Point(479, 22);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(181, 27);
@@ -194,7 +194,7 @@
             // txtPhonenumber
             // 
             this.txtPhonenumber.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhonenumber.Location = new System.Drawing.Point(191, 76);
+            this.txtPhonenumber.Location = new System.Drawing.Point(660, 22);
             this.txtPhonenumber.MaxLength = 10;
             this.txtPhonenumber.Name = "txtPhonenumber";
             this.txtPhonenumber.Size = new System.Drawing.Size(288, 27);
@@ -309,7 +309,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(420, 468);
+            this.btnClose.Location = new System.Drawing.Point(904, 465);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 9;
@@ -325,7 +325,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(330, 468);
+            this.btnSave.Location = new System.Drawing.Point(816, 465);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 8;
@@ -345,7 +345,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(657, 506);
+            this.ClientSize = new System.Drawing.Size(1001, 506);
             this.Controls.Add(this.grbform);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);

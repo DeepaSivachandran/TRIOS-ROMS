@@ -476,7 +476,7 @@ namespace ROMS
                 if (btnSave.Text == "Update")
                 {
                     varbrandid = Convert.ToString(VARBRANDLOADID);
-                    varviewtype = 4;
+                    varviewtype = 13;
                     varloadrepid = Convert.ToInt32(varrepid);
                 }
                 else
@@ -484,10 +484,9 @@ namespace ROMS
                     varviewtype = 12;
                 }
 
-
                 SPDataService objspservice = new SPDataService();
                 DataSet objDS;
-                objDS = objspservice.udfnBrandList(varviewtype, varbrandid, 0, 0, varloadrepid,"");
+                objDS = objspservice.udfnBrandList(varviewtype, varbrandid, 0, 0, varloadrepid,"", varloadrepid);
                 objspservice.CloseConnection();
                 if (objDS != null)
                 {
@@ -501,18 +500,14 @@ namespace ROMS
                         }
                         grdRepBrand.DataSource = objDS.Tables[0];
                         grdRepBrand.Columns["ID"].Visible = false;
-                        grdRepBrand.Columns["Brand Name"].Width = 230;
-                        grdRepBrand.Columns["Sub Group"].Width = 150;
-                        grdRepBrand.Columns["Group"].Width = 150;
+                        grdRepBrand.Columns["Brand Name"].Width = 200;
+                        grdRepBrand.Columns["Sub Group"].Width = 250;
+                        grdRepBrand.Columns["Group"].Width = 250;
                         grdRepBrand.Columns["Brand Name"].ReadOnly = true;
                         grdRepBrand.Columns["Sub Group"].ReadOnly = true;
                         grdRepBrand.Columns["Group"].ReadOnly = true;
                         //grdRepBrand.Columns["sno"].Visible = false;
-                        grdRepBrand.Columns["BD_STSID"].Visible = false;
-                        grdRepBrand.Columns["BDS_PRSGID"].Visible = false;
-                        grdRepBrand.Columns["PRSGID"].Visible = false;
-                        grdRepBrand.Columns["PRGID"].Visible = false;
-
+                        //grdRepBrand.Columns["BD_STSID"].Visible = false;
                         //foreach (DataGridViewRow row in grdRepBrand.Rows)
                         //{
                         //    if (row.Cells["ID"].Value.ToString() == "0" || row.Cells["ID"].Value.ToString() == "-1")
@@ -578,6 +573,7 @@ namespace ROMS
             finally
             {
                 grdRepBrand.ClearSelection();
+                this.grdRepBrand.Sort(this.grdRepBrand.Columns[0], ListSortDirection.Descending)
             }
         }
 
