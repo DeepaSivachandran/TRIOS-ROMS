@@ -559,7 +559,7 @@ namespace ROMS
             return varResult;
         }
         //Created By :-Sathish ; Created On :-24/08/2023
-        public DataSet udfnBrokerList(int paraviewType,int paraBrokerId)
+        public DataSet udfnBrokerList(int paraviewType,int paraBrokerId,int paraStatusId,int paraCityId)
         {
             DataSet ds = new DataSet();
             try
@@ -569,6 +569,8 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
                 varSqlCommand.Parameters.AddWithValue("@paraBrokerId", paraBrokerId);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraCityId", paraCityId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

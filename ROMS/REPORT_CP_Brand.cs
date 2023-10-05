@@ -136,12 +136,6 @@ namespace ROMS
         {
             try
             {
-                RPTViewer.Visible = true;
-                RPTViewer.BringToFront();
-                RPTViewer.ReuseParameterValuesOnRefresh = true;
-                RPTViewer.RefreshReport();
-                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand.rpt");
                 objBillreport.SetParameterValue("parastatusid", Convert.ToString(cmbStatus.SelectedValue));
@@ -197,12 +191,6 @@ namespace ROMS
                 {
                     lblBrandCode.Text = Convert.ToString(varId_Brand);
 
-
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand_Subgroup.rpt");
                     objBillreport.SetParameterValue("paraBrandID", Convert.ToString(lblBrandCode.Text));
@@ -326,11 +314,7 @@ namespace ROMS
                 }
                 lblBrandCode.Text = Convert.ToString(varId_Brand);
 
-                RPTViewer.Visible = true;
-                RPTViewer.BringToFront();
-                RPTViewer.ReuseParameterValuesOnRefresh = true;
-                RPTViewer.RefreshReport();
-                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand_Product.rpt");
                 objBillreport.SetParameterValue("paraBrandId", Convert.ToString(lblBrandCode.Text));
