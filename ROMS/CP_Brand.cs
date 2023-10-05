@@ -426,9 +426,11 @@ namespace ROMS
                             else
                             {
                                 SPDataService objdservs = new SPDataService();
-                                objDs = objdservs.udfnSubGroupList(6,Convert.ToInt32(varSubGroupId), "", 0, 0, "", 0, 0, 0, 0);
+                                objDs = objdservs.udfnSubGroupList(14,Convert.ToInt32(varSubGroupId), "", 0, 0, "", 0, 0, 0, 0);
                                 objdservs.CloseConnection();
-                                dtSubGroupAdd.Rows.Add(varGroupName,varSubGroupName, "10", varGroupId,varSubGroupId);
+                                string varProCount = "0";
+                                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varProCount = Convert.ToString(objDs.Tables[0].Rows[0]["Count"]); } } }
+                                dtSubGroupAdd.Rows.Add(varGroupName,varSubGroupName, varProCount, varGroupId,varSubGroupId);
                             }
                             //if (btnSave.Text == "Save") { udfnSubGroupAdd(); }
                         }
