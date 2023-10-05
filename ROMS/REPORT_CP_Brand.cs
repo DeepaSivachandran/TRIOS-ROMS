@@ -136,48 +136,22 @@ namespace ROMS
         {
             try
             {
-                lblNoRecordsFound.Visible = false;
-                picLoader.Visible = true;
-                RPTViewer.Visible = false;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                int varPrint = 0;
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnBrandList(10, "", 0, 0, 0, "", Convert.ToInt32(cmbStatus.SelectedValue));
-                objspservice.CloseConnection();
-                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                if (varPrint == 1)
-                {
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand.rpt");
-                    objBillreport.SetParameterValue("parastatusid", Convert.ToString(cmbStatus.SelectedValue));
-                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
-                }
-                else { lblNoRecordsFound.Visible = true; }
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand.rpt");
+                objBillreport.SetParameterValue("parastatusid", Convert.ToString(cmbStatus.SelectedValue));
+                objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                objValidation.CrySqlConnection(objBillreport);
+                RPTViewer.ReportSource = objBillreport;
+                RPTViewer.Refresh();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
             }
         }
         public void udfnSubgroup()
@@ -194,7 +168,7 @@ namespace ROMS
                 {
                     DataSet objDsBrand = new DataSet();
                     SPDataService objDServ2 = new SPDataService();
-                    objDsBrand = objDServ2.udfnBrandList(8, "", 0, 0, 0, txtBrand.Text.Trim(),0);
+                    objDsBrand = objDServ2.udfnBrandList(8, "", 0, 0, 0, txtBrand.Text.Trim());
                     objDServ2.CloseConnection();
                     if (objDsBrand != null)
                     {
@@ -217,51 +191,26 @@ namespace ROMS
                 {
                     lblBrandCode.Text = Convert.ToString(varId_Brand);
 
-                    lblNoRecordsFound.Visible = false;
-                    picLoader.Visible = true;
-                    RPTViewer.Visible = false;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    int varPrint = 0;
-                    DataSet objDs = new DataSet();
-                    SPDataService objspservice = new SPDataService();
-                    objDs = objspservice.udfnBrandList(11, varId_Brand,0,0,0,"", Convert.ToInt32(cmbStatus.SelectedValue));
-                    objspservice.CloseConnection();
-                    if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                    if (varPrint == 1)
-                    {
-                        RPTViewer.Visible = true;
-                        RPTViewer.BringToFront();
-                        RPTViewer.ReuseParameterValuesOnRefresh = true;
-                        RPTViewer.RefreshReport();
-                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                        objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand_Subgroup.rpt");
-                        objBillreport.SetParameterValue("paraBrandID", Convert.ToString(lblBrandCode.Text));
-                        objBillreport.SetParameterValue("paraBrandName", Convert.ToString(txtBrand.Text));
-                        objBillreport.SetParameterValue("paraStatusId", Convert.ToString(cmbStatus.SelectedValue));
-                        objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                        objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                        objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                        objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                        objValidation.CrySqlConnection(objBillreport);
-                        RPTViewer.ReportSource = objBillreport;
-                        RPTViewer.Refresh();
-                        txtBrand.Text = "";
-                    }
-                    else { lblNoRecordsFound.Visible = true; }
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand_Subgroup.rpt");
+                    objBillreport.SetParameterValue("paraBrandID", Convert.ToString(lblBrandCode.Text));
+                    objBillreport.SetParameterValue("paraBrandName", Convert.ToString(txtBrand.Text));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToString(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                    txtBrand.Text = "";
                 }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
             }
         }
         public void udfnProduct()
@@ -344,7 +293,7 @@ namespace ROMS
                 {
                     DataSet objDsBrand = new DataSet();
                     SPDataService objDServ2 = new SPDataService();
-                    objDsBrand = objDServ2.udfnBrandList(8, "", 0, 0, 0, txtBrand.Text.Trim(),0);
+                    objDsBrand = objDServ2.udfnBrandList(8, "", 0, 0, 0, txtBrand.Text.Trim());
                     objDServ2.CloseConnection();
                     if (objDsBrand != null)
                     {
@@ -364,56 +313,33 @@ namespace ROMS
                     RPTViewer.SendToBack();
                 }
                 lblBrandCode.Text = Convert.ToString(varId_Brand);
-                lblNoRecordsFound.Visible = false;
-                picLoader.Visible = true;
-                RPTViewer.Visible = false;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                int varPrint = 0;
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(18,0,0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text),"",MainForm.pbUserID,MainForm.pbIpAddress,0, Convert.ToInt32(cmbStatus.SelectedValue), Convert.ToInt32(varId_Brand),0,0,0,0,0,0,0,0,0,0);
-                objspservice.CloseConnection();
-                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                if (varPrint == 1)
-                {
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand_Product.rpt");
-                    objBillreport.SetParameterValue("paraBrandId", Convert.ToString(lblBrandCode.Text));
-                    objBillreport.SetParameterValue("paraBrandName", Convert.ToString(txtBrand.Text));
-                    objBillreport.SetParameterValue("paraGroupId", Convert.ToString(lblGroupCode.Text));
-                    objBillreport.SetParameterValue("paraGroupName", Convert.ToString(txtGroup.Text));
-                    objBillreport.SetParameterValue("paraSubgroupId", Convert.ToString(lblSubGroupCode.Text));
-                    objBillreport.SetParameterValue("paraSubGroupName", Convert.ToString(txtSubGroup.Text));
-                    objBillreport.SetParameterValue("parastatusid", Convert.ToString(cmbStatus.SelectedValue));
-                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
-                    txtGroup.Text = "";
-                    txtSubGroup.Text = "";
-                    txtBrand.Text = "";
-                }
-                else { lblNoRecordsFound.Visible = true; }
+
+
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand_Product.rpt");
+                objBillreport.SetParameterValue("paraBrandId", Convert.ToString(lblBrandCode.Text));
+                objBillreport.SetParameterValue("paraBrandName", Convert.ToString(txtBrand.Text));
+                objBillreport.SetParameterValue("paraGroupId", Convert.ToString(lblGroupCode.Text));
+                objBillreport.SetParameterValue("paraGroupName", Convert.ToString(txtGroup.Text));
+                objBillreport.SetParameterValue("paraSubgroupId", Convert.ToString(lblSubGroupCode.Text));
+                objBillreport.SetParameterValue("paraSubGroupName", Convert.ToString(txtSubGroup.Text));
+                objBillreport.SetParameterValue("parastatusid", Convert.ToString(cmbStatus.SelectedValue));
+                objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                objValidation.CrySqlConnection(objBillreport);
+                RPTViewer.ReportSource = objBillreport;
+                RPTViewer.Refresh();
+                txtGroup.Text = "";
+                txtSubGroup.Text = "";
+                txtBrand.Text = "";
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
             }
         }
         private void CmbReportType_SelectedIndexChanged(object sender, EventArgs e)
@@ -909,7 +835,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtBrand.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnBrandList(6, "0", 0, 0, 0, txtBrand.Text.Trim(),0);
+                    objDs = objspdservice.udfnBrandList(6, "0", 0, 0, 0, txtBrand.Text.Trim());
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
