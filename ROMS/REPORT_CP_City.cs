@@ -164,6 +164,7 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                GC.Collect();
             }
         }
 
