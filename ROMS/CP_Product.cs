@@ -911,6 +911,7 @@ namespace ROMS
                 txtRTamilName.Text = "";
                 lblDPicode.Visible = false;
                 txtRPICode.Text = "";
+                cmbGst.SelectedValue=-1;
             }
             catch (Exception ex)
             {
@@ -4504,6 +4505,8 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbGst.Select(int.MaxValue, 0)));
+                if(txtHsnName.Text!="")
+                { txtHsnName.Text = ""; }
             }
             catch (Exception ex)
 
@@ -4830,7 +4833,7 @@ namespace ROMS
                             lblHsnName.Text = objDS.Tables[0].Rows[0]["HSN"].ToString();
                             txtHsnName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Name"]);
                             txtHSNCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Code"]);
-                            cmbGst.SelectedValue = Convert.ToString(objDS.Tables[0].Rows[0]["GST_Value"]);
+                            cmbGst.SelectedValue = objDS.Tables[0].Rows[0]["GSTID"].ToString();
                             cmbNetQty.SelectedValue = objDS.Tables[0].Rows[0]["PR_QUTID"].ToString();
 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
@@ -4979,6 +4982,7 @@ namespace ROMS
                                 varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
                             }
                         }
+                        varGroupName =txtGroup.Text.Trim();
                     }
                     if (varId_Group == "-1")
                     {
@@ -5003,6 +5007,7 @@ namespace ROMS
                                 varId_SubGroup = Convert.ToString(objDssubgroup.Tables[0].Rows[0][0]);
                             }
                         }
+                        varSubGroupName = txtSubGroup.Text.Trim();
                     }
                     if (varId_SubGroup == "-1")
                     {
