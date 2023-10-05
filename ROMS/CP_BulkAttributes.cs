@@ -2294,7 +2294,7 @@ namespace ROMS
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
-                        if (objDs.Tables.Count != 0)
+                        if (objDs.Tables.Count != 0) 
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
