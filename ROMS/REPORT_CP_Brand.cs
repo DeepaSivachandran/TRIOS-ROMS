@@ -285,10 +285,11 @@ namespace ROMS
             {
                 /* Check product sub group is valid or not*/
                 string varId_SubGroup = "0";
+                string varSubgroupName = "";
                 if (txtSubGroup.Text == "")
                 {
                     varId_SubGroup = "0";
-                    txtSubGroup.Text = "-All-";
+                   varSubgroupName = "-All-";
                 }
                 else
                 {
@@ -307,20 +308,20 @@ namespace ROMS
                         }
                     }
                 }
-                //if (varId_SubGroup == "-1")
-                //{
-                //    RPTViewer.Refresh();
-                //    lblNoRecordsFound.Visible = true;
-                //    RPTViewer.SendToBack();
-                //}
+                if (varId_SubGroup == "-1" || varId_SubGroup == "0")
+                {
+                    varSubgroupName = "-All-";
+                }
+                else { varSubgroupName = txtSubGroup.Text.Trim(); }
                 lblSubGroupCode.Text = Convert.ToString(varId_SubGroup);
 
                 /* Check product group is valid or not*/
                 string varId_Group = "0";
+                string varGroupName = "";
                 if (txtGroup.Text == "")
                 {
                     varId_Group = "0";
-                    txtGroup.Text = "-All-";
+                    varGroupName = "-All-";
                 }
                 else
                 {
@@ -339,20 +340,20 @@ namespace ROMS
                         }
                     }
                 }
-                //if (varId_Group == "-1")
-                //{
-                //    RPTViewer.Refresh();
-                //    lblNoRecordsFound.Visible = true;
-                //    RPTViewer.SendToBack();
-                //}
+                if (varId_Group == "-1" || varId_Group == "0")
+                {
+                    varGroupName = "-All-";
+                }
+                else { varGroupName = txtGroup.Text.Trim(); }
                 lblGroupCode.Text = Convert.ToString(varId_Group);
 
                 /* Check product brand is valid or not*/
                 string varId_Brand = "0";
+                string varBrandName = "";
                 if (txtBrand.Text == "")
                 {
                     varId_Brand = "0";
-                    txtBrand.Text = "-All-";
+                   varBrandName = "-All-";
                 }
                 else
                 {
@@ -371,12 +372,11 @@ namespace ROMS
                         }
                     }
                 }
-                //if (varId_Brand == "-1")
-                //{
-                //    RPTViewer.Refresh();
-                //    lblNoRecordsFound.Visible = true;
-                //    RPTViewer.SendToBack();
-                //}
+                if (varId_Brand == "-1" || varId_Brand == "0")
+                {
+                    varBrandName = "-All-";
+                }
+                else { varBrandName = txtBrand.Text.Trim(); }
                 lblBrandCode.Text = Convert.ToString(varId_Brand);
 
                 lblNoRecordsFound.Visible = false;
@@ -401,11 +401,11 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand_Product.rpt");
                     objBillreport.SetParameterValue("paraBrandId", Convert.ToInt32(lblBrandCode.Text));
-                    objBillreport.SetParameterValue("paraBrandName", Convert.ToString(txtBrand.Text));
+                    objBillreport.SetParameterValue("paraBrandName", Convert.ToString(varBrandName));
                     objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
-                    objBillreport.SetParameterValue("paraGroupName", Convert.ToString(txtGroup.Text));
+                    objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
                     objBillreport.SetParameterValue("paraSubgroupId", Convert.ToInt32(lblSubGroupCode.Text));
-                    objBillreport.SetParameterValue("paraSubGroupName", Convert.ToString(txtSubGroup.Text));
+                    objBillreport.SetParameterValue("paraSubGroupName", Convert.ToString(varSubgroupName));
                     objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);

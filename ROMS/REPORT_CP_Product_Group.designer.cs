@@ -195,6 +195,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product Group Report";
             this.Load += new System.EventHandler(this.REPORT_CP_Product_Group_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Product_Group_KeyDown);
             this.ReportProductGroup.ResumeLayout(false);
             this.ReportProductGroup.PerformLayout();
             this.pnlReportProductGroup.ResumeLayout(false);

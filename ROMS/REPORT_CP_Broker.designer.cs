@@ -295,6 +295,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HSN Report";
             this.Load += new System.EventHandler(this.REPORT_CP_Broker_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Broker_KeyDown);
             this.ReportBroker.ResumeLayout(false);
             this.ReportBroker.PerformLayout();
             this.pnlReportBroker.ResumeLayout(false);
