@@ -5062,13 +5062,16 @@ namespace ROMS
                     }
                     else
                     {
-                        //if (varbrandcode != 0)
-                        //{
-                        //    lblBrand.Text = Convert.ToString(varbrandcode);
-                        //    txtBrand.Text = varBrandName;
-                        //}
-                        lblBrand.Text = Convert.ToString(varbrandcode);
-                        txtBrand.Text = varBrandName;
+                        if (varbrandcode != 0)
+                        {
+                            lblBrand.Text = Convert.ToString(varbrandcode);
+                            txtBrand.Text = varBrandName;
+                        }
+                        else
+                        {
+                            lblBrand.Text = Convert.ToString(varbrandcode);
+                            txtBrand.Text = varBrandName;
+                        }
                     }
                     txtBrand.Focus();
                     lvBrand.Visible = false;
