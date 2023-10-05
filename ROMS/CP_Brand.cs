@@ -430,7 +430,19 @@ namespace ROMS
                                 objdservs.CloseConnection();
                                 string varProCount = "0";
                                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varProCount = Convert.ToString(objDs.Tables[0].Rows[0]["Count"]); } } }
-                                dtSubGroupAdd.Rows.Add(varGroupName,varSubGroupName, varProCount, varGroupId,varSubGroupId);
+                                //dtSubGroupAdd.Rows.Add(varGroupName,varSubGroupName, varProCount, varGroupId,varSubGroupId);
+                                int varFlag = 0;
+                                for (int i = 0; i < dtSubGroupAdd.Rows.Count; i++)
+                                { 
+                                    if (Convert.ToInt32(varSubGroupId) == Convert.ToInt32(dtSubGroupAdd.Rows[i]["Sub Group Id"]))
+                                    {
+                                        varFlag = 1;
+                                    }
+                                }
+                                if (varFlag == 0)
+                                {
+                                    dtSubGroupAdd.Rows.Add(varGroupName, varSubGroupName, varProCount, varGroupId, varSubGroupId);
+                                }
                             }
                             //if (btnSave.Text == "Save") { udfnSubGroupAdd(); }
                         }
