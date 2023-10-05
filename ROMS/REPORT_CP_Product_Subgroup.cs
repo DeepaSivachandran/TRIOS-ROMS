@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class REPORT_CP_Brand : Form
+    public partial class REPORT_CP_Product_Subgroup : Form
     {
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-        public REPORT_CP_Brand()
+        public REPORT_CP_Product_Subgroup()
         {
             InitializeComponent();
         }
@@ -120,11 +120,11 @@ namespace ROMS
                     }
                     if (cmbReportType.SelectedIndex == 2)
                     {
-                       udfnProduct();
+                        udfnLocation();
                     }
                     if (cmbReportType.SelectedIndex == 3)
                     {
-                        udfnBrand();
+                        udfnProduct();
                     }
                 }
             }
@@ -134,7 +134,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnBrand()
+        public void udfnLocation()
         {
             try
             {
@@ -192,37 +192,37 @@ namespace ROMS
         {
             try
             {
-                btnListPrint.Enabled = false;
-                string varId_Brand = "0";
-                string varBrandName = "";
-                if (txtBrand.Text == "")
+                /* Check product group is valid or not*/
+                string varId_Group = "0";
+                string varGroupName = "";
+                if (txtGroup.Text == "")
                 {
-                    varId_Brand = "0";
-                    varBrandName = "-All-";
+                    varId_Group = "0";
+                    varGroupName = "-All-";
                 }
                 else
                 {
-                    DataSet objDsBrand = new DataSet();
-                    SPDataService objDServ2 = new SPDataService();
-                    objDsBrand = objDServ2.udfnBrandList(8, "", 0, 0, 0, txtBrand.Text.Trim(),0);
-                    objDServ2.CloseConnection();
-                    if (objDsBrand != null)
+                    DataSet objDsGroup = new DataSet();
+                    SPDataService objDServ1 = new SPDataService();
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim(), 0);
+                    objDServ1.CloseConnection();
+                    if (objDsGroup != null)
                     {
-                        if (objDsBrand.Tables.Count > 0)
+                        if (objDsGroup.Tables.Count > 0)
                         {
-                            if (objDsBrand.Tables[0].Rows.Count > 0)
+                            if (objDsGroup.Tables[0].Rows.Count > 0)
                             {
-                                varId_Brand = Convert.ToString(objDsBrand.Tables[0].Rows[0][0]);
+                                varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
                             }
                         }
                     }
-                    if (varId_Brand == "-1" || varId_Brand == "0")
-                    {
-                        varBrandName = "-All-";
-                    }
-                    else { varBrandName = txtBrand.Text.Trim(); }
                 }
-                lblBrandCode.Text = Convert.ToString(varId_Brand);
+                if (varId_Group == "-1" || varId_Group == "0")
+                {
+                    varGroupName = "-All-";
+                }
+                else { varGroupName = txtGroup.Text.Trim(); }
+                lblGroupCode.Text = Convert.ToString(varId_Group);
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -243,9 +243,9 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand_Subgroup.rpt");
-                    objBillreport.SetParameterValue("paraBrandID", Convert.ToString(lblBrandCode.Text));
-                    objBillreport.SetParameterValue("paraBrandName", Convert.ToString(varBrandName));
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Subgroup.rpt");
+                    objBillreport.SetParameterValue("paraGroupId", Convert.ToString(lblGroupCode.Text));
+                    //objBillreport.SetParameterValue("paraBrandName", Convert.ToString(varGroupName));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -396,7 +396,7 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand_Product.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Subgroup_Product.rpt");
                     objBillreport.SetParameterValue("paraBrandId", Convert.ToInt32(lblBrandCode.Text));
                     objBillreport.SetParameterValue("paraBrandName", Convert.ToString(varBrandName));
                     objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
@@ -441,21 +441,21 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 if(cmbReportType.SelectedIndex==1)
                 {
-                    txtBrand.Enabled = true; txtBrand.Text = "";
-                    txtGroup.Enabled = false;txtGroup.Text = "";
+                    txtBrand.Enabled = false; txtBrand.Text = "";
+                    txtGroup.Enabled = true;txtGroup.Text = "";
                     txtSubGroup.Enabled = false;txtSubGroup.Text = "";
                 }
                 if(cmbReportType.SelectedIndex==2)
                 {
-                    txtBrand.Enabled = true; txtBrand.Text = "";
+                    txtBrand.Enabled = false; txtBrand.Text = "";
                     txtGroup.Enabled = true; txtGroup.Text = "";
-                    txtSubGroup.Enabled = true; txtSubGroup.Text = "";
+                    txtSubGroup.Enabled = false; txtSubGroup.Text = "";
                 }
                 if(cmbReportType.SelectedIndex==3)
                 {
-                    txtBrand.Enabled = false;txtBrand.Text = "";
-                    txtGroup.Enabled = false;txtGroup.Text = "";
-                    txtSubGroup.Enabled = false;txtSubGroup.Text = "";
+                    txtBrand.Enabled = true;txtBrand.Text = "";
+                    txtGroup.Enabled = true;txtGroup.Text = "";
+                    txtSubGroup.Enabled = true;txtSubGroup.Text = "";
                 }
             }
             catch (Exception ex)
@@ -476,7 +476,7 @@ namespace ROMS
                     }
                     else
                     {
-                        cmbStatus.Focus();
+                        txtGroup.Focus();
                     }
                 }
             }
@@ -529,7 +529,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,37) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,38) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
@@ -617,7 +617,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSubGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(8, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -627,16 +627,29 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    lvSubGroup.Columns[2].Width = 200;
+                                    lvSubGroup.Columns[0].Width = 200;
                                     lvSubGroup.Items.Add(objList);
                                 }
                                 lvSubGroup.Visible = true;
-                                lvSubGroup.BringToFront();
+                            }
+                            else
+                            {
+                                lvSubGroup.Visible = false;
                             }
                         }
+                        else
+                        {
+                            lvSubGroup.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvSubGroup.Visible = false;
                     }
                 }
                 else
@@ -683,6 +696,7 @@ namespace ROMS
                     lblSubGroupCode.Text = selectedItem.SubItems[2].Text;
                     txtGroup.Text = selectedItem.SubItems[4].Text;
                     lblGroupCode.Text = selectedItem.SubItems[5].Text;
+                    //string varbatchenable = selectedItem.SubItems[3].Text;
                     lvSubGroup.Visible = false;
                 }
             }
@@ -734,7 +748,14 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSubGroup.Focus();
+                    if (txtSubGroup.Enabled == true)
+                    {
+                        txtSubGroup.Focus();
+                    }
+                    else
+                    {
+                        cmbStatus.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -766,7 +787,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnGroupList(7, 0, Convert.ToInt32(lblSubGroupCode.Text), txtGroup.Text.Trim(),0);
+                    objDs = objspdservice.udfnGroupList(7, 0, 0, txtGroup.Text, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -776,16 +797,29 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    lvGroup.Columns[2].Width = 200;
+                                    lvGroup.Columns[0].Width = 200;
                                     lvGroup.Items.Add(objList);
                                 }
                                 lvGroup.Visible = true;
-                                lvGroup.BringToFront();
+                            }
+                            else
+                            {
+                                lvGroup.Visible = false;
                             }
                         }
+                        else
+                        {
+                            lvGroup.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvGroup.Visible = false;
                     }
                 }
                 else
@@ -841,7 +875,14 @@ namespace ROMS
             finally
             {
                 lvGroup.Visible = false;
-                txtSubGroup.Focus();
+                if (txtSubGroup.Enabled == true)
+                {
+                    txtSubGroup.Focus();
+                }
+                else
+                {
+                    cmbStatus.Focus();
+                }
             }
         }
 

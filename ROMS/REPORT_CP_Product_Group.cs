@@ -159,6 +159,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                GC.Collect();
             }
         }
         private void REPORT_CP_Product_Group_Load(object sender, EventArgs e)

@@ -98,6 +98,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                GC.Collect();
             }
         }
         private void REPORT_CP_City_Load(object sender, EventArgs e)

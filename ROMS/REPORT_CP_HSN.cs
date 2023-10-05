@@ -179,6 +179,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                GC.Collect();
             }
         }
         public void udfnHSNProduct()
@@ -236,6 +237,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                GC.Collect();
             }
         }
         public void udfnHSNSubgroup()
@@ -291,6 +293,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                GC.Collect();
             }
         }
         private void REPORT_CP_HSN_Load(object sender, EventArgs e)

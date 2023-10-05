@@ -201,6 +201,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                GC.Collect();
             }
         }
         public void udfnAddress()
@@ -273,6 +274,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                GC.Collect();
             }
         }
         private void CmbReportType_SelectedIndexChanged(object sender, EventArgs e)
