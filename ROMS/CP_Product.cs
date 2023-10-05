@@ -4511,8 +4511,8 @@ namespace ROMS
                     DataSet objDsHSN = new DataSet();
                     DataSet objDsHSNGst = new DataSet();
                     SPDataService objDs = new SPDataService();
-                    objDsHSN = objDs.udfnHsnList(7, 0, 0, txtHsnName.Text.Trim());
-                    objDsHSNGst = objDs.udfnHsnList(8, 0,Convert.ToInt32(cmbGst.SelectedValue), "");
+                    objDsHSN = objDs.udfnHsnList(7, 0, 0,0, txtHsnName.Text.Trim());
+                    objDsHSNGst = objDs.udfnHsnList(8, 0,Convert.ToInt32(cmbGst.SelectedValue), 0,"");
                     objDs.CloseConnection();
                     if (objDsHSN != null)
                     {
