@@ -49,27 +49,46 @@ namespace ROMS
         {
             try
             {
-                //btnListPrint.Enabled = false;
-                RPTViewer.Visible = true;
-                RPTViewer.BringToFront();
-                RPTViewer.ReuseParameterValuesOnRefresh = true;
-                RPTViewer.RefreshReport();
-                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                
-                
-                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Company.rpt");
-                objBillreport.SetParameterValue("paracompanyid", Convert.ToInt32(cmbConcern.SelectedValue));
-                objBillreport.SetParameterValue("parastatusid", Convert.ToString(cmbStatus.SelectedValue));
-                objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
-                objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                objValidation.CrySqlConnection(objBillreport);
-                RPTViewer.ReportSource = objBillreport;
-                RPTViewer.Refresh();
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnCompanyList(5, Convert.ToInt32(cmbConcern.SelectedValue), "", "", Convert.ToInt32(cmbStatus.SelectedValue));
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    //btnListPrint.Enabled = false;
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Company.rpt");
+                    objBillreport.SetParameterValue("paracompanyid", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    //lblNoRecordsFound.BringToFront();
+                    //picLoader.Visible = false;
+                }
             }
             catch (Exception ex)
             {

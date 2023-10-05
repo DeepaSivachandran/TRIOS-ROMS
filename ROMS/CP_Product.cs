@@ -3264,7 +3264,7 @@ namespace ROMS
                 {
                     varconcerntype = 3;
                 }
-                objDT = objdserv.udfnCompanyList(varconcerntype, varcompanyid, MainForm.pbUserID, MainForm.pbIpAddress);
+                objDT = objdserv.udfnCompanyList(varconcerntype, varcompanyid, MainForm.pbUserID, MainForm.pbIpAddress,0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
                 if (objDT != null)

@@ -400,7 +400,7 @@ namespace ROMS
                     varViewType = 3;
                 }
                 
-                objDs = objdserv.udfnCompanyList(varViewType,PbConcernID, MainForm.pbUserID, MainForm.pbIpAddress);
+                objDs = objdserv.udfnCompanyList(varViewType,PbConcernID, MainForm.pbUserID, MainForm.pbIpAddress,0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
                 pnlBStatus.Enabled = false;
