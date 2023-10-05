@@ -111,12 +111,7 @@ namespace ROMS
                 else
                 {
                     //btnListPrint.Enabled = false;
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-
+                    
                     if (cmbReportType.SelectedIndex == 1)
                     {
                         udfnSubgroup();
@@ -141,6 +136,12 @@ namespace ROMS
         {
             try
             {
+                RPTViewer.Visible = true;
+                RPTViewer.BringToFront();
+                RPTViewer.ReuseParameterValuesOnRefresh = true;
+                RPTViewer.RefreshReport();
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand.rpt");
                 objBillreport.SetParameterValue("parastatusid", Convert.ToString(cmbStatus.SelectedValue));
@@ -185,12 +186,6 @@ namespace ROMS
                             }
                         }
                     }
-                    //lblBrandCode.Text = Convert.ToString(varId_Brand);
-                    //if (varId_Brand == "0" || varId_Brand == "-1")
-                    //{
-                    //    lblNoRecordsFound.Visible = true;
-                    //    RPTViewer.SendToBack();
-                    //}
                 }
                 if (varId_Brand == "-1")
                 {
@@ -202,6 +197,12 @@ namespace ROMS
                 {
                     lblBrandCode.Text = Convert.ToString(varId_Brand);
 
+
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand_Subgroup.rpt");
                     objBillreport.SetParameterValue("paraBrandID", Convert.ToString(lblBrandCode.Text));
@@ -237,7 +238,6 @@ namespace ROMS
                     txtSubGroup.Text = "-All-";
                 }
                 else
-                //if (txtSubGroup.Text != "")
                 {
                     DataSet objDssubgroup = new DataSet();
                     SPDataService objDserv = new SPDataService();
@@ -253,13 +253,6 @@ namespace ROMS
                             }
                         }
                     }
-                    //lblSubGroupCode.Text = Convert.ToString(varId_SubGroup);
-                    //if (varId_SubGroup == "0" || varId_SubGroup == "-1")
-                    //{
-                    //    ep_Brand.SetError(txtSubGroup, "Please select valid subgroup");
-                    //    txtSubGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //    //blnErrorFlag = true;
-                    //}
                 }
                 if (varId_SubGroup == "-1")
                 {
@@ -269,8 +262,6 @@ namespace ROMS
                 }
                 lblSubGroupCode.Text = Convert.ToString(varId_SubGroup);
 
-
-
                 /* Check product group is valid or not*/
                 string varId_Group = "0";
                 if (txtGroup.Text == "")
@@ -279,11 +270,10 @@ namespace ROMS
                     txtGroup.Text = "-All-";
                 }
                 else
-                //if (txtGroup.Text != "")
                 {
                     DataSet objDsGroup = new DataSet();
                     SPDataService objDServ1 = new SPDataService();
-                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim());
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim(),0);
                     objDServ1.CloseConnection();
                     if (objDsGroup != null)
                     {
@@ -295,13 +285,6 @@ namespace ROMS
                             }
                         }
                     }
-                    //lblGroupCode.Text = Convert.ToString(varId_Group);
-                    //if (varId_Group == "0" || varId_Group == "-1")
-                    //{
-                    //    ep_Brand.SetError(txtGroup, "Please select valid group");
-                    //    txtGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //    //blnErrorFlag = true;
-                    //}
                 }
                 if (varId_Group == "-1")
                 {
@@ -311,7 +294,6 @@ namespace ROMS
                 }
                 lblGroupCode.Text = Convert.ToString(varId_Group);
 
-
                 /* Check product brand is valid or not*/
                 string varId_Brand = "0";
                 if (txtBrand.Text == "")
@@ -320,7 +302,6 @@ namespace ROMS
                     txtBrand.Text = "-All-";
                 }
                 else
-                //if (txtBrand.Text != "")
                 {
                     DataSet objDsBrand = new DataSet();
                     SPDataService objDServ2 = new SPDataService();
@@ -336,13 +317,6 @@ namespace ROMS
                             }
                         }
                     }
-                    //lblBrandCode.Text = Convert.ToString(varId_Brand);
-                    //if (varId_Brand == "0" || varId_Brand == "-1")
-                    //{
-                    //    ep_Brand.SetError(txtBrand, "Please select valid brand");
-                    //    txtBrand.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    //    //blnErrorFlag = true;
-                    //}
                 }
                 if (varId_Brand == "-1")
                 {
@@ -352,7 +326,11 @@ namespace ROMS
                 }
                 lblBrandCode.Text = Convert.ToString(varId_Brand);
 
-
+                RPTViewer.Visible = true;
+                RPTViewer.BringToFront();
+                RPTViewer.ReuseParameterValuesOnRefresh = true;
+                RPTViewer.RefreshReport();
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand_Product.rpt");
                 objBillreport.SetParameterValue("paraBrandId", Convert.ToString(lblBrandCode.Text));
@@ -720,7 +698,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnGroupList(7, 0, Convert.ToInt32(lblSubGroupCode.Text), txtGroup.Text.Trim());
+                    objDs = objspdservice.udfnGroupList(7, 0, Convert.ToInt32(lblSubGroupCode.Text), txtGroup.Text.Trim(),0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

@@ -162,6 +162,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+            }
         }
 
         private void REPORT_CP_City_Load(object sender, EventArgs e)

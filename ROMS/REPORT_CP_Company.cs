@@ -86,8 +86,6 @@ namespace ROMS
                 else
                 {
                     lblNoRecordsFound.Visible = true;
-                    //lblNoRecordsFound.BringToFront();
-                    //picLoader.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -95,7 +93,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally {
+            finally
+            {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
             }
@@ -241,6 +240,25 @@ namespace ROMS
             try
             {
                 cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void REPORT_CP_Company_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {

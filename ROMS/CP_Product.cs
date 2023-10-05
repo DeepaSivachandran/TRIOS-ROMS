@@ -257,7 +257,7 @@ namespace ROMS
                 string varId_HSN = "0";
                 DataSet objDsHSN = new DataSet();
                 SPDataService objDs = new SPDataService();
-                objDsHSN = objDs.udfnHsnList(7, 0, 0, txtHsnName.Text.Trim());
+                objDsHSN = objDs.udfnHsnList(7, 0, 0,0, txtHsnName.Text.Trim());
                 objDs.CloseConnection();
                 if (objDsHSN != null)
                 {
@@ -475,7 +475,7 @@ namespace ROMS
                 string varId_Group = "0";
                 DataSet objDsGroup = new DataSet();
                 SPDataService objDServ1 = new SPDataService();
-                objDsGroup = objDServ1.udfnGroupList(9, 0, Convert.ToInt32(varId_SubGroup), txtGroup.Text.Trim());
+                objDsGroup = objDServ1.udfnGroupList(9, 0, Convert.ToInt32(varId_SubGroup), txtGroup.Text.Trim(),0);
                 objDServ1.CloseConnection();
                 if (objDsGroup != null)
                 {
@@ -3318,8 +3318,7 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objdserv = new SPDataService();
                     lblDPicode.Visible = true;
-                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0);
-                    objdserv.CloseConnection();
+                    objDs = objdserv.udfnproductmasterlist(2, 0, 0, 0, 0, txtPICode.Text, MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0);                    objdserv.CloseConnection();
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
@@ -3906,7 +3905,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                     if (txtGroup.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnGroupList(7, 0, Convert.ToInt32(lblSubGroupCode.Text), txtGroup.Text.Trim());
+                        objDs = objspdservice.udfnGroupList(7, 0, Convert.ToInt32(lblSubGroupCode.Text), txtGroup.Text.Trim(),0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -4567,7 +4566,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtHsnName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue),txtHsnName.Text.Trim());
+                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue),0,txtHsnName.Text.Trim());
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -4782,7 +4781,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     DataService objdservice = new DataService();
-                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0,0);
+                    objDS = objdserv.udfnproductmasterlist(1, varproductcode, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0);
                     objdserv.CloseConnection();
                     if (objDS != null)
                     {
@@ -4968,7 +4967,7 @@ namespace ROMS
                     string varId_Group = "0";
                     DataSet objDsGroup = new DataSet();
                     SPDataService objDServ1 = new SPDataService();
-                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim());
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim(),0);
                     objDServ1.CloseConnection();
                     if (objDsGroup != null)
                     {

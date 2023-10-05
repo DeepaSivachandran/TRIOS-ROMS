@@ -179,7 +179,7 @@ namespace ROMS
                 {
                     DataSet objDsGroup = new DataSet();
                     SPDataService objDServ1 = new SPDataService();
-                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim());
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim(),0);
                     objDServ1.CloseConnection();
                     if (objDsGroup != null)
                     {
@@ -215,7 +215,7 @@ namespace ROMS
                         }
                     }
                 }
-                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue),varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue),0,0,0,0,0);
+                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue),varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue),0,0,0,0,0,0,0,0,0,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -1121,7 +1121,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnGroupList(7, 0,0,txtProductGroup.Text);
+                    objDs = objspdservice.udfnGroupList(7, 0,0,txtProductGroup.Text,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

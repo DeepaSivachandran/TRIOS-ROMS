@@ -108,12 +108,7 @@ namespace ROMS
                 else
                 {
                     //btnListPrint.Enabled = false;
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-
+                    
                     if (cmbReportType.SelectedIndex == 1)
                     {
                         udfnHSN();
@@ -138,72 +133,159 @@ namespace ROMS
         {
             try
             {
-                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Master.rpt");
-                objBillreport.SetParameterValue("parastatusid", Convert.ToString(cmbStatus.SelectedValue));
-                objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                objValidation.CrySqlConnection(objBillreport);
-                RPTViewer.ReportSource = objBillreport;
-                RPTViewer.Refresh();
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnHsnList(5, 0, 0, Convert.ToInt32(cmbStatus.SelectedValue), "");
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Master.rpt");
+                    objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
         public void udfnHSNProduct()
         {
             try
             {
-                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Product.rpt");
-                objBillreport.SetParameterValue("paraHSNID", Convert.ToString(cmbHSN.SelectedValue));
-                objBillreport.SetParameterValue("paraGSTID", Convert.ToString(cmbGST.SelectedValue));
-                objBillreport.SetParameterValue("paraStatusID", Convert.ToString(cmbStatus.SelectedValue));
-                objBillreport.SetParameterValue("paraHSNName", Convert.ToString(cmbHSN.Text));
-                objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
-                objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                objValidation.CrySqlConnection(objBillreport);
-                RPTViewer.ReportSource = objBillreport;
-                RPTViewer.Refresh();
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterlist(16, 0, 0,0,0,"","","",0, Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0,0, Convert.ToInt32(cmbHSN.SelectedValue), Convert.ToInt32(cmbGST.SelectedValue),0,0,0,0,0);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Product.rpt");
+                    objBillreport.SetParameterValue("paraHSNID", Convert.ToInt32(cmbHSN.SelectedValue));
+                    objBillreport.SetParameterValue("paraGSTID", Convert.ToInt32(cmbGST.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraHSNName", Convert.ToString(cmbHSN.Text));
+                    objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
         public void udfnHSNSubgroup()
         {
             try
             {
-                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Subgroup.rpt");
-                objBillreport.SetParameterValue("paraHSNID", Convert.ToString(cmbHSN.SelectedValue));
-                objBillreport.SetParameterValue("paraGSTID", Convert.ToString(cmbGST.SelectedValue));
-                objBillreport.SetParameterValue("paraHSNName", Convert.ToString(cmbHSN.Text));
-                objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
-                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                objValidation.CrySqlConnection(objBillreport);
-                RPTViewer.ReportSource = objBillreport;
-                RPTViewer.Refresh();
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnHsnList(4, Convert.ToInt32(cmbHSN.SelectedValue), Convert.ToInt32(cmbGST.SelectedValue),0,"");
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_HSN_Subgroup.rpt");
+                    objBillreport.SetParameterValue("paraHSNID", Convert.ToInt32(cmbHSN.SelectedValue));
+                    objBillreport.SetParameterValue("paraGSTID", Convert.ToInt32(cmbGST.SelectedValue));
+                    objBillreport.SetParameterValue("paraHSNName", Convert.ToString(cmbHSN.Text));
+                    objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
             }
         }
         private void REPORT_CP_HSN_Load(object sender, EventArgs e)

@@ -146,9 +146,9 @@ namespace ROMS
             try
             {
                 SPDataService objDServ = new SPDataService();
-                objDSHSN = objDServ.udfnHsnList(0, 0,0,"");
+                objDSHSN = objDServ.udfnHsnList(0, 0,0,0,"");
                 objDSUnit = objDServ.udfnUnitList(0,0);
-                objDSGroup = objDServ.udfnGroupList(0, 0, 0, "");
+                objDSGroup = objDServ.udfnGroupList(0, 0, 0, "",0);
                 objDSSubGroup = objDServ.udfnSubGroupList(0,0,"",0,0,"",0,0,0,0);
                 objDSBrand = objDServ.udfnBrandList(0,"",0,0,0,"");
                 objDSLocation = objDServ.udfnStockLocationList(17,0,0,0,"",0,0);
@@ -161,7 +161,7 @@ namespace ROMS
                 objDSBatchNo = objDServ.udfnMaster(0, 25);
                 objDSBatchNoGeneration = objDServ.udfnMaster(0, 26);
                 objDSSubgroupBrand = objDServ.udfnBrandList(9, "", 0, 0, 0, "");
-                objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0);
+                objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0);
                 objDServ.CloseConnection();
             }
             catch(Exception ex)
@@ -932,8 +932,7 @@ namespace ROMS
                 grdBulkAttributes.DataSource = null;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,0,0,0);
-                objdserv.CloseConnection();
+                objDs = objdserv.udfnproductmasterlist(varViewType, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress,0,Convert.ToInt32(cmbStatus.SelectedValue),varBrandId,0,0,0,0,0,0,0,0,0,0);                objdserv.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -1813,7 +1812,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnGroupList(8, 0, 0, txtProductGroup.Text.Trim());
+                    objDs = objspdservice.udfnGroupList(8, 0, 0, txtProductGroup.Text.Trim(),0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1893,7 +1892,7 @@ namespace ROMS
                 {
                     DataSet objDgroup = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDgroup = objDserv.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim());
+                    objDgroup = objDserv.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim(),0);
                     objDserv.CloseConnection();
                     if (objDgroup != null)
                     {

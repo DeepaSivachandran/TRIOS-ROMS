@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Broker));
             this.ReportBroker = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.pnlReportBroker = new System.Windows.Forms.Panel();
             this.lvCity = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -65,11 +63,10 @@
             this.ReportBroker.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ReportBroker.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportBroker.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader,
-            this.toolStripButton1});
+            this.tspHeader});
             this.ReportBroker.Location = new System.Drawing.Point(0, 0);
             this.ReportBroker.Name = "ReportBroker";
-            this.ReportBroker.Size = new System.Drawing.Size(1354, 27);
+            this.ReportBroker.Size = new System.Drawing.Size(1354, 25);
             this.ReportBroker.TabIndex = 35;
             this.ReportBroker.Text = "Broker Report";
             // 
@@ -80,17 +77,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(101, 24);
+            this.tspHeader.Size = new System.Drawing.Size(101, 22);
             this.tspHeader.Text = "Broker Report";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButton1.Text = "toolStripButton1";
             // 
             // pnlReportBroker
             // 
@@ -332,7 +320,6 @@
         private System.Windows.Forms.ErrorProvider ep_Broker;
         public System.Windows.Forms.PictureBox picLoader;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Button btnListPrint;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.ComboBox cmbStatus;

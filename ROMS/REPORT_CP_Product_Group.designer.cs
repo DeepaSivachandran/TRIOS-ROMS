@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Product_Group));
             this.ReportProductGroup = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.pnlReportProductGroup = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.btnListPrint = new System.Windows.Forms.Button();
@@ -56,11 +54,10 @@
             this.ReportProductGroup.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ReportProductGroup.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportProductGroup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader,
-            this.toolStripButton1});
+            this.tspHeader});
             this.ReportProductGroup.Location = new System.Drawing.Point(0, 0);
             this.ReportProductGroup.Name = "ReportProductGroup";
-            this.ReportProductGroup.Size = new System.Drawing.Size(1354, 27);
+            this.ReportProductGroup.Size = new System.Drawing.Size(1354, 25);
             this.ReportProductGroup.TabIndex = 35;
             this.ReportProductGroup.Text = "Product Group Report";
             // 
@@ -71,17 +68,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(144, 24);
+            this.tspHeader.Size = new System.Drawing.Size(144, 22);
             this.tspHeader.Text = "Product Group Report";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButton1.Text = "toolStripButton1";
             // 
             // pnlReportProductGroup
             // 
@@ -232,7 +220,6 @@
         private System.Windows.Forms.ErrorProvider ep_ProductGroup;
         public System.Windows.Forms.PictureBox picLoader;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Button btnListPrint;
     }
 }
