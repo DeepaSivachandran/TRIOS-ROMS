@@ -306,6 +306,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PUR_SupplierProductList.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="REPORT_CP_Broker.cs">
       <SubType>Form</SubType>
@@ -1439,6 +1440,7 @@
     <EmbeddedResource Include="Reports\RPT_PUR_SupplierProductList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_SupplierProductList.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_Broker.resx">
       <DependentUpon>REPORT_CP_Broker.cs</DependentUpon>
