@@ -121,19 +121,8 @@ namespace ROMS
                             }
                         }
                     }
-                    if (VarCity == "0" || VarCity == "-1")
-                    {
-                        lblcityid.Text = "0";
-                        ep_Broker.SetError(txtCity, "Invalid city");
-                        txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpCity.ShowAlways = true;
-                        tpCity.Show("Invalid city", txtCity, 5000);
-                        blnErrorFlag = true;
-                    }
-                    else
-                    {
-                        lblcityid.Text = VarCity;
-                    }
+                    
+                    lblcityid.Text = VarCity;
                 }
                 if (blnErrorFlag == false)
                 {
@@ -219,16 +208,21 @@ namespace ROMS
             try
             {
                 int varcityid = 0;
+                string varCityName = "";
                 if(txtCity.Text=="")
                 {
                     varcityid = 0;
-                    txtCity.Text = "-All-";
+                    varCityName = "-All-";
                 }
                 else
                 {
                     varcityid = Convert.ToInt32(lblcityid.Text.Trim());
                 }
-
+                if (varcityid == -1 || varcityid == 0)
+                {
+                    varCityName = "-All-";
+                }
+                else { varCityName = txtCity.Text.Trim(); }
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -254,7 +248,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paracityid", varcityid);
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                    objBillreport.SetParameterValue("paraCityName", txtCity.Text.Trim());
+                    objBillreport.SetParameterValue("paraCityName", Convert.ToString(varCityName));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -532,6 +526,25 @@ namespace ROMS
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void REPORT_CP_Broker_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
