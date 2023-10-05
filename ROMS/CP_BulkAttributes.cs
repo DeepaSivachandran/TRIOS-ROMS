@@ -150,7 +150,7 @@ namespace ROMS
                 objDSUnit = objDServ.udfnUnitList(0,0);
                 objDSGroup = objDServ.udfnGroupList(0, 0, 0, "",0);
                 objDSSubGroup = objDServ.udfnSubGroupList(0,0,"",0,0,"",0,0,0,0);
-                objDSBrand = objDServ.udfnBrandList(0,"",0,0,0,"");
+                objDSBrand = objDServ.udfnBrandList(0,"",0,0,0,"",0);
                 objDSLocation = objDServ.udfnStockLocationList(17,0,0,0,"",0,0);
                 objDSRack = objDServ.udfnRackList(14,0,0,0,0,"",0);
 
@@ -160,7 +160,7 @@ namespace ROMS
                 objDSRMPRO = objDServ.udfnMaster(1, 0);
                 objDSBatchNo = objDServ.udfnMaster(0, 25);
                 objDSBatchNoGeneration = objDServ.udfnMaster(0, 26);
-                objDSSubgroupBrand = objDServ.udfnBrandList(9, "", 0, 0, 0, "");
+                objDSSubgroupBrand = objDServ.udfnBrandList(9, "", 0, 0, 0, "",0);
                 objDSProduct = objDServ.udfnproductmasterlist(0,0,0,0,0,"","","",0,0,0,0,0,0,0,0,0,0,0,0,0);
                 objDServ.CloseConnection();
             }
@@ -1926,7 +1926,7 @@ namespace ROMS
                 {
                     DataSet objDsBrand = new DataSet();
                     SPDataService objDS = new SPDataService();
-                    objDsBrand = objDS.udfnBrandList(8, "", varGroupId, varSubGroupId, 0, txtBrand.Text.Trim());
+                    objDsBrand = objDS.udfnBrandList(8, "", varGroupId, varSubGroupId, 0, txtBrand.Text.Trim(),0);
                     objDS.CloseConnection();
                     if (objDsBrand != null)
                     {
@@ -2290,7 +2290,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtBrand.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnBrandList(7, "", varGroupId, varSubGroupId, 0, txtBrand.Text.Trim());
+                    objDs = objspdservice.udfnBrandList(7, "", varGroupId, varSubGroupId, 0, txtBrand.Text.Trim(),0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
