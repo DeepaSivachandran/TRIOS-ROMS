@@ -560,10 +560,8 @@ namespace ROMS
                             }
                             else { varCheckAllFlag = 0; }
                         }
-
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -573,7 +571,7 @@ namespace ROMS
             finally
             {
                 grdRepBrand.ClearSelection();
-                this.grdRepBrand.Sort(this.grdRepBrand.Columns[0], ListSortDirection.Descending);
+                //this.grdRepBrand.Sort(this.grdRepBrand.Columns[0], ListSortDirection.Descending); 
             }
         }
 

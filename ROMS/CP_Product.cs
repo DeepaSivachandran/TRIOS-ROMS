@@ -63,6 +63,7 @@ namespace ROMS
         {
             try
             {
+                lvHsnName.Visible = false;
                 udfnSave(); 
             }
             catch (Exception ex)
@@ -911,6 +912,7 @@ namespace ROMS
                 txtRTamilName.Text = "";
                 lblDPicode.Visible = false;
                 txtRPICode.Text = "";
+                cmbGst.SelectedValue=-1;
             }
             catch (Exception ex)
             {
@@ -4503,6 +4505,41 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbGst.Select(int.MaxValue, 0)));
+                if(txtHsnName.Text!="")
+                {
+                    string varId_HSN = "0"; string varId_HSNGST = "0";
+                    DataSet objDsHSN = new DataSet();
+                    DataSet objDsHSNGst = new DataSet();
+                    SPDataService objDs = new SPDataService();
+                    objDsHSN = objDs.udfnHsnList(7, 0, 0,0, txtHsnName.Text.Trim());
+                    objDsHSNGst = objDs.udfnHsnList(8, 0,Convert.ToInt32(cmbGst.SelectedValue), 0,"");
+                    objDs.CloseConnection();
+                    if (objDsHSN != null)
+                    {
+                        if (objDsHSN.Tables.Count > 0)
+                        {
+                            if (objDsHSN.Tables[0].Rows.Count > 0)
+                            {
+                                varId_HSN = Convert.ToString(objDsHSN.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    if (objDsHSNGst != null)
+                    {
+                        if (objDsHSNGst.Tables.Count > 0)
+                        {
+                            if (objDsHSNGst.Tables[0].Rows.Count > 0)
+                            {
+                                varId_HSNGST = Convert.ToString(objDsHSNGst.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    if(varId_HSN!= varId_HSNGST)
+                    { txtHsnName.Text = "";
+                        txtHSNCode.Text = "";
+                    }
+                   
+                }
             }
             catch (Exception ex)
 
@@ -4829,7 +4866,7 @@ namespace ROMS
                             lblHsnName.Text = objDS.Tables[0].Rows[0]["HSN"].ToString();
                             txtHsnName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Name"]);
                             txtHSNCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Code"]);
-                            cmbGst.SelectedValue = Convert.ToString(objDS.Tables[0].Rows[0]["GST_Value"]);
+                            cmbGst.SelectedValue = objDS.Tables[0].Rows[0]["GSTID"].ToString();
                             cmbNetQty.SelectedValue = objDS.Tables[0].Rows[0]["PR_QUTID"].ToString();
 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
@@ -4978,6 +5015,7 @@ namespace ROMS
                                 varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
                             }
                         }
+                        varGroupName =txtGroup.Text.Trim();
                     }
                     if (varId_Group == "-1")
                     {
@@ -5002,6 +5040,7 @@ namespace ROMS
                                 varId_SubGroup = Convert.ToString(objDssubgroup.Tables[0].Rows[0][0]);
                             }
                         }
+                        varSubGroupName = txtSubGroup.Text.Trim();
                     }
                     if (varId_SubGroup == "-1")
                     {
@@ -5023,6 +5062,11 @@ namespace ROMS
                     else
                     {
                         if (varbrandcode != 0)
+                        {
+                            lblBrand.Text = Convert.ToString(varbrandcode);
+                            txtBrand.Text = varBrandName;
+                        }
+                        else
                         {
                             lblBrand.Text = Convert.ToString(varbrandcode);
                             txtBrand.Text = varBrandName;

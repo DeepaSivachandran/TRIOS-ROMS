@@ -628,7 +628,7 @@ namespace ROMS
             this.brokerToolStripMenuItem,
             this.brandToolStripMenuItem});
             this.mastersToolStripMenuItem1.Name = "mastersToolStripMenuItem1";
-            this.mastersToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.mastersToolStripMenuItem1.Size = new System.Drawing.Size(114, 22);
             this.mastersToolStripMenuItem1.Text = "Masters";
             // 
             // cityToolStripMenuItem

@@ -3589,7 +3589,7 @@ namespace ROMS
                 lvCity.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtCity.Text.Length > 2)
+                if (txtCity.Text.Length > 0)
                 {
                     objDs = objspdservice.udfnCitylist(1, txtCity.Text, Convert.ToInt32(cmbState.SelectedValue),0);
                     objspdservice.CloseConnection();
@@ -4962,6 +4962,7 @@ namespace ROMS
             {
                 grdFinalSupplierMapping.DataSource = null;
                 lblTotalMappingProduct.Text = "0"; udfnMappingClear();
+                txtordertype.Text = "";
             }
             catch (Exception ex)
             {
@@ -6049,6 +6050,8 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), };
                                     //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
                                     lvMappingSubGroup.Items.Add(objList);
                                 }
                                 lvMappingSubGroup.Visible = true;

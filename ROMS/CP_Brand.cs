@@ -30,6 +30,8 @@ namespace ROMS
         public int varmastertype = 0;
         public int varmasterBrandtype = 0;
         public string varGroup = "";
+        public string varGroupName = "";
+        public string varSubGroupName = "";
         // Added by deepa on 01-09-2023
         public int varCheckAllFlag1 = 0;
         public int varCheckAllFlag2 = 0;
@@ -84,6 +86,10 @@ namespace ROMS
                     }
                     if (objDS.Tables[1].Rows.Count > 0)
                     {
+                        if (varmastertype == 1)
+                        {
+                            dtSubGroupAdd.Rows.Clear();
+                        }
                         for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
                         {
                             //grdSubGroup.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["PRGID"]), Convert.ToString(objDS.Tables[1].Rows[i]["PRG_EName"]));
@@ -92,6 +98,10 @@ namespace ROMS
                             dtSubGroupAdd.Rows.Add(objDS.Tables[1].Rows[i]["Selected Product Group"],
                                 objDS.Tables[1].Rows[i]["Selected Product Sub Group"], objDS.Tables[1].Rows[i]["T.Pro"], objDS.Tables[1].Rows[i]["PRGID"],
                                 objDS.Tables[1].Rows[i]["PRSGID"]);
+                        }
+                        if (varmastertype == 1 )
+                        {
+                            udfnLoadSubgrouplist_Selected();
                         }
                         for (int i = 0; i < grdSubGroupAdd.ColumnCount; i++)
                         {
@@ -108,6 +118,9 @@ namespace ROMS
                         //  grdSubGroupAdd.Columns[0].Width = 80;
                         grdSubGroupAdd.Columns["Selected Product Group"].Width = 150;
                         grdSubGroupAdd.Columns["Selected Product Subgroup"].Width = 200;
+                        grdSubGroupAdd.Columns["clmRemove"].Width = 50;
+                        grdSubGroupAdd.Columns["T.Pro"].Width = 40;
+                        grdSubGroupAdd.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdSubGroupAdd.Columns["Group Id"].Visible = false;
                         grdSubGroupAdd.Columns["Sub Group Id"].Visible = false;
                         grdSubGroupAdd.Columns["Selected Product Group"].ReadOnly = true;
@@ -253,9 +266,9 @@ namespace ROMS
                     // grdSubGroupAdd.Columns[0].HeaderText = "";
                     // grdSubGroupAdd.Columns[0].Width = 80;
                     grdSubGroupAdd.Columns["clmRemove"].Width = 50;
+                    grdSubGroupAdd.Columns["T.Pro"].Width = 40;
                     grdSubGroupAdd.Columns["Selected Product Group"].Width = 150;
                     grdSubGroupAdd.Columns["Selected Product Subgroup"].Width = 200;
-                    grdSubGroupAdd.Columns["T.Pro"].Width = 40;
                     grdSubGroupAdd.Columns["Group Id"].Visible = false;
                     grdSubGroupAdd.Columns["Sub Group Id"].Visible = false;
                     grdSubGroupAdd.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -283,7 +296,7 @@ namespace ROMS
             finally
             {
                 grdSubGroupAdd.ClearSelection();
-                this.grdSubGroupAdd.Sort(this.grdGroup.Columns[1], ListSortDirection.Descending);
+                //this.grdSubGroupAdd.Sort(this.grdSubGroupAdd.Columns[0], ListSortDirection.Descending);
             }
         }
         public void udfnSelectedSubGroupRemove()
@@ -349,7 +362,7 @@ namespace ROMS
                 {
                     objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup, 0, varId, "",0,0,0,0);
                 }
-                if(varmasterBrandtype == 1)
+               else if(varmasterBrandtype == 1)
                 {
                     objDs = objdserv.udfnSubGroupList(varviewtype,0, varGroupId,0, 0, "", 0, 0, 0, 0);
                 }
@@ -389,8 +402,9 @@ namespace ROMS
                 grdSubGroup.Columns["Sub Group Id"].ReadOnly = true;
                 grdSubGroup.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                if(varmasterBrandtype == 1)
+                if (varmasterBrandtype == 1)
                 {
+
                     for (int j = 0; j < grdSubGroup.RowCount; j++)
                     {
                         if (Convert.ToString(varSubGroupId) == Convert.ToString(grdSubGroup.Rows[j].Cells["Sub Group Id"].Value))
@@ -405,7 +419,32 @@ namespace ROMS
                                 }
                             }
                             //udfnSubGroupList();
-                            udfnSubGroupAdd();
+                            if (btnSave.Text == "Save")
+                            {
+                                udfnSubGroupAdd();
+                            }
+                            else
+                            {
+                                SPDataService objdservs = new SPDataService();
+                                objDs = objdservs.udfnSubGroupList(14,Convert.ToInt32(varSubGroupId), "", 0, 0, "", 0, 0, 0, 0);
+                                objdservs.CloseConnection();
+                                string varProCount = "0";
+                                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varProCount = Convert.ToString(objDs.Tables[0].Rows[0]["Count"]); } } }
+                                //dtSubGroupAdd.Rows.Add(varGroupName,varSubGroupName, varProCount, varGroupId,varSubGroupId);
+                                int varFlag = 0;
+                                for (int i = 0; i < dtSubGroupAdd.Rows.Count; i++)
+                                { 
+                                    if (Convert.ToInt32(varSubGroupId) == Convert.ToInt32(dtSubGroupAdd.Rows[i]["Sub Group Id"]))
+                                    {
+                                        varFlag = 1;
+                                    }
+                                }
+                                if (varFlag == 0)
+                                {
+                                    dtSubGroupAdd.Rows.Add(varGroupName, varSubGroupName, varProCount, varGroupId, varSubGroupId);
+                                }
+                            }
+                            //if (btnSave.Text == "Save") { udfnSubGroupAdd(); }
                         }
                     }
                     varmasterBrandtype = 0;
@@ -549,8 +588,10 @@ namespace ROMS
                     }
                     if(varId_Brand!="0" && varId_Brand!="-1")
                     {
+                        // grdSubGroup.DataSource = null;
                         //grdSubGroupAdd.DataSource = null;
                         btnSave.Text = "Update";
+                        varmasterBrandtype = 0;
                         varId = Convert.ToInt32(varId_Brand);
                         udfnEdit();
                         //varSubGroupId = MainForm.objCP_Items.varSubgroupId;
@@ -1116,16 +1157,7 @@ namespace ROMS
                     pnlStatus.Enabled = true;
                     udfnEdit();
                 }
-                if(varmastertype==1)
-                {
-                    varSubGroupId = MainForm.objCP_Items.varSubgroupId;
-                    varGroupId= MainForm.objCP_Items.vargroupId;
-                    if (varSubGroupId!="0" && varGroupId!="0")
-                    {
-                        varmasterBrandtype = 1;
-                        udfnSubGroupList();
-                    }
-                }
+                udfnLoadSubgrouplist_Selected();
                 udfnTotalProducts();
             }
             catch (Exception ex)
@@ -1134,7 +1166,32 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnLoadSubgrouplist_Selected() {
+            try
+            {
+                if (varmastertype == 1)
+                {
+                    varSubGroupId = MainForm.objCP_Items.varSubgroupId;
+                    varGroupId = MainForm.objCP_Items.vargroupId;
+                    varGroupName= MainForm.objCP_Items.varGroupName;
+                    varSubGroupName= MainForm.objCP_Items.varSubGroupName;
+                    if (varSubGroupId != "0" && varGroupId != "0")
+                    {
+                        //if (btnSave.Text == "Save")
+                        //{
+                        //    varmasterBrandtype = 1;
+                        //}
+                        varmasterBrandtype = 1;
+                        udfnSubGroupList();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtProductSubGroup_TextChanged(object sender, EventArgs e)
         {
             try
@@ -1237,6 +1294,7 @@ namespace ROMS
                 if (Convert.ToBoolean(grdGroup.SelectedRows[0].Cells[0].EditedFormattedValue) == true)
                 {
                     varGroup = Convert.ToString(grdGroup.SelectedRows[0].Cells["ID"].Value);
+                    varmasterBrandtype = 0;
                     udfnSubGroupList();
                 }
                 else
