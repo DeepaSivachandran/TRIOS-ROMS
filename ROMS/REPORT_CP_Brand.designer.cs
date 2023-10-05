@@ -28,11 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Brand));
             this.ReportBrand = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.pnlReportBrand = new System.Windows.Forms.Panel();
             this.lvGroup = new System.Windows.Forms.ListView();
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,12 +64,10 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.ep_Brand = new System.Windows.Forms.ErrorProvider(this.components);
             this.ReportBrand.SuspendLayout();
             this.pnlReportBrand.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ep_Brand)).BeginInit();
             this.SuspendLayout();
             // 
             // ReportBrand
@@ -82,11 +77,10 @@
             this.ReportBrand.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ReportBrand.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportBrand.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader,
-            this.toolStripButton1});
+            this.tspHeader});
             this.ReportBrand.Location = new System.Drawing.Point(0, 0);
             this.ReportBrand.Name = "ReportBrand";
-            this.ReportBrand.Size = new System.Drawing.Size(1354, 27);
+            this.ReportBrand.Size = new System.Drawing.Size(1354, 25);
             this.ReportBrand.TabIndex = 35;
             this.ReportBrand.Text = "Brand Report";
             // 
@@ -97,17 +91,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(98, 24);
+            this.tspHeader.Size = new System.Drawing.Size(98, 22);
             this.tspHeader.Text = "Brand Report";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButton1.Text = "toolStripButton1";
             // 
             // pnlReportBrand
             // 
@@ -453,10 +438,6 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // ep_Brand
-            // 
-            this.ep_Brand.ContainerControl = this;
-            // 
             // REPORT_CP_Brand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -481,7 +462,6 @@
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ep_Brand)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -496,10 +476,8 @@
         private System.Windows.Forms.GroupBox grpfilter;
         private System.Windows.Forms.ComboBox cmbReportType;
         private System.Windows.Forms.Label lblReportType;
-        private System.Windows.Forms.ErrorProvider ep_Brand;
         public System.Windows.Forms.PictureBox picLoader;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Button btnListPrint;
         private System.Windows.Forms.Label lblBrand;
         private System.Windows.Forms.Label lblSubgroup;

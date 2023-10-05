@@ -3510,7 +3510,7 @@ namespace ROMS
                 objdservice.CloseConnection();
                 DataSet objDS = new DataSet();
                 SPDataService objDserv = new SPDataService();
-                objDS = objDserv.udfnCompanyList(6,Convert.ToInt32(varcompanyid),MainForm.pbUserID,MainForm.pbIpAddress);
+                objDS = objDserv.udfnCompanyList(6,Convert.ToInt32(varcompanyid),MainForm.pbUserID,MainForm.pbIpAddress,0);
                 objDserv.CloseConnection();
                 if (objDS != null) {
                     if (objDS.Tables.Count > 0) {
@@ -3642,7 +3642,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnCompanyList(1, Convert.ToInt32(varcompanyid), MainForm.pbUserID, MainForm.pbIpAddress);
+                    objDS = objspservice.udfnCompanyList(1, Convert.ToInt32(varcompanyid), MainForm.pbUserID, MainForm.pbIpAddress,0);
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {

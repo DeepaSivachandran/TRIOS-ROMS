@@ -75,7 +75,7 @@ namespace ROMS
                 }
                 DataSet objDS = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDS = objdserv.udfnBrandList(1, varBrandId, 0, 0, 0, "");
+                objDS = objdserv.udfnBrandList(1, varBrandId, 0, 0, 0, "",0);
                 objdserv.CloseConnection();
                 if (objDS != null)
                 {
@@ -178,7 +178,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnGroupList(varviewtype, 0, varId, "");
+                objDs = objdserv.udfnGroupList(varviewtype, 0, varId, "",0);
                 objdserv.CloseConnection();
 
                 if (objDs.Tables[0].Rows.Count != 0)
@@ -574,7 +574,7 @@ namespace ROMS
                     string varId_Brand = "0";
                     DataSet objDsBrand = new DataSet();
                     SPDataService objDServ2 = new SPDataService();
-                    objDsBrand = objDServ2.udfnBrandList(8, "", 0,0, 0, txtEBrandNameInEnglish.Text.Trim());
+                    objDsBrand = objDServ2.udfnBrandList(8, "", 0,0, 0, txtEBrandNameInEnglish.Text.Trim(),0);
                     objDServ2.CloseConnection();
                     if (objDsBrand != null)
                     {

@@ -486,7 +486,7 @@ namespace ROMS
 
                 SPDataService objspservice = new SPDataService();
                 DataSet objDS;
-                objDS = objspservice.udfnBrandList(varviewtype, varbrandid, 0, 0, varloadrepid,"");
+                objDS = objspservice.udfnBrandList(varviewtype, varbrandid, 0, 0, varloadrepid,"",0);
                 objspservice.CloseConnection();
                 if (objDS != null)
                 {

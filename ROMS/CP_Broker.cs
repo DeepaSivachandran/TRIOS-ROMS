@@ -49,7 +49,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnBrokerList(1, Convert.ToInt32(varBrokerid));
+                    objDS = objspservice.udfnBrokerList(1, Convert.ToInt32(varBrokerid),0,0);
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -400,7 +400,7 @@ namespace ROMS
                     varViewType = 3;
                 }
                 
-                objDs = objdserv.udfnCompanyList(varViewType,PbConcernID, MainForm.pbUserID, MainForm.pbIpAddress);
+                objDs = objdserv.udfnCompanyList(varViewType,PbConcernID, MainForm.pbUserID, MainForm.pbIpAddress,0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
                 pnlBStatus.Enabled = false;

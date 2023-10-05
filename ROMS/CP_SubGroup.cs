@@ -118,7 +118,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductGroupName.Text.Length > 2)
                 {
-                    objDs = objspdservice.udfnGroupList(7, 0, 0, txtProductGroupName.Text);
+                    objDs = objspdservice.udfnGroupList(7, 0, 0, txtProductGroupName.Text,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -364,7 +364,7 @@ namespace ROMS
                     string VarPSGName = "0";
                     DataSet objDsGroup = new DataSet();
                     SPDataService objDServ1 = new SPDataService();
-                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroupName.Text.Trim());
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroupName.Text.Trim(),0);
                     objDServ1.CloseConnection();
                     if (objDsGroup != null)
                     {
@@ -899,7 +899,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductGroupName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnGroupList(7,0,0, txtProductGroupName.Text);
+                    objDs = objspdservice.udfnGroupList(7,0,0, txtProductGroupName.Text,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
