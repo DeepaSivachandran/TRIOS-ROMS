@@ -63,6 +63,7 @@ namespace ROMS
         {
             try
             {
+                lvHsnName.Visible = false;
                 udfnSave(); 
             }
             catch (Exception ex)
@@ -4506,7 +4507,40 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbGst.Select(int.MaxValue, 0)));
                 if(txtHsnName.Text!="")
-                { txtHsnName.Text = ""; }
+                {
+                    string varId_HSN = "0"; string varId_HSNGST = "0";
+                    DataSet objDsHSN = new DataSet();
+                    DataSet objDsHSNGst = new DataSet();
+                    SPDataService objDs = new SPDataService();
+                    objDsHSN = objDs.udfnHsnList(7, 0, 0, txtHsnName.Text.Trim());
+                    objDsHSNGst = objDs.udfnHsnList(8, 0,Convert.ToInt32(cmbGst.SelectedValue), "");
+                    objDs.CloseConnection();
+                    if (objDsHSN != null)
+                    {
+                        if (objDsHSN.Tables.Count > 0)
+                        {
+                            if (objDsHSN.Tables[0].Rows.Count > 0)
+                            {
+                                varId_HSN = Convert.ToString(objDsHSN.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    if (objDsHSNGst != null)
+                    {
+                        if (objDsHSNGst.Tables.Count > 0)
+                        {
+                            if (objDsHSNGst.Tables[0].Rows.Count > 0)
+                            {
+                                varId_HSNGST = Convert.ToString(objDsHSNGst.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                    if(varId_HSN!= varId_HSNGST)
+                    { txtHsnName.Text = "";
+                        lvHsnName.Text = "";
+                    }
+                   
+                }
             }
             catch (Exception ex)
 

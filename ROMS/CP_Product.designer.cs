@@ -138,7 +138,11 @@
             this.txtDSalesGodown = new System.Windows.Forms.TextBox();
             this.txtDSalesShop = new System.Windows.Forms.TextBox();
             this.grpHsndetail = new System.Windows.Forms.GroupBox();
+            this.lblHsnName = new System.Windows.Forms.Label();
+            this.txtHsnName = new System.Windows.Forms.TextBox();
+            this.cmbGst = new System.Windows.Forms.ComboBox();
             this.txtHSNCode = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.grbBatchNoDetails = new System.Windows.Forms.GroupBox();
             this.cmbBatchNoGeneration = new System.Windows.Forms.ComboBox();
@@ -170,14 +174,10 @@
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.cmbGst = new System.Windows.Forms.ComboBox();
-            this.txtHsnName = new System.Windows.Forms.TextBox();
             this.lvHsnName = new System.Windows.Forms.ListView();
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblHsnName = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -1527,6 +1527,43 @@
             this.grpHsndetail.TabIndex = 33;
             this.grpHsndetail.TabStop = false;
             // 
+            // lblHsnName
+            // 
+            this.lblHsnName.AutoSize = true;
+            this.lblHsnName.Location = new System.Drawing.Point(-4, 52);
+            this.lblHsnName.Name = "lblHsnName";
+            this.lblHsnName.Size = new System.Drawing.Size(16, 20);
+            this.lblHsnName.TabIndex = 127;
+            this.lblHsnName.Text = "0";
+            this.lblHsnName.Visible = false;
+            // 
+            // txtHsnName
+            // 
+            this.txtHsnName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtHsnName.Location = new System.Drawing.Point(121, 49);
+            this.txtHsnName.MaxLength = 50;
+            this.txtHsnName.Name = "txtHsnName";
+            this.txtHsnName.Size = new System.Drawing.Size(145, 27);
+            this.txtHsnName.TabIndex = 34;
+            this.txtHsnName.TextChanged += new System.EventHandler(this.TxtHsnName_TextChanged);
+            this.txtHsnName.Enter += new System.EventHandler(this.TxtHsnName_Enter);
+            this.txtHsnName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtHsnName_KeyDown);
+            this.txtHsnName.Leave += new System.EventHandler(this.TxtHsnName_Leave);
+            // 
+            // cmbGst
+            // 
+            this.cmbGst.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbGst.FormattingEnabled = true;
+            this.cmbGst.Location = new System.Drawing.Point(121, 22);
+            this.cmbGst.Name = "cmbGst";
+            this.cmbGst.Size = new System.Drawing.Size(145, 27);
+            this.cmbGst.TabIndex = 33;
+            this.cmbGst.SelectedIndexChanged += new System.EventHandler(this.CmbGst_SelectedIndexChanged);
+            this.cmbGst.Enter += new System.EventHandler(this.CmbGst_Enter);
+            this.cmbGst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGst_KeyDown);
+            this.cmbGst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbGst_KeyPress);
+            this.cmbGst.Leave += new System.EventHandler(this.CmbGst_Leave);
+            // 
             // txtHSNCode
             // 
             this.txtHSNCode.Enabled = false;
@@ -1538,6 +1575,19 @@
             this.txtHSNCode.Size = new System.Drawing.Size(145, 27);
             this.txtHSNCode.TabIndex = 33;
             this.txtHSNCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox8
+            // 
+            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox8.Enabled = false;
+            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox8.Location = new System.Drawing.Point(10, 22);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(111, 27);
+            this.textBox8.TabIndex = 118;
+            this.textBox8.TabStop = false;
+            this.textBox8.Text = "GST";
             // 
             // textBox4
             // 
@@ -1836,46 +1886,6 @@
             // 
             this.columnHeader25.Width = 0;
             // 
-            // textBox8
-            // 
-            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox8.Enabled = false;
-            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox8.Location = new System.Drawing.Point(10, 22);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(111, 27);
-            this.textBox8.TabIndex = 118;
-            this.textBox8.TabStop = false;
-            this.textBox8.Text = "GST";
-            // 
-            // cmbGst
-            // 
-            this.cmbGst.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbGst.FormattingEnabled = true;
-            this.cmbGst.Location = new System.Drawing.Point(121, 22);
-            this.cmbGst.Name = "cmbGst";
-            this.cmbGst.Size = new System.Drawing.Size(145, 27);
-            this.cmbGst.TabIndex = 33;
-            this.cmbGst.SelectedIndexChanged += new System.EventHandler(this.CmbGst_SelectedIndexChanged);
-            this.cmbGst.Enter += new System.EventHandler(this.CmbGst_Enter);
-            this.cmbGst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGst_KeyDown);
-            this.cmbGst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbGst_KeyPress);
-            this.cmbGst.Leave += new System.EventHandler(this.CmbGst_Leave);
-            // 
-            // txtHsnName
-            // 
-            this.txtHsnName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtHsnName.Location = new System.Drawing.Point(121, 49);
-            this.txtHsnName.MaxLength = 50;
-            this.txtHsnName.Name = "txtHsnName";
-            this.txtHsnName.Size = new System.Drawing.Size(145, 27);
-            this.txtHsnName.TabIndex = 34;
-            this.txtHsnName.TextChanged += new System.EventHandler(this.TxtHsnName_TextChanged);
-            this.txtHsnName.Enter += new System.EventHandler(this.TxtHsnName_Enter);
-            this.txtHsnName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtHsnName_KeyDown);
-            this.txtHsnName.Leave += new System.EventHandler(this.TxtHsnName_Leave);
-            // 
             // lvHsnName
             // 
             this.lvHsnName.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -1905,16 +1915,6 @@
             // columnHeader31
             // 
             this.columnHeader31.Width = 0;
-            // 
-            // lblHsnName
-            // 
-            this.lblHsnName.AutoSize = true;
-            this.lblHsnName.Location = new System.Drawing.Point(-4, 52);
-            this.lblHsnName.Name = "lblHsnName";
-            this.lblHsnName.Size = new System.Drawing.Size(16, 20);
-            this.lblHsnName.TabIndex = 127;
-            this.lblHsnName.Text = "0";
-            this.lblHsnName.Visible = false;
             // 
             // CP_Product
             // 
