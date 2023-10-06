@@ -37,6 +37,7 @@ namespace ROMS
         public int PbGodownTypeStatus = 0;
         public int varUpdate = 0;
         public int varFormFlag = 0;
+        public int varStockApplicableId = 0;
         public CP_Location()
         {
             InitializeComponent();
@@ -207,6 +208,7 @@ namespace ROMS
                 cmbStockApplicable.SelectedValue = PbStockApplicableID;
                 if (PbGodownTypeStatus == 86) { rbInside.Checked = true; } else { rbOutside.Checked = true; }
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+                if (PbStockApplicableID==11) { varStockApplicableId = PbStockApplicableID; }
             }
             catch (Exception ex)
             {
@@ -265,19 +267,26 @@ namespace ROMS
                     varoriginator = "Stock Updation";
                     varType = 1;
                 }
-                int varVerify = 0;
-                if(cmbStockApplicable.SelectedIndex==1)
+                int varVerify = 0;// int saveflag = 0;
+                if (btnSave.Text == "Update")
+                {
+                    if (varStockApplicableId == Convert.ToInt32(cmbStockApplicable.SelectedValue))
+                    { varVerify = 1; }
+                    if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 12) { varVerify = 1; }
+                }
+                else
+                { if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 11) { varVerify = 0; } else { varVerify = 1; } }
+
+                // if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 11) { varVerify = 0; } else { varVerify = 1; }
+              
+                if (varVerify == 0)
                 {
                     MainForm.objCP_SL_Verify = new CP_SL_Verify();
                     MainForm.objCP_SL_Verify.ShowDialog();
                     varVerify = MainForm.objCP_SL_Verify.flag;
+                    //saveflag = 1;
                 }
-                else
-                {
-                    varVerify = 1;
-                }
-                if (varVerify == 1)
-                {
+                
                     varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
@@ -310,7 +319,7 @@ namespace ROMS
                         btnSave.Enabled = true;
                         btnSave.Focus();
                     }
-                }
+                   
             }
             catch (Exception ex)
             {
@@ -960,15 +969,17 @@ namespace ROMS
             }
             else
             {
-                if (btnSave.Text == "Save")
-                {
-                    pnlGodownType.Enabled = false;
-                    rbInside.Checked = true;
-                }
-                else
-                {
-                    pnlGodownType.Enabled = true;
-                }
+                //if (btnSave.Text == "Save")
+                //{
+                //    pnlGodownType.Enabled = false;
+                //    rbInside.Checked = true;
+                //}
+                //else
+                //{
+                //    pnlGodownType.Enabled = true;
+                //}
+                pnlGodownType.Enabled = false;
+                rbInside.Checked = true;
             }
         }
 
