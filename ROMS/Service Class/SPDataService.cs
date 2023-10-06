@@ -162,8 +162,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 05/10/2023    Description: General Settings
-        //public string udfnGeneralSettings(int ViewType,decimal paraGS_CPA, decimal paraGS_DVA,int paraGS_GRNQty,int paraGS_RAD,int paraGS_IED,int paraGSTAT_OrderDays,int paraGSTAT_OrderType, string paraOriginator)
-        public string udfnGeneralSettings(int ViewType,int paraGS_CPA, int paraGS_DVA,int paraGS_GRNQty,int paraGS_RAD,int paraGS_IED, string paraOriginator)
+        public string udfnGeneralSettings(int ViewType,int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA,int paraGS_GRNQty,int paraGS_RAD,int paraGS_IED,DataTable ParaMR_GeneralSettings_TAT, string paraOriginator)
         {
             string varResult = "";
             try
@@ -172,13 +171,13 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("MRS_GeneralSettings", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraGeneralSettingsID", @paraGeneralSettingsID);
                 varSqlCommand.Parameters.AddWithValue("@paraGS_CPA", paraGS_CPA);
                 varSqlCommand.Parameters.AddWithValue("@paraGS_DVA", paraGS_DVA);
                 varSqlCommand.Parameters.AddWithValue("@paraGS_GRNQty", paraGS_GRNQty);
                 varSqlCommand.Parameters.AddWithValue("@paraGS_RAD", paraGS_RAD);
                 varSqlCommand.Parameters.AddWithValue("@paraGS_IED", paraGS_IED);
-                //varSqlCommand.Parameters.AddWithValue("@paraGSTAT_OrderDays", paraGSTAT_OrderDays);
-                //varSqlCommand.Parameters.AddWithValue("@paraGSTAT_OrderType", paraGSTAT_OrderType);
+                varSqlCommand.Parameters.AddWithValue("@ParaMR_GeneralSettings_TAT", ParaMR_GeneralSettings_TAT);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);

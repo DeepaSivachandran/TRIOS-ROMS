@@ -753,7 +753,7 @@ namespace ROMS
             {
                 if (grdSettings.Rows.Count != 0)
                 {
-                    string result = ""; string varOriginator = "VoucherSettings Creation";
+                    string result = ""; string varOriginator = "VoucherSettings Updation";
                     SPDataService objspdservice = new SPDataService();
                     DataTable objSettings = new DataTable();
                     objSettings.TableName = "[MR_VoucherSettings]";

@@ -14,6 +14,8 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+
+        public int varSettingID = 0;
         public CP_GeneralSettings()
         {
             InitializeComponent();
@@ -86,23 +88,22 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
+                            varSettingID = Convert.ToInt32(objDs.Tables[0].Rows[0]["GSID"]);
                             txtcashpurchase.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_CPA"]);
                             txtBillAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_DVA"]);
                             txtGRNQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_GRNQty"]);
                             txtReturnAlertDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_RAD"]);
                             txtInvoiceEditDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_IED"]);
                         }
-                        string varOrderDay = "";
                         if (objDs.Tables[1].Rows.Count != 0)
                         {
-                           for(int i=0;i<grdOrderType.Rows.Count;i++)
-                           {
-                                if(Convert.ToString(grdOrderType.Rows[i].Cells["MSTID"].Value) == Convert.ToString(objDs.Tables[1].Rows[0]["GSTAT_GSID"]))
-                                {
-                                    varOrderDay=Convert.ToString(objDs.Tables[1].Rows[0]["GSTAT_OrderDays"]);
-                                    grdOrderType.Rows[i].Cells["clmDays"].Value = varOrderDay;
-                                }
-                           }
+                            grdOrderType.DataSource = objDs.Tables[1];
+                            grdOrderType.Columns["Order_TypeID"].Visible = false;
+                            ((DataGridViewTextBoxColumn)grdOrderType.Columns["Days"]).MaxInputLength = 3;
+                            grdOrderType.Columns["Days"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                            grdOrderType.Columns["Days"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdOrderType.Columns["Days"].Width = 50;
+                            grdOrderType.Columns["Order Type"].ReadOnly = true;
                         }
                     }
                 }
@@ -120,13 +121,30 @@ namespace ROMS
                 string varResult = "";
                 btnUpdate.Enabled = false;
                 SPDataService objDser = new SPDataService();
-                varResult = objDser.udfnGeneralSettings(0, Convert.ToInt32(txtcashpurchase.Text), Convert.ToInt32(txtBillAmount), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text),"General Settings Update");
+                string varOriginator = "GeneralSettings Updation";
+                SPDataService objspdservice = new SPDataService();
+                DataTable objGeneralSettings = new DataTable();
+                objGeneralSettings.TableName = "[MR_GeneralSettings_TAT]";
+                objGeneralSettings.Columns.Add("GSTAT_GSID", typeof(int));
+                objGeneralSettings.Columns.Add("GSTAT_OrderType", typeof(int));
+                objGeneralSettings.Columns.Add("GSTAT_OrderDays", typeof(int));
+                for(int i=0;i<grdOrderType.Rows.Count;i++)
+                {
+                    objGeneralSettings.Rows.Add(varSettingID,Convert.ToInt32(grdOrderType.Rows[i].Cells["Order_TypeID"].Value), Convert.ToInt32(grdOrderType.Rows[i].Cells["Days"].Value));
+                }
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, varOriginator);
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
                 {
                     MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                else if (varResult.Split('~')[0] == "4")
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnUpdate.Focus();
+                }
+                udfnEditLoad();
             }
             catch (Exception ex)
             {
@@ -143,7 +161,7 @@ namespace ROMS
         {
             try
             {
-                udfnTurnAroundTimeLoad();
+                //udfnTurnAroundTimeLoad();
                 udfnEditLoad();
             }
             catch (Exception ex)
@@ -568,6 +586,52 @@ namespace ROMS
                 {
                     e.Handled = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void allowonlynumber(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (grdOrderType.CurrentCell.OwningColumn.Name == "Days")
+                {
+                    if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdOrderType_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (grdOrderType.CurrentCell.OwningColumn.Name == "Days")
+                {
+                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void GrdOrderType_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdOrderType.ClearSelection();
             }
             catch (Exception ex)
             {

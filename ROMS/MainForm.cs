@@ -893,9 +893,9 @@ namespace ROMS
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objCP_Settings = new CP_Settings();
-                MainForm.objCP_Settings.MdiParent = this;
-                MainForm.objCP_Settings.Show();
+                MainForm.objCP_GeneralSettings = new CP_GeneralSettings();
+                MainForm.objCP_GeneralSettings.MdiParent = this;
+                MainForm.objCP_GeneralSettings.Show();
             }
             catch (Exception ex)
             {
@@ -1094,21 +1094,20 @@ namespace ROMS
         }
 
         private void TsmgeneralSettings_Click(object sender, EventArgs e)
-        {
+        { 
             try
-            { 
-                 udfnCloseChildForms();
+            {
+                udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objCP_GeneralSettings = new CP_GeneralSettings();
-                MainForm.objCP_GeneralSettings.MdiParent = this;
-                MainForm.objCP_GeneralSettings.Show();
+                MainForm.objCP_Settings = new CP_Settings();
+                MainForm.objCP_Settings.MdiParent = this;
+                MainForm.objCP_Settings.Show();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void TsmBulkAttr_Click(object sender, EventArgs e)
