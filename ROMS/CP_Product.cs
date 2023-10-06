@@ -4649,7 +4649,7 @@ namespace ROMS
                 else
                 {
                     errItems.Clear();
-                    cmbGst.BackColor = Color.White;
+                    txtHsnName.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
