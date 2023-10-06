@@ -237,7 +237,7 @@ namespace ROMS
                             }
                             if (varFlag == 0)
                             {
-                                dtSubGroupAdd.Rows.Add(grdSubGroup.Rows[i].Cells["Product Group"].Value, grdSubGroup.Rows[i].Cells["Product Subgroup"].Value, grdSubGroup.Rows[i].Cells["T.Pro"].Value, grdSubGroup.Rows[i].Cells["Group Id"].Value, grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
+                                dtSubGroupAdd.Rows.Add(grdSubGroup.Rows[i].Cells["Product Group"].Value, grdSubGroup.Rows[i].Cells["Product Subgroup"].Value, "0", grdSubGroup.Rows[i].Cells["Group Id"].Value, grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
                             }
                         }
                         else
@@ -1742,6 +1742,13 @@ namespace ROMS
             try
             {
                 grdSubGroupAdd.ClearSelection();
+                for(int i=0;i<grdSubGroupAdd.RowCount;i++)
+                {
+                    if(Convert.ToString(grdSubGroupAdd.Rows[i].Cells["T.Pro"].Value) != "0")
+                    {
+                        ((DataGridViewImageCell)grdSubGroupAdd.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1); ;
+                    }
+                }
             }
             catch (Exception ex)
             {
