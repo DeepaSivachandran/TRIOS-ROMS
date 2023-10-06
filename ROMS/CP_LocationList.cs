@@ -83,7 +83,7 @@ namespace ROMS
 
                 DataSet objDS = new DataSet();
                 SPDataService objDServ = new SPDataService();
-                objDS = objdserv.udfnStockLocationList(18, 0,0,0,"",0,0);
+                objDS = objdserv.udfnStockLocationList(18, 0,0,0,"",0,0,0);
                 objDServ.CloseConnection();
                 cmbLocationType.DataSource = null;
                 if (objDS != null)
@@ -119,8 +119,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)),0,0,"",0,(Convert.ToInt16(cmbLocationType.SelectedValue)));
-                objspservice.CloseConnection();
+                objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)),0,0,"",0,(Convert.ToInt16(cmbLocationType.SelectedValue)),0);                objspservice.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)

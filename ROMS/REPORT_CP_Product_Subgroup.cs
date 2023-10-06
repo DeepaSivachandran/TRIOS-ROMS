@@ -231,7 +231,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnBrandList(11, Convert.ToString(lblBrandCode.Text), 0, 0, 0, "", Convert.ToInt32(cmbStatus.SelectedValue));
+                objDs = objspservice.udfnSubGroupList(12,0,"", Convert.ToInt32(lblGroupCode.Text),0,"", Convert.ToInt32(cmbStatus.SelectedValue), 0,0,0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -244,7 +244,7 @@ namespace ROMS
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Subgroup.rpt");
-                    objBillreport.SetParameterValue("paraGroupId", Convert.ToString(lblGroupCode.Text));
+                    objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
                     //objBillreport.SetParameterValue("paraBrandName", Convert.ToString(varGroupName));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
@@ -384,7 +384,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(18,0,0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "","","",0, Convert.ToInt32(cmbStatus.SelectedValue), Convert.ToInt32(lblBrandCode.Text),0,0,0,0,0,0,0,0,0,0);
+                objDs = objspservice.udfnproductmasterlist(17,0,0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "","","",0, Convert.ToInt32(cmbStatus.SelectedValue), Convert.ToInt32(lblBrandCode.Text),0,0,0,0,0,0,0,0,0,0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -396,14 +396,14 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Subgroup_Product.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Subgroup_Product.rpt");
                     objBillreport.SetParameterValue("paraBrandId", Convert.ToInt32(lblBrandCode.Text));
-                    objBillreport.SetParameterValue("paraBrandName", Convert.ToString(varBrandName));
+                    //objBillreport.SetParameterValue("paraBrandName", Convert.ToString(varBrandName));
                     objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
-                    objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
-                    objBillreport.SetParameterValue("paraSubgroupId", Convert.ToInt32(lblSubGroupCode.Text));
-                    objBillreport.SetParameterValue("paraSubGroupName", Convert.ToString(varSubgroupName));
-                    objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
+                    //objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
+                    objBillreport.SetParameterValue("paraSubGroupId", Convert.ToInt32(lblSubGroupCode.Text));
+                    //objBillreport.SetParameterValue("paraSubGroupName", Convert.ToString(varSubgroupName));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
@@ -533,8 +533,6 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
-                //cmbHSN.SelectedValue = 0;
-                //cmbGST.SelectedValue = 0;
                 cmbStatus.SelectedValue = 0;
                 //btnListPrint.Enabled = true;
                 RPTViewer.Visible = true;
@@ -627,15 +625,17 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
-                                    lvSubGroup.Columns[2].Width = 200;
                                     lvSubGroup.Columns[0].Width = 200;
+                                    lvSubGroup.Columns[1].Width = 200;
+                                    lvSubGroup.Columns[2].Width = 200;
                                     lvSubGroup.Items.Add(objList);
                                 }
                                 lvSubGroup.Visible = true;
+                                lvSubGroup.BringToFront();
                             }
                             else
                             {
@@ -694,9 +694,6 @@ namespace ROMS
                     ListViewItem selectedItem = lvSubGroup.SelectedItems[0];
                     txtSubGroup.Text = selectedItem.SubItems[0].Text;
                     lblSubGroupCode.Text = selectedItem.SubItems[2].Text;
-                    txtGroup.Text = selectedItem.SubItems[4].Text;
-                    lblGroupCode.Text = selectedItem.SubItems[5].Text;
-                    //string varbatchenable = selectedItem.SubItems[3].Text;
                     lvSubGroup.Visible = false;
                 }
             }
@@ -797,15 +794,17 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
-                                    lvGroup.Columns[2].Width = 200;
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    lvGroup.Columns[2].Width = 0;
+                                    lvGroup.Columns[1].Width = 200;
                                     lvGroup.Columns[0].Width = 200;
                                     lvGroup.Items.Add(objList);
                                 }
                                 lvGroup.Visible = true;
+                                lvGroup.BringToFront();
                             }
                             else
                             {
@@ -974,6 +973,9 @@ namespace ROMS
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    lvBrand.Columns[0].Width = 200;
+                                    lvBrand.Columns[1].Width = 200;
+                                    lvBrand.Columns[2].Width = 0;
                                     lvBrand.Items.Add(objList);
                                 }
                                 lvBrand.Visible = true;

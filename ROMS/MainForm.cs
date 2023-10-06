@@ -161,6 +161,7 @@ namespace ROMS
         public static REPORT_CP_Brand objREPORT_CP_Brand;
         public static REPORT_CP_Product_Subgroup objREPORT_CP_Product_Subgroup;
         public static REPORT_CP_StockLocation objREPORT_CP_StockLocation;
+        public static REPORT_CP_Rack objREPORT_CP_Rack;
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -1386,6 +1387,23 @@ namespace ROMS
                 MainForm.objREPORT_CP_StockLocation = new REPORT_CP_StockLocation();
                 MainForm.objREPORT_CP_StockLocation.MdiParent = this;
                 MainForm.objREPORT_CP_StockLocation.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_Rack = new REPORT_CP_Rack();
+                MainForm.objREPORT_CP_Rack.MdiParent = this;
+                MainForm.objREPORT_CP_Rack.Show();
             }
             catch (Exception ex)
             {

@@ -217,6 +217,33 @@
     <Compile Include="CP_Employee.designer.cs">
       <DependentUpon>CP_Employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Rackgroup.cs">
+      <DependentUpon>RPT_CP_Rackgroup.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_Rack_Rackgroup.cs">
+      <DependentUpon>RPT_CP_Rack_Rackgroup.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_Rack.cs">
+      <DependentUpon>RPT_CP_Rack.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_StockLocation_Product.cs">
+      <DependentUpon>RPT_CP_StockLocation_Product.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_CP_StockLocation.cs">
       <DependentUpon>RPT_CP_StockLocation.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -331,6 +358,12 @@
       <DependentUpon>RPT_PUR_SupplierProductList.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="REPORT_CP_Rack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_CP_Rack.designer.cs">
+      <DependentUpon>REPORT_CP_Rack.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_CP_Product_Subgroup.cs">
       <SubType>Form</SubType>
@@ -1438,6 +1471,26 @@
       <LastGenOutput>RPT_CP_Broker_Contact.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_CP_Rack.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Rack.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Rack_Rackgroup.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Rack_Rackgroup.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Rackgroup.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Rackgroup.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Reports\RPT_CP_StockLocation_Product.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_StockLocation_Product.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_StockLocation.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_StockLocation.cs</LastGenOutput>
@@ -1497,6 +1550,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_SupplierProductList.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_CP_Rack.resx">
+      <DependentUpon>REPORT_CP_Rack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_Product_Subgroup.resx">
       <DependentUpon>REPORT_CP_Product_Subgroup.cs</DependentUpon>

@@ -38,7 +38,7 @@
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.cmbGodownType = new System.Windows.Forms.ComboBox();
             this.cmbLocationType = new System.Windows.Forms.ComboBox();
-            this.lblBrandCode = new System.Windows.Forms.Label();
+            this.lblLocationCode = new System.Windows.Forms.Label();
             this.txtLocation = new System.Windows.Forms.TextBox();
             this.lblGodownType = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
@@ -109,6 +109,8 @@
             this.lvLocation.UseCompatibleStateImageBehavior = false;
             this.lvLocation.View = System.Windows.Forms.View.Details;
             this.lvLocation.Visible = false;
+            this.lvLocation.DoubleClick += new System.EventHandler(this.LvLocation_DoubleClick);
+            this.lvLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvLocation_KeyDown);
             // 
             // columnHeader1
             // 
@@ -126,7 +128,7 @@
             // 
             this.grpfilter.Controls.Add(this.cmbGodownType);
             this.grpfilter.Controls.Add(this.cmbLocationType);
-            this.grpfilter.Controls.Add(this.lblBrandCode);
+            this.grpfilter.Controls.Add(this.lblLocationCode);
             this.grpfilter.Controls.Add(this.txtLocation);
             this.grpfilter.Controls.Add(this.lblGodownType);
             this.grpfilter.Controls.Add(this.cmbStatus);
@@ -149,7 +151,10 @@
             this.cmbGodownType.Location = new System.Drawing.Point(906, 19);
             this.cmbGodownType.Name = "cmbGodownType";
             this.cmbGodownType.Size = new System.Drawing.Size(143, 27);
-            this.cmbGodownType.TabIndex = 1111233;
+            this.cmbGodownType.TabIndex = 3;
+            this.cmbGodownType.Enter += new System.EventHandler(this.CmbGodownType_Enter);
+            this.cmbGodownType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGodownType_KeyDown);
+            this.cmbGodownType.Leave += new System.EventHandler(this.CmbGodownType_Leave);
             // 
             // cmbLocationType
             // 
@@ -157,17 +162,20 @@
             this.cmbLocationType.Location = new System.Drawing.Point(695, 19);
             this.cmbLocationType.Name = "cmbLocationType";
             this.cmbLocationType.Size = new System.Drawing.Size(119, 27);
-            this.cmbLocationType.TabIndex = 1111232;
+            this.cmbLocationType.TabIndex = 2;
+            this.cmbLocationType.Enter += new System.EventHandler(this.CmbLocationType_Enter);
+            this.cmbLocationType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbLocationType_KeyDown);
+            this.cmbLocationType.Leave += new System.EventHandler(this.CmbLocationType_Leave);
             // 
-            // lblBrandCode
+            // lblLocationCode
             // 
-            this.lblBrandCode.AutoSize = true;
-            this.lblBrandCode.Location = new System.Drawing.Point(331, 2);
-            this.lblBrandCode.Name = "lblBrandCode";
-            this.lblBrandCode.Size = new System.Drawing.Size(16, 20);
-            this.lblBrandCode.TabIndex = 1111231;
-            this.lblBrandCode.Text = "0";
-            this.lblBrandCode.Visible = false;
+            this.lblLocationCode.AutoSize = true;
+            this.lblLocationCode.Location = new System.Drawing.Point(340, 2);
+            this.lblLocationCode.Name = "lblLocationCode";
+            this.lblLocationCode.Size = new System.Drawing.Size(16, 20);
+            this.lblLocationCode.TabIndex = 1111231;
+            this.lblLocationCode.Text = "0";
+            this.lblLocationCode.Visible = false;
             // 
             // txtLocation
             // 
@@ -176,7 +184,7 @@
             this.txtLocation.MaxLength = 100;
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(188, 27);
-            this.txtLocation.TabIndex = 1111183;
+            this.txtLocation.TabIndex = 1;
             this.txtLocation.TextChanged += new System.EventHandler(this.TxtLocation_TextChanged);
             this.txtLocation.Enter += new System.EventHandler(this.TxtLocation_Enter);
             this.txtLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLocation_KeyDown);
@@ -198,7 +206,7 @@
             this.cmbStatus.Location = new System.Drawing.Point(1111, 19);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(143, 27);
-            this.cmbStatus.TabIndex = 3;
+            this.cmbStatus.TabIndex = 4;
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
             this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
@@ -243,7 +251,7 @@
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(70, 33);
-            this.btnListPrint.TabIndex = 4;
+            this.btnListPrint.TabIndex = 5;
             this.btnListPrint.Text = "Print";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
@@ -365,7 +373,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        public System.Windows.Forms.Label lblBrandCode;
+        public System.Windows.Forms.Label lblLocationCode;
         private System.Windows.Forms.ComboBox cmbGodownType;
         private System.Windows.Forms.ComboBox cmbLocationType;
     }

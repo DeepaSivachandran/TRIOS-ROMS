@@ -155,7 +155,7 @@ namespace ROMS
                 {
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(),0, 0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(),0,0, 0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -168,7 +168,7 @@ namespace ROMS
                         }
                     }
                 }
-                objDs = objdserv.udfnRackGroupList(0,varCompanyId, varLocationId, varId);
+                objDs = objdserv.udfnRackGroupList(0,varCompanyId, varLocationId, varId,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -866,7 +866,7 @@ namespace ROMS
                     {
                         varViewType = 11;
                     }
-                    objDs = objspdservice.udfnStockLocationList(varViewType,varCompanyId, 0, 0,txtStockLocation.Text, 0,0);
+                    objDs = objspdservice.udfnStockLocationList(varViewType,varCompanyId, 0, 0,txtStockLocation.Text, 0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
