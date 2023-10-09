@@ -97,7 +97,7 @@ namespace ROMS
 
                             dtSubGroupAdd.Rows.Add(objDS.Tables[1].Rows[i]["Selected Product Group"],
                                 objDS.Tables[1].Rows[i]["Selected Product Sub Group"], objDS.Tables[1].Rows[i]["T.Pro"], objDS.Tables[1].Rows[i]["PRGID"],
-                                objDS.Tables[1].Rows[i]["PRSGID"]);
+                                objDS.Tables[1].Rows[i]["PRSGID"], objDS.Tables[1].Rows[i]["T.Pro"]);
                         }
                         if (varmastertype == 1 )
                         {
@@ -123,6 +123,7 @@ namespace ROMS
                         grdSubGroupAdd.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdSubGroupAdd.Columns["Group Id"].Visible = false;
                         grdSubGroupAdd.Columns["Sub Group Id"].Visible = false;
+                        grdSubGroupAdd.Columns["Products"].Visible = false;
                         grdSubGroupAdd.Columns["Selected Product Group"].ReadOnly = true;
                         grdSubGroupAdd.Columns["Selected Product Subgroup"].ReadOnly = true;
                         grdSubGroupAdd.Columns["Group Id"].ReadOnly = true;
@@ -150,6 +151,7 @@ namespace ROMS
                             }
                         }
                     }
+                    udfnRemoveGroup();
                 }
             }
             catch (Exception ex)
@@ -160,7 +162,7 @@ namespace ROMS
             finally
             {
                 this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending);
-                this.grdSubGroup.Sort(this.grdSubGroup.Columns[0], ListSortDirection.Descending);
+                this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending);
             }
         }
         public void udfnList()
@@ -237,7 +239,7 @@ namespace ROMS
                             }
                             if (varFlag == 0)
                             {
-                                dtSubGroupAdd.Rows.Add(grdSubGroup.Rows[i].Cells["Product Group"].Value, grdSubGroup.Rows[i].Cells["Product Subgroup"].Value, "0", grdSubGroup.Rows[i].Cells["Group Id"].Value, grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
+                                dtSubGroupAdd.Rows.Add(grdSubGroup.Rows[i].Cells["Product Group"].Value, grdSubGroup.Rows[i].Cells["Product Subgroup"].Value, "0", grdSubGroup.Rows[i].Cells["Group Id"].Value, grdSubGroup.Rows[i].Cells["Sub Group Id"].Value,grdSubGroup.Rows[i].Cells["T.Pro"].Value);
                             }
                         }
                         else
@@ -253,7 +255,6 @@ namespace ROMS
                             }
                         }
                     }
-
                     for (int i = 0; i < grdSubGroupAdd.ColumnCount; i++)
                     {
                         if (grdSubGroupAdd.Columns[i].Name == "clmSelGroup") { grdSubGroupAdd.Columns.Remove("clmSelGroup"); }
@@ -271,12 +272,13 @@ namespace ROMS
                     grdSubGroupAdd.Columns["Selected Product Subgroup"].Width = 200;
                     grdSubGroupAdd.Columns["Group Id"].Visible = false;
                     grdSubGroupAdd.Columns["Sub Group Id"].Visible = false;
+                    grdSubGroupAdd.Columns["Products"].Visible = false;
                     grdSubGroupAdd.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdSubGroupAdd.Columns["Selected Product Group"].ReadOnly = true;
                     grdSubGroupAdd.Columns["Selected Product Subgroup"].ReadOnly = true;
                     grdSubGroupAdd.Columns["Group Id"].ReadOnly = true;
                     grdSubGroupAdd.Columns["Sub Group Id"].ReadOnly = true;
-
+                    udfnRemoveGroup();
                 }
                 else
                 {
@@ -296,7 +298,32 @@ namespace ROMS
             finally
             {
                 grdSubGroupAdd.ClearSelection();
-                //this.grdSubGroupAdd.Sort(this.grdSubGroupAdd.Columns[0], ListSortDirection.Descending);
+                this.grdSubGroupAdd.Sort(this.grdSubGroupAdd.Columns[2], ListSortDirection.Ascending);
+            }
+        }
+        public void udfnRemoveGroup()
+        {
+            try
+            {
+                string varRemoveGroup = "";
+                for (int j = 0; j < dtSubGroupAdd.Rows.Count; j++)
+                {
+                    varRemoveGroup = Convert.ToString(grdSubGroupAdd.Rows[j].Cells["Sub Group Id"].Value);
+                    for (int i = 0; i < dtSubGroup.Rows.Count; i++)
+                    {
+                        if (varRemoveGroup == Convert.ToString(dtSubGroup.Rows[i]["Sub Group Id"]))
+                        {
+                            dtSubGroup.Rows[i].Delete();
+                            dtSubGroup.AcceptChanges();
+                        }
+                    } 
+                }
+                grdSubGroup.DataSource = dtSubGroup;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnSelectedSubGroupRemove()
@@ -459,6 +486,8 @@ namespace ROMS
             finally
             {
                 grdSubGroup.ClearSelection();
+                this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending);
+                this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Descending);
             }
         }
 
@@ -466,25 +495,17 @@ namespace ROMS
         {
             try
             {
-                try
+                if (varUpdate == 0)
                 {
-                    if (varUpdate == 0)
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            this.Close();
-                            MainForm.objCP_BrandList.Show();
-                            MainForm.objCP_BrandList.udfnList();
-                        }
+                        this.Close();
+                        MainForm.objCP_BrandList.Show();
+                        MainForm.objCP_BrandList.udfnList();
                     }
-                    else { this.Close(); }
                 }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                }
+                else { this.Close(); }
             }
             catch (Exception ex)
             {
@@ -1146,6 +1167,7 @@ namespace ROMS
                 dtSubGroupAdd.Columns.Add("T.Pro", typeof(string));
                 dtSubGroupAdd.Columns.Add("Group Id", typeof(int));
                 dtSubGroupAdd.Columns.Add("Sub Group Id", typeof(int));
+                dtSubGroupAdd.Columns.Add("Products", typeof(string));
                 udfnList();
                 //udfnSubGroupAdd();
                 if (btnSave.Text == "Save")
@@ -1419,7 +1441,11 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
+                                dtSubGroup.Rows.Add(false,grdSubGroupAdd.SelectedRows[0].Cells["Selected Product Group"].Value, grdSubGroupAdd.SelectedRows[0].Cells["Selected Product Subgroup"].Value, grdSubGroupAdd.SelectedRows[0].Cells["Products"].Value, grdSubGroupAdd.SelectedRows[0].Cells["Group Id"].Value, grdSubGroupAdd.SelectedRows[0].Cells["Sub Group Id"].Value);
+                                dtSubGroup.AcceptChanges();
+                                grdSubGroup.DataSource = dtSubGroup;
                                 grdSubGroupAdd.Rows.RemoveAt(this.grdSubGroupAdd.SelectedRows[0].Index);
+                               
                             }
                             udfnTotalProducts();
                             break;
@@ -1431,6 +1457,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            { this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending); }
         }
 
         private void BtnRemove_Click(object sender, EventArgs e)
