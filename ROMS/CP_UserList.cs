@@ -91,7 +91,7 @@ namespace ROMS
                 {
                     DataSet objDsUser = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsUser = objDserv.udfnUserList(7, txtDUserList.Text.Trim(),"","",0);
+                    objDsUser = objDserv.udfnUserList(7, txtDUserList.Text.Trim(),"","",0,"");
                     objDserv.CloseConnection();
                     if (objDsUser != null)
                     {
@@ -104,7 +104,7 @@ namespace ROMS
                         }
                     }
                 }
-                objDs = objspservice.udfnUserList(2,(txtDUserList.Text),"","", varUserId);
+                objDs = objspservice.udfnUserList(2,(txtDUserList.Text),"","", varUserId,"");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -670,7 +670,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtDUserList.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnUserList(5, txtDUserList.Text, "","",0);
+                    objDs = objspdservice.udfnUserList(5, txtDUserList.Text, "","",0,"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

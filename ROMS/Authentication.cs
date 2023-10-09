@@ -137,7 +137,7 @@ namespace ROMS
                 {
                     SPDataService objDser = new SPDataService();
                     int count = 0;
-                    objDs = objDser.udfnUserList(0,varUserName ,txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text),0);
+                    objDs = objDser.udfnUserList(0,varUserName ,txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text),0,"");
                     objDser.CloseConnection();
                     if (objDs != null) {
                         if (objDs.Tables.Count > 0) {
@@ -150,6 +150,7 @@ namespace ROMS
                                     MainForm.pbUserName = objDs.Tables[1].Rows[0]["UserName"].ToString();
                                     MainForm.pbUserRoleName = objDs.Tables[1].Rows[0]["RoleName"].ToString();
                                     MainForm.pbUserPassKey = objDs.Tables[1].Rows[0]["PassKey"].ToString();
+                                    MainForm.pbUserPassKeyValue = objDs.Tables[1].Rows[0]["PasskeyValue"].ToString();
                                     MainForm.pbVersion = lblDVersion.Text;
                                     MainForm.pbHostName = Dns.GetHostName();
                                     MainForm.pbSSSSoftwareName = udfnDBName();

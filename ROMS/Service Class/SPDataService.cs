@@ -1080,7 +1080,8 @@ namespace ROMS
 
         // Created by : Deepa    Modified by: Sathish
         // Created on : 16-08-2023 Modified on: 22-08-2023
-        public DataSet udfnUserList(int paraviewType,string paraUserName, string paraLoginId, string paraPassword,int paraUser)
+        //modified  Sivabharathi on 9/10/2023
+        public DataSet udfnUserList(int paraviewType,string paraUserName, string paraLoginId, string paraPassword,int paraUser,string @paraPasskey)
         {
             DataSet ds = new DataSet();
             try
@@ -1092,6 +1093,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserName", paraUserName);
                 varSqlCommand.Parameters.AddWithValue("@paraLoginId", paraLoginId);
                 varSqlCommand.Parameters.AddWithValue("@paraPassword", paraPassword);
+                varSqlCommand.Parameters.AddWithValue("@@paraPasskey", @paraPasskey);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraUser", paraUser);

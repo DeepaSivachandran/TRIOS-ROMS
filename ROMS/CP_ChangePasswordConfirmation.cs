@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Security.Cryptography;
 namespace ROMS
 {
+    //Sivabharathi  Created on:9/10/2023
     public partial class CP_ChangePasswordConfirmation : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
+        public int flag = 0;
         private ToolTip tpbrandname = new ToolTip();
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
@@ -25,65 +26,111 @@ namespace ROMS
         {
             InitializeComponent();
         }
-
-        private void CP_Brand_Load(object sender, EventArgs e)
+        public string GenerateMD5(string HashString)
         {
-            //try
-            //{
-            //    this.ActiveControl = txtEStatetName;
-            //    udfnEdit();
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
+            return string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(HashString)).Select(s => s.ToString("x2")));
         }
-
-
-        private void udfnEdit()
+        private void BtnConfirm_Click(object sender, EventArgs e)
         {
             try
             {
-                if (varbrandcode != "")
+                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPasswordVerification()
+        {
+            try
+            {
+                if (txtPassKey.Text != "")
                 {
-                    SPDataService objspservice = new SPDataService();
-                    DataSet objDS = new DataSet();
-                 //   objDS = objspservice.udfnSPBrandList("EditLoad", varbrandcode, MainForm.pbUserID, MainForm.pbIpAddress);
-                    objspservice.CloseConnection();
-
-                    if (objDS != null)
+                    DataSet objDs = new DataSet();
+                    if (txtPassKey.TextLength != 0)
                     {
-                        //if (objDS.Tables[0].Rows.Count > 0)
-                        //{
-                        //    txtTEInvoiceUnitName.Text = objDS.Tables[0].Rows[0]["UName"].ToString().Replace("''","'");
-                        //    txtDUnitName.Text = objDS.Tables[0].Rows[0]["EIName"].ToString().Replace("''", "'");
-                        //    /*  txtDEIUnitName.Text = objDS.Tables[0].Rows[0]["BTLabelName"].ToString().Replace("''", "'");
-                        //      txtELabelName.Text = objDS.Tables[0].Rows[0]["BELabelName"].ToString().Replace("''", "'"); */
-
-                        //    btnSave.Text = "Update";
-                        //}
+                        SPDataService objDser = new SPDataService();
+                        int count = 0;
+                        objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, GenerateMD5(txtPassKey.Text), 0,"");
+                        objDser.CloseConnection();
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            {
+                                count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
+                                if (count != 0)
+                                {
+                                    flag = 1;
+                                    this.Close();
+                                }
+                                else if (count == 0)
+                                {
+                                    //DialogResult response = MessageBox.Show(Convert.ToString(objDs.Tables[1].Rows[0]["MessageText"]), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                                    SPDataService objDServ = new SPDataService();
+                                    string varMessage = objDServ.udfnGetMessages(62);
+                                    objDServ.CloseConnection();
+                                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    txtPassKey.Text = "";
+                                    txtPassKey.Focus();
+                                }
+                            }
+                        }
                     }
+                }
+                else
+                {
 
                 }
-
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
-            {
-
-            }
         }
-
-        private void txtTBrandName_Enter(object sender, EventArgs e)
+        public void udfnPassKeyVerification()
         {
             try
             {
-                //txtTEInvoiceUnitName.BackColor = Color.LemonChiffon;
+                if (txtPassKey.Text != "")
+                {
+                    DataSet objDs = new DataSet();
+                    if (txtPassKey.TextLength != 0)
+                    {
+                        SPDataService objDser = new SPDataService();
+                        int count = 0;
+                        objDs = objDser.udfnUserList(0, "","","",0,GenerateMD5(txtPassKey.Text));
+                        objDser.CloseConnection();
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            {
+                                count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
+                                if (count != 0)
+                                {
+                                    flag = 1;
+                                    this.Close();
+                                }
+                                else if (count == 0)
+                                {
+                                    //DialogResult response = MessageBox.Show(Convert.ToString(objDs.Tables[1].Rows[0]["MessageText"]), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                                    SPDataService objDServ = new SPDataService();
+                                    string varMessage = objDServ.udfnGetMessages(62);
+                                    objDServ.CloseConnection();
+                                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    txtPassKey.Text = "";
+                                    txtPassKey.Focus();
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+
+                }
             }
             catch (Exception ex)
             {
@@ -91,14 +138,49 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void txtTBrandName_KeyDown(object sender, KeyEventArgs e)
+        private void CP_ChangePasswordConfirmation_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                this.ActiveControl = txtPassKey;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtPassKey_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPassKey.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtPassKey_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPassKey.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtPassKey_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //txtELabelName.Focus();
+                    btnConfirm.Focus();
                 }
             }
             catch (Exception ex)
@@ -107,147 +189,5 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void txtTBrandName_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                //txtTEInvoiceUnitName.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtEBrandName_Enter(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    txtEStatetName.BackColor = Color.LemonChiffon;
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
-
-        private void txtEBrandName_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    //txtTEInvoiceUnitName.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtEBrandName_Leave(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    txtEStatetName.BackColor = Color.White;
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-            //}
-        }
-
-        private void txtTLabelName_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                //txtTLabelName.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtTLabelName_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                   // btnConfirm.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtTLabelName_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                //txtTLabelName.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtELabelName_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                //txtELabelName.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtELabelName_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    //txtTLabelName.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtELabelName_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                //txtELabelName.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-
-       
     }
 }

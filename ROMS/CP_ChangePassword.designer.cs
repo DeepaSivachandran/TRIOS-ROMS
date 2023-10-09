@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_ChangePassword));
-            this.errChangePwd = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epPassword = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsDesignationList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlprofile = new System.Windows.Forms.Panel();
@@ -50,7 +50,7 @@
             this.lblUserRole = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.errChangePwd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPassword)).BeginInit();
             this.tsDesignationList.SuspendLayout();
             this.pnlprofile.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -58,9 +58,9 @@
             this.gpChangePassword.SuspendLayout();
             this.SuspendLayout();
             // 
-            // errChangePwd
+            // epPassword
             // 
-            this.errChangePwd.ContainerControl = this;
+            this.epPassword.ContainerControl = this;
             // 
             // tsDesignationList
             // 
@@ -130,6 +130,7 @@
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.BtnGenerate_Click);
             // 
             // btnView
             // 
@@ -153,7 +154,6 @@
             this.txtGenratePasskey.ReadOnly = true;
             this.txtGenratePasskey.Size = new System.Drawing.Size(103, 40);
             this.txtGenratePasskey.TabIndex = 0;
-            this.txtGenratePasskey.Text = "200203";
             this.txtGenratePasskey.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtGenratePasskey.Enter += new System.EventHandler(this.TxtGenratePasskey_Enter);
             this.txtGenratePasskey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGenratePasskey_KeyDown);
@@ -312,7 +312,7 @@
             this.Load += new System.EventHandler(this.CP_ChangePassword_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_ChangePassword_KeyDown);
             this.Leave += new System.EventHandler(this.CP_ChangePassword_Leave);
-            ((System.ComponentModel.ISupportInitialize)(this.errChangePwd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPassword)).EndInit();
             this.tsDesignationList.ResumeLayout(false);
             this.tsDesignationList.PerformLayout();
             this.pnlprofile.ResumeLayout(false);
@@ -328,7 +328,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.ErrorProvider errChangePwd;
+        private System.Windows.Forms.ErrorProvider epPassword;
         private System.Windows.Forms.ToolStrip tsDesignationList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnlprofile;
