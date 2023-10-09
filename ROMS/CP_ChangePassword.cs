@@ -21,7 +21,8 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
-
+        public int varId=0;
+        public int varUserId = 0;
         private ToolTip tpoldpwd = new ToolTip();
         private ToolTip tpnewpwd = new ToolTip();
         private ToolTip tpconfirmpwd = new ToolTip();
@@ -30,24 +31,41 @@ namespace ROMS
             InitializeComponent();
             objValidation.resolutionsettingsForm(this);
         }
-
-
-        private void CP_ChangePassword_Load(object sender, EventArgs e)
+        public void udfnLoad()
         {
-           try
+            try
             {
-                this.ActiveControl = txtOldPassword;
+                lblUserName.Text = MainForm.pbUserName;
+                lblUserRole.Text = MainForm.pbUserRoleName;
+                varId = Convert.ToInt32(MainForm.pbUserPassKey);
+                if (varId==20)
+                {
+                    gpChangePassKey.Visible = true;
+                }
+                else
+                { gpChangePassKey.Visible = false; }
             }
             catch (Exception ex)
             {
-
                 objError = new DataError();
                 objError.WriteFile(ex);
                 throw ex;
             }
-           
+        }
 
-
+        private void CP_ChangePassword_Load(object sender, EventArgs e)
+        {
+           try
+           {
+                this.ActiveControl = txtOldPassword;
+                udfnLoad();
+           }
+           catch (Exception ex)
+           {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                throw ex;
+           }
         }
 
         private void txtOldPassword_Enter(object sender, EventArgs e)
@@ -92,7 +110,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtNewPassword_Enter(object sender, EventArgs e)
         {
             try
@@ -105,7 +122,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtNewPassword_Leave(object sender, EventArgs e)
         {
             try
@@ -118,7 +134,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtNewPassword_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -135,7 +150,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtConfirmPassword_Enter(object sender, EventArgs e)
         {
             try
@@ -148,7 +162,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtConfirmPassword_Leave(object sender, EventArgs e)
         {
             try
@@ -161,7 +174,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void txtConfirmPassword_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -178,7 +190,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -251,9 +262,6 @@ namespace ROMS
                     txtConfirmPassword.Focus();
                     return;
                 }
-
-
-
                 string result;
                 SPDataService objspservice = new SPDataService();
                 //  result = objspservice.udfnSPChangePwd(MainForm.pbUserID,GenerateMD5(txtOldPassword.Text), GenerateMD5(txtNewPassword.Text), MainForm.pbIpAddress, "Change Pwd");
@@ -277,8 +285,6 @@ namespace ROMS
                 {
                     MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
-
                 udfnclear();
             }
             catch (Exception ex)
@@ -287,7 +293,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void udfnclear()
         {
             try
@@ -325,7 +330,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CP_ChangePassword_Leave(object sender, EventArgs e)
         {
             try
@@ -340,12 +344,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void GroupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -359,7 +357,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnUpdatePasskey_Click(object sender, EventArgs e)
         {
             try
@@ -374,27 +371,37 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void BtnView_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnUpdatePasskey_Click_1(object sender, EventArgs e)
+        private void TxtGenratePasskey_Enter(object sender, EventArgs e)
         {
             try
             {
-                if (txtGenratePasskey.PasswordChar == '\0')  
+                txtOldPassword.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtGenratePasskey_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtOldPassword.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtGenratePasskey_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
                 {
-                    txtGenratePasskey.PasswordChar = '*';
-                    this.btnUpdatePasskey.Image = global::ROMS.Properties.Resources.close_eye;
-                    this.btnUpdatePasskey.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                }
-                else
-                {
-                    txtGenratePasskey.PasswordChar = '\0'; 
-                    this.btnUpdatePasskey.Image = global::ROMS.Properties.Resources.view_eye;
-                    this.btnUpdatePasskey.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
@@ -402,7 +409,29 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-           
+        }
+        private void BtnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtGenratePasskey.PasswordChar == '\0')
+                {
+                    txtGenratePasskey.PasswordChar = '*';
+                    this.btnView.Image = global::ROMS.Properties.Resources.close_eye;
+                    this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                }
+                else
+                {
+                    txtGenratePasskey.PasswordChar = '\0';
+                    this.btnView.Image = global::ROMS.Properties.Resources.view_eye;
+                    this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

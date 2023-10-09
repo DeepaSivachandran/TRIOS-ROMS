@@ -149,6 +149,7 @@ namespace ROMS
                                     MainForm.pbUserRoleId = objDs.Tables[1].Rows[0]["UserRoleCode"].ToString();
                                     MainForm.pbUserName = objDs.Tables[1].Rows[0]["UserName"].ToString();
                                     MainForm.pbUserRoleName = objDs.Tables[1].Rows[0]["RoleName"].ToString();
+                                    MainForm.pbUserPassKey = objDs.Tables[1].Rows[0]["PassKey"].ToString();
                                     MainForm.pbVersion = lblDVersion.Text;
                                     MainForm.pbHostName = Dns.GetHostName();
                                     MainForm.pbSSSSoftwareName = udfnDBName();

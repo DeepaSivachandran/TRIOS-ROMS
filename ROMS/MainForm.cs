@@ -26,6 +26,7 @@ namespace ROMS
         public static string pbIpAddress = "";
         public static string pbHostName = "";
         public static string pbUserRoleName = "";
+        public static string pbUserPassKey = "";
         public static string pbReleaseDt = "";
         public static string pbSSSSoftwareName = "";
         public static string pbRomsSoftwareName = "";
