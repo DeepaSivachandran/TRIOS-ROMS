@@ -1,0 +1,460 @@
+﻿namespace ROMS
+{
+    partial class REPORT_CP_Rackgroup
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.ReportRackgroup = new System.Windows.Forms.ToolStrip();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.pnlReportRackgroup = new System.Windows.Forms.Panel();
+            this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.txtRack = new System.Windows.Forms.TextBox();
+            this.lblRack = new System.Windows.Forms.Label();
+            this.txtRackIncharge = new System.Windows.Forms.TextBox();
+            this.lblRackIncharge = new System.Windows.Forms.Label();
+            this.txtRackgroup = new System.Windows.Forms.TextBox();
+            this.lblRackgroup = new System.Windows.Forms.Label();
+            this.btnListPrint = new System.Windows.Forms.Button();
+            this.cmbReportType = new System.Windows.Forms.ComboBox();
+            this.lblReportType = new System.Windows.Forms.Label();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.lvRackgroup = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvRackIncharge = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblRackgroupCode = new System.Windows.Forms.Label();
+            this.lvRack = new System.Windows.Forms.ListView();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblRackInchargeCode = new System.Windows.Forms.Label();
+            this.lblRackCode = new System.Windows.Forms.Label();
+            this.ReportRackgroup.SuspendLayout();
+            this.pnlReportRackgroup.SuspendLayout();
+            this.grpfilter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // ReportRackgroup
+            // 
+            this.ReportRackgroup.BackColor = System.Drawing.Color.White;
+            this.ReportRackgroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReportRackgroup.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.ReportRackgroup.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ReportRackgroup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tspHeader});
+            this.ReportRackgroup.Location = new System.Drawing.Point(0, 0);
+            this.ReportRackgroup.Name = "ReportRackgroup";
+            this.ReportRackgroup.Size = new System.Drawing.Size(1354, 25);
+            this.ReportRackgroup.TabIndex = 35;
+            this.ReportRackgroup.Text = "Rackgroup Report";
+            // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(123, 22);
+            this.tspHeader.Text = "Rackgroup Report";
+            // 
+            // pnlReportRackgroup
+            // 
+            this.pnlReportRackgroup.BackColor = System.Drawing.Color.White;
+            this.pnlReportRackgroup.Controls.Add(this.lvRack);
+            this.pnlReportRackgroup.Controls.Add(this.lvRackIncharge);
+            this.pnlReportRackgroup.Controls.Add(this.lvRackgroup);
+            this.pnlReportRackgroup.Controls.Add(this.grpfilter);
+            this.pnlReportRackgroup.Controls.Add(this.lblNoRecordsFound);
+            this.pnlReportRackgroup.Controls.Add(this.picLoader);
+            this.pnlReportRackgroup.Controls.Add(this.RPTViewer);
+            this.pnlReportRackgroup.Location = new System.Drawing.Point(0, 31);
+            this.pnlReportRackgroup.Name = "pnlReportRackgroup";
+            this.pnlReportRackgroup.Size = new System.Drawing.Size(1354, 642);
+            this.pnlReportRackgroup.TabIndex = 958788;
+            // 
+            // grpfilter
+            // 
+            this.grpfilter.Controls.Add(this.lblRackCode);
+            this.grpfilter.Controls.Add(this.lblRackInchargeCode);
+            this.grpfilter.Controls.Add(this.lblRackgroupCode);
+            this.grpfilter.Controls.Add(this.txtRack);
+            this.grpfilter.Controls.Add(this.lblRack);
+            this.grpfilter.Controls.Add(this.txtRackIncharge);
+            this.grpfilter.Controls.Add(this.lblRackIncharge);
+            this.grpfilter.Controls.Add(this.txtRackgroup);
+            this.grpfilter.Controls.Add(this.lblRackgroup);
+            this.grpfilter.Controls.Add(this.btnListPrint);
+            this.grpfilter.Controls.Add(this.cmbReportType);
+            this.grpfilter.Controls.Add(this.lblReportType);
+            this.grpfilter.Location = new System.Drawing.Point(12, 2);
+            this.grpfilter.Name = "grpfilter";
+            this.grpfilter.Size = new System.Drawing.Size(1339, 58);
+            this.grpfilter.TabIndex = 0;
+            this.grpfilter.TabStop = false;
+            this.grpfilter.Text = "Filter By";
+            // 
+            // txtRack
+            // 
+            this.txtRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtRack.Location = new System.Drawing.Point(1025, 19);
+            this.txtRack.MaxLength = 100;
+            this.txtRack.Name = "txtRack";
+            this.txtRack.Size = new System.Drawing.Size(215, 27);
+            this.txtRack.TabIndex = 1111182;
+            this.txtRack.TextChanged += new System.EventHandler(this.TxtRack_TextChanged);
+            this.txtRack.Enter += new System.EventHandler(this.TxtRack_Enter);
+            this.txtRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRack_KeyDown);
+            this.txtRack.Leave += new System.EventHandler(this.TxtRack_Leave);
+            // 
+            // lblRack
+            // 
+            this.lblRack.AutoSize = true;
+            this.lblRack.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRack.Location = new System.Drawing.Point(984, 22);
+            this.lblRack.Name = "lblRack";
+            this.lblRack.Size = new System.Drawing.Size(35, 20);
+            this.lblRack.TabIndex = 1111181;
+            this.lblRack.Text = "Rack";
+            // 
+            // txtRackIncharge
+            // 
+            this.txtRackIncharge.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtRackIncharge.Location = new System.Drawing.Point(763, 19);
+            this.txtRackIncharge.MaxLength = 100;
+            this.txtRackIncharge.Name = "txtRackIncharge";
+            this.txtRackIncharge.Size = new System.Drawing.Size(215, 27);
+            this.txtRackIncharge.TabIndex = 1111180;
+            this.txtRackIncharge.TextChanged += new System.EventHandler(this.TxtRackIncharge_TextChanged);
+            this.txtRackIncharge.Enter += new System.EventHandler(this.TxtRackIncharge_Enter);
+            this.txtRackIncharge.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRackIncharge_KeyDown);
+            this.txtRackIncharge.Leave += new System.EventHandler(this.TxtRackIncharge_Leave);
+            // 
+            // lblRackIncharge
+            // 
+            this.lblRackIncharge.AutoSize = true;
+            this.lblRackIncharge.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRackIncharge.Location = new System.Drawing.Point(671, 22);
+            this.lblRackIncharge.Name = "lblRackIncharge";
+            this.lblRackIncharge.Size = new System.Drawing.Size(86, 20);
+            this.lblRackIncharge.TabIndex = 1111179;
+            this.lblRackIncharge.Text = "Rack Incharge";
+            // 
+            // txtRackgroup
+            // 
+            this.txtRackgroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtRackgroup.Location = new System.Drawing.Point(450, 19);
+            this.txtRackgroup.MaxLength = 100;
+            this.txtRackgroup.Name = "txtRackgroup";
+            this.txtRackgroup.Size = new System.Drawing.Size(215, 27);
+            this.txtRackgroup.TabIndex = 1111178;
+            this.txtRackgroup.TextChanged += new System.EventHandler(this.TxtRackgroup_TextChanged);
+            this.txtRackgroup.Enter += new System.EventHandler(this.TxtRackgroup_Enter);
+            this.txtRackgroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRackgroup_KeyDown);
+            this.txtRackgroup.Leave += new System.EventHandler(this.TxtRackgroup_Leave);
+            // 
+            // lblRackgroup
+            // 
+            this.lblRackgroup.AutoSize = true;
+            this.lblRackgroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRackgroup.Location = new System.Drawing.Point(373, 22);
+            this.lblRackgroup.Name = "lblRackgroup";
+            this.lblRackgroup.Size = new System.Drawing.Size(71, 20);
+            this.lblRackgroup.TabIndex = 1111177;
+            this.lblRackgroup.Text = "Rack Group";
+            // 
+            // btnListPrint
+            // 
+            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListPrint.Location = new System.Drawing.Point(1246, 16);
+            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnListPrint.Name = "btnListPrint";
+            this.btnListPrint.Size = new System.Drawing.Size(70, 33);
+            this.btnListPrint.TabIndex = 5;
+            this.btnListPrint.Text = "Print";
+            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListPrint.UseVisualStyleBackColor = true;
+            this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
+            this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
+            this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
+            // 
+            // cmbReportType
+            // 
+            this.cmbReportType.FormattingEnabled = true;
+            this.cmbReportType.Location = new System.Drawing.Point(88, 19);
+            this.cmbReportType.Name = "cmbReportType";
+            this.cmbReportType.Size = new System.Drawing.Size(279, 27);
+            this.cmbReportType.TabIndex = 0;
+            this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.CmbReportType_SelectedIndexChanged);
+            this.cmbReportType.Enter += new System.EventHandler(this.CmbReportType_Enter);
+            this.cmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReportType_KeyDown);
+            this.cmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReportType_KeyPress);
+            this.cmbReportType.Leave += new System.EventHandler(this.CmbReportType_Leave);
+            // 
+            // lblReportType
+            // 
+            this.lblReportType.AutoSize = true;
+            this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportType.Location = new System.Drawing.Point(9, 22);
+            this.lblReportType.Name = "lblReportType";
+            this.lblReportType.Size = new System.Drawing.Size(73, 20);
+            this.lblReportType.TabIndex = 1111176;
+            this.lblReportType.Text = "Report type";
+            // 
+            // lblNoRecordsFound
+            // 
+            this.lblNoRecordsFound.AutoSize = true;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 344);
+            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.TabIndex = 958789;
+            this.lblNoRecordsFound.Text = "No Records Found";
+            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(3, 66);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1351, 576);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958790;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
+            // 
+            // RPTViewer
+            // 
+            this.RPTViewer.ActiveViewIndex = -1;
+            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RPTViewer.Location = new System.Drawing.Point(3, 66);
+            this.RPTViewer.Name = "RPTViewer";
+            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
+            this.RPTViewer.Size = new System.Drawing.Size(1348, 573);
+            this.RPTViewer.TabIndex = 1111227;
+            this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.RPTViewer.Visible = false;
+            // 
+            // lvRackgroup
+            // 
+            this.lvRackgroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvRackgroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvRackgroup.HideSelection = false;
+            this.lvRackgroup.Location = new System.Drawing.Point(462, 47);
+            this.lvRackgroup.Name = "lvRackgroup";
+            this.lvRackgroup.Size = new System.Drawing.Size(457, 157);
+            this.lvRackgroup.TabIndex = 1111229;
+            this.lvRackgroup.UseCompatibleStateImageBehavior = false;
+            this.lvRackgroup.View = System.Windows.Forms.View.Details;
+            this.lvRackgroup.Visible = false;
+            this.lvRackgroup.DoubleClick += new System.EventHandler(this.LvRackgroup_DoubleClick);
+            this.lvRackgroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvRackgroup_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 120;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 130;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
+            // 
+            // lvRackIncharge
+            // 
+            this.lvRackIncharge.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.lvRackIncharge.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvRackIncharge.HideSelection = false;
+            this.lvRackIncharge.Location = new System.Drawing.Point(775, 47);
+            this.lvRackIncharge.Name = "lvRackIncharge";
+            this.lvRackIncharge.Size = new System.Drawing.Size(457, 157);
+            this.lvRackIncharge.TabIndex = 1111230;
+            this.lvRackIncharge.UseCompatibleStateImageBehavior = false;
+            this.lvRackIncharge.View = System.Windows.Forms.View.Details;
+            this.lvRackIncharge.Visible = false;
+            this.lvRackIncharge.DoubleClick += new System.EventHandler(this.LvRackIncharge_DoubleClick);
+            this.lvRackIncharge.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvRackIncharge_KeyDown);
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 120;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 130;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Width = 0;
+            // 
+            // lblRackgroupCode
+            // 
+            this.lblRackgroupCode.AutoSize = true;
+            this.lblRackgroupCode.Location = new System.Drawing.Point(398, 2);
+            this.lblRackgroupCode.Name = "lblRackgroupCode";
+            this.lblRackgroupCode.Size = new System.Drawing.Size(16, 20);
+            this.lblRackgroupCode.TabIndex = 1111232;
+            this.lblRackgroupCode.Text = "0";
+            this.lblRackgroupCode.Visible = false;
+            // 
+            // lvRack
+            // 
+            this.lvRack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9});
+            this.lvRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvRack.HideSelection = false;
+            this.lvRack.Location = new System.Drawing.Point(1037, 47);
+            this.lvRack.Name = "lvRack";
+            this.lvRack.Size = new System.Drawing.Size(291, 157);
+            this.lvRack.TabIndex = 1111231;
+            this.lvRack.UseCompatibleStateImageBehavior = false;
+            this.lvRack.View = System.Windows.Forms.View.Details;
+            this.lvRack.Visible = false;
+            this.lvRack.DoubleClick += new System.EventHandler(this.LvRack_DoubleClick);
+            this.lvRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvRack_KeyDown);
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Width = 120;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 130;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Width = 0;
+            // 
+            // lblRackInchargeCode
+            // 
+            this.lblRackInchargeCode.AutoSize = true;
+            this.lblRackInchargeCode.Location = new System.Drawing.Point(703, 2);
+            this.lblRackInchargeCode.Name = "lblRackInchargeCode";
+            this.lblRackInchargeCode.Size = new System.Drawing.Size(16, 20);
+            this.lblRackInchargeCode.TabIndex = 1111233;
+            this.lblRackInchargeCode.Text = "0";
+            this.lblRackInchargeCode.Visible = false;
+            // 
+            // lblRackCode
+            // 
+            this.lblRackCode.AutoSize = true;
+            this.lblRackCode.Location = new System.Drawing.Point(984, 2);
+            this.lblRackCode.Name = "lblRackCode";
+            this.lblRackCode.Size = new System.Drawing.Size(16, 20);
+            this.lblRackCode.TabIndex = 1111234;
+            this.lblRackCode.Text = "0";
+            this.lblRackCode.Visible = false;
+            // 
+            // REPORT_CP_Rackgroup
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkGray;
+            this.ClientSize = new System.Drawing.Size(1354, 675);
+            this.Controls.Add(this.pnlReportRackgroup);
+            this.Controls.Add(this.ReportRackgroup);
+            this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "REPORT_CP_Rackgroup";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "HSN Report";
+            this.Load += new System.EventHandler(this.REPORT_CP_Rackgroup_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Rackgroup_KeyDown);
+            this.ReportRackgroup.ResumeLayout(false);
+            this.ReportRackgroup.PerformLayout();
+            this.pnlReportRackgroup.ResumeLayout(false);
+            this.pnlReportRackgroup.PerformLayout();
+            this.grpfilter.ResumeLayout(false);
+            this.grpfilter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ToolStrip ReportRackgroup;
+        private System.Windows.Forms.ToolStripLabel tspHeader;
+        private System.Windows.Forms.Panel pnlReportRackgroup;
+        private System.Windows.Forms.Label lblNoRecordsFound;
+        private System.Windows.Forms.GroupBox grpfilter;
+        private System.Windows.Forms.ComboBox cmbReportType;
+        private System.Windows.Forms.Label lblReportType;
+        public System.Windows.Forms.PictureBox picLoader;
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
+        private System.Windows.Forms.Button btnListPrint;
+        private System.Windows.Forms.Label lblRackgroup;
+        private System.Windows.Forms.TextBox txtRackgroup;
+        private System.Windows.Forms.Label lblRackIncharge;
+        private System.Windows.Forms.TextBox txtRackIncharge;
+        private System.Windows.Forms.Label lblRack;
+        private System.Windows.Forms.TextBox txtRack;
+        public System.Windows.Forms.ListView lvRackgroup;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        public System.Windows.Forms.ListView lvRackIncharge;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.Label lblRackgroupCode;
+        public System.Windows.Forms.ListView lvRack;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.Label lblRackInchargeCode;
+        private System.Windows.Forms.Label lblRackCode;
+    }
+}

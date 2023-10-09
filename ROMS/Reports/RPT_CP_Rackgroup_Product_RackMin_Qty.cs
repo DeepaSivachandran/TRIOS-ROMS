@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_CP_Rackgroup_Product : ReportClass {
+    public class RPT_CP_Rackgroup_Product_RackMin_Qty : ReportClass {
         
-        public RPT_CP_Rackgroup_Product() {
+        public RPT_CP_Rackgroup_Product_RackMin_Qty() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_CP_Rackgroup_Product.rpt";
+                return "RPT_CP_Rackgroup_Product_RackMin_Qty.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_CP_Rackgroup_Product.rpt";
+                return "ROMS.Reports.RPT_CP_Rackgroup_Product_RackMin_Qty.rpt";
             }
             set {
                 // Do nothing
@@ -170,9 +170,9 @@ namespace ROMS.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_CP_Rackgroup_Product : Component, ICachedReport {
+    public class CachedRPT_CP_Rackgroup_Product_RackMin_Qty : Component, ICachedReport {
         
-        public CachedRPT_CP_Rackgroup_Product() {
+        public CachedRPT_CP_Rackgroup_Product_RackMin_Qty() {
         }
         
         [Browsable(false)]
@@ -209,7 +209,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_CP_Rackgroup_Product rpt = new RPT_CP_Rackgroup_Product();
+            RPT_CP_Rackgroup_Product_RackMin_Qty rpt = new RPT_CP_Rackgroup_Product_RackMin_Qty();
             rpt.Site = this.Site;
             return rpt;
         }

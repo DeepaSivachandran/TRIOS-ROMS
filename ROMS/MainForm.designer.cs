@@ -100,10 +100,11 @@ namespace ROMS
             this.brandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productSubgroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
-            this.rackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rackGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -632,7 +633,8 @@ namespace ROMS
             this.brandToolStripMenuItem,
             this.productSubgroupToolStripMenuItem,
             this.stockLocationToolStripMenuItem,
-            this.rackToolStripMenuItem});
+            this.rackToolStripMenuItem,
+            this.rackGroupToolStripMenuItem});
             this.mastersToolStripMenuItem1.Name = "mastersToolStripMenuItem1";
             this.mastersToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.mastersToolStripMenuItem1.Text = "Masters";
@@ -700,6 +702,13 @@ namespace ROMS
             this.stockLocationToolStripMenuItem.Text = "Stock Location";
             this.stockLocationToolStripMenuItem.Click += new System.EventHandler(this.StockLocationToolStripMenuItem_Click);
             // 
+            // rackToolStripMenuItem
+            // 
+            this.rackToolStripMenuItem.Name = "rackToolStripMenuItem";
+            this.rackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rackToolStripMenuItem.Text = "Rack";
+            this.rackToolStripMenuItem.Click += new System.EventHandler(this.RackToolStripMenuItem_Click);
+            // 
             // tsmMyProfile
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -729,12 +738,12 @@ namespace ROMS
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
-            // rackToolStripMenuItem
+            // rackGroupToolStripMenuItem
             // 
-            this.rackToolStripMenuItem.Name = "rackToolStripMenuItem";
-            this.rackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.rackToolStripMenuItem.Text = "Rack";
-            this.rackToolStripMenuItem.Click += new System.EventHandler(this.RackToolStripMenuItem_Click);
+            this.rackGroupToolStripMenuItem.Name = "rackGroupToolStripMenuItem";
+            this.rackGroupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rackGroupToolStripMenuItem.Text = "Rack Group";
+            this.rackGroupToolStripMenuItem.Click += new System.EventHandler(this.RackGroupToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -839,5 +848,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem productSubgroupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stockLocationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rackGroupToolStripMenuItem;
     }
 }

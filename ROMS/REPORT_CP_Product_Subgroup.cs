@@ -139,6 +139,37 @@ namespace ROMS
             try
             {
                 btnListPrint.Enabled = false;
+                /* Check product group is valid or not*/
+                string varId_Group = "0";
+                string varGroupName = "";
+                if (txtGroup.Text == "")
+                {
+                    varId_Group = "0";
+                    varGroupName = "-All-";
+                }
+                else
+                {
+                    DataSet objDsGroup = new DataSet();
+                    SPDataService objDServ1 = new SPDataService();
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim(), 0);
+                    objDServ1.CloseConnection();
+                    if (objDsGroup != null)
+                    {
+                        if (objDsGroup.Tables.Count > 0)
+                        {
+                            if (objDsGroup.Tables[0].Rows.Count > 0)
+                            {
+                                varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                }
+                if (varId_Group == "-1" || varId_Group == "0")
+                {
+                    varGroupName = "-All-";
+                }
+                else { varGroupName = txtGroup.Text.Trim(); }
+                lblGroupCode.Text = Convert.ToString(varId_Group);
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -147,7 +178,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnBrandList(10, "", 0, 0, 0, "", Convert.ToInt32(cmbStatus.SelectedValue));
+                objDs = objspservice.udfnSubGroupList(15,0,"", Convert.ToInt32(lblGroupCode.Text),0,"", Convert.ToInt32(cmbStatus.SelectedValue),0,0,0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -159,8 +190,9 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Brand.rpt");
-                    objBillreport.SetParameterValue("parastatusid", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Subgroup_StockLocation.rpt");
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
@@ -245,7 +277,6 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Subgroup.rpt");
                     objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
-                    //objBillreport.SetParameterValue("paraBrandName", Convert.ToString(varGroupName));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);

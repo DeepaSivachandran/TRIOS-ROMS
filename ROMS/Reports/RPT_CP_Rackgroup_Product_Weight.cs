@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_CP_Rackgroup : ReportClass {
+    public class RPT_CP_Rackgroup_Product_Weight : ReportClass {
         
-        public RPT_CP_Rackgroup() {
+        public RPT_CP_Rackgroup_Product_Weight() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_CP_Rackgroup.rpt";
+                return "RPT_CP_Rackgroup_Product_Weight.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_CP_Rackgroup.rpt";
+                return "ROMS.Reports.RPT_CP_Rackgroup_Product_Weight.rpt";
             }
             set {
                 // Do nothing
@@ -154,17 +154,25 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraStatusId {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraEMPID {
             get {
                 return this.DataDefinition.ParameterFields[5];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_paraRKGID {
+            get {
+                return this.DataDefinition.ParameterFields[6];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_CP_Rackgroup : Component, ICachedReport {
+    public class CachedRPT_CP_Rackgroup_Product_Weight : Component, ICachedReport {
         
-        public CachedRPT_CP_Rackgroup() {
+        public CachedRPT_CP_Rackgroup_Product_Weight() {
         }
         
         [Browsable(false)]
@@ -201,7 +209,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_CP_Rackgroup rpt = new RPT_CP_Rackgroup();
+            RPT_CP_Rackgroup_Product_Weight rpt = new RPT_CP_Rackgroup_Product_Weight();
             rpt.Site = this.Site;
             return rpt;
         }
