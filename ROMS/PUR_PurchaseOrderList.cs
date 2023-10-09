@@ -17,8 +17,7 @@ namespace ROMS
         public PUR_PurchaseOrderList()
         {
             InitializeComponent();
-        }
-
+        } 
         private void Button1_Click(object sender, EventArgs e)
         {
 
@@ -43,8 +42,7 @@ namespace ROMS
                 //MainForm.objPUR_PurchaseOrder.StartPosition = FormStartPosition.Manual;
                 //int dialogX = this.Location.X + (this.Width - MainForm.objPUR_PurchaseOrder.Width) / 2;
                 //int dialogY = this.Location.Y + (this.Height - MainForm.objPUR_PurchaseOrder.Height + 100) / 2;
-               // MainForm.objPUR_PurchaseOrder.Location = new Point(dialogX, dialogY);
-
+               //MainForm.objPUR_PurchaseOrder.Location = new Point(dialogX, dialogY); 
                 MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
                 MainForm.objPUR_PurchaseOrder.Show(); 
             }

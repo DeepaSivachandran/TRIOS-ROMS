@@ -1303,8 +1303,7 @@ namespace ROMS
             {
                 dgvSupplierScheduleList.ClearSelection(); 
             }
-        }
-
+        } 
         private void CmbConcern_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1369,8 +1368,7 @@ namespace ROMS
             {
                 cmbConcern.BackColor = Color.White;
             }
-            catch (Exception ex)
-
+            catch (Exception ex) 
             {
                 objError = new DataError();
                 objError.WriteFile(ex);

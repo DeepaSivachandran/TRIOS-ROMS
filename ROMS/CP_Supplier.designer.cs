@@ -213,6 +213,8 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.tbSchedule = new System.Windows.Forms.TabPage();
             this.grpSchedule = new System.Windows.Forms.GroupBox();
+            this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
+            this.lblSearchByProduct2 = new System.Windows.Forms.Label();
             this.cmbMappedorderrype = new System.Windows.Forms.ComboBox();
             this.lblMappedNoRecords = new System.Windows.Forms.Label();
             this.lblMappedOrderTypeId = new System.Windows.Forms.Label();
@@ -226,8 +228,6 @@
             this.lblMappedproductcountlist = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btn_Close2 = new System.Windows.Forms.Button();
-            this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
-            this.lblSearchByProduct2 = new System.Windows.Forms.Label();
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -2460,6 +2460,29 @@
             this.grpSchedule.TabIndex = 958809;
             this.grpSchedule.TabStop = false;
             // 
+            // txtSearchByProduct2
+            // 
+            this.txtSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchByProduct2.Location = new System.Drawing.Point(598, 37);
+            this.txtSearchByProduct2.MaxLength = 50;
+            this.txtSearchByProduct2.Name = "txtSearchByProduct2";
+            this.txtSearchByProduct2.Size = new System.Drawing.Size(418, 27);
+            this.txtSearchByProduct2.TabIndex = 3;
+            this.txtSearchByProduct2.TextChanged += new System.EventHandler(this.TxtSearchByProduct2_TextChanged);
+            this.txtSearchByProduct2.Enter += new System.EventHandler(this.TxtSearchByProduct2_Enter);
+            this.txtSearchByProduct2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByProduct2_KeyDown);
+            this.txtSearchByProduct2.Leave += new System.EventHandler(this.TxtSearchByProduct2_Leave);
+            // 
+            // lblSearchByProduct2
+            // 
+            this.lblSearchByProduct2.AutoSize = true;
+            this.lblSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchByProduct2.Location = new System.Drawing.Point(599, 12);
+            this.lblSearchByProduct2.Name = "lblSearchByProduct2";
+            this.lblSearchByProduct2.Size = new System.Drawing.Size(190, 20);
+            this.lblSearchByProduct2.TabIndex = 958810;
+            this.lblSearchByProduct2.Text = "Search by Product Name/P.I Code";
+            // 
             // cmbMappedorderrype
             // 
             this.cmbMappedorderrype.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2634,29 +2657,6 @@
             this.btn_Close2.Click += new System.EventHandler(this.btnClose_Click);
             this.btn_Close2.Enter += new System.EventHandler(this.Btn_Close2_Enter);
             this.btn_Close2.Leave += new System.EventHandler(this.Btn_Close2_Leave);
-            // 
-            // txtSearchByProduct2
-            // 
-            this.txtSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchByProduct2.Location = new System.Drawing.Point(598, 37);
-            this.txtSearchByProduct2.MaxLength = 50;
-            this.txtSearchByProduct2.Name = "txtSearchByProduct2";
-            this.txtSearchByProduct2.Size = new System.Drawing.Size(418, 27);
-            this.txtSearchByProduct2.TabIndex = 3;
-            this.txtSearchByProduct2.TextChanged += new System.EventHandler(this.TxtSearchByProduct2_TextChanged);
-            this.txtSearchByProduct2.Enter += new System.EventHandler(this.TxtSearchByProduct2_Enter);
-            this.txtSearchByProduct2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByProduct2_KeyDown);
-            this.txtSearchByProduct2.Leave += new System.EventHandler(this.TxtSearchByProduct2_Leave);
-            // 
-            // lblSearchByProduct2
-            // 
-            this.lblSearchByProduct2.AutoSize = true;
-            this.lblSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchByProduct2.Location = new System.Drawing.Point(599, 12);
-            this.lblSearchByProduct2.Name = "lblSearchByProduct2";
-            this.lblSearchByProduct2.Size = new System.Drawing.Size(190, 20);
-            this.lblSearchByProduct2.TabIndex = 958810;
-            this.lblSearchByProduct2.Text = "Search by Product Name/P.I Code";
             // 
             // grdViewSupplierMapping
             // 

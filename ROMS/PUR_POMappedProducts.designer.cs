@@ -246,6 +246,7 @@
             this.Name = "PUR_POMappedProducts";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Products Mapped for ABCD Suppliers";
+            this.Load += new System.EventHandler(this.PUR_POMappedProducts_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).EndInit();
             this.ResumeLayout(false);
