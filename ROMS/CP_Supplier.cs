@@ -562,7 +562,7 @@ namespace ROMS
                         //VarCity = objDserv.displaydata("SELECT COUNT(*) FROM MR_CITY WHERE CTY_NAME='" + txtCity.Text + "'");
                         DataSet objDsCity = new DataSet();
                         SPDataService objDserv = new SPDataService();
-                        objDsCity = objDserv.udfnCityList(2, txtCity.Text.Trim(), 0);
+                        objDsCity = objDserv.udfnCitylist(2, txtCity.Text.Trim(), 0,0);
                         objDserv.CloseConnection();
                         if (objDsCity != null)
                         {
@@ -940,7 +940,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (29,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbfinance, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
                 //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbMappingordertype, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmbMappingordeDay, "", "DY_Name", "DYID");
+                //objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmbMappingordeDay, "", "DY_Name", "DYID");
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmborderday, "", "DY_Name", "DYID");
                 objDataBind = null;
                 if (btnSave.Text == "Save")
@@ -3212,7 +3212,8 @@ namespace ROMS
                     //Application.DoEvents();
                     txtSupplier.Focus();
                     cmborderday.SelectedIndex = 0;
-                    cmbOrderschedule.SelectedIndex = 0;
+                    cmbOrderschedule.SelectedIndex = 0; 
+                    this.ActiveControl = cmbMappingorderschedule;
 
                 }
             }
@@ -3298,7 +3299,7 @@ namespace ROMS
                     picLoader.Visible = true;
                     picLoader.BringToFront();
                     Application.DoEvents();
-                    this.ActiveControl = cmbOrderschedule;
+                    this.ActiveControl = cmbMappingorderschedule;
                     DataBind objDataBind = new DataBind();
                     if (Convert.ToInt32(varsupplierID) != 0)
                     {
@@ -3308,14 +3309,14 @@ namespace ROMS
                     {
                         SupplierUpdate = Convert.ToInt32(pbSupplierid);
                     }
-                    objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + SupplierUpdate + "' ", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID");
+                    objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + SupplierUpdate + "' OR SPSCID=-1", "SPSC_Name,SPSCID", cmbMappingorderschedule, "", "SPSC_Name", "SPSCID");
 
                     objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", "SPSC_SPID='" + SupplierUpdate + "' OR SPSCID=0", "SPSC_Name,SPSCID", cmbOrderschedule, "", "SPSC_Name", "SPSCID");
                     objDataBind = null;
                     DataSet objDT = new DataSet();
                     SPDataService objdserv = new SPDataService();
                     int varViewType = 3;
-                    objDT = objdserv.udfnGroupList(varViewType, 0, 0, "");
+                    objDT = objdserv.udfnGroupList(varViewType, 0, 0, "",0);
                     objdserv.CloseConnection();
                     picLoader.Visible = false;
                     picLoader.SendToBack();
@@ -3588,9 +3589,9 @@ namespace ROMS
                 lvCity.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
-                if (txtCity.Text.Length > 2)
+                if (txtCity.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnCityList(1, txtCity.Text, Convert.ToInt32(cmbState.SelectedValue));
+                    objDs = objspdservice.udfnCitylist(1, txtCity.Text, Convert.ToInt32(cmbState.SelectedValue),0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -3721,7 +3722,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbMappingordeDay.Focus();
+                    txtMappingGroup.Focus();
                 }
             }
             catch (Exception ex)
@@ -3762,6 +3763,7 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbMappingorderschedule.Select(int.MaxValue, 0)));
                 udfnMappingGridsLoad();
                 udfnMappingDropDownLoad();
+                udfndataLoad();
             }
             catch (Exception ex)
             {
@@ -3793,7 +3795,7 @@ namespace ROMS
                 dtSubGroup.Columns.Add("Product Name in English", typeof(string));
 
                 //objDs = objspservice.udfnproductmasterlist(3, 0, 0,Convert.ToInt32(cmbMappingGroup.SelectedValue), Convert.ToInt32(cmbMappingSubGroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue));
-                objDs = objspservice.udfnproductmasterlist(3, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue),0);
+                objDs = objspservice.udfnproductmasterlist(3, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue),0,0,0,0,0,0,0,0);
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
@@ -3860,14 +3862,7 @@ namespace ROMS
                             txtordertype.Text = objDs.Tables[0].Rows[0]["MST_DisplayText"].ToString().Replace("''", "'");
                             lblOrderTypeId.Text = objDs.Tables[0].Rows[0]["MSTID"].ToString().Replace("''", "'");
                         }
-                        if (objDs.Tables[1].Rows.Count != 0)
-                        {
-                            cmbMappingordeDay.ValueMember = objDs.Tables[1].Columns["ID"].Caption;
-                            cmbMappingordeDay.DisplayMember = objDs.Tables[1].Columns["DAYNAME"].Caption;
-                            cmbMappingordeDay.DataSource = objDs.Tables[1];
-
-                        }
-
+                        
                     }
                     objspservice.CloseConnection();
                 }
@@ -3958,6 +3953,9 @@ namespace ROMS
 
         private void CmbMappingordeDay_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
+        public void udfndataLoad()
+        { 
             try
             {
                 lblNoRecordsFound.Visible = false;
@@ -3980,7 +3978,7 @@ namespace ROMS
                 {
                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                 }
-                objDs = objspservice.udfnSupplierList(4, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue), 0, "", 0, 0,0);
+                objDs = objspservice.udfnSupplierList(4, Convert.ToInt32(SupplierUpdate), Convert.ToInt32(cmbMappingorderschedule.SelectedValue), 0, 0, "", 0, 0, 0);
 
                 dtSubGroupMapping = new DataTable();
                 dtSubGroupMapping.Columns.Add("S.No.", typeof(string));
@@ -4714,14 +4712,14 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbMappingordeDay.SelectedValue) != -1)
+                if (Convert.ToInt32(cmbMappingorderschedule.SelectedValue) != -1)
                 {
                     udfnSubGroupAdd();
                 }
                 else
                 {
                     SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(54);
+                    string varMessage = objDServ.udfnGetMessages(65);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -4883,7 +4881,7 @@ namespace ROMS
                         Vartype = 8;
                     }
                     result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
-                        0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, "", 0, Convert.ToInt32(cmbMappingordeDay.SelectedValue), 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(lblOrderTypeId.Text), VarproductId, "", "", "", "", "", "", "", "");
+                        0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(lblOrderTypeId.Text), VarproductId, "", "", "", "", "", "", "", "");
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
                     {
@@ -4933,7 +4931,7 @@ namespace ROMS
         {
             try
             {
-                cmbMappingordeDay.SelectedValue = -1;
+                cmbMappingorderschedule.SelectedValue = -1;
                 //cmbMappingSubGroup.SelectedValue = 0;
                 //cmbMappingGroup.SelectedValue = 0;
                 varGroupId = 0;
@@ -4963,7 +4961,8 @@ namespace ROMS
             try
             {
                 grdFinalSupplierMapping.DataSource = null;
-                lblTotalMappingProduct.Text = "0";
+                lblTotalMappingProduct.Text = "0"; udfnMappingClear();
+                txtordertype.Text = "";
             }
             catch (Exception ex)
             {
@@ -5236,7 +5235,7 @@ namespace ROMS
                     tpstate.Show("Please select order type", cmbOrderType, 5000);
                     errorflag = 1;
                 }
-                if (cmbOrderType.SelectedValue.ToString() == "35")
+                if (cmbOrderType.SelectedValue.ToString() != "35")
                 {
                     if (txtsalesmanname.Text.Trim() == "")
                     {
@@ -6051,6 +6050,8 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), };
                                     //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
                                     lvMappingSubGroup.Items.Add(objList);
                                 }
                                 lvMappingSubGroup.Visible = true;
@@ -6205,7 +6206,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtMappingGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnGroupList(7, 0, 0, txtMappingGroup.Text);
+                    objDs = objspdservice.udfnGroupList(7, 0, 0, txtMappingGroup.Text,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -6218,6 +6219,8 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), };
                                     //  string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
                                     lvMappingGroup.Items.Add(objList);
                                 }
                                 lvMappingGroup.Visible = true;
@@ -6336,7 +6339,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmborderday.Focus();
+                    txtSearchByProduct2.Focus();
                 }
             }
             catch (Exception ex)

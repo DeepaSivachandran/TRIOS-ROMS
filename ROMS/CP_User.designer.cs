@@ -89,7 +89,7 @@
             this.txtDUserName.ReadOnly = true;
             this.txtDUserName.Size = new System.Drawing.Size(181, 27);
             this.txtDUserName.TabIndex = 10;
-            this.txtDUserName.Text = "Name of the User";
+            this.txtDUserName.Text = "Name of the System User";
             // 
             // txtUserName
             // 

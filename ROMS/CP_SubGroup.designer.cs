@@ -442,7 +442,7 @@
             this.grdRackList.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdRackList.EnableHeadersVisualStyles = false;
             this.grdRackList.GridColor = System.Drawing.Color.White;
-            this.grdRackList.Location = new System.Drawing.Point(217, 85);
+            this.grdRackList.Location = new System.Drawing.Point(17, 84);
             this.grdRackList.Name = "grdRackList";
             this.grdRackList.RowHeadersVisible = false;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -450,7 +450,7 @@
             this.grdRackList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdRackList.RowTemplate.Height = 25;
             this.grdRackList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdRackList.Size = new System.Drawing.Size(200, 142);
+            this.grdRackList.Size = new System.Drawing.Size(400, 142);
             this.grdRackList.TabIndex = 6;
             this.grdRackList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRackList_CellContentClick);
             this.grdRackList.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdRackList_CurrentCellDirtyStateChanged);

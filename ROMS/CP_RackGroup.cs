@@ -30,7 +30,8 @@ namespace ROMS
         public int varStatusid = 1;
         public int varConcernId = 0;
        // public int varStockLocationId = 0;
-        public DataTable dtRack = new DataTable();
+        public DataTable dtRack = new DataTable(); 
+        public DataTable dtEmployee = new DataTable();  
         public DataTable dtSelectedRack = new DataTable();
         public int varId = 0;
         public int varCloseFlag = 0;
@@ -62,7 +63,8 @@ namespace ROMS
             try
             {
                 dtRack = new DataTable();
-               //dtSelectedRack = new DataTable();
+                dtEmployee = new DataTable();
+                //dtSelectedRack = new DataTable();
 
                 dtRack.Columns.Add("", typeof(Boolean));
                 dtRack.Columns.Add("S.No.", typeof(string));
@@ -78,8 +80,15 @@ namespace ROMS
                 dtRack.Columns.Add("StockLocation ID", typeof(int));
                 dtRack.Columns.Add("Status ID", typeof(int));
 
+                dtEmployee.Columns.Add("", typeof(Boolean));
+                dtEmployee.Columns.Add("S.No.", typeof(string));
+                dtEmployee.Columns.Add("Employee Code", typeof(string));
+                dtEmployee.Columns.Add("Employee Name", typeof(string));
+                dtEmployee.Columns.Add("Employee Category", typeof(string));
+                dtEmployee.Columns.Add("EMPID", typeof(int));
+                 
                 udfnCmbConcern();
-
+                udfnemployeeload();
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 if (btnSave.Text == "Save")
                 {
@@ -137,7 +146,7 @@ namespace ROMS
                     varViewType = 4;
                     varConcernId = varCompanyId;
                 }
-                objDT = objdserv.udfnCompanyList(varViewType, varConcernId, MainForm.pbUserID, MainForm.pbIpAddress);
+                objDT = objdserv.udfnCompanyList(varViewType, varConcernId, MainForm.pbUserID, MainForm.pbIpAddress,0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
                 if (objDT != null)
@@ -159,6 +168,52 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        public void udfnemployeeload()
+        {
+            try
+            {
+                int varViewType = 6;
+                if (btnSave.Text == "Update")
+                {
+                    varViewType = 7;
+                }
+                dtEmployee.Rows.Clear();
+                Application.DoEvents();
+                grdEmployee.DataSource = null;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService(); 
+                objDs = objdserv.udfnEmployeeList(varViewType, "", 0, "", 1, varId);
+                objdserv.CloseConnection(); 
+                if (objDs.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    {
+                        dtEmployee.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Employee Code"], objDs.Tables[0].Rows[i]["Employee Name"],
+                           objDs.Tables[0].Rows[i]["Employee Category"], objDs.Tables[0].Rows[i]["EMPID"] );
+                    }
+                }   
+                grdEmployee.DataSource = null;
+                grdEmployee.DataSource = dtEmployee;
+                grdEmployee.Columns[0].HeaderText = "";
+                grdEmployee.Columns[0].Width = 30;
+                grdEmployee.Columns["S.No."].Width = 40;
+                grdEmployee.Columns["Employee Code"].Width = 100;
+                grdEmployee.Columns["Employee Name"].Width = 125;
+                grdEmployee.Columns["Employee Category"].Width = 125; 
+                grdEmployee.Columns["EMPID"].Visible = false;
+                grdEmployee.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; 
+
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
         public void udfncmbShopLocation()
         {
             try
@@ -182,7 +237,7 @@ namespace ROMS
                     }
                     else { varViewType = 5; varRackGroupID = varId; }
                 }
-                objDT = objdserv.udfnStockLocationList(varViewType, varConcernId,varStockId, varRackGroupID,"",0);
+                objDT = objdserv.udfnStockLocationList(varViewType, varConcernId,varStockId, varRackGroupID,"",0,0);
                 objdserv.CloseConnection();
                 cmbStockLocation.DataSource = null;
                 if (objDT != null)
@@ -231,15 +286,17 @@ namespace ROMS
                            objDs.Tables[0].Rows[i]["StockLocationID"], objDs.Tables[0].Rows[i]["StatusID"]);
                     }
                 }
+
                 grdRack.DataSource = null;
                 grdRack.DataSource = dtRack;
                 grdRack.Columns[0].HeaderText = "";
-                grdRack.Columns[0].Width = 50;
-                grdRack.Columns["S.No."].Width = 50;
+                grdRack.Columns[0].Width = 30;
+                grdRack.Columns["S.No."].Width = 40;
                 grdRack.Columns["Rack"].Width = 100;
-                grdRack.Columns["Description"].Width = 100;
+                grdRack.Columns["Description"].Width = 150;
                 grdRack.Columns["Total Products"].Width = 100;
                 grdRack.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdRack.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 grdRack.Columns["Concern"].Visible = false;
                 grdRack.Columns["Stock Location"].Visible = false;
@@ -289,12 +346,24 @@ namespace ROMS
                         txtRackGroupName.Text = objDS.Tables[0].Rows[0]["RKG_Name"].ToString().Replace("''", "'");
                     }
                     cmbStockLocation.SelectedValue = varStockId;
-                    udfnList();
+                    udfnList(); 
+                    udfnemployeeload();
                     if (objDS.Tables[1].Rows.Count > 0)
                     {
                         for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
                         {
                             grdStaffDetails.Rows.Add(grdStaffDetails.Rows.Count + 1, Convert.ToString(objDS.Tables[1].Rows[i]["EMP_Code"]), Convert.ToString(objDS.Tables[1].Rows[i]["U_Name"]), Convert.ToString(objDS.Tables[1].Rows[i]["CT_Name"]), Convert.ToInt16(objDS.Tables[1].Rows[i]["RKGU_UID"]));
+                        }
+                    }
+
+                    for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
+                    {
+                        for (int j = 0; j < grdEmployee.RowCount; j++)
+                        {
+                            if (Convert.ToString(objDS.Tables[1].Rows[i]["RKGU_UID"]) == Convert.ToString(grdEmployee.Rows[j].Cells["EMPID"].Value))
+                            {
+                                grdEmployee.Rows[j].Cells[0].Value = true;
+                            }
                         }
                     }
                     if (objDS.Tables[2].Rows.Count > 0)
@@ -323,7 +392,7 @@ namespace ROMS
                 objError.WriteFile(ex);
 
             }
-        }
+        } 
         public void udfnSave(object sender, EventArgs e)
         {
             try
@@ -414,6 +483,12 @@ namespace ROMS
                 chkRack.Checked = false;
                 tpStaffName.Active = false;
                 cmbConcern.Focus();
+                foreach (DataGridViewRow row in grdEmployee.Rows)
+                {
+                    row.Cells[0].Value = false;
+                } 
+                udfnemployeeload();
+
             }
             catch (Exception ex)
             {
@@ -454,8 +529,7 @@ namespace ROMS
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
-                }
-               
+                } 
             }
             catch (Exception ex)
             {
@@ -512,11 +586,20 @@ namespace ROMS
             }
         }
         public void udfnclose()
-        {
+        { 
             try
             {
-                this.Close();
-                
+                if (varCloseFlag == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                        MainForm.objCP_RackGroupList.Show();
+                        MainForm.objCP_RackGroupList.udfnList();
+                    }
+                }
+                else { this.Close(); }
             }
             catch (Exception ex)
             {
@@ -536,6 +619,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+
         }
 
         private void btnClose_Enter(object sender, EventArgs e)
@@ -1101,26 +1185,15 @@ namespace ROMS
 
         private void CP_RackGroup_FormClosing(object sender, FormClosingEventArgs e)
         {
-            try
-            {
-                if (varCloseFlag == 0)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        e.Cancel = false;
-                    }
-                    else
-                    {
-                        e.Cancel = true;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+             
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
 
         private void TxtStaffName_KeyDown(object sender, KeyEventArgs e)
@@ -1531,12 +1604,131 @@ namespace ROMS
         {
 
         }
+         
 
-        private void LvStaffName11_SelectedIndexChanged(object sender, EventArgs e)
+        private void ChkEmployee_CheckedChanged(object sender, EventArgs e)
         {
+            try
+            {
+                for (int i = 0; i < grdEmployee.Rows.Count; i++)
+                {
+                    grdEmployee.Rows[i].Cells[0].Value = chkEmployee.Checked;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
 
         }
 
+        private void BtnAddemployee_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnemployeSelect();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnemployeSelect()
+        {
+            try
+            {
+                string   varAddEmployee = "";
+
+                if (grdEmployee.Rows.Count > 0)
+                {
+                    for (int i = 0; i < grdEmployee.Rows.Count; i++)
+                    {
+                        if (Convert.ToBoolean(grdEmployee.Rows[i].Cells[0].Value) == true)
+                        {
+                            int varFlag = 0, varcount = 1; ;
+
+                            for (int j = 0; j < grdStaffDetails.Rows.Count; j++)
+                            {
+                                varAddEmployee = Convert.ToString(grdEmployee.Rows[i].Cells["EMPID"].Value);
+                                if (varAddEmployee == Convert.ToString(grdStaffDetails.Rows[j].Cells["clmUserId"].Value))
+                                {
+                                    varFlag = 1;
+                                }
+                                varcount++;
+                            }
+                            if (varFlag == 0)
+                            {
+                                grdStaffDetails.Rows.Add(Convert.ToInt32(grdStaffDetails.Rows.Count) + 1, grdEmployee.Rows[i].Cells["Employee Code"].Value, grdEmployee.Rows[i].Cells["Employee Name"].Value,
+                                    grdEmployee.Rows[i].Cells["Employee Category"].Value, grdEmployee.Rows[i].Cells["EMPID"].Value);
+                            }
+                        } 
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select atleast one row.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdEmployee_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    udfncheckedcountemployee();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfncheckedcountemployee()
+        {
+            int varCheckedCount = 0;
+            try
+            {
+                for (int i = 0; i < grdEmployee.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(grdEmployee.Rows[i].Cells[0].EditedFormattedValue) == true)
+                    {
+                        varCheckedCount++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                if (grdEmployee.Rows.Count == varCheckedCount)
+                {
+                    varCheckAllFlag = 1;
+                    chkRack.Checked = true;
+                }
+                else
+                {
+                    varCheckAllFlag = 1;
+                    chkRack.Checked = false;
+                }
+            }
+        }
         private void LblNoofproducts_Click(object sender, EventArgs e)
         {
 

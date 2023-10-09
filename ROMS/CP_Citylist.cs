@@ -134,7 +134,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnCityList(0,"",0);
+                objDs = objspservice.udfnCitylist(0,"",0,0);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -148,6 +148,7 @@ namespace ROMS
                             grdCityList.Columns["ID"].Visible = false;
                             grdCityList.Columns["StateId"].Visible = false;
                             grdCityList.Columns["StatusID"].Visible = false;
+                            grdCityList.Columns["Status"].Visible = false;
                             grdCityList.Columns["S.No."].Width = 50;
                             grdCityList.Columns["State Name"].Width = 120;
                             grdCityList.Columns["City Name"].Width = 200;

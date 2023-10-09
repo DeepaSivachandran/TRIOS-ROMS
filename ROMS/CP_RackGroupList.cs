@@ -27,8 +27,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_RackGroup = new CP_RackGroup();
-                MainForm.objCP_RackGroup.ShowDialog();
+                MainForm.objCP_RackGroup = new CP_RackGroup(); 
+                MainForm.objCP_RackGroup.MdiParent = this.ParentForm;
+                MainForm.objCP_RackGroup.Show(); 
             }
             catch (Exception ex)
             {
@@ -109,15 +110,20 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 MainForm.objCP_RackGroup = new CP_RackGroup();
-                MainForm.objCP_RackGroup.btnSave.Text = "Update";
+                MainForm.objCP_RackGroup.grdEmployee.ClearSelection();
+                MainForm.objCP_RackGroup.grdRack.ClearSelection();
+                MainForm.objCP_RackGroup.grdSelectedRack.ClearSelection(); 
+                MainForm.objCP_RackGroup.grdStaffDetails.ClearSelection();
+                MainForm.objCP_RackGroup.btnSave.Text="Update";
                 MainForm.objCP_RackGroup.varId = Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value);
                 MainForm.objCP_RackGroup.varCompanyId = Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["COMID"].Value);
                 MainForm.objCP_RackGroup.varStatusid = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["Status ID"].Value);
                 MainForm.objCP_RackGroup.varStockId = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
                 picLoader.Visible = false;
                 picLoader.SendToBack();
-                MainForm.objCP_RackGroup.ShowDialog();
-               
+                MainForm.objCP_RackGroup.MdiParent = this.ParentForm;
+                MainForm.objCP_RackGroup.Show();
+
             }
             catch (Exception ex)
             {
@@ -149,7 +155,7 @@ namespace ROMS
                 {
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(), 0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(),0, 0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -264,7 +270,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
                 int varViewType = 2;
-                objDT = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress);
+                objDT = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress,0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
                 if (objDT != null)
@@ -860,7 +866,7 @@ namespace ROMS
                     {
                         varViewType = 11;
                     }
-                    objDs = objspdservice.udfnStockLocationList(varViewType,varCompanyId, 0, 0,txtStockLocation.Text, 0);
+                    objDs = objspdservice.udfnStockLocationList(varViewType,varCompanyId, 0, 0,txtStockLocation.Text, 0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

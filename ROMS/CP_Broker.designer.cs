@@ -78,6 +78,10 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtMobileNo = new System.Windows.Forms.TextBox();
             this.epBroker = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.pnlBStatus = new System.Windows.Forms.Panel();
+            this.rbBankActive = new System.Windows.Forms.RadioButton();
+            this.rbBankInActive = new System.Windows.Forms.RadioButton();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBankShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,6 +97,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdBankDetails)).BeginInit();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epBroker)).BeginInit();
+            this.pnlBStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // grbform
@@ -209,6 +214,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.pnlBStatus);
+            this.groupBox2.Controls.Add(this.txtStatus);
             this.groupBox2.Controls.Add(this.btnAdd);
             this.groupBox2.Controls.Add(this.textBox6);
             this.groupBox2.Controls.Add(this.txtBankShortName);
@@ -238,7 +245,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(23, 27);
-            this.btnAdd.TabIndex = 17;
+            this.btnAdd.TabIndex = 19;
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
@@ -273,7 +280,7 @@
             this.textBox8.BackColor = System.Drawing.SystemColors.Control;
             this.textBox8.Enabled = false;
             this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox8.Location = new System.Drawing.Point(441, 27);
+            this.textBox8.Location = new System.Drawing.Point(13, 81);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(100, 27);
@@ -283,7 +290,7 @@
             // txtbranchname
             // 
             this.txtbranchname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtbranchname.Location = new System.Drawing.Point(541, 27);
+            this.txtbranchname.Location = new System.Drawing.Point(113, 81);
             this.txtbranchname.MaxLength = 50;
             this.txtbranchname.Name = "txtbranchname";
             this.txtbranchname.Size = new System.Drawing.Size(300, 27);
@@ -350,7 +357,7 @@
             this.textBox15.BackColor = System.Drawing.SystemColors.Control;
             this.textBox15.Enabled = false;
             this.textBox15.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox15.Location = new System.Drawing.Point(441, 81);
+            this.textBox15.Location = new System.Drawing.Point(441, 54);
             this.textBox15.Name = "textBox15";
             this.textBox15.ReadOnly = true;
             this.textBox15.Size = new System.Drawing.Size(100, 27);
@@ -360,7 +367,7 @@
             // txtIFScode
             // 
             this.txtIFScode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtIFScode.Location = new System.Drawing.Point(541, 81);
+            this.txtIFScode.Location = new System.Drawing.Point(541, 54);
             this.txtIFScode.MaxLength = 11;
             this.txtIFScode.Name = "txtIFScode";
             this.txtIFScode.Size = new System.Drawing.Size(300, 27);
@@ -375,7 +382,7 @@
             this.textBox17.BackColor = System.Drawing.SystemColors.Control;
             this.textBox17.Enabled = false;
             this.textBox17.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox17.Location = new System.Drawing.Point(441, 54);
+            this.textBox17.Location = new System.Drawing.Point(441, 27);
             this.textBox17.Name = "textBox17";
             this.textBox17.ReadOnly = true;
             this.textBox17.Size = new System.Drawing.Size(100, 27);
@@ -385,7 +392,7 @@
             // txtAccno
             // 
             this.txtAccno.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtAccno.Location = new System.Drawing.Point(541, 54);
+            this.txtAccno.Location = new System.Drawing.Point(541, 27);
             this.txtAccno.MaxLength = 20;
             this.txtAccno.Name = "txtAccno";
             this.txtAccno.Size = new System.Drawing.Size(300, 27);
@@ -664,7 +671,7 @@
             this.btnClose.Location = new System.Drawing.Point(1050, 613);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 19;
+            this.btnClose.TabIndex = 21;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -680,7 +687,7 @@
             this.btnSave.Location = new System.Drawing.Point(960, 613);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(85, 29);
-            this.btnSave.TabIndex = 18;
+            this.btnSave.TabIndex = 20;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -704,6 +711,52 @@
             // epBroker
             // 
             this.epBroker.ContainerControl = this;
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
+            this.txtStatus.Enabled = false;
+            this.txtStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtStatus.Location = new System.Drawing.Point(441, 81);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.ReadOnly = true;
+            this.txtStatus.Size = new System.Drawing.Size(100, 27);
+            this.txtStatus.TabIndex = 1111143;
+            this.txtStatus.Text = "Status";
+            // 
+            // pnlBStatus
+            // 
+            this.pnlBStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBStatus.Controls.Add(this.rbBankActive);
+            this.pnlBStatus.Controls.Add(this.rbBankInActive);
+            this.pnlBStatus.Location = new System.Drawing.Point(541, 81);
+            this.pnlBStatus.Name = "pnlBStatus";
+            this.pnlBStatus.Size = new System.Drawing.Size(300, 27);
+            this.pnlBStatus.TabIndex = 17;
+            // 
+            // rbBankActive
+            // 
+            this.rbBankActive.AutoSize = true;
+            this.rbBankActive.Checked = true;
+            this.rbBankActive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.rbBankActive.Location = new System.Drawing.Point(70, 1);
+            this.rbBankActive.Name = "rbBankActive";
+            this.rbBankActive.Size = new System.Drawing.Size(54, 21);
+            this.rbBankActive.TabIndex = 17;
+            this.rbBankActive.TabStop = true;
+            this.rbBankActive.Text = "Active";
+            this.rbBankActive.UseVisualStyleBackColor = true;
+            // 
+            // rbBankInActive
+            // 
+            this.rbBankInActive.AutoSize = true;
+            this.rbBankInActive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.rbBankInActive.Location = new System.Drawing.Point(161, 1);
+            this.rbBankInActive.Name = "rbBankInActive";
+            this.rbBankInActive.Size = new System.Drawing.Size(63, 21);
+            this.rbBankInActive.TabIndex = 18;
+            this.rbBankInActive.Text = "Inactive";
+            this.rbBankInActive.UseVisualStyleBackColor = true;
             // 
             // clmsno
             // 
@@ -751,11 +804,13 @@
             // 
             this.clmStatus.HeaderText = "Status";
             this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
             // 
             // clmsts
             // 
             this.clmsts.HeaderText = "sts";
             this.clmsts.Name = "clmsts";
+            this.clmsts.ReadOnly = true;
             this.clmsts.Visible = false;
             // 
             // clmEdit
@@ -802,6 +857,8 @@
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epBroker)).EndInit();
+            this.pnlBStatus.ResumeLayout(false);
+            this.pnlBStatus.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -852,6 +909,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.TextBox txtStatus;
+        private System.Windows.Forms.Panel pnlBStatus;
+        private System.Windows.Forms.RadioButton rbBankActive;
+        private System.Windows.Forms.RadioButton rbBankInActive;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmbankname;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBankShortName;

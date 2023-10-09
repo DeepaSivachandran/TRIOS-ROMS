@@ -149,7 +149,22 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                int ActiveCount = 0, InactiveCount = 0;
+
                 lblGC.Text = Convert.ToString(grdGroupList.Rows.Count);
+                for (int i = 0; i < grdGroupList.Rows.Count; i++)
+                {
+                    if((Convert.ToString(grdGroupList.Rows[i].Cells["StatusID"].Value) == "1"))
+                    {
+                        ActiveCount++;
+                    }
+                    else
+                    {
+                        InactiveCount++;
+                    }
+                }
+                lblActiveCount.Text = Convert.ToString(ActiveCount);
+                lblInactiveCount.Text = Convert.ToString(InactiveCount);
             }
         }
 

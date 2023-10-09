@@ -49,7 +49,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnBrokerList(1, Convert.ToInt32(varBrokerid));
+                    objDS = objspservice.udfnBrokerList(1, Convert.ToInt32(varBrokerid),0,0);
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {
@@ -144,6 +144,8 @@ namespace ROMS
                         udfnClear();
                         cmbConcern.Focus();
                         cmbConcern.SelectedValue = -1;
+                        pnlBStatus.Enabled = false;
+                        rbBankActive.Checked = true;
                         if (btnSave.Text == "Update")
                         {
                             varUpdate = 1;
@@ -205,8 +207,19 @@ namespace ROMS
                 objBankTable.Columns.Add("BRB_STSID", typeof(string));
                 for (int i = 0; i < grdBankDetails.Rows.Count; i++)
                 {
+                    DataService objDser = new DataService();
+                    string varvalue = "";
+                    if (rbBankActive.Checked == true)
+                    {
+                        varstatusid = "1";
+                    }
+                    else
+                    {
+                        varstatusid = "2";
+                    }
+                    varvalue = objDser.displaydata("SELECT STS_Name FROM  DEF_Status where STS_ModuleID = '" + varstatusid + "'");
                     string varStatus = "1";
-                    if (Convert.ToString(grdBankDetails.Rows[i].Cells["clmStatus"].Value) == "ACTIVE")
+                    if (Convert.ToString(grdBankDetails.Rows[i].Cells["clmStatus"].Value) == varvalue)
                     {
                         varStatus = "1";
                     }
@@ -387,9 +400,11 @@ namespace ROMS
                     varViewType = 3;
                 }
                 
-                objDs = objdserv.udfnCompanyList(varViewType,PbConcernID, MainForm.pbUserID, MainForm.pbIpAddress);
+                objDs = objdserv.udfnCompanyList(varViewType,PbConcernID, MainForm.pbUserID, MainForm.pbIpAddress,0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
+                pnlBStatus.Enabled = false;
+                rbBankActive.Checked = true;
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count > 0)
@@ -1353,7 +1368,7 @@ namespace ROMS
                     string VarCity = "0";
                     DataSet objDsCity = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsCity = objDserv.udfnCityList(2, txtCity.Text.Trim(), 0);
+                    objDsCity = objDserv.udfnCitylist(2, txtCity.Text.Trim(), 0,0);
                     objDserv.CloseConnection();
                     if (objDsCity != null)
                     {
@@ -1492,6 +1507,7 @@ namespace ROMS
                 }
                 if (blnErrorFlag == false)
                 {
+                    pnlBStatus.Enabled = false;
                     if (varSlNo != "0") { varflag = 0; }
                     else
                     {
@@ -1511,6 +1527,14 @@ namespace ROMS
                     }
                     if (varflag == 0)
                     {
+                        if (rbBankActive.Checked == true)
+                        {
+                            varstatusid = "Active";
+                        }
+                        else
+                        {
+                            varstatusid = "Inactive";
+                        }
                         if (varSlNo == "0")
                         {
                             grdBankDetails.Rows.Add(grdBankDetails.Rows.Count + 1, (txtBankname.Text).Trim(), (txtBankShortName.Text).Trim(), (txtbranchname.Text).Trim(), (txtAccno.Text).Trim(), (txtIFScode.Text).Trim(), varstatusid);
@@ -1526,10 +1550,12 @@ namespace ROMS
                                     grdBankDetails.Rows[i].Cells["clmbranch"].Value = txtbranchname.Text;
                                     grdBankDetails.Rows[i].Cells["clmaccno"].Value = txtAccno.Text;
                                     grdBankDetails.Rows[i].Cells["clmifscode"].Value = txtIFScode.Text;
+                                    grdBankDetails.Rows[i].Cells["clmStatus"].Value = varstatusid;
                                 }
                             }
                         }
                         udfnBankclear();
+                        rbBankActive.Checked = true;
                         this.ActiveControl = txtBankname;
                         grdBankDetails.ClearSelection();
                         btnAdd.Image = ROMS.Properties.Resources.plus;
@@ -1584,6 +1610,16 @@ namespace ROMS
                             txtAccno.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmaccno"].Value);
                             txtIFScode.Text = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmifscode"].Value);
                             varSlNo = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmsno"].Value);
+                            varstatusid = Convert.ToString(grdBankDetails.Rows[e.RowIndex].Cells["clmStatus"].Value);
+                            pnlBStatus.Enabled = true;
+                            if (varstatusid == "Active")
+                            {
+                                rbBankActive.Checked = true;
+                            }
+                            else
+                            {
+                                rbBankInActive.Checked = true;
+                            }
                             btnAdd.Image = ROMS.Properties.Resources.save16x16;
                             txtBankname.BackColor = Color.White;
                             tpBankName.Active = false;
@@ -1759,7 +1795,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtCity.Text.Length > 2)
                 {
-                    objDs = objspdservice.udfnCityList(1, txtCity.Text,0);
+                    objDs = objspdservice.udfnCitylist(1, txtCity.Text,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1803,7 +1839,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtCity.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnCityList(1, txtCity.Text,0);
+                    objDs = objspdservice.udfnCitylist(1, txtCity.Text,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

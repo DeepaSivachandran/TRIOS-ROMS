@@ -65,7 +65,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 int varViewType = 2;
-                objDs = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress);
+                objDs = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress,0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
                 if (objDs != null)
@@ -80,6 +80,25 @@ namespace ROMS
                         }
                     }
                 }
+
+                DataSet objDS = new DataSet();
+                SPDataService objDServ = new SPDataService();
+                objDS = objdserv.udfnStockLocationList(18, 0,0,0,"",0,0);
+                objDServ.CloseConnection();
+                cmbLocationType.DataSource = null;
+                if (objDS != null)
+                {
+                    if (objDS.Tables.Count > 0)
+                    {
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            cmbLocationType.ValueMember = "MSTID";
+                            cmbLocationType.DisplayMember = "MST_DisplayText";
+                            cmbLocationType.DataSource = objDS.Tables[0];
+                        }
+                    }
+                }
+
                 udfnList();
             }
             catch (Exception ex)
@@ -100,7 +119,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)),0,0,"",0);
+                objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)),0,0,"",0,(Convert.ToInt16(cmbLocationType.SelectedValue)));
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -374,7 +393,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbLocationType.Focus();
                 }
             }
             catch (Exception ex)
@@ -607,6 +626,62 @@ namespace ROMS
                     return;
                 }
                 udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbLocationType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbLocationType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbLocationType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbLocationType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbLocationType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbLocationType.BackColor = Color.White;
             }
             catch (Exception ex)
             {

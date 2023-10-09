@@ -632,6 +632,13 @@ namespace ROMS
             }
         }
 
+        private void RbInActive_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbInActive.Checked == true)
+            {
+
+            }
+        }
         private void TxtInvoiceUnit_KeyDown(object sender, KeyEventArgs e)
         {
             try

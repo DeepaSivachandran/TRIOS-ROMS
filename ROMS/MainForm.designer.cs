@@ -78,6 +78,7 @@ namespace ROMS
             this.tsmRackGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCategory = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmEmployeee = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUser = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSupplier = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBroker = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,6 +89,15 @@ namespace ROMS
             this.tsmBatchNoConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmVoucherSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGeneralSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mastersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hSNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brokerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
@@ -124,6 +134,7 @@ namespace ROMS
             this.lblTime,
             this.mastersToolStripMenuItem,
             this.tsmControlPanel,
+            this.reportToolStripMenuItem,
             this.tsmMyProfile});
             this.ms.Location = new System.Drawing.Point(0, 0);
             this.ms.Name = "ms";
@@ -159,35 +170,35 @@ namespace ROMS
             // tsmpurchaseSupplier
             // 
             this.tsmpurchaseSupplier.Name = "tsmpurchaseSupplier";
-            this.tsmpurchaseSupplier.Size = new System.Drawing.Size(180, 22);
+            this.tsmpurchaseSupplier.Size = new System.Drawing.Size(148, 22);
             this.tsmpurchaseSupplier.Text = "PO Schedule";
             this.tsmpurchaseSupplier.Click += new System.EventHandler(this.TsmpurchaseSupplier_Click);
             // 
             // tsmPurchaseOrder
             // 
             this.tsmPurchaseOrder.Name = "tsmPurchaseOrder";
-            this.tsmPurchaseOrder.Size = new System.Drawing.Size(180, 22);
+            this.tsmPurchaseOrder.Size = new System.Drawing.Size(148, 22);
             this.tsmPurchaseOrder.Text = "Purchase Order";
             this.tsmPurchaseOrder.Click += new System.EventHandler(this.TsmPurchaseOrder_Click_1);
             // 
             // tsmGRN
             // 
             this.tsmGRN.Name = "tsmGRN";
-            this.tsmGRN.Size = new System.Drawing.Size(180, 22);
+            this.tsmGRN.Size = new System.Drawing.Size(148, 22);
             this.tsmGRN.Text = "GRN Entry";
             this.tsmGRN.Click += new System.EventHandler(this.TsmGRN_Click);
             // 
             // tsmGRNApproval
             // 
             this.tsmGRNApproval.Name = "tsmGRNApproval";
-            this.tsmGRNApproval.Size = new System.Drawing.Size(180, 22);
+            this.tsmGRNApproval.Size = new System.Drawing.Size(148, 22);
             this.tsmGRNApproval.Text = "GRN Approval";
             this.tsmGRNApproval.Click += new System.EventHandler(this.TsmGRNApproval_Click);
             // 
             // tsmPurchaseDC
             // 
             this.tsmPurchaseDC.Name = "tsmPurchaseDC";
-            this.tsmPurchaseDC.Size = new System.Drawing.Size(180, 22);
+            this.tsmPurchaseDC.Size = new System.Drawing.Size(148, 22);
             this.tsmPurchaseDC.Text = "Purchase DC";
             this.tsmPurchaseDC.Click += new System.EventHandler(this.TsmPurchaseDC_Click);
             // 
@@ -414,6 +425,7 @@ namespace ROMS
             this.tsmRackGroup,
             this.tsmProduct,
             this.tsmCategory,
+            this.tsmEmployeee,
             this.tsmUser,
             this.tsmSupplier,
             this.tsmBroker,
@@ -509,11 +521,18 @@ namespace ROMS
             this.tsmCategory.Text = "Employee Category";
             this.tsmCategory.Click += new System.EventHandler(this.TsmuserCategory_Click);
             // 
+            // tsmEmployeee
+            // 
+            this.tsmEmployeee.Name = "tsmEmployeee";
+            this.tsmEmployeee.Size = new System.Drawing.Size(225, 22);
+            this.tsmEmployeee.Text = "Employee";
+            this.tsmEmployeee.Click += new System.EventHandler(this.TsmEmployee_Click);
+            // 
             // tsmUser
             // 
             this.tsmUser.Name = "tsmUser";
             this.tsmUser.Size = new System.Drawing.Size(225, 22);
-            this.tsmUser.Text = "User";
+            this.tsmUser.Text = "System User";
             this.tsmUser.Click += new System.EventHandler(this.TsmUser_Click);
             // 
             // tsmSupplier
@@ -588,6 +607,78 @@ namespace ROMS
             this.tsmGeneralSettings.Size = new System.Drawing.Size(207, 22);
             this.tsmGeneralSettings.Text = "General Settings";
             this.tsmGeneralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
+            // 
+            // reportToolStripMenuItem
+            // 
+            this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mastersToolStripMenuItem1});
+            this.reportToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(57, 21);
+            this.reportToolStripMenuItem.Text = "Reports";
+            // 
+            // mastersToolStripMenuItem1
+            // 
+            this.mastersToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cityToolStripMenuItem,
+            this.stateToolStripMenuItem,
+            this.companyToolStripMenuItem,
+            this.hSNToolStripMenuItem,
+            this.productGroupToolStripMenuItem,
+            this.brokerToolStripMenuItem,
+            this.brandToolStripMenuItem});
+            this.mastersToolStripMenuItem1.Name = "mastersToolStripMenuItem1";
+            this.mastersToolStripMenuItem1.Size = new System.Drawing.Size(114, 22);
+            this.mastersToolStripMenuItem1.Text = "Masters";
+            // 
+            // cityToolStripMenuItem
+            // 
+            this.cityToolStripMenuItem.Name = "cityToolStripMenuItem";
+            this.cityToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.cityToolStripMenuItem.Text = "City";
+            this.cityToolStripMenuItem.Click += new System.EventHandler(this.CityToolStripMenuItem_Click);
+            // 
+            // stateToolStripMenuItem
+            // 
+            this.stateToolStripMenuItem.Name = "stateToolStripMenuItem";
+            this.stateToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.stateToolStripMenuItem.Text = "State";
+            this.stateToolStripMenuItem.Click += new System.EventHandler(this.StateToolStripMenuItem_Click_1);
+            // 
+            // companyToolStripMenuItem
+            // 
+            this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
+            this.companyToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.companyToolStripMenuItem.Text = "Company";
+            this.companyToolStripMenuItem.Click += new System.EventHandler(this.CompanyToolStripMenuItem_Click);
+            // 
+            // hSNToolStripMenuItem
+            // 
+            this.hSNToolStripMenuItem.Name = "hSNToolStripMenuItem";
+            this.hSNToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.hSNToolStripMenuItem.Text = "HSN";
+            this.hSNToolStripMenuItem.Click += new System.EventHandler(this.HSNToolStripMenuItem_Click);
+            // 
+            // productGroupToolStripMenuItem
+            // 
+            this.productGroupToolStripMenuItem.Name = "productGroupToolStripMenuItem";
+            this.productGroupToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.productGroupToolStripMenuItem.Text = "Product Group";
+            this.productGroupToolStripMenuItem.Click += new System.EventHandler(this.ProductGroupToolStripMenuItem_Click);
+            // 
+            // brokerToolStripMenuItem
+            // 
+            this.brokerToolStripMenuItem.Name = "brokerToolStripMenuItem";
+            this.brokerToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.brokerToolStripMenuItem.Text = "Broker";
+            this.brokerToolStripMenuItem.Click += new System.EventHandler(this.BrokerToolStripMenuItem_Click);
+            // 
+            // brandToolStripMenuItem
+            // 
+            this.brandToolStripMenuItem.Name = "brandToolStripMenuItem";
+            this.brandToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.brandToolStripMenuItem.Text = "Brand";
+            this.brandToolStripMenuItem.Click += new System.EventHandler(this.BrandToolStripMenuItem_Click);
             // 
             // tsmMyProfile
             // 
@@ -707,5 +798,16 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmBatchNoConfig;
         private System.Windows.Forms.ToolStripMenuItem tsmVoucherSettings;
         private System.Windows.Forms.ToolStripMenuItem tsmGeneralSettings;
+        private System.Windows.Forms.ToolStripMenuItem tsmEmployee;
+        private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mastersToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem cityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem companyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hSNToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productGroupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem brokerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem brandToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmEmployeee;
     }
 }

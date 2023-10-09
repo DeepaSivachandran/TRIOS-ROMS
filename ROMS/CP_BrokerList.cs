@@ -113,7 +113,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnBrokerList(0,0);
+                objDs = objspservice.udfnBrokerList(0,0,0,0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
