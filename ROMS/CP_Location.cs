@@ -38,6 +38,7 @@ namespace ROMS
         public int varUpdate = 0;
         public int varFormFlag = 0;
         public int varStockApplicableId = 0;
+        public int saveflag = 0;
         public CP_Location()
         {
             InitializeComponent();
@@ -167,7 +168,11 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,4) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbStockApplicable, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
-                
+                if(MainForm.objCP_LocationList.varStockApplicable==1)
+                {
+                    cmbStockApplicable.SelectedValue = 12;
+                    cmbStockApplicable.Enabled = false;
+                }
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -275,18 +280,20 @@ namespace ROMS
                     if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 12) { varVerify = 1; }
                 }
                 else
-                { if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 11) { varVerify = 0; } else { varVerify = 1; } }
+                { if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 11) { varVerify = 0;} else { varVerify = 1; } }
 
                 // if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 11) { varVerify = 0; } else { varVerify = 1; }
               
                 if (varVerify == 0)
                 {
+                    saveflag = 1;
                     MainForm.objCP_SL_Verify = new CP_SL_Verify();
                     MainForm.objCP_SL_Verify.ShowDialog();
                     varVerify = MainForm.objCP_SL_Verify.flag;
-                    //saveflag = 1;
+                   
                 }
-                
+                if (saveflag == 0)
+                {
                     varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
@@ -319,7 +326,7 @@ namespace ROMS
                         btnSave.Enabled = true;
                         btnSave.Focus();
                     }
-                   
+                }  
             }
             catch (Exception ex)
             {
@@ -985,10 +992,23 @@ namespace ROMS
 
         private void CmbStockApplicable_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if(cmbStockApplicable.SelectedIndex==11)
-            //{
-
-            //}
+            try
+            {
+                if (cmbStockApplicable.SelectedIndex == 1)
+                {
+                    pnlStatus.Enabled = false;
+                    rbActive.Checked = true;
+                }
+                else
+                {
+                    pnlStatus.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ namespace ROMS
     public partial class CP_LocationList : Form
     {
         DataError objError;
+        public int varStockApplicable = 0;
         public CP_LocationList()
         {
             InitializeComponent();
@@ -25,6 +26,8 @@ namespace ROMS
             {
                 MainForm.objCP_Location = new CP_Location();
                 MainForm.objCP_Location.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //MainForm.objCP_Location.cmbStockApplicable.Enabled = false;
+                varStockApplicable = 1;
                 MainForm.objCP_Location.ShowDialog();
             }
             catch (Exception ex)
@@ -227,6 +230,7 @@ namespace ROMS
         {
             try
             {
+                varStockApplicable = 0;
                     if (grdGodownList.SelectedRows.Count > 0)
                     {
                     picLoader.Visible = true;
