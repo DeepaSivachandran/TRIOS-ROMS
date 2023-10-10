@@ -23,6 +23,7 @@ namespace ROMS
         public string pbFormStatus;
         public string varstatecode = "", varupdate = "0", vardays = "";
         public int varOrderid = 0, scheduleselectedIndex = -1;
+        public int varBrandId = 0;
         public int varGroupId = 0;
         public int varSubGroupId = 0;
         //tool tip
@@ -3795,7 +3796,7 @@ namespace ROMS
                 dtSubGroup.Columns.Add("Product Name in English", typeof(string));
 
                 //objDs = objspservice.udfnproductmasterlist(3, 0, 0,Convert.ToInt32(cmbMappingGroup.SelectedValue), Convert.ToInt32(cmbMappingSubGroup.SelectedValue),"", MainForm.pbUserID, MainForm.pbIpAddress, 0,0,0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue));
-                objDs = objspservice.udfnproductmasterlist(3, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, 0, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue),0,0,0,0,0,0,0,0);
+                objDs = objspservice.udfnproductmasterlist(3, 0, 0, varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, 0, 0, varBrandId, Convert.ToInt32(cmbMappingorderschedule.SelectedValue), Convert.ToInt32(cmbMappingordeDay.SelectedValue),0,0,0,0,0,0,0,0);
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
@@ -3811,11 +3812,12 @@ namespace ROMS
                     grdSupplierMappingLoad.Columns["P.I Code"].Width = 100;
                     grdSupplierMappingLoad.Columns["Product Name in Tamil"].Width = 220;
                     grdSupplierMappingLoad.Columns["Unit"].Width = 100;
-                    grdSupplierMappingLoad.Columns["Product SubGroup"].Width = 120;
+                    grdSupplierMappingLoad.Columns["Product SubGroup"].Width = 170;
                     grdSupplierMappingLoad.Columns["GROUPID"].Visible = false;
                     grdSupplierMappingLoad.Columns["SUBGROUPID"].Visible = false;
                     grdSupplierMappingLoad.Columns["PRODUCTID"].Visible = false;
                     grdSupplierMappingLoad.Columns["Product Name in English"].Visible = false;
+                    grdSupplierMappingLoad.Columns["S.No."].Visible = false;
 
 
                     grdSupplierMappingLoad.Columns["S.No."].ReadOnly = true;
@@ -4023,6 +4025,7 @@ namespace ROMS
                     grdFinalSupplierMapping.Columns["Product SubGroup"].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
 
+                    udfnGridRemove();
                     for (int i = 0; i < grdSupplierMappingLoad.Rows.Count; i++)
                     {
                         for (int j = 0; j < grdFinalSupplierMapping.Rows.Count; j++)
@@ -4737,7 +4740,7 @@ namespace ROMS
         {
             try
             {
-                string varRemoveProduct = "", varAddProduct = "";
+                string varRemoveProduct = "", varAddProduct = "",varGridRemove="";
 
 
                 if (dtSubGroup.Rows.Count > 0)
@@ -4750,11 +4753,13 @@ namespace ROMS
                             for (int j = 0; j < dtSubGroupMapping.Rows.Count; j++)
                             {
                                 varRemoveProduct = Convert.ToString(grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value);
-                                if (varRemoveProduct == Convert.ToString(dtSubGroupMapping.Rows[j]["PRODUCTID"]))
-
-                                { varFlag = 1; }
-                                varcount++;
+                                if (varRemoveProduct == Convert.ToString(dtSubGroupMapping.Rows[j]["PRODUCTID"])) 
+                                {
+                                    varFlag = 1;
+                                }
+                                varcount++;   
                             }
+
                             if (varFlag == 0)
                             {
                                 dtSubGroupMapping.Rows.Add(Convert.ToInt32(dtSubGroupMapping.Rows.Count) + 1, grdSupplierMappingLoad.Rows[i].Cells["P.I Code"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product Name in Tamil"].Value, grdSupplierMappingLoad.Rows[i].Cells["Unit"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product SubGroup"].Value, grdSupplierMappingLoad.Rows[i].Cells["GROUPID"].Value, grdSupplierMappingLoad.Rows[i].Cells["SUBGROUPID"].Value, grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value, grdSupplierMappingLoad.Rows[i].Cells["Product Name in English"].Value);
@@ -4773,6 +4778,7 @@ namespace ROMS
                             }
                         }
                     }
+                     
                     grdFinalSupplierMapping.DataSource = dtSubGroupMapping;
                     grdFinalSupplierMapping.Columns["clmMappingRemove"].DisplayIndex = 5;
 
@@ -4792,6 +4798,8 @@ namespace ROMS
                     grdFinalSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["Unit"].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["Product SubGroup"].ReadOnly = true;
+                    udfnGridRemove();
+
 
                 }
                 else
@@ -4810,6 +4818,31 @@ namespace ROMS
                 lblTotalMappingProduct.Text = grdFinalSupplierMapping.Rows.Count.ToString();
             }
         }
+        public void udfnGridRemove()
+        {
+            try
+            {
+                string varRemoveGroup = "";
+                for (int j = 0; j < dtSubGroupMapping.Rows.Count; j++)
+                {
+                    varRemoveGroup = Convert.ToString(grdFinalSupplierMapping.Rows[j].Cells["PRODUCTID"].Value);
+                    for (int i = 0; i < dtSubGroup.Rows.Count; i++)
+                    {
+                        if (varRemoveGroup == Convert.ToString(dtSubGroup.Rows[i]["PRODUCTID"]))
+                        {
+                            dtSubGroup.Rows[i].Delete();
+                            dtSubGroup.AcceptChanges();
+                        }
+                    }
+                }
+                grdSupplierMappingLoad.DataSource = dtSubGroup;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void GrdFinalSupplierMapping_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -4824,12 +4857,43 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
+
+
+                                dtSubGroup.Rows.Add(false, "0", grdFinalSupplierMapping.SelectedRows[0].Cells["P.I Code"].Value,
+                                    grdFinalSupplierMapping.SelectedRows[0].Cells["Product Name in Tamil"].Value,
+                                    grdFinalSupplierMapping.SelectedRows[0].Cells["Unit"].Value,
+                                    grdFinalSupplierMapping.SelectedRows[0].Cells["Product SubGroup"].Value,
+                                    grdFinalSupplierMapping.SelectedRows[0].Cells["GROUPID"].Value,
+                                    grdFinalSupplierMapping.SelectedRows[0].Cells["SUBGROUPID"].Value,
+                                    grdFinalSupplierMapping.SelectedRows[0].Cells["PRODUCTID"].Value, "0");
                                 grdFinalSupplierMapping.Rows.RemoveAt(this.grdFinalSupplierMapping.SelectedRows[0].Index);
                                 for (int i = 0; i < grdFinalSupplierMapping.RowCount; i++)
                                 {
                                     grdFinalSupplierMapping.Rows[i].Cells["S.No."].Value = i + 1;
                                 }
                                 lblTotalMappingProduct.Text = grdFinalSupplierMapping.Rows.Count.ToString();
+                                dtSubGroup.AcceptChanges();
+                                grdSupplierMappingLoad.DataSource = dtSubGroup;
+                                grdSupplierMappingLoad.Columns[0].HeaderText = "";
+                                grdSupplierMappingLoad.Columns[0].Width = 30;
+                                grdSupplierMappingLoad.Columns["S.No."].Width = 50;
+                                grdSupplierMappingLoad.Columns["P.I Code"].Width = 100;
+                                grdSupplierMappingLoad.Columns["Product Name in Tamil"].Width = 220;
+                                grdSupplierMappingLoad.Columns["Unit"].Width = 100;
+                                grdSupplierMappingLoad.Columns["Product SubGroup"].Width = 170;
+                                grdSupplierMappingLoad.Columns["GROUPID"].Visible = false;
+                                grdSupplierMappingLoad.Columns["SUBGROUPID"].Visible = false;
+                                grdSupplierMappingLoad.Columns["PRODUCTID"].Visible = false;
+                                grdSupplierMappingLoad.Columns["Product Name in English"].Visible = false;
+                                grdSupplierMappingLoad.Columns["S.No."].Visible = false;
+
+
+                                grdSupplierMappingLoad.Columns["S.No."].ReadOnly = true;
+                                grdSupplierMappingLoad.Columns["P.I Code"].ReadOnly = true;
+                                grdSupplierMappingLoad.Columns["Product Name in Tamil"].ReadOnly = true;
+                                grdSupplierMappingLoad.Columns["Unit"].ReadOnly = true;
+                                grdSupplierMappingLoad.Columns["Product SubGroup"].ReadOnly = true;
+                                grdSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 10.75F);
                             }
                             break;
                     }
@@ -4840,6 +4904,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally { this.grdSupplierMappingLoad.Sort(this.grdSupplierMappingLoad.Columns[2], ListSortDirection.Ascending); }
         }
 
         private void BtnMappingsave_Click(object sender, EventArgs e)
@@ -5233,34 +5298,7 @@ namespace ROMS
                     tpstate.ShowAlways = true;
                     tpstate.Show("Please select order type", cmbOrderType, 5000);
                     errorflag = 1;
-                }
-                if (cmbOrderType.SelectedValue.ToString() != "35")
-                {
-                    if (txtsalesmanname.Text.Trim() == "")
-                    {
-                        errCompany.SetError(txtsalesmanname, "Please enter salesman name");
-                        txtsalesmanname.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpschedule.ShowAlways = true;
-                        tpschedule.Show("Please enter salesman name", txtsalesmanname, 5000);
-                        errorflag = 1;
-                    }
-                    if (txtsalesmanmobile.Text.Trim() == "")
-                    {
-                        errCompany.SetError(txtsalesmanmobile, "Please enter  salesman mobile No.");
-                        txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpsalemanph.ShowAlways = true;
-                        tpsalemanph.Show("Please enter  salesman mobile No.", txtsalesmanmobile, 5000);
-                        errorflag = 1;
-                    }
-                    if (txtsalesmanmobile.Text == "")
-                    {
-                        errCompany.SetError(txtsalesmanmobile, "Please enter salesman mobile No.");
-                        txtsalesmanmobile.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpsalemanph.ShowAlways = true;
-                        tpsalemanph.Show("Please enter salesman mobile No.", txtsalesmanmobile, 5000);
-                        errorflag = 1;
-                    }
-                }
+                } 
                 if (txtsalesmanmobile.Text.Length != 10 && txtsalesmanmobile.Text != "")
                 {
                     errCompany.SetError(txtsalesmanmobile, "Please enter valid salesman mobile No.");
@@ -6092,7 +6130,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnLvSubGroup();
-                    btnMappingView.Focus();
+                    txtBrand.Focus();
                 }
             }
             catch (Exception ex)
@@ -6107,7 +6145,7 @@ namespace ROMS
             try
             {
                 udfnLvSubGroup();
-                btnMappingView.Focus();
+                txtBrand.Focus();
 
             }
             catch (Exception ex)
@@ -6173,7 +6211,7 @@ namespace ROMS
 
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnMappingView.Focus();
+                    txtBrand.Focus();
                 }
             }
             catch (Exception ex)
@@ -6362,6 +6400,161 @@ namespace ROMS
             }
         }
 
+        private void Txtbrand_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvBrand.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtBrand.Text.Length > 0)
+                {
+                    objDs = objspdservice.udfnBrandList(7, "", varGroupId, varSubGroupId, 0, txtBrand.Text.Trim(), 0);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["BD_EName"].ToString(), objDs.Tables[0].Rows[i]["BD_TName"].ToString(), objDs.Tables[0].Rows[i]["BDID"].ToString(), };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvBrand.Items.Add(objList);
+                                }
+                                lvBrand.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvBrand.Visible = false;
+                    lvBrand.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtbrand_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvBrand.Items.Count == 0 || txtBrand.Text == "")
+                    {
+                        txtBrand.Focus();
+                        lvBrand.Visible = false;
+                    }
+                    else
+                    {
+                        lvBrand.Focus();
+                    }
+                    if (lvBrand.Items.Count > 0)
+                    {
+                        lvBrand.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnMappingView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtbrand_Leave(object sender, EventArgs e)
+        {
+
+            try
+            {
+                txtBrand.BackColor = Color.White;
+                if (txtBrand.Text.Trim() == "")
+                {
+                    varBrandId = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void Txtbrand_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvMappingSubGroup.Visible = false;
+                lvMappingGroup.Visible = false;
+                txtBrand.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void LvBrand_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnLvBrand();
+                    btnMappingView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvBrand_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            { 
+                    udfnLvBrand();
+                    btnMappingView.Focus(); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLvBrand()
+        {
+            try
+            {
+                if (txtBrand.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvBrand.SelectedItems[0];
+                    txtBrand.Text = selectedItem.SubItems[0].Text;
+                    varBrandId = Convert.ToInt32(selectedItem.SubItems[2].Text);
+                    lvBrand.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CmbMappedorderrype_KeyPress(object sender, KeyPressEventArgs e)
         {
 
