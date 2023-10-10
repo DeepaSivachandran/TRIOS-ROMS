@@ -1243,5 +1243,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdBrandList.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    grdBrandList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdBrandList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdBrandList);
+                objDser.CloseConnection();
+                grdBrandList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //grdCompanyList(sender,e); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

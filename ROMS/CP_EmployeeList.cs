@@ -830,5 +830,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdEmployeeList.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    grdEmployeeList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdEmployeeList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdEmployeeList);
+                objDser.CloseConnection();
+                grdEmployeeList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //grdCompanyList(sender,e); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
