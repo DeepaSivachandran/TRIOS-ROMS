@@ -3107,7 +3107,7 @@ namespace ROMS
                         }
                         udfnContactClear();
                         cmbTransactionType.Focus();
-                        
+                        rbActiveContact.Checked = true;
                         grdContactManager.ClearSelection();
                         btnAddContact.Image = ROMS.Properties.Resources.plus;
                     }
@@ -3149,8 +3149,7 @@ namespace ROMS
                 txtMobileBrand.Text = "";
                 cbWhatsApp.Checked = false;
                 cbPrimary.Checked = false;
-                varstatusidContact = 1;
-                rbActiveContact.Checked = true;
+                varCMSlNo = "0";
                 epCompany.Clear();
             }
             catch (Exception ex)
