@@ -475,6 +475,7 @@ namespace ROMS
                         }
                     }
                     varmasterBrandtype = 0;
+                    udfnRemoveGroup();
                 }
                 //udfnRefreshSubGroup();
             }
