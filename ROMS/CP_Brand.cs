@@ -487,7 +487,7 @@ namespace ROMS
             {
                 grdSubGroup.ClearSelection();
                 //this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending);
-                //this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Descending);
+                this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Descending);
             }
         }
 
@@ -1324,7 +1324,7 @@ namespace ROMS
                     DataTable objDtNew = new DataTable();
                     int varRowCount = dtSubGroup.Rows.Count;
                     varRemoveGroup = Convert.ToString(grdGroup.SelectedRows[0].Cells["ID"].Value);
-                   l: for (int i = 0; i < varRowCount; i++)
+                l: for (int i = 0; i < varRowCount; i++)
                     {
                         if (varRemoveGroup == Convert.ToString(dtSubGroup.Rows[i]["Group ID"]))
                         {
@@ -1349,7 +1349,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void GrdGroup_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+            private void GrdGroup_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             if (grdGroup.IsCurrentCellDirty)
             {
@@ -1793,7 +1793,6 @@ namespace ROMS
                 varGroup = "";
                 for (int i = 0; i < grdGroup.Rows.Count; i++)
                 {
-                    grdGroup.Rows[i].Cells[0].Value = true;
                     if (varGroup == "")
                     {
                         varGroup = Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value);
@@ -1802,6 +1801,8 @@ namespace ROMS
                     {
                         varGroup = varGroup + "," + Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value);
                     }
+
+                    grdGroup.Rows[i].Cells[0].Value = true;
                 }
                 udfnSubGroupList();
             }
@@ -1816,6 +1817,7 @@ namespace ROMS
         {
             try
             {
+                //this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Ascending); 
                 foreach (DataGridViewRow row in grdGroup.Rows)
                 {
                     row.Cells[0].Value = false;
