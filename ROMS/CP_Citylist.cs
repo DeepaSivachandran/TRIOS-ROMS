@@ -508,10 +508,16 @@ namespace ROMS
         }
 
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-
+        { 
             try
             {
+                if (e.Control is TextBox)
+                {
+                    TextBox textBox = e.Control as TextBox;
+                    // Detach the event first to avoid multiple subscriptions
+                    textBox.KeyPress -= new KeyPressEventHandler(textBox_KeyPress);
+                    textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress);
+                }
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdCityList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCityList);
@@ -520,6 +526,15 @@ namespace ROMS
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //udfnGridSearchFilter();
+            DataService objDser = new DataService();
+            grdCityList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCityList);
+            objDser.CloseConnection();
+            grdCityList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+            //DGV_SearchGrid_CellPainting(sender,e);
         }
     }
 }
