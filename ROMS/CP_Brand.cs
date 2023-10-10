@@ -161,7 +161,7 @@ namespace ROMS
             }
             finally
             {
-                //this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending);
+              //  if (btnSave.Text == "Update") { this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending); }
                 //this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending);
             }
         }
