@@ -840,16 +840,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-        {
-            if (grdUserList.IsCurrentCellDirty)
-            {
-                // Commit the changes immediately
-                grdUserList.CommitEdit(DataGridViewDataErrorContexts.Commit);
-            }
-        }
-
+        
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try

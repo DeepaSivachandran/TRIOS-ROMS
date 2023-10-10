@@ -836,25 +836,15 @@ namespace ROMS
 
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (grdGodownList.IsCurrentCellDirty)
+            if (DGV_SearchGrid.IsCurrentCellDirty)
             {
                 // Commit the changes immediately
-                grdGodownList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
-        }
-
-        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            try
-            {
-                //udfnGridSearchFilter();
-                DataService objDser = new DataService();
-                grdGodownList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdGodownList);
-                objDser.CloseConnection();
-                grdGodownList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //DGV_SearchGrid_CellPainting(sender,e);
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            DataService objDser = new DataService();
+            grdGodownList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdGodownList);
+            objDser.CloseConnection();
+            grdGodownList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
         }
 
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)

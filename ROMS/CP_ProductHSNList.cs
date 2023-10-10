@@ -434,16 +434,7 @@ namespace ROMS
                 grdHSNList.ClearSelection();
             }
         }
-
-        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-        {
-            if (grdHSNList.IsCurrentCellDirty)
-            {
-                // Commit the changes immediately
-                grdHSNList.CommitEdit(DataGridViewDataErrorContexts.Commit);
-            }
-        }
-
+        
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try

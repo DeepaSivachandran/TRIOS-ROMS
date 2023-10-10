@@ -541,18 +541,5 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-
-        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-        {
-            if (DGV_SearchGrid.IsCurrentCellDirty)
-            {
-                // Commit the changes immediately
-                DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
-            }
-            DataService objDser = new DataService();
-            grdUnitList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUnitList);
-            objDser.CloseConnection();
-            grdUnitList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-        }
     }
 }

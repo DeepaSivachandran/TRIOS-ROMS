@@ -728,15 +728,6 @@ namespace ROMS
             }
         }
 
-        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-        {
-            if (grdGroupList.IsCurrentCellDirty)
-            {
-                // Commit the changes immediately
-                grdGroupList.CommitEdit(DataGridViewDataErrorContexts.Commit);
-            }
-        }
-
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try

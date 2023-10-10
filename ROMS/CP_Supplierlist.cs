@@ -1065,16 +1065,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-        {
-            if (grdSupplierList.IsCurrentCellDirty)
-            {
-                // Commit the changes immediately
-                grdSupplierList.CommitEdit(DataGridViewDataErrorContexts.Commit);
-            }
-        }
-
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
