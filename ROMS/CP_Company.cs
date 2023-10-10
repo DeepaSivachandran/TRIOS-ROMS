@@ -3080,11 +3080,11 @@ namespace ROMS
                         else
                         {
                             varstatusidContact =2;
-                            varstatus = "InActive";
+                            varstatus = "Inactive";
                         }
                         if (varCMSlNo == "0")
                         {
-                            grdContactManager.Rows.Add(grdContactManager.Rows.Count + 1, txtName.Text, varvalue, txtMobilenumber.Text, varwhatsapp, varcheckedvalue, txtOperator.Text, txtMobileBrand.Text, txtStaffName.Text, Convert.ToString(cmbTransactionType.SelectedValue), varstatusidContact);
+                            grdContactManager.Rows.Add(grdContactManager.Rows.Count + 1, txtName.Text, varvalue, txtMobilenumber.Text, varwhatsapp, varcheckedvalue, txtOperator.Text, txtMobileBrand.Text, txtStaffName.Text, Convert.ToString(cmbTransactionType.SelectedValue), varstatusidContact,varstatus);
                         }
                         else {
                             for (int i = 0; i < grdContactManager.RowCount; i++)
