@@ -525,7 +525,9 @@ namespace ROMS
                 grdUnitList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUnitList);
                 objDser.CloseConnection();
                 grdUnitList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //DGV_SearchGrid_CellPainting(sender,e);
+                ////DGV_SearchGrid_CellPainting(sender,e);
+                //System.Windows.Forms.SendKeys.Send("{ENTER}");
+                //DGV_SearchGrid.CurrentCell = DGV_SearchGrid.Rows[0].Cells[2];
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
