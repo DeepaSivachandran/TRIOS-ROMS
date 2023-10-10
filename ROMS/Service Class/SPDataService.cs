@@ -1093,7 +1093,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserName", paraUserName);
                 varSqlCommand.Parameters.AddWithValue("@paraLoginId", paraLoginId);
                 varSqlCommand.Parameters.AddWithValue("@paraPassword", paraPassword);
-                varSqlCommand.Parameters.AddWithValue("@@paraPasskey", @paraPasskey);
+                varSqlCommand.Parameters.AddWithValue("@paraPasskey", @paraPasskey);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraUser", paraUser);
