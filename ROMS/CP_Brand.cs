@@ -428,7 +428,7 @@ namespace ROMS
                 grdSubGroup.Columns["Group Id"].ReadOnly = true;
                 grdSubGroup.Columns["Sub Group Id"].ReadOnly = true;
                 grdSubGroup.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
+                udfnRemoveGroup();
                 if (varmasterBrandtype == 1)
                 {
                     for (int j = 0; j < grdSubGroup.RowCount; j++)
