@@ -574,6 +574,7 @@ namespace ROMS
                 grdSelectedRack.Rows.Clear();
                 grdStaffDetails.Rows.Clear();
                 chkRack.Checked = false;
+                chkEmployee.Checked = false;
                 tpStaffName.Active = false;
                 cmbConcern.Focus();
                 foreach (DataGridViewRow row in grdEmployee.Rows)
@@ -881,7 +882,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally { this.grdEmployee.Sort(this.grdEmployee.Columns[2], ListSortDirection.Ascending); }
+            finally
+            {
+                this.grdEmployee.Sort(this.grdEmployee.Columns[2], ListSortDirection.Ascending);
+                grdEmployee.ClearSelection();
+            }
         }
         private void DGV_Racklist_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -1545,6 +1550,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                grdSelectedRack.ClearSelection();
+            }
         }
 
         private void ChkRack_CheckedChanged(object sender, EventArgs e)
@@ -1612,7 +1621,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
-            finally { this.grdRack.Sort(this.grdRack.Columns[4], ListSortDirection.Ascending); }
+            finally
+            {
+                this.grdRack.Sort(this.grdRack.Columns[4], ListSortDirection.Ascending); 
+                grdRack.ClearSelection();
+            }
         }
         public void udfnlvStaffname()
         {
@@ -1775,6 +1788,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            } 
+            finally
+            {
+                grdStaffDetails.ClearSelection();
             }
         }
 
