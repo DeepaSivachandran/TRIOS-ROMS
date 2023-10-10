@@ -540,5 +540,10 @@ namespace ROMS
                 grdUnitList.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
+
+        private void DGV_SearchGrid_CellStateChanged(object sender, DataGridViewCellStateChangedEventArgs e)
+        {
+
+        }
     }
 }
