@@ -141,16 +141,16 @@ namespace ROMS
                             }
                         }
                     }
-                    for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
-                    {
-                        for (int j = 0; j < grdSubGroup.RowCount; j++)
-                        {
-                            if (Convert.ToString(objDS.Tables[1].Rows[i]["PRSGID"]) == Convert.ToString(grdSubGroup.Rows[j].Cells["Sub Group Id"].Value))
-                            {
-                                grdSubGroup.Rows[j].Cells[0].Value = true;
-                            }
-                        }
-                    }
+                    //for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
+                    //{
+                    //    for (int j = 0; j < grdSubGroup.RowCount; j++)
+                    //    {
+                    //        if (Convert.ToString(objDS.Tables[1].Rows[i]["PRSGID"]) == Convert.ToString(grdSubGroup.Rows[j].Cells["Sub Group Id"].Value))
+                    //        {
+                    //            grdSubGroup.Rows[j].Cells[0].Value = true;
+                    //        }
+                    //    }
+                    //}
                     udfnRemoveGroup();
                 }
             }
@@ -228,21 +228,7 @@ namespace ROMS
                 {
                     for (int i = 0; i < grdSubGroup.Rows.Count; i++)
                     {
-                        if (Convert.ToBoolean(grdSubGroup.Rows[i].Cells[0].Value) == true)
-                        {
-                            int varFlag = 0;
-                            for (int j = 0; j < dtSubGroupAdd.Rows.Count; j++)
-                            {
-                                varAddGroup = Convert.ToString(grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
-                                if (varAddGroup == Convert.ToString(dtSubGroupAdd.Rows[j]["Sub Group Id"]))
-                                { varFlag = 1; }
-                            }
-                            if (varFlag == 0)
-                            {
-                                dtSubGroupAdd.Rows.Add(grdSubGroup.Rows[i].Cells["Product Group"].Value, grdSubGroup.Rows[i].Cells["Product Subgroup"].Value, "0", grdSubGroup.Rows[i].Cells["Group Id"].Value, grdSubGroup.Rows[i].Cells["Sub Group Id"].Value,grdSubGroup.Rows[i].Cells["T.Pro"].Value);
-                            }
-                        }
-                        else
+                        if (Convert.ToBoolean(grdSubGroup.Rows[i].Cells[0].Value) == false)
                         {
                             varRemoveGroup = Convert.ToString(grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
                             for (int j = 0; j < dtSubGroupAdd.Rows.Count; j++)
@@ -252,6 +238,20 @@ namespace ROMS
                                     dtSubGroupAdd.Rows[j].Delete();
                                     dtSubGroupAdd.AcceptChanges();
                                 }
+                            }
+                        }
+                        else
+                        {
+                            int varFlag = 0;
+                            for (int j = 0; j < dtSubGroupAdd.Rows.Count; j++)
+                            {
+                                varAddGroup = Convert.ToString(grdSubGroup.Rows[i].Cells["Sub Group Id"].Value);
+                                if (varAddGroup == Convert.ToString(dtSubGroupAdd.Rows[j]["Sub Group Id"]))
+                                { varFlag = 1; }
+                            }
+                            if(varFlag == 0)
+                            {
+                                dtSubGroupAdd.Rows.Add(grdSubGroup.Rows[i].Cells["Product Group"].Value, grdSubGroup.Rows[i].Cells["Product Subgroup"].Value, "0", grdSubGroup.Rows[i].Cells["Group Id"].Value, grdSubGroup.Rows[i].Cells["Sub Group Id"].Value, grdSubGroup.Rows[i].Cells["T.Pro"].Value);
                             }
                         }
                     }
@@ -1342,7 +1342,6 @@ namespace ROMS
                 grdSubGroup.Columns["Product Subgroup"].Width = 200;
                 grdSubGroup.Columns["Group Id"].Visible = false;
                 grdSubGroup.Columns["Sub Group Id"].Visible = false;
-
             }
             catch (Exception ex)
             {
