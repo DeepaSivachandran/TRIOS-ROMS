@@ -50,6 +50,7 @@ namespace ROMS
                             if (count != 0)
                             {
                                 flag = 1;
+                                MainForm.objCP_Location.saveflag=0;
                                 this.Close();
                             }
                             else if (count == 0)
