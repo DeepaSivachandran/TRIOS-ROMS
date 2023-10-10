@@ -1644,9 +1644,9 @@
             this.btnAdd.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnAdd.Image = global::ROMS.Properties.Resources.save;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(586, 248);
+            this.btnAdd.Location = new System.Drawing.Point(575, 248);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(76, 29);
+            this.btnAdd.Size = new System.Drawing.Size(87, 29);
             this.btnAdd.TabIndex = 13;
             this.btnAdd.Text = "Save";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2304,7 +2304,6 @@
             // 
             this.grdFinalSupplierMapping.AllowUserToAddRows = false;
             this.grdFinalSupplierMapping.AllowUserToDeleteRows = false;
-            this.grdFinalSupplierMapping.AllowUserToResizeColumns = false;
             this.grdFinalSupplierMapping.AllowUserToResizeRows = false;
             this.grdFinalSupplierMapping.BackgroundColor = System.Drawing.Color.White;
             this.grdFinalSupplierMapping.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -2365,7 +2364,6 @@
             // 
             this.grdSupplierMappingLoad.AllowUserToAddRows = false;
             this.grdSupplierMappingLoad.AllowUserToDeleteRows = false;
-            this.grdSupplierMappingLoad.AllowUserToResizeColumns = false;
             this.grdSupplierMappingLoad.AllowUserToResizeRows = false;
             this.grdSupplierMappingLoad.BackgroundColor = System.Drawing.Color.White;
             this.grdSupplierMappingLoad.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -2396,6 +2394,7 @@
             dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
             this.grdSupplierMappingLoad.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.grdSupplierMappingLoad.RowTemplate.Height = 25;
+            this.grdSupplierMappingLoad.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdSupplierMappingLoad.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupplierMappingLoad.Size = new System.Drawing.Size(639, 404);
             this.grdSupplierMappingLoad.TabIndex = 4;

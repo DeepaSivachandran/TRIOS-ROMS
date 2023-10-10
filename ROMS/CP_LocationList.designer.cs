@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -295,6 +297,14 @@
             this.grdGodownList.AllowUserToResizeRows = false;
             this.grdGodownList.BackgroundColor = System.Drawing.Color.White;
             this.grdGodownList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdGodownList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle39.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle39.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -315,6 +325,9 @@
             dataGridViewCellStyle40.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle40.SelectionForeColor = System.Drawing.Color.White;
             this.grdGodownList.RowsDefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGodownList.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.grdGodownList.RowTemplate.Height = 25;
             this.grdGodownList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGodownList.Size = new System.Drawing.Size(1348, 515);

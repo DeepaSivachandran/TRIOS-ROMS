@@ -961,27 +961,29 @@ namespace ROMS
         }
 
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-        {
-            if (grdGroupList.IsCurrentCellDirty)
-            {
-                // Commit the changes immediately
-                grdGroupList.CommitEdit(DataGridViewDataErrorContexts.Commit);
-            }
-        }
-
-        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
+        { 
             try
             {
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdGroupList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdGroupList);
                 objDser.CloseConnection();
                 grdGroupList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //DGV_SearchGrid_CellPainting(sender,e);
+                //grdCompanyList(sender,e); 
             }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
+
+ 
 
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
