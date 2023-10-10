@@ -3556,7 +3556,9 @@ namespace ROMS
                     lblPurRackCode.Text = selectedItem.SubItems[8].Text;
                     txtPurRack.Text = selectedItem.SubItems[9].Text;
                     string varbatchenable = selectedItem.SubItems[3].Text; 
-                    txtRackDescription.Text = selectedItem.SubItems[10].Text; 
+                    txtRackDescription.Text = selectedItem.SubItems[10].Text;
+                    txtBrand.Text = "";
+                    lblBrand.Text = "0";
                     txtGroup.Focus();
                     lvSubGroup.Visible = false;
                     lvPurLocation.Visible = false;

@@ -3830,6 +3830,9 @@ namespace ROMS
                 else
                 {
                     lblNoRecordsFound.Visible = true;
+                    dtSubGroup = null;
+                    dtSubGroup.AcceptChanges();
+                    grdSupplierMappingLoad.DataSource = dtSubGroup;
                 }
 
 
@@ -4735,6 +4738,12 @@ namespace ROMS
             }
             finally
             {
+                this.grdFinalSupplierMapping.Sort(this.grdFinalSupplierMapping.Columns[2], ListSortDirection.Ascending);
+                for (int i = 0; i < grdFinalSupplierMapping.RowCount; i++)
+                {
+                    grdFinalSupplierMapping.Rows[i].Cells["S.No."].Value = i + 1;
+                }
+                grdFinalSupplierMapping.ClearSelection();
             }
         }
         public void udfnSubGroupAdd()
@@ -4905,7 +4914,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally { this.grdSupplierMappingLoad.Sort(this.grdSupplierMappingLoad.Columns[2], ListSortDirection.Ascending); }
+            finally
+            {
+                this.grdSupplierMappingLoad.Sort(this.grdSupplierMappingLoad.Columns[2], ListSortDirection.Ascending);
+                grdSupplierMappingLoad.ClearSelection();
+            }
         }
 
         private void BtnMappingsave_Click(object sender, EventArgs e)
@@ -5002,6 +5015,8 @@ namespace ROMS
                 varGroupId = 0;
                 varSubGroupId = 0;
                 txtMappingGroup.Text = "";
+                txtBrand.Text = "";
+                varBrandId = 0;
                 txtMappingSubGroup.Text = "";
                 txtSearchByProduct1.Text = "";
                 txtmappingproductsearch2.Text = "";
@@ -5392,10 +5407,10 @@ namespace ROMS
                                 {
                                     varflag = 1;
                                 }
-                                if (gridValue2 == txtScheduleName.Text)
+                                if (string.Equals(gridValue2, txtScheduleName.Text, StringComparison.OrdinalIgnoreCase))
                                 {
                                     varflag = 2;
-                                }
+                                } 
                             }
                         }
                     }
@@ -5411,7 +5426,7 @@ namespace ROMS
                                 {
                                     varflag = 1;
                                 }
-                                if (gridValue2 == txtScheduleName.Text)
+                                if (string.Equals(gridValue2, txtScheduleName.Text, StringComparison.OrdinalIgnoreCase))
                                 {
                                     varflag = 2;
                                 }
