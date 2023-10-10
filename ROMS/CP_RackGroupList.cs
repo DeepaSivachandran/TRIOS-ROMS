@@ -393,29 +393,26 @@ namespace ROMS
 
         private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-             try
-             {
+            try
+            {
                 //udfnGridSearchFilter();
-                 DataService objDser = new DataService();
-                 grdRackGroupList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdRackGroupList);
-                 objDser.CloseConnection();
+                DataService objDser = new DataService();
+                grdRackGroupList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdRackGroupList);
+                objDser.CloseConnection();
                 grdRackGroupList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                    //DGV_SearchGrid_CellPainting(sender,e);
-             }
-             catch (Exception ex){ objError = new DataError(); objError.WriteFile(ex); }
-            
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+
         }
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
             {
-
                 if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
                     return;
-                if (!(e.ColumnIndex == 0 || e.ColumnIndex == 0))   /*If not our desired columns*/
-                                                                   //return;
-
+                if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
                     if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
                     {
                         e.Paint(e.CellBounds, DataGridViewPaintParts.All
@@ -434,44 +431,37 @@ namespace ROMS
 
         private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            try
+            DataGridViewColumn newColumn = grdRackGroupList.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = grdRackGroupList.SortedColumn;
+            ListSortDirection direction;
+            // If oldColumn is null, then the DataGridView is not sorted.
+            if (oldColumn != null)
             {
-                DataGridViewColumn newColumn = grdRackGroupList.Columns[e.ColumnIndex];
-                DataGridViewColumn oldColumn = grdRackGroupList.SortedColumn;
-                ListSortDirection direction;
-
-                // If oldColumn is null, then the DataGridView is not sorted.
-                if (oldColumn != null)
+                // Sort the same column again, reversing the SortOrder.
+                if (oldColumn == newColumn &&
+                    grdRackGroupList.SortOrder == SortOrder.Ascending)
                 {
-                    // Sort the same column again, reversing the SortOrder.
-                    if (oldColumn == newColumn &&
-                        grdRackGroupList.SortOrder == SortOrder.Ascending)
-                    {
-                        direction = ListSortDirection.Descending;
-                    }
-                    else
-                    {
-                        // Sort a new column and remove the old SortGlyph.
-                        direction = ListSortDirection.Ascending;
-                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
-                    }
+                    direction = ListSortDirection.Descending;
                 }
                 else
                 {
+                    // Sort a new column and remove the old SortGlyph.
                     direction = ListSortDirection.Ascending;
+                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                 }
-                grdRackGroupList.Sort(newColumn, direction);
-                newColumn.HeaderCell.SortGlyphDirection =
-                    direction == ListSortDirection.Ascending ?
-                    SortOrder.Ascending : SortOrder.Descending;
-
-                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-
-                DGV_SearchGrid.HorizontalScrollingOffset = grdRackGroupList.HorizontalScrollingOffset;
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            else
+            {
+                direction = ListSortDirection.Ascending;
+            }
+            grdRackGroupList.Sort(newColumn, direction);
+            newColumn.HeaderCell.SortGlyphDirection =
+                direction == ListSortDirection.Ascending ?
+                SortOrder.Ascending : SortOrder.Descending;
+            DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+            DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+            DGV_SearchGrid.HorizontalScrollingOffset = grdRackGroupList.HorizontalScrollingOffset;
+            DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
         }
 
         private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
@@ -482,7 +472,6 @@ namespace ROMS
                 {
                     grdRackGroupList.Columns[e.Column.Index].Width = e.Column.Width;
                     DGV_SearchGrid.HorizontalScrollingOffset = grdRackGroupList.HorizontalScrollingOffset;
-                    //grdBrandList.HorizontalScrollingOffset = 0;
                 }
             }
             catch (Exception ex)
@@ -939,6 +928,104 @@ namespace ROMS
                     txtStockLocation.Text = selectedItem.SubItems[0].Text;
                     varStockLocationId = Convert.ToInt32(selectedItem.SubItems[2].Text);
                     lvStockLocation.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (grdRackGroupList.IsCurrentCellDirty)
+            {
+                // Commit the changes immediately
+                grdRackGroupList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdRackGroupList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdRackGroupList);
+                objDser.CloseConnection();
+                grdRackGroupList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdRackGroupList.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdRackGroupList.Width > grdRackGroupList.HorizontalScrollingOffset && grdRackGroupList.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRackGroupList_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdRackGroupList.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdRackGroupList.Width > grdRackGroupList.HorizontalScrollingOffset && grdRackGroupList.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdRackGroupList);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnscrollVisible(DataGridView DGV, DataGridView grdGroupList)
+        {
+            try
+            {
+                var vScrollbar = grdRackGroupList.Controls.OfType<VScrollBar>().First();
+                if (vScrollbar.Visible == true)
+                {
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in DGV.Columns)
+                    {
+                        visibleColumns.Add(col.Index);
+                    }
+                    int I = DGV_SearchGrid.Rows.Count - 1;
+                    if (I == 0)
+                    {
+                        int rowIndex = 1;
+                        DGV_SearchGrid.Rows.Add();
+                        for (int i = 0; i < visibleColumns.Count; i++)
+                        {
+                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                        }
+                    }
                 }
             }
             catch (Exception ex)

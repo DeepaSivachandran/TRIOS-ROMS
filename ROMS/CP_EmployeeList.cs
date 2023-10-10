@@ -830,5 +830,46 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdEmployeeList.ColumnCount > 0)
+                {
+                    grdEmployeeList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdEmployeeList.HorizontalScrollingOffset;
+                    //grdBrandList.HorizontalScrollingOffset = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (grdEmployeeList.IsCurrentCellDirty)
+            {
+                // Commit the changes immediately
+                grdEmployeeList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdEmployeeList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdEmployeeList);
+                objDser.CloseConnection();
+                grdEmployeeList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
     }
 }
