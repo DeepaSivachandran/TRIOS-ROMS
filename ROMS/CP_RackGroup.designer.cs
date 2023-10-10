@@ -40,10 +40,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_RackGroup));
             this.grbform = new System.Windows.Forms.GroupBox();
             this.lblNoofproducts = new System.Windows.Forms.Label();
@@ -70,15 +70,11 @@
             this.rbInactive = new System.Windows.Forms.RadioButton();
             this.epRackGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpUserList = new System.Windows.Forms.GroupBox();
+            this.cmbUserCategory = new System.Windows.Forms.ComboBox();
+            this.btnViewEmployee = new System.Windows.Forms.Button();
             this.btnAddemployee = new System.Windows.Forms.Button();
             this.chkEmployee = new System.Windows.Forms.CheckBox();
             this.grdStaffDetails = new System.Windows.Forms.DataGridView();
-            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmEmpCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grdEmployee = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtStaffName = new System.Windows.Forms.TextBox();
@@ -89,15 +85,20 @@
             this.tsRackGroup = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlRackGroup = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblUserId = new System.Windows.Forms.Label();
             this.lblEmpCode = new System.Windows.Forms.Label();
             this.lvStaffName = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblUserId = new System.Windows.Forms.Label();
-            this.btnViewEmployee = new System.Windows.Forms.Button();
-            this.cmbUserCategory = new System.Windows.Forms.ComboBox();
+            this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmEmpCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmcatrgory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.label3 = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSelectedRack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRack)).BeginInit();
@@ -471,6 +472,7 @@
             // 
             // grpUserList
             // 
+            this.grpUserList.Controls.Add(this.label3);
             this.grpUserList.Controls.Add(this.cmbUserCategory);
             this.grpUserList.Controls.Add(this.btnViewEmployee);
             this.grpUserList.Controls.Add(this.btnAddemployee);
@@ -483,6 +485,34 @@
             this.grpUserList.TabIndex = 1;
             this.grpUserList.TabStop = false;
             this.grpUserList.Text = "Employee Details";
+            // 
+            // cmbUserCategory
+            // 
+            this.cmbUserCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbUserCategory.FormattingEnabled = true;
+            this.cmbUserCategory.Location = new System.Drawing.Point(132, 19);
+            this.cmbUserCategory.Name = "cmbUserCategory";
+            this.cmbUserCategory.Size = new System.Drawing.Size(167, 27);
+            this.cmbUserCategory.TabIndex = 1111142;
+            this.cmbUserCategory.SelectedIndexChanged += new System.EventHandler(this.CmbUserCategory_SelectedIndexChanged);
+            this.cmbUserCategory.Enter += new System.EventHandler(this.CmbUserCategory_Enter);
+            this.cmbUserCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUserCategory_KeyDown);
+            this.cmbUserCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbUserCategory_KeyPress);
+            this.cmbUserCategory.Leave += new System.EventHandler(this.CmbUserCategory_Leave);
+            // 
+            // btnViewEmployee
+            // 
+            this.btnViewEmployee.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewEmployee.Image = global::ROMS.Properties.Resources.view;
+            this.btnViewEmployee.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnViewEmployee.Location = new System.Drawing.Point(304, 18);
+            this.btnViewEmployee.Name = "btnViewEmployee";
+            this.btnViewEmployee.Size = new System.Drawing.Size(74, 29);
+            this.btnViewEmployee.TabIndex = 2;
+            this.btnViewEmployee.Text = "View";
+            this.btnViewEmployee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnViewEmployee.UseVisualStyleBackColor = true;
+            this.btnViewEmployee.Click += new System.EventHandler(this.BtnViewEmployee_Click);
             // 
             // btnAddemployee
             // 
@@ -500,7 +530,7 @@
             // chkEmployee
             // 
             this.chkEmployee.AutoSize = true;
-            this.chkEmployee.Location = new System.Drawing.Point(26, 52);
+            this.chkEmployee.Location = new System.Drawing.Point(26, 60);
             this.chkEmployee.Name = "chkEmployee";
             this.chkEmployee.Size = new System.Drawing.Size(15, 14);
             this.chkEmployee.TabIndex = 1111140;
@@ -529,7 +559,7 @@
             this.clmSno,
             this.clmEmpCode,
             this.clmStaffName,
-            this.Column2,
+            this.clmcatrgory,
             this.clmUserId,
             this.clmremove});
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -542,7 +572,7 @@
             this.grdStaffDetails.DefaultCellStyle = dataGridViewCellStyle11;
             this.grdStaffDetails.EnableHeadersVisualStyles = false;
             this.grdStaffDetails.GridColor = System.Drawing.Color.White;
-            this.grdStaffDetails.Location = new System.Drawing.Point(518, 45);
+            this.grdStaffDetails.Location = new System.Drawing.Point(518, 51);
             this.grdStaffDetails.Name = "grdStaffDetails";
             this.grdStaffDetails.RowHeadersVisible = false;
             this.grdStaffDetails.RowHeadersWidth = 70;
@@ -553,55 +583,11 @@
             this.grdStaffDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdStaffDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdStaffDetails.ShowRowErrors = false;
-            this.grdStaffDetails.Size = new System.Drawing.Size(455, 166);
+            this.grdStaffDetails.Size = new System.Drawing.Size(455, 160);
             this.grdStaffDetails.TabIndex = 331254;
             this.grdStaffDetails.TabStop = false;
             this.grdStaffDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStaffDetails_CellContentClick);
             this.grdStaffDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvStaffDetails_KeyDown);
-            // 
-            // clmSno
-            // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmSno.DefaultCellStyle = dataGridViewCellStyle10;
-            this.clmSno.HeaderText = "S.No.";
-            this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
-            this.clmSno.Width = 40;
-            // 
-            // clmEmpCode
-            // 
-            this.clmEmpCode.HeaderText = "Employee Code";
-            this.clmEmpCode.Name = "clmEmpCode";
-            this.clmEmpCode.ReadOnly = true;
-            // 
-            // clmStaffName
-            // 
-            this.clmStaffName.HeaderText = "Employee Name";
-            this.clmStaffName.MinimumWidth = 6;
-            this.clmStaffName.Name = "clmStaffName";
-            this.clmStaffName.ReadOnly = true;
-            this.clmStaffName.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Employee Category";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 125;
-            // 
-            // clmUserId
-            // 
-            this.clmUserId.HeaderText = "User ID";
-            this.clmUserId.Name = "clmUserId";
-            this.clmUserId.Visible = false;
-            // 
-            // clmremove
-            // 
-            this.clmremove.HeaderText = "Remove";
-            this.clmremove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmremove.Name = "clmremove";
-            this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmremove.Width = 50;
             // 
             // grdEmployee
             // 
@@ -630,7 +616,7 @@
             this.grdEmployee.DefaultCellStyle = dataGridViewCellStyle14;
             this.grdEmployee.EnableHeadersVisualStyles = false;
             this.grdEmployee.GridColor = System.Drawing.Color.White;
-            this.grdEmployee.Location = new System.Drawing.Point(18, 45);
+            this.grdEmployee.Location = new System.Drawing.Point(18, 51);
             this.grdEmployee.Name = "grdEmployee";
             this.grdEmployee.RowHeadersVisible = false;
             this.grdEmployee.RowHeadersWidth = 70;
@@ -640,7 +626,7 @@
             this.grdEmployee.RowTemplate.Height = 25;
             this.grdEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdEmployee.ShowRowErrors = false;
-            this.grdEmployee.Size = new System.Drawing.Size(455, 166);
+            this.grdEmployee.Size = new System.Drawing.Size(455, 160);
             this.grdEmployee.TabIndex = 513;
             this.grdEmployee.TabStop = false;
             this.grdEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdEmployee_CellContentClick);
@@ -784,6 +770,26 @@
             this.pnlRackGroup.Size = new System.Drawing.Size(1354, 644);
             this.pnlRackGroup.TabIndex = 37;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(162, 184);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(16, 20);
+            this.label2.TabIndex = 1111141;
+            this.label2.Text = "0";
+            this.label2.Visible = false;
+            // 
+            // lblUserId
+            // 
+            this.lblUserId.AutoSize = true;
+            this.lblUserId.Location = new System.Drawing.Point(25, 202);
+            this.lblUserId.Name = "lblUserId";
+            this.lblUserId.Size = new System.Drawing.Size(16, 20);
+            this.lblUserId.TabIndex = 1111140;
+            this.lblUserId.Text = "0";
+            this.lblUserId.Visible = false;
+            // 
             // lblEmpCode
             // 
             this.lblEmpCode.AutoSize = true;
@@ -825,52 +831,58 @@
             // 
             this.columnHeader6.Width = 0;
             // 
-            // label2
+            // clmSno
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(162, 184);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(16, 20);
-            this.label2.TabIndex = 1111141;
-            this.label2.Text = "0";
-            this.label2.Visible = false;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmSno.DefaultCellStyle = dataGridViewCellStyle10;
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Width = 40;
             // 
-            // lblUserId
+            // clmEmpCode
             // 
-            this.lblUserId.AutoSize = true;
-            this.lblUserId.Location = new System.Drawing.Point(25, 202);
-            this.lblUserId.Name = "lblUserId";
-            this.lblUserId.Size = new System.Drawing.Size(16, 20);
-            this.lblUserId.TabIndex = 1111140;
-            this.lblUserId.Text = "0";
-            this.lblUserId.Visible = false;
+            this.clmEmpCode.HeaderText = "Employee Code";
+            this.clmEmpCode.Name = "clmEmpCode";
+            this.clmEmpCode.ReadOnly = true;
             // 
-            // btnViewEmployee
+            // clmStaffName
             // 
-            this.btnViewEmployee.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnViewEmployee.Image = global::ROMS.Properties.Resources.view;
-            this.btnViewEmployee.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewEmployee.Location = new System.Drawing.Point(440, 13);
-            this.btnViewEmployee.Name = "btnViewEmployee";
-            this.btnViewEmployee.Size = new System.Drawing.Size(33, 29);
-            this.btnViewEmployee.TabIndex = 2;
-            this.btnViewEmployee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnViewEmployee.UseVisualStyleBackColor = true;
-            this.btnViewEmployee.Click += new System.EventHandler(this.BtnViewEmployee_Click);
+            this.clmStaffName.HeaderText = "Employee Name";
+            this.clmStaffName.MinimumWidth = 6;
+            this.clmStaffName.Name = "clmStaffName";
+            this.clmStaffName.ReadOnly = true;
+            this.clmStaffName.Width = 125;
             // 
-            // cmbUserCategory
+            // clmcatrgory
             // 
-            this.cmbUserCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbUserCategory.FormattingEnabled = true;
-            this.cmbUserCategory.Location = new System.Drawing.Point(146, 13);
-            this.cmbUserCategory.Name = "cmbUserCategory";
-            this.cmbUserCategory.Size = new System.Drawing.Size(288, 27);
-            this.cmbUserCategory.TabIndex = 1111142;
-            this.cmbUserCategory.SelectedIndexChanged += new System.EventHandler(this.CmbUserCategory_SelectedIndexChanged);
-            this.cmbUserCategory.Enter += new System.EventHandler(this.CmbUserCategory_Enter);
-            this.cmbUserCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUserCategory_KeyDown);
-            this.cmbUserCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbUserCategory_KeyPress);
-            this.cmbUserCategory.Leave += new System.EventHandler(this.CmbUserCategory_Leave);
+            this.clmcatrgory.HeaderText = "Employee Category";
+            this.clmcatrgory.Name = "clmcatrgory";
+            this.clmcatrgory.ReadOnly = true;
+            this.clmcatrgory.Width = 125;
+            // 
+            // clmUserId
+            // 
+            this.clmUserId.HeaderText = "User ID";
+            this.clmUserId.Name = "clmUserId";
+            this.clmUserId.Visible = false;
+            // 
+            // clmremove
+            // 
+            this.clmremove.HeaderText = "Remove";
+            this.clmremove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmremove.Name = "clmremove";
+            this.clmremove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmremove.Width = 50;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(111, 20);
+            this.label3.TabIndex = 1111140;
+            this.label3.Text = "Employee Category";
             // 
             // CP_RackGroup
             // 
@@ -958,15 +970,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalProducts;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemoveRack;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmEmpCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmStaffName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmUserId;
-        private System.Windows.Forms.DataGridViewImageColumn clmremove;
         private System.Windows.Forms.Button btnViewEmployee;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblUserId;
         private System.Windows.Forms.ComboBox cmbUserCategory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmEmpCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStaffName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmcatrgory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUserId;
+        private System.Windows.Forms.DataGridViewImageColumn clmremove;
+        private System.Windows.Forms.Label label3;
     }
 }

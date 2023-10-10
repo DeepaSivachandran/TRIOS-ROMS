@@ -4699,7 +4699,8 @@ namespace ROMS
         {
             try
             {
-                udfnMappingGridsLoad();
+                udfnMappingGridsLoad(); 
+                udfnGridRemove();
             }
             catch (Exception ex)
             {
