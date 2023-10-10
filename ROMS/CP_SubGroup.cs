@@ -1238,8 +1238,17 @@ namespace ROMS
                                 for (int i = 0; i < objRackList.Tables[0].Rows.Count; i++) {
                                     dtRackList.Rows.Add(false,Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Name"]),Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Description"]), Convert.ToInt32(objRackList.Tables[0].Rows[i]["RKID"]));
                                 }
+
+                                //for (int i = 0; i < grdRackList.ColumnCount; i++)
+                                //{
+                                //    if (grdRackList.Columns[i].Name == "clmRack") { grdRackList.Columns.Remove("clmRack"); }
+                                //    if (grdRackList.Columns[i].Name == "clmRackDescription") { grdRackList.Columns.Remove("clmRackDescription"); }
+                                //}
+
                                 grdRackList.DataSource = dtRackList;
                                 grdRackList.Columns["RKID"].Visible = false;
+                                grdRackList.Columns["Rack Name"].Visible = true;
+                                grdRackList.Columns["RK_Description"].Visible = true;
                                 grdRackList.Columns["Rack Name"].Width = 150;
                                 grdRackList.Columns["RK_Description"].Width = 200;
                                 grdRackList.Columns[0].Width = 30;
@@ -1252,6 +1261,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                this.grdRackList.Sort(this.grdRackList.Columns[0], ListSortDirection.Descending);
             }
         }
         public void udfnLocationEvent()
