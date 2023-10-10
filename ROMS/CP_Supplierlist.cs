@@ -238,6 +238,8 @@ namespace ROMS
                         grdSupplierList.Columns["S.No."].Width = 50;
                         grdSupplierList.Columns["Supplier"].Width = 200;
                         grdSupplierList.Columns["Schedule Name"].Width = 150;
+                        grdSupplierList.Columns["Ret.Condition"].Width = 140;
+                        grdSupplierList.Columns["GSTIN"].Width = 120;
                         grdSupplierList.Columns["Status"].Width = 80;
                         grdSupplierList.Columns["Scheduleid"].Visible = false;
                         grdSupplierList.Columns["SupplierID"].Visible = false;

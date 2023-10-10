@@ -609,34 +609,34 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                /* Check sales rack is valid or not*/
-                if (txtSaleRack.Text != "")
-                {
-                    string varId_SaleRack = "0";
-                    DataSet objDsSaleRack = new DataSet();
-                    SPDataService objDServ6 = new SPDataService();
-                    objDsSaleRack = objDServ6.udfnRackList(9, 0, 0, 0, 0, txtSaleRack.Text.Trim(), 0);
-                    objDServ6.CloseConnection();
-                    if (objDsSaleRack != null)
-                    {
-                        if (objDsSaleRack.Tables.Count > 0)
-                        {
-                            if (objDsSaleRack.Tables[0].Rows.Count > 0)
-                            {
-                                varId_SaleRack = Convert.ToString(objDsSaleRack.Tables[0].Rows[0][0]);
-                            }
-                        }
-                    }
-                    lblSaleRackCode.Text = Convert.ToString(varId_SaleRack);
-                    if (varId_SaleRack == "0" || varId_SaleRack == "-1")
-                    {
-                        errItems.SetError(txtSaleRack, "Please select valid sales rack");
-                        txtSaleRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpsalesrack.ShowAlways = true;
-                        tpsalesrack.Show("Please select valid sales rack", txtSaleRack, 5000);
-                        blnErrorFlag = true;
-                    }
-                }
+                ///* Check sales rack is valid or not*/
+                //if (txtSaleRack.Text != "")
+                //{
+                //    string varId_SaleRack = "0";
+                //    DataSet objDsSaleRack = new DataSet();
+                //    SPDataService objDServ6 = new SPDataService();
+                //    objDsSaleRack = objDServ6.udfnRackList(9, 0, 0, 0, 0, txtSaleRack.Text.Trim(), 0);
+                //    objDServ6.CloseConnection();
+                //    if (objDsSaleRack != null)
+                //    {
+                //        if (objDsSaleRack.Tables.Count > 0)
+                //        {
+                //            if (objDsSaleRack.Tables[0].Rows.Count > 0)
+                //            {
+                //                varId_SaleRack = Convert.ToString(objDsSaleRack.Tables[0].Rows[0][0]);
+                //            }
+                //        }
+                //    }
+                //    lblSaleRackCode.Text = Convert.ToString(varId_SaleRack);
+                //    if (varId_SaleRack == "0" || varId_SaleRack == "-1")
+                //    {
+                //        errItems.SetError(txtSaleRack, "Please select valid sales rack");
+                //        txtSaleRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        tpsalesrack.ShowAlways = true;
+                //        tpsalesrack.Show("Please select valid sales rack", txtSaleRack, 5000);
+                //        blnErrorFlag = true;
+                //    }
+                //}
                 /*check location have a rack or not*/
                 if (lblPurLocationCode.Text != "0")
                 {

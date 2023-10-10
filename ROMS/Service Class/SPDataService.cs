@@ -1600,7 +1600,7 @@ namespace ROMS
             return varResult;
         }
         /*Added by deepa on 19-09-2023*/
-        public DataSet udfnEmployeeList(int paraViewType, string paraEmpName, int paraEmpID, string paraEmpCode, int paraStatusId, int paraRKGID)
+        public DataSet udfnEmployeeList(int paraViewType, string paraEmpName, int paraEmpID, string paraEmpCode, int paraStatusId, int paraRKGID,int paraEmpCategory)
         {
             DataSet ds = new DataSet();
             try
@@ -1616,6 +1616,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRKGID", paraRKGID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraEmpCategory", paraEmpCategory);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
