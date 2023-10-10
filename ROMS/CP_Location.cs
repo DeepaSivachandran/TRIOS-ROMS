@@ -171,7 +171,6 @@ namespace ROMS
                 if(MainForm.objCP_LocationList.varStockApplicable==1)
                 {
                     cmbStockApplicable.SelectedValue = 12;
-                    cmbStockApplicable.Enabled = false;
                 }
                 if (btnSave.Text == "Save")
                 {
@@ -241,14 +240,14 @@ namespace ROMS
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
 
-                if (pnlGodownType.Enabled == false)
-                {
-                    rbInside.Checked = false;
-                    rbOutside.Checked = false;
-                    varGodownType = 0;
-                }
-                else
-                {
+                //if (pnlGodownType.Enabled == false)
+                //{
+                //    rbInside.Checked = false;
+                //    rbOutside.Checked = false;
+                //    varGodownType = 0;
+                //}
+                //else
+                //{
                     if (rbInside.Checked == true)
                     {
                         varGodownType = 86;
@@ -257,7 +256,7 @@ namespace ROMS
                     {
                         varGodownType = 87;
                     }
-                }
+                //}
                  
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
@@ -272,7 +271,7 @@ namespace ROMS
                     varoriginator = "Stock Updation";
                     varType = 1;
                 }
-                int varVerify = 0;// int saveflag = 0;
+                int varVerify = 0;
                 if (btnSave.Text == "Update")
                 {
                     if (varStockApplicableId == Convert.ToInt32(cmbStockApplicable.SelectedValue))
@@ -280,10 +279,15 @@ namespace ROMS
                     if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 12) { varVerify = 1; }
                 }
                 else
-                { if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 11) { varVerify = 0;} else { varVerify = 1; } }
-
-                // if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 11) { varVerify = 0; } else { varVerify = 1; }
-              
+                {
+                    //if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 11)
+                    //{ varVerify = 0;}
+                    //else
+                    //{
+                        varVerify = 1;
+                        saveflag = 0;
+                    //}
+                }
                 if (varVerify == 0)
                 {
                     saveflag = 1;
