@@ -389,7 +389,7 @@ namespace ROMS
                 {
                     objDs = objdserv.udfnSubGroupList(varviewtype, 0, varGroup, 0, varId, "",0,0,0,0);
                 }
-               else if(varmasterBrandtype == 1)
+                else if(varmasterBrandtype == 1)
                 {
                     objDs = objdserv.udfnSubGroupList(varviewtype,0, varGroupId,0, 0, "", 0, 0, 0, 0);
                 }
@@ -431,7 +431,6 @@ namespace ROMS
 
                 if (varmasterBrandtype == 1)
                 {
-
                     for (int j = 0; j < grdSubGroup.RowCount; j++)
                     {
                         if (Convert.ToString(varSubGroupId) == Convert.ToString(grdSubGroup.Rows[j].Cells["Sub Group Id"].Value))
@@ -474,8 +473,8 @@ namespace ROMS
                             //if (btnSave.Text == "Save") { udfnSubGroupAdd(); }
                         }
                     }
-                    varmasterBrandtype = 0;
                     udfnRemoveGroup();
+                    varmasterBrandtype = 0;
                 }
                 //udfnRefreshSubGroup();
             }
