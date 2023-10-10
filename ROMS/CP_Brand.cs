@@ -413,6 +413,7 @@ namespace ROMS
                             dtSubGroup.Rows.Add(false, objDs.Tables[0].Rows[i]["Product Group Name"], objDs.Tables[0].Rows[i]["Product Sub Group Name in English"], objDs.Tables[0].Rows[i]["T.Pro"], objDs.Tables[0].Rows[i]["Product Group Id"], objDs.Tables[0].Rows[i]["Id"]);
                         }
                     }
+                    udfnRemoveGroup();
                 }
                 grdSubGroup.DataSource = dtSubGroup;
                 grdSubGroup.Columns[0].HeaderText = "";
@@ -428,7 +429,6 @@ namespace ROMS
                 grdSubGroup.Columns["Group Id"].ReadOnly = true;
                 grdSubGroup.Columns["Sub Group Id"].ReadOnly = true;
                 grdSubGroup.Columns["T.Pro"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                udfnRemoveGroup();
                 if (varmasterBrandtype == 1)
                 {
                     for (int j = 0; j < grdSubGroup.RowCount; j++)
@@ -486,8 +486,8 @@ namespace ROMS
             finally
             {
                 grdSubGroup.ClearSelection();
-                this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending);
-                this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Descending);
+                //this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending);
+                //this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Descending);
             }
         }
 
@@ -1803,7 +1803,6 @@ namespace ROMS
                     }
                 }
                 udfnSubGroupList();
-
             }
             catch (Exception ex)
             {
@@ -1816,16 +1815,13 @@ namespace ROMS
         {
             try
             {
-                //if (chkgroup.Checked == false)
-                //{
-                    foreach (DataGridViewRow row in grdGroup.Rows)
-                    {
-                        row.Cells[0].Value = false;
-                    }
-                    dtSubGroup.Rows.Clear();
-                    dtSubGroup.AcceptChanges();
-                    grdSubGroup.DataSource = dtSubGroup;
-               // }
+                foreach (DataGridViewRow row in grdGroup.Rows)
+                {
+                    row.Cells[0].Value = false;
+                }
+                dtSubGroup.Rows.Clear();
+                dtSubGroup.AcceptChanges();
+                grdSubGroup.DataSource = dtSubGroup;
             }
             catch (Exception ex)
             {
