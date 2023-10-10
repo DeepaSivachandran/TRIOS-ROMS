@@ -708,7 +708,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
