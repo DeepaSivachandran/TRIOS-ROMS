@@ -335,7 +335,7 @@ namespace ROMS
               
                 DataSet objDS = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDS = objdserv.udfnRackGroupList(1,0, varStockId, varId,0);
+                objDS = objdserv.udfnRackGroupList(1,0, varStockId, varId,0,"");
                 objdserv.CloseConnection();
                 if (objDS != null)
                 {

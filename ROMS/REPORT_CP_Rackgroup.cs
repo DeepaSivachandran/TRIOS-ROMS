@@ -54,16 +54,29 @@ namespace ROMS
                 }
                 else
                 {
-                    
-                    
                     if (cmbReportType.SelectedIndex == 1)
                     {
+                        udfnRG();
                     }
                     if (cmbReportType.SelectedIndex == 2)
                     {
+                        udfnRGProduct();
                     }
                     if (cmbReportType.SelectedIndex == 3)
                     {
+                        udfnRGProBarcode();
+                    }
+                    if (cmbReportType.SelectedIndex == 4)
+                    {
+                        udfnRGProMsq();
+                    }
+                    if (cmbReportType.SelectedIndex == 5)
+                    {
+                        udfnRGProWeight();
+                    }
+                    if (cmbReportType.SelectedIndex == 6)
+                    {
+                        udfnRGProRackMinQty();
                     }
                 }
             }
@@ -80,27 +93,15 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 if(cmbReportType.SelectedIndex==1)
                 {
-                    udfnRG();
+                    txtRackgroup.Enabled = false;txtRackgroup.Text = "";
+                    txtEmployeeName.Enabled = false;txtEmployeeName.Text = "";
+                    txtRack.Enabled = false;txtRack.Text = "";
                 }
-                if(cmbReportType.SelectedIndex==2)
+                else
                 {
-                    //udfnRGProduct();
-                }
-                if(cmbReportType.SelectedIndex==3)
-                {
-                    //udfnRGProBarcode();
-                }
-                if (cmbReportType.SelectedIndex == 4)
-                {
-                    //udfnRGProMsq();
-                }
-                if (cmbReportType.SelectedIndex == 5)
-                {
-                    //udfnRGProWeight();
-                }
-                if (cmbReportType.SelectedIndex == 6)
-                {
-                    //udfnRGProRackMinQty();
+                    txtRackgroup.Enabled = true;
+                    txtEmployeeName.Enabled = true;
+                    txtRack.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -122,7 +123,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRackGroupList(3,0,0,0,0);
+                objDs = objspservice.udfnRackGroupList(3,0,0,0,0,"");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -163,13 +164,420 @@ namespace ROMS
                 GC.Collect();
             }
         }
+        public void udfnRGProduct()
+        {
+            try
+            {
+                btnListPrint.Enabled = false;
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                int RKGCode = 0,RKCode=0,EMPCode=0;
+                if(txtRackgroup.Text=="")
+                {
+                    RKGCode = 0;
+                }
+                else
+                {
+                    RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                }
+                if (txtEmployeeName.Text == "")
+                {
+                    EMPCode = 0;
+                }
+                else
+                {
+                    EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                }
+                if (txtRack.Text == "")
+                {
+                    RKCode = 0;
+                }
+                else
+                {
+                    RKCode = Convert.ToInt32(lblRackCode.Text);
+                }
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterlist(20,0,0,0,0,"","","",0,0,0,0,0,RKCode,0,0,0,0,0,RKGCode,EMPCode);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product.rpt");
+                    objBillreport.SetParameterValue("paraRKGID", RKGCode);
+                    objBillreport.SetParameterValue("paraEMPID", EMPCode);
+                    objBillreport.SetParameterValue("paraRKID", RKCode);
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                GC.Collect();
+            }
+        }
+        public void udfnRGProBarcode()
+        {
+            try
+            {
+                btnListPrint.Enabled = false;
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                int RKGCode = 0, RKCode = 0, EMPCode = 0;
+                if (txtRackgroup.Text == "")
+                {
+                    RKGCode = 0;
+                }
+                else
+                {
+                    RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                }
+                if (txtEmployeeName.Text == "")
+                {
+                    EMPCode = 0;
+                }
+                else
+                {
+                    EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                }
+                if (txtRack.Text == "")
+                {
+                    RKCode = 0;
+                }
+                else
+                {
+                    RKCode = Convert.ToInt32(lblRackCode.Text);
+                }
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Barcode.rpt");
+                    objBillreport.SetParameterValue("paraRKGID", RKGCode);
+                    objBillreport.SetParameterValue("paraEMPID", EMPCode);
+                    objBillreport.SetParameterValue("paraRKID", RKCode);
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                GC.Collect();
+            }
+        }
+        public void udfnRGProMsq()
+        {
+            try
+            {
+                btnListPrint.Enabled = false;
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                int RKGCode = 0, RKCode = 0, EMPCode = 0;
+                if (txtRackgroup.Text == "")
+                {
+                    RKGCode = 0;
+                }
+                else
+                {
+                    RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                }
+                if (txtEmployeeName.Text == "")
+                {
+                    EMPCode = 0;
+                }
+                else
+                {
+                    EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                }
+                if (txtRack.Text == "")
+                {
+                    RKCode = 0;
+                }
+                else
+                {
+                    RKCode = Convert.ToInt32(lblRackCode.Text);
+                }
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Msq.rpt");
+                    objBillreport.SetParameterValue("paraRKGID", RKGCode);
+                    objBillreport.SetParameterValue("paraEMPID", EMPCode);
+                    objBillreport.SetParameterValue("paraRKID", RKCode);
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                GC.Collect();
+            }
+        }
+        public void udfnRGProWeight()
+        {
+            try
+            {
+                btnListPrint.Enabled = false;
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                int RKGCode = 0, RKCode = 0, EMPCode = 0;
+                if (txtRackgroup.Text == "")
+                {
+                    RKGCode = 0;
+                }
+                else
+                {
+                    RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                }
+                if (txtEmployeeName.Text == "")
+                {
+                    EMPCode = 0;
+                }
+                else
+                {
+                    EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                }
+                if (txtRack.Text == "")
+                {
+                    RKCode = 0;
+                }
+                else
+                {
+                    RKCode = Convert.ToInt32(lblRackCode.Text);
+                }
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Weight.rpt");
+                    objBillreport.SetParameterValue("paraRKGID", RKGCode);
+                    objBillreport.SetParameterValue("paraEMPID", EMPCode);
+                    objBillreport.SetParameterValue("paraRKID", RKCode);
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                GC.Collect();
+            }
+        }
+        public void udfnRGProRackMinQty()
+        {
+            try
+            {
+                btnListPrint.Enabled = false;
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                int RKGCode = 0, RKCode = 0, EMPCode = 0;
+                if (txtRackgroup.Text == "")
+                {
+                    RKGCode = 0;
+                }
+                else
+                {
+                    RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                }
+                if (txtEmployeeName.Text == "")
+                {
+                    EMPCode = 0;
+                }
+                else
+                {
+                    EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                }
+                if (txtRack.Text == "")
+                {
+                    RKCode = 0;
+                }
+                else
+                {
+                    RKCode = Convert.ToInt32(lblRackCode.Text);
+                }
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterlist(20, 0, 0, 0, 0, "", "", "", 0, 0, 0, 0, 0, RKCode, 0, 0, 0, 0, 0, RKGCode, EMPCode);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty.rpt");
+                    objBillreport.SetParameterValue("paraRKGID", RKGCode);
+                    objBillreport.SetParameterValue("paraEMPID", EMPCode);
+                    objBillreport.SetParameterValue("paraRKID", RKCode);
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                GC.Collect();
+            }
+        }
         private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtRackgroup.Focus();
+                    if (txtRackgroup.Enabled == true)
+                    {
+                        txtRackgroup.Focus();
+                    }
+                    else
+                    {
+                        btnListPrint.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -270,9 +678,25 @@ namespace ROMS
         {
             try
             {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvRackgroup.Items.Count == 0 || txtRackgroup.Text == "")
+                    {
+                        txtRackgroup.Focus();
+                        lvRackgroup.Visible = false;
+                    }
+                    else
+                    {
+                        lvRackgroup.Focus();
+                    }
+                    if (lvRackgroup.Items.Count > 0)
+                    {
+                        lvRackgroup.Items[0].Selected = true;
+                    }
+                }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtRackIncharge.Focus();
+                    txtEmployeeName.Focus();
                 }
             }
             catch (Exception ex)
@@ -304,7 +728,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtRackgroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnBrandList(6, "0", 0, 0, 0, txtRackgroup.Text.Trim(), 0);
+                    objDs = objspdservice.udfnRackGroupList(4,0,0,0,0,txtRackgroup.Text.Trim());
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -314,16 +738,28 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["BD_EName"].ToString(), objDs.Tables[0].Rows[i]["BD_TName"].ToString(), objDs.Tables[0].Rows[i]["BDID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["RKG_Name"].ToString(),objDs.Tables[0].Rows[i]["RKGID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
-                                    objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    lvRackgroup.Columns[0].Width = 200;
+                                    lvRackgroup.Columns[1].Width = 0;
                                     lvRackgroup.Items.Add(objList);
                                 }
                                 lvRackgroup.Visible = true;
                                 lvRackgroup.BringToFront();
                             }
+                            else
+                            {
+                                lvRackgroup.Visible = false;
+                            }
                         }
+                        else
+                        {
+                            lvRackgroup.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvRackgroup.Visible = false;
                     }
                 }
                 else
@@ -342,54 +778,6 @@ namespace ROMS
 
             }
         }
-
-        private void TxtRackIncharge_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtRackIncharge.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtRackIncharge_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtRack.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtRackIncharge_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtRackIncharge.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtRackIncharge_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void TxtRack_Enter(object sender, EventArgs e)
         {
             try
@@ -407,6 +795,22 @@ namespace ROMS
         {
             try
             {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvRack.Items.Count == 0 || txtRack.Text == "")
+                    {
+                        txtRack.Focus();
+                        lvRack.Visible = false;
+                    }
+                    else
+                    {
+                        lvRack.Focus();
+                    }
+                    if (lvRack.Items.Count > 0)
+                    {
+                        lvRack.Items[0].Selected = true;
+                    }
+                }
                 if (e.KeyCode == Keys.Enter)
                 {
                     btnListPrint.Focus();
@@ -436,13 +840,13 @@ namespace ROMS
         {
             try
             {
-                int varLocationId = 0;
+                //int varLocationId = 0;
                 lvRack.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtRack.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnRackList(7, 0, 0, varLocationId, 0, txtRack.Text, 0, 0);
+                    objDs = objspdservice.udfnRackList(8, 0, 0, 0, 0, txtRack.Text, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -452,12 +856,13 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["RK_Name"].ToString(), objDs.Tables[0].Rows[i]["RK_ShortName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["RK_Name"].ToString(), objDs.Tables[0].Rows[i]["RK_Description"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvRack.Columns[0].Width = 100;
                                     lvRack.Items.Add(objList);
                                 }
                                 lvRack.Visible = true;
+                                lvRack.BringToFront();
                             }
                             else
                             {
@@ -527,7 +932,7 @@ namespace ROMS
                 {
                     ListViewItem selectedItem = lvRackgroup.SelectedItems[0];
                     txtRackgroup.Text = selectedItem.SubItems[0].Text;
-                    lblRackgroupCode.Text = selectedItem.SubItems[2].Text;
+                    lblRackgroupCode.Text = selectedItem.SubItems[1].Text;
                 }
             }
             catch (Exception ex)
@@ -537,7 +942,7 @@ namespace ROMS
             }
             finally
             {
-                txtRackIncharge.Focus();
+                txtEmployeeName.Focus();
                 lvRackgroup.Visible = false;
             }
         }
@@ -574,11 +979,11 @@ namespace ROMS
         {
             try
             {
-                if (txtRackIncharge.Text != "")
+                if (txtEmployeeName.Text != "")
                 {
                     ListViewItem selectedItem = lvRackIncharge.SelectedItems[0];
-                    txtRackIncharge.Text = selectedItem.SubItems[0].Text;
-                    lblRackInchargeCode.Text = selectedItem.SubItems[2].Text;
+                    txtEmployeeName.Text = selectedItem.SubItems[1].Text;
+                    lblEmpCode.Text = selectedItem.SubItems[2].Text;
                 }
             }
             catch (Exception ex)
@@ -641,6 +1046,125 @@ namespace ROMS
             {
                 btnListPrint.Focus();
                 lvRack.Visible = false;
+            }
+        }
+
+        private void TxtEmployeeName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtEmployeeName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtEmployeeName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvRackIncharge.Items.Count == 0 || txtEmployeeName.Text == "")
+                    {
+                        txtEmployeeName.Focus();
+                        lvRackIncharge.Visible = false;
+                    }
+                    else
+                    {
+                        lvRackIncharge.Focus();
+                    }
+                    if (lvRackIncharge.Items.Count > 0)
+                    {
+                        lvRackIncharge.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtRack.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtEmployeeName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtEmployeeName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtEmployeeName_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvRackIncharge.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtEmployeeName.Text.Length > 0)
+                {
+                    objDs = objspdservice.udfnEmployeeList(2,txtEmployeeName.Text.Trim(),0,"",0,0);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["EMP_Code"].ToString(), objDs.Tables[0].Rows[i]["EMP_Name"].ToString(), objDs.Tables[0].Rows[i]["EMPID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvRackIncharge.Columns[0].Width = 100;
+                                    lvRackIncharge.Columns[1].Width = 150;
+                                    lvRackIncharge.Columns[2].Width = 0;
+                                    lvRackIncharge.Items.Add(objList);
+                                }
+                                lvRackIncharge.Visible = true;
+                                lvRackIncharge.BringToFront();
+                            }
+                            else
+                            {
+                                lvRackIncharge.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lvRackIncharge.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvRackIncharge.Visible = false;
+                    }
+                }
+                else
+                {
+                    lvRackIncharge.Visible = false;
+                    lvRackIncharge.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
             }
         }
     }

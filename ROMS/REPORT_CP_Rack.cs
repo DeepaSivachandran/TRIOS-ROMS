@@ -192,7 +192,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRackGroupList(2,0,0,0, Convert.ToInt32(cmbStatus.SelectedValue));
+                objDs = objspservice.udfnRackGroupList(2,0,0,0, Convert.ToInt32(cmbStatus.SelectedValue),"");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)

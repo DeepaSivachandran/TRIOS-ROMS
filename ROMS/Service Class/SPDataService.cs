@@ -1273,7 +1273,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 24/08/2023    Description:Rack Group List SP
-        public DataSet udfnRackGroupList(int ViewType, int paraCompanyId, int paraLocationId,int paraRackGroupId,int paraStatusId)
+        public DataSet udfnRackGroupList(int ViewType, int paraCompanyId, int paraLocationId,int paraRackGroupId,int paraStatusId,string paraRKGName)
         {
             DataSet ds = new DataSet();
             try
@@ -1286,6 +1286,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraLocationId", paraLocationId);
                 varSqlCommand.Parameters.AddWithValue("@paraRackGroupId", paraRackGroupId);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraRKGName", paraRKGName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
