@@ -53,7 +53,6 @@ namespace ROMS
                 throw ex;
             }
         }
-
         private void CP_ChangePassword_Load(object sender, EventArgs e)
         {
            try
@@ -369,10 +368,7 @@ namespace ROMS
                     MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 6;
                     MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
                 }
-                else
-                {
-                    udfnUpdatePassword();
-                }
+                udfnUpdatePassword();
             }
             catch (Exception ex)
             {
@@ -385,8 +381,9 @@ namespace ROMS
             try
             {
                 SPDataService objspservice = new SPDataService();
-                string varResult = "", varOriginator = "Password Updation";
-                varResult = objspservice.udfnUser(3, Convert.ToInt32(MainForm.pbUserID), "", "", 0,0,Convert.ToString(txtNewPassword.Text.Trim()), 0, 0, varOriginator);
+                string varResult = "", varOriginator = "Password Updation", varPassword="";
+                varPassword = GenerateMD5(txtNewPassword.Text).Trim();
+                varResult = objspservice.udfnUser(3, Convert.ToInt32(MainForm.pbUserID), "", "", 0,0, varPassword, 0, 0, varOriginator);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -499,7 +496,7 @@ namespace ROMS
             try
             {
                 MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
-                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passward";
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Password";
                 MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
                 MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
                 udfnGeneratePassKey();
