@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {        //Created By:-Sathish
-        //Created On:-09/08/2023
+         //Created On:-09/08/2023
     public partial class CP_Unitlist : Form
     {
         DataValidation objValidation = new DataValidation();
@@ -70,7 +70,7 @@ namespace ROMS
 
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
-                        varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "","",0,0, "Unit Delete","");
+                        varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "");
                         objspservice.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -110,7 +110,7 @@ namespace ROMS
                     MainForm.objCP_Unit.PbUnitName = Convert.ToString(grdUnitList.SelectedRows[0].Cells["Unit Name"].Value);
                     MainForm.objCP_Unit.PbSymbol = Convert.ToString(grdUnitList.SelectedRows[0].Cells["Unit"].Value);
                     MainForm.objCP_Unit.PbNoOfDecimals = Convert.ToString(grdUnitList.SelectedRows[0].Cells["No.of Decimals"].Value);
-                    MainForm.objCP_Unit.PbStatus = Convert.ToInt32( grdUnitList.SelectedRows[0].Cells["StatusID"].Value);
+                    MainForm.objCP_Unit.PbStatus = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["StatusID"].Value);
                     MainForm.objCP_Unit.pbInvoiceUnit = Convert.ToString(grdUnitList.SelectedRows[0].Cells["E-Invoice Unit"].Value);
                     MainForm.objCP_Unit.ShowDialog();
                 }
@@ -122,7 +122,7 @@ namespace ROMS
             }
         }
         public void udfnList()
-        {           
+        {
             try
             {
                 picLoader.Visible = true;
@@ -133,7 +133,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************    
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnUnitList(0,0);
+                objDs = objspservice.udfnUnitList(0, 0);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -463,7 +463,7 @@ namespace ROMS
         }
         private void GrdUnitList_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode==Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 udfnEdit();
             }
@@ -491,7 +491,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }    
+            }
         }
         private void GrdUnitList_Scroll(object sender, ScrollEventArgs e)
         {
@@ -516,34 +516,17 @@ namespace ROMS
             }
         }
 
-        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            try
-            {
-                //udfnGridSearchFilter();
-                DataService objDser = new DataService();
-                grdUnitList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUnitList);
-                objDser.CloseConnection();
-                grdUnitList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                ////DGV_SearchGrid_CellPainting(sender,e);
-                //System.Windows.Forms.SendKeys.Send("{ENTER}");
-                //DGV_SearchGrid.CurrentCell = DGV_SearchGrid.Rows[0].Cells[2];
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        }
-
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (grdUnitList.IsCurrentCellDirty)
+            if (DGV_SearchGrid.IsCurrentCellDirty)
             {
                 // Commit the changes immediately
-                grdUnitList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
-        }
-
-        private void DGV_SearchGrid_CellStateChanged(object sender, DataGridViewCellStateChangedEventArgs e)
-        {
-
+            DataService objDser = new DataService();
+            grdUnitList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUnitList);
+            objDser.CloseConnection();
+            grdUnitList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
         }
     }
 }
