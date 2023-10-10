@@ -161,8 +161,8 @@ namespace ROMS
             }
             finally
             {
-                this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending);
-                this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending);
+                //this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending);
+                //this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending);
             }
         }
         public void udfnList()
@@ -298,7 +298,7 @@ namespace ROMS
             finally
             {
                 grdSubGroupAdd.ClearSelection();
-                this.grdSubGroupAdd.Sort(this.grdSubGroupAdd.Columns[2], ListSortDirection.Ascending);
+                //this.grdSubGroupAdd.Sort(this.grdSubGroupAdd.Columns[2], ListSortDirection.Ascending);
             }
         }
         public void udfnRemoveGroup()
@@ -1457,7 +1457,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             finally
-            { this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending); }
+            { //this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending); 
+            }
         }
 
         private void BtnRemove_Click(object sender, EventArgs e)
