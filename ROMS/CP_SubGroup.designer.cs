@@ -69,8 +69,6 @@
             this.txtDRack = new System.Windows.Forms.TextBox();
             this.epSubGroup = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblLocation = new System.Windows.Forms.Label();
-            this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRackDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             this.grpPurchaseStockLocation.SuspendLayout();
@@ -434,9 +432,6 @@
             this.grdRackList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdRackList.ColumnHeadersHeight = 25;
             this.grdRackList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdRackList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmRack,
-            this.clmRackDescription});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -531,18 +526,6 @@
             this.lblLocation.TabIndex = 1;
             this.lblLocation.Visible = false;
             // 
-            // clmRack
-            // 
-            this.clmRack.HeaderText = "Rack";
-            this.clmRack.Name = "clmRack";
-            this.clmRack.Width = 150;
-            // 
-            // clmRackDescription
-            // 
-            this.clmRackDescription.HeaderText = "Rack Description";
-            this.clmRackDescription.Name = "clmRackDescription";
-            this.clmRackDescription.Width = 200;
-            // 
             // CP_SubGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -615,7 +598,5 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         public System.Windows.Forms.DataGridView grdRackList;
         private System.Windows.Forms.TextBox txtRack;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmRack;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmRackDescription;
     }
 }
