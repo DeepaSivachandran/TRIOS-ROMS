@@ -1070,17 +1070,16 @@ namespace ROMS
         {
             try
             {
-                if (grdDaywiseProduct.IsCurrentCellDirty)
+                if (DGV_SearchGrid.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately
-                    grdDaywiseProduct.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
-
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdDaywiseProduct.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdDaywiseProduct);
+                grdSupplierList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierList);
                 objDser.CloseConnection();
-                grdDaywiseProduct.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdSupplierList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //grdCompanyList(sender,e); 
             }
             catch (Exception ex)

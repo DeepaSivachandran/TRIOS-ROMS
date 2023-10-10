@@ -438,13 +438,12 @@ namespace ROMS
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         { 
             try
-            { 
-                if (grdHSNList.IsCurrentCellDirty)
+            {
+                if (DGV_SearchGrid.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately
-                    grdHSNList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
-
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdHSNList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdHSNList);

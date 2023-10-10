@@ -562,11 +562,10 @@ namespace ROMS
         {
             try
             {
-
-                if (grdCompanyList.IsCurrentCellDirty)
+                if (DGV_SearchGrid.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately
-                    grdCompanyList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
 
                 //udfnGridSearchFilter();

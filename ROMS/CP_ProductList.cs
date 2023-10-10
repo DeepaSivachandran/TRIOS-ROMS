@@ -1286,12 +1286,11 @@ namespace ROMS
         {
             try
             {
-                if (grdItemList.IsCurrentCellDirty)
+                if (DGV_SearchGrid.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately
-                    grdItemList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
-
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdItemList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdItemList);

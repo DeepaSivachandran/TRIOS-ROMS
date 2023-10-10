@@ -952,12 +952,11 @@ namespace ROMS
         {
             try
             {
-                if (grdRackGroupList.IsCurrentCellDirty)
+                if (DGV_SearchGrid.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately
-                    grdRackGroupList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
-
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdRackGroupList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdRackGroupList);

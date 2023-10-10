@@ -524,12 +524,11 @@ namespace ROMS
         {
             try
             {
-                if (grdBrokerList.IsCurrentCellDirty)
+                if (DGV_SearchGrid.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately
-                    grdBrokerList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
-
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdBrokerList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdBrokerList);

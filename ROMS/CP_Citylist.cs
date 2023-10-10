@@ -500,12 +500,11 @@ namespace ROMS
 
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (grdCityList.IsCurrentCellDirty)
+            if (DGV_SearchGrid.IsCurrentCellDirty)
             {
                 // Commit the changes immediately
-                grdCityList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
-
             //udfnGridSearchFilter();
             DataService objDser = new DataService();
             grdCityList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCityList);
@@ -514,13 +513,5 @@ namespace ROMS
             //DGV_SearchGrid_CellPainting(sender,e);
              
         }
-
-        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        { 
-            try
-            { 
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        } 
     }
 }

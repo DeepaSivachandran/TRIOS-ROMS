@@ -1629,12 +1629,11 @@ namespace ROMS
         { 
             try
             {
-                if (grdSubGroupList.IsCurrentCellDirty)
+                if (DGV_SearchGrid.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately
-                    grdSubGroupList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
-
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdSubGroupList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSubGroupList);
@@ -1649,19 +1648,7 @@ namespace ROMS
             }
         }
 
-        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            try
-            {
-                //udfnGridSearchFilter();
-                DataService objDser = new DataService();
-                grdSubGroupList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSubGroupList);
-                objDser.CloseConnection();
-                grdSubGroupList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //DGV_SearchGrid_CellPainting(sender,e);
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
-        }
+ 
 
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
         {

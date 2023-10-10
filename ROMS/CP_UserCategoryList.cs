@@ -591,12 +591,11 @@ namespace ROMS
         {
             try
             {
-                if (grdUserCategoryList.IsCurrentCellDirty)
+                if (DGV_SearchGrid.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately
-                    grdUserCategoryList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
-
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
                 grdUserCategoryList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUserCategoryList);
