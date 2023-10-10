@@ -533,14 +533,14 @@ namespace ROMS
                 {
                     tsbEdit_Click(sender, e);
                 }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
-                {
-                    tsbDelete_Click(sender, e);
-                }
-                if ( (e.KeyCode == Keys.Delete))
-                {
-                    tsbDelete_Click(sender, e);
-                }
+                //if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                //{
+                //    tsbDelete_Click(sender, e);
+                //}
+                //if ( (e.KeyCode == Keys.Delete))
+                //{
+                //    tsbDelete_Click(sender, e);
+                //}
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm objMainForm = new MainForm();
