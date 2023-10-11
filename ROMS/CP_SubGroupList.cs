@@ -102,6 +102,9 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
 
                 int varSubGroupId = 0;
+                int varGroupId = 0;
+                int varLocationId = 0;
+                int varRackId = 0;
                 if (txtProductSubGroup.Text == "")
                 {
                     varSubGroupId = 0;
@@ -125,23 +128,33 @@ namespace ROMS
                     }
                     varSubGroupId = Convert.ToInt32(varId_SubGroup);
                 }
-                string varId_Group = "0";
-                DataSet objDsGroup = new DataSet();
-                SPDataService objDServ1 = new SPDataService();
-                objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim(),0);
-                objDServ1.CloseConnection();
-                if (objDsGroup != null)
+                if (txtProductGroup.Text == "")
                 {
-                    if (objDsGroup.Tables.Count > 0)
+                    varGroupId = 0;
+                }
+                else
+                {
+                    string varId_Group = "0";
+                    DataSet objDsGroup = new DataSet();
+                    SPDataService objDServ1 = new SPDataService();
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim(), 0);
+                    objDServ1.CloseConnection();
+                    if (objDsGroup != null)
                     {
-                        if (objDsGroup.Tables[0].Rows.Count > 0)
+                        if (objDsGroup.Tables.Count > 0)
                         {
-                            varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                            if (objDsGroup.Tables[0].Rows.Count > 0)
+                            {
+                                varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                            }
                         }
                     }
+                    varGroupId= Convert.ToInt32(varId_Group);
                 }
-                lblGroupCode.Text = Convert.ToString(varId_Group);
-                if (txtStockLocation.Text.Trim() == "") { lblSLCode.Text = "0"; }
+                if (txtStockLocation.Text.Trim() == "")
+                {
+                    varLocationId = 0;
+                }
                 else
                 {
                     string varId_PurLocation = "0";
@@ -159,9 +172,12 @@ namespace ROMS
                             }
                         }
                     }
-                    lblSLCode.Text = Convert.ToString(varId_PurLocation);
+                    varLocationId = Convert.ToInt32(varId_PurLocation);
                 }
-                if (txtSaleRack.Text.Trim() == "") { lblRkCode.Text = "0"; }
+                if (txtSaleRack.Text.Trim() == "")
+                {
+                    varRackId =0;
+                }
                 else
                 {
                     string varId_PurRack = "0";
@@ -179,9 +195,9 @@ namespace ROMS
                             }
                         }
                     }
-                    lblRkCode.Text = Convert.ToString(varId_PurRack);
+                    varRackId = Convert.ToInt32(varId_PurRack);
                 }
-                objDs = objdserv.udfnSubGroupList(0, varSubGroupId,"",Convert.ToInt32(lblGroupCode.Text),0,"",Convert.ToInt32(cmbStatus.SelectedValue),Convert.ToInt32(cmbBatchNoEntry.SelectedValue),Convert.ToInt32(lblSLCode.Text),Convert.ToInt32(lblRkCode.Text));
+                objDs = objdserv.udfnSubGroupList(0, varSubGroupId,"",varGroupId,0,"",Convert.ToInt32(cmbStatus.SelectedValue),Convert.ToInt32(cmbBatchNoEntry.SelectedValue),varLocationId,varRackId);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -195,8 +211,6 @@ namespace ROMS
                             grdSubGroupList.DataSource = objDs.Tables[0];
                             grdSubGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSubGroupList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                           // grdSubGroupList.Columns["Batch No"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
                             grdSubGroupList.Columns["S.No."].Width = 50;
                             grdSubGroupList.Columns["Product Group Name"].Width = 200;
                             grdSubGroupList.Columns["Product Sub Group Name in English"].Width = 250;
