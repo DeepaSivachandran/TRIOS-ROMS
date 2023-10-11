@@ -121,7 +121,7 @@ namespace ROMS
                             grdUserList.Columns["PassKeyID"].Visible = false;
                             grdUserList.Columns["StatusID"].Visible = false;
                             grdUserList.Columns["S.No."].Width = 50;
-                            grdUserList.Columns["Name of the System User"].Width = 150;
+                            grdUserList.Columns["Name of the System User"].Width = 200;
                             grdUserList.Columns["Status"].Width = 80;
                             grdUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -143,7 +143,9 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
+                
                 udfnSearchGridHead();
+               
             }
             catch (Exception ex)
             {
