@@ -1024,8 +1024,7 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex].Interior.Color = Color.LightSlateGray;
                             Excel.Range cell = ExcelSheet.Cells[2, cIndex];
                             cell.Font.Color = Excel.XlRgbColor.rgbWhite;
-
-
+                             
                             foreach (DataGridViewRow rowa in grdSupplierList.Rows)
                             {
                                 ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
@@ -1033,8 +1032,7 @@ namespace ROMS
                         }
                     }
                     ExcelObj.Visible = true;
-                }
-
+                } 
                 else
                 {
                     MessageBox.Show("No Records found!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1049,7 +1047,7 @@ namespace ROMS
             {
                 btnExport.Enabled = true;
                 btnExport.Focus();
-            }
+            } 
         }
 
         private void GrdDaywiseProduct_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -1058,7 +1056,6 @@ namespace ROMS
             { 
                 grdDaywiseProduct.ClearSelection(); 
             }
-
             catch (Exception ex)
             {
                 objError = new DataError();
