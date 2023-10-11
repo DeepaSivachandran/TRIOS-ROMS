@@ -69,7 +69,8 @@ namespace ROMS
                                 count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
                                 if (count != 0)
                                 {
-                                    flag = 1;
+                                    //flag = 1;
+                                    MainForm.objCP_ChangePassword.varPasswordFlag = 0;
                                     this.Close();
                                 }
                                 else if (count == 0)
@@ -102,7 +103,7 @@ namespace ROMS
                 {
                     SPDataService objDser = new SPDataService();
                     int count = 0;
-                    objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, GenerateMD5(txtPassKey.Text), 0, "");
+                    objDs = objDser.udfnUserList(0, "", MainForm.pbUserName,"", 0, txtPassKey.Text.Trim());
                     objDser.CloseConnection();
                     if (objDs != null)
                     {

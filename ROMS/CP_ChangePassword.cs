@@ -23,6 +23,7 @@ namespace ROMS
 
         public int varId=0;
         public int varUserId = 0;
+        public int varPasswordFlag = 0;
         private ToolTip tpOldPassword = new ToolTip();
         private ToolTip tpNewPassword = new ToolTip();
         private ToolTip tpConfirmPassword = new ToolTip();
@@ -363,6 +364,7 @@ namespace ROMS
             {
                 if (varId == 20)
                 {
+                    varPasswordFlag = 1;
                     MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
                     MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Pass Key";
                     MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 6;
@@ -380,20 +382,23 @@ namespace ROMS
         {
             try
             {
-                SPDataService objspservice = new SPDataService();
-                string varResult = "", varOriginator = "Password Updation", varPassword="";
-                varPassword = GenerateMD5(txtNewPassword.Text).Trim();
-                varResult = objspservice.udfnUser(3, Convert.ToInt32(MainForm.pbUserID), "", "", 0,0, varPassword, 0, 0, varOriginator);
-                objspservice.CloseConnection();
-                string[] varvalue = varResult.Split('~');
-                if (varvalue[0] == "3")
+                if (varPasswordFlag == 0)
                 {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udfnclear();
-                }
-                else
-                {
-                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = "", varOriginator = "Password Updation", varPassword = "";
+                    varPassword = GenerateMD5(txtNewPassword.Text).Trim();
+                    varResult = objspservice.udfnUser(3, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, varPassword, 0, 0, varOriginator);
+                    objspservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnclear();
+                    }
+                    else
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
             }
             catch (Exception ex)
