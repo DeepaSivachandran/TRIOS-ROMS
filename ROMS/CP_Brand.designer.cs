@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -42,6 +42,14 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblNoofSubgroups = new System.Windows.Forms.Label();
+            this.lblSubGroup = new System.Windows.Forms.Label();
+            this.lblNoofGroup = new System.Windows.Forms.Label();
+            this.lblTotalProduct = new System.Windows.Forms.Label();
+            this.lblGroup = new System.Windows.Forms.Label();
+            this.lblTotProducts = new System.Windows.Forms.Label();
+            this.grdGroup = new System.Windows.Forms.DataGridView();
             this.btnSubGrupUnSelectAll = new System.Windows.Forms.Button();
             this.BtnSubGrupSelectAll = new System.Windows.Forms.Button();
             this.btnUnselectAll = new System.Windows.Forms.Button();
@@ -65,12 +73,7 @@
             this.clmProductGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSubGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grdGroup = new System.Windows.Forms.DataGridView();
             this.grdSubGroupAdd = new System.Windows.Forms.DataGridView();
-            this.clmSelGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSelSubGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTotProductss = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtDEBrandNameInTamil = new System.Windows.Forms.TextBox();
             this.txtEBrandNameInTamil = new System.Windows.Forms.TextBox();
             this.txtDBrandNameInEnglish = new System.Windows.Forms.TextBox();
@@ -78,12 +81,17 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtEBrandNameInEnglish = new System.Windows.Forms.TextBox();
             this.epBrand = new System.Windows.Forms.ErrorProvider(this.components);
+            this.clmSelGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSelSubGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTotProductss = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.grbform.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdGroup)).BeginInit();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSubGroup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSubGroupAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epBrand)).BeginInit();
             this.SuspendLayout();
@@ -122,6 +130,7 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.groupBox1);
             this.grbform.Controls.Add(this.grdGroup);
             this.grbform.Controls.Add(this.btnSubGrupUnSelectAll);
             this.grbform.Controls.Add(this.BtnSubGrupSelectAll);
@@ -152,6 +161,122 @@
             this.grbform.Size = new System.Drawing.Size(1339, 633);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblNoofSubgroups);
+            this.groupBox1.Controls.Add(this.lblSubGroup);
+            this.groupBox1.Controls.Add(this.lblNoofGroup);
+            this.groupBox1.Controls.Add(this.lblTotalProduct);
+            this.groupBox1.Controls.Add(this.lblGroup);
+            this.groupBox1.Controls.Add(this.lblTotProducts);
+            this.groupBox1.Location = new System.Drawing.Point(500, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(440, 65);
+            this.groupBox1.TabIndex = 1111171;
+            this.groupBox1.TabStop = false;
+            // 
+            // lblNoofSubgroups
+            // 
+            this.lblNoofSubgroups.AutoSize = true;
+            this.lblNoofSubgroups.BackColor = System.Drawing.Color.BlueViolet;
+            this.lblNoofSubgroups.ForeColor = System.Drawing.Color.White;
+            this.lblNoofSubgroups.Location = new System.Drawing.Point(237, 28);
+            this.lblNoofSubgroups.Name = "lblNoofSubgroups";
+            this.lblNoofSubgroups.Size = new System.Drawing.Size(44, 20);
+            this.lblNoofSubgroups.TabIndex = 25;
+            this.lblNoofSubgroups.Text = "00000";
+            // 
+            // lblSubGroup
+            // 
+            this.lblSubGroup.AutoSize = true;
+            this.lblSubGroup.Location = new System.Drawing.Point(137, 27);
+            this.lblSubGroup.Name = "lblSubGroup";
+            this.lblSubGroup.Size = new System.Drawing.Size(101, 20);
+            this.lblSubGroup.TabIndex = 24;
+            this.lblSubGroup.Text = "Total Sub Groups";
+            // 
+            // lblNoofGroup
+            // 
+            this.lblNoofGroup.AutoSize = true;
+            this.lblNoofGroup.BackColor = System.Drawing.Color.Tomato;
+            this.lblNoofGroup.ForeColor = System.Drawing.Color.White;
+            this.lblNoofGroup.Location = new System.Drawing.Point(84, 28);
+            this.lblNoofGroup.Name = "lblNoofGroup";
+            this.lblNoofGroup.Size = new System.Drawing.Size(44, 20);
+            this.lblNoofGroup.TabIndex = 21;
+            this.lblNoofGroup.Text = "00000";
+            // 
+            // lblTotalProduct
+            // 
+            this.lblTotalProduct.AutoSize = true;
+            this.lblTotalProduct.BackColor = System.Drawing.Color.LimeGreen;
+            this.lblTotalProduct.ForeColor = System.Drawing.Color.White;
+            this.lblTotalProduct.Location = new System.Drawing.Point(379, 28);
+            this.lblTotalProduct.Name = "lblTotalProduct";
+            this.lblTotalProduct.Size = new System.Drawing.Size(44, 20);
+            this.lblTotalProduct.TabIndex = 20;
+            this.lblTotalProduct.Text = "00000";
+            // 
+            // lblGroup
+            // 
+            this.lblGroup.AutoSize = true;
+            this.lblGroup.Location = new System.Drawing.Point(9, 27);
+            this.lblGroup.Name = "lblGroup";
+            this.lblGroup.Size = new System.Drawing.Size(77, 20);
+            this.lblGroup.TabIndex = 17;
+            this.lblGroup.Text = "Total Groups";
+            // 
+            // lblTotProducts
+            // 
+            this.lblTotProducts.AutoSize = true;
+            this.lblTotProducts.Location = new System.Drawing.Point(290, 27);
+            this.lblTotProducts.Name = "lblTotProducts";
+            this.lblTotProducts.Size = new System.Drawing.Size(90, 20);
+            this.lblTotProducts.TabIndex = 16;
+            this.lblTotProducts.Text = "Total  Products";
+            // 
+            // grdGroup
+            // 
+            this.grdGroup.AllowUserToAddRows = false;
+            this.grdGroup.AllowUserToDeleteRows = false;
+            this.grdGroup.AllowUserToResizeColumns = false;
+            this.grdGroup.AllowUserToResizeRows = false;
+            this.grdGroup.BackgroundColor = System.Drawing.Color.White;
+            this.grdGroup.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdGroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdGroup.ColumnHeadersHeight = 30;
+            this.grdGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdGroup.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdGroup.EnableHeadersVisualStyles = false;
+            this.grdGroup.GridColor = System.Drawing.Color.White;
+            this.grdGroup.Location = new System.Drawing.Point(8, 129);
+            this.grdGroup.Name = "grdGroup";
+            this.grdGroup.RowHeadersVisible = false;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdGroup.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdGroup.RowTemplate.Height = 25;
+            this.grdGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdGroup.Size = new System.Drawing.Size(339, 418);
+            this.grdGroup.TabIndex = 1111140;
+            this.grdGroup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGroup_CellContentClick);
+            this.grdGroup.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGroup_CurrentCellDirtyStateChanged);
+            this.grdGroup.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGroup_DataBindingComplete);
             // 
             // btnSubGrupUnSelectAll
             // 
@@ -455,51 +580,10 @@
             // 
             // clmTotProducts
             // 
-            this.clmTotProducts.HeaderText = "Total Products";
+            this.clmTotProducts.HeaderText = "T.Pro";
             this.clmTotProducts.Name = "clmTotProducts";
             this.clmTotProducts.ReadOnly = true;
-            // 
-            // grdGroup
-            // 
-            this.grdGroup.AllowUserToAddRows = false;
-            this.grdGroup.AllowUserToDeleteRows = false;
-            this.grdGroup.AllowUserToResizeColumns = false;
-            this.grdGroup.AllowUserToResizeRows = false;
-            this.grdGroup.BackgroundColor = System.Drawing.Color.White;
-            this.grdGroup.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdGroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdGroup.ColumnHeadersHeight = 30;
-            this.grdGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdGroup.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grdGroup.EnableHeadersVisualStyles = false;
-            this.grdGroup.GridColor = System.Drawing.Color.White;
-            this.grdGroup.Location = new System.Drawing.Point(8, 129);
-            this.grdGroup.Name = "grdGroup";
-            this.grdGroup.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdGroup.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.grdGroup.RowTemplate.Height = 25;
-            this.grdGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdGroup.Size = new System.Drawing.Size(339, 418);
-            this.grdGroup.TabIndex = 1111140;
-            this.grdGroup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGroup_CellContentClick);
-            this.grdGroup.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGroup_CurrentCellDirtyStateChanged);
-            this.grdGroup.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGroup_DataBindingComplete);
+            this.clmTotProducts.Width = 60;
             // 
             // grdSubGroupAdd
             // 
@@ -546,32 +630,6 @@
             this.grdSubGroupAdd.TabIndex = 1111139;
             this.grdSubGroupAdd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSubGroupAdd_CellContentClick);
             this.grdSubGroupAdd.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSubGroupAdd_DataBindingComplete);
-            // 
-            // clmSelGroup
-            // 
-            this.clmSelGroup.HeaderText = "Selected Product Group";
-            this.clmSelGroup.Name = "clmSelGroup";
-            this.clmSelGroup.Width = 150;
-            // 
-            // clmSelSubGroup
-            // 
-            this.clmSelSubGroup.HeaderText = "Selected Product Subgroup";
-            this.clmSelSubGroup.Name = "clmSelSubGroup";
-            this.clmSelSubGroup.Width = 200;
-            // 
-            // clmTotProductss
-            // 
-            this.clmTotProductss.HeaderText = "Total Products";
-            this.clmTotProductss.Name = "clmTotProductss";
-            this.clmTotProductss.ReadOnly = true;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemove.Width = 80;
             // 
             // txtDEBrandNameInTamil
             // 
@@ -659,6 +717,33 @@
             // 
             this.epBrand.ContainerControl = this;
             // 
+            // clmSelGroup
+            // 
+            this.clmSelGroup.HeaderText = "Selected Product Group";
+            this.clmSelGroup.Name = "clmSelGroup";
+            this.clmSelGroup.Width = 150;
+            // 
+            // clmSelSubGroup
+            // 
+            this.clmSelSubGroup.HeaderText = "Selected Product Subgroup";
+            this.clmSelSubGroup.Name = "clmSelSubGroup";
+            this.clmSelSubGroup.Width = 200;
+            // 
+            // clmTotProductss
+            // 
+            this.clmTotProductss.HeaderText = "T.Pro";
+            this.clmTotProductss.Name = "clmTotProductss";
+            this.clmTotProductss.ReadOnly = true;
+            this.clmTotProductss.Width = 40;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemove.Width = 50;
+            // 
             // CP_Brand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -683,10 +768,12 @@
             this.pnlCompany.ResumeLayout(false);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdGroup)).EndInit();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSubGroup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSubGroupAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epBrand)).EndInit();
             this.ResumeLayout(false);
@@ -728,6 +815,13 @@
         public System.Windows.Forms.Button btnUnselectAll;
         public System.Windows.Forms.Button btnSubGrupUnSelectAll;
         public System.Windows.Forms.Button BtnSubGrupSelectAll;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblNoofSubgroups;
+        private System.Windows.Forms.Label lblSubGroup;
+        private System.Windows.Forms.Label lblNoofGroup;
+        private System.Windows.Forms.Label lblTotalProduct;
+        private System.Windows.Forms.Label lblGroup;
+        private System.Windows.Forms.Label lblTotProducts;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmChk;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductGroup;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSubGroup;

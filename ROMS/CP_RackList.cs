@@ -149,7 +149,22 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                int ActiveCount = 0, InactiveCount = 0;
+
                 lblGC.Text = Convert.ToString(grdGroupList.Rows.Count);
+                for (int i = 0; i < grdGroupList.Rows.Count; i++)
+                {
+                    if((Convert.ToString(grdGroupList.Rows[i].Cells["StatusID"].Value) == "1"))
+                    {
+                        ActiveCount++;
+                    }
+                    else
+                    {
+                        InactiveCount++;
+                    }
+                }
+                lblActiveCount.Text = Convert.ToString(ActiveCount);
+                lblInactiveCount.Text = Convert.ToString(InactiveCount);
             }
         }
 
@@ -285,10 +300,10 @@ namespace ROMS
                 {
                     tsbEdit_Click(sender, e);
                 }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
-                {
-                    tsbDelete_Click(sender, e);
-                }
+                //if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                //{
+                //    tsbDelete_Click(sender, e);
+                //}
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm objMainForm = new MainForm();
@@ -298,10 +313,10 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
-                if (e.KeyCode == Keys.Delete)
-                {
-                    udfndelete();
-                }
+                //if (e.KeyCode == Keys.Delete)
+                //{
+                //    udfndelete();
+                //}
             }
             catch (Exception ex)
             {
@@ -705,6 +720,43 @@ namespace ROMS
                 {
                     btnView.Focus();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdGroupList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdGroupList);
+                objDser.CloseConnection();
+                grdGroupList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdGroupList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdGroupList);
+                objDser.CloseConnection();
+                grdGroupList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //grdCompanyList(sender,e); 
             }
             catch (Exception ex)
             {

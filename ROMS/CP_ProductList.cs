@@ -179,7 +179,7 @@ namespace ROMS
                 {
                     DataSet objDsGroup = new DataSet();
                     SPDataService objDServ1 = new SPDataService();
-                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim());
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim(),0);
                     objDServ1.CloseConnection();
                     if (objDsGroup != null)
                     {
@@ -215,7 +215,7 @@ namespace ROMS
                         }
                     }
                 }
-                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue),varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue),0,0,0,0,0,"");
+                objDs = objdserv.udfnproductmasterlist(0, 0, Convert.ToInt32(cmbCategory.SelectedValue),varGroupId, varSubGroupId, "", MainForm.pbUserID, MainForm.pbIpAddress, Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(cmbStatus.SelectedValue),0,0,0,0,0,0,0,0,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -468,20 +468,16 @@ namespace ROMS
         {
             try
             {
-
                 int totalWidth = 0;
                 int offSetValue = grdItemList.HorizontalScrollingOffset;
                 foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                     totalWidth += col.Width;
-
                 if (totalWidth - grdItemList.Width > grdItemList.HorizontalScrollingOffset && grdItemList.HorizontalScrollingOffset > 0)
                 {
-                    //offSetValue = offSetValue ;
                     offSetValue = offSetValue;
                 }
                 DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                 DGV_SearchGrid.Invalidate();
-                udfnscrollVisible(DGV_SearchGrid, grdItemList);
             }
             catch (Exception ex)
             {
@@ -493,7 +489,7 @@ namespace ROMS
         {
             try
             {
-                var vScrollbar = grdGroupList.Controls.OfType<VScrollBar>().First();
+                var vScrollbar = grdItemList.Controls.OfType<VScrollBar>().First();
                 if (vScrollbar.Visible == true)
                 {
                     List<int> visibleColumns = new List<int>();
@@ -501,7 +497,6 @@ namespace ROMS
                     {
                         visibleColumns.Add(col.Index);
                     }
-
                     int I = DGV_SearchGrid.Rows.Count - 1;
                     if (I == 0)
                     {
@@ -908,7 +903,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 
                 int varconcerntype = 2; 
-                objDT = objdserv.udfnCompanyList(varconcerntype, 0, MainForm.pbUserID, MainForm.pbIpAddress);
+                objDT = objdserv.udfnCompanyList(varconcerntype, 0, MainForm.pbUserID, MainForm.pbIpAddress,0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
                 if (objDT != null)
@@ -923,12 +918,11 @@ namespace ROMS
                         }
                     }
                 }
-
-
-
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
+                cmbStatus.SelectedValue = 0;
                 cmbConcern.SelectedValue = varconcern;
                 cmbCategory.SelectedValue = varcategory;
             }
@@ -961,7 +955,10 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
                                     lvSubGroup.Columns[2].Width = 200;
+                                    lvSubGroup.Columns[0].Width = 200;
                                     lvSubGroup.Items.Add(objList);
                                 }
                                 lvSubGroup.Visible = true;
@@ -1018,7 +1015,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnSubGroupevent();
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -1085,7 +1082,7 @@ namespace ROMS
                 }
                 if(e.KeyCode==Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -1118,7 +1115,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtProductGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnGroupList(7, 0,0,txtProductGroup.Text);
+                    objDs = objspdservice.udfnGroupList(7, 0,0,txtProductGroup.Text,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1130,7 +1127,10 @@ namespace ROMS
                                 {
                                     string[] row = { objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRG_TName"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
                                     lvGroup.Columns[2].Width = 200;
+                                    lvGroup.Columns[0].Width = 200;
                                     lvGroup.Items.Add(objList);
                                 }
                                 lvGroup.Visible = true;
@@ -1268,6 +1268,113 @@ namespace ROMS
             {
                 txtProductGroup.BackColor = Color.White;
                 if (txtProductGroup.Text.Trim() == "") { lblGroupId.Text = "0"; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdItemList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdItemList);
+                objDser.CloseConnection();
+                grdItemList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_Scroll_1(object sender, ScrollEventArgs e)
+        {
+
+        }
+
+        private void GrdItemList_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdItemList.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdItemList.Width > grdItemList.HorizontalScrollingOffset && grdItemList.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdItemList);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdItemList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdItemList);
+                objDser.CloseConnection();
+                grdItemList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //grdCompanyList(sender,e); 
             }
             catch (Exception ex)
             {

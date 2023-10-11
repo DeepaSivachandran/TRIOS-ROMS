@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_State));
             this.ReportState = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.pnlReportState = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.btnListPrint = new System.Windows.Forms.Button();
@@ -56,11 +54,10 @@
             this.ReportState.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ReportState.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportState.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader,
-            this.toolStripButton1});
+            this.tspHeader});
             this.ReportState.Location = new System.Drawing.Point(0, 0);
             this.ReportState.Name = "ReportState";
-            this.ReportState.Size = new System.Drawing.Size(1354, 27);
+            this.ReportState.Size = new System.Drawing.Size(1354, 25);
             this.ReportState.TabIndex = 35;
             this.ReportState.Text = "State Report";
             // 
@@ -71,17 +68,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(94, 24);
+            this.tspHeader.Size = new System.Drawing.Size(94, 22);
             this.tspHeader.Text = "State Report";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButton1.Text = "toolStripButton1";
             // 
             // pnlReportState
             // 
@@ -207,6 +195,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "City Report";
             this.Load += new System.EventHandler(this.REPORT_CP_City_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_State_KeyDown);
             this.ReportState.ResumeLayout(false);
             this.ReportState.PerformLayout();
             this.pnlReportState.ResumeLayout(false);
@@ -232,7 +221,6 @@
         private System.Windows.Forms.ErrorProvider ep_State;
         public System.Windows.Forms.PictureBox picLoader;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Button btnListPrint;
     }
 }

@@ -100,6 +100,7 @@
             this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbDelete.Size = new System.Drawing.Size(63, 24);
             this.tsbDelete.Text = "Delete";
+            this.tsbDelete.Visible = false;
             this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
             // 
             // tssEdit
@@ -207,6 +208,7 @@
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
+            this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
             // 
             // clmdsno
             // 

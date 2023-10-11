@@ -88,8 +88,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(50, 24);
-            this.tspHeader.Text = "User";
+            this.tspHeader.Size = new System.Drawing.Size(93, 24);
+            this.tspHeader.Text = "System User";
             // 
             // tsbDelete
             // 
@@ -210,7 +210,7 @@
             this.grbFilterByUser.Size = new System.Drawing.Size(1348, 67);
             this.grbFilterByUser.TabIndex = 0;
             this.grbFilterByUser.TabStop = false;
-            this.grbFilterByUser.Text = "Filter By User";
+            this.grbFilterByUser.Text = "Filter By System User";
             // 
             // btnExport
             // 
@@ -297,6 +297,10 @@
             this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
+            this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
+            this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
+            this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
+            this.DGV_SearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid_EditingControlShowing);
             this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
             // lblNoRecordsFound
@@ -384,7 +388,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_UserList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User";
+            this.Text = "System User";
             this.Load += new System.EventHandler(this.CP_UserList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_UserList_KeyDown);
             this.tsUserList.ResumeLayout(false);

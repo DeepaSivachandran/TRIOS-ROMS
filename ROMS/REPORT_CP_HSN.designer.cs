@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_HSN));
             this.ReportHSN = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.pnlReportHSN = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
@@ -62,11 +60,10 @@
             this.ReportHSN.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ReportHSN.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportHSN.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader,
-            this.toolStripButton1});
+            this.tspHeader});
             this.ReportHSN.Location = new System.Drawing.Point(0, 0);
             this.ReportHSN.Name = "ReportHSN";
-            this.ReportHSN.Size = new System.Drawing.Size(1354, 27);
+            this.ReportHSN.Size = new System.Drawing.Size(1354, 25);
             this.ReportHSN.TabIndex = 35;
             this.ReportHSN.Text = "HSN Report";
             // 
@@ -77,17 +74,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(88, 24);
+            this.tspHeader.Size = new System.Drawing.Size(88, 22);
             this.tspHeader.Text = "HSN Report";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButton1.Text = "toolStripButton1";
             // 
             // pnlReportHSN
             // 
@@ -285,6 +273,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HSN Report";
             this.Load += new System.EventHandler(this.REPORT_CP_HSN_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_HSN_KeyDown);
             this.ReportHSN.ResumeLayout(false);
             this.ReportHSN.PerformLayout();
             this.pnlReportHSN.ResumeLayout(false);
@@ -310,7 +299,6 @@
         private System.Windows.Forms.ErrorProvider ep_HSN;
         public System.Windows.Forms.PictureBox picLoader;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Button btnListPrint;
         private System.Windows.Forms.Label lblHSN;
         private System.Windows.Forms.ComboBox cmbHSN;

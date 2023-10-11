@@ -148,6 +148,7 @@ namespace ROMS
                             grdCityList.Columns["ID"].Visible = false;
                             grdCityList.Columns["StateId"].Visible = false;
                             grdCityList.Columns["StatusID"].Visible = false;
+                            grdCityList.Columns["Status"].Visible = false;
                             grdCityList.Columns["S.No."].Width = 50;
                             grdCityList.Columns["State Name"].Width = 120;
                             grdCityList.Columns["City Name"].Width = 200;
@@ -499,26 +500,18 @@ namespace ROMS
 
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (grdCityList.IsCurrentCellDirty)
+            if (DGV_SearchGrid.IsCurrentCellDirty)
             {
                 // Commit the changes immediately
-                grdCityList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
-        }
-
-        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-
-            try
-            {
-                //udfnGridSearchFilter();
-                DataService objDser = new DataService();
-                grdCityList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCityList);
-                objDser.CloseConnection();
-                grdCityList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //DGV_SearchGrid_CellPainting(sender,e);
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            //udfnGridSearchFilter();
+            DataService objDser = new DataService();
+            grdCityList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCityList);
+            objDser.CloseConnection();
+            grdCityList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+            //DGV_SearchGrid_CellPainting(sender,e);
+             
         }
     }
 }

@@ -78,6 +78,7 @@ namespace ROMS
             this.tsmRackGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCategory = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmEmployeee = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUser = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSupplier = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBroker = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,9 +89,6 @@ namespace ROMS
             this.tsmBatchNoConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmVoucherSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGeneralSettings = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mastersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,6 +97,10 @@ namespace ROMS
             this.hSNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.brokerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,6 +134,7 @@ namespace ROMS
             this.lblTime,
             this.mastersToolStripMenuItem,
             this.tsmControlPanel,
+            this.reportToolStripMenuItem,
             this.tsmMyProfile});
             this.ms.Location = new System.Drawing.Point(0, 0);
             this.ms.Name = "ms";
@@ -422,6 +425,7 @@ namespace ROMS
             this.tsmRackGroup,
             this.tsmProduct,
             this.tsmCategory,
+            this.tsmEmployeee,
             this.tsmUser,
             this.tsmSupplier,
             this.tsmBroker,
@@ -517,11 +521,18 @@ namespace ROMS
             this.tsmCategory.Text = "Employee Category";
             this.tsmCategory.Click += new System.EventHandler(this.TsmuserCategory_Click);
             // 
+            // tsmEmployeee
+            // 
+            this.tsmEmployeee.Name = "tsmEmployeee";
+            this.tsmEmployeee.Size = new System.Drawing.Size(225, 22);
+            this.tsmEmployeee.Text = "Employee";
+            this.tsmEmployeee.Click += new System.EventHandler(this.TsmEmployee_Click);
+            // 
             // tsmUser
             // 
             this.tsmUser.Name = "tsmUser";
             this.tsmUser.Size = new System.Drawing.Size(225, 22);
-            this.tsmUser.Text = "User";
+            this.tsmUser.Text = "System User";
             this.tsmUser.Click += new System.EventHandler(this.TsmUser_Click);
             // 
             // tsmSupplier
@@ -597,43 +608,14 @@ namespace ROMS
             this.tsmGeneralSettings.Text = "General Settings";
             this.tsmGeneralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
             // 
-            // tsmMyProfile
-            // 
-            this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmProfile,
-            this.tsmLogout});
-            this.tsmMyProfile.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmMyProfile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmMyProfile.Name = "tsmMyProfile";
-            this.tsmMyProfile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
-            this.tsmMyProfile.ShowShortcutKeys = false;
-            this.tsmMyProfile.Size = new System.Drawing.Size(68, 21);
-            this.tsmMyProfile.Text = "&My Profile";
-            this.tsmMyProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsmMyProfile.Click += new System.EventHandler(this.tsbLogout_Click);
-            // 
-            // tsmProfile
-            // 
-            this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
-            this.tsmProfile.Text = "Profile";
-            this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
-            // 
-            // tsmLogout
-            // 
-            this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
-            this.tsmLogout.Text = "Logout";
-            this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
-            // 
             // reportToolStripMenuItem
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mastersToolStripMenuItem1});
             this.reportToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(52, 21);
-            this.reportToolStripMenuItem.Text = "Report";
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(57, 21);
+            this.reportToolStripMenuItem.Text = "Reports";
             // 
             // mastersToolStripMenuItem1
             // 
@@ -643,7 +625,8 @@ namespace ROMS
             this.companyToolStripMenuItem,
             this.hSNToolStripMenuItem,
             this.productGroupToolStripMenuItem,
-            this.brokerToolStripMenuItem});
+            this.brokerToolStripMenuItem,
+            this.brandToolStripMenuItem});
             this.mastersToolStripMenuItem1.Name = "mastersToolStripMenuItem1";
             this.mastersToolStripMenuItem1.Size = new System.Drawing.Size(114, 22);
             this.mastersToolStripMenuItem1.Text = "Masters";
@@ -689,6 +672,42 @@ namespace ROMS
             this.brokerToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.brokerToolStripMenuItem.Text = "Broker";
             this.brokerToolStripMenuItem.Click += new System.EventHandler(this.BrokerToolStripMenuItem_Click);
+            // 
+            // brandToolStripMenuItem
+            // 
+            this.brandToolStripMenuItem.Name = "brandToolStripMenuItem";
+            this.brandToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.brandToolStripMenuItem.Text = "Brand";
+            this.brandToolStripMenuItem.Click += new System.EventHandler(this.BrandToolStripMenuItem_Click);
+            // 
+            // tsmMyProfile
+            // 
+            this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmProfile,
+            this.tsmLogout});
+            this.tsmMyProfile.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmMyProfile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmMyProfile.Name = "tsmMyProfile";
+            this.tsmMyProfile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
+            this.tsmMyProfile.ShowShortcutKeys = false;
+            this.tsmMyProfile.Size = new System.Drawing.Size(68, 21);
+            this.tsmMyProfile.Text = "&My Profile";
+            this.tsmMyProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsmMyProfile.Click += new System.EventHandler(this.tsbLogout_Click);
+            // 
+            // tsmProfile
+            // 
+            this.tsmProfile.Name = "tsmProfile";
+            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
+            this.tsmProfile.Text = "Profile";
+            this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
+            // 
+            // tsmLogout
+            // 
+            this.tsmLogout.Name = "tsmLogout";
+            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
+            this.tsmLogout.Text = "Logout";
+            this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
             // MainForm
             // 
@@ -788,5 +807,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem hSNToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productGroupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brokerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem brandToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmEmployeee;
     }
 }

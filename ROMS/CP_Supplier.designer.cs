@@ -185,6 +185,12 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.lblDESupplier = new System.Windows.Forms.Label();
             this.grbSupplierMapping = new System.Windows.Forms.GroupBox();
+            this.lvBrand = new System.Windows.Forms.ListView();
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtBrand = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.lvMappingSubGroup = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -1636,11 +1642,11 @@
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnAdd.Image = global::ROMS.Properties.Resources.plus;
+            this.btnAdd.Image = global::ROMS.Properties.Resources.save;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(586, 248);
+            this.btnAdd.Location = new System.Drawing.Point(575, 248);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(76, 29);
+            this.btnAdd.Size = new System.Drawing.Size(87, 29);
             this.btnAdd.TabIndex = 13;
             this.btnAdd.Text = "Save";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2056,6 +2062,9 @@
             // 
             // grbSupplierMapping
             // 
+            this.grbSupplierMapping.Controls.Add(this.lvBrand);
+            this.grbSupplierMapping.Controls.Add(this.txtBrand);
+            this.grbSupplierMapping.Controls.Add(this.label4);
             this.grbSupplierMapping.Controls.Add(this.lvMappingSubGroup);
             this.grbSupplierMapping.Controls.Add(this.lvMappingGroup);
             this.grbSupplierMapping.Controls.Add(this.txtMappingSubGroup);
@@ -2077,6 +2086,59 @@
             this.grbSupplierMapping.Size = new System.Drawing.Size(1308, 495);
             this.grbSupplierMapping.TabIndex = 5;
             this.grbSupplierMapping.TabStop = false;
+            // 
+            // lvBrand
+            // 
+            this.lvBrand.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12});
+            this.lvBrand.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvBrand.HideSelection = false;
+            this.lvBrand.Location = new System.Drawing.Point(310, 69);
+            this.lvBrand.Name = "lvBrand";
+            this.lvBrand.Size = new System.Drawing.Size(352, 99);
+            this.lvBrand.TabIndex = 958806;
+            this.lvBrand.UseCompatibleStateImageBehavior = false;
+            this.lvBrand.View = System.Windows.Forms.View.Details;
+            this.lvBrand.Visible = false;
+            this.lvBrand.DoubleClick += new System.EventHandler(this.LvBrand_DoubleClick);
+            this.lvBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvBrand_KeyDown);
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Width = 180;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Width = 150;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Width = 0;
+            // 
+            // txtBrand
+            // 
+            this.txtBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBrand.Location = new System.Drawing.Point(310, 42);
+            this.txtBrand.MaxLength = 50;
+            this.txtBrand.Name = "txtBrand";
+            this.txtBrand.Size = new System.Drawing.Size(108, 27);
+            this.txtBrand.TabIndex = 2;
+            this.txtBrand.TextChanged += new System.EventHandler(this.Txtbrand_TextChanged);
+            this.txtBrand.Enter += new System.EventHandler(this.Txtbrand_Enter);
+            this.txtBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtbrand_KeyDown);
+            this.txtBrand.Leave += new System.EventHandler(this.Txtbrand_Leave);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(310, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 20);
+            this.label4.TabIndex = 958804;
+            this.label4.Text = "Brand";
             // 
             // lvMappingSubGroup
             // 
@@ -2141,7 +2203,7 @@
             // txtMappingSubGroup
             // 
             this.txtMappingSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMappingSubGroup.Location = new System.Drawing.Point(165, 42);
+            this.txtMappingSubGroup.Location = new System.Drawing.Point(162, 42);
             this.txtMappingSubGroup.MaxLength = 50;
             this.txtMappingSubGroup.Name = "txtMappingSubGroup";
             this.txtMappingSubGroup.Size = new System.Drawing.Size(142, 27);
@@ -2184,7 +2246,7 @@
             this.txtmappingproductsearch2.MaxLength = 50;
             this.txtmappingproductsearch2.Name = "txtmappingproductsearch2";
             this.txtmappingproductsearch2.Size = new System.Drawing.Size(403, 27);
-            this.txtmappingproductsearch2.TabIndex = 4;
+            this.txtmappingproductsearch2.TabIndex = 5;
             this.txtmappingproductsearch2.TextChanged += new System.EventHandler(this.Txtmappingproductsearch2_TextChanged);
             this.txtmappingproductsearch2.Enter += new System.EventHandler(this.Txtmappingproductsearch2_Enter);
             this.txtmappingproductsearch2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtmappingproductsearch2_KeyDown);
@@ -2203,11 +2265,11 @@
             // txtSearchByProduct1
             // 
             this.txtSearchByProduct1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchByProduct1.Location = new System.Drawing.Point(398, 43);
+            this.txtSearchByProduct1.Location = new System.Drawing.Point(463, 43);
             this.txtSearchByProduct1.MaxLength = 50;
             this.txtSearchByProduct1.Name = "txtSearchByProduct1";
-            this.txtSearchByProduct1.Size = new System.Drawing.Size(251, 27);
-            this.txtSearchByProduct1.TabIndex = 3;
+            this.txtSearchByProduct1.Size = new System.Drawing.Size(186, 27);
+            this.txtSearchByProduct1.TabIndex = 4;
             this.txtSearchByProduct1.TextChanged += new System.EventHandler(this.TxtSearchByProduct1_TextChanged);
             this.txtSearchByProduct1.Enter += new System.EventHandler(this.TxtSearchByProduct1_Enter);
             this.txtSearchByProduct1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByProduct1_KeyDown);
@@ -2217,7 +2279,7 @@
             // 
             this.lblSearchbyProduct1.AutoSize = true;
             this.lblSearchbyProduct1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchbyProduct1.Location = new System.Drawing.Point(398, 18);
+            this.lblSearchbyProduct1.Location = new System.Drawing.Point(463, 18);
             this.lblSearchbyProduct1.Name = "lblSearchbyProduct1";
             this.lblSearchbyProduct1.Size = new System.Drawing.Size(190, 20);
             this.lblSearchbyProduct1.TabIndex = 35;
@@ -2242,7 +2304,6 @@
             // 
             this.grdFinalSupplierMapping.AllowUserToAddRows = false;
             this.grdFinalSupplierMapping.AllowUserToDeleteRows = false;
-            this.grdFinalSupplierMapping.AllowUserToResizeColumns = false;
             this.grdFinalSupplierMapping.AllowUserToResizeRows = false;
             this.grdFinalSupplierMapping.BackgroundColor = System.Drawing.Color.White;
             this.grdFinalSupplierMapping.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -2303,7 +2364,6 @@
             // 
             this.grdSupplierMappingLoad.AllowUserToAddRows = false;
             this.grdSupplierMappingLoad.AllowUserToDeleteRows = false;
-            this.grdSupplierMappingLoad.AllowUserToResizeColumns = false;
             this.grdSupplierMappingLoad.AllowUserToResizeRows = false;
             this.grdSupplierMappingLoad.BackgroundColor = System.Drawing.Color.White;
             this.grdSupplierMappingLoad.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -2334,6 +2394,7 @@
             dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
             this.grdSupplierMappingLoad.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.grdSupplierMappingLoad.RowTemplate.Height = 25;
+            this.grdSupplierMappingLoad.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdSupplierMappingLoad.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdSupplierMappingLoad.Size = new System.Drawing.Size(639, 404);
             this.grdSupplierMappingLoad.TabIndex = 4;
@@ -2347,10 +2408,10 @@
             this.btnMappingView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMappingView.Image = global::ROMS.Properties.Resources.view;
             this.btnMappingView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMappingView.Location = new System.Drawing.Point(315, 42);
+            this.btnMappingView.Location = new System.Drawing.Point(424, 41);
             this.btnMappingView.Name = "btnMappingView";
             this.btnMappingView.Size = new System.Drawing.Size(33, 29);
-            this.btnMappingView.TabIndex = 2;
+            this.btnMappingView.TabIndex = 3;
             this.btnMappingView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnMappingView.UseVisualStyleBackColor = true;
             this.btnMappingView.Click += new System.EventHandler(this.BtnMappingView_Click);
@@ -2371,7 +2432,7 @@
             // 
             this.lblDESubGroup.AutoSize = true;
             this.lblDESubGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDESubGroup.Location = new System.Drawing.Point(165, 18);
+            this.lblDESubGroup.Location = new System.Drawing.Point(162, 18);
             this.lblDESubGroup.Name = "lblDESubGroup";
             this.lblDESubGroup.Size = new System.Drawing.Size(112, 20);
             this.lblDESubGroup.TabIndex = 29;
@@ -2977,5 +3038,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ComboBox cmbMappedorderrype;
+        public System.Windows.Forms.ListView lvBrand;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.TextBox txtBrand;
+        private System.Windows.Forms.Label label4;
     }
 }

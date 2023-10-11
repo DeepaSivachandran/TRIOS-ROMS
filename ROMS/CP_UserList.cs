@@ -121,7 +121,7 @@ namespace ROMS
                             grdUserList.Columns["PassKeyID"].Visible = false;
                             grdUserList.Columns["StatusID"].Visible = false;
                             grdUserList.Columns["S.No."].Width = 50;
-                            grdUserList.Columns["Name of the User"].Width = 150;
+                            grdUserList.Columns["Name of the System User"].Width = 150;
                             grdUserList.Columns["Status"].Width = 80;
                             grdUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -207,7 +207,7 @@ namespace ROMS
                     MainForm.objCP_User.varUserID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value);
                     MainForm.objCP_User.PbUserRoleID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value);
                     MainForm.objCP_User.PbPasskeyID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["PassKeyID"].Value);
-                    MainForm.objCP_User.PbNameoftheUser = Convert.ToString(grdUserList.SelectedRows[0].Cells["Name of the User"].Value);
+                    MainForm.objCP_User.PbNameoftheUser = Convert.ToString(grdUserList.SelectedRows[0].Cells["Name of the System User"].Value);
                     MainForm.objCP_User.PbLoginid = Convert.ToString(grdUserList.SelectedRows[0].Cells["Login ID"].Value);
                     MainForm.objCP_User.PbUserRole = Convert.ToString(grdUserList.SelectedRows[0].Cells["User Role"].Value);
                     MainForm.objCP_User.PbPasskey = Convert.ToString(grdUserList.SelectedRows[0].Cells["Pass Key"].Value);
@@ -820,6 +820,61 @@ namespace ROMS
             finally
             {
                 lvUserList.Visible = false;
+            }
+        }
+
+        private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdUserList.ColumnCount > 0)
+                {
+                    grdUserList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdUserList.HorizontalScrollingOffset;
+                    //grdBrandList.HorizontalScrollingOffset = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        
+        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdUserList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUserList);
+                objDser.CloseConnection();
+                grdUserList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdUserList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdUserList);
+                objDser.CloseConnection();
+                grdUserList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //grdCompanyList(sender,e); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

@@ -55,6 +55,7 @@ namespace ROMS
         public static CP_SubGroup objCP_SubGroup;
         public static CP_LocationList objCP_LocationList;
         public static CP_Location objCP_Location;
+        public static CP_SL_Verify objCP_SL_Verify;
         public static CP_Rack objCP_Rack;
         public static CP_RackList objCP_RackList;
         public static CP_UserList objCP_Userlist;
@@ -157,6 +158,7 @@ namespace ROMS
         public static REPORT_CP_HSN objREPORT_CP_HSN;
         public static REPORT_CP_Product_Group objREPORT_CP_Product_Group;
         public static REPORT_CP_Broker objREPORT_CP_Broker;
+        public static REPORT_CP_Brand objREPORT_CP_Brand;
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -1331,6 +1333,23 @@ namespace ROMS
                 MainForm.objREPORT_CP_Broker = new REPORT_CP_Broker();
                 MainForm.objREPORT_CP_Broker.MdiParent = this;
                 MainForm.objREPORT_CP_Broker.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BrandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_Brand = new REPORT_CP_Brand();
+                MainForm.objREPORT_CP_Brand.MdiParent = this;
+                MainForm.objREPORT_CP_Brand.Show();
             }
             catch (Exception ex)
             {

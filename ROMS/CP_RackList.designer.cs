@@ -44,10 +44,14 @@
             this.pnlRack = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
+            this.lblInactiveCount = new System.Windows.Forms.Label();
+            this.lblInActive = new System.Windows.Forms.Label();
+            this.lblActiveCount = new System.Windows.Forms.Label();
+            this.lblActive = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
             this.lblGC = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblRack = new System.Windows.Forms.Label();
             this.cmbGroupType = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdGroupList = new System.Windows.Forms.DataGridView();
@@ -99,6 +103,7 @@
             this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbDelete.Size = new System.Drawing.Size(63, 24);
             this.tsbDelete.Text = "Delete";
+            this.tsbDelete.Visible = false;
             this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
             // 
             // tssEdit
@@ -198,14 +203,21 @@
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
             this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
+            this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
+            this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
+            this.DGV_SearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid_EditingControlShowing);
             this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
             // grbFilterBy
             // 
+            this.grbFilterBy.Controls.Add(this.lblInactiveCount);
+            this.grbFilterBy.Controls.Add(this.lblInActive);
+            this.grbFilterBy.Controls.Add(this.lblActiveCount);
+            this.grbFilterBy.Controls.Add(this.lblActive);
             this.grbFilterBy.Controls.Add(this.btnExport);
             this.grbFilterBy.Controls.Add(this.lblGC);
             this.grbFilterBy.Controls.Add(this.btnView);
-            this.grbFilterBy.Controls.Add(this.label1);
+            this.grbFilterBy.Controls.Add(this.lblRack);
             this.grbFilterBy.Controls.Add(this.cmbGroupType);
             this.grbFilterBy.Location = new System.Drawing.Point(3, 2);
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -215,6 +227,52 @@
             this.grbFilterBy.TabIndex = 0;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By Rack Group";
+            // 
+            // lblInactiveCount
+            // 
+            this.lblInactiveCount.AutoSize = true;
+            this.lblInactiveCount.BackColor = System.Drawing.Color.Tomato;
+            this.lblInactiveCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblInactiveCount.ForeColor = System.Drawing.Color.White;
+            this.lblInactiveCount.Location = new System.Drawing.Point(606, 29);
+            this.lblInactiveCount.Name = "lblInactiveCount";
+            this.lblInactiveCount.Size = new System.Drawing.Size(41, 20);
+            this.lblInactiveCount.TabIndex = 958807;
+            this.lblInactiveCount.Text = "0000";
+            // 
+            // lblInActive
+            // 
+            this.lblInActive.AutoSize = true;
+            this.lblInActive.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lblInActive.ForeColor = System.Drawing.Color.Black;
+            this.lblInActive.Location = new System.Drawing.Point(542, 29);
+            this.lblInActive.Name = "lblInActive";
+            this.lblInActive.Size = new System.Drawing.Size(58, 20);
+            this.lblInActive.TabIndex = 958806;
+            this.lblInActive.Text = "Inactive :";
+            // 
+            // lblActiveCount
+            // 
+            this.lblActiveCount.AutoSize = true;
+            this.lblActiveCount.BackColor = System.Drawing.Color.LimeGreen;
+            this.lblActiveCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblActiveCount.ForeColor = System.Drawing.Color.White;
+            this.lblActiveCount.Location = new System.Drawing.Point(495, 29);
+            this.lblActiveCount.Name = "lblActiveCount";
+            this.lblActiveCount.Size = new System.Drawing.Size(41, 20);
+            this.lblActiveCount.TabIndex = 958805;
+            this.lblActiveCount.Text = "0000";
+            // 
+            // lblActive
+            // 
+            this.lblActive.AutoSize = true;
+            this.lblActive.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lblActive.ForeColor = System.Drawing.Color.Black;
+            this.lblActive.Location = new System.Drawing.Point(441, 29);
+            this.lblActive.Name = "lblActive";
+            this.lblActive.Size = new System.Drawing.Size(48, 20);
+            this.lblActive.TabIndex = 958804;
+            this.lblActive.Text = "Active :";
             // 
             // btnExport
             // 
@@ -234,13 +292,14 @@
             // lblGC
             // 
             this.lblGC.AutoSize = true;
+            this.lblGC.BackColor = System.Drawing.Color.CornflowerBlue;
             this.lblGC.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblGC.ForeColor = System.Drawing.Color.Crimson;
-            this.lblGC.Location = new System.Drawing.Point(401, 29);
+            this.lblGC.ForeColor = System.Drawing.Color.White;
+            this.lblGC.Location = new System.Drawing.Point(394, 29);
             this.lblGC.Name = "lblGC";
-            this.lblGC.Size = new System.Drawing.Size(17, 20);
+            this.lblGC.Size = new System.Drawing.Size(41, 20);
             this.lblGC.TabIndex = 958803;
-            this.lblGC.Text = "0";
+            this.lblGC.Text = "0000";
             // 
             // btnView
             // 
@@ -257,16 +316,16 @@
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
-            // label1
+            // lblRack
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(318, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 20);
-            this.label1.TabIndex = 958802;
-            this.label1.Text = "No.of Racks :";
+            this.lblRack.AutoSize = true;
+            this.lblRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lblRack.ForeColor = System.Drawing.Color.Black;
+            this.lblRack.Location = new System.Drawing.Point(318, 29);
+            this.lblRack.Name = "lblRack";
+            this.lblRack.Size = new System.Drawing.Size(76, 20);
+            this.lblRack.TabIndex = 958802;
+            this.lblRack.Text = "Total Racks :";
             // 
             // cmbGroupType
             // 
@@ -393,7 +452,7 @@
         private System.Windows.Forms.Panel pnlRack;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblGC;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblRack;
         private System.Windows.Forms.GroupBox grbFilterBy;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnView;
@@ -401,5 +460,9 @@
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdGroupList;
         public System.Windows.Forms.PictureBox picLoader;
+        private System.Windows.Forms.Label lblActive;
+        private System.Windows.Forms.Label lblActiveCount;
+        private System.Windows.Forms.Label lblInActive;
+        private System.Windows.Forms.Label lblInactiveCount;
     }
 }

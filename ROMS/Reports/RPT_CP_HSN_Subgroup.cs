@@ -162,7 +162,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraGST {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraGSTName {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
