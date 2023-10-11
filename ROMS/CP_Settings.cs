@@ -397,10 +397,10 @@ namespace ROMS
         {
             try
             {
-                if (txtSuffix.Text.Trim() == "")
-                {
+                //if (txtSuffix.Text.Trim() == "")
+                //{
                     txtSuffix.BackColor = Color.White;
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -782,6 +782,9 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         udfnClear();
+                        cmbConcern.SelectedIndex = -1;
+                        cmbConcern.Focus();
+                        epSettings.Clear();
                         //udfnList();
                     }
                     else

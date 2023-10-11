@@ -134,6 +134,7 @@
             this.txtInvoiceEditDays.Name = "txtInvoiceEditDays";
             this.txtInvoiceEditDays.Size = new System.Drawing.Size(45, 27);
             this.txtInvoiceEditDays.TabIndex = 4;
+            this.txtInvoiceEditDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtInvoiceEditDays.Enter += new System.EventHandler(this.TxtInvoiceEditDays_Enter);
             this.txtInvoiceEditDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtInvoiceEditDays_KeyDown);
             this.txtInvoiceEditDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtInvoiceEditDays_KeyPress);
@@ -167,6 +168,7 @@
             this.txtReturnAlertDays.Name = "txtReturnAlertDays";
             this.txtReturnAlertDays.Size = new System.Drawing.Size(45, 27);
             this.txtReturnAlertDays.TabIndex = 3;
+            this.txtReturnAlertDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtReturnAlertDays.Enter += new System.EventHandler(this.TxtReturnAlertDays_Enter);
             this.txtReturnAlertDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtReturnAlertDays_KeyDown);
             this.txtReturnAlertDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtReturnAlertDays_KeyPress);
@@ -190,6 +192,7 @@
             this.txtGRNQty.Name = "txtGRNQty";
             this.txtGRNQty.Size = new System.Drawing.Size(45, 27);
             this.txtGRNQty.TabIndex = 2;
+            this.txtGRNQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGRNQty.Enter += new System.EventHandler(this.TxtGRNQty_Enter);
             this.txtGRNQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGRNQty_KeyDown);
             this.txtGRNQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtGRNQty_KeyPress);
@@ -201,9 +204,9 @@
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(216, 100);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(152, 20);
+            this.label3.Size = new System.Drawing.Size(151, 20);
             this.label3.TabIndex = 1111198;
-            this.label3.Text = "GRN label print excess Qty";
+            this.label3.Text = "GRN label print excess qty";
             // 
             // label1
             // 
@@ -223,6 +226,7 @@
             this.txtBillAmount.Name = "txtBillAmount";
             this.txtBillAmount.Size = new System.Drawing.Size(117, 27);
             this.txtBillAmount.TabIndex = 1;
+            this.txtBillAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtBillAmount.Enter += new System.EventHandler(this.TxtBillAmount_Enter);
             this.txtBillAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBillAmount_KeyDown);
             this.txtBillAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBillAmount_KeyPress);
@@ -246,6 +250,7 @@
             this.txtcashpurchase.Name = "txtcashpurchase";
             this.txtcashpurchase.Size = new System.Drawing.Size(117, 27);
             this.txtcashpurchase.TabIndex = 0;
+            this.txtcashpurchase.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtcashpurchase.Enter += new System.EventHandler(this.Txtcashpurchase_Enter);
             this.txtcashpurchase.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtcashpurchase_KeyDown);
             this.txtcashpurchase.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtcashpurchase_KeyPress);

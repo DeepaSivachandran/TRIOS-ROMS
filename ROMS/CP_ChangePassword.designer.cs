@@ -106,13 +106,14 @@
             this.groupBox2.Size = new System.Drawing.Size(1339, 633);
             this.groupBox2.TabIndex = 53;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Leave += new System.EventHandler(this.GroupBox2_Leave);
             // 
             // gpChangePassKey
             // 
             this.gpChangePassKey.Controls.Add(this.btnGenerate);
             this.gpChangePassKey.Controls.Add(this.btnView);
             this.gpChangePassKey.Controls.Add(this.txtGenratePasskey);
-            this.gpChangePassKey.Location = new System.Drawing.Point(660, 36);
+            this.gpChangePassKey.Location = new System.Drawing.Point(675, 36);
             this.gpChangePassKey.Name = "gpChangePassKey";
             this.gpChangePassKey.Size = new System.Drawing.Size(154, 122);
             this.gpChangePassKey.TabIndex = 59;
@@ -168,9 +169,9 @@
             this.gpChangePassword.Controls.Add(this.txtConfirmPassword);
             this.gpChangePassword.Controls.Add(this.txtDNewPassword);
             this.gpChangePassword.Controls.Add(this.txtNewPassword);
-            this.gpChangePassword.Location = new System.Drawing.Point(242, 36);
+            this.gpChangePassword.Location = new System.Drawing.Point(235, 36);
             this.gpChangePassword.Name = "gpChangePassword";
-            this.gpChangePassword.Size = new System.Drawing.Size(407, 146);
+            this.gpChangePassword.Size = new System.Drawing.Size(431, 158);
             this.gpChangePassword.TabIndex = 58;
             this.gpChangePassword.TabStop = false;
             this.gpChangePassword.Text = "Change Password";
@@ -179,7 +180,7 @@
             // 
             this.btnUpdate.Image = global::ROMS.Properties.Resources.save;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(315, 114);
+            this.btnUpdate.Location = new System.Drawing.Point(321, 117);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(84, 29);
             this.btnUpdate.TabIndex = 3;
@@ -187,13 +188,16 @@
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
+            this.btnUpdate.Enter += new System.EventHandler(this.BtnUpdate_Enter);
+            this.btnUpdate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnUpdate_KeyDown);
+            this.btnUpdate.Leave += new System.EventHandler(this.BtnUpdate_Leave);
             // 
             // txtDOldPassword
             // 
             this.txtDOldPassword.BackColor = System.Drawing.SystemColors.Control;
             this.txtDOldPassword.Enabled = false;
             this.txtDOldPassword.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDOldPassword.Location = new System.Drawing.Point(18, 30);
+            this.txtDOldPassword.Location = new System.Drawing.Point(24, 30);
             this.txtDOldPassword.Name = "txtDOldPassword";
             this.txtDOldPassword.ReadOnly = true;
             this.txtDOldPassword.Size = new System.Drawing.Size(181, 27);
@@ -203,7 +207,7 @@
             // txtOldPassword
             // 
             this.txtOldPassword.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtOldPassword.Location = new System.Drawing.Point(199, 30);
+            this.txtOldPassword.Location = new System.Drawing.Point(205, 30);
             this.txtOldPassword.MaxLength = 20;
             this.txtOldPassword.Name = "txtOldPassword";
             this.txtOldPassword.PasswordChar = '*';
@@ -218,17 +222,17 @@
             this.txtDConfirmPassword.BackColor = System.Drawing.SystemColors.Control;
             this.txtDConfirmPassword.Enabled = false;
             this.txtDConfirmPassword.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDConfirmPassword.Location = new System.Drawing.Point(18, 84);
+            this.txtDConfirmPassword.Location = new System.Drawing.Point(24, 84);
             this.txtDConfirmPassword.Name = "txtDConfirmPassword";
             this.txtDConfirmPassword.ReadOnly = true;
             this.txtDConfirmPassword.Size = new System.Drawing.Size(181, 27);
             this.txtDConfirmPassword.TabIndex = 7;
-            this.txtDConfirmPassword.Text = "Confirm Password";
+            this.txtDConfirmPassword.Text = "Conform Password";
             // 
             // txtConfirmPassword
             // 
             this.txtConfirmPassword.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtConfirmPassword.Location = new System.Drawing.Point(199, 84);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(205, 84);
             this.txtConfirmPassword.MaxLength = 20;
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.PasswordChar = '*';
@@ -243,7 +247,7 @@
             this.txtDNewPassword.BackColor = System.Drawing.SystemColors.Control;
             this.txtDNewPassword.Enabled = false;
             this.txtDNewPassword.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDNewPassword.Location = new System.Drawing.Point(18, 57);
+            this.txtDNewPassword.Location = new System.Drawing.Point(24, 57);
             this.txtDNewPassword.Name = "txtDNewPassword";
             this.txtDNewPassword.ReadOnly = true;
             this.txtDNewPassword.Size = new System.Drawing.Size(181, 27);
@@ -253,7 +257,7 @@
             // txtNewPassword
             // 
             this.txtNewPassword.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtNewPassword.Location = new System.Drawing.Point(199, 57);
+            this.txtNewPassword.Location = new System.Drawing.Point(205, 57);
             this.txtNewPassword.MaxLength = 20;
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.PasswordChar = '*';
@@ -266,30 +270,30 @@
             // lblUserRole
             // 
             this.lblUserRole.AutoSize = true;
-            this.lblUserRole.Font = new System.Drawing.Font("Oswald Regular", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserRole.Location = new System.Drawing.Point(105, 68);
+            this.lblUserRole.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserRole.Location = new System.Drawing.Point(89, 68);
             this.lblUserRole.Name = "lblUserRole";
-            this.lblUserRole.Size = new System.Drawing.Size(121, 24);
+            this.lblUserRole.Size = new System.Drawing.Size(95, 17);
             this.lblUserRole.TabIndex = 60;
             this.lblUserRole.Text = "Purchase Incharge";
             // 
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
-            this.lblUserName.Font = new System.Drawing.Font("Oswald Regular", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(105, 36);
+            this.lblUserName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.Location = new System.Drawing.Point(89, 39);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(48, 24);
+            this.lblUserName.Size = new System.Drawing.Size(42, 20);
             this.lblUserName.TabIndex = 59;
             this.lblUserName.Text = "Deepa";
             // 
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Font = new System.Drawing.Font("Monotype Corsiva", 12.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWelcome.Location = new System.Drawing.Point(26, 38);
             this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(71, 20);
+            this.lblWelcome.Size = new System.Drawing.Size(65, 21);
             this.lblWelcome.TabIndex = 58;
             this.lblWelcome.Text = "Welcome";
             // 

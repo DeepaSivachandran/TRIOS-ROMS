@@ -20,6 +20,7 @@ namespace ROMS
         public static string pbVersion = "1.0.1";
         public static string pbUserID = "";
         public static string pbUserName = "";
+        public static string pbLoginId = "";
         public static string pbUserRoleId;
         public static string pbView;
         public static string pbSelectedMenu;

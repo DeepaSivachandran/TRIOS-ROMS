@@ -20,11 +20,12 @@ namespace ROMS
         //*************** Object for Service Classes Initialisation  ***********
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
-        public int varId=0;
+        private SecurityController _security = new SecurityController();
+        public int varPassKeyId=0;
         public int varUserId = 0;
         public int varPasswordFlag = 0;
-        public int varPasskeyFlag = 0;
+        public int varPasskeyFlag = 0,flag=0;
+        public string varPassword = "";
         private ToolTip tpOldPassword = new ToolTip();
         private ToolTip tpNewPassword = new ToolTip();
         private ToolTip tpConfirmPassword = new ToolTip();
@@ -39,14 +40,60 @@ namespace ROMS
             {
                 lblUserName.Text = MainForm.pbUserName;
                 lblUserRole.Text = MainForm.pbUserRoleName;
-                varId = Convert.ToInt32(MainForm.pbUserPassKey);
-                if (varId==20)
+                DataSet objDsUser = new DataSet();
+                SPDataService objDser = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objDser.udfnUserList(10, "", MainForm.pbUserName, "", 0,"");
+                objDser.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[1].Rows.Count != 0)
+                        {
+                            varPassKeyId = Convert.ToInt32(objDs.Tables[1].Rows[0]["PassKeyID"]);
+                            varPassword=Convert.ToString(objDs.Tables[1].Rows[0]["Password"]);
+                        }
+                    }
+                }
+                if (varPassKeyId == 20)
                 {
                     gpChangePassKey.Visible = true;
                     txtGenratePasskey.Text = MainForm.pbUserPassKeyValue;
                 }
                 else
-                { gpChangePassKey.Visible = false; }
+                {
+                    gpChangePassKey.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                throw ex;
+            }
+        }
+        public void udfnPasswordVerification()
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                 // varPassword = (txtPassKey.Text).Trim();
+                SPDataService objDser = new SPDataService();
+                int count = 0;
+                objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, GenerateMD5(varPassword), 0, "");
+                objDser.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables[0].Rows.Count > 0)
+                    {
+                        count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
+                        if (count != 0)
+                        {
+                            flag = 1;
+                        }
+                    }
+                } 
             }
             catch (Exception ex)
             {
@@ -275,7 +322,7 @@ namespace ROMS
         {
             try
             {
-                epPassword.Clear();
+                epPassword.Clear(); bool blnErrorFlag = false;
                 if (txtOldPassword.Text.Trim() == "")
                 {
                     epPassword.SetError(txtOldPassword, "Please enter old password.");
@@ -283,6 +330,7 @@ namespace ROMS
                     tpOldPassword.ShowAlways = true;
                     tpOldPassword.Show("Please enter old password.", txtOldPassword, 5000);
                     txtOldPassword.Text = "";
+                    blnErrorFlag = true;
                 }
                 if (txtNewPassword.Text.Trim() == "")
                 {
@@ -291,6 +339,7 @@ namespace ROMS
                     tpNewPassword.ShowAlways = true;
                     tpNewPassword.Show("Please enter new password.", txtNewPassword, 5000);
                     txtNewPassword.Text = "";
+                    blnErrorFlag = true;
                 }
                 if (txtConfirmPassword.Text.Trim() == "")
                 {
@@ -299,6 +348,7 @@ namespace ROMS
                     tpConfirmPassword.ShowAlways = true;
                     tpConfirmPassword.Show("Please enter confirm password.", txtConfirmPassword, 5000);
                     txtConfirmPassword.Text = "";
+                    blnErrorFlag = true;
                 }
                 if (txtNewPassword.Text.Trim() != txtConfirmPassword.Text.Trim())
                 {
@@ -307,28 +357,43 @@ namespace ROMS
                     tpConfirmPassword.ShowAlways = true;
                     tpConfirmPassword.Show("Password not match.", txtConfirmPassword, 5000);
                     txtConfirmPassword.Text = "";
+                    blnErrorFlag = true;
                 }
-                if (txtOldPassword.Text.Trim() == "")
+                //if (txtNewPassword.Text.Trim() == txtOldPassword.Text.Trim() || flag==1)
+                //{
+                //    epPassword.SetError(txtNewPassword, "Old and new password are same.");
+                //    txtNewPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpNewPassword.ShowAlways = true;
+                //    tpNewPassword.Show("Old and new password are same.", txtNewPassword, 5000);
+                //    txtNewPassword.Text = "";
+                //    txtConfirmPassword.Text = "";
+                //    blnErrorFlag = true;
+                //}
+                if(blnErrorFlag==false)
                 {
-                    txtOldPassword.Focus();
-                    return;
+                    udfnUpdate();
                 }
-                if (txtNewPassword.Text.Trim() == "")
-                {
-                    txtNewPassword.Focus();
-                    return;
-                }
-                if (txtConfirmPassword.Text.Trim() == "")
-                {
-                    txtConfirmPassword.Focus();
-                    return;
-                }
-                if (txtNewPassword.Text.Trim() != txtConfirmPassword.Text.Trim())
-                {
-                    txtConfirmPassword.Focus();
-                    return;
-                }
-                udfnUpdate();
+                //if (txtOldPassword.Text.Trim() == "")
+                //{
+                //    txtOldPassword.Focus();
+                //    return;
+                //}
+                //if (txtNewPassword.Text.Trim() == "")
+                //{
+                //    txtNewPassword.Focus();
+                //    return;
+                //}
+                //if (txtConfirmPassword.Text.Trim() == "")
+                //{
+                //    txtConfirmPassword.Focus();
+                //    return;
+                //}
+                //if (txtNewPassword.Text.Trim() != txtConfirmPassword.Text.Trim())
+                //{
+                //    txtConfirmPassword.Focus();
+                //    return;
+                //}
+
                 //string result;
                 //SPDataService objspservice = new SPDataService();
                 ////  result = objspservice.udfnSPChangePwd(MainForm.pbUserID,GenerateMD5(txtOldPassword.Text), GenerateMD5(txtNewPassword.Text), MainForm.pbIpAddress, "Change Pwd");
@@ -364,15 +429,48 @@ namespace ROMS
         {
             try
             {
-                if (varId == 20)
+                if(GenerateMD5(txtOldPassword.Text.Trim())!=varPassword)
                 {
-                    varPasswordFlag = 1;
-                    MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
-                    MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
-                    MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 6;
-                    MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
+                    epPassword.SetError(txtOldPassword, "Old password is incorrect.");
+                    txtOldPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpOldPassword.ShowAlways = true;
+                    tpOldPassword.Show("Old password is incorrect.", txtOldPassword, 5000);
+                    txtOldPassword.Text = "";
                 }
-                udfnUpdatePassword();
+                else
+                {
+                    if (txtOldPassword.Text.Trim() == txtNewPassword.Text.Trim())
+                    {
+                        flag = 1;
+                    }
+                    else
+                    {
+                        if (varPassKeyId == 20)
+                        {
+                            varPasswordFlag = 1;
+                            MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
+                            MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
+                            MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 6;
+                            MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
+                        }
+                        flag = 0;
+                    }
+                    if (flag == 1)
+                    {
+                        epPassword.SetError(txtNewPassword, "Old and new password are same.");
+                        txtNewPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpNewPassword.ShowAlways = true;
+                        tpNewPassword.Show("Old and new password are same.", txtNewPassword, 5000);
+                        txtNewPassword.Text = "";
+                        txtConfirmPassword.Text = "";
+                    }
+                    else
+                    {
+                        epPassword.Clear();
+                        udfnUpdatePassword();
+                    }
+                }
+                
             }
             catch (Exception ex)
             {
@@ -388,8 +486,8 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     string varResult = "", varOriginator = "Password Updation", varPassword = "";
-                    varPassword = GenerateMD5(txtNewPassword.Text).Trim();
-                    varResult = objspservice.udfnUser(3, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, varPassword, 0, 0,"", varOriginator);
+                    varPassword =txtNewPassword.Text.Trim();
+                    varResult = objspservice.udfnUser(3, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, GenerateMD5(varPassword), 0, 0,"", varOriginator);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
@@ -401,6 +499,7 @@ namespace ROMS
                         MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     udfnclear();
+                    udfnLoad();
                 }
             }
             catch (Exception ex)
@@ -490,16 +589,17 @@ namespace ROMS
                         {
                             if (objDT.Tables[0].Rows.Count != 0)
                             {
-                                varpasskey = Convert.ToString(objDT.Tables[0].Rows[0]["U_Passkeyvalue"]);
+                                varpasskey = Convert.ToString(objDT.Tables[0].Rows[0]["PasskeyValue"]);
                             }
                         }
                     }
-                    varResult = objDser.udfnUser(4, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, "", 0, 0, GenerateMD5(varpasskey), varOriginator);
+                    varResult = objDser.udfnUser(4, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, "", 0, 0, _security.Encrypt("passkey", varpasskey), varOriginator);
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtGenratePasskey.Text = varpasskey;
+                       // udfnLoad();
                     }
                     else
                     {
@@ -513,6 +613,54 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void BtnUpdate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUpdate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GroupBox2_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnUpdate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnUpdate.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnUpdate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnUpdate_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void BtnGenerate_Click(object sender, EventArgs e)
         {
             try

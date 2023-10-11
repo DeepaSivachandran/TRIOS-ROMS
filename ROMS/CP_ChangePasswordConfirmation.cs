@@ -13,6 +13,7 @@ namespace ROMS
     //Sivabharathi  Created on:9/10/2023
     public partial class CP_ChangePasswordConfirmation : Form
     {
+        private SecurityController _security;
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int flag = 0;
@@ -23,9 +24,11 @@ namespace ROMS
         public string varbrandcode;
         public string pbFormStatus;
         public string varPassword = "";
+        public string varPasskey = "";
         public CP_ChangePasswordConfirmation()
         {
             InitializeComponent();
+            _security = new SecurityController();
         }
         public string GenerateMD5(string HashString)
         {
@@ -57,7 +60,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtPassKey.TextLength != 0)
                     {
-                        varPassword = GenerateMD5(txtPassKey.Text).Trim();
+                        varPassword =_security.Encrypt (MainForm.pbLoginId.ToLower(),(txtPassKey.Text).Trim());
                         SPDataService objDser = new SPDataService();
                         int count = 0;
                         objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, varPassword, 0,"");
@@ -103,7 +106,8 @@ namespace ROMS
                 {
                     SPDataService objDser = new SPDataService();
                     int count = 0;
-                    objDs = objDser.udfnUserList(10, "", MainForm.pbUserName,"", 0, txtPassKey.Text.Trim());
+                    varPasskey = _security.Encrypt("passkey", (txtPassKey.Text).Trim());
+                    objDs = objDser.udfnUserList(10, "", MainForm.pbUserName,"", 0, varPasskey);
                     objDser.CloseConnection();
                     if (objDs != null)
                     {

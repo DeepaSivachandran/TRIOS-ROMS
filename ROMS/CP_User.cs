@@ -15,7 +15,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-
+        SecurityController _security = new SecurityController();
         private ToolTip tpusername = new ToolTip();
         private ToolTip tploginid = new ToolTip();
         private ToolTip tppassword = new ToolTip();
@@ -454,12 +454,12 @@ namespace ROMS
                     }
                     else
                     {
-                        varpassword = GenerateMD5(txtPassword.Text);
+                        varpassword = _security.Encrypt(txtUserName.Text.Trim().ToLower() ,txtPassword.Text.Trim());
                     }
                 }
                 else
                 {
-                    varpassword = GenerateMD5(txtPassword.Text);
+                    varpassword = _security.Encrypt(txtUserName.Text.Trim().ToLower(), txtPassword.Text.Trim());
                 }
 
                 if (blnErrorFlag == false)
