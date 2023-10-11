@@ -70,7 +70,7 @@ namespace ROMS
                                 if (count != 0)
                                 {
                                     //flag = 1;
-                                    MainForm.objCP_ChangePassword.varPasswordFlag = 0;
+                                    MainForm.objCP_ChangePassword.varPasskeyFlag = 0;
                                     this.Close();
                                 }
                                 else if (count == 0)
@@ -103,7 +103,7 @@ namespace ROMS
                 {
                     SPDataService objDser = new SPDataService();
                     int count = 0;
-                    objDs = objDser.udfnUserList(0, "", MainForm.pbUserName,"", 0, txtPassKey.Text.Trim());
+                    objDs = objDser.udfnUserList(10, "", MainForm.pbUserName,"", 0, txtPassKey.Text.Trim());
                     objDser.CloseConnection();
                     if (objDs != null)
                     {
@@ -112,14 +112,15 @@ namespace ROMS
                             count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
                             if (count != 0)
                             {
-                                flag = 1;
+                                //flag = 1;
+                                MainForm.objCP_ChangePassword.varPasswordFlag = 0;
                                 this.Close();
                             }
                             else if (count == 0)
                             {
                                 //DialogResult response = MessageBox.Show(Convert.ToString(objDs.Tables[1].Rows[0]["MessageText"]), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
                                 SPDataService objDServ = new SPDataService();
-                                string varMessage = objDServ.udfnGetMessages(62);
+                                string varMessage = objDServ.udfnGetMessages(66);
                                 objDServ.CloseConnection();
                                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 txtPassKey.Text = "";
@@ -163,7 +164,7 @@ namespace ROMS
         {
             try
             {
-                txtPassKey.BackColor = Color.Transparent;
+                txtPassKey.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -178,6 +179,47 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     btnConfirm.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnConfirm_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnConfirm.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnConfirm_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnConfirm.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnConfirm_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    BtnConfirm_Click(sender, e);
                 }
             }
             catch (Exception ex)

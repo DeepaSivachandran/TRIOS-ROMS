@@ -24,6 +24,7 @@ namespace ROMS
         public int varId=0;
         public int varUserId = 0;
         public int varPasswordFlag = 0;
+        public int varPasskeyFlag = 0;
         private ToolTip tpOldPassword = new ToolTip();
         private ToolTip tpNewPassword = new ToolTip();
         private ToolTip tpConfirmPassword = new ToolTip();
@@ -225,6 +226,7 @@ namespace ROMS
                 txtOldPassword.Text = "";
                 txtNewPassword.Text = "";
                 txtConfirmPassword.Text = "";
+                txtOldPassword.Focus();
             }
             catch (Exception ex)
             {
@@ -366,7 +368,7 @@ namespace ROMS
                 {
                     varPasswordFlag = 1;
                     MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
-                    MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Pass Key";
+                    MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
                     MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 6;
                     MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
                 }
@@ -387,18 +389,18 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     string varResult = "", varOriginator = "Password Updation", varPassword = "";
                     varPassword = GenerateMD5(txtNewPassword.Text).Trim();
-                    varResult = objspservice.udfnUser(3, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, varPassword, 0, 0, varOriginator);
+                    varResult = objspservice.udfnUser(3, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, varPassword, 0, 0,"", varOriginator);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        udfnclear();
                     }
                     else
                     {
                         MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+                    udfnclear();
                 }
             }
             catch (Exception ex)
@@ -473,20 +475,35 @@ namespace ROMS
         {
             try
             {
-                DataService objdservice = new DataService();
-                DataSet objDT = new DataSet();
-                SPDataService objDser = new SPDataService();
-                objDT = objDser.udfnUserList(9,"","","",Convert.ToInt32(MainForm.pbUserID),"");
-                objDser.CloseConnection();
-                objdservice.CloseConnection();
-                if (objDT != null)
+                if (varPasskeyFlag == 0)
                 {
-                    if (objDT.Tables.Count != 0)
+                    string varResult = ""; string varpasskey = "", varOriginator = "Passkey Updation";
+                    DataService objdservice = new DataService();
+                    DataSet objDT = new DataSet();
+                    SPDataService objDser = new SPDataService();
+                    objDT = objDser.udfnUserList(9, "", "", "", Convert.ToInt32(MainForm.pbUserID), "");
+                    objDser.CloseConnection();
+                    objdservice.CloseConnection();
+                    if (objDT != null)
                     {
-                        if (objDT.Tables[0].Rows.Count != 0)
+                        if (objDT.Tables.Count != 0)
                         {
-                            txtGenratePasskey.Text =Convert.ToString(objDT.Tables[0].Rows[0]["U_Passkeyvalue"]);
+                            if (objDT.Tables[0].Rows.Count != 0)
+                            {
+                                varpasskey = Convert.ToString(objDT.Tables[0].Rows[0]["U_Passkeyvalue"]);
+                            }
                         }
+                    }
+                    varResult = objDser.udfnUser(4, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, "", 0, 0, GenerateMD5(varpasskey), varOriginator);
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtGenratePasskey.Text = varpasskey;
+                    }
+                    else
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -500,6 +517,7 @@ namespace ROMS
         {
             try
             {
+                varPasskeyFlag = 1;
                 MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
                 MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Password";
                 MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;

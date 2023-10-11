@@ -48,6 +48,9 @@
             this.btnConfirm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.BtnConfirm_Click);
+            this.btnConfirm.Enter += new System.EventHandler(this.BtnConfirm_Enter);
+            this.btnConfirm.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnConfirm_KeyDown);
+            this.btnConfirm.Leave += new System.EventHandler(this.BtnConfirm_Leave);
             // 
             // txtDPasskey
             // 
@@ -60,7 +63,7 @@
             this.txtDPasskey.ReadOnly = true;
             this.txtDPasskey.Size = new System.Drawing.Size(62, 28);
             this.txtDPasskey.TabIndex = 14;
-            this.txtDPasskey.Text = "Pass Key";
+            this.txtDPasskey.Text = "Passkey";
             // 
             // txtPassKey
             // 
@@ -69,6 +72,7 @@
             this.txtPassKey.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtPassKey.MaxLength = 50;
             this.txtPassKey.Name = "txtPassKey";
+            this.txtPassKey.PasswordChar = '*';
             this.txtPassKey.Size = new System.Drawing.Size(174, 28);
             this.txtPassKey.TabIndex = 12;
             this.txtPassKey.Enter += new System.EventHandler(this.TxtPassKey_Enter);
