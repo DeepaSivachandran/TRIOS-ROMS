@@ -404,7 +404,15 @@ namespace ROMS
         }
         private void TxtCity_Leave(object sender, EventArgs e)
         {
-            txtCity.BackColor = Color.White;
+            try
+            {
+                txtCity.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void TxtCity_TextChanged(object sender, EventArgs e)
         {

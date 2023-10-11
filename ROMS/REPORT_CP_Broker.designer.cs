@@ -102,7 +102,7 @@
             this.lvCity.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvCity.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvCity.HideSelection = false;
-            this.lvCity.Location = new System.Drawing.Point(368, 48);
+            this.lvCity.Location = new System.Drawing.Point(356, 48);
             this.lvCity.Name = "lvCity";
             this.lvCity.Size = new System.Drawing.Size(306, 90);
             this.lvCity.TabIndex = 1111228;
