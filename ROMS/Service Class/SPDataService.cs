@@ -400,7 +400,7 @@ namespace ROMS
             return varResult;
         }
         //Created By:-Sathish
-        public DataSet udfnUnitList(int paraviewType, int paraUnitid)
+        public DataSet udfnUnitList(int paraviewType, int paraUnitid, int paraProductID)
         {
             DataSet ds = new DataSet();
             try
@@ -412,6 +412,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUnitid", paraUnitid);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraProductID", paraProductID);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -1128,7 +1129,10 @@ namespace ROMS
 
         //Product Master List
         //created by Venkat,Created on 16/08/2023
-        public DataSet udfnproductmasterlist(int ViewType, int ParaProductCode, int paraProductCategory, int paraGroup, int paraSubgroup, string paraPicode, string paraUserID, string paraIPAddress, int ParaCompanycode, int paraStatusId, int paraBrandID, int ParaScheduleid, int paraScheduleDay, int paraRackId, int paraHsnId, int paraGstId, int paraLocationId, int paraLocationType, int paraGodownType, int paraRKGId, int paraEMPId)
+        public DataSet udfnproductmasterlist(int ViewType, int ParaProductCode, int paraProductCategory, int paraGroup, int paraSubgroup,
+            string paraPicode, string paraUserID, string paraIPAddress, int ParaCompanycode, int paraStatusId, int paraBrandID, int ParaScheduleid,
+            int paraScheduleDay, int paraRackId, int paraHsnId, int paraGstId, int paraLocationId, int paraLocationType, int paraGodownType,
+            int paraRKGId, int paraEMPId,string paraProductName,int ParaSupplierId,string ParaProductsCode)
         {
             DataSet ds = new DataSet();
             try
@@ -1159,6 +1163,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraEMPId", paraEMPId);
                 varSqlCommand.Parameters.AddWithValue("@paraProductName", paraProductName);
                 varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", ParaSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@ParaProductsCode", ParaProductsCode);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

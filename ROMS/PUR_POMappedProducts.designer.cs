@@ -36,19 +36,10 @@
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.grdPurchaseOrder = new System.Windows.Forms.DataGridView();
-            this.chkdays = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTotalitem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkSelectAll = new System.Windows.Forms.CheckBox();
             this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
             this.lblSearchByProduct2 = new System.Windows.Forms.Label();
+            this.grdPurchaseOrder = new System.Windows.Forms.DataGridView();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).BeginInit();
             this.SuspendLayout();
@@ -70,6 +61,7 @@
             this.btnSave.Text = "Submit";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // btnClose
             // 
@@ -86,11 +78,30 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
+            // txtSearchByProduct2
+            // 
+            this.txtSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchByProduct2.Location = new System.Drawing.Point(499, 6);
+            this.txtSearchByProduct2.MaxLength = 50;
+            this.txtSearchByProduct2.Name = "txtSearchByProduct2";
+            this.txtSearchByProduct2.Size = new System.Drawing.Size(418, 27);
+            this.txtSearchByProduct2.TabIndex = 1111146;
+            this.txtSearchByProduct2.TextChanged += new System.EventHandler(this.TxtSearchByProduct2_TextChanged);
+            // 
+            // lblSearchByProduct2
+            // 
+            this.lblSearchByProduct2.AutoSize = true;
+            this.lblSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchByProduct2.Location = new System.Drawing.Point(305, 9);
+            this.lblSearchByProduct2.Name = "lblSearchByProduct2";
+            this.lblSearchByProduct2.Size = new System.Drawing.Size(190, 20);
+            this.lblSearchByProduct2.TabIndex = 1111147;
+            this.lblSearchByProduct2.Text = "Search by Product Name/P.I Code";
+            // 
             // grdPurchaseOrder
             // 
             this.grdPurchaseOrder.AllowUserToAddRows = false;
             this.grdPurchaseOrder.AllowUserToDeleteRows = false;
-            this.grdPurchaseOrder.AllowUserToResizeColumns = false;
             this.grdPurchaseOrder.AllowUserToResizeRows = false;
             this.grdPurchaseOrder.BackgroundColor = System.Drawing.Color.White;
             this.grdPurchaseOrder.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -98,22 +109,12 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdPurchaseOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdPurchaseOrder.ColumnHeadersHeight = 30;
             this.grdPurchaseOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdPurchaseOrder.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.chkdays,
-            this.clmsno,
-            this.clmdate,
-            this.Column1,
-            this.clmTotalitem,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -126,103 +127,28 @@
             this.grdPurchaseOrder.GridColor = System.Drawing.Color.White;
             this.grdPurchaseOrder.Location = new System.Drawing.Point(12, 37);
             this.grdPurchaseOrder.Name = "grdPurchaseOrder";
-            this.grdPurchaseOrder.ReadOnly = true;
             this.grdPurchaseOrder.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.grdPurchaseOrder.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdPurchaseOrder.RowTemplate.Height = 25;
+            this.grdPurchaseOrder.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdPurchaseOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseOrder.Size = new System.Drawing.Size(905, 415);
-            this.grdPurchaseOrder.TabIndex = 1111144;
+            this.grdPurchaseOrder.TabIndex = 1111148;
+            this.grdPurchaseOrder.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdPurchaseOrder_CurrentCellDirtyStateChanged);
             // 
-            // chkdays
+            // lblNoRecordsFound
             // 
-            this.chkdays.HeaderText = "";
-            this.chkdays.Name = "chkdays";
-            this.chkdays.ReadOnly = true;
-            this.chkdays.Width = 40;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmsno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmsno.Width = 70;
-            // 
-            // clmdate
-            // 
-            this.clmdate.HeaderText = "PI Code";
-            this.clmdate.Name = "clmdate";
-            this.clmdate.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Product Name";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 200;
-            // 
-            // clmTotalitem
-            // 
-            this.clmTotalitem.HeaderText = "Unit";
-            this.clmTotalitem.Name = "clmTotalitem";
-            this.clmTotalitem.ReadOnly = true;
-            this.clmTotalitem.Width = 70;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "R.Sales Rate";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "MSQ";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Stock";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Reorder Qty";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // chkSelectAll
-            // 
-            this.chkSelectAll.AutoSize = true;
-            this.chkSelectAll.Location = new System.Drawing.Point(25, 47);
-            this.chkSelectAll.Name = "chkSelectAll";
-            this.chkSelectAll.Size = new System.Drawing.Size(15, 14);
-            this.chkSelectAll.TabIndex = 1111145;
-            this.chkSelectAll.UseVisualStyleBackColor = true;
-            // 
-            // txtSearchByProduct2
-            // 
-            this.txtSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchByProduct2.Location = new System.Drawing.Point(499, 6);
-            this.txtSearchByProduct2.MaxLength = 50;
-            this.txtSearchByProduct2.Name = "txtSearchByProduct2";
-            this.txtSearchByProduct2.Size = new System.Drawing.Size(418, 27);
-            this.txtSearchByProduct2.TabIndex = 1111146;
-            // 
-            // lblSearchByProduct2
-            // 
-            this.lblSearchByProduct2.AutoSize = true;
-            this.lblSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchByProduct2.Location = new System.Drawing.Point(305, 9);
-            this.lblSearchByProduct2.Name = "lblSearchByProduct2";
-            this.lblSearchByProduct2.Size = new System.Drawing.Size(190, 20);
-            this.lblSearchByProduct2.TabIndex = 1111147;
-            this.lblSearchByProduct2.Text = "Search by Product Name/P.I Code";
+            this.lblNoRecordsFound.AutoSize = true;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(411, 234);
+            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.TabIndex = 1111149;
+            this.lblNoRecordsFound.Text = "No Records Found";
+            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PUR_POMappedProducts
             // 
@@ -230,10 +156,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(929, 502);
+            this.Controls.Add(this.lblNoRecordsFound);
+            this.Controls.Add(this.grdPurchaseOrder);
             this.Controls.Add(this.txtSearchByProduct2);
             this.Controls.Add(this.lblSearchByProduct2);
-            this.Controls.Add(this.chkSelectAll);
-            this.Controls.Add(this.grdPurchaseOrder);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -245,8 +171,9 @@
             this.MinimizeBox = false;
             this.Name = "PUR_POMappedProducts";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Products Mapped for ABCD Suppliers";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PUR_POMappedProducts_FormClosing);
             this.Load += new System.EventHandler(this.PUR_POMappedProducts_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_POMappedProducts_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseOrder)).EndInit();
             this.ResumeLayout(false);
@@ -258,18 +185,9 @@
         private System.Windows.Forms.ErrorProvider errUnit;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
-        public System.Windows.Forms.DataGridView grdPurchaseOrder;
-        private System.Windows.Forms.CheckBox chkSelectAll;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chkdays;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmdate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmTotalitem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.TextBox txtSearchByProduct2;
         private System.Windows.Forms.Label lblSearchByProduct2;
+        public System.Windows.Forms.DataGridView grdPurchaseOrder;
+        private System.Windows.Forms.Label lblNoRecordsFound;
     }
 }
