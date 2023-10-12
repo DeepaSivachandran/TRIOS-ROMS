@@ -63,7 +63,7 @@ namespace ROMS
                         varPassword =_security.Encrypt (MainForm.pbLoginId.ToLower(),(txtPassKey.Text).Trim());
                         SPDataService objDser = new SPDataService();
                         int count = 0;
-                        objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, varPassword, 0,"");
+                        objDs = objDser.udfnUserList(0, "", MainForm.pbLoginId, varPassword, 0,"");
                         objDser.CloseConnection();
                         if (objDs != null)
                         {
