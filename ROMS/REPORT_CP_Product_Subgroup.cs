@@ -193,6 +193,7 @@ namespace ROMS
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Subgroup_StockLocation.rpt");
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
+                    objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
@@ -217,6 +218,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -277,6 +279,7 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Subgroup.rpt");
                     objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
+                    objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -286,7 +289,6 @@ namespace ROMS
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
-                    txtBrand.Text = "";
                 }
                 else
                 {
@@ -303,6 +305,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -429,11 +432,11 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Subgroup_Product.rpt");
                     objBillreport.SetParameterValue("paraBrandId", Convert.ToInt32(lblBrandCode.Text));
-                    //objBillreport.SetParameterValue("paraBrandName", Convert.ToString(varBrandName));
+                    objBillreport.SetParameterValue("paraBrandName", Convert.ToString(varBrandName));
                     objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
-                    //objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
+                    objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
                     objBillreport.SetParameterValue("paraSubGroupId", Convert.ToInt32(lblSubGroupCode.Text));
-                    //objBillreport.SetParameterValue("paraSubGroupName", Convert.ToString(varSubgroupName));
+                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToString(varSubgroupName));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -462,6 +465,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -629,6 +633,10 @@ namespace ROMS
             try
             {
                     txtSubGroup.BackColor = Color.White;
+                if(txtSubGroup.Text=="")
+                {
+                    lblSubGroupCode.Text = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -798,6 +806,10 @@ namespace ROMS
             try
             {
                     txtGroup.BackColor = Color.White;
+                if(txtGroup.Text=="")
+                {
+                    lblGroupCode.Text = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -973,6 +985,10 @@ namespace ROMS
             try
             {
                 txtBrand.BackColor = Color.White;
+                if(txtBrand.Text=="")
+                {
+                    lblBrandCode.Text = "0";
+                }
             }
             catch (Exception ex)
             {
