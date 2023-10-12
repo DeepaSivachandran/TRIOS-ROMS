@@ -745,7 +745,7 @@ namespace ROMS
             try
             {
                 txtGroup.BackColor = Color.LemonChiffon;
-                lvSubGroup.Visible = false;
+                lvBrand.Visible = false;
             }
             catch (Exception ex)
             {

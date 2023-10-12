@@ -553,7 +553,7 @@ namespace ROMS
         {
             try
             {
-                lvBrand.Visible = false;
+                lvGroup.Visible = false;
                 txtSubGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -703,7 +703,7 @@ namespace ROMS
             try
             {
                 txtGroup.BackColor = Color.LemonChiffon;
-                lvSubGroup.Visible = false;
+                lvBrand.Visible = false;
             }
             catch (Exception ex)
             {
