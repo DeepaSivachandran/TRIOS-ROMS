@@ -2033,6 +2033,7 @@ namespace ROMS
                     objContactTable.Columns.Add("CMCON_Primary", typeof(int));
                     objContactTable.Columns.Add("CMCON_WhatsAppEnabled", typeof(int));
                     objContactTable.Columns.Add("CMCON_StaffName", typeof(string));
+                    objContactTable.Columns.Add("CMCON_STSID", typeof(int));
                     int cityid = 0;string varpincode="";
                     if (lblcityid.Text=="")
                     {
