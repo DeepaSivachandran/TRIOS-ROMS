@@ -102,10 +102,10 @@ namespace ROMS
             this.stockLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rackGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.supplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
-            this.supplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -630,12 +630,12 @@ namespace ROMS
             this.companyToolStripMenuItem,
             this.hSNToolStripMenuItem,
             this.productGroupToolStripMenuItem,
-            this.brokerToolStripMenuItem,
-            this.brandToolStripMenuItem,
             this.productSubgroupToolStripMenuItem,
+            this.brandToolStripMenuItem,
             this.stockLocationToolStripMenuItem,
             this.rackToolStripMenuItem,
             this.rackGroupToolStripMenuItem,
+            this.brokerToolStripMenuItem,
             this.supplierToolStripMenuItem});
             this.mastersToolStripMenuItem1.Name = "mastersToolStripMenuItem1";
             this.mastersToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
@@ -718,6 +718,13 @@ namespace ROMS
             this.rackGroupToolStripMenuItem.Text = "Rack Group";
             this.rackGroupToolStripMenuItem.Click += new System.EventHandler(this.RackGroupToolStripMenuItem_Click);
             // 
+            // supplierToolStripMenuItem
+            // 
+            this.supplierToolStripMenuItem.Name = "supplierToolStripMenuItem";
+            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.supplierToolStripMenuItem.Text = "Supplier";
+            this.supplierToolStripMenuItem.Click += new System.EventHandler(this.SupplierToolStripMenuItem_Click);
+            // 
             // tsmMyProfile
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -746,13 +753,6 @@ namespace ROMS
             this.tsmLogout.Size = new System.Drawing.Size(109, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
-            // 
-            // supplierToolStripMenuItem
-            // 
-            this.supplierToolStripMenuItem.Name = "supplierToolStripMenuItem";
-            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.supplierToolStripMenuItem.Text = "Supplier";
-            this.supplierToolStripMenuItem.Click += new System.EventHandler(this.SupplierToolStripMenuItem_Click);
             // 
             // MainForm
             // 

@@ -24,6 +24,7 @@ namespace ROMS
         {
             try
             {
+                lvRack.Visible = false;
                 btnListPrint.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -782,6 +783,7 @@ namespace ROMS
         {
             try
             {
+                lvRackIncharge.Visible = false;
                 txtRack.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1098,6 +1100,7 @@ namespace ROMS
         {
             try
             {
+                lvRackgroup.Visible = false;
                 txtEmployeeName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
