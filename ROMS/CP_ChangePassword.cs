@@ -25,7 +25,7 @@ namespace ROMS
         public int varUserId = 0;
         public int varPasswordFlag = 0;
         public int varPasskeyFlag = 0,flag=0;
-        public string varPassword = "";
+        public string varPassword = "",varPasskeyValue="";
         private ToolTip tpOldPassword = new ToolTip();
         private ToolTip tpNewPassword = new ToolTip();
         private ToolTip tpConfirmPassword = new ToolTip();
@@ -43,7 +43,7 @@ namespace ROMS
                 DataSet objDsUser = new DataSet();
                 SPDataService objDser = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objDser.udfnUserList(10, "", MainForm.pbUserName, "", 0,"");
+                objDs = objDser.udfnUserList(10, "", MainForm.pbLoginId, "", 0,"");
                 objDser.CloseConnection();
                 if (objDs != null)
                 {
@@ -53,13 +53,14 @@ namespace ROMS
                         {
                             varPassKeyId = Convert.ToInt32(objDs.Tables[1].Rows[0]["PassKeyID"]);
                             varPassword=Convert.ToString(objDs.Tables[1].Rows[0]["Password"]);
+                            varPasskeyValue= _security.Decrypt("passkey", objDs.Tables[1].Rows[0]["PasskeyValue"].ToString());
                         }
                     }
                 }
                 if (varPassKeyId == 20)
                 {
                     gpChangePassKey.Visible = true;
-                    txtGenratePasskey.Text = MainForm.pbUserPassKeyValue;
+                    txtGenratePasskey.Text = varPasskeyValue;
                 }
                 else
                 {
@@ -584,7 +585,7 @@ namespace ROMS
                     DataService objdservice = new DataService();
                     DataSet objDT = new DataSet();
                     SPDataService objDser = new SPDataService();
-                    objDT = objDser.udfnUserList(9, "", "", "", Convert.ToInt32(MainForm.pbUserID), "");
+                    objDT = objDser.udfnUserList(9, "", "", "", 0, "");
                     objDser.CloseConnection();
                     objdservice.CloseConnection();
                     if (objDT != null)
@@ -603,7 +604,7 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtGenratePasskey.Text = varpasskey;
-                       // udfnLoad();
+                         udfnLoad();
                     }
                     else
                     {
