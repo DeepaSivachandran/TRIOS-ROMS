@@ -1116,7 +1116,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtEmployeeName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnEmployeeList(2,txtEmployeeName.Text.Trim(),0,"",0,0);
+                    objDs = objspdservice.udfnEmployeeList(2,txtEmployeeName.Text.Trim(),0,"",0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

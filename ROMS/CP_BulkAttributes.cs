@@ -152,7 +152,7 @@ namespace ROMS
                 objDSSubGroup = objDServ.udfnSubGroupList(0,0,"",0,0,"",0,0,0,0);
                 objDSBrand = objDServ.udfnBrandList(0,"",0,0,0,"",0);
                 objDSLocation = objDServ.udfnStockLocationList(17,0,0,0,"",0,0,0);
-                objDSRack = objDServ.udfnRackList(14,0,0,0,0,"",0);
+                objDSRack = objDServ.udfnRackList(14,0,0,0,0,"",0,0);
 
                 objDSShelfLifeType = objDServ.udfnMaster(0, 6);
                 objDSQTYUnit = objDServ.udfnMaster(2, 0);
