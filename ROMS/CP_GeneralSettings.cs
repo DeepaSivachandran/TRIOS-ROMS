@@ -15,6 +15,12 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
+        private ToolTip tpcashpurchase = new ToolTip();
+        private ToolTip tpBillAmount = new ToolTip();
+        private ToolTip tpGRNQty = new ToolTip();
+        private ToolTip tpReturnAlertDays = new ToolTip();
+        private ToolTip tpInvoiceEditDays = new ToolTip();
+        
         public int varSettingID = 0;
         public CP_GeneralSettings()
         {
@@ -206,27 +212,27 @@ namespace ROMS
         {
             try
             {
-                //if (Convert.ToString(txtCompanyName.Text).Trim() == "")
-                //{
-                //    epCompany.SetError(txtCompanyName, "Please enter company name");
-                //    txtCompanyName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpCompanyName.ShowAlways = true;
-                //    tpCompanyName.Show("Please enter company name", txtCompanyName, 5000);
-                //}
-                //else
-                //{
-                //    epCompany.Clear();
-                //    txtCompanyName.BackColor = Color.White;
-                //}
-                try
+                if (Convert.ToString(txtcashpurchase.Text).Trim() == "")
                 {
+                    epGeneralSettings.SetError(txtcashpurchase, "Please enter amount.");
+                    txtcashpurchase.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpcashpurchase.ShowAlways = true;
+                    tpcashpurchase.Show("Please enter amount.", txtcashpurchase, 5000);
+                }
+                else
+                {
+                    epGeneralSettings.Clear();
                     txtcashpurchase.BackColor = Color.White;
                 }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                }
+                //try
+                //{
+                //    txtcashpurchase.BackColor = Color.White;
+                //}
+                //catch (Exception ex)
+                //{
+                //    objError = new DataError();
+                //    objError.WriteFile(ex);
+                //}
             }
             catch (Exception ex)
             {
@@ -263,14 +269,26 @@ namespace ROMS
         }
         private void TxtBillAmount_Leave(object sender, EventArgs e)
         {
-            try
+            //try
+            //{
+            //    txtBillAmount.BackColor = Color.White;
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+            if (Convert.ToString(txtBillAmount.Text).Trim() == "")
             {
-                txtBillAmount.BackColor = Color.White;
+                epGeneralSettings.SetError(txtBillAmount, "Please enter amount.");
+                txtBillAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tpBillAmount.ShowAlways = true;
+                tpBillAmount.Show("Please enter amount.", txtBillAmount, 5000);
             }
-            catch (Exception ex)
+            else
             {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                epGeneralSettings.Clear();
+                txtBillAmount.BackColor = Color.White;
             }
         }
         private void TxtBillAmount_KeyDown(object sender, KeyEventArgs e)
@@ -302,14 +320,17 @@ namespace ROMS
         }
         private void TxtGRNQty_Leave(object sender, EventArgs e)
         {
-            try
+            if (Convert.ToString(txtGRNQty.Text).Trim() == "")
             {
-                txtGRNQty.BackColor = Color.White;
+                epGeneralSettings.SetError(txtGRNQty, "Please enter quantity.");
+                txtGRNQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tpGRNQty.ShowAlways = true;
+                tpGRNQty.Show("Please enter quantity.", txtGRNQty, 5000);
             }
-            catch (Exception ex)
+            else
             {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                epGeneralSettings.Clear();
+                txtGRNQty.BackColor = Color.White;
             }
         }
         private void TxtGRNQty_KeyDown(object sender, KeyEventArgs e)
@@ -356,14 +377,17 @@ namespace ROMS
         }
         private void TxtReturnAlertDays_Leave(object sender, EventArgs e)
         {
-            try
+            if (Convert.ToString(txtReturnAlertDays.Text).Trim() == "")
             {
-                txtReturnAlertDays.BackColor = Color.White;
+                epGeneralSettings.SetError(txtReturnAlertDays, "Please enter days.");
+                txtReturnAlertDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tpReturnAlertDays.ShowAlways = true;
+                tpReturnAlertDays.Show("Please enter days.", txtReturnAlertDays, 5000);
             }
-            catch (Exception ex)
+            else
             {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                epGeneralSettings.Clear();
+                txtReturnAlertDays.BackColor = Color.White;
             }
         }
         private void TxtInvoiceEditDays_Enter(object sender, EventArgs e)
@@ -380,14 +404,17 @@ namespace ROMS
         }
         private void TxtInvoiceEditDays_Leave(object sender, EventArgs e)
         {
-            try
+            if (Convert.ToString(txtInvoiceEditDays.Text).Trim() == "")
             {
-                txtInvoiceEditDays.BackColor = Color.White;
+                epGeneralSettings.SetError(txtInvoiceEditDays, "Please enter days.");
+                txtInvoiceEditDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                tpInvoiceEditDays.ShowAlways = true;
+                tpInvoiceEditDays.Show("Please enter days.", txtInvoiceEditDays, 5000);
             }
-            catch (Exception ex)
+            else
             {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                epGeneralSettings.Clear();
+                txtInvoiceEditDays.BackColor = Color.White;
             }
         }
         private void TxtInvoiceEditDays_KeyDown(object sender, KeyEventArgs e)
@@ -453,7 +480,51 @@ namespace ROMS
         {
             try
             {
-                udfnUpdate();
+                bool blnErrorFlag = false;
+                if (Convert.ToString(txtcashpurchase.Text).Trim() == "")
+                {
+                    epGeneralSettings.SetError(txtcashpurchase, "Please enter amount.");
+                    txtcashpurchase.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpcashpurchase.ShowAlways = true;
+                    tpcashpurchase.Show("Please enter amount.", txtcashpurchase, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtBillAmount.Text).Trim() == "")
+                {
+                    epGeneralSettings.SetError(txtBillAmount, "Please enter amount.");
+                    txtBillAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpBillAmount.ShowAlways = true;
+                    tpBillAmount.Show("Please enter amount.", txtBillAmount, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtGRNQty.Text).Trim() == "")
+                {
+                    epGeneralSettings.SetError(txtGRNQty, "Please enter quantity.");
+                    txtGRNQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpGRNQty.ShowAlways = true;
+                    tpGRNQty.Show("Please enter quantity.", txtGRNQty, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtReturnAlertDays.Text).Trim() == "")
+                {
+                    epGeneralSettings.SetError(txtReturnAlertDays, "Please enter days.");
+                    txtReturnAlertDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReturnAlertDays.ShowAlways = true;
+                    tpReturnAlertDays.Show("Please enter days.", txtReturnAlertDays, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtInvoiceEditDays.Text).Trim() == "")
+                {
+                    epGeneralSettings.SetError(txtInvoiceEditDays, "Please enter days.");
+                    txtInvoiceEditDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpInvoiceEditDays.ShowAlways = true;
+                    tpInvoiceEditDays.Show("Please enter days.", txtInvoiceEditDays, 5000);
+                    blnErrorFlag = true;
+                }
+                if (blnErrorFlag == false)
+                {
+                    udfnUpdate();
+                }
             }
             catch (Exception ex)
             {
@@ -632,6 +703,23 @@ namespace ROMS
             try
             {
                 grdOrderType.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_GeneralSettings_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tpcashpurchase.Active = false;
+                tpBillAmount.Active = false;
+                tpGRNQty.Active = false;
+                tpInvoiceEditDays.Active = false;
+                tpReturnAlertDays.Active = false;
             }
             catch (Exception ex)
             {
