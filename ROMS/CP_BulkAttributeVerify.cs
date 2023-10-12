@@ -76,13 +76,13 @@ namespace ROMS
                     SPDataService objDser = new SPDataService();
                     int count = 0;
                     varPasskey = _security.Encrypt("passkey", (txtPassKey.Text).Trim());
-                    objDs = objDser.udfnUserList(10, "", MainForm.pbUserName, "", 0, varPasskey);
+                    objDs = objDser.udfnUserList(10, "", "", "", 0, varPasskey);
                     objDser.CloseConnection();
                     if (objDs != null)
                     {
-                        if (objDs.Tables[0].Rows.Count > 0)
+                        if (objDs.Tables[2].Rows.Count > 0)
                         {
-                            count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
+                            count = Convert.ToInt32(objDs.Tables[2].Rows[0]["countvalue"]);
                             if (count != 0)
                             {
                                 flag = 1;
