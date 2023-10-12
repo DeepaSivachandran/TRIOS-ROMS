@@ -159,6 +159,11 @@ namespace ROMS
         public static REPORT_CP_Product_Group objREPORT_CP_Product_Group;
         public static REPORT_CP_Broker objREPORT_CP_Broker;
         public static REPORT_CP_Brand objREPORT_CP_Brand;
+        public static REPORT_CP_Product_Subgroup objREPORT_CP_Product_Subgroup;
+        public static REPORT_CP_StockLocation objREPORT_CP_StockLocation;
+        public static REPORT_CP_Rack objREPORT_CP_Rack;
+        public static REPORT_CP_Rackgroup objREPORT_CP_Rackgroup;
+        public static REPORT_CP_Supplier objREPORT_CP_Supplier;
 
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
@@ -1350,6 +1355,91 @@ namespace ROMS
                 MainForm.objREPORT_CP_Brand = new REPORT_CP_Brand();
                 MainForm.objREPORT_CP_Brand.MdiParent = this;
                 MainForm.objREPORT_CP_Brand.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ProductSubgroupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_Product_Subgroup = new REPORT_CP_Product_Subgroup();
+                MainForm.objREPORT_CP_Product_Subgroup.MdiParent = this;
+                MainForm.objREPORT_CP_Product_Subgroup.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void StockLocationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_StockLocation = new REPORT_CP_StockLocation();
+                MainForm.objREPORT_CP_StockLocation.MdiParent = this;
+                MainForm.objREPORT_CP_StockLocation.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_Rack = new REPORT_CP_Rack();
+                MainForm.objREPORT_CP_Rack.MdiParent = this;
+                MainForm.objREPORT_CP_Rack.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RackGroupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_Rackgroup = new REPORT_CP_Rackgroup();
+                MainForm.objREPORT_CP_Rackgroup.MdiParent = this;
+                MainForm.objREPORT_CP_Rackgroup.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void SupplierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_Supplier = new REPORT_CP_Supplier();
+                MainForm.objREPORT_CP_Supplier.MdiParent = this;
+                MainForm.objREPORT_CP_Supplier.Show();
             }
             catch (Exception ex)
             {

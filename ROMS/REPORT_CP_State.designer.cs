@@ -88,9 +88,9 @@
             this.grpfilter.Controls.Add(this.btnListPrint);
             this.grpfilter.Controls.Add(this.cmbStatus);
             this.grpfilter.Controls.Add(this.lblState);
-            this.grpfilter.Location = new System.Drawing.Point(12, 2);
+            this.grpfilter.Location = new System.Drawing.Point(3, 2);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1339, 58);
+            this.grpfilter.Size = new System.Drawing.Size(1348, 58);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
@@ -98,14 +98,14 @@
             // btnListPrint
             // 
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(185, 16);
+            this.btnListPrint.Location = new System.Drawing.Point(182, 18);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
-            this.btnListPrint.Size = new System.Drawing.Size(70, 33);
-            this.btnListPrint.TabIndex = 1111177;
-            this.btnListPrint.Text = "Print";
+            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
+            this.btnListPrint.TabIndex = 1;
+            this.btnListPrint.Text = "View";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
             this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
@@ -115,10 +115,10 @@
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(53, 19);
+            this.cmbStatus.Location = new System.Drawing.Point(50, 19);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(126, 27);
-            this.cmbStatus.TabIndex = 1;
+            this.cmbStatus.TabIndex = 0;
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
@@ -129,7 +129,7 @@
             // 
             this.lblState.AutoSize = true;
             this.lblState.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblState.Location = new System.Drawing.Point(9, 22);
+            this.lblState.Location = new System.Drawing.Point(6, 22);
             this.lblState.Name = "lblState";
             this.lblState.Size = new System.Drawing.Size(38, 20);
             this.lblState.TabIndex = 1111176;

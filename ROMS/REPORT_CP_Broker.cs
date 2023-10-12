@@ -133,8 +133,6 @@ namespace ROMS
                     }
                     else
                     {
-                        //btnListPrint.Enabled = false;
-                        
                         if (cmbReportType.SelectedIndex == 1)
                         {
                             udfnContact();
@@ -156,6 +154,7 @@ namespace ROMS
         {
             try
             {
+                btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -201,12 +200,15 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                GC.Collect();
             }
         }
         public void udfnAddress()
         {
             try
             {
+                btnListPrint.Enabled = false;
                 int varcityid = 0;
                 string varCityName = "";
                 if(txtCity.Text=="")
@@ -236,7 +238,6 @@ namespace ROMS
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
-
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
@@ -272,6 +273,8 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                GC.Collect();
             }
         }
         private void CmbReportType_SelectedIndexChanged(object sender, EventArgs e)
@@ -401,7 +404,15 @@ namespace ROMS
         }
         private void TxtCity_Leave(object sender, EventArgs e)
         {
-            txtCity.BackColor = Color.White;
+            try
+            {
+                txtCity.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void TxtCity_TextChanged(object sender, EventArgs e)
         {

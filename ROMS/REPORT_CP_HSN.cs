@@ -107,7 +107,6 @@ namespace ROMS
                 }
                 else
                 {
-                    //btnListPrint.Enabled = false;
                     
                     if (cmbReportType.SelectedIndex == 1)
                     {
@@ -133,6 +132,7 @@ namespace ROMS
         {
             try
             {
+                btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -178,12 +178,15 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                GC.Collect();
             }
         }
         public void udfnHSNProduct()
         {
             try
             {
+                btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -233,12 +236,15 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                GC.Collect();
             }
         }
         public void udfnHSNSubgroup()
         {
             try
             {
+                btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -286,6 +292,8 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                GC.Collect();
             }
         }
         private void REPORT_CP_HSN_Load(object sender, EventArgs e)

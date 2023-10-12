@@ -1227,7 +1227,7 @@ namespace ROMS
                 if (txtLocation.Text != "")
                 {
                     SPDataService objService = new SPDataService();
-                    objRackList = objService.udfnRackList(11, 0, 0, Convert.ToInt32(lblLocation.Text), 0, "", 0);
+                    objRackList = objService.udfnRackList(11, 0, 0, Convert.ToInt32(lblLocation.Text), 0, "", 0,0);
                     objService.CloseConnection();
                     if (objRackList != null)
                     {
