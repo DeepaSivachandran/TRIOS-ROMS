@@ -271,7 +271,7 @@
             // 
             this.lblUserRole.AutoSize = true;
             this.lblUserRole.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserRole.Location = new System.Drawing.Point(89, 68);
+            this.lblUserRole.Location = new System.Drawing.Point(89, 63);
             this.lblUserRole.Name = "lblUserRole";
             this.lblUserRole.Size = new System.Drawing.Size(95, 17);
             this.lblUserRole.TabIndex = 60;
