@@ -462,6 +462,7 @@ namespace ROMS
                     cmbState.Enabled = true;
                     cmbSupplierType.Enabled = true;
                     cmbPaymentTerm.Enabled = true;
+                    cmbStatus.Enabled = true;
                 }
                 if(cmbReportType.SelectedIndex==2)
                 {
@@ -827,7 +828,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbOrderType.Focus();
+                    //if (cmbReportType.SelectedIndex == 1)
+                    //{
+                        cmbStatus.Focus();
+                    //}
+                    //else
+                    //{
+                    //    cmbOrderType.Focus();
+                    //}
                 }
             }
             catch (Exception ex)
@@ -911,7 +919,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStatus.Focus();
+                    btnListPrint.Focus();
                 }
             }
             catch (Exception ex)

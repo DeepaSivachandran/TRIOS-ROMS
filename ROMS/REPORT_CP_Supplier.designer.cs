@@ -36,6 +36,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.lblcityid = new System.Windows.Forms.Label();
             this.cmbSupplierType = new System.Windows.Forms.ComboBox();
             this.cmbReturnPolicy = new System.Windows.Forms.ComboBox();
             this.cmbPaymentTerm = new System.Windows.Forms.ComboBox();
@@ -56,7 +57,6 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.lblcityid = new System.Windows.Forms.Label();
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -111,7 +111,7 @@
             this.lvCity.HideSelection = false;
             this.lvCity.Location = new System.Drawing.Point(433, 71);
             this.lvCity.Name = "lvCity";
-            this.lvCity.Size = new System.Drawing.Size(306, 90);
+            this.lvCity.Size = new System.Drawing.Size(306, 134);
             this.lvCity.TabIndex = 1111229;
             this.lvCity.UseCompatibleStateImageBehavior = false;
             this.lvCity.View = System.Windows.Forms.View.Details;
@@ -157,6 +157,15 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // lblcityid
+            // 
+            this.lblcityid.AutoSize = true;
+            this.lblcityid.Location = new System.Drawing.Point(500, 19);
+            this.lblcityid.Name = "lblcityid";
+            this.lblcityid.Size = new System.Drawing.Size(0, 20);
+            this.lblcityid.TabIndex = 1111191;
+            this.lblcityid.Visible = false;
             // 
             // cmbSupplierType
             // 
@@ -404,15 +413,6 @@
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
-            // 
-            // lblcityid
-            // 
-            this.lblcityid.AutoSize = true;
-            this.lblcityid.Location = new System.Drawing.Point(500, 19);
-            this.lblcityid.Name = "lblcityid";
-            this.lblcityid.Size = new System.Drawing.Size(0, 20);
-            this.lblcityid.TabIndex = 1111191;
-            this.lblcityid.Visible = false;
             // 
             // REPORT_CP_Supplier
             // 
