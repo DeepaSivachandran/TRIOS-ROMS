@@ -91,7 +91,7 @@ namespace ROMS
                 {
                     DataSet objDsUser = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsUser = objDserv.udfnUserList(7, txtDUserList.Text.Trim(),"","",0);
+                    objDsUser = objDserv.udfnUserList(7, txtDUserList.Text.Trim(),"","",0,"");
                     objDserv.CloseConnection();
                     if (objDsUser != null)
                     {
@@ -104,7 +104,7 @@ namespace ROMS
                         }
                     }
                 }
-                objDs = objspservice.udfnUserList(2,(txtDUserList.Text),"","", varUserId);
+                objDs = objspservice.udfnUserList(2,(txtDUserList.Text),"","", varUserId,"");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -171,7 +171,7 @@ namespace ROMS
 
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
-                        varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", 0,0,"",0, 0, "User Delete");
+                        varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", 0,0,"",0, 0,"", "User Delete");
                         objspservice.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -672,7 +672,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtDUserList.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnUserList(5, txtDUserList.Text, "","",0);
+                    objDs = objspdservice.udfnUserList(5, txtDUserList.Text, "","",0,"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

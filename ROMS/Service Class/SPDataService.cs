@@ -140,14 +140,13 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[MRS_VoucherSettings]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("MRS_VoucherSettings", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@ParaMRS_VoucherSettings", ParaMRS_VoucherSettings);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
-                varSqlCommand.CommandTimeout = 0;
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -161,6 +160,67 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return varResult;
+        }
+        // Sivabharathi    Create date: 05/10/2023    Description: General Settings
+        public string udfnGeneralSettings(int ViewType,int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA,int paraGS_GRNQty,int paraGS_RAD,int paraGS_IED,DataTable ParaMR_GeneralSettings_TAT, string paraOriginator)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("MRS_GeneralSettings", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraGeneralSettingsID", @paraGeneralSettingsID);
+                varSqlCommand.Parameters.AddWithValue("@paraGS_CPA", paraGS_CPA);
+                varSqlCommand.Parameters.AddWithValue("@paraGS_DVA", paraGS_DVA);
+                varSqlCommand.Parameters.AddWithValue("@paraGS_GRNQty", paraGS_GRNQty);
+                varSqlCommand.Parameters.AddWithValue("@paraGS_RAD", paraGS_RAD);
+                varSqlCommand.Parameters.AddWithValue("@paraGS_IED", paraGS_IED);
+                varSqlCommand.Parameters.AddWithValue("@ParaMR_GeneralSettings_TAT", ParaMR_GeneralSettings_TAT);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        // Sivabharathi    Create date: 05/10/2023    Description: General Settings list
+        public DataSet udfnGeneralSettingList(int ViewType)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("MRG_GeneralSettings", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
         }
         // Sivabharathi    Create date: 27/09/2023    Description: Voucher Settings list
         public DataSet udfnVoucherSettingList(int ViewType)
@@ -849,7 +909,7 @@ namespace ROMS
             return ds;
         }
         //Created By:-Sathish Created On:-22/08/2023
-        public string udfnUser(int paraviewType, int paraUId, string paraNameoftheUser, string paraLoginId, int paraUserCategory, int paraUserRole, string paraPassword, int paraPassKey, int paraStatusId, string paraOriginator)
+        public string udfnUser(int paraviewType, int paraUId, string paraNameoftheUser, string paraLoginId, int paraUserCategory, int paraUserRole, string paraPassword, int paraPassKey, int paraStatusId,string paraPasskeyValue,string paraOriginator)
         {
             string varResult = "";
             try
@@ -866,6 +926,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraPassword", paraPassword);
                 varSqlCommand.Parameters.AddWithValue("@paraPassKey", paraPassKey);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraPasskeyValue", @paraPasskeyValue);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
@@ -1022,7 +1083,8 @@ namespace ROMS
 
         // Created by : Deepa    Modified by: Sathish
         // Created on : 16-08-2023 Modified on: 22-08-2023
-        public DataSet udfnUserList(int paraviewType, string paraUserName, string paraLoginId, string paraPassword, int paraUser)
+        //modified  Sivabharathi on 9/10/2023
+        public DataSet udfnUserList(int paraviewType,string paraUserName, string paraLoginId, string paraPassword,int paraUser,string @paraPasskey)
         {
             DataSet ds = new DataSet();
             try
@@ -1034,6 +1096,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserName", paraUserName);
                 varSqlCommand.Parameters.AddWithValue("@paraLoginId", paraLoginId);
                 varSqlCommand.Parameters.AddWithValue("@paraPassword", paraPassword);
+                varSqlCommand.Parameters.AddWithValue("@paraPasskey", @paraPasskey);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraUser", paraUser);

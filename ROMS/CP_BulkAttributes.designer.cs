@@ -334,7 +334,7 @@
             this.grdBrand.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdBrand.Size = new System.Drawing.Size(1124, 481);
             this.grdBrand.TabIndex = 958799;
-          //  this.grdBrand.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBrand_CellEndEdit);
+            this.grdBrand.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBrand_CellEndEdit);
             this.grdBrand.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdBrand_EditingControlShowing);
             // 
             // btnClose
@@ -757,6 +757,7 @@
             this.grdLoction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdLoction.Size = new System.Drawing.Size(1118, 481);
             this.grdLoction.TabIndex = 958793;
+            this.grdLoction.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdLoction_CellEndEdit);
             this.grdLoction.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdLoction_EditingControlShowing);
             // 
             // grdBulkAttributes

@@ -13,6 +13,8 @@ namespace ROMS
 {
     public partial class CP_BulkAttributeVerify : Form
     {
+
+        private SecurityController _security;
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
@@ -26,6 +28,7 @@ namespace ROMS
         public CP_BulkAttributeVerify()
         {
             InitializeComponent();
+            _security = new SecurityController();
         }
         public string GenerateMD5(string HashString)
         {
@@ -40,7 +43,8 @@ namespace ROMS
                 {
                     SPDataService objDser = new SPDataService();
                     int count = 0;
-                    objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, GenerateMD5(txtPassKey.Text), 0);
+                    
+                    objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, _security.Encrypt(MainForm.pbUserName.Trim().ToLower(), txtPassKey.Text.Trim()), 0,"");
                     objDser.CloseConnection();
                     if (objDs != null)
                     {

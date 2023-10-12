@@ -20,12 +20,15 @@ namespace ROMS
         public static string pbVersion = "1.0.1";
         public static string pbUserID = "";
         public static string pbUserName = "";
+        public static string pbLoginId = "";
         public static string pbUserRoleId;
         public static string pbView;
         public static string pbSelectedMenu;
         public static string pbIpAddress = "";
         public static string pbHostName = "";
         public static string pbUserRoleName = "";
+        public static string pbUserPassKey = "";
+        public static string pbUserPassKeyValue = "";
         public static string pbReleaseDt = "";
         public static string pbSSSSoftwareName = "";
         public static string pbRomsSoftwareName = "";
@@ -907,9 +910,9 @@ namespace ROMS
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objCP_Settings = new CP_Settings();
-                MainForm.objCP_Settings.MdiParent = this;
-                MainForm.objCP_Settings.Show();
+                MainForm.objCP_GeneralSettings = new CP_GeneralSettings();
+                MainForm.objCP_GeneralSettings.MdiParent = this;
+                MainForm.objCP_GeneralSettings.Show();
             }
             catch (Exception ex)
             {
@@ -1108,21 +1111,20 @@ namespace ROMS
         }
 
         private void TsmgeneralSettings_Click(object sender, EventArgs e)
-        {
+        { 
             try
-            { 
-                 udfnCloseChildForms();
+            {
+                udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objCP_GeneralSettings = new CP_GeneralSettings();
-                MainForm.objCP_GeneralSettings.MdiParent = this;
-                MainForm.objCP_GeneralSettings.Show();
+                MainForm.objCP_Settings = new CP_Settings();
+                MainForm.objCP_Settings.MdiParent = this;
+                MainForm.objCP_Settings.Show();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void TsmBulkAttr_Click(object sender, EventArgs e)
