@@ -158,8 +158,8 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmContsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmmobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmWhatsAppNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPrimary = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1590,8 +1590,8 @@
             this.grdContactManager.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdContactManager.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmContsno,
-            this.clmName,
             this.clmTransaction,
+            this.clmName,
             this.clmmobile,
             this.clmWhatsAppNo,
             this.clmPrimary,
@@ -1729,18 +1729,18 @@
             this.clmContsno.ReadOnly = true;
             this.clmContsno.Width = 50;
             // 
-            // clmName
-            // 
-            this.clmName.HeaderText = "Name";
-            this.clmName.Name = "clmName";
-            this.clmName.ReadOnly = true;
-            // 
             // clmTransaction
             // 
             this.clmTransaction.HeaderText = "Transaction Type";
             this.clmTransaction.Name = "clmTransaction";
             this.clmTransaction.ReadOnly = true;
             this.clmTransaction.Width = 125;
+            // 
+            // clmName
+            // 
+            this.clmName.HeaderText = "Name";
+            this.clmName.Name = "clmName";
+            this.clmName.ReadOnly = true;
             // 
             // clmmobile
             // 
@@ -1991,8 +1991,8 @@
         private System.Windows.Forms.RadioButton rbActiveContact;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmContsno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTransaction;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmmobile;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmWhatsAppNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPrimary;
