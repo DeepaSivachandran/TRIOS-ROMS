@@ -141,7 +141,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnHsnList(5, 0, 0, Convert.ToInt32(cmbStatus.SelectedValue), "");
+                objDs = objspservice.udfnHsnList(5, 0, 0, Convert.ToInt32(cmbStatus.SelectedValue), "","");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -247,7 +247,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnHsnList(4, Convert.ToInt32(cmbHSN.SelectedValue), Convert.ToInt32(cmbGST.SelectedValue),0,"");
+                objDs = objspservice.udfnHsnList(4, Convert.ToInt32(cmbHSN.SelectedValue), Convert.ToInt32(cmbGST.SelectedValue),0,"","");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
