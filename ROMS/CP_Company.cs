@@ -2003,6 +2003,7 @@ namespace ROMS
             }
         }
         public void udfnSave(object sender, EventArgs e)
+
         {
             try
             {
@@ -2025,8 +2026,8 @@ namespace ROMS
                     DataTable objBankTable = new DataTable();
                     DataTable objContactTable = new DataTable();
                     objContactTable.TableName = "MR_Company_Contact";
-                    objContactTable.Columns.Add("CMCON_Name", typeof(string));
                     objContactTable.Columns.Add("CMCON_TransactionType", typeof(int));
+                    objContactTable.Columns.Add("CMCON_Name", typeof(string));
                     objContactTable.Columns.Add("CMCON_MobileNo", typeof(string));
                     objContactTable.Columns.Add("CMCON_Operator", typeof(string));
                     objContactTable.Columns.Add("CMCON_MobileBrand", typeof(string));
@@ -2133,6 +2134,7 @@ namespace ROMS
                         else
                         { 
                             varcontactcompanyid = varvalue[2];
+                            tcCompanyDetails.SelectedIndex = 1;
                         }
                         if (tcCompanyDetails.SelectedIndex == 1)
                         { 
@@ -3086,15 +3088,15 @@ namespace ROMS
                         }
                         if (varCMSlNo == "0")
                         {
-                            grdContactManager.Rows.Add(grdContactManager.Rows.Count + 1, txtName.Text, varvalue, txtMobilenumber.Text, varwhatsapp, varcheckedvalue, txtOperator.Text, txtMobileBrand.Text, txtStaffName.Text, Convert.ToString(cmbTransactionType.SelectedValue), varstatusidContact,varstatus);
+                            grdContactManager.Rows.Add(grdContactManager.Rows.Count + 1, varvalue, txtName.Text, txtMobilenumber.Text, varwhatsapp, varcheckedvalue, txtOperator.Text, txtMobileBrand.Text, txtStaffName.Text, Convert.ToString(cmbTransactionType.SelectedValue), varstatusidContact,varstatus);
                         }
                         else {
                             for (int i = 0; i < grdContactManager.RowCount; i++)
                             {
                                 if (Convert.ToString(grdContactManager.Rows[i].Cells["clmContsno"].Value) == varCMSlNo)
                                 {
-                                    grdContactManager.Rows[i].Cells["clmName"].Value = txtName.Text;
                                     grdContactManager.Rows[i].Cells["clmTransaction"].Value = varvalue;
+                                    grdContactManager.Rows[i].Cells["clmName"].Value = txtName.Text;
                                     grdContactManager.Rows[i].Cells["clmmobile"].Value = txtMobilenumber.Text;
                                     grdContactManager.Rows[i].Cells["clmWhatsAppNo"].Value = varwhatsapp;
                                     grdContactManager.Rows[i].Cells["clmPrimary"].Value = varcheckedvalue;
@@ -3234,7 +3236,7 @@ namespace ROMS
                     {
                         varwhatsapp = 0;
                     }
-                    objContactTable.Rows.Add(Convert.ToString(grdContactManager.Rows[i].Cells["clmName"].Value), Convert.ToInt32(grdContactManager.Rows[i].Cells["clmid"].Value),
+                    objContactTable.Rows.Add( Convert.ToString(grdContactManager.Rows[i].Cells["clmName"].Value), Convert.ToInt32(grdContactManager.Rows[i].Cells["clmid"].Value),
                     Convert.ToString(grdContactManager.Rows[i].Cells["clmmobile"].Value), Convert.ToString(grdContactManager.Rows[i].Cells["clmOperator"].Value),
                     Convert.ToString(grdContactManager.Rows[i].Cells["clmMobileBrand"].Value),varprimary, varwhatsapp,Convert.ToString(grdContactManager.Rows[i].Cells["clmStaffName"].Value), Convert.ToString(grdContactManager.Rows[i].Cells["clmStatusContactID"].Value));
                 }
@@ -3567,8 +3569,8 @@ namespace ROMS
                             }
                             break;
                         case "clmCMEdit":
-                            txtName.Text = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmName"].Value);
                             cmbTransactionType.SelectedValue = Convert.ToInt32(grdContactManager.Rows[e.RowIndex].Cells["clmid"].Value);
+                            txtName.Text = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmName"].Value);
                             txtMobilenumber.Text = Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmmobile"].Value);
                             if (Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmWhatsAppNo"].Value) == "Yes") { cbWhatsApp.Checked = true; }
                             if (Convert.ToString(grdContactManager.Rows[e.RowIndex].Cells["clmPrimary"].Value) == "Yes") { cbPrimary.Checked = true; }
@@ -3721,7 +3723,7 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
                             {
-                                grdContactManager.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[1].Rows[i]["NAME"]), Convert.ToString(objDS.Tables[1].Rows[i]["TRANSACTIONNAME"]),
+                                grdContactManager.Rows.Add(Convert.ToString(objDS.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[1].Rows[i]["TRANSACTIONNAME"]), Convert.ToString(objDS.Tables[1].Rows[i]["NAME"]),
                                 Convert.ToString(objDS.Tables[1].Rows[i]["MOBILE"]), Convert.ToString(objDS.Tables[1].Rows[i]["WHATSAPP"]), Convert.ToString(objDS.Tables[1].Rows[i]["PRIMAY"])
                                 , Convert.ToString(objDS.Tables[1].Rows[i]["OPERATOR"]), Convert.ToString(objDS.Tables[1].Rows[i]["BRAND"]), Convert.ToString(objDS.Tables[1].Rows[i]["Staff Name"]), Convert.ToString(objDS.Tables[1].Rows[i]["id"]), Convert.ToString(objDS.Tables[1].Rows[i]["StatusId"]), Convert.ToString(objDS.Tables[1].Rows[i]["Status"]));
                                
