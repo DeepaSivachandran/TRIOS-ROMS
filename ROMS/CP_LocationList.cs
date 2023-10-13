@@ -187,6 +187,7 @@ namespace ROMS
                 picLoader.SendToBack();
                 btnView.Enabled = true;
                 btnView.Focus();
+                txtSearchbyLocationName.Text = "";
             }
         }
         private void udfnSearchGridHead()

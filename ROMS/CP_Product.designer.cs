@@ -291,7 +291,7 @@
             this.txtDSubGroup.Size = new System.Drawing.Size(139, 27);
             this.txtDSubGroup.TabIndex = 7;
             this.txtDSubGroup.TabStop = false;
-            this.txtDSubGroup.Text = "Product Sub Group";
+            this.txtDSubGroup.Text = "Product Subgroup";
             // 
             // txtDUnit
             // 
@@ -1910,11 +1910,11 @@
             // 
             // columnHeader10
             // 
-            this.columnHeader10.Width = 80;
+            this.columnHeader10.Width = 120;
             // 
             // columnHeader30
             // 
-            this.columnHeader30.Width = 80;
+            this.columnHeader30.Width = 100;
             // 
             // columnHeader31
             // 

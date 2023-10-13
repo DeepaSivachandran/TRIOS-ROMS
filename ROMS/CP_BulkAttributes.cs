@@ -1950,6 +1950,7 @@ namespace ROMS
             {
                 btnView.Enabled = true;
                 btnView.Focus();
+                txtProductName.Text = "";
             }
         }
         private void TxtProductName_Enter(object sender, EventArgs e)

@@ -475,11 +475,11 @@ namespace ROMS
         {
             try
             {
-                if (e.RowIndex == -1)
-                {
-                    return;
-                }
-                udfnEdit();
+                //if (e.RowIndex == -1)
+                //{
+                //    return;
+                //}
+                //udfnEdit();
             }
             catch (Exception ex)
             {

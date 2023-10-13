@@ -43,7 +43,7 @@ namespace ROMS
         public int varGroupCode = 0, varmastertype=0,varSubgroupCode=0;
         public int varLocationCode = 0, varRackCode = 0;
         public string varRackCodes = "";
-
+        public int varSortFlag = 0;
         public CP_SubGroup()
         {
             InitializeComponent();
@@ -97,6 +97,7 @@ namespace ROMS
                 else
                 {
                     pnlStatus.Enabled = true;
+                    varSortFlag = 1;
                     udfnEdit();
                 }
             }
@@ -236,6 +237,7 @@ namespace ROMS
             try
             {
                 btnSave.Enabled = false;
+                txtRack.Text = "";
                 string varResult = ""; string varOriginator = "Product Sub Group Creation";
                 int varViewType=0; 
                 if (rbActive.Checked)
@@ -1259,7 +1261,7 @@ namespace ROMS
             }
             finally
             {
-                this.grdRackList.Sort(this.grdRackList.Columns[0], ListSortDirection.Descending);
+                //this.grdRackList.Sort(this.grdRackList.Columns[0], ListSortDirection.Descending);
             }
         }
         public void udfnLocationEvent()
@@ -1354,6 +1356,19 @@ namespace ROMS
                 }
                 //grdRackList.DataSource = null;
                 //grdRackList.DataSource = dtRackList;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRackList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdRackList.ClearSelection();
             }
             catch (Exception ex)
             {
