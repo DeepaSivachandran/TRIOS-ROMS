@@ -40,7 +40,7 @@ namespace ROMS
                 {
                     SPDataService objDser = new SPDataService();
                     int count = 0;
-                    objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, GenerateMD5(txtPassKey.Text), 0);
+                    objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, GenerateMD5(txtPassKey.Text), 0,0);
                     objDser.CloseConnection();
                     if (objDs != null)
                     {
