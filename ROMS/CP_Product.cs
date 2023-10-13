@@ -257,7 +257,7 @@ namespace ROMS
                 string varId_HSN = "0";
                 DataSet objDsHSN = new DataSet();
                 SPDataService objDs = new SPDataService();
-                objDsHSN = objDs.udfnHsnList(7, 0, 0,0, txtHSNCode.Text.Trim());
+                objDsHSN = objDs.udfnHsnList(9, 0, 0,0,"",txtHSNCode.Text.Trim());
                 objDs.CloseConnection();
                 if (objDsHSN != null)
                 {
@@ -4513,8 +4513,8 @@ namespace ROMS
                     DataSet objDsHSN = new DataSet();
                     DataSet objDsHSNGst = new DataSet();
                     SPDataService objDs = new SPDataService();
-                    objDsHSN = objDs.udfnHsnList(7, 0, 0,0, txtHsnName.Text.Trim());
-                    objDsHSNGst = objDs.udfnHsnList(8, 0,Convert.ToInt32(cmbGst.SelectedValue), 0,"");
+                    objDsHSN = objDs.udfnHsnList(7, 0, 0,0, txtHsnName.Text.Trim(),"");
+                    objDsHSNGst = objDs.udfnHsnList(8, 0,Convert.ToInt32(cmbGst.SelectedValue), 0,"","");
                     objDs.CloseConnection();
                     if (objDsHSN != null)
                     {
@@ -4605,7 +4605,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtHsnName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue),0,txtHsnName.Text.Trim());
+                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue),0,txtHsnName.Text.Trim(),"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -4778,7 +4778,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtHSNCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue), 0, txtHSNCode.Text.Trim());
+                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue), 0, txtHSNCode.Text.Trim(),"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
