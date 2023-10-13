@@ -3197,8 +3197,8 @@ namespace ROMS
             try
             {
                 objContactTable.TableName = "MR_Company_Contact";
-                objContactTable.Columns.Add("CMCON_TransactionType", typeof(int));
                 objContactTable.Columns.Add("CMCON_Name", typeof(string));
+                objContactTable.Columns.Add("CMCON_TransactionType", typeof(int));
                 objContactTable.Columns.Add("CMCON_MobileNo", typeof(string));
                 objContactTable.Columns.Add("CMCON_Operator", typeof(string));
                 objContactTable.Columns.Add("CMCON_MobileBrand", typeof(string));
@@ -3236,7 +3236,7 @@ namespace ROMS
                     {
                         varwhatsapp = 0;
                     }
-                    objContactTable.Rows.Add(Convert.ToInt32(grdContactManager.Rows[i].Cells["clmid"].Value), Convert.ToString(grdContactManager.Rows[i].Cells["clmName"].Value),
+                    objContactTable.Rows.Add( Convert.ToString(grdContactManager.Rows[i].Cells["clmName"].Value), Convert.ToInt32(grdContactManager.Rows[i].Cells["clmid"].Value),
                     Convert.ToString(grdContactManager.Rows[i].Cells["clmmobile"].Value), Convert.ToString(grdContactManager.Rows[i].Cells["clmOperator"].Value),
                     Convert.ToString(grdContactManager.Rows[i].Cells["clmMobileBrand"].Value),varprimary, varwhatsapp,Convert.ToString(grdContactManager.Rows[i].Cells["clmStaffName"].Value), Convert.ToString(grdContactManager.Rows[i].Cells["clmStatusContactID"].Value));
                 }
