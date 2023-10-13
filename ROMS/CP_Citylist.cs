@@ -618,6 +618,7 @@ namespace ROMS
         {
             try
             {
+                btnExport.Enabled = false;
                 if ((grdCityList.Rows.Count > 0))
                 {
                     Excel._Application ExcelObj = new Excel.Application();
@@ -642,11 +643,17 @@ namespace ROMS
                     }
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
+
                     ExcelSheet.Cells[1, 1].Value = "City List";
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
+
+
                     foreach (DataGridViewColumn col in grdCityList.Columns)
                     {
                         if (col.Visible)
@@ -654,26 +661,27 @@ namespace ROMS
                             cIndex += 1;
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
-                            ExcelSheet.Cells[2, cIndex].Interior.Color = Color.LightSlateGray;
-                            Excel.Range cell = ExcelSheet.Cells[2, cIndex];
-                            cell.Font.Color = Excel.XlRgbColor.rgbWhite;
-                            if (cIndex == 1)
+
+                            if (col.Name == "S.No." || col.Name == "Total Suppliers")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 8;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                            else if (col.Name == "State Name" || col.Name == "City Name")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 25;
                             }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 50;
                             }
-                            if (cIndex == 0 || cIndex == 4)
+                            if (col.Name == "S.No.")
                             {
                                 ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (cIndex == 2 || cIndex ==3)
+                            if (col.Name == "Total Suppliers")
                             {
-                                ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
-
                             foreach (DataGridViewRow rowa in grdCityList.Rows)
                             {
                                 ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
@@ -683,11 +691,20 @@ namespace ROMS
                     //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
                     ExcelObj.Visible = true;
                 }
+                else
+                {
+                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+                btnExport.Focus();
             }
         }
 
