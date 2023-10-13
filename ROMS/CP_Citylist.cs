@@ -676,7 +676,7 @@ namespace ROMS
                             }
                             if (col.Name == "S.No.")
                             {
-                                ExcelSheet.Cells[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
                             if (col.Name == "Total Suppliers")
                             {
