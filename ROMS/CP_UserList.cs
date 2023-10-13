@@ -62,6 +62,10 @@ namespace ROMS
             try
             {
                 txtDUserList.Focus();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind = null;
+                cmbStatus.SelectedValue = 0;
                 udfnList();
             }
             catch (Exception ex)
@@ -91,7 +95,7 @@ namespace ROMS
                 {
                     DataSet objDsUser = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsUser = objDserv.udfnUserList(7, txtDUserList.Text.Trim(),"","",0);
+                    objDsUser = objDserv.udfnUserList(7, txtDUserList.Text.Trim(),"","",0,0);
                     objDserv.CloseConnection();
                     if (objDsUser != null)
                     {
@@ -104,7 +108,7 @@ namespace ROMS
                         }
                     }
                 }
-                objDs = objspservice.udfnUserList(2,(txtDUserList.Text),"","", varUserId);
+                objDs = objspservice.udfnUserList(2,(txtDUserList.Text),"","", varUserId,Convert.ToInt32(cmbStatus.SelectedValue));
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -672,7 +676,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtDUserList.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnUserList(5, txtDUserList.Text, "","",0);
+                    objDs = objspdservice.udfnUserList(5, txtDUserList.Text, "","",0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -752,7 +756,7 @@ namespace ROMS
                 }
                 if(e.KeyCode==Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -794,7 +798,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnGrdevent();
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -872,6 +876,61 @@ namespace ROMS
                 objDser.CloseConnection();
                 grdUserList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //grdCompanyList(sender,e); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
             }
             catch (Exception ex)
             {

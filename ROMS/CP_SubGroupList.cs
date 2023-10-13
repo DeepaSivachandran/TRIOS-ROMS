@@ -102,6 +102,9 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
 
                 int varSubGroupId = 0;
+                int varGroupId = 0;
+                int varLocationId = 0;
+                int varRackId = 0;
                 if (txtProductSubGroup.Text == "")
                 {
                     varSubGroupId = 0;
@@ -125,29 +128,39 @@ namespace ROMS
                     }
                     varSubGroupId = Convert.ToInt32(varId_SubGroup);
                 }
-                string varId_Group = "0";
-                DataSet objDsGroup = new DataSet();
-                SPDataService objDServ1 = new SPDataService();
-                objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim(),0);
-                objDServ1.CloseConnection();
-                if (objDsGroup != null)
+                if (txtProductGroup.Text == "")
                 {
-                    if (objDsGroup.Tables.Count > 0)
+                    varGroupId = 0;
+                }
+                else
+                {
+                    string varId_Group = "0";
+                    DataSet objDsGroup = new DataSet();
+                    SPDataService objDServ1 = new SPDataService();
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim(), 0);
+                    objDServ1.CloseConnection();
+                    if (objDsGroup != null)
                     {
-                        if (objDsGroup.Tables[0].Rows.Count > 0)
+                        if (objDsGroup.Tables.Count > 0)
                         {
-                            varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                            if (objDsGroup.Tables[0].Rows.Count > 0)
+                            {
+                                varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                            }
                         }
                     }
+                    varGroupId = Convert.ToInt32(varId_Group);
                 }
-                lblGroupCode.Text = Convert.ToString(varId_Group);
-                if (txtStockLocation.Text.Trim() == "") { lblSLCode.Text = "0"; }
+                if (txtStockLocation.Text.Trim() == "")
+                {
+                    varLocationId = 0;
+                }
                 else
                 {
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(),0,0,0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -159,15 +172,18 @@ namespace ROMS
                             }
                         }
                     }
-                    lblSLCode.Text = Convert.ToString(varId_PurLocation);
+                    varLocationId = Convert.ToInt32(varId_PurLocation);
                 }
-                if (txtSaleRack.Text.Trim() == "") { lblRkCode.Text = "0"; }
+                if (txtSaleRack.Text.Trim() == "")
+                {
+                    varRackId = 0;
+                }
                 else
                 {
                     string varId_PurRack = "0";
                     DataSet objDsPurRack = new DataSet();
                     SPDataService objDServ4 = new SPDataService();
-                    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtSaleRack.Text.Trim(),0);
+                    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtSaleRack.Text.Trim(), 0);
                     objDServ4.CloseConnection();
                     if (objDsPurRack != null)
                     {
@@ -179,9 +195,9 @@ namespace ROMS
                             }
                         }
                     }
-                    lblRkCode.Text = Convert.ToString(varId_PurRack);
+                    varRackId = Convert.ToInt32(varId_PurRack);
                 }
-                objDs = objdserv.udfnSubGroupList(0, varSubGroupId,"",Convert.ToInt32(lblGroupCode.Text),0,"",Convert.ToInt32(cmbStatus.SelectedValue),Convert.ToInt32(cmbBatchNoEntry.SelectedValue),Convert.ToInt32(lblSLCode.Text),Convert.ToInt32(lblRkCode.Text));
+                objDs = objdserv.udfnSubGroupList(0, varSubGroupId, "", varGroupId, 0, "", Convert.ToInt32(cmbStatus.SelectedValue), Convert.ToInt32(cmbBatchNoEntry.SelectedValue), varLocationId, varRackId);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
