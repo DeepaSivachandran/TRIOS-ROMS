@@ -277,6 +277,7 @@ namespace ROMS
                     tpHsnCode.ShowAlways = true;
                     tpHsnCode.Show("Please enter valid HSN code", txtHSNCode, 5000);
                     blnErrorFlag = true;
+                    txtHsnName.Text = "";
                 }
                 
                 if (Convert.ToString(cmbGst.SelectedValue) == "" || Convert.ToString(cmbGst.SelectedValue) == "-1")
@@ -4713,9 +4714,27 @@ namespace ROMS
 
         private void TxtHSNCode_Leave(object sender, EventArgs e)
         {
+           
             try
             {
                 txtHSNCode.BackColor = Color.White;
+                errItems.Clear();
+                //if (Convert.ToString(txtHSNCode.Text.Trim()) != "")
+                //{
+                //    if (Convert.ToString(lblHsnName.Text) == "" || Convert.ToString(lblHsnName.Text) == "0" || Convert.ToString(lblHsnName.Text) == "-1")
+                //    {
+                //        errItems.SetError(txtHSNCode, "Please enter valid HSN code");
+                //        txtHSNCode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        tpHsnCode.ShowAlways = true;
+                //        tpHsnCode.Show("Please enter valid HSN code", txtHSNCode, 5000);
+                //        txtHSNCode.Text = "";
+                //    }
+                //}
+                //else
+                //{
+                //    txtSubGroup.BackColor = Color.White;
+                //    errItems.Clear();
+                //}
             }
             catch (Exception ex)
             {
@@ -4774,6 +4793,7 @@ namespace ROMS
             try
             {
               lvHsnCode.Items.Clear();
+
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtHSNCode.Text.Length > 0)
@@ -4822,6 +4842,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
 
         private void TxtSaleRack_Enter(object sender, EventArgs e)
         {

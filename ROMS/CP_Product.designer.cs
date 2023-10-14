@@ -1572,7 +1572,7 @@
             // 
             this.txtHSNCode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtHSNCode.Location = new System.Drawing.Point(122, 49);
-            this.txtHSNCode.MaxLength = 50;
+            this.txtHSNCode.MaxLength = 8;
             this.txtHSNCode.Name = "txtHSNCode";
             this.txtHSNCode.Size = new System.Drawing.Size(145, 27);
             this.txtHSNCode.TabIndex = 33;
