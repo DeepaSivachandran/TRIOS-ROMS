@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsUserCategoryList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
@@ -41,21 +41,21 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlUserCategoryList = new System.Windows.Forms.Panel();
-            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdUserCategoryList = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
             this.grbFilterByUser = new System.Windows.Forms.GroupBox();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
+            this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.grdUserCategoryList = new System.Windows.Forms.DataGridView();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsUserCategoryList.SuspendLayout();
             this.pnlUserCategoryList.SuspendLayout();
+            this.grbFilterByUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUserCategoryList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
-            this.grbFilterByUser.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsUserCategoryList
@@ -152,116 +152,6 @@
             this.pnlUserCategoryList.Size = new System.Drawing.Size(1354, 641);
             this.pnlUserCategoryList.TabIndex = 36;
             // 
-            // DGV_SearchGrid
-            // 
-            this.DGV_SearchGrid.AllowUserToAddRows = false;
-            this.DGV_SearchGrid.AllowUserToDeleteRows = false;
-            this.DGV_SearchGrid.AllowUserToResizeRows = false;
-            this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle56.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle56.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle56.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle56.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle56.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle56.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle56;
-            this.DGV_SearchGrid.ColumnHeadersHeight = 30;
-            this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle57.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle57.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle57.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle57.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle57.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle57.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle57.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle57;
-            this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
-            this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 71);
-            this.DGV_SearchGrid.Name = "DGV_SearchGrid";
-            this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle58.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle58.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle58;
-            this.DGV_SearchGrid.RowTemplate.Height = 25;
-            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DGV_SearchGrid.ShowRowErrors = false;
-            this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
-            this.DGV_SearchGrid.TabIndex = 958805;
-            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
-            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
-            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
-            this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
-            this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
-            this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
-            // 
-            // lblNoRecordsFound
-            // 
-            this.lblNoRecordsFound.AutoSize = true;
-            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
-            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 373);
-            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
-            this.lblNoRecordsFound.TabIndex = 958803;
-            this.lblNoRecordsFound.Text = "No Records Found";
-            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // grdUserCategoryList
-            // 
-            this.grdUserCategoryList.AllowUserToAddRows = false;
-            this.grdUserCategoryList.AllowUserToDeleteRows = false;
-            this.grdUserCategoryList.AllowUserToResizeColumns = false;
-            this.grdUserCategoryList.AllowUserToResizeRows = false;
-            this.grdUserCategoryList.BackgroundColor = System.Drawing.Color.White;
-            this.grdUserCategoryList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle59.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle59.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle59.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle59.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle59.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle59.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle59.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdUserCategoryList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle59;
-            this.grdUserCategoryList.ColumnHeadersHeight = 30;
-            this.grdUserCategoryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdUserCategoryList.ColumnHeadersVisible = false;
-            this.grdUserCategoryList.EnableHeadersVisualStyles = false;
-            this.grdUserCategoryList.GridColor = System.Drawing.Color.White;
-            this.grdUserCategoryList.Location = new System.Drawing.Point(3, 126);
-            this.grdUserCategoryList.Name = "grdUserCategoryList";
-            this.grdUserCategoryList.ReadOnly = true;
-            this.grdUserCategoryList.RowHeadersVisible = false;
-            dataGridViewCellStyle60.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle60.SelectionForeColor = System.Drawing.Color.White;
-            this.grdUserCategoryList.RowsDefaultCellStyle = dataGridViewCellStyle60;
-            this.grdUserCategoryList.RowTemplate.Height = 25;
-            this.grdUserCategoryList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdUserCategoryList.Size = new System.Drawing.Size(1348, 515);
-            this.grdUserCategoryList.TabIndex = 958804;
-            this.grdUserCategoryList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUserCategoryList_DataBindingComplete);
-            this.grdUserCategoryList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdUserCategoryList_Scroll);
-            this.grdUserCategoryList.SelectionChanged += new System.EventHandler(this.GrdUserCategoryList_SelectionChanged);
-            this.grdUserCategoryList.DoubleClick += new System.EventHandler(this.GrdUserCategoryList_DoubleClick);
-            this.grdUserCategoryList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUserCategoryList_KeyDown);
-            // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 3);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1351, 636);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958799;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
-            // 
             // grbFilterByUser
             // 
             this.grbFilterByUser.BackColor = System.Drawing.Color.White;
@@ -274,7 +164,7 @@
             this.grbFilterByUser.Name = "grbFilterByUser";
             this.grbFilterByUser.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterByUser.Size = new System.Drawing.Size(1348, 67);
-            this.grbFilterByUser.TabIndex = 958806;
+            this.grbFilterByUser.TabIndex = 0;
             this.grbFilterByUser.TabStop = false;
             this.grbFilterByUser.Text = "Filter By";
             // 
@@ -330,6 +220,116 @@
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
+            // DGV_SearchGrid
+            // 
+            this.DGV_SearchGrid.AllowUserToAddRows = false;
+            this.DGV_SearchGrid.AllowUserToDeleteRows = false;
+            this.DGV_SearchGrid.AllowUserToResizeRows = false;
+            this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGV_SearchGrid.ColumnHeadersHeight = 30;
+            this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
+            this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 71);
+            this.DGV_SearchGrid.Name = "DGV_SearchGrid";
+            this.DGV_SearchGrid.RowHeadersVisible = false;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.DGV_SearchGrid.RowTemplate.Height = 25;
+            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DGV_SearchGrid.ShowRowErrors = false;
+            this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
+            this.DGV_SearchGrid.TabIndex = 958805;
+            this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
+            this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
+            this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
+            this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
+            this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
+            this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
+            // 
+            // lblNoRecordsFound
+            // 
+            this.lblNoRecordsFound.AutoSize = true;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 373);
+            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.TabIndex = 958803;
+            this.lblNoRecordsFound.Text = "No Records Found";
+            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // grdUserCategoryList
+            // 
+            this.grdUserCategoryList.AllowUserToAddRows = false;
+            this.grdUserCategoryList.AllowUserToDeleteRows = false;
+            this.grdUserCategoryList.AllowUserToResizeColumns = false;
+            this.grdUserCategoryList.AllowUserToResizeRows = false;
+            this.grdUserCategoryList.BackgroundColor = System.Drawing.Color.White;
+            this.grdUserCategoryList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdUserCategoryList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdUserCategoryList.ColumnHeadersHeight = 30;
+            this.grdUserCategoryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdUserCategoryList.ColumnHeadersVisible = false;
+            this.grdUserCategoryList.EnableHeadersVisualStyles = false;
+            this.grdUserCategoryList.GridColor = System.Drawing.Color.White;
+            this.grdUserCategoryList.Location = new System.Drawing.Point(3, 126);
+            this.grdUserCategoryList.Name = "grdUserCategoryList";
+            this.grdUserCategoryList.ReadOnly = true;
+            this.grdUserCategoryList.RowHeadersVisible = false;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.grdUserCategoryList.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.grdUserCategoryList.RowTemplate.Height = 25;
+            this.grdUserCategoryList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdUserCategoryList.Size = new System.Drawing.Size(1348, 515);
+            this.grdUserCategoryList.TabIndex = 958804;
+            this.grdUserCategoryList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUserCategoryList_DataBindingComplete);
+            this.grdUserCategoryList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdUserCategoryList_Scroll);
+            this.grdUserCategoryList.SelectionChanged += new System.EventHandler(this.GrdUserCategoryList_SelectionChanged);
+            this.grdUserCategoryList.DoubleClick += new System.EventHandler(this.GrdUserCategoryList_DoubleClick);
+            this.grdUserCategoryList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUserCategoryList_KeyDown);
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(3, 3);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1351, 636);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958799;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
+            // 
             // CP_UserCategoryList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -351,11 +351,11 @@
             this.tsUserCategoryList.PerformLayout();
             this.pnlUserCategoryList.ResumeLayout(false);
             this.pnlUserCategoryList.PerformLayout();
+            this.grbFilterByUser.ResumeLayout(false);
+            this.grbFilterByUser.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUserCategoryList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
-            this.grbFilterByUser.ResumeLayout(false);
-            this.grbFilterByUser.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
