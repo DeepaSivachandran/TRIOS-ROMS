@@ -508,10 +508,11 @@ namespace ROMS
                         }
                        // dtBrand = objDS.Tables[0];
                         grdRepBrand.DataSource = dtBrand;
+                        grdRepBrand.Columns["Column1"].HeaderText = "";
+                        grdRepBrand.Columns[0].Width = 30;
                         grdRepBrand.Columns["ID"].Visible = false;
                         grdRepBrand.Columns["Brand Name"].Width = 150;
                         grdRepBrand.Columns["Sub Group"].Width = 250;
-                        grdRepBrand.Columns[0].Width = 30;
                         grdRepBrand.Columns["Group"].Width = 250;
                         grdRepBrand.Columns["Brand Name"].ReadOnly = true;
                         grdRepBrand.Columns["Sub Group"].ReadOnly = true;
@@ -565,9 +566,9 @@ namespace ROMS
                             }
                             grdRepBrand.DataSource = dtBrand;
                             grdRepBrand.Columns["Column1"].HeaderText = "";
+                            grdRepBrand.Columns[0].Width = 30;
                             grdRepBrand.Columns["ID"].Visible = false;
                             grdRepBrand.Columns["Brand Name"].Width = 200;
-                            grdRepBrand.Columns[0].Width = 50;
                             grdRepBrand.Columns["Sub Group"].Width = 250;
                             grdRepBrand.Columns["Group"].Width = 250;
                             grdRepBrand.Columns["Brand Name"].ReadOnly = true;
