@@ -730,7 +730,7 @@ namespace ROMS
                     ExcelSheet = ExcelBook.Sheets["Sheet1"];
                     ExcelSheet = ExcelBook.ActiveSheet;
                     // changing the name of active sheet  
-                    ExcelSheet.Name = "City List";
+                    ExcelSheet.Name = "Employee Category List";
                     int cIndex = 0;
                     int count = 0;
                     foreach (DataGridViewColumn col in grdUserCategoryList.Columns)
@@ -743,7 +743,7 @@ namespace ROMS
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
 
-                    ExcelSheet.Cells[1, 1].Value = "City List";
+                    ExcelSheet.Cells[1, 1].Value = "Employee Category List";
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
@@ -761,23 +761,23 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "S.No." || col.Name == "Total Suppliers")
+                            if (col.Name == "S.No." || col.Name == "Status")
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            else if (col.Name == "State Name" || col.Name == "City Name")
+                            else if (col.Name == "Employee Category")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 25;
                             }
                             else
                             {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 50;
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
                             if (col.Name == "S.No.")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "Total Suppliers")
+                            if (col.Name == "No.of Users")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
