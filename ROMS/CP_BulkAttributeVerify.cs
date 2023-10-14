@@ -23,8 +23,9 @@ namespace ROMS
         private ToolTip tpbrandtamilname = new ToolTip();
         private ToolTip tpbltname = new ToolTip();
         private ToolTip tpblename = new ToolTip();
-        public string varbrandcode;
-        public string pbFormStatus;
+        public string varbrandcode="";
+        public string pbFormStatus="";
+        public string varUserId="";
         public int flag = 0;
         public CP_BulkAttributeVerify()
         {
@@ -76,16 +77,17 @@ namespace ROMS
                     SPDataService objDser = new SPDataService();
                     int count = 0;
                     varPasskey = _security.Encrypt("passkey", (txtPassKey.Text).Trim());
-                    objDs = objDser.udfnUserList(10, "", MainForm.pbUserName, "", 0, varPasskey);
+                    objDs = objDser.udfnUserList(10, "", MainForm.pbUserName, "", 0,0, varPasskey);
                     objDser.CloseConnection();
                     if (objDs != null)
                     {
-                        if (objDs.Tables[0].Rows.Count > 0)
+                        if (objDs.Tables[2].Rows.Count > 0)
                         {
-                            count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
+                            count = Convert.ToInt32(objDs.Tables[2].Rows[0]["countvalue"]);
                             if (count != 0)
                             {
                                 flag = 1;
+                                varUserId = Convert.ToString(objDs.Tables[2].Rows[0]["ID"]);
                                 this.Close();
                             }
                             else if (count == 0)

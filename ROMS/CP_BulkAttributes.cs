@@ -832,11 +832,12 @@ namespace ROMS
                 {
                     MainForm.objCP_BulkAttributeVerify = new CP_BulkAttributeVerify();
                     MainForm.objCP_BulkAttributeVerify.ShowDialog();
-                    string result = "";
+                    string result = "", varUserID=""; 
                     if (MainForm.objCP_BulkAttributeVerify.flag == 1)
                     {
+                        varUserID = MainForm.objCP_BulkAttributeVerify.varUserId;
                         SPDataService objDSer = new SPDataService();
-                        result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", "", "",varOriginator, 0, objBulkUpdate);
+                        result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "",varUserID,MainForm.pbIpAddress,varOriginator, 0, objBulkUpdate);
                         objDSer.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")

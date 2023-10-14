@@ -43,7 +43,7 @@ namespace ROMS
                 DataSet objDsUser = new DataSet();
                 SPDataService objDser = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objDser.udfnUserList(10, "", MainForm.pbUserName, "", 0, 0, "");
+                objDs = objDser.udfnUserList(10, "", MainForm.pbLoginId, "", 0, 0, "");
                 objDser.CloseConnection();
                 if (objDs != null)
                 {
@@ -585,7 +585,7 @@ namespace ROMS
                     DataService objdservice = new DataService();
                     DataSet objDT = new DataSet();
                     SPDataService objDser = new SPDataService();
-                    objDT = objDser.udfnUserList(9, "", "", "", 0, "");
+                    objDT = objDser.udfnUserList(9, "", "", "", 0,0, "");
                     objDser.CloseConnection();
                     objdservice.CloseConnection();
                     if (objDT != null)
