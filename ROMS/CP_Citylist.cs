@@ -135,7 +135,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnCitylist(0,"",0,Convert.ToInt32(cmbStatus.SelectedValue));
+                objDs = objspservice.udfnCitylist(0,"",0,0);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -579,7 +579,7 @@ namespace ROMS
         {
             try
             {
-                udfnList();
+                //udfnList();
             }
             catch (Exception ex)
             {
