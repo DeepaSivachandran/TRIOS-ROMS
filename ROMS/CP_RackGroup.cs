@@ -90,7 +90,7 @@ namespace ROMS
 
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnUserCategoryList(4, Convert.ToInt32(cmbUserCategory.SelectedValue));
+                objDs = objdserv.udfnUserCategoryList(4, Convert.ToInt32(cmbUserCategory.SelectedValue),0);
                 objdserv.CloseConnection();
                 cmbUserCategory.DataSource = null;
                 if (objDs != null)
