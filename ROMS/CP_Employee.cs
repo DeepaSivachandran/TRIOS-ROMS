@@ -400,7 +400,7 @@ namespace ROMS
                 {
                     varViewType = 2;
                 }
-                objDs = objdserv.udfnUserCategoryList(varViewType,PbUserCategoryID);
+                objDs = objdserv.udfnUserCategoryList(varViewType,PbUserCategoryID,"");
                 objdserv.CloseConnection();
                 cmbUserCategory.DataSource = null;
                 if (objDs != null)

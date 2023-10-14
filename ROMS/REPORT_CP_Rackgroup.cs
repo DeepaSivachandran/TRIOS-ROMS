@@ -168,6 +168,9 @@ namespace ROMS
         {
             try
             {
+                udfnRackValid();
+                udfnRackGroupValid();
+                udfnRackInchargeValid();
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -258,6 +261,9 @@ namespace ROMS
         {
             try
             {
+                udfnRackValid();
+                udfnRackGroupValid();
+                udfnRackInchargeValid();
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -348,6 +354,9 @@ namespace ROMS
         {
             try
             {
+                udfnRackValid();
+                udfnRackGroupValid();
+                udfnRackInchargeValid();
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -438,6 +447,9 @@ namespace ROMS
         {
             try
             {
+                udfnRackValid();
+                udfnRackGroupValid();
+                udfnRackInchargeValid();
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -528,6 +540,9 @@ namespace ROMS
         {
             try
             {
+                udfnRackValid();
+                udfnRackGroupValid();
+                udfnRackInchargeValid();
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -637,7 +652,7 @@ namespace ROMS
                 lblRackCode.Text = Convert.ToString(varId_PurRack);
                 if (varId_PurRack == "0" || varId_PurRack == "-1")
                 {
-                    lblRackCode.Text = "0";
+                    //lblRackCode.Text = "0";
                 }
             }
         }
@@ -664,7 +679,7 @@ namespace ROMS
                 lblRackgroupCode.Text = Convert.ToString(varId_RackGroup);
                 if (varId_RackGroup == "0" || varId_RackGroup == "-1")
                 {
-                    lblRackgroupCode.Text = "0";
+                    //lblRackgroupCode.Text = "0";
                 }
             }
         }
@@ -676,7 +691,7 @@ namespace ROMS
                 string varId_RackIncharge = "0";
                 DataSet objDsRackIncharge = new DataSet();
                 SPDataService objDServ4 = new SPDataService();
-                objDsRackIncharge = objDServ4.udfnRackGroupList(5, 0, 0, 0, 0, txtRackgroup.Text.Trim());
+                objDsRackIncharge = objDServ4.udfnEmployeeList(8,txtEmployeeName.Text.Trim(),0,"",0,0);
                 objDServ4.CloseConnection();
                 if (objDsRackIncharge != null)
                 {
@@ -691,7 +706,7 @@ namespace ROMS
                 lblEmpCode.Text = Convert.ToString(varId_RackIncharge);
                 if (varId_RackIncharge == "0" || varId_RackIncharge == "-1")
                 {
-                    lblEmpCode.Text = "0";
+                    //lblEmpCode.Text = "0";
                 }
             }
         }
