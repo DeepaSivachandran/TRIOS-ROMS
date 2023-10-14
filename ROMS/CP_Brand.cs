@@ -131,16 +131,32 @@ namespace ROMS
                     }
                     for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
                     {
-                        for (int j = 0; j < grdGroup.RowCount; j++)
+                        for (int j = 0; j < dtGroup.Rows.Count; j++)
                         {
-                            if (Convert.ToString(objDS.Tables[1].Rows[i]["PRGID"]) == Convert.ToString(grdGroup.Rows[j].Cells["ID"].Value))
+                            if (Convert.ToString(objDS.Tables[1].Rows[i]["PRGID"]) == Convert.ToString(dtGroup.Rows[j]["ID"]))
                             {
-                                grdGroup.Rows[j].Cells[0].Value = true;
-                                varGroup = Convert.ToString(grdGroup.Rows[j].Cells["ID"].Value);
+                                dtGroup.Rows[j][0] = true;
+                                varGroup = Convert.ToString(dtGroup.Rows[j]["ID"]);
                                 udfnSubGroupList();
                             }
                         }
                     }
+
+                    dtGroup.DefaultView.Sort = dtGroup.Columns[0].ColumnName + " DESC";
+                    dtGroup = dtGroup.DefaultView.ToTable();
+                    grdGroup.DataSource = null;
+                    grdGroup.DataSource = dtGroup;
+                    grdGroup.Columns[0].HeaderText = "";
+                    grdGroup.Columns[0].Width = 30;
+                    grdGroup.Columns["Product Group Name in English"].Width = 190;
+                    grdGroup.Columns["T.S.Groups"].Width = 80;
+                    grdGroup.Columns["ID"].Visible = false;
+                    grdGroup.Columns["Product Group Name in English"].ReadOnly = true;
+                    grdGroup.Columns["T.S.Groups"].ReadOnly = true;
+                    grdGroup.Columns["T.S.Groups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdGroup.Columns["ID"].ReadOnly = true;
+                    //grdGroup.Sort(grdGroup.Columns[0], ListSortDirection.Descending);
+                    //grdGroup.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
                     //for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
                     //{
                     //    for (int j = 0; j < grdSubGroup.RowCount; j++)
@@ -161,7 +177,7 @@ namespace ROMS
             }
             finally
             {
-                if (btnSave.Text == "Update") { this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending); }
+              //  if (btnSave.Text == "Update") { this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending); }
                 //this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending);
             }
         }
@@ -437,14 +453,27 @@ namespace ROMS
                         if (Convert.ToString(varSubGroupId) == Convert.ToString(grdSubGroup.Rows[j].Cells["Sub Group Id"].Value))
                         {
                             grdSubGroup.Rows[j].Cells[0].Value = true;
-                            for (int i = 0; i < grdGroup.RowCount; i++)
+                            for (int i = 0; i < dtGroup.Rows.Count; i++)
                             {
-                                if (varGroupId == Convert.ToString(grdGroup.Rows[i].Cells["ID"].Value))
+                                if (varGroupId == Convert.ToString(dtGroup.Rows[i]["ID"]))
                                 {
-                                    grdGroup.Rows[i].Cells[0].Value = true;
+                                    dtGroup.Rows[i][0] = true;
                                     //varGroup = Convert.ToString(grdGroup.Rows[j].Cells["ID"].Value);
                                 }
                             }
+                            dtGroup.DefaultView.Sort = dtGroup.Columns[0].ColumnName + " DESC";
+                            dtGroup = dtGroup.DefaultView.ToTable();
+                            grdGroup.DataSource = null;
+                            grdGroup.DataSource = dtGroup;
+                            grdGroup.Columns[0].HeaderText = "";
+                            grdGroup.Columns[0].Width = 30;
+                            grdGroup.Columns["Product Group Name in English"].Width = 190;
+                            grdGroup.Columns["T.S.Groups"].Width = 80;
+                            grdGroup.Columns["ID"].Visible = false;
+                            grdGroup.Columns["Product Group Name in English"].ReadOnly = true;
+                            grdGroup.Columns["T.S.Groups"].ReadOnly = true;
+                            grdGroup.Columns["T.S.Groups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGroup.Columns["ID"].ReadOnly = true;
                             //udfnSubGroupList();
                             if (btnSave.Text == "Save")
                             {
@@ -801,6 +830,7 @@ namespace ROMS
         {
             try
             {
+                txtSelectedProductSubGroup.Text = "";
                 btnSave.Enabled = false;
                 string varResult = ""; string varOriginator = "Brand Creation";
                 int varViewType = 0;

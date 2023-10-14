@@ -36,7 +36,6 @@
             this.grbform = new System.Windows.Forms.GroupBox();
             this.chkBrandAll = new System.Windows.Forms.CheckBox();
             this.grdRepBrand = new System.Windows.Forms.DataGridView();
-            this.clmcheckbrand = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.txtWhatsappno = new System.Windows.Forms.TextBox();
@@ -108,8 +107,6 @@
             this.grdRepBrand.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdRepBrand.ColumnHeadersHeight = 25;
             this.grdRepBrand.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdRepBrand.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmcheckbrand});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -133,14 +130,6 @@
             this.grdRepBrand.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdRepBrand_CellContentClick);
             this.grdRepBrand.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdRepBrand_CurrentCellDirtyStateChanged);
             this.grdRepBrand.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdRepBrand_DataBindingComplete);
-            // 
-            // clmcheckbrand
-            // 
-            this.clmcheckbrand.HeaderText = "";
-            this.clmcheckbrand.Name = "clmcheckbrand";
-            this.clmcheckbrand.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmcheckbrand.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmcheckbrand.Width = 30;
             // 
             // textBox5
             // 
@@ -393,6 +382,5 @@
         private System.Windows.Forms.TextBox txtPhonenumber;
         public System.Windows.Forms.DataGridView grdRepBrand;
         private System.Windows.Forms.CheckBox chkBrandAll;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn clmcheckbrand;
     }
 }
