@@ -138,7 +138,6 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup.rpt");
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(0));
-                    //objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -177,29 +176,36 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 int RKGCode = 0,RKCode=0,EMPCode=0;
+                string RKGName = "", RKName = "", RKInchargeName = "";
                 if(txtRackgroup.Text=="")
                 {
                     RKGCode = 0;
+                    RKGName = "-All-";
                 }
                 else
                 {
                     RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                    RKGName = Convert.ToString(txtRackgroup.Text);
                 }
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
+                    RKInchargeName = "-All-";
                 }
                 else
                 {
                     EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                    RKInchargeName = Convert.ToString(txtEmployeeName.Text);
                 }
                 if (txtRack.Text == "")
                 {
                     RKCode = 0;
+                    RKName = "-All";
                 }
                 else
                 {
                     RKCode = Convert.ToInt32(lblRackCode.Text);
+                    RKName = Convert.ToString(txtRack.Text);
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -219,6 +225,9 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
+                    objBillreport.SetParameterValue("paraRKGName", RKGName);
+                    objBillreport.SetParameterValue("paraRKInchargeName", RKInchargeName);
+                    objBillreport.SetParameterValue("paraRKName", RKName);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -257,29 +266,36 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 int RKGCode = 0, RKCode = 0, EMPCode = 0;
+                string RKGName = "", RKName = "", RKInchargeName = "";
                 if (txtRackgroup.Text == "")
                 {
                     RKGCode = 0;
+                    RKGName = "-All-";
                 }
                 else
                 {
                     RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                    RKGName = Convert.ToString(txtRackgroup.Text);
                 }
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
+                    RKInchargeName = "-All-";
                 }
                 else
                 {
                     EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                    RKInchargeName = Convert.ToString(txtEmployeeName.Text);
                 }
                 if (txtRack.Text == "")
                 {
                     RKCode = 0;
+                    RKName = "-All";
                 }
                 else
                 {
                     RKCode = Convert.ToInt32(lblRackCode.Text);
+                    RKName = Convert.ToString(txtRack.Text);
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -337,29 +353,36 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 int RKGCode = 0, RKCode = 0, EMPCode = 0;
+                string RKGName = "", RKName = "", RKInchargeName = "";
                 if (txtRackgroup.Text == "")
                 {
                     RKGCode = 0;
+                    RKGName = "-All-";
                 }
                 else
                 {
                     RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                    RKGName = Convert.ToString(txtRackgroup.Text);
                 }
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
+                    RKInchargeName = "-All-";
                 }
                 else
                 {
                     EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                    RKInchargeName = Convert.ToString(txtEmployeeName.Text);
                 }
                 if (txtRack.Text == "")
                 {
                     RKCode = 0;
+                    RKName = "-All";
                 }
                 else
                 {
                     RKCode = Convert.ToInt32(lblRackCode.Text);
+                    RKName = Convert.ToString(txtRack.Text);
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -417,29 +440,36 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 int RKGCode = 0, RKCode = 0, EMPCode = 0;
+                string RKGName = "", RKName = "", RKInchargeName = "";
                 if (txtRackgroup.Text == "")
                 {
                     RKGCode = 0;
+                    RKGName = "-All-";
                 }
                 else
                 {
                     RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                    RKGName = Convert.ToString(txtRackgroup.Text);
                 }
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
+                    RKInchargeName = "-All-";
                 }
                 else
                 {
                     EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                    RKInchargeName = Convert.ToString(txtEmployeeName.Text);
                 }
                 if (txtRack.Text == "")
                 {
                     RKCode = 0;
+                    RKName = "-All";
                 }
                 else
                 {
                     RKCode = Convert.ToInt32(lblRackCode.Text);
+                    RKName = Convert.ToString(txtRack.Text);
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -497,29 +527,36 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 int RKGCode = 0, RKCode = 0, EMPCode = 0;
+                string RKGName = "", RKName = "", RKInchargeName = "";
                 if (txtRackgroup.Text == "")
                 {
                     RKGCode = 0;
+                    RKGName = "-All-";
                 }
                 else
                 {
                     RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
+                    RKGName = Convert.ToString(txtRackgroup.Text);
                 }
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
+                    RKInchargeName = "-All-";
                 }
                 else
                 {
                     EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                    RKInchargeName = Convert.ToString(txtEmployeeName.Text);
                 }
                 if (txtRack.Text == "")
                 {
                     RKCode = 0;
+                    RKName = "-All";
                 }
                 else
                 {
                     RKCode = Convert.ToInt32(lblRackCode.Text);
+                    RKName = Convert.ToString(txtRack.Text);
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
