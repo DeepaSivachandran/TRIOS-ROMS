@@ -48,7 +48,7 @@ namespace ROMS
         private ToolTip tppurchaserack = new ToolTip();
         private ToolTip tpsalesrack = new ToolTip();
         private ToolTip tpshelflifevalue = new ToolTip();
-        private ToolTip tpHsnName = new ToolTip();
+        private ToolTip tpHsnCode = new ToolTip();
         private ToolTip tpgst = new ToolTip();
 
         public int varGroupCode = 0, varSubgroupCode=0, varUnitCode=0,varbrandcode=0, varGroupId=0, varSubGroupId = 0,varHsnId=0, varUnitid=0, varcompanyid=0, varBrandId=0,varBatchCode=0, varPURSLID=0, varPURRKID=0, varSALESLID=0, varSALERKID=0;
@@ -95,7 +95,6 @@ namespace ROMS
                     tpcompanyname.Show("Please select company", cmbConcern, 5000);
                     blnErrorFlag = true;
                 }
-
 
                 if (Convert.ToString(txtItemNameEnglish.Text).Trim() == "")
                 {
@@ -258,7 +257,7 @@ namespace ROMS
                 string varId_HSN = "0";
                 DataSet objDsHSN = new DataSet();
                 SPDataService objDs = new SPDataService();
-                objDsHSN = objDs.udfnHsnList(7, 0, 0,0, txtHsnName.Text.Trim());
+                objDsHSN = objDs.udfnHsnList(9, 0, 0,0,"",txtHSNCode.Text.Trim());
                 objDs.CloseConnection();
                 if (objDsHSN != null)
                 {
@@ -273,12 +272,13 @@ namespace ROMS
                 lblHsnName.Text = Convert.ToString(varId_HSN);
                 if (Convert.ToString(lblHsnName.Text) == "" || Convert.ToString(lblHsnName.Text) == "0" || Convert.ToString(lblHsnName.Text) == "-1")
                 {
-                    errItems.SetError(txtHsnName, "Please enter valid HSN name");
-                    txtHsnName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpHsnName.ShowAlways = true;
-                    tpHsnName.Show("Please enter valid HSN name", txtHsnName, 5000);
+                    errItems.SetError(txtHSNCode, "Please enter valid HSN code");
+                    txtHSNCode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpHsnCode.ShowAlways = true;
+                    tpHsnCode.Show("Please enter valid HSN code", txtHSNCode, 5000);
                     blnErrorFlag = true;
                 }
+                
                 if (Convert.ToString(cmbGst.SelectedValue) == "" || Convert.ToString(cmbGst.SelectedValue) == "-1")
                 {
                     errItems.SetError(cmbGst, "Please select GST%");
@@ -380,12 +380,12 @@ namespace ROMS
                     tpcompanyname.Show("Please select sales batcn no. generation", cmbBatchNoGeneration, 5000);
                     blnErrorFlag = true; 
                 }
-                if (Convert.ToString(txtHsnName.Text).Trim() == "")
+                if (Convert.ToString(txtHSNCode.Text).Trim() == "")
                 {
-                    errItems.SetError(txtHsnName, "Please enter HSN name");
-                    txtHsnName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpcompanyname.ShowAlways = true;
-                    tpcompanyname.Show("Please enter HSN name", txtHsnName, 5000);
+                    errItems.SetError(txtHSNCode, "Please enter HSN code");
+                    txtHSNCode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpHsnCode.ShowAlways = true;
+                    tpHsnCode.Show("Please enter HSN code", txtHSNCode, 5000);
                     blnErrorFlag = true;
                 }
                 if (cbExpiry.Checked==true)
@@ -817,7 +817,7 @@ namespace ROMS
                         varupdateproductcode = varproductcode;
                         varupdate = "1";
                     }
-                    result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text, Convert.ToInt32(cmbConcern.SelectedValue),
+                    result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
                     Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), Convert.ToInt32(varbrandid),
                     Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbBulkUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(lblPurLocationCode.Text), Convert.ToInt32(lblSaleLocationCode.Text)
                     , Convert.ToInt32(lblPurRackCode.Text), Convert.ToInt32(lblSaleRackCode.Text), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue)
@@ -976,6 +976,7 @@ namespace ROMS
         {
             try
             {
+                lvHsnCode.Visible = false;
                 btnSave.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1602,8 +1603,6 @@ namespace ROMS
                     txtPICode.BackColor = Color.White;
                     errItems.Clear();
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -4479,7 +4478,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtHsnName.Focus();
+                    txtHSNCode.Focus();
                 }
             }
             catch (Exception ex)
@@ -4514,8 +4513,8 @@ namespace ROMS
                     DataSet objDsHSN = new DataSet();
                     DataSet objDsHSNGst = new DataSet();
                     SPDataService objDs = new SPDataService();
-                    objDsHSN = objDs.udfnHsnList(7, 0, 0,0, txtHsnName.Text.Trim());
-                    objDsHSNGst = objDs.udfnHsnList(8, 0,Convert.ToInt32(cmbGst.SelectedValue), 0,"");
+                    objDsHSN = objDs.udfnHsnList(7, 0, 0,0, txtHsnName.Text.Trim(),"");
+                    objDsHSNGst = objDs.udfnHsnList(8, 0,Convert.ToInt32(cmbGst.SelectedValue), 0,"","");
                     objDs.CloseConnection();
                     if (objDsHSN != null)
                     {
@@ -4606,7 +4605,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtHsnName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue),0,txtHsnName.Text.Trim());
+                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue),0,txtHsnName.Text.Trim(),"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -4642,18 +4641,18 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(txtHsnName.Text.Trim()) == "")
-                {
-                    errItems.SetError(txtHsnName, "Please enter HSN name");
-                    txtHsnName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpHsnName.ShowAlways = true;
-                    tpHsnName.Show("Please enter HSN name", txtHsnName, 5000);
-                }
-                else
-                {
-                    errItems.Clear();
-                    txtHsnName.BackColor = Color.White;
-                }
+                //if (Convert.ToString(txtHsnName.Text.Trim()) == "")
+                //{
+                //    errItems.SetError(txtHsnName, "Please enter HSN name");
+                //    txtHsnName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpHsnName.ShowAlways = true;
+                //    tpHsnName.Show("Please enter HSN name", txtHsnName, 5000);
+                //}
+                //else
+                //{
+                //    errItems.Clear();
+                //    txtHsnName.BackColor = Color.White;
+                //}
             }
             catch (Exception ex)
 
@@ -4774,12 +4773,12 @@ namespace ROMS
         {
             try
             {
-                lvHsnCode.Items.Clear();
+              lvHsnCode.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 if (txtHSNCode.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue), 0, txtHSNCode.Text.Trim());
+                    objDs = objspdservice.udfnHsnList(6, 0, Convert.ToInt32(cmbGst.SelectedValue), 0, txtHSNCode.Text.Trim(),"");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

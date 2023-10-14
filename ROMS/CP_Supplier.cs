@@ -3571,6 +3571,21 @@ namespace ROMS
                     }
                     objspservice.CloseConnection();
                 }
+                SPDataService objSPservice = new SPDataService();
+                DataSet objDS = new DataSet();
+                cmborderday.DataSource = null;
+                objDS = objSPservice.udfnSupplierList(21, SupplierUpdate, Convert.ToInt32(cmbOrderschedule.SelectedValue), 0, 0, "", 0, 0, 0);
+                objSPservice.CloseConnection();
+                if (objDS != null)
+                {
+                    if (objDS.Tables.Count != 0)
+                    {
+                        if (objDS.Tables[0].Rows.Count != 0)
+                        {
+                            lblOrderDay.Text = objDS.Tables[0].Rows[0]["DayNames"].ToString().Replace("''", "'");
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

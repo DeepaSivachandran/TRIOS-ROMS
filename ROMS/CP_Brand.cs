@@ -161,7 +161,7 @@ namespace ROMS
             }
             finally
             {
-              //  if (btnSave.Text == "Update") { this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending); }
+                if (btnSave.Text == "Update") { this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Descending); }
                 //this.grdSubGroup.Sort(this.grdSubGroup.Columns[2], ListSortDirection.Ascending);
             }
         }
@@ -1821,11 +1821,21 @@ namespace ROMS
         {
             try
             {
-                //this.grdGroup.Sort(this.grdGroup.Columns[0], ListSortDirection.Ascending); 
-                foreach (DataGridViewRow row in grdGroup.Rows)
+                for (int i = 0; i < dtGroup.Rows.Count; i++)
                 {
-                    row.Cells[0].Value = false;
+                    dtGroup.Rows[i][0] = false;
                 }
+                grdGroup.DataSource = null;
+                grdGroup.DataSource = dtGroup;
+                grdGroup.Columns[0].HeaderText = "";
+                grdGroup.Columns[0].Width = 30;
+                grdGroup.Columns["Product Group Name in English"].Width = 190;
+                grdGroup.Columns["T.S.Groups"].Width = 80;
+                grdGroup.Columns["ID"].Visible = false;
+                grdGroup.Columns["Product Group Name in English"].ReadOnly = true;
+                grdGroup.Columns["T.S.Groups"].ReadOnly = true;
+                grdGroup.Columns["T.S.Groups"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdGroup.Columns["ID"].ReadOnly = true;
                 dtSubGroup.Rows.Clear();
                 dtSubGroup.AcceptChanges();
                 grdSubGroup.DataSource = dtSubGroup;
