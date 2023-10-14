@@ -817,6 +817,7 @@ namespace ROMS
         {
             try
             {
+                txtSelectedProductSubGroup.Text = "";
                 btnSave.Enabled = false;
                 string varResult = ""; string varOriginator = "Brand Creation";
                 int varViewType = 0;
