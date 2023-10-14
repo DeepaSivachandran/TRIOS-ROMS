@@ -187,6 +187,7 @@ namespace ROMS
                 picLoader.SendToBack();
                 btnView.Enabled = true;
                 btnView.Focus();
+                txtSearchbyLocationName.Text = "";
             }
         }
         private void udfnSearchGridHead()
@@ -971,7 +972,6 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);

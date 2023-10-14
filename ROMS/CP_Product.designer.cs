@@ -206,12 +206,14 @@
             // 
             // txtPICode
             // 
+            this.txtPICode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtPICode.Location = new System.Drawing.Point(160, 50);
             this.txtPICode.MaxLength = 10;
             this.txtPICode.Name = "txtPICode";
             this.txtPICode.Size = new System.Drawing.Size(337, 27);
             this.txtPICode.TabIndex = 2;
+            this.txtPICode.TextChanged += new System.EventHandler(this.TxtPICode_TextChanged);
             this.txtPICode.Enter += new System.EventHandler(this.TxtPICode_Enter);
             this.txtPICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPICode_KeyDown);
             this.txtPICode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPICode_KeyPress);
@@ -291,7 +293,7 @@
             this.txtDSubGroup.Size = new System.Drawing.Size(139, 27);
             this.txtDSubGroup.TabIndex = 7;
             this.txtDSubGroup.TabStop = false;
-            this.txtDSubGroup.Text = "Product Sub Group";
+            this.txtDSubGroup.Text = "Product Subgroup";
             // 
             // txtDUnit
             // 
@@ -1570,7 +1572,7 @@
             // 
             this.txtHSNCode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtHSNCode.Location = new System.Drawing.Point(122, 49);
-            this.txtHSNCode.MaxLength = 50;
+            this.txtHSNCode.MaxLength = 8;
             this.txtHSNCode.Name = "txtHSNCode";
             this.txtHSNCode.Size = new System.Drawing.Size(145, 27);
             this.txtHSNCode.TabIndex = 33;
@@ -1910,11 +1912,11 @@
             // 
             // columnHeader10
             // 
-            this.columnHeader10.Width = 80;
+            this.columnHeader10.Width = 120;
             // 
             // columnHeader30
             // 
-            this.columnHeader30.Width = 80;
+            this.columnHeader30.Width = 100;
             // 
             // columnHeader31
             // 

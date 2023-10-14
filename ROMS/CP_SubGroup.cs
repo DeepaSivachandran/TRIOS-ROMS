@@ -43,7 +43,7 @@ namespace ROMS
         public int varGroupCode = 0, varmastertype=0,varSubgroupCode=0;
         public int varLocationCode = 0, varRackCode = 0;
         public string varRackCodes = "";
-
+        public int varSortFlag = 0;
         public CP_SubGroup()
         {
             InitializeComponent();
@@ -97,6 +97,7 @@ namespace ROMS
                 else
                 {
                     pnlStatus.Enabled = true;
+                    varSortFlag = 1;
                     udfnEdit();
                 }
             }
@@ -171,23 +172,35 @@ namespace ROMS
             try
             {
                 txtProductGroupName.Text = varGroupName;
-                lblGroupCode.Text = Convert.ToString( varGroupCode);
+                lblGroupCode.Text = Convert.ToString(varGroupCode);
                 txtESubGroupNameEnglish.Text = varSubGroupNameinEnglish;
                 txtESubGroupNameTamil.Text = varSubGroupNameinTamil;
                 cmbBatchNo.SelectedValue = varBatchId;
                 txtLocation.Text = varStockLocationName;
-                lblLocation.Text=Convert.ToString(varLocationCode);
+                lblLocation.Text = Convert.ToString(varLocationCode);
                 udfnLoadRackList();
                 // txtRack.Text = varRackName;
                 // lblRack.Text = Convert.ToString(varRackCode);
                 string[] varRkIds = varRackCodes.Split(',');
-                for (int i = 0; i < grdRackList.RowCount; i++) {
-                    for (int j = 0; j < varRkIds.Length; j++) {
-                        if (varRkIds[j] == Convert.ToString(grdRackList.Rows[i].Cells["RKID"].Value)) {
-                            grdRackList.Rows[i].Cells[0].Value = true;
+                for (int i = 0; i < dtRackList.Rows.Count; i++)
+                {
+                    for (int j = 0; j < varRkIds.Length; j++)
+                    {
+                        if (varRkIds[j] == Convert.ToString(dtRackList.Rows[i]["RKID"]))
+                        {
+                            dtRackList.Rows[i][0] = true;
                         }
                     }
                 }
+                dtRackList.DefaultView.Sort = dtRackList.Columns[0].ColumnName + " DESC";
+                dtRackList = dtRackList.DefaultView.ToTable();
+                grdRackList.DataSource = null;
+                grdRackList.DataSource = dtRackList;
+                grdRackList.Columns["Column1"].HeaderText = "";
+                grdRackList.Columns["Column1"].Width = 80;
+                grdRackList.Columns["Rack Name"].Width = 80;
+                grdRackList.Columns["Rack Description"].Width = 270;
+                grdRackList.Columns[0].Width = 30;
                 varStatusid = varStatus;
                 if(varStatusid==1)
                 {
@@ -236,6 +249,7 @@ namespace ROMS
             try
             {
                 btnSave.Enabled = false;
+                txtRack.Text = "";
                 string varResult = ""; string varOriginator = "Product Sub Group Creation";
                 int varViewType=0; 
                 if (rbActive.Checked)
@@ -1259,7 +1273,7 @@ namespace ROMS
             }
             finally
             {
-                this.grdRackList.Sort(this.grdRackList.Columns[0], ListSortDirection.Descending);
+                //this.grdRackList.Sort(this.grdRackList.Columns[0], ListSortDirection.Descending);
             }
         }
         public void udfnLocationEvent()
@@ -1354,6 +1368,19 @@ namespace ROMS
                 }
                 //grdRackList.DataSource = null;
                 //grdRackList.DataSource = dtRackList;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRackList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdRackList.ClearSelection();
             }
             catch (Exception ex)
             {

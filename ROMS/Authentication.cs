@@ -138,7 +138,7 @@ namespace ROMS
                     SPDataService objDser = new SPDataService();
                     int count = 0;
                     // objDs = objDser.udfnUserList(0,varUserName ,txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text),0,"");
-                    objDs = objDser.udfnUserList(0, varUserName, txtUserName.Text.Trim(), _security.Encrypt(txtUserName.Text.Trim().ToLower(), txtPassword.Text), 0, "");
+                    objDs = objDser.udfnUserList(0, varUserName, txtUserName.Text.Trim(), _security.Encrypt(txtUserName.Text.Trim().ToLower(), txtPassword.Text), 0,0,"");
                     objDser.CloseConnection();
                     if (objDs != null) {
                         if (objDs.Tables.Count > 0) {
@@ -299,7 +299,7 @@ namespace ROMS
             //string paths = Application.StartupPath + "\\Server Settings\\serversettings.txt";
             //if (File.Exists(paths))
             //{
-                lblDVersion.Text = "v1.0.4";
+                lblDVersion.Text = "v1.0.5";
                 lblDVersion.BringToFront();
                 Authentication objAuthetication = new Authentication();
                 objAuthetication.Name = " - " + lblDVersion.Text;

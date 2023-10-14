@@ -237,6 +237,7 @@
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblOrderDay = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -2499,6 +2500,7 @@
             // 
             // grpSchedule
             // 
+            this.grpSchedule.Controls.Add(this.lblOrderDay);
             this.grpSchedule.Controls.Add(this.txtSearchByProduct2);
             this.grpSchedule.Controls.Add(this.lblSearchByProduct2);
             this.grpSchedule.Controls.Add(this.cmbMappedorderrype);
@@ -2527,7 +2529,7 @@
             this.txtSearchByProduct2.Location = new System.Drawing.Point(598, 37);
             this.txtSearchByProduct2.MaxLength = 50;
             this.txtSearchByProduct2.Name = "txtSearchByProduct2";
-            this.txtSearchByProduct2.Size = new System.Drawing.Size(418, 27);
+            this.txtSearchByProduct2.Size = new System.Drawing.Size(233, 27);
             this.txtSearchByProduct2.TabIndex = 3;
             this.txtSearchByProduct2.TextChanged += new System.EventHandler(this.TxtSearchByProduct2_TextChanged);
             this.txtSearchByProduct2.Enter += new System.EventHandler(this.TxtSearchByProduct2_Enter);
@@ -2583,7 +2585,7 @@
             // lblMappedOrderTypeId
             // 
             this.lblMappedOrderTypeId.AutoSize = true;
-            this.lblMappedOrderTypeId.Location = new System.Drawing.Point(648, 295);
+            this.lblMappedOrderTypeId.Location = new System.Drawing.Point(648, 287);
             this.lblMappedOrderTypeId.Name = "lblMappedOrderTypeId";
             this.lblMappedOrderTypeId.Size = new System.Drawing.Size(16, 20);
             this.lblMappedOrderTypeId.TabIndex = 958823;
@@ -2781,6 +2783,15 @@
             this.label3.Size = new System.Drawing.Size(94, 20);
             this.label3.TabIndex = 958804;
             this.label3.Text = "No.of Products :";
+            // 
+            // lblOrderDay
+            // 
+            this.lblOrderDay.AutoSize = true;
+            this.lblOrderDay.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrderDay.Location = new System.Drawing.Point(837, 40);
+            this.lblOrderDay.Name = "lblOrderDay";
+            this.lblOrderDay.Size = new System.Drawing.Size(0, 20);
+            this.lblOrderDay.TabIndex = 958825;
             // 
             // CP_Supplier
             // 
@@ -3044,5 +3055,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.TextBox txtBrand;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblOrderDay;
     }
 }

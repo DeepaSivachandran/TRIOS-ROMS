@@ -146,7 +146,7 @@ namespace ROMS
             try
             {
                 SPDataService objDServ = new SPDataService();
-                objDSHSN = objDServ.udfnHsnList(0, 0,0,0,"");
+                objDSHSN = objDServ.udfnHsnList(0, 0,0,0,"","");
                 objDSUnit = objDServ.udfnUnitList(0,0);
                 objDSGroup = objDServ.udfnGroupList(0, 0, 0, "",0);
                 objDSSubGroup = objDServ.udfnSubGroupList(0,0,"",0,0,"",0,0,0,0);
@@ -2005,6 +2005,7 @@ namespace ROMS
             {
                 btnView.Enabled = true;
                 btnView.Focus();
+                txtProductName.Text = "";
             }
         }
         private void TxtProductName_Enter(object sender, EventArgs e)

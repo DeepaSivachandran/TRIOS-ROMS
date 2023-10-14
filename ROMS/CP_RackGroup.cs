@@ -90,7 +90,7 @@ namespace ROMS
 
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnUserCategoryList(4, Convert.ToInt32(cmbUserCategory.SelectedValue));
+                objDs = objdserv.udfnUserCategoryList(4, Convert.ToInt32(cmbUserCategory.SelectedValue),0);
                 objdserv.CloseConnection();
                 cmbUserCategory.DataSource = null;
                 if (objDs != null)
@@ -180,6 +180,7 @@ namespace ROMS
                             cmbConcern.DataSource = objDT.Tables[0];
                         }
                     }
+                    udfnList();
                 }
             }
             catch (Exception ex)
@@ -857,8 +858,6 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
-
-
                                 dtEmployee.Rows.Add(false, 0,
                                    grdStaffDetails.SelectedRows[0].Cells["clmEmpCode"].Value, grdStaffDetails.SelectedRows[0].Cells["clmStaffName"].Value,
                                    grdStaffDetails.SelectedRows[0].Cells["clmcatrgory"].Value, grdStaffDetails.SelectedRows[0].Cells["clmUserId"].Value
@@ -871,6 +870,7 @@ namespace ROMS
                                 }
                                 dtEmployee.AcceptChanges();
                                 grdEmployee.DataSource = dtEmployee;
+                                BtnViewEmployee_Click(sender, e);
                             }
                             break;
                     }
@@ -992,6 +992,7 @@ namespace ROMS
                 grdRack.DataSource = null;
                 grdSelectedRack.Rows.Clear();
                 chkRack.Checked = false;
+                udfnList();
             }
             catch (Exception ex)
             {

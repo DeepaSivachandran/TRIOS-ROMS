@@ -396,7 +396,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 09/08/2023    Description:	HSN list Sp
-        public DataSet udfnHsnList(int ViewType, int paraHSNID, int paraGstId, int paraStatusId, string paraHSN_Name)
+        public DataSet udfnHsnList(int ViewType, int paraHSNID, int paraGstId, int paraStatusId, string paraHSN_Name,string paraHSN_Code)
         {
             DataSet ds = new DataSet();
             try
@@ -410,6 +410,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraGstId", paraGstId);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraHSN_Name", paraHSN_Name);
+                varSqlCommand.Parameters.AddWithValue("@paraHSN_Code", paraHSN_Code);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
@@ -881,7 +882,7 @@ namespace ROMS
             return varResult;
         }
         //Created By:-Sathish Created On:-21/08/2023
-        public DataSet udfnUserCategoryList(int paraviewType, int paraCategory)
+        public DataSet udfnUserCategoryList(int paraviewType, int paraCategory,int paraStatusId)
         {
             DataSet ds = new DataSet();
             try
@@ -893,6 +894,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraCategory", paraCategory);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -1083,8 +1085,7 @@ namespace ROMS
 
         // Created by : Deepa    Modified by: Sathish
         // Created on : 16-08-2023 Modified on: 22-08-2023
-        //modified  Sivabharathi on 9/10/2023
-        public DataSet udfnUserList(int paraviewType,string paraUserName, string paraLoginId, string paraPassword,int paraUser,string @paraPasskey)
+        public DataSet udfnUserList(int paraviewType, string paraUserName, string paraLoginId, string paraPassword, int paraUser,int paraStatusId,string @paraPasskey)
         {
             DataSet ds = new DataSet();
             try
@@ -1100,6 +1101,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraUser", paraUser);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -1437,7 +1439,7 @@ namespace ROMS
         //Create date: 21/08/2023 
         //Description:	repmasterList
 
-        public DataSet udfnRepMasterList(int ViewType, int paraRepId, string paraUserID, string paraIPAddress)
+        public DataSet udfnRepMasterList(int ViewType, int paraRepId, string paraUserID, string paraIPAddress,int paraStatusId)
         {
             DataSet ds = new DataSet();
             try
@@ -1449,6 +1451,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRepId", paraRepId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
 
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
