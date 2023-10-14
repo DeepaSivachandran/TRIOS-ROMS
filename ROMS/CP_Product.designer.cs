@@ -206,12 +206,14 @@
             // 
             // txtPICode
             // 
+            this.txtPICode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtPICode.Location = new System.Drawing.Point(160, 50);
             this.txtPICode.MaxLength = 10;
             this.txtPICode.Name = "txtPICode";
             this.txtPICode.Size = new System.Drawing.Size(337, 27);
             this.txtPICode.TabIndex = 2;
+            this.txtPICode.TextChanged += new System.EventHandler(this.TxtPICode_TextChanged);
             this.txtPICode.Enter += new System.EventHandler(this.TxtPICode_Enter);
             this.txtPICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPICode_KeyDown);
             this.txtPICode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPICode_KeyPress);

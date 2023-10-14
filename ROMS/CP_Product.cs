@@ -4810,6 +4810,19 @@ namespace ROMS
             }
         }
 
+        private void TxtPICode_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+               // txtPICode.Text = txtPICode.Text.ToUpper();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtSaleRack_Enter(object sender, EventArgs e)
         {
             try
