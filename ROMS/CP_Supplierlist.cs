@@ -205,7 +205,7 @@ namespace ROMS
                 {
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsSupplierId = objDserv.udfnSupplierList(11,0,0,0,0,txtSupplier.Text.Trim(),0,0,0);
+                    objDsSupplierId = objDserv.udfnSupplierList(11,0,0,0,0,txtSupplier.Text.Trim(),0,0,0,"",0,0,0,0,0);
                     objDserv.CloseConnection();
                     if (objDsSupplierId != null)
                     {
@@ -219,7 +219,7 @@ namespace ROMS
                     }
                 }
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnSupplierList(1, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "",0,0,0);
+                objDs = objdserv.udfnSupplierList(1, varSupplierId, Convert.ToInt32(cmbOrderSchedule.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue), Convert.ToInt32(cmbOrderSchedule.SelectedValue), "",0,0,0,"",0,0,0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -238,6 +238,8 @@ namespace ROMS
                         grdSupplierList.Columns["S.No."].Width = 50;
                         grdSupplierList.Columns["Supplier"].Width = 200;
                         grdSupplierList.Columns["Schedule Name"].Width = 150;
+                        grdSupplierList.Columns["Ret.Condition"].Width = 140;
+                        grdSupplierList.Columns["GSTIN"].Width = 120;
                         grdSupplierList.Columns["Status"].Width = 80;
                         grdSupplierList.Columns["Scheduleid"].Visible = false;
                         grdSupplierList.Columns["SupplierID"].Visible = false;
@@ -648,7 +650,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSupplier.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSupplierList(6, 0,0, 0, 0,txtSupplier.Text,0,0,0);
+                    objDs = objspdservice.udfnSupplierList(6, 0,0, 0, 0,txtSupplier.Text,0,0,0,"",0,0,0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1057,6 +1059,118 @@ namespace ROMS
                 grdDaywiseProduct.ClearSelection(); 
             }
 
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdSupplierList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierList);
+                objDser.CloseConnection();
+                grdSupplierList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdSupplierList.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdSupplierList.Width > grdSupplierList.HorizontalScrollingOffset && grdSupplierList.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdSupplierList_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdSupplierList.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdSupplierList.Width > grdSupplierList.HorizontalScrollingOffset && grdSupplierList.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchGrid.Invalidate();
+                udfnscrollVisible(DGV_SearchGrid, grdSupplierList);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnscrollVisible(DataGridView DGV, DataGridView grdGroupList)
+        {
+            try
+            {
+                var vScrollbar = grdGroupList.Controls.OfType<VScrollBar>().First();
+                if (vScrollbar.Visible == true)
+                {
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in DGV.Columns)
+                    {
+                        visibleColumns.Add(col.Index);
+                    }
+
+                    int I = DGV_SearchGrid.Rows.Count - 1;
+                    if (I == 0)
+                    {
+                        int rowIndex = 1;
+                        DGV_SearchGrid.Rows.Add();
+                        for (int i = 0; i < visibleColumns.Count; i++)
+                        {
+                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdSupplierList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSupplierList);
+                objDser.CloseConnection();
+                grdSupplierList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //grdCompanyList(sender,e); 
+            }
             catch (Exception ex)
             {
                 objError = new DataError();

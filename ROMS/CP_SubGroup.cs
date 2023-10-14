@@ -87,7 +87,7 @@ namespace ROMS
                 dtRackList = new DataTable();
                 dtRackList.Columns.Add("", typeof(Boolean));
                 dtRackList.Columns.Add("Rack Name", typeof(string));
-                dtRackList.Columns.Add("RK_Description", typeof(string));
+                dtRackList.Columns.Add("Rack Description", typeof(string));
                 dtRackList.Columns.Add("RKID", typeof(int));
                 udfnLoadCmbBatchNo();
                 if (btnSave.Text == "Save")
@@ -105,7 +105,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally { grdRackList.ColumnHeadersVisible = false;
+            finally { //grdRackList.ColumnHeadersVisible = false;
               //  udfnSearchGridHead();
             }
         }
@@ -415,7 +415,7 @@ namespace ROMS
                     string varLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0,0);
+                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtLocation.Text.Trim(),0,0,0);
                     objDServ3.CloseConnection();
                     if (objDsPurLoc != null)
                     {
@@ -1141,7 +1141,7 @@ namespace ROMS
                 if (txtLocation.Text.Length > 0)
                 {
 
-                    objDs = objspdservice.udfnStockLocationList(12, 0, 0,0,txtLocation.Text, 0,0);
+                    objDs = objspdservice.udfnStockLocationList(12, 0, 0,0,txtLocation.Text, 0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1227,7 +1227,7 @@ namespace ROMS
                 if (txtLocation.Text != "")
                 {
                     SPDataService objService = new SPDataService();
-                    objRackList = objService.udfnRackList(11, 0, 0, Convert.ToInt32(lblLocation.Text), 0, "", 0);
+                    objRackList = objService.udfnRackList(11, 0, 0, Convert.ToInt32(lblLocation.Text), 0, "", 0,0);
                     objService.CloseConnection();
                     if (objRackList != null)
                     {
@@ -1240,8 +1240,12 @@ namespace ROMS
                                 }
                                 grdRackList.DataSource = dtRackList;
                                 grdRackList.Columns["RKID"].Visible = false;
-                                grdRackList.Columns["Rack Name"].Width = 150;
-                                grdRackList.Columns["RK_Description"].Width = 200;
+                                grdRackList.Columns["Column1"].HeaderText = "";
+                                //grdRackList.Columns["Rack Name"].Visible = true;
+                                //grdRackList.Columns["RK_Description"].Visible = true;
+                                grdRackList.Columns["Column1"].Width = 80;
+                                grdRackList.Columns["Rack Name"].Width = 80;
+                                grdRackList.Columns["Rack Description"].Width = 270;
                                 grdRackList.Columns[0].Width = 30;
                             }
                         }
@@ -1252,6 +1256,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                this.grdRackList.Sort(this.grdRackList.Columns[0], ListSortDirection.Descending);
             }
         }
         public void udfnLocationEvent()

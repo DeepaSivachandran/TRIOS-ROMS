@@ -89,7 +89,7 @@ namespace ROMS
                 {
                     DataSet objDsUser = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsUser = objDserv.udfnEmployeeList(3, txtEmployee.Text.Trim(), 0, lblEmpCode.Text.Trim(),0,0);
+                    objDsUser = objDserv.udfnEmployeeList(3, txtEmployee.Text.Trim(), 0, lblEmpCode.Text.Trim(),0,0,0);
                     objDserv.CloseConnection();
                     if (objDsUser != null)
                     {
@@ -104,7 +104,7 @@ namespace ROMS
                 }
 
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnEmployeeList(0, "",Convert.ToInt32(varUserId),"",0,0);
+                objDs = objspservice.udfnEmployeeList(0, "",Convert.ToInt32(varUserId),"",0,0,0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -590,7 +590,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtEmployee.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnEmployeeList(2, txtEmployee.Text.Trim(), 0, "",0,0);
+                    objDs = objspdservice.udfnEmployeeList(2, txtEmployee.Text.Trim(), 0, "",0,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -823,6 +823,48 @@ namespace ROMS
             try
             {
                 btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdEmployeeList.ColumnCount > 0)
+                {
+                    grdEmployeeList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdEmployeeList.HorizontalScrollingOffset;
+                    //grdBrandList.HorizontalScrollingOffset = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdEmployeeList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdEmployeeList);
+                objDser.CloseConnection();
+                grdEmployeeList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //grdCompanyList(sender,e); 
             }
             catch (Exception ex)
             {

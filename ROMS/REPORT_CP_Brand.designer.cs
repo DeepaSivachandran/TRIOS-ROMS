@@ -117,7 +117,7 @@
             this.columnHeader13});
             this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvGroup.HideSelection = false;
-            this.lvGroup.Location = new System.Drawing.Point(880, 48);
+            this.lvGroup.Location = new System.Drawing.Point(620, 48);
             this.lvGroup.Name = "lvGroup";
             this.lvGroup.Size = new System.Drawing.Size(457, 157);
             this.lvGroup.TabIndex = 1111230;
@@ -150,7 +150,7 @@
             this.columnHeader29});
             this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSubGroup.HideSelection = false;
-            this.lvSubGroup.Location = new System.Drawing.Point(640, 48);
+            this.lvSubGroup.Location = new System.Drawing.Point(886, 48);
             this.lvSubGroup.Name = "lvSubGroup";
             this.lvSubGroup.Size = new System.Drawing.Size(457, 157);
             this.lvSubGroup.TabIndex = 1111229;
@@ -250,7 +250,7 @@
             // lblGroupCode
             // 
             this.lblGroupCode.AutoSize = true;
-            this.lblGroupCode.Location = new System.Drawing.Point(831, 2);
+            this.lblGroupCode.Location = new System.Drawing.Point(560, 2);
             this.lblGroupCode.Name = "lblGroupCode";
             this.lblGroupCode.Size = new System.Drawing.Size(16, 20);
             this.lblGroupCode.TabIndex = 1111231;
@@ -260,7 +260,7 @@
             // lblSubGroupCode
             // 
             this.lblSubGroupCode.AutoSize = true;
-            this.lblSubGroupCode.Location = new System.Drawing.Point(585, 2);
+            this.lblSubGroupCode.Location = new System.Drawing.Point(831, 2);
             this.lblSubGroupCode.Name = "lblSubGroupCode";
             this.lblSubGroupCode.Size = new System.Drawing.Size(16, 20);
             this.lblSubGroupCode.TabIndex = 1111231;
@@ -270,11 +270,11 @@
             // txtGroup
             // 
             this.txtGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtGroup.Location = new System.Drawing.Point(868, 19);
+            this.txtGroup.Location = new System.Drawing.Point(608, 19);
             this.txtGroup.MaxLength = 100;
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(186, 27);
-            this.txtGroup.TabIndex = 1111229;
+            this.txtGroup.TabIndex = 2;
             this.txtGroup.TextChanged += new System.EventHandler(this.TxtGroup_TextChanged);
             this.txtGroup.Enter += new System.EventHandler(this.TxtGroup_Enter);
             this.txtGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGroup_KeyDown);
@@ -283,11 +283,11 @@
             // txtSubGroup
             // 
             this.txtSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSubGroup.Location = new System.Drawing.Point(628, 19);
+            this.txtSubGroup.Location = new System.Drawing.Point(874, 19);
             this.txtSubGroup.MaxLength = 100;
             this.txtSubGroup.Name = "txtSubGroup";
             this.txtSubGroup.Size = new System.Drawing.Size(186, 27);
-            this.txtSubGroup.TabIndex = 1111228;
+            this.txtSubGroup.TabIndex = 3;
             this.txtSubGroup.TextChanged += new System.EventHandler(this.TxtSubGroup_TextChanged);
             this.txtSubGroup.Enter += new System.EventHandler(this.TxtSubGroup_Enter);
             this.txtSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSubGroup_KeyDown);
@@ -300,7 +300,7 @@
             this.txtBrand.MaxLength = 100;
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(186, 27);
-            this.txtBrand.TabIndex = 1111183;
+            this.txtBrand.TabIndex = 1;
             this.txtBrand.TextChanged += new System.EventHandler(this.TxtBrand_TextChanged);
             this.txtBrand.Enter += new System.EventHandler(this.TxtBrand_Enter);
             this.txtBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBrand_KeyDown);
@@ -310,7 +310,7 @@
             // 
             this.lblGroup.AutoSize = true;
             this.lblGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGroup.Location = new System.Drawing.Point(820, 22);
+            this.lblGroup.Location = new System.Drawing.Point(560, 22);
             this.lblGroup.Name = "lblGroup";
             this.lblGroup.Size = new System.Drawing.Size(42, 20);
             this.lblGroup.TabIndex = 1111181;
@@ -322,7 +322,7 @@
             this.cmbStatus.Location = new System.Drawing.Point(1111, 19);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(143, 27);
-            this.cmbStatus.TabIndex = 3;
+            this.cmbStatus.TabIndex = 4;
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
             this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
@@ -342,7 +342,7 @@
             // 
             this.lblSubgroup.AutoSize = true;
             this.lblSubgroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubgroup.Location = new System.Drawing.Point(560, 22);
+            this.lblSubgroup.Location = new System.Drawing.Point(806, 22);
             this.lblSubgroup.Name = "lblSubgroup";
             this.lblSubgroup.Size = new System.Drawing.Size(62, 20);
             this.lblSubgroup.TabIndex = 1111180;
@@ -361,14 +361,14 @@
             // btnListPrint
             // 
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(1260, 16);
+            this.btnListPrint.Location = new System.Drawing.Point(1260, 18);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
-            this.btnListPrint.Size = new System.Drawing.Size(70, 33);
-            this.btnListPrint.TabIndex = 4;
-            this.btnListPrint.Text = "Print";
+            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
+            this.btnListPrint.TabIndex = 5;
+            this.btnListPrint.Text = "View";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
             this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);

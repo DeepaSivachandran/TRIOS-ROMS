@@ -100,9 +100,9 @@
             this.grpfilter.Controls.Add(this.btnListPrint);
             this.grpfilter.Controls.Add(this.cmbReportType);
             this.grpfilter.Controls.Add(this.lblReportType);
-            this.grpfilter.Location = new System.Drawing.Point(12, 2);
+            this.grpfilter.Location = new System.Drawing.Point(3, 2);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1339, 58);
+            this.grpfilter.Size = new System.Drawing.Size(1348, 58);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
@@ -110,7 +110,7 @@
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(718, 19);
+            this.cmbStatus.Location = new System.Drawing.Point(715, 19);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(143, 27);
             this.cmbStatus.TabIndex = 3;
@@ -123,7 +123,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(667, 22);
+            this.lblStatus.Location = new System.Drawing.Point(664, 22);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(45, 20);
             this.lblStatus.TabIndex = 1111182;
@@ -132,7 +132,7 @@
             // cmbGST
             // 
             this.cmbGST.FormattingEnabled = true;
-            this.cmbGST.Location = new System.Drawing.Point(518, 19);
+            this.cmbGST.Location = new System.Drawing.Point(515, 19);
             this.cmbGST.Name = "cmbGST";
             this.cmbGST.Size = new System.Drawing.Size(143, 27);
             this.cmbGST.TabIndex = 2;
@@ -145,7 +145,7 @@
             // 
             this.lblGST.AutoSize = true;
             this.lblGST.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGST.Location = new System.Drawing.Point(482, 22);
+            this.lblGST.Location = new System.Drawing.Point(479, 22);
             this.lblGST.Name = "lblGST";
             this.lblGST.Size = new System.Drawing.Size(30, 20);
             this.lblGST.TabIndex = 1111180;
@@ -154,7 +154,7 @@
             // cmbHSN
             // 
             this.cmbHSN.FormattingEnabled = true;
-            this.cmbHSN.Location = new System.Drawing.Point(333, 19);
+            this.cmbHSN.Location = new System.Drawing.Point(330, 19);
             this.cmbHSN.Name = "cmbHSN";
             this.cmbHSN.Size = new System.Drawing.Size(143, 27);
             this.cmbHSN.TabIndex = 1;
@@ -167,7 +167,7 @@
             // 
             this.lblHSN.AutoSize = true;
             this.lblHSN.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHSN.Location = new System.Drawing.Point(295, 22);
+            this.lblHSN.Location = new System.Drawing.Point(292, 22);
             this.lblHSN.Name = "lblHSN";
             this.lblHSN.Size = new System.Drawing.Size(32, 20);
             this.lblHSN.TabIndex = 1111178;
@@ -176,14 +176,14 @@
             // btnListPrint
             // 
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListPrint.Image = global::ROMS.Properties.Resources.print;
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(867, 16);
+            this.btnListPrint.Location = new System.Drawing.Point(864, 18);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
-            this.btnListPrint.Size = new System.Drawing.Size(70, 33);
+            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
             this.btnListPrint.TabIndex = 4;
-            this.btnListPrint.Text = "Print";
+            this.btnListPrint.Text = "View";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
             this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
@@ -193,7 +193,7 @@
             // cmbReportType
             // 
             this.cmbReportType.FormattingEnabled = true;
-            this.cmbReportType.Location = new System.Drawing.Point(88, 19);
+            this.cmbReportType.Location = new System.Drawing.Point(85, 19);
             this.cmbReportType.Name = "cmbReportType";
             this.cmbReportType.Size = new System.Drawing.Size(201, 27);
             this.cmbReportType.TabIndex = 0;
@@ -207,7 +207,7 @@
             // 
             this.lblReportType.AutoSize = true;
             this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportType.Location = new System.Drawing.Point(9, 22);
+            this.lblReportType.Location = new System.Drawing.Point(6, 22);
             this.lblReportType.Name = "lblReportType";
             this.lblReportType.Size = new System.Drawing.Size(73, 20);
             this.lblReportType.TabIndex = 1111176;

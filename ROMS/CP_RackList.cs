@@ -91,7 +91,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRackList(0, (Convert.ToInt16(cmbGroupType.SelectedValue)),0,0,0,"", 0);
+                objDs = objspservice.udfnRackList(0, (Convert.ToInt16(cmbGroupType.SelectedValue)),0,0,0,"", 0,0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -300,10 +300,10 @@ namespace ROMS
                 {
                     tsbEdit_Click(sender, e);
                 }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
-                {
-                    tsbDelete_Click(sender, e);
-                }
+                //if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                //{
+                //    tsbDelete_Click(sender, e);
+                //}
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm objMainForm = new MainForm();
@@ -313,10 +313,10 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
-                if (e.KeyCode == Keys.Delete)
-                {
-                    udfndelete();
-                }
+                //if (e.KeyCode == Keys.Delete)
+                //{
+                //    udfndelete();
+                //}
             }
             catch (Exception ex)
             {
@@ -720,6 +720,43 @@ namespace ROMS
                 {
                     btnView.Focus();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdGroupList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdGroupList);
+                objDser.CloseConnection();
+                grdGroupList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGV_SearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdGroupList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdGroupList);
+                objDser.CloseConnection();
+                grdGroupList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                //grdCompanyList(sender,e); 
             }
             catch (Exception ex)
             {
