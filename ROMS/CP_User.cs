@@ -874,7 +874,7 @@ namespace ROMS
                     pnlStatus.Enabled = true;
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnUserList(3,"", "", "",Convert.ToInt32(varUserID),"");
+                    objDs = objspdservice.udfnUserList(3,"", "", "",Convert.ToInt32(varUserID), 0, "");
                     objspdservice.CloseConnection();
 
                     if (objDs != null)

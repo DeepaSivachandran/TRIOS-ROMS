@@ -43,7 +43,7 @@ namespace ROMS
                 DataSet objDsUser = new DataSet();
                 SPDataService objDser = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objDser.udfnUserList(10, "", MainForm.pbUserName, "", 0,"");
+                objDs = objDser.udfnUserList(10, "", MainForm.pbUserName, "", 0, 0, "");
                 objDser.CloseConnection();
                 if (objDs != null)
                 {
@@ -81,7 +81,7 @@ namespace ROMS
                  // varPassword = (txtPassKey.Text).Trim();
                 SPDataService objDser = new SPDataService();
                 int count = 0;
-                objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, GenerateMD5(varPassword), 0, "");
+                objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, GenerateMD5(varPassword), 0, 0, "");
                 objDser.CloseConnection();
                 if (objDs != null)
                 {
@@ -580,7 +580,7 @@ namespace ROMS
                     DataService objdservice = new DataService();
                     DataSet objDT = new DataSet();
                     SPDataService objDser = new SPDataService();
-                    objDT = objDser.udfnUserList(9, "", "", "", Convert.ToInt32(MainForm.pbUserID), "");
+                    objDT = objDser.udfnUserList(9, "", "", "", Convert.ToInt32(MainForm.pbUserID), 0, "");
                     objDser.CloseConnection();
                     objdservice.CloseConnection();
                     if (objDT != null)
