@@ -568,7 +568,7 @@ namespace ROMS
                             grdRepBrand.Columns["Column1"].HeaderText = "";
                             grdRepBrand.Columns[0].Width = 30;
                             grdRepBrand.Columns["ID"].Visible = false;
-                            grdRepBrand.Columns["Brand Name"].Width = 200;
+                            grdRepBrand.Columns["Brand Name"].Width = 150;
                             grdRepBrand.Columns["Sub Group"].Width = 250;
                             grdRepBrand.Columns["Group"].Width = 250;
                             grdRepBrand.Columns["Brand Name"].ReadOnly = true;
