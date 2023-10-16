@@ -168,10 +168,10 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,4) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbStockApplicable, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
-                if(MainForm.objCP_LocationList.varStockApplicable==1)
-                {
-                    cmbStockApplicable.SelectedValue = 12;
-                }
+                //if (MainForm.objCP_LocationList.varStockApplicable == 1)
+                //{
+                //    cmbStockApplicable.SelectedValue = 12;
+                //}
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -386,14 +386,14 @@ namespace ROMS
                     tpLocationTypeInTamil.Show("Please enter location name in tamil", txtLocationNameInTamil, 5000);
                     blnErrorFlag = true;
                 }
-                //if (Convert.ToString(cmbStockApplicable.SelectedItem) == "" || Convert.ToString(cmbStockApplicable.SelectedValue) == "-1")
-                //{
-                //    epLocation.SetError(cmbStockApplicable, "Please select stock applicable");
-                //    cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpStoctApplicable.ShowAlways = true;
-                //    tpStoctApplicable.Show("Please select stock applicable", cmbStockApplicable, 5000);
-                //    blnErrorFlag = true;
-                //}
+                if (Convert.ToString(cmbStockApplicable.SelectedItem) == "" || Convert.ToString(cmbStockApplicable.SelectedValue) == "-1")
+                {
+                    epLocation.SetError(cmbStockApplicable, "Please select stock applicable");
+                    cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpStoctApplicable.ShowAlways = true;
+                    tpStoctApplicable.Show("Please select stock applicable", cmbStockApplicable, 5000);
+                    blnErrorFlag = true;
+                }
                 if (Convert.ToString(txtShortName.Text).Trim() == "")
                 {
                     epLocation.SetError(txtShortName, "Please enter short name");
@@ -807,18 +807,18 @@ namespace ROMS
         {
             try
             {
-                //if (Convert.ToString(cmbStockApplicable.SelectedItem) == "" || Convert.ToString(cmbStockApplicable.SelectedValue) == "-1")
-                //{
-                //    epLocation.SetError(cmbStockApplicable, "Please select stock applicable");
-                //    cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpLocationType.ShowAlways = true;
-                //    tpLocationType.Show("Please select stock applicable", cmbStockApplicable, 5000);
-                //}
-                //else
-                //{
-                //    epLocation.Clear();
+                if (Convert.ToString(cmbStockApplicable.SelectedItem) == "" || Convert.ToString(cmbStockApplicable.SelectedValue) == "-1")
+                {
+                    epLocation.SetError(cmbStockApplicable, "Please select stock applicable");
+                    cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpLocationType.ShowAlways = true;
+                    tpLocationType.Show("Please select stock applicable", cmbStockApplicable, 5000);
+                }
+                else
+                {
+                    epLocation.Clear();
                     cmbStockApplicable.BackColor = Color.White;
-                //}
+                }
             }
             catch (Exception ex)
             {
