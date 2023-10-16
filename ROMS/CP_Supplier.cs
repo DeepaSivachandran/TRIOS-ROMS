@@ -710,31 +710,34 @@ namespace ROMS
                         //picLoader.BringToFront();
                         //Application.DoEvents();
                         this.ActiveControl = tcSupplier;
-                        tcSupplier.SelectedIndex = 1;
+                       // tcSupplier.SelectedIndex = 1;
                         MainForm.objCP_Supplierlist.udfnList();
 
                         txtName.Focus();
-                        if (btnSave.Text == "Update")
-                        {
-                            varupdate = "1";
-                            udfnclear();
+                        udfnclear();
+                        varupdate = "1";
+                        udfnclose();
+                        //if (btnSave.Text == "Update")
+                        //{
+                        //    varupdate = "1";
+                        //    udfnclear();
 
-                            txtsuppliername.Text = txtName.Text;
-                            txtSupplier.Text = txtName.Text;
-                            txtMappedSupplierName.Text = txtName.Text;
-                        }
-                        else
-                        {
-                            varsupplierID = varvalue[2];
-                        }
-                        if (tcSupplier.SelectedIndex == 1)
-                        {
-                            btnSave.Text = "Update";
-                            btnSaveOrderType.Text = "Update";
-                            txtSupplier.Text = txtName.Text;
-                            txtsuppliername.Text = txtName.Text;
-                            txtMappedSupplierName.Text = txtName.Text;
-                        }
+                        //    txtsuppliername.Text = txtName.Text;
+                        //    txtSupplier.Text = txtName.Text;
+                        //    txtMappedSupplierName.Text = txtName.Text;
+                        //}
+                        //else
+                        //{
+                        //    varsupplierID = varvalue[2];
+                        //}
+                        //if (tcSupplier.SelectedIndex == 1)
+                        //{
+                        //    btnSave.Text = "Update";
+                        //    btnSaveOrderType.Text = "Update";
+                        //    txtSupplier.Text = txtName.Text;
+                        //    txtsuppliername.Text = txtName.Text;
+                        //    txtMappedSupplierName.Text = txtName.Text;
+                        //}
                     }
                     else
                     {
@@ -870,10 +873,14 @@ namespace ROMS
         {
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
+                if (varupdate == "1") { this.Close(); }
+                else
                 {
-                    this.Close();
+                    DialogResult dialogResult = MessageBox.Show("Do you want to Exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -934,7 +941,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (10,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbDesignation, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (8,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnPolicy, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (9,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReturnType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (11,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (12,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPaymentTerm, "", "MST_DisplayText", "MSTID");
@@ -4945,6 +4952,7 @@ namespace ROMS
             try
             {
                 btnMappingsave.Enabled = false;
+                txtmappingproductsearch2.Text = "";
                 if (Convert.ToInt32(grdFinalSupplierMapping.Rows.Count) > 0)
                 {
                     string VarproductId = "", result = "", varoriginator = "";

@@ -191,13 +191,13 @@ namespace ROMS
                             grdRackGroupList.Columns["Description"].Width = 150;
                             grdRackGroupList.Columns["Employee Name"].Width = 150;
                             grdRackGroupList.Columns["TotalProducts"].Width = 150;
-                            grdRackGroupList.Columns["Status"].Width = 80;
 
                             grdRackGroupList.Columns["ID"].Visible = false;
                             grdRackGroupList.Columns["COMID"].Visible = false;
                             grdRackGroupList.Columns["Status ID"].Visible = false;
                             grdRackGroupList.Columns["SL_ShortName"].Visible = false;
                             grdRackGroupList.Columns["StockLocation ID"].Visible = false;
+                            grdRackGroupList.Columns["Status"].Visible = false;
                         }
                         else
                         {

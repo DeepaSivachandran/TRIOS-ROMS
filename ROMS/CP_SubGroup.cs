@@ -200,6 +200,7 @@ namespace ROMS
                 grdRackList.Columns["Column1"].Width = 80;
                 grdRackList.Columns["Rack Name"].Width = 80;
                 grdRackList.Columns["Rack Description"].Width = 270;
+                grdRackList.Columns["RKID"].Visible = false;
                 grdRackList.Columns[0].Width = 30;
                 varStatusid = varStatus;
                 if(varStatusid==1)
@@ -1243,6 +1244,7 @@ namespace ROMS
                     SPDataService objService = new SPDataService();
                     objRackList = objService.udfnRackList(11, 0, 0, Convert.ToInt32(lblLocation.Text), 0, "", 0);
                     objService.CloseConnection();
+                    dtRackList.Rows.Clear();
                     if (objRackList != null)
                     {
                         if (objRackList.Tables.Count > 0)
@@ -1252,6 +1254,7 @@ namespace ROMS
                                 for (int i = 0; i < objRackList.Tables[0].Rows.Count; i++) {
                                     dtRackList.Rows.Add(false,Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Name"]),Convert.ToString(objRackList.Tables[0].Rows[i]["RK_Description"]), Convert.ToInt32(objRackList.Tables[0].Rows[i]["RKID"]));
                                 }
+                                grdRackList.DataSource = null;
                                 grdRackList.DataSource = dtRackList;
                                 grdRackList.Columns["RKID"].Visible = false;
                                 grdRackList.Columns["Column1"].HeaderText = "";

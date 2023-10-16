@@ -219,6 +219,7 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.tbSchedule = new System.Windows.Forms.TabPage();
             this.grpSchedule = new System.Windows.Forms.GroupBox();
+            this.lblOrderDay = new System.Windows.Forms.Label();
             this.txtSearchByProduct2 = new System.Windows.Forms.TextBox();
             this.lblSearchByProduct2 = new System.Windows.Forms.Label();
             this.cmbMappedorderrype = new System.Windows.Forms.ComboBox();
@@ -237,7 +238,6 @@
             this.grdViewSupplierMapping = new System.Windows.Forms.DataGridView();
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lblOrderDay = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -390,7 +390,7 @@
             this.groupBox5.Location = new System.Drawing.Point(589, 58);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(291, 195);
-            this.groupBox5.TabIndex = 17;
+            this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Bank Details";
             // 
@@ -570,7 +570,7 @@
             this.grbEnvelopeDetails.Location = new System.Drawing.Point(21, 334);
             this.grbEnvelopeDetails.Name = "grbEnvelopeDetails";
             this.grbEnvelopeDetails.Size = new System.Drawing.Size(538, 61);
-            this.grbEnvelopeDetails.TabIndex = 13;
+            this.grbEnvelopeDetails.TabIndex = 1;
             this.grbEnvelopeDetails.TabStop = false;
             this.grbEnvelopeDetails.Text = "Details For Envelope";
             // 
@@ -679,7 +679,7 @@
             this.groupBox4.Location = new System.Drawing.Point(21, 396);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(538, 179);
-            this.groupBox4.TabIndex = 15;
+            this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Accounts";
             // 
@@ -944,7 +944,7 @@
             this.grbform.Location = new System.Drawing.Point(21, 58);
             this.grbform.Name = "grbform";
             this.grbform.Size = new System.Drawing.Size(538, 276);
-            this.grbform.TabIndex = 71;
+            this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             this.grbform.Text = "Concern Details";
             this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
@@ -2523,6 +2523,15 @@
             this.grpSchedule.TabIndex = 958809;
             this.grpSchedule.TabStop = false;
             // 
+            // lblOrderDay
+            // 
+            this.lblOrderDay.AutoSize = true;
+            this.lblOrderDay.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrderDay.Location = new System.Drawing.Point(837, 40);
+            this.lblOrderDay.Name = "lblOrderDay";
+            this.lblOrderDay.Size = new System.Drawing.Size(0, 20);
+            this.lblOrderDay.TabIndex = 958825;
+            // 
             // txtSearchByProduct2
             // 
             this.txtSearchByProduct2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2783,15 +2792,6 @@
             this.label3.Size = new System.Drawing.Size(94, 20);
             this.label3.TabIndex = 958804;
             this.label3.Text = "No.of Products :";
-            // 
-            // lblOrderDay
-            // 
-            this.lblOrderDay.AutoSize = true;
-            this.lblOrderDay.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrderDay.Location = new System.Drawing.Point(837, 40);
-            this.lblOrderDay.Name = "lblOrderDay";
-            this.lblOrderDay.Size = new System.Drawing.Size(0, 20);
-            this.lblOrderDay.TabIndex = 958825;
             // 
             // CP_Supplier
             // 

@@ -554,34 +554,34 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                /* Check purchase rack is valid or not*/
-                if (txtPurRack.Text != "")
-                { 
-                    string varId_PurRack = "0";
-                    DataSet objDsPurRack = new DataSet();
-                    SPDataService objDServ4 = new SPDataService();
-                    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtPurRack.Text.Trim(), 0);
-                    objDServ4.CloseConnection();
-                    if (objDsPurRack != null)
-                    {
-                        if (objDsPurRack.Tables.Count > 0)
-                        {
-                            if (objDsPurRack.Tables[0].Rows.Count > 0)
-                            {
-                                varId_PurRack = Convert.ToString(objDsPurRack.Tables[0].Rows[0][0]);
-                            }
-                        }
-                    }
-                    lblPurRackCode.Text = Convert.ToString(varId_PurRack);
-                    if (varId_PurRack == "0" || varId_PurRack == "-1")
-                    {
-                        errItems.SetError(txtPurRack, "Please select valid purchase rack");
-                        txtPurRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tppurchaserack.ShowAlways = true;
-                        tppurchaserack.Show("Please select valid purchase rack", txtPurRack, 5000);
-                        blnErrorFlag = true;
-                    }
-                }
+                ///* Check purchase rack is valid or not*/
+                //if (txtPurRack.Text != "")
+                //{ 
+                //    string varId_PurRack = "0";
+                //    DataSet objDsPurRack = new DataSet();
+                //    SPDataService objDServ4 = new SPDataService();
+                //    objDsPurRack = objDServ4.udfnRackList(9, 0, 0, 0, 0, txtPurRack.Text.Trim(), 0);
+                //    objDServ4.CloseConnection();
+                //    if (objDsPurRack != null)
+                //    {
+                //        if (objDsPurRack.Tables.Count > 0)
+                //        {
+                //            if (objDsPurRack.Tables[0].Rows.Count > 0)
+                //            {
+                //                varId_PurRack = Convert.ToString(objDsPurRack.Tables[0].Rows[0][0]);
+                //            }
+                //        }
+                //    }
+                //    lblPurRackCode.Text = Convert.ToString(varId_PurRack);
+                //    if (varId_PurRack == "0" || varId_PurRack == "-1")
+                //    {
+                //        errItems.SetError(txtPurRack, "Please select valid purchase rack");
+                //        txtPurRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        tppurchaserack.ShowAlways = true;
+                //        tppurchaserack.Show("Please select valid purchase rack", txtPurRack, 5000);
+                //        blnErrorFlag = true;
+                //    }
+                //}
                 /* Check SALES stock location is valid or not*/
                 if (txtSaleLocation.Text != "")
                 {
@@ -2683,7 +2683,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBatchNoGeneration.Focus();
+                    if (cmbBatchNoGeneration.Enabled)
+                    {
+                        cmbBatchNoGeneration.Focus();
+                    }
+                    else { cbExpiry.Focus(); }
                 }
             }
             catch (Exception ex)
