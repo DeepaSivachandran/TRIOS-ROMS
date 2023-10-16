@@ -11,7 +11,7 @@ using System.Security.Cryptography;
 
 namespace ROMS
 {
-    public partial class CP_SL_Verify : Form
+    public partial class CP_Verify : Form
     {
 
         private SecurityController _security;
@@ -26,7 +26,7 @@ namespace ROMS
         public string varUserId = "";
         public string varPasskey = "";
         public int flag = 0;
-        public CP_SL_Verify()
+        public CP_Verify()
         {
             InitializeComponent();
             _security = new SecurityController();
@@ -52,15 +52,11 @@ namespace ROMS
                         if (objDs.Tables[2].Rows.Count > 0)
                         {
                             count = Convert.ToInt32(objDs.Tables[2].Rows[0]["countvalue"]);
-                            if (txtPassKey.Text != "")
+                            if (count != 0)
                             {
-                                if (count != 0)
-                                {
-                                    flag = 1;
-                                    MainForm.objCP_Location.saveflag = 0;
-                                    varUserId = Convert.ToString(objDs.Tables[2].Rows[0]["ID"]);
-                                    this.Close();
-                                }
+                                flag = 1;
+                                varUserId = Convert.ToString(objDs.Tables[2].Rows[0]["ID"]);
+                                this.Close();
                             }
                         }
                         else

@@ -13,6 +13,7 @@ namespace ROMS
     public partial class CP_Supplierlist : Form
     {
         ToolTip tpSupplier = new ToolTip();
+        public string varUserID = "";
 
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -132,18 +133,24 @@ namespace ROMS
                         }
 
                         SPDataService objspdservice = new SPDataService();
-                        result = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "");
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
-                        { 
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
-                            MainForm.objCP_Supplierlist.udfnList();
-                        }
-                        else
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+                        varUserID = MainForm.objCP_Verify.varUserId;
+                        if (MainForm.objCP_Verify.flag == 1)
                         {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            result = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "");
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "3")
+                            {
+                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MainForm.objCP_Supplierlist.udfnList();
+                            }
+                            else
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            objspdservice.CloseConnection();
                         }
-                        objspdservice.CloseConnection();  
                     }
                 }
             }

@@ -860,7 +860,7 @@ namespace ROMS
                     }
                 }
                 SPDataService objDser = new SPDataService();
-                varResult = objDser.udfnBrand(varViewType, varId, Convert.ToString(txtEBrandNameInEnglish.Text).Trim(), Convert.ToString(txtEBrandNameInTamil.Text).Trim(), varStatusid, varSubGroupId, varOriginator);
+                varResult = objDser.udfnBrand(varViewType, varId, Convert.ToString(txtEBrandNameInEnglish.Text).Trim(), Convert.ToString(txtEBrandNameInTamil.Text).Trim(), varStatusid, varSubGroupId, varOriginator,MainForm.pbUserID);
                 objDser.CloseConnection();
                 btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")

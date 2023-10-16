@@ -116,7 +116,7 @@ namespace ROMS
                     varoriginator = "City Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnCity(varType, varCityCode, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, varoriginator);
+                varResult = objspservice.udfnCity(varType, varCityCode, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, varoriginator,MainForm.pbUserID);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")

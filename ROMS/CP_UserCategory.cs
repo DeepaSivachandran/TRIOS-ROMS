@@ -117,7 +117,7 @@ namespace ROMS
                         varoriginator = "UserCategory Updation";
                         varType = 1;
                     }
-                    varResult = objspservice.udfnUserCategory(varType, varUserCategoryCode, (txtCategoryName.Text).Trim(), varstatus, varoriginator);
+                    varResult = objspservice.udfnUserCategory(varType, varUserCategoryCode, (txtCategoryName.Text).Trim(), varstatus, varoriginator,MainForm.pbUserID);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")

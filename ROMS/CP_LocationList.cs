@@ -16,6 +16,7 @@ namespace ROMS
     {
         DataError objError;
         public int varStockApplicable = 0;
+        public string varUserID = "";
         public CP_LocationList()
         {
             InitializeComponent();
@@ -249,20 +250,25 @@ namespace ROMS
                         DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.Yes)
                         {
-
+                            MainForm.objCP_Verify = new CP_Verify();
+                            MainForm.objCP_Verify.ShowDialog();
+                            varUserID = MainForm.objCP_Verify.varUserId;
                             SPDataService objspservice = new SPDataService();
                             varResult = "";
-                            varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete");
-                            objspservice.CloseConnection();
+                            if (MainForm.objCP_Verify.flag == 1)
+                            {
+                                varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete", varUserID);
+                                objspservice.CloseConnection();
 
-                            if (varResult.Split('~')[0] == "3")
-                            {
-                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                udfnList();
-                            }
-                            else
-                            {
-                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                if (varResult.Split('~')[0] == "3")
+                                {
+                                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    udfnList();
+                                }
+                                else
+                                {
+                                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                             }
                         }
                     }

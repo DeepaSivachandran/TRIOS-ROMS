@@ -116,7 +116,7 @@ namespace ROMS
                     varoriginator = "Unit Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnUnit(varType, varUnitCode, (txtEUnitName.Text).Trim(), txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, varoriginator, (txtInvoiceUnit.Text).Trim());
+                varResult = objspservice.udfnUnit(varType, varUnitCode, (txtEUnitName.Text).Trim(), txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, varoriginator, (txtInvoiceUnit.Text).Trim(),MainForm.pbUserID);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")

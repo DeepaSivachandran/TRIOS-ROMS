@@ -491,7 +491,7 @@ namespace ROMS
                     SPDataService objspservice = new SPDataService();
                     string varResult = "", varOriginator = "Password Updation", varPassword = "";
                     varPassword = _security.Encrypt(MainForm.pbUserName.Trim().ToLower(), txtNewPassword.Text.Trim());
-                    varResult = objspservice.udfnUser(3, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, varPassword, 0, 0,"", varOriginator);
+                    varResult = objspservice.udfnUser(3, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, varPassword, 0, 0,"", varOriginator,MainForm.pbUserID);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
@@ -598,7 +598,7 @@ namespace ROMS
                             }
                         }
                     }
-                    varResult = objDser.udfnUser(4, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, "", 0, 0, _security.Encrypt("passkey", varpasskey), varOriginator);
+                    varResult = objDser.udfnUser(4, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, "", 0, 0, _security.Encrypt("passkey", varpasskey), varOriginator,MainForm.pbUserID);
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
                     {

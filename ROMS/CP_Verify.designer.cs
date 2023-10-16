@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_SL_Verify
+    partial class CP_Verify
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_SL_Verify));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Verify));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtDPasskey = new System.Windows.Forms.TextBox();
             this.txtPassKey = new System.Windows.Forms.TextBox();
@@ -48,7 +48,6 @@
             this.txtDPasskey.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDPasskey.Location = new System.Drawing.Point(12, 14);
             this.txtDPasskey.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtDPasskey.MaxLength = 6;
             this.txtDPasskey.Name = "txtDPasskey";
             this.txtDPasskey.ReadOnly = true;
             this.txtDPasskey.Size = new System.Drawing.Size(62, 28);
@@ -60,11 +59,11 @@
             this.txtPassKey.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassKey.Location = new System.Drawing.Point(74, 14);
             this.txtPassKey.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtPassKey.MaxLength = 50;
+            this.txtPassKey.MaxLength = 6;
             this.txtPassKey.Name = "txtPassKey";
             this.txtPassKey.PasswordChar = '*';
             this.txtPassKey.Size = new System.Drawing.Size(174, 28);
-            this.txtPassKey.TabIndex = 8;
+            this.txtPassKey.TabIndex = 0;
             this.txtPassKey.Enter += new System.EventHandler(this.TxtPassKey_Enter);
             this.txtPassKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPassKey_KeyDown);
             this.txtPassKey.Leave += new System.EventHandler(this.TxtPassKey_Leave);
@@ -78,7 +77,7 @@
             this.btnAuthorise.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnAuthorise.Name = "btnAuthorise";
             this.btnAuthorise.Size = new System.Drawing.Size(93, 33);
-            this.btnAuthorise.TabIndex = 9;
+            this.btnAuthorise.TabIndex = 1;
             this.btnAuthorise.Text = "Authorize";
             this.btnAuthorise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAuthorise.UseVisualStyleBackColor = true;
@@ -87,7 +86,7 @@
             this.btnAuthorise.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAuthorise_KeyDown);
             this.btnAuthorise.Leave += new System.EventHandler(this.BtnAuthorise_Leave);
             // 
-            // CP_SL_Verify
+            // CP_Verify
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -103,7 +102,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CP_SL_Verify";
+            this.Name = "CP_Verify";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Please Enter Passkey to Proceed";
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();

@@ -224,7 +224,7 @@ namespace ROMS
                 {
                     varEmpID = "0";
                 }
-                varResult = objspservice.udfnEmployee(varViewType, Convert.ToInt32( varEmpID), (txtEmpCode.Text).Trim(), (txtEmpName.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), varstatus, varoriginator);
+                varResult = objspservice.udfnEmployee(varViewType, Convert.ToInt32( varEmpID), (txtEmpCode.Text).Trim(), (txtEmpName.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), varstatus, varoriginator,MainForm.pbUserID);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")

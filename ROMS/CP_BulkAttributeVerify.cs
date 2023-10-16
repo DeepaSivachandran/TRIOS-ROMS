@@ -90,16 +90,16 @@ namespace ROMS
                                 varUserId = Convert.ToString(objDs.Tables[2].Rows[0]["ID"]);
                                 this.Close();
                             }
-                            else if (count == 0)
-                            {
-                                //DialogResult response = MessageBox.Show(Convert.ToString(objDs.Tables[1].Rows[0]["MessageText"]), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
-                                SPDataService objDServ = new SPDataService();
-                                string varMessage = objDServ.udfnGetMessages(66);
-                                objDServ.CloseConnection();
-                                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                txtPassKey.Text = "";
-                                txtPassKey.Focus();
-                            }
+                        }
+                        else
+                        {
+                            //DialogResult response = MessageBox.Show(Convert.ToString(objDs.Tables[1].Rows[0]["MessageText"]), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(66);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            txtPassKey.Text = "";
+                            txtPassKey.Focus();
                         }
                     }
                 }

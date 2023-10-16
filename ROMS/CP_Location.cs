@@ -29,6 +29,7 @@ namespace ROMS
         public string PbLocationTName = "";
         public string PbLocationSName = "";
         public string PbStockApplicable = "";
+        public string varUserID = "";
         public int PbConcernID = 0;
         public int PbLocationTypeID=0;
         public int PbStockApplicableID = 0;
@@ -294,11 +295,15 @@ namespace ROMS
                     MainForm.objCP_SL_Verify = new CP_SL_Verify();
                     MainForm.objCP_SL_Verify.ShowDialog();
                     varVerify = MainForm.objCP_SL_Verify.flag;
-                   
+                    varUserID = MainForm.objCP_SL_Verify.varUserId;
+                }
+                else
+                {
+                    varUserID = MainForm.pbUserID;
                 }
                 if (saveflag == 0)
                 {
-                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator);
+                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator, MainForm.pbUserID);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
