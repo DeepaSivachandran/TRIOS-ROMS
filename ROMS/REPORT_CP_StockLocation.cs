@@ -286,12 +286,14 @@ namespace ROMS
                     txtLocation.Enabled = false; txtLocation.Text = "";
                     cmbLocationType.Enabled = false;cmbLocationType.SelectedValue = 0;
                     cmbGodownType.Enabled = false;cmbGodownType.SelectedValue = 0;
+                    cmbStatus.SelectedValue = 0;
                 }
                 if(cmbReportType.SelectedIndex==2)
                 {
                     txtLocation.Enabled = true; txtLocation.Text = "";
                     cmbLocationType.Enabled = true; cmbLocationType.SelectedValue = 0;
                     cmbGodownType.Enabled = true; cmbGodownType.SelectedValue = 0;
+                    cmbStatus.SelectedValue = 0;
                 }
             }
             catch (Exception ex)

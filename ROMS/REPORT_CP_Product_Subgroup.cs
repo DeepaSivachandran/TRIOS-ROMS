@@ -446,9 +446,6 @@ namespace ROMS
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
-                    txtGroup.Text = "";
-                    txtSubGroup.Text = "";
-                    txtBrand.Text = "";
                 }
                 else
                 {
@@ -479,18 +476,21 @@ namespace ROMS
                     txtBrand.Enabled = false; txtBrand.Text = "";
                     txtGroup.Enabled = true;txtGroup.Text = "";
                     txtSubGroup.Enabled = false;txtSubGroup.Text = "";
+                    cmbStatus.SelectedValue = 0;
                 }
                 if(cmbReportType.SelectedIndex==2)
                 {
                     txtBrand.Enabled = false; txtBrand.Text = "";
                     txtGroup.Enabled = true; txtGroup.Text = "";
                     txtSubGroup.Enabled = false; txtSubGroup.Text = "";
+                    cmbStatus.SelectedValue = 0;
                 }
                 if(cmbReportType.SelectedIndex==3)
                 {
                     txtBrand.Enabled = true;txtBrand.Text = "";
                     txtGroup.Enabled = true;txtGroup.Text = "";
                     txtSubGroup.Enabled = true;txtSubGroup.Text = "";
+                    cmbStatus.SelectedValue = 0;
                 }
             }
             catch (Exception ex)

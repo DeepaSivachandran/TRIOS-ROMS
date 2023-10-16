@@ -213,6 +213,7 @@ namespace ROMS
                         }
                     }
                     HSNID = Convert.ToInt32(varId_HSN);
+                    HSNName = txtHsnName.Text.Trim();
                 }
 
                 btnListPrint.Enabled = false;

@@ -136,9 +136,11 @@ namespace ROMS
             try
             {
                 int CityId = 0;
+                string CityName = "";
                 if(txtCity.Text=="")
                 {
                     CityId = 0;
+                    CityName = "-All-";
                 }
                 else
                 {
@@ -158,6 +160,7 @@ namespace ROMS
                         }
                     }
                     CityId = Convert.ToInt32(VarCity);
+                    CityName = txtCity.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -182,10 +185,15 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Supplier.rpt");
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraStateId", Convert.ToInt32(cmbState.SelectedValue));
+                    objBillreport.SetParameterValue("paraStateName", Convert.ToString(cmbState.Text));
                     objBillreport.SetParameterValue("paraGstType", Convert.ToInt32(cmbSupplierType.SelectedValue));
+                    objBillreport.SetParameterValue("paraGSTTypeName", Convert.ToString(cmbSupplierType.Text));
                     objBillreport.SetParameterValue("paraPaymentTerm", Convert.ToInt32(cmbPaymentTerm.SelectedValue));
+                    objBillreport.SetParameterValue("parapaymentTermName", Convert.ToString(cmbPaymentTerm.Text));
                     objBillreport.SetParameterValue("paraCityId", Convert.ToInt32(CityId));
+                    objBillreport.SetParameterValue("paraCityName", Convert.ToString(CityName));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -209,6 +217,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -217,9 +226,11 @@ namespace ROMS
             try
             {
                 int CityId = 0;
+                string CityName = "";
                 if (txtCity.Text == "")
                 {
                     CityId = 0;
+                    CityName = "-All-";
                 }
                 else
                 {
@@ -239,6 +250,7 @@ namespace ROMS
                         }
                     }
                     CityId = Convert.ToInt32(VarCity);
+                    CityName = txtCity.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -263,8 +275,11 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Supplier_Address.rpt");
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraStateId", Convert.ToInt32(cmbState.SelectedValue));
+                    objBillreport.SetParameterValue("paraStateName", Convert.ToString(cmbState.Text));
                     objBillreport.SetParameterValue("paraCityId", Convert.ToInt32(CityId));
+                    objBillreport.SetParameterValue("paraCityName", Convert.ToString(CityName));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -288,6 +303,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -296,9 +312,11 @@ namespace ROMS
             try
             {
                 int CityId = 0;
+                string CityName = "";
                 if (txtCity.Text == "")
                 {
                     CityId = 0;
+                    CityName="-All-";
                 }
                 else
                 {
@@ -318,6 +336,7 @@ namespace ROMS
                         }
                     }
                     CityId = Convert.ToInt32(VarCity);
+                    CityName = txtCity.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -342,8 +361,11 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Supplier_Contact.rpt");
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraStateId", Convert.ToInt32(cmbState.SelectedValue));
+                    objBillreport.SetParameterValue("paraStateName", Convert.ToString(cmbState.Text));
                     objBillreport.SetParameterValue("paraCityId", Convert.ToInt32(CityId));
+                    objBillreport.SetParameterValue("paraCityName", Convert.ToString(CityName));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -367,6 +389,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -375,9 +398,11 @@ namespace ROMS
             try
             {
                 int CityId = 0;
+                string CityName = "";
                 if (txtCity.Text == "")
                 {
                     CityId = 0;
+                    CityName = "-All-";
                 }
                 else
                 {
@@ -397,6 +422,7 @@ namespace ROMS
                         }
                     }
                     CityId = Convert.ToInt32(VarCity);
+                    CityName = txtCity.Text.Trim();
                 }
                 btnListPrint.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -421,9 +447,13 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Supplier_PO_Details.rpt");
                     objBillreport.SetParameterValue("paraStateId", Convert.ToInt32(cmbState.SelectedValue));
+                    objBillreport.SetParameterValue("paraStateName", Convert.ToString(cmbState.Text));
                     objBillreport.SetParameterValue("paraordertype", Convert.ToInt32(cmbOrderType.SelectedValue));
+                    objBillreport.SetParameterValue("paraOrderTypeName", Convert.ToString(cmbOrderType.Text));
                     objBillreport.SetParameterValue("paraReturnPolicy", Convert.ToInt32(cmbReturnPolicy.SelectedValue));
+                    objBillreport.SetParameterValue("paraReturnPolicyName", Convert.ToString(cmbReturnPolicy.Text));
                     objBillreport.SetParameterValue("paraCityId", Convert.ToInt32(CityId));
+                    objBillreport.SetParameterValue("paraCityName", Convert.ToString(CityName));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -447,6 +477,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }

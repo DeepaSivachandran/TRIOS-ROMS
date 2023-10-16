@@ -74,6 +74,7 @@
             // pnlReportCity
             // 
             this.pnlReportCity.BackColor = System.Drawing.Color.White;
+            this.pnlReportCity.Controls.Add(this.btnListPrint);
             this.pnlReportCity.Controls.Add(this.grpfilter);
             this.pnlReportCity.Controls.Add(this.lblNoRecordsFound);
             this.pnlReportCity.Controls.Add(this.picLoader);
@@ -85,22 +86,22 @@
             // 
             // grpfilter
             // 
-            this.grpfilter.Controls.Add(this.btnListPrint);
             this.grpfilter.Controls.Add(this.cmbStatus);
             this.grpfilter.Controls.Add(this.lblStatus);
-            this.grpfilter.Location = new System.Drawing.Point(3, 2);
+            this.grpfilter.Location = new System.Drawing.Point(3, 3);
             this.grpfilter.Name = "grpfilter";
             this.grpfilter.Size = new System.Drawing.Size(1348, 58);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            this.grpfilter.Visible = false;
             // 
             // btnListPrint
             // 
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(189, 18);
+            this.btnListPrint.Location = new System.Drawing.Point(12, 20);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(75, 29);
@@ -119,6 +120,7 @@
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(126, 27);
             this.cmbStatus.TabIndex = 0;
+            this.cmbStatus.Visible = false;
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.CmbStatus_SelectedIndexChanged);
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
@@ -134,6 +136,7 @@
             this.lblStatus.Size = new System.Drawing.Size(45, 20);
             this.lblStatus.TabIndex = 1111176;
             this.lblStatus.Text = "Status";
+            this.lblStatus.Visible = false;
             // 
             // lblNoRecordsFound
             // 
