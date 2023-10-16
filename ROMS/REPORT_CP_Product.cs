@@ -583,7 +583,7 @@ namespace ROMS
         {
             try
             {
-                lvBrand.Visible = false;
+                //lvBrand.Visible = false;
                 txtSubGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -663,7 +663,7 @@ namespace ROMS
                                     objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
                                     lvSubGroup.Columns[0].Width = 200;
                                     lvSubGroup.Columns[1].Width = 200;
-                                    lvSubGroup.Columns[2].Width = 200;
+                                    lvSubGroup.Columns[2].Width = 0;
                                     lvSubGroup.Items.Add(objList);
                                 }
                                 lvSubGroup.Visible = true;
@@ -746,7 +746,7 @@ namespace ROMS
             try
             {
                 txtGroup.BackColor = Color.LemonChiffon;
-                lvBrand.Visible = false;
+                //lvBrand.Visible = false;
             }
             catch (Exception ex)
             {
@@ -921,7 +921,7 @@ namespace ROMS
         {
             try
             {
-                txtBrand.BackColor = Color.LemonChiffon;
+                //txtBrand.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -930,151 +930,151 @@ namespace ROMS
             }
         }
 
-        private void TxtBrand_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
-                {
-                    if (lvBrand.Items.Count == 0 || txtBrand.Text == "")
-                    {
-                        txtBrand.Focus();
-                        lvBrand.Visible = false;
-                    }
-                    else
-                    {
-                        lvBrand.Focus();
-                    }
-                    if (lvBrand.Items.Count > 0)
-                    {
-                        lvBrand.Items[0].Selected = true;
-                    }
-                }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    if (txtGroup.Enabled == true)
-                    {
-                        txtGroup.Focus();
-                    }
-                    else
-                    {
-                        cmbStatus.Focus();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        //private void TxtBrand_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+        //        {
+        //            if (lvBrand.Items.Count == 0 || txtBrand.Text == "")
+        //            {
+        //                txtBrand.Focus();
+        //                lvBrand.Visible = false;
+        //            }
+        //            else
+        //            {
+        //                lvBrand.Focus();
+        //            }
+        //            if (lvBrand.Items.Count > 0)
+        //            {
+        //                lvBrand.Items[0].Selected = true;
+        //            }
+        //        }
+        //        if (e.KeyCode == Keys.Enter)
+        //        {
+        //            if (txtGroup.Enabled == true)
+        //            {
+        //                txtGroup.Focus();
+        //            }
+        //            else
+        //            {
+        //                cmbStatus.Focus();
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
 
-        private void TxtBrand_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtBrand.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        //private void TxtBrand_Leave(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        txtBrand.BackColor = Color.White;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
 
-        private void TxtBrand_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                lvBrand.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
-                if (txtBrand.Text.Length > 0)
-                {
-                    objDs = objspdservice.udfnBrandList(6, "0", 0, 0, 0, txtBrand.Text.Trim(),0);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
-                    {
-                        if (objDs.Tables.Count != 0)
-                        {
-                            if (objDs.Tables[0].Rows.Count != 0)
-                            {
-                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                {
-                                    string[] row = { objDs.Tables[0].Rows[i]["BD_EName"].ToString(), objDs.Tables[0].Rows[i]["BD_TName"].ToString(), objDs.Tables[0].Rows[i]["BDID"].ToString() };
-                                    ListViewItem objList = new ListViewItem(row);
-                                    objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
-                                    lvBrand.Columns[0].Width = 200;
-                                    lvBrand.Columns[1].Width = 200;
-                                    lvBrand.Columns[2].Width = 0;
-                                    lvBrand.Items.Add(objList);
-                                }
-                                lvBrand.Visible = true;
-                                lvBrand.BringToFront();
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    lvBrand.Visible = false;
-                    lvBrand.Items.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
+        //private void TxtBrand_TextChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        lvBrand.Items.Clear();
+        //        SPDataService objspdservice = new SPDataService();
+        //        DataSet objDs = new DataSet();
+        //        if (txtBrand.Text.Length > 0)
+        //        {
+        //            objDs = objspdservice.udfnBrandList(6, "0", 0, 0, 0, txtBrand.Text.Trim(),0);
+        //            objspdservice.CloseConnection();
+        //            if (objDs != null)
+        //            {
+        //                if (objDs.Tables.Count != 0)
+        //                {
+        //                    if (objDs.Tables[0].Rows.Count != 0)
+        //                    {
+        //                        for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+        //                        {
+        //                            string[] row = { objDs.Tables[0].Rows[i]["BD_EName"].ToString(), objDs.Tables[0].Rows[i]["BD_TName"].ToString(), objDs.Tables[0].Rows[i]["BDID"].ToString() };
+        //                            ListViewItem objList = new ListViewItem(row);
+        //                            objList.UseItemStyleForSubItems = false;
+        //                            objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+        //                            lvBrand.Columns[0].Width = 200;
+        //                            lvBrand.Columns[1].Width = 200;
+        //                            lvBrand.Columns[2].Width = 0;
+        //                            lvBrand.Items.Add(objList);
+        //                        }
+        //                        lvBrand.Visible = true;
+        //                        lvBrand.BringToFront();
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            lvBrand.Visible = false;
+        //            lvBrand.Items.Clear();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //    finally
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
-        private void LvBrand_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    udfnBrandAutocomplete();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        //private void LvBrand_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (e.KeyCode == Keys.Enter)
+        //        {
+        //            udfnBrandAutocomplete();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
 
-        private void LvBrand_DoubleClick(object sender, EventArgs e)
-        {
-            udfnBrandAutocomplete();
-        }
-        public void udfnBrandAutocomplete()
-        {
-            try
-            {
-                if (txtBrand.Text != "")
-                {
-                    ListViewItem selectedItem = lvBrand.SelectedItems[0];
-                    txtBrand.Text = selectedItem.SubItems[0].Text;
-                    lblBrandCode.Text = selectedItem.SubItems[2].Text;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                txtGroup.Focus();
-                lvBrand.Visible = false;
-            }
-        }
+        //private void LvBrand_DoubleClick(object sender, EventArgs e)
+        //{
+        //    udfnBrandAutocomplete();
+        //}
+        //public void udfnBrandAutocomplete()
+        //{
+        //    try
+        //    {
+        //        if (txtBrand.Text != "")
+        //        {
+        //            ListViewItem selectedItem = lvBrand.SelectedItems[0];
+        //            txtBrand.Text = selectedItem.SubItems[0].Text;
+        //            lblBrandCode.Text = selectedItem.SubItems[2].Text;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //    finally
+        //    {
+        //        txtGroup.Focus();
+        //        lvBrand.Visible = false;
+        //    }
+        //}
 
         private void REPORT_CP_Brand_KeyDown(object sender, KeyEventArgs e)
         {
