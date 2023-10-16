@@ -167,6 +167,7 @@ namespace ROMS
         public static REPORT_CP_Rack objREPORT_CP_Rack;
         public static REPORT_CP_Rackgroup objREPORT_CP_Rackgroup;
         public static REPORT_CP_Supplier objREPORT_CP_Supplier;
+        public static REPORT_CP_Product objREPORT_CP_Product;
 
 
         public static CP_Verify objCP_Verify;
@@ -1445,6 +1446,23 @@ namespace ROMS
                 MainForm.objREPORT_CP_Supplier = new REPORT_CP_Supplier();
                 MainForm.objREPORT_CP_Supplier.MdiParent = this;
                 MainForm.objREPORT_CP_Supplier.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ProductToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_Product = new REPORT_CP_Product();
+                MainForm.objREPORT_CP_Product.MdiParent = this;
+                MainForm.objREPORT_CP_Product.Show();
             }
             catch (Exception ex)
             {

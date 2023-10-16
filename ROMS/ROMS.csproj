@@ -389,6 +389,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="REPORT_CP_Product.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_CP_Product.designer.cs">
+      <DependentUpon>REPORT_CP_Product.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_CP_Rackgroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1641,6 +1647,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_SupplierProductList.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_CP_Product.resx">
+      <DependentUpon>REPORT_CP_Product.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_Rackgroup.resx">
       <DependentUpon>REPORT_CP_Rackgroup.cs</DependentUpon>
