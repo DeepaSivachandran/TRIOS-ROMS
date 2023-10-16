@@ -157,7 +157,7 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
-                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.ValueMember = "COMID"; 
                             cmbConcern.DisplayMember = "COM_ShortName";
                             cmbConcern.DataSource = objDs.Tables[0];
                         }
