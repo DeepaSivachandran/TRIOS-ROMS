@@ -2432,7 +2432,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void CmbProductCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -5003,8 +5002,8 @@ namespace ROMS
                             txtWSaleRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WSALERATE"].ToString().Replace("''", "'"));
                             txtBarcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["BARCODE"].ToString().Replace("''", "'"));
                             lblHsnName.Text = objDS.Tables[0].Rows[0]["HSN"].ToString();
-                            txtHsnName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Name"]);
-                            txtHSNCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Code"]);
+                            txtHsnName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Name"].ToString().Replace("''", "'"));
+                            txtHSNCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Code"].ToString().Replace("''", "'"));
                             cmbGst.SelectedValue = objDS.Tables[0].Rows[0]["GSTID"].ToString();
                             cmbNetQty.SelectedValue = objDS.Tables[0].Rows[0]["PR_QUTID"].ToString();
 
