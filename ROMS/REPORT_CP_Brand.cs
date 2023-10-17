@@ -185,6 +185,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -255,7 +256,6 @@ namespace ROMS
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
-                    txtBrand.Text = "";
                 }
                 else
                 {
@@ -272,6 +272,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -412,9 +413,6 @@ namespace ROMS
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
-                    txtGroup.Text = "";
-                    txtSubGroup.Text = "";
-                    txtBrand.Text = "";
                 }
                 else
                 {
@@ -431,6 +429,7 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnListPrint.Enabled = true;
+                btnListPrint.Focus();
                 GC.Collect();
             }
         }
@@ -444,18 +443,21 @@ namespace ROMS
                     txtBrand.Enabled = true; txtBrand.Text = "";
                     txtGroup.Enabled = false;txtGroup.Text = "";
                     txtSubGroup.Enabled = false;txtSubGroup.Text = "";
+                    cmbStatus.SelectedValue = 0;
                 }
                 if(cmbReportType.SelectedIndex==2)
                 {
                     txtBrand.Enabled = true; txtBrand.Text = "";
                     txtGroup.Enabled = true; txtGroup.Text = "";
                     txtSubGroup.Enabled = true; txtSubGroup.Text = "";
+                    cmbStatus.SelectedValue = 0;
                 }
                 if(cmbReportType.SelectedIndex==3)
                 {
                     txtBrand.Enabled = false;txtBrand.Text = "";
                     txtGroup.Enabled = false;txtGroup.Text = "";
                     txtSubGroup.Enabled = false;txtSubGroup.Text = "";
+                    cmbStatus.SelectedValue = 0;
                 }
             }
             catch (Exception ex)
@@ -599,7 +601,11 @@ namespace ROMS
         {
             try
             {
-                    txtSubGroup.BackColor = Color.White;
+                txtSubGroup.BackColor = Color.White;
+                if(txtSubGroup.Text=="")
+                {
+                    lblSubGroupCode.Text = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -617,7 +623,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSubGroup.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnSubGroupList(8, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDs = objspdservice.udfnSubGroupList(9, 0, "", Convert.ToInt32(lblGroupCode.Text), 0, txtSubGroup.Text, 0, 0, 0, 0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -627,16 +633,31 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 10.75F);
+                                    lvSubGroup.Columns[0].Width = 200;
+                                    lvSubGroup.Columns[1].Width = 200;
+                                    lvSubGroup.Columns[2].Width = 200;
                                     lvSubGroup.Items.Add(objList);
                                 }
                                 lvSubGroup.Visible = true;
                                 lvSubGroup.BringToFront();
                             }
+                            else
+                            {
+                                lvSubGroup.Visible = false;
+                            }
                         }
+                        else
+                        {
+                            lvSubGroup.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvSubGroup.Visible = false;
                     }
                 }
                 else
@@ -749,6 +770,10 @@ namespace ROMS
             try
             {
                     txtGroup.BackColor = Color.White;
+                if(txtGroup.Text=="")
+                {
+                    lblGroupCode.Text = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -902,6 +927,10 @@ namespace ROMS
             try
             {
                 txtBrand.BackColor = Color.White;
+                if(txtBrand.Text=="")
+                {
+                    lblBrandCode.Text = "0";
+                }
             }
             catch (Exception ex)
             {

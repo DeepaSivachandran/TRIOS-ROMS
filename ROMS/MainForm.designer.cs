@@ -631,12 +631,12 @@ namespace ROMS
             this.companyToolStripMenuItem,
             this.hSNToolStripMenuItem,
             this.productGroupToolStripMenuItem,
-            this.brokerToolStripMenuItem,
-            this.brandToolStripMenuItem,
             this.productSubgroupToolStripMenuItem,
+            this.brandToolStripMenuItem,
             this.stockLocationToolStripMenuItem,
             this.rackToolStripMenuItem,
             this.rackGroupToolStripMenuItem,
+            this.brokerToolStripMenuItem,
             this.supplierToolStripMenuItem,
             this.productToolStripMenuItem});
             this.mastersToolStripMenuItem1.Name = "mastersToolStripMenuItem1";
