@@ -65,7 +65,6 @@ namespace ROMS
         {
             try
             {
-                //lvBrand.Visible = false;
                 lvGroup.Visible = false;
                 lvSubGroup.Visible = false;
                 cmbStatus.BackColor = Color.LemonChiffon;
@@ -112,7 +111,7 @@ namespace ROMS
                 {
                     lvGroup.Visible = false;
                     lvSubGroup.Visible = false;
-                    
+
                     if (cmbReportType.SelectedIndex == 1)
                     {
                         udfnProductGST();
@@ -147,6 +146,128 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+        public void udfnProductGST()
+        {
+            try
+            {
+                /* Check product group is valid or not*/
+                string varId_Group = "0";
+                string varGroupName = "";
+                if (txtGroup.Text == "")
+                {
+                    varId_Group = "0";
+                    varGroupName = "-All-";
+                }
+                else
+                {
+                    DataSet objDsGroup = new DataSet();
+                    SPDataService objDServ1 = new SPDataService();
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim(), 0);
+                    objDServ1.CloseConnection();
+                    if (objDsGroup != null)
+                    {
+                        if (objDsGroup.Tables.Count > 0)
+                        {
+                            if (objDsGroup.Tables[0].Rows.Count > 0)
+                            {
+                                varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                }
+                if (varId_Group == "-1" || varId_Group == "0")
+                {
+                    varGroupName = "-All-";
+                }
+                else { varGroupName = txtGroup.Text.Trim(); }
+                lblGroupCode.Text = Convert.ToString(varId_Group);
+
+                /* Check product sub group is valid or not*/
+                string varId_SubGroup = "0";
+                string varSubgroupName = "";
+                if (txtSubGroup.Text == "")
+                {
+                    varId_SubGroup = "0";
+                    varSubgroupName = "-All-";
+                }
+                else
+                {
+                    DataSet objDssubgroup = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
+                    objDserv.CloseConnection();
+                    if (objDssubgroup != null)
+                    {
+                        if (objDssubgroup.Tables.Count > 0)
+                        {
+                            if (objDssubgroup.Tables[0].Rows.Count > 0)
+                            {
+                                varId_SubGroup = Convert.ToString(objDssubgroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                }
+                if (varId_SubGroup == "-1" || varId_SubGroup == "0")
+                {
+                    varSubgroupName = "-All-";
+                }
+                else { varSubgroupName = txtSubGroup.Text.Trim(); }
+                lblSubGroupCode.Text = Convert.ToString(varId_SubGroup);
+
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterlist(25, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_GST.rpt");
+                    objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
+                    objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
+                    objBillreport.SetParameterValue("paraSubgroupId", Convert.ToInt32(lblSubGroupCode.Text));
+                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToString(varSubgroupName));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                btnListPrint.Focus();
+                GC.Collect();
             }
         }
         public void udfnProductRate()
@@ -244,129 +365,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
                     objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
                     objBillreport.SetParameterValue("paraSubgroupId", Convert.ToInt32(lblSubGroupCode.Text));
-                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToInt32(varSubgroupName));
-                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
-                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
-                btnListPrint.Enabled = true;
-                btnListPrint.Focus();
-                GC.Collect();
-            }
-        }
-        public void udfnProductGST()
-        {
-            try
-            {
-                /* Check product group is valid or not*/
-                string varId_Group = "0";
-                string varGroupName = "";
-                if (txtGroup.Text == "")
-                {
-                    varId_Group = "0";
-                    varGroupName = "-All-";
-                }
-                else
-                {
-                    DataSet objDsGroup = new DataSet();
-                    SPDataService objDServ1 = new SPDataService();
-                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim(), 0);
-                    objDServ1.CloseConnection();
-                    if (objDsGroup != null)
-                    {
-                        if (objDsGroup.Tables.Count > 0)
-                        {
-                            if (objDsGroup.Tables[0].Rows.Count > 0)
-                            {
-                                varId_Group = Convert.ToString(objDsGroup.Tables[0].Rows[0][0]);
-                            }
-                        }
-                    }
-                }
-                if (varId_Group == "-1" || varId_Group == "0")
-                {
-                    varGroupName = "-All-";
-                }
-                else { varGroupName = txtGroup.Text.Trim(); }
-                lblGroupCode.Text = Convert.ToString(varId_Group);
-
-                /* Check product sub group is valid or not*/
-                string varId_SubGroup = "0";
-                string varSubgroupName = "";
-                if (txtSubGroup.Text == "")
-                {
-                    varId_SubGroup = "0";
-                    varSubgroupName = "-All-";
-                }
-                else
-                {
-                    DataSet objDssubgroup = new DataSet();
-                    SPDataService objDserv = new SPDataService();
-                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtSubGroup.Text.Trim(), 0, 0, 0, 0);
-                    objDserv.CloseConnection();
-                    if (objDssubgroup != null)
-                    {
-                        if (objDssubgroup.Tables.Count > 0)
-                        {
-                            if (objDssubgroup.Tables[0].Rows.Count > 0)
-                            {
-                                varId_SubGroup = Convert.ToString(objDssubgroup.Tables[0].Rows[0][0]);
-                            }
-                        }
-                    }
-                }
-                if (varId_SubGroup == "-1" || varId_SubGroup == "0")
-                {
-                    varSubgroupName = "-All-";
-                }
-                else { varSubgroupName = txtSubGroup.Text.Trim(); }
-                lblSubGroupCode.Text = Convert.ToString(varId_SubGroup);
-
-                lblNoRecordsFound.Visible = false;
-                picLoader.Visible = true;
-                RPTViewer.Visible = false;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                int varPrint = 0;
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(25,0,0,Convert.ToInt32(lblGroupCode.Text),Convert.ToInt32(lblSubGroupCode.Text),"","","",0,Convert.ToInt32(cmbStatus.SelectedValue),0,0,0,0,0,0,0,0,0,0,0);
-                objspservice.CloseConnection();
-                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                if (varPrint == 1)
-                {
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_GST.rpt");
-                    objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
-                    objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
-                    objBillreport.SetParameterValue("paraSubgroupId", Convert.ToInt32(lblSubGroupCode.Text));
-                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToInt32(varSubgroupName));
+                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToString(varSubgroupName));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -407,7 +406,7 @@ namespace ROMS
                 if (txtSubGroup.Text == "")
                 {
                     varId_SubGroup = "0";
-                   varSubgroupName = "-All-";
+                    varSubgroupName = "-All-";
                 }
                 else
                 {
@@ -445,7 +444,7 @@ namespace ROMS
                 {
                     DataSet objDsGroup = new DataSet();
                     SPDataService objDServ1 = new SPDataService();
-                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim(),0);
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtGroup.Text.Trim(), 0);
                     objDServ1.CloseConnection();
                     if (objDsGroup != null)
                     {
@@ -489,7 +488,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
                     objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
                     objBillreport.SetParameterValue("paraSubgroupId", Convert.ToInt32(lblSubGroupCode.Text));
-                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToInt32(varSubgroupName));
+                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToString(varSubgroupName));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -596,7 +595,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(27, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                objDs = objspservice.udfnproductmasterlist(28, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -608,11 +607,11 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Default_Stock.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Stock_Shelflife.rpt");
                     objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
                     objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
                     objBillreport.SetParameterValue("paraSubgroupId", Convert.ToInt32(lblSubGroupCode.Text));
-                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToInt32(varSubgroupName));
+                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToString(varSubgroupName));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -719,7 +718,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(27, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                objDs = objspservice.udfnproductmasterlist(30, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -731,11 +730,11 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Default_Stock.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Stock_Nett_Gross.rpt");
                     objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
                     objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
                     objBillreport.SetParameterValue("paraSubgroupId", Convert.ToInt32(lblSubGroupCode.Text));
-                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToInt32(varSubgroupName));
+                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToString(varSubgroupName));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -842,7 +841,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(27, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                objDs = objspservice.udfnproductmasterlist(31, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -854,11 +853,11 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Default_Stock.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Subgroup_Group_Brand.rpt");
                     objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
                     objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
                     objBillreport.SetParameterValue("paraSubgroupId", Convert.ToInt32(lblSubGroupCode.Text));
-                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToInt32(varSubgroupName));
+                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToString(varSubgroupName));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -965,7 +964,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(27, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                objDs = objspservice.udfnproductmasterlist(32, 0, 0, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -977,11 +976,11 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Default_Stock.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Min_Sales_Qty.rpt");
                     objBillreport.SetParameterValue("paraGroupId", Convert.ToInt32(lblGroupCode.Text));
                     objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
                     objBillreport.SetParameterValue("paraSubgroupId", Convert.ToInt32(lblSubGroupCode.Text));
-                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToInt32(varSubgroupName));
+                    objBillreport.SetParameterValue("paraSubgroupName", Convert.ToString(varSubgroupName));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -1016,23 +1015,33 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
-                if(cmbReportType.SelectedIndex==1)
+                if (cmbReportType.SelectedIndex == 1)
                 {
-                   // txtBrand.Enabled = false; txtBrand.Text = "";
-                    txtGroup.Enabled = true;txtGroup.Text = "";
-                    txtSubGroup.Enabled = false;txtSubGroup.Text = "";
+                    udfnClear();
                 }
-                if(cmbReportType.SelectedIndex==2)
+                if (cmbReportType.SelectedIndex == 2)
                 {
-                    //txtBrand.Enabled = false; txtBrand.Text = "";
-                    txtGroup.Enabled = true; txtGroup.Text = "";
-                    txtSubGroup.Enabled = false; txtSubGroup.Text = "";
+                    udfnClear();
                 }
-                if(cmbReportType.SelectedIndex==3)
+                if (cmbReportType.SelectedIndex == 3)
                 {
-                    //txtBrand.Enabled = true;txtBrand.Text = "";
-                    txtGroup.Enabled = true;txtGroup.Text = "";
-                    txtSubGroup.Enabled = true;txtSubGroup.Text = "";
+                    udfnClear();
+                }
+                if (cmbReportType.SelectedIndex == 4)
+                {
+                    udfnClear();
+                }
+                if (cmbReportType.SelectedIndex == 5)
+                {
+                    udfnClear();
+                }
+                if (cmbReportType.SelectedIndex == 6)
+                {
+                    udfnClear();
+                }
+                if (cmbReportType.SelectedIndex == 7)
+                {
+                    udfnClear();
                 }
             }
             catch (Exception ex)
@@ -1041,6 +1050,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnClear()
+        {
+            txtGroup.Text = "";
+            txtSubGroup.Text = "";
+            cmbStatus.SelectedValue = 0;
+        }
         private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1048,14 +1063,6 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     txtGroup.Focus();
-                    //if (txtBrand.Enabled == true)
-                    //{
-                    //    txtBrand.Focus();
-                    //}
-                    //else
-                    //{
-                    //    txtGroup.Focus();
-                    //}
                 }
             }
             catch (Exception ex)
@@ -1129,7 +1136,7 @@ namespace ROMS
         {
             try
             {
-                //lvBrand.Visible = false;
+                lvGroup.Visible = false;
                 txtSubGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
