@@ -137,18 +137,22 @@ namespace ROMS
                 {
                     SPDataService objDser = new SPDataService();
                     int count = 0;
-                    objDs = objDser.udfnUserList(0,varUserName ,txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text),0);
+                    // objDs = objDser.udfnUserList(0,varUserName ,txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text),0,"");
+                    objDs = objDser.udfnUserList(0, varUserName, txtUserName.Text.Trim(), _security.Encrypt(txtUserName.Text.Trim().ToLower(), txtPassword.Text), 0,0,"");
                     objDser.CloseConnection();
                     if (objDs != null) {
                         if (objDs.Tables.Count > 0) {
                             if (objDs.Tables[0].Rows.Count > 0) {
                                 count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
                                 if (count != 0)
-                                {
+                                {                                    
                                     MainForm.pbUserID = objDs.Tables[1].Rows[0]["Userid"].ToString();
                                     MainForm.pbUserRoleId = objDs.Tables[1].Rows[0]["UserRoleCode"].ToString();
                                     MainForm.pbUserName = objDs.Tables[1].Rows[0]["UserName"].ToString();
+                                    MainForm.pbLoginId = objDs.Tables[1].Rows[0]["LoginId"].ToString();
                                     MainForm.pbUserRoleName = objDs.Tables[1].Rows[0]["RoleName"].ToString();
+                                    MainForm.pbUserPassKey = objDs.Tables[1].Rows[0]["PassKey"].ToString();
+                                    MainForm.pbUserPassKeyValue = _security.Decrypt("passkey", objDs.Tables[1].Rows[0]["PasskeyValue"].ToString());
                                     MainForm.pbVersion = lblDVersion.Text;
                                     MainForm.pbHostName = Dns.GetHostName();
                                     MainForm.pbSSSSoftwareName = udfnDBName();
@@ -295,7 +299,7 @@ namespace ROMS
             //string paths = Application.StartupPath + "\\Server Settings\\serversettings.txt";
             //if (File.Exists(paths))
             //{
-                lblDVersion.Text = "v1.0.3";
+                lblDVersion.Text = "v1.0.5";
                 lblDVersion.BringToFront();
                 Authentication objAuthetication = new Authentication();
                 objAuthetication.Name = " - " + lblDVersion.Text;

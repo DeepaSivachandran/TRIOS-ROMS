@@ -48,6 +48,9 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblUserId = new System.Windows.Forms.Label();
             this.grbFilterByUser = new System.Windows.Forms.GroupBox();
+            this.lblSystemUser = new System.Windows.Forms.Label();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
             this.txtDUserList = new System.Windows.Forms.TextBox();
             this.btnView = new System.Windows.Forms.Button();
@@ -167,7 +170,7 @@
             this.columnHeader3});
             this.lvUserList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvUserList.HideSelection = false;
-            this.lvUserList.Location = new System.Drawing.Point(21, 56);
+            this.lvUserList.Location = new System.Drawing.Point(95, 56);
             this.lvUserList.Name = "lvUserList";
             this.lvUserList.Size = new System.Drawing.Size(313, 99);
             this.lvUserList.TabIndex = 1;
@@ -200,6 +203,9 @@
             // 
             // grbFilterByUser
             // 
+            this.grbFilterByUser.Controls.Add(this.lblSystemUser);
+            this.grbFilterByUser.Controls.Add(this.cmbStatus);
+            this.grbFilterByUser.Controls.Add(this.lblStatus);
             this.grbFilterByUser.Controls.Add(this.btnExport);
             this.grbFilterByUser.Controls.Add(this.txtDUserList);
             this.grbFilterByUser.Controls.Add(this.btnView);
@@ -210,13 +216,44 @@
             this.grbFilterByUser.Size = new System.Drawing.Size(1348, 67);
             this.grbFilterByUser.TabIndex = 0;
             this.grbFilterByUser.TabStop = false;
-            this.grbFilterByUser.Text = "Filter By System User";
+            this.grbFilterByUser.Text = "Filter By";
+            // 
+            // lblSystemUser
+            // 
+            this.lblSystemUser.AutoSize = true;
+            this.lblSystemUser.Location = new System.Drawing.Point(9, 30);
+            this.lblSystemUser.Name = "lblSystemUser";
+            this.lblSystemUser.Size = new System.Drawing.Size(77, 20);
+            this.lblSystemUser.TabIndex = 958820;
+            this.lblSystemUser.Text = "System User";
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(462, 27);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(126, 27);
+            this.cmbStatus.TabIndex = 1;
+            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
+            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
+            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
+            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(411, 30);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(45, 20);
+            this.lblStatus.TabIndex = 958819;
+            this.lblStatus.Text = "Status";
             // 
             // btnExport
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(418, 26);
+            this.btnExport.Location = new System.Drawing.Point(675, 26);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
             this.btnExport.TabIndex = 3;
@@ -230,7 +267,7 @@
             // txtDUserList
             // 
             this.txtDUserList.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDUserList.Location = new System.Drawing.Point(18, 27);
+            this.txtDUserList.Location = new System.Drawing.Point(92, 27);
             this.txtDUserList.MaxLength = 30;
             this.txtDUserList.Name = "txtDUserList";
             this.txtDUserList.Size = new System.Drawing.Size(313, 27);
@@ -244,7 +281,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(337, 26);
+            this.btnView.Location = new System.Drawing.Point(594, 26);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 2;
@@ -297,6 +334,9 @@
             this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
             this.DGV_SearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_SearchGrid_ColumnHeaderMouseClick);
+            this.DGV_SearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_SearchGrid_ColumnWidthChanged);
+            this.DGV_SearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_SearchGrid_CurrentCellDirtyStateChanged);
+            this.DGV_SearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid_EditingControlShowing);
             this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
             // lblNoRecordsFound
@@ -425,5 +465,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         public System.Windows.Forms.PictureBox picLoader;
+        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblSystemUser;
     }
 }

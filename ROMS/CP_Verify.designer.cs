@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_ChangePasswordConfirmation
+    partial class CP_Verify
     {
         /// <summary>
         /// Required designer variable.
@@ -28,29 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_ChangePasswordConfirmation));
-            this.btnConfirm = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Verify));
+            this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtDPasskey = new System.Windows.Forms.TextBox();
             this.txtPassKey = new System.Windows.Forms.TextBox();
+            this.btnAuthorise = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnConfirm
+            // errUnit
             // 
-            this.btnConfirm.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirm.Image = global::ROMS.Properties.Resources.approve;
-            this.btnConfirm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfirm.Location = new System.Drawing.Point(162, 47);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(86, 33);
-            this.btnConfirm.TabIndex = 13;
-            this.btnConfirm.Text = "Confirm";
-            this.btnConfirm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnConfirm.UseVisualStyleBackColor = true;
-            this.btnConfirm.Click += new System.EventHandler(this.BtnConfirm_Click);
-            this.btnConfirm.Enter += new System.EventHandler(this.BtnConfirm_Enter);
-            this.btnConfirm.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnConfirm_KeyDown);
-            this.btnConfirm.Leave += new System.EventHandler(this.BtnConfirm_Leave);
+            this.errUnit.ContainerControl = this;
             // 
             // txtDPasskey
             // 
@@ -62,7 +51,7 @@
             this.txtDPasskey.Name = "txtDPasskey";
             this.txtDPasskey.ReadOnly = true;
             this.txtDPasskey.Size = new System.Drawing.Size(62, 28);
-            this.txtDPasskey.TabIndex = 14;
+            this.txtDPasskey.TabIndex = 11;
             this.txtDPasskey.Text = "Passkey";
             // 
             // txtPassKey
@@ -70,22 +59,40 @@
             this.txtPassKey.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassKey.Location = new System.Drawing.Point(74, 14);
             this.txtPassKey.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtPassKey.MaxLength = 50;
+            this.txtPassKey.MaxLength = 6;
             this.txtPassKey.Name = "txtPassKey";
             this.txtPassKey.PasswordChar = '*';
             this.txtPassKey.Size = new System.Drawing.Size(174, 28);
-            this.txtPassKey.TabIndex = 12;
+            this.txtPassKey.TabIndex = 0;
             this.txtPassKey.Enter += new System.EventHandler(this.TxtPassKey_Enter);
             this.txtPassKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPassKey_KeyDown);
             this.txtPassKey.Leave += new System.EventHandler(this.TxtPassKey_Leave);
             // 
-            // CP_ChangePasswordConfirmation
+            // btnAuthorise
+            // 
+            this.btnAuthorise.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAuthorise.Image = global::ROMS.Properties.Resources.approve;
+            this.btnAuthorise.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAuthorise.Location = new System.Drawing.Point(155, 47);
+            this.btnAuthorise.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnAuthorise.Name = "btnAuthorise";
+            this.btnAuthorise.Size = new System.Drawing.Size(93, 33);
+            this.btnAuthorise.TabIndex = 1;
+            this.btnAuthorise.Text = "Authorize";
+            this.btnAuthorise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAuthorise.UseVisualStyleBackColor = true;
+            this.btnAuthorise.Click += new System.EventHandler(this.btnAuthorise_Click);
+            this.btnAuthorise.Enter += new System.EventHandler(this.BtnAuthorise_Enter);
+            this.btnAuthorise.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAuthorise_KeyDown);
+            this.btnAuthorise.Leave += new System.EventHandler(this.BtnAuthorise_Leave);
+            // 
+            // CP_Verify
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(259, 91);
-            this.Controls.Add(this.btnConfirm);
+            this.Controls.Add(this.btnAuthorise);
             this.Controls.Add(this.txtDPasskey);
             this.Controls.Add(this.txtPassKey);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -95,19 +102,19 @@
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CP_ChangePasswordConfirmation";
+            this.Name = "CP_Verify";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Confirmation";
-            this.Load += new System.EventHandler(this.CP_ChangePasswordConfirmation_Load);
+            this.Text = "Please Enter Passkey to Proceed";
+            ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnConfirm;
+        private System.Windows.Forms.ErrorProvider errUnit;
+        private System.Windows.Forms.Button btnAuthorise;
+        private System.Windows.Forms.TextBox txtDPasskey;
         private System.Windows.Forms.TextBox txtPassKey;
-        public System.Windows.Forms.TextBox txtDPasskey;
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
 {
@@ -15,6 +16,8 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+
+        public string varUserID = "";
         public CP_Citylist()
         {
             InitializeComponent();
@@ -67,19 +70,24 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-
                         SPDataService objspservice = new SPDataService();
                         varResult = "";
-                        varResult = objspservice.udfnCity(2, Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete");
-                        objspservice.CloseConnection();
-                        if (varResult.Split('~')[0] == "3")
+                        MainForm.objCP_Verify = new CP_Verify();
+                        MainForm.objCP_Verify.ShowDialog();
+                        varUserID = MainForm.objCP_Verify.varUserId;
+                        if (MainForm.objCP_Verify.flag == 1)
                         {
-                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-                        }
-                        else
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            varResult = objspservice.udfnCity(2, Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID);
+                            objspservice.CloseConnection();
+                            if (varResult.Split('~')[0] == "3")
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnList();
+                            }
+                            else
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
@@ -500,26 +508,18 @@ namespace ROMS
 
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (grdCityList.IsCurrentCellDirty)
+            if (DGV_SearchGrid.IsCurrentCellDirty)
             {
                 // Commit the changes immediately
-                grdCityList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
-        }
-
-        private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-
-            try
-            {
-                //udfnGridSearchFilter();
-                DataService objDser = new DataService();
-                grdCityList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCityList);
-                objDser.CloseConnection();
-                grdCityList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //DGV_SearchGrid_CellPainting(sender,e);
-            }
-            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            //udfnGridSearchFilter();
+            DataService objDser = new DataService();
+            grdCityList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCityList);
+            objDser.CloseConnection();
+            grdCityList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+            //DGV_SearchGrid_CellPainting(sender,e);
+             
         }
     }
 }

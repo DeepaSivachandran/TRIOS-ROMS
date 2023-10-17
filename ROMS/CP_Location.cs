@@ -29,6 +29,7 @@ namespace ROMS
         public string PbLocationTName = "";
         public string PbLocationSName = "";
         public string PbStockApplicable = "";
+        public string varUserID = "";
         public int PbConcernID = 0;
         public int PbLocationTypeID=0;
         public int PbStockApplicableID = 0;
@@ -37,6 +38,8 @@ namespace ROMS
         public int PbGodownTypeStatus = 0;
         public int varUpdate = 0;
         public int varFormFlag = 0;
+        public int varStockApplicableId = 0;
+        public int saveflag = 0;
         public CP_Location()
         {
             InitializeComponent();
@@ -155,7 +158,7 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
-                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.ValueMember = "COMID"; 
                             cmbConcern.DisplayMember = "COM_ShortName";
                             cmbConcern.DataSource = objDs.Tables[0];
                         }
@@ -166,7 +169,10 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,4) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbStockApplicable, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
-                
+                //if (MainForm.objCP_LocationList.varStockApplicable == 1)
+                //{
+                //    cmbStockApplicable.SelectedValue = 12;
+                //}
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -207,6 +213,7 @@ namespace ROMS
                 cmbStockApplicable.SelectedValue = PbStockApplicableID;
                 if (PbGodownTypeStatus == 86) { rbInside.Checked = true; } else { rbOutside.Checked = true; }
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+                if (PbStockApplicableID==11) { varStockApplicableId = PbStockApplicableID; }
             }
             catch (Exception ex)
             {
@@ -234,14 +241,14 @@ namespace ROMS
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
 
-                if (pnlGodownType.Enabled == false)
-                {
-                    rbInside.Checked = false;
-                    rbOutside.Checked = false;
-                    varGodownType = 0;
-                }
-                else
-                {
+                //if (pnlGodownType.Enabled == false)
+                //{
+                //    rbInside.Checked = false;
+                //    rbOutside.Checked = false;
+                //    varGodownType = 0;
+                //}
+                //else
+                //{
                     if (rbInside.Checked == true)
                     {
                         varGodownType = 86;
@@ -250,7 +257,7 @@ namespace ROMS
                     {
                         varGodownType = 87;
                     }
-                }
+                //}
                  
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
@@ -266,19 +273,37 @@ namespace ROMS
                     varType = 1;
                 }
                 int varVerify = 0;
-                if(cmbStockApplicable.SelectedIndex==1)
+                if (btnSave.Text == "Update")
                 {
-                    MainForm.objCP_SL_Verify = new CP_SL_Verify();
-                    MainForm.objCP_SL_Verify.ShowDialog();
-                    varVerify = MainForm.objCP_SL_Verify.flag;
+                    if (varStockApplicableId == Convert.ToInt32(cmbStockApplicable.SelectedValue))
+                    { varVerify = 1; }
+                    if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 12) { varVerify = 1; }
                 }
                 else
                 {
-                    varVerify = 1;
+                    //if (Convert.ToInt32(cmbStockApplicable.SelectedValue) == 11)
+                    //{ varVerify = 0;}
+                    //else
+                    //{
+                        varVerify = 1;
+                        saveflag = 0;
+                    //}
                 }
-                if (varVerify == 1)
+                if (varVerify == 0)
                 {
-                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator);
+                    saveflag = 1;
+                    MainForm.objCP_SL_Verify = new CP_SL_Verify();
+                    MainForm.objCP_SL_Verify.ShowDialog();
+                    varVerify = MainForm.objCP_SL_Verify.flag;
+                    varUserID = MainForm.objCP_SL_Verify.varUserId;
+                }
+                else
+                {
+                    varUserID = MainForm.pbUserID;
+                }
+                if (saveflag == 0)
+                {
+                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator, MainForm.pbUserID);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
@@ -310,7 +335,7 @@ namespace ROMS
                         btnSave.Enabled = true;
                         btnSave.Focus();
                     }
-                }
+                }  
             }
             catch (Exception ex)
             {
@@ -366,14 +391,14 @@ namespace ROMS
                     tpLocationTypeInTamil.Show("Please enter location name in tamil", txtLocationNameInTamil, 5000);
                     blnErrorFlag = true;
                 }
-                //if (Convert.ToString(cmbStockApplicable.SelectedItem) == "" || Convert.ToString(cmbStockApplicable.SelectedValue) == "-1")
-                //{
-                //    epLocation.SetError(cmbStockApplicable, "Please select stock applicable");
-                //    cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpStoctApplicable.ShowAlways = true;
-                //    tpStoctApplicable.Show("Please select stock applicable", cmbStockApplicable, 5000);
-                //    blnErrorFlag = true;
-                //}
+                if (Convert.ToString(cmbStockApplicable.SelectedItem) == "" || Convert.ToString(cmbStockApplicable.SelectedValue) == "-1")
+                {
+                    epLocation.SetError(cmbStockApplicable, "Please select stock applicable");
+                    cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpStoctApplicable.ShowAlways = true;
+                    tpStoctApplicable.Show("Please select stock applicable", cmbStockApplicable, 5000);
+                    blnErrorFlag = true;
+                }
                 if (Convert.ToString(txtShortName.Text).Trim() == "")
                 {
                     epLocation.SetError(txtShortName, "Please enter short name");
@@ -787,18 +812,18 @@ namespace ROMS
         {
             try
             {
-                //if (Convert.ToString(cmbStockApplicable.SelectedItem) == "" || Convert.ToString(cmbStockApplicable.SelectedValue) == "-1")
-                //{
-                //    epLocation.SetError(cmbStockApplicable, "Please select stock applicable");
-                //    cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tpLocationType.ShowAlways = true;
-                //    tpLocationType.Show("Please select stock applicable", cmbStockApplicable, 5000);
-                //}
-                //else
-                //{
-                //    epLocation.Clear();
+                if (Convert.ToString(cmbStockApplicable.SelectedItem) == "" || Convert.ToString(cmbStockApplicable.SelectedValue) == "-1")
+                {
+                    epLocation.SetError(cmbStockApplicable, "Please select stock applicable");
+                    cmbStockApplicable.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpLocationType.ShowAlways = true;
+                    tpLocationType.Show("Please select stock applicable", cmbStockApplicable, 5000);
+                }
+                else
+                {
+                    epLocation.Clear();
                     cmbStockApplicable.BackColor = Color.White;
-                //}
+                }
             }
             catch (Exception ex)
             {
@@ -960,24 +985,39 @@ namespace ROMS
             }
             else
             {
-                if (btnSave.Text == "Save")
-                {
-                    pnlGodownType.Enabled = false;
-                    rbInside.Checked = true;
-                }
-                else
-                {
-                    pnlGodownType.Enabled = true;
-                }
+                //if (btnSave.Text == "Save")
+                //{
+                //    pnlGodownType.Enabled = false;
+                //    rbInside.Checked = true;
+                //}
+                //else
+                //{
+                //    pnlGodownType.Enabled = true;
+                //}
+                pnlGodownType.Enabled = false;
+                rbInside.Checked = true;
             }
         }
 
         private void CmbStockApplicable_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if(cmbStockApplicable.SelectedIndex==11)
-            //{
-
-            //}
+            try
+            {
+                if (cmbStockApplicable.SelectedIndex == 1)
+                {
+                    pnlStatus.Enabled = false;
+                    rbActive.Checked = true;
+                }
+                else
+                {
+                    pnlStatus.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

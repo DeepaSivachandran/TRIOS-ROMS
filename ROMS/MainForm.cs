@@ -171,7 +171,6 @@ namespace ROMS
 
 
         //public static CP_SL_Verify objCP_SL_Verify;
-
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
