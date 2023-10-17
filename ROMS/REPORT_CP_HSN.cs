@@ -481,6 +481,7 @@ namespace ROMS
         {
             try
             {
+                lvHsnName.Visible = false;
                 cmbGST.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -633,9 +634,12 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["HSN_Code"].ToString(), objDs.Tables[0].Rows[i]["HSN_Name"].ToString(), objDs.Tables[0].Rows[i]["HSNID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvHsnName.Items.Add(objList);
+                                    lvHsnName.Columns[0].Width = 150;
+                                    lvHsnName.Columns[1].Width = 150;
+                                    lvHsnName.Columns[2].Width = 0;
                                 }
                                 lvHsnName.Visible = true;
                                 lvHsnName.BringToFront();
@@ -691,7 +695,7 @@ namespace ROMS
                 if (txtHsnName.Text != "")
                 {
                     ListViewItem selectedItem = lvHsnName.SelectedItems[0];
-                    txtHsnName.Text = selectedItem.SubItems[0].Text;
+                    txtHsnName.Text = selectedItem.SubItems[1].Text;
                     lblHsnName.Text = selectedItem.SubItems[2].Text;
                     //txtHSNCode.Text = selectedItem.SubItems[1].Text;
                 }
