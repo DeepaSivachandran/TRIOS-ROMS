@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ReportProductSubgroup = new System.Windows.Forms.ToolStrip();
+            this.ReportProduct = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.pnlReportProductSubgroup = new System.Windows.Forms.Panel();
+            this.pnlReportProduct = new System.Windows.Forms.Panel();
             this.lvSubGroup = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -57,25 +57,25 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.ReportProductSubgroup.SuspendLayout();
-            this.pnlReportProductSubgroup.SuspendLayout();
+            this.ReportProduct.SuspendLayout();
+            this.pnlReportProduct.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // ReportProductSubgroup
+            // ReportProduct
             // 
-            this.ReportProductSubgroup.BackColor = System.Drawing.Color.White;
-            this.ReportProductSubgroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportProductSubgroup.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ReportProductSubgroup.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ReportProductSubgroup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ReportProduct.BackColor = System.Drawing.Color.White;
+            this.ReportProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReportProduct.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.ReportProduct.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ReportProduct.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader});
-            this.ReportProductSubgroup.Location = new System.Drawing.Point(0, 0);
-            this.ReportProductSubgroup.Name = "ReportProductSubgroup";
-            this.ReportProductSubgroup.Size = new System.Drawing.Size(1354, 25);
-            this.ReportProductSubgroup.TabIndex = 35;
-            this.ReportProductSubgroup.Text = "Product Subgroup Report";
+            this.ReportProduct.Location = new System.Drawing.Point(0, 0);
+            this.ReportProduct.Name = "ReportProduct";
+            this.ReportProduct.Size = new System.Drawing.Size(1354, 25);
+            this.ReportProduct.TabIndex = 35;
+            this.ReportProduct.Text = "Product Report";
             // 
             // tspHeader
             // 
@@ -87,19 +87,19 @@
             this.tspHeader.Size = new System.Drawing.Size(108, 22);
             this.tspHeader.Text = "Product Report";
             // 
-            // pnlReportProductSubgroup
+            // pnlReportProduct
             // 
-            this.pnlReportProductSubgroup.BackColor = System.Drawing.Color.White;
-            this.pnlReportProductSubgroup.Controls.Add(this.lvSubGroup);
-            this.pnlReportProductSubgroup.Controls.Add(this.lvGroup);
-            this.pnlReportProductSubgroup.Controls.Add(this.grpfilter);
-            this.pnlReportProductSubgroup.Controls.Add(this.lblNoRecordsFound);
-            this.pnlReportProductSubgroup.Controls.Add(this.picLoader);
-            this.pnlReportProductSubgroup.Controls.Add(this.RPTViewer);
-            this.pnlReportProductSubgroup.Location = new System.Drawing.Point(0, 31);
-            this.pnlReportProductSubgroup.Name = "pnlReportProductSubgroup";
-            this.pnlReportProductSubgroup.Size = new System.Drawing.Size(1354, 642);
-            this.pnlReportProductSubgroup.TabIndex = 958788;
+            this.pnlReportProduct.BackColor = System.Drawing.Color.White;
+            this.pnlReportProduct.Controls.Add(this.lvSubGroup);
+            this.pnlReportProduct.Controls.Add(this.lvGroup);
+            this.pnlReportProduct.Controls.Add(this.grpfilter);
+            this.pnlReportProduct.Controls.Add(this.lblNoRecordsFound);
+            this.pnlReportProduct.Controls.Add(this.picLoader);
+            this.pnlReportProduct.Controls.Add(this.RPTViewer);
+            this.pnlReportProduct.Location = new System.Drawing.Point(0, 31);
+            this.pnlReportProduct.Name = "pnlReportProduct";
+            this.pnlReportProduct.Size = new System.Drawing.Size(1354, 642);
+            this.pnlReportProduct.TabIndex = 958788;
             // 
             // lvSubGroup
             // 
@@ -112,7 +112,7 @@
             this.columnHeader29});
             this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSubGroup.HideSelection = false;
-            this.lvSubGroup.Location = new System.Drawing.Point(668, 49);
+            this.lvSubGroup.Location = new System.Drawing.Point(668, 48);
             this.lvSubGroup.Name = "lvSubGroup";
             this.lvSubGroup.Size = new System.Drawing.Size(457, 157);
             this.lvSubGroup.TabIndex = 1111229;
@@ -154,7 +154,7 @@
             this.columnHeader13});
             this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvGroup.HideSelection = false;
-            this.lvGroup.Location = new System.Drawing.Point(430, 48);
+            this.lvGroup.Location = new System.Drawing.Point(431, 48);
             this.lvGroup.Name = "lvGroup";
             this.lvGroup.Size = new System.Drawing.Size(457, 157);
             this.lvGroup.TabIndex = 1111230;
@@ -289,7 +289,7 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(1042, 17);
+            this.btnListPrint.Location = new System.Drawing.Point(1037, 18);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(75, 29);
@@ -329,7 +329,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 357);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 344);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958789;
@@ -370,8 +370,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
-            this.Controls.Add(this.pnlReportProductSubgroup);
-            this.Controls.Add(this.ReportProductSubgroup);
+            this.Controls.Add(this.pnlReportProduct);
+            this.Controls.Add(this.ReportProduct);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -379,12 +379,12 @@
             this.Name = "REPORT_CP_Product";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HSN Report";
-            this.Load += new System.EventHandler(this.REPORT_CP_Brand_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Brand_KeyDown);
-            this.ReportProductSubgroup.ResumeLayout(false);
-            this.ReportProductSubgroup.PerformLayout();
-            this.pnlReportProductSubgroup.ResumeLayout(false);
-            this.pnlReportProductSubgroup.PerformLayout();
+            this.Load += new System.EventHandler(this.REPORT_CP_Product_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Product_KeyDown);
+            this.ReportProduct.ResumeLayout(false);
+            this.ReportProduct.PerformLayout();
+            this.pnlReportProduct.ResumeLayout(false);
+            this.pnlReportProduct.PerformLayout();
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
@@ -395,9 +395,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip ReportProductSubgroup;
+        private System.Windows.Forms.ToolStrip ReportProduct;
         private System.Windows.Forms.ToolStripLabel tspHeader;
-        private System.Windows.Forms.Panel pnlReportProductSubgroup;
+        private System.Windows.Forms.Panel pnlReportProduct;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;
         private System.Windows.Forms.ComboBox cmbReportType;

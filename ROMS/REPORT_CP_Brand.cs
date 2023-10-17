@@ -467,24 +467,24 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 if(cmbReportType.SelectedIndex==1)
                 {
-                    txtBrand.Enabled = true; txtBrand.Text = "";
-                    txtGroup.Enabled = false;txtGroup.Text = "";
-                    txtSubGroup.Enabled = false;txtSubGroup.Text = "";
-                    cmbStatus.SelectedValue = 0;
+                    txtBrand.Enabled = true;
+                    txtGroup.Enabled = false;
+                    txtSubGroup.Enabled = false;
+                    udfnClear();
                 }
                 if(cmbReportType.SelectedIndex==2)
                 {
-                    txtBrand.Enabled = true; txtBrand.Text = "";
-                    txtGroup.Enabled = true; txtGroup.Text = "";
-                    txtSubGroup.Enabled = true; txtSubGroup.Text = "";
-                    cmbStatus.SelectedValue = 0;
+                    txtBrand.Enabled = true;
+                    txtGroup.Enabled = true;
+                    txtSubGroup.Enabled = true;
+                    udfnClear();
                 }
                 if(cmbReportType.SelectedIndex==3)
                 {
-                    txtBrand.Enabled = false;txtBrand.Text = "";
-                    txtGroup.Enabled = false;txtGroup.Text = "";
-                    txtSubGroup.Enabled = false;txtSubGroup.Text = "";
-                    cmbStatus.SelectedValue = 0;
+                    txtBrand.Enabled = false;
+                    txtGroup.Enabled = false;
+                    txtSubGroup.Enabled = false;
+                    udfnClear();
                 }
             }
             catch (Exception ex)
@@ -492,6 +492,13 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnClear()
+        {
+            txtBrand.Text = "";
+            txtGroup.Text = "";
+            txtSubGroup.Text = "";
+            cmbStatus.SelectedValue = 0;
         }
         private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
         {

@@ -94,9 +94,10 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 if(cmbReportType.SelectedIndex==1)
                 {
-                    txtRackgroup.Enabled = false;txtRackgroup.Text = "";
-                    txtEmployeeName.Enabled = false;txtEmployeeName.Text = "";
-                    txtRack.Enabled = false;txtRack.Text = "";
+                    txtRackgroup.Enabled = false;
+                    txtEmployeeName.Enabled = false;
+                    txtRack.Enabled = false;
+                    udfnClear();
                 }
                 else
                 {
@@ -104,12 +105,38 @@ namespace ROMS
                     txtEmployeeName.Enabled = true;
                     txtRack.Enabled = true;
                 }
+                if(cmbReportType.SelectedIndex==2)
+                {
+                    udfnClear();
+                }
+                if (cmbReportType.SelectedIndex == 3)
+                {
+                    udfnClear();
+                }
+                if (cmbReportType.SelectedIndex == 4)
+                {
+                    udfnClear();
+                }
+                if (cmbReportType.SelectedIndex == 5)
+                {
+                    udfnClear();
+                }
+                if (cmbReportType.SelectedIndex == 6)
+                {
+                    udfnClear();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnClear()
+        {
+            txtRackgroup.Text = "";
+            txtEmployeeName.Text = "";
+            txtRack.Text = "";
         }
         public void udfnRG()
         {

@@ -386,21 +386,24 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbReportType.Select(int.MaxValue, 0)));
                 if(cmbReportType.SelectedIndex==1)
                 {
-                    txtHsnName.Enabled = false;txtHsnName.Text = "";
-                    cmbGST.Enabled = false;cmbGST.SelectedValue = 0;
+                    txtHsnName.Enabled = false;
+                    cmbGST.Enabled = false;
                     cmbStatus.Enabled = true;
+                    udfnClear();
                 }
                 if(cmbReportType.SelectedIndex==2)
                 {
                     txtHsnName.Enabled = true;
                     cmbGST.Enabled = true;
                     cmbStatus.Enabled = true;
+                    udfnClear();
                 }
                 if(cmbReportType.SelectedIndex==3)
                 {
                     txtHsnName.Enabled = true;
                     cmbGST.Enabled = true;
-                    cmbStatus.Enabled = false;cmbStatus.SelectedValue = 0;
+                    cmbStatus.Enabled = false;
+                    udfnClear();
                 }
             }
             catch (Exception ex)
@@ -408,6 +411,12 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnClear()
+        {
+            txtHsnName.Text = "";
+            cmbGST.SelectedValue = 0;
+            cmbStatus.SelectedValue = 0;
         }
         private void CmbReportType_KeyDown(object sender, KeyEventArgs e)
         {

@@ -168,8 +168,8 @@ namespace ROMS
         public static REPORT_CP_Rackgroup objREPORT_CP_Rackgroup;
         public static REPORT_CP_Supplier objREPORT_CP_Supplier;
         public static REPORT_CP_Product objREPORT_CP_Product;
-
-
+        public static CP_Verify objCP_Verify;
+         
         //public static CP_SL_Verify objCP_SL_Verify;
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
